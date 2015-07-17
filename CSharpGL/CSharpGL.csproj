@@ -40,8 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OpenGL.cs" />
-    <Compile Include="OpenGLExtensions.cs" />
+    <Compile Include="GLU_Functions.cs" />
+    <Compile Include="GL_Functions.cs" />
+    <Compile Include="GLU_Consts.cs" />
+    <Compile Include="GL_Consts.cs" />
+    <Compile Include="GL.cs" />
+    <Compile Include="GL_Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structs\POINTFLOAT.cs" />
     <Compile Include="Structs\GLYPHMETRICSFLOAT.cs" />
