@@ -43,7 +43,7 @@ namespace CSharpGL
         /// <summary>
         /// The set of extension functions.
         /// </summary>
-        private static Dictionary<string, Delegate> extensionFunctions = new Dictionary<string, Delegate>();
+        private static readonly Dictionary<string, Delegate> extensionFunctions = new Dictionary<string, Delegate>();
 
         #region OpenGL 1.2
 
