@@ -790,7 +790,7 @@ namespace CSharpGL
         /// This function is similar to flush, but in a sense does it more, as it
         /// executes all commands aon both the client and the server.
         /// </summary>
-        
+
         [DllImport(Win32.OpenGL32, SetLastError = true)]
         private static extern void glFinish();
 

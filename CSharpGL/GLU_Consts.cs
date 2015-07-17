@@ -7,7 +7,7 @@ namespace CSharpGL
 {
     public static partial class GL
     {
-      
+
         #region The GLU DLL Constant Definitions.
 
         //   Version

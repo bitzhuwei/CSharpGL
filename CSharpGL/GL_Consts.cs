@@ -746,6 +746,6 @@ namespace CSharpGL
         public static uint FOG_SPECULAR_TEXTURE_WIN = 0x80EC;
 
         #endregion
-    
+
     }
 }
