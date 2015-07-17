@@ -4291,47 +4291,5 @@ namespace CSharpGL
 
         #endregion
 
-
-        #region Error Checking
-
-        /// <summary>
-        /// Gets the error description for a given error code.
-        /// </summary>
-        /// <param name="errorCode">The error code.</param>
-        /// <returns>The error description for the given error code.</returns>
-        public static string GetErrorDescription(uint errorCode)
-        {
-            switch (errorCode)
-            {
-                case GL_NO_ERROR:
-                    return "No Error";
-                case GL_INVALID_ENUM:
-                    return "A GLenum argument was out of range.";
-                case GL_INVALID_VALUE:
-                    return "A numeric argument was out of range.";
-                case GL_INVALID_OPERATION:
-                    return "Invalid operation.";
-                case GL_STACK_OVERFLOW:
-                    return "Command would cause a stack overflow.";
-                case GL_STACK_UNDERFLOW:
-                    return "Command would cause a stack underflow.";
-                case GL_OUT_OF_MEMORY:
-                    return "Not enough memory left to execute command.";
-                default:
-                    return "Unknown Error";
-            }
-        }
-
-        #endregion
-
-
-        /// <summary>
-        /// Makes no render context current.
-        /// </summary>
-        public static void MakeNothingCurrent()
-        {
-            Win32.wglMakeCurrent(IntPtr.Zero, IntPtr.Zero);
-        }
-
     }
 }
