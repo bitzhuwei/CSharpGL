@@ -40,6 +40,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="GLM\geometric.cs" />
+    <Compile Include="GLM\mat2.cs" />
+    <Compile Include="GLM\mat3.cs" />
+    <Compile Include="GLM\mat4.cs" />
+    <Compile Include="GLM\matrix.cs" />
+    <Compile Include="GLM\matrix_transform.cs" />
+    <Compile Include="GLM\trigonometric.cs" />
+    <Compile Include="GLM\vec2.cs" />
+    <Compile Include="GLM\vec3.cs" />
+    <Compile Include="GLM\vec4.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
