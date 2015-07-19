@@ -1,24 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSharpGL.Winforms.Demo
+namespace CSharpGL.Winforms
 {
     /// <summary>
     /// 
     /// </summary>
-    public partial class Form1 : Form
+    public partial class GLCanvas : UserControl
     {
         /// <summary>
         /// 
         /// </summary>
-        public Form1()
+        public GLCanvas()
         {
             InitializeComponent();
         }

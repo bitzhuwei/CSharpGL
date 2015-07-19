@@ -21,6 +21,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -47,9 +49,17 @@
     <Compile Include="GL.cs" />
     <Compile Include="GL_Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Win32API\BITMAPINFO.cs" />
+    <Compile Include="Win32API\ClassStyles.cs" />
+    <Compile Include="Win32API\Delegates.cs" />
+    <Compile Include="Win32API\SetWindowPosFlags.cs" />
+    <Compile Include="Win32API\WindowStyles.cs" />
+    <Compile Include="Win32API\PIXELFORMATDESCRIPTOR.cs" />
     <Compile Include="Win32API\POINTFLOAT.cs" />
     <Compile Include="Win32API\GLYPHMETRICSFLOAT.cs" />
     <Compile Include="Win32API\Win32.cs" />
+    <Compile Include="Win32API\WindowStylesEx.cs" />
+    <Compile Include="Win32API\WNDCLASSEX.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

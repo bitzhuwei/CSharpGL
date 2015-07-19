@@ -27,11 +27,18 @@ namespace CSharpGL
 
             // ftlPhysicsGuy - Better way
             Delegate del = null;
-            if (extensionFunctions.TryGetValue(name, out del) == false)
+            if (!extensionFunctions.TryGetValue(name, out del))
             {
+                // check https://www.opengl.org/wiki/Load_OpenGL_Functions
                 IntPtr proc = Win32.wglGetProcAddress(name);
-                if (proc == IntPtr.Zero)
-                    throw new Exception("Extension function " + name + " not supported");
+                int pointer = proc.ToInt32();
+                if (-1 <= pointer && pointer <= 3)
+                {
+                    proc = Win32.GetProcAddress(name);
+                    pointer = proc.ToInt32();
+                    if (-1 <= pointer && pointer <= 3)
+                    { throw new Exception("Extension function " + name + " not supported"); }
+                }
 
                 //  Get the delegate for the function pointer.
                 del = Marshal.GetDelegateForFunctionPointer(proc, delegateType);
