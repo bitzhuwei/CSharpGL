@@ -924,7 +924,7 @@ namespace CSharpGL
         }
         public static bool IsQuery(uint id)
         {
-            return (bool)GetDelegateFor<glIsQuery>()(id);
+            return GetDelegateFor<glIsQuery>()(id);
         }
         public static void BeginQuery(uint target, uint id)
         {
@@ -960,7 +960,7 @@ namespace CSharpGL
         }
         public static bool IsBuffer(uint buffer)
         {
-            return (bool)GetDelegateFor<glIsBuffer>()(buffer);
+            return GetDelegateFor<glIsBuffer>()(buffer);
         }
         public static void BufferData(uint target, int size, IntPtr data, uint usage)
         {
@@ -993,11 +993,11 @@ namespace CSharpGL
         }
         public static IntPtr MapBuffer(uint target, uint access)
         {
-            return (IntPtr)GetDelegateFor<glMapBuffer>()(target, access);
+            return GetDelegateFor<glMapBuffer>()(target, access);
         }
         public static bool UnmapBuffer(uint target)
         {
-            return (bool)GetDelegateFor<glUnmapBuffer>()(target);
+            return GetDelegateFor<glUnmapBuffer>()(target);
         }
         public static void GetBufferParameter(uint target, uint pname, int[] parameters)
         {
@@ -1101,7 +1101,7 @@ namespace CSharpGL
         }
         public static uint CreateProgram()
         {
-            return (uint)GetDelegateFor<glCreateProgram>()();
+            return GetDelegateFor<glCreateProgram>()();
         }
         /// <summary>
         /// Create a shader object
@@ -1110,7 +1110,7 @@ namespace CSharpGL
         /// <returns>This function returns 0 if an error occurs creating the shader object. Otherwise the shader id is returned.</returns>
         public static uint CreateShader(uint type)
         {
-            return (uint)GetDelegateFor<glCreateShader>()(type);
+            return GetDelegateFor<glCreateShader>()(type);
         }
         public static void DeleteProgram(uint program)
         {
@@ -1176,7 +1176,7 @@ namespace CSharpGL
         }
         public static int GetAttribLocation(uint program, string name)
         {
-            return (int)GetDelegateFor<glGetAttribLocation>()(program, name);
+            return GetDelegateFor<glGetAttribLocation>()(program, name);
         }
         public static void GetProgram(uint program, uint pname, int[] parameters)
         {
@@ -1207,7 +1207,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static int GetUniformLocation(uint program, string name)
         {
-            return (int)GetDelegateFor<glGetUniformLocation>()(program, name);
+            return GetDelegateFor<glGetUniformLocation>()(program, name);
         }
         public static void GetUniform(uint program, int location, float[] parameters)
         {
@@ -1235,11 +1235,11 @@ namespace CSharpGL
         }
         public static bool IsProgram(uint program)
         {
-            return (bool)GetDelegateFor<glIsProgram>()(program);
+            return GetDelegateFor<glIsProgram>()(program);
         }
         public static bool IsShader(uint shader)
         {
-            return (bool)GetDelegateFor<glIsShader>()(shader);
+            return GetDelegateFor<glIsShader>()(shader);
         }
         public static void LinkProgram(uint program)
         {
@@ -1757,13 +1757,6 @@ namespace CSharpGL
         {
             GetDelegateFor<glGetIntegeri_v>()(target, index, data);
         }
-
-        /// <summary>
-        /// This is not an imported OpenGL function, but very useful. If 'test' is
-        /// true, cap is enabled, otherwise, it's disable.
-        /// </summary>
-        /// <param name="cap">The capability you want to enable.</param>
-        /// <param name="test">The logical comparison.</param>
         public static void Enable(uint target, uint index)
         {
             GetDelegateFor<glEnablei>()(target, index);
@@ -1774,7 +1767,7 @@ namespace CSharpGL
         }
         public static bool IsEnabled(uint target, uint index)
         {
-            return (bool)GetDelegateFor<glIsEnabledi>()(target, index);
+            return GetDelegateFor<glIsEnabledi>()(target, index);
         }
         public static void BeginTransformFeedback(uint primitiveMode)
         {
@@ -1914,7 +1907,7 @@ namespace CSharpGL
         }
         public static int GetFragDataLocation(uint program, string name)
         {
-            return (int)GetDelegateFor<glGetFragDataLocation>()(program, name);
+            return GetDelegateFor<glGetFragDataLocation>()(program, name);
         }
         public static void Uniform1(int location, uint v0)
         {
@@ -1982,7 +1975,7 @@ namespace CSharpGL
         }
         public static string GetString(uint name, uint index)
         {
-            return (string)GetDelegateFor<glGetStringi>()(name, index);
+            return GetDelegateFor<glGetStringi>()(name, index);
         }
 
         //  Delegates
@@ -3574,7 +3567,7 @@ namespace CSharpGL
         }
         public static bool IsBufferARB(uint buffer)
         {
-            return (bool)GetDelegateFor<glIsBufferARB>()(buffer);
+            return GetDelegateFor<glIsBufferARB>()(buffer);
         }
         public static void BufferDataARB(uint target, uint size, IntPtr data, uint usage)
         {
@@ -3590,11 +3583,11 @@ namespace CSharpGL
         }
         public static IntPtr MapBufferARB(uint target, uint access)
         {
-            return (IntPtr)GetDelegateFor<glMapBufferARB>()(target, access);
+            return GetDelegateFor<glMapBufferARB>()(target, access);
         }
         public static bool UnmapBufferARB(uint target)
         {
-            return (bool)GetDelegateFor<glUnmapBufferARB>()(target);
+            return GetDelegateFor<glUnmapBufferARB>()(target);
         }
         public static void GetBufferParameterARB(uint target, uint pname, int[] parameters)
         {
@@ -3665,7 +3658,7 @@ namespace CSharpGL
         }
         public static bool IsQueryARB(uint id)
         {
-            return (bool)GetDelegateFor<glIsQueryARB>()(id);
+            return GetDelegateFor<glIsQueryARB>()(id);
         }
         public static void BeginQueryARB(uint target, uint id)
         {
@@ -3717,7 +3710,7 @@ namespace CSharpGL
         }
         public static uint GetHandleARB(uint pname)
         {
-            return (uint)GetDelegateFor<glGetHandleARB>()(pname);
+            return GetDelegateFor<glGetHandleARB>()(pname);
         }
         public static void DetachObjectARB(uint containerObj, uint attachedObj)
         {
@@ -3725,7 +3718,7 @@ namespace CSharpGL
         }
         public static uint CreateShaderObjectARB(uint shaderType)
         {
-            return (uint)GetDelegateFor<glCreateShaderObjectARB>()(shaderType);
+            return GetDelegateFor<glCreateShaderObjectARB>()(shaderType);
         }
         public static void ShaderSourceARB(uint shaderObj, int count, string[] source, ref int length)
         {
@@ -3737,7 +3730,7 @@ namespace CSharpGL
         }
         public static uint CreateProgramObjectARB()
         {
-            return (uint)GetDelegateFor<glCreateProgramObjectARB>()();
+            return GetDelegateFor<glCreateProgramObjectARB>()();
         }
         public static void AttachObjectARB(uint containerObj, uint obj)
         {
@@ -3849,7 +3842,7 @@ namespace CSharpGL
         }
         public static int GetUniformLocationARB(uint programObj, string name)
         {
-            return (int)GetDelegateFor<glGetUniformLocationARB>()(programObj, name);
+            return GetDelegateFor<glGetUniformLocationARB>()(programObj, name);
         }
         public static void GetActiveUniformARB(uint programObj, uint index, int maxLength, ref int length, ref int size, ref uint type, string name)
         {
@@ -4354,7 +4347,7 @@ namespace CSharpGL
         }
         public static uint GetAttribLocationARB(uint programObj, string name)
         {
-            return (uint)GetDelegateFor<glGetAttribLocationARB>()(programObj, name);
+            return GetDelegateFor<glGetAttribLocationARB>()(programObj, name);
         }
 
         //  Delegates
@@ -4533,7 +4526,7 @@ namespace CSharpGL
         //  Methods
         public static bool IsRenderbufferEXT(uint renderbuffer)
         {
-            return (bool)GetDelegateFor<glIsRenderbufferEXT>()(renderbuffer);
+            return GetDelegateFor<glIsRenderbufferEXT>()(renderbuffer);
         }
 
         public static void BindRenderbufferEXT(uint target, uint renderbuffer)
@@ -4563,7 +4556,7 @@ namespace CSharpGL
 
         public static bool IsFramebufferEXT(uint framebuffer)
         {
-            return (bool)GetDelegateFor<glIsFramebufferEXT>()(framebuffer);
+            return GetDelegateFor<glIsFramebufferEXT>()(framebuffer);
         }
 
         public static void BindFramebufferEXT(uint target, uint framebuffer)
@@ -4583,7 +4576,7 @@ namespace CSharpGL
 
         public static uint CheckFramebufferStatusEXT(uint target)
         {
-            return (uint)GetDelegateFor<glCheckFramebufferStatusEXT>()(target);
+            return GetDelegateFor<glCheckFramebufferStatusEXT>()(target);
         }
 
         public static void FramebufferTexture1DEXT(uint target, uint attachment, uint textarget, uint texture, int level)
@@ -4743,7 +4736,7 @@ namespace CSharpGL
         }
         public static bool IsVertexArray(uint array)
         {
-            return (bool)GetDelegateFor<glIsVertexArray>()(array);
+            return GetDelegateFor<glIsVertexArray>()(array);
         }
 
         //  Delegates
@@ -4822,6 +4815,66 @@ namespace CSharpGL
         public const uint GL_TRANSFORM_FEEDBACK_VARYINGS_EXT = 0x8C83;
         public const uint GL_TRANSFORM_FEEDBACK_BUFFER_MODE_EXT = 0x8C7F;
         public const uint GL_TRANSFORM_FEEDBACK_VARYING_MAX_LENGTH_EXT = 0x8C76;
+
+        #endregion
+
+        #region WGL_ARB_extensions_string
+
+        /// <summary>
+        /// Gets the ARB extensions string.
+        /// </summary>
+        /// <param name="hDC">device context handle.</param>
+        public static string GetExtensionsStringARB(IntPtr hDC)
+        {
+            return GetDelegateFor<wglGetExtensionsStringARB>()(hDC);
+        }
+
+        //  Delegates
+        private delegate string wglGetExtensionsStringARB(IntPtr hdc);
+
+        #endregion
+
+        #region WGL_ARB_create_context
+
+        //  Methods
+
+        /// <summary>
+        /// Creates a render context with the specified attributes.
+        /// </summary>
+        /// <param name="hDC">device context handle.</param>
+        /// <param name="hShareContext">
+        /// If is not null, then all shareable data (excluding
+        /// OpenGL texture objects named 0) will be shared by <hshareContext>,
+        /// all other contexts <hshareContext> already shares with, and the
+        /// newly created context. An arbitrary number of contexts can share
+        /// data in this fashion.</param>
+        /// <param name="attribList">
+        /// specifies a list of attributes for the context. The
+        /// list consists of a sequence of <name,value> pairs terminated by the
+        /// value 0. If an attribute is not specified in <attribList>, then the
+        /// default value specified below is used instead. If an attribute is
+        /// specified more than once, then the last value specified is used.
+        /// </param>
+        public static IntPtr CreateContextAttribsARB(IntPtr hDC, IntPtr hShareContext, int[] attribList)
+        {
+            return GetDelegateFor<wglCreateContextAttribsARB>()(hDC, hShareContext, attribList);
+        }
+
+        //  Delegates
+        private delegate IntPtr wglCreateContextAttribsARB(IntPtr hDC, IntPtr hShareContext, int[] attribList);
+
+        //  Constants
+        public const int WGL_CONTEXT_MAJOR_VERSION_ARB = 0x2091;
+        public const int WGL_CONTEXT_MINOR_VERSION_ARB = 0x2092;
+        public const int WGL_CONTEXT_LAYER_PLANE_ARB = 0x2093;
+        public const int WGL_CONTEXT_FLAGS_ARB = 0x2094;
+        public const int WGL_CONTEXT_PROFILE_MASK_ARB = 0x9126;
+        public const int WGL_CONTEXT_DEBUG_BIT_ARB = 0x0001;
+        public const int WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB = 0x0002;
+        public const int WGL_CONTEXT_CORE_PROFILE_BIT_ARB = 0x00000001;
+        public const int WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB = 0x00000002;
+        public const int ERROR_INVALID_VERSION_ARB = 0x2095;
+        public const int ERROR_INVALID_PROFILE_ARB = 0x2096;
 
         #endregion
 
