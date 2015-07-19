@@ -7,23 +7,26 @@ namespace CSharpGL
     /// <summary>
     /// Useful functions imported from the Win32 SDK.
     /// </summary>
-    public  class Win32
+    public sealed class Win32
     {
+
+        private Win32() { }
+
         /// <summary>
         /// glLibrary = Win32.LoadLibrary(OpenGL32);
         /// </summary>
-        public static readonly IntPtr glLibrary;
+        public static readonly IntPtr opengl32Library;
         /// <summary>
         /// Initializes the <see cref="Win32"/> class.
         /// </summary>
         static Win32()
         {
             //  Load the openGL library - without this wgl calls will fail.
-            glLibrary = Win32.LoadLibrary(OpenGL32);
+            opengl32Library = Win32.LoadLibrary(OpenGL32);
         }
         ~Win32()
         {
-            FreeLibrary(glLibrary);
+            FreeLibrary(opengl32Library);
         }
 
         //  The names of the libraries we're importing.
@@ -38,18 +41,18 @@ namespace CSharpGL
         [DllImport(Kernel32, SetLastError = true)]
         public static extern IntPtr LoadLibrary(string lpFileName);
 
-        public static IntPtr GetProcAddress(string funcName)
+        internal static IntPtr GetProcAddress(string funcName)
         {
-            IntPtr result = GetProcAddress(Win32.glLibrary, funcName);
+            IntPtr result = GetProcAddress(Win32.opengl32Library, funcName);
 
             return result;
         }
 
         [DllImport(Kernel32, SetLastError = true)]
-        private extern static IntPtr GetProcAddress(IntPtr lib, String funcName);
+        public extern static IntPtr GetProcAddress(IntPtr lib, String funcName);
 
         [DllImport(Kernel32, SetLastError = true)]
-        private extern static bool FreeLibrary(IntPtr lib);
+        public extern static bool FreeLibrary(IntPtr lib);
 
         #endregion
 
