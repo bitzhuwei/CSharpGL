@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,6 +18,7 @@ namespace CSharpGL
         /// <param name="x">The amount to translate along the x axis.</param>
         /// <param name="y">The amount to translate along the y axis.</param>
         /// <param name="z">The amount to translate along the z axis.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Translate(double x, double y, double z)
         {
             GL.Translated(x, y, z);
@@ -28,6 +30,7 @@ namespace CSharpGL
         /// <param name="x">The amount to translate along the x axis.</param>
         /// <param name="y">The amount to translate along the y axis.</param>
         /// <param name="z">The amount to translate along the z axis.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Translate(float x, float y, float z)
         {
             GL.Translatef(x, y, z);
@@ -40,6 +43,7 @@ namespace CSharpGL
         /// <param name="x">Amount along x.</param>
         /// <param name="y">Amount along y.</param>
         /// <param name="z">Amount along z.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Rotate(double angle, double x, double y, double z)
         {
             GL.Rotated(angle, x, y, z);
@@ -52,6 +56,7 @@ namespace CSharpGL
         /// <param name="x">Amount along x.</param>
         /// <param name="y">Amount along y.</param>
         /// <param name="z">Amount along z.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Rotate(float angle, float x, float y, float z)
         {
             GL.Rotatef(angle, x, y, z);
@@ -63,6 +68,7 @@ namespace CSharpGL
         /// <param name="x">The amount to translate along the x axis.</param>
         /// <param name="y">The amount to translate along the y axis.</param>
         /// <param name="z">The amount to translate along the z axis.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Scale(double x, double y, double z)
         {
             GL.Scaled(x, y, z);
@@ -74,6 +80,7 @@ namespace CSharpGL
         /// <param name="x">The amount to translate along the x axis.</param>
         /// <param name="y">The amount to translate along the y axis.</param>
         /// <param name="z">The amount to translate along the z axis.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Scale(float x, float y, float z)
         {
             GL.Scalef(x, y, z);
@@ -89,6 +96,7 @@ namespace CSharpGL
         /// <param name="red">Red color component (between 0 and 255).</param>
         /// <param name="green">Green color component (between 0 and 255).</param>
         /// <param name="blue">Blue color component (between 0 and 255).</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(byte red, byte green, byte blue)
         {
             GL.Color3ub(red, green, blue);
@@ -101,6 +109,7 @@ namespace CSharpGL
         /// <param name="green">Green color component (between 0 and 255).</param>
         /// <param name="blue">Blue color component (between 0 and 255).</param>
         /// <param name="alpha">Alpha color component (between 0 and 255).</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(byte red, byte green, byte blue, byte alpha)
         {
             GL.Color4ub(red, green, blue, alpha);
@@ -112,6 +121,7 @@ namespace CSharpGL
         /// <param name="red">Red color component (between 0 and 1).</param>
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(double red, double green, double blue)
         {
             GL.Color3d(red, green, blue);
@@ -124,6 +134,7 @@ namespace CSharpGL
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
         /// <param name="alpha">Alpha color component.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(double red, double green, double blue, double alpha)
         {
             GL.Color4d(red, green, blue, alpha);
@@ -135,6 +146,7 @@ namespace CSharpGL
         /// <param name="red">Red color component (between 0 and 1).</param>
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(float red, float green, float blue)
         {
             GL.Color3f(red, green, blue);
@@ -144,6 +156,7 @@ namespace CSharpGL
         /// Sets the current color to 'v'.
         /// </summary>
         /// <param name="v">An array of either 3 or 4 float values.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(float[] v)
         {
             int length = v.Length;
@@ -156,6 +169,7 @@ namespace CSharpGL
         /// Sets the current color to 'v'.
         /// </summary>
         /// <param name="v">An array of either 3 or 4 int values.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(int[] v)
         {
             int length = v.Length;
@@ -168,6 +182,7 @@ namespace CSharpGL
         /// Sets the current color to 'v'.
         /// </summary>
         /// <param name="v">An array of either 3 or 4 int values.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(short[] v)
         {
             int length = v.Length;
@@ -180,6 +195,7 @@ namespace CSharpGL
         /// Sets the current color to 'v'.
         /// </summary>
         /// <param name="v">An array of either 3 or 4 double values.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(double[] v)
         {
             int length = v.Length;
@@ -192,6 +208,7 @@ namespace CSharpGL
         /// Sets the current color to 'v'.
         /// </summary>
         /// <param name="v">An array of either 3 or 4 byte values.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(byte[] v)
         {
             int length = v.Length;
@@ -204,6 +221,7 @@ namespace CSharpGL
         /// Sets the current color to 'v'.
         /// </summary>
         /// <param name="v">An array of either 3 or 4 unsigned int values.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(uint[] v)
         {
             int length = v.Length;
@@ -216,6 +234,7 @@ namespace CSharpGL
         /// Sets the current color to 'v'.
         /// </summary>
         /// <param name="v">An array of either 3 or 4 unsigned short values.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(ushort[] v)
         {
             int length = v.Length;
@@ -230,6 +249,7 @@ namespace CSharpGL
         /// <param name="red">Red color component (between 0 and 1).</param>
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(int red, int green, int blue)
         {
             GL.Color3i(red, green, blue);
@@ -242,6 +262,7 @@ namespace CSharpGL
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
         /// <param name="alpha">Alpha color component.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(int red, int green, int blue, int alpha)
         {
             GL.Color4i(red, green, blue, alpha);
@@ -253,6 +274,7 @@ namespace CSharpGL
         /// <param name="red">Red color component (between 0 and 1).</param>
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(short red, short green, short blue)
         {
             GL.Color3s(red, green, blue);
@@ -265,6 +287,7 @@ namespace CSharpGL
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
         /// <param name="alpha">Alpha color component.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(short red, short green, short blue, short alpha)
         {
             GL.Color4s(red, green, blue, alpha);
@@ -276,6 +299,7 @@ namespace CSharpGL
         /// <param name="red">Red color component (between 0 and 1).</param>
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(uint red, uint green, uint blue)
         {
             GL.Color3ui(red, green, blue);
@@ -288,6 +312,7 @@ namespace CSharpGL
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
         /// <param name="alpha">Alpha color component.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(uint red, uint green, uint blue, uint alpha)
         {
             GL.Color4ui(red, green, blue, alpha);
@@ -299,6 +324,7 @@ namespace CSharpGL
         /// <param name="red">Red color component (between 0 and 1).</param>
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(ushort red, ushort green, ushort blue)
         {
             GL.Color3us(red, green, blue);
@@ -311,6 +337,7 @@ namespace CSharpGL
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
         /// <param name="alpha">Alpha color component.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(ushort red, ushort green, ushort blue, ushort alpha)
         {
             GL.Color4us(red, green, blue, alpha);
@@ -323,6 +350,7 @@ namespace CSharpGL
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
         /// <param name="alpha">Alpha color component (between 0 and 1).</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(float red, float green, float blue, float alpha)
         {
             GL.Color4f(red, green, blue, alpha);
@@ -337,6 +365,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(double x, double y)
         {
             GL.Vertex2d(x, y);
@@ -346,6 +375,7 @@ namespace CSharpGL
         /// Set the current vertex (must be called between 'Begin' and 'End').
         /// </summary>
         /// <param name="v">Specifies the coordinate.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(double[] v)
         {
             int length = v.Length;
@@ -360,6 +390,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(float x, float y)
         {
             GL.Vertex2f(x, y);
@@ -370,6 +401,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(int x, int y)
         {
             GL.Vertex2i(x, y);
@@ -379,6 +411,7 @@ namespace CSharpGL
         /// Set the current vertex (must be called between 'Begin' and 'End').
         /// </summary>
         /// <param name="v">Specifies the coordinate.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(int[] v)
         {
             int length = v.Length;
@@ -393,6 +426,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(short x, short y)
         {
             GL.Vertex2s(x, y);
@@ -402,6 +436,7 @@ namespace CSharpGL
         /// Set the current vertex (must be called between 'Begin' and 'End').
         /// </summary>
         /// <param name="v">Specifies the coordinate.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(short[] v)
         {
             int length = v.Length;
@@ -417,6 +452,7 @@ namespace CSharpGL
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(double x, double y, double z)
         {
             GL.Vertex3d(x, y, z);
@@ -428,6 +464,7 @@ namespace CSharpGL
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(float x, float y, float z)
         {
             GL.Vertex3f(x, y, z);
@@ -437,6 +474,7 @@ namespace CSharpGL
         /// Sets the current vertex (must be called between 'Begin' and 'End').
         /// </summary>
         /// <param name="v">An array of 2, 3 or 4 floats.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(float[] v)
         {
             int length = v.Length;
@@ -452,6 +490,7 @@ namespace CSharpGL
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(int x, int y, int z)
         {
             GL.Vertex3i(x, y, z);
@@ -463,6 +502,7 @@ namespace CSharpGL
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(short x, short y, short z)
         {
             GL.Vertex3s(x, y, z);
@@ -475,6 +515,7 @@ namespace CSharpGL
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
         /// <param name="w">W Value.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(double x, double y, double z, double w)
         {
             GL.Vertex4d(x, y, z, w);
@@ -487,6 +528,7 @@ namespace CSharpGL
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
         /// <param name="w">W Value.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(float x, float y, float z, float w)
         {
             GL.Vertex4f(x, y, z, w);
@@ -499,6 +541,7 @@ namespace CSharpGL
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
         /// <param name="w">W Value.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(int x, int y, int z, int w)
         {
             GL.Vertex4i(x, y, z, w);
@@ -511,12 +554,90 @@ namespace CSharpGL
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
         /// <param name="w">W Value.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(short x, short y, short z, short w)
         {
             GL.Vertex4s(x, y, z, w);
         }
 
         #endregion GL.Vertex
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Begin(PrimitiveMode primitiveMode)
+        {
+            GL.Begin((uint)primitiveMode);
+        }
+
+        #region Draw vertex array object
+
+        /// <summary>
+        /// Render	primitives from	array data.
+        /// </summary>
+        /// <param name="mode">Specifies what kind of primitives to render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
+        /// <param name="first">Specifies the starting	index in the enabled arrays.</param>
+        /// <param name="count">Specifies the number of indices to be rendered.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void DrawArrays(PrimitiveMode mode, int first, int count)
+        {
+            GL.DrawArrays((uint)mode, first, count);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void MultiDrawArrays(PrimitiveMode mode, int[] first, int[] count, int primcount)
+        {
+            GetDelegateFor<glMultiDrawArrays>()((uint)mode, first, count, primcount);
+        }
+
+        /// <summary>
+        /// Render primitives from array data.
+        /// </summary>
+        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
+        /// <param name="count">Specifies the number of elements to be rendered.</param>
+        /// <param name="type">Specifies the type of the values in indices.	Must be one of OpenGL.UNSIGNED_BYTE, OpenGL.UNSIGNED_SHORT, or OpenGL.UNSIGNED_INT.</param>
+        /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void DrawElements(PrimitiveMode mode, int count, uint type, IntPtr indices)
+        {
+            GL.DrawElements((uint)mode, count, type, indices);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void MultiDrawElements(PrimitiveMode mode, int[] count, uint type, IntPtr indices, int primcount)
+        {
+            GetDelegateFor<glMultiDrawElements>()((uint)mode, count, type, indices, primcount);
+        }
+
+        /// <summary>
+        /// Render primitives from array data.
+        /// </summary>
+        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
+        /// <param name="count">Specifies the number of elements to be rendered.</param>
+        /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void DrawElements(PrimitiveMode mode, int count, uint type, uint[] indices)
+        {
+            GL.DrawElements((uint)mode, count, type, indices);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void DrawRangeElements(PrimitiveMode mode, uint start, uint end, int count, uint type, IntPtr indices)
+        {
+            GetDelegateFor<glDrawRangeElements>()((uint)mode, start, end, count, type, indices);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void DrawArraysInstanced(PrimitiveMode mode, int first, int count, int primcount)
+        {
+            GetDelegateFor<glDrawArraysInstanced>()((uint)mode, first, count, primcount);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void DrawElementsInstanced(PrimitiveMode mode, int count, uint type, IntPtr indices, int primcount)
+        {
+            GetDelegateFor<glDrawElementsInstanced>()((uint)mode, count, type, indices, primcount);
+        }
+
+        #endregion Draw vertex array object
 
 
     }

@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\PrimitiveMode.cs" />
     <Compile Include="GLU_Functions.cs" />
     <Compile Include="GLU_Consts.cs" />
     <Compile Include="GL_Consts.cs" />
@@ -62,9 +63,7 @@
     <Compile Include="Win32API\WindowStylesEx.cs" />
     <Compile Include="Win32API\WNDCLASSEX.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Enumerations\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

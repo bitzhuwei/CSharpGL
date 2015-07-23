@@ -43,14 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="DIBSection.cs" />
-    <Compile Include="FBORenderContext.cs" />
-    <Compile Include="GLVersion.cs" />
-    <Compile Include="HiddenWindowRenderContext.cs" />
-    <Compile Include="IRenderContext.cs" />
+    <Compile Include="RenderContext\DIBSection.cs" />
+    <Compile Include="RenderContext\FBORenderContext.cs" />
+    <Compile Include="RenderContext\GLVersion.cs" />
+    <Compile Include="RenderContext\HiddenWindowRenderContext.cs" />
+    <Compile Include="RenderContext\IRenderContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RenderContext.cs" />
-    <Compile Include="VersionAttribute.cs" />
+    <Compile Include="RenderContext\RenderContext.cs" />
+    <Compile Include="RenderContext\VersionAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSharpGL.Maths\CSharpGL.Maths.csproj">
