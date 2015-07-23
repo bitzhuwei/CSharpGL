@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\GetTarget.cs" />
+    <Compile Include="Enumerations\HintMode.cs" />
     <Compile Include="Enumerations\PrimitiveMode.cs" />
     <Compile Include="GLU_Functions.cs" />
     <Compile Include="GLU_Consts.cs" />

@@ -639,6 +639,65 @@ namespace CSharpGL
 
         #endregion Draw vertex array object
 
+        /// <summary>
+        /// Specify implementation-specific hints.
+        /// </summary>
+        /// <param name="target">Specifies a symbolic constant indicating the behavior to be controlled.</param>
+        /// <param name="mode">Specifies a symbolic constant indicating the desired behavior.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Hint(HintTarget target, HintMode mode)
+        {
+            GL.Hint((uint)target, (uint)mode);
+        }
+
+        #region GetTarget
+
+        /// <summary>
+        /// Use this function to query OpenGL parameter values.
+        /// </summary>
+        /// <param name="pname">The Parameter to query</param>
+        /// <param name="parameters">An array to put the values into.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void GetInteger(GetTarget pname, int[] parameters)
+        {
+            GL.GetIntegerv((uint)pname, parameters);
+        }
+
+        /// <summary>
+        /// This this function to query OpenGL values.
+        /// </summary>
+        /// <param name="pname">The parameter to query.</param>
+        /// <param name="parameters">The parameters</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void GetFloat(GetTarget pname, float[] parameters)
+        {
+            GL.GetFloatv((uint)pname, parameters);
+        }
+
+        /// <summary>
+        /// This function queries OpenGL for data, and puts it in the buffer supplied.
+        /// </summary>
+        /// <param name="pname">The parameter to query.</param>
+        /// <param name="parameters">The buffer to put that data into.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void GetDouble(GetTarget pname, double[] parameters)
+        {
+            GL.GetDoublev((uint)pname, parameters);
+        }
+
+        /// <summary>
+        /// This function queries OpenGL for data, and puts it in the buffer supplied.
+        /// </summary>
+        /// <param name="pname">The parameter to query.</param>
+        /// <param name="parameters"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void GetBoolean(GetTarget pname, byte[] parameters)
+        {
+            GL.GetBooleanv((uint)pname, parameters);
+        }
+
+        #endregion GetTarget
+
 
     }
 }
