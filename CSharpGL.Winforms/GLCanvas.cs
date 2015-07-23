@@ -63,11 +63,12 @@ namespace CSharpGL.Winforms
 
                 if (this.DesignMode)
                 {
+                    // 天蓝色背景
                     GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
 
-                    ResizeGL();
+                    GLCanvasHelper.ResizeGL(this.Width, this.Height);
 
-                    DrawPyramid();
+                    GLCanvasHelper.DrawPyramid();
                 }
                 else
                 {
@@ -188,69 +189,6 @@ namespace CSharpGL.Winforms
         /// </summary>
         [Description("Called whenever OpenGL drawing should occur."), Category("CSharpGL")]
         public event EventHandler<RenderEventArgs> OpenGLDraw;
-
-
-        private void ResizeGL()
-        {
-            //  Set the projection matrix.
-            GL.MatrixMode(GL.GL_PROJECTION);
-
-            //  Load the identity.
-            GL.LoadIdentity();
-
-            //  Create a perspective transformation.
-            GL.gluPerspective(60.0f, (double)Width / (double)Height, 0.01, 100.0);
-
-            //  Use the 'look at' helper function to position and aim the camera.
-            GL.gluLookAt(-5, 5, -5, 0, 0, 0, 0, 1, 0);
-
-            //  Set the modelview matrix.
-            GL.MatrixMode(GL.GL_MODELVIEW);
-        }
-
-        private void DrawPyramid()
-        {
-            //  Clear the color and depth buffer.
-            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-
-            //  Load the identity matrix.
-            GL.LoadIdentity();
-
-            //  Rotate around the Y axis.
-            GL.Rotate(rotation, 0.0f, 1.0f, 0.0f);
-
-            //  Draw a coloured pyramid.
-            GL.Begin(GL.GL_TRIANGLES);
-            GL.Color(1.0f, 0.0f, 0.0f);
-            GL.Vertex(0.0f, 1.0f, 0.0f);
-            GL.Color(0.0f, 1.0f, 0.0f);
-            GL.Vertex(-1.0f, -1.0f, 1.0f);
-            GL.Color(0.0f, 0.0f, 1.0f);
-            GL.Vertex(1.0f, -1.0f, 1.0f);
-            GL.Color(1.0f, 0.0f, 0.0f);
-            GL.Vertex(0.0f, 1.0f, 0.0f);
-            GL.Color(0.0f, 0.0f, 1.0f);
-            GL.Vertex(1.0f, -1.0f, 1.0f);
-            GL.Color(0.0f, 1.0f, 0.0f);
-            GL.Vertex(1.0f, -1.0f, -1.0f);
-            GL.Color(1.0f, 0.0f, 0.0f);
-            GL.Vertex(0.0f, 1.0f, 0.0f);
-            GL.Color(0.0f, 1.0f, 0.0f);
-            GL.Vertex(1.0f, -1.0f, -1.0f);
-            GL.Color(0.0f, 0.0f, 1.0f);
-            GL.Vertex(-1.0f, -1.0f, -1.0f);
-            GL.Color(1.0f, 0.0f, 0.0f);
-            GL.Vertex(0.0f, 1.0f, 0.0f);
-            GL.Color(0.0f, 0.0f, 1.0f);
-            GL.Vertex(-1.0f, -1.0f, -1.0f);
-            GL.Color(0.0f, 1.0f, 0.0f);
-            GL.Vertex(-1.0f, -1.0f, 1.0f);
-            GL.End();
-
-            rotation += 3.0f;
-        }
-
-        private double rotation;
 
     }
 
