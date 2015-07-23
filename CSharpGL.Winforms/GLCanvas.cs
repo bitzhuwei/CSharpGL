@@ -17,7 +17,7 @@ namespace CSharpGL.Winforms
     /// </summary>
     public partial class GLCanvas : UserControl
     {
-        private IRenderContext renderContext;
+        private RenderContext renderContext;
 
         /// <summary>
         /// 

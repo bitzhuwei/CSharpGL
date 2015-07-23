@@ -47,7 +47,6 @@
     <Compile Include="RenderContext\FBORenderContext.cs" />
     <Compile Include="RenderContext\GLVersion.cs" />
     <Compile Include="RenderContext\HiddenWindowRenderContext.cs" />
-    <Compile Include="RenderContext\IRenderContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderContext\RenderContext.cs" />
     <Compile Include="RenderContext\VersionAttribute.cs" />

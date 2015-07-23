@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL.Objects
 {
-    public abstract class RenderContext : IRenderContext
+    public abstract class RenderContext : IDisposable // : IRenderContext
     {
         /// <summary>
         /// Creates the render context provider. Must also create the OpenGL extensions.
@@ -69,7 +69,7 @@ namespace CSharpGL.Objects
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        void IDisposable.Dispose()
+        public void Dispose()
         {
             //  Destroy the context provider.
             Destroy();
