@@ -28,10 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.components = new System.ComponentModel.Container();
+            this.redrawTimer = new System.Windows.Forms.Timer(this.components);
+            this.SuspendLayout();
+            // 
+            // redrawTimer
+            // 
+            this.redrawTimer.Interval = 50;
+            this.redrawTimer.Tick += new System.EventHandler(this.redrawTimer_Tick);
+            // 
+            // GLCanvas
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Name = "GLCanvas";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer redrawTimer;
     }
 }

@@ -43,7 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="DIBSection.cs" />
+    <Compile Include="FBORenderContext.cs" />
     <Compile Include="GLVersion.cs" />
+    <Compile Include="HiddenWindowRenderContext.cs" />
     <Compile Include="IRenderContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderContext.cs" />

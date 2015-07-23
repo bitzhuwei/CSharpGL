@@ -73,10 +73,5 @@ namespace CSharpGL.Objects
         /// <value>The bit depth.</value>
         int BitDepth { get; }
 
-        /// <summary>
-        /// Gets a value indicating whether GDI drawing is enabled for this type of render context.
-        /// </summary>
-        /// <value><c>true</c> if GDI drawing is enabled; otherwise, <c>false</c>.</value>
-        bool GDIDrawingEnabled { get; }
     }
 }

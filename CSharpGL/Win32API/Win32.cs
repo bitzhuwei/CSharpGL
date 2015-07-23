@@ -30,10 +30,25 @@ namespace CSharpGL
         }
 
         //  The names of the libraries we're importing.
+        /// <summary>
+        /// public const string Kernel32 = "kernel32.dll";
+        /// </summary>
         public const string Kernel32 = "kernel32.dll";
+        /// <summary>
+        /// public const string Kernel32 = "opengl32.dll"
+        /// </summary>
         public const string OpenGL32 = "opengl32.dll";
+        /// <summary>
+        /// public const string Kernel32 = "Glu32.dll"
+        /// </summary>
         public const string Glu32 = "Glu32.dll";
+        /// <summary>
+        /// public const string Kernel32 = "gdi32.dll"
+        /// </summary>
         public const string Gdi32 = "gdi32.dll";
+        /// <summary>
+        /// public const string Kernel32 = "user32.dll"
+        /// </summary>
         public const string User32 = "user32.dll";
 
         #region Kernel32 Functions
