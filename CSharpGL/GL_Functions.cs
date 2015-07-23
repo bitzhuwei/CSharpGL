@@ -725,6 +725,7 @@ namespace CSharpGL
         /// <param name="array">The array to enable.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glEnableClientState", SetLastError = true)]
         public static extern void EnableClientState(uint array);
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [DllImport(Win32.OpenGL32, EntryPoint = "glEnd", SetLastError = true)]
         public static extern void End();
 
