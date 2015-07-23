@@ -18,6 +18,7 @@ namespace CSharpGL
         /// <param name="x">The amount to translate along the x axis.</param>
         /// <param name="y">The amount to translate along the y axis.</param>
         /// <param name="z">The amount to translate along the z axis.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Translate(double x, double y, double z)
         {
@@ -30,6 +31,7 @@ namespace CSharpGL
         /// <param name="x">The amount to translate along the x axis.</param>
         /// <param name="y">The amount to translate along the y axis.</param>
         /// <param name="z">The amount to translate along the z axis.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Translate(float x, float y, float z)
         {
@@ -43,6 +45,7 @@ namespace CSharpGL
         /// <param name="x">Amount along x.</param>
         /// <param name="y">Amount along y.</param>
         /// <param name="z">Amount along z.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Rotate(double angle, double x, double y, double z)
         {
@@ -56,6 +59,7 @@ namespace CSharpGL
         /// <param name="x">Amount along x.</param>
         /// <param name="y">Amount along y.</param>
         /// <param name="z">Amount along z.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Rotate(float angle, float x, float y, float z)
         {
@@ -68,6 +72,7 @@ namespace CSharpGL
         /// <param name="x">The amount to translate along the x axis.</param>
         /// <param name="y">The amount to translate along the y axis.</param>
         /// <param name="z">The amount to translate along the z axis.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Scale(double x, double y, double z)
         {
@@ -80,6 +85,7 @@ namespace CSharpGL
         /// <param name="x">The amount to translate along the x axis.</param>
         /// <param name="y">The amount to translate along the y axis.</param>
         /// <param name="z">The amount to translate along the z axis.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Scale(float x, float y, float z)
         {
@@ -96,6 +102,7 @@ namespace CSharpGL
         /// <param name="red">Red color component (between 0 and 255).</param>
         /// <param name="green">Green color component (between 0 and 255).</param>
         /// <param name="blue">Blue color component (between 0 and 255).</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(byte red, byte green, byte blue)
         {
@@ -109,6 +116,7 @@ namespace CSharpGL
         /// <param name="green">Green color component (between 0 and 255).</param>
         /// <param name="blue">Blue color component (between 0 and 255).</param>
         /// <param name="alpha">Alpha color component (between 0 and 255).</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(byte red, byte green, byte blue, byte alpha)
         {
@@ -121,6 +129,7 @@ namespace CSharpGL
         /// <param name="red">Red color component (between 0 and 1).</param>
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(double red, double green, double blue)
         {
@@ -134,6 +143,7 @@ namespace CSharpGL
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
         /// <param name="alpha">Alpha color component.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(double red, double green, double blue, double alpha)
         {
@@ -146,6 +156,7 @@ namespace CSharpGL
         /// <param name="red">Red color component (between 0 and 1).</param>
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(float red, float green, float blue)
         {
@@ -156,6 +167,7 @@ namespace CSharpGL
         /// Sets the current color to 'v'.
         /// </summary>
         /// <param name="v">An array of either 3 or 4 float values.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(float[] v)
         {
@@ -169,6 +181,7 @@ namespace CSharpGL
         /// Sets the current color to 'v'.
         /// </summary>
         /// <param name="v">An array of either 3 or 4 int values.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(int[] v)
         {
@@ -182,6 +195,7 @@ namespace CSharpGL
         /// Sets the current color to 'v'.
         /// </summary>
         /// <param name="v">An array of either 3 or 4 int values.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(short[] v)
         {
@@ -195,6 +209,7 @@ namespace CSharpGL
         /// Sets the current color to 'v'.
         /// </summary>
         /// <param name="v">An array of either 3 or 4 double values.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(double[] v)
         {
@@ -208,6 +223,7 @@ namespace CSharpGL
         /// Sets the current color to 'v'.
         /// </summary>
         /// <param name="v">An array of either 3 or 4 byte values.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(byte[] v)
         {
@@ -221,6 +237,7 @@ namespace CSharpGL
         /// Sets the current color to 'v'.
         /// </summary>
         /// <param name="v">An array of either 3 or 4 unsigned int values.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(uint[] v)
         {
@@ -234,6 +251,7 @@ namespace CSharpGL
         /// Sets the current color to 'v'.
         /// </summary>
         /// <param name="v">An array of either 3 or 4 unsigned short values.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(ushort[] v)
         {
@@ -249,6 +267,7 @@ namespace CSharpGL
         /// <param name="red">Red color component (between 0 and 1).</param>
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(int red, int green, int blue)
         {
@@ -262,6 +281,7 @@ namespace CSharpGL
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
         /// <param name="alpha">Alpha color component.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(int red, int green, int blue, int alpha)
         {
@@ -274,6 +294,7 @@ namespace CSharpGL
         /// <param name="red">Red color component (between 0 and 1).</param>
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(short red, short green, short blue)
         {
@@ -287,6 +308,7 @@ namespace CSharpGL
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
         /// <param name="alpha">Alpha color component.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(short red, short green, short blue, short alpha)
         {
@@ -299,6 +321,7 @@ namespace CSharpGL
         /// <param name="red">Red color component (between 0 and 1).</param>
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(uint red, uint green, uint blue)
         {
@@ -312,6 +335,7 @@ namespace CSharpGL
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
         /// <param name="alpha">Alpha color component.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(uint red, uint green, uint blue, uint alpha)
         {
@@ -324,6 +348,7 @@ namespace CSharpGL
         /// <param name="red">Red color component (between 0 and 1).</param>
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(ushort red, ushort green, ushort blue)
         {
@@ -337,6 +362,7 @@ namespace CSharpGL
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
         /// <param name="alpha">Alpha color component.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(ushort red, ushort green, ushort blue, ushort alpha)
         {
@@ -350,6 +376,7 @@ namespace CSharpGL
         /// <param name="green">Green color component (between 0 and 1).</param>
         /// <param name="blue">Blue color component (between 0 and 1).</param>
         /// <param name="alpha">Alpha color component (between 0 and 1).</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Color(float red, float green, float blue, float alpha)
         {
@@ -365,6 +392,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(double x, double y)
         {
@@ -375,6 +403,7 @@ namespace CSharpGL
         /// Set the current vertex (must be called between 'Begin' and 'End').
         /// </summary>
         /// <param name="v">Specifies the coordinate.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(double[] v)
         {
@@ -390,6 +419,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(float x, float y)
         {
@@ -401,6 +431,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(int x, int y)
         {
@@ -411,6 +442,7 @@ namespace CSharpGL
         /// Set the current vertex (must be called between 'Begin' and 'End').
         /// </summary>
         /// <param name="v">Specifies the coordinate.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(int[] v)
         {
@@ -426,6 +458,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(short x, short y)
         {
@@ -436,6 +469,7 @@ namespace CSharpGL
         /// Set the current vertex (must be called between 'Begin' and 'End').
         /// </summary>
         /// <param name="v">Specifies the coordinate.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(short[] v)
         {
@@ -452,6 +486,7 @@ namespace CSharpGL
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(double x, double y, double z)
         {
@@ -464,6 +499,7 @@ namespace CSharpGL
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(float x, float y, float z)
         {
@@ -474,6 +510,7 @@ namespace CSharpGL
         /// Sets the current vertex (must be called between 'Begin' and 'End').
         /// </summary>
         /// <param name="v">An array of 2, 3 or 4 floats.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(float[] v)
         {
@@ -490,6 +527,7 @@ namespace CSharpGL
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(int x, int y, int z)
         {
@@ -502,6 +540,7 @@ namespace CSharpGL
         /// <param name="x">X Value.</param>
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(short x, short y, short z)
         {
@@ -515,6 +554,7 @@ namespace CSharpGL
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
         /// <param name="w">W Value.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(double x, double y, double z, double w)
         {
@@ -528,6 +568,7 @@ namespace CSharpGL
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
         /// <param name="w">W Value.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(float x, float y, float z, float w)
         {
@@ -541,6 +582,7 @@ namespace CSharpGL
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
         /// <param name="w">W Value.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(int x, int y, int z, int w)
         {
@@ -554,6 +596,7 @@ namespace CSharpGL
         /// <param name="y">Y Value.</param>
         /// <param name="z">Z Value.</param>
         /// <param name="w">W Value.</param>
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Vertex(short x, short y, short z, short w)
         {
@@ -562,6 +605,7 @@ namespace CSharpGL
 
         #endregion GL.Vertex
 
+        [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Begin(PrimitiveMode primitiveMode)
         {

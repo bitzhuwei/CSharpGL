@@ -57,5 +57,9 @@ namespace CSharpGL
         /// </summary>
         private static readonly Dictionary<string, Delegate> extensionFunctions = new Dictionary<string, Delegate>();
 
+        const string fixedPipelineIsNotGood = "fixed pipeline is no longer nice for opengl.";
+        const string obsoleteGluDll = "suggest that not to use Glu Dll any more.";
+
+        const bool error = false;
     }
 }

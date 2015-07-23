@@ -10,9 +10,6 @@ namespace CSharpGL
 
         #region The GLU DLL Functions (Exactly the same naming).
 
-        const string obsoleteGluDll = "suggest that not to use Glu Dll any more.";
-        const bool error = false;
-
         /// <summary>
         /// Produce an error string from a GL or GLU error code.
         /// </summary>
