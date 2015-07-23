@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using CSharpGL.Objects;
+using System.ComponentModel.Design;
 
 namespace CSharpGL.Winforms
 {
@@ -18,7 +19,9 @@ namespace CSharpGL.Winforms
     [ToolboxBitmap(typeof(GLCanvas), "GLCanvas.ico")]
     public partial class GLCanvas : UserControl
     {
-        private RenderContext renderContext;
+        protected RenderContext renderContext;
+
+        private bool designMode;
 
         /// <summary>
         /// 
@@ -31,6 +34,9 @@ namespace CSharpGL.Winforms
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
+            // check http://stackoverflow.com/questions/34664/designmode-with-controls
+            this.designMode = this.DesignMode || System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime;
 
         }
 
@@ -62,7 +68,7 @@ namespace CSharpGL.Winforms
                 //	Make sure it's our instance of openSharpGL that's active.
                 renderContext.MakeCurrent();
 
-                if (this.DesignMode)
+                if (this.designMode)
                 {
                     // 天蓝色背景
                     GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
