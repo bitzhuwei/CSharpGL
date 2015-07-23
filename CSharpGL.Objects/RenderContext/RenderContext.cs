@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL.Objects
 {
-    public abstract class RenderContext : IDisposable // : IRenderContext
+    public abstract class RenderContext : IDisposable
     {
         /// <summary>
         /// Creates the render context provider. Must also create the OpenGL extensions.
