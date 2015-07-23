@@ -27,7 +27,10 @@ namespace CSharpGL.Winforms.Demo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            // Init GL
+            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+            // first resize
+            glCanvas1_Resize(this.glCanvas1, e);
         }
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
@@ -73,6 +76,24 @@ namespace CSharpGL.Winforms.Demo
             //  Nudge the rotation.
             rotation += 3.0f;
 
+        }
+
+        private void glCanvas1_Resize(object sender, EventArgs e)
+        {
+            //  Set the projection matrix.
+            GL.MatrixMode(GL.GL_PROJECTION);
+
+            //  Load the identity.
+            GL.LoadIdentity();
+
+            //  Create a perspective transformation.
+            GL.gluPerspective(60.0f, (double)Width / (double)Height, 0.01, 100.0);
+
+            //  Use the 'look at' helper function to position and aim the camera.
+            GL.gluLookAt(-5, 5, -5, 0, 0, 0, 0, 1, 0);
+
+            //  Set the modelview matrix.
+            GL.MatrixMode(GL.GL_MODELVIEW);
         }
 
       

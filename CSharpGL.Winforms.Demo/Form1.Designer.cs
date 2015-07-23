@@ -43,6 +43,7 @@
             this.glCanvas1.Size = new System.Drawing.Size(481, 305);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.OpenGLDraw += new System.EventHandler<CSharpGL.Winforms.RenderEventArgs>(this.glCanvas1_OpenGLDraw);
+            this.glCanvas1.Resize += new System.EventHandler(this.glCanvas1_Resize);
             // 
             // Form1
             // 

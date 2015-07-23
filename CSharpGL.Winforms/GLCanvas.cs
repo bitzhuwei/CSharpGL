@@ -54,7 +54,6 @@ namespace CSharpGL.Winforms
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            //base.OnPaint(e);
             if (this.renderContext != null)
             {
                 Graphics graphics = e.Graphics;
@@ -62,8 +61,19 @@ namespace CSharpGL.Winforms
                 //	Make sure it's our instance of openSharpGL that's active.
                 renderContext.MakeCurrent();
 
-                //	If there is a draw handler, then call it.
-                DoOpenGLDraw(new RenderEventArgs(graphics));
+                if (this.DesignMode)
+                {
+                    GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+
+                    ResizeGL();
+
+                    DrawPyramid();
+                }
+                else
+                {
+                    //	If there is a draw handler, then call it.
+                    DoOpenGLDraw(new RenderEventArgs(graphics));
+                }
 
                 //	Blit our offscreen bitmap.
                 var handleDeviceContext = graphics.GetHdc();
@@ -85,6 +95,20 @@ namespace CSharpGL.Winforms
         {
             //this.renderingRequired = true;
             this.Invalidate();
+        }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+
+            if (this.renderContext != null)
+            {
+                this.renderContext.SetDimensions(this.Width, this.Height);
+
+                GL.Viewport(0, 0, this.Width, this.Height);
+
+                this.Invalidate();
+            }
         }
 
         /// <summary>
@@ -164,6 +188,69 @@ namespace CSharpGL.Winforms
         /// </summary>
         [Description("Called whenever OpenGL drawing should occur."), Category("CSharpGL")]
         public event EventHandler<RenderEventArgs> OpenGLDraw;
+
+
+        private void ResizeGL()
+        {
+            //  Set the projection matrix.
+            GL.MatrixMode(GL.GL_PROJECTION);
+
+            //  Load the identity.
+            GL.LoadIdentity();
+
+            //  Create a perspective transformation.
+            GL.gluPerspective(60.0f, (double)Width / (double)Height, 0.01, 100.0);
+
+            //  Use the 'look at' helper function to position and aim the camera.
+            GL.gluLookAt(-5, 5, -5, 0, 0, 0, 0, 1, 0);
+
+            //  Set the modelview matrix.
+            GL.MatrixMode(GL.GL_MODELVIEW);
+        }
+
+        private void DrawPyramid()
+        {
+            //  Clear the color and depth buffer.
+            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+
+            //  Load the identity matrix.
+            GL.LoadIdentity();
+
+            //  Rotate around the Y axis.
+            GL.Rotate(rotation, 0.0f, 1.0f, 0.0f);
+
+            //  Draw a coloured pyramid.
+            GL.Begin(GL.GL_TRIANGLES);
+            GL.Color(1.0f, 0.0f, 0.0f);
+            GL.Vertex(0.0f, 1.0f, 0.0f);
+            GL.Color(0.0f, 1.0f, 0.0f);
+            GL.Vertex(-1.0f, -1.0f, 1.0f);
+            GL.Color(0.0f, 0.0f, 1.0f);
+            GL.Vertex(1.0f, -1.0f, 1.0f);
+            GL.Color(1.0f, 0.0f, 0.0f);
+            GL.Vertex(0.0f, 1.0f, 0.0f);
+            GL.Color(0.0f, 0.0f, 1.0f);
+            GL.Vertex(1.0f, -1.0f, 1.0f);
+            GL.Color(0.0f, 1.0f, 0.0f);
+            GL.Vertex(1.0f, -1.0f, -1.0f);
+            GL.Color(1.0f, 0.0f, 0.0f);
+            GL.Vertex(0.0f, 1.0f, 0.0f);
+            GL.Color(0.0f, 1.0f, 0.0f);
+            GL.Vertex(1.0f, -1.0f, -1.0f);
+            GL.Color(0.0f, 0.0f, 1.0f);
+            GL.Vertex(-1.0f, -1.0f, -1.0f);
+            GL.Color(1.0f, 0.0f, 0.0f);
+            GL.Vertex(0.0f, 1.0f, 0.0f);
+            GL.Color(0.0f, 0.0f, 1.0f);
+            GL.Vertex(-1.0f, -1.0f, -1.0f);
+            GL.Color(0.0f, 1.0f, 0.0f);
+            GL.Vertex(-1.0f, -1.0f, 1.0f);
+            GL.End();
+
+            rotation += 3.0f;
+        }
+
+        private double rotation;
 
     }
 

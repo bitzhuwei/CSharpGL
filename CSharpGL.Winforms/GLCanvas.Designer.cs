@@ -34,6 +34,7 @@
             // 
             // redrawTimer
             // 
+            this.redrawTimer.Enabled = true;
             this.redrawTimer.Interval = 50;
             this.redrawTimer.Tick += new System.EventHandler(this.redrawTimer_Tick);
             // 
