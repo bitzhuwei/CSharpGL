@@ -46,8 +46,8 @@
     <Compile Include="Enumerations\HintMode.cs" />
     <Compile Include="Enumerations\PrimitiveMode.cs" />
     <Compile Include="GL.cs" />
-    <Compile Include="GLU_Functions.cs" />
     <Compile Include="GLU_Consts.cs" />
+    <Compile Include="GLU_Functions.cs" />
     <Compile Include="GL_Consts.cs" />
     <Compile Include="GL_Extensions.cs" />
     <Compile Include="GL_Functions.cs" />
