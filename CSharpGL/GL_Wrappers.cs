@@ -698,6 +698,15 @@ namespace CSharpGL
 
         #endregion GetTarget
 
+        /// <summary>
+        /// Select flat or smooth shading.
+        /// </summary>
+        /// <param name="mode">Specifies a symbolic value representing a shading technique. Accepted values are OpenGL.FLAT and OpenGL.SMOOTH. The default is OpenGL.SMOOTH.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void ShadeModel(ShadeModel mode)
+        {
+            GL.ShadeModel((uint)mode);
+        }
 
     }
 }
