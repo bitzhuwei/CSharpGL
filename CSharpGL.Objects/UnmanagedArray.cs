@@ -50,13 +50,27 @@ namespace CSharpGL.Objects
             {
                 if (index < 0 || index >= this.Count)
                     throw new IndexOutOfRangeException("index of UnmanagedArray is out of range");
-
+                
                 var pItem = this.Header + (index * elementSize);
                 //Marshal.StructureToPtr(value, pItem, true);
                 Marshal.StructureToPtr<T>(value, pItem, true);// works in .net 4.5.1
             }
         }
 
+        /// <summary>
+        /// 按索引顺序依次获取各个元素。
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<T> GetElements()
+        {
+            if (!this.disposed)
+            {
+                for (int i = 0; i < this.Count; i++)
+                {
+                    yield return this[i];
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -131,13 +145,13 @@ namespace CSharpGL.Objects
         /// <summary>
         /// Internal variable which checks if Dispose has already been called
         /// </summary>
-        private Boolean disposed;
+        protected Boolean disposed;
 
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources
         /// </summary>
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        private void Dispose(Boolean disposing)
+        protected void Dispose(Boolean disposing)
         {
             if (disposed)
             {

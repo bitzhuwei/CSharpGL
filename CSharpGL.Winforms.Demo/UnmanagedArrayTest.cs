@@ -68,13 +68,17 @@ namespace CSharpGL.Winforms.Demo
             {
                 vec3Array[i] = new vec3(i * 3 + 0, i * 3 + 1, i * 3 + 2);
             }
-
             for (int i = 0; i < count; i++)
             {
                 var item = vec3Array[i];
                 var old = new vec3(i * 3 + 0, i * 3 + 1, i * 3 + 2);
                 if (item.x != old.x || item.y != old.y || item.z != old.z)
                 { throw new Exception(); }
+            }
+
+            foreach (var item in vec3Array.GetElements())
+            {
+                Console.WriteLine(item);
             }
 
             UnmanagedArray<int>.FreeAll();
