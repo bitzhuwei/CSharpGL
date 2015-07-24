@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace CSharpGL.Objects
+namespace CSharpGL.Objects.RenderContext
 {
     /// <summary>
     /// device-independent bitmap

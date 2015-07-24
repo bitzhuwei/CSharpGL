@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Threading;
 using CSharpGL.Objects;
 using System.ComponentModel.Design;
+using CSharpGL.Objects.RenderContext;
 
 namespace CSharpGL.Winforms
 {
@@ -44,11 +45,20 @@ namespace CSharpGL.Winforms
         {
             base.OnHandleCreated(e);
 
+            CreateRenderContext();
+        }
+
+        private void CreateRenderContext()
+        {
             // Initialises OpenGL.
-            renderContext = new FBORenderContext();
+            var renderContext = new FBORenderContext();
 
             //  Create the render context.
             renderContext.Create(OpenGLVersion, Width, Height, 32, null);
+
+            this.renderContext = renderContext;
+
+            renderContext.MakeCurrent();
 
             //  Set the most basic OpenGL styles.
             GL.ShadeModel(GL.GL_SMOOTH);
@@ -111,11 +121,30 @@ namespace CSharpGL.Winforms
 
             if (this.renderContext != null)
             {
+                this.renderContext.MakeCurrent();
+
                 this.renderContext.SetDimensions(this.Width, this.Height);
 
                 GL.Viewport(0, 0, this.Width, this.Height);
 
                 this.Invalidate();
+            }
+        }
+
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            DestroyRenderContext();
+
+            base.OnHandleDestroyed(e);
+        }
+
+        private void DestroyRenderContext()
+        {
+            if (this.renderContext != null)
+            {
+                RenderContext tmp = this.renderContext;
+                this.renderContext = null;
+                tmp.Dispose();
             }
         }
 
@@ -129,7 +158,16 @@ namespace CSharpGL.Winforms
         public GLVersion OpenGLVersion
         {
             get { return openGLVersion; }
-            set { openGLVersion = value; }
+            set
+            {
+                if (openGLVersion != value)
+                {
+                    this.DestroyRenderContext();
+                    this.CreateRenderContext();
+
+                    openGLVersion = value;
+                }
+            }
         }
 
         /// <summary>

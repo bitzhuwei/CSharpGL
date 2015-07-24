@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Objects
+namespace CSharpGL.Objects.RenderContext
 {
     public abstract class RenderContext : IDisposable
     {
