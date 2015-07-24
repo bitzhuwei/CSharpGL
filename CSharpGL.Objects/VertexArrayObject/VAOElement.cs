@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpGL.Objects.GLSLShader;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,7 +37,7 @@ namespace CSharpGL.Objects.VertexArrayObject
         /// <summary>
         /// shader
         /// </summary>
-        protected Shader.ShaderProgram shader;
+        protected ShaderProgram shaderProgram;
 
         /// <summary>
         /// 初始化此VAOElement
@@ -45,27 +46,20 @@ namespace CSharpGL.Objects.VertexArrayObject
         {
             if (!initialized)
             {
-                InitializeShader(out shader);
-
-                InitializeVAO(out vao, out primitiveMode, out vertexCount);
+                DoInitialize(out shaderProgram, out vao, out primitiveMode, out vertexCount);
 
                 initialized = true;
             }
         }
 
         /// <summary>
-        /// 初始化Shader
+        /// 初始化Shader和VAO
         /// </summary>
-        /// <param name="shader"></param>
-        protected abstract void InitializeShader(out Shader.ShaderProgram shader);
-
-        /// <summary>
-        /// 初始化VAO
-        /// </summary>
+        /// <param name="shaderProgram"></param>
         /// <param name="vao"></param>
         /// <param name="primitiveMode"></param>
         /// <param name="vertexCount"></param>
-        protected abstract void InitializeVAO(out uint[] vao, out PrimitiveMode primitiveMode, out int vertexCount);
+        protected abstract void DoInitialize(out ShaderProgram shaderProgram, out uint[] vao, out PrimitiveMode primitiveMode, out int vertexCount);
 
         /// <summary>
         /// 在Render前更新Shader和其它状态
@@ -75,7 +69,7 @@ namespace CSharpGL.Objects.VertexArrayObject
 
         public void Render(RenderModes renderMode)
         {
-            if (!initialized) { return; }
+            if (!initialized) { Initialize(); }
 
             BeforeRendering(renderMode);
 

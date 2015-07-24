@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\BufferDataUsage.cs" />
     <Compile Include="Enumerations\GetTarget.cs" />
+    <Compile Include="Enumerations\BufferDataTarget.cs" />
     <Compile Include="Enumerations\HintMode.cs" />
     <Compile Include="Enumerations\PrimitiveMode.cs" />
     <Compile Include="GL.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="GL_Wrappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enumerations\ShadeModel.cs" />
+    <Compile Include="UnmanagedArray.cs" />
     <Compile Include="Win32API\BITMAPINFO.cs" />
     <Compile Include="Win32API\ClassStyles.cs" />
     <Compile Include="Win32API\Delegates.cs" />

@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="GLSLShader\ShaderCompilationException.cs" />
+    <Compile Include="GLSLShader\Shader.cs" />
+    <Compile Include="ManifestResourceLoader.cs" />
     <Compile Include="RenderContext\DIBSection.cs" />
     <Compile Include="RenderContext\FBORenderContext.cs" />
     <Compile Include="RenderContext\GLVersion.cs" />
@@ -53,7 +57,7 @@
     <Compile Include="RenderContext\RenderContext.cs" />
     <Compile Include="RenderContext\VersionAttribute.cs" />
     <Compile Include="RenderMode.cs" />
-    <Compile Include="Shader\ShaderProgram.cs" />
+    <Compile Include="GLSLShader\ShaderProgram.cs" />
     <Compile Include="UnmanagedArray.cs" />
     <Compile Include="VertexArrayObject\VAOElement.cs" />
   </ItemGroup>

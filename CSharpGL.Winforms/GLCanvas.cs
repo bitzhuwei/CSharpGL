@@ -86,6 +86,7 @@ namespace CSharpGL.Winforms
                     GLCanvasHelper.ResizeGL(this.Width, this.Height);
 
                     GLCanvasHelper.DrawPyramid();
+
                 }
                 else
                 {

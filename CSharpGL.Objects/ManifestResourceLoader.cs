@@ -34,7 +34,7 @@ namespace CSharpGL.Objects
         private static void GetLocation(string textFileName, out Assembly executingAssembly, out string location)
         {
             StackTrace stack = new StackTrace();
-            StackFrame frame = stack.GetFrame(1);
+            StackFrame frame = stack.GetFrame(2);
             MethodBase method = frame.GetMethod();
             Type type = method.ReflectedType;
             executingAssembly = type.Assembly; //Assembly.GetExecutingAssembly();

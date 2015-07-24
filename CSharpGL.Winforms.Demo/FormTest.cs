@@ -25,5 +25,10 @@ namespace CSharpGL.Winforms.Demo
                             MessageBoxIcon.Information);
 
         }
+
+        private void btnGLCanvas_Click(object sender, EventArgs e)
+        {
+            (new Form1()).Show();
+        }
     }
 }

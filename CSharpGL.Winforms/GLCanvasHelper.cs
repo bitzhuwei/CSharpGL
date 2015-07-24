@@ -9,6 +9,16 @@ namespace CSharpGL.Winforms
 {
     public static class GLCanvasHelper
     {
+        //static PyramidVAOElement pyramidVAOElement = new PyramidVAOElement();
+        //static GLCanvasHelper()
+        //{
+        //    pyramidVAOElement.Initialize();
+        //}
+
+        //public static void DrawWithElement()
+        //{
+        //    pyramidVAOElement.Render(Objects.RenderModes.Render);
+        //}
 
         public static void ResizeGL(double width, double height)
         {

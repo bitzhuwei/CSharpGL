@@ -752,5 +752,9 @@ namespace CSharpGL
             GL.ShadeModel((uint)mode);
         }
 
+        public static void BufferData(BufferDataTarget target, UnmanagedArrayBase data, BufferDataUsage usage)
+        {
+            GetDelegateFor<glBufferData>()((uint)target, data.ByteLength, data.Header, (uint)usage);
+        }
     }
 }

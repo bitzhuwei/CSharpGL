@@ -962,27 +962,27 @@ namespace CSharpGL
         {
             return GetDelegateFor<glIsBuffer>()(buffer);
         }
-        public static void BufferData(uint target, int size, IntPtr data, uint usage)
+        public static void BufferData(uint target, int byteLength, IntPtr data, uint usage)
         {
-            GetDelegateFor<glBufferData>()(target, size, data, usage);
+            GetDelegateFor<glBufferData>()(target, byteLength, data, usage);
         }
-        public static void BufferData(uint target, float[] data, uint usage)
-        {
-            IntPtr p = Marshal.AllocHGlobal(data.Length * sizeof(float));
-            Marshal.Copy(data, 0, p, data.Length);
-            GetDelegateFor<glBufferData>()(target, data.Length * sizeof(float), p, usage);
-            Marshal.FreeHGlobal(p);
-        }
-        public static void BufferData(uint target, ushort[] data, uint usage)
-        {
-            var dataSize = data.Length * sizeof(ushort);
-            IntPtr p = Marshal.AllocHGlobal(dataSize);
-            var shortData = new short[data.Length];
-            Buffer.BlockCopy(data, 0, shortData, 0, dataSize);
-            Marshal.Copy(shortData, 0, p, data.Length);
-            GetDelegateFor<glBufferData>()(target, dataSize, p, usage);
-            Marshal.FreeHGlobal(p);
-        }
+        //public static void BufferData(uint target, float[] data, uint usage)
+        //{
+        //    IntPtr p = Marshal.AllocHGlobal(data.Length * sizeof(float));
+        //    Marshal.Copy(data, 0, p, data.Length);
+        //    GetDelegateFor<glBufferData>()(target, data.Length * sizeof(float), p, usage);
+        //    Marshal.FreeHGlobal(p);
+        //}
+        //public static void BufferData(uint target, ushort[] data, uint usage)
+        //{
+        //    var dataSize = data.Length * sizeof(ushort);
+        //    IntPtr p = Marshal.AllocHGlobal(dataSize);
+        //    var shortData = new short[data.Length];
+        //    Buffer.BlockCopy(data, 0, shortData, 0, dataSize);
+        //    Marshal.Copy(shortData, 0, p, data.Length);
+        //    GetDelegateFor<glBufferData>()(target, dataSize, p, usage);
+        //    Marshal.FreeHGlobal(p);
+        //}
         public static void BufferSubData(uint target, int offset, int size, IntPtr data)
         {
             GetDelegateFor<glBufferSubData>()(target, offset, size, data);
