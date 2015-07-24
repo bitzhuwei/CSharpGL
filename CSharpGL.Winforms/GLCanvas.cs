@@ -18,14 +18,14 @@ namespace CSharpGL.Winforms
     /// 可执行OpenGL渲染的控件。
     /// </summary>
     [ToolboxBitmap(typeof(GLCanvas), "GLCanvas.ico")]
-    public partial class GLCanvas : UserControl
+    public partial class GLCanvas : UserControl, ISupportInitialize
     {
         protected RenderContext renderContext;
 
         private bool designMode;
 
         /// <summary>
-        /// 
+        /// 可执行OpenGL渲染的控件。
         /// </summary>
         public GLCanvas()
         {
@@ -41,12 +41,18 @@ namespace CSharpGL.Winforms
 
         }
 
-        protected override void OnHandleCreated(EventArgs e)
-        {
-            base.OnHandleCreated(e);
+        #region ISupportInitialize 成员
 
+        void ISupportInitialize.BeginInit()
+        {
+        }
+
+        void ISupportInitialize.EndInit()
+        {
             CreateRenderContext();
         }
+
+        #endregion
 
         private void CreateRenderContext()
         {
@@ -62,7 +68,8 @@ namespace CSharpGL.Winforms
 
             //  Set the most basic OpenGL styles.
             GL.ShadeModel(GL.GL_SMOOTH);
-            GL.ClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+            // 天蓝色背景
+            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.ClearDepth(1.0f);
             GL.Enable(GL.GL_DEPTH_TEST);
             GL.DepthFunc(GL.GL_LEQUAL);
@@ -71,7 +78,8 @@ namespace CSharpGL.Winforms
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            if (this.renderContext != null)
+            RenderContext renderContext = this.renderContext;
+            if (renderContext != null)
             {
                 Graphics graphics = e.Graphics;
 
@@ -120,11 +128,12 @@ namespace CSharpGL.Winforms
         {
             base.OnSizeChanged(e);
 
-            if (this.renderContext != null)
+            RenderContext renderContext = this.renderContext;
+            if (renderContext != null)
             {
-                this.renderContext.MakeCurrent();
+                renderContext.MakeCurrent();
 
-                this.renderContext.SetDimensions(this.Width, this.Height);
+                renderContext.SetDimensions(this.Width, this.Height);
 
                 GL.Viewport(0, 0, this.Width, this.Height);
 
@@ -141,11 +150,11 @@ namespace CSharpGL.Winforms
 
         private void DestroyRenderContext()
         {
-            if (this.renderContext != null)
+            RenderContext renderContext = this.renderContext;
+            if (renderContext != null)
             {
-                RenderContext tmp = this.renderContext;
                 this.renderContext = null;
-                tmp.Dispose();
+                renderContext.Dispose();
             }
         }
 

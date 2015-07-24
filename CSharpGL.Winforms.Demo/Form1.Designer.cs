@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
+            ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
             // glCanvas1
@@ -43,7 +44,6 @@
             this.glCanvas1.Size = new System.Drawing.Size(481, 305);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.OpenGLDraw += new System.EventHandler<CSharpGL.Winforms.RenderEventArgs>(this.glCanvas1_OpenGLDraw);
-            this.glCanvas1.Resize += new System.EventHandler(this.glCanvas1_Resize);
             // 
             // Form1
             // 
@@ -54,6 +54,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -61,6 +62,7 @@
         #endregion
 
         private GLCanvas glCanvas1;
+
 
     }
 }
