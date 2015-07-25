@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Winforms
 {
-    public class PyramidVAOElement : VAOElement
+    public class CylinderVAOElement : VAOElement
     {
 
         /// <summary>
@@ -38,46 +38,18 @@ namespace CSharpGL.Winforms
         /// </summary>
         protected int vertexCount;
 
-        /// <summary>
-        /// 金字塔的posotion array.
-        /// </summary>
-        static vec3[] positions = new vec3[]
-		{
-			new vec3(0.0f, 1.0f, 0.0f),
-			new vec3(-1.0f, -1.0f, 1.0f),
-			new vec3(1.0f, -1.0f, 1.0f),
-			new vec3(0.0f, 1.0f, 0.0f),
-			new vec3(1.0f, -1.0f, 1.0f),
-			new vec3(1.0f, -1.0f, -1.0f),
-			new vec3(0.0f, 1.0f, 0.0f),
-			new vec3(1.0f, -1.0f, -1.0f),
-			new vec3(-1.0f, -1.0f, -1.0f),
-			new vec3(0.0f, 1.0f, 0.0f),
-			new vec3(-1.0f, -1.0f, -1.0f),
-			new vec3(-1.0f, -1.0f, 1.0f),   
-		};
-
-        /// <summary>
-        /// 金字塔的color array.
-        /// </summary>
-        static vec3[] colors = new vec3[]
-		{ 
-			new vec3(1.0f, 0.0f, 0.0f),
-			new vec3(0.0f, 1.0f, 0.0f),          
-			new vec3(0.0f, 0.0f, 1.0f),          
-			new vec3(1.0f, 0.0f, 0.0f),          
-			new vec3(0.0f, 0.0f, 1.0f),          
-			new vec3(0.0f, 1.0f, 0.0f),          
-			new vec3(1.0f, 0.0f, 0.0f),          
-			new vec3(0.0f, 1.0f, 0.0f),          
-			new vec3(0.0f, 0.0f, 1.0f),          
-			new vec3(1.0f, 0.0f, 0.0f),          
-			new vec3(0.0f, 0.0f, 1.0f),          
-			new vec3(0.0f, 1.0f, 0.0f),
-		};
-
         private float rotation;
 
+        private float radius;
+        private float height;
+        private int faceCount;
+
+        public CylinderVAOElement(float radius, float height, int faceCount = 18)
+        {
+            this.radius = radius;
+            this.height = height;
+            this.faceCount = faceCount;
+        }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
@@ -100,8 +72,8 @@ namespace CSharpGL.Winforms
 
         protected void InitializeVAO(out uint[] vao, out PrimitiveMode primitiveMode, out int vertexCount)
         {
-            primitiveMode = PrimitiveMode.Triangles;
-            vertexCount = positions.Length;
+            primitiveMode = PrimitiveMode.QuadStrip;
+            vertexCount = faceCount * 2;
 
             vao = new uint[1];
             GL.GenVertexArrays(1, vao);
@@ -111,32 +83,59 @@ namespace CSharpGL.Winforms
             {
                 uint[] ids = new uint[1];
                 GL.GenBuffers(1, ids);
-                GL.BindBuffer(GL.GL_ARRAY_BUFFER, ids[0]);
-                UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(positions.Length);
-                for (int i = 0; i < positions.Length; i++)
+                GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
+                UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(faceCount * 2);
+                for (int i = 0; i < faceCount * 2; i++)
                 {
-                    positionArray[i] = positions[i];
+                    int face = i / 2;
+                    positionArray[i] = new vec3(
+                        (float)(this.radius * Math.Cos(face * (Math.PI * 2) / faceCount)),
+                        (i % 2 == 1 ? -1 : 1) * this.height / 2,
+                        (float)(this.radius * Math.Sin(face * (Math.PI * 2) / faceCount))
+                        );
                 }
                 GL.BufferData(BufferTarget.ArrayBuffer, positionArray, BufferUsage.StaticDraw);
                 GL.VertexAttribPointer(positionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                 GL.EnableVertexAttribArray(positionLocation);
+                positionArray.Dispose();
             }
 
             //  Now do the same for the colour data.
             {
                 uint[] ids = new uint[1];
                 GL.GenBuffers(1, ids);
-                GL.BindBuffer(GL.GL_ARRAY_BUFFER, ids[0]);
-                UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(positions.Length);
-                for (int i = 0; i < colors.Length; i++)
+                GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
+                UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(faceCount * 2);
+                for (int i = 0; i < colorArray.Count; i++)
                 {
-                    colorArray[i] = colors[i];
+                    if (i % 2 == 0)
+                    {
+                        colorArray[i] = new vec3(1, 0,0); //new vec3((i % 3) / 3.0f, (i + 1) % 3 / 3.0f, (i + 2) % 3 / 3.0f);
+                    }
+                    else
+                    {
+                        colorArray[i] = new vec3(0, 1, 0); //new vec3((i % 3) / 3.0f, (i + 1) % 3 / 3.0f, (i + 2) % 3 / 3.0f);
+                    }
                 }
                 GL.BufferData(BufferTarget.ArrayBuffer, colorArray, BufferUsage.StaticDraw);
                 GL.VertexAttribPointer(colorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                 GL.EnableVertexAttribArray(colorLocation);
+                colorArray.Dispose();
             }
-
+            {
+                uint[] ids = new uint[1];
+                GL.GenBuffers(1, ids);
+                GL.BindBuffer(BufferTarget.ElementArrayBuffer, ids[0]);
+                UnmanagedArray<uint> cylinderIndex = new UnmanagedArray<uint>(faceCount * 2 + 2);
+                for (int i = 0; i < cylinderIndex.Count - 2; i++)
+                {
+                    cylinderIndex[i] = (uint)i;
+                }
+                cylinderIndex[cylinderIndex.Count - 2] = 0;
+                cylinderIndex[cylinderIndex.Count - 1] = 1;
+                GL.BufferData(BufferTarget.ElementArrayBuffer, cylinderIndex, BufferUsage.StaticDraw);
+                cylinderIndex.Dispose();
+            }
             //  Unbind the vertex array, we've finished specifying data for it.
             GL.BindVertexArray(0);
         }
@@ -159,7 +158,8 @@ namespace CSharpGL.Winforms
 
             GL.BindVertexArray(vao[0]);
 
-            GL.DrawArrays(primitiveMode, 0, vertexCount);
+            //GL.DrawArrays(primitiveMode, 0, vertexCount);
+            GL.DrawElements(primitiveMode, faceCount * 2 + 2, GL.GL_UNSIGNED_INT, IntPtr.Zero);
 
             GL.BindVertexArray(0);
 
@@ -169,11 +169,11 @@ namespace CSharpGL.Winforms
         {
             shaderProgram.Bind();
 
-            rotation += 3.0f;
-            modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
+            rotation += 0.05f;
+            modelMatrix = glm.rotate(rotation, new vec3( 0, 1, 0));
 
-            const float distance = 0.2f;
-            viewMatrix = glm.lookAt(new vec3(-distance, distance, -distance), new vec3(0, 0, 0), new vec3(0, -1, 0));
+            const float distance = 1f;
+            viewMatrix = glm.lookAt(new vec3(-distance, 0, -distance), new vec3(0, 0, 0), new vec3(0, -1, 0));
 
             int[] viewport = new int[4];
             GL.GetInteger(GetTarget.Viewport, viewport);

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CylinderVAOElement.cs" />
     <Compile Include="GLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>

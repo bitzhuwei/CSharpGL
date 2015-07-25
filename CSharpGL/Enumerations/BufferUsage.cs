@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CSharpGL
 {
 
-    public enum BufferDataUsage : uint
+    public enum BufferUsage : uint
     {
         StreamDraw = GL.GL_STREAM_DRAW,//= 0x88E0,
         StreamRead = GL.GL_STREAM_READ,//= 0x88E1,

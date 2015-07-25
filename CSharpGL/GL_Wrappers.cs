@@ -758,9 +758,19 @@ namespace CSharpGL
         /// <param name="target"></param>
         /// <param name="data"></param>
         /// <param name="usage"></param>
-        public static void BufferData(BufferDataTarget target, UnmanagedArrayBase data, BufferDataUsage usage)
+        public static void BufferData(BufferTarget target, UnmanagedArrayBase data, BufferUsage usage)
         {
             GetDelegateFor<glBufferData>()((uint)target, data.ByteLength, data.Header, (uint)usage);
+        }
+
+        /// <summary>
+        /// 选择一个VBO作为当前VBO。
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="id"></param>
+        public static void BindBuffer(BufferTarget target, uint id)
+        {
+            GL.BindBuffer((uint)target, id);
         }
     }
 }

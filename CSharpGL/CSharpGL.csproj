@@ -43,9 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enumerations\BufferDataUsage.cs" />
+    <Compile Include="Enumerations\BufferUsage.cs" />
     <Compile Include="Enumerations\GetTarget.cs" />
-    <Compile Include="Enumerations\BufferDataTarget.cs" />
+    <Compile Include="Enumerations\BufferTarget.cs" />
     <Compile Include="Enumerations\HintMode.cs" />
     <Compile Include="Enumerations\PrimitiveMode.cs" />
     <Compile Include="GL.cs" />

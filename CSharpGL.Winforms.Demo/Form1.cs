@@ -18,7 +18,8 @@ namespace CSharpGL.Winforms.Demo
     {
         //private float rotation;
 
-        PyramidVAOElement element = new PyramidVAOElement();
+        //PyramidVAOElement element = new PyramidVAOElement();
+        CylinderVAOElement element;// = new CylinderVAOElement(faceCount, radius, height);
 
         /// <summary>
         /// 
@@ -31,6 +32,10 @@ namespace CSharpGL.Winforms.Demo
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            var faceCount = 18;
+            var radius = 1f;
+            var height = 3f;
+            element = new CylinderVAOElement(radius, height, faceCount);
             element.Initialize();
 
             // Init GL
