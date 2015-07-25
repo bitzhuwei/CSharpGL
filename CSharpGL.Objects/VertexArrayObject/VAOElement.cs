@@ -17,27 +17,7 @@ namespace CSharpGL.Objects.VertexArrayObject
 
         }
 
-        private bool initialized = false;
-
-        /// <summary>
-        /// VAO
-        /// </summary>
-        protected uint[] vao;
-
-        /// <summary>
-        /// 图元类型
-        /// </summary>
-        protected PrimitiveMode primitiveMode;
-
-        /// <summary>
-        /// 顶点数
-        /// </summary>
-        protected int vertexCount;
-
-        /// <summary>
-        /// shader
-        /// </summary>
-        protected ShaderProgram shaderProgram;
+        protected bool initialized = false;
 
         /// <summary>
         /// 初始化此VAOElement
@@ -46,7 +26,7 @@ namespace CSharpGL.Objects.VertexArrayObject
         {
             if (!initialized)
             {
-                DoInitialize(out shaderProgram, out vao, out primitiveMode, out vertexCount);
+                DoInitialize();
 
                 initialized = true;
             }
@@ -55,37 +35,8 @@ namespace CSharpGL.Objects.VertexArrayObject
         /// <summary>
         /// 初始化Shader和VAO
         /// </summary>
-        /// <param name="shaderProgram"></param>
-        /// <param name="vao"></param>
-        /// <param name="primitiveMode"></param>
-        /// <param name="vertexCount"></param>
-        protected abstract void DoInitialize(out ShaderProgram shaderProgram, out uint[] vao, out PrimitiveMode primitiveMode, out int vertexCount);
+        protected abstract void DoInitialize();
 
-        /// <summary>
-        /// 在Render前更新Shader和其它状态
-        /// </summary>
-        /// <param name="renderMode"></param>
-        protected abstract void BeforeRendering(RenderModes renderMode);
-
-        public void Render(RenderModes renderMode)
-        {
-            if (!initialized) { Initialize(); }
-
-            BeforeRendering(renderMode);
-
-            GL.BindVertexArray(vao[0]);
-
-            GL.DrawArrays(primitiveMode, 0, vertexCount);
-
-            GL.BindVertexArray(0);
-
-            AfterRendering(renderMode);
-        }
-
-        /// <summary>
-        /// 在Render后恢复Shader和其它状态
-        /// </summary>
-        /// <param name="renderMode"></param>
-        protected abstract void AfterRendering(RenderModes renderMode);
+        public abstract void Render(RenderModes renderMode);
     }
 }

@@ -13,6 +13,7 @@ namespace CSharpGL.Winforms.Demo
         {
             const int count = 100;
 
+            // 测试float类型
             var floatArray = new UnmanagedArray<float>(count);
             for (int i = 0; i < count; i++)
             {
@@ -25,6 +26,7 @@ namespace CSharpGL.Winforms.Demo
                 { throw new Exception(); }
             }
 
+            // 测试decimal类型
             var decimalArray = new UnmanagedArray<decimal>(count);
             for (int i = 0; i < count; i++)
             {
@@ -38,6 +40,7 @@ namespace CSharpGL.Winforms.Demo
             }
 
 
+            // 测试int类型
             var intArray = new UnmanagedArray<int>(count);
             for (int i = 0; i < count; i++)
             {
@@ -51,6 +54,7 @@ namespace CSharpGL.Winforms.Demo
             }
 
 
+            // 测试bool类型
             var boolArray = new UnmanagedArray<bool>(count);
             for (int i = 0; i < count; i++)
             {
@@ -63,6 +67,7 @@ namespace CSharpGL.Winforms.Demo
                 { throw new Exception(); }
             }
 
+            // 测试vec3类型
             var vec3Array = new UnmanagedArray<vec3>(count);
             for (int i = 0; i < count; i++)
             {
@@ -76,11 +81,16 @@ namespace CSharpGL.Winforms.Demo
                 { throw new Exception(); }
             }
 
+            // 测试foreach
             foreach (var item in vec3Array.GetElements())
             {
                 Console.WriteLine(item);
             }
 
+            // 释放此数组占用的内存，这之后就不能再使用vec3Array了。
+            vec3Array.Dispose();
+
+            // 立即释放所有非托管数组占用的内存，这之后就不能再使用上面申请的数组了。
             UnmanagedArray<int>.FreeAll();
         }
     }

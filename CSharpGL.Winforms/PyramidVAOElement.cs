@@ -12,14 +12,35 @@ namespace CSharpGL.Winforms
 {
     public class PyramidVAOElement : VAOElement
     {
+
+        /// <summary>
+        /// shader program
+        /// </summary>
+        protected ShaderProgram shaderProgram;
+        uint positionLocation;
+        uint colorLocation;
         mat4 projectionMatrix;
         mat4 viewMatrix;
         mat4 modelMatrix;
 
-        uint positionLocation;
+        /// <summary>
+        /// VAO
+        /// </summary>
+        protected uint[] vao;
 
-        uint colorLocation;
+        /// <summary>
+        /// 图元类型
+        /// </summary>
+        protected PrimitiveMode primitiveMode;
 
+        /// <summary>
+        /// 顶点数
+        /// </summary>
+        protected int vertexCount;
+
+        /// <summary>
+        /// 金字塔的posotion array.
+        /// </summary>
         static vec3[] positions = new vec3[]
 		{
 			new vec3(0.0f, 1.0f, 0.0f),
@@ -35,6 +56,10 @@ namespace CSharpGL.Winforms
 			new vec3(-1.0f, -1.0f, -1.0f),
 			new vec3(-1.0f, -1.0f, 1.0f),   
 		};
+
+        /// <summary>
+        /// 金字塔的color array.
+        /// </summary>
         static vec3[] colors = new vec3[]
 		{ 
 			new vec3(1.0f, 0.0f, 0.0f),
@@ -116,7 +141,7 @@ namespace CSharpGL.Winforms
             GL.BindVertexArray(0);
         }
 
-        protected override void DoInitialize(out ShaderProgram shaderProgram, out uint[] vao, out PrimitiveMode primitiveMode, out int vertexCount)
+        protected override void DoInitialize()
         {
             InitializeShader(out shaderProgram);
 
@@ -124,7 +149,25 @@ namespace CSharpGL.Winforms
 
         }
 
-        protected override void BeforeRendering(Objects.RenderModes renderMode)
+        public override void Render(RenderModes renderMode)
+        {
+            BeforeRendering(renderMode);
+
+            if (!initialized) { Initialize(); }
+
+            BeforeRendering(renderMode);
+
+            GL.BindVertexArray(vao[0]);
+
+            GL.DrawArrays(primitiveMode, 0, vertexCount);
+
+            GL.BindVertexArray(0);
+
+            AfterRendering(renderMode);
+
+            AfterRendering(renderMode);
+        }
+        protected void BeforeRendering(Objects.RenderModes renderMode)
         {
             shaderProgram.Bind();
 
@@ -143,7 +186,7 @@ namespace CSharpGL.Winforms
             shaderProgram.SetUniformMatrix4("modelMatrix", modelMatrix.to_array());
         }
 
-        protected override void AfterRendering(Objects.RenderModes renderMode)
+        protected void AfterRendering(Objects.RenderModes renderMode)
         {
             shaderProgram.Unbind();
         }
