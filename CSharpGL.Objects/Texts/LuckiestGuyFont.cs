@@ -70,6 +70,8 @@ namespace CSharpGL.Objects.Texts
             qqFont.tex_data = new char[texture_font_t.tex_data_count];
             InitTex_data();
 
+            #region init texture_glyph_ts
+
             qqFont.glyphs = new texture_glyph_t[96]//[qqFont.glyphs_count] 
             {
                new texture_glyph_t('\0', 0, 0, 0, 0, 0.000000f, 0.000000f, 0.011719f, 0.011719f, 0.015625f, 0.015625f, 0, new kerning_t[0] ),
@@ -169,17 +171,20 @@ new texture_glyph_t('|', 3, 8, 0, 7, 2.875000f, 0.000000f, 0.355469f, 0.042969f,
 new texture_glyph_t('}', 6, 9, -1, 8, 4.031250f, 0.000000f, 0.425781f, 0.066406f, 0.449219f, 0.101563f, 0, new kerning_t[0] ),
 new texture_glyph_t('~', 6, 4, 0, 6, 5.765625f, 0.000000f, 0.789063f, 0.070313f, 0.812500f, 0.085938f, 0, new kerning_t[0] ), 
             };
+
+            #endregion init texture_glyph_ts
+
         }
 
         private static void InitTex_data()
         {
             int count = 0;
-            foreach (var line in ManifestResourceLoader.GetLines("LuckiestGuy.tex_data"))
+            foreach (var line in ManifestResourceLoader.GetLines("Texts.LuckiestGuy.tex_data"))
             {
                 string[] parts = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var part in parts)
                 {
-                    char c = char.Parse(part);
+                    char c = (char)Convert.ToByte(part);
                     qqFont.tex_data[count++] = c;
                 }
             }
