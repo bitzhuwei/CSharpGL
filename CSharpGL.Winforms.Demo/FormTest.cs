@@ -30,5 +30,10 @@ namespace CSharpGL.Winforms.Demo
         {
             (new Form1()).Show();
         }
+
+        private void btnFreeType_Click(object sender, EventArgs e)
+        {
+            (new FormFreeType()).Show();
+        }
     }
 }

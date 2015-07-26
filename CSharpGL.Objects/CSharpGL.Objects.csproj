@@ -58,6 +58,10 @@
     <Compile Include="RenderContexts\VersionAttribute.cs" />
     <Compile Include="RenderMode.cs" />
     <Compile Include="Shaders\ShaderProgram.cs" />
+    <Compile Include="Texts\Font3D.cs" />
+    <Compile Include="Texts\FreeType.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Texts\LuckiestGuyFont.cs" />
     <Compile Include="VertexArrayObjects\VAOElement.cs" />
   </ItemGroup>
@@ -76,6 +80,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Shaders\GLSLVersion.html" />
+    <Content Include="Texts\freetype.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texts\DUMPBIN命令使用详解.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Texts\freetype.exp" />
+    <None Include="Texts\freetype.lib" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -30,6 +30,7 @@
         {
             this.btnUnmanagedArray = new System.Windows.Forms.Button();
             this.btnGLCanvas = new System.Windows.Forms.Button();
+            this.btnFreeType = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUnmanagedArray
@@ -56,11 +57,24 @@
             this.btnGLCanvas.UseVisualStyleBackColor = true;
             this.btnGLCanvas.Click += new System.EventHandler(this.btnGLCanvas_Click);
             // 
+            // btnFreeType
+            // 
+            this.btnFreeType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFreeType.Location = new System.Drawing.Point(12, 70);
+            this.btnFreeType.Name = "btnFreeType";
+            this.btnFreeType.Size = new System.Drawing.Size(260, 23);
+            this.btnFreeType.TabIndex = 0;
+            this.btnFreeType.Text = "FreeType";
+            this.btnFreeType.UseVisualStyleBackColor = true;
+            this.btnFreeType.Click += new System.EventHandler(this.btnFreeType_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.btnFreeType);
             this.Controls.Add(this.btnGLCanvas);
             this.Controls.Add(this.btnUnmanagedArray);
             this.Name = "FormTest";
@@ -73,5 +87,6 @@
 
         private System.Windows.Forms.Button btnUnmanagedArray;
         private System.Windows.Forms.Button btnGLCanvas;
+        private System.Windows.Forms.Button btnFreeType;
     }
 }
