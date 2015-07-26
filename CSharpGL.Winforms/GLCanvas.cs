@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Threading;
 using CSharpGL.Objects;
 using System.ComponentModel.Design;
-using CSharpGL.Objects.RenderContext;
+using CSharpGL.Objects.RenderContexts;
 
 namespace CSharpGL.Winforms
 {

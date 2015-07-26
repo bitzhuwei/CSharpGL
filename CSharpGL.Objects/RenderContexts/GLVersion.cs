@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.RenderContext
+namespace CSharpGL.Objects.RenderContexts
 {
     /// <summary>
     /// Used to specify explictly a version of OpenGL.

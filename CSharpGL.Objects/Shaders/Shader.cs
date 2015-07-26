@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.GLSLShader
+namespace CSharpGL.Objects.Shaders
 {
     /// <summary>
     /// This is the base class for all shaders (vertex and fragment). It offers functionality

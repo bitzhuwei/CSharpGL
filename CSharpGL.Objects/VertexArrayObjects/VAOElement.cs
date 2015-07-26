@@ -1,11 +1,11 @@
-﻿using CSharpGL.Objects.GLSLShader;
+﻿using CSharpGL.Objects.Shaders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.VertexArrayObject
+namespace CSharpGL.Objects.VertexArrayObjects
 {
     /// <summary>
     /// 用VAO渲染一个元素。

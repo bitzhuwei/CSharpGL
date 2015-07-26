@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.RenderContext
+namespace CSharpGL.Objects.RenderContexts
 {
     /// <summary>
     /// Allows a version to be specified as metadata on a field.

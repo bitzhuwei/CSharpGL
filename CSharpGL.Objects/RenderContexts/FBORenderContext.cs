@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Objects.RenderContext
+namespace CSharpGL.Objects.RenderContexts
 {
     /// <summary>
     /// A render context.

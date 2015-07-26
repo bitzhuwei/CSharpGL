@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.GLSLShader
+namespace CSharpGL.Objects.Shaders
 {
     public class ShaderProgram
     {
