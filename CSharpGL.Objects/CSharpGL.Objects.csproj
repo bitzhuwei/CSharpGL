@@ -58,7 +58,6 @@
     <Compile Include="RenderContext\VersionAttribute.cs" />
     <Compile Include="RenderMode.cs" />
     <Compile Include="GLSLShader\ShaderProgram.cs" />
-    <Compile Include="UnmanagedArray.cs" />
     <Compile Include="VertexArrayObject\VAOElement.cs" />
   </ItemGroup>
   <ItemGroup>

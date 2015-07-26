@@ -170,7 +170,7 @@ namespace CSharpGL.Winforms
             shaderProgram.Bind();
 
             rotation += 0.05f;
-            modelMatrix = glm.rotate(rotation, new vec3( 0, 1, 0));
+            modelMatrix = glm.rotate(rotation, new vec3(1, 1, 1));
 
             const float distance = 1f;
             viewMatrix = glm.lookAt(new vec3(-distance, 0, -distance), new vec3(0, 0, 0), new vec3(0, -1, 0));
