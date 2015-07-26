@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -11,6 +12,29 @@ namespace CSharpGL.Objects
     /// </summary>
     public static class ManifestResourceLoader
     {
+        /// <summary>
+        /// Loads the named manifest resource and returns each line in order.
+        /// </summary>
+        /// <param name="textFileName"></param>
+        /// <returns></returns>
+        public static IEnumerable<string> GetLines(string textFileName)
+        {
+            Assembly executingAssembly;
+            string location;
+            GetLocation(textFileName, out executingAssembly, out location);
+
+            using (var stream = executingAssembly.GetManifestResourceStream(location))
+            {
+                using (var reader = new StreamReader(stream))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        yield return reader.ReadLine();
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Loads the named manifest resource as a text string.
         /// </summary>

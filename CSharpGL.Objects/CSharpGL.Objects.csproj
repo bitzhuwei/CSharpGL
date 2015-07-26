@@ -58,6 +58,7 @@
     <Compile Include="RenderContexts\VersionAttribute.cs" />
     <Compile Include="RenderMode.cs" />
     <Compile Include="Shaders\ShaderProgram.cs" />
+    <Compile Include="Texts\LuckiestGuyFont.cs" />
     <Compile Include="VertexArrayObjects\VAOElement.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,7 +72,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Texts\" />
+    <EmbeddedResource Include="Texts\LuckiestGuy.tex_data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Shaders\GLSLVersion.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
