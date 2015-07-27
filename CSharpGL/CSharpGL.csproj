@@ -62,6 +62,7 @@
     <Compile Include="Win32API\ClassStyles.cs" />
     <Compile Include="Win32API\Delegates.cs" />
     <Compile Include="Win32API\SetWindowPosFlags.cs" />
+    <Content Include="Win32API\Win32APItoNetFrameworkAPIMap.html" />
     <Compile Include="Win32API\WindowStyles.cs" />
     <Compile Include="Win32API\PIXELFORMATDESCRIPTOR.cs" />
     <Compile Include="Win32API\POINTFLOAT.cs" />

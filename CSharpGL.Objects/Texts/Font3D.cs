@@ -7,7 +7,7 @@ namespace CSharpGL.Objects.Texts
     /// <summary>
     /// A true 3D Font
     /// </summary>
- 
+
     public class Font3D : IDisposable
     {
         private uint list_base;
@@ -15,6 +15,11 @@ namespace CSharpGL.Objects.Texts
         private uint[] textures;
         private int[] extent_x;
 
+        /// <summary>
+        /// A true 3D Font
+        /// </summary>
+        /// <param name="font">TTF file name</param>
+        /// <param name="size"></param>
         public Font3D(string font, int size)
         {
             // Save the size we need it later on when printing
@@ -22,18 +27,21 @@ namespace CSharpGL.Objects.Texts
 
             // We begin by creating a library pointer
             System.IntPtr libptr;
-            int ret = FreeTypeAPI.FT_Init_FreeType(out libptr);
-            if (ret != 0) return;
-            object libObj = Marshal.PtrToStructure(libptr, typeof(Library));
-            Library lib = (Library)libObj;
+            {
+                int ret = FreeTypeAPI.FT_Init_FreeType(out libptr);
+                if (ret != 0) return;
+                object libObj = Marshal.PtrToStructure(libptr, typeof(Library));
+                Library lib = (Library)libObj;
+            }
 
             //Once we have the library we create and load the font face
-            Face face;
             System.IntPtr faceptr;
-            int retb = FreeTypeAPI.FT_New_Face(libptr, font, 0, out faceptr);
-            if (retb != 0) return;
-
-            face = (Face)Marshal.PtrToStructure(faceptr, typeof(Face));
+            Face face;
+            {
+                int retb = FreeTypeAPI.FT_New_Face(libptr, font, 0, out faceptr);
+                if (retb != 0) return;
+                face = (Face)Marshal.PtrToStructure(faceptr, typeof(Face));
+            }
 
             //Freetype measures the font size in 1/64th of pixels for accuracy 
             //so we need to request characters in size*64
@@ -71,9 +79,12 @@ namespace CSharpGL.Objects.Texts
 
             //Convert the glyph to a bitmap
             System.IntPtr glyph;
-            int retb = FreeTypeAPI.FT_Get_Glyph(face.glyphrec, out glyph);
-            if (retb != 0) return;
-            //GlyphRec glyph_rec=(GlyphRec)Marshal.PtrToStructure( face.glyphrec, typeof(GlyphRec) );
+            {
+                int retb = FreeTypeAPI.FT_Get_Glyph(face.glyphrec, out glyph);
+                if (retb != 0) return;
+                object objGlyphRec = Marshal.PtrToStructure(face.glyphrec, typeof(GlyphRec));
+                GlyphRec glyph_rec = (GlyphRec)objGlyphRec;
+            }
 
             FreeTypeAPI.FT_Glyph_To_Bitmap(out glyph, FT_RENDER_MODES.FT_RENDER_MODE_NORMAL, 0, 1);
             BitmapGlyph glyph_bmp = (BitmapGlyph)Marshal.PtrToStructure(glyph, typeof(BitmapGlyph));
@@ -268,7 +279,7 @@ namespace CSharpGL.Objects.Texts
         }
 
         #endregion
-				
+
     }
 
 }
