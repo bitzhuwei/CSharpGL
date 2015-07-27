@@ -7,7 +7,6 @@ namespace CSharpGL.Objects.Texts
     /// <summary>
     /// A true 3D Font
     /// </summary>
-
     public class Font3D : IDisposable
     {
         private uint list_base;
