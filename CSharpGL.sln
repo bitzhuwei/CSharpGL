@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Winforms", "CSharp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Winforms.Demo", "CSharpGL.Winforms.Demo\CSharpGL.Winforms.Demo.csproj", "{1E405A3E-F423-4DF4-A208-165928B70EF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.ConsoleDemo", "CSharpGL.ConsoleDemo\CSharpGL.ConsoleDemo.csproj", "{73073EFA-DDE4-4574-9D1A-FE6EF0824910}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{1E405A3E-F423-4DF4-A208-165928B70EF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E405A3E-F423-4DF4-A208-165928B70EF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E405A3E-F423-4DF4-A208-165928B70EF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73073EFA-DDE4-4574-9D1A-FE6EF0824910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73073EFA-DDE4-4574-9D1A-FE6EF0824910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73073EFA-DDE4-4574-9D1A-FE6EF0824910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73073EFA-DDE4-4574-9D1A-FE6EF0824910}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
