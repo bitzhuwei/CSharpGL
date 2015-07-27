@@ -86,6 +86,7 @@
   <ItemGroup>
     <None Include="Texts\freetype.exp" />
     <None Include="Texts\freetype.lib" />
+    <None Include="Texts\OpenGL Programming-Modern OpenGL Tutorial Text Rendering 01 - Wikibooks, open books for an open world.mht" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
