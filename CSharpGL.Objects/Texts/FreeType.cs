@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
 
 namespace CSharpGL.Objects.Texts
@@ -142,7 +142,7 @@ namespace CSharpGL.Objects.Texts
         public Generic autohint;
         public System.IntPtr extensions;
         public System.IntPtr internal_face;
-       
+
     }
 
     [StructLayout(LayoutKind.Sequential)]

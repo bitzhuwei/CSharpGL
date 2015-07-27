@@ -59,9 +59,7 @@
     <Compile Include="RenderMode.cs" />
     <Compile Include="Shaders\ShaderProgram.cs" />
     <Compile Include="Texts\Font3D.cs" />
-    <Compile Include="Texts\FreeType.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Texts\FreeType.cs" />
     <Compile Include="Texts\LuckiestGuyFont.cs" />
     <Compile Include="VertexArrayObjects\VAOElement.cs" />
   </ItemGroup>

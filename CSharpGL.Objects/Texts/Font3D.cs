@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
 
 namespace CSharpGL.Objects.Texts
@@ -10,8 +10,14 @@ namespace CSharpGL.Objects.Texts
     public class Font3D : IDisposable
     {
         private uint list_base;
+
+        /// <summary>
+        /// 字体大小
+        /// </summary>
         private int font_size;
+
         private uint[] textures;
+
         private int[] extent_x;
 
         /// <summary>
@@ -21,19 +27,22 @@ namespace CSharpGL.Objects.Texts
         /// <param name="size"></param>
         public Font3D(string font, int size)
         {
-            // Save the size we need it later on when printing
+            // 保存字体大小，在渲染时用
             font_size = size;
 
             // We begin by creating a library pointer
+            // 初始化FreeType库：创建FreeType库指针
             System.IntPtr libptr;
             {
                 int ret = FreeTypeAPI.FT_Init_FreeType(out libptr);
                 if (ret != 0) return;
                 object libObj = Marshal.PtrToStructure(libptr, typeof(Library));
                 Library lib = (Library)libObj;
+                //lib = Marshal.PtrToStructure<Library>(libptr);
             }
 
-            //Once we have the library we create and load the font face
+            // Once we have the library we create and load the font face
+            // 加载字体库
             System.IntPtr faceptr;
             Face face;
             {
@@ -42,16 +51,19 @@ namespace CSharpGL.Objects.Texts
                 face = (Face)Marshal.PtrToStructure(faceptr, typeof(Face));
             }
 
-            //Freetype measures the font size in 1/64th of pixels for accuracy 
-            //so we need to request characters in size*64
+            // Freetype measures the font size in 1/64th of pixels for accuracy 
+            // so we need to request characters in size*64
+            // 设置字符大小？
             FreeTypeAPI.FT_Set_Char_Size(faceptr, size << 6, size << 6, 96, 96);
 
-            //Provide a reasonably accurate estimate for expected pixel sizes
-            //when we later on create the bitmaps for the font
+            // Provide a reasonably accurate estimate for expected pixel sizes
+            // when we later on create the bitmaps for the font
+            // 设置像素大小？
             FreeTypeAPI.FT_Set_Pixel_Sizes(faceptr, size, size);
 
             // Once we have the face loaded and sized we generate opengl textures 
-            // from the glyphs  for each printable character
+            // from the glyphs for each printable character
+            // 为所有可打印的字符的创建纹理
             textures = new uint[128];
             extent_x = new int[128];
             list_base = GL.GenLists(128);
@@ -62,21 +74,24 @@ namespace CSharpGL.Objects.Texts
             }
 
             // Dispose of these as we don't need
+            // 释放字体库和FreeFont库
             FreeTypeAPI.FT_Done_Face(faceptr);
             FreeTypeAPI.FT_Done_FreeType(libptr);
         }
 
         public void Compile_Character(Face face, System.IntPtr faceptr, int c)
         {
-
-            //We first convert the number index to a character index
+            // We first convert the number index to a character index
+            // 根据字符获取其编号
             int index = FreeTypeAPI.FT_Get_Char_Index(faceptr, Convert.ToChar(c));
 
-            //Here we load the actual glyph for the character
+            // Here we load the actual glyph for the character
+            // 加载此字符的字形
             int ret = FreeTypeAPI.FT_Load_Glyph(faceptr, index, FT_LOAD_TYPES.FT_LOAD_DEFAULT);
             if (ret != 0) return;
 
-            //Convert the glyph to a bitmap
+            // Convert the glyph to a bitmap
+            // 把字形转换为纹理
             System.IntPtr glyph;
             {
                 int retb = FreeTypeAPI.FT_Get_Glyph(face.glyphrec, out glyph);
@@ -90,8 +105,8 @@ namespace CSharpGL.Objects.Texts
             int size = (glyph_bmp.bitmap.width * glyph_bmp.bitmap.rows);
             if (size <= 0)
             {
-
-                //space is a special `blank` character
+                // space is a special `blank` character
+                // 空格需要特殊处理
                 extent_x[c] = 0;
                 if (c == 32)
                 {
@@ -107,7 +122,8 @@ namespace CSharpGL.Objects.Texts
             byte[] bmp = new byte[size];
             Marshal.Copy(glyph_bmp.bitmap.buffer, bmp, 0, bmp.Length);
 
-            //Next we expand the bitmap into an opengl texture 	    	
+            // Next we expand the bitmap into an opengl texture
+            // 把glyph_bmp.bitmap的长宽扩展成2的指数倍
             int width = next_po2(glyph_bmp.bitmap.width);
             int height = next_po2(glyph_bmp.bitmap.rows);
             byte[] expanded = new byte[2 * width * height];
@@ -121,29 +137,34 @@ namespace CSharpGL.Objects.Texts
                 }
             }
 
-            //Set up some texture parameters for opengl
+            // Set up some texture parameters for opengl
+            // 指定OpenGL的纹理参数
             GL.BindTexture(GL.GL_TEXTURE_2D, textures[c]);
             GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
             GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
 
-            //Create the texture
+            // Create the texture
+            // 创建纹理
             GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
                 0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded);
             expanded = null;
             bmp = null;
 
-            //Create a display list and bind a texture to it
+            // Create a display list and bind a texture to it
+            // 创建显示列表，绑定纹理
             GL.NewList((uint)(list_base + c), GL.GL_COMPILE);
             GL.BindTexture(GL.GL_TEXTURE_2D, textures[c]);
 
-            //Account for freetype spacing rules
+            // Account for freetype spacing rules
+            // 矩阵平移
             GL.Translatef(glyph_bmp.left, 0, 0);
             GL.PushMatrix();
             GL.Translatef(0, glyph_bmp.top - glyph_bmp.bitmap.rows, 0);
             float x = (float)glyph_bmp.bitmap.width / (float)width;
             float y = (float)glyph_bmp.bitmap.rows / (float)height;
 
-            //Draw the quad
+            // Draw the quad
+            // 用Quad+纹理绘制字符
             GL.Begin(GL.GL_QUADS);
             GL.TexCoord2d(0, 0); GL.Vertex2f(0, glyph_bmp.bitmap.rows);
             GL.TexCoord2d(0, y); GL.Vertex2f(0, 0);
@@ -152,7 +173,8 @@ namespace CSharpGL.Objects.Texts
             GL.End();
             GL.PopMatrix();
 
-            //Advance for the next character			
+            // Advance for the next character			
+            // 准备绘制下一个字符
             GL.Translatef(glyph_bmp.bitmap.width, 0, 0);
             extent_x[c] = glyph_bmp.left + glyph_bmp.bitmap.width;
             GL.EndList();
