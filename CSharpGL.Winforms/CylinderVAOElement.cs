@@ -149,8 +149,6 @@ namespace CSharpGL.Winforms
 
         public override void Render(RenderModes renderMode)
         {
-            BeforeRendering(renderMode);
-
             if (!initialized) { Initialize(); }
 
             BeforeRendering(renderMode);
