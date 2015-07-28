@@ -63,7 +63,7 @@
     <Compile Include="Texts\Font3D.cs" />
     <Compile Include="Texts\FreeType.cs" />
     <Compile Include="Texts\LuckiestGuyFont.cs" />
-    <Compile Include="VertexArrayObjects\VAOElement.cs" />
+    <Compile Include="VAOElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSharpGL.Maths\CSharpGL.Maths.csproj">

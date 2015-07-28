@@ -1,7 +1,6 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects;
 using CSharpGL.Objects.Shaders;
-using CSharpGL.Objects.VertexArrayObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;

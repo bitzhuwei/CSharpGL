@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.VertexArrayObjects
+namespace CSharpGL.Objects
 {
     /// <summary>
     /// 用VAO渲染一个元素。
