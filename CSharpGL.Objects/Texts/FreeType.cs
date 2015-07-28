@@ -5,13 +5,27 @@ namespace CSharpGL.Objects.Texts
 {
     public static class FreeTypeAPI
     {
-
         const string freetypeDll = @"Texts\freetype.dll";
 
+        /// <summary>
+        /// Before using any other FreeType function, we need to initialize the library
+        /// 在使用任何其它FreeType函数前，我们必须初始化此库。
+        /// </summary>
+        /// <param name="lib"></param>
+        /// <returns></returns>
         [DllImport(freetypeDll, CallingConvention = CallingConvention.Cdecl)]
         public static extern int FT_Init_FreeType(out System.IntPtr lib);
         [DllImport(freetypeDll, CallingConvention = CallingConvention.Cdecl)]
         public static extern void FT_Done_FreeType(System.IntPtr lib);
+
+        /// <summary>
+        /// 加载字体库
+        /// </summary>
+        /// <param name="lib"></param>
+        /// <param name="fname"></param>
+        /// <param name="index"></param>
+        /// <param name="face"></param>
+        /// <returns></returns>
         [DllImport(freetypeDll, CallingConvention = CallingConvention.Cdecl)]
         public static extern int FT_New_Face(System.IntPtr lib,
             string fname,
@@ -31,6 +45,14 @@ namespace CSharpGL.Objects.Texts
         public static extern void FT_Done_Face(System.IntPtr face);
         [DllImport(freetypeDll, CallingConvention = CallingConvention.Cdecl)]
         public static extern int FT_Get_Char_Index(System.IntPtr face, char c);
+
+        /// <summary>
+        /// 加载此字符的字形到指定的face.
+        /// </summary>
+        /// <param name="face"></param>
+        /// <param name="index"></param>
+        /// <param name="flags"></param>
+        /// <returns></returns>
         [DllImport(freetypeDll, CallingConvention = CallingConvention.Cdecl)]
         public static extern int FT_Load_Glyph(System.IntPtr face,
             int index,
@@ -46,8 +68,29 @@ namespace CSharpGL.Objects.Texts
     }
     public enum FT_LOAD_TYPES
     {
-        FT_LOAD_DEFAULT = 0,
-        FT_LOAD_NO_SCALE = 1
+        FT_LOAD_DEFAULT = 0x0,
+        FT_LOAD_NO_SCALE = 1 << 0,
+        FT_LOAD_NO_HINTING = 1 << 1,
+        FT_LOAD_RENDER = 1 << 2,
+        FT_LOAD_NO_BITMAP = 1 << 3,
+        FT_LOAD_VERTICAL_LAYOUT = 1 << 4,
+        FT_LOAD_FORCE_AUTOHINT = 1 << 5,
+        FT_LOAD_CROP_BITMAP = 1 << 6,
+        FT_LOAD_PEDANTIC = 1 << 7,
+        FT_LOAD_IGNORE_GLOBAL_ADVANCE_WIDTH = 1 << 9,
+        FT_LOAD_NO_RECURSE = 1 << 10,
+        FT_LOAD_IGNORE_TRANSFORM = 1 << 11,
+        FT_LOAD_MONOCHROME = 1 << 12,
+        FT_LOAD_LINEAR_DESIGN = 1 << 13,
+        FT_LOAD_NO_AUTOHINT = 1 << 15,
+        /* Bits 16..19 are used by `FT_LOAD_TARGET_' */
+        FT_LOAD_COLOR = 1 << 20,
+
+        /* */
+
+        /* used internally only by certain font drivers! */
+        FT_LOAD_ADVANCE_ONLY = 1 << 8,
+        FT_LOAD_SBITS_ONLY = 1 << 14,
     }
 
     public enum FT_RENDER_MODES
@@ -107,7 +150,9 @@ namespace CSharpGL.Objects.Texts
         public int y;
     }
 
-
+    /// <summary>
+    /// 一个TTF文件里的字形会被转换为Face。Face就是一个TTF里字形的集合。
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public class Face
     {

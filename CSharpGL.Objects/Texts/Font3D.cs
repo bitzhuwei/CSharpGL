@@ -35,7 +35,8 @@ namespace CSharpGL.Objects.Texts
             System.IntPtr libptr;
             {
                 int ret = FreeTypeAPI.FT_Init_FreeType(out libptr);
-                if (ret != 0) return;
+                if (ret != 0) { throw new Exception("Could not init freetype library!"); }
+
                 object libObj = Marshal.PtrToStructure(libptr, typeof(Library));
                 Library lib = (Library)libObj;
                 //lib = Marshal.PtrToStructure<Library>(libptr);
@@ -47,7 +48,8 @@ namespace CSharpGL.Objects.Texts
             Face face;
             {
                 int retb = FreeTypeAPI.FT_New_Face(libptr, font, 0, out faceptr);
-                if (retb != 0) return;
+                if (retb != 0) { throw new Exception("Could not open font"); }
+
                 face = (Face)Marshal.PtrToStructure(faceptr, typeof(Face));
             }
 
@@ -64,11 +66,12 @@ namespace CSharpGL.Objects.Texts
             // Once we have the face loaded and sized we generate opengl textures 
             // from the glyphs for each printable character
             // 为所有可打印的字符的创建纹理
-            textures = new uint[128];
-            extent_x = new int[128];
-            list_base = GL.GenLists(128);
-            GL.GenTextures(128, textures);
-            for (int c = 0; c < 128; c++)
+            const int textureCount = 128;// char.MaxValue;
+            textures = new uint[textureCount];
+            extent_x = new int[textureCount];
+            list_base = GL.GenLists(textureCount);
+            GL.GenTextures(textureCount, textures);
+            for (int c = 0; c < textureCount; c++)
             {
                 Compile_Character(face, faceptr, c);
             }
@@ -88,7 +91,7 @@ namespace CSharpGL.Objects.Texts
             // Here we load the actual glyph for the character
             // 加载此字符的字形
             int ret = FreeTypeAPI.FT_Load_Glyph(faceptr, index, FT_LOAD_TYPES.FT_LOAD_DEFAULT);
-            if (ret != 0) return;
+            if (ret != 0) { throw new Exception(string.Format("Could not load character '{0}'", Convert.ToChar(c))); }
 
             // Convert the glyph to a bitmap
             // 把字形转换为纹理

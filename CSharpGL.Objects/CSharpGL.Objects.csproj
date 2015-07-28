@@ -58,6 +58,8 @@
     <Compile Include="RenderContexts\VersionAttribute.cs" />
     <Compile Include="RenderMode.cs" />
     <Compile Include="Shaders\ShaderProgram.cs" />
+    <None Include="Texts\freetype.frag" />
+    <None Include="Texts\freetype.vert" />
     <Compile Include="Texts\Font3D.cs" />
     <Compile Include="Texts\FreeType.cs" />
     <Compile Include="Texts\LuckiestGuyFont.cs" />
