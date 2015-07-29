@@ -43,11 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enumerations\BufferUsage.cs" />
     <Compile Include="Enumerations\GetTarget.cs" />
-    <Compile Include="Enumerations\BufferTarget.cs" />
-    <Compile Include="Enumerations\HintMode.cs" />
+    <Compile Include="Enumerations\Buffer.cs" />
+    <Compile Include="Enumerations\Hint.cs" />
     <Compile Include="Enumerations\PrimitiveMode.cs" />
+    <Compile Include="Enumerations\TexSubImage2D.cs" />
     <Compile Include="GL.cs" />
     <Compile Include="GLU_Consts.cs" />
     <Compile Include="GLU_Functions.cs" />

@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
+    public enum BufferTarget : uint
+    {
+        ArrayBuffer = GL.GL_ARRAY_BUFFER,
+        ElementArrayBuffer = GL.GL_ELEMENT_ARRAY_BUFFER,
+    }
 
     public enum BufferUsage : uint
     {

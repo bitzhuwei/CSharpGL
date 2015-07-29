@@ -2730,7 +2730,8 @@ namespace CSharpGL
         /// <param name="type">Specifies the data type of the pixel	data.</param>
         /// <param name="pixels">Specifies a pointer to the image data in memory.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glTexSubImage2D", SetLastError = true)]
-        public static extern void TexSubImage2D(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, int[] pixels);
+        public static extern void TexSubImage2D(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, IntPtr pixels);
+        //public static extern void TexSubImage2D(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, int[] pixels);
 
         /// <summary>
         /// This function applies a translation transformation to the current matrix.

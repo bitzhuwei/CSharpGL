@@ -772,5 +772,22 @@ namespace CSharpGL
         {
             GL.BindBuffer((uint)target, id);
         }
+
+        /// <summary>
+        /// Specify a two-dimensional texture subimage.
+        /// </summary>
+        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_1D.</param>
+        /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
+        /// <param name="xoffset">Specifies a texel offset in the x direction within the texture array.</param>
+        /// <param name="yoffset">Specifies a texel offset in the y direction within the texture array.</param>
+        /// <param name="width">Specifies the width of the texture subimage.</param>
+        /// <param name="height">Specifies the height of the texture subimage.</param>
+        /// <param name="format">Specifies the format of the pixel data.</param>
+        /// <param name="type">Specifies the data type of the pixel	data.</param>
+        /// <param name="pixels">Specifies a pointer to the image data in memory.</param>
+        public static void TexSubImage2D(TexSubImage2DTarget target, int level, int xoffset, int yoffset, int width, int height, TexSubImage2DFormat format, TexSubImage2DType type, IntPtr pixels)
+        {
+            GL.TexSubImage2D((uint)target, level, xoffset, yoffset, width, height, (uint)format, (uint)type, pixels);
+        }
     }
 }
