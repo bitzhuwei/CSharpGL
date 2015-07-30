@@ -37,20 +37,20 @@ namespace CSharpGL.Objects.Texts
                 int ret = FreeTypeAPI.FT_Init_FreeType(out libptr);
                 if (ret != 0) { throw new Exception("Could not init freetype library!"); }
 
-                object libObj = Marshal.PtrToStructure(libptr, typeof(Library));
-                Library lib = (Library)libObj;
+                object libObj = Marshal.PtrToStructure(libptr, typeof(FT_Library));
+                FT_Library lib = (FT_Library)libObj;
                 //lib = Marshal.PtrToStructure<Library>(libptr);
             }
 
             // Once we have the library we create and load the font face
             // 加载字体库
             System.IntPtr faceptr;
-            Face face;
+            FT_Face face;
             {
                 int retb = FreeTypeAPI.FT_New_Face(libptr, font, 0, out faceptr);
                 if (retb != 0) { throw new Exception("Could not open font"); }
 
-                face = (Face)Marshal.PtrToStructure(faceptr, typeof(Face));
+                face = (FT_Face)Marshal.PtrToStructure(faceptr, typeof(FT_Face));
             }
 
             // Freetype measures the font size in 1/64th of pixels for accuracy 
@@ -82,7 +82,7 @@ namespace CSharpGL.Objects.Texts
             FreeTypeAPI.FT_Done_FreeType(libptr);
         }
 
-        public void Compile_Character(Face face, System.IntPtr faceptr, int c)
+        public void Compile_Character(FT_Face face, System.IntPtr faceptr, int c)
         {
             // We first convert the number index to a character index
             // 根据字符获取其编号
@@ -129,7 +129,8 @@ namespace CSharpGL.Objects.Texts
             // 把glyph_bmp.bitmap的长宽扩展成2的指数倍
             int width = next_po2(glyph_bmp.bitmap.width);
             int height = next_po2(glyph_bmp.bitmap.rows);
-            byte[] expanded = new byte[2 * width * height];
+            UnmanagedArray<byte> expanded = new UnmanagedArray<byte>(2 * width * height);
+            //byte[] expanded = new byte[2 * width * height];
             for (int j = 0; j < height; j++)
             {
                 for (int i = 0; i < width; i++)
@@ -148,8 +149,10 @@ namespace CSharpGL.Objects.Texts
 
             // Create the texture
             // 创建纹理
+            //GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
+                //0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded);
             GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
-                0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded);
+                0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded.Header);
             expanded = null;
             bmp = null;
 

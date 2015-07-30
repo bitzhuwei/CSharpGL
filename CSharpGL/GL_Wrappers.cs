@@ -776,7 +776,7 @@ namespace CSharpGL
         /// <summary>
         /// Specify a two-dimensional texture subimage.
         /// </summary>
-        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_1D.</param>
+        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_2D.</param>
         /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
         /// <param name="xoffset">Specifies a texel offset in the x direction within the texture array.</param>
         /// <param name="yoffset">Specifies a texel offset in the y direction within the texture array.</param>

@@ -100,7 +100,7 @@ namespace CSharpGL.Objects.Texts
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public class Library
+    public class FT_Library
     {
         public System.IntPtr memory;
         public Generic generic;
@@ -154,7 +154,7 @@ namespace CSharpGL.Objects.Texts
     /// 一个TTF文件里的字形会被转换为Face。Face就是一个TTF里字形的集合。
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public class Face
+    public class FT_Face
     {
         public int num_faces;
         public int face_index;

@@ -2651,21 +2651,6 @@ namespace CSharpGL
         /// <param name="type">The type of data you are passing, e.g GL_BYTE.</param>
         /// <param name="pixels">The actual pixel data.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glTexImage2D", SetLastError = true)]
-        public static extern void TexImage2D(uint target, int level, uint internalformat, int width, int height, int border, uint format, uint type, byte[] pixels);
-
-        /// <summary>
-        /// This function sets the image for the currently binded texture.
-        /// </summary>
-        /// <param name="target">The type of texture, TEXTURE_2D or PROXY_TEXTURE_2D.</param>
-        /// <param name="level">For mip-map textures, ordinary textures should be '0'.</param>
-        /// <param name="internalformat">The format of the data you are want OpenGL to create, e.g  RGB16.</param>
-        /// <param name="width">The width of the texture image (must be a power of 2, e.g 64).</param>
-        /// <param name="height">The height of the texture image (must be a power of 2, e.g 32).</param>
-        /// <param name="border">The width of the border (0 or 1).</param>
-        /// <param name="format">The format of the data you are passing, e.g. RGBA.</param>
-        /// <param name="type">The type of data you are passing, e.g GL_BYTE.</param>
-        /// <param name="pixels">The actual pixel data.</param>
-        [DllImport(Win32.OpenGL32, EntryPoint = "glTexImage2D", SetLastError = true)]
         public static extern void TexImage2D(uint target, int level, uint internalformat, int width, int height, int border, uint format, uint type, IntPtr pixels);
 
         /// <summary>
