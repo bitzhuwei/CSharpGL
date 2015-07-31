@@ -32,36 +32,11 @@ namespace CSharpGL.Objects.Texts
 
             // We begin by creating a library pointer
             // 初始化FreeType库：创建FreeType库指针
-            System.IntPtr libptr;
-            {
-                int ret = FreeTypeAPI.FT_Init_FreeType(out libptr);
-                if (ret != 0) { throw new Exception("Could not init freetype library!"); }
-
-                object libObj = Marshal.PtrToStructure(libptr, typeof(FT_Library));
-                FT_Library lib = (FT_Library)libObj;
-                //lib = Marshal.PtrToStructure<Library>(libptr);
-            }
+            FreeTypeLiabrary library = new FreeTypeLiabrary();
 
             // Once we have the library we create and load the font face
-            // 加载字体库
-            System.IntPtr faceptr;
-            FT_Face face;
-            {
-                int retb = FreeTypeAPI.FT_New_Face(libptr, font, 0, out faceptr);
-                if (retb != 0) { throw new Exception("Could not open font"); }
-
-                face = (FT_Face)Marshal.PtrToStructure(faceptr, typeof(FT_Face));
-            }
-
-            // Freetype measures the font size in 1/64th of pixels for accuracy 
-            // so we need to request characters in size*64
-            // 设置字符大小？
-            FreeTypeAPI.FT_Set_Char_Size(faceptr, size << 6, size << 6, 96, 96);
-
-            // Provide a reasonably accurate estimate for expected pixel sizes
-            // when we later on create the bitmaps for the font
-            // 设置像素大小？
-            FreeTypeAPI.FT_Set_Pixel_Sizes(faceptr, size, size);
+            // 初始化字体库
+            FreeTypeFace face = new FreeTypeFace(library, font, size);
 
             // Once we have the face loaded and sized we generate opengl textures 
             // from the glyphs for each printable character
@@ -73,33 +48,33 @@ namespace CSharpGL.Objects.Texts
             GL.GenTextures(textureCount, textures);
             for (int c = 0; c < textureCount; c++)
             {
-                Compile_Character(face, faceptr, c);
+                Compile_Character(face, c);
             }
 
             // Dispose of these as we don't need
             // 释放字体库和FreeFont库
-            FreeTypeAPI.FT_Done_Face(faceptr);
-            FreeTypeAPI.FT_Done_FreeType(libptr);
+            face.Dispose();
+            library.Dispose();
         }
 
-        public void Compile_Character(FT_Face face, System.IntPtr faceptr, int c)
+        public void Compile_Character(FreeTypeFace face, int c)
         {
             // We first convert the number index to a character index
             // 根据字符获取其编号
-            int index = FreeTypeAPI.FT_Get_Char_Index(faceptr, Convert.ToChar(c));
+            int index = FreeTypeAPI.FT_Get_Char_Index(face.pointer, Convert.ToChar(c));
 
             // Here we load the actual glyph for the character
             // 加载此字符的字形
-            int ret = FreeTypeAPI.FT_Load_Glyph(faceptr, index, FT_LOAD_TYPES.FT_LOAD_DEFAULT);
+            int ret = FreeTypeAPI.FT_Load_Glyph(face.pointer, index, FT_LOAD_TYPES.FT_LOAD_DEFAULT);
             if (ret != 0) { throw new Exception(string.Format("Could not load character '{0}'", Convert.ToChar(c))); }
 
             // Convert the glyph to a bitmap
             // 把字形转换为纹理
             System.IntPtr glyph;
             {
-                int retb = FreeTypeAPI.FT_Get_Glyph(face.glyphrec, out glyph);
+                int retb = FreeTypeAPI.FT_Get_Glyph(face.obj.glyphrec, out glyph);
                 if (retb != 0) return;
-                object objGlyphRec = Marshal.PtrToStructure(face.glyphrec, typeof(GlyphRec));
+                object objGlyphRec = Marshal.PtrToStructure(face.obj.glyphrec, typeof(GlyphRec));
                 GlyphRec glyph_rec = (GlyphRec)objGlyphRec;
             }
 
@@ -130,12 +105,15 @@ namespace CSharpGL.Objects.Texts
             int width = next_po2(glyph_bmp.bitmap.width);
             int height = next_po2(glyph_bmp.bitmap.rows);
             UnmanagedArray<byte> expanded = new UnmanagedArray<byte>(2 * width * height);
-            //byte[] expanded = new byte[2 * width * height];
+            byte[] expandedBytes = new byte[2 * width * height];
             for (int j = 0; j < height; j++)
             {
                 for (int i = 0; i < width; i++)
                 {
                     expanded[2 * (i + j * width)] = expanded[2 * (i + j * width) + 1] =
+                        (i >= glyph_bmp.bitmap.width || j >= glyph_bmp.bitmap.rows) ?
+                        (byte)0 : bmp[i + glyph_bmp.bitmap.width * j];
+                    expandedBytes[2 * (i + j * width)] = expanded[2 * (i + j * width) + 1] =
                         (i >= glyph_bmp.bitmap.width || j >= glyph_bmp.bitmap.rows) ?
                         (byte)0 : bmp[i + glyph_bmp.bitmap.width * j];
                 }
@@ -153,6 +131,19 @@ namespace CSharpGL.Objects.Texts
                 //0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded);
             GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
                 0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded.Header);
+            {
+                //  Pin the pixel data.
+                //GCHandle handle = GCHandle.Alloc(expandedBytes, GCHandleType.Pinned);
+                GCHandle handle = GCHandle.Alloc(expanded.Header, GCHandleType.Pinned);
+
+                //  Create the bitmap.
+                System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(width / 2, height, width * 4, System.Drawing.Imaging.PixelFormat.Format32bppRgb, expanded.Header);//handle.AddrOfPinnedObject());
+
+                bitmap.Save(string.Format("font3D{0}.bmp", c));
+
+                //  Free the data.
+                handle.Free();
+            }
             expanded = null;
             bmp = null;
 

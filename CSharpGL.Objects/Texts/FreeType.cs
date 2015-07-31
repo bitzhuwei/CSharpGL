@@ -99,6 +99,30 @@ namespace CSharpGL.Objects.Texts
         FT_RENDER_MODE_LIGHT = 1
     }
 
+    /// <summary>
+    /// FreeType库
+    /// </summary>
+    public class FreeTypeLiabrary : FreeTypeObjectBase<FT_Library>
+    {
+        /// <summary>
+        /// 初始化FreeType库
+        /// </summary>
+        public FreeTypeLiabrary()
+        {
+            int ret = FreeTypeAPI.FT_Init_FreeType(out this.pointer);
+            if (ret != 0) { throw new Exception("Could not init freetype library!"); }
+
+            this.obj = (FT_Library)Marshal.PtrToStructure(this.pointer, typeof(FT_Library));
+            //lib = Marshal.PtrToStructure<Library>(libptr);
+        }
+
+        protected override void ReleaseResource()
+        {
+            FreeTypeAPI.FT_Done_FreeType(this.pointer);
+        }
+
+    }
+
     [StructLayout(LayoutKind.Sequential)]
     public class FT_Library
     {
@@ -120,6 +144,10 @@ namespace CSharpGL.Objects.Texts
         public System.IntPtr debug0, debug1, debug2, debug3;
         public int refCount;
 
+        public override string ToString()
+        {
+            return string.Format("major: {0}, minor: {1}, refCount: {2}", major, minor, refCount);
+        }
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -150,6 +178,118 @@ namespace CSharpGL.Objects.Texts
         public int y;
     }
 
+    public abstract class FreeTypeObjectBase<T> : IDisposable where T : class
+    {
+        /// <summary>
+        /// 指针
+        /// </summary>
+        public IntPtr pointer;
+
+        /// <summary>
+        /// 对象
+        /// </summary>
+        public T obj;
+
+        public override string ToString()
+        {
+            return string.Format("{0}: [{1}]", this.pointer, this.obj);
+        }
+
+        #region IDisposable Members
+
+        /// <summary>
+        /// Internal variable which checks if Dispose has already been called
+        /// </summary>
+        private Boolean disposed;
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        private void Dispose(Boolean disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                //TODO: Managed cleanup code here, while managed refs still valid
+            }
+            //TODO: Unmanaged cleanup code here
+            ReleaseResource();
+            this.pointer = IntPtr.Zero;
+            this.obj = null;
+
+            disposed = true;
+        }
+
+        /// <summary>
+        /// Unmanaged cleanup code here
+        /// </summary>
+        protected abstract void ReleaseResource();
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            // Call the private Dispose(bool) helper and indicate 
+            // that we are explicitly disposing
+            this.Dispose(true);
+
+            // Tell the garbage collector that the object doesn't require any
+            // cleanup when collected since Dispose was called explicitly.
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
+
+    }
+
+    /// <summary>
+    /// 初始化字体库
+    /// </summary>
+    public class FreeTypeFace : FreeTypeObjectBase<FT_Face>
+    {
+        public int size;
+
+        /// <summary>
+        /// 初始化字体库
+        /// </summary>
+        /// <param name="library"></param>
+        /// <param name="fontFullname"></param>
+        /// <param name="size"></param>
+        public FreeTypeFace(FreeTypeLiabrary library, string fontFullname, int size)
+        {
+            int retb = FreeTypeAPI.FT_New_Face(library.pointer, fontFullname, 0, out pointer);
+            if (retb != 0) { throw new Exception("Could not open font"); }
+
+            this.obj = (FT_Face)Marshal.PtrToStructure(pointer, typeof(FT_Face));
+
+            this.size = size;
+
+            // Freetype measures the font size in 1/64th of pixels for accuracy 
+            // so we need to request characters in size*64
+            // 设置字符大小？
+            FreeTypeAPI.FT_Set_Char_Size(this.pointer, size << 6, size << 6, 96, 96);
+
+            // Provide a reasonably accurate estimate for expected pixel sizes
+            // when we later on create the bitmaps for the font
+            // 设置像素大小？
+            FreeTypeAPI.FT_Set_Pixel_Sizes(this.pointer, size, size);
+        }
+
+        /// <summary>
+        /// Unmanaged cleanup code here
+        /// </summary>
+        protected override void ReleaseResource()
+        {
+            FreeTypeAPI.FT_Done_Face(this.pointer);
+        }
+
+    }
     /// <summary>
     /// 一个TTF文件里的字形会被转换为Face。Face就是一个TTF里字形的集合。
     /// </summary>
