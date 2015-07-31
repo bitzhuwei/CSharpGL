@@ -70,17 +70,8 @@ namespace CSharpGL.Objects.Texts
 
             // Convert the glyph to a bitmap
             // 把字形转换为纹理
-            System.IntPtr glyph;
-            {
-                int retb = FreeTypeAPI.FT_Get_Glyph(face.obj.glyphrec, out glyph);
-                if (retb != 0) return;
-                object objGlyphRec = Marshal.PtrToStructure(face.obj.glyphrec, typeof(GlyphRec));
-                GlyphRec glyph_rec = (GlyphRec)objGlyphRec;
-            }
-
-            FreeTypeAPI.FT_Glyph_To_Bitmap(out glyph, FT_RENDER_MODES.FT_RENDER_MODE_NORMAL, 0, 1);
-            BitmapGlyph glyph_bmp = (BitmapGlyph)Marshal.PtrToStructure(glyph, typeof(BitmapGlyph));
-            int size = (glyph_bmp.bitmap.width * glyph_bmp.bitmap.rows);
+            FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face);
+            int size = (bmpGlyph.obj.bitmap.width * bmpGlyph.obj.bitmap.rows);
             if (size <= 0)
             {
                 // space is a special `blank` character
@@ -98,12 +89,12 @@ namespace CSharpGL.Objects.Texts
             }
 
             byte[] bmp = new byte[size];
-            Marshal.Copy(glyph_bmp.bitmap.buffer, bmp, 0, bmp.Length);
+            Marshal.Copy(bmpGlyph.obj.bitmap.buffer, bmp, 0, bmp.Length);
 
             // Next we expand the bitmap into an opengl texture
             // 把glyph_bmp.bitmap的长宽扩展成2的指数倍
-            int width = next_po2(glyph_bmp.bitmap.width);
-            int height = next_po2(glyph_bmp.bitmap.rows);
+            int width = next_po2(bmpGlyph.obj.bitmap.width);
+            int height = next_po2(bmpGlyph.obj.bitmap.rows);
             UnmanagedArray<byte> expanded = new UnmanagedArray<byte>(2 * width * height);
             byte[] expandedBytes = new byte[2 * width * height];
             for (int j = 0; j < height; j++)
@@ -111,11 +102,11 @@ namespace CSharpGL.Objects.Texts
                 for (int i = 0; i < width; i++)
                 {
                     expanded[2 * (i + j * width)] = expanded[2 * (i + j * width) + 1] =
-                        (i >= glyph_bmp.bitmap.width || j >= glyph_bmp.bitmap.rows) ?
-                        (byte)0 : bmp[i + glyph_bmp.bitmap.width * j];
+                        (i >= bmpGlyph.obj.bitmap.width || j >= bmpGlyph.obj.bitmap.rows) ?
+                        (byte)0 : bmp[i + bmpGlyph.obj.bitmap.width * j];
                     expandedBytes[2 * (i + j * width)] = expanded[2 * (i + j * width) + 1] =
-                        (i >= glyph_bmp.bitmap.width || j >= glyph_bmp.bitmap.rows) ?
-                        (byte)0 : bmp[i + glyph_bmp.bitmap.width * j];
+                        (i >= bmpGlyph.obj.bitmap.width || j >= bmpGlyph.obj.bitmap.rows) ?
+                        (byte)0 : bmp[i + bmpGlyph.obj.bitmap.width * j];
                 }
             }
 
@@ -154,26 +145,26 @@ namespace CSharpGL.Objects.Texts
 
             // Account for freetype spacing rules
             // 矩阵平移
-            GL.Translatef(glyph_bmp.left, 0, 0);
+            GL.Translatef(bmpGlyph.obj.left, 0, 0);
             GL.PushMatrix();
-            GL.Translatef(0, glyph_bmp.top - glyph_bmp.bitmap.rows, 0);
-            float x = (float)glyph_bmp.bitmap.width / (float)width;
-            float y = (float)glyph_bmp.bitmap.rows / (float)height;
+            GL.Translatef(0, bmpGlyph.obj.top - bmpGlyph.obj.bitmap.rows, 0);
+            float x = (float)bmpGlyph.obj.bitmap.width / (float)width;
+            float y = (float)bmpGlyph.obj.bitmap.rows / (float)height;
 
             // Draw the quad
             // 用Quad+纹理绘制字符
             GL.Begin(GL.GL_QUADS);
-            GL.TexCoord2d(0, 0); GL.Vertex2f(0, glyph_bmp.bitmap.rows);
+            GL.TexCoord2d(0, 0); GL.Vertex2f(0, bmpGlyph.obj.bitmap.rows);
             GL.TexCoord2d(0, y); GL.Vertex2f(0, 0);
-            GL.TexCoord2d(x, y); GL.Vertex2f(glyph_bmp.bitmap.width, 0);
-            GL.TexCoord2d(x, 0); GL.Vertex2f(glyph_bmp.bitmap.width, glyph_bmp.bitmap.rows);
+            GL.TexCoord2d(x, y); GL.Vertex2f(bmpGlyph.obj.bitmap.width, 0);
+            GL.TexCoord2d(x, 0); GL.Vertex2f(bmpGlyph.obj.bitmap.width, bmpGlyph.obj.bitmap.rows);
             GL.End();
             GL.PopMatrix();
 
             // Advance for the next character			
             // 准备绘制下一个字符
-            GL.Translatef(glyph_bmp.bitmap.width, 0, 0);
-            extent_x[c] = glyph_bmp.left + glyph_bmp.bitmap.width;
+            GL.Translatef(bmpGlyph.obj.bitmap.width, 0, 0);
+            extent_x[c] = bmpGlyph.obj.left + bmpGlyph.obj.bitmap.width;
             GL.EndList();
 
         }

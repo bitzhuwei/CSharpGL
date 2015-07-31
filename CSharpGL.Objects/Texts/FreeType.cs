@@ -352,8 +352,26 @@ namespace CSharpGL.Objects.Texts
         public System.IntPtr prepare;
     }
 
+    public class FreeTypeBitmapGlyph : FreeTypeObjectBase<FT_BitmapGlyph>
+    {
+        public FreeTypeBitmapGlyph(FreeTypeFace face)
+        {
+            int retb = FreeTypeAPI.FT_Get_Glyph(face.obj.glyphrec, out this.pointer);
+            if (retb != 0) return;
+            object objGlyphRec = Marshal.PtrToStructure(face.obj.glyphrec, typeof(GlyphRec));
+            GlyphRec glyph_rec = (GlyphRec)objGlyphRec;
+
+            FreeTypeAPI.FT_Glyph_To_Bitmap(out this.pointer, FT_RENDER_MODES.FT_RENDER_MODE_NORMAL, 0, 1);
+            this.obj = (FT_BitmapGlyph)Marshal.PtrToStructure(this.pointer, typeof(FT_BitmapGlyph));
+        }
+
+        protected override void ReleaseResource()
+        {
+            //throw new NotImplementedException();
+        }
+    }
     [StructLayout(LayoutKind.Sequential)]
-    public class BitmapGlyph
+    public class FT_BitmapGlyph
     {
         public GlyphRec root;
         public int left;
