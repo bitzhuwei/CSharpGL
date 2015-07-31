@@ -59,18 +59,9 @@ namespace CSharpGL.Objects.Texts
 
         public void Compile_Character(FreeTypeFace face, int c)
         {
-            // We first convert the number index to a character index
-            // 根据字符获取其编号
-            int index = FreeTypeAPI.FT_Get_Char_Index(face.pointer, Convert.ToChar(c));
-
-            // Here we load the actual glyph for the character
-            // 加载此字符的字形
-            int ret = FreeTypeAPI.FT_Load_Glyph(face.pointer, index, FT_LOAD_TYPES.FT_LOAD_DEFAULT);
-            if (ret != 0) { throw new Exception(string.Format("Could not load character '{0}'", Convert.ToChar(c))); }
-
             // Convert the glyph to a bitmap
             // 把字形转换为纹理
-            FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face);
+            FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(c));
             int size = (bmpGlyph.obj.bitmap.width * bmpGlyph.obj.bitmap.rows);
             if (size <= 0)
             {

@@ -352,10 +352,32 @@ namespace CSharpGL.Objects.Texts
         public System.IntPtr prepare;
     }
 
+    /// <summary>
+    /// 把字形转换为纹理
+    /// </summary>
     public class FreeTypeBitmapGlyph : FreeTypeObjectBase<FT_BitmapGlyph>
     {
-        public FreeTypeBitmapGlyph(FreeTypeFace face)
+        /// <summary>
+        /// char 
+        /// </summary>
+        public char glyphChar;
+
+        /// <summary>
+        /// 把字形转换为纹理    
+        /// </summary>
+        /// <param name="face"></param>
+        /// <param name="c"></param>
+        public FreeTypeBitmapGlyph(FreeTypeFace face, char c)
         {
+            // We first convert the number index to a character index
+            // 根据字符获取其编号
+            int index = FreeTypeAPI.FT_Get_Char_Index(face.pointer, Convert.ToChar(c));
+
+            // Here we load the actual glyph for the character
+            // 加载此字符的字形
+            int ret = FreeTypeAPI.FT_Load_Glyph(face.pointer, index, FT_LOAD_TYPES.FT_LOAD_DEFAULT);
+            if (ret != 0) { throw new Exception(string.Format("Could not load character '{0}'", Convert.ToChar(c))); }
+            
             int retb = FreeTypeAPI.FT_Get_Glyph(face.obj.glyphrec, out this.pointer);
             if (retb != 0) return;
             object objGlyphRec = Marshal.PtrToStructure(face.obj.glyphrec, typeof(GlyphRec));
