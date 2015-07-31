@@ -60,8 +60,14 @@
     <Compile Include="Shaders\ShaderProgram.cs" />
     <EmbeddedResource Include="Texts\freetype.frag" />
     <EmbeddedResource Include="Texts\freetype.vert" />
+    <Compile Include="Texts\atlas.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Texts\Font3D.cs" />
     <Compile Include="Texts\FreeType.cs" />
+    <Compile Include="Texts\FreeTypeTextVAOElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Texts\LuckiestGuyFont.cs" />
     <Compile Include="VAOElement.cs" />
   </ItemGroup>

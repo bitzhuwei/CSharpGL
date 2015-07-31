@@ -253,7 +253,6 @@ namespace CSharpGL.Objects.Texts
     /// </summary>
     public class FreeTypeFace : FreeTypeObjectBase<FT_Face>
     {
-        public int size;
 
         /// <summary>
         /// 初始化字体库
@@ -261,24 +260,13 @@ namespace CSharpGL.Objects.Texts
         /// <param name="library"></param>
         /// <param name="fontFullname"></param>
         /// <param name="size"></param>
-        public FreeTypeFace(FreeTypeLiabrary library, string fontFullname, int size)
+        public FreeTypeFace(FreeTypeLiabrary library, string fontFullname)//, int size)
         {
             int retb = FreeTypeAPI.FT_New_Face(library.pointer, fontFullname, 0, out pointer);
             if (retb != 0) { throw new Exception("Could not open font"); }
 
             this.obj = (FT_Face)Marshal.PtrToStructure(pointer, typeof(FT_Face));
 
-            this.size = size;
-
-            // Freetype measures the font size in 1/64th of pixels for accuracy 
-            // so we need to request characters in size*64
-            // 设置字符大小？
-            FreeTypeAPI.FT_Set_Char_Size(this.pointer, size << 6, size << 6, 96, 96);
-
-            // Provide a reasonably accurate estimate for expected pixel sizes
-            // when we later on create the bitmaps for the font
-            // 设置像素大小？
-            FreeTypeAPI.FT_Set_Pixel_Sizes(this.pointer, size, size);
         }
 
         /// <summary>
@@ -361,6 +349,7 @@ namespace CSharpGL.Objects.Texts
         /// char 
         /// </summary>
         public char glyphChar;
+        public GlyphRec glyphRec;
 
         /// <summary>
         /// 把字形转换为纹理    
@@ -380,8 +369,7 @@ namespace CSharpGL.Objects.Texts
             
             int retb = FreeTypeAPI.FT_Get_Glyph(face.obj.glyphrec, out this.pointer);
             if (retb != 0) return;
-            object objGlyphRec = Marshal.PtrToStructure(face.obj.glyphrec, typeof(GlyphRec));
-            GlyphRec glyph_rec = (GlyphRec)objGlyphRec;
+            glyphRec = (GlyphRec)Marshal.PtrToStructure(face.obj.glyphrec, typeof(GlyphRec));
 
             FreeTypeAPI.FT_Glyph_To_Bitmap(out this.pointer, FT_RENDER_MODES.FT_RENDER_MODE_NORMAL, 0, 1);
             this.obj = (FT_BitmapGlyph)Marshal.PtrToStructure(this.pointer, typeof(FT_BitmapGlyph));

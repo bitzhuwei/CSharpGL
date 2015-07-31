@@ -13,7 +13,8 @@ namespace CSharpGL.Winforms.Demo
         private Font3D largeFont;
         public FreeTypeDemo()
         {
-            largeFont = new Font3D("LuckiestGuy.ttf", 48);
+            //largeFont = new Font3D("LuckiestGuy.ttf", 48);
+            largeFont = new Font3D("ebrima.ttf", 48);
 
         }
 
@@ -30,7 +31,7 @@ namespace CSharpGL.Winforms.Demo
             GL.Rotatef(cnt1, 0, 0, 1);
             GL.Scalef(1f, (float).8f + .3f * (float)Math.Cos((double)cnt1 / 5), 1);
             GL.Translatef(-180, 0, 0);
-            largeFont.print(320, 240, "FREE-TYPE / 2");
+            largeFont.print(320, 240, "hello FREE-TYPE / 2");
             GL.PopMatrix();
             cnt1 += 0.051f;
         }

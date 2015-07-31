@@ -35,5 +35,10 @@ namespace CSharpGL.Winforms.Demo
         {
             (new FormFreeType()).Show();
         }
+
+        private void btnFreeTypeTextVAOElement_Click(object sender, EventArgs e)
+        {
+            (new FormFreeTypeTextVAOElement()).Show();
+        }
     }
 }

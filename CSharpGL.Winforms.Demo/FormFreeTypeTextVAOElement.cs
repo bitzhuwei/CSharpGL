@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpGL.Objects.Texts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,27 +11,27 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
 {
-    public partial class FormFreeType : Form
+    public partial class FormFreeTypeTextVAOElement : Form
     {
-        private FreeTypeDemo freeTypeDemoElement;
-        public FormFreeType()
+        FreeTypeTextVAOElement element = new FreeTypeTextVAOElement("LuckiestGuy.ttf");
+        public FormFreeTypeTextVAOElement()
         {
             InitializeComponent();
 
-            freeTypeDemoElement = new FreeTypeDemo();
+            element.Initialize();            
         }
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
         {
-            //  Clear the color and depth buffer.
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-
-            freeTypeDemoElement.render();
+            element.Render(Objects.RenderModes.Render);
         }
 
-        private void FormFreeType_Load(object sender, EventArgs e)
+        private void FormFreeTypeTextVAOElement_Load(object sender, EventArgs e)
         {
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
         }
+
+
     }
 }

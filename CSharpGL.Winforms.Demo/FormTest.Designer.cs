@@ -31,6 +31,7 @@
             this.btnUnmanagedArray = new System.Windows.Forms.Button();
             this.btnGLCanvas = new System.Windows.Forms.Button();
             this.btnFreeType = new System.Windows.Forms.Button();
+            this.btnFreeTypeTextVAOElement = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUnmanagedArray
@@ -69,11 +70,24 @@
             this.btnFreeType.UseVisualStyleBackColor = true;
             this.btnFreeType.Click += new System.EventHandler(this.btnFreeType_Click);
             // 
+            // btnFreeTypeTextVAOElement
+            // 
+            this.btnFreeTypeTextVAOElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFreeTypeTextVAOElement.Location = new System.Drawing.Point(12, 99);
+            this.btnFreeTypeTextVAOElement.Name = "btnFreeTypeTextVAOElement";
+            this.btnFreeTypeTextVAOElement.Size = new System.Drawing.Size(260, 23);
+            this.btnFreeTypeTextVAOElement.TabIndex = 0;
+            this.btnFreeTypeTextVAOElement.Text = "FreeTypeTextVAOElement";
+            this.btnFreeTypeTextVAOElement.UseVisualStyleBackColor = true;
+            this.btnFreeTypeTextVAOElement.Click += new System.EventHandler(this.btnFreeTypeTextVAOElement_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.btnFreeTypeTextVAOElement);
             this.Controls.Add(this.btnFreeType);
             this.Controls.Add(this.btnGLCanvas);
             this.Controls.Add(this.btnUnmanagedArray);
@@ -88,5 +102,6 @@
         private System.Windows.Forms.Button btnUnmanagedArray;
         private System.Windows.Forms.Button btnGLCanvas;
         private System.Windows.Forms.Button btnFreeType;
+        private System.Windows.Forms.Button btnFreeTypeTextVAOElement;
     }
 }

@@ -36,7 +36,17 @@ namespace CSharpGL.Objects.Texts
 
             // Once we have the library we create and load the font face
             // 初始化字体库
-            FreeTypeFace face = new FreeTypeFace(library, font, size);
+            FreeTypeFace face = new FreeTypeFace(library, font);
+
+            // Freetype measures the font size in 1/64th of pixels for accuracy 
+            // so we need to request characters in size*64
+            // 设置字符大小？
+            FreeTypeAPI.FT_Set_Char_Size(face.pointer, size << 6, size << 6, 96, 96);
+
+            // Provide a reasonably accurate estimate for expected pixel sizes
+            // when we later on create the bitmaps for the font
+            // 设置像素大小？
+            FreeTypeAPI.FT_Set_Pixel_Sizes(face.pointer, size, size);
 
             // Once we have the face loaded and sized we generate opengl textures 
             // from the glyphs for each printable character

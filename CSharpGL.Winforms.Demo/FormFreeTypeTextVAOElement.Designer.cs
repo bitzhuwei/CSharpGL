@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Winforms.Demo
 {
-    partial class FormFreeType
+    partial class FormFreeTypeTextVAOElement
     {
         /// <summary>
         /// Required designer variable.
@@ -41,19 +41,19 @@
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(548, 336);
+            this.glCanvas1.Size = new System.Drawing.Size(260, 238);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.OpenGLDraw += new System.EventHandler<CSharpGL.Winforms.RenderEventArgs>(this.glCanvas1_OpenGLDraw);
             // 
-            // FormFreeType
+            // FormFreeTypeTextVAOElement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(572, 360);
+            this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "FormFreeType";
-            this.Text = "FormFreeType";
-            this.Load += new System.EventHandler(this.FormFreeType_Load);
+            this.Name = "FormFreeTypeTextVAOElement";
+            this.Text = "FormFreeTypeTextVAOElement";
+            this.Load += new System.EventHandler(this.FormFreeTypeTextVAOElement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
 
