@@ -47,11 +47,6 @@ namespace CSharpGL.Objects.Texts
 
         protected override void DoInitialize()
         {
-            init_resources();
-        }
-
-        int init_resources()
-        {
             InitShaderProgram();
 
             /* Initialize the FreeType2 library */
@@ -67,8 +62,6 @@ namespace CSharpGL.Objects.Texts
             a48 = new atlas(face, 48, shaderProgram);
             //a24 = new atlas(pface, face, 24, shaderProgram);
             //a12 = new atlas(pface, face, 12, shaderProgram);
-
-            return 1;
         }
 
         private void InitShaderProgram()

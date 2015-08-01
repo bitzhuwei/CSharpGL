@@ -66,29 +66,7 @@ namespace CSharpGL.Objects.Texts
             /* Find minimum size for a texture holding all visible ASCII characters */
             for (int i = 32; i < 128; i++)
             {
-                // We first convert the number index to a character index
-                // 根据字符获取其编号
-                int index = FreeTypeAPI.FT_Get_Char_Index(face.pointer, Convert.ToChar(i));
-
-                // Here we load the actual glyph for the character
-                // 加载此字符的字形
-                {
-                    int ret = FreeTypeAPI.FT_Load_Glyph(face.pointer, index, FT_LOAD_TYPES.FT_LOAD_DEFAULT);// todo; try to set to FT_LOAD_RENDER
-                    if (ret != 0) { throw new Exception(string.Format("Could not load character '{0}'", Convert.ToChar(i))); }
-                }
-
-                //if (FreeTypeAPI.FT_Load_Glyph(pface, i, FT_LOAD_TYPES.FT_LOAD_RENDER) != 0)
-                //{ throw new Exception(string.Format("Loading character {0} failed!\n", Convert.ToChar(i))); }
                 FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(i));
-                //System.IntPtr pGlyph;
-                //{
-                //    int ret = FreeTypeAPI.FT_Get_Glyph(face.obj.glyphrec, out pGlyph);
-                //    if (ret != 0) { throw new Exception(); }
-                //}
-                //GlyphRec glyphRec = (GlyphRec)Marshal.PtrToStructure(face.obj.glyphrec, typeof(GlyphRec));
-
-                //FreeTypeAPI.FT_Glyph_To_Bitmap(out pGlyph, FT_RENDER_MODES.FT_RENDER_MODE_NORMAL, 0, 1);
-                //BitmapGlyph glyph_bmp = (BitmapGlyph)Marshal.PtrToStructure(pGlyph, typeof(BitmapGlyph));
 
                 if (roww + bmpGlyph.obj.bitmap.width + 1 >= MaxWidth)
                 {
@@ -108,15 +86,12 @@ namespace CSharpGL.Objects.Texts
             GL.ActiveTexture(GL.GL_TEXTURE0);
             GL.GenTextures(1, tex);
             GL.BindTexture(GL.GL_TEXTURE_2D, tex[0]);
-            //int uniform_tex = shaderProgram.GetUniformLocation("tex");
             shaderProgram.SetUniform1("tex", 0);
-            //GL.Uniform1(uniform_tex, 0);
 
-            //glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, w, h, 0, GL_ALPHA, GL_UNSIGNED_BYTE, 0);
             GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_ALPHA, widthOfTexture, heightOfTexture, 0, GL.GL_ALPHA, GL.GL_UNSIGNED_BYTE, IntPtr.Zero);
 
+
             /* We require 1 byte alignment when uploading texture data */
-            //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
             GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
 
             /* Clamping to edges is important to prevent artifacts when scaling */
@@ -145,7 +120,26 @@ namespace CSharpGL.Objects.Texts
                 }
 
                 GL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, ox, oy, bmpGlyph.obj.bitmap.width, bmpGlyph.obj.bitmap.rows, TexSubImage2DFormat.Alpha, TexSubImage2DType.UnsignedByte, bmpGlyph.obj.bitmap.buffer);
+                {
+                    if (bmpGlyph.obj.bitmap.buffer != IntPtr.Zero)
+                    {
+                        //  Create the bitmap.
+                        System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
+                            bmpGlyph.obj.bitmap.width,
+                            bmpGlyph.obj.bitmap.rows,
+                            bmpGlyph.obj.bitmap.width * 4,
+                            //width / 2,
+                            //bmpGlyph.obj.bitmap.rows,
+                            //width * 2,
+                            //System.Drawing.Imaging.PixelFormat.Alpha,
+                            //System.Drawing.Imaging.PixelFormat.Format32bppArgb,
+                            //System.Drawing.Imaging.PixelFormat.Format32bppPArgb,
+                            System.Drawing.Imaging.PixelFormat.Format32bppRgb,
+                            bmpGlyph.obj.bitmap.buffer);
 
+                        bitmap.Save(string.Format("atlas{0}.bmp", i));
+                    }
+                }
                 characterInfos[i].ax = bmpGlyph.glyphRec.advance.x >> 6;
                 characterInfos[i].ay = bmpGlyph.glyphRec.advance.y >> 6;
 
