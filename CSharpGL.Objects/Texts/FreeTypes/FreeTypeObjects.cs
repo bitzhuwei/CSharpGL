@@ -1,0 +1,172 @@
+﻿using System;
+using System.Runtime.InteropServices;
+
+namespace CSharpGL.Objects.Texts.FreeTypes
+{
+    public abstract class FreeTypeObjectBase<T> : IDisposable where T : class
+    {
+        /// <summary>
+        /// 指针
+        /// </summary>
+        public IntPtr pointer;
+
+        /// <summary>
+        /// 对象
+        /// </summary>
+        public T obj;
+
+        public override string ToString()
+        {
+            return string.Format("{0}: [{1}]", this.pointer, this.obj);
+        }
+
+        #region IDisposable Members
+
+        /// <summary>
+        /// Internal variable which checks if Dispose has already been called
+        /// </summary>
+        private Boolean disposed;
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        private void Dispose(Boolean disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                //TODO: Managed cleanup code here, while managed refs still valid
+            }
+            //TODO: Unmanaged cleanup code here
+            ReleaseResource();
+            this.pointer = IntPtr.Zero;
+            this.obj = null;
+
+            disposed = true;
+        }
+
+        /// <summary>
+        /// Unmanaged cleanup code here
+        /// </summary>
+        protected abstract void ReleaseResource();
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            // Call the private Dispose(bool) helper and indicate 
+            // that we are explicitly disposing
+            this.Dispose(true);
+
+            // Tell the garbage collector that the object doesn't require any
+            // cleanup when collected since Dispose was called explicitly.
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
+
+    }
+
+    /// <summary>
+    /// FreeType库
+    /// </summary>
+    public class FreeTypeLiabrary : FreeTypeObjectBase<FT_Library>
+    {
+        /// <summary>
+        /// 初始化FreeType库
+        /// </summary>
+        public FreeTypeLiabrary()
+        {
+            int ret = FreeTypeAPI.FT_Init_FreeType(out this.pointer);
+            if (ret != 0) { throw new Exception("Could not init freetype library!"); }
+
+            this.obj = (FT_Library)Marshal.PtrToStructure(this.pointer, typeof(FT_Library));
+            //lib = Marshal.PtrToStructure<Library>(libptr);
+        }
+
+        protected override void ReleaseResource()
+        {
+            FreeTypeAPI.FT_Done_FreeType(this.pointer);
+        }
+
+    }
+
+    /// <summary>
+    /// 初始化字体库
+    /// </summary>
+    public class FreeTypeFace : FreeTypeObjectBase<FT_Face>
+    {
+
+        /// <summary>
+        /// 初始化字体库
+        /// </summary>
+        /// <param name="library"></param>
+        /// <param name="fontFullname"></param>
+        /// <param name="size"></param>
+        public FreeTypeFace(FreeTypeLiabrary library, string fontFullname)//, int size)
+        {
+            int retb = FreeTypeAPI.FT_New_Face(library.pointer, fontFullname, 0, out pointer);
+            if (retb != 0) { throw new Exception("Could not open font"); }
+
+            this.obj = (FT_Face)Marshal.PtrToStructure(pointer, typeof(FT_Face));
+
+        }
+
+        /// <summary>
+        /// Unmanaged cleanup code here
+        /// </summary>
+        protected override void ReleaseResource()
+        {
+            FreeTypeAPI.FT_Done_Face(this.pointer);
+        }
+
+    }
+ 
+    /// <summary>
+    /// 把字形转换为纹理
+    /// </summary>
+    public class FreeTypeBitmapGlyph : FreeTypeObjectBase<FT_BitmapGlyph>
+    {
+        /// <summary>
+        /// char 
+        /// </summary>
+        public char glyphChar;
+        public GlyphRec glyphRec;
+
+        /// <summary>
+        /// 把字形转换为纹理    
+        /// </summary>
+        /// <param name="face"></param>
+        /// <param name="c"></param>
+        public FreeTypeBitmapGlyph(FreeTypeFace face, char c)
+        {
+            // We first convert the number index to a character index
+            // 根据字符获取其编号
+            int index = FreeTypeAPI.FT_Get_Char_Index(face.pointer, Convert.ToChar(c));
+
+            // Here we load the actual glyph for the character
+            // 加载此字符的字形
+            int ret = FreeTypeAPI.FT_Load_Glyph(face.pointer, index, FT_LOAD_TYPES.FT_LOAD_DEFAULT);
+            if (ret != 0) { throw new Exception(string.Format("Could not load character '{0}'", Convert.ToChar(c))); }
+            
+            int retb = FreeTypeAPI.FT_Get_Glyph(face.obj.glyphrec, out this.pointer);
+            if (retb != 0) return;
+            glyphRec = (GlyphRec)Marshal.PtrToStructure(face.obj.glyphrec, typeof(GlyphRec));
+
+            FreeTypeAPI.FT_Glyph_To_Bitmap(out this.pointer, FT_RENDER_MODES.FT_RENDER_MODE_NORMAL, 0, 1);
+            this.obj = (FT_BitmapGlyph)Marshal.PtrToStructure(this.pointer, typeof(FT_BitmapGlyph));
+        }
+
+        protected override void ReleaseResource()
+        {
+            //throw new NotImplementedException();
+        }
+    }
+
+}

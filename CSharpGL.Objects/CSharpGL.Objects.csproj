@@ -64,7 +64,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Texts\Font3D.cs" />
-    <Compile Include="Texts\FreeType.cs" />
+    <Compile Include="Texts\FreeTypes\BBox.cs" />
+    <Compile Include="Texts\FreeTypes\Bitmap.cs" />
+    <Compile Include="Texts\FreeTypes\FreeTypeObject.cs" />
+    <Compile Include="Texts\FreeTypes\FreeTypeAPI.cs" />
+    <Compile Include="Texts\FreeTypes\FreeTypeEnumerations.cs" />
+    <Compile Include="Texts\FreeTypes\FT_BitmapGlyph.cs" />
+    <Compile Include="Texts\FreeTypes\FT_Face.cs" />
+    <Compile Include="Texts\FreeTypes\FT_Library.cs" />
+    <Compile Include="Texts\FreeTypes\Generic.cs" />
+    <Compile Include="Texts\FreeTypes\GlyphRec.cs" />
+    <Compile Include="Texts\FreeTypes\ListRec.cs" />
+    <Compile Include="Texts\FreeTypes\Vector.cs" />
     <Compile Include="Texts\FreeTypeTextVAOElement.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,14 +97,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Shaders\GLSLVersion.html" />
-    <Content Include="Texts\freetype.dll">
+    <Content Include="Texts\FreeTypes\freetype.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Texts\DUMPBIN命令使用详解.html" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Texts\freetype.exp" />
-    <None Include="Texts\freetype.lib" />
+    <None Include="Texts\FreeTypes\freetype.exp" />
+    <None Include="Texts\FreeTypes\freetype.lib" />
     <None Include="Texts\Modern OpenGL Text Rendering.mht" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

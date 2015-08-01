@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpGL.Objects.Texts.FreeTypes;
+using System;
 using System.Runtime.InteropServices;
 
 namespace CSharpGL.Objects.Texts
@@ -97,15 +98,11 @@ namespace CSharpGL.Objects.Texts
             int width = next_po2(bmpGlyph.obj.bitmap.width);
             int height = next_po2(bmpGlyph.obj.bitmap.rows);
             UnmanagedArray<byte> expanded = new UnmanagedArray<byte>(2 * width * height);
-            byte[] expandedBytes = new byte[2 * width * height];
             for (int j = 0; j < height; j++)
             {
                 for (int i = 0; i < width; i++)
                 {
                     expanded[2 * (i + j * width)] = expanded[2 * (i + j * width) + 1] =
-                        (i >= bmpGlyph.obj.bitmap.width || j >= bmpGlyph.obj.bitmap.rows) ?
-                        (byte)0 : bmp[i + bmpGlyph.obj.bitmap.width * j];
-                    expandedBytes[2 * (i + j * width)] = expanded[2 * (i + j * width) + 1] =
                         (i >= bmpGlyph.obj.bitmap.width || j >= bmpGlyph.obj.bitmap.rows) ?
                         (byte)0 : bmp[i + bmpGlyph.obj.bitmap.width * j];
                 }
@@ -124,17 +121,15 @@ namespace CSharpGL.Objects.Texts
             GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
                 0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded.Header);
             {
-                //  Pin the pixel data.
-                //GCHandle handle = GCHandle.Alloc(expandedBytes, GCHandleType.Pinned);
-                GCHandle handle = GCHandle.Alloc(expanded.Header, GCHandleType.Pinned);
-
                 //  Create the bitmap.
-                System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(width / 2, height, width * 4, System.Drawing.Imaging.PixelFormat.Format32bppRgb, expanded.Header);//handle.AddrOfPinnedObject());
+                System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
+                    width / 2,
+                    bmpGlyph.obj.bitmap.rows,
+                    width * 2,
+                    System.Drawing.Imaging.PixelFormat.Format32bppRgb,
+                    expanded.Header);
 
                 bitmap.Save(string.Format("font3D{0}.bmp", c));
-
-                //  Free the data.
-                handle.Free();
             }
             expanded = null;
             bmp = null;
