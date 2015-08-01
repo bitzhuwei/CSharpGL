@@ -33,7 +33,7 @@ namespace CSharpGL.Objects.Texts
         uint[] vbo = new uint[1];
 
         private string fontFilename;
-        private FreeTypeLiabrary library;
+        private FreeTypeLibrary library;
         FreeTypeFace face;
 
         private atlas a48;
@@ -50,7 +50,7 @@ namespace CSharpGL.Objects.Texts
             InitShaderProgram();
 
             /* Initialize the FreeType2 library */
-            library = new FreeTypeLiabrary();
+            library = new FreeTypeLibrary();
 
             /* Load a font */
             face = new FreeTypeFace(this.library, fontFilename);//, size);

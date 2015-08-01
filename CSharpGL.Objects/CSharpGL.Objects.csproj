@@ -64,6 +64,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Texts\Font3D.cs" />
+    <Compile Include="Texts\Font3DModernGL.cs" />
     <Compile Include="Texts\FreeTypes\BBox.cs" />
     <Compile Include="Texts\FreeTypes\Bitmap.cs" />
     <Compile Include="Texts\FreeTypes\FreeTypeObjects.cs" />

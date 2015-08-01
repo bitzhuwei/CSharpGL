@@ -46,17 +46,17 @@ namespace CSharpGL.Objects.Texts
         public CharacterInformation[] characterInfos = new CharacterInformation[128];
         const int MaxWidth = 1024;
 
-        public atlas(FreeTypeFace face, int height, Shaders.ShaderProgram shaderProgram)
+        public atlas(FreeTypeFace face, int fontHeight, Shaders.ShaderProgram shaderProgram)
         {
             // Freetype measures the font size in 1/64th of pixels for accuracy 
             // so we need to request characters in size*64
             // 设置字符大小？
-            FreeTypeAPI.FT_Set_Char_Size(face.pointer, height << 6, height << 6, 96, 96);
+            FreeTypeAPI.FT_Set_Char_Size(face.pointer, fontHeight << 6, fontHeight << 6, 96, 96);
 
             // Provide a reasonably accurate estimate for expected pixel sizes
             // when we later on create the bitmaps for the font
             // 设置像素大小？
-            FreeTypeAPI.FT_Set_Pixel_Sizes(face.pointer, 0, height);
+            FreeTypeAPI.FT_Set_Pixel_Sizes(face.pointer, 0, fontHeight);
 
             int roww = 0;
             int rowh = 0;
@@ -66,7 +66,7 @@ namespace CSharpGL.Objects.Texts
             /* Find minimum size for a texture holding all visible ASCII characters */
             for (int i = 32; i < 128; i++)
             {
-                FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(i));
+                FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(i), fontHeight);
 
                 if (roww + bmpGlyph.obj.bitmap.width + 1 >= MaxWidth)
                 {
@@ -110,7 +110,7 @@ namespace CSharpGL.Objects.Texts
 
             for (int i = 32; i < 128; i++)
             {
-                FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(i));
+                FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(i), fontHeight);
 
                 if (ox + bmpGlyph.obj.bitmap.width + 1 >= MaxWidth)
                 {
@@ -119,15 +119,34 @@ namespace CSharpGL.Objects.Texts
                     ox = 0;
                 }
 
-                GL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, ox, oy, bmpGlyph.obj.bitmap.width, bmpGlyph.obj.bitmap.rows, TexSubImage2DFormat.Alpha, TexSubImage2DType.UnsignedByte, bmpGlyph.obj.bitmap.buffer);
+                if (bmpGlyph.obj.bitmap.buffer != IntPtr.Zero)
                 {
-                    if (bmpGlyph.obj.bitmap.buffer != IntPtr.Zero)
+                    GL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, ox, oy, bmpGlyph.obj.bitmap.width, bmpGlyph.obj.bitmap.rows, TexSubImage2DFormat.Alpha, TexSubImage2DType.UnsignedByte, bmpGlyph.obj.bitmap.buffer);
+
+                    int size = (bmpGlyph.obj.bitmap.width * bmpGlyph.obj.bitmap.rows);
+                    byte[] bmp = new byte[size];
+                    Marshal.Copy(bmpGlyph.obj.bitmap.buffer, bmp, 0, bmp.Length);
+
+                    // Next we expand the bitmap into an opengl texture
+                    // 把glyph_bmp.bitmap的长宽扩展成2的指数倍
+                    int width = next_po2(bmpGlyph.obj.bitmap.width);
+                    int height = next_po2(bmpGlyph.obj.bitmap.rows);
+                    UnmanagedArray<byte> expanded = new UnmanagedArray<byte>(2 * width * height);
+                    for (int row = 0; row < height; row++)
+                    {
+                        for (int col = 0; col < width; col++)
+                        {
+                            expanded[2 * (col + row * width)] = expanded[2 * (col + row * width) + 1] =
+                                (col >= bmpGlyph.obj.bitmap.width || row >= bmpGlyph.obj.bitmap.rows) ?
+                                (byte)0 : bmp[col + bmpGlyph.obj.bitmap.width * row];
+                        }
+                    }
                     {
                         //  Create the bitmap.
                         System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
-                            bmpGlyph.obj.bitmap.width,
+                            width,//bmpGlyph.obj.bitmap.width,
                             bmpGlyph.obj.bitmap.rows,
-                            bmpGlyph.obj.bitmap.width * 4,
+                            width * 4,//bmpGlyph.obj.bitmap.width * 4,
                             //width / 2,
                             //bmpGlyph.obj.bitmap.rows,
                             //width * 2,
@@ -135,7 +154,8 @@ namespace CSharpGL.Objects.Texts
                             //System.Drawing.Imaging.PixelFormat.Format32bppArgb,
                             //System.Drawing.Imaging.PixelFormat.Format32bppPArgb,
                             System.Drawing.Imaging.PixelFormat.Format32bppRgb,
-                            bmpGlyph.obj.bitmap.buffer);
+                            expanded.Header);
+                            //bmpGlyph.obj.bitmap.buffer);
 
                         bitmap.Save(string.Format("atlas{0}.bmp", i));
                     }
@@ -155,6 +175,13 @@ namespace CSharpGL.Objects.Texts
                 rowh = Math.Max(rowh, bmpGlyph.obj.bitmap.rows);
                 ox += bmpGlyph.obj.bitmap.width + 1;
             }
+        }
+
+        internal int next_po2(int a)
+        {
+            int rval = 1;
+            while (rval < a) rval <<= 1;
+            return rval;
         }
 
         ~atlas()

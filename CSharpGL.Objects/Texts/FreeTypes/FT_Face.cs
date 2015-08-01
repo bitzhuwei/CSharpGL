@@ -45,5 +45,9 @@ namespace CSharpGL.Objects.Texts.FreeTypes
         public System.IntPtr extensions;
         public System.IntPtr internal_face;
 
+        public override string ToString()
+        {
+            return string.Format("num_charmaps:{0},num_faces:{1},num_glyphs:{2},style_name:{3}", num_charmaps, num_faces, num_glyphs, style_name);
+        }
     }
 }

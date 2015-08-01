@@ -76,12 +76,12 @@ namespace CSharpGL.Objects.Texts.FreeTypes
     /// <summary>
     /// FreeType库
     /// </summary>
-    public class FreeTypeLiabrary : FreeTypeObjectBase<FT_Library>
+    public class FreeTypeLibrary : FreeTypeObjectBase<FT_Library>
     {
         /// <summary>
         /// 初始化FreeType库
         /// </summary>
-        public FreeTypeLiabrary()
+        public FreeTypeLibrary()
         {
             int ret = FreeTypeAPI.FT_Init_FreeType(out this.pointer);
             if (ret != 0) { throw new Exception("Could not init freetype library!"); }
@@ -109,7 +109,7 @@ namespace CSharpGL.Objects.Texts.FreeTypes
         /// <param name="library"></param>
         /// <param name="fontFullname"></param>
         /// <param name="size"></param>
-        public FreeTypeFace(FreeTypeLiabrary library, string fontFullname)//, int size)
+        public FreeTypeFace(FreeTypeLibrary library, string fontFullname)//, int size)
         {
             int retb = FreeTypeAPI.FT_New_Face(library.pointer, fontFullname, 0, out pointer);
             if (retb != 0) { throw new Exception("Could not open font"); }
@@ -144,8 +144,18 @@ namespace CSharpGL.Objects.Texts.FreeTypes
         /// </summary>
         /// <param name="face"></param>
         /// <param name="c"></param>
-        public FreeTypeBitmapGlyph(FreeTypeFace face, char c)
+        public FreeTypeBitmapGlyph(FreeTypeFace face, char c, int size)
         {
+            // Freetype measures the font size in 1/64th of pixels for accuracy 
+            // so we need to request characters in size*64
+            // 设置字符大小？
+            FreeTypeAPI.FT_Set_Char_Size(face.pointer, size << 6, size << 6, 96, 96);
+
+            // Provide a reasonably accurate estimate for expected pixel sizes
+            // when we later on create the bitmaps for the font
+            // 设置像素大小？
+            FreeTypeAPI.FT_Set_Pixel_Sizes(face.pointer, size, size);
+
             // We first convert the number index to a character index
             // 根据字符获取其编号
             int index = FreeTypeAPI.FT_Get_Char_Index(face.pointer, Convert.ToChar(c));

@@ -1,14 +1,17 @@
 ﻿using CSharpGL.Objects.Texts.FreeTypes;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Texts
 {
-
     /// <summary>
     /// A true 3D Font
     /// </summary>
-    public class Font3D : IDisposable
+    public class Font3DModernGL : IDisposable
     {
         private uint list_base;
 
@@ -26,7 +29,7 @@ namespace CSharpGL.Objects.Texts
         /// </summary>
         /// <param name="font">TTF file name</param>
         /// <param name="size"></param>
-        public Font3D(string font, int size)
+        public Font3DModernGL(string font, int size)
         {
             // 保存字体大小，在渲染时用
             font_size = size;
@@ -39,15 +42,15 @@ namespace CSharpGL.Objects.Texts
             // 初始化字体库
             FreeTypeFace face = new FreeTypeFace(library, font);
 
-            //// Freetype measures the font size in 1/64th of pixels for accuracy 
-            //// so we need to request characters in size*64
-            //// 设置字符大小？
-            //FreeTypeAPI.FT_Set_Char_Size(face.pointer, size << 6, size << 6, 96, 96);
+            // Freetype measures the font size in 1/64th of pixels for accuracy 
+            // so we need to request characters in size*64
+            // 设置字符大小？
+            FreeTypeAPI.FT_Set_Char_Size(face.pointer, size << 6, size << 6, 96, 96);
 
-            //// Provide a reasonably accurate estimate for expected pixel sizes
-            //// when we later on create the bitmaps for the font
-            //// 设置像素大小？
-            //FreeTypeAPI.FT_Set_Pixel_Sizes(face.pointer, size, size);
+            // Provide a reasonably accurate estimate for expected pixel sizes
+            // when we later on create the bitmaps for the font
+            // 设置像素大小？
+            FreeTypeAPI.FT_Set_Pixel_Sizes(face.pointer, size, size);
 
             // Once we have the face loaded and sized we generate opengl textures 
             // from the glyphs for each printable character
@@ -117,20 +120,20 @@ namespace CSharpGL.Objects.Texts
             // Create the texture
             // 创建纹理
             //GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
-                //0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded);
+            //0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded);
             GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
                 0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded.Header);
-            {
-                //  Create the bitmap.
-                System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
-                    width / 2,
-                    bmpGlyph.obj.bitmap.rows,
-                    width * 2,
-                    System.Drawing.Imaging.PixelFormat.Format32bppRgb,
-                    expanded.Header);
+            //{
+            //    //  Create the bitmap.
+            //    System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
+            //        width / 2,
+            //        bmpGlyph.obj.bitmap.rows,
+            //        width * 2,
+            //        System.Drawing.Imaging.PixelFormat.Format32bppRgb,
+            //        expanded.Header);
 
-                bitmap.Save(string.Format("font3D{0}.bmp", c));
-            }
+            //    bitmap.Save(string.Format("font3D{0}.bmp", c));
+            //}
             expanded = null;
             bmp = null;
 
