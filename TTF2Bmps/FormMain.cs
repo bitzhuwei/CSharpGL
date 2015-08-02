@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -55,8 +56,9 @@ namespace TTF2Bmps
             }
 
             string fontFullname = this.txtTTFFullname.Text;
-            int fontHeight = 48;
-            Font3D font3D = new Font3D(fontFullname, fontHeight);
+            int fontHeight = (int)numFontHeight.Value;
+            string outputDir = this.txtDestFolder.Text;
+            Font3D font3D = new Font3D(fontFullname, fontHeight, outputDir);
 
             //FreeTypeLibrary lib = new FreeTypeLibrary();
             //FreeTypeFace face = new FreeTypeFace(lib, this.txtTTFFullname.Text);
@@ -80,7 +82,7 @@ namespace TTF2Bmps
             //face.Dispose();
             //lib.Dispose();
 
-
+            Process.Start("explorer", outputDir);
         }
 
         //public void Compile_Character(FreeTypeFace face, int charIndex, int fontHeight)
