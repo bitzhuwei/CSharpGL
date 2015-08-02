@@ -18,7 +18,7 @@ namespace CSharpGL
     {
 
         /// <summary>
-        ///元素类型为sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool或其它struct的非托管数组。 
+        ///元素类型为sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool或其它struct的非托管数组。
         /// </summary>
         /// <param name="count"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -26,7 +26,7 @@ namespace CSharpGL
             : base(count, Marshal.SizeOf(typeof(T)))
         {
         }
-     
+
         /// <summary>
         /// 获取或设置索引为<paramref name="index"/>的元素。
         /// </summary>
@@ -49,7 +49,7 @@ namespace CSharpGL
             {
                 if (index < 0 || index >= this.Count)
                     throw new IndexOutOfRangeException("index of UnmanagedArray is out of range");
-                
+
                 var pItem = this.Header + (index * elementSize);
                 //Marshal.StructureToPtr(value, pItem, true);
                 Marshal.StructureToPtr<T>(value, pItem, true);// works in .net 4.5.1
@@ -101,7 +101,7 @@ namespace CSharpGL
             get { return this.Count * this.elementSize; }
         }
 
-           
+
         /// <summary>
         /// 非托管数组。
         /// </summary>
@@ -179,7 +179,7 @@ namespace CSharpGL
         /// </summary>
         public void Dispose()
         {
-            // Call the private Dispose(bool) helper and indicate 
+            // Call the private Dispose(bool) helper and indicate
             // that we are explicitly disposing
             this.Dispose(true);
 
@@ -189,6 +189,6 @@ namespace CSharpGL
         }
 
         #endregion
-				
+
     }
 }

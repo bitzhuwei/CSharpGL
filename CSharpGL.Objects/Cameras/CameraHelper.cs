@@ -271,7 +271,7 @@ namespace CSharpGL.Objects.Cameras
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="delta"></param>
-        public void Scale(this IScientificCamera camera, int delta)
+        public static void Scale(this IScientificCamera camera, int delta)
         {
             //if (camera.CameraType == CameraTypes.Perspecitive)
             {
@@ -312,7 +312,7 @@ namespace CSharpGL.Objects.Cameras
         /// 实施传统方式的投影
         /// </summary>
         /// <param name="camera"></param>
-        public void LegacyGLProjection(this IScientificCamera camera)
+        public static void LegacyGLProjection(this IScientificCamera camera)
         {
             //	Load the projection identity matrix.
             GL.MatrixMode(GL.GL_PROJECTION);
