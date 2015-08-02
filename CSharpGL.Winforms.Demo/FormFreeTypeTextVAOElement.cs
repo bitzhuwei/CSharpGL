@@ -18,7 +18,7 @@ namespace CSharpGL.Winforms.Demo
         {
             InitializeComponent();
 
-            element.Initialize();            
+            element.Initialize();
         }
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)

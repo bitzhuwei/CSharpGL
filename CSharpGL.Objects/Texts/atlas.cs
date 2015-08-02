@@ -48,7 +48,7 @@ namespace CSharpGL.Objects.Texts
 
         public atlas(FreeTypeFace face, int fontHeight, Shaders.ShaderProgram shaderProgram)
         {
-            // Freetype measures the font size in 1/64th of pixels for accuracy 
+            // Freetype measures the font size in 1/64th of pixels for accuracy
             // so we need to request characters in size*64
             // 设置字符大小？
             FreeTypeAPI.FT_Set_Char_Size(face.pointer, fontHeight << 6, fontHeight << 6, 96, 96);
@@ -144,9 +144,9 @@ namespace CSharpGL.Objects.Texts
                     {
                         //  Create the bitmap.
                         System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
-                            width,//bmpGlyph.obj.bitmap.width,
+                            width / 2,//bmpGlyph.obj.bitmap.width,
                             bmpGlyph.obj.bitmap.rows,
-                            width * 4,//bmpGlyph.obj.bitmap.width * 4,
+                            width * 4 / 2,//bmpGlyph.obj.bitmap.width * 4,
                             //width / 2,
                             //bmpGlyph.obj.bitmap.rows,
                             //width * 2,
@@ -155,7 +155,7 @@ namespace CSharpGL.Objects.Texts
                             //System.Drawing.Imaging.PixelFormat.Format32bppPArgb,
                             System.Drawing.Imaging.PixelFormat.Format32bppRgb,
                             expanded.Header);
-                            //bmpGlyph.obj.bitmap.buffer);
+                        //bmpGlyph.obj.bitmap.buffer);
 
                         bitmap.Save(string.Format("atlas{0}.bmp", i));
                     }

@@ -92,6 +92,8 @@ namespace CSharpGL.Objects.Texts
             shaderProgram.AssertValid();
         }
 
+        static Random random = new Random();
+
         public override void Render(RenderModes renderMode)
         {
             int[] viewport = new int[4];
@@ -127,7 +129,8 @@ namespace CSharpGL.Objects.Texts
             shaderProgram.SetUniformMatrix4("color", black);
 
             /* Effects of alignment */
-            render_text("The Quick Brown Fox Jumps Over The Lazy Dog", ref a48, 320, 240,10, 10);
+            //render_text("The Quick Brown Fox Jumps Over The Lazy Dog", ref a48, 320, 240,10, 10);
+            render_text("The Quick Brown Fox Jumps Over The Lazy Dog", ref a48, random.Next(0, 1000), random.Next(0, 1000), random.Next(0, 100), random.Next(0, 100));
 
             render_text("The Quick Brown Fox Jumps Over The Lazy Dog", ref a48, -1 + 8 * sx, 1 - 50 * sy, sx, sy);
 
