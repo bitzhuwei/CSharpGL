@@ -22,6 +22,6 @@ namespace CSharpGL
         StaticCopy = GL.GL_STATIC_COPY,//= 0x88E6,
         DynamicDraw = GL.GL_DYNAMIC_DRAW,//= 0x88E8,
         DynamicRead = GL.GL_DYNAMIC_READ,//= 0x88E9,
-        DynamicCopy = GL.GL_DYNAMIC_COPY,//= 0x88EA,       
+        DynamicCopy = GL.GL_DYNAMIC_COPY,//= 0x88EA,
     }
 }

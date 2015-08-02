@@ -52,6 +52,7 @@
     <Compile Include="glm_trigonometric.cs" />
     <Compile Include="vec2.cs" />
     <Compile Include="vec3.cs" />
+    <Compile Include="vecHelper.cs" />
     <Compile Include="vec4.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

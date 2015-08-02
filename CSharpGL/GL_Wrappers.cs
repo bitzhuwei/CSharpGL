@@ -789,5 +789,15 @@ namespace CSharpGL
         {
             GL.TexSubImage2D((uint)target, level, xoffset, yoffset, width, height, (uint)format, (uint)type, pixels);
         }
+
+        /// <summary>
+        /// This sets the current drawing mode of polygons (points, lines, filled).
+        /// </summary>
+        /// <param name="face">The faces this applies to (front, back or both).</param>
+        /// <param name="mode">The mode to set to (points, lines, or filled).</param>
+        public static void PolygonMode(PolygonModeFace face, PolygonMode mode)
+        {
+            GL.PolygonMode((uint)face, (uint)mode);
+        }
     }
 }

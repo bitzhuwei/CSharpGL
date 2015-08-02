@@ -45,7 +45,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cameras\BoundingBox.cs" />
+    <Compile Include="Cameras\CameraHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Cameras\CameraTypes.cs" />
+    <Compile Include="Cameras\IBoundingBox.cs" />
+    <Compile Include="Cameras\IBoundingBoxHelper.cs" />
+    <Compile Include="Cameras\IOrthoCamera.cs" />
+    <Compile Include="Cameras\IOrthoViewCamera.cs" />
+    <Compile Include="Cameras\IPerspectiveCamera.cs" />
+    <Compile Include="Cameras\IPerspectiveViewCamera.cs" />
+    <Compile Include="Cameras\IScientificCamera.cs" />
+    <Compile Include="Cameras\IViewCamera.cs" />
+    <Compile Include="Cameras\SatelliteRotation.cs" />
+    <Compile Include="Cameras\ScientificCamera.cs" />
+    <Compile Include="Cameras\ViewTypes.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="GLColor.cs" />
     <Compile Include="Shaders\ShaderCompilationException.cs" />
     <Compile Include="Shaders\Shader.cs" />
     <Compile Include="ManifestResourceLoader.cs" />
@@ -97,6 +114,7 @@
     <EmbeddedResource Include="Texts\LuckiestGuy.tex_data" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cameras\Camera.png" />
     <Content Include="Shaders\GLSLVersion.html" />
     <Content Include="Texts\FreeTypes\freetype.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -108,6 +126,7 @@
     <None Include="Texts\FreeTypes\freetype.lib" />
     <None Include="Texts\Modern OpenGL Text Rendering.mht" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

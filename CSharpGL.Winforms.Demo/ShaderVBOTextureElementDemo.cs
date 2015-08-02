@@ -85,7 +85,8 @@ namespace CSharpGL.Winforms.Demo
             FreeTypeFace face = new FreeTypeFace(library, "LuckiestGuy.ttf");
 
             int fontHeight = 48;
-            int c = 64;
+            //int c = (int)'@';
+            int c = (int)'@';
 
             // 把字形转换为纹理
             FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(c), fontHeight);
