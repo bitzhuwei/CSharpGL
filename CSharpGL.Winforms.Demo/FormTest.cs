@@ -38,7 +38,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void btnRenderWithShaderVBOTexture_Click(object sender, EventArgs e)
         {
-
+            (new FormRenderWithShaderVBOTexture()).Show();
         }
 
         private void btnFreeTypeTextVAOElement_Click(object sender, EventArgs e)
