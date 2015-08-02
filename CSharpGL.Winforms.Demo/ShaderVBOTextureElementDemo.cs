@@ -48,7 +48,7 @@ namespace CSharpGL.Winforms.Demo
             GL.GenVertexArrays(1, vao);
             GL.BindVertexArray(vao[0]);
 
-            UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(4);
+            UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(this.vertexCount);
             coord[0] = new vec4(0, 0, 0, textureHeight);
             coord[1] = new vec4(0, 1, 0, 0);
             coord[2] = new vec4(1, 1, textureWidth, 0);
