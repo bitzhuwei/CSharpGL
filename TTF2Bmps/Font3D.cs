@@ -70,9 +70,9 @@ namespace TTF2Bmps
             {
                 //  Create the bitmap.
                 System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
-                    width,
+                    width / 2,
                     bmpGlyph.obj.bitmap.rows,
-                    width * 4,
+                    width * 4 / 2,
                     System.Drawing.Imaging.PixelFormat.Format32bppRgb,
                     expanded.Header);
                 string path = Path.Combine(outputDir, string.Format("{0}.bmp", c));
