@@ -17,6 +17,7 @@ namespace CSharpGL.Winforms.Demo
 
         //  Constants that specify the attribute indexes.
         internal uint coordLocation;
+        internal int transformMatrixLocation;
         internal int colorLocation;
         internal int texLocation;
         private ShaderProgram shaderProgram;
@@ -154,6 +155,11 @@ namespace CSharpGL.Winforms.Demo
 
             int coord = shaderProgram.GetAttributeLocation("coord");
             if (coord >= 0) { this.coordLocation = (uint)coord; }
+            else { throw new Exception(); }
+
+            this.transformMatrixLocation = shaderProgram.GetUniformLocation("transformMatrix");
+            //this.transformMatrixLocation = GL.GetUniformLocation(shaderProgram.ShaderProgramObject, "transformMatrix");
+            if (this.transformMatrixLocation < 0) { throw new Exception(); }
 
             this.colorLocation = shaderProgram.GetUniformLocation("color");
             if (this.colorLocation < 0) { throw new Exception(); }
@@ -174,6 +180,10 @@ namespace CSharpGL.Winforms.Demo
 
             shader.Bind();
 
+            rotation += 0.3f;
+            mat4 transformMatrix = glm.rotate(mat4.identity(), rotation, new vec3(1, 1, 1));
+            shader.SetUniformMatrix4("transformMatrix", transformMatrix.to_array());
+
             GL.Uniform1(this.texLocation, this.texture[0]);
             GL.Uniform4(this.colorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -184,5 +194,7 @@ namespace CSharpGL.Winforms.Demo
             shader.Unbind();
             GL.BindTexture(GL.GL_TEXTURE_2D, 0);
         }
+
+        float rotation = 0.0f;
     }
 }

@@ -44,6 +44,7 @@
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(751, 383);
             this.glCanvas1.TabIndex = 0;
+            this.glCanvas1.OpenGLDraw += new System.EventHandler<CSharpGL.Winforms.RenderEventArgs>(this.glCanvas1_OpenGLDraw);
             //
             // FormRenderWithShaderVBOTexture
             //
@@ -53,7 +54,6 @@
             this.Controls.Add(this.glCanvas1);
             this.Name = "FormRenderWithShaderVBOTexture";
             this.Text = "FormRenderWithShaderVBOTexture";
-            this.Load += new System.EventHandler(this.FormRenderWithShaderVBOTexture_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
 
