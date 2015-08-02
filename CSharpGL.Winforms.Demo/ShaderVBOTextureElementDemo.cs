@@ -77,36 +77,36 @@ namespace CSharpGL.Winforms.Demo
 
             //	Find the target width and height sizes, which is just the highest
             //	posible power of two that'll fit into the image.
-            int targetWidth = textureMaxSize[0];
-            int targetHeight = textureMaxSize[0];
+            this.width = textureMaxSize[0];
+            this.height = textureMaxSize[0];
 
             for (int size = 1; size <= textureMaxSize[0]; size *= 2)
             {
                 if (image.Width < size)
                 {
-                    targetWidth = size / 2;
+                    this.width = size / 2;
                     break;
                 }
                 if (image.Width == size)
-                    targetWidth = size;
+                    this.width = size;
             }
 
             for (int size = 1; size <= textureMaxSize[0]; size *= 2)
             {
                 if (image.Height < size)
                 {
-                    targetHeight = size / 2;
+                    this.height = size / 2;
                     break;
                 }
                 if (image.Height == size)
-                    targetHeight = size;
+                    this.height = size;
             }
 
             //  If need to scale, do so now.
-            if (image.Width != targetWidth || image.Height != targetHeight)
+            if (image.Width != this.width || image.Height != this.height)
             {
                 //  Resize the image.
-                Image newImage = image.GetThumbnailImage(targetWidth, targetHeight, null, IntPtr.Zero);
+                Image newImage = image.GetThumbnailImage(this.width, this.height, null, IntPtr.Zero);
 
                 //  Destory the old image, and reset.
                 image.Dispose();
@@ -129,9 +129,11 @@ namespace CSharpGL.Winforms.Demo
             GL.BindTexture(GL.GL_TEXTURE_2D, texture[0]);
 
             //  Set the image data.
-            GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA,
-                targetWidth, targetHeight, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
-                bitmapData.Scan0);
+            //GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA,
+            //targetWidth, targetHeight, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
+            //bitmapData.Scan0);
+            GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
+                0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, bitmapData.Scan0);
 
             //  Unlock the image.
             image.UnlockBits(bitmapData);
@@ -176,6 +178,9 @@ namespace CSharpGL.Winforms.Demo
         {
             GL.BindTexture(GL.GL_TEXTURE_2D, this.texture[0]);
 
+            //GL.Enable(GL.GL_BLEND);
+            GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+
             ShaderProgram shader = this.shaderProgram;
 
             shader.Bind();
@@ -192,6 +197,9 @@ namespace CSharpGL.Winforms.Demo
             GL.BindVertexArray(0);
 
             shader.Unbind();
+
+            GL.Disable(GL.GL_BLEND);
+
             GL.BindTexture(GL.GL_TEXTURE_2D, 0);
         }
 
