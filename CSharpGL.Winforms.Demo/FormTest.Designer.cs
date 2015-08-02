@@ -32,65 +32,85 @@
             this.btnGLCanvas = new System.Windows.Forms.Button();
             this.btnFreeType = new System.Windows.Forms.Button();
             this.btnFreeTypeTextVAOElement = new System.Windows.Forms.Button();
+            this.btnRenderWithShaderVBOTexture = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // btnUnmanagedArray
-            // 
-            this.btnUnmanagedArray.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.btnUnmanagedArray.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUnmanagedArray.Location = new System.Drawing.Point(12, 12);
+            this.btnUnmanagedArray.Location = new System.Drawing.Point(16, 15);
+            this.btnUnmanagedArray.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUnmanagedArray.Name = "btnUnmanagedArray";
-            this.btnUnmanagedArray.Size = new System.Drawing.Size(260, 23);
+            this.btnUnmanagedArray.Size = new System.Drawing.Size(347, 29);
             this.btnUnmanagedArray.TabIndex = 0;
             this.btnUnmanagedArray.Text = "UnmanagedArray";
             this.btnUnmanagedArray.UseVisualStyleBackColor = true;
             this.btnUnmanagedArray.Click += new System.EventHandler(this.btnUnmanagedArray_Click);
-            // 
+            //
             // btnGLCanvas
-            // 
-            this.btnGLCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.btnGLCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGLCanvas.Location = new System.Drawing.Point(12, 41);
+            this.btnGLCanvas.Location = new System.Drawing.Point(16, 51);
+            this.btnGLCanvas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnGLCanvas.Name = "btnGLCanvas";
-            this.btnGLCanvas.Size = new System.Drawing.Size(260, 23);
+            this.btnGLCanvas.Size = new System.Drawing.Size(347, 29);
             this.btnGLCanvas.TabIndex = 0;
             this.btnGLCanvas.Text = "GLCanvas";
             this.btnGLCanvas.UseVisualStyleBackColor = true;
             this.btnGLCanvas.Click += new System.EventHandler(this.btnGLCanvas_Click);
-            // 
+            //
             // btnFreeType
-            // 
-            this.btnFreeType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.btnFreeType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFreeType.Location = new System.Drawing.Point(12, 70);
+            this.btnFreeType.Location = new System.Drawing.Point(16, 88);
+            this.btnFreeType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnFreeType.Name = "btnFreeType";
-            this.btnFreeType.Size = new System.Drawing.Size(260, 23);
+            this.btnFreeType.Size = new System.Drawing.Size(347, 29);
             this.btnFreeType.TabIndex = 0;
             this.btnFreeType.Text = "FreeType";
             this.btnFreeType.UseVisualStyleBackColor = true;
             this.btnFreeType.Click += new System.EventHandler(this.btnFreeType_Click);
-            // 
+            //
             // btnFreeTypeTextVAOElement
-            // 
-            this.btnFreeTypeTextVAOElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.btnFreeTypeTextVAOElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFreeTypeTextVAOElement.Location = new System.Drawing.Point(12, 99);
+            this.btnFreeTypeTextVAOElement.Location = new System.Drawing.Point(16, 162);
+            this.btnFreeTypeTextVAOElement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnFreeTypeTextVAOElement.Name = "btnFreeTypeTextVAOElement";
-            this.btnFreeTypeTextVAOElement.Size = new System.Drawing.Size(260, 23);
+            this.btnFreeTypeTextVAOElement.Size = new System.Drawing.Size(347, 29);
             this.btnFreeTypeTextVAOElement.TabIndex = 0;
             this.btnFreeTypeTextVAOElement.Text = "FreeTypeTextVAOElement";
             this.btnFreeTypeTextVAOElement.UseVisualStyleBackColor = true;
             this.btnFreeTypeTextVAOElement.Click += new System.EventHandler(this.btnFreeTypeTextVAOElement_Click);
-            // 
+            //
+            // btnRenderWithShaderVBOTexture
+            //
+            this.btnRenderWithShaderVBOTexture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRenderWithShaderVBOTexture.Location = new System.Drawing.Point(16, 125);
+            this.btnRenderWithShaderVBOTexture.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRenderWithShaderVBOTexture.Name = "btnRenderWithShaderVBOTexture";
+            this.btnRenderWithShaderVBOTexture.Size = new System.Drawing.Size(347, 29);
+            this.btnRenderWithShaderVBOTexture.TabIndex = 0;
+            this.btnRenderWithShaderVBOTexture.Text = "Shader+VBO+Texture";
+            this.btnRenderWithShaderVBOTexture.UseVisualStyleBackColor = true;
+            this.btnRenderWithShaderVBOTexture.Click += new System.EventHandler(this.btnRenderWithShaderVBOTexture_Click);
+            //
             // FormTest
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            //
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(379, 328);
+            this.Controls.Add(this.btnRenderWithShaderVBOTexture);
             this.Controls.Add(this.btnFreeTypeTextVAOElement);
             this.Controls.Add(this.btnFreeType);
             this.Controls.Add(this.btnGLCanvas);
             this.Controls.Add(this.btnUnmanagedArray);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormTest";
             this.Text = "FormTest";
             this.ResumeLayout(false);
@@ -103,5 +123,6 @@
         private System.Windows.Forms.Button btnGLCanvas;
         private System.Windows.Forms.Button btnFreeType;
         private System.Windows.Forms.Button btnFreeTypeTextVAOElement;
+        private System.Windows.Forms.Button btnRenderWithShaderVBOTexture;
     }
 }
