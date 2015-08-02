@@ -48,11 +48,16 @@ namespace CSharpGL.Winforms.Demo
             GL.GenVertexArrays(1, vao);
             GL.BindVertexArray(vao[0]);
 
-            UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(4);
-            coord[0] = new vec4(0, 0, 0, height);
-            coord[1] = new vec4(0, 1, 0, 0);
-            coord[2] = new vec4(1, 1, width, 0);
-            coord[3] = new vec4(1, 0, width, height);
+            //UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(4);
+            //coord[0] = new vec4(0, 0, 0, height);
+            //coord[1] = new vec4(0, 1, 0, 0);
+            //coord[2] = new vec4(1, 1, width, 0);
+            //coord[3] = new vec4(1, 0, width, height);
+            UnmanagedArray<float> coord = new UnmanagedArray<float>(16);
+            coord[0] = 0; coord[1] = 0; coord[2] = 0; coord[3] = height;
+            coord[4] = 0; coord[5] = 1; coord[6] = 0; coord[7] = 0;
+            coord[8] = 1; coord[9] = 1; coord[10] = width; coord[11] = 0;
+            coord[12] = 1; coord[13] = 0; coord[14] = width; coord[15] = height;
 
             //  Create a vertex buffer for the vertex data.
             {
@@ -61,7 +66,7 @@ namespace CSharpGL.Winforms.Demo
                 GL.BindBuffer(GL.GL_ARRAY_BUFFER, ids[0]);
 
                 GL.BufferData(BufferTarget.ArrayBuffer, coord, BufferUsage.StaticDraw);
-                GL.VertexAttribPointer(coordLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+                GL.VertexAttribPointer(coordLocation, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                 GL.EnableVertexAttribArray(coordLocation);
             }
 
@@ -120,7 +125,7 @@ namespace CSharpGL.Winforms.Demo
             //GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
             //0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded);
             GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
-                0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, expanded.Header);
+                0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded.Header);
             {
                 //  Create the bitmap.
                 System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
@@ -272,8 +277,10 @@ namespace CSharpGL.Winforms.Demo
 
             shader.Bind();
 
-            rotation += 0.3f;
-            mat4 transformMatrix = glm.rotate(mat4.identity(), rotation, new vec3(1, 1, 1));
+            rotation += 0.1f;
+            mat4 transformMatrix = glm.translate(mat4.identity(), new vec3(0, -2, 0));
+            transformMatrix = glm.rotate(transformMatrix, rotation, new vec3(0, 1, 0));
+            transformMatrix = glm.scale(transformMatrix, new vec3(2, 2, 1));
             shader.SetUniformMatrix4("transformMatrix", transformMatrix.to_array());
 
             GL.Uniform1(this.texLocation, this.texture[0]);
