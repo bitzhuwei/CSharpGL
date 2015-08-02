@@ -26,9 +26,9 @@ namespace CSharpGL.Winforms.Demo
 
         private PrimitiveMode mode;
         private uint[] vao;
-        private int primitiveCount;
-        private int width;
-        private int height;
+        private int vertexCount;
+        private int textureWidth;
+        private int textureHeight;
 
         protected override void DoInitialize()
         {
@@ -41,23 +41,23 @@ namespace CSharpGL.Winforms.Demo
 
         private void InitVAO()
         {
-            mode = PrimitiveMode.Quads;
-            primitiveCount = 4;
+            this.mode = PrimitiveMode.Quads;
+            this.vertexCount = 4;
 
             vao = new uint[1];
             GL.GenVertexArrays(1, vao);
             GL.BindVertexArray(vao[0]);
 
-            //UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(4);
-            //coord[0] = new vec4(0, 0, 0, height);
-            //coord[1] = new vec4(0, 1, 0, 0);
-            //coord[2] = new vec4(1, 1, width, 0);
-            //coord[3] = new vec4(1, 0, width, height);
-            UnmanagedArray<float> coord = new UnmanagedArray<float>(16);
-            coord[0] = 0; coord[1] = 0; coord[2] = 0; coord[3] = height;
-            coord[4] = 0; coord[5] = 1; coord[6] = 0; coord[7] = 0;
-            coord[8] = 1; coord[9] = 1; coord[10] = width; coord[11] = 0;
-            coord[12] = 1; coord[13] = 0; coord[14] = width; coord[15] = height;
+            UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(4);
+            coord[0] = new vec4(0, 0, 0, textureHeight);
+            coord[1] = new vec4(0, 1, 0, 0);
+            coord[2] = new vec4(1, 1, textureWidth, 0);
+            coord[3] = new vec4(1, 0, textureWidth, textureHeight);
+            //UnmanagedArray<float> coord = new UnmanagedArray<float>(16);
+            //coord[0] = 0; coord[1] = 0; coord[2] = 0; coord[3] = textureHeight;
+            //coord[4] = 0; coord[5] = 1; coord[6] = 0; coord[7] = 0;
+            //coord[8] = 1; coord[9] = 1; coord[10] = textureWidth; coord[11] = 0;
+            //coord[12] = 1; coord[13] = 0; coord[14] = textureWidth; coord[15] = textureHeight;
 
             //  Create a vertex buffer for the vertex data.
             {
@@ -98,14 +98,14 @@ namespace CSharpGL.Winforms.Demo
 
             // Next we expand the bitmap into an opengl texture
             // 把glyph_bmp.bitmap的长宽扩展成2的指数倍
-            this.width = next_po2(bmpGlyph.obj.bitmap.width);
-            this.height = next_po2(bmpGlyph.obj.bitmap.rows);
-            UnmanagedArray<byte> expanded = new UnmanagedArray<byte>(2 * width * height);
-            for (int j = 0; j < height; j++)
+            this.textureWidth = next_po2(bmpGlyph.obj.bitmap.width);
+            this.textureHeight = next_po2(bmpGlyph.obj.bitmap.rows);
+            UnmanagedArray<byte> expanded = new UnmanagedArray<byte>(2 * textureWidth * textureHeight);
+            for (int j = 0; j < textureHeight; j++)
             {
-                for (int i = 0; i < width; i++)
+                for (int i = 0; i < textureWidth; i++)
                 {
-                    expanded[2 * (i + j * width)] = expanded[2 * (i + j * width) + 1] =
+                    expanded[2 * (i + j * textureWidth)] = expanded[2 * (i + j * textureWidth) + 1] =
                         (i >= bmpGlyph.obj.bitmap.width || j >= bmpGlyph.obj.bitmap.rows) ?
                         (byte)0 : bmp[i + bmpGlyph.obj.bitmap.width * j];
                 }
@@ -125,14 +125,14 @@ namespace CSharpGL.Winforms.Demo
             // 创建纹理
             //GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
             //0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded);
-            GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
+            GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, textureWidth, textureHeight,
                 0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded.Header);
             {
                 //  Create the bitmap.
                 System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
-                    width / 2,
+                    textureWidth / 2,
                     bmpGlyph.obj.bitmap.rows,
-                    width * 4 / 2,
+                    textureWidth * 4 / 2,
                     System.Drawing.Imaging.PixelFormat.Format32bppRgb,
                     expanded.Header);
                 bitmap.Save(string.Format("ShaderVBOTextureElementDemo{0}.bmp", c));
@@ -288,7 +288,7 @@ namespace CSharpGL.Winforms.Demo
             GL.Uniform4(this.colorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
 
             GL.BindVertexArray(vao[0]);
-            GL.DrawArrays(this.mode, 0, this.primitiveCount);
+            GL.DrawArrays(this.mode, 0, this.vertexCount);
             GL.BindVertexArray(0);
 
             shader.Unbind();
