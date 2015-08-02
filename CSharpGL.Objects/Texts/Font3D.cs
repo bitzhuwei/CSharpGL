@@ -110,17 +110,17 @@ namespace CSharpGL.Objects.Texts
             //0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded);
             GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
                 0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded.Header);
-            {
-                //  Create the bitmap.
-                System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
-                    width,
-                    bmpGlyph.obj.bitmap.rows,
-                    width * 4,
-                    System.Drawing.Imaging.PixelFormat.Format32bppRgb,
-                    expanded.Header);
-
-                bitmap.Save(string.Format("font3D{0}.bmp", c));
-            }
+            //{
+            //    //  Create the bitmap.
+            //    System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
+            //        width / 2,
+            //        bmpGlyph.obj.bitmap.rows,
+            //        width * 4 / 2,
+            //        System.Drawing.Imaging.PixelFormat.Format32bppRgb,
+            //        expanded.Header);
+            //    bitmap.Save(string.Format("font3D{0}.bmp", c));
+            //    bitmap.Dispose();
+            //}
             expanded = null;
             bmp = null;
 
