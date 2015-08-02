@@ -267,6 +267,40 @@ namespace CSharpGL.Objects.Cameras
         }
 
         /// <summary>
+        /// 实施传统方式的投影
+        /// </summary>
+        /// <param name="camera"></param>
+        public void LegacyGLProjection(this IScientificCamera camera)
+        {
+            //	Load the projection identity matrix.
+            GL.MatrixMode(GL.GL_PROJECTION);
+            GL.LoadIdentity();
+
+            //	Perform the projection.
+            switch (camera.CameraType)
+            {
+                case CameraTypes.Perspecitive:
+                    IPerspectiveCamera perspectiveCamera = camera;
+                    GL.gluPerspective(perspectiveCamera.FieldOfView, perspectiveCamera.AspectRatio, perspectiveCamera.Near, perspectiveCamera.Far);
+                    break;
+                case CameraTypes.Ortho:
+                    IOrthoCamera orthoCamera = camera;
+                    GL.Ortho(orthoCamera.Left, orthoCamera.Right, orthoCamera.Bottom, orthoCamera.Top, orthoCamera.Near, orthoCamera.Far);
+                    break;
+                default:
+                    break;
+            }
+
+            //  Perform the look at transformation.
+            GL.gluLookAt((double)camera.Position.x, (double)camera.Position.y, (double)camera.Position.z,
+                (double)camera.Target.x, (double)camera.Target.y, (double)camera.Target.z,
+                (double)camera.UpVector.x, (double)camera.UpVector.y, (double)camera.UpVector.z);
+
+            //	Back to the modelview matrix.
+            GL.MatrixMode(GL.GL_MODELVIEW);
+        }
+
+        /// <summary>
         /// Extension method for <see cref="IPerspectiveCamera"/> to get projection matrix.
         /// </summary>
         /// <param name="camera"></param>

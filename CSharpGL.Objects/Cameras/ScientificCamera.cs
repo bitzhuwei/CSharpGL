@@ -44,43 +44,6 @@ namespace CSharpGL.Objects.Cameras
             this.CameraType = cameraType;
         }
 
-        public void Project()
-        {
-            //	Load the projection identity matrix.
-            GL.MatrixMode(GL.GL_PROJECTION);
-            GL.LoadIdentity();
-
-            //	Perform the projection.
-            TransformProjectionMatrix();
-
-            //	Back to the modelview matrix.
-            GL.MatrixMode(GL.GL_MODELVIEW);
-        }
-        /// <summary>
-        /// This is the class' main function, to override this function and perform a
-        /// perspective transformation.
-        /// </summary>
-        public void TransformProjectionMatrix()
-        {
-            //  Perform the look at transformation.
-            switch (CameraType)
-            {
-                case CameraTypes.Perspecitive:
-                    IPerspectiveCamera perspectiveCamera = this;
-                    GL.gluPerspective(perspectiveCamera.FieldOfView, perspectiveCamera.AspectRatio, perspectiveCamera.Near, perspectiveCamera.Far);
-                    break;
-                case CameraTypes.Ortho:
-                    IOrthoCamera orthoCamera = this;
-                    GL.Ortho(orthoCamera.Left, orthoCamera.Right, orthoCamera.Bottom, orthoCamera.Top, orthoCamera.Near, orthoCamera.Far);
-                    break;
-                default:
-                    break;
-            }
-            GL.gluLookAt((double)Position.x, (double)Position.y, (double)Position.z,
-                (double)Target.x, (double)Target.y, (double)Target.z,
-                (double)UpVector.x, (double)UpVector.y, (double)UpVector.z);
-        }
-
         /// <summary>
         /// Gets or sets the target.
         /// </summary>
