@@ -80,10 +80,18 @@ namespace CSharpGL.Winforms.Demo
         {
             StringBuilder builder = new StringBuilder();
             builder.Append(string.Format("position:{0}", this.camera.Position));
-            builder.Append(string.Format("target:{0}", this.camera.Target));
-            builder.Append(string.Format("up:{0}", this.camera.UpVector));
+            builder.Append(string.Format(" target:{0}", this.camera.Target));
+            builder.Append(string.Format(" up:{0}", this.camera.UpVector));
 
             this.txtInfo.Text = builder.ToString();
+        }
+
+        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 'b')
+            {
+                element.blend = !element.blend;
+            }
         }
     }
 }

@@ -279,8 +279,11 @@ namespace CSharpGL.Winforms.Demo
         {
             GL.BindTexture(GL.GL_TEXTURE_2D, this.texture[0]);
 
-            GL.Enable(GL.GL_BLEND);
-            GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+            if (this.blend)
+            {
+                GL.Enable(GL.GL_BLEND);
+                GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+            }
 
             ShaderProgram shader = this.shaderProgram;
 
@@ -310,11 +313,15 @@ namespace CSharpGL.Winforms.Demo
 
             shader.Unbind();
 
-            GL.Disable(GL.GL_BLEND);
+            if (this.blend)
+            {
+                GL.Disable(GL.GL_BLEND);
+            }
 
             GL.BindTexture(GL.GL_TEXTURE_2D, 0);
         }
 
         float rotation = 0.0f;
+        public bool blend;
     }
 }
