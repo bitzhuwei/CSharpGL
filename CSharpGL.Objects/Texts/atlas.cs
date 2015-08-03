@@ -118,7 +118,9 @@ namespace CSharpGL.Objects.Texts
 
                     int size = (bmpGlyph.obj.bitmap.width * bmpGlyph.obj.bitmap.rows);
                     byte[] bmp = new byte[size];
+                    UnmanagedArray<byte> bmpBytes = new UnmanagedArray<byte>(size);
                     Marshal.Copy(bmpGlyph.obj.bitmap.buffer, bmp, 0, bmp.Length);
+                    Marshal.Copy(bmp, 0, bmpBytes.Header, bmpBytes.Count);
 
                     // Next we expand the bitmap into an opengl texture
                     // 把glyph_bmp.bitmap的长宽扩展成2的指数倍
@@ -136,21 +138,24 @@ namespace CSharpGL.Objects.Texts
                     }
                     {
                         //  Create the bitmap.
-                        System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
-                            width / 2,//bmpGlyph.obj.bitmap.width,
-                            bmpGlyph.obj.bitmap.rows,
-                            width * 4 / 2,//bmpGlyph.obj.bitmap.width * 4,
-                            //width / 2,
-                            //bmpGlyph.obj.bitmap.rows,
-                            //width * 2,
-                            //System.Drawing.Imaging.PixelFormat.Alpha,
-                            //System.Drawing.Imaging.PixelFormat.Format32bppArgb,
-                            //System.Drawing.Imaging.PixelFormat.Format32bppPArgb,
-                            System.Drawing.Imaging.PixelFormat.Format32bppRgb,
-                            expanded.Header);
-                        //bmpGlyph.obj.bitmap.buffer);
-
-                        bitmap.Save(string.Format("atlas{0}.bmp", i));
+                        {
+                            System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
+                                width / 2,
+                                bmpGlyph.obj.bitmap.rows,
+                                width * 4 / 2,
+                                System.Drawing.Imaging.PixelFormat.Format32bppRgb,
+                                expanded.Header);
+                            bitmap.Save(string.Format("Atlas{0}.bmp", i));
+                        }
+                        {
+                            System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
+                                bmpGlyph.obj.bitmap.width,
+                                bmpGlyph.obj.bitmap.rows,
+                                bmpGlyph.obj.bitmap.width * 4,
+                                System.Drawing.Imaging.PixelFormat.Format32bppRgb,
+                                bmpBytes.Header);//bmpGlyph.obj.bitmap.buffer);
+                            bitmap.Save(string.Format("bmpGlyph{0}.bmp", i));
+                        }
                     }
                 }
                 characterInfos[i].ax = bmpGlyph.glyphRec.advance.x >> 6;
@@ -172,7 +177,7 @@ namespace CSharpGL.Objects.Texts
             // 把整个纹理输出为图片
             {
                 //int[] image = new int[100000];
-                UnmanagedArray<byte> image = new UnmanagedArray<byte>(widthOfTexture * heightOfTexture);
+                UnmanagedArray<byte> image = new UnmanagedArray<byte>(widthOfTexture * heightOfTexture * 2);
 
                 GL.GetTexImage(GetTexImageTargets.Texture2D, 0, GetTexImageFormats.Alpha, GetTexImageTypes.UnsignedByte, image);
 
@@ -181,13 +186,15 @@ namespace CSharpGL.Objects.Texts
                     widthOfTexture,
                     heightOfTexture,
                     widthOfTexture * 4,
-                    System.Drawing.Imaging.PixelFormat.Alpha,
+                    //System.Drawing.Imaging.PixelFormat.Alpha,
                     //System.Drawing.Imaging.PixelFormat.Format32bppArgb,
                     //System.Drawing.Imaging.PixelFormat.Format32bppPArgb,
                     //System.Drawing.Imaging.PixelFormat.Format32bppRgb,
+                    System.Drawing.Imaging.PixelFormat.Format32bppRgb,
                     image.Header);
 
                 bitmap.Save(string.Format("wholeTexture.bmp"));
+                bitmap.Dispose();
             }
         }
 
