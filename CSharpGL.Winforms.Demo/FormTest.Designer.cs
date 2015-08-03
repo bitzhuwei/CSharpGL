@@ -78,13 +78,14 @@
             //
             this.btnFreeTypeTextVAOElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFreeTypeTextVAOElement.Location = new System.Drawing.Point(16, 162);
+            this.btnFreeTypeTextVAOElement.Location = new System.Drawing.Point(13, 286);
             this.btnFreeTypeTextVAOElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnFreeTypeTextVAOElement.Name = "btnFreeTypeTextVAOElement";
             this.btnFreeTypeTextVAOElement.Size = new System.Drawing.Size(347, 29);
             this.btnFreeTypeTextVAOElement.TabIndex = 0;
             this.btnFreeTypeTextVAOElement.Text = "FreeTypeTextVAOElement";
             this.btnFreeTypeTextVAOElement.UseVisualStyleBackColor = true;
+            this.btnFreeTypeTextVAOElement.Visible = false;
             this.btnFreeTypeTextVAOElement.Click += new System.EventHandler(this.btnFreeTypeTextVAOElement_Click);
             //
             // btnModernMultiTextureFont
