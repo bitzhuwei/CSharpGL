@@ -313,7 +313,8 @@ namespace CSharpGL.Winforms.Demo
             //shader.SetUniformMatrix4("transformMatrix", transformMatrix.to_array());
 
             GL.Uniform1(this.texLocation, this.texture[0]);
-            GL.Uniform4(this.colorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
+            //GL.Uniform4(this.colorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
+            GL.Uniform4(this.colorLocation, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
 
             GL.BindVertexArray(vao[0]);
             GL.DrawArrays(this.mode, 0, this.vertexCount);
@@ -333,5 +334,6 @@ namespace CSharpGL.Winforms.Demo
         public bool blend;
         private float modelWidth;
         private float modelHeight;
+        static Random random = new Random();
     }
 }

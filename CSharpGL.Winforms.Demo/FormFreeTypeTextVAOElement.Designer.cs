@@ -29,38 +29,59 @@
         private void InitializeComponent()
         {
             this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
+            this.txtInfo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // glCanvas1
-            // 
-            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.glCanvas1.Location = new System.Drawing.Point(12, 12);
+            this.glCanvas1.Location = new System.Drawing.Point(16, 143);
+            this.glCanvas1.Margin = new System.Windows.Forms.Padding(5);
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(260, 238);
+            this.glCanvas1.Size = new System.Drawing.Size(865, 414);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.OpenGLDraw += new System.EventHandler<CSharpGL.Winforms.RenderEventArgs>(this.glCanvas1_OpenGLDraw);
-            // 
+            this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
+            this.glCanvas1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.glCanvas1_MouseDown);
+            this.glCanvas1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.glCanvas1_MouseMove);
+            this.glCanvas1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.glCanvas1_MouseUp);
+            //
+            // txtInfo
+            //
+            this.txtInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInfo.Location = new System.Drawing.Point(16, 12);
+            this.txtInfo.Multiline = true;
+            this.txtInfo.Name = "txtInfo";
+            this.txtInfo.ReadOnly = true;
+            this.txtInfo.Size = new System.Drawing.Size(865, 123);
+            this.txtInfo.TabIndex = 2;
+            //
             // FormFreeTypeTextVAOElement
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            //
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(897, 572);
+            this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.glCanvas1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormFreeTypeTextVAOElement";
             this.Text = "FormFreeTypeTextVAOElement";
             this.Load += new System.EventHandler(this.FormFreeTypeTextVAOElement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private GLCanvas glCanvas1;
+        private System.Windows.Forms.TextBox txtInfo;
     }
 }

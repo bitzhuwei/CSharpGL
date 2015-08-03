@@ -44,31 +44,23 @@ namespace CSharpGL.Objects.Texts
         public int heightOfTexture;			// height of texture in pixels
 
         public CharacterInformation[] characterInfos = new CharacterInformation[128];
-        const int MaxWidth = 1024;
+        int[] MaxWidth = new int[1];
 
         public atlas(FreeTypeFace face, int fontHeight, Shaders.ShaderProgram shaderProgram)
         {
-            // Freetype measures the font size in 1/64th of pixels for accuracy
-            // so we need to request characters in size*64
-            // 设置字符大小？
-            FreeTypeAPI.FT_Set_Char_Size(face.pointer, fontHeight << 6, fontHeight << 6, 96, 96);
-
-            // Provide a reasonably accurate estimate for expected pixel sizes
-            // when we later on create the bitmaps for the font
-            // 设置像素大小？
-            FreeTypeAPI.FT_Set_Pixel_Sizes(face.pointer, 0, fontHeight);
-
             int roww = 0;
             int rowh = 0;
             widthOfTexture = 0;
             heightOfTexture = 0;
+            //	Get the maximum texture size supported by GL.
+            GL.GetInteger(GetTarget.MaxTextureSize, MaxWidth);
 
             /* Find minimum size for a texture holding all visible ASCII characters */
             for (int i = 32; i < 128; i++)
             {
                 FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(i), fontHeight);
 
-                if (roww + bmpGlyph.obj.bitmap.width + 1 >= MaxWidth)
+                if (roww + bmpGlyph.obj.bitmap.width + 1 >= MaxWidth[0])
                 {
                     widthOfTexture = Math.Max(widthOfTexture, roww);
                     heightOfTexture += rowh;
@@ -112,7 +104,7 @@ namespace CSharpGL.Objects.Texts
             {
                 FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(i), fontHeight);
 
-                if (ox + bmpGlyph.obj.bitmap.width + 1 >= MaxWidth)
+                if (ox + bmpGlyph.obj.bitmap.width + 1 >= MaxWidth[0])
                 {
                     oy += rowh;
                     rowh = 0;

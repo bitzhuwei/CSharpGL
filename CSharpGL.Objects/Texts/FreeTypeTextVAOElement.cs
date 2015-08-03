@@ -1,4 +1,6 @@
-﻿using CSharpGL.Objects.Texts.FreeTypes;
+﻿using CSharpGL.Maths;
+using CSharpGL.Objects.Cameras;
+using CSharpGL.Objects.Texts.FreeTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,8 @@ namespace CSharpGL.Objects.Texts
 {
     public class FreeTypeTextVAOElement : VAOElement
     {
+        ScientificCamera camera;
+
         //uint program;
         Shaders.ShaderProgram shaderProgram;
         uint attribute_coord;
@@ -40,8 +44,9 @@ namespace CSharpGL.Objects.Texts
         //private atlas a24;
         //private atlas a12;
 
-        public FreeTypeTextVAOElement(string fontFilename)
+        public FreeTypeTextVAOElement(ScientificCamera camera, string fontFilename)
         {
+            this.camera = camera;
             this.fontFilename = fontFilename;
         }
 
@@ -93,6 +98,7 @@ namespace CSharpGL.Objects.Texts
         }
 
         static Random random = new Random();
+        public bool blend;
 
         public override void Render(RenderModes renderMode)
         {
@@ -105,15 +111,25 @@ namespace CSharpGL.Objects.Texts
             //glUseProgram(program);
             shaderProgram.Bind();
 
+            mat4 projectionMatrix = this.camera.GetProjectionMat4();
+            //IPerspectiveCamera perspectiveCamera = this.camera as IPerspectiveCamera;
+            //mat4 projectionMatrix = perspectiveCamera.GetProjectionMat4();
+            //IOrthoCamera orthoCamera = this.camera as IOrthoCamera;
+            //mat4 projectionMatrix = orthoCamera.GetProjectionMat4();
+            mat4 viewMatrix = this.camera.GetViewMat4();
+            mat4 matrix = projectionMatrix * viewMatrix;
+            shaderProgram.SetUniformMatrix4("transformMatrix", matrix.to_array());
+
             /* White background */
             //glClearColor(1, 1, 1, 1);
             //glClear(GL_COLOR_BUFFER_BIT);
 
             /* Enable blending, necessary for our alpha texture */
-            //glEnable(GL_BLEND);
-            //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            GL.Enable(GL.GL_BLEND);
-            GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+            if (this.blend)
+            {
+                GL.Enable(GL.GL_BLEND);
+                GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+            }
 
             //GLfloat black[4] = { 0, 0, 0, 1 }
             //GLfloat red[4] = { 1, 0, 0, 1 };
@@ -156,7 +172,10 @@ namespace CSharpGL.Objects.Texts
             shaderProgram.SetUniformMatrix4("color", transparent_green);
             render_text("The Transparent Green Fox Jumps Over The Lazy Dog", ref a48, -1 + 8 * sx, 1 - 380 * sy, sx, sy);
             render_text("The Transparent Green Fox Jumps Over The Lazy Dog", ref  a48, -1 + 18 * sx, 1 - 440 * sy, sx, sy);
-
+            if (this.blend)
+            {
+                GL.Disable(GL.GL_BLEND);
+            }
         }
 
         /**
