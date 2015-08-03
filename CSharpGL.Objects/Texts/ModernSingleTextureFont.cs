@@ -61,7 +61,7 @@ namespace CSharpGL.Objects.Texts
             GL.GenBuffers(1, vbo);
 
             /* Create texture atlasses for several font sizes */
-            a48 = new Atlas(face, 48, shaderProgram);
+            a48 = new Atlas(face, 88, shaderProgram);
         }
 
         private void InitShaderProgram()
@@ -189,24 +189,24 @@ namespace CSharpGL.Objects.Texts
             foreach (var p in text)
             {
                 /* Calculate the vertex and texture coordinates */
-                float x2 = x + a.characterInfos[p].bl * sx;
-                float y2 = -y - a.characterInfos[p].bt * sy;
-                float w = a.characterInfos[p].bw * sx;
-                float h = a.characterInfos[p].bh * sy;
+                float x2 = x + a.characterInfos[p].bitmapLeft * sx;
+                float y2 = -y - a.characterInfos[p].bitmapTop * sy;
+                float w = a.characterInfos[p].bitmapWidth * sx;
+                float h = a.characterInfos[p].bitmapHeight * sy;
 
                 /* Advance the cursor to the start of the next character */
-                x += a.characterInfos[p].ax * sx;
-                y += a.characterInfos[p].ay * sy;
+                x += a.characterInfos[p].advanceX * sx;
+                y += a.characterInfos[p].advanceY * sy;
 
                 /* Skip glyphs that have no pixels */
                 if (w == 0 || h == 0) { continue; }
 
-                coords[c++] = new point(x2, -y2, a.characterInfos[p].tx, a.characterInfos[p].ty);
-                coords[c++] = new point(x2 + w, -y2, a.characterInfos[p].tx + a.characterInfos[p].bw / a.widthOfTexture, a.characterInfos[p].ty);
-                coords[c++] = new point(x2, -y2 - h, a.characterInfos[p].tx, a.characterInfos[p].ty + a.characterInfos[p].bh / a.heightOfTexture);
-                coords[c++] = new point(x2 + w, -y2, a.characterInfos[p].tx + a.characterInfos[p].bw / a.widthOfTexture, a.characterInfos[p].ty);
-                coords[c++] = new point(x2, -y2 - h, a.characterInfos[p].tx, a.characterInfos[p].ty + a.characterInfos[p].bh / a.heightOfTexture);
-                coords[c++] = new point(x2 + w, -y2 - h, a.characterInfos[p].tx + a.characterInfos[p].bw / a.widthOfTexture, a.characterInfos[p].ty + a.characterInfos[p].bh / a.heightOfTexture);
+                coords[c++] = new point(x2, -y2, a.characterInfos[p].xoffset, a.characterInfos[p].yoffset);
+                coords[c++] = new point(x2 + w, -y2, a.characterInfos[p].xoffset + a.characterInfos[p].bitmapWidth / a.widthOfTexture, a.characterInfos[p].yoffset);
+                coords[c++] = new point(x2, -y2 - h, a.characterInfos[p].xoffset, a.characterInfos[p].yoffset + a.characterInfos[p].bitmapHeight / a.heightOfTexture);
+                coords[c++] = new point(x2 + w, -y2, a.characterInfos[p].xoffset + a.characterInfos[p].bitmapWidth / a.widthOfTexture, a.characterInfos[p].yoffset);
+                coords[c++] = new point(x2, -y2 - h, a.characterInfos[p].xoffset, a.characterInfos[p].yoffset + a.characterInfos[p].bitmapHeight / a.heightOfTexture);
+                coords[c++] = new point(x2 + w, -y2 - h, a.characterInfos[p].xoffset + a.characterInfos[p].bitmapWidth / a.widthOfTexture, a.characterInfos[p].yoffset + a.characterInfos[p].bitmapHeight / a.heightOfTexture);
             }
 
             /* Draw all the character on the screen in one go */

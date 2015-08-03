@@ -101,7 +101,6 @@ namespace CSharpGL
             get { return this.Count * this.elementSize; }
         }
 
-
         /// <summary>
         /// 非托管数组。
         /// </summary>
