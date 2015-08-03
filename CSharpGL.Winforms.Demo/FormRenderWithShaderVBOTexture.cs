@@ -13,7 +13,7 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormRenderWithShaderVBOTexture : Form
     {
-        ScientificCamera camera = new ScientificCamera(CameraTypes.Perspecitive);
+        ScientificCamera camera = new ScientificCamera(CameraTypes.Ortho);
 
         SatelliteRotation satelliteRoration;
 
@@ -92,6 +92,18 @@ namespace CSharpGL.Winforms.Demo
             {
                 element.blend = !element.blend;
             }
+            else if (e.KeyChar == 'c')
+            {
+                if (camera.CameraType == CameraTypes.Perspecitive)
+                {
+                    camera.CameraType = CameraTypes.Ortho;
+                }
+                else
+                {
+                    camera.CameraType = CameraTypes.Perspecitive;
+                }
+            }
+
         }
     }
 }

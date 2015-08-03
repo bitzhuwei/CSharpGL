@@ -57,10 +57,14 @@ namespace CSharpGL.Winforms.Demo
             GL.BindVertexArray(vao[0]);
 
             UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(this.vertexCount);
-            coord[0] = new vec4(0, 0, 0, textureHeight);
-            coord[1] = new vec4(0, 1, 0, 0);
-            coord[2] = new vec4(1, 1, textureWidth, 0);
-            coord[3] = new vec4(1, 0, textureWidth, textureHeight);
+            coord[0] = new vec4(0, 0, 0, 1);
+            coord[1] = new vec4(0, textureHeight, 0, 0);
+            coord[2] = new vec4(textureWidth, textureHeight, 1, 0);
+            coord[3] = new vec4(textureWidth, 0, 1, 1);
+            //coord[0] = new vec4(0, 0, 0, textureHeight);
+            //coord[1] = new vec4(0, 1, 0, 0);
+            //coord[2] = new vec4(1, 1, textureWidth, 0);
+            //coord[3] = new vec4(1, 0, textureWidth, textureHeight);
             //UnmanagedArray<float> coord = new UnmanagedArray<float>(16);
             //coord[0] = 0; coord[1] = 0; coord[2] = 0; coord[3] = textureHeight;
             //coord[4] = 0; coord[5] = 1; coord[6] = 0; coord[7] = 0;
@@ -93,8 +97,8 @@ namespace CSharpGL.Winforms.Demo
             FreeTypeFace face = new FreeTypeFace(library, "LuckiestGuy.ttf");
 
             int fontHeight = 48;
-            //int c = (int)'@';
             int c = (int)'@';
+            //int c = (int)'&';
 
             // 把字形转换为纹理
             FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(c), fontHeight);
@@ -289,8 +293,9 @@ namespace CSharpGL.Winforms.Demo
 
             shader.Bind();
 
-            IPerspectiveCamera perspectiveCamera = this.camera as IPerspectiveCamera;
-            mat4 projectionMatrix = perspectiveCamera.GetProjectionMat4();
+            mat4 projectionMatrix = this.camera.GetProjectionMat4();
+            //IPerspectiveCamera perspectiveCamera = this.camera as IPerspectiveCamera;
+            //mat4 projectionMatrix = perspectiveCamera.GetProjectionMat4();
             //IOrthoCamera orthoCamera = this.camera as IOrthoCamera;
             //mat4 projectionMatrix = orthoCamera.GetProjectionMat4();
             mat4 viewMatrix = this.camera.GetViewMat4();

@@ -343,6 +343,30 @@ namespace CSharpGL.Objects.Cameras
         }
 
         /// <summary>
+        /// 根据摄像机的类型获取其投影矩阵
+        /// </summary>
+        /// <param name="camera"></param>
+        /// <returns></returns>
+        public static mat4 GetProjectionMat4(this IScientificCamera camera)
+        {
+            mat4 result;
+
+            switch (camera.CameraType)
+            {
+                case CameraTypes.Perspecitive:
+                    result = ((IPerspectiveCamera)camera).GetProjectionMat4();
+                    break;
+                case CameraTypes.Ortho:
+                    result = ((IOrthoCamera)camera).GetProjectionMat4();
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Extension method for <see cref="IPerspectiveCamera"/> to get projection matrix.
         /// </summary>
         /// <param name="camera"></param>
