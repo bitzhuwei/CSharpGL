@@ -1,5 +1,6 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects;
+using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Shaders;
 using CSharpGL.Objects.Texts.FreeTypes;
 using System;
@@ -15,6 +16,13 @@ namespace CSharpGL.Winforms.Demo
 {
     class ShaderVBOTextureElementDemo : VAOElement
     {
+        ScientificCamera camera;
+
+        public ShaderVBOTextureElementDemo(ScientificCamera camera)
+        {
+            this.camera = camera;
+        }
+
         uint[] texture = new uint[1];
 
         //  Constants that specify the attribute indexes.
@@ -278,11 +286,20 @@ namespace CSharpGL.Winforms.Demo
 
             shader.Bind();
 
+            IPerspectiveCamera perspectiveCamera = this.camera as IPerspectiveCamera;
+            mat4 projectionMatrix = perspectiveCamera.GetProjectionMat4();
+            //IOrthoCamera orthoCamera = this.camera as IOrthoCamera;
+            //mat4 projectionMatrix = orthoCamera.GetProjectionMat4();
+            mat4 viewMatrix = this.camera.GetViewMat4();
+            mat4 matrix = projectionMatrix * viewMatrix;
+            shader.SetUniformMatrix4("transformMatrix", matrix.to_array());
+
+            const float scale = 3.5f;
             rotation += 0.1f;
             mat4 transformMatrix = glm.translate(mat4.identity(), new vec3(0, -2, 0));
             transformMatrix = glm.rotate(transformMatrix, rotation, new vec3(0, 1, 0));
-            transformMatrix = glm.scale(transformMatrix, new vec3(2, 2, 1));
-            shader.SetUniformMatrix4("transformMatrix", transformMatrix.to_array());
+            transformMatrix = glm.scale(transformMatrix, new vec3(scale, scale, scale));
+            //shader.SetUniformMatrix4("transformMatrix", transformMatrix.to_array());
 
             GL.Uniform1(this.texLocation, this.texture[0]);
             GL.Uniform4(this.colorLocation, 1.0f, 1.0f, 1.0f, 1.0f);

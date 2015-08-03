@@ -23,26 +23,6 @@ namespace CSharpGL.Maths
         }
 
         /// <summary>
-        /// 获取归一化的向量
-        /// </summary>
-        /// <param name="vector"></param>
-        /// <returns></returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static vec2 Normalize(this vec2 vector)
-        {
-            var frt = (float)Math.Sqrt(vector.x * vector.x + vector.y * vector.y);
-
-            var result = new vec2(vector.x / frt, vector.y / frt);
-
-            return result;
-        }
-
-        public static string FormatVertex(this vec2 vector)
-        {
-            return string.Format("{0:0.00},{1:0.00}", vector.x, vector.y);
-        }
-
-        /// <summary>
         /// 获取向量长度
         /// </summary>
         /// <param name="vector"></param>
@@ -53,21 +33,6 @@ namespace CSharpGL.Maths
             double result = Math.Sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
 
             return (float)result;
-        }
-
-        /// <summary>
-        /// 获取归一化的向量
-        /// </summary>
-        /// <param name="vector"></param>
-        /// <returns></returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static vec3 Normalize(this vec3 vector)
-        {
-            var frt = (float)Math.Sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
-
-            var result = new vec3(vector.x / frt, vector.y / frt, vector.z / frt);
-
-            return result;
         }
 
         /// <summary>
@@ -83,11 +48,6 @@ namespace CSharpGL.Maths
             return result;
         }
 
-        public static string FormatVertex(this vec3 vector)
-        {
-            return string.Format("{0:0.00},{1:0.00},{2:0.00}", vector.x, vector.y, vector.z);
-        }
-
         /// <summary>
         /// 获取向量长度
         /// </summary>
@@ -101,24 +61,5 @@ namespace CSharpGL.Maths
             return (float)result;
         }
 
-        /// <summary>
-        /// 获取归一化的向量
-        /// </summary>
-        /// <param name="vector"></param>
-        /// <returns></returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static vec4 Normalize(this vec4 vector)
-        {
-            var frt = (float)Math.Sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z + vector.w * vector.w);
-
-            var result = new vec4(vector.x / frt, vector.y / frt, vector.z / frt, vector.w / frt);
-
-            return result;
-        }
-
-        public static string FormatVertex(this vec4 vector)
-        {
-            return string.Format("{0:0.00},{1:0.00},{2:0.00},{3:0.00}", vector.x, vector.y, vector.z, vector.w);
-        }
     }
 }

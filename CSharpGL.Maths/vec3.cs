@@ -106,5 +106,24 @@ namespace CSharpGL.Maths
         {
             return new[] { x, y, z };
         }
+
+        /// <summary>
+        /// 归一化向量
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <returns></returns>
+        public void Normalize()
+        {
+            var frt = (float)Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+
+            this.x = x / frt;
+            this.y = y / frt;
+            this.z = z / frt;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0:0.00},{1:0.00},{2:0.00}", x, y, z);
+        }
     }
 }

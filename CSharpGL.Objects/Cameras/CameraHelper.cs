@@ -278,7 +278,7 @@ namespace CSharpGL.Objects.Cameras
                 var target2Position = camera.Position - camera.Target;
                 if (target2Position.Magnitude() < 0.01)
                 {
-                    target2Position = target2Position.Normalize();
+                    target2Position.Normalize();
                     target2Position.x *= 0.01f;
                     target2Position.y *= 0.01f;
                     target2Position.z *= 0.01f;

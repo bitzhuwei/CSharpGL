@@ -8,11 +8,6 @@ namespace CSharpGL.Maths
     /// </summary>
     public struct vec4
     {
-        public override string ToString()
-        {
-            return string.Format("{0:0.00},{1:0.00},{2:0.00},{3:0.00}", x, y, z, w);
-            //return base.ToString();
-        }
         public float x;
         public float y;
         public float z;
@@ -110,6 +105,27 @@ namespace CSharpGL.Maths
         public float[] to_array()
         {
             return new[] { x, y, z, w };
+        }
+
+        /// <summary>
+        /// 归一化向量
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <returns></returns>
+        public void Normalize()
+        {
+            var frt = (float)Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+
+            this.x = x / frt;
+            this.y = y / frt;
+            this.z = z / frt;
+            this.w = w / frt;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0:0.00},{1:0.00},{2:0.00},{3:0.00}", x, y, z, w);
+            //return base.ToString();
         }
     }
 }

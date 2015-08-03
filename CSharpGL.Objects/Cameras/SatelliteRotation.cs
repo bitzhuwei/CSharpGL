@@ -34,7 +34,7 @@ namespace CSharpGL.Objects.Cameras
         public override string ToString()
         {
             return string.Format("back:{0}|{3:0.00},up:{1}|{4:0.00},right:{2}|{5:0.00}",
-                back.FormatVertex(), up.FormatVertex(), right.FormatVertex(), back.Magnitude(), up.Magnitude(), right.Magnitude());
+                back, up, right, back.Magnitude(), up.Magnitude(), right.Magnitude());
             //return base.ToString();
         }
 
