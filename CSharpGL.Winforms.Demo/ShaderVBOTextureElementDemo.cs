@@ -112,6 +112,9 @@ namespace CSharpGL.Winforms.Demo
             // 把glyph_bmp.bitmap的长宽扩展成2的指数倍
             this.textureWidth = next_po2(bmpGlyph.obj.bitmap.width);
             this.textureHeight = next_po2(bmpGlyph.obj.bitmap.rows);
+            this.modelWidth = (float)bmpGlyph.obj.bitmap.width / (float)this.textureWidth;
+            this.modelHeight = (float)bmpGlyph.obj.bitmap.rows / (float)this.textureHeight;
+
             UnmanagedArray<byte> expanded = new UnmanagedArray<byte>(2 * textureWidth * textureHeight);
             for (int j = 0; j < textureHeight; j++)
             {
@@ -328,5 +331,7 @@ namespace CSharpGL.Winforms.Demo
 
         float rotation = 0.0f;
         public bool blend;
+        private float modelWidth;
+        private float modelHeight;
     }
 }
