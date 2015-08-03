@@ -8,16 +8,18 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Texts
 {
-    /**
-     * The atlas struct holds a texture that contains the visible US-ASCII characters
-     * of a certain font rendered with a certain character height.
-     * It also contains an array that contains all the information necessary to
-     * generate the appropriate vertex and texture coordinates for each character.
-     *
-     * After the constructor is run, you don't need to use any FreeType functions anymore.
-     */
+    ///**
+    // * The atlas struct holds a texture that contains the visible US-ASCII characters
+    // * of a certain font rendered with a certain character height.
+    // * It also contains an array that contains all the information necessary to
+    // * generate the appropriate vertex and texture coordinates for each character.
+    // *
+    // * After the constructor is run, you don't need to use any FreeType functions anymore.
+    // */
 
-
+    /// <summary>
+    ///
+    /// </summary>
     struct CharacterInformation
     {
         public float ax;	// advance.x
@@ -34,9 +36,9 @@ namespace CSharpGL.Objects.Texts
     } //c[128];		// character information
 
     /// <summary>
-    /// 字形集
+    /// 用一个纹理绘制ASCII表上所有可见字符（具有指定的高度和字体）
     /// </summary>
-    class atlas
+    class Atlas
     {
         public uint[] tex = new uint[1];		// texture object
 
@@ -46,10 +48,10 @@ namespace CSharpGL.Objects.Texts
         public CharacterInformation[] characterInfos = new CharacterInformation[128];
         int[] MaxWidth = new int[1];
 
-        public atlas(FreeTypeFace face, int fontHeight, Shaders.ShaderProgram shaderProgram)
+        public Atlas(FreeTypeFace face, int fontHeight, Shaders.ShaderProgram shaderProgram)
         {
-            int roww = 0;
-            int rowh = 0;
+            int newRowWidth = 0;
+            int newRowHeight = 0;
             widthOfTexture = 0;
             heightOfTexture = 0;
             //	Get the maximum texture size supported by GL.
@@ -60,28 +62,27 @@ namespace CSharpGL.Objects.Texts
             {
                 FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(i), fontHeight);
 
-                if (roww + bmpGlyph.obj.bitmap.width + 1 >= MaxWidth[0])
+                if (newRowWidth + bmpGlyph.obj.bitmap.width + 1 >= MaxWidth[0])
                 {
-                    widthOfTexture = Math.Max(widthOfTexture, roww);
-                    heightOfTexture += rowh;
-                    roww = 0;
-                    rowh = 0;
+                    widthOfTexture = Math.Max(widthOfTexture, newRowWidth);
+                    heightOfTexture += newRowHeight;
+                    newRowWidth = 0;
+                    newRowHeight = 0;
                 }
-                roww += bmpGlyph.obj.bitmap.width + 1;
-                rowh = Math.Max(rowh, bmpGlyph.obj.bitmap.rows);
+                newRowWidth += bmpGlyph.obj.bitmap.width + 1;
+                newRowHeight = Math.Max(newRowHeight, bmpGlyph.obj.bitmap.rows);
             }
 
-            widthOfTexture = Math.Max(widthOfTexture, roww);
-            heightOfTexture += rowh;
+            widthOfTexture = Math.Max(widthOfTexture, newRowWidth);
+            heightOfTexture += newRowHeight;
 
             /* Create a texture that will be used to hold all ASCII glyphs */
-            GL.ActiveTexture(GL.GL_TEXTURE0);
+            //GL.ActiveTexture(GL.GL_TEXTURE0);
             GL.GenTextures(1, tex);
             GL.BindTexture(GL.GL_TEXTURE_2D, tex[0]);
-            shaderProgram.SetUniform1("tex", 0);
+            shaderProgram.SetUniform1("tex", tex[0]);
 
-            GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_ALPHA, widthOfTexture, heightOfTexture, 0, GL.GL_ALPHA, GL.GL_UNSIGNED_BYTE, IntPtr.Zero);
-
+            GL.TexImage2D(TexImage2DTargets.Texture2D, 0, TexImage2DFormats.Alpha, widthOfTexture, heightOfTexture, 0, TexImage2DFormats.Alpha, TexImage2DTypes.UnsignedByte, IntPtr.Zero);
 
             /* We require 1 byte alignment when uploading texture data */
             GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
@@ -98,7 +99,7 @@ namespace CSharpGL.Objects.Texts
             int ox = 0;
             int oy = 0;
 
-            rowh = 0;
+            newRowHeight = 0;
 
             for (int i = 32; i < 128; i++)
             {
@@ -106,14 +107,14 @@ namespace CSharpGL.Objects.Texts
 
                 if (ox + bmpGlyph.obj.bitmap.width + 1 >= MaxWidth[0])
                 {
-                    oy += rowh;
-                    rowh = 0;
+                    oy += newRowHeight;
+                    newRowHeight = 0;
                     ox = 0;
                 }
 
                 if (bmpGlyph.obj.bitmap.buffer != IntPtr.Zero)
                 {
-                    GL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, ox, oy, bmpGlyph.obj.bitmap.width, bmpGlyph.obj.bitmap.rows, TexSubImage2DFormat.Alpha, TexSubImage2DType.UnsignedByte, bmpGlyph.obj.bitmap.buffer);
+                    GL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, ox, oy, bmpGlyph.obj.bitmap.width, bmpGlyph.obj.bitmap.rows, TexSubImage2DFormats.Alpha, TexSubImage2DType.UnsignedByte, bmpGlyph.obj.bitmap.buffer);
 
                     int size = (bmpGlyph.obj.bitmap.width * bmpGlyph.obj.bitmap.rows);
                     byte[] bmp = new byte[size];
@@ -164,8 +165,29 @@ namespace CSharpGL.Objects.Texts
                 characterInfos[i].tx = ox / (float)widthOfTexture;
                 characterInfos[i].ty = oy / (float)heightOfTexture;
 
-                rowh = Math.Max(rowh, bmpGlyph.obj.bitmap.rows);
+                newRowHeight = Math.Max(newRowHeight, bmpGlyph.obj.bitmap.rows);
                 ox += bmpGlyph.obj.bitmap.width + 1;
+            }
+
+            // 把整个纹理输出为图片
+            {
+                //int[] image = new int[100000];
+                UnmanagedArray<byte> image = new UnmanagedArray<byte>(widthOfTexture * heightOfTexture);
+
+                GL.GetTexImage(GetTexImageTargets.Texture2D, 0, GetTexImageFormats.Alpha, GetTexImageTypes.UnsignedByte, image);
+
+                //  Create the bitmap.
+                System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
+                    widthOfTexture,
+                    heightOfTexture,
+                    widthOfTexture * 4,
+                    System.Drawing.Imaging.PixelFormat.Alpha,
+                    //System.Drawing.Imaging.PixelFormat.Format32bppArgb,
+                    //System.Drawing.Imaging.PixelFormat.Format32bppPArgb,
+                    //System.Drawing.Imaging.PixelFormat.Format32bppRgb,
+                    image.Header);
+
+                bitmap.Save(string.Format("wholeTexture.bmp"));
             }
         }
 
@@ -176,7 +198,7 @@ namespace CSharpGL.Objects.Texts
             return rval;
         }
 
-        ~atlas()
+        ~Atlas()
         {
             //glDeleteTextures(1, &tex);
             //GL.DeleteTextures(1, tex);

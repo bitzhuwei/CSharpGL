@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// The primitive mode.
     /// </summary>
-    public enum PrimitiveMode : uint
+    public enum PrimitiveModes : uint
     {
         /// <summary>
         /// Treats each vertex as a single point. Vertex n defines point n. N points are drawn.0x0000

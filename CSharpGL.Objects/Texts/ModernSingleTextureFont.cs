@@ -10,11 +10,10 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Texts
 {
-    public class FreeTypeTextVAOElement : VAOElement
+    public class ModernSingleTextureFont : VAOElement
     {
         ScientificCamera camera;
 
-        //uint program;
         Shaders.ShaderProgram shaderProgram;
         uint attribute_coord;
         int uniform_tex;
@@ -40,11 +39,9 @@ namespace CSharpGL.Objects.Texts
         private FreeTypeLibrary library;
         FreeTypeFace face;
 
-        private atlas a48;
-        //private atlas a24;
-        //private atlas a12;
+        private Atlas a48;
 
-        public FreeTypeTextVAOElement(ScientificCamera camera, string fontFilename)
+        public ModernSingleTextureFont(ScientificCamera camera, string fontFilename)
         {
             this.camera = camera;
             this.fontFilename = fontFilename;
@@ -64,9 +61,7 @@ namespace CSharpGL.Objects.Texts
             GL.GenBuffers(1, vbo);
 
             /* Create texture atlasses for several font sizes */
-            a48 = new atlas(face, 48, shaderProgram);
-            //a24 = new atlas(pface, face, 24, shaderProgram);
-            //a12 = new atlas(pface, face, 12, shaderProgram);
+            a48 = new Atlas(face, 48, shaderProgram);
         }
 
         private void InitShaderProgram()
@@ -112,17 +107,9 @@ namespace CSharpGL.Objects.Texts
             shaderProgram.Bind();
 
             mat4 projectionMatrix = this.camera.GetProjectionMat4();
-            //IPerspectiveCamera perspectiveCamera = this.camera as IPerspectiveCamera;
-            //mat4 projectionMatrix = perspectiveCamera.GetProjectionMat4();
-            //IOrthoCamera orthoCamera = this.camera as IOrthoCamera;
-            //mat4 projectionMatrix = orthoCamera.GetProjectionMat4();
             mat4 viewMatrix = this.camera.GetViewMat4();
             mat4 matrix = projectionMatrix * viewMatrix;
             shaderProgram.SetUniformMatrix4("transformMatrix", matrix.to_array());
-
-            /* White background */
-            //glClearColor(1, 1, 1, 1);
-            //glClear(GL_COLOR_BUFFER_BIT);
 
             /* Enable blending, necessary for our alpha texture */
             if (this.blend)
@@ -131,9 +118,6 @@ namespace CSharpGL.Objects.Texts
                 GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
             }
 
-            //GLfloat black[4] = { 0, 0, 0, 1 }
-            //GLfloat red[4] = { 1, 0, 0, 1 };
-            //GLfloat transparent_green[4] = { 0, 1, 0, 0.5 };
             float[] black = { 0, 0, 0, 1 };
             float[] red = { 1, 0, 0, 1 };
             float[] transparent_green = { 0, 1, 0, 0.5f };
@@ -161,14 +145,12 @@ namespace CSharpGL.Objects.Texts
             /* Colors and transparency */
             render_text("The Solid Black Fox Jumps Over The Lazy Dog", ref a48, -1 + 8 * sx, 1 - 430 * sy, sx, sy);
 
-            //glUniform4fv(uniform_color, 1, red);
-            //GL.Uniform4(uniform_color, 1, red);
+            GL.Uniform4(uniform_color, 1, red);
             shaderProgram.SetUniformMatrix4("color", red);
             render_text("The Solid Red Fox Jumps Over The Lazy Dog", ref  a48, -1 + 8 * sx, 1 - 330 * sy, sx, sy);
             render_text("The Solid Red Fox Jumps Over The Lazy Dog", ref  a48, -1 + 28 * sx, 1 - 450 * sy, sx, sy);
 
-            //glUniform4fv(uniform_color, 1, transparent_green);
-            //GL.Uniform4(uniform_color, 1, transparent_green);
+            GL.Uniform4(uniform_color, 1, transparent_green);
             shaderProgram.SetUniformMatrix4("color", transparent_green);
             render_text("The Transparent Green Fox Jumps Over The Lazy Dog", ref a48, -1 + 8 * sx, 1 - 380 * sy, sx, sy);
             render_text("The Transparent Green Fox Jumps Over The Lazy Dog", ref  a48, -1 + 18 * sx, 1 - 440 * sy, sx, sy);
@@ -178,12 +160,18 @@ namespace CSharpGL.Objects.Texts
             }
         }
 
-        /**
- * Render text using the currently loaded font and currently set font size.
- * Rendering starts at coordinates (x, y), z is always 0.
- * The pixel coordinates that the FreeType2 library uses are scaled by (sx, sy).
- */
-        void render_text(string text, ref atlas a, float x, float y, float sx, float sy)
+        /// <summary>
+        /// Render text using the currently loaded font and currently set font size.
+        /// Rendering starts at coordinates (x, y), z is always 0.
+        /// The pixel coordinates that the FreeType2 library uses are scaled by (sx, sy).
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="a"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="sx"></param>
+        /// <param name="sy"></param>
+        void render_text(string text, ref Atlas a, float x, float y, float sx, float sy)
         {
             /* Use the texture containing the atlas */
             GL.BindTexture(GL.GL_TEXTURE_2D, a.tex[0]);
@@ -193,7 +181,6 @@ namespace CSharpGL.Objects.Texts
             GL.EnableVertexAttribArray(attribute_coord);
             GL.BindBuffer(BufferTarget.ArrayBuffer, vbo[0]);
             GL.VertexAttribPointer(attribute_coord, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-
 
             UnmanagedArray<point> coords = new UnmanagedArray<point>(6 * text.Length);
             int c = 0;
@@ -224,7 +211,7 @@ namespace CSharpGL.Objects.Texts
 
             /* Draw all the character on the screen in one go */
             GL.BufferData(BufferTarget.ArrayBuffer, coords, BufferUsage.DynamicDraw);
-            GL.DrawArrays(PrimitiveMode.Triangles, 0, c);
+            GL.DrawArrays(PrimitiveModes.Triangles, 0, c);
 
             GL.DisableVertexAttribArray(attribute_coord);
         }

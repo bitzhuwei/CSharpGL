@@ -607,7 +607,7 @@ namespace CSharpGL
 
         [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Begin(PrimitiveMode primitiveMode)
+        public static void Begin(PrimitiveModes primitiveMode)
         {
             GL.Begin((uint)primitiveMode);
         }
@@ -621,13 +621,13 @@ namespace CSharpGL
         /// <param name="first">Specifies the starting	index in the enabled arrays.</param>
         /// <param name="count">Specifies the number of indices to be rendered.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DrawArrays(PrimitiveMode mode, int first, int count)
+        public static void DrawArrays(PrimitiveModes mode, int first, int count)
         {
             GL.DrawArrays((uint)mode, first, count);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void MultiDrawArrays(PrimitiveMode mode, int[] first, int[] count, int primcount)
+        public static void MultiDrawArrays(PrimitiveModes mode, int[] first, int[] count, int primcount)
         {
             GetDelegateFor<glMultiDrawArrays>()((uint)mode, first, count, primcount);
         }
@@ -640,13 +640,13 @@ namespace CSharpGL
         /// <param name="type">Specifies the type of the values in indices.	Must be one of OpenGL.UNSIGNED_BYTE, OpenGL.UNSIGNED_SHORT, or OpenGL.UNSIGNED_INT.</param>
         /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DrawElements(PrimitiveMode mode, int count, uint type, IntPtr indices)
+        public static void DrawElements(PrimitiveModes mode, int count, uint type, IntPtr indices)
         {
             GL.DrawElements((uint)mode, count, type, indices);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void MultiDrawElements(PrimitiveMode mode, int[] count, uint type, IntPtr indices, int primcount)
+        public static void MultiDrawElements(PrimitiveModes mode, int[] count, uint type, IntPtr indices, int primcount)
         {
             GetDelegateFor<glMultiDrawElements>()((uint)mode, count, type, indices, primcount);
         }
@@ -658,25 +658,25 @@ namespace CSharpGL
         /// <param name="count">Specifies the number of elements to be rendered.</param>
         /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DrawElements(PrimitiveMode mode, int count, uint type, uint[] indices)
+        public static void DrawElements(PrimitiveModes mode, int count, uint type, uint[] indices)
         {
             GL.DrawElements((uint)mode, count, type, indices);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DrawRangeElements(PrimitiveMode mode, uint start, uint end, int count, uint type, IntPtr indices)
+        public static void DrawRangeElements(PrimitiveModes mode, uint start, uint end, int count, uint type, IntPtr indices)
         {
             GetDelegateFor<glDrawRangeElements>()((uint)mode, start, end, count, type, indices);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DrawArraysInstanced(PrimitiveMode mode, int first, int count, int primcount)
+        public static void DrawArraysInstanced(PrimitiveModes mode, int first, int count, int primcount)
         {
             GetDelegateFor<glDrawArraysInstanced>()((uint)mode, first, count, primcount);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DrawElementsInstanced(PrimitiveMode mode, int count, uint type, IntPtr indices, int primcount)
+        public static void DrawElementsInstanced(PrimitiveModes mode, int count, uint type, IntPtr indices, int primcount)
         {
             GetDelegateFor<glDrawElementsInstanced>()((uint)mode, count, type, indices, primcount);
         }
@@ -774,6 +774,23 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// This function sets the image for the currently binded texture.
+        /// </summary>
+        /// <param name="target">The type of texture, TEXTURE_2D or PROXY_TEXTURE_2D.</param>
+        /// <param name="level">For mip-map textures, ordinary textures should be '0'.</param>
+        /// <param name="internalformat">The format of the data you are want OpenGL to create, e.g  RGB16.</param>
+        /// <param name="width">The width of the texture image (must be a power of 2, e.g 64).</param>
+        /// <param name="height">The height of the texture image (must be a power of 2, e.g 32).</param>
+        /// <param name="border">The width of the border (0 or 1).</param>
+        /// <param name="format">The format of the data you are passing, e.g. RGBA.</param>
+        /// <param name="type">The type of data you are passing, e.g GL_BYTE.</param>
+        /// <param name="pixels">The actual pixel data.</param>
+        public static void TexImage2D(TexImage2DTargets target, int level, TexImage2DFormats internalformat, int width, int height, int border, TexImage2DFormats format, TexImage2DTypes type, IntPtr pixels)
+        {
+            GL.TexImage2D((uint)target, level, (uint)internalformat, width, height, border, (uint)format, (uint)type, pixels);
+        }
+
+        /// <summary>
         /// Specify a two-dimensional texture subimage.
         /// </summary>
         /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_2D.</param>
@@ -785,9 +802,22 @@ namespace CSharpGL
         /// <param name="format">Specifies the format of the pixel data.</param>
         /// <param name="type">Specifies the data type of the pixel	data.</param>
         /// <param name="pixels">Specifies a pointer to the image data in memory.</param>
-        public static void TexSubImage2D(TexSubImage2DTarget target, int level, int xoffset, int yoffset, int width, int height, TexSubImage2DFormat format, TexSubImage2DType type, IntPtr pixels)
+        public static void TexSubImage2D(TexSubImage2DTarget target, int level, int xoffset, int yoffset, int width, int height, TexSubImage2DFormats format, TexSubImage2DType type, IntPtr pixels)
         {
             GL.TexSubImage2D((uint)target, level, xoffset, yoffset, width, height, (uint)format, (uint)type, pixels);
+        }
+
+        /// <summary>
+        /// Return a texture image.
+        /// </summary>
+        /// <param name="target">Specifies which texture is to	be obtained. OpenGL.TEXTURE_1D and OpenGL.TEXTURE_2D are accepted.</param>
+        /// <param name="level">Specifies the level-of-detail number of the desired image.  Level	0 is the base image level.  Level n is the nth mipmap reduction image.</param>
+        /// <param name="format">Specifies a pixel format for the returned data.</param>
+        /// <param name="type">Specifies a pixel type for the returned data.</param>
+        /// <param name="pixels">Returns the texture image.  Should be	a pointer to an array of the type specified by type.</param>
+        public static void GetTexImage(GetTexImageTargets target, int level, GetTexImageFormats format, GetTexImageTypes type, UnmanagedArrayBase pixels)
+        {
+            GL.GetTexImage((uint)target, level, (uint)format, (uint)type, pixels.Header);
         }
 
         /// <summary>
@@ -795,7 +825,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="face">The faces this applies to (front, back or both).</param>
         /// <param name="mode">The mode to set to (points, lines, or filled).</param>
-        public static void PolygonMode(PolygonModeFace face, PolygonMode mode)
+        public static void PolygonMode(PolygonModeFaces face, PolygonModes mode)
         {
             GL.PolygonMode((uint)face, (uint)mode);
         }

@@ -32,7 +32,7 @@ namespace CSharpGL.Winforms.Demo
         internal int texLocation;
         private ShaderProgram shaderProgram;
 
-        private PrimitiveMode mode;
+        private PrimitiveModes mode;
         private uint[] vao;
         private int vertexCount;
         private int textureWidth;
@@ -49,7 +49,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void InitVAO()
         {
-            this.mode = PrimitiveMode.Quads;
+            this.mode = PrimitiveModes.Quads;
             this.vertexCount = 4;
 
             vao = new uint[1];

@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Winforms.Demo
 {
-    partial class FormFreeTypeTextVAOElement
+    partial class FormModernSingleTextureFont
     {
         /// <summary>
         /// Required designer variable.

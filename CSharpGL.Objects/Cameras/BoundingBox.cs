@@ -99,7 +99,7 @@ namespace CSharpGL.Objects.Cameras
             //QuadsDraw(gl);
 
             //GL.Color(1.0f, 0, 0);
-            GL.Begin(PrimitiveMode.LineLoop);
+            GL.Begin(PrimitiveModes.LineLoop);
             GL.Vertex(MinPosition.x, MinPosition.y, MinPosition.z);
             GL.Vertex(MaxPosition.x, MinPosition.y, MinPosition.z);
             GL.Vertex(MaxPosition.x, MinPosition.y, MaxPosition.z);
@@ -107,7 +107,7 @@ namespace CSharpGL.Objects.Cameras
             GL.End();
 
             //GL.Color(0, 1.0f, 0);
-            GL.Begin(PrimitiveMode.LineLoop);
+            GL.Begin(PrimitiveModes.LineLoop);
             GL.Vertex(MinPosition.x, MaxPosition.y, MinPosition.z);
             GL.Vertex(MaxPosition.x, MaxPosition.y, MinPosition.z);
             GL.Vertex(MaxPosition.x, MaxPosition.y, MaxPosition.z);
@@ -115,7 +115,7 @@ namespace CSharpGL.Objects.Cameras
             GL.End();
 
             //GL.Color(0, 0, 1.0f);
-            GL.Begin(PrimitiveMode.Lines);
+            GL.Begin(PrimitiveModes.Lines);
             GL.Vertex(MinPosition.x, MinPosition.y, MinPosition.z);
             GL.Vertex(MinPosition.x, MaxPosition.y, MinPosition.z);
             GL.Vertex(MaxPosition.x, MinPosition.y, MinPosition.z);
@@ -143,9 +143,9 @@ namespace CSharpGL.Objects.Cameras
             GL.Disable(GL.GL_TEXTURE_2D);
             GL.LineWidth(1.0f);
             GL.PolygonMode(GL.GL_FRONT_AND_BACK,
-                renderMode == RenderModes.HitTest ? (uint)PolygonMode.Filled : (uint)PolygonMode.Lines);
+                renderMode == RenderModes.HitTest ? (uint)PolygonModes.Filled : (uint)PolygonModes.Lines);
 
-            GL.Begin(PrimitiveMode.Quads);
+            GL.Begin(PrimitiveModes.Quads);
             GL.Vertex(maxPosition.x, maxPosition.y, minPosition.z);//GL.Vertex(hhl);	// Top Right Of The Quad (Top)
             GL.Vertex(minPosition.x, maxPosition.y, minPosition.z);//GL.Vertex(lhl);	// Top Left Of The Quad (Top)
             GL.Vertex(minPosition.x, maxPosition.y, maxPosition.z);//GL.Vertex(lhh);	// Bottom Left Of The Quad (Top)

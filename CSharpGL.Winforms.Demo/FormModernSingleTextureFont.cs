@@ -12,14 +12,14 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
 {
-    public partial class FormFreeTypeTextVAOElement : Form
+    public partial class FormModernSingleTextureFont : Form
     {
         ScientificCamera camera = new ScientificCamera(CameraTypes.Ortho);
 
         SatelliteRotation satelliteRoration;
 
-        FreeTypeTextVAOElement element;// = new FreeTypeTextVAOElement("LuckiestGuy.ttf");
-        public FormFreeTypeTextVAOElement()
+        ModernSingleTextureFont element;// = new ModernSingleTextureFont("LuckiestGuy.ttf");
+        public FormModernSingleTextureFont()
         {
             InitializeComponent();
 
@@ -31,7 +31,7 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotation(camera);
 
-            element = new FreeTypeTextVAOElement(camera, "LuckiestGuy.ttf");
+            element = new ModernSingleTextureFont(camera, "LuckiestGuy.ttf");
 
             element.Initialize();
 

@@ -30,7 +30,7 @@ namespace CSharpGL.Winforms
         /// <summary>
         /// 图元类型
         /// </summary>
-        protected PrimitiveMode primitiveMode;
+        protected PrimitiveModes primitiveMode;
 
         /// <summary>
         /// 顶点数
@@ -69,9 +69,9 @@ namespace CSharpGL.Winforms
             shaderProgram.AssertValid();
         }
 
-        protected void InitializeVAO(out uint[] vao, out PrimitiveMode primitiveMode, out int vertexCount)
+        protected void InitializeVAO(out uint[] vao, out PrimitiveModes primitiveMode, out int vertexCount)
         {
-            primitiveMode = PrimitiveMode.QuadStrip;
+            primitiveMode = PrimitiveModes.QuadStrip;
             vertexCount = faceCount * 2;
 
             vao = new uint[1];

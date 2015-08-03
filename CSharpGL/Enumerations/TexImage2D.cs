@@ -6,27 +6,22 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public enum TexSubImage2DTarget : uint
+    public enum TexImage2DTargets : uint
     {
         Texture2D = GL.GL_TEXTURE_2D,
-        TextureCubeMapPositiveX = GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X,
-        TextureCubeMapNegativeX = GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
-        TextureCubeMapPositiveY = GL.GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
-        TextureCubeMapNegativeY = GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,
-        TextureCubeMapPositiveZ = GL.GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
-        TextureCubeMapNegativeZ = GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,
+        ProxyTexture2D = GL.GL_PROXY_TEXTURE_2D,
     }
 
-    public enum TexSubImage2DFormats : uint
+    public enum TexImage2DFormats : uint
     {
-        Alpha =GL.GL_ALPHA,
+        Alpha = GL.GL_ALPHA,
         RGB = GL.GL_RGB,
         RGBA = GL.GL_RGBA,
         Luminance = GL.GL_LUMINANCE,
         LuminanceAlpha = GL.GL_LUMINANCE_ALPHA,
     }
 
-    public enum TexSubImage2DType : uint
+    public enum TexImage2DTypes : uint
     {
         UnsignedByte = GL.GL_UNSIGNED_BYTE,
         UnsignedShort565 = GL.GL_UNSIGNED_SHORT_5_6_5,

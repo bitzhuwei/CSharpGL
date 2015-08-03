@@ -43,7 +43,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void btnFreeTypeTextVAOElement_Click(object sender, EventArgs e)
         {
-            //(new FormFreeTypeTextVAOElement()).Show();
+            (new FormModernSingleTextureFont()).Show();
         }
 
     }

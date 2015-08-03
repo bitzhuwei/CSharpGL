@@ -48,7 +48,7 @@ namespace CSharpGL
         public static extern void Begin(uint mode);
 
         /// <summary>
-        /// Call this function after creating a texture to finalise creation of it, 
+        /// Call this function after creating a texture to finalise creation of it,
         /// or to make an existing texture current.
         /// </summary>
         /// <param name="target">The target type, e.g TEXTURE_2D.</param>
@@ -1131,7 +1131,7 @@ namespace CSharpGL
         /// <param name="type">Specifies a pixel type for the returned data.</param>
         /// <param name="pixels">Returns the texture image.  Should be	a pointer to an array of the type specified by type.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetTexImage", SetLastError = true)]
-        public static extern void GetTexImage(uint target, int level, uint format, uint type, int[] pixels);
+        public static extern void GetTexImage(uint target, int level, uint format, uint type, IntPtr pixels);
 
         /// <summary>
         /// Return texture parameter values for a specific level of detail.
@@ -1559,7 +1559,7 @@ namespace CSharpGL
         public static extern void Materialiv(uint face, uint pname, int[] params_notkeyword);
 
         /// <summary>
-        /// Set the current matrix mode (the matrix that matrix operations will be 
+        /// Set the current matrix mode (the matrix that matrix operations will be
         /// performed on).
         /// </summary>
         /// <param name="mode">The mode, normally PROJECTION or MODELVIEW.</param>
@@ -1687,7 +1687,7 @@ namespace CSharpGL
         public static extern void NormalPointer(uint type, int stride, float[] pointer);
 
         /// <summary>
-        /// This function creates an orthographic projection matrix (i.e one with no 
+        /// This function creates an orthographic projection matrix (i.e one with no
         /// perspective) and multiplies it to the current matrix stack, which would
         /// normally be 'PROJECTION'.
         /// </summary>

@@ -30,7 +30,7 @@ namespace CSharpGL.Winforms
         /// <summary>
         /// 图元类型
         /// </summary>
-        protected PrimitiveMode primitiveMode;
+        protected PrimitiveModes primitiveMode;
 
         /// <summary>
         /// 顶点数
@@ -53,25 +53,25 @@ namespace CSharpGL.Winforms
 			new vec3(-1.0f, -1.0f, -1.0f),
 			new vec3(0.0f, 1.0f, 0.0f),
 			new vec3(-1.0f, -1.0f, -1.0f),
-			new vec3(-1.0f, -1.0f, 1.0f),   
+			new vec3(-1.0f, -1.0f, 1.0f),
 		};
 
         /// <summary>
         /// 金字塔的color array.
         /// </summary>
         static vec3[] colors = new vec3[]
-		{ 
+		{
 			new vec3(1.0f, 0.0f, 0.0f),
-			new vec3(0.0f, 1.0f, 0.0f),          
-			new vec3(0.0f, 0.0f, 1.0f),          
-			new vec3(1.0f, 0.0f, 0.0f),          
-			new vec3(0.0f, 0.0f, 1.0f),          
-			new vec3(0.0f, 1.0f, 0.0f),          
-			new vec3(1.0f, 0.0f, 0.0f),          
-			new vec3(0.0f, 1.0f, 0.0f),          
-			new vec3(0.0f, 0.0f, 1.0f),          
-			new vec3(1.0f, 0.0f, 0.0f),          
-			new vec3(0.0f, 0.0f, 1.0f),          
+			new vec3(0.0f, 1.0f, 0.0f),
+			new vec3(0.0f, 0.0f, 1.0f),
+			new vec3(1.0f, 0.0f, 0.0f),
+			new vec3(0.0f, 0.0f, 1.0f),
+			new vec3(0.0f, 1.0f, 0.0f),
+			new vec3(1.0f, 0.0f, 0.0f),
+			new vec3(0.0f, 1.0f, 0.0f),
+			new vec3(0.0f, 0.0f, 1.0f),
+			new vec3(1.0f, 0.0f, 0.0f),
+			new vec3(0.0f, 0.0f, 1.0f),
 			new vec3(0.0f, 1.0f, 0.0f),
 		};
 
@@ -97,9 +97,9 @@ namespace CSharpGL.Winforms
             shaderProgram.AssertValid();
         }
 
-        protected void InitializeVAO(out uint[] vao, out PrimitiveMode primitiveMode, out int vertexCount)
+        protected void InitializeVAO(out uint[] vao, out PrimitiveModes primitiveMode, out int vertexCount)
         {
-            primitiveMode = PrimitiveMode.Triangles;
+            primitiveMode = PrimitiveModes.Triangles;
             vertexCount = positions.Length;
 
             vao = new uint[1];

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CSharpGL
 {
 
-    public enum PolygonModeFace : uint
+    public enum PolygonModeFaces : uint
     {
         /// <summary>
         /// 表示显示模式将适用于物体的前向面（也就是物体能看到的面）
@@ -28,7 +28,7 @@ namespace CSharpGL
     /// <summary>
     /// The Polygon mode.
     /// </summary>
-    public enum PolygonMode : uint
+    public enum PolygonModes : uint
     {
         /// <summary>
         /// Render as points.

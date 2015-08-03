@@ -48,6 +48,8 @@
     <Compile Include="Enumerations\Hint.cs" />
     <Compile Include="Enumerations\PolygonMode.cs" />
     <Compile Include="Enumerations\PrimitiveMode.cs" />
+    <Compile Include="Enumerations\TexImage2D.cs" />
+    <Compile Include="Enumerations\GetTexImage.cs" />
     <Compile Include="Enumerations\TexSubImage2D.cs" />
     <Compile Include="GL.cs" />
     <Compile Include="GLU_Consts.cs" />
