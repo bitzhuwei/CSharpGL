@@ -68,28 +68,18 @@ namespace CSharpGL.Objects.Texts
             for (int i = 32; i < 128; i++)
             {
                 FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(i), fontHeight);
-
-                if (xoffset + bmpGlyph.obj.bitmap.width + 1 >= MaxWidth[0])
-                {
-                    yoffset += newRowHeight;
-                    newRowHeight = 0;
-                    xoffset = 0;
-                }
+                int width = 0, height = 0;
 
                 if (bmpGlyph.obj.bitmap.buffer != IntPtr.Zero)
                 {
-                    GL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, xoffset, yoffset, bmpGlyph.obj.bitmap.width, bmpGlyph.obj.bitmap.rows, TexSubImage2DFormats.Alpha, TexSubImage2DType.UnsignedByte, bmpGlyph.obj.bitmap.buffer);
-
                     int size = (bmpGlyph.obj.bitmap.width * bmpGlyph.obj.bitmap.rows);
                     byte[] bmp = new byte[size];
-                    UnmanagedArray<byte> bmpBytes = new UnmanagedArray<byte>(size);
                     Marshal.Copy(bmpGlyph.obj.bitmap.buffer, bmp, 0, bmp.Length);
-                    Marshal.Copy(bmp, 0, bmpBytes.Header, bmpBytes.Count);
 
                     // Next we expand the bitmap into an opengl texture
                     // 把glyph_bmp.bitmap的长宽扩展成2的指数倍
-                    int width = next_po2(bmpGlyph.obj.bitmap.width);
-                    int height = next_po2(bmpGlyph.obj.bitmap.rows);
+                    width = next_po2(bmpGlyph.obj.bitmap.width);
+                    height = next_po2(bmpGlyph.obj.bitmap.rows);
                     UnmanagedArray<byte> expanded = new UnmanagedArray<byte>(2 * width * height);
                     for (int row = 0; row < height; row++)
                     {
@@ -100,33 +90,50 @@ namespace CSharpGL.Objects.Texts
                                 (byte)0 : bmp[col + bmpGlyph.obj.bitmap.width * row];
                         }
                     }
+
+                    if (xoffset + width + 1 >= MaxWidth[0])
+                    {
+                        yoffset += newRowHeight;
+                        newRowHeight = 0;
+                        xoffset = 0;
+                    }
+
+                    GL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0,
+                        xoffset, yoffset,
+                        width, height,
+                        //bmpGlyph.obj.bitmap.width, bmpGlyph.obj.bitmap.rows,
+                        TexSubImage2DFormats.Alpha, TexSubImage2DType.UnsignedByte,
+                        expanded.Header);
+                    //bmpGlyph.obj.bitmap.buffer);
+
                     //{
-                    //    //  Create the bitmap.
-                    //    {
-                    //        System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
-                    //            width / 2,
-                    //            bmpGlyph.obj.bitmap.rows,
-                    //            width * 4 / 2,
-                    //            System.Drawing.Imaging.PixelFormat.Format32bppRgb,
-                    //            expanded.Header);
-                    //        bitmap.Save(string.Format("Atlas{0}.bmp", i));
-                    //    }
-                    //    {
-                    //        System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
-                    //            bmpGlyph.obj.bitmap.width,
-                    //            bmpGlyph.obj.bitmap.rows,
-                    //            bmpGlyph.obj.bitmap.width * 4,
-                    //            System.Drawing.Imaging.PixelFormat.Format32bppRgb,
-                    //            bmpBytes.Header);//bmpGlyph.obj.bitmap.buffer);
-                    //        bitmap.Save(string.Format("bmpGlyph{0}.bmp", i));
-                    //    }
+                    //  Create the bitmap.
+                    {
+                        System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
+                            width / 2,
+                            bmpGlyph.obj.bitmap.rows,
+                            width * 4 / 2,
+                            System.Drawing.Imaging.PixelFormat.Format32bppRgb,
+                            expanded.Header);
+                        bitmap.Save(string.Format("Atlas{0}.bmp", i));
+                    }
+                    //{
+                    //    System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
+                    //        bmpGlyph.obj.bitmap.width,
+                    //        bmpGlyph.obj.bitmap.rows,
+                    //        bmpGlyph.obj.bitmap.width * 4,
+                    //        System.Drawing.Imaging.PixelFormat.Format32bppRgb,
+                    //        bmpBytes.Header);//bmpGlyph.obj.bitmap.buffer);
+                    //    bitmap.Save(string.Format("bmpGlyph{0}.bmp", i));
+                    //}
                     //}
                 }
+
                 characterInfos[i].advanceX = bmpGlyph.glyphRec.advance.x >> 6;
                 characterInfos[i].advanceY = bmpGlyph.glyphRec.advance.y >> 6;
 
-                characterInfos[i].bitmapWidth = bmpGlyph.obj.bitmap.width;
-                characterInfos[i].bitmapHeight = bmpGlyph.obj.bitmap.rows;
+                characterInfos[i].bitmapWidth = width;
+                characterInfos[i].bitmapHeight = height;
 
                 characterInfos[i].bitmapLeft = bmpGlyph.obj.left;
                 characterInfos[i].bitmapTop = bmpGlyph.obj.top;
@@ -134,8 +141,8 @@ namespace CSharpGL.Objects.Texts
                 characterInfos[i].xoffset = xoffset / (float)widthOfTexture;
                 characterInfos[i].yoffset = yoffset / (float)heightOfTexture;
 
-                newRowHeight = Math.Max(newRowHeight, bmpGlyph.obj.bitmap.rows);
-                xoffset += bmpGlyph.obj.bitmap.width + 1;
+                newRowHeight = Math.Max(newRowHeight, height);
+                xoffset += width + 1;
             }
 
             // 把整个纹理输出为图片
@@ -200,15 +207,20 @@ namespace CSharpGL.Objects.Texts
             {
                 FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(i), fontHeight);
 
-                if (newRowWidth + bmpGlyph.obj.bitmap.width + 1 >= MaxWidth[0])
+                // Next we expand the bitmap into an opengl texture
+                // 把glyph_bmp.bitmap的长宽扩展成2的指数倍
+                int width = next_po2(bmpGlyph.obj.bitmap.width);
+                int height = next_po2(bmpGlyph.obj.bitmap.rows);
+
+                if (newRowWidth + width + 1 >= MaxWidth[0])
                 {
                     widthOfTexture = Math.Max(widthOfTexture, newRowWidth);
                     heightOfTexture += newRowHeight;
                     newRowWidth = 0;
                     newRowHeight = 0;
                 }
-                newRowWidth += bmpGlyph.obj.bitmap.width + 1;
-                newRowHeight = Math.Max(newRowHeight, bmpGlyph.obj.bitmap.rows);
+                newRowWidth += width + 1;
+                newRowHeight = Math.Max(newRowHeight, height);
             }
 
             widthOfTexture = Math.Max(widthOfTexture, newRowWidth);
