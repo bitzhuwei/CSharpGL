@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Winforms.Demo
 {
-    partial class FormRenderWithShaderVBOTexture
+    partial class FormModernMultiTextureFont
     {
         /// <summary>
         /// Required designer variable.

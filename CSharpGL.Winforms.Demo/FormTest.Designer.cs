@@ -32,7 +32,7 @@
             this.btnGLCanvas = new System.Windows.Forms.Button();
             this.btnLegacyMultiTextureFont = new System.Windows.Forms.Button();
             this.btnFreeTypeTextVAOElement = new System.Windows.Forms.Button();
-            this.btnRenderWithShaderVBOTexture = new System.Windows.Forms.Button();
+            this.btnModernMultiTextureFont = new System.Windows.Forms.Button();
             this.SuspendLayout();
             //
             // btnUnmanagedArray
@@ -87,25 +87,25 @@
             this.btnFreeTypeTextVAOElement.UseVisualStyleBackColor = true;
             this.btnFreeTypeTextVAOElement.Click += new System.EventHandler(this.btnFreeTypeTextVAOElement_Click);
             //
-            // btnRenderWithShaderVBOTexture
+            // btnModernMultiTextureFont
             //
-            this.btnRenderWithShaderVBOTexture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btnModernMultiTextureFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRenderWithShaderVBOTexture.Location = new System.Drawing.Point(16, 125);
-            this.btnRenderWithShaderVBOTexture.Margin = new System.Windows.Forms.Padding(4);
-            this.btnRenderWithShaderVBOTexture.Name = "btnRenderWithShaderVBOTexture";
-            this.btnRenderWithShaderVBOTexture.Size = new System.Drawing.Size(347, 29);
-            this.btnRenderWithShaderVBOTexture.TabIndex = 0;
-            this.btnRenderWithShaderVBOTexture.Text = "Shader+VBO+Texture";
-            this.btnRenderWithShaderVBOTexture.UseVisualStyleBackColor = true;
-            this.btnRenderWithShaderVBOTexture.Click += new System.EventHandler(this.btnRenderWithShaderVBOTexture_Click);
+            this.btnModernMultiTextureFont.Location = new System.Drawing.Point(16, 125);
+            this.btnModernMultiTextureFont.Margin = new System.Windows.Forms.Padding(4);
+            this.btnModernMultiTextureFont.Name = "btnModernMultiTextureFont";
+            this.btnModernMultiTextureFont.Size = new System.Drawing.Size(347, 29);
+            this.btnModernMultiTextureFont.TabIndex = 0;
+            this.btnModernMultiTextureFont.Text = "ModernMultiTextureFont";
+            this.btnModernMultiTextureFont.UseVisualStyleBackColor = true;
+            this.btnModernMultiTextureFont.Click += new System.EventHandler(this.btnModernMultiTextureFont_Click);
             //
             // FormTest
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 328);
-            this.Controls.Add(this.btnRenderWithShaderVBOTexture);
+            this.Controls.Add(this.btnModernMultiTextureFont);
             this.Controls.Add(this.btnFreeTypeTextVAOElement);
             this.Controls.Add(this.btnLegacyMultiTextureFont);
             this.Controls.Add(this.btnGLCanvas);
@@ -123,6 +123,6 @@
         private System.Windows.Forms.Button btnGLCanvas;
         private System.Windows.Forms.Button btnLegacyMultiTextureFont;
         private System.Windows.Forms.Button btnFreeTypeTextVAOElement;
-        private System.Windows.Forms.Button btnRenderWithShaderVBOTexture;
+        private System.Windows.Forms.Button btnModernMultiTextureFont;
     }
 }

@@ -14,11 +14,11 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Winforms.Demo
 {
-    class ShaderVBOTextureElementDemo : VAOElement
+    class ModernMultiTextureFont : VAOElement
     {
         ScientificCamera camera;
 
-        public ShaderVBOTextureElementDemo(ScientificCamera camera)
+        public ModernMultiTextureFont(ScientificCamera camera)
         {
             this.camera = camera;
         }

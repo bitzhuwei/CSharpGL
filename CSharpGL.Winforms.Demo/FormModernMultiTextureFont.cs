@@ -11,15 +11,15 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
 {
-    public partial class FormRenderWithShaderVBOTexture : Form
+    public partial class FormModernMultiTextureFont : Form
     {
         ScientificCamera camera = new ScientificCamera(CameraTypes.Ortho);
 
         SatelliteRotation satelliteRoration;
 
-        ShaderVBOTextureElementDemo element;
+        ModernMultiTextureFont element;
 
-        public FormRenderWithShaderVBOTexture()
+        public FormModernMultiTextureFont()
         {
             InitializeComponent();
 
@@ -30,7 +30,7 @@ namespace CSharpGL.Winforms.Demo
             perspectiveCamera.Far = 1000;
 
             satelliteRoration = new SatelliteRotation(camera);
-            element = new ShaderVBOTextureElementDemo(camera);
+            element = new ModernMultiTextureFont(camera);
             element.Initialize();
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;

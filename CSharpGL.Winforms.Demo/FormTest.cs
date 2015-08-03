@@ -36,9 +36,9 @@ namespace CSharpGL.Winforms.Demo
             (new FormLegacyMultiTextureFont()).Show();
         }
 
-        private void btnRenderWithShaderVBOTexture_Click(object sender, EventArgs e)
+        private void btnModernMultiTextureFont_Click(object sender, EventArgs e)
         {
-            (new FormRenderWithShaderVBOTexture()).Show();
+            (new FormModernMultiTextureFont()).Show();
         }
 
         private void btnFreeTypeTextVAOElement_Click(object sender, EventArgs e)
