@@ -30,7 +30,7 @@
         {
             this.btnUnmanagedArray = new System.Windows.Forms.Button();
             this.btnGLCanvas = new System.Windows.Forms.Button();
-            this.btnFreeType = new System.Windows.Forms.Button();
+            this.btnLegacyMultiTextureFont = new System.Windows.Forms.Button();
             this.btnFreeTypeTextVAOElement = new System.Windows.Forms.Button();
             this.btnRenderWithShaderVBOTexture = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -40,7 +40,7 @@
             this.btnUnmanagedArray.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUnmanagedArray.Location = new System.Drawing.Point(16, 15);
-            this.btnUnmanagedArray.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUnmanagedArray.Margin = new System.Windows.Forms.Padding(4);
             this.btnUnmanagedArray.Name = "btnUnmanagedArray";
             this.btnUnmanagedArray.Size = new System.Drawing.Size(347, 29);
             this.btnUnmanagedArray.TabIndex = 0;
@@ -53,7 +53,7 @@
             this.btnGLCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGLCanvas.Location = new System.Drawing.Point(16, 51);
-            this.btnGLCanvas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGLCanvas.Margin = new System.Windows.Forms.Padding(4);
             this.btnGLCanvas.Name = "btnGLCanvas";
             this.btnGLCanvas.Size = new System.Drawing.Size(347, 29);
             this.btnGLCanvas.TabIndex = 0;
@@ -61,25 +61,25 @@
             this.btnGLCanvas.UseVisualStyleBackColor = true;
             this.btnGLCanvas.Click += new System.EventHandler(this.btnGLCanvas_Click);
             //
-            // btnFreeType
+            // btnLegacyMultiTextureFont
             //
-            this.btnFreeType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btnLegacyMultiTextureFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFreeType.Location = new System.Drawing.Point(16, 88);
-            this.btnFreeType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnFreeType.Name = "btnFreeType";
-            this.btnFreeType.Size = new System.Drawing.Size(347, 29);
-            this.btnFreeType.TabIndex = 0;
-            this.btnFreeType.Text = "FreeType";
-            this.btnFreeType.UseVisualStyleBackColor = true;
-            this.btnFreeType.Click += new System.EventHandler(this.btnFreeType_Click);
+            this.btnLegacyMultiTextureFont.Location = new System.Drawing.Point(16, 88);
+            this.btnLegacyMultiTextureFont.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLegacyMultiTextureFont.Name = "btnLegacyMultiTextureFont";
+            this.btnLegacyMultiTextureFont.Size = new System.Drawing.Size(347, 29);
+            this.btnLegacyMultiTextureFont.TabIndex = 0;
+            this.btnLegacyMultiTextureFont.Text = "LegacyMultiTextureFont";
+            this.btnLegacyMultiTextureFont.UseVisualStyleBackColor = true;
+            this.btnLegacyMultiTextureFont.Click += new System.EventHandler(this.btnLegacyMultiTextureFont_Click);
             //
             // btnFreeTypeTextVAOElement
             //
             this.btnFreeTypeTextVAOElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFreeTypeTextVAOElement.Location = new System.Drawing.Point(16, 162);
-            this.btnFreeTypeTextVAOElement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFreeTypeTextVAOElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnFreeTypeTextVAOElement.Name = "btnFreeTypeTextVAOElement";
             this.btnFreeTypeTextVAOElement.Size = new System.Drawing.Size(347, 29);
             this.btnFreeTypeTextVAOElement.TabIndex = 0;
@@ -107,10 +107,10 @@
             this.ClientSize = new System.Drawing.Size(379, 328);
             this.Controls.Add(this.btnRenderWithShaderVBOTexture);
             this.Controls.Add(this.btnFreeTypeTextVAOElement);
-            this.Controls.Add(this.btnFreeType);
+            this.Controls.Add(this.btnLegacyMultiTextureFont);
             this.Controls.Add(this.btnGLCanvas);
             this.Controls.Add(this.btnUnmanagedArray);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormTest";
             this.Text = "FormTest";
             this.ResumeLayout(false);
@@ -121,7 +121,7 @@
 
         private System.Windows.Forms.Button btnUnmanagedArray;
         private System.Windows.Forms.Button btnGLCanvas;
-        private System.Windows.Forms.Button btnFreeType;
+        private System.Windows.Forms.Button btnLegacyMultiTextureFont;
         private System.Windows.Forms.Button btnFreeTypeTextVAOElement;
         private System.Windows.Forms.Button btnRenderWithShaderVBOTexture;
     }

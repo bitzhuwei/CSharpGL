@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
 {
-    public partial class FormFreeType : Form
+    public partial class FormLegacyMultiTextureFont : Form
     {
         private FreeTypeDemo freeTypeDemoElement;
-        public FormFreeType()
+        public FormLegacyMultiTextureFont()
         {
             InitializeComponent();
 

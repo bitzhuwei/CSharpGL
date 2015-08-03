@@ -10,18 +10,18 @@ namespace CSharpGL.Winforms.Demo
     class FreeTypeDemo
     {
         float cnt1;
-        private Font3D largeFont;
+        private LegacyMultiTextureFont largeFont;
         public FreeTypeDemo()
         {
             //largeFont = new Font3D("LuckiestGuy.ttf", 48);
-            largeFont = new Font3D("ebrima.ttf", 48);
+            largeFont = new LegacyMultiTextureFont("ebrima.ttf", 48);
 
         }
 
         public void render()
         {
 
-            //Clear display 
+            //Clear display
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             //Rotate something about

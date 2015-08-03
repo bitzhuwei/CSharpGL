@@ -53,11 +53,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormFreeType.cs">
+    <Compile Include="FormLegacyMultiTextureFont.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormFreeType.Designer.cs">
-      <DependentUpon>FormFreeType.cs</DependentUpon>
+    <Compile Include="FormLegacyMultiTextureFont.Designer.cs">
+      <DependentUpon>FormLegacyMultiTextureFont.cs</DependentUpon>
     </Compile>
     <Compile Include="FormFreeTypeTextVAOElement.cs">
       <SubType>Form</SubType>
@@ -85,8 +85,8 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormFreeType.resx">
-      <DependentUpon>FormFreeType.cs</DependentUpon>
+    <EmbeddedResource Include="FormLegacyMultiTextureFont.resx">
+      <DependentUpon>FormLegacyMultiTextureFont.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFreeTypeTextVAOElement.resx">
       <DependentUpon>FormFreeTypeTextVAOElement.cs</DependentUpon>

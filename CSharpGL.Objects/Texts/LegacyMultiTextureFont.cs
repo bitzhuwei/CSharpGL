@@ -8,7 +8,7 @@ namespace CSharpGL.Objects.Texts
     /// <summary>
     /// A true 3D Font
     /// </summary>
-    public class Font3D : IDisposable
+    public class LegacyMultiTextureFont : IDisposable
     {
         private uint list_base;
 
@@ -26,7 +26,7 @@ namespace CSharpGL.Objects.Texts
         /// </summary>
         /// <param name="font">TTF file name</param>
         /// <param name="size"></param>
-        public Font3D(string font, int size)
+        public LegacyMultiTextureFont(string font, int size)
         {
             // 保存字体大小，在渲染时用
             font_size = size;
