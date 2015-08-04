@@ -1,5 +1,6 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects.Cameras;
+using CSharpGL.Objects.Shaders;
 using CSharpGL.Objects.Texts.FreeTypes;
 using System;
 using System.Collections.Generic;
@@ -14,206 +15,324 @@ namespace CSharpGL.Objects.Texts
     {
         ScientificCamera camera;
 
-        Shaders.ShaderProgram shaderProgram;
-        uint attribute_coord;
-        int uniform_tex;
-        int uniform_color;
-
-        struct point
-        {
-            float x;
-            float y;
-            float s;
-            float t;
-
-            public point(float x, float y, float s, float t)
-            {
-                this.x = x; this.y = y;
-                this.s = s; this.t = t;
-            }
-        };
-
-        uint[] vbo = new uint[1];
-
-        private string fontFilename;
-        private FreeTypeLibrary library;
-        FreeTypeFace face;
-
-        private Atlas a48;
-
         public ModernSingleTextureFont(ScientificCamera camera, string fontFilename)
         {
             this.camera = camera;
             this.fontFilename = fontFilename;
         }
 
+        uint[] texture = new uint[1];
+
+        //  Constants that specify the attribute indexes.
+        internal uint coordLocation;
+        internal int transformMatrixLocation;
+        internal int colorLocation;
+        internal int texLocation;
+        private ShaderProgram shaderProgram;
+
+        private PrimitiveModes mode;
+        private uint[] vao;
+        private int vertexCount;
+        private int textureWidth;
+        private int textureHeight;
+
         protected override void DoInitialize()
         {
+            InitTexture();
+
             InitShaderProgram();
 
-            /* Initialize the FreeType2 library */
-            library = new FreeTypeLibrary();
-
-            /* Load a font */
-            face = new FreeTypeFace(this.library, fontFilename);//, size);
-
-            // Create the vertex buffer object
-            GL.GenBuffers(1, vbo);
-
-            /* Create texture atlasses for several font sizes */
-            a48 = new Atlas(face, 88, shaderProgram);
+            InitVAO();
         }
+
+        private void InitVAO()
+        {
+            this.mode = PrimitiveModes.Quads;
+            this.vertexCount = 4;
+
+            vao = new uint[1];
+            GL.GenVertexArrays(1, vao);
+            GL.BindVertexArray(vao[0]);
+
+            UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(this.vertexCount);
+            coord[0] = new vec4(0, 0, 0, 1);
+            coord[1] = new vec4(0, textureHeight, 0, 0);
+            coord[2] = new vec4(textureWidth, textureHeight, 1, 0);
+            coord[3] = new vec4(textureWidth, 0, 1, 1);
+            //coord[0] = new vec4(0, 0, 0, textureHeight);
+            //coord[1] = new vec4(0, 1, 0, 0);
+            //coord[2] = new vec4(1, 1, textureWidth, 0);
+            //coord[3] = new vec4(1, 0, textureWidth, textureHeight);
+            //UnmanagedArray<float> coord = new UnmanagedArray<float>(16);
+            //coord[0] = 0; coord[1] = 0; coord[2] = 0; coord[3] = textureHeight;
+            //coord[4] = 0; coord[5] = 1; coord[6] = 0; coord[7] = 0;
+            //coord[8] = 1; coord[9] = 1; coord[10] = textureWidth; coord[11] = 0;
+            //coord[12] = 1; coord[13] = 0; coord[14] = textureWidth; coord[15] = textureHeight;
+
+            //  Create a vertex buffer for the vertex data.
+            {
+                uint[] ids = new uint[1];
+                GL.GenBuffers(1, ids);
+                GL.BindBuffer(GL.GL_ARRAY_BUFFER, ids[0]);
+
+                GL.BufferData(BufferTarget.ArrayBuffer, coord, BufferUsage.StaticDraw);
+                GL.VertexAttribPointer(coordLocation, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+                GL.EnableVertexAttribArray(coordLocation);
+            }
+
+            //  Unbind the vertex array, we've finished specifying data for it.
+            GL.BindVertexArray(0);
+        }
+
+        private void InitTexture()
+        {
+            // We begin by creating a library pointer
+            // 初始化FreeType库：创建FreeType库指针
+            FreeTypeLibrary library = new FreeTypeLibrary();
+
+            // Once we have the library we create and load the font face
+            // 初始化字体库
+            FreeTypeFace face = new FreeTypeFace(library, this.fontFilename);
+
+            int fontHeight = 48;
+            int c = (int)'@';
+            //int c = (int)'&';
+
+            // 把字形转换为纹理
+            FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(c), fontHeight);
+            int size = (bmpGlyph.obj.bitmap.width * bmpGlyph.obj.bitmap.rows);
+            if (size <= 0) { throw new Exception(); }
+
+            byte[] bmp = new byte[size];
+            Marshal.Copy(bmpGlyph.obj.bitmap.buffer, bmp, 0, bmp.Length);
+
+            // Next we expand the bitmap into an opengl texture
+            // 把glyph_bmp.bitmap的长宽扩展成2的指数倍
+            this.textureWidth = next_po2(bmpGlyph.obj.bitmap.width);
+            this.textureHeight = next_po2(bmpGlyph.obj.bitmap.rows);
+            this.modelWidth = (float)bmpGlyph.obj.bitmap.width / (float)this.textureWidth;
+            this.modelHeight = (float)bmpGlyph.obj.bitmap.rows / (float)this.textureHeight;
+
+            UnmanagedArray<byte> expanded = new UnmanagedArray<byte>(2 * textureWidth * textureHeight);
+            for (int j = 0; j < textureHeight; j++)
+            {
+                for (int i = 0; i < textureWidth; i++)
+                {
+                    expanded[2 * (i + j * textureWidth)] = expanded[2 * (i + j * textureWidth) + 1] =
+                        (i >= bmpGlyph.obj.bitmap.width || j >= bmpGlyph.obj.bitmap.rows) ?
+                        (byte)0 : bmp[i + bmpGlyph.obj.bitmap.width * j];
+                }
+            }
+
+            // Set up some texture parameters for opengl
+            // 指定OpenGL的纹理参数
+            //    /* Create a texture that will be used to hold all ASCII glyphs */
+            //GL.ActiveTexture(GL.GL_TEXTURE0);
+            GL.GenTextures(1, texture);
+            GL.BindTexture(GL.GL_TEXTURE_2D, texture[0]);
+
+            GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
+            GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
+
+            // Create the texture
+            // 创建纹理
+            //GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
+            //0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded);
+            GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, textureWidth, textureHeight,
+                0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded.Header);
+            {
+                //  Create the bitmap.
+                System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
+                    textureWidth / 2,
+                    bmpGlyph.obj.bitmap.rows,
+                    textureWidth * 4 / 2,
+                    System.Drawing.Imaging.PixelFormat.Format32bppRgb,
+                    expanded.Header);
+                bitmap.Save(string.Format("ShaderVBOTextureElementDemo{0}.bmp", c));
+                bitmap.Dispose();
+            }
+            expanded = null;
+            bmp = null;
+
+            /* Clamping to edges is important to prevent artifacts when scaling */
+            GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
+            GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
+
+            /* Linear filtering usually looks best for text */
+            GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
+            GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
+
+            face.Dispose();
+            library.Dispose();
+        }
+
+        internal int next_po2(int a)
+        {
+            int rval = 1;
+            while (rval < a) rval <<= 1;
+            return rval;
+        }
+
+        //private void InitTexture()
+        //{
+        //    System.Drawing.Bitmap image = ManifestResourceLoader.LoadBitmap("64.bmp");
+
+        //    //	Get the maximum texture size supported by GL.
+        //    int[] textureMaxSize = { 0 };
+        //    GL.GetInteger(GetTarget.MaxTextureSize, textureMaxSize);
+
+        //    //	Find the target width and height sizes, which is just the highest
+        //    //	posible power of two that'll fit into the image.
+        //    this.width = textureMaxSize[0];
+        //    this.height = textureMaxSize[0];
+
+        //    for (int size = 1; size <= textureMaxSize[0]; size *= 2)
+        //    {
+        //        if (image.Width < size)
+        //        {
+        //            this.width = size / 2;
+        //            break;
+        //        }
+        //        if (image.Width == size)
+        //            this.width = size;
+        //    }
+
+        //    for (int size = 1; size <= textureMaxSize[0]; size *= 2)
+        //    {
+        //        if (image.Height < size)
+        //        {
+        //            this.height = size / 2;
+        //            break;
+        //        }
+        //        if (image.Height == size)
+        //            this.height = size;
+        //    }
+
+        //    //  If need to scale, do so now.
+        //    if (image.Width != this.width || image.Height != this.height)
+        //    {
+        //        //  Resize the image.
+        //        Image newImage = image.GetThumbnailImage(this.width, this.height, null, IntPtr.Zero);
+
+        //        //  Destory the old image, and reset.
+        //        image.Dispose();
+        //        image = (Bitmap)newImage;
+        //    }
+
+        //    /* Create a texture that will be used to hold all ASCII glyphs */
+        //    GL.ActiveTexture(GL.GL_TEXTURE0);
+        //    GL.GenTextures(1, texture);
+        //    GL.BindTexture(GL.GL_TEXTURE_2D, texture[0]);
+
+        //    this.width = image.Width;
+        //    this.height = image.Height;
+
+        //    //  Lock the image bits (so that we can pass them to OGL).
+        //    BitmapData bitmapData = image.LockBits(new Rectangle(0, 0, image.Width, image.Height),
+        //        ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+
+        //    //	Bind our texture object (make it the current texture).
+        //    GL.BindTexture(GL.GL_TEXTURE_2D, texture[0]);
+
+        //    //  Set the image data.
+        //    //GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA,
+        //    //targetWidth, targetHeight, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
+        //    //bitmapData.Scan0);
+        //    GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
+        //        0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, bitmapData.Scan0);
+
+        //    //  Unlock the image.
+        //    image.UnlockBits(bitmapData);
+
+        //    /* Clamping to edges is important to prevent artifacts when scaling */
+        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
+        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
+
+        //    /* Linear filtering usually looks best for text */
+        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
+        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
+        //}
 
         private void InitShaderProgram()
         {
-            this.shaderProgram = new Shaders.ShaderProgram();
-
+            //  Create the shader program.
             var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Texts.freetype.vert");
             var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Texts.freetype.frag");
-
+            var shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-            {
-                int location = shaderProgram.GetAttributeLocation("coord");
-                if (location >= 0) { this.attribute_coord = (uint)location; }
-                else { throw new Exception(); }
-            }
-            {
-                int location = shaderProgram.GetUniformLocation("tex");
-                if (location >= 0) { this.uniform_tex = (int)location; }
-                else { throw new Exception(); }
-            }
-            {
-                int location = shaderProgram.GetUniformLocation("color");
-                if (location >= 0) { this.uniform_color = (int)location; }
-                else { throw new Exception(); }
-            }
+            int coord = shaderProgram.GetAttributeLocation("coord");
+            if (coord >= 0) { this.coordLocation = (uint)coord; }
+            else { throw new Exception(); }
+
+            this.transformMatrixLocation = shaderProgram.GetUniformLocation("transformMatrix");
+            //this.transformMatrixLocation = GL.GetUniformLocation(shaderProgram.ShaderProgramObject, "transformMatrix");
+            if (this.transformMatrixLocation < 0) { throw new Exception(); }
+
+            this.colorLocation = shaderProgram.GetUniformLocation("color");
+            if (this.colorLocation < 0) { throw new Exception(); }
+
+            this.texLocation = GL.GetUniformLocation(shaderProgram.ShaderProgramObject, "tex");
+            if (this.texLocation < 0) { throw new Exception(); }
 
             shaderProgram.AssertValid();
-        }
 
-        static Random random = new Random();
-        public bool blend;
+            this.shaderProgram = shaderProgram;
+        }
 
         public override void Render(RenderModes renderMode)
         {
-            int[] viewport = new int[4];
-            GL.GetInteger(GetTarget.Viewport, viewport);
+            GL.BindTexture(GL.GL_TEXTURE_2D, this.texture[0]);
 
-            float sx = 2.0f / (float)viewport[2];//glutGet(GLUT_WINDOW_WIDTH);
-            float sy = 2.0f / (float)viewport[3];//glutGet(GLUT_WINDOW_HEIGHT);
-
-            //glUseProgram(program);
-            shaderProgram.Bind();
-
-            mat4 projectionMatrix = this.camera.GetProjectionMat4();
-            mat4 viewMatrix = this.camera.GetViewMat4();
-            mat4 matrix = projectionMatrix * viewMatrix;
-            shaderProgram.SetUniformMatrix4("transformMatrix", matrix.to_array());
-
-            /* Enable blending, necessary for our alpha texture */
             if (this.blend)
             {
                 GL.Enable(GL.GL_BLEND);
                 GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
             }
 
-            float[] black = { 0, 0, 0, 1 };
-            float[] red = { 1, 0, 0, 1 };
-            float[] transparent_green = { 0, 1, 0, 0.5f };
+            ShaderProgram shader = this.shaderProgram;
 
+            shader.Bind();
 
-            /* Set color to black */
-            //glUniform4fv(uniform_color, 1, black);
-            //GL.Uniform4(uniform_color, 1, black);
-            shaderProgram.SetUniformMatrix4("color", black);
+            mat4 projectionMatrix = this.camera.GetProjectionMat4();
+            //IPerspectiveCamera perspectiveCamera = this.camera as IPerspectiveCamera;
+            //mat4 projectionMatrix = perspectiveCamera.GetProjectionMat4();
+            //IOrthoCamera orthoCamera = this.camera as IOrthoCamera;
+            //mat4 projectionMatrix = orthoCamera.GetProjectionMat4();
+            mat4 viewMatrix = this.camera.GetViewMat4();
+            mat4 matrix = projectionMatrix * viewMatrix;
+            shader.SetUniformMatrix4("transformMatrix", matrix.to_array());
 
-            /* Effects of alignment */
-            //render_text("The Quick Brown Fox Jumps Over The Lazy Dog", ref a48, 320, 240,10, 10);
-            render_text("The Quick Brown Fox Jumps Over The Lazy Dog", ref a48, random.Next(0, 1000), random.Next(0, 1000), random.Next(0, 100), random.Next(0, 100));
+            const float scale = 3.5f;
+            rotation += 0.1f;
+            mat4 transformMatrix = glm.translate(mat4.identity(), new vec3(0, -2, 0));
+            transformMatrix = glm.rotate(transformMatrix, rotation, new vec3(0, 1, 0));
+            transformMatrix = glm.scale(transformMatrix, new vec3(scale, scale, scale));
+            //shader.SetUniformMatrix4("transformMatrix", transformMatrix.to_array());
 
-            render_text("The Quick Brown Fox Jumps Over The Lazy Dog", ref a48, -1 + 8 * sx, 1 - 50 * sy, sx, sy);
+            GL.Uniform1(this.texLocation, this.texture[0]);
+            //GL.Uniform4(this.colorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
+            GL.Uniform4(this.colorLocation, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
 
-            render_text("The Misaligned Fox Jumps Over The Lazy Dog", ref a48, -1 + 8.5f * sx, 1 - 100.5f * sy, sx, sy);
+            GL.BindVertexArray(vao[0]);
+            GL.DrawArrays(this.mode, 0, this.vertexCount);
+            GL.BindVertexArray(0);
 
-            /* Scaling the texture versus changing the font size */
-            render_text("The Small Texture Scaled Fox Jumps Over The Lazy Dog", ref a48, -1 + 8 * sx, 1 - 175 * sy, sx * 0.5f, sy * 0.5f);
-            //render_text("The Small Font Sized Fox Jumps Over The Lazy Dog", ref a24, -1 + 8 * sx, 1 - 200 * sy, sx, sy);
-            render_text("The Tiny Texture Scaled Fox Jumps Over The Lazy Dog", ref a48, -1 + 8 * sx, 1 - 235 * sy, sx * 0.25f, sy * 0.25f);
-            //render_text("The Tiny Font Sized Fox Jumps Over The Lazy Dog", ref  a12, -1 + 8 * sx, 1 - 250 * sy, sx, sy);
+            shader.Unbind();
 
-            /* Colors and transparency */
-            render_text("The Solid Black Fox Jumps Over The Lazy Dog", ref a48, -1 + 8 * sx, 1 - 430 * sy, sx, sy);
-
-            GL.Uniform4(uniform_color, 1, red);
-            shaderProgram.SetUniformMatrix4("color", red);
-            render_text("The Solid Red Fox Jumps Over The Lazy Dog", ref  a48, -1 + 8 * sx, 1 - 330 * sy, sx, sy);
-            render_text("The Solid Red Fox Jumps Over The Lazy Dog", ref  a48, -1 + 28 * sx, 1 - 450 * sy, sx, sy);
-
-            GL.Uniform4(uniform_color, 1, transparent_green);
-            shaderProgram.SetUniformMatrix4("color", transparent_green);
-            render_text("The Transparent Green Fox Jumps Over The Lazy Dog", ref a48, -1 + 8 * sx, 1 - 380 * sy, sx, sy);
-            render_text("The Transparent Green Fox Jumps Over The Lazy Dog", ref  a48, -1 + 18 * sx, 1 - 440 * sy, sx, sy);
             if (this.blend)
             {
                 GL.Disable(GL.GL_BLEND);
             }
+
+            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
         }
 
-        /// <summary>
-        /// Render text using the currently loaded font and currently set font size.
-        /// Rendering starts at coordinates (x, y), z is always 0.
-        /// The pixel coordinates that the FreeType2 library uses are scaled by (sx, sy).
-        /// </summary>
-        /// <param name="text"></param>
-        /// <param name="a"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="sx"></param>
-        /// <param name="sy"></param>
-        void render_text(string text, ref Atlas a, float x, float y, float sx, float sy)
-        {
-            /* Use the texture containing the atlas */
-            GL.BindTexture(GL.GL_TEXTURE_2D, a.tex[0]);
-            shaderProgram.SetUniform1("tex", 0);
-
-            /* Set up the VBO for our vertex data */
-            GL.EnableVertexAttribArray(attribute_coord);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, vbo[0]);
-            GL.VertexAttribPointer(attribute_coord, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-
-            UnmanagedArray<point> coords = new UnmanagedArray<point>(6 * text.Length);
-            int c = 0;
-
-            /* Loop through all characters */
-            foreach (var p in text)
-            {
-                /* Calculate the vertex and texture coordinates */
-                float x2 = x + a.characterInfos[p].bitmapLeft * sx;
-                float y2 = -y - a.characterInfos[p].bitmapTop * sy;
-                float w = a.characterInfos[p].bitmapWidth * sx;
-                float h = a.characterInfos[p].bitmapHeight * sy;
-
-                /* Advance the cursor to the start of the next character */
-                x += a.characterInfos[p].advanceX * sx;
-                y += a.characterInfos[p].advanceY * sy;
-
-                /* Skip glyphs that have no pixels */
-                if (w == 0 || h == 0) { continue; }
-
-                coords[c++] = new point(x2, -y2, a.characterInfos[p].xoffset, a.characterInfos[p].yoffset);
-                coords[c++] = new point(x2 + w, -y2, a.characterInfos[p].xoffset + a.characterInfos[p].bitmapWidth / a.widthOfTexture, a.characterInfos[p].yoffset);
-                coords[c++] = new point(x2, -y2 - h, a.characterInfos[p].xoffset, a.characterInfos[p].yoffset + a.characterInfos[p].bitmapHeight / a.heightOfTexture);
-                coords[c++] = new point(x2 + w, -y2, a.characterInfos[p].xoffset + a.characterInfos[p].bitmapWidth / a.widthOfTexture, a.characterInfos[p].yoffset);
-                coords[c++] = new point(x2, -y2 - h, a.characterInfos[p].xoffset, a.characterInfos[p].yoffset + a.characterInfos[p].bitmapHeight / a.heightOfTexture);
-                coords[c++] = new point(x2 + w, -y2 - h, a.characterInfos[p].xoffset + a.characterInfos[p].bitmapWidth / a.widthOfTexture, a.characterInfos[p].yoffset + a.characterInfos[p].bitmapHeight / a.heightOfTexture);
-            }
-
-            /* Draw all the character on the screen in one go */
-            GL.BufferData(BufferTarget.ArrayBuffer, coords, BufferUsage.DynamicDraw);
-            GL.DrawArrays(PrimitiveModes.Triangles, 0, c);
-
-            GL.DisableVertexAttribArray(attribute_coord);
-        }
+        float rotation = 0.0f;
+        public bool blend;
+        private float modelWidth;
+        private float modelHeight;
+        static Random random = new Random();
+        private string fontFilename;
     }
 }
