@@ -38,39 +38,33 @@ namespace CSharpGL.Objects.Texts
 
         private void InitVAO(string value)
         {
+            if (value == null) { value = string.Empty; }
+
             this.mode = PrimitiveModes.Quads;
             this.vertexCount = 4 * value.Length;
 
             //  Create a vertex buffer for the vertex data.
             UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(this.vertexCount);
-            if (value != null && value.Length > 0)
-            {
-                char c = value[0];
-                CharacterLocation location = characterInfos[c];
-                coord[0] = new vec4(0, 0, 0, location.xoffset);
-                coord[1] = new vec4(0, location.bitmapHeight, 0, 0);
-                coord[2] = new vec4(location.bitmapWidth, location.bitmapHeight, location.yoffset, 0);
-                coord[3] = new vec4(location.bitmapWidth, 0, location.xoffset, location.yoffset);
-            }
-            for (int i = 1; i < value.Length; i++)
+            for (int i = 0; i < value.Length; i++)
             {
                 char c = value[i];
-                char previousChar = (char)((int)c - 1);
                 CharacterLocation location = characterInfos[c];
-                CharacterLocation previousLocation = characterInfos[previousChar];
-
-                //coord[i * 4 + 0] = new vec4(0, 0, 0, 1);
-                //coord[i * 4 + 1] = new vec4(0, this.textureHeight, 0, 0);
-                //coord[i * 4 + 2] = new vec4(this.textureWidth, this.textureHeight, 1, 0);
-                //coord[i * 4 + 3] = new vec4(this.textureWidth, 0, 1, 1);
-                vec4 previous = coord[i * 4 + 0 - 4]; //new vec4(0, location.yoffset, 0, 1);
-                coord[i * 4 + 0] = previous + new vec4(previousLocation.bitmapWidth, 0, previousLocation.bitmapWidth, 0);
-                previous = coord[i * 4 + 1 - 4];
-                coord[i * 4 + 1] = previous + new vec4(previousLocation.bitmapWidth, 0, previousLocation.bitmapWidth, 0);
-                previous = coord[i * 4 + 2 - 4];
-                coord[i * 4 + 2] = previous + new vec4(previousLocation.bitmapWidth, 0, previousLocation.bitmapWidth, 0);
-                previous = coord[i * 4 + 3 - 4];
-                coord[i * 4 + 3] = previous + new vec4(previousLocation.bitmapWidth, 0, previousLocation.bitmapWidth, 0);
+                coord[i * 4 + 0] = new vec4(i + 0, 0,
+                   location.xoffset, location.yoffset);
+                coord[i * 4 + 1] = new vec4(i + 1, 0,
+                    location.xoffset + location.bitmapWidth / this.textureWidth, location.yoffset);
+                coord[i * 4 + 2] = new vec4(i + 1, 1,
+                    location.xoffset + location.bitmapWidth / this.textureWidth, location.yoffset + location.bitmapTop / this.textureHeight);
+                coord[i * 4 + 3] = new vec4(i + 0, 1,
+                    location.xoffset, location.yoffset + location.bitmapTop / this.textureHeight);
+                //coord[i * 4 + 0] = new vec4(i + 0, 0,
+                //    location.xoffset, location.yoffset);
+                //coord[i * 4 + 1] = new vec4(i + 0, 1,
+                //    location.xoffset + location.bitmapWidth / this.textureWidth, location.yoffset);
+                //coord[i * 4 + 2] = new vec4(i + 1, 1,
+                //    location.xoffset + location.bitmapWidth / this.textureWidth, location.yoffset + location.bitmapTop / this.textureHeight);
+                //coord[i * 4 + 3] = new vec4(i + 1, 0,
+                //    location.xoffset, location.yoffset + location.bitmapTop / this.textureHeight);
             }
 
             if (vao[0] != 0)
@@ -123,33 +117,8 @@ namespace CSharpGL.Objects.Texts
 
             InitShaderProgram();
 
-            InitVAO("hello ModernSingleTextureFont.cs");
+            InitVAO("0=");
         }
-
-        //private void InitVAO()
-        //{
-        //    this.mode = PrimitiveModes.Quads;
-        //    this.vertexCount = 4;
-
-        //    GL.GenVertexArrays(1, vao);
-        //    GL.BindVertexArray(vao[0]);
-
-        //    //  Create a vertex buffer for the vertex data.
-        //    UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(this.vertexCount);
-        //    coord[0] = new vec4(0, 0, 0, 1);
-        //    coord[1] = new vec4(0, this.textureHeight, 0, 0);
-        //    coord[2] = new vec4(this.textureWidth, this.textureHeight, 1, 0);
-        //    coord[3] = new vec4(this.textureWidth, 0, 1, 1);
-
-        //    uint[] ids = new uint[1];
-        //    GL.GenBuffers(1, ids);
-        //    GL.BindBuffer(GL.GL_ARRAY_BUFFER, ids[0]);
-        //    GL.BufferData(BufferTarget.ArrayBuffer, coord, BufferUsage.StaticDraw);
-        //    GL.VertexAttribPointer(coordLocation, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-        //    GL.EnableVertexAttribArray(coordLocation);
-
-        //    GL.BindVertexArray(0);
-        //}
 
         private void InitTexture()
         {
@@ -268,7 +237,8 @@ namespace CSharpGL.Objects.Texts
 
             int newRowHeight = 0;
 
-            for (int i = 32; i < 128; i++)
+            //for (int i = (int)'0'; i < (int)'9' + 1; i++)
+            for (int i = 0; i < 128; i++)
             {
                 char c = Convert.ToChar(i);
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, this.fontHeight);
@@ -334,8 +304,8 @@ namespace CSharpGL.Objects.Texts
             {
                 for (int i = 0; i < characterInfos.Length; i++)
                 {
-                    sw.WriteLine(i);
-                    sw.Write(characterInfos[i]);
+                    sw.Write(i); sw.Write(": "); sw.WriteLine(Convert.ToChar(i));
+                    sw.WriteLine(characterInfos[i]);
                 }
             }
 
@@ -350,6 +320,7 @@ namespace CSharpGL.Objects.Texts
             int newRowWidth = 0;
             int newRowHeight = 0;
 
+            //for (int i = (int)'0'; i < (int)'9' + 1; i++)
             for (int i = 0; i < 128; i++)
             {
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(i), fontHeight);
@@ -432,10 +403,6 @@ namespace CSharpGL.Objects.Texts
             shaderProgram.SetUniform1("tex", texture[0]);
 
             mat4 projectionMatrix = this.camera.GetProjectionMat4();
-            //IPerspectiveCamera perspectiveCamera = this.camera as IPerspectiveCamera;
-            //mat4 projectionMatrix = perspectiveCamera.GetProjectionMat4();
-            //IOrthoCamera orthoCamera = this.camera as IOrthoCamera;
-            //mat4 projectionMatrix = orthoCamera.GetProjectionMat4();
             mat4 viewMatrix = this.camera.GetViewMat4();
             mat4 matrix = projectionMatrix * viewMatrix;
             shader.SetUniformMatrix4("transformMatrix", matrix.to_array());
