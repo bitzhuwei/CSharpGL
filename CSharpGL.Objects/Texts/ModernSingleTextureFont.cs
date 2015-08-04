@@ -4,6 +4,8 @@ using CSharpGL.Objects.Shaders;
 using CSharpGL.Objects.Texts.FreeTypes;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -15,13 +17,17 @@ namespace CSharpGL.Objects.Texts
     {
         ScientificCamera camera;
 
-        public ModernSingleTextureFont(ScientificCamera camera, string fontFilename)
+        public ModernSingleTextureFont(ScientificCamera camera, string fontFilename, int fontHeight)
         {
             this.camera = camera;
             this.fontFilename = fontFilename;
+            this.fontHeight = fontHeight;
         }
 
         uint[] texture = new uint[1];
+        private int textureWidth;
+        private int textureHeight;
+        CharacterInformation[] characterInfos = new CharacterInformation[128];
 
         //  Constants that specify the attribute indexes.
         internal uint coordLocation;
@@ -33,8 +39,7 @@ namespace CSharpGL.Objects.Texts
         private PrimitiveModes mode;
         private uint[] vao;
         private int vertexCount;
-        private int textureWidth;
-        private int textureHeight;
+
 
         protected override void DoInitialize()
         {
@@ -54,31 +59,19 @@ namespace CSharpGL.Objects.Texts
             GL.GenVertexArrays(1, vao);
             GL.BindVertexArray(vao[0]);
 
+            //  Create a vertex buffer for the vertex data.
             UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(this.vertexCount);
             coord[0] = new vec4(0, 0, 0, 1);
             coord[1] = new vec4(0, textureHeight, 0, 0);
             coord[2] = new vec4(textureWidth, textureHeight, 1, 0);
             coord[3] = new vec4(textureWidth, 0, 1, 1);
-            //coord[0] = new vec4(0, 0, 0, textureHeight);
-            //coord[1] = new vec4(0, 1, 0, 0);
-            //coord[2] = new vec4(1, 1, textureWidth, 0);
-            //coord[3] = new vec4(1, 0, textureWidth, textureHeight);
-            //UnmanagedArray<float> coord = new UnmanagedArray<float>(16);
-            //coord[0] = 0; coord[1] = 0; coord[2] = 0; coord[3] = textureHeight;
-            //coord[4] = 0; coord[5] = 1; coord[6] = 0; coord[7] = 0;
-            //coord[8] = 1; coord[9] = 1; coord[10] = textureWidth; coord[11] = 0;
-            //coord[12] = 1; coord[13] = 0; coord[14] = textureWidth; coord[15] = textureHeight;
+            uint[] ids = new uint[1];
+            GL.GenBuffers(1, ids);
+            GL.BindBuffer(GL.GL_ARRAY_BUFFER, ids[0]);
 
-            //  Create a vertex buffer for the vertex data.
-            {
-                uint[] ids = new uint[1];
-                GL.GenBuffers(1, ids);
-                GL.BindBuffer(GL.GL_ARRAY_BUFFER, ids[0]);
-
-                GL.BufferData(BufferTarget.ArrayBuffer, coord, BufferUsage.StaticDraw);
-                GL.VertexAttribPointer(coordLocation, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-                GL.EnableVertexAttribArray(coordLocation);
-            }
+            GL.BufferData(BufferTarget.ArrayBuffer, coord, BufferUsage.StaticDraw);
+            GL.VertexAttribPointer(coordLocation, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+            GL.EnableVertexAttribArray(coordLocation);
 
             //  Unbind the vertex array, we've finished specifying data for it.
             GL.BindVertexArray(0);
@@ -86,73 +79,99 @@ namespace CSharpGL.Objects.Texts
 
         private void InitTexture()
         {
-            // We begin by creating a library pointer
             // 初始化FreeType库：创建FreeType库指针
             FreeTypeLibrary library = new FreeTypeLibrary();
 
-            // Once we have the library we create and load the font face
             // 初始化字体库
             FreeTypeFace face = new FreeTypeFace(library, this.fontFilename);
 
-            int fontHeight = 48;
-            int c = (int)'@';
-            //int c = (int)'&';
+            int[] maxTextureWidth = new int[1];
+            //	Get the maximum texture size supported by GL.
+            GL.GetInteger(GetTarget.MaxTextureSize, maxTextureWidth);
 
-            // 把字形转换为纹理
-            FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(c), fontHeight);
-            int size = (bmpGlyph.obj.bitmap.width * bmpGlyph.obj.bitmap.rows);
-            if (size <= 0) { throw new Exception(); }
+            int widthOfTexture, heightOfTexture;
+            FindTextureSize(face, this.fontHeight, maxTextureWidth[0], out widthOfTexture, out heightOfTexture);
 
-            byte[] bmp = new byte[size];
-            Marshal.Copy(bmpGlyph.obj.bitmap.buffer, bmp, 0, bmp.Length);
+            System.Drawing.Bitmap bigBitmap = GetBigBitmap(face, maxTextureWidth[0], widthOfTexture, heightOfTexture);
 
-            // Next we expand the bitmap into an opengl texture
-            // 把glyph_bmp.bitmap的长宽扩展成2的指数倍
-            this.textureWidth = next_po2(bmpGlyph.obj.bitmap.width);
-            this.textureHeight = next_po2(bmpGlyph.obj.bitmap.rows);
-            this.modelWidth = (float)bmpGlyph.obj.bitmap.width / (float)this.textureWidth;
-            this.modelHeight = (float)bmpGlyph.obj.bitmap.rows / (float)this.textureHeight;
+            CreateTextureObject(bigBitmap);
 
-            UnmanagedArray<byte> expanded = new UnmanagedArray<byte>(2 * textureWidth * textureHeight);
-            for (int j = 0; j < textureHeight; j++)
+            bigBitmap.Dispose();
+
+            face.Dispose();
+            library.Dispose();
+        }
+
+        private void CreateTextureObject(System.Drawing.Bitmap image)
+        {
+            //	Get the maximum texture size supported by OpenGL.
+            int[] textureMaxSize = { 0 };
+            GL.GetInteger(GetTarget.MaxTextureSize, textureMaxSize);
+
+            //	Find the target width and height sizes, which is just the highest
+            //	posible power of two that'll fit into the image.
+            this.textureWidth = textureMaxSize[0];
+            this.textureHeight = textureMaxSize[0];
+
+            for (int size = 1; size <= textureMaxSize[0]; size *= 2)
             {
-                for (int i = 0; i < textureWidth; i++)
+                if (image.Width < size)
                 {
-                    expanded[2 * (i + j * textureWidth)] = expanded[2 * (i + j * textureWidth) + 1] =
-                        (i >= bmpGlyph.obj.bitmap.width || j >= bmpGlyph.obj.bitmap.rows) ?
-                        (byte)0 : bmp[i + bmpGlyph.obj.bitmap.width * j];
+                    this.textureWidth = size / 2;
+                    break;
                 }
+                if (image.Width == size)
+                    this.textureWidth = size;
+
             }
 
-            // Set up some texture parameters for opengl
-            // 指定OpenGL的纹理参数
-            //    /* Create a texture that will be used to hold all ASCII glyphs */
+            for (int size = 1; size <= textureMaxSize[0]; size *= 2)
+            {
+                if (image.Height < size)
+                {
+                    this.textureHeight = size / 2;
+                    break;
+                }
+                if (image.Height == size)
+                    this.textureHeight = size;
+            }
+
+            System.Drawing.Bitmap newImage = image;
+
+            //  If need to scale, do so now.
+            if (image.Width != this.textureWidth || image.Height != this.textureHeight)
+            {
+                //  Resize the image.
+                newImage = (System.Drawing.Bitmap)image.GetThumbnailImage(this.textureWidth, this.textureHeight, null, IntPtr.Zero);
+            }
+
+            //  Lock the image bits (so that we can pass them to OGL).
+            BitmapData bitmapData = newImage.LockBits(new Rectangle(0, 0, newImage.Width, newImage.Height),
+                ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+
             //GL.ActiveTexture(GL.GL_TEXTURE0);
             GL.GenTextures(1, texture);
             GL.BindTexture(GL.GL_TEXTURE_2D, texture[0]);
 
-            GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
-            GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
+            GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA,
+                newImage.Width, newImage.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
+                bitmapData.Scan0);
 
-            // Create the texture
-            // 创建纹理
-            //GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
-            //0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded);
-            GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, textureWidth, textureHeight,
-                0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded.Header);
+            //  Unlock the image.
+            newImage.UnlockBits(bitmapData);
+
+            //  Dispose of the image file.
+            if (newImage != image)
             {
-                //  Create the bitmap.
-                System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
-                    textureWidth / 2,
-                    bmpGlyph.obj.bitmap.rows,
-                    textureWidth * 4 / 2,
-                    System.Drawing.Imaging.PixelFormat.Format32bppRgb,
-                    expanded.Header);
-                bitmap.Save(string.Format("ShaderVBOTextureElementDemo{0}.bmp", c));
-                bitmap.Dispose();
+                newImage.Dispose();
             }
-            expanded = null;
-            bmp = null;
+
+            //GL.TexImage2D(TexImage2DTargets.Texture2D, 0,
+            //    TexImage2DFormats.Alpha, widthOfTexture, heightOfTexture,
+            //    0, TexImage2DFormats.Alpha, TexImage2DTypes.UnsignedByte, IntPtr.Zero);
+
+            /* We require 1 byte alignment when uploading texture data */
+            GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
 
             /* Clamping to edges is important to prevent artifacts when scaling */
             GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
@@ -162,9 +181,122 @@ namespace CSharpGL.Objects.Texts
             GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
             GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
 
-            face.Dispose();
-            library.Dispose();
         }
+
+        private System.Drawing.Bitmap GetBigBitmap(FreeTypeFace face, int maxTextureWidth, int widthOfTexture, int heightOfTexture)
+        {
+            System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(widthOfTexture, heightOfTexture);
+            Graphics graphics = Graphics.FromImage(bigBitmap);
+
+            /* Paste all glyph bitmaps into the texture, remembering the offset */
+            int xoffset = 0;
+            int yoffset = 0;
+
+            int newRowHeight = 0;
+
+            for (int i = 32; i < 128; i++)
+            {
+                char c = Convert.ToChar(i);
+                FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, this.fontHeight);
+                bool zeroSize = (glyph.obj.bitmap.rows == 0 && glyph.obj.bitmap.width == 0);
+                bool zeroBuffer = glyph.obj.bitmap.buffer == IntPtr.Zero;
+                if (zeroSize && (!zeroBuffer)) { throw new Exception(); }
+                if ((!zeroSize) && zeroBuffer) { throw new Exception(); }
+                int currentWidth = 0;
+                int currentHeight = 0;
+                if (!zeroSize)
+                {
+                    int size = glyph.obj.bitmap.width * glyph.obj.bitmap.rows;
+                    byte[] byteBitmap = new byte[size];
+                    Marshal.Copy(glyph.obj.bitmap.buffer, byteBitmap, 0, byteBitmap.Length);
+                    currentWidth = next_po2(glyph.obj.bitmap.width);
+                    currentHeight = next_po2(glyph.obj.bitmap.rows);
+                    UnmanagedArray<byte> expanded = new UnmanagedArray<byte>(2 * currentWidth * currentHeight);
+                    for (int row = 0; row < currentHeight; row++)
+                    {
+                        for (int col = 0; col < currentWidth; col++)
+                        {
+                            expanded[2 * (col + row * currentWidth)] = expanded[2 * (col + row * currentWidth) + 1] =
+                                (col >= glyph.obj.bitmap.width || row >= glyph.obj.bitmap.rows) ?
+                                (byte)0 : byteBitmap[col + glyph.obj.bitmap.width * row];
+                        }
+                    }
+
+                    if (xoffset + currentWidth + 1 >= maxTextureWidth)
+                    {
+                        yoffset += newRowHeight;
+                        newRowHeight = 0;
+                        xoffset = 0;
+                    }
+
+                    System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
+                        currentWidth / 2,
+                        glyph.obj.bitmap.rows,
+                        currentWidth * 4 / 2,
+                        System.Drawing.Imaging.PixelFormat.Format32bppRgb,
+                        expanded.Header);
+                    graphics.DrawImage(bitmap, xoffset, yoffset);
+                }
+
+                characterInfos[i].advanceX = glyph.glyphRec.advance.x >> 6;
+                characterInfos[i].advanceY = glyph.glyphRec.advance.y >> 6;
+
+                characterInfos[i].bitmapWidth = currentWidth;
+                characterInfos[i].bitmapHeight = currentHeight;
+
+                characterInfos[i].bitmapLeft = glyph.obj.left;
+                characterInfos[i].bitmapTop = glyph.obj.top;
+
+                characterInfos[i].xoffset = xoffset / (float)widthOfTexture;
+                characterInfos[i].yoffset = yoffset / (float)heightOfTexture;
+
+                newRowHeight = Math.Max(newRowHeight, currentHeight);
+                xoffset += currentWidth + 1;
+            }
+
+            graphics.Dispose();
+
+            return bigBitmap;
+        }
+
+        private void FindTextureSize(FreeTypeFace face, int fontHeight, int maxTextureWidth, out int widthOfTexture, out int heightOfTexture)
+        {
+            widthOfTexture = 0;
+            heightOfTexture = 0;
+
+            int newRowWidth = 0;
+            int newRowHeight = 0;
+
+            for (int i = 0; i < 128; i++)
+            {
+                FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(i), fontHeight);
+                bool zeroSize = (glyph.obj.bitmap.rows == 0 && glyph.obj.bitmap.width == 0);
+                bool zeroBuffer = glyph.obj.bitmap.buffer == IntPtr.Zero;
+                if (zeroSize && (!zeroBuffer)) { throw new Exception(); }
+                if ((!zeroSize) && zeroBuffer) { throw new Exception(); }
+                if (zeroSize) { continue; }
+
+                // Next we expand the bitmap into an opengl texture
+                // 把glyph_bmp.bitmap的长宽扩展成2的指数倍
+                int width = next_po2(glyph.obj.bitmap.width);
+                int height = next_po2(glyph.obj.bitmap.rows);
+
+                if (newRowWidth + width + 1 >= maxTextureWidth)
+                {
+                    widthOfTexture = Math.Max(widthOfTexture, newRowWidth);
+                    heightOfTexture += newRowHeight;
+                    newRowWidth = 0;
+                    newRowHeight = 0;
+                }
+
+                newRowWidth += width + 1;
+                newRowHeight = Math.Max(newRowHeight, height);
+            }
+
+            widthOfTexture = Math.Max(widthOfTexture, newRowWidth);
+            heightOfTexture += newRowHeight;
+        }
+
 
         internal int next_po2(int a)
         {
@@ -172,86 +304,6 @@ namespace CSharpGL.Objects.Texts
             while (rval < a) rval <<= 1;
             return rval;
         }
-
-        //private void InitTexture()
-        //{
-        //    System.Drawing.Bitmap image = ManifestResourceLoader.LoadBitmap("64.bmp");
-
-        //    //	Get the maximum texture size supported by GL.
-        //    int[] textureMaxSize = { 0 };
-        //    GL.GetInteger(GetTarget.MaxTextureSize, textureMaxSize);
-
-        //    //	Find the target width and height sizes, which is just the highest
-        //    //	posible power of two that'll fit into the image.
-        //    this.width = textureMaxSize[0];
-        //    this.height = textureMaxSize[0];
-
-        //    for (int size = 1; size <= textureMaxSize[0]; size *= 2)
-        //    {
-        //        if (image.Width < size)
-        //        {
-        //            this.width = size / 2;
-        //            break;
-        //        }
-        //        if (image.Width == size)
-        //            this.width = size;
-        //    }
-
-        //    for (int size = 1; size <= textureMaxSize[0]; size *= 2)
-        //    {
-        //        if (image.Height < size)
-        //        {
-        //            this.height = size / 2;
-        //            break;
-        //        }
-        //        if (image.Height == size)
-        //            this.height = size;
-        //    }
-
-        //    //  If need to scale, do so now.
-        //    if (image.Width != this.width || image.Height != this.height)
-        //    {
-        //        //  Resize the image.
-        //        Image newImage = image.GetThumbnailImage(this.width, this.height, null, IntPtr.Zero);
-
-        //        //  Destory the old image, and reset.
-        //        image.Dispose();
-        //        image = (Bitmap)newImage;
-        //    }
-
-        //    /* Create a texture that will be used to hold all ASCII glyphs */
-        //    GL.ActiveTexture(GL.GL_TEXTURE0);
-        //    GL.GenTextures(1, texture);
-        //    GL.BindTexture(GL.GL_TEXTURE_2D, texture[0]);
-
-        //    this.width = image.Width;
-        //    this.height = image.Height;
-
-        //    //  Lock the image bits (so that we can pass them to OGL).
-        //    BitmapData bitmapData = image.LockBits(new Rectangle(0, 0, image.Width, image.Height),
-        //        ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-
-        //    //	Bind our texture object (make it the current texture).
-        //    GL.BindTexture(GL.GL_TEXTURE_2D, texture[0]);
-
-        //    //  Set the image data.
-        //    //GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA,
-        //    //targetWidth, targetHeight, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
-        //    //bitmapData.Scan0);
-        //    GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
-        //        0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, bitmapData.Scan0);
-
-        //    //  Unlock the image.
-        //    image.UnlockBits(bitmapData);
-
-        //    /* Clamping to edges is important to prevent artifacts when scaling */
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
-
-        //    /* Linear filtering usually looks best for text */
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
-        //}
 
         private void InitShaderProgram()
         {
@@ -294,6 +346,8 @@ namespace CSharpGL.Objects.Texts
 
             shader.Bind();
 
+            shaderProgram.SetUniform1("tex", texture[0]);
+
             mat4 projectionMatrix = this.camera.GetProjectionMat4();
             //IPerspectiveCamera perspectiveCamera = this.camera as IPerspectiveCamera;
             //mat4 projectionMatrix = perspectiveCamera.GetProjectionMat4();
@@ -334,5 +388,7 @@ namespace CSharpGL.Objects.Texts
         private float modelHeight;
         static Random random = new Random();
         private string fontFilename;
+        private int fontHeight;
     }
+
 }

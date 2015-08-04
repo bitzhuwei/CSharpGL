@@ -23,15 +23,23 @@ namespace CSharpGL.Winforms.Demo
         {
             InitializeComponent();
 
-            IPerspectiveCamera perspectiveCamera = this.camera as IPerspectiveCamera;
-            perspectiveCamera.FieldOfView = 60;
+            IPerspectiveCamera perspectiveCamera = this.camera;
+            perspectiveCamera.FieldOfView = 60f;
             perspectiveCamera.AspectRatio = (double)this.glCanvas1.Width / (double)this.glCanvas1.Height;
             perspectiveCamera.Near = 0.01;
-            perspectiveCamera.Far = 1000;
+            perspectiveCamera.Far = 10000;
+
+            IOrthoCamera orthoCamera = this.camera;
+            orthoCamera.Left = -this.glCanvas1.Width / 2;
+            orthoCamera.Right = this.glCanvas1.Width / 2;
+            orthoCamera.Bottom = -this.glCanvas1.Height / 2;
+            orthoCamera.Top = this.glCanvas1.Height / 2;
+            orthoCamera.Near = -10000;
+            orthoCamera.Far = 10000;
 
             satelliteRoration = new SatelliteRotation(camera);
 
-            element = new ModernSingleTextureFont(camera, "LuckiestGuy.ttf");
+            element = new ModernSingleTextureFont(camera, "LuckiestGuy.ttf", 48);
 
             element.Initialize();
 

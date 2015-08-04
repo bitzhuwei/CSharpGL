@@ -61,7 +61,6 @@
     <Compile Include="Cameras\SatelliteRotation.cs" />
     <Compile Include="Cameras\ScientificCamera.cs" />
     <Compile Include="Cameras\ViewTypes.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="GLColor.cs" />
     <Compile Include="Shaders\ShaderCompilationException.cs" />
     <Compile Include="Shaders\Shader.cs" />
