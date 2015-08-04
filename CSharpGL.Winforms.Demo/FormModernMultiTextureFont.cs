@@ -1,4 +1,5 @@
 ﻿using CSharpGL.Objects.Cameras;
+using CSharpGL.Objects.Texts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +32,7 @@ namespace CSharpGL.Winforms.Demo
             perspectiveCamera.Far = 1000;
 
             satelliteRoration = new SatelliteRotation(camera);
-            element = new ModernMultiTextureFont(camera);
+            element = new ModernMultiTextureFont(camera, "simsun.ttf");
             element.Initialize();
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;

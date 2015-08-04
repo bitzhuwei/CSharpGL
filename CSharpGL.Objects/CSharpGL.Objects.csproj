@@ -62,6 +62,7 @@
     <Compile Include="Cameras\ScientificCamera.cs" />
     <Compile Include="Cameras\ViewTypes.cs" />
     <Compile Include="GLColor.cs" />
+    <Compile Include="Texts\ModernMultiTextureFont.cs" />
     <Compile Include="Shaders\ShaderCompilationException.cs" />
     <Compile Include="Shaders\Shader.cs" />
     <Compile Include="ManifestResourceLoader.cs" />

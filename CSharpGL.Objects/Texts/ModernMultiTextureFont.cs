@@ -12,15 +12,16 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Winforms.Demo
+namespace CSharpGL.Objects.Texts
 {
-    class ModernMultiTextureFont : VAOElement
+    public class ModernMultiTextureFont : VAOElement
     {
         ScientificCamera camera;
 
-        public ModernMultiTextureFont(ScientificCamera camera)
+        public ModernMultiTextureFont(ScientificCamera camera, string fontFilename)
         {
             this.camera = camera;
+            this.fontFilename = fontFilename;
         }
 
         uint[] texture = new uint[1];
@@ -85,7 +86,7 @@ namespace CSharpGL.Winforms.Demo
 
             // Once we have the library we create and load the font face
             // 初始化字体库
-            FreeTypeFace face = new FreeTypeFace(library, "LuckiestGuy.ttf");
+            FreeTypeFace face = new FreeTypeFace(library, this.fontFilename);
 
             int fontHeight = 48;
             int c = (int)'@';
@@ -167,8 +168,8 @@ namespace CSharpGL.Winforms.Demo
         private void InitShaderProgram()
         {
             //  Create the shader program.
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"freetype.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"freetype.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Texts.freetype.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Texts.freetype.frag");
             var shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
@@ -240,5 +241,6 @@ namespace CSharpGL.Winforms.Demo
         private float modelWidth;
         private float modelHeight;
         static Random random = new Random();
+        private string fontFilename;
     }
 }
