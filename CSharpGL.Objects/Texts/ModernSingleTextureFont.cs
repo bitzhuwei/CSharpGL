@@ -20,7 +20,8 @@ namespace CSharpGL.Objects.Texts
     public class ModernSingleTextureFont : VAOElement
     {
 
-        const int maxChar = char.MaxValue;//128;
+        //const int maxChar = char.MaxValue;
+        const int maxChar = 128;
 
         private string text = string.Empty;
 
@@ -208,7 +209,7 @@ namespace CSharpGL.Objects.Texts
             //    0, TexImage2DFormats.Alpha, TexImage2DTypes.UnsignedByte, IntPtr.Zero);
 
             /* We require 1 byte alignment when uploading texture data */
-            GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
+            //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
 
             /* Clamping to edges is important to prevent artifacts when scaling */
             GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
@@ -417,8 +418,8 @@ namespace CSharpGL.Objects.Texts
             //shader.SetUniformMatrix4("transformMatrix", transformMatrix.to_array());
 
             GL.Uniform1(this.texLocation, this.texture[0]);
-            //GL.Uniform4(this.colorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
-            GL.Uniform4(this.colorLocation, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+            GL.Uniform4(this.colorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
+            //GL.Uniform4(this.colorLocation, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
 
             GL.BindVertexArray(vao[0]);
             GL.DrawArrays(this.mode, 0, this.vertexCount);

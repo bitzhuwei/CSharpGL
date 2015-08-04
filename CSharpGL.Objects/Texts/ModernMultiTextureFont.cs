@@ -199,7 +199,8 @@ namespace CSharpGL.Objects.Texts
             if (this.blend)
             {
                 GL.Enable(GL.GL_BLEND);
-                GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+                //GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+                GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ZERO);
             }
 
             ShaderProgram shader = this.shaderProgram;
