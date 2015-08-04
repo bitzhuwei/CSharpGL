@@ -28,17 +28,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void btnGLCanvas_Click(object sender, EventArgs e)
         {
-            (new Form1()).Show();
-        }
-
-        private void btnLegacyMultiTextureFont_Click(object sender, EventArgs e)
-        {
-            (new FormLegacyMultiTextureFont()).Show();
-        }
-
-        private void btnModernMultiTextureFont_Click(object sender, EventArgs e)
-        {
-            (new FormModernMultiTextureFont()).Show();
+            (new FormGLCanvas()).Show();
         }
 
         private void btnFreeTypeTextVAOElement_Click(object sender, EventArgs e)

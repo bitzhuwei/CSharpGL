@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Winforms
 {
+    /// <summary>
+    /// 圆柱体
+    /// </summary>
     public class CylinderVAOElement : VAOElement
     {
 
@@ -109,7 +112,7 @@ namespace CSharpGL.Winforms
                 {
                     if (i % 2 == 0)
                     {
-                        colorArray[i] = new vec3(1, 0,0); //new vec3((i % 3) / 3.0f, (i + 1) % 3 / 3.0f, (i + 2) % 3 / 3.0f);
+                        colorArray[i] = new vec3(1, 0, 0); //new vec3((i % 3) / 3.0f, (i + 1) % 3 / 3.0f, (i + 2) % 3 / 3.0f);
                     }
                     else
                     {

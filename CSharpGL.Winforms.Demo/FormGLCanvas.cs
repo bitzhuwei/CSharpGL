@@ -5,16 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public partial class Form1 : Form
+    public partial class FormGLCanvas : Form
     {
         //private float rotation;
 
@@ -22,15 +18,15 @@ namespace CSharpGL.Winforms.Demo
         CylinderVAOElement element;// = new CylinderVAOElement(faceCount, radius, height);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        public Form1()
+        public FormGLCanvas()
         {
             InitializeComponent();
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void FormGLCanvas_Load(object sender, EventArgs e)
         {
             var faceCount = 18;
             var radius = 1f;
@@ -107,7 +103,5 @@ namespace CSharpGL.Winforms.Demo
             ////  Set the modelview matrix.
             //GL.MatrixMode(GL.GL_MODELVIEW);
         }
-
-      
     }
 }

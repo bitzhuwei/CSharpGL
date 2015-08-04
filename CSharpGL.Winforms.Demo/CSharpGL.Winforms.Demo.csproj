@@ -47,11 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="FormGLCanvas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormGLCanvas.Designer.cs">
+      <DependentUpon>FormGLCanvas.cs</DependentUpon>
     </Compile>
     <Compile Include="FormModernSingleTextureFont.cs">
       <SubType>Form</SubType>
@@ -59,39 +59,20 @@
     <Compile Include="FormModernSingleTextureFont.Designer.cs">
       <DependentUpon>FormModernSingleTextureFont.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormLegacyMultiTextureFont.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormLegacyMultiTextureFont.Designer.cs">
-      <DependentUpon>FormLegacyMultiTextureFont.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormModernMultiTextureFont.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormModernMultiTextureFont.Designer.cs">
-      <DependentUpon>FormModernMultiTextureFont.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormTest.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormTest.Designer.cs">
       <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="FreeTypeDemo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnmanagedArrayTest.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormGLCanvas.resx">
+      <DependentUpon>FormGLCanvas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormModernSingleTextureFont.resx">
       <DependentUpon>FormModernSingleTextureFont.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormLegacyMultiTextureFont.resx">
-      <DependentUpon>FormLegacyMultiTextureFont.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormModernMultiTextureFont.resx">
-      <DependentUpon>FormModernMultiTextureFont.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTest.resx">
       <DependentUpon>FormTest.cs</DependentUpon>
@@ -106,9 +87,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="ebrima.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -142,9 +120,6 @@
       <Project>{0d6e73c8-27b8-4614-9861-f4f22808ea7c}</Project>
       <Name>CSharpGL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="64.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
