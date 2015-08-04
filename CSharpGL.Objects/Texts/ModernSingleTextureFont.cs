@@ -59,14 +59,6 @@ namespace CSharpGL.Objects.Texts
                     location.xoffset + location.bitmapWidth / 2 / this.textureWidth, location.yoffset + location.bitmapTop / this.textureHeight);
                 coord[i * 4 + 3] = new vec4(i + 0, 1,
                     location.xoffset, location.yoffset + location.bitmapTop / this.textureHeight);
-                //coord[i * 4 + 0] = new vec4(i + 0, 0,
-                //    location.xoffset, location.yoffset);
-                //coord[i * 4 + 1] = new vec4(i + 0, 1,
-                //    location.xoffset + location.bitmapWidth / this.textureWidth, location.yoffset);
-                //coord[i * 4 + 2] = new vec4(i + 1, 1,
-                //    location.xoffset + location.bitmapWidth / this.textureWidth, location.yoffset + location.bitmapTop / this.textureHeight);
-                //coord[i * 4 + 3] = new vec4(i + 1, 0,
-                //    location.xoffset, location.yoffset + location.bitmapTop / this.textureHeight);
             }
 
             if (vao[0] != 0)
@@ -383,7 +375,6 @@ namespace CSharpGL.Objects.Texts
             else { throw new Exception(); }
 
             this.transformMatrixLocation = shaderProgram.GetUniformLocation("transformMatrix");
-            //this.transformMatrixLocation = GL.GetUniformLocation(shaderProgram.ShaderProgramObject, "transformMatrix");
             if (this.transformMatrixLocation < 0) { throw new Exception(); }
 
             this.colorLocation = shaderProgram.GetUniformLocation("color");
