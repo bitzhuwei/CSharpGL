@@ -82,7 +82,7 @@ namespace CSharpGL.Winforms.Demo
             }
 
             // 测试foreach
-            foreach (var item in vec3Array.GetElements())
+            foreach (var item in vec3Array.Elements())
             {
                 Console.WriteLine(item);
             }

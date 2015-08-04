@@ -105,7 +105,7 @@ namespace CSharpGL.Winforms
                 GL.GenBuffers(1, ids);
                 GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
                 UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(faceCount * 2);
-                for (int i = 0; i < colorArray.Count; i++)
+                for (int i = 0; i < colorArray.Length; i++)
                 {
                     if (i % 2 == 0)
                     {
@@ -126,12 +126,12 @@ namespace CSharpGL.Winforms
                 GL.GenBuffers(1, ids);
                 GL.BindBuffer(BufferTarget.ElementArrayBuffer, ids[0]);
                 UnmanagedArray<uint> cylinderIndex = new UnmanagedArray<uint>(faceCount * 2 + 2);
-                for (int i = 0; i < cylinderIndex.Count - 2; i++)
+                for (int i = 0; i < cylinderIndex.Length - 2; i++)
                 {
                     cylinderIndex[i] = (uint)i;
                 }
-                cylinderIndex[cylinderIndex.Count - 2] = 0;
-                cylinderIndex[cylinderIndex.Count - 1] = 1;
+                cylinderIndex[cylinderIndex.Length - 2] = 0;
+                cylinderIndex[cylinderIndex.Length - 1] = 1;
                 GL.BufferData(BufferTarget.ElementArrayBuffer, cylinderIndex, BufferUsage.StaticDraw);
                 cylinderIndex.Dispose();
             }

@@ -12,6 +12,7 @@ namespace CSharpGL
     /// <summary>
     /// 元素类型为sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool或其它struct的非托管数组。
     /// <para>不能使用enum类型作为T。</para>
+    /// <para>Check http://www.cnblogs.com/bitzhuwei/p/huge-unmanged-array-in-csharp.html </para>
     /// </summary>
     /// <typeparam name="T">sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool或其它struct, 不能使用enum类型作为T。</typeparam>
     public class UnmanagedArray<T> : UnmanagedArrayBase where T : struct
@@ -36,7 +37,7 @@ namespace CSharpGL
         {
             get
             {
-                if (index < 0 || index >= this.Count)
+                if (index < 0 || index >= this.Length)
                     throw new IndexOutOfRangeException("index of UnmanagedArray is out of range");
 
                 var pItem = this.Header + (index * elementSize);
@@ -47,7 +48,7 @@ namespace CSharpGL
             }
             set
             {
-                if (index < 0 || index >= this.Count)
+                if (index < 0 || index >= this.Length)
                     throw new IndexOutOfRangeException("index of UnmanagedArray is out of range");
 
                 var pItem = this.Header + (index * elementSize);
@@ -60,14 +61,11 @@ namespace CSharpGL
         /// 按索引顺序依次获取各个元素。
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<T> GetElements()
+        public IEnumerable<T> Elements()
         {
-            if (!this.disposed)
+            for (int i = 0; i < this.Length; i++)
             {
-                for (int i = 0; i < this.Count; i++)
-                {
-                    yield return this[i];
-                }
+                yield return this[i];
             }
         }
     }
@@ -79,14 +77,14 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// 数组指针。
+        /// 此数组的起始位置。
         /// </summary>
         public IntPtr Header { get; private set; }
 
         /// <summary>
-        /// 元素数目。
+        /// 元素的总数。
         /// </summary>
-        public int Count { get; private set; }
+        public int Length { get; private set; }
 
         /// <summary>
         /// 单个元素的字节数。
@@ -94,22 +92,22 @@ namespace CSharpGL
         protected int elementSize;
 
         /// <summary>
-        /// 申请到的字节数。（元素数目 * 单个元素的字节数）。
+        /// 申请到的字节数。（元素的总数 * 单个元素的字节数）。
         /// </summary>
         public int ByteLength
         {
-            get { return this.Count * this.elementSize; }
+            get { return this.Length * this.elementSize; }
         }
 
         /// <summary>
         /// 非托管数组。
         /// </summary>
-        /// <param name="elementCount">元素数目。</param>
+        /// <param name="elementCount">元素的总数。</param>
         /// <param name="elementSize">单个元素的字节数。</param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         protected UnmanagedArrayBase(int elementCount, int elementSize)
         {
-            this.Count = elementCount;
+            this.Length = elementCount;
             this.elementSize = elementSize;
 
             int memSize = elementCount * elementSize;
@@ -135,7 +133,7 @@ namespace CSharpGL
 
         ~UnmanagedArrayBase()
         {
-            Dispose();
+            this.Dispose();
         }
 
         #region IDisposable Members
@@ -165,7 +163,7 @@ namespace CSharpGL
 
             if (ptr != IntPtr.Zero)
             {
-                this.Count = 0;
+                this.Length = 0;
                 this.Header = IntPtr.Zero;
                 Marshal.FreeHGlobal(ptr);
             }
