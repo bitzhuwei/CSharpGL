@@ -14,7 +14,7 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormModernSingleTextureFont : Form
     {
-        ScientificCamera camera = new ScientificCamera(CameraTypes.Ortho);
+        ScientificCamera camera; //= new ScientificCamera(CameraTypes.Ortho);
 
         SatelliteRotation satelliteRoration;
 
@@ -23,6 +23,7 @@ namespace CSharpGL.Winforms.Demo
         {
             InitializeComponent();
 
+            this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
             IPerspectiveCamera perspectiveCamera = this.camera;
             perspectiveCamera.FieldOfView = 60f;
             perspectiveCamera.AspectRatio = (double)this.glCanvas1.Width / (double)this.glCanvas1.Height;

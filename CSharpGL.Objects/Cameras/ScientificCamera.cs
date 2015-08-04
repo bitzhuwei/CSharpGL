@@ -20,22 +20,25 @@ namespace CSharpGL.Objects.Cameras
             return string.Format("{0}/{1}", Name, count);
             //return base.ToString();
         }
-        public ScientificCamera(CameraTypes cameraType = CameraTypes.Perspecitive)
+
+        internal ScientificCamera() { }
+
+        public ScientificCamera(CameraTypes cameraType, double width, double height)
         {
             Name = "Scientific Camera: " + count++;
             IPerspectiveCamera perspectiveCamera = this;
             perspectiveCamera.FieldOfView = 60f;
-            perspectiveCamera.AspectRatio = 1f;
+            perspectiveCamera.AspectRatio = width / height;
             perspectiveCamera.Near = 0.01;
-            perspectiveCamera.Far = 1000;
+            perspectiveCamera.Far = 10000;
 
             IOrthoCamera orthoCamera = this;
-            orthoCamera.Left = -100;
-            orthoCamera.Right = 100;
-            orthoCamera.Bottom = -100;
-            orthoCamera.Top = 100;
-            orthoCamera.Near = -1000;
-            orthoCamera.Far = 1000;
+            orthoCamera.Left = -width / 2;
+            orthoCamera.Right = width / 2;
+            orthoCamera.Bottom = -height / 2;
+            orthoCamera.Top = height / 2;
+            orthoCamera.Near = -10000;
+            orthoCamera.Far = 10000;
 
             this.Target = new vec3(0, 0, 0);
             this.UpVector = new vec3(0, 1, 0);
