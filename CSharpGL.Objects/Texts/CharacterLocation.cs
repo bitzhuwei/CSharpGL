@@ -28,5 +28,11 @@ namespace CSharpGL.Objects.Texts
         /// y offset of glyph in texture coordinates
         /// </summary>
         public float yoffset;
+
+        public override string ToString()
+        {
+            return string.Format("advance:{0}, {1}, lefttop: {2}, {3}, w/h: {4}, {5}, offset: {6}, {7}",
+                advanceX, advanceY, bitmapLeft, bitmapTop, bitmapWidth, bitmapHeight, xoffset, yoffset);
+        }
     }
 }

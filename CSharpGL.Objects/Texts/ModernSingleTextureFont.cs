@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -18,6 +19,77 @@ namespace CSharpGL.Objects.Texts
     /// </summary>
     public class ModernSingleTextureFont : VAOElement
     {
+
+        private string text = string.Empty;
+
+        public string Text
+        {
+            get { return text; }
+            set
+            {
+                if (value != text)
+                {
+                    text = value;
+
+                    InitVAO(value);
+                }
+            }
+        }
+
+        private void InitVAO(string value)
+        {
+            this.mode = PrimitiveModes.Quads;
+            this.vertexCount = 4 * value.Length;
+
+            //  Create a vertex buffer for the vertex data.
+            UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(this.vertexCount);
+            if (value != null && value.Length > 0)
+            {
+                char c = value[0];
+                CharacterLocation location = characterInfos[c];
+                coord[0] = new vec4(0, 0, 0, location.xoffset);
+                coord[1] = new vec4(0, location.bitmapHeight, 0, 0);
+                coord[2] = new vec4(location.bitmapWidth, location.bitmapHeight, location.yoffset, 0);
+                coord[3] = new vec4(location.bitmapWidth, 0, location.xoffset, location.yoffset);
+            }
+            for (int i = 1; i < value.Length; i++)
+            {
+                char c = value[i];
+                char previousChar = (char)((int)c - 1);
+                CharacterLocation location = characterInfos[c];
+                CharacterLocation previousLocation = characterInfos[previousChar];
+
+                //coord[i * 4 + 0] = new vec4(0, 0, 0, 1);
+                //coord[i * 4 + 1] = new vec4(0, this.textureHeight, 0, 0);
+                //coord[i * 4 + 2] = new vec4(this.textureWidth, this.textureHeight, 1, 0);
+                //coord[i * 4 + 3] = new vec4(this.textureWidth, 0, 1, 1);
+                vec4 previous = coord[i * 4 + 0 - 4]; //new vec4(0, location.yoffset, 0, 1);
+                coord[i * 4 + 0] = previous + new vec4(previousLocation.bitmapWidth, 0, previousLocation.bitmapWidth, 0);
+                previous = coord[i * 4 + 1 - 4];
+                coord[i * 4 + 1] = previous + new vec4(previousLocation.bitmapWidth, 0, previousLocation.bitmapWidth, 0);
+                previous = coord[i * 4 + 2 - 4];
+                coord[i * 4 + 2] = previous + new vec4(previousLocation.bitmapWidth, 0, previousLocation.bitmapWidth, 0);
+                previous = coord[i * 4 + 3 - 4];
+                coord[i * 4 + 3] = previous + new vec4(previousLocation.bitmapWidth, 0, previousLocation.bitmapWidth, 0);
+            }
+
+            if (vao[0] != 0)
+            { GL.DeleteBuffers(1, vao); }
+            if (vbo[0] != 0)
+            { GL.DeleteBuffers(1, vbo); }
+
+            GL.GenVertexArrays(1, vao);
+            GL.BindVertexArray(vao[0]);
+
+            GL.GenBuffers(1, vbo);
+            GL.BindBuffer(GL.GL_ARRAY_BUFFER, vbo[0]);
+            GL.BufferData(BufferTarget.ArrayBuffer, coord, BufferUsage.StaticDraw);
+            GL.VertexAttribPointer(coordLocation, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+            GL.EnableVertexAttribArray(coordLocation);
+
+            GL.BindVertexArray(0);
+        }
+
         ScientificCamera camera;
 
         public ModernSingleTextureFont(ScientificCamera camera, string fontFilename, int fontHeight)
@@ -40,7 +112,8 @@ namespace CSharpGL.Objects.Texts
         private ShaderProgram shaderProgram;
 
         private PrimitiveModes mode;
-        private uint[] vao;
+        private uint[] vao = new uint[1];
+        private uint[] vbo = new uint[1];
         private int vertexCount;
 
 
@@ -50,34 +123,33 @@ namespace CSharpGL.Objects.Texts
 
             InitShaderProgram();
 
-            InitVAO();
+            InitVAO("hello ModernSingleTextureFont.cs");
         }
 
-        private void InitVAO()
-        {
-            this.mode = PrimitiveModes.Quads;
-            this.vertexCount = 4;
+        //private void InitVAO()
+        //{
+        //    this.mode = PrimitiveModes.Quads;
+        //    this.vertexCount = 4;
 
-            vao = new uint[1];
-            GL.GenVertexArrays(1, vao);
-            GL.BindVertexArray(vao[0]);
+        //    GL.GenVertexArrays(1, vao);
+        //    GL.BindVertexArray(vao[0]);
 
-            //  Create a vertex buffer for the vertex data.
-            UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(this.vertexCount);
-            coord[0] = new vec4(0, 0, 0, 1);
-            coord[1] = new vec4(0, this.textureHeight, 0, 0);
-            coord[2] = new vec4(this.textureWidth, this.textureHeight, 1, 0);
-            coord[3] = new vec4(this.textureWidth, 0, 1, 1);
+        //    //  Create a vertex buffer for the vertex data.
+        //    UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(this.vertexCount);
+        //    coord[0] = new vec4(0, 0, 0, 1);
+        //    coord[1] = new vec4(0, this.textureHeight, 0, 0);
+        //    coord[2] = new vec4(this.textureWidth, this.textureHeight, 1, 0);
+        //    coord[3] = new vec4(this.textureWidth, 0, 1, 1);
 
-            uint[] ids = new uint[1];
-            GL.GenBuffers(1, ids);
-            GL.BindBuffer(GL.GL_ARRAY_BUFFER, ids[0]);
-            GL.BufferData(BufferTarget.ArrayBuffer, coord, BufferUsage.StaticDraw);
-            GL.VertexAttribPointer(coordLocation, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-            GL.EnableVertexAttribArray(coordLocation);
+        //    uint[] ids = new uint[1];
+        //    GL.GenBuffers(1, ids);
+        //    GL.BindBuffer(GL.GL_ARRAY_BUFFER, ids[0]);
+        //    GL.BufferData(BufferTarget.ArrayBuffer, coord, BufferUsage.StaticDraw);
+        //    GL.VertexAttribPointer(coordLocation, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+        //    GL.EnableVertexAttribArray(coordLocation);
 
-            GL.BindVertexArray(0);
-        }
+        //    GL.BindVertexArray(0);
+        //}
 
         private void InitTexture()
         {
@@ -257,6 +329,15 @@ namespace CSharpGL.Objects.Texts
             }
 
             graphics.Dispose();
+
+            using (StreamWriter sw = new StreamWriter("characterinfo.txt"))
+            {
+                for (int i = 0; i < characterInfos.Length; i++)
+                {
+                    sw.WriteLine(i);
+                    sw.Write(characterInfos[i]);
+                }
+            }
 
             return bigBitmap;
         }
