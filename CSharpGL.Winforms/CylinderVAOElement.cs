@@ -1,5 +1,6 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects;
+using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Shaders;
 using System;
 using System.Collections.Generic;
@@ -45,9 +46,12 @@ namespace CSharpGL.Winforms
         private float radius;
         private float height;
         private int faceCount;
+        private IScientificCamera camera;
 
-        public CylinderVAOElement(float radius, float height, int faceCount = 18)
+        public CylinderVAOElement(IScientificCamera camera, float radius, float height, int faceCount = 18)
         {
+            this.camera = camera;
+
             this.radius = radius;
             this.height = height;
             this.faceCount = faceCount;
@@ -169,15 +173,21 @@ namespace CSharpGL.Winforms
         {
             shaderProgram.Bind();
 
-            rotation += 0.05f;
-            modelMatrix = glm.rotate(rotation, new vec3(1, 1, 1));
+            projectionMatrix = camera.GetProjectionMat4();
 
-            const float distance = 1f;
-            viewMatrix = glm.lookAt(new vec3(-distance, 0, -distance), new vec3(0, 0, 0), new vec3(0, -1, 0));
+            viewMatrix = camera.GetViewMat4();
 
-            int[] viewport = new int[4];
-            GL.GetInteger(GetTarget.Viewport, viewport);
-            projectionMatrix = glm.perspective(60.0f, (float)viewport[2] / (float)viewport[3], 0.01f, 100.0f);
+            modelMatrix = mat4.identity();
+
+            //rotation += 0.05f;
+            //modelMatrix = glm.rotate(rotation, new vec3(1, 1, 1));
+
+            //const float distance = 1f;
+            //viewMatrix = glm.lookAt(new vec3(-distance, 0, -distance), new vec3(0, 0, 0), new vec3(0, -1, 0));
+
+            //int[] viewport = new int[4];
+            //GL.GetInteger(GetTarget.Viewport, viewport);
+            //projectionMatrix = glm.perspective(60.0f, (float)viewport[2] / (float)viewport[3], 0.01f, 100.0f);
 
             shaderProgram.SetUniformMatrix4("projectionMatrix", projectionMatrix.to_array());
             shaderProgram.SetUniformMatrix4("viewMatrix", viewMatrix.to_array());
