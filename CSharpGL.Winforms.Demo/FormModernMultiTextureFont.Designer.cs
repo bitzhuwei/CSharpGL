@@ -60,15 +60,15 @@
             this.txtInfo.Size = new System.Drawing.Size(751, 77);
             this.txtInfo.TabIndex = 1;
             //
-            // FormRenderWithShaderVBOTexture
+            // FormModernMultiTextureFont
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 522);
             this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "FormRenderWithShaderVBOTexture";
-            this.Text = "FormRenderWithShaderVBOTexture";
+            this.Name = "FormModernMultiTextureFont";
+            this.Text = "FormModernMultiTextureFont";
             this.Load += new System.EventHandler(this.FormRenderWithShaderVBOTexture_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);

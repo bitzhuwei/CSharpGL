@@ -1,6 +1,8 @@
 ﻿using CSharpGL.Objects.Texts.FreeTypes;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -50,14 +52,17 @@ namespace CSharpGL.Objects.Texts
 
         public Atlas(FreeTypeFace face, int fontHeight, Shaders.ShaderProgram shaderProgram)
         {
+            //Dictionary<char, System.Drawing.Bitmap> charBitmapDict = new Dictionary<char, System.Drawing.Bitmap>();
+
+
             //	Get the maximum texture size supported by GL.
             GL.GetInteger(GetTarget.MaxTextureSize, MaxWidth);
 
             /* Find minimum size for a texture holding all visible ASCII characters */
             FindTextureSize(face, fontHeight);
 
-            /* Create a texture that will be used to hold all ASCII glyphs */
-            CreateTextureObject(shaderProgram);
+            System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(this.widthOfTexture, this.heightOfTexture);
+            Graphics graphics = Graphics.FromImage(bigBitmap);
 
             /* Paste all glyph bitmaps into the texture, remembering the offset */
             int xoffset = 0;
@@ -67,7 +72,8 @@ namespace CSharpGL.Objects.Texts
 
             for (int i = 32; i < 128; i++)
             {
-                FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(i), fontHeight);
+                char c = Convert.ToChar(i);
+                FreeTypeBitmapGlyph bmpGlyph = new FreeTypeBitmapGlyph(face, c, fontHeight);
                 int width = 0, height = 0;
 
                 if (bmpGlyph.obj.bitmap.buffer != IntPtr.Zero)
@@ -98,12 +104,12 @@ namespace CSharpGL.Objects.Texts
                         xoffset = 0;
                     }
 
-                    GL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0,
-                        xoffset, yoffset,
-                        width, height,
-                        //bmpGlyph.obj.bitmap.width, bmpGlyph.obj.bitmap.rows,
-                        TexSubImage2DFormats.Alpha, TexSubImage2DType.UnsignedByte,
-                        expanded.Header);
+                    //GL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0,
+                    //    xoffset, yoffset,
+                    //    width, height,
+                    //    //bmpGlyph.obj.bitmap.width, bmpGlyph.obj.bitmap.rows,
+                    //    TexSubImage2DFormats.Alpha, TexSubImage2DType.UnsignedByte,
+                    //    expanded.Header);
                     //bmpGlyph.obj.bitmap.buffer);
 
                     //{
@@ -115,7 +121,9 @@ namespace CSharpGL.Objects.Texts
                             width * 4 / 2,
                             System.Drawing.Imaging.PixelFormat.Format32bppRgb,
                             expanded.Header);
-                        bitmap.Save(string.Format("Atlas{0}.bmp", i));
+                        //charBitmapDict.Add(c, bitmap);
+                        graphics.DrawImage(bitmap, xoffset, yoffset);
+                        //bitmap.Save(string.Format("Atlas{0}.bmp", i));
                     }
                     //{
                     //    System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
@@ -145,43 +153,117 @@ namespace CSharpGL.Objects.Texts
                 xoffset += width + 1;
             }
 
-            // 把整个纹理输出为图片
             {
-                UnmanagedArray<byte> image = new UnmanagedArray<byte>(widthOfTexture * heightOfTexture);
+                bigBitmap.Save("bigbitmap.bmp");
 
-                GL.GetTexImage(GetTexImageTargets.Texture2D, 0, GetTexImageFormats.Alpha, GetTexImageTypes.UnsignedByte, image);
+                /* Create a texture that will be used to hold all ASCII glyphs */
+                CreateTextureObject(bigBitmap, shaderProgram);
 
-                //  Create the bitmap.
-                foreach (var pixelFormat in Enum.GetValues(typeof(System.Drawing.Imaging.PixelFormat)))
-                {
-                    try
-                    {
-                        System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
-                            widthOfTexture,
-                            heightOfTexture,
-                            widthOfTexture * 4,
-                            (System.Drawing.Imaging.PixelFormat)pixelFormat,
-                            image.Header);
-
-                        bitmap.Save(string.Format("wholeTexture-{0}.bmp", pixelFormat));
-                        bitmap.Dispose();
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                    }
-                }
+                graphics.Dispose();
+                bigBitmap.Dispose();
             }
+
+            // 把整个纹理输出为图片
+            //{
+            //    UnmanagedArray<byte> image = new UnmanagedArray<byte>(widthOfTexture * heightOfTexture);
+
+            //    GL.GetTexImage(GetTexImageTargets.Texture2D, 0, GetTexImageFormats.Alpha, GetTexImageTypes.UnsignedByte, image);
+
+            //    //  Create the bitmap.
+            //    foreach (var pixelFormat in Enum.GetValues(typeof(System.Drawing.Imaging.PixelFormat)))
+            //    {
+            //        try
+            //        {
+            //            System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
+            //                widthOfTexture,
+            //                heightOfTexture,
+            //                widthOfTexture * 4,
+            //                (System.Drawing.Imaging.PixelFormat)pixelFormat,
+            //                image.Header);
+
+            //            bitmap.Save(string.Format("wholeTexture-{0}.bmp", pixelFormat));
+            //            bitmap.Dispose();
+            //        }
+            //        catch (Exception e)
+            //        {
+            //            Console.WriteLine(e);
+            //        }
+            //    }
+            //}
         }
 
-        private void CreateTextureObject(Shaders.ShaderProgram shaderProgram)
+        private void CreateTextureObject(System.Drawing.Bitmap image, Shaders.ShaderProgram shaderProgram)
         {
+            //	Get the maximum texture size supported by OpenGL.
+            int[] textureMaxSize = { 0 };
+            GL.GetInteger(GetTarget.MaxTextureSize, textureMaxSize);
+
+            //	Find the target width and height sizes, which is just the highest
+            //	posible power of two that'll fit into the image.
+            int targetWidth = textureMaxSize[0];
+            int targetHeight = textureMaxSize[0];
+
+            for (int size = 1; size <= textureMaxSize[0]; size *= 2)
+            {
+                if (image.Width < size)
+                {
+                    targetWidth = size / 2;
+                    break;
+                }
+                if (image.Width == size)
+                    targetWidth = size;
+
+            }
+
+            for (int size = 1; size <= textureMaxSize[0]; size *= 2)
+            {
+                if (image.Height < size)
+                {
+                    targetHeight = size / 2;
+                    break;
+                }
+                if (image.Height == size)
+                    targetHeight = size;
+            }
+
+            //  If need to scale, do so now.
+            if (image.Width != targetWidth || image.Height != targetHeight)
+            {
+                //  Resize the image.
+                Image newImage = image.GetThumbnailImage(targetWidth, targetHeight, null, IntPtr.Zero);
+
+                //  Destory the old image, and reset.
+                //image.Dispose();
+                image = (System.Drawing.Bitmap)newImage;
+            }
+
+            //  Lock the image bits (so that we can pass them to OGL).
+            BitmapData bitmapData = image.LockBits(new Rectangle(0, 0, image.Width, image.Height),
+                ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+
+            //	Set the width and height.
+            widthOfTexture = image.Width;
+            heightOfTexture = image.Height;
+
+            ////
             //GL.ActiveTexture(GL.GL_TEXTURE0);
             GL.GenTextures(1, tex);
             GL.BindTexture(GL.GL_TEXTURE_2D, tex[0]);
             shaderProgram.SetUniform1("tex", tex[0]);
 
-            GL.TexImage2D(TexImage2DTargets.Texture2D, 0, TexImage2DFormats.Alpha, widthOfTexture, heightOfTexture, 0, TexImage2DFormats.Alpha, TexImage2DTypes.UnsignedByte, IntPtr.Zero);
+            GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA,
+                widthOfTexture, heightOfTexture, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
+                bitmapData.Scan0);
+
+            //  Unlock the image.
+            image.UnlockBits(bitmapData);
+
+            //  Dispose of the image file.
+            image.Dispose();
+
+            //GL.TexImage2D(TexImage2DTargets.Texture2D, 0,
+            //    TexImage2DFormats.Alpha, widthOfTexture, heightOfTexture,
+            //    0, TexImage2DFormats.Alpha, TexImage2DTypes.UnsignedByte, IntPtr.Zero);
 
             /* We require 1 byte alignment when uploading texture data */
             GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
@@ -193,6 +275,43 @@ namespace CSharpGL.Objects.Texts
             /* Linear filtering usually looks best for text */
             GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
             GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
+            ////
+
+            ////	Bind our texture object (make it the current texture).
+            //gl.BindTexture(OpenGL.GL_TEXTURE_2D, TextureName);
+
+            ////  Set the image data.
+            //gl.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, (int)OpenGL.GL_RGBA,
+            //    width, height, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE,
+            //    bitmapData.Scan0);
+
+            ////  Unlock the image.
+            //image.UnlockBits(bitmapData);
+
+            ////  Dispose of the image file.
+            //image.Dispose();
+
+            ////  Set linear filtering mode.
+            //gl.TexParameter(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, OpenGL.GL_LINEAR);
+            //gl.TexParameter(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, OpenGL.GL_LINEAR);
+            //////
+            ////GL.ActiveTexture(GL.GL_TEXTURE0);
+            //GL.GenTextures(1, tex);
+            //GL.BindTexture(GL.GL_TEXTURE_2D, tex[0]);
+            //shaderProgram.SetUniform1("tex", tex[0]);
+
+            //GL.TexImage2D(TexImage2DTargets.Texture2D, 0, TexImage2DFormats.Alpha, widthOfTexture, heightOfTexture, 0, TexImage2DFormats.Alpha, TexImage2DTypes.UnsignedByte, IntPtr.Zero);
+
+            ///* We require 1 byte alignment when uploading texture data */
+            //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
+
+            ///* Clamping to edges is important to prevent artifacts when scaling */
+            //GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
+            //GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
+
+            ///* Linear filtering usually looks best for text */
+            //GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
+            //GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
         }
 
         private void FindTextureSize(FreeTypeFace face, int fontHeight)
