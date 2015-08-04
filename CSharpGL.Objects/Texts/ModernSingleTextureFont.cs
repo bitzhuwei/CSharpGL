@@ -20,6 +20,8 @@ namespace CSharpGL.Objects.Texts
     public class ModernSingleTextureFont : VAOElement
     {
 
+        const int maxChar = char.MaxValue;//128;
+
         private string text = string.Empty;
 
         public string Text
@@ -96,7 +98,7 @@ namespace CSharpGL.Objects.Texts
         uint[] texture = new uint[1];
         private int textureWidth;
         private int textureHeight;
-        CharacterLocation[] characterInfos = new CharacterLocation[128];
+        CharacterLocation[] characterInfos = new CharacterLocation[maxChar];
 
         //  Constants that specify the attribute indexes.
         internal uint coordLocation;
@@ -238,7 +240,7 @@ namespace CSharpGL.Objects.Texts
             int newRowHeight = 0;
 
             //for (int i = (int)'-'; i < (int)'7' + 1; i++)
-            for (int i = 0; i < 128; i++)
+            for (int i = 0; i < maxChar; i++)
             {
                 char c = Convert.ToChar(i);
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, this.fontHeight);
@@ -273,13 +275,16 @@ namespace CSharpGL.Objects.Texts
                         xoffset = 0;
                     }
 
-                    System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
-                        currentWidth / 2,
-                        glyph.obj.bitmap.rows,
-                        currentWidth * 4 / 2,
-                        System.Drawing.Imaging.PixelFormat.Format32bppRgb,
-                        expanded.Header);
-                    graphics.DrawImage(bitmap, xoffset, yoffset);
+                    if (currentWidth >= 2)
+                    {
+                        System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
+                            currentWidth / 2,
+                            glyph.obj.bitmap.rows,
+                            currentWidth * 4 / 2,
+                            System.Drawing.Imaging.PixelFormat.Format32bppRgb,
+                            expanded.Header);
+                        graphics.DrawImage(bitmap, xoffset, yoffset);
+                    }
                 }
 
                 characterInfos[i].advanceX = glyph.glyphRec.advance.x >> 6;
@@ -304,8 +309,14 @@ namespace CSharpGL.Objects.Texts
             {
                 for (int i = 0; i < characterInfos.Length; i++)
                 {
-                    sw.Write(i); sw.Write(": "); sw.WriteLine(Convert.ToChar(i));
-                    sw.WriteLine(characterInfos[i]);
+                    try
+                    {
+                        sw.Write(i); sw.Write(": "); sw.WriteLine(Convert.ToChar(i));
+                        sw.WriteLine(characterInfos[i]);
+                    }
+                    catch (Exception)
+                    {
+                    }
                 }
             }
 
@@ -321,7 +332,7 @@ namespace CSharpGL.Objects.Texts
             int newRowHeight = 0;
 
             //for (int i = (int)'-'; i < (int)'7' + 1; i++)
-            for (int i = 0; i < 128; i++)
+            for (int i = 0; i < maxChar; i++)
             {
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(i), fontHeight);
                 bool zeroSize = (glyph.obj.bitmap.rows == 0 && glyph.obj.bitmap.width == 0);

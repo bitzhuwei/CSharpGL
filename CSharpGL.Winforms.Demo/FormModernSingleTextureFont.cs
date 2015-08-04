@@ -18,7 +18,7 @@ namespace CSharpGL.Winforms.Demo
 
         SatelliteRotation satelliteRoration;
 
-        ModernSingleTextureFont element;// = new ModernSingleTextureFont("LuckiestGuy.ttf");
+        ModernSingleTextureFont element;// = new ModernSingleTextureFont("simsun.ttf");
         public FormModernSingleTextureFont()
         {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotation(camera);
 
-            element = new ModernSingleTextureFont(camera, "LuckiestGuy.ttf", 48);
+            element = new ModernSingleTextureFont(camera, "simsun.ttf", 48);
 
             element.Initialize();
 
