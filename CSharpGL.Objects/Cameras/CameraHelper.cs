@@ -11,68 +11,68 @@ namespace CSharpGL.Objects.Cameras
     /// </summary>
     public static class CameraHelper
     {
-        /// <summary>
-        /// Adjusts camera's settings according to bounding box.
-        /// <para>Use this when bounding box's size or positon is changed.</para>
-        /// </summary>
-        /// <param name="camera"></param>
-        /// <param name="boundingBox"></param>
-        public static void ZoomCamera(this IScientificCamera camera, IBoundingBox boundingBox)
-        {
-            float sizeX, sizeY, sizeZ;
-            boundingBox.GetBoundDimensions(out sizeX, out sizeY, out sizeZ);
-            float size = Math.Max(Math.Max(sizeX, sizeY), sizeZ);
+        ///// <summary>
+        ///// Adjusts camera's settings according to bounding box.
+        ///// <para>Use this when bounding box's size or positon is changed.</para>
+        ///// </summary>
+        ///// <param name="camera"></param>
+        ///// <param name="boundingBox"></param>
+        //public static void ZoomCamera(this IScientificCamera camera, IBoundingBox boundingBox)
+        //{
+        //    float sizeX, sizeY, sizeZ;
+        //    boundingBox.GetBoundDimensions(out sizeX, out sizeY, out sizeZ);
+        //    float size = Math.Max(Math.Max(sizeX, sizeY), sizeZ);
 
-            {
-                float centerX, centerY, centerZ;
-                boundingBox.GetCenter(out centerX, out centerY, out centerZ);
-                vec3 target = new vec3(centerX, centerY, centerZ);
+        //    {
+        //        float centerX, centerY, centerZ;
+        //        boundingBox.GetCenter(out centerX, out centerY, out centerZ);
+        //        vec3 target = new vec3(centerX, centerY, centerZ);
 
-                vec3 target2Position = camera.Position - camera.Target;
-                target2Position.Normalize();
+        //        vec3 target2Position = camera.Position - camera.Target;
+        //        target2Position.Normalize();
 
-                vec3 position = target + target2Position * (size * 2 + 1);
+        //        vec3 position = target + target2Position * (size * 2 + 1);
 
-                camera.Position = position;
-                camera.Target = target;
-                //camera.UpVector = new vec3(0f, 1f, 0f);
-            }
+        //        camera.Position = position;
+        //        camera.Target = target;
+        //        //camera.UpVector = new vec3(0f, 1f, 0f);
+        //    }
 
-            {
-                int[] viewport = new int[4];
-                GL.GetInteger(GetTarget.Viewport, viewport);
-                int width = viewport[2]; int height = viewport[3];
+        //    {
+        //        int[] viewport = new int[4];
+        //        GL.GetInteger(GetTarget.Viewport, viewport);
+        //        int width = viewport[2]; int height = viewport[3];
 
-                IPerspectiveViewCamera perspectiveViewCamera = camera;
-                perspectiveViewCamera.FieldOfView = 60;
-                perspectiveViewCamera.AspectRatio = (double)width / (double)height;
-                perspectiveViewCamera.Near = 0.01;
-                perspectiveViewCamera.Far = size * 3 + 1;// double.MaxValue;
-            }
-            {
-                int[] viewport = new int[4];
-                GL.GetInteger(GetTarget.Viewport, viewport);
-                int width = viewport[2]; int height = viewport[3];
+        //        IPerspectiveViewCamera perspectiveViewCamera = camera;
+        //        perspectiveViewCamera.FieldOfView = 60;
+        //        perspectiveViewCamera.AspectRatio = (double)width / (double)height;
+        //        perspectiveViewCamera.Near = 0.01;
+        //        perspectiveViewCamera.Far = size * 3 + 1;// double.MaxValue;
+        //    }
+        //    {
+        //        int[] viewport = new int[4];
+        //        GL.GetInteger(GetTarget.Viewport, viewport);
+        //        int width = viewport[2]; int height = viewport[3];
 
-                IOrthoViewCamera orthoViewCamera = camera;
-                if (width > height)
-                {
-                    orthoViewCamera.Left = -size * width / height;
-                    orthoViewCamera.Right = size * width / height;
-                    orthoViewCamera.Bottom = -size;
-                    orthoViewCamera.Top = size;
-                }
-                else
-                {
-                    orthoViewCamera.Left = -size;
-                    orthoViewCamera.Right = size;
-                    orthoViewCamera.Bottom = -size * height / width;
-                    orthoViewCamera.Top = size * height / width;
-                }
-                orthoViewCamera.Near = 0;
-                orthoViewCamera.Far = size * 3 + 1;// double.MaxValue;
-            }
-        }
+        //        IOrthoViewCamera orthoViewCamera = camera;
+        //        if (width > height)
+        //        {
+        //            orthoViewCamera.Left = -size * width / height;
+        //            orthoViewCamera.Right = size * width / height;
+        //            orthoViewCamera.Bottom = -size;
+        //            orthoViewCamera.Top = size;
+        //        }
+        //        else
+        //        {
+        //            orthoViewCamera.Left = -size;
+        //            orthoViewCamera.Right = size;
+        //            orthoViewCamera.Bottom = -size * height / width;
+        //            orthoViewCamera.Top = size * height / width;
+        //        }
+        //        orthoViewCamera.Near = 0;
+        //        orthoViewCamera.Far = size * 3 + 1;// double.MaxValue;
+        //    }
+        //}
 
         /// <summary>
         /// Adjusts camera's settings according to bounding box.
