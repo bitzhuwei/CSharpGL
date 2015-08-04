@@ -61,15 +61,6 @@ namespace CSharpGL.Winforms.Demo
             coord[1] = new vec4(0, textureHeight, 0, 0);
             coord[2] = new vec4(textureWidth, textureHeight, 1, 0);
             coord[3] = new vec4(textureWidth, 0, 1, 1);
-            //coord[0] = new vec4(0, 0, 0, textureHeight);
-            //coord[1] = new vec4(0, 1, 0, 0);
-            //coord[2] = new vec4(1, 1, textureWidth, 0);
-            //coord[3] = new vec4(1, 0, textureWidth, textureHeight);
-            //UnmanagedArray<float> coord = new UnmanagedArray<float>(16);
-            //coord[0] = 0; coord[1] = 0; coord[2] = 0; coord[3] = textureHeight;
-            //coord[4] = 0; coord[5] = 1; coord[6] = 0; coord[7] = 0;
-            //coord[8] = 1; coord[9] = 1; coord[10] = textureWidth; coord[11] = 0;
-            //coord[12] = 1; coord[13] = 0; coord[14] = textureWidth; coord[15] = textureHeight;
 
             //  Create a vertex buffer for the vertex data.
             {
@@ -138,8 +129,6 @@ namespace CSharpGL.Winforms.Demo
 
             // Create the texture
             // 创建纹理
-            //GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
-            //0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded);
             GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, textureWidth, textureHeight,
                 0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, expanded.Header);
             {
@@ -150,7 +139,7 @@ namespace CSharpGL.Winforms.Demo
                     textureWidth * 4 / 2,
                     System.Drawing.Imaging.PixelFormat.Format32bppRgb,
                     expanded.Header);
-                bitmap.Save(string.Format("ShaderVBOTextureElementDemo{0}.bmp", c));
+                bitmap.Save(string.Format("ModernMultiTextureFont{0}.bmp", c));
                 bitmap.Dispose();
             }
             expanded = null;
@@ -174,86 +163,6 @@ namespace CSharpGL.Winforms.Demo
             while (rval < a) rval <<= 1;
             return rval;
         }
-
-        //private void InitTexture()
-        //{
-        //    System.Drawing.Bitmap image = ManifestResourceLoader.LoadBitmap("64.bmp");
-
-        //    //	Get the maximum texture size supported by GL.
-        //    int[] textureMaxSize = { 0 };
-        //    GL.GetInteger(GetTarget.MaxTextureSize, textureMaxSize);
-
-        //    //	Find the target width and height sizes, which is just the highest
-        //    //	posible power of two that'll fit into the image.
-        //    this.width = textureMaxSize[0];
-        //    this.height = textureMaxSize[0];
-
-        //    for (int size = 1; size <= textureMaxSize[0]; size *= 2)
-        //    {
-        //        if (image.Width < size)
-        //        {
-        //            this.width = size / 2;
-        //            break;
-        //        }
-        //        if (image.Width == size)
-        //            this.width = size;
-        //    }
-
-        //    for (int size = 1; size <= textureMaxSize[0]; size *= 2)
-        //    {
-        //        if (image.Height < size)
-        //        {
-        //            this.height = size / 2;
-        //            break;
-        //        }
-        //        if (image.Height == size)
-        //            this.height = size;
-        //    }
-
-        //    //  If need to scale, do so now.
-        //    if (image.Width != this.width || image.Height != this.height)
-        //    {
-        //        //  Resize the image.
-        //        Image newImage = image.GetThumbnailImage(this.width, this.height, null, IntPtr.Zero);
-
-        //        //  Destory the old image, and reset.
-        //        image.Dispose();
-        //        image = (Bitmap)newImage;
-        //    }
-
-        //    /* Create a texture that will be used to hold all ASCII glyphs */
-        //    GL.ActiveTexture(GL.GL_TEXTURE0);
-        //    GL.GenTextures(1, texture);
-        //    GL.BindTexture(GL.GL_TEXTURE_2D, texture[0]);
-
-        //    this.width = image.Width;
-        //    this.height = image.Height;
-
-        //    //  Lock the image bits (so that we can pass them to OGL).
-        //    BitmapData bitmapData = image.LockBits(new Rectangle(0, 0, image.Width, image.Height),
-        //        ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-
-        //    //	Bind our texture object (make it the current texture).
-        //    GL.BindTexture(GL.GL_TEXTURE_2D, texture[0]);
-
-        //    //  Set the image data.
-        //    //GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA,
-        //    //targetWidth, targetHeight, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
-        //    //bitmapData.Scan0);
-        //    GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height,
-        //        0, GL.GL_LUMINANCE_ALPHA, GL.GL_UNSIGNED_BYTE, bitmapData.Scan0);
-
-        //    //  Unlock the image.
-        //    image.UnlockBits(bitmapData);
-
-        //    /* Clamping to edges is important to prevent artifacts when scaling */
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
-
-        //    /* Linear filtering usually looks best for text */
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
-        //}
 
         private void InitShaderProgram()
         {
@@ -297,10 +206,6 @@ namespace CSharpGL.Winforms.Demo
             shader.Bind();
 
             mat4 projectionMatrix = this.camera.GetProjectionMat4();
-            //IPerspectiveCamera perspectiveCamera = this.camera as IPerspectiveCamera;
-            //mat4 projectionMatrix = perspectiveCamera.GetProjectionMat4();
-            //IOrthoCamera orthoCamera = this.camera as IOrthoCamera;
-            //mat4 projectionMatrix = orthoCamera.GetProjectionMat4();
             mat4 viewMatrix = this.camera.GetViewMat4();
             mat4 matrix = projectionMatrix * viewMatrix;
             shader.SetUniformMatrix4("transformMatrix", matrix.to_array());

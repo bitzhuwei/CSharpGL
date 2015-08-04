@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Texts
 {
+    /// <summary>
+    /// 用一个纹理绘制ASCII表上所有可见字符（具有指定的高度和字体）
+    /// </summary>
     public class ModernSingleTextureFont : VAOElement
     {
         ScientificCamera camera;
@@ -27,7 +30,7 @@ namespace CSharpGL.Objects.Texts
         uint[] texture = new uint[1];
         private int textureWidth;
         private int textureHeight;
-        CharacterInformation[] characterInfos = new CharacterInformation[128];
+        CharacterLocation[] characterInfos = new CharacterLocation[128];
 
         //  Constants that specify the attribute indexes.
         internal uint coordLocation;
@@ -62,18 +65,17 @@ namespace CSharpGL.Objects.Texts
             //  Create a vertex buffer for the vertex data.
             UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(this.vertexCount);
             coord[0] = new vec4(0, 0, 0, 1);
-            coord[1] = new vec4(0, textureHeight, 0, 0);
-            coord[2] = new vec4(textureWidth, textureHeight, 1, 0);
-            coord[3] = new vec4(textureWidth, 0, 1, 1);
+            coord[1] = new vec4(0, this.textureHeight, 0, 0);
+            coord[2] = new vec4(this.textureWidth, this.textureHeight, 1, 0);
+            coord[3] = new vec4(this.textureWidth, 0, 1, 1);
+
             uint[] ids = new uint[1];
             GL.GenBuffers(1, ids);
             GL.BindBuffer(GL.GL_ARRAY_BUFFER, ids[0]);
-
             GL.BufferData(BufferTarget.ArrayBuffer, coord, BufferUsage.StaticDraw);
             GL.VertexAttribPointer(coordLocation, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
             GL.EnableVertexAttribArray(coordLocation);
 
-            //  Unbind the vertex array, we've finished specifying data for it.
             GL.BindVertexArray(0);
         }
 
@@ -89,13 +91,13 @@ namespace CSharpGL.Objects.Texts
             //	Get the maximum texture size supported by GL.
             GL.GetInteger(GetTarget.MaxTextureSize, maxTextureWidth);
 
-            int widthOfTexture, heightOfTexture;
-            FindTextureSize(face, this.fontHeight, maxTextureWidth[0], out widthOfTexture, out heightOfTexture);
+            FindTextureSize(face, this.fontHeight, maxTextureWidth[0], out this.textureWidth, out this.textureHeight);
 
-            System.Drawing.Bitmap bigBitmap = GetBigBitmap(face, maxTextureWidth[0], widthOfTexture, heightOfTexture);
+            System.Drawing.Bitmap bigBitmap = GetBigBitmap(face, maxTextureWidth[0], this.textureWidth, this.textureHeight);
 
             CreateTextureObject(bigBitmap);
 
+            bigBitmap.Save("modernSingleTextureFont.png");
             bigBitmap.Dispose();
 
             face.Dispose();
@@ -384,8 +386,6 @@ namespace CSharpGL.Objects.Texts
 
         float rotation = 0.0f;
         public bool blend;
-        private float modelWidth;
-        private float modelHeight;
         static Random random = new Random();
         private string fontFilename;
         private int fontHeight;

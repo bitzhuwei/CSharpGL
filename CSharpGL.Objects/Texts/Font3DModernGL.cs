@@ -42,7 +42,7 @@ namespace CSharpGL.Objects.Texts
             // 初始化字体库
             FreeTypeFace face = new FreeTypeFace(library, font);
 
-            // Freetype measures the font size in 1/64th of pixels for accuracy 
+            // Freetype measures the font size in 1/64th of pixels for accuracy
             // so we need to request characters in size*64
             // 设置字符大小？
             FreeTypeAPI.FT_Set_Char_Size(face.pointer, size << 6, size << 6, 96, 96);
@@ -52,7 +52,7 @@ namespace CSharpGL.Objects.Texts
             // 设置像素大小？
             FreeTypeAPI.FT_Set_Pixel_Sizes(face.pointer, size, size);
 
-            // Once we have the face loaded and sized we generate opengl textures 
+            // Once we have the face loaded and sized we generate opengl textures
             // from the glyphs for each printable character
             // 为所有可打印的字符的创建纹理
             const int textureCount = 128;// char.MaxValue;
@@ -160,7 +160,7 @@ namespace CSharpGL.Objects.Texts
             GL.End();
             GL.PopMatrix();
 
-            // Advance for the next character			
+            // Advance for the next character
             // 准备绘制下一个字符
             GL.Translatef(bmpGlyph.obj.bitmap.width, 0, 0);
             extent_x[c] = bmpGlyph.obj.left + bmpGlyph.obj.bitmap.width;
@@ -277,7 +277,7 @@ namespace CSharpGL.Objects.Texts
         /// </summary>
         public void Dispose()
         {
-            // Call the private Dispose(bool) helper and indicate 
+            // Call the private Dispose(bool) helper and indicate
             // that we are explicitly disposing
             this.Dispose(true);
 

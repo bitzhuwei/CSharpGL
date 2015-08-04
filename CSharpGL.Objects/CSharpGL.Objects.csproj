@@ -76,10 +76,9 @@
     <Compile Include="Shaders\ShaderProgram.cs" />
     <EmbeddedResource Include="Texts\freetype.frag" />
     <EmbeddedResource Include="Texts\freetype.vert" />
-    <Compile Include="Texts\Atlas.cs" />
+    <Compile Include="Texts\CharacterLocation.cs" />
     <Compile Include="Texts\ModernSingleTextureFont.cs" />
     <Compile Include="Texts\LegacyMultiTextureFont.cs" />
-    <Compile Include="Texts\Font3DModernGL.cs" />
     <Compile Include="Texts\FreeTypes\BBox.cs" />
     <Compile Include="Texts\FreeTypes\Bitmap.cs" />
     <Compile Include="Texts\FreeTypes\FreeTypeObjects.cs" />

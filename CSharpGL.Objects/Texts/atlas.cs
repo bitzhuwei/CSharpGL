@@ -19,23 +19,7 @@ namespace CSharpGL.Objects.Texts
     // * After the constructor is run, you don't need to use any FreeType functions anymore.
     // */
 
-    /// <summary>
-    ///
-    /// </summary>
-    struct CharacterInformation
-    {
-        public float advanceX;	// advance.x
-        public float advanceY;	// advance.y
 
-        public float bitmapWidth;	// bitmap.width;
-        public float bitmapHeight;	// bitmap.height;
-
-        public float bitmapLeft;	// bitmap_left;
-        public float bitmapTop;	// bitmap_top;
-
-        public float xoffset;	// x offset of glyph in texture coordinates
-        public float yoffset;	// y offset of glyph in texture coordinates
-    } //c[128];		// character information
 
     /// <summary>
     /// 用一个纹理绘制ASCII表上所有可见字符（具有指定的高度和字体）
@@ -47,7 +31,7 @@ namespace CSharpGL.Objects.Texts
         public int widthOfTexture;			// width of texture in pixels
         public int heightOfTexture;			// height of texture in pixels
 
-        public CharacterInformation[] characterInfos = new CharacterInformation[128];
+        public CharacterLocation[] characterInfos = new CharacterLocation[128];
         int[] MaxWidth = new int[1];
 
         public Atlas(FreeTypeFace face, int fontHeight, Shaders.ShaderProgram shaderProgram)
