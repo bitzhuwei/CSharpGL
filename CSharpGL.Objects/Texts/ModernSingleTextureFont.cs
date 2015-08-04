@@ -55,9 +55,9 @@ namespace CSharpGL.Objects.Texts
                 coord[i * 4 + 0] = new vec4(i + 0, 0,
                    location.xoffset, location.yoffset);
                 coord[i * 4 + 1] = new vec4(i + 1, 0,
-                    location.xoffset + location.bitmapWidth / 2 / this.textureWidth, location.yoffset);
+                    location.xoffset + location.bitmapWidth / this.textureWidth, location.yoffset);
                 coord[i * 4 + 2] = new vec4(i + 1, 1,
-                    location.xoffset + location.bitmapWidth / 2 / this.textureWidth, location.yoffset + location.bitmapTop / this.textureHeight);
+                    location.xoffset + location.bitmapWidth / this.textureWidth, location.yoffset + location.bitmapTop / this.textureHeight);
                 coord[i * 4 + 3] = new vec4(i + 0, 1,
                     location.xoffset, location.yoffset + location.bitmapTop / this.textureHeight);
             }
@@ -283,7 +283,7 @@ namespace CSharpGL.Objects.Texts
                 characterInfos[i].advanceX = glyph.glyphRec.advance.x >> 6;
                 characterInfos[i].advanceY = glyph.glyphRec.advance.y >> 6;
 
-                characterInfos[i].bitmapWidth = currentWidth;
+                characterInfos[i].bitmapWidth = currentWidth / 2;
                 characterInfos[i].bitmapHeight = currentHeight;
 
                 characterInfos[i].bitmapLeft = glyph.obj.left;
