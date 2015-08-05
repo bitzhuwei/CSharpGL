@@ -20,8 +20,13 @@ namespace CSharpGL.Winforms
         /// shader program
         /// </summary>
         protected ShaderProgram shaderProgram;
-        uint positionLocation;
-        uint colorLocation;
+        const string strin_Position = "in_Position";
+        const string strin_Color = "in_Color";
+        const string strprojectionMatrix = "projectionMatrix";
+        const string strviewMatrix = "viewMatrix";
+        const string strmodelMatrix = "modelMatrix";
+        //uint positionLocation;
+        //uint colorLocation;
         mat4 projectionMatrix;
         mat4 viewMatrix;
         mat4 modelMatrix;
@@ -65,10 +70,6 @@ namespace CSharpGL.Winforms
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-            positionLocation = shaderProgram.GetAttributeLocation("in_Position");
-
-            colorLocation = shaderProgram.GetAttributeLocation("in_Color");
-
             shaderProgram.AssertValid();
         }
 
@@ -96,6 +97,9 @@ namespace CSharpGL.Winforms
                         (float)(this.radius * Math.Sin(face * (Math.PI * 2) / faceCount))
                         );
                 }
+
+                uint positionLocation = shaderProgram.GetAttributeLocation(strin_Position);
+
                 GL.BufferData(BufferTarget.ArrayBuffer, positionArray, BufferUsage.StaticDraw);
                 GL.VertexAttribPointer(positionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                 GL.EnableVertexAttribArray(positionLocation);
@@ -119,6 +123,9 @@ namespace CSharpGL.Winforms
                         colorArray[i] = new vec3(0, 1, 0); //new vec3((i % 3) / 3.0f, (i + 1) % 3 / 3.0f, (i + 2) % 3 / 3.0f);
                     }
                 }
+
+                uint colorLocation = shaderProgram.GetAttributeLocation(strin_Color);
+
                 GL.BufferData(BufferTarget.ArrayBuffer, colorArray, BufferUsage.StaticDraw);
                 GL.VertexAttribPointer(colorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                 GL.EnableVertexAttribArray(colorLocation);
@@ -185,9 +192,9 @@ namespace CSharpGL.Winforms
             //GL.GetInteger(GetTarget.Viewport, viewport);
             //projectionMatrix = glm.perspective(60.0f, (float)viewport[2] / (float)viewport[3], 0.01f, 100.0f);
 
-            shaderProgram.SetUniformMatrix4("projectionMatrix", projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4("viewMatrix", viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4("modelMatrix", modelMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
         }
 
         protected void AfterRendering(Objects.RenderModes renderMode)
