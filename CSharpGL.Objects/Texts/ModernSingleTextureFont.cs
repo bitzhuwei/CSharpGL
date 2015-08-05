@@ -3,14 +3,10 @@ using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Shaders;
 using CSharpGL.Objects.Texts.FreeTypes;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Texts
 {
@@ -20,11 +16,42 @@ namespace CSharpGL.Objects.Texts
     public class ModernSingleTextureFont : VAOElement
     {
 
+        public bool blend;
+
+        static Random random = new Random();
+
+        ScientificCamera camera;
+
+        float rotation = 0.0f;
+        private string fontFilename;
+        private int fontHeight;
+
+        uint[] texture = new uint[1];
+        private int textureWidth;
+        private int textureHeight;
+        CharacterLocation[] characterInfos = new CharacterLocation[maxChar];
+
+        //  Constants that specify the attribute indexes.
+        internal uint in_PositionLocation;
+        internal uint in_TexCoordLocation;
+        internal int transformMatrixLocation;
+        internal int colorLocation;
+        internal int texLocation;
+        private ShaderProgram shaderProgram;
+
+        private PrimitiveModes mode;
+        private uint[] vao = new uint[1];
+        private uint[] vbo = new uint[2];
+        private int vertexCount;
+
         //const int maxChar = char.MaxValue;
         const int maxChar = 128;
 
         private string text = string.Empty;
 
+        /// <summary>
+        /// 要绘制的文字，暂时只支持ASCII码范围内的字符
+        /// </summary>
         public string Text
         {
             get { return text; }
@@ -46,40 +73,59 @@ namespace CSharpGL.Objects.Texts
             this.mode = PrimitiveModes.Quads;
             this.vertexCount = 4 * value.Length;
 
-            //  Create a vertex buffer for the vertex data.
-            UnmanagedArray<vec4> coord = new UnmanagedArray<vec4>(this.vertexCount);
+            UnmanagedArray<vec3> in_Position = new UnmanagedArray<vec3>(this.vertexCount);
             for (int i = 0; i < value.Length; i++)
             {
                 char c = value[i];
                 CharacterLocation location = characterInfos[c];
-                coord[i * 4 + 0] = new vec4(i + 0, 0,
+                in_Position[i * 4 + 0] = new vec3(i + 0, 0, 0);
+                in_Position[i * 4 + 1] = new vec3(i + 1, 0, 0);
+                in_Position[i * 4 + 2] = new vec3(i + 1, 1, 0);
+                in_Position[i * 4 + 3] = new vec3(i + 0, 1, 0);
+            }
+
+            //  Create a vertex buffer for the vertex data.
+            UnmanagedArray<vec2> in_TexCoord = new UnmanagedArray<vec2>(this.vertexCount);
+            for (int i = 0; i < value.Length; i++)
+            {
+                char c = value[i];
+                CharacterLocation location = characterInfos[c];
+                in_TexCoord[i * 4 + 0] = new vec2(
                    location.xoffset, location.yoffset);
-                coord[i * 4 + 1] = new vec4(i + 1, 0,
+                in_TexCoord[i * 4 + 1] = new vec2(
                     location.xoffset + location.bitmapWidth / this.textureWidth, location.yoffset);
-                coord[i * 4 + 2] = new vec4(i + 1, 1,
+                in_TexCoord[i * 4 + 2] = new vec2(
                     location.xoffset + location.bitmapWidth / this.textureWidth, location.yoffset + location.bitmapTop / this.textureHeight);
-                coord[i * 4 + 3] = new vec4(i + 0, 1,
+                in_TexCoord[i * 4 + 3] = new vec2(
                     location.xoffset, location.yoffset + location.bitmapTop / this.textureHeight);
             }
 
             if (vao[0] != 0)
             { GL.DeleteBuffers(1, vao); }
             if (vbo[0] != 0)
-            { GL.DeleteBuffers(1, vbo); }
+            { GL.DeleteBuffers(vbo.Length, vbo); }
 
             GL.GenVertexArrays(1, vao);
             GL.BindVertexArray(vao[0]);
 
-            GL.GenBuffers(1, vbo);
-            GL.BindBuffer(GL.GL_ARRAY_BUFFER, vbo[0]);
-            GL.BufferData(BufferTarget.ArrayBuffer, coord, BufferUsage.StaticDraw);
-            GL.VertexAttribPointer(coordLocation, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-            GL.EnableVertexAttribArray(coordLocation);
+            GL.GenBuffers(2, vbo);
+
+            GL.BindBuffer(BufferTarget.ArrayBuffer, vbo[0]);
+            GL.BufferData(BufferTarget.ArrayBuffer, in_Position, BufferUsage.StaticDraw);
+            GL.VertexAttribPointer(in_PositionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+            GL.EnableVertexAttribArray(in_PositionLocation);
+
+            GL.BindBuffer(BufferTarget.ArrayBuffer, vbo[1]);
+            GL.BufferData(BufferTarget.ArrayBuffer, in_TexCoord, BufferUsage.StaticDraw);
+            GL.VertexAttribPointer(in_TexCoordLocation, 2, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+            GL.EnableVertexAttribArray(in_TexCoordLocation);
 
             GL.BindVertexArray(0);
+
+            in_Position.Dispose();
+            in_TexCoord.Dispose();
         }
 
-        ScientificCamera camera;
 
         public ModernSingleTextureFont(ScientificCamera camera, string fontFilename, int fontHeight)
         {
@@ -88,22 +134,6 @@ namespace CSharpGL.Objects.Texts
             this.fontHeight = fontHeight;
         }
 
-        uint[] texture = new uint[1];
-        private int textureWidth;
-        private int textureHeight;
-        CharacterLocation[] characterInfos = new CharacterLocation[maxChar];
-
-        //  Constants that specify the attribute indexes.
-        internal uint coordLocation;
-        internal int transformMatrixLocation;
-        internal int colorLocation;
-        internal int texLocation;
-        private ShaderProgram shaderProgram;
-
-        private PrimitiveModes mode;
-        private uint[] vao = new uint[1];
-        private uint[] vbo = new uint[1];
-        private int vertexCount;
 
 
         protected override void DoInitialize()
@@ -371,9 +401,16 @@ namespace CSharpGL.Objects.Texts
             var shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-            int coord = shaderProgram.GetAttributeLocation("coord");
-            if (coord >= 0) { this.coordLocation = (uint)coord; }
-            else { throw new Exception(); }
+            {
+                int location = shaderProgram.GetAttributeLocation("in_Position");
+                if (location >= 0) { this.in_PositionLocation = (uint)location; }
+                else { throw new Exception(); }
+            }
+            {
+                int location = shaderProgram.GetAttributeLocation("in_TexCoord");
+                if (location >= 0) { this.in_TexCoordLocation = (uint)location; }
+                else { throw new Exception(); }
+            }
 
             this.transformMatrixLocation = shaderProgram.GetUniformLocation("transformMatrix");
             if (this.transformMatrixLocation < 0) { throw new Exception(); }
@@ -435,11 +472,7 @@ namespace CSharpGL.Objects.Texts
             GL.BindTexture(GL.GL_TEXTURE_2D, 0);
         }
 
-        float rotation = 0.0f;
-        public bool blend;
-        static Random random = new Random();
-        private string fontFilename;
-        private int fontHeight;
+
     }
 
 }
