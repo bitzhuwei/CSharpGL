@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnUnmanagedArray = new System.Windows.Forms.Button();
-            this.btnGLCanvas = new System.Windows.Forms.Button();
+            this.btnCylinderVAOElement = new System.Windows.Forms.Button();
             this.btnModernSingleTextureFont = new System.Windows.Forms.Button();
             this.btnPyramidVAOElement = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -47,18 +47,18 @@
             this.btnUnmanagedArray.UseVisualStyleBackColor = true;
             this.btnUnmanagedArray.Click += new System.EventHandler(this.btnUnmanagedArray_Click);
             //
-            // btnGLCanvas
+            // btnCylinderVAOElement
             //
-            this.btnGLCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btnCylinderVAOElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGLCanvas.Location = new System.Drawing.Point(16, 51);
-            this.btnGLCanvas.Margin = new System.Windows.Forms.Padding(4);
-            this.btnGLCanvas.Name = "btnGLCanvas";
-            this.btnGLCanvas.Size = new System.Drawing.Size(347, 29);
-            this.btnGLCanvas.TabIndex = 0;
-            this.btnGLCanvas.Text = "GLCanvas";
-            this.btnGLCanvas.UseVisualStyleBackColor = true;
-            this.btnGLCanvas.Click += new System.EventHandler(this.btnGLCanvas_Click);
+            this.btnCylinderVAOElement.Location = new System.Drawing.Point(16, 51);
+            this.btnCylinderVAOElement.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCylinderVAOElement.Name = "btnCylinderVAOElement";
+            this.btnCylinderVAOElement.Size = new System.Drawing.Size(347, 29);
+            this.btnCylinderVAOElement.TabIndex = 0;
+            this.btnCylinderVAOElement.Text = "CylinderVAOElement";
+            this.btnCylinderVAOElement.UseVisualStyleBackColor = true;
+            this.btnCylinderVAOElement.Click += new System.EventHandler(this.btnCylinderVAOElement_Click);
             //
             // btnModernSingleTextureFont
             //
@@ -93,7 +93,7 @@
             this.ClientSize = new System.Drawing.Size(379, 328);
             this.Controls.Add(this.btnPyramidVAOElement);
             this.Controls.Add(this.btnModernSingleTextureFont);
-            this.Controls.Add(this.btnGLCanvas);
+            this.Controls.Add(this.btnCylinderVAOElement);
             this.Controls.Add(this.btnUnmanagedArray);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormTest";
@@ -105,7 +105,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnUnmanagedArray;
-        private System.Windows.Forms.Button btnGLCanvas;
+        private System.Windows.Forms.Button btnCylinderVAOElement;
         private System.Windows.Forms.Button btnModernSingleTextureFont;
         private System.Windows.Forms.Button btnPyramidVAOElement;
     }

@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Winforms.Demo
 {
-    partial class FormGLCanvas
+    partial class FormCylinderVAOElement
     {
         /// <summary>
         /// Required designer variable.

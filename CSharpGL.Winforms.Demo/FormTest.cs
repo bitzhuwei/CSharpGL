@@ -26,9 +26,9 @@ namespace CSharpGL.Winforms.Demo
 
         }
 
-        private void btnGLCanvas_Click(object sender, EventArgs e)
+        private void btnCylinderVAOElement_Click(object sender, EventArgs e)
         {
-            (new FormGLCanvas()).Show();
+            (new FormCylinderVAOElement()).Show();
         }
 
         private void btnPyramidVAOElement_Click(object sender, EventArgs e)

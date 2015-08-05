@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
 {
-    public partial class FormGLCanvas : Form
+    public partial class FormCylinderVAOElement : Form
     {
         //private float rotation;
 
@@ -25,7 +25,7 @@ namespace CSharpGL.Winforms.Demo
         /// <summary>
         ///
         /// </summary>
-        public FormGLCanvas()
+        public FormCylinderVAOElement()
         {
             InitializeComponent();
 
