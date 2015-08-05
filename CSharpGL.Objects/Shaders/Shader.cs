@@ -15,32 +15,33 @@ namespace CSharpGL.Objects.Shaders
         public void Create(uint shaderType, string source)
         {
             //  Create the OpenGL shader object.
-            shaderObject = GL.CreateShader(shaderType);
+            ShaderObject = GL.CreateShader(shaderType);
 
             //  Set the shader source.
-            GL.ShaderSource(shaderObject, source);
+            GL.ShaderSource(ShaderObject, source);
 
             //  Compile the shader object.
-            GL.CompileShader(shaderObject);
+            GL.CompileShader(ShaderObject);
 
             //  Now that we've compiled the shader, check it's compilation status. If it's not compiled properly, we're
             //  going to throw an exception.
             if (GetCompileStatus() == false)
             {
-                throw new ShaderCompilationException(string.Format("Failed to compile shader with ID {0}.", shaderObject), GetInfoLog());
+                string log = GetInfoLog();
+                throw new ShaderCompilationException(string.Format("Failed to compile shader with ID {0}.", ShaderObject), log);
             }
         }
 
         public void Delete()
         {
-            GL.DeleteShader(shaderObject);
-            shaderObject = 0;
+            GL.DeleteShader(ShaderObject);
+            ShaderObject = 0;
         }
 
         public bool GetCompileStatus()
         {
             int[] parameters = new int[] { 0 };
-            GL.GetShader(shaderObject, GL.GL_COMPILE_STATUS, parameters);
+            GL.GetShader(ShaderObject, GL.GL_COMPILE_STATUS, parameters);
             return parameters[0] == GL.GL_TRUE;
         }
 
@@ -54,22 +55,15 @@ namespace CSharpGL.Objects.Shaders
 
             //  Get the compile info.
             StringBuilder il = new StringBuilder(bufSize);
-            GL.GetShaderInfoLog(shaderObject, bufSize, IntPtr.Zero, il);
+            GL.GetShaderInfoLog(ShaderObject, bufSize, IntPtr.Zero, il);
 
-            return il.ToString();
+            string log = il.ToString();
+            return log;
         }
-
-        /// <summary>
-        /// The OpenGL shader object.
-        /// </summary>
-        private uint shaderObject;
 
         /// <summary>
         /// Gets the shader object.
         /// </summary>
-        public uint ShaderObject
-        {
-            get { return shaderObject; }
-        }
+        public uint ShaderObject { get; protected set; }
     }
 }

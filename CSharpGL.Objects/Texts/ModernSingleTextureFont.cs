@@ -32,12 +32,17 @@ namespace CSharpGL.Objects.Texts
         CharacterLocation[] characterInfos = new CharacterLocation[maxChar];
 
         //  Constants that specify the attribute indexes.
-        internal uint in_PositionLocation;
-        internal uint in_TexCoordLocation;
-        internal int transformMatrixLocation;
-        internal int colorLocation;
-        internal int texLocation;
+        //internal uint in_PositionLocation;
+        //internal uint in_TexCoordLocation;
+        //internal int transformMatrixLocation;
+        //internal int colorLocation;
+        //internal int texLocation;
         private ShaderProgram shaderProgram;
+        const string strin_Position = "in_Position";
+        const string strin_TexCoord = "in_TexCoord";
+        const string strtransformMatrix = "transformMatrix";
+        const string strtex = "tex";
+        const string strcolor = "color";
 
         private PrimitiveModes mode;
         private uint[] vao = new uint[1];
@@ -110,11 +115,13 @@ namespace CSharpGL.Objects.Texts
 
             GL.GenBuffers(2, vbo);
 
+            uint in_PositionLocation = shaderProgram.GetAttributeLocation(strin_Position);
             GL.BindBuffer(BufferTarget.ArrayBuffer, vbo[0]);
             GL.BufferData(BufferTarget.ArrayBuffer, in_Position, BufferUsage.StaticDraw);
             GL.VertexAttribPointer(in_PositionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
             GL.EnableVertexAttribArray(in_PositionLocation);
 
+            uint in_TexCoordLocation = shaderProgram.GetAttributeLocation(strin_TexCoord);
             GL.BindBuffer(BufferTarget.ArrayBuffer, vbo[1]);
             GL.BufferData(BufferTarget.ArrayBuffer, in_TexCoord, BufferUsage.StaticDraw);
             GL.VertexAttribPointer(in_TexCoordLocation, 2, GL.GL_FLOAT, false, 0, IntPtr.Zero);
@@ -401,25 +408,25 @@ namespace CSharpGL.Objects.Texts
             var shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-            {
-                int location = shaderProgram.GetAttributeLocation("in_Position");
-                if (location >= 0) { this.in_PositionLocation = (uint)location; }
-                else { throw new Exception(); }
-            }
-            {
-                int location = shaderProgram.GetAttributeLocation("in_TexCoord");
-                if (location >= 0) { this.in_TexCoordLocation = (uint)location; }
-                else { throw new Exception(); }
-            }
+            //{
+            //    int location = shaderProgram.GetAttributeLocation("in_Position");
+            //    if (location >= 0) { this.in_PositionLocation = (uint)location; }
+            //    else { throw new Exception(); }
+            //}
+            //{
+            //    int location = shaderProgram.GetAttributeLocation("in_TexCoord");
+            //    if (location >= 0) { this.in_TexCoordLocation = (uint)location; }
+            //    else { throw new Exception(); }
+            //}
 
-            this.transformMatrixLocation = shaderProgram.GetUniformLocation("transformMatrix");
-            if (this.transformMatrixLocation < 0) { throw new Exception(); }
+            //this.transformMatrixLocation = shaderProgram.GetUniformLocation("transformMatrix");
+            //if (this.transformMatrixLocation < 0) { throw new Exception(); }
 
-            this.colorLocation = shaderProgram.GetUniformLocation("color");
-            if (this.colorLocation < 0) { throw new Exception(); }
+            //this.colorLocation = shaderProgram.GetUniformLocation("color");
+            //if (this.colorLocation < 0) { throw new Exception(); }
 
-            this.texLocation = GL.GetUniformLocation(shaderProgram.ShaderProgramObject, "tex");
-            if (this.texLocation < 0) { throw new Exception(); }
+            //this.texLocation = GL.GetUniformLocation(shaderProgram.ShaderProgramObject, "tex");
+            //if (this.texLocation < 0) { throw new Exception(); }
 
             shaderProgram.AssertValid();
 
@@ -440,12 +447,12 @@ namespace CSharpGL.Objects.Texts
 
             shader.Bind();
 
-            shaderProgram.SetUniform1("tex", texture[0]);
+            shaderProgram.SetUniform(strtex, texture[0]);
 
             mat4 projectionMatrix = this.camera.GetProjectionMat4();
             mat4 viewMatrix = this.camera.GetViewMat4();
             mat4 matrix = projectionMatrix * viewMatrix;
-            shader.SetUniformMatrix4("transformMatrix", matrix.to_array());
+            shader.SetUniformMatrix4(strtransformMatrix, matrix.to_array());
 
             const float scale = 3.5f;
             rotation += 0.1f;
@@ -454,8 +461,9 @@ namespace CSharpGL.Objects.Texts
             transformMatrix = glm.scale(transformMatrix, new vec3(scale, scale, scale));
             //shader.SetUniformMatrix4("transformMatrix", transformMatrix.to_array());
 
-            GL.Uniform1(this.texLocation, this.texture[0]);
-            GL.Uniform4(this.colorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
+            shader.SetUniform(strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
+            //GL.Uniform1(this.texLocation, this.texture[0]);
+            //GL.Uniform4(this.colorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
             //GL.Uniform4(this.colorLocation, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
 
             GL.BindVertexArray(vao[0]);

@@ -65,13 +65,9 @@ namespace CSharpGL.Winforms
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-            int position = shaderProgram.GetAttributeLocation("in_Position");
-            if (position >= 0) { positionLocation = (uint)position; }
-            else { throw new Exception(); }
+            positionLocation = shaderProgram.GetAttributeLocation("in_Position");
 
-            int color = shaderProgram.GetAttributeLocation("in_Color");
-            if (color >= 0) { colorLocation = (uint)color; }
-            else { throw new Exception(); }
+            colorLocation = shaderProgram.GetAttributeLocation("in_Color");
 
             shaderProgram.AssertValid();
         }
