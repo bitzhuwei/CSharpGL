@@ -16,8 +16,11 @@ namespace CSharpGL.Winforms
         /// shader program
         /// </summary>
         protected ShaderProgram shaderProgram;
-        uint positionLocation;
-        uint colorLocation;
+        const string strin_Position = "in_Position";
+        const string strin_Color = "in_Color";
+        const string strprojectionMatrix = "projectionMatrix";
+        const string strviewMatrix = "viewMatrix";
+        const string strmodelMatrix = "modelMatrix";
         mat4 projectionMatrix;
         mat4 viewMatrix;
         mat4 modelMatrix;
@@ -86,10 +89,6 @@ namespace CSharpGL.Winforms
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-            positionLocation = shaderProgram.GetAttributeLocation("in_Position");
-
-            colorLocation = shaderProgram.GetAttributeLocation("in_Color");
-
             shaderProgram.AssertValid();
         }
 
@@ -106,30 +105,40 @@ namespace CSharpGL.Winforms
             {
                 uint[] ids = new uint[1];
                 GL.GenBuffers(1, ids);
-                GL.BindBuffer(GL.GL_ARRAY_BUFFER, ids[0]);
+                GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
                 UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(positions.Length);
                 for (int i = 0; i < positions.Length; i++)
                 {
                     positionArray[i] = positions[i];
                 }
+
+                uint positionLocation = shaderProgram.GetAttributeLocation(strin_Position);
+
                 GL.BufferData(BufferTarget.ArrayBuffer, positionArray, BufferUsage.StaticDraw);
                 GL.VertexAttribPointer(positionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                 GL.EnableVertexAttribArray(positionLocation);
+
+                positionArray.Dispose();
             }
 
             //  Now do the same for the colour data.
             {
                 uint[] ids = new uint[1];
                 GL.GenBuffers(1, ids);
-                GL.BindBuffer(GL.GL_ARRAY_BUFFER, ids[0]);
+                GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
                 UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(positions.Length);
                 for (int i = 0; i < colors.Length; i++)
                 {
                     colorArray[i] = colors[i];
                 }
+
+                uint colorLocation = shaderProgram.GetAttributeLocation(strin_Color);
+
                 GL.BufferData(BufferTarget.ArrayBuffer, colorArray, BufferUsage.StaticDraw);
                 GL.VertexAttribPointer(colorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                 GL.EnableVertexAttribArray(colorLocation);
+
+                colorArray.Dispose();
             }
 
             //  Unbind the vertex array, we've finished specifying data for it.
@@ -174,9 +183,9 @@ namespace CSharpGL.Winforms
             GL.GetInteger(GetTarget.Viewport, viewport);
             projectionMatrix = glm.perspective(60.0f, (float)viewport[2] / (float)viewport[3], 0.01f, 100.0f);
 
-            shaderProgram.SetUniformMatrix4("projectionMatrix", projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4("viewMatrix", viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4("modelMatrix", modelMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
         }
 
         protected void AfterRendering(Objects.RenderModes renderMode)
