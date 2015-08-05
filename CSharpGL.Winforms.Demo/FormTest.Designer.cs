@@ -31,6 +31,7 @@
             this.btnUnmanagedArray = new System.Windows.Forms.Button();
             this.btnGLCanvas = new System.Windows.Forms.Button();
             this.btnModernSingleTextureFont = new System.Windows.Forms.Button();
+            this.btnPyramidVAOElement = new System.Windows.Forms.Button();
             this.SuspendLayout();
             //
             // btnUnmanagedArray
@@ -63,7 +64,7 @@
             //
             this.btnModernSingleTextureFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModernSingleTextureFont.Location = new System.Drawing.Point(16, 88);
+            this.btnModernSingleTextureFont.Location = new System.Drawing.Point(16, 125);
             this.btnModernSingleTextureFont.Margin = new System.Windows.Forms.Padding(4);
             this.btnModernSingleTextureFont.Name = "btnModernSingleTextureFont";
             this.btnModernSingleTextureFont.Size = new System.Drawing.Size(347, 29);
@@ -72,11 +73,25 @@
             this.btnModernSingleTextureFont.UseVisualStyleBackColor = true;
             this.btnModernSingleTextureFont.Click += new System.EventHandler(this.btnFreeTypeTextVAOElement_Click);
             //
+            // btnPyramidVAOElement
+            //
+            this.btnPyramidVAOElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPyramidVAOElement.Location = new System.Drawing.Point(16, 88);
+            this.btnPyramidVAOElement.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPyramidVAOElement.Name = "btnPyramidVAOElement";
+            this.btnPyramidVAOElement.Size = new System.Drawing.Size(347, 29);
+            this.btnPyramidVAOElement.TabIndex = 0;
+            this.btnPyramidVAOElement.Text = "PyramidVAOElement";
+            this.btnPyramidVAOElement.UseVisualStyleBackColor = true;
+            this.btnPyramidVAOElement.Click += new System.EventHandler(this.btnPyramidVAOElement_Click);
+            //
             // FormTest
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 328);
+            this.Controls.Add(this.btnPyramidVAOElement);
             this.Controls.Add(this.btnModernSingleTextureFont);
             this.Controls.Add(this.btnGLCanvas);
             this.Controls.Add(this.btnUnmanagedArray);
@@ -92,5 +107,6 @@
         private System.Windows.Forms.Button btnUnmanagedArray;
         private System.Windows.Forms.Button btnGLCanvas;
         private System.Windows.Forms.Button btnModernSingleTextureFont;
+        private System.Windows.Forms.Button btnPyramidVAOElement;
     }
 }

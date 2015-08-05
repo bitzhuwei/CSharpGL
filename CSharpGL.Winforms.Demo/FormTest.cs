@@ -31,6 +31,11 @@ namespace CSharpGL.Winforms.Demo
             (new FormGLCanvas()).Show();
         }
 
+        private void btnPyramidVAOElement_Click(object sender, EventArgs e)
+        {
+            (new FormPyramidVAOElement()).Show();
+        }
+
         private void btnFreeTypeTextVAOElement_Click(object sender, EventArgs e)
         {
             (new FormModernSingleTextureFont()).Show();

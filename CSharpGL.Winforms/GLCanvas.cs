@@ -18,6 +18,7 @@ namespace CSharpGL.Winforms
     /// 可执行OpenGL渲染的控件。
     /// </summary>
     [ToolboxBitmap(typeof(GLCanvas), "GLCanvas.ico")]
+    [DefaultEvent("OpenGLDraw")]
     public partial class GLCanvas : UserControl, ISupportInitialize
     {
         protected RenderContext renderContext;
