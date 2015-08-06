@@ -164,7 +164,7 @@ namespace CSharpGL.Objects.Texts
             int[] maxTextureWidth = new int[1];
             //	Get the maximum texture size supported by GL.
             GL.GetInteger(GetTarget.MaxTextureSize, maxTextureWidth);
-            maxTextureWidth[0] = 300;
+            //maxTextureWidth[0] = 300;
 
             GetTextureBlueprint(face, this.fontHeight, maxTextureWidth[0], out this.textureWidth, out this.textureHeight);
 
@@ -243,10 +243,6 @@ namespace CSharpGL.Objects.Texts
                 newImage.Dispose();
             }
 
-            //GL.TexImage2D(TexImage2DTargets.Texture2D, 0,
-            //    TexImage2DFormats.Alpha, widthOfTexture, heightOfTexture,
-            //    0, TexImage2DFormats.Alpha, TexImage2DTypes.UnsignedByte, IntPtr.Zero);
-
             /* We require 1 byte alignment when uploading texture data */
             //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
 
@@ -265,9 +261,6 @@ namespace CSharpGL.Objects.Texts
             System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(widthOfTexture, heightOfTexture);
             Graphics graphics = Graphics.FromImage(bigBitmap);
 
-            /* Paste all glyph bitmaps into the texture, remembering the offset */
-
-            //for (int i = (int)'-'; i < (int)'7' + 1; i++)
             for (int i = 0; i < maxChar; i++)
             {
                 char c = Convert.ToChar(i);
@@ -296,13 +289,11 @@ namespace CSharpGL.Objects.Texts
                             }
                         }
 
-                        bitmap.Save(string.Format("grayText-{0}.bmp", i));
+                        //bitmap.Save(string.Format("grayText-{0}.bmp", i));
 
                         int baseLine = this.fontHeight / 4 * 3;
-                        //graphics.DrawImage(bitmap, xoffset, yoffset);
                         graphics.DrawImage(bitmap, cInfo.xoffset,
                             cInfo.yoffset + baseLine - glyph.obj.top);
-                        //cInfo.yoffset + (this.fontHeight - glyph.obj.top) / 2);
                     }
                 }
 
@@ -312,7 +303,6 @@ namespace CSharpGL.Objects.Texts
 
             using (StreamWriter sw = new StreamWriter("characterinfo.txt"))
             {
-                //for (int i = 0; i < characterInfos.Length; i++)
                 for (int i = 0; i < charactersInfoInTexture.Length; i++)
                 {
                     try
@@ -338,7 +328,6 @@ namespace CSharpGL.Objects.Texts
             int glyphX = 0;
             int glyphY = 0;
 
-            //for (int i = (int)'-'; i < (int)'7' + 1; i++)
             for (int i = 0; i < maxChar; i++)
             {
                 char c = Convert.ToChar(i);
@@ -349,14 +338,11 @@ namespace CSharpGL.Objects.Texts
                 if ((!zeroSize) && zeroBuffer) { throw new Exception(); }
                 if (zeroSize) { continue; }
 
-                // Next we expand the bitmap into an opengl texture
-                // 把glyph_bmp.bitmap的长宽扩展成2的指数倍
-                int glyphWidth = glyph.obj.bitmap.width; //next_po2(glyph.obj.bitmap.width);
-                int glyphHeight = glyph.obj.bitmap.rows; //next_po2(glyph.obj.bitmap.rows);
+                int glyphWidth = glyph.obj.bitmap.width;
+                int glyphHeight = glyph.obj.bitmap.rows;
 
                 if (glyphX + glyphWidth + 1 > maxTextureWidth)
                 {
-                    //widthOfTexture = Math.Max(widthOfTexture, glyphX);
                     heightOfTexture += this.fontHeight;
 
                     glyphX = 0;
@@ -385,41 +371,12 @@ namespace CSharpGL.Objects.Texts
 
         }
 
-
-        internal int next_po2(int a)
-        {
-            int rval = 1;
-            while (rval < a) rval <<= 1;
-            return rval;
-        }
-
         private void InitShaderProgram()
         {
-            //  Create the shader program.
             var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Texts.freetype.vert");
             var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Texts.freetype.frag");
             var shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
-
-            //{
-            //    int location = shaderProgram.GetAttributeLocation("in_Position");
-            //    if (location >= 0) { this.in_PositionLocation = (uint)location; }
-            //    else { throw new Exception(); }
-            //}
-            //{
-            //    int location = shaderProgram.GetAttributeLocation("in_TexCoord");
-            //    if (location >= 0) { this.in_TexCoordLocation = (uint)location; }
-            //    else { throw new Exception(); }
-            //}
-
-            //this.transformMatrixLocation = shaderProgram.GetUniformLocation("transformMatrix");
-            //if (this.transformMatrixLocation < 0) { throw new Exception(); }
-
-            //this.colorLocation = shaderProgram.GetUniformLocation("color");
-            //if (this.colorLocation < 0) { throw new Exception(); }
-
-            //this.texLocation = GL.GetUniformLocation(shaderProgram.ShaderProgramObject, "tex");
-            //if (this.texLocation < 0) { throw new Exception(); }
 
             shaderProgram.AssertValid();
 
