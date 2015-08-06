@@ -29,7 +29,8 @@ namespace CSharpGL.Objects.Texts
         uint[] texture = new uint[1];
         private int textureWidth;
         private int textureHeight;
-        CharacterLocation[] characterInfos = new CharacterLocation[maxChar];
+        //CharacterLocation[] characterInfos = new CharacterLocation[maxChar];
+        CharacterInfo[] charactersInfoInTexture = new CharacterInfo[maxChar];
 
         //  Constants that specify the attribute indexes.
         //internal uint in_PositionLocation;
@@ -82,7 +83,7 @@ namespace CSharpGL.Objects.Texts
             for (int i = 0; i < value.Length; i++)
             {
                 char c = value[i];
-                CharacterLocation location = characterInfos[c];
+                //CharacterLocation location = characterInfos[c];
                 in_Position[i * 4 + 0] = new vec3(i + 0, 0, 0);
                 in_Position[i * 4 + 1] = new vec3(i + 1, 0, 0);
                 in_Position[i * 4 + 2] = new vec3(i + 1, 1, 0);
@@ -94,15 +95,15 @@ namespace CSharpGL.Objects.Texts
             for (int i = 0; i < value.Length; i++)
             {
                 char c = value[i];
-                CharacterLocation location = characterInfos[c];
+                CharacterInfo cInfo = this.charactersInfoInTexture[c];
                 in_TexCoord[i * 4 + 0] = new vec2(
-                   location.xoffset, location.yoffset);
+                    (float)(cInfo.xoffset) / (float)this.textureWidth, (float)(cInfo.yoffset) / (float)this.textureHeight);
                 in_TexCoord[i * 4 + 1] = new vec2(
-                    location.xoffset + location.bitmapWidth / this.textureWidth, location.yoffset);
+                    (float)(cInfo.xoffset + cInfo.width) / (float)this.textureWidth, (float)(cInfo.yoffset) / (float)this.textureHeight);
                 in_TexCoord[i * 4 + 2] = new vec2(
-                    location.xoffset + location.bitmapWidth / this.textureWidth, location.yoffset + location.bitmapTop / this.textureHeight);
+                    (float)(cInfo.xoffset + cInfo.width) / (float)this.textureWidth, (float)(cInfo.yoffset + cInfo.height) / (float)this.textureHeight);
                 in_TexCoord[i * 4 + 3] = new vec2(
-                    location.xoffset, location.yoffset + location.bitmapTop / this.textureHeight);
+                    (float)(cInfo.xoffset) / (float)this.textureWidth, (float)(cInfo.yoffset + cInfo.height) / (float)this.textureHeight);
             }
 
             if (vao[0] != 0)
@@ -149,7 +150,7 @@ namespace CSharpGL.Objects.Texts
 
             InitShaderProgram();
 
-            InitVAO("0=");
+            InitVAO("0=2-3+1");
         }
 
         private void InitTexture()
@@ -163,8 +164,9 @@ namespace CSharpGL.Objects.Texts
             int[] maxTextureWidth = new int[1];
             //	Get the maximum texture size supported by GL.
             GL.GetInteger(GetTarget.MaxTextureSize, maxTextureWidth);
+            maxTextureWidth[0] = 300;
 
-            FindTextureSize(face, this.fontHeight, maxTextureWidth[0], out this.textureWidth, out this.textureHeight);
+            GetTextureBlueprint(face, this.fontHeight, maxTextureWidth[0], out this.textureWidth, out this.textureHeight);
 
             System.Drawing.Bitmap bigBitmap = GetBigBitmap(face, maxTextureWidth[0], this.textureWidth, this.textureHeight);
 
@@ -264,10 +266,6 @@ namespace CSharpGL.Objects.Texts
             Graphics graphics = Graphics.FromImage(bigBitmap);
 
             /* Paste all glyph bitmaps into the texture, remembering the offset */
-            int xoffset = 0;
-            int yoffset = 0;
-
-            int newRowHeight = 0;
 
             //for (int i = (int)'-'; i < (int)'7' + 1; i++)
             for (int i = 0; i < maxChar; i++)
@@ -278,71 +276,50 @@ namespace CSharpGL.Objects.Texts
                 bool zeroBuffer = glyph.obj.bitmap.buffer == IntPtr.Zero;
                 if (zeroSize && (!zeroBuffer)) { throw new Exception(); }
                 if ((!zeroSize) && zeroBuffer) { throw new Exception(); }
-                int currentWidth = 0;
-                int currentHeight = 0;
+
                 if (!zeroSize)
                 {
                     int size = glyph.obj.bitmap.width * glyph.obj.bitmap.rows;
                     byte[] byteBitmap = new byte[size];
                     Marshal.Copy(glyph.obj.bitmap.buffer, byteBitmap, 0, byteBitmap.Length);
-                    currentWidth = next_po2(glyph.obj.bitmap.width);
-                    currentHeight = next_po2(glyph.obj.bitmap.rows);
-                    UnmanagedArray<byte> expanded = new UnmanagedArray<byte>(2 * currentWidth * currentHeight);
-                    for (int row = 0; row < currentHeight; row++)
+                    CharacterInfo cInfo = this.charactersInfoInTexture[i];
+
+                    if (cInfo.width > 0)
                     {
-                        for (int col = 0; col < currentWidth; col++)
+                        System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(cInfo.width, cInfo.height);
+                        for (int tmpRow = 0; tmpRow < cInfo.height; ++tmpRow)
                         {
-                            expanded[2 * (col + row * currentWidth)] = expanded[2 * (col + row * currentWidth) + 1] =
-                                (col >= glyph.obj.bitmap.width || row >= glyph.obj.bitmap.rows) ?
-                                (byte)0 : byteBitmap[col + glyph.obj.bitmap.width * row];
+                            for (int tmpWidth = 0; tmpWidth < cInfo.width; ++tmpWidth)
+                            {
+                                byte color = byteBitmap[tmpRow * cInfo.width + tmpWidth];
+                                bitmap.SetPixel(tmpWidth, tmpRow, Color.FromArgb(color, color, color));
+                            }
                         }
-                    }
 
-                    if (xoffset + currentWidth + 1 >= maxTextureWidth)
-                    {
-                        yoffset += newRowHeight;
-                        newRowHeight = 0;
-                        xoffset = 0;
-                    }
+                        bitmap.Save(string.Format("grayText-{0}.bmp", i));
 
-                    if (currentWidth >= 2)
-                    {
-                        System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
-                            currentWidth / 2,
-                            glyph.obj.bitmap.rows,
-                            currentWidth * 4 / 2,
-                            System.Drawing.Imaging.PixelFormat.Format32bppRgb,
-                            expanded.Header);
-                        graphics.DrawImage(bitmap, xoffset, yoffset);
+                        int baseLine = this.fontHeight / 4 * 3;
+                        //graphics.DrawImage(bitmap, xoffset, yoffset);
+                        graphics.DrawImage(bitmap, cInfo.xoffset,
+                            cInfo.yoffset + baseLine - glyph.obj.top);
+                        //cInfo.yoffset + (this.fontHeight - glyph.obj.top) / 2);
                     }
                 }
 
-                characterInfos[i].advanceX = glyph.glyphRec.advance.x >> 6;
-                characterInfos[i].advanceY = glyph.glyphRec.advance.y >> 6;
-
-                characterInfos[i].bitmapWidth = currentWidth / 2;
-                characterInfos[i].bitmapHeight = currentHeight;
-
-                characterInfos[i].bitmapLeft = glyph.obj.left;
-                characterInfos[i].bitmapTop = glyph.obj.top;
-
-                characterInfos[i].xoffset = xoffset / (float)widthOfTexture;
-                characterInfos[i].yoffset = yoffset / (float)heightOfTexture;
-
-                newRowHeight = Math.Max(newRowHeight, currentHeight);
-                xoffset += currentWidth + 1;
             }
 
             graphics.Dispose();
 
             using (StreamWriter sw = new StreamWriter("characterinfo.txt"))
             {
-                for (int i = 0; i < characterInfos.Length; i++)
+                //for (int i = 0; i < characterInfos.Length; i++)
+                for (int i = 0; i < charactersInfoInTexture.Length; i++)
                 {
                     try
                     {
+                        CharacterInfo cInfo = this.charactersInfoInTexture[i];
                         sw.Write(i); sw.Write(": "); sw.WriteLine(Convert.ToChar(i));
-                        sw.WriteLine(characterInfos[i]);
+                        sw.WriteLine(cInfo);
                     }
                     catch (Exception)
                     {
@@ -353,18 +330,19 @@ namespace CSharpGL.Objects.Texts
             return bigBitmap;
         }
 
-        private void FindTextureSize(FreeTypeFace face, int fontHeight, int maxTextureWidth, out int widthOfTexture, out int heightOfTexture)
+        private void GetTextureBlueprint(FreeTypeFace face, int fontHeight, int maxTextureWidth, out int widthOfTexture, out int heightOfTexture)
         {
             widthOfTexture = 0;
-            heightOfTexture = 0;
+            heightOfTexture = this.fontHeight;
 
-            int newRowWidth = 0;
-            int newRowHeight = 0;
+            int glyphX = 0;
+            int glyphY = 0;
 
             //for (int i = (int)'-'; i < (int)'7' + 1; i++)
             for (int i = 0; i < maxChar; i++)
             {
-                FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, Convert.ToChar(i), fontHeight);
+                char c = Convert.ToChar(i);
+                FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, fontHeight);
                 bool zeroSize = (glyph.obj.bitmap.rows == 0 && glyph.obj.bitmap.width == 0);
                 bool zeroBuffer = glyph.obj.bitmap.buffer == IntPtr.Zero;
                 if (zeroSize && (!zeroBuffer)) { throw new Exception(); }
@@ -373,23 +351,38 @@ namespace CSharpGL.Objects.Texts
 
                 // Next we expand the bitmap into an opengl texture
                 // 把glyph_bmp.bitmap的长宽扩展成2的指数倍
-                int width = next_po2(glyph.obj.bitmap.width);
-                int height = next_po2(glyph.obj.bitmap.rows);
+                int glyphWidth = glyph.obj.bitmap.width; //next_po2(glyph.obj.bitmap.width);
+                int glyphHeight = glyph.obj.bitmap.rows; //next_po2(glyph.obj.bitmap.rows);
 
-                if (newRowWidth + width + 1 >= maxTextureWidth)
+                if (glyphX + glyphWidth + 1 > maxTextureWidth)
                 {
-                    widthOfTexture = Math.Max(widthOfTexture, newRowWidth);
-                    heightOfTexture += newRowHeight;
-                    newRowWidth = 0;
-                    newRowHeight = 0;
+                    //widthOfTexture = Math.Max(widthOfTexture, glyphX);
+                    heightOfTexture += this.fontHeight;
+
+                    glyphX = 0;
+                    glyphY = heightOfTexture - this.fontHeight;
+
+                    CharacterInfo cInfo = new CharacterInfo();
+                    cInfo.xoffset = glyphX; cInfo.yoffset = glyphY;
+                    cInfo.width = glyphWidth; cInfo.height = glyphHeight;
+                    cInfo.textureName = this.texture[0];
+                    this.charactersInfoInTexture[i] = cInfo;
+                }
+                else
+                {
+                    widthOfTexture = Math.Max(widthOfTexture, glyphX + glyphWidth + 1);
+
+                    CharacterInfo cInfo = new CharacterInfo();
+                    cInfo.xoffset = glyphX; cInfo.yoffset = glyphY;
+                    cInfo.width = glyphWidth; cInfo.height = glyphHeight;
+                    cInfo.textureName = this.texture[0];
+                    this.charactersInfoInTexture[c] = cInfo;
+
                 }
 
-                newRowWidth += width + 1;
-                newRowHeight = Math.Max(newRowHeight, height);
+                glyphX += glyphWidth + 1;
             }
 
-            widthOfTexture = Math.Max(widthOfTexture, newRowWidth);
-            heightOfTexture += newRowHeight;
         }
 
 
