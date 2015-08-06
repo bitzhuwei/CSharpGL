@@ -29,15 +29,8 @@ namespace CSharpGL.Objects.Texts
         uint[] texture = new uint[1];
         private int textureWidth;
         private int textureHeight;
-        //CharacterLocation[] characterInfos = new CharacterLocation[maxChar];
         CharacterInfo[] charactersInfoInTexture = new CharacterInfo[maxChar];
 
-        //  Constants that specify the attribute indexes.
-        //internal uint in_PositionLocation;
-        //internal uint in_TexCoordLocation;
-        //internal int transformMatrixLocation;
-        //internal int colorLocation;
-        //internal int texLocation;
         private ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_TexCoord = "in_TexCoord";
@@ -83,7 +76,6 @@ namespace CSharpGL.Objects.Texts
             for (int i = 0; i < value.Length; i++)
             {
                 char c = value[i];
-                //CharacterLocation location = characterInfos[c];
                 in_Position[i * 4 + 0] = new vec3(i + 0, 0, 0);
                 in_Position[i * 4 + 1] = new vec3(i + 1, 0, 0);
                 in_Position[i * 4 + 2] = new vec3(i + 1, 1, 0);
@@ -96,14 +88,14 @@ namespace CSharpGL.Objects.Texts
             {
                 char c = value[i];
                 CharacterInfo cInfo = this.charactersInfoInTexture[c];
-                in_TexCoord[i * 4 + 0] = new vec2(
-                    (float)(cInfo.xoffset) / (float)this.textureWidth, (float)(cInfo.yoffset) / (float)this.textureHeight);
-                in_TexCoord[i * 4 + 1] = new vec2(
-                    (float)(cInfo.xoffset + cInfo.width) / (float)this.textureWidth, (float)(cInfo.yoffset) / (float)this.textureHeight);
-                in_TexCoord[i * 4 + 2] = new vec2(
-                    (float)(cInfo.xoffset + cInfo.width) / (float)this.textureWidth, (float)(cInfo.yoffset + cInfo.height) / (float)this.textureHeight);
-                in_TexCoord[i * 4 + 3] = new vec2(
-                    (float)(cInfo.xoffset) / (float)this.textureWidth, (float)(cInfo.yoffset + cInfo.height) / (float)this.textureHeight);
+                float x1 = (float)cInfo.xoffset / (float)this.textureWidth;
+                float y1 = 0;
+                float x2 = (float)(cInfo.xoffset + cInfo.width) / (float)this.textureWidth;
+                float y2 = 1;
+                in_TexCoord[i * 4 + 0] = new vec2(x1, y1);
+                in_TexCoord[i * 4 + 1] = new vec2(x2, y1);
+                in_TexCoord[i * 4 + 2] = new vec2(x2, y2);
+                in_TexCoord[i * 4 + 3] = new vec2(x1, y2);
             }
 
             if (vao[0] != 0)
@@ -142,15 +134,13 @@ namespace CSharpGL.Objects.Texts
             this.fontHeight = fontHeight;
         }
 
-
-
         protected override void DoInitialize()
         {
             InitTexture();
 
             InitShaderProgram();
 
-            InitVAO("0=2-3+1");
+            InitVAO("1234567890qwertyuiop[]asdfghjkl;'zxcvbnm,./-=!@#$%^&*()_+{}:\"<>?");
         }
 
         private void InitTexture()
@@ -164,7 +154,6 @@ namespace CSharpGL.Objects.Texts
             int[] maxTextureWidth = new int[1];
             //	Get the maximum texture size supported by GL.
             GL.GetInteger(GetTarget.MaxTextureSize, maxTextureWidth);
-            //maxTextureWidth[0] = 300;
 
             GetTextureBlueprint(face, this.fontHeight, maxTextureWidth[0], out this.textureWidth, out this.textureHeight);
 
@@ -187,18 +176,18 @@ namespace CSharpGL.Objects.Texts
 
             //	Find the target width and height sizes, which is just the highest
             //	posible power of two that'll fit into the image.
-            this.textureWidth = textureMaxSize[0];
-            this.textureHeight = textureMaxSize[0];
+            int textureWidth = textureMaxSize[0];
+            int textureHeight = textureMaxSize[0];
 
             for (int size = 1; size <= textureMaxSize[0]; size *= 2)
             {
                 if (image.Width < size)
                 {
-                    this.textureWidth = size / 2;
+                    textureWidth = size / 2;
                     break;
                 }
                 if (image.Width == size)
-                    this.textureWidth = size;
+                    textureWidth = size;
 
             }
 
@@ -206,20 +195,20 @@ namespace CSharpGL.Objects.Texts
             {
                 if (image.Height < size)
                 {
-                    this.textureHeight = size / 2;
+                    textureHeight = size / 2;
                     break;
                 }
                 if (image.Height == size)
-                    this.textureHeight = size;
+                    textureHeight = size;
             }
 
             System.Drawing.Bitmap newImage = image;
 
             //  If need to scale, do so now.
-            if (image.Width != this.textureWidth || image.Height != this.textureHeight)
+            if (image.Width != textureWidth || image.Height != textureHeight)
             {
                 //  Resize the image.
-                newImage = (System.Drawing.Bitmap)image.GetThumbnailImage(this.textureWidth, this.textureHeight, null, IntPtr.Zero);
+                newImage = (System.Drawing.Bitmap)image.GetThumbnailImage(textureWidth, textureHeight, null, IntPtr.Zero);
             }
 
             //  Lock the image bits (so that we can pass them to OGL).
@@ -289,11 +278,16 @@ namespace CSharpGL.Objects.Texts
                             }
                         }
 
+                        // TODO:测试用代码，可删除
                         //bitmap.Save(string.Format("grayText-{0}.bmp", i));
 
                         int baseLine = this.fontHeight / 4 * 3;
                         graphics.DrawImage(bitmap, cInfo.xoffset,
                             cInfo.yoffset + baseLine - glyph.obj.top);
+                        // TODO:测试用代码，可删除
+                        //graphics.DrawLine(redPen, cInfo.xoffset, cInfo.yoffset, cInfo.xoffset + cInfo.width, cInfo.yoffset);
+                        //graphics.DrawLine(greenPen, cInfo.xoffset, cInfo.yoffset + this.fontHeight - 1, cInfo.xoffset + cInfo.width, cInfo.yoffset + this.fontHeight - 1);
+                        //graphics.DrawLine(bluePen, cInfo.xoffset, cInfo.yoffset, cInfo.xoffset, cInfo.yoffset + this.fontHeight - 1);
                     }
                 }
 
@@ -310,6 +304,11 @@ namespace CSharpGL.Objects.Texts
                         CharacterInfo cInfo = this.charactersInfoInTexture[i];
                         sw.Write(i); sw.Write(": "); sw.WriteLine(Convert.ToChar(i));
                         sw.WriteLine(cInfo);
+                        sw.WriteLine(string.Format("texCoord: ({0}, 0) ({1}, 1) ({2}, 1) ({3}, 0)",
+                            (float)(cInfo.xoffset) / (float)this.textureWidth,
+                            (float)(cInfo.xoffset + cInfo.width) / (float)this.textureWidth,
+                            (float)(cInfo.xoffset + cInfo.width) / (float)this.textureWidth,
+                            (float)(cInfo.xoffset) / (float)this.textureWidth));
                     }
                     catch (Exception)
                     {
@@ -319,6 +318,11 @@ namespace CSharpGL.Objects.Texts
 
             return bigBitmap;
         }
+
+        // TODO:测试用代码，可删除
+        static Pen redPen = new Pen(Color.Red);
+        static Pen greenPen = new Pen(Color.Green);
+        static Pen bluePen = new Pen(Color.Blue);
 
         private void GetTextureBlueprint(FreeTypeFace face, int fontHeight, int maxTextureWidth, out int widthOfTexture, out int heightOfTexture)
         {
