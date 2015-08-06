@@ -30,7 +30,6 @@ namespace CSharpGL.Objects.Texts
         uint[] texture = new uint[1];
         private int textureWidth;
         private int textureHeight;
-        //CharacterInfo[] charactersInfoInTexture = new CharacterInfo[maxChar];
         Dictionary<char, CharacterInfo> charInfoDict = new Dictionary<char, CharacterInfo>();
 
         private ShaderProgram shaderProgram;
@@ -133,8 +132,13 @@ namespace CSharpGL.Objects.Texts
             in_TexCoord.Dispose();
         }
 
-
-        public ModernSingleTextureFont(ScientificCamera camera, string fontFilename, int fontHeight)
+        /// <summary>
+        /// 用一个纹理绘制ASCII表上所有可见字符（具有指定的高度和字体）
+        /// </summary>
+        /// <param name="camera"></param>
+        /// <param name="fontFilename"></param>
+        /// <param name="fontHeight">此值越大，绘制文字的清晰度越高，但占用的纹理资源就越多。</param>
+        public ModernSingleTextureFont(ScientificCamera camera, string fontFilename, int fontHeight = 48)
         {
             this.camera = camera;
             this.fontFilename = fontFilename;
