@@ -3,6 +3,7 @@ using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Shaders;
 using CSharpGL.Objects.Texts.FreeTypes;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -29,7 +30,8 @@ namespace CSharpGL.Objects.Texts
         uint[] texture = new uint[1];
         private int textureWidth;
         private int textureHeight;
-        CharacterInfo[] charactersInfoInTexture = new CharacterInfo[maxChar];
+        //CharacterInfo[] charactersInfoInTexture = new CharacterInfo[maxChar];
+        Dictionary<char, CharacterInfo> charInfoDict = new Dictionary<char, CharacterInfo>();
 
         private ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
@@ -87,15 +89,20 @@ namespace CSharpGL.Objects.Texts
             for (int i = 0; i < value.Length; i++)
             {
                 char c = value[i];
-                CharacterInfo cInfo = this.charactersInfoInTexture[c];
-                float x1 = (float)cInfo.xoffset / (float)this.textureWidth;
-                float y1 = 0;
-                float x2 = (float)(cInfo.xoffset + cInfo.width) / (float)this.textureWidth;
-                float y2 = 1;
-                in_TexCoord[i * 4 + 0] = new vec2(x1, y1);
-                in_TexCoord[i * 4 + 1] = new vec2(x2, y1);
-                in_TexCoord[i * 4 + 2] = new vec2(x2, y2);
-                in_TexCoord[i * 4 + 3] = new vec2(x1, y2);
+                CharacterInfo cInfo;
+                if (this.charInfoDict.TryGetValue(c, out cInfo))
+                {
+                    float x1 = (float)cInfo.xoffset / (float)this.textureWidth;
+                    float y1 = 0;
+                    float x2 = (float)(cInfo.xoffset + cInfo.width) / (float)this.textureWidth;
+                    float y2 = 1;
+                    in_TexCoord[i * 4 + 0] = new vec2(x1, y1);
+                    in_TexCoord[i * 4 + 1] = new vec2(x2, y1);
+                    in_TexCoord[i * 4 + 2] = new vec2(x2, y2);
+                    in_TexCoord[i * 4 + 3] = new vec2(x1, y2);
+                }
+                else
+                { throw new Exception(string.Format("Not support for display the char [{0}]", c)); }
             }
 
             if (vao[0] != 0)
@@ -264,31 +271,35 @@ namespace CSharpGL.Objects.Texts
                     int size = glyph.obj.bitmap.width * glyph.obj.bitmap.rows;
                     byte[] byteBitmap = new byte[size];
                     Marshal.Copy(glyph.obj.bitmap.buffer, byteBitmap, 0, byteBitmap.Length);
-                    CharacterInfo cInfo = this.charactersInfoInTexture[i];
-
-                    if (cInfo.width > 0)
+                    CharacterInfo cInfo;
+                    if (this.charInfoDict.TryGetValue(c, out cInfo))
                     {
-                        System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(cInfo.width, cInfo.height);
-                        for (int tmpRow = 0; tmpRow < cInfo.height; ++tmpRow)
+                        if (cInfo.width > 0)
                         {
-                            for (int tmpWidth = 0; tmpWidth < cInfo.width; ++tmpWidth)
+                            System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(cInfo.width, cInfo.height);
+                            for (int tmpRow = 0; tmpRow < cInfo.height; ++tmpRow)
                             {
-                                byte color = byteBitmap[tmpRow * cInfo.width + tmpWidth];
-                                bitmap.SetPixel(tmpWidth, tmpRow, Color.FromArgb(color, color, color));
+                                for (int tmpWidth = 0; tmpWidth < cInfo.width; ++tmpWidth)
+                                {
+                                    byte color = byteBitmap[tmpRow * cInfo.width + tmpWidth];
+                                    bitmap.SetPixel(tmpWidth, tmpRow, Color.FromArgb(color, color, color));
+                                }
                             }
+
+                            // TODO:测试用代码，可删除
+                            //bitmap.Save(string.Format("grayText-{0}.bmp", i));
+
+                            int baseLine = this.fontHeight / 4 * 3;
+                            graphics.DrawImage(bitmap, cInfo.xoffset,
+                                cInfo.yoffset + baseLine - glyph.obj.top);
+                            // TODO:测试用代码，可删除
+                            //graphics.DrawLine(redPen, cInfo.xoffset, cInfo.yoffset, cInfo.xoffset + cInfo.width, cInfo.yoffset);
+                            //graphics.DrawLine(greenPen, cInfo.xoffset, cInfo.yoffset + this.fontHeight - 1, cInfo.xoffset + cInfo.width, cInfo.yoffset + this.fontHeight - 1);
+                            //graphics.DrawLine(bluePen, cInfo.xoffset, cInfo.yoffset, cInfo.xoffset, cInfo.yoffset + this.fontHeight - 1);
                         }
-
-                        // TODO:测试用代码，可删除
-                        //bitmap.Save(string.Format("grayText-{0}.bmp", i));
-
-                        int baseLine = this.fontHeight / 4 * 3;
-                        graphics.DrawImage(bitmap, cInfo.xoffset,
-                            cInfo.yoffset + baseLine - glyph.obj.top);
-                        // TODO:测试用代码，可删除
-                        //graphics.DrawLine(redPen, cInfo.xoffset, cInfo.yoffset, cInfo.xoffset + cInfo.width, cInfo.yoffset);
-                        //graphics.DrawLine(greenPen, cInfo.xoffset, cInfo.yoffset + this.fontHeight - 1, cInfo.xoffset + cInfo.width, cInfo.yoffset + this.fontHeight - 1);
-                        //graphics.DrawLine(bluePen, cInfo.xoffset, cInfo.yoffset, cInfo.xoffset, cInfo.yoffset + this.fontHeight - 1);
                     }
+                    else
+                    { throw new Exception(string.Format("Not support for display the char [{0}]", c)); }
                 }
 
             }
@@ -297,11 +308,13 @@ namespace CSharpGL.Objects.Texts
 
             using (StreamWriter sw = new StreamWriter("characterinfo.txt"))
             {
-                for (int i = 0; i < charactersInfoInTexture.Length; i++)
+                foreach (var item in this.charInfoDict)
                 {
                     try
                     {
-                        CharacterInfo cInfo = this.charactersInfoInTexture[i];
+                        //CharacterInfo cInfo = this.charactersInfoInTexture[i];
+                        int i = (int)item.Key;
+                        CharacterInfo cInfo = item.Value;
                         sw.Write(i); sw.Write(": "); sw.WriteLine(Convert.ToChar(i));
                         sw.WriteLine(cInfo);
                         sw.WriteLine(string.Format("texCoord: ({0}, 0) ({1}, 1) ({2}, 1) ({3}, 0)",
@@ -356,7 +369,7 @@ namespace CSharpGL.Objects.Texts
                     cInfo.xoffset = glyphX; cInfo.yoffset = glyphY;
                     cInfo.width = glyphWidth; cInfo.height = glyphHeight;
                     cInfo.textureName = this.texture[0];
-                    this.charactersInfoInTexture[i] = cInfo;
+                    this.charInfoDict.Add(c, cInfo);
                 }
                 else
                 {
@@ -366,8 +379,7 @@ namespace CSharpGL.Objects.Texts
                     cInfo.xoffset = glyphX; cInfo.yoffset = glyphY;
                     cInfo.width = glyphWidth; cInfo.height = glyphHeight;
                     cInfo.textureName = this.texture[0];
-                    this.charactersInfoInTexture[c] = cInfo;
-
+                    this.charInfoDict.Add(c, cInfo);
                 }
 
                 glyphX += glyphWidth + 1;
