@@ -57,32 +57,40 @@ namespace TTF2Bmps
                 return;
             }
 
-            if (this.txtFirstChar.Text.Length != 1)
+            //if (this.txtFirstChar.Text.Length != 1)
+            //{
+            //    string message = string.Format("{0}", "Please type in only 1 char for the 'first char'!");
+            //    MessageBox.Show(message);
+            //    return;
+            //}
+
+            //if (this.txtLastChar.Text.Length != 1)
+            //{
+            //    string message = string.Format("{0}", "Please type in only 1 char for the 'last char'!");
+            //    MessageBox.Show(message);
+            //    return;
+            //}
+
+            try
             {
-                string message = string.Format("{0}", "Please type in only 1 char for the 'first char'!");
-                MessageBox.Show(message);
-                return;
-            }
+                string fontFullname = this.txtTTFFullname.Text;
+                int fontHeight = (int)numFontHeight.Value;
+                int maxTexturWidth = (int)numMaxTexturWidth.Value;
+                char firstChar = (char)int.Parse(this.txtFirstIndex.Text);// this.txtFirstChar.Text.First();
+                char lastChar = (char)int.Parse(this.txtLastIndex.Text);// this.txtLastChar.Text.First();
+                string destFullname = this.txtDestFilename.Text;
 
-            if (this.txtLastChar.Text.Length != 1)
+                var ttfTexture = TTFTexture.GetTTFTexture(fontFullname, fontHeight, firstChar, lastChar, maxTexturWidth);
+
+                ttfTexture.BigBitmap.Save(destFullname);
+
+                Process.Start("explorer", destFullname);
+            }
+            catch (Exception ex)
             {
-                string message = string.Format("{0}", "Please type in only 1 char for the 'last char'!");
+                string message = string.Format("{0}", ex);
                 MessageBox.Show(message);
-                return;
             }
-
-            string fontFullname = this.txtTTFFullname.Text;
-            int fontHeight = (int)numFontHeight.Value;
-            int maxTexturWidth = (int)numMaxTexturWidth.Value;
-            char firstChar = this.txtFirstChar.Text.First();
-            char lastChar = this.txtLastChar.Text.First();
-            string destFullname = this.txtDestFilename.Text;
-
-            var ttfTexture = TTFTexture.GetTTFTexture(fontFullname, fontHeight, firstChar, lastChar, maxTexturWidth);
-
-            ttfTexture.BigBitmap.Save(destFullname);
-
-            Process.Start("explorer", destFullname);
         }
 
         private void txtTTFFullname_DoubleClick(object sender, EventArgs e)
@@ -152,8 +160,12 @@ namespace TTF2Bmps
                 int value;
                 if(int.TryParse(this.txtFirstIndex.Text, out value))
                 {
+                    if (value < 0) { value = 0; }
+                    else if (value > char.MaxValue) { value = char.MaxValue; }
+
                     char firstChar = (char)value;
                     this.txtFirstChar.Text = firstChar.ToString();
+                    this.txtFirstIndex.Text = value.ToString();
                 }
             }
         }
@@ -177,8 +189,12 @@ namespace TTF2Bmps
                 int value;
                 if (int.TryParse(this.txtLastIndex.Text, out value))
                 {
+                    if (value < 0) { value = 0; }
+                    else if (value > char.MaxValue) { value = char.MaxValue; }
+
                     char lastChar = (char)value;
                     this.txtLastChar.Text = lastChar.ToString();
+                    this.txtLastIndex.Text = value.ToString();
                 }
             }
         }

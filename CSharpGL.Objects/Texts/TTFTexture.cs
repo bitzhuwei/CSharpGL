@@ -43,7 +43,7 @@ namespace CSharpGL.Objects.Texts
         /// <summary>
         /// 记录每个字符在<see cref="BigBitmap"/>里的偏移量及其字形的宽高。
         /// </summary>
-        public Dictionary<char, CharacterInfo> CharInfoDict { get; set; }
+        public Dictionary<int, CharacterInfo> CharInfoDict { get; set; }
 
         internal TTFTexture() { }
 
@@ -137,7 +137,7 @@ namespace CSharpGL.Objects.Texts
 
             FreeTypeFace face = new FreeTypeFace(library, ttfFullname);
 
-            Dictionary<char, CharacterInfo> charInfoDict;
+            Dictionary<int, CharacterInfo> charInfoDict;
             int textureWidth, textureHeight;
 
             GetTextureBlueprint(face, fontHeight, firstChar, lastChar, maxTextureWidth, out charInfoDict, out textureWidth, out textureHeight);
@@ -168,14 +168,14 @@ namespace CSharpGL.Objects.Texts
         /// <param name="heightOfTexture"></param>
         /// <returns></returns>
         private static System.Drawing.Bitmap GetBigBitmap(FreeTypeFace face, int fontHeight,
-            char firstChar, char lastChar, int maxTextureWidth,
-            Dictionary<char, CharacterInfo> charInfoDict,
+            int firstChar, int lastChar, int maxTextureWidth,
+            Dictionary<int, CharacterInfo> charInfoDict,
             int widthOfTexture, int heightOfTexture)
         {
             System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(widthOfTexture, heightOfTexture);
             Graphics graphics = Graphics.FromImage(bigBitmap);
 
-            for (char c = firstChar; c <= lastChar; c++)
+            for (int c = firstChar; c <= lastChar; c++)
             {
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, fontHeight);
                 int size = glyph.obj.bitmap.width * glyph.obj.bitmap.rows;
@@ -286,17 +286,17 @@ namespace CSharpGL.Objects.Texts
         /// <param name="textureWidth"></param>
         /// <param name="textureHeight"></param>
         private static void GetTextureBlueprint(FreeTypeFace face, int fontHeight,
-            char firstChar, char lastChar, int maxTextureWidth,
-            out Dictionary<char, CharacterInfo> charInfoDict, out int textureWidth, out int textureHeight)
+            int firstChar, int lastChar, int maxTextureWidth,
+            out Dictionary<int, CharacterInfo> charInfoDict, out int textureWidth, out int textureHeight)
         {
-            charInfoDict = new Dictionary<char, CharacterInfo>();
+            charInfoDict = new Dictionary<int, CharacterInfo>();
             textureWidth = 0;
             textureHeight = fontHeight;
 
             int glyphXOffset = 0;
             int glyphYOffset = 0;
 
-            for (char c = firstChar; c <= lastChar; c++)
+            for (int c = firstChar; c <= lastChar; c++)
             {
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, fontHeight);
                 bool zeroSize = (glyph.obj.bitmap.rows == 0 && glyph.obj.bitmap.width == 0);

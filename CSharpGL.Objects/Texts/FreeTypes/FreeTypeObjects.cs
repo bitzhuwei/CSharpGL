@@ -144,7 +144,7 @@ namespace CSharpGL.Objects.Texts.FreeTypes
         /// </summary>
         /// <param name="face"></param>
         /// <param name="c"></param>
-        public FreeTypeBitmapGlyph(FreeTypeFace face, char c, int size)
+        public FreeTypeBitmapGlyph(FreeTypeFace face, int c, int size)
         {
             // Freetype measures the font size in 1/64th of pixels for accuracy
             // so we need to request characters in size*64
