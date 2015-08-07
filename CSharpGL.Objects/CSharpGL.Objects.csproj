@@ -74,6 +74,7 @@
     <Compile Include="RenderContexts\VersionAttribute.cs" />
     <Compile Include="RenderMode.cs" />
     <Compile Include="Shaders\ShaderProgram.cs" />
+    <Compile Include="Texts\TTFTexture.cs" />
     <EmbeddedResource Include="Texts\freetype.frag" />
     <EmbeddedResource Include="Texts\freetype.vert" />
     <Compile Include="Texts\CharacterInfo.cs" />

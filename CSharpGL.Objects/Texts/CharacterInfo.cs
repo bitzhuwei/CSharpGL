@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Texts
 {
@@ -11,10 +10,6 @@ namespace CSharpGL.Objects.Texts
     /// </summary>
     public class CharacterInfo
     {
-        /// <summary>
-        /// 此字符的字形所在的纹理
-        /// </summary>
-        public uint textureName;
 
         /// <summary>
         /// 此字符的字形在纹理的横向偏移量
@@ -38,8 +33,8 @@ namespace CSharpGL.Objects.Texts
 
         public override string ToString()
         {
-            return string.Format("texture:{0}; offset:{1}, {2}; size:{3}, {4};",
-                textureName, xoffset, yoffset, width, height);
+            return string.Format("{0}offset:{1}, {2}; size:{3}, {4};",
+                "", xoffset, yoffset, width, height);
         }
     }
 }
