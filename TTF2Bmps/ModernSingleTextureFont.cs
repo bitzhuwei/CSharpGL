@@ -18,26 +18,27 @@ namespace TTF2Bmps
     public class ModernSingleTextureFont
     {
 
-        private string fontFilename;
         private int fontHeight;
 
         private int textureWidth;
         private int textureHeight;
         Dictionary<char, CharacterInfo> charInfoDict = new Dictionary<char, CharacterInfo>();
 
-        //const int maxChar = char.MaxValue;
-        const int maxChar = 128;
-
         /// <summary>
         /// 用一个纹理绘制ASCII表上所有可见字符（具有指定的高度和字体）
         /// </summary>
-        /// <param name="camera"></param>
-        /// <param name="fontFilename"></param>
+        /// <param name="fontFullname"></param>
         /// <param name="fontHeight">此值越大，绘制文字的清晰度越高，但占用的纹理资源就越多。</param>
-        public ModernSingleTextureFont(string fontFilename, int fontHeight = 48)
+        /// <param name="firstChar"></param>
+        /// <param name="lastChar"></param>
+        /// <param name="maxWidth">生成的纹理的最大宽度。</param>
+        public ModernSingleTextureFont(string fontFullname, int fontHeight, char firstChar, char lastChar, int maxWidth)
         {
-            this.fontFilename = fontFilename;
+            this.fontFullname = fontFullname;
             this.fontHeight = fontHeight;
+            this.firstChar = firstChar;
+            this.lastChar = lastChar;
+            this.maxWidth = maxWidth;
         }
 
         private void InitTexture()
@@ -46,15 +47,11 @@ namespace TTF2Bmps
             FreeTypeLibrary library = new FreeTypeLibrary();
 
             // 初始化字体库
-            FreeTypeFace face = new FreeTypeFace(library, this.fontFilename);
+            FreeTypeFace face = new FreeTypeFace(library, this.fontFullname);
 
-            int[] maxTextureWidth = new int[1];
-            //	Get the maximum texture size supported by GL.
-            GL.GetInteger(GetTarget.MaxTextureSize, maxTextureWidth);
+            GetTextureBlueprint(face, this.fontHeight, this.maxWidth, out this.textureWidth, out this.textureHeight);
 
-            GetTextureBlueprint(face, this.fontHeight, maxTextureWidth[0], out this.textureWidth, out this.textureHeight);
-
-            System.Drawing.Bitmap bigBitmap = GetBigBitmap(face, maxTextureWidth[0], this.textureWidth, this.textureHeight);
+            System.Drawing.Bitmap bigBitmap = GetBigBitmap(face, this.maxWidth, this.textureWidth, this.textureHeight);
 
             bigBitmap.Save("modernSingleTextureFont.png");
             bigBitmap.Dispose();
@@ -63,12 +60,30 @@ namespace TTF2Bmps
             library.Dispose();
         }
 
+        public System.Drawing.Bitmap GetBitmap()
+        {
+            // 初始化FreeType库：创建FreeType库指针
+            FreeTypeLibrary library = new FreeTypeLibrary();
+
+            // 初始化字体库
+            FreeTypeFace face = new FreeTypeFace(library, this.fontFullname);
+
+            GetTextureBlueprint(face, this.fontHeight, this.maxWidth, out this.textureWidth, out this.textureHeight);
+
+            System.Drawing.Bitmap bigBitmap = GetBigBitmap(face, this.maxWidth, this.textureWidth, this.textureHeight);
+
+            face.Dispose();
+            library.Dispose();
+
+            return bigBitmap;
+        }
+
         private System.Drawing.Bitmap GetBigBitmap(FreeTypeFace face, int maxTextureWidth, int widthOfTexture, int heightOfTexture)
         {
             System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(widthOfTexture, heightOfTexture);
             Graphics graphics = Graphics.FromImage(bigBitmap);
 
-            for (int i = 0; i < maxChar; i++)
+            for (int i = (int)this.firstChar; i <= (int)this.lastChar; i++)
             {
                 char c = Convert.ToChar(i);
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, this.fontHeight);
@@ -124,6 +139,10 @@ namespace TTF2Bmps
         static Pen redPen = new Pen(Color.Red);
         static Pen greenPen = new Pen(Color.Green);
         static Pen bluePen = new Pen(Color.Blue);
+        private string fontFullname;
+        private char firstChar;
+        private char lastChar;
+        private int maxWidth;
 
         private void GetTextureBlueprint(FreeTypeFace face, int fontHeight, int maxTextureWidth, out int widthOfTexture, out int heightOfTexture)
         {
@@ -133,7 +152,7 @@ namespace TTF2Bmps
             int glyphX = 0;
             int glyphY = 0;
 
-            for (int i = 0; i < maxChar; i++)
+            for (int i = (int)this.firstChar; i <= (int)this.lastChar; i++)
             {
                 char c = Convert.ToChar(i);
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, fontHeight);

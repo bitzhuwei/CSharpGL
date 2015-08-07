@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterInfo.cs" />
-    <Compile Include="Font3D.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
