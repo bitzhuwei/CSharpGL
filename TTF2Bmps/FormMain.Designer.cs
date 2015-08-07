@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.openTTFFileDlg = new System.Windows.Forms.OpenFileDialog();
             this.btnBrowseTTFFile = new System.Windows.Forms.Button();
             this.txtTTFFullname = new System.Windows.Forms.TextBox();
@@ -342,6 +343,7 @@
             this.Controls.Add(this.btnBrowseFolder);
             this.Controls.Add(this.txtTTFFullname);
             this.Controls.Add(this.btnBrowseTTFFile);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
             this.Text = "get bitmaps from a TTF file. (by bitzhuwei @ http://bitzhuwei.cnblogs.com)";

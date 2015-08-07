@@ -57,27 +57,13 @@ namespace TTF2Bmps
                 return;
             }
 
-            //if (this.txtFirstChar.Text.Length != 1)
-            //{
-            //    string message = string.Format("{0}", "Please type in only 1 char for the 'first char'!");
-            //    MessageBox.Show(message);
-            //    return;
-            //}
-
-            //if (this.txtLastChar.Text.Length != 1)
-            //{
-            //    string message = string.Format("{0}", "Please type in only 1 char for the 'last char'!");
-            //    MessageBox.Show(message);
-            //    return;
-            //}
-
             try
             {
                 string fontFullname = this.txtTTFFullname.Text;
                 int fontHeight = (int)numFontHeight.Value;
                 int maxTexturWidth = (int)numMaxTexturWidth.Value;
-                char firstChar = (char)int.Parse(this.txtFirstIndex.Text);// this.txtFirstChar.Text.First();
-                char lastChar = (char)int.Parse(this.txtLastIndex.Text);// this.txtLastChar.Text.First();
+                char firstChar = (char)int.Parse(this.txtFirstIndex.Text);
+                char lastChar = (char)int.Parse(this.txtLastIndex.Text);
                 string destFullname = this.txtDestFilename.Text;
 
                 var ttfTexture = TTFTexture.GetTTFTexture(fontFullname, fontHeight, firstChar, lastChar, maxTexturWidth);
