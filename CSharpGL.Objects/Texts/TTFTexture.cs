@@ -14,66 +14,55 @@ namespace CSharpGL.Objects.Texts
     /// </summary>
     public class TTFTexture : IDisposable
     {
-        private string ttfFullname;
 
-        public string TtfFullname
-        {
-            get { return ttfFullname; }
-            set { ttfFullname = value; }
-        }
-        private int fontHeight;
+        /// <summary>
+        /// TTF文件名
+        /// </summary>
+        public string TtfFullname { get; set; }
 
-        public int FontHeight
-        {
-            get { return fontHeight; }
-            set { fontHeight = value; }
-        }
-        private char firstChar;
+        /// <summary>
+        /// 字形高度
+        /// </summary>
+        public int FontHeight { get; set; }
 
-        public char FirstChar
-        {
-            get { return firstChar; }
-            set { firstChar = value; }
-        }
-        private char lastChar;
+        /// <summary>
+        /// 第一个字符
+        /// </summary>
+        public char FirstChar { get; set; }
 
-        public char LastChar
-        {
-            get { return lastChar; }
-            set { lastChar = value; }
-        }
-        private System.Drawing.Bitmap bigBitmap;
+        /// <summary>
+        /// 最后一个字符
+        /// </summary>
+        public char LastChar { get; set; }
 
-        public System.Drawing.Bitmap BigBitmap
-        {
-            get { return bigBitmap; }
-            set { bigBitmap = value; }
-        }
-        private Dictionary<char, CharacterInfo> charInfoDict;
+        /// <summary>
+        /// 存储了从<see cref="FirstChar"/>到<see cref="LastChar"/>的所有可见字符的位图。
+        /// </summary>
+        public System.Drawing.Bitmap BigBitmap { get; set; }
 
-        public Dictionary<char, CharacterInfo> CharInfoDict
-        {
-            get { return charInfoDict; }
-            set { charInfoDict = value; }
-        }
+        /// <summary>
+        /// 记录每个字符在<see cref="BigBitmap"/>里的偏移量及其字形的宽高。
+        /// </summary>
+        public Dictionary<char, CharacterInfo> CharInfoDict { get; set; }
 
-        internal TTFTexture(string ttfFullname, int fontHeight, char firstChar, char lastChar,
-            System.Drawing.Bitmap bigBitmap, Dictionary<char, CharacterInfo> charInfoDict)
-        {
-            this.ttfFullname = ttfFullname;
-            this.fontHeight = fontHeight;
-            this.firstChar = firstChar;
-            this.lastChar = lastChar;
-            this.bigBitmap = bigBitmap;
-            this.charInfoDict = charInfoDict;
-        }
+        internal TTFTexture() { }
 
+        /// <summary>
+        /// 获取一个<see cref="TTFTexture"/>实例。
+        /// </summary>
+        /// <param name="ttfFullname"></param>
+        /// <param name="fontHeight"></param>
+        /// <param name="firstChar"></param>
+        /// <param name="lastChar"></param>
+        /// <param name="maxTextureWidth"></param>
+        /// <returns></returns>
         public static TTFTexture GetTTFTexture(string ttfFullname, int fontHeight, char firstChar, char lastChar, int maxTextureWidth)
         {
             var result = TTFTextureHelper.GetTTFTexture(ttfFullname, fontHeight, firstChar, lastChar, maxTextureWidth);
 
             return result;
         }
+
         ~TTFTexture()
         {
             this.Dispose();
@@ -148,10 +137,10 @@ namespace CSharpGL.Objects.Texts
 
             FreeTypeFace face = new FreeTypeFace(library, ttfFullname);
 
-            Dictionary<char, CharacterInfo> charInfoDict = new Dictionary<char, CharacterInfo>();
+            Dictionary<char, CharacterInfo> charInfoDict;// = new Dictionary<char, CharacterInfo>();
             int textureWidth, textureHeight;
 
-            GetTextureBlueprint(face, fontHeight, firstChar, lastChar, maxTextureWidth, charInfoDict, out textureWidth, out textureHeight);
+            GetTextureBlueprint(face, fontHeight, firstChar, lastChar, maxTextureWidth, out charInfoDict, out textureWidth, out textureHeight);
 
             if (textureWidth == 0) { textureWidth = 1; }
             if (textureHeight == 0) { textureHeight = 1; }
@@ -161,11 +150,23 @@ namespace CSharpGL.Objects.Texts
             face.Dispose();
             library.Dispose();
 
-            var result = new TTFTexture(ttfFullname, fontHeight, firstChar, lastChar, bigBitmap, charInfoDict);
+            var result = new TTFTexture() { TtfFullname = ttfFullname, FontHeight = fontHeight, FirstChar = firstChar, LastChar = lastChar, BigBitmap = bigBitmap, CharInfoDict = charInfoDict, };
 
             return result;
         }
 
+        /// <summary>
+        /// 根据<paramref name="charInfoDict"/>等信息把各个字形写入一个大的位图并返回之。
+        /// </summary>
+        /// <param name="face"></param>
+        /// <param name="fontHeight"></param>
+        /// <param name="firstChar"></param>
+        /// <param name="lastChar"></param>
+        /// <param name="maxTextureWidth"></param>
+        /// <param name="charInfoDict"></param>
+        /// <param name="widthOfTexture"></param>
+        /// <param name="heightOfTexture"></param>
+        /// <returns></returns>
         private static System.Drawing.Bitmap GetBigBitmap(FreeTypeFace face, int fontHeight,
             char firstChar, char lastChar, int maxTextureWidth,
             Dictionary<char, CharacterInfo> charInfoDict,
@@ -190,7 +191,7 @@ namespace CSharpGL.Objects.Texts
                     CharacterInfo cInfo;
                     if (charInfoDict.TryGetValue(c, out cInfo))
                     {
-                        if (cInfo.width > 0)
+                        if (cInfo.width > 0 && cInfo.height > 0)
                         {
                             System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(cInfo.width, cInfo.height);
                             for (int tmpRow = 0; tmpRow < cInfo.height; ++tmpRow)
@@ -202,7 +203,7 @@ namespace CSharpGL.Objects.Texts
                                 }
                             }
 
-                            int baseLine = fontHeight / 4 * 3;
+                            int baseLine = fontHeight * 3 / 4;
                             graphics.DrawImage(bitmap, cInfo.xoffset,
                                 cInfo.yoffset + baseLine - glyph.obj.top);
                         }
@@ -218,16 +219,27 @@ namespace CSharpGL.Objects.Texts
             return bigBitmap;
         }
 
+        /// <summary>
+        /// 根据<paramref name="firstChar"/>等信息获取要制作的贴图的宽高和各个字形的位置信息。
+        /// </summary>
+        /// <param name="face"></param>
+        /// <param name="fontHeight"></param>
+        /// <param name="firstChar"></param>
+        /// <param name="lastChar"></param>
+        /// <param name="maxTextureWidth"></param>
+        /// <param name="charInfoDict"></param>
+        /// <param name="textureWidth"></param>
+        /// <param name="textureHeight"></param>
         private static void GetTextureBlueprint(FreeTypeFace face, int fontHeight,
             char firstChar, char lastChar, int maxTextureWidth,
-            Dictionary<char, CharacterInfo> charInfoDict,
-            out int widthOfTexture, out int heightOfTexture)
+            out Dictionary<char, CharacterInfo> charInfoDict, out int textureWidth, out int textureHeight)
         {
-            widthOfTexture = 0;
-            heightOfTexture = fontHeight;
+            charInfoDict = new Dictionary<char, CharacterInfo>();
+            textureWidth = 0;
+            textureHeight = fontHeight;
 
-            int glyphX = 0;
-            int glyphY = 0;
+            int glyphXOffset = 0;
+            int glyphYOffset = 0;
 
             for (char c = firstChar; c <= lastChar; c++)
             {
@@ -241,29 +253,29 @@ namespace CSharpGL.Objects.Texts
                 int glyphWidth = glyph.obj.bitmap.width;
                 int glyphHeight = glyph.obj.bitmap.rows;
 
-                if (glyphX + glyphWidth + 1 > maxTextureWidth)
+                if (glyphXOffset + glyphWidth + 1 > maxTextureWidth)
                 {
-                    heightOfTexture += fontHeight;
+                    textureHeight += fontHeight;
 
-                    glyphX = 0;
-                    glyphY = heightOfTexture - fontHeight;
+                    glyphXOffset = 0;
+                    glyphYOffset = textureHeight - fontHeight;
 
                     CharacterInfo cInfo = new CharacterInfo();
-                    cInfo.xoffset = glyphX; cInfo.yoffset = glyphY;
+                    cInfo.xoffset = glyphXOffset; cInfo.yoffset = glyphYOffset;
                     cInfo.width = glyphWidth; cInfo.height = glyphHeight;
                     charInfoDict.Add(c, cInfo);
                 }
                 else
                 {
-                    widthOfTexture = Math.Max(widthOfTexture, glyphX + glyphWidth + 1);
+                    textureWidth = Math.Max(textureWidth, glyphXOffset + glyphWidth + 1);
 
                     CharacterInfo cInfo = new CharacterInfo();
-                    cInfo.xoffset = glyphX; cInfo.yoffset = glyphY;
+                    cInfo.xoffset = glyphXOffset; cInfo.yoffset = glyphYOffset;
                     cInfo.width = glyphWidth; cInfo.height = glyphHeight;
                     charInfoDict.Add(c, cInfo);
                 }
 
-                glyphX += glyphWidth + 1;
+                glyphXOffset += glyphWidth + 1;
             }
 
         }
