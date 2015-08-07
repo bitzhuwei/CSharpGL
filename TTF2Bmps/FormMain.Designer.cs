@@ -210,7 +210,7 @@
             this.numMaxTexturWidth.Size = new System.Drawing.Size(94, 25);
             this.numMaxTexturWidth.TabIndex = 3;
             this.numMaxTexturWidth.Value = new decimal(new int[] {
-            1024,
+            16384,
             0,
             0,
             0});

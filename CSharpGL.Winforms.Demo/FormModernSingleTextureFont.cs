@@ -40,9 +40,11 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotation(camera);
 
-            element = new ModernSingleTextureFont(camera, "simsun.ttf", 48);
+            element = new ModernSingleTextureFont(camera, "simsun.ttf", 48, '祝', '神');//char.MinValue, char.MaxValue);
 
             element.Initialize();
+
+            element.SetText("祝神");
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
         }
