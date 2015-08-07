@@ -12,6 +12,9 @@ namespace CSharpGL.Objects.Texts.FreeTypes
     {
         public GlyphRec root;
         public int left;
+        /// <summary>
+        /// 基线高度。
+        /// </summary>
         public int top;
         public Bitmap bitmap;
     }

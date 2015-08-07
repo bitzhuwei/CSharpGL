@@ -204,8 +204,7 @@ namespace CSharpGL.Objects.Texts
                             }
 
                             int baseLine = fontHeight * 3 / 4;
-                            graphics.DrawImage(bitmap, cInfo.xoffset,
-                                cInfo.yoffset + baseLine - glyph.obj.top);
+                            graphics.DrawImage(bitmap, cInfo.xoffset, cInfo.yoffset + baseLine - glyph.obj.top);
                         }
                     }
                     else
