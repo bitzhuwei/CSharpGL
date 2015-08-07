@@ -29,12 +29,7 @@ namespace TTF2Bmps
             {
                 this.txtTTFFullname.Text = openTTFFileDlg.FileName;
 
-                if (string.IsNullOrEmpty(this.txtTTFFullname.Text))
-                { return; }
-
-                FileInfo ttfFile = new FileInfo(this.txtTTFFullname.Text);
-                string bmpFilename = ttfFile.Name.Substring(0, ttfFile.Name.Length - ".ttf".Length);
-                this.txtDestFilename.Text = string.Format("{0}\\{1}.bmp", ttfFile.DirectoryName, bmpFilename);
+                txtTTFFullname_DoubleClick(sender, e);
             }
         }
 
@@ -82,7 +77,7 @@ namespace TTF2Bmps
             char firstChar = this.txtFirstChar.Text.First();
             char lastChar = this.txtLastChar.Text.First();
             string destFullname = this.txtDestFilename.Text;
-            ModernSingleTextureFont bmpGenerator = new ModernSingleTextureFont(fontFullname, fontHeight, firstChar, lastChar, maxWidth);
+            var bmpGenerator = new ModernSingleTextureFont(fontFullname, fontHeight, firstChar, lastChar, maxWidth);
 			System.Drawing.Bitmap bitmap = bmpGenerator.GetBitmap();
             bitmap.Save(destFullname);
 			bitmap.Dispose();
@@ -97,7 +92,7 @@ namespace TTF2Bmps
 
             FileInfo ttfFile = new FileInfo(this.txtTTFFullname.Text);
             string bmpFilename = ttfFile.Name.Substring(0, ttfFile.Name.Length - ".ttf".Length);
-            this.txtDestFilename.Text = string.Format("{0}\\{1}.bmp", ttfFile.DirectoryName, bmpFilename);
+            this.txtDestFilename.Text = string.Format("{0}\\{1}.png", ttfFile.DirectoryName, bmpFilename);
         }
 
     }
