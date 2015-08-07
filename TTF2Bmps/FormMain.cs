@@ -28,6 +28,13 @@ namespace TTF2Bmps
             if (openTTFFileDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 this.txtTTFFullname.Text = openTTFFileDlg.FileName;
+
+                if (string.IsNullOrEmpty(this.txtTTFFullname.Text))
+                { return; }
+
+                FileInfo ttfFile = new FileInfo(this.txtTTFFullname.Text);
+                string bmpFilename = ttfFile.Name.Substring(0, ttfFile.Name.Length - ".ttf".Length);
+                this.txtDestFilename.Text = string.Format("{0}\\{1}.bmp", ttfFile.DirectoryName, bmpFilename);
             }
         }
 
@@ -81,6 +88,16 @@ namespace TTF2Bmps
 			bitmap.Dispose();
 
             Process.Start("explorer", destFullname);
+        }
+
+        private void txtTTFFullname_DoubleClick(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(this.txtTTFFullname.Text))
+            { return; }
+
+            FileInfo ttfFile = new FileInfo(this.txtTTFFullname.Text);
+            string bmpFilename = ttfFile.Name.Substring(0, ttfFile.Name.Length - ".ttf".Length);
+            this.txtDestFilename.Text = string.Format("{0}\\{1}.bmp", ttfFile.DirectoryName, bmpFilename);
         }
 
     }
