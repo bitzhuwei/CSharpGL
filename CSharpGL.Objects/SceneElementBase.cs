@@ -8,11 +8,14 @@ using System.Threading.Tasks;
 namespace CSharpGL.Objects
 {
     /// <summary>
-    /// 用VAO渲染一个元素。
+    /// 用OPENGL渲染一个元素。
     /// </summary>
-    public abstract class VAOElement
+    public abstract class SceneElementBase
     {
-        public VAOElement()
+        /// <summary>
+        /// 用OPENGL渲染一个元素。
+        /// </summary>
+        public SceneElementBase()
         {
 
         }
@@ -20,7 +23,7 @@ namespace CSharpGL.Objects
         protected bool initialized = false;
 
         /// <summary>
-        /// 初始化此VAOElement
+        /// 初始化此Element
         /// </summary>
         public void Initialize()
         {
@@ -33,10 +36,14 @@ namespace CSharpGL.Objects
         }
 
         /// <summary>
-        /// 初始化Shader和VAO
+        /// 初始化此Element
         /// </summary>
         protected abstract void DoInitialize();
 
+        /// <summary>
+        /// 渲染
+        /// </summary>
+        /// <param name="renderMode"></param>
         public abstract void Render(RenderModes renderMode);
     }
 }

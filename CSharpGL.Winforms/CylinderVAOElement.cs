@@ -13,7 +13,7 @@ namespace CSharpGL.Winforms
     /// <summary>
     /// 圆柱体
     /// </summary>
-    public class CylinderVAOElement : VAOElement
+    public class CylinderVAOElement : SceneElementBase
     {
 
         /// <summary>

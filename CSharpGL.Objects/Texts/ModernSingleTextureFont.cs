@@ -14,7 +14,7 @@ namespace CSharpGL.Objects.Texts
     /// <summary>
     /// 用一个纹理绘制ASCII表上所有可见字符（具有指定的高度和字体）
     /// </summary>
-    public class ModernSingleTextureFont : VAOElement
+    public class ModernSingleTextureFont : SceneElementBase
     {
 
         public bool blend;
@@ -73,17 +73,8 @@ namespace CSharpGL.Objects.Texts
             this.mode = PrimitiveModes.Quads;
             this.vertexCount = 4 * value.Length;
 
-            UnmanagedArray<vec3> in_Position = new UnmanagedArray<vec3>(this.vertexCount);
-            for (int i = 0; i < value.Length; i++)
-            {
-                char c = value[i];
-                in_Position[i * 4 + 0] = new vec3(i + 0, 0, 0);
-                in_Position[i * 4 + 1] = new vec3(i + 1, 0, 0);
-                in_Position[i * 4 + 2] = new vec3(i + 1, 1, 0);
-                in_Position[i * 4 + 3] = new vec3(i + 0, 1, 0);
-            }
-
             //  Create a vertex buffer for the vertex data.
+            UnmanagedArray<vec3> in_Position = new UnmanagedArray<vec3>(this.vertexCount);
             UnmanagedArray<vec2> in_TexCoord = new UnmanagedArray<vec2>(this.vertexCount);
             for (int i = 0; i < value.Length; i++)
             {
@@ -95,6 +86,12 @@ namespace CSharpGL.Objects.Texts
                     float y1 = 0;
                     float x2 = (float)(cInfo.xoffset + cInfo.width) / (float)this.textureWidth;
                     float y2 = 1;
+
+                    in_Position[i * 4 + 0] = new vec3(cInfo.xoffset, 0, 0);
+                    in_Position[i * 4 + 1] = new vec3(cInfo.xoffset + cInfo.width, 0, 0);
+                    in_Position[i * 4 + 2] = new vec3(cInfo.xoffset + cInfo.width, this.fontHeight, 0);
+                    in_Position[i * 4 + 3] = new vec3(cInfo.xoffset, this.fontHeight, 0);
+
                     in_TexCoord[i * 4 + 0] = new vec2(x1, y1);
                     in_TexCoord[i * 4 + 1] = new vec2(x2, y1);
                     in_TexCoord[i * 4 + 2] = new vec2(x2, y2);

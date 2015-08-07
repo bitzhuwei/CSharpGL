@@ -90,7 +90,7 @@
     <Compile Include="Texts\FreeTypes\GlyphRec.cs" />
     <Compile Include="Texts\FreeTypes\ListRec.cs" />
     <Compile Include="Texts\FreeTypes\Vector.cs" />
-    <Compile Include="VAOElement.cs" />
+    <Compile Include="SceneElementBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSharpGL.Maths\CSharpGL.Maths.csproj">
