@@ -17,9 +17,11 @@ namespace TTF2Bmps
     /// </summary>
     public class ModernSingleTextureFont
     {
-
+        private string fontFullname;
+        private char firstChar;
+        private char lastChar;
+        private int maxWidth;
         private int fontHeight;
-
         private int textureWidth;
         private int textureHeight;
         Dictionary<char, CharacterInfo> charInfoDict = new Dictionary<char, CharacterInfo>();
@@ -39,25 +41,6 @@ namespace TTF2Bmps
             this.firstChar = firstChar;
             this.lastChar = lastChar;
             this.maxWidth = maxWidth;
-        }
-
-        private void InitTexture()
-        {
-            // 初始化FreeType库：创建FreeType库指针
-            FreeTypeLibrary library = new FreeTypeLibrary();
-
-            // 初始化字体库
-            FreeTypeFace face = new FreeTypeFace(library, this.fontFullname);
-
-            GetTextureBlueprint(face, this.fontHeight, this.maxWidth, out this.textureWidth, out this.textureHeight);
-
-            System.Drawing.Bitmap bigBitmap = GetBigBitmap(face, this.maxWidth, this.textureWidth, this.textureHeight);
-
-            bigBitmap.Save("modernSingleTextureFont.png");
-            bigBitmap.Dispose();
-
-            face.Dispose();
-            library.Dispose();
         }
 
         public System.Drawing.Bitmap GetBitmap()
@@ -83,9 +66,10 @@ namespace TTF2Bmps
             System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(widthOfTexture, heightOfTexture);
             Graphics graphics = Graphics.FromImage(bigBitmap);
 
-            for (int i = (int)this.firstChar; i <= (int)this.lastChar; i++)
+            //for (int i = (int)this.firstChar; i <= (int)this.lastChar; i++)
+            for (char c = this.firstChar; c <= this.lastChar; c++)
             {
-                char c = Convert.ToChar(i);
+                //char c = Convert.ToChar(i);
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, this.fontHeight);
                 bool zeroSize = (glyph.obj.bitmap.rows == 0 && glyph.obj.bitmap.width == 0);
                 bool zeroBuffer = glyph.obj.bitmap.buffer == IntPtr.Zero;
@@ -112,16 +96,9 @@ namespace TTF2Bmps
                                 }
                             }
 
-                            // TODO:测试用代码，可删除
-                            //bitmap.Save(string.Format("grayText-{0}.bmp", i));
-
                             int baseLine = this.fontHeight / 4 * 3;
                             graphics.DrawImage(bitmap, cInfo.xoffset,
                                 cInfo.yoffset + baseLine - glyph.obj.top);
-                            // TODO:测试用代码，可删除
-                            //graphics.DrawLine(redPen, cInfo.xoffset, cInfo.yoffset, cInfo.xoffset + cInfo.width, cInfo.yoffset);
-                            //graphics.DrawLine(greenPen, cInfo.xoffset, cInfo.yoffset + this.fontHeight - 1, cInfo.xoffset + cInfo.width, cInfo.yoffset + this.fontHeight - 1);
-                            //graphics.DrawLine(bluePen, cInfo.xoffset, cInfo.yoffset, cInfo.xoffset, cInfo.yoffset + this.fontHeight - 1);
                         }
                     }
                     else
@@ -134,15 +111,6 @@ namespace TTF2Bmps
 
             return bigBitmap;
         }
-
-        // TODO:测试用代码，可删除
-        static Pen redPen = new Pen(Color.Red);
-        static Pen greenPen = new Pen(Color.Green);
-        static Pen bluePen = new Pen(Color.Blue);
-        private string fontFullname;
-        private char firstChar;
-        private char lastChar;
-        private int maxWidth;
 
         private void GetTextureBlueprint(FreeTypeFace face, int fontHeight, int maxTextureWidth, out int widthOfTexture, out int heightOfTexture)
         {

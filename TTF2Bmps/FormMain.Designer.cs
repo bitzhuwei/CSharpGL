@@ -75,7 +75,6 @@
             this.txtTTFFullname.ReadOnly = true;
             this.txtTTFFullname.Size = new System.Drawing.Size(900, 25);
             this.txtTTFFullname.TabIndex = 1;
-            this.txtTTFFullname.Text = "D:\\tmp\\Arial.ttf";
             this.txtTTFFullname.DoubleClick += new System.EventHandler(this.txtTTFFullname_DoubleClick);
             //
             // label1
@@ -110,7 +109,6 @@
             this.txtDestFilename.ReadOnly = true;
             this.txtDestFilename.Size = new System.Drawing.Size(900, 25);
             this.txtDestFilename.TabIndex = 1;
-            this.txtDestFilename.Text = "C:\\Users\\威\\Desktop\\arialunt.bmp";
             //
             // label2
             //
