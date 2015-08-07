@@ -62,8 +62,8 @@ namespace TTF2Bmps
                 string fontFullname = this.txtTTFFullname.Text;
                 int fontHeight = (int)numFontHeight.Value;
                 int maxTexturWidth = (int)numMaxTexturWidth.Value;
-                char firstChar = (char)int.Parse(this.txtFirstIndex.Text);
-                char lastChar = (char)int.Parse(this.txtLastIndex.Text);
+                char firstChar = char.Parse(this.txtFirstIndex.Text);
+                char lastChar = char.Parse(this.txtLastIndex.Text);
                 string destFullname = this.txtDestFilename.Text;
 
                 var ttfTexture = TTFTexture.GetTTFTexture(fontFullname, fontHeight, firstChar, lastChar, maxTexturWidth);

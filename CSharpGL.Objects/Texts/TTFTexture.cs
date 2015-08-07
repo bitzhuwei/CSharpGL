@@ -43,7 +43,7 @@ namespace CSharpGL.Objects.Texts
         /// <summary>
         /// 记录每个字符在<see cref="BigBitmap"/>里的偏移量及其字形的宽高。
         /// </summary>
-        public Dictionary<int, CharacterInfo> CharInfoDict { get; set; }
+        public Dictionary<char, CharacterInfo> CharInfoDict { get; set; }
 
         internal TTFTexture() { }
 
@@ -137,7 +137,7 @@ namespace CSharpGL.Objects.Texts
 
             FreeTypeFace face = new FreeTypeFace(library, ttfFullname);
 
-            Dictionary<int, CharacterInfo> charInfoDict;
+            Dictionary<char, CharacterInfo> charInfoDict;
             int textureWidth, textureHeight;
 
             GetTextureBlueprint(face, fontHeight, firstChar, lastChar, maxTextureWidth, out charInfoDict, out textureWidth, out textureHeight);
@@ -168,14 +168,14 @@ namespace CSharpGL.Objects.Texts
         /// <param name="heightOfTexture"></param>
         /// <returns></returns>
         private static System.Drawing.Bitmap GetBigBitmap(FreeTypeFace face, int fontHeight,
-            int firstChar, int lastChar, int maxTextureWidth,
-            Dictionary<int, CharacterInfo> charInfoDict,
+            char firstChar, char lastChar, int maxTextureWidth,
+            Dictionary<char, CharacterInfo> charInfoDict,
             int widthOfTexture, int heightOfTexture)
         {
             System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(widthOfTexture, heightOfTexture);
             Graphics graphics = Graphics.FromImage(bigBitmap);
 
-            for (int c = firstChar; c <= lastChar; c++)
+            for (char c = firstChar; c <= lastChar; c++)
             {
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, fontHeight);
                 int size = glyph.obj.bitmap.width * glyph.obj.bitmap.rows;
@@ -224,6 +224,7 @@ namespace CSharpGL.Objects.Texts
                     { throw new Exception(string.Format("Not support for display the char [{0}]", c)); }
                 }
 
+                if (c == char.MaxValue) { break; }
             }
 
             graphics.Dispose();
@@ -286,46 +287,52 @@ namespace CSharpGL.Objects.Texts
         /// <param name="textureWidth"></param>
         /// <param name="textureHeight"></param>
         private static void GetTextureBlueprint(FreeTypeFace face, int fontHeight,
-            int firstChar, int lastChar, int maxTextureWidth,
-            out Dictionary<int, CharacterInfo> charInfoDict, out int textureWidth, out int textureHeight)
+            char firstChar, char lastChar, int maxTextureWidth,
+            out Dictionary<char, CharacterInfo> charInfoDict, out int textureWidth, out int textureHeight)
         {
-            charInfoDict = new Dictionary<int, CharacterInfo>();
+            charInfoDict = new Dictionary<char, CharacterInfo>();
             textureWidth = 0;
             textureHeight = fontHeight;
 
             int glyphXOffset = 0;
             int glyphYOffset = 0;
 
-            for (int c = firstChar; c <= lastChar; c++)
+            for (char c = firstChar; c <= lastChar; c++)
             {
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, fontHeight);
+
                 bool zeroSize = (glyph.obj.bitmap.rows == 0 && glyph.obj.bitmap.width == 0);
+
                 bool zeroBuffer = glyph.obj.bitmap.buffer == IntPtr.Zero;
                 if (zeroSize && (!zeroBuffer)) { throw new Exception(); }
                 if ((!zeroSize) && zeroBuffer) { throw new Exception(); }
-                if (zeroSize) { continue; }
 
-                int glyphWidth = glyph.obj.bitmap.width;
-                int glyphHeight = glyph.obj.bitmap.rows;
-
-                if (glyphXOffset + glyphWidth + 1 <= maxTextureWidth)
+                if(!zeroSize)
                 {
-                    textureWidth = Math.Max(textureWidth, glyphXOffset + glyphWidth + 1);
+                    int glyphWidth = glyph.obj.bitmap.width;
+                    int glyphHeight = glyph.obj.bitmap.rows;
+
+                    if (glyphXOffset + glyphWidth + 1 <= maxTextureWidth)
+                    {
+                        textureWidth = Math.Max(textureWidth, glyphXOffset + glyphWidth + 1);
+                    }
+                    else// 此字形将超出最大宽度，所以要换行。
+                    {
+                        textureHeight += fontHeight;
+
+                        glyphXOffset = 0;
+                        glyphYOffset = textureHeight - fontHeight;
+                    }
+
+                    CharacterInfo cInfo = new CharacterInfo();
+                    cInfo.xoffset = glyphXOffset; cInfo.yoffset = glyphYOffset;
+                    cInfo.width = glyphWidth; cInfo.height = glyphHeight;
+                    charInfoDict.Add(c, cInfo);
+
+                    glyphXOffset += glyphWidth + 1;
                 }
-                else// 此字形将超出最大宽度，所以要换行。
-                {
-                    textureHeight += fontHeight;
 
-                    glyphXOffset = 0;
-                    glyphYOffset = textureHeight - fontHeight;
-                }
-
-                CharacterInfo cInfo = new CharacterInfo();
-                cInfo.xoffset = glyphXOffset; cInfo.yoffset = glyphYOffset;
-                cInfo.width = glyphWidth; cInfo.height = glyphHeight;
-                charInfoDict.Add(c, cInfo);
-
-                glyphXOffset += glyphWidth + 1;
+                if (c == char.MaxValue) { break; }
             }
 
         }
