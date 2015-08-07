@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BitmapComparer
+namespace BinaryComparer
 {
     public partial class FormMain : Form
     {
@@ -19,7 +19,8 @@ namespace BitmapComparer
             InitializeComponent();
         }
 
-        private void btnBrowseBMP1_Click(object sender, EventArgs e)
+
+        private void btnBrowseBin1_Click(object sender, EventArgs e)
         {
             if (openBmpDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -27,7 +28,7 @@ namespace BitmapComparer
             }
         }
 
-        private void btnBrowseBMP2_Click(object sender, EventArgs e)
+        private void btnBrowseBin2_Click(object sender, EventArgs e)
         {
             if (openBmpDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -51,17 +52,17 @@ namespace BitmapComparer
                 return;
             }
 
-            Bitmap bmp1 = null;
-            Bitmap bmp2 = null;
+            FileStream file1 = null;
+            FileStream file2 = null;
             try
             {
                 string name1 = this.txtBitmapFullname1.Text;
                 string name2 = this.txtBitmapFullname2.Text;
 
-                bmp1 = new Bitmap(name1);
-                bmp2 = new Bitmap(name2);
+                file1 = new FileStream(name1, FileMode.Open, FileAccess.Read);
+                file2 = new FileStream(name2, FileMode.Open, FileAccess.Read);
 
-                if (bmp1.Width != bmp2.Width || bmp1.Height != bmp2.Height)
+                if (file1.Length != file2.Length)
                 {
                     MessageBox.Show("not the same size!");
                 }
@@ -76,18 +77,15 @@ namespace BitmapComparer
                         sw.WriteLine(name1);
                         sw.WriteLine(name2);
                         int diffCount = 0;
-                        for (int row = 0; row < bmp1.Height; row++)
+                        for (int position = 0; position < file1.Length; position++)
                         {
-                            for (int col = 0; col < bmp1.Width; col++)
+                            int b1 = file1.ReadByte();
+                            int b2 = file2.ReadByte();
+                            if(b1!=b2)
                             {
-                                Color c1 = bmp1.GetPixel(col, row);
-                                Color c2 = bmp2.GetPixel(col, row);
-                                if (c1.R != c2.R || c1.G != c2.G || c1.B != c2.B || c1.A != c2.A)
-                                {
-                                    sw.WriteLine(string.Format("@ ({0}, {1}) diff: {2} vs {3}",
-                                        row, col, c1, c2));
-                                    diffCount++;
-                                }
+                                sw.WriteLine(string.Format("@ ({0}) diff: {1} vs {2}",
+                                        position, b1, b2));
+                                diffCount++;
                             }
                         }
 
@@ -103,14 +101,13 @@ namespace BitmapComparer
             }
             finally
             {
-                if (bmp1 != null)
-                { bmp1.Dispose(); }
-                if (bmp2 != null)
-                { bmp2.Dispose(); }
+                if (file1 != null)
+                { file1.Dispose(); }
+                if (file2 != null)
+                { file2.Dispose(); }
 
             }
         }
-
 
     }
 }

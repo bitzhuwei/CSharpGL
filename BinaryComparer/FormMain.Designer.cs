@@ -1,4 +1,4 @@
-﻿namespace BitmapComparer
+﻿namespace BinaryComparer
 {
     partial class FormMain
     {
@@ -34,7 +34,7 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.btnBrowseFolder = new System.Windows.Forms.Button();
             this.txtBitmapFullname1 = new System.Windows.Forms.TextBox();
-            this.btnBrowseBMP1 = new System.Windows.Forms.Button();
+            this.btnBrowseBin1 = new System.Windows.Forms.Button();
             this.openBmpDlg = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             //
@@ -45,7 +45,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 15);
-            this.label2.TabIndex = 12;
+            this.label2.TabIndex = 19;
             this.label2.Text = "bitmap 2:";
             //
             // label1
@@ -55,7 +55,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 15);
-            this.label1.TabIndex = 13;
+            this.label1.TabIndex = 20;
             this.label1.Text = "bitmap 1:";
             //
             // txtBitmapFullname2
@@ -67,7 +67,7 @@
             this.txtBitmapFullname2.Name = "txtBitmapFullname2";
             this.txtBitmapFullname2.ReadOnly = true;
             this.txtBitmapFullname2.Size = new System.Drawing.Size(907, 25);
-            this.txtBitmapFullname2.TabIndex = 10;
+            this.txtBitmapFullname2.TabIndex = 18;
             //
             // btnStart
             //
@@ -76,7 +76,7 @@
             this.btnStart.Margin = new System.Windows.Forms.Padding(4);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(100, 29);
-            this.btnStart.TabIndex = 7;
+            this.btnStart.TabIndex = 15;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -88,10 +88,10 @@
             this.btnBrowseFolder.Margin = new System.Windows.Forms.Padding(4);
             this.btnBrowseFolder.Name = "btnBrowseFolder";
             this.btnBrowseFolder.Size = new System.Drawing.Size(100, 29);
-            this.btnBrowseFolder.TabIndex = 6;
+            this.btnBrowseFolder.TabIndex = 14;
             this.btnBrowseFolder.Text = "Browse...";
             this.btnBrowseFolder.UseVisualStyleBackColor = true;
-            this.btnBrowseFolder.Click += new System.EventHandler(this.btnBrowseBMP2_Click);
+            this.btnBrowseFolder.Click += new System.EventHandler(this.btnBrowseBin2_Click);
             //
             // txtBitmapFullname1
             //
@@ -102,19 +102,19 @@
             this.txtBitmapFullname1.Name = "txtBitmapFullname1";
             this.txtBitmapFullname1.ReadOnly = true;
             this.txtBitmapFullname1.Size = new System.Drawing.Size(907, 25);
-            this.txtBitmapFullname1.TabIndex = 9;
+            this.txtBitmapFullname1.TabIndex = 17;
             //
-            // btnBrowseBMP1
+            // btnBrowseBin1
             //
-            this.btnBrowseBMP1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseBMP1.Location = new System.Drawing.Point(1019, 13);
-            this.btnBrowseBMP1.Margin = new System.Windows.Forms.Padding(4);
-            this.btnBrowseBMP1.Name = "btnBrowseBMP1";
-            this.btnBrowseBMP1.Size = new System.Drawing.Size(100, 29);
-            this.btnBrowseBMP1.TabIndex = 8;
-            this.btnBrowseBMP1.Text = "Browse...";
-            this.btnBrowseBMP1.UseVisualStyleBackColor = true;
-            this.btnBrowseBMP1.Click += new System.EventHandler(this.btnBrowseBMP1_Click);
+            this.btnBrowseBin1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowseBin1.Location = new System.Drawing.Point(1019, 13);
+            this.btnBrowseBin1.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBrowseBin1.Name = "btnBrowseBin1";
+            this.btnBrowseBin1.Size = new System.Drawing.Size(100, 29);
+            this.btnBrowseBin1.TabIndex = 16;
+            this.btnBrowseBin1.Text = "Browse...";
+            this.btnBrowseBin1.UseVisualStyleBackColor = true;
+            this.btnBrowseBin1.Click += new System.EventHandler(this.btnBrowseBin1_Click);
             //
             // openBmpDlg
             //
@@ -131,9 +131,9 @@
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnBrowseFolder);
             this.Controls.Add(this.txtBitmapFullname1);
-            this.Controls.Add(this.btnBrowseBMP1);
+            this.Controls.Add(this.btnBrowseBin1);
             this.Name = "FormMain";
-            this.Text = "Compare bitmaps using GetPixel()";
+            this.Text = "Binary Comparer";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,7 +147,7 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnBrowseFolder;
         private System.Windows.Forms.TextBox txtBitmapFullname1;
-        private System.Windows.Forms.Button btnBrowseBMP1;
+        private System.Windows.Forms.Button btnBrowseBin1;
         private System.Windows.Forms.OpenFileDialog openBmpDlg;
     }
 }

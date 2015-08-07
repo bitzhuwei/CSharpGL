@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTF2Bmps", "TTF2Bmps\TTF2Bm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitmapComparer", "BitmapComparer\BitmapComparer.csproj", "{666B35CE-7E2A-41A0-B0F4-1058CA1327DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryComparer", "BinaryComparer\BinaryComparer.csproj", "{5DECD1EA-BCAD-439F-9C26-261D0662E591}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{666B35CE-7E2A-41A0-B0F4-1058CA1327DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{666B35CE-7E2A-41A0-B0F4-1058CA1327DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{666B35CE-7E2A-41A0-B0F4-1058CA1327DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DECD1EA-BCAD-439F-9C26-261D0662E591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DECD1EA-BCAD-439F-9C26-261D0662E591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DECD1EA-BCAD-439F-9C26-261D0662E591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DECD1EA-BCAD-439F-9C26-261D0662E591}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,5 +72,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4D781838-957F-4CBB-87F0-BB846AE7FF2F} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
 		{666B35CE-7E2A-41A0-B0F4-1058CA1327DA} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
+		{5DECD1EA-BCAD-439F-9C26-261D0662E591} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
 	EndGlobalSection
 EndGlobal
