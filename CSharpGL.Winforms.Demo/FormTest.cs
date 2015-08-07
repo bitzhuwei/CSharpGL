@@ -21,8 +21,7 @@ namespace CSharpGL.Winforms.Demo
         {
             UnmanagedArrayTest.TypicalScene();
             string message = string.Format("{0}", "Done!");
-            MessageBox.Show(message, "tip", MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+            MessageBox.Show(message, "tip", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 

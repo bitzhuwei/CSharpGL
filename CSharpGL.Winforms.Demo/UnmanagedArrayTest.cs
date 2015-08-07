@@ -90,7 +90,7 @@ namespace CSharpGL.Winforms.Demo
             // 释放此数组占用的内存，这之后就不能再使用vec3Array了。
             vec3Array.Dispose();
 
-            // 立即释放所有非托管数组占用的内存，这之后就不能再使用上面申请的数组了。
+            // 立即释放所有非托管数组占用的内存，这之后就不能再使用所有已创建的UnmanagedBase数组了。
             UnmanagedArray<int>.FreeAll();
         }
     }

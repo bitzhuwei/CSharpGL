@@ -97,7 +97,7 @@
             this.Controls.Add(this.btnUnmanagedArray);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormTest";
-            this.Text = "FormTest";
+            this.Text = "测试窗口";
             this.ResumeLayout(false);
 
         }
