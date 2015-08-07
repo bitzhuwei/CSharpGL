@@ -137,7 +137,7 @@ namespace CSharpGL.Objects.Texts
 
             FreeTypeFace face = new FreeTypeFace(library, ttfFullname);
 
-            Dictionary<char, CharacterInfo> charInfoDict;// = new Dictionary<char, CharacterInfo>();
+            Dictionary<char, CharacterInfo> charInfoDict;
             int textureWidth, textureHeight;
 
             GetTextureBlueprint(face, fontHeight, firstChar, lastChar, maxTextureWidth, out charInfoDict, out textureWidth, out textureHeight);
@@ -308,27 +308,22 @@ namespace CSharpGL.Objects.Texts
                 int glyphWidth = glyph.obj.bitmap.width;
                 int glyphHeight = glyph.obj.bitmap.rows;
 
-                if (glyphXOffset + glyphWidth + 1 > maxTextureWidth)
+                if (glyphXOffset + glyphWidth + 1 <= maxTextureWidth)
+                {
+                    textureWidth = Math.Max(textureWidth, glyphXOffset + glyphWidth + 1);
+                }
+                else// 此字形将超出最大宽度，所以要换行。
                 {
                     textureHeight += fontHeight;
 
                     glyphXOffset = 0;
                     glyphYOffset = textureHeight - fontHeight;
-
-                    CharacterInfo cInfo = new CharacterInfo();
-                    cInfo.xoffset = glyphXOffset; cInfo.yoffset = glyphYOffset;
-                    cInfo.width = glyphWidth; cInfo.height = glyphHeight;
-                    charInfoDict.Add(c, cInfo);
                 }
-                else
-                {
-                    textureWidth = Math.Max(textureWidth, glyphXOffset + glyphWidth + 1);
 
-                    CharacterInfo cInfo = new CharacterInfo();
-                    cInfo.xoffset = glyphXOffset; cInfo.yoffset = glyphYOffset;
-                    cInfo.width = glyphWidth; cInfo.height = glyphHeight;
-                    charInfoDict.Add(c, cInfo);
-                }
+                CharacterInfo cInfo = new CharacterInfo();
+                cInfo.xoffset = glyphXOffset; cInfo.yoffset = glyphYOffset;
+                cInfo.width = glyphWidth; cInfo.height = glyphHeight;
+                charInfoDict.Add(c, cInfo);
 
                 glyphXOffset += glyphWidth + 1;
             }
