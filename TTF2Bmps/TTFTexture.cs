@@ -57,7 +57,8 @@ namespace TTF2Bmps
             set { charInfoDict = value; }
         }
 
-        protected TTFTexture(string ttfFullname, int fontHeight, char firstChar, char lastChar, System.Drawing.Bitmap bigBitmap, Dictionary<char, CharacterInfo> charInfoDict)
+        internal TTFTexture(string ttfFullname, int fontHeight, char firstChar, char lastChar,
+            System.Drawing.Bitmap bigBitmap, Dictionary<char, CharacterInfo> charInfoDict)
         {
             this.ttfFullname = ttfFullname;
             this.fontHeight = fontHeight;
@@ -67,6 +68,12 @@ namespace TTF2Bmps
             this.charInfoDict = charInfoDict;
         }
 
+        public static TTFTexture GetTTFTexture(string ttfFullname, int fontHeight, char firstChar, char lastChar, int maxTextureWidth)
+        {
+            var result = TTFTextureHelper.GetTTFTexture(ttfFullname, fontHeight, firstChar, lastChar, maxTextureWidth);
+
+            return result;
+        }
         ~TTFTexture()
         {
             this.Dispose();
@@ -122,6 +129,10 @@ namespace TTF2Bmps
 
         #endregion
 
+    }
+
+    static class TTFTextureHelper
+    {
         /// <summary>
         /// 用一个纹理绘制指定范围内的所有可见字符
         /// </summary>
@@ -140,7 +151,7 @@ namespace TTF2Bmps
             Dictionary<char, CharacterInfo> charInfoDict = new Dictionary<char, CharacterInfo>();
             int textureWidth, textureHeight;
 
-            GetTextureBlueprint(face, fontHeight, firstChar , lastChar, maxTextureWidth, charInfoDict, out textureWidth, out textureHeight);
+            GetTextureBlueprint(face, fontHeight, firstChar, lastChar, maxTextureWidth, charInfoDict, out textureWidth, out textureHeight);
 
             if (textureWidth == 0) { textureWidth = 1; }
             if (textureHeight == 0) { textureHeight = 1; }
