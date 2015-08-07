@@ -38,20 +38,28 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.numFontHeight = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
             this.txtFirstChar = new System.Windows.Forms.TextBox();
             this.txtLastChar = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.numMaxTexturWidth = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.saveBmpDlg = new System.Windows.Forms.SaveFileDialog();
+            this.txtFirstIndex = new System.Windows.Forms.TextBox();
+            this.txtLastIndex = new System.Windows.Forms.TextBox();
+            this.rdoFirstChar = new System.Windows.Forms.RadioButton();
+            this.rdoFirstIndex = new System.Windows.Forms.RadioButton();
+            this.rdoLastChar = new System.Windows.Forms.RadioButton();
+            this.rdoLastIndex = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.numFontHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxTexturWidth)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             //
             // openTTFFileDlg
             //
-            this.openTTFFileDlg.Filter = "(字体文件 *.ttf)|*.ttf";
+            this.openTTFFileDlg.Filter = "(字体文件 *.ttf)|*.ttf|(字体文件 *.ttc)|*.ttc";
             //
             // btnBrowseTTFFile
             //
@@ -123,7 +131,7 @@
             // btnStart
             //
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStart.Location = new System.Drawing.Point(1019, 122);
+            this.btnStart.Location = new System.Drawing.Point(1019, 152);
             this.btnStart.Margin = new System.Windows.Forms.Padding(4);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(100, 29);
@@ -164,45 +172,27 @@
             0,
             0});
             //
-            // label4
-            //
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(211, 88);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 15);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "first char:";
-            //
             // txtFirstChar
             //
-            this.txtFirstChar.Location = new System.Drawing.Point(314, 82);
+            this.txtFirstChar.Location = new System.Drawing.Point(137, 25);
             this.txtFirstChar.Margin = new System.Windows.Forms.Padding(4);
             this.txtFirstChar.Name = "txtFirstChar";
             this.txtFirstChar.Size = new System.Drawing.Size(57, 25);
             this.txtFirstChar.TabIndex = 4;
             this.txtFirstChar.Text = "!";
+            this.txtFirstChar.TextChanged += new System.EventHandler(this.txtFirstChar_TextChanged);
             //
             // txtLastChar
             //
-            this.txtLastChar.Location = new System.Drawing.Point(474, 82);
+            this.txtLastChar.Location = new System.Drawing.Point(129, 25);
             this.txtLastChar.Margin = new System.Windows.Forms.Padding(4);
             this.txtLastChar.Name = "txtLastChar";
             this.txtLastChar.Size = new System.Drawing.Size(57, 25);
             this.txtLastChar.TabIndex = 4;
             this.txtLastChar.Text = "~";
+            this.txtLastChar.TextChanged += new System.EventHandler(this.txtLastChar_TextChanged);
             //
-            // label5
-            //
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(379, 88);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 15);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "last char:";
-            //
-            // numMaxWidth
+            // numMaxTexturWidth
             //
             this.numMaxTexturWidth.Location = new System.Drawing.Point(110, 113);
             this.numMaxTexturWidth.Maximum = new decimal(new int[] {
@@ -215,7 +205,7 @@
             0,
             0,
             0});
-            this.numMaxTexturWidth.Name = "numMaxWidth";
+            this.numMaxTexturWidth.Name = "numMaxTexturWidth";
             this.numMaxTexturWidth.Size = new System.Drawing.Size(94, 25);
             this.numMaxTexturWidth.TabIndex = 3;
             this.numMaxTexturWidth.Value = new decimal(new int[] {
@@ -238,15 +228,109 @@
             //
             this.saveBmpDlg.Filter = "*.bmp|*.bmp|*.*|*.*";
             //
+            // txtFirstIndex
+            //
+            this.txtFirstIndex.Location = new System.Drawing.Point(137, 58);
+            this.txtFirstIndex.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFirstIndex.Name = "txtFirstIndex";
+            this.txtFirstIndex.ReadOnly = true;
+            this.txtFirstIndex.Size = new System.Drawing.Size(57, 25);
+            this.txtFirstIndex.TabIndex = 4;
+            this.txtFirstIndex.Text = "!";
+            this.txtFirstIndex.TextChanged += new System.EventHandler(this.txtFirstIndex_TextChanged);
+            //
+            // txtLastIndex
+            //
+            this.txtLastIndex.Location = new System.Drawing.Point(129, 58);
+            this.txtLastIndex.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLastIndex.Name = "txtLastIndex";
+            this.txtLastIndex.ReadOnly = true;
+            this.txtLastIndex.Size = new System.Drawing.Size(57, 25);
+            this.txtLastIndex.TabIndex = 4;
+            this.txtLastIndex.Text = "~";
+            this.txtLastIndex.TextChanged += new System.EventHandler(this.txtLastIndex_TextChanged);
+            //
+            // rdoFirstChar
+            //
+            this.rdoFirstChar.AutoSize = true;
+            this.rdoFirstChar.Checked = true;
+            this.rdoFirstChar.Location = new System.Drawing.Point(6, 29);
+            this.rdoFirstChar.Name = "rdoFirstChar";
+            this.rdoFirstChar.Size = new System.Drawing.Size(116, 19);
+            this.rdoFirstChar.TabIndex = 6;
+            this.rdoFirstChar.TabStop = true;
+            this.rdoFirstChar.Text = "first char:";
+            this.rdoFirstChar.UseVisualStyleBackColor = true;
+            this.rdoFirstChar.CheckedChanged += new System.EventHandler(this.rdoFirstChar_CheckedChanged);
+            //
+            // rdoFirstIndex
+            //
+            this.rdoFirstIndex.AutoSize = true;
+            this.rdoFirstIndex.Location = new System.Drawing.Point(6, 59);
+            this.rdoFirstIndex.Name = "rdoFirstIndex";
+            this.rdoFirstIndex.Size = new System.Drawing.Size(124, 19);
+            this.rdoFirstIndex.TabIndex = 6;
+            this.rdoFirstIndex.Text = "first index:";
+            this.rdoFirstIndex.UseVisualStyleBackColor = true;
+            this.rdoFirstIndex.CheckedChanged += new System.EventHandler(this.rdoFirstIndex_CheckedChanged);
+            //
+            // rdoLastChar
+            //
+            this.rdoLastChar.AutoSize = true;
+            this.rdoLastChar.Checked = true;
+            this.rdoLastChar.Location = new System.Drawing.Point(6, 29);
+            this.rdoLastChar.Name = "rdoLastChar";
+            this.rdoLastChar.Size = new System.Drawing.Size(108, 19);
+            this.rdoLastChar.TabIndex = 6;
+            this.rdoLastChar.TabStop = true;
+            this.rdoLastChar.Text = "last char:";
+            this.rdoLastChar.UseVisualStyleBackColor = true;
+            this.rdoLastChar.CheckedChanged += new System.EventHandler(this.rdoLastChar_CheckedChanged);
+            //
+            // rdoLastIndex
+            //
+            this.rdoLastIndex.AutoSize = true;
+            this.rdoLastIndex.Location = new System.Drawing.Point(6, 59);
+            this.rdoLastIndex.Name = "rdoLastIndex";
+            this.rdoLastIndex.Size = new System.Drawing.Size(116, 19);
+            this.rdoLastIndex.TabIndex = 6;
+            this.rdoLastIndex.Text = "last index:";
+            this.rdoLastIndex.UseVisualStyleBackColor = true;
+            this.rdoLastIndex.CheckedChanged += new System.EventHandler(this.rdoLastIndex_CheckedChanged);
+            //
+            // groupBox1
+            //
+            this.groupBox1.Controls.Add(this.rdoFirstChar);
+            this.groupBox1.Controls.Add(this.txtFirstChar);
+            this.groupBox1.Controls.Add(this.rdoFirstIndex);
+            this.groupBox1.Controls.Add(this.txtFirstIndex);
+            this.groupBox1.Location = new System.Drawing.Point(210, 81);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(212, 100);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "first";
+            //
+            // groupBox2
+            //
+            this.groupBox2.Controls.Add(this.rdoLastChar);
+            this.groupBox2.Controls.Add(this.txtLastChar);
+            this.groupBox2.Controls.Add(this.rdoLastIndex);
+            this.groupBox2.Controls.Add(this.txtLastIndex);
+            this.groupBox2.Location = new System.Drawing.Point(428, 81);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(212, 100);
+            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "last";
+            //
             // FormMain
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1135, 165);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtLastChar);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtFirstChar);
+            this.ClientSize = new System.Drawing.Size(1135, 195);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.numMaxTexturWidth);
             this.Controls.Add(this.numFontHeight);
             this.Controls.Add(this.label6);
@@ -261,8 +345,13 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
             this.Text = "get bitmaps from a TTF file. (by bitzhuwei @ http://bitzhuwei.cnblogs.com)";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numFontHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxTexturWidth)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,12 +369,18 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numFontHeight;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtFirstChar;
         private System.Windows.Forms.TextBox txtLastChar;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown numMaxTexturWidth;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.SaveFileDialog saveBmpDlg;
+        private System.Windows.Forms.TextBox txtFirstIndex;
+        private System.Windows.Forms.TextBox txtLastIndex;
+        private System.Windows.Forms.RadioButton rdoFirstChar;
+        private System.Windows.Forms.RadioButton rdoFirstIndex;
+        private System.Windows.Forms.RadioButton rdoLastChar;
+        private System.Windows.Forms.RadioButton rdoLastIndex;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

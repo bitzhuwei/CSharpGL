@@ -48,7 +48,7 @@ namespace CSharpGL.Objects.Texts.FreeTypes
         [DllImport(freetypeDll, CallingConvention = CallingConvention.Cdecl)]
         public static extern void FT_Done_Face(System.IntPtr face);
         [DllImport(freetypeDll, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int FT_Get_Char_Index(System.IntPtr face, char c);
+        public static extern int FT_Get_Char_Index(System.IntPtr face, int c);
 
         /// <summary>
         /// 加载此字符的字形到指定的face.

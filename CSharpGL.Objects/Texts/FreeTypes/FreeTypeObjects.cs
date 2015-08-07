@@ -60,7 +60,7 @@ namespace CSharpGL.Objects.Texts.FreeTypes
         /// </summary>
         public void Dispose()
         {
-            // Call the private Dispose(bool) helper and indicate 
+            // Call the private Dispose(bool) helper and indicate
             // that we are explicitly disposing
             this.Dispose(true);
 
@@ -127,26 +127,26 @@ namespace CSharpGL.Objects.Texts.FreeTypes
         }
 
     }
- 
+
     /// <summary>
     /// 把字形转换为纹理
     /// </summary>
     public class FreeTypeBitmapGlyph : FreeTypeObjectBase<FT_BitmapGlyph>
     {
         /// <summary>
-        /// char 
+        /// char
         /// </summary>
         public char glyphChar;
         public GlyphRec glyphRec;
 
         /// <summary>
-        /// 把字形转换为纹理    
+        /// 把字形转换为纹理
         /// </summary>
         /// <param name="face"></param>
         /// <param name="c"></param>
         public FreeTypeBitmapGlyph(FreeTypeFace face, char c, int size)
         {
-            // Freetype measures the font size in 1/64th of pixels for accuracy 
+            // Freetype measures the font size in 1/64th of pixels for accuracy
             // so we need to request characters in size*64
             // 设置字符大小？
             FreeTypeAPI.FT_Set_Char_Size(face.pointer, size << 6, size << 6, 96, 96);
@@ -158,13 +158,14 @@ namespace CSharpGL.Objects.Texts.FreeTypes
 
             // We first convert the number index to a character index
             // 根据字符获取其编号
-            int index = FreeTypeAPI.FT_Get_Char_Index(face.pointer, Convert.ToChar(c));
+            //int index = FreeTypeAPI.FT_Get_Char_Index(face.pointer, Convert.ToChar(c));
+            int index = FreeTypeAPI.FT_Get_Char_Index(face.pointer, c);
 
             // Here we load the actual glyph for the character
             // 加载此字符的字形
             int ret = FreeTypeAPI.FT_Load_Glyph(face.pointer, index, FT_LOAD_TYPES.FT_LOAD_DEFAULT);
             if (ret != 0) { throw new Exception(string.Format("Could not load character '{0}'", Convert.ToChar(c))); }
-            
+
             int retb = FreeTypeAPI.FT_Get_Glyph(face.obj.glyphrec, out this.pointer);
             if (retb != 0) return;
             glyphRec = (GlyphRec)Marshal.PtrToStructure(face.obj.glyphrec, typeof(GlyphRec));

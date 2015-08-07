@@ -91,8 +91,96 @@ namespace TTF2Bmps
             { return; }
 
             FileInfo ttfFile = new FileInfo(this.txtTTFFullname.Text);
-            string bmpFilename = ttfFile.Name.Substring(0, ttfFile.Name.Length - ".ttf".Length);
-            this.txtDestFilename.Text = string.Format("{0}\\{1}.png", ttfFile.DirectoryName, bmpFilename);
+            this.txtDestFilename.Text = Path.Combine(ttfFile.DirectoryName, ttfFile.Name + ".png");
+        }
+
+
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            char firstChar = this.txtFirstChar.Text.First();
+            this.txtFirstChar.Text = firstChar.ToString();
+            int firstIndex = (int)firstChar;
+            this.txtFirstIndex.Text = firstIndex.ToString();
+
+            char lastChar = this.txtLastChar.Text.First();
+            this.txtLastChar.Text = lastChar.ToString();
+            int lastIndex = (int)lastChar;
+            this.txtLastIndex.Text = lastIndex.ToString();
+        }
+
+        private void rdoFirstChar_CheckedChanged(object sender, EventArgs e)
+        {
+            this.txtFirstChar.ReadOnly = !this.rdoFirstChar.Checked;
+            this.txtFirstIndex.ReadOnly = this.rdoFirstChar.Checked;
+        }
+
+        private void rdoFirstIndex_CheckedChanged(object sender, EventArgs e)
+        {
+            this.txtFirstChar.ReadOnly = this.rdoFirstIndex.Checked;
+            this.txtFirstIndex.ReadOnly = !this.rdoFirstIndex.Checked;
+        }
+
+        private void rdoLastChar_CheckedChanged(object sender, EventArgs e)
+        {
+            this.txtLastChar.ReadOnly = !this.rdoLastChar.Checked;
+            this.txtLastIndex.ReadOnly = this.rdoLastChar.Checked;
+        }
+
+        private void rdoLastIndex_CheckedChanged(object sender, EventArgs e)
+        {
+            this.txtLastChar.ReadOnly = this.rdoLastIndex.Checked;
+            this.txtLastIndex.ReadOnly = !this.rdoLastIndex.Checked;
+        }
+
+        private void txtFirstChar_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.txtFirstChar.Text)) { return; }
+
+            if(this.rdoFirstChar.Checked)
+            {
+                char firstChar = this.txtFirstChar.Text.First();
+                int firstIndex = (int)firstChar;
+                this.txtFirstIndex.Text = firstIndex.ToString();
+            }
+        }
+
+        private void txtFirstIndex_TextChanged(object sender, EventArgs e)
+        {
+            if(this.rdoFirstIndex.Checked)
+            {
+                int value;
+                if(int.TryParse(this.txtFirstIndex.Text, out value))
+                {
+                    char firstChar = (char)value;
+                    this.txtFirstChar.Text = firstChar.ToString();
+                }
+            }
+        }
+
+        private void txtLastChar_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.txtLastChar.Text)) { return; }
+
+            if (this.rdoLastChar.Checked)
+            {
+                char lastChar = this.txtLastChar.Text.First();
+                int lastIndex = (int)lastChar;
+                this.txtLastIndex.Text = lastIndex.ToString();
+            }
+        }
+
+        private void txtLastIndex_TextChanged(object sender, EventArgs e)
+        {
+            if (this.rdoLastIndex.Checked)
+            {
+                int value;
+                if (int.TryParse(this.txtLastIndex.Text, out value))
+                {
+                    char lastChar = (char)value;
+                    this.txtLastChar.Text = lastChar.ToString();
+                }
+            }
         }
 
     }
