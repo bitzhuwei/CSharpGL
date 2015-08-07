@@ -60,7 +60,7 @@
             //
             // openTTFFileDlg
             //
-            this.openTTFFileDlg.Filter = "(字体文件 *.ttf)|*.ttf|(字体文件 *.ttc)|*.ttc";
+            this.openTTFFileDlg.Filter = "(字体文件 *.ttf)|*.ttf|(字体文件 *.ttc)|*.ttc|(字体文件 *.*)|*.*";
             //
             // btnBrowseTTFFile
             //
@@ -237,7 +237,7 @@
             this.txtFirstIndex.ReadOnly = true;
             this.txtFirstIndex.Size = new System.Drawing.Size(57, 25);
             this.txtFirstIndex.TabIndex = 4;
-            this.txtFirstIndex.Text = "!";
+            this.txtFirstIndex.Text = "33";
             this.txtFirstIndex.TextChanged += new System.EventHandler(this.txtFirstIndex_TextChanged);
             //
             // txtLastIndex
@@ -248,7 +248,7 @@
             this.txtLastIndex.ReadOnly = true;
             this.txtLastIndex.Size = new System.Drawing.Size(57, 25);
             this.txtLastIndex.TabIndex = 4;
-            this.txtLastIndex.Text = "~";
+            this.txtLastIndex.Text = "126";
             this.txtLastIndex.TextChanged += new System.EventHandler(this.txtLastIndex_TextChanged);
             //
             // rdoFirstChar
@@ -310,7 +310,7 @@
             this.groupBox1.Size = new System.Drawing.Size(212, 100);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "first";
+            this.groupBox1.Text = "first unicode";
             //
             // groupBox2
             //
@@ -323,7 +323,7 @@
             this.groupBox2.Size = new System.Drawing.Size(212, 100);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "last";
+            this.groupBox2.Text = "last unicode";
             //
             // FormMain
             //
