@@ -53,6 +53,9 @@ namespace TTF2Bmps
 
             GetTextureBlueprint(face, this.fontHeight, this.maxWidth, out this.textureWidth, out this.textureHeight);
 
+            if (this.textureWidth == 0) { this.textureWidth = 1; }
+            if (this.textureHeight == 0) { this.textureHeight = 1; }
+
             System.Drawing.Bitmap bigBitmap = GetBigBitmap(face, this.maxWidth, this.textureWidth, this.textureHeight);
 
             face.Dispose();
