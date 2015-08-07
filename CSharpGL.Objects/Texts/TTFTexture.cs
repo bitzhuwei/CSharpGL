@@ -178,14 +178,13 @@ namespace CSharpGL.Objects.Texts
             for (char c = firstChar; c <= lastChar; c++)
             {
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, fontHeight);
-                bool zeroSize = (glyph.obj.bitmap.rows == 0 && glyph.obj.bitmap.width == 0);
+                int size = glyph.obj.bitmap.width * glyph.obj.bitmap.rows;
                 bool zeroBuffer = glyph.obj.bitmap.buffer == IntPtr.Zero;
-                if (zeroSize && (!zeroBuffer)) { throw new Exception(); }
-                if ((!zeroSize) && zeroBuffer) { throw new Exception(); }
+                if ((size == 0) && (!zeroBuffer)) { throw new Exception(string.Format("glyph size({0}) for non zero buffer({1})", 0, glyph.obj.bitmap.buffer)); }
+                if ((!(size == 0)) && zeroBuffer) { throw new Exception(string.Format("glyph size({0}) for zero buffer({1})", size, glyph.obj.bitmap.buffer)); }
 
-                if (!zeroSize)
+                if (!(size == 0))
                 {
-                    int size = glyph.obj.bitmap.width * glyph.obj.bitmap.rows;
                     byte[] byteBitmap = new byte[size];
                     Marshal.Copy(glyph.obj.bitmap.buffer, byteBitmap, 0, byteBitmap.Length);
                     CharacterInfo cInfo;
@@ -193,16 +192,119 @@ namespace CSharpGL.Objects.Texts
                     {
                         if (cInfo.width > 0 && cInfo.height > 0)
                         {
-                            System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(cInfo.width, cInfo.height);
-                            for (int tmpRow = 0; tmpRow < cInfo.height; ++tmpRow)
+                            //System.Drawing.Imaging.PixelFormat format = System.Drawing.Imaging.PixelFormat.Format32bppArgb;
+                            System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(cInfo.width, cInfo.height, System.Drawing.Imaging.PixelFormat.Format32bppRgb);
+                            System.Drawing.Imaging.BitmapData bmpData = bitmap.LockBits(
+                                new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                                 System.Drawing.Imaging.ImageLockMode.WriteOnly, System.Drawing.Imaging.PixelFormat.Format32bppRgb);
+
+                            // Declare an array to hold the bytes of the bitmap.
+                            int length = Math.Abs(bmpData.Stride) * bitmap.Height;
+                            byte[] bitmapBytes = new byte[length];
+                            for (int row = 0; row < cInfo.height; row++)
                             {
-                                for (int tmpWidth = 0; tmpWidth < cInfo.width; ++tmpWidth)
+                                for (int col = 0; col < cInfo.width; col++)
                                 {
-                                    byte color = byteBitmap[tmpRow * cInfo.width + tmpWidth];
-                                    bitmap.SetPixel(tmpWidth, tmpRow, Color.FromArgb(color, color, color));
+                                    byte color = byteBitmap[row * cInfo.width + col];
+                                    bitmapBytes[row * bmpData.Stride + col * 4 + 0] = color;
+                                    bitmapBytes[row * bmpData.Stride + col * 4 + 1] = color;
+                                    bitmapBytes[row * bmpData.Stride + col * 4 + 2] = color;
+                                    //bitmapBytes[row * bmpData.Stride + col * 4 + 3] = color;
                                 }
                             }
 
+                            // Copy the RGB values back to the bitmap
+                            System.Runtime.InteropServices.Marshal.Copy(bitmapBytes, 0, bmpData.Scan0, length);
+
+                            // Unlock the bits.
+                            bitmap.UnlockBits(bmpData);
+                            //TmpTest(byteBitmap, cInfo);
+                            //foreach (var item in Enum.GetValues(typeof(System.Drawing.Imaging.PixelFormat)))
+                            //{
+                            //    try
+                            //    {
+                            //        System.Drawing.Imaging.PixelFormat format = (System.Drawing.Imaging.PixelFormat)item;
+                            //        System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(cInfo.width, cInfo.height,
+                            //            System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+                            //        System.Drawing.Imaging.BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                            //             System.Drawing.Imaging.ImageLockMode.WriteOnly, format);
+                            //        // Get the address of the first line.
+                            //        IntPtr ptr = bmpData.Scan0;
+
+                            //        // Declare an array to hold the bytes of the bitmap.
+                            //        int bytes = Math.Abs(bmpData.Stride) * bitmap.Height;
+                            //        byte[] rgbValues = new byte[bytes];
+
+                            //        // Copy the RGB values into the array.
+                            //        System.Runtime.InteropServices.Marshal.Copy(ptr, rgbValues, 0, bytes);
+
+                            //        // Set every third value to 255. A 24bpp bitmap will look red.
+                            //        for (int counter = 2; counter < rgbValues.Length; counter += 3)
+                            //        {
+                            //            rgbValues[counter] = 255;
+                            //        }
+                            //        for (int tmpRow = 0; tmpRow < cInfo.height; ++tmpRow)
+                            //        {
+                            //            for (int tmpWidth = 0; tmpWidth < cInfo.width; ++tmpWidth)
+                            //            {
+                            //                byte color = byteBitmap[tmpRow * cInfo.width + tmpWidth];
+                            //                //bitmap.SetPixel(tmpWidth, tmpRow, Color.FromArgb(color, color, color));
+                            //                rgbValues[tmpRow * cInfo.width + tmpWidth + 0] = color;
+                            //                rgbValues[tmpRow * cInfo.width + tmpWidth + 1] = color;
+                            //                rgbValues[tmpRow * cInfo.width + tmpWidth + 2] = color;
+                            //                rgbValues[tmpRow * cInfo.width + tmpWidth + 3] = color;
+                            //            }
+                            //        }
+                            //        // Copy the RGB values back to the bitmap
+                            //        System.Runtime.InteropServices.Marshal.Copy(rgbValues, 0, ptr, bytes);
+
+                            //        // Unlock the bits.
+                            //        bitmap.UnlockBits(bmpData);
+                            //        bitmap.Save(item + ".bmp");
+                            //    }
+                            //    catch (Exception e)
+                            //    {
+                            //        Console.WriteLine(e);
+                            //    }
+                            //}
+
+                            //for (int tmpRow = 0; tmpRow < cInfo.height; ++tmpRow)
+                            //{
+                            //    for (int tmpWidth = 0; tmpWidth < cInfo.width; ++tmpWidth)
+                            //    {
+                            //        byte color = byteBitmap[tmpRow * cInfo.width + tmpWidth];
+                            //        bitmap.SetPixel(tmpWidth, tmpRow, Color.FromArgb(color, color, color));
+                            //    }
+                            //}
+
+                            //System.Drawing.Imaging.ImageFormat[] formats = new System.Drawing.Imaging.ImageFormat[] {
+                            //    System.Drawing.Imaging.ImageFormat.Bmp,
+                            //    System.Drawing.Imaging.ImageFormat.Emf,
+                            //    System.Drawing.Imaging.ImageFormat.Exif,
+                            //    System.Drawing.Imaging.ImageFormat.Gif,
+                            //    System.Drawing.Imaging.ImageFormat.Icon,
+                            //    System.Drawing.Imaging.ImageFormat.Jpeg,
+                            //    System.Drawing.Imaging.ImageFormat.MemoryBmp,
+                            //    System.Drawing.Imaging.ImageFormat.Png,
+                            //    System.Drawing.Imaging.ImageFormat.Tiff,
+                            //    System.Drawing.Imaging.ImageFormat.Wmf,
+                            //};
+                            //foreach (var format in formats)
+                            //{
+                            //    try
+                            //    {
+                            //        using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+                            //        {
+                            //            bitmap.Save(ms, format);
+                            //            byte[] bytes = ms.GetBuffer();
+                            //            bytes = ms.ToArray();
+                            //        }
+                            //    }
+                            //    catch (Exception e)
+                            //    {
+                            //        string str = e.ToString();
+                            //    }
+                            //}
                             int baseLine = fontHeight * 3 / 4;
                             graphics.DrawImage(bitmap, cInfo.xoffset, cInfo.yoffset + baseLine - glyph.obj.top);
                         }
@@ -217,6 +319,49 @@ namespace CSharpGL.Objects.Texts
 
             return bigBitmap;
         }
+
+        private static void TmpTest(byte[] byteBitmap, CharacterInfo cInfo)
+        {
+            {
+                var tempBmp = new System.Drawing.Bitmap("modernSingleTextureFont.png");
+                Console.WriteLine(tempBmp.PixelFormat);
+                var color = Color.FromArgb(0, 0, 0);
+            }
+            {
+
+                System.Drawing.Imaging.PixelFormat format = System.Drawing.Imaging.PixelFormat.Format32bppArgb;
+                System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(cInfo.width, cInfo.height,
+                    System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+                System.Drawing.Imaging.BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                     System.Drawing.Imaging.ImageLockMode.WriteOnly, format);
+                // Get the address of the first line.
+                IntPtr ptr = bmpData.Scan0;
+
+                // Declare an array to hold the bytes of the bitmap.
+                int bytes = Math.Abs(bmpData.Stride) * bitmap.Height;
+                byte[] rgbValues = new byte[bytes];
+                for (int row = 0; row < cInfo.height; row++)
+                {
+                    for (int col = 0; col < cInfo.width; col++)
+                    {
+                        byte color = byteBitmap[row * cInfo.width + col];
+                        //if (color == 0) { color = byte.MaxValue; }
+                        rgbValues[row * bmpData.Stride + col * 4 + 0] = color;
+                        rgbValues[row * bmpData.Stride + col * 4 + 1] = color;
+                        rgbValues[row * bmpData.Stride + col * 4 + 2] = color;
+                        rgbValues[row * bmpData.Stride + col * 4 + 3] = color;
+                    }
+                }
+
+                // Copy the RGB values back to the bitmap
+                System.Runtime.InteropServices.Marshal.Copy(rgbValues, 0, ptr, bytes);
+
+                // Unlock the bits.
+                bitmap.UnlockBits(bmpData);
+                bitmap.Save("tmp" + ".png");
+            }
+        }
+
 
         /// <summary>
         /// 根据<paramref name="firstChar"/>等信息获取要制作的贴图的宽高和各个字形的位置信息。
@@ -280,3 +425,4 @@ namespace CSharpGL.Objects.Texts
         }
     }
 }
+
