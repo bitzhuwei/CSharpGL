@@ -145,6 +145,11 @@
             // numFontHeight
             //
             this.numFontHeight.Location = new System.Drawing.Point(110, 82);
+            this.numFontHeight.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.numFontHeight.Minimum = new decimal(new int[] {
             24,
             0,
