@@ -123,9 +123,10 @@ namespace TTF2Bmps
             int glyphX = 0;
             int glyphY = 0;
 
-            for (int i = (int)this.firstChar; i <= (int)this.lastChar; i++)
+            //for (int i = (int)this.firstChar; i <= (int)this.lastChar; i++)
+            for (char c = this.firstChar; c <= this.lastChar; c++)
             {
-                char c = Convert.ToChar(i);
+                //char c = Convert.ToChar(i);
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, fontHeight);
                 bool zeroSize = (glyph.obj.bitmap.rows == 0 && glyph.obj.bitmap.width == 0);
                 bool zeroBuffer = glyph.obj.bitmap.buffer == IntPtr.Zero;
