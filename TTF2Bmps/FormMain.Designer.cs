@@ -42,11 +42,11 @@
             this.txtFirstChar = new System.Windows.Forms.TextBox();
             this.txtLastChar = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.numMaxWidth = new System.Windows.Forms.NumericUpDown();
+            this.numMaxTexturWidth = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.saveBmpDlg = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.numFontHeight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMaxWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaxTexturWidth)).BeginInit();
             this.SuspendLayout();
             //
             // openTTFFileDlg
@@ -204,21 +204,21 @@
             //
             // numMaxWidth
             //
-            this.numMaxWidth.Location = new System.Drawing.Point(110, 113);
-            this.numMaxWidth.Maximum = new decimal(new int[] {
+            this.numMaxTexturWidth.Location = new System.Drawing.Point(110, 113);
+            this.numMaxTexturWidth.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numMaxWidth.Minimum = new decimal(new int[] {
+            this.numMaxTexturWidth.Minimum = new decimal(new int[] {
             24,
             0,
             0,
             0});
-            this.numMaxWidth.Name = "numMaxWidth";
-            this.numMaxWidth.Size = new System.Drawing.Size(94, 25);
-            this.numMaxWidth.TabIndex = 3;
-            this.numMaxWidth.Value = new decimal(new int[] {
+            this.numMaxTexturWidth.Name = "numMaxWidth";
+            this.numMaxTexturWidth.Size = new System.Drawing.Size(94, 25);
+            this.numMaxTexturWidth.TabIndex = 3;
+            this.numMaxTexturWidth.Value = new decimal(new int[] {
             1024,
             0,
             0,
@@ -247,7 +247,7 @@
             this.Controls.Add(this.txtLastChar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtFirstChar);
-            this.Controls.Add(this.numMaxWidth);
+            this.Controls.Add(this.numMaxTexturWidth);
             this.Controls.Add(this.numFontHeight);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
@@ -262,7 +262,7 @@
             this.Name = "FormMain";
             this.Text = "get bitmaps from a TTF file. (by bitzhuwei @ http://bitzhuwei.cnblogs.com)";
             ((System.ComponentModel.ISupportInitialize)(this.numFontHeight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMaxWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaxTexturWidth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,7 +284,7 @@
         private System.Windows.Forms.TextBox txtFirstChar;
         private System.Windows.Forms.TextBox txtLastChar;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown numMaxWidth;
+        private System.Windows.Forms.NumericUpDown numMaxTexturWidth;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.SaveFileDialog saveBmpDlg;
     }

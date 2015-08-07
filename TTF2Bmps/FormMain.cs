@@ -73,14 +73,16 @@ namespace TTF2Bmps
 
             string fontFullname = this.txtTTFFullname.Text;
             int fontHeight = (int)numFontHeight.Value;
-            int maxWidth = (int)numMaxWidth.Value;
+            int maxTexturWidth = (int)numMaxTexturWidth.Value;
             char firstChar = this.txtFirstChar.Text.First();
             char lastChar = this.txtLastChar.Text.First();
             string destFullname = this.txtDestFilename.Text;
-            var bmpGenerator = new ModernSingleTextureFont(fontFullname, fontHeight, firstChar, lastChar, maxWidth);
-			System.Drawing.Bitmap bitmap = bmpGenerator.GetBitmap();
-            bitmap.Save(destFullname);
-			bitmap.Dispose();
+            //var bmpGenerator = new ModernSingleTextureFont(fontFullname, fontHeight, firstChar, lastChar, maxWidth);
+            //System.Drawing.Bitmap bitmap = bmpGenerator.GetBitmap();
+            //bitmap.Save(destFullname);
+            //bitmap.Dispose();
+            var ttfTexture = TTFTexture.GetTTFTexture(fontFullname, fontHeight, firstChar, lastChar, maxTexturWidth);
+            ttfTexture.BigBitmap.Save(destFullname);
 
             Process.Start("explorer", destFullname);
         }
