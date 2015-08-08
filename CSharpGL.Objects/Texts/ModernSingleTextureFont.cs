@@ -1,13 +1,9 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Shaders;
-using CSharpGL.Objects.Texts.FreeTypes;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
-using System.Runtime.InteropServices;
 
 namespace CSharpGL.Objects.Texts
 {
@@ -25,15 +21,15 @@ namespace CSharpGL.Objects.Texts
 
         float rotation = 0.0f;
 
-        uint[] texture = new uint[1];
+        public uint[] texture = new uint[1];
         private TTFTexture ttfTexture;
 
-        private ShaderProgram shaderProgram;
+        public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_TexCoord = "in_TexCoord";
-        const string strtransformMatrix = "transformMatrix";
-        const string strtex = "tex";
-        const string strcolor = "color";
+        public const string strtransformMatrix = "transformMatrix";
+        public const string strtex = "tex";
+        public const string strcolor = "color";
 
         private PrimitiveModes mode;
         private uint[] vao = new uint[1];
@@ -260,49 +256,11 @@ namespace CSharpGL.Objects.Texts
 
         protected override void DoRender(RenderModes renderMode)
         {
-            GL.BindTexture(GL.GL_TEXTURE_2D, this.texture[0]);
-
-            if (this.blend)
-            {
-                GL.Enable(GL.GL_BLEND);
-                GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-            }
-
-            ShaderProgram shader = this.shaderProgram;
-
-            shader.Bind();
-
-            shaderProgram.SetUniform(strtex, texture[0]);
-
-            mat4 projectionMatrix = this.camera.GetProjectionMat4();
-            mat4 viewMatrix = this.camera.GetViewMat4();
-            mat4 matrix = projectionMatrix * viewMatrix;
-            shader.SetUniformMatrix4(strtransformMatrix, matrix.to_array());
-
-            const float scale = 3.5f;
-            rotation += 0.1f;
-            mat4 transformMatrix = glm.translate(mat4.identity(), new vec3(0, -2, 0));
-            transformMatrix = glm.rotate(transformMatrix, rotation, new vec3(0, 1, 0));
-            transformMatrix = glm.scale(transformMatrix, new vec3(scale, scale, scale));
-            //shader.SetUniformMatrix4("transformMatrix", transformMatrix.to_array());
-
-            shader.SetUniform(strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
-            //GL.Uniform1(this.texLocation, this.texture[0]);
-            //GL.Uniform4(this.colorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
-            //GL.Uniform4(this.colorLocation, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
 
             GL.BindVertexArray(vao[0]);
             GL.DrawArrays(this.mode, 0, this.vertexCount);
             GL.BindVertexArray(0);
 
-            shader.Unbind();
-
-            if (this.blend)
-            {
-                GL.Disable(GL.GL_BLEND);
-            }
-
-            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
         }
 
 

@@ -1,4 +1,6 @@
-﻿using CSharpGL.Objects.Cameras;
+﻿using CSharpGL.Maths;
+using CSharpGL.Objects.Cameras;
+using CSharpGL.Objects.Shaders;
 using CSharpGL.Objects.Texts;
 using System;
 using System.Text;
@@ -13,6 +15,7 @@ namespace CSharpGL.Winforms.Demo
         SatelliteRotation satelliteRoration;
 
         ModernSingleTextureFont element;// = new ModernSingleTextureFont("simsun.ttf");
+        private float rotation;
         public FormModernSingleTextureFont()
         {
             InitializeComponent();
@@ -47,7 +50,60 @@ namespace CSharpGL.Winforms.Demo
 
             element.SetText("祝神");
 
+            element.BeforeRendering += element_BeforeRendering;
+            element.AfterRendering += element_AfterRendering;
+
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
+        }
+
+        void element_AfterRendering(object sender, Objects.RenderEventArgs e)
+        {
+            ShaderProgram shaderProgram = element.shaderProgram;
+
+            shaderProgram.Unbind();
+
+            if (element.blend)
+            {
+                GL.Disable(GL.GL_BLEND);
+            }
+
+            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+        }
+
+        void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        {
+            uint texture = element.texture[0];
+            GL.BindTexture(GL.GL_TEXTURE_2D, texture);
+
+            if (element.blend)
+            {
+                GL.Enable(GL.GL_BLEND);
+                GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+            }
+
+            ShaderProgram shaderProgram = element.shaderProgram;
+
+            shaderProgram.Bind();
+
+            shaderProgram.SetUniform(ModernSingleTextureFont.strtex, texture);
+
+            mat4 projectionMatrix = this.camera.GetProjectionMat4();
+            mat4 viewMatrix = this.camera.GetViewMat4();
+            mat4 matrix = projectionMatrix * viewMatrix;
+            shaderProgram.SetUniformMatrix4(ModernSingleTextureFont.strtransformMatrix, matrix.to_array());
+
+            const float scale = 3.5f;
+            rotation += 0.1f;
+            mat4 transformMatrix = glm.translate(mat4.identity(), new vec3(0, -2, 0));
+            transformMatrix = glm.rotate(transformMatrix, rotation, new vec3(0, 1, 0));
+            transformMatrix = glm.scale(transformMatrix, new vec3(scale, scale, scale));
+            //shader.SetUniformMatrix4("transformMatrix", transformMatrix.to_array());
+
+            shaderProgram.SetUniform(ModernSingleTextureFont.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
+            //GL.Uniform1(this.texLocation, this.texture[0]);
+            //GL.Uniform4(this.colorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
+            //GL.Uniform4(this.colorLocation, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+
         }
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
