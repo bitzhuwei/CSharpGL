@@ -54,7 +54,6 @@
             this.Controls.Add(this.glCanvas1);
             this.Name = "FormPyramidVAOElement";
             this.Text = "FormPyramidVAOElement";
-            this.Load += new System.EventHandler(this.FormPyramidVAOElement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
 

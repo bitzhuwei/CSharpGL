@@ -56,11 +56,6 @@ namespace CSharpGL.Winforms.Demo
             shaderProgram.SetUniformMatrix4(PyramidVAOElement.strmodelMatrix, modelMatrix.to_array());
         }
 
-        private void FormPyramidVAOElement_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
         {
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
