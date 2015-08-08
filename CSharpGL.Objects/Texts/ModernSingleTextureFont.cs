@@ -258,7 +258,7 @@ namespace CSharpGL.Objects.Texts
             this.shaderProgram = shaderProgram;
         }
 
-        public override void Render(RenderModes renderMode)
+        protected override void DoRender(RenderModes renderMode)
         {
             GL.BindTexture(GL.GL_TEXTURE_2D, this.texture[0]);
 

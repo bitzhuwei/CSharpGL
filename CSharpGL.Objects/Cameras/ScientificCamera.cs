@@ -1,4 +1,5 @@
 ﻿using CSharpGL.Maths;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace CSharpGL.Objects.Cameras
@@ -11,6 +12,7 @@ namespace CSharpGL.Objects.Cameras
         IPerspectiveViewCamera, IOrthoViewCamera,
         IViewCamera, IPerspectiveCamera, IOrthoCamera
     {
+        public static readonly Dictionary<string, ScientificCamera> cameraDict = new Dictionary<string, ScientificCamera>();
         static int count = 0;
 
         public string Name { get; set; }
@@ -23,7 +25,7 @@ namespace CSharpGL.Objects.Cameras
 
         internal ScientificCamera() { }
 
-        public ScientificCamera(CameraTypes cameraType, double width, double height)
+        public ScientificCamera(CameraTypes cameraType, double width, double height, string name)
         {
             Name = "Scientific Camera: " + count++;
             IPerspectiveCamera perspectiveCamera = this;
@@ -45,6 +47,8 @@ namespace CSharpGL.Objects.Cameras
             this.Position = new vec3(1, 0, 0);
 
             this.CameraType = cameraType;
+
+            cameraDict.Add(name, this);
         }
 
         /// <summary>

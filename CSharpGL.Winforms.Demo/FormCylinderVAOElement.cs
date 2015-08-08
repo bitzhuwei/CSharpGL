@@ -22,6 +22,11 @@ namespace CSharpGL.Winforms.Demo
 
         SatelliteRotation satelliteRoration;
 
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            base.OnHandleDestroyed(e);
+
+        }
         /// <summary>
         ///
         /// </summary>
@@ -29,7 +34,14 @@ namespace CSharpGL.Winforms.Demo
         {
             InitializeComponent();
 
-            this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
+            if (ScientificCamera.cameraDict.ContainsKey("FormCylinderVAOElement"))
+            {
+                this.camera = ScientificCamera.cameraDict["FormCylinderVAOElement"];
+            }
+            else
+            {
+                this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height, "FormCylinderVAOElement");
+            }
             IPerspectiveCamera perspectiveCamera = this.camera;
             perspectiveCamera.FieldOfView = 60f;
             perspectiveCamera.AspectRatio = (double)this.glCanvas1.Width / (double)this.glCanvas1.Height;

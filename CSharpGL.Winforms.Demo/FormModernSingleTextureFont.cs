@@ -1,13 +1,7 @@
 ﻿using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Texts;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
@@ -23,7 +17,7 @@ namespace CSharpGL.Winforms.Demo
         {
             InitializeComponent();
 
-            this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
+            this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height,"FormModernSingleTextureFont");
             IPerspectiveCamera perspectiveCamera = this.camera;
             perspectiveCamera.FieldOfView = 60f;
             perspectiveCamera.AspectRatio = (double)this.glCanvas1.Width / (double)this.glCanvas1.Height;

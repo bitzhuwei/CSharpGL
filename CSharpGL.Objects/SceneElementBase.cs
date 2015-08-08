@@ -44,6 +44,59 @@ namespace CSharpGL.Objects
         /// 渲染
         /// </summary>
         /// <param name="renderMode"></param>
-        public abstract void Render(RenderModes renderMode);
+        public void Render(RenderModes renderMode)
+        {
+            if (!initialized) { Initialize(); }
+
+            EventHandler<RenderEventArgs> beforeRendering = this.BeforeRendering;
+            if (beforeRendering != null)
+            {
+                beforeRendering(this, new RenderEventArgs(renderMode));
+            }
+
+            DoRender(renderMode);
+
+            EventHandler<RenderEventArgs> afterRendering = this.AfterRendering;
+            if (afterRendering != null)
+            {
+                afterRendering(this, new RenderEventArgs(renderMode));
+            }
+        }
+
+        /// <summary>
+        /// 执行渲染操作
+        /// </summary>
+        /// <param name="renderMode"></param>
+        protected abstract void DoRender(RenderModes renderMode);
+
+        /// <summary>
+        /// 在渲染前进行某些准备（更新camera矩阵信息等）
+        /// </summary>
+        public event EventHandler<RenderEventArgs> BeforeRendering;
+
+        /// <summary>
+        /// 在渲染后进行某些善后（恢复OpenGL状态等）
+        /// </summary>
+        public event EventHandler<RenderEventArgs> AfterRendering;
+
+    }
+
+    /// <summary>
+    /// 渲染事件的参数。
+    /// </summary>
+    public class RenderEventArgs : EventArgs
+    {
+        public RenderEventArgs(RenderModes renderMode)
+        {
+            this.RenderMode = renderMode;
+        }
+
+        public RenderModes RenderMode { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}", this.RenderMode);
+            //return base.ToString();
+        }
     }
 }
