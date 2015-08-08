@@ -44,7 +44,7 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotation(camera);
 
-            element = new ModernSingleTextureFont(camera, "simsun.ttf", 48, '祝', '神');//char.MinValue, char.MaxValue);
+            element = new ModernSingleTextureFont("simsun.ttf", 48, '祝', '神');//char.MinValue, char.MaxValue);
 
             element.Initialize();
 
