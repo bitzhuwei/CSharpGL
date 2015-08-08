@@ -39,8 +39,6 @@ namespace TTF2Bmps
                 }
 
                 this.txtTTFFullname.Text = builder.ToString();
-
-                txtTTFFullname_DoubleClick(sender, e);
             }
         }
 
@@ -52,13 +50,6 @@ namespace TTF2Bmps
                 MessageBox.Show(message);
                 return;
             }
-
-            //if (string.IsNullOrEmpty(this.txtDestFilename.Text))
-            //{
-            //    string message = string.Format("{0}", "Please select the path to save bitmaps to first!");
-            //    MessageBox.Show(message);
-            //    return;
-            //}
 
             this.btnStart.Enabled = false;
             this.btnBrowseTTFFile.Enabled = false;
@@ -77,17 +68,6 @@ namespace TTF2Bmps
 
 
         }
-
-        private void txtTTFFullname_DoubleClick(object sender, EventArgs e)
-        {
-            //if (string.IsNullOrEmpty(this.txtTTFFullname.Text))
-            //{ return; }
-
-            //FileInfo ttfFile = new FileInfo(this.txtTTFFullname.Text);
-            //this.txtDestFilename.Text = Path.Combine(ttfFile.DirectoryName, ttfFile.Name + ".png");
-        }
-
-
 
         private void FormMain_Load(object sender, EventArgs e)
         {
@@ -208,7 +188,11 @@ namespace TTF2Bmps
                         data.fontHeight, data.firstChar, data.lastChar, data.maxTexturWidth);
 
                     ttfTexture.BigBitmap.Save(destFullname);
+
                     ttfTexture.Dispose();
+
+                    builder.AppendLine("sucessfully done!");
+                    builder.AppendLine();
 
                     bgWorker.ReportProgress(index++ * 100 / count);
 
@@ -219,14 +203,11 @@ namespace TTF2Bmps
                     string message = string.Format("{0}", ex);
                     builder.AppendLine(message);
                     builder.AppendLine("Please try a smaller font height.");
-                    //MessageBox.Show(message);
-                    //MessageBox.Show("Please try a smaller font height.");
                 }
                 catch (Exception ex)
                 {
                     string message = string.Format("{0}", ex);
                     builder.AppendLine(message);
-                    //MessageBox.Show(message);
                 }
             }
         }
@@ -244,9 +225,17 @@ namespace TTF2Bmps
 
             WorkerResult result = e.Result as WorkerResult;
             FileInfo file = new FileInfo(result.data.selectedTTFFiles[0]);
-            string log = file.FullName + ".log";
-            File.WriteAllText(log, result.builder.ToString());
-            Process.Start("explorer", log);
+            try
+            {
+                string log = file.FullName + ".log";
+                File.WriteAllText(log, result.builder.ToString());
+                Process.Start("explorer", log);
+            }
+            catch (Exception ex)
+            {
+                string message = string.Format("{0}", ex);
+                MessageBox.Show(message);
+            }
 
             string directory = file.DirectoryName;
 
