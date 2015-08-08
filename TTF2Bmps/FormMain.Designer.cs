@@ -288,9 +288,9 @@
             //
             // pgbProgress
             //
-            this.pgbProgress.Location = new System.Drawing.Point(646, 118);
+            this.pgbProgress.Location = new System.Drawing.Point(1019, 117);
             this.pgbProgress.Name = "pgbProgress";
-            this.pgbProgress.Size = new System.Drawing.Size(364, 23);
+            this.pgbProgress.Size = new System.Drawing.Size(100, 29);
             this.pgbProgress.TabIndex = 9;
             this.pgbProgress.Visible = false;
             //

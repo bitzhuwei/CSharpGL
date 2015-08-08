@@ -168,7 +168,7 @@ namespace TTF2Bmps
         {
             WorkerData data = e.Argument as WorkerData;
             int count = data.selectedTTFFiles.Length;
-            int index = 0;
+            int index = 1;
 
             StringBuilder builder = new StringBuilder();
             WorkerResult result = new WorkerResult(builder, data);
