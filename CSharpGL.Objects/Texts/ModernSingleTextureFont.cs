@@ -15,12 +15,6 @@ namespace CSharpGL.Objects.Texts
 
         public bool blend;
 
-        static Random random = new Random();
-
-        ScientificCamera camera;
-
-        float rotation = 0.0f;
-
         public uint[] texture = new uint[1];
         private TTFTexture ttfTexture;
 
@@ -129,12 +123,9 @@ namespace CSharpGL.Objects.Texts
         /// <param name="camera"></param>
         /// <param name="fontFilename"></param>
         /// <param name="fontHeight">此值越大，绘制文字的清晰度越高，但占用的纹理资源就越多。</param>
-        public ModernSingleTextureFont(ScientificCamera camera,
-            string fontFilename, int fontHeight, char firstChar, char lastChar)
+        public ModernSingleTextureFont(string fontFilename, int fontHeight, char firstChar, char lastChar)
         {
             if (firstChar > lastChar) { throw new ArgumentException("first char should <= last char"); }
-
-            this.camera = camera;
 
             int[] maxTextureWidth = new int[1];
             //	Get the maximum texture size supported by GL.
