@@ -33,9 +33,6 @@
             this.btnBrowseTTFFile = new System.Windows.Forms.Button();
             this.txtTTFFullname = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnBrowseFolder = new System.Windows.Forms.Button();
-            this.txtDestFilename = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.numFontHeight = new System.Windows.Forms.NumericUpDown();
@@ -50,17 +47,20 @@
             this.rdoFirstIndex = new System.Windows.Forms.RadioButton();
             this.rdoLastChar = new System.Windows.Forms.RadioButton();
             this.rdoLastIndex = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbFirstUnicode = new System.Windows.Forms.GroupBox();
+            this.gbLastUnicode = new System.Windows.Forms.GroupBox();
+            this.pgbProgress = new System.Windows.Forms.ProgressBar();
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.numFontHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxTexturWidth)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.gbFirstUnicode.SuspendLayout();
+            this.gbLastUnicode.SuspendLayout();
             this.SuspendLayout();
             //
             // openTTFFileDlg
             //
             this.openTTFFileDlg.Filter = "(字体文件 *.ttf)|*.ttf|(字体文件 *.ttc)|*.ttc|(字体文件 *.*)|*.*";
+            this.openTTFFileDlg.Multiselect = true;
             //
             // btnBrowseTTFFile
             //
@@ -96,43 +96,10 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "TTF file:";
             //
-            // btnBrowseFolder
-            //
-            this.btnBrowseFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseFolder.Location = new System.Drawing.Point(1019, 46);
-            this.btnBrowseFolder.Margin = new System.Windows.Forms.Padding(4);
-            this.btnBrowseFolder.Name = "btnBrowseFolder";
-            this.btnBrowseFolder.Size = new System.Drawing.Size(100, 29);
-            this.btnBrowseFolder.TabIndex = 0;
-            this.btnBrowseFolder.Text = "Browse...";
-            this.btnBrowseFolder.UseVisualStyleBackColor = true;
-            this.btnBrowseFolder.Click += new System.EventHandler(this.btnBrowseFolder_Click);
-            //
-            // txtDestFilename
-            //
-            this.txtDestFilename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDestFilename.Location = new System.Drawing.Point(110, 49);
-            this.txtDestFilename.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDestFilename.Name = "txtDestFilename";
-            this.txtDestFilename.ReadOnly = true;
-            this.txtDestFilename.Size = new System.Drawing.Size(900, 25);
-            this.txtDestFilename.TabIndex = 1;
-            //
-            // label2
-            //
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 55);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "save to:";
-            //
             // btnStart
             //
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStart.Location = new System.Drawing.Point(1019, 152);
+            this.btnStart.Location = new System.Drawing.Point(1019, 117);
             this.btnStart.Margin = new System.Windows.Forms.Padding(4);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(100, 29);
@@ -144,7 +111,7 @@
             // label3
             //
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 88);
+            this.label3.Location = new System.Drawing.Point(16, 54);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 15);
@@ -153,7 +120,7 @@
             //
             // numFontHeight
             //
-            this.numFontHeight.Location = new System.Drawing.Point(110, 82);
+            this.numFontHeight.Location = new System.Drawing.Point(110, 48);
             this.numFontHeight.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -195,7 +162,7 @@
             //
             // numMaxTexturWidth
             //
-            this.numMaxTexturWidth.Location = new System.Drawing.Point(110, 113);
+            this.numMaxTexturWidth.Location = new System.Drawing.Point(110, 79);
             this.numMaxTexturWidth.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -218,7 +185,7 @@
             // label6
             //
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 115);
+            this.label6.Location = new System.Drawing.Point(16, 81);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(87, 15);
@@ -299,48 +266,61 @@
             this.rdoLastIndex.UseVisualStyleBackColor = true;
             this.rdoLastIndex.CheckedChanged += new System.EventHandler(this.rdoLastIndex_CheckedChanged);
             //
-            // groupBox1
+            // gbFirstUnicode
             //
-            this.groupBox1.Controls.Add(this.rdoFirstChar);
-            this.groupBox1.Controls.Add(this.txtFirstChar);
-            this.groupBox1.Controls.Add(this.rdoFirstIndex);
-            this.groupBox1.Controls.Add(this.txtFirstIndex);
-            this.groupBox1.Location = new System.Drawing.Point(210, 81);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(212, 100);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "first unicode";
+            this.gbFirstUnicode.Controls.Add(this.rdoFirstChar);
+            this.gbFirstUnicode.Controls.Add(this.txtFirstChar);
+            this.gbFirstUnicode.Controls.Add(this.rdoFirstIndex);
+            this.gbFirstUnicode.Controls.Add(this.txtFirstIndex);
+            this.gbFirstUnicode.Location = new System.Drawing.Point(210, 47);
+            this.gbFirstUnicode.Name = "gbFirstUnicode";
+            this.gbFirstUnicode.Size = new System.Drawing.Size(212, 100);
+            this.gbFirstUnicode.TabIndex = 7;
+            this.gbFirstUnicode.TabStop = false;
+            this.gbFirstUnicode.Text = "first unicode";
             //
-            // groupBox2
+            // gbLastUnicode
             //
-            this.groupBox2.Controls.Add(this.rdoLastChar);
-            this.groupBox2.Controls.Add(this.txtLastChar);
-            this.groupBox2.Controls.Add(this.rdoLastIndex);
-            this.groupBox2.Controls.Add(this.txtLastIndex);
-            this.groupBox2.Location = new System.Drawing.Point(428, 81);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(212, 100);
-            this.groupBox2.TabIndex = 8;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "last unicode";
+            this.gbLastUnicode.Controls.Add(this.rdoLastChar);
+            this.gbLastUnicode.Controls.Add(this.txtLastChar);
+            this.gbLastUnicode.Controls.Add(this.rdoLastIndex);
+            this.gbLastUnicode.Controls.Add(this.txtLastIndex);
+            this.gbLastUnicode.Location = new System.Drawing.Point(428, 47);
+            this.gbLastUnicode.Name = "gbLastUnicode";
+            this.gbLastUnicode.Size = new System.Drawing.Size(212, 100);
+            this.gbLastUnicode.TabIndex = 8;
+            this.gbLastUnicode.TabStop = false;
+            this.gbLastUnicode.Text = "last unicode";
+            //
+            // pgbProgress
+            //
+            this.pgbProgress.Location = new System.Drawing.Point(646, 118);
+            this.pgbProgress.Name = "pgbProgress";
+            this.pgbProgress.Size = new System.Drawing.Size(364, 23);
+            this.pgbProgress.TabIndex = 9;
+            this.pgbProgress.Visible = false;
+            //
+            // bgWorker
+            //
+            this.bgWorker.WorkerReportsProgress = true;
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            this.bgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorker_ProgressChanged);
+            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
             //
             // FormMain
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1135, 195);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(1135, 160);
+            this.Controls.Add(this.pgbProgress);
+            this.Controls.Add(this.gbLastUnicode);
+            this.Controls.Add(this.gbFirstUnicode);
             this.Controls.Add(this.numMaxTexturWidth);
             this.Controls.Add(this.numFontHeight);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtDestFilename);
             this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.btnBrowseFolder);
             this.Controls.Add(this.txtTTFFullname);
             this.Controls.Add(this.btnBrowseTTFFile);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -350,10 +330,10 @@
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numFontHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxTexturWidth)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gbFirstUnicode.ResumeLayout(false);
+            this.gbFirstUnicode.PerformLayout();
+            this.gbLastUnicode.ResumeLayout(false);
+            this.gbLastUnicode.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -365,9 +345,6 @@
         private System.Windows.Forms.Button btnBrowseTTFFile;
         private System.Windows.Forms.TextBox txtTTFFullname;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnBrowseFolder;
-        private System.Windows.Forms.TextBox txtDestFilename;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numFontHeight;
@@ -382,7 +359,9 @@
         private System.Windows.Forms.RadioButton rdoFirstIndex;
         private System.Windows.Forms.RadioButton rdoLastChar;
         private System.Windows.Forms.RadioButton rdoLastIndex;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbFirstUnicode;
+        private System.Windows.Forms.GroupBox gbLastUnicode;
+        private System.Windows.Forms.ProgressBar pgbProgress;
+        private System.ComponentModel.BackgroundWorker bgWorker;
     }
 }
