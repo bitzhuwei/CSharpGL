@@ -1,4 +1,6 @@
-﻿using CSharpGL.Objects.Cameras;
+﻿using CSharpGL.Maths;
+using CSharpGL.Objects.Cameras;
+using CSharpGL.Objects.Shaders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,12 +15,9 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormCylinderVAOElement : Form
     {
-        //private float rotation;
+        CylinderVAOElement element;
 
-        //PyramidVAOElement element = new PyramidVAOElement();
-        CylinderVAOElement element;// = new CylinderVAOElement(faceCount, radius, height);
-
-        ScientificCamera camera; //= new ScientificCamera(CameraTypes.Ortho);
+        ScientificCamera camera;
 
         SatelliteRotation satelliteRoration;
 
@@ -61,10 +60,35 @@ namespace CSharpGL.Winforms.Demo
             var faceCount = 18;
             var radius = 1f;
             var height = 3f;
-            element = new CylinderVAOElement(camera, radius, height, faceCount);
+            element = new CylinderVAOElement(radius, height, faceCount);
             element.Initialize();
 
+            element.BeforeRendering += element_BeforeRendering;
+            element.AfterRendering += element_AfterRendering;
+
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
+        }
+
+        void element_AfterRendering(object sender, Objects.RenderEventArgs e)
+        {
+            element.shaderProgram.Unbind();
+        }
+
+        void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        {
+            ShaderProgram shaderProgram = element.shaderProgram;
+
+            shaderProgram.Bind();
+
+            mat4 projectionMatrix = camera.GetProjectionMat4();
+
+            mat4 viewMatrix = camera.GetViewMat4();
+
+            mat4 modelMatrix = mat4.identity();
+
+            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strmodelMatrix, modelMatrix.to_array());
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

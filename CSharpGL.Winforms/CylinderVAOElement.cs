@@ -19,17 +19,12 @@ namespace CSharpGL.Winforms
         /// <summary>
         /// shader program
         /// </summary>
-        protected ShaderProgram shaderProgram;
+        public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
-        const string strprojectionMatrix = "projectionMatrix";
-        const string strviewMatrix = "viewMatrix";
-        const string strmodelMatrix = "modelMatrix";
-        //uint positionLocation;
-        //uint colorLocation;
-        mat4 projectionMatrix;
-        mat4 viewMatrix;
-        mat4 modelMatrix;
+        public const string strprojectionMatrix = "projectionMatrix";
+        public const string strviewMatrix = "viewMatrix";
+        public const string strmodelMatrix = "modelMatrix";
 
         /// <summary>
         /// VAO
@@ -46,53 +41,15 @@ namespace CSharpGL.Winforms
         /// </summary>
         protected int vertexCount;
 
-        //private float rotation;
-
         private float radius;
         private float height;
         private int faceCount;
-        private IScientificCamera camera;
 
-        public CylinderVAOElement(IScientificCamera camera, float radius, float height, int faceCount = 18)
+        public CylinderVAOElement(float radius, float height, int faceCount = 18)
         {
-            this.camera = camera;
-
             this.radius = radius;
             this.height = height;
             this.faceCount = faceCount;
-
-            base.BeforeRendering += CylinderVAOElement_BeforeRendering;
-            base.AfterRendering += CylinderVAOElement_AfterRendering;
-        }
-
-        void CylinderVAOElement_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            shaderProgram.Unbind();
-        }
-
-        void CylinderVAOElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            shaderProgram.Bind();
-
-            projectionMatrix = camera.GetProjectionMat4();
-
-            viewMatrix = camera.GetViewMat4();
-
-            modelMatrix = mat4.identity();
-
-            //rotation += 0.05f;
-            //modelMatrix = glm.rotate(rotation, new vec3(1, 1, 1));
-
-            //const float distance = 1f;
-            //viewMatrix = glm.lookAt(new vec3(-distance, 0, -distance), new vec3(0, 0, 0), new vec3(0, -1, 0));
-
-            //int[] viewport = new int[4];
-            //GL.GetInteger(GetTarget.Viewport, viewport);
-            //projectionMatrix = glm.perspective(60.0f, (float)viewport[2] / (float)viewport[3], 0.01f, 100.0f);
-
-            shaderProgram.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
@@ -199,34 +156,5 @@ namespace CSharpGL.Winforms
 
             GL.BindVertexArray(0);
         }
-        //protected void BeforeRendering(Objects.RenderModes renderMode)
-        //{
-        //    shaderProgram.Bind();
-
-        //    projectionMatrix = camera.GetProjectionMat4();
-
-        //    viewMatrix = camera.GetViewMat4();
-
-        //    modelMatrix = mat4.identity();
-
-        //    //rotation += 0.05f;
-        //    //modelMatrix = glm.rotate(rotation, new vec3(1, 1, 1));
-
-        //    //const float distance = 1f;
-        //    //viewMatrix = glm.lookAt(new vec3(-distance, 0, -distance), new vec3(0, 0, 0), new vec3(0, -1, 0));
-
-        //    //int[] viewport = new int[4];
-        //    //GL.GetInteger(GetTarget.Viewport, viewport);
-        //    //projectionMatrix = glm.perspective(60.0f, (float)viewport[2] / (float)viewport[3], 0.01f, 100.0f);
-
-        //    shaderProgram.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
-        //    shaderProgram.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
-        //    shaderProgram.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
-        //}
-
-        //protected void AfterRendering(Objects.RenderModes renderMode)
-        //{
-        //    shaderProgram.Unbind();
-        //}
     }
 }

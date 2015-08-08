@@ -15,15 +15,12 @@ namespace CSharpGL.Winforms
         /// <summary>
         /// shader program
         /// </summary>
-        protected ShaderProgram shaderProgram;
+        public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
-        const string strprojectionMatrix = "projectionMatrix";
-        const string strviewMatrix = "viewMatrix";
-        const string strmodelMatrix = "modelMatrix";
-        mat4 projectionMatrix;
-        mat4 viewMatrix;
-        mat4 modelMatrix;
+        public const string strprojectionMatrix = "projectionMatrix";
+        public const string strviewMatrix = "viewMatrix";
+        public const string strmodelMatrix = "modelMatrix";
 
         /// <summary>
         /// VAO
@@ -77,38 +74,6 @@ namespace CSharpGL.Winforms
 			new vec3(0.0f, 0.0f, 1.0f),
 			new vec3(0.0f, 1.0f, 0.0f),
 		};
-
-        private float rotation;
-
-        public PyramidVAOElement()
-        {
-            base.BeforeRendering += PyramidVAOElement_BeforeRendering;
-            base.AfterRendering += PyramidVAOElement_AfterRendering;
-        }
-
-        void PyramidVAOElement_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            shaderProgram.Unbind();
-        }
-
-        void PyramidVAOElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            shaderProgram.Bind();
-
-            rotation += 3.0f;
-            modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
-
-            const float distance = 0.2f;
-            viewMatrix = glm.lookAt(new vec3(-distance, distance, -distance), new vec3(0, 0, 0), new vec3(0, -1, 0));
-
-            int[] viewport = new int[4];
-            GL.GetInteger(GetTarget.Viewport, viewport);
-            projectionMatrix = glm.perspective(60.0f, (float)viewport[2] / (float)viewport[3], 0.01f, 100.0f);
-
-            shaderProgram.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
-        }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
@@ -190,28 +155,5 @@ namespace CSharpGL.Winforms
 
             GL.BindVertexArray(0);
         }
-        //protected void BeforeRendering(Objects.RenderModes renderMode)
-        //{
-        //    shaderProgram.Bind();
-
-        //    rotation += 3.0f;
-        //    modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
-
-        //    const float distance = 0.2f;
-        //    viewMatrix = glm.lookAt(new vec3(-distance, distance, -distance), new vec3(0, 0, 0), new vec3(0, -1, 0));
-
-        //    int[] viewport = new int[4];
-        //    GL.GetInteger(GetTarget.Viewport, viewport);
-        //    projectionMatrix = glm.perspective(60.0f, (float)viewport[2] / (float)viewport[3], 0.01f, 100.0f);
-
-        //    shaderProgram.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
-        //    shaderProgram.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
-        //    shaderProgram.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
-        //}
-
-        //protected void AfterRendering(Objects.RenderModes renderMode)
-        //{
-        //    shaderProgram.Unbind();
-        //}
     }
 }
