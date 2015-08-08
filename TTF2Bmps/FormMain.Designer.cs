@@ -40,7 +40,6 @@
             this.txtLastChar = new System.Windows.Forms.TextBox();
             this.numMaxTexturWidth = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
-            this.saveBmpDlg = new System.Windows.Forms.SaveFileDialog();
             this.txtFirstIndex = new System.Windows.Forms.TextBox();
             this.txtLastIndex = new System.Windows.Forms.TextBox();
             this.rdoFirstChar = new System.Windows.Forms.RadioButton();
@@ -190,10 +189,6 @@
             this.label6.Size = new System.Drawing.Size(87, 15);
             this.label6.TabIndex = 2;
             this.label6.Text = "max width:";
-            //
-            // saveBmpDlg
-            //
-            this.saveBmpDlg.Filter = "*.bmp|*.bmp|*.*|*.*";
             //
             // txtFirstIndex
             //
@@ -351,7 +346,6 @@
         private System.Windows.Forms.TextBox txtLastChar;
         private System.Windows.Forms.NumericUpDown numMaxTexturWidth;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.SaveFileDialog saveBmpDlg;
         private System.Windows.Forms.TextBox txtFirstIndex;
         private System.Windows.Forms.TextBox txtLastIndex;
         private System.Windows.Forms.RadioButton rdoFirstChar;
