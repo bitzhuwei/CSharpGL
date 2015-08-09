@@ -184,10 +184,13 @@ namespace TTF2Bmps
 
                     string destFullname = fontFullname + ".png";
 
-                    var ttfTexture = TTFTexture.GetTTFTexture(fontFullname,
+                    TTFTexture ttfTexture = TTFTexture.GetTTFTexture(fontFullname,
                         data.fontHeight, data.firstChar, data.lastChar, data.maxTexturWidth);
 
                     ttfTexture.BigBitmap.Save(destFullname);
+
+                    TTFTextureDetailPrinter printer = new TTFTextureDetailPrinter(ttfTexture);
+                    printer.Print(fontFullname, data.maxTexturWidth);
 
                     ttfTexture.Dispose();
 
