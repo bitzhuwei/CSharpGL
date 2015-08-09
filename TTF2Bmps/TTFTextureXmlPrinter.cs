@@ -12,7 +12,6 @@ namespace TTF2Bmps
     class TTFTextureXmlPrinter
     {
         private CSharpGL.Objects.Texts.TTFTexture ttfTexture;
-        private string strCharacterInfo = "CharacterInfo";
 
         public TTFTextureXmlPrinter(CSharpGL.Objects.Texts.TTFTexture ttfTexture)
         {

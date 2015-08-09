@@ -124,11 +124,12 @@ namespace CSharpGL.Objects.Texts
         }
 
         /// <summary>
-        /// 用一个纹理绘制ASCII表上所有可见字符（具有指定的高度和字体）
+        /// 用一个纹理绘制指定范围内的可见字符
         /// </summary>
-        /// <param name="camera"></param>
-        /// <param name="fontFilename"></param>
+        /// <param name="fontFilename">字体文件名</param>
         /// <param name="fontHeight">此值越大，绘制文字的清晰度越高，但占用的纹理资源就越多。</param>
+        /// <param name="firstChar">要显示的第一个字符</param>
+        /// <param name="lastChar">要显示的最后一个字符</param>
         public ModernSingleTextureFont(string fontFilename, int fontHeight, char firstChar, char lastChar)
         {
             if (firstChar > lastChar) { throw new ArgumentException("first char should <= last char"); }
