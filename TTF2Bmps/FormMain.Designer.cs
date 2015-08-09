@@ -340,6 +340,8 @@
             // chkFontHeightLine
             //
             this.chkFontHeightLine.AutoSize = true;
+            this.chkFontHeightLine.Checked = true;
+            this.chkFontHeightLine.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkFontHeightLine.Location = new System.Drawing.Point(19, 135);
             this.chkFontHeightLine.Name = "chkFontHeightLine";
             this.chkFontHeightLine.Size = new System.Drawing.Size(117, 19);
