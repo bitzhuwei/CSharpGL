@@ -92,46 +92,9 @@ namespace TTF2Bmps
             };
         }
 
-        //private void GetTextureWidthHeight(int maxTextureWidth, Bitmap bitmap, out int width, out int height)
-        //{
-        //    int textureWidth = maxTextureWidth;
-        //    int textureHeight = maxTextureWidth;
-
-        //    for (int size = 1; size <= maxTextureWidth; size *= 2)
-        //    {
-        //        if (bitmap.Width < size)
-        //        {
-        //            textureWidth = size / 2;
-        //            break;
-        //        }
-        //        if (bitmap.Width == size)
-        //            textureWidth = size;
-
-        //    }
-
-        //    for (int size = 1; size <= maxTextureWidth; size *= 2)
-        //    {
-        //        if (bitmap.Height < size)
-        //        {
-        //            textureHeight = size / 2;
-        //            break;
-        //        }
-        //        if (bitmap.Height == size)
-        //            textureHeight = size;
-        //    }
-
-        //    width = textureWidth;
-        //    height = textureHeight;
-        //}
-
         public Font font = new Font("微软雅黑", 12);
         public Brush brush = new SolidBrush(Color.Red);
         private int outputWidth;
     }
 
-    class SingleFileProgress
-    {
-        public int progress;
-        public string message;
-    }
 }
