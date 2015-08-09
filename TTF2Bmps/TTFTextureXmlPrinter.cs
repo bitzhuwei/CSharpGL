@@ -9,12 +9,12 @@ using System.Xml.Linq;
 
 namespace TTF2Bmps
 {
-    class TTFTextureCSPrinter
+    class TTFTextureXmlPrinter
     {
         private CSharpGL.Objects.Texts.TTFTexture ttfTexture;
         private string strCharacterInfo = "CharacterInfo";
 
-        public TTFTextureCSPrinter(CSharpGL.Objects.Texts.TTFTexture ttfTexture)
+        public TTFTextureXmlPrinter(CSharpGL.Objects.Texts.TTFTexture ttfTexture)
         {
             // TODO: Complete member initialization
             this.ttfTexture = ttfTexture;
@@ -23,7 +23,7 @@ namespace TTF2Bmps
 
         public void Print(string fontFullname)
         {
-            XElement xElement = CharacterInfoDictHelper.ToXElement(this.ttfTexture.CharInfoDict);
+            XElement xElement = TTFTextureHelper.ToXElement(this.ttfTexture);
             xElement.Save(fontFullname + ".xml");
         }
 

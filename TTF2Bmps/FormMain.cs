@@ -198,13 +198,13 @@ namespace TTF2Bmps
                     }
 
                     {
-                        TTFTexturePNGPrinter printer = new TTFTexturePNGPrinter(ttfTexture);
-                        printer.Print(fontFullname, data.maxTexturWidth);
+                        TTFTextureXmlPrinter printer = new TTFTextureXmlPrinter(ttfTexture);
+                        printer.Print(fontFullname);
                     }
 
                     {
-                        TTFTextureCSPrinter printer = new TTFTextureCSPrinter(ttfTexture);
-                        printer.Print(fontFullname);
+                        TTFTexturePNGPrinter printer = new TTFTexturePNGPrinter(ttfTexture);
+                        printer.Print(fontFullname, data.maxTexturWidth);
                     }
 
                     ttfTexture.Dispose();
@@ -241,10 +241,8 @@ namespace TTF2Bmps
 
         private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
             WorkerResult result = e.Result as WorkerResult;
             FileInfo file = new FileInfo(result.data.selectedTTFFiles[0]);
-
 
             string directory = file.DirectoryName;
 
