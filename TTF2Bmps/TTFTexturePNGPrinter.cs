@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace TTF2Bmps
 {
-    class TTFTextureDetailPrinter
+    class TTFTexturePNGPrinter
     {
         private CSharpGL.Objects.Texts.TTFTexture ttfTexture;
 
-        public TTFTextureDetailPrinter(CSharpGL.Objects.Texts.TTFTexture ttfTexture)
+        public TTFTexturePNGPrinter(CSharpGL.Objects.Texts.TTFTexture ttfTexture)
         {
             // TODO: Complete member initialization
             this.ttfTexture = ttfTexture;

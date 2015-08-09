@@ -197,8 +197,15 @@ namespace TTF2Bmps
                         bigBitmap.Dispose();
                     }
 
-                    TTFTextureDetailPrinter printer = new TTFTextureDetailPrinter(ttfTexture);
-                    printer.Print(fontFullname, data.maxTexturWidth);
+                    {
+                        TTFTexturePNGPrinter printer = new TTFTexturePNGPrinter(ttfTexture);
+                        printer.Print(fontFullname, data.maxTexturWidth);
+                    }
+
+                    {
+                        TTFTextureCSPrinter printer = new TTFTextureCSPrinter(ttfTexture);
+                        printer.Print(fontFullname);
+                    }
 
                     ttfTexture.Dispose();
 
@@ -237,22 +244,24 @@ namespace TTF2Bmps
 
             WorkerResult result = e.Result as WorkerResult;
             FileInfo file = new FileInfo(result.data.selectedTTFFiles[0]);
-            try
-            {
-                string log = file.FullName + ".log";
-                File.WriteAllText(log, result.builder.ToString());
-                Process.Start("explorer", log);
-            }
-            catch (Exception ex)
-            {
-                string message = string.Format("{0}", ex);
-                MessageBox.Show(message);
-            }
+
 
             string directory = file.DirectoryName;
 
             if (e.Error != null)
             {
+                try
+                {
+                    string log = file.FullName + ".log";
+                    File.WriteAllText(log, result.builder.ToString());
+                    Process.Start("explorer", log);
+                }
+                catch (Exception ex)
+                {
+                    string message = string.Format("{0}", ex);
+                    MessageBox.Show(message);
+                }
+
                 MessageBox.Show(e.Error.ToString(), "发生异常");
                 if (MessageBox.Show("是否打开保存结果的文件夹？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                     == DialogResult.Yes)
