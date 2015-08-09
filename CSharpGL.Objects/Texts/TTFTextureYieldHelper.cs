@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -54,9 +55,23 @@ namespace CSharpGL.Objects.Texts
             face.Dispose();
             library.Dispose();
 
-            var result = new TTFTexture() { TtfFullname = ttfFullname, FontHeight = fontHeight, FirstChar = firstChar, LastChar = lastChar, BigBitmap = bigBitmap, CharInfoDict = charInfoDict, };
+            var result = new TTFTexture()
+            {
+                TtfFullname = ttfFullname,
+                FontHeight = fontHeight,
+                FirstChar = firstChar,
+                LastChar = lastChar,
+                BigBitmap = bigBitmap,
+                CharInfoDict = charInfoDict,
+            };
 
-            yield return new TTFTextureYeildingState() { percent = 100, ttfTexture = result, };
+            FileInfo fileInfo = new FileInfo(ttfFullname);
+            yield return new TTFTextureYeildingState()
+            {
+                percent = 100,
+                ttfTexture = result,
+                message = string.Format("got ttf texture for {0}", fileInfo.Name),
+            };
         }
 
         /// <summary>
@@ -136,12 +151,21 @@ namespace CSharpGL.Objects.Texts
 
                 if (c == char.MaxValue) { break; }
 
-                yield return new TTFTextureYeildingState() { percent = index++ * 100 / count, };
+                yield return new TTFTextureYeildingState()
+                {
+                    percent = index++ * 100 / count,
+                    message = string.Format("print glyph for {0}", c),
+                };
             }
 
             graphics.Dispose();
 
-            yield return new TTFTextureYeildingState() { percent = index++ * 100 / count, bigBitmap = bigBitmap };
+            yield return new TTFTextureYeildingState()
+            {
+                percent = index++ * 100 / count,
+                bigBitmap = bigBitmap,
+                message = string.Format("texture is ready"),
+            };
         }
 
         /// <summary>
@@ -205,14 +229,26 @@ namespace CSharpGL.Objects.Texts
 
                 if (c == char.MaxValue) { break; }
 
-                yield return new TTFTextureYeildingState() { percent = index++ * 100 / count, };
+                yield return new TTFTextureYeildingState()
+                {
+                    percent = index++ * 100 / count,
+                    message = string.Format("generating blue print"),
+                };
             }
 
-            yield return new TTFTextureYeildingState() { percent = index++ * 100 / count, dict = charInfoDict, textureWidth = textureWidth, textureHeight = textureHeight };
+            yield return new TTFTextureYeildingState()
+            {
+                percent = index++ * 100 / count,
+                dict = charInfoDict,
+                textureWidth = textureWidth,
+                textureHeight = textureHeight,
+                message = string.Format("generating blue print"),
+            };
         }
 
         public class TTFTextureYeildingState
         {
+            public string message;
             public int percent;
             public TTFTexture ttfTexture;
             internal System.Drawing.Bitmap bigBitmap;

@@ -57,6 +57,8 @@ namespace TTF2Bmps
             this.numMaxTexturWidth.Enabled = false;
             this.gbFirstUnicode.Enabled = false;
             this.gbLastUnicode.Enabled = false;
+            this.chkGlyphList.Enabled = false;
+
             this.pgbProgress.Visible = true;
             this.pgbSingleFileProgress.Visible = true;
 
@@ -64,7 +66,8 @@ namespace TTF2Bmps
             int maxTexturWidth = (int)numMaxTexturWidth.Value;
             char firstChar = (char)int.Parse(this.txtFirstIndex.Text);
             char lastChar = (char)int.Parse(this.txtLastIndex.Text);
-            WorkerData data = new WorkerData(fontHeight, maxTexturWidth, firstChar, lastChar, this.selectedTTFFiles);
+            bool generateGlyphList = this.chkGlyphList.Checked;
+            WorkerData data = new WorkerData(fontHeight, maxTexturWidth, firstChar, lastChar, this.selectedTTFFiles, generateGlyphList);
             this.bgWorker.RunWorkerAsync(data);
 
 
@@ -81,6 +84,8 @@ namespace TTF2Bmps
             this.txtLastChar.Text = lastChar.ToString();
             int lastIndex = (int)lastChar;
             this.txtLastIndex.Text = lastIndex.ToString();
+
+            this.lblSingleFileProgress.Text = string.Empty;
         }
 
         private void rdoFirstChar_CheckedChanged(object sender, EventArgs e)
@@ -172,50 +177,28 @@ namespace TTF2Bmps
             int index = 0;
             const int magicNumber = 100;
 
-            StringBuilder builder = new StringBuilder();
-            WorkerResult result = new WorkerResult(builder, data);
+            WorkerResult result = new WorkerResult(null, data);
             e.Result = result;
+
+            StringBuilder builder = new StringBuilder();
 
             foreach (var fontFullname in this.selectedTTFFiles)
             {
+                builder.Append(index); builder.Append("/"); builder.Append(count);
+                builder.Append(": "); builder.AppendLine(fontFullname);
+
+                string destFullname = fontFullname + ".png";
+
+                TTFTexture ttfTexture = null;
+
                 try
                 {
-                    builder.Append(index); builder.Append("/"); builder.Append(count);
-                    builder.Append(": "); builder.AppendLine(fontFullname);
-
-                    string destFullname = fontFullname + ".png";
-
-                    //TTFTexture ttfTexture = TTFTexture.GetTTFTexture(fontFullname,
-                    //    data.fontHeight, data.firstChar, data.lastChar, data.maxTexturWidth);
-                    //{
-                    //    System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(ttfTexture.BigBitmap);
-                    //    Graphics g = Graphics.FromImage(bigBitmap);
-                    //    for (int row = 0; row < bigBitmap.Height; row += ttfTexture.FontHeight)
-                    //    {
-                    //        g.DrawLine(redDotPen, new Point(0, row - 1), new Point(bigBitmap.Width, row - 1));
-                    //    }
-                    //    bigBitmap.Save(destFullname);
-                    //    bigBitmap.Dispose();
-                    //}
-
-                    //{
-                    //    TTFTextureXmlPrinter printer = new TTFTextureXmlPrinter(ttfTexture);
-                    //    printer.Print(fontFullname);
-                    //}
-
-                    //{
-                    //    TTFTexturePNGPrinter printer = new TTFTexturePNGPrinter(ttfTexture);
-                    //    printer.Print(fontFullname, data.maxTexturWidth);
-                    //}
-
-                    //ttfTexture.Dispose();
-                    TTFTexture ttfTexture = null;
-
                     foreach (var progress in TTFTextureYieldHelper.GetTTFTexture(
                         fontFullname, data.fontHeight, data.firstChar, data.lastChar, data.maxTexturWidth))
                     {
                         ttfTexture = progress.ttfTexture;
-                        bgWorker.ReportProgress(index * magicNumber / count, progress.percent);
+                        var singleFileProgress = new SingleFileProgress() { progress = progress.percent, message = progress.message };
+                        bgWorker.ReportProgress(index * magicNumber / count, singleFileProgress);
                     }
                     {
                         System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(ttfTexture.BigBitmap);
@@ -231,6 +214,7 @@ namespace TTF2Bmps
                         TTFTextureXmlPrinter printer = new TTFTextureXmlPrinter(ttfTexture);
                         printer.Print(fontFullname);
                     }
+                    if (data.generateGlyphList)
                     {
                         TTFTexturePNGPrinter printer = new TTFTexturePNGPrinter(ttfTexture);
                         foreach (var progress in printer.Print(fontFullname, data.maxTexturWidth))
@@ -238,25 +222,28 @@ namespace TTF2Bmps
                             bgWorker.ReportProgress(index * magicNumber / count, progress);
                         }
                     }
-
-                    builder.AppendLine("sucessfully done!");
-                    builder.AppendLine();
-
-                    bgWorker.ReportProgress(index++ * magicNumber / count, magicNumber);
-
-                    //Process.Start("explorer", destFullname);
-                }
-                catch (ArgumentException ex)
-                {
-                    string message = string.Format("{0}", ex);
-                    builder.AppendLine(message);
-                    builder.AppendLine("Please try a smaller font height.");
                 }
                 catch (Exception ex)
                 {
                     string message = string.Format("{0}", ex);
                     builder.AppendLine(message);
+                    result.builder = builder;
                 }
+
+                builder.AppendLine("sucessfully done!");
+                builder.AppendLine();
+
+                if (ttfTexture != null) { ttfTexture.Dispose(); }
+
+                FileInfo fileInfo = new FileInfo(fontFullname);
+                SingleFileProgress thisFileDone = new SingleFileProgress()
+                {
+                    progress = magicNumber,
+                    message = string.Format("All is done for {0}", fileInfo.Name),
+                };
+                bgWorker.ReportProgress(index++ * magicNumber / count, thisFileDone);
+
+                //Process.Start("explorer", destFullname);
             }
         }
 
@@ -270,10 +257,13 @@ namespace TTF2Bmps
                 pgbProgress.Value = value;
             }
             {
-                var value = (int)e.UserState;
+                SingleFileProgress progress = e.UserState as SingleFileProgress;
+                var value = progress.progress;
                 if (value < pgbSingleFileProgress.Minimum) value = pgbSingleFileProgress.Minimum;
                 if (value > pgbSingleFileProgress.Maximum) value = pgbSingleFileProgress.Maximum;
                 pgbSingleFileProgress.Value = value;
+
+                this.lblSingleFileProgress.Text = progress.message;
             }
 
         }
@@ -284,8 +274,7 @@ namespace TTF2Bmps
             FileInfo file = new FileInfo(result.data.selectedTTFFiles[0]);
 
             string directory = file.DirectoryName;
-
-            if (e.Error != null)
+            if (result.builder != null)
             {
                 try
                 {
@@ -298,7 +287,10 @@ namespace TTF2Bmps
                     string message = string.Format("{0}", ex);
                     MessageBox.Show(message);
                 }
+            }
 
+            if (e.Error != null)
+            {
                 MessageBox.Show(e.Error.ToString(), "发生异常");
                 if (MessageBox.Show("是否打开保存结果的文件夹？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                     == DialogResult.Yes)
@@ -325,6 +317,7 @@ namespace TTF2Bmps
             }
 
             pgbProgress.Value = pgbProgress.Minimum;
+            pgbSingleFileProgress.Value = pgbSingleFileProgress.Minimum;
 
             this.btnStart.Enabled = true;
             this.btnBrowseTTFFile.Enabled = true;
@@ -332,6 +325,8 @@ namespace TTF2Bmps
             this.numMaxTexturWidth.Enabled = true;
             this.gbFirstUnicode.Enabled = true;
             this.gbLastUnicode.Enabled = true;
+            this.chkGlyphList.Enabled = true;
+
             this.pgbProgress.Visible = false;
             this.pgbSingleFileProgress.Visible = false;
         }

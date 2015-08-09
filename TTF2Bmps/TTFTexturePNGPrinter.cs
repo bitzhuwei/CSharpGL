@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +22,10 @@ namespace TTF2Bmps
         }
 
 
-        public IEnumerable<int> Print(string fontFullname, int maxTextureWidth)
+        public IEnumerable<SingleFileProgress> Print(string fontFullname, int maxTextureWidth)
         {
             int count = this.ttfTexture.CharInfoDict.Count;
+            FileInfo fileInfo = new FileInfo(fontFullname);
 
             int width;
             int height;
@@ -71,14 +73,23 @@ namespace TTF2Bmps
                     g = Graphics.FromImage(bitmap);
                 }
 
-                yield return (index * magicNumber / count);
+
+                yield return new SingleFileProgress()
+                {
+                    progress = (index * magicNumber / count),
+                    message = string.Format("print PNG list for {0}", fileInfo.Name),
+                };
             }
 
             g.Dispose();
             bitmap.Save(fontFullname + "list" + index / magicNumber + ".png");
             bitmap.Dispose();
 
-            yield return magicNumber;
+            yield return new SingleFileProgress()
+            {
+                progress = magicNumber,
+                message = string.Format("print PNG list for {0} done!", fileInfo.Name),
+            };
         }
 
         //private void GetTextureWidthHeight(int maxTextureWidth, Bitmap bitmap, out int width, out int height)
@@ -116,5 +127,11 @@ namespace TTF2Bmps
         public Font font = new Font("微软雅黑", 12);
         public Brush brush = new SolidBrush(Color.Red);
         private int outputWidth;
+    }
+
+    class SingleFileProgress
+    {
+        public int progress;
+        public string message;
     }
 }

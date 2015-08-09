@@ -51,6 +51,8 @@
             this.pgbProgress = new System.Windows.Forms.ProgressBar();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.pgbSingleFileProgress = new System.Windows.Forms.ProgressBar();
+            this.chkGlyphList = new System.Windows.Forms.CheckBox();
+            this.lblSingleFileProgress = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numFontHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxTexturWidth)).BeginInit();
             this.gbFirstUnicode.SuspendLayout();
@@ -134,7 +136,7 @@
             this.numFontHeight.Size = new System.Drawing.Size(94, 25);
             this.numFontHeight.TabIndex = 3;
             this.numFontHeight.Value = new decimal(new int[] {
-            48,
+            30,
             0,
             0,
             0});
@@ -156,7 +158,7 @@
             this.txtLastChar.Name = "txtLastChar";
             this.txtLastChar.Size = new System.Drawing.Size(57, 25);
             this.txtLastChar.TabIndex = 4;
-            this.txtLastChar.Text = "~";
+            this.txtLastChar.Text = "龟";
             this.txtLastChar.TextChanged += new System.EventHandler(this.txtLastChar_TextChanged);
             //
             // numMaxTexturWidth
@@ -312,17 +314,39 @@
             this.pgbSingleFileProgress.TabIndex = 9;
             this.pgbSingleFileProgress.Visible = false;
             //
+            // chkGlyphList
+            //
+            this.chkGlyphList.AutoSize = true;
+            this.chkGlyphList.Location = new System.Drawing.Point(19, 110);
+            this.chkGlyphList.Name = "chkGlyphList";
+            this.chkGlyphList.Size = new System.Drawing.Size(109, 19);
+            this.chkGlyphList.TabIndex = 10;
+            this.chkGlyphList.Text = "glyph list";
+            this.chkGlyphList.UseVisualStyleBackColor = true;
+            //
+            // lblSingleFileProgress
+            //
+            this.lblSingleFileProgress.AutoSize = true;
+            this.lblSingleFileProgress.Location = new System.Drawing.Point(647, 89);
+            this.lblSingleFileProgress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSingleFileProgress.Name = "lblSingleFileProgress";
+            this.lblSingleFileProgress.Size = new System.Drawing.Size(151, 15);
+            this.lblSingleFileProgress.TabIndex = 2;
+            this.lblSingleFileProgress.Text = "singleFileProgress";
+            //
             // FormMain
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1135, 160);
+            this.Controls.Add(this.chkGlyphList);
             this.Controls.Add(this.pgbSingleFileProgress);
             this.Controls.Add(this.pgbProgress);
             this.Controls.Add(this.gbLastUnicode);
             this.Controls.Add(this.gbFirstUnicode);
             this.Controls.Add(this.numMaxTexturWidth);
             this.Controls.Add(this.numFontHeight);
+            this.Controls.Add(this.lblSingleFileProgress);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -369,5 +393,7 @@
         private System.Windows.Forms.ProgressBar pgbProgress;
         private System.ComponentModel.BackgroundWorker bgWorker;
         private System.Windows.Forms.ProgressBar pgbSingleFileProgress;
+        private System.Windows.Forms.CheckBox chkGlyphList;
+        private System.Windows.Forms.Label lblSingleFileProgress;
     }
 }
