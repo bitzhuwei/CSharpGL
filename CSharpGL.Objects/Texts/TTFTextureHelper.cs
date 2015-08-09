@@ -40,6 +40,13 @@ namespace CSharpGL.Objects.Texts
             return result;
         }
 
+        /// <summary>
+        /// 根据已经生成的贴图和附带的Xml配置文件得到一个<see cref="TTFTexture"/>。
+        /// <para>此贴图和Xml文件</para>
+        /// </summary>
+        /// <param name="textureFullname"></param>
+        /// <param name="xmlFullname"></param>
+        /// <returns></returns>
         public static TTFTexture GetTTFTexture(string textureFullname, string xmlFullname)
         {
             XElement ttfTextureElement = new XElement(xmlFullname);
