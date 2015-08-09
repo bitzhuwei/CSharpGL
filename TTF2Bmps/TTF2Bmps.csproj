@@ -56,7 +56,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TTFTextureCSPrinter.cs" />
+    <Compile Include="TTFTextureXmlPrinter.cs" />
     <Compile Include="TTFTexturePNGPrinter.cs" />
     <Compile Include="WorkerData.cs" />
     <Compile Include="WorkerResult.cs" />
