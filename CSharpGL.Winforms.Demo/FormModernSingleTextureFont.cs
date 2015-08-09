@@ -44,11 +44,13 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotation(camera);
 
-            element = new ModernSingleTextureFont("simsun.ttf", 48, '祝', '神');//char.MinValue, char.MaxValue);
+            //element = new ModernSingleTextureFont("simsun.ttf", 48, '祝', '神');//char.MinValue, char.MaxValue);
+            element = new ModernSingleTextureFont("simsun.ttf", 48, '一', '龟');//包含了几乎所有汉字字符
 
             element.Initialize();
 
-            element.SetText("祝神");
+            //element.SetText("祝神");
+            element.SetText("一龟");
 
             element.BeforeRendering += element_BeforeRendering;
             element.AfterRendering += element_AfterRendering;
@@ -173,6 +175,13 @@ namespace CSharpGL.Winforms.Demo
                 }
             }
 
+        }
+
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            base.OnHandleDestroyed(e);
+
+            this.element.Dispose();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace CSharpGL.Objects.Texts
     /// <summary>
     /// 用一个纹理绘制ASCII表上所有可见字符（具有指定的高度和字体）
     /// </summary>
-    public class ModernSingleTextureFont : SceneElementBase
+    public class ModernSingleTextureFont : SceneElementBase, IDisposable
     {
 
         public bool blend;
@@ -77,10 +77,14 @@ namespace CSharpGL.Objects.Texts
                     float y1 = (float)cInfo.yoffset / (float)bigBitmap.Height;
                     float y2 = (float)(cInfo.yoffset + this.ttfTexture.FontHeight) / (float)bigBitmap.Height;
 
-                    in_Position[i * 4 + 0] = new vec3(cInfo.xoffset, 0, 0);
-                    in_Position[i * 4 + 1] = new vec3(cInfo.xoffset + cInfo.width, 0, 0);
-                    in_Position[i * 4 + 2] = new vec3(cInfo.xoffset + cInfo.width, this.ttfTexture.FontHeight, 0);
-                    in_Position[i * 4 + 3] = new vec3(cInfo.xoffset, this.ttfTexture.FontHeight, 0);
+                    //in_Position[i * 4 + 0] = new vec3(cInfo.xoffset, 0, 0);
+                    //in_Position[i * 4 + 1] = new vec3(cInfo.xoffset + cInfo.width, 0, 0);
+                    //in_Position[i * 4 + 2] = new vec3(cInfo.xoffset + cInfo.width, this.ttfTexture.FontHeight, 0);
+                    //in_Position[i * 4 + 3] = new vec3(cInfo.xoffset, this.ttfTexture.FontHeight, 0);
+                    in_Position[i * 4 + 0] = new vec3(i, 0, 0);
+                    in_Position[i * 4 + 1] = new vec3(i + 1, 0, 0);
+                    in_Position[i * 4 + 2] = new vec3(i + 1, 1, 0);
+                    in_Position[i * 4 + 3] = new vec3(i, 1, 0);
 
                     in_TexCoord[i * 4 + 0] = new vec2(x1, y1);
                     in_TexCoord[i * 4 + 1] = new vec2(x2, y1);
@@ -313,6 +317,55 @@ namespace CSharpGL.Objects.Texts
 
         }
 
+
+        ~ModernSingleTextureFont()
+        {
+            this.Dispose();
+        }
+
+        #region IDisposable Members
+
+        /// <summary>
+        /// Internal variable which checks if Dispose has already been called
+        /// </summary>
+        protected Boolean disposed;
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected void Dispose(Boolean disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                //Managed cleanup code here, while managed refs still valid
+            }
+            //Unmanaged cleanup code here
+            this.ttfTexture.Dispose();
+
+            disposed = true;
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            // Call the private Dispose(bool) helper and indicate
+            // that we are explicitly disposing
+            this.Dispose(true);
+
+            // Tell the garbage collector that the object doesn't require any
+            // cleanup when collected since Dispose was called explicitly.
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
 
     }
 

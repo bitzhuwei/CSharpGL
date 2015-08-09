@@ -87,7 +87,6 @@ namespace CSharpGL.Objects.Texts.FreeTypes
             if (ret != 0) { throw new Exception("Could not init freetype library!"); }
 
             this.obj = (FT_Library)Marshal.PtrToStructure(this.pointer, typeof(FT_Library));
-            //lib = Marshal.PtrToStructure<Library>(libptr);
         }
 
         protected override void ReleaseResource()
@@ -111,8 +110,8 @@ namespace CSharpGL.Objects.Texts.FreeTypes
         /// <param name="size"></param>
         public FreeTypeFace(FreeTypeLibrary library, string fontFullname)//, int size)
         {
-            int retb = FreeTypeAPI.FT_New_Face(library.pointer, fontFullname, 0, out pointer);
-            if (retb != 0) { throw new Exception("Could not open font"); }
+            int ret = FreeTypeAPI.FT_New_Face(library.pointer, fontFullname, 0, out pointer);
+            if (ret != 0) { throw new Exception("Could not open font"); }
 
             this.obj = (FT_Face)Marshal.PtrToStructure(pointer, typeof(FT_Face));
 

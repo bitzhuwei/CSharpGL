@@ -42,7 +42,7 @@
             this.btnUnmanagedArray.Margin = new System.Windows.Forms.Padding(4);
             this.btnUnmanagedArray.Name = "btnUnmanagedArray";
             this.btnUnmanagedArray.Size = new System.Drawing.Size(347, 29);
-            this.btnUnmanagedArray.TabIndex = 0;
+            this.btnUnmanagedArray.TabIndex = 3;
             this.btnUnmanagedArray.Text = "UnmanagedArray";
             this.btnUnmanagedArray.UseVisualStyleBackColor = true;
             this.btnUnmanagedArray.Click += new System.EventHandler(this.btnUnmanagedArray_Click);
@@ -55,7 +55,7 @@
             this.btnCylinderVAOElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnCylinderVAOElement.Name = "btnCylinderVAOElement";
             this.btnCylinderVAOElement.Size = new System.Drawing.Size(347, 29);
-            this.btnCylinderVAOElement.TabIndex = 0;
+            this.btnCylinderVAOElement.TabIndex = 2;
             this.btnCylinderVAOElement.Text = "CylinderVAOElement";
             this.btnCylinderVAOElement.UseVisualStyleBackColor = true;
             this.btnCylinderVAOElement.Click += new System.EventHandler(this.btnCylinderVAOElement_Click);
@@ -81,7 +81,7 @@
             this.btnPyramidVAOElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnPyramidVAOElement.Name = "btnPyramidVAOElement";
             this.btnPyramidVAOElement.Size = new System.Drawing.Size(347, 29);
-            this.btnPyramidVAOElement.TabIndex = 0;
+            this.btnPyramidVAOElement.TabIndex = 1;
             this.btnPyramidVAOElement.Text = "PyramidVAOElement";
             this.btnPyramidVAOElement.UseVisualStyleBackColor = true;
             this.btnPyramidVAOElement.Click += new System.EventHandler(this.btnPyramidVAOElement_Click);
@@ -91,8 +91,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 328);
-            this.Controls.Add(this.btnPyramidVAOElement);
             this.Controls.Add(this.btnModernSingleTextureFont);
+            this.Controls.Add(this.btnPyramidVAOElement);
             this.Controls.Add(this.btnCylinderVAOElement);
             this.Controls.Add(this.btnUnmanagedArray);
             this.Margin = new System.Windows.Forms.Padding(4);
