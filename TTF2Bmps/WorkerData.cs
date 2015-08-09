@@ -13,8 +13,11 @@ namespace TTF2Bmps
         public char lastChar;
         public string[] selectedTTFFiles;
         public bool generateGlyphList;
+        public bool drawHeightLine;
 
-        public WorkerData(int fontHeight, int maxTexturWidth, char firstChar, char lastChar, string[] selectedTTFFiles, bool generateGlyphList)
+        public WorkerData(int fontHeight, int maxTexturWidth,
+            char firstChar, char lastChar, string[] selectedTTFFiles,
+            bool generateGlyphList, bool drawHeightLine)
         {
             // TODO: Complete member initialization
             this.fontHeight = fontHeight;
@@ -23,6 +26,7 @@ namespace TTF2Bmps
             this.lastChar = lastChar;
             this.selectedTTFFiles = selectedTTFFiles;
             this.generateGlyphList = generateGlyphList;
+            this.drawHeightLine = drawHeightLine;
         }
     }
 }

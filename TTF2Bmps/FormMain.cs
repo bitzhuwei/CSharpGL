@@ -67,10 +67,11 @@ namespace TTF2Bmps
             char firstChar = (char)int.Parse(this.txtFirstIndex.Text);
             char lastChar = (char)int.Parse(this.txtLastIndex.Text);
             bool generateGlyphList = this.chkGlyphList.Checked;
-            WorkerData data = new WorkerData(fontHeight, maxTexturWidth, firstChar, lastChar, this.selectedTTFFiles, generateGlyphList);
+            bool drawHeightLine = this.chkFontHeightLine.Checked;
+            WorkerData data = new WorkerData(fontHeight, maxTexturWidth,
+                firstChar, lastChar, this.selectedTTFFiles,
+                generateGlyphList, drawHeightLine);
             this.bgWorker.RunWorkerAsync(data);
-
-
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -200,6 +201,8 @@ namespace TTF2Bmps
                         var singleFileProgress = new SingleFileProgress() { progress = progress.percent, message = progress.message };
                         bgWorker.ReportProgress(index * magicNumber / count, singleFileProgress);
                     }
+
+                    if(data.drawHeightLine)
                     {
                         System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(ttfTexture.BigBitmap);
                         Graphics g = Graphics.FromImage(bigBitmap);
@@ -210,10 +213,16 @@ namespace TTF2Bmps
                         bigBitmap.Save(destFullname);
                         bigBitmap.Dispose();
                     }
+                    else
+                    {
+                        ttfTexture.BigBitmap.Save(destFullname);
+                    }
+
                     {
                         TTFTextureXmlPrinter printer = new TTFTextureXmlPrinter(ttfTexture);
                         printer.Print(fontFullname);
                     }
+
                     if (data.generateGlyphList)
                     {
                         TTFTexturePNGPrinter printer = new TTFTexturePNGPrinter(ttfTexture);

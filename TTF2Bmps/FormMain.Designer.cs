@@ -53,6 +53,8 @@
             this.pgbSingleFileProgress = new System.Windows.Forms.ProgressBar();
             this.chkGlyphList = new System.Windows.Forms.CheckBox();
             this.lblSingleFileProgress = new System.Windows.Forms.Label();
+            this.chkFontHeightLine = new System.Windows.Forms.CheckBox();
+            this.lblTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numFontHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxTexturWidth)).BeginInit();
             this.gbFirstUnicode.SuspendLayout();
@@ -100,7 +102,7 @@
             // btnStart
             //
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStart.Location = new System.Drawing.Point(1019, 117);
+            this.btnStart.Location = new System.Drawing.Point(1019, 127);
             this.btnStart.Margin = new System.Windows.Forms.Padding(4);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(100, 29);
@@ -292,9 +294,9 @@
             // pgbProgress
             //
             this.pgbProgress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pgbProgress.Location = new System.Drawing.Point(1019, 117);
+            this.pgbProgress.Location = new System.Drawing.Point(650, 127);
             this.pgbProgress.Name = "pgbProgress";
-            this.pgbProgress.Size = new System.Drawing.Size(100, 29);
+            this.pgbProgress.Size = new System.Drawing.Size(469, 29);
             this.pgbProgress.TabIndex = 9;
             this.pgbProgress.Visible = false;
             //
@@ -309,9 +311,9 @@
             //
             this.pgbSingleFileProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pgbSingleFileProgress.Location = new System.Drawing.Point(646, 117);
+            this.pgbSingleFileProgress.Location = new System.Drawing.Point(650, 77);
             this.pgbSingleFileProgress.Name = "pgbSingleFileProgress";
-            this.pgbSingleFileProgress.Size = new System.Drawing.Size(364, 29);
+            this.pgbSingleFileProgress.Size = new System.Drawing.Size(469, 29);
             this.pgbSingleFileProgress.TabIndex = 9;
             this.pgbSingleFileProgress.Visible = false;
             //
@@ -328,18 +330,39 @@
             // lblSingleFileProgress
             //
             this.lblSingleFileProgress.AutoSize = true;
-            this.lblSingleFileProgress.Location = new System.Drawing.Point(647, 89);
+            this.lblSingleFileProgress.Location = new System.Drawing.Point(647, 59);
             this.lblSingleFileProgress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSingleFileProgress.Name = "lblSingleFileProgress";
             this.lblSingleFileProgress.Size = new System.Drawing.Size(151, 15);
             this.lblSingleFileProgress.TabIndex = 2;
             this.lblSingleFileProgress.Text = "singleFileProgress";
             //
+            // chkFontHeightLine
+            //
+            this.chkFontHeightLine.AutoSize = true;
+            this.chkFontHeightLine.Location = new System.Drawing.Point(19, 135);
+            this.chkFontHeightLine.Name = "chkFontHeightLine";
+            this.chkFontHeightLine.Size = new System.Drawing.Size(117, 19);
+            this.chkFontHeightLine.TabIndex = 10;
+            this.chkFontHeightLine.Text = "height line";
+            this.chkFontHeightLine.UseVisualStyleBackColor = true;
+            //
+            // lblTotal
+            //
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(647, 109);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(87, 15);
+            this.lblTotal.TabIndex = 2;
+            this.lblTotal.Text = "Total: {0}";
+            //
             // FormMain
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1135, 160);
+            this.ClientSize = new System.Drawing.Size(1135, 170);
+            this.Controls.Add(this.chkFontHeightLine);
             this.Controls.Add(this.chkGlyphList);
             this.Controls.Add(this.pgbSingleFileProgress);
             this.Controls.Add(this.pgbProgress);
@@ -347,6 +370,7 @@
             this.Controls.Add(this.gbFirstUnicode);
             this.Controls.Add(this.numMaxTexturWidth);
             this.Controls.Add(this.numFontHeight);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.lblSingleFileProgress);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
@@ -397,5 +421,7 @@
         private System.Windows.Forms.ProgressBar pgbSingleFileProgress;
         private System.Windows.Forms.CheckBox chkGlyphList;
         private System.Windows.Forms.Label lblSingleFileProgress;
+        private System.Windows.Forms.CheckBox chkFontHeightLine;
+        private System.Windows.Forms.Label lblTotal;
     }
 }
