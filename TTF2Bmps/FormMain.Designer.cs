@@ -61,7 +61,7 @@
             //
             // openTTFFileDlg
             //
-            this.openTTFFileDlg.Filter = "(字体文件 *.ttf)|*.ttf|(字体文件 *.ttc)|*.ttc|(字体文件 *.*)|*.*";
+            this.openTTFFileDlg.Filter = "(字体文件 *.ttf;*.ttc)|*.ttf;*.ttc|(字体文件 *.*)|*.*";
             this.openTTFFileDlg.Multiselect = true;
             //
             // btnBrowseTTFFile
@@ -291,6 +291,7 @@
             //
             // pgbProgress
             //
+            this.pgbProgress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pgbProgress.Location = new System.Drawing.Point(1019, 117);
             this.pgbProgress.Name = "pgbProgress";
             this.pgbProgress.Size = new System.Drawing.Size(100, 29);
@@ -355,6 +356,7 @@
             this.Controls.Add(this.btnBrowseTTFFile);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(853, 207);
             this.Name = "FormMain";
             this.Text = "get bitmaps from a TTF file. (by bitzhuwei @ http://bitzhuwei.cnblogs.com)";
             this.Load += new System.EventHandler(this.FormMain_Load);
