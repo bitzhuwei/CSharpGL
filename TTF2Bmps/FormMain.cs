@@ -58,6 +58,7 @@ namespace TTF2Bmps
             this.gbFirstUnicode.Enabled = false;
             this.gbLastUnicode.Enabled = false;
             this.pgbProgress.Visible = true;
+            this.pgbSingleFileProgress.Visible = true;
 
             int fontHeight = (int)numFontHeight.Value;
             int maxTexturWidth = (int)numMaxTexturWidth.Value;
@@ -168,24 +169,54 @@ namespace TTF2Bmps
         {
             WorkerData data = e.Argument as WorkerData;
             int count = data.selectedTTFFiles.Length;
-            int index = 1;
+            int index = 0;
+            const int magicNumber = 100;
 
             StringBuilder builder = new StringBuilder();
             WorkerResult result = new WorkerResult(builder, data);
             e.Result = result;
 
-            foreach (var item in this.selectedTTFFiles)
+            foreach (var fontFullname in this.selectedTTFFiles)
             {
                 try
                 {
-                    string fontFullname = item;
                     builder.Append(index); builder.Append("/"); builder.Append(count);
                     builder.Append(": "); builder.AppendLine(fontFullname);
 
                     string destFullname = fontFullname + ".png";
 
-                    TTFTexture ttfTexture = TTFTexture.GetTTFTexture(fontFullname,
-                        data.fontHeight, data.firstChar, data.lastChar, data.maxTexturWidth);
+                    //TTFTexture ttfTexture = TTFTexture.GetTTFTexture(fontFullname,
+                    //    data.fontHeight, data.firstChar, data.lastChar, data.maxTexturWidth);
+                    //{
+                    //    System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(ttfTexture.BigBitmap);
+                    //    Graphics g = Graphics.FromImage(bigBitmap);
+                    //    for (int row = 0; row < bigBitmap.Height; row += ttfTexture.FontHeight)
+                    //    {
+                    //        g.DrawLine(redDotPen, new Point(0, row - 1), new Point(bigBitmap.Width, row - 1));
+                    //    }
+                    //    bigBitmap.Save(destFullname);
+                    //    bigBitmap.Dispose();
+                    //}
+
+                    //{
+                    //    TTFTextureXmlPrinter printer = new TTFTextureXmlPrinter(ttfTexture);
+                    //    printer.Print(fontFullname);
+                    //}
+
+                    //{
+                    //    TTFTexturePNGPrinter printer = new TTFTexturePNGPrinter(ttfTexture);
+                    //    printer.Print(fontFullname, data.maxTexturWidth);
+                    //}
+
+                    //ttfTexture.Dispose();
+                    TTFTexture ttfTexture = null;
+
+                    foreach (var progress in TTFTextureYieldHelper.GetTTFTexture(
+                        fontFullname, data.fontHeight, data.firstChar, data.lastChar, data.maxTexturWidth))
+                    {
+                        ttfTexture = progress.ttfTexture;
+                        bgWorker.ReportProgress(index * magicNumber / count, progress.percent);
+                    }
                     {
                         System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(ttfTexture.BigBitmap);
                         Graphics g = Graphics.FromImage(bigBitmap);
@@ -196,23 +227,22 @@ namespace TTF2Bmps
                         bigBitmap.Save(destFullname);
                         bigBitmap.Dispose();
                     }
-
                     {
                         TTFTextureXmlPrinter printer = new TTFTextureXmlPrinter(ttfTexture);
                         printer.Print(fontFullname);
                     }
-
                     {
                         TTFTexturePNGPrinter printer = new TTFTexturePNGPrinter(ttfTexture);
-                        printer.Print(fontFullname, data.maxTexturWidth);
+                        foreach (var progress in printer.Print(fontFullname, data.maxTexturWidth))
+                        {
+                            bgWorker.ReportProgress(index * magicNumber / count, progress);
+                        }
                     }
-
-                    ttfTexture.Dispose();
 
                     builder.AppendLine("sucessfully done!");
                     builder.AppendLine();
 
-                    bgWorker.ReportProgress(index++ * 100 / count);
+                    bgWorker.ReportProgress(index++ * magicNumber / count, magicNumber);
 
                     //Process.Start("explorer", destFullname);
                 }
@@ -233,10 +263,19 @@ namespace TTF2Bmps
         Pen redDotPen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { 5, 5 } };
         private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            var value = e.ProgressPercentage;
-            if (value < pgbProgress.Minimum) value = pgbProgress.Minimum;
-            if (value > pgbProgress.Maximum) value = pgbProgress.Maximum;
-            pgbProgress.Value = value;
+            {
+                var value = e.ProgressPercentage;
+                if (value < pgbProgress.Minimum) value = pgbProgress.Minimum;
+                if (value > pgbProgress.Maximum) value = pgbProgress.Maximum;
+                pgbProgress.Value = value;
+            }
+            {
+                var value = (int)e.UserState;
+                if (value < pgbSingleFileProgress.Minimum) value = pgbSingleFileProgress.Minimum;
+                if (value > pgbSingleFileProgress.Maximum) value = pgbSingleFileProgress.Maximum;
+                pgbSingleFileProgress.Value = value;
+            }
+
         }
 
         private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -294,6 +333,7 @@ namespace TTF2Bmps
             this.gbFirstUnicode.Enabled = true;
             this.gbLastUnicode.Enabled = true;
             this.pgbProgress.Visible = false;
+            this.pgbSingleFileProgress.Visible = false;
         }
 
     }

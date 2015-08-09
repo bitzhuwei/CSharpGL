@@ -21,8 +21,10 @@ namespace TTF2Bmps
         }
 
 
-        public void Print(string fontFullname, int maxTextureWidth)
+        public IEnumerable<int> Print(string fontFullname, int maxTextureWidth)
         {
+            int count = this.ttfTexture.CharInfoDict.Count;
+
             int width;
             int height;
             {
@@ -68,11 +70,15 @@ namespace TTF2Bmps
                         (this.ttfTexture.FontHeight + 1) * magicNumber); //this.ttfTexture.CharInfoDict.Count);
                     g = Graphics.FromImage(bitmap);
                 }
+
+                yield return (index * magicNumber / count);
             }
 
             g.Dispose();
             bitmap.Save(fontFullname + "list" + index / magicNumber + ".png");
             bitmap.Dispose();
+
+            yield return magicNumber;
         }
 
         //private void GetTextureWidthHeight(int maxTextureWidth, Bitmap bitmap, out int width, out int height)

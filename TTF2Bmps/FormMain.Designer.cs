@@ -50,6 +50,7 @@
             this.gbLastUnicode = new System.Windows.Forms.GroupBox();
             this.pgbProgress = new System.Windows.Forms.ProgressBar();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.pgbSingleFileProgress = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.numFontHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxTexturWidth)).BeginInit();
             this.gbFirstUnicode.SuspendLayout();
@@ -301,11 +302,22 @@
             this.bgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorker_ProgressChanged);
             this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
             //
+            // pgbSingleFileProgress
+            //
+            this.pgbSingleFileProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pgbSingleFileProgress.Location = new System.Drawing.Point(646, 117);
+            this.pgbSingleFileProgress.Name = "pgbSingleFileProgress";
+            this.pgbSingleFileProgress.Size = new System.Drawing.Size(364, 29);
+            this.pgbSingleFileProgress.TabIndex = 9;
+            this.pgbSingleFileProgress.Visible = false;
+            //
             // FormMain
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1135, 160);
+            this.Controls.Add(this.pgbSingleFileProgress);
             this.Controls.Add(this.pgbProgress);
             this.Controls.Add(this.gbLastUnicode);
             this.Controls.Add(this.gbFirstUnicode);
@@ -356,5 +368,6 @@
         private System.Windows.Forms.GroupBox gbLastUnicode;
         private System.Windows.Forms.ProgressBar pgbProgress;
         private System.ComponentModel.BackgroundWorker bgWorker;
+        private System.Windows.Forms.ProgressBar pgbSingleFileProgress;
     }
 }
