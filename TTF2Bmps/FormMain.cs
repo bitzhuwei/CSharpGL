@@ -186,8 +186,16 @@ namespace TTF2Bmps
 
                     TTFTexture ttfTexture = TTFTexture.GetTTFTexture(fontFullname,
                         data.fontHeight, data.firstChar, data.lastChar, data.maxTexturWidth);
-
-                    ttfTexture.BigBitmap.Save(destFullname);
+                    {
+                        System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(ttfTexture.BigBitmap);
+                        Graphics g = Graphics.FromImage(bigBitmap);
+                        for (int row = 0; row < bigBitmap.Height; row += ttfTexture.FontHeight)
+                        {
+                            g.DrawLine(redDotPen, new Point(0, row - 1), new Point(bigBitmap.Width, row - 1));
+                        }
+                        bigBitmap.Save(destFullname);
+                        bigBitmap.Dispose();
+                    }
 
                     TTFTextureDetailPrinter printer = new TTFTextureDetailPrinter(ttfTexture);
                     printer.Print(fontFullname, data.maxTexturWidth);
@@ -215,6 +223,7 @@ namespace TTF2Bmps
             }
         }
 
+        Pen redDotPen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { 5, 5 } };
         private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             var value = e.ProgressPercentage;

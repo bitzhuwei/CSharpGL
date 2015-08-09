@@ -248,8 +248,11 @@ namespace CSharpGL.Objects.Texts
 
                             bitmap.UnlockBits(bmpData);
 
-                            int baseLine = fontHeight * 3 / 4;
-                            graphics.DrawImage(bitmap, cInfo.xoffset, cInfo.yoffset + baseLine - glyph.obj.top);
+                            //int baseLine = fontHeight * 3 / 4 + 4;
+                            //graphics.DrawImage(bitmap, cInfo.xoffset, cInfo.yoffset + baseLine - glyph.obj.top);
+                            int skyHeight = fontHeight * 3 / 4 - glyph.obj.top;
+                            if (skyHeight < 0) { skyHeight = 0; }
+                            graphics.DrawImage(bitmap, cInfo.xoffset, cInfo.yoffset + skyHeight);
                         }
                     }
                     else
