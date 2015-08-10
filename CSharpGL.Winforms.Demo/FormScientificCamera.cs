@@ -32,7 +32,7 @@ namespace CSharpGL.Winforms.Demo
             }
             else
             {
-                this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height, "FormScientificCamera");
+                this.camera = new ScientificCamera(CameraTypes.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height, "FormScientificCamera");
             }
 
 
@@ -50,17 +50,25 @@ namespace CSharpGL.Winforms.Demo
 
         void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            rotation += 3.0f;
-            mat4 modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
+            {
+                rotation += 3.0f;
+                modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
+                viewMatrix = this.camera.GetViewMat4();
+                projectionMatrix = this.camera.GetProjectionMat4();
+            }
+            {
+                //rotation += 3.0f;
+                //mat4 modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
 
-            const float distance = 0.2f;
-            viewMatrix = glm.lookAt(new vec3(-distance, distance, -distance), new vec3(0, 0, 0), new vec3(0, -1, 0));
+                //const float distance = 0.2f;
+                //viewMatrix = glm.lookAt(new vec3(-distance, distance, -distance), new vec3(0, 0, 0), new vec3(0, -1, 0));
 
-            int[] viewport = new int[4];
-            GL.GetInteger(GetTarget.Viewport, viewport);//(float)viewport[2] / (float)viewport[3]
-            float width = this.glCanvas1.Width;
-            float height = this.glCanvas1.Height;
-            projectionMatrix = glm.perspective(60.0f, width/height, 0.01f, 100.0f);
+                //int[] viewport = new int[4];
+                //GL.GetInteger(GetTarget.Viewport, viewport);//(float)viewport[2] / (float)viewport[3]
+                //float width = this.glCanvas1.Width;
+                //float height = this.glCanvas1.Height;
+                //projectionMatrix = glm.perspective(60.0f, width/height, 0.01f, 100.0f);
+            }
 
             ShaderProgram shaderProgram = element.shaderProgram;
             shaderProgram.Bind();
