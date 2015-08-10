@@ -23,7 +23,8 @@ namespace CSharpGL.Objects.Texts
         /// <param name="lastChar"></param>
         /// <param name="maxTextureWidth">生成的纹理的最大宽度。</param>
         /// <returns></returns>
-        public static IEnumerable<TTFTextureYeildingState> GetTTFTexture(string ttfFullname, int fontHeight, char firstChar, char lastChar, int maxTextureWidth)
+        public static IEnumerable<TTFTextureYeildingState> GetTTFTexture(
+            string ttfFullname, int fontHeight, int maxTextureWidth, char firstChar, char lastChar)
         {
             FreeTypeLibrary library = new FreeTypeLibrary();
 
@@ -33,7 +34,7 @@ namespace CSharpGL.Objects.Texts
             int textureWidth = 0, textureHeight = 0;
             System.Drawing.Bitmap bigBitmap = null;
 
-            foreach (var item in GetTextureBlueprint(face, fontHeight, firstChar, lastChar, maxTextureWidth))
+            foreach (var item in GetTextureBlueprint(face, fontHeight, maxTextureWidth, firstChar, lastChar))
             {
                 charInfoDict = item.dict;
                 textureWidth = item.textureWidth;
@@ -45,7 +46,8 @@ namespace CSharpGL.Objects.Texts
             if (textureWidth == 0) { textureWidth = 1; }
             if (textureHeight == 0) { textureHeight = 1; }
 
-            foreach (var item in GetBigBitmap(face, fontHeight, firstChar, lastChar, maxTextureWidth, charInfoDict, textureWidth, textureHeight))
+            foreach (var item in GetBigBitmap(face, fontHeight, maxTextureWidth,
+                firstChar, lastChar, charInfoDict, textureWidth, textureHeight))
             {
                 bigBitmap = item.bigBitmap;
 
@@ -83,18 +85,18 @@ namespace CSharpGL.Objects.Texts
         /// <param name="lastChar"></param>
         /// <param name="maxTextureWidth"></param>
         /// <param name="charInfoDict"></param>
-        /// <param name="widthOfTexture"></param>
-        /// <param name="heightOfTexture"></param>
+        /// <param name="textureWidth"></param>
+        /// <param name="textureHeight"></param>
         /// <returns></returns>
-        private static IEnumerable<TTFTextureYeildingState> GetBigBitmap(FreeTypeFace face, int fontHeight,
-            char firstChar, char lastChar, int maxTextureWidth,
-            Dictionary<char, CharacterInfo> charInfoDict,
-            int widthOfTexture, int heightOfTexture)
+        private static IEnumerable<TTFTextureYeildingState> GetBigBitmap(
+            FreeTypeFace face, int fontHeight, int maxTextureWidth,
+            char firstChar, char lastChar,
+            Dictionary<char, CharacterInfo> charInfoDict, int textureWidth, int textureHeight)
         {
             int count = lastChar - firstChar;
             int index = 0;
 
-            System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(widthOfTexture, heightOfTexture);
+            System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(textureWidth, textureHeight);
             Graphics graphics = Graphics.FromImage(bigBitmap);
 
             for (char c = firstChar; c <= lastChar; c++)
@@ -179,8 +181,8 @@ namespace CSharpGL.Objects.Texts
         /// <param name="charInfoDict"></param>
         /// <param name="textureWidth"></param>
         /// <param name="textureHeight"></param>
-        private static IEnumerable<TTFTextureYeildingState> GetTextureBlueprint(FreeTypeFace face, int fontHeight,
-            char firstChar, char lastChar, int maxTextureWidth)
+        private static IEnumerable<TTFTextureYeildingState> GetTextureBlueprint(
+            FreeTypeFace face, int fontHeight, int maxTextureWidth, char firstChar, char lastChar)
         {
             int count = lastChar - firstChar;
             int index = 0;

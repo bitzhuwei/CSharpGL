@@ -56,9 +56,10 @@ namespace CSharpGL.Objects.Texts
         /// <param name="lastChar"></param>
         /// <param name="maxTextureWidth"></param>
         /// <returns></returns>
-        public static FontTexture GetTTFTexture(string ttfFullname, int fontHeight, char firstChar, char lastChar, int maxTextureWidth)
+        public static FontTexture GetTTFTexture(string ttfFullname, int fontHeight,
+            int maxTextureWidth, char firstChar = '!', char lastChar = '~')
         {
-            var result = FontTextureHelper.GetTTFTexture(ttfFullname, fontHeight, firstChar, lastChar, maxTextureWidth);
+            var result = FontTextureHelper.GetTTFTexture(ttfFullname, fontHeight, maxTextureWidth, firstChar, lastChar);
 
             return result;
         }

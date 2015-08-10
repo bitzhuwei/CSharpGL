@@ -67,7 +67,7 @@ namespace CSharpGL.Objects.Texts
         /// <param name="lastChar"></param>
         /// <param name="maxTextureWidth">生成的纹理的最大宽度。</param>
         /// <returns></returns>
-        public static FontTexture GetTTFTexture(string ttfFullname, int fontHeight, char firstChar, char lastChar, int maxTextureWidth)
+        public static FontTexture GetTTFTexture(string ttfFullname, int fontHeight, int maxTextureWidth, char firstChar, char lastChar)
         {
             FreeTypeLibrary library = new FreeTypeLibrary();
 
@@ -76,12 +76,12 @@ namespace CSharpGL.Objects.Texts
             Dictionary<char, CharacterInfo> charInfoDict;
             int textureWidth, textureHeight;
 
-            GetTextureBlueprint(face, fontHeight, firstChar, lastChar, maxTextureWidth, out charInfoDict, out textureWidth, out textureHeight);
+            GetTextureBlueprint(face, fontHeight, maxTextureWidth, firstChar, lastChar, out charInfoDict, out textureWidth, out textureHeight);
 
             if (textureWidth == 0) { textureWidth = 1; }
             if (textureHeight == 0) { textureHeight = 1; }
 
-            System.Drawing.Bitmap bigBitmap = GetBigBitmap(face, fontHeight, firstChar, lastChar, maxTextureWidth, charInfoDict, textureWidth, textureHeight);
+            System.Drawing.Bitmap bigBitmap = GetBigBitmap(face, fontHeight, maxTextureWidth, firstChar, lastChar, charInfoDict, textureWidth, textureHeight);
 
             face.Dispose();
             library.Dispose();
@@ -103,8 +103,8 @@ namespace CSharpGL.Objects.Texts
         /// <param name="widthOfTexture"></param>
         /// <param name="heightOfTexture"></param>
         /// <returns></returns>
-        private static System.Drawing.Bitmap GetBigBitmap(FreeTypeFace face, int fontHeight,
-            char firstChar, char lastChar, int maxTextureWidth,
+        private static System.Drawing.Bitmap GetBigBitmap(FreeTypeFace face, int fontHeight, int maxTextureWidth,
+            char firstChar, char lastChar,
             Dictionary<char, CharacterInfo> charInfoDict,
             int widthOfTexture, int heightOfTexture)
         {
@@ -182,8 +182,8 @@ namespace CSharpGL.Objects.Texts
         /// <param name="charInfoDict"></param>
         /// <param name="textureWidth"></param>
         /// <param name="textureHeight"></param>
-        private static void GetTextureBlueprint(FreeTypeFace face, int fontHeight,
-            char firstChar, char lastChar, int maxTextureWidth,
+        private static void GetTextureBlueprint(FreeTypeFace face, int fontHeight, int maxTextureWidth,
+            char firstChar, char lastChar,
             out Dictionary<char, CharacterInfo> charInfoDict, out int textureWidth, out int textureHeight)
         {
             charInfoDict = new Dictionary<char, CharacterInfo>();

@@ -138,7 +138,7 @@ namespace CSharpGL.Objects.Texts
             //	Get the maximum texture size supported by GL.
             GL.GetInteger(GetTarget.MaxTextureSize, maxTextureWidth);
 
-            this.ttfTexture = FontTextureHelper.GetTTFTexture(fontFilename, fontHeight, firstChar, lastChar, maxTextureWidth[0]);
+            this.ttfTexture = FontTextureHelper.GetTTFTexture(fontFilename, fontHeight, maxTextureWidth[0], firstChar, lastChar);
         }
 
         protected override void DoInitialize()

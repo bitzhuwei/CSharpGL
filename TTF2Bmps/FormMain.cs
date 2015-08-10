@@ -200,7 +200,7 @@ namespace Font2Bmps
         {
             WorkerData data = e.Argument as WorkerData;
             int count = data.selectedTTFFiles.Length;
-            int index = 0;
+            int index = 1;
             const int magicNumber = 100;
 
             WorkerResult result = new WorkerResult(null, data);
@@ -275,7 +275,8 @@ namespace Font2Bmps
                     progress = magicNumber,
                     message = string.Format("All is done for {0}", fileInfo.Name),
                 };
-                bgWorker.ReportProgress(magicNumber, thisFileDone);
+                bgWorker.ReportProgress(index++ * magicNumber / count, thisFileDone);
+                //bgWorker.ReportProgress(magicNumber, thisFileDone);
 
                 //Process.Start("explorer", destFullname);
             }
