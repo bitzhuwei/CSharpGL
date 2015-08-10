@@ -16,7 +16,7 @@ namespace CSharpGL.Objects.Texts
         public bool blend;
 
         public uint[] texture = new uint[1];
-        private TTFTexture ttfTexture;
+        private FontTexture ttfTexture;
 
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
@@ -138,7 +138,7 @@ namespace CSharpGL.Objects.Texts
             //	Get the maximum texture size supported by GL.
             GL.GetInteger(GetTarget.MaxTextureSize, maxTextureWidth);
 
-            this.ttfTexture = TTFTextureHelper.GetTTFTexture(fontFilename, fontHeight, firstChar, lastChar, maxTextureWidth[0]);
+            this.ttfTexture = FontTextureHelper.GetTTFTexture(fontFilename, fontHeight, firstChar, lastChar, maxTextureWidth[0]);
         }
 
         protected override void DoInitialize()
@@ -163,7 +163,7 @@ namespace CSharpGL.Objects.Texts
             bigBitmap.Save("modernSingleTextureFont.png");
         }
 
-        private void CreateTextureObject(TTFTexture ttfTexture)
+        private void CreateTextureObject(FontTexture ttfTexture)
         {
             //	Get the maximum texture size supported by OpenGL.
             int[] textureMaxSize = { 0 };

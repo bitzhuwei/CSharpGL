@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TTF2Bmps
+namespace Font2Bmps
 {
     class WorkerResult
     {

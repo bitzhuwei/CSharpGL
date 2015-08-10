@@ -10,14 +10,14 @@ using System.Xml.Linq;
 
 namespace CSharpGL.Objects.Texts
 {
-    public static class TTFTextureHelper
+    public static class FontTextureHelper
     {
         public const string strTTFTexture = "TTFTExture";
         public const string strFontHeight = "FontHeight";
         public const string strFirstChar = "FirstChar";
         public const string strLastChar = "LastChar";
 
-        public static XElement ToXElement(this TTFTexture texture)
+        public static XElement ToXElement(this FontTexture texture)
         {
             XElement result = new XElement(strTTFTexture,
                 new XAttribute(strFontHeight, texture.FontHeight),
@@ -28,9 +28,9 @@ namespace CSharpGL.Objects.Texts
             return result;
         }
 
-        private static TTFTexture Parse(XElement xElement)
+        private static FontTexture Parse(XElement xElement)
         {
-            TTFTexture result = new TTFTexture();
+            FontTexture result = new FontTexture();
             result.FontHeight = int.Parse(xElement.Attribute(strFontHeight).Value);
             result.FirstChar = char.Parse(xElement.Attribute(strFirstChar).Value);
             result.LastChar = char.Parse(xElement.Attribute(strLastChar).Value);
@@ -41,16 +41,16 @@ namespace CSharpGL.Objects.Texts
         }
 
         /// <summary>
-        /// 根据已经生成的贴图和附带的Xml配置文件得到一个<see cref="TTFTexture"/>。
+        /// 根据已经生成的贴图和附带的Xml配置文件得到一个<see cref="FontTexture"/>。
         /// <para>此贴图和Xml文件</para>
         /// </summary>
         /// <param name="textureFullname"></param>
         /// <param name="xmlFullname"></param>
         /// <returns></returns>
-        public static TTFTexture GetTTFTexture(string textureFullname, string xmlFullname)
+        public static FontTexture GetTTFTexture(string textureFullname, string xmlFullname)
         {
             XElement ttfTextureElement = new XElement(xmlFullname);
-            TTFTexture result = Parse(ttfTextureElement);
+            FontTexture result = Parse(ttfTextureElement);
 
             System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(textureFullname);
             result.BigBitmap = bigBitmap;
@@ -67,7 +67,7 @@ namespace CSharpGL.Objects.Texts
         /// <param name="lastChar"></param>
         /// <param name="maxTextureWidth">生成的纹理的最大宽度。</param>
         /// <returns></returns>
-        public static TTFTexture GetTTFTexture(string ttfFullname, int fontHeight, char firstChar, char lastChar, int maxTextureWidth)
+        public static FontTexture GetTTFTexture(string ttfFullname, int fontHeight, char firstChar, char lastChar, int maxTextureWidth)
         {
             FreeTypeLibrary library = new FreeTypeLibrary();
 
@@ -86,7 +86,7 @@ namespace CSharpGL.Objects.Texts
             face.Dispose();
             library.Dispose();
 
-            var result = new TTFTexture() { TtfFullname = ttfFullname, FontHeight = fontHeight, FirstChar = firstChar, LastChar = lastChar, BigBitmap = bigBitmap, CharInfoDict = charInfoDict, };
+            var result = new FontTexture() { TtfFullname = ttfFullname, FontHeight = fontHeight, FirstChar = firstChar, LastChar = lastChar, BigBitmap = bigBitmap, CharInfoDict = charInfoDict, };
 
             return result;
         }

@@ -77,9 +77,9 @@
     <Compile Include="Texts\CharacterInfoDictHelper.cs" />
     <Compile Include="Texts\CharacterInfoHelper.cs" />
     <Compile Include="Texts\KeyValuePairHelper.cs" />
-    <Compile Include="Texts\TTFTexture.cs" />
-    <Compile Include="Texts\TTFTextureYieldHelper.cs" />
-    <Compile Include="Texts\TTFTextureHelper.cs" />
+    <Compile Include="Texts\FontTexture.cs" />
+    <Compile Include="Texts\FontTextureYieldHelper.cs" />
+    <Compile Include="Texts\FontTextureHelper.cs" />
     <EmbeddedResource Include="Texts\freetype.frag" />
     <EmbeddedResource Include="Texts\freetype.vert" />
     <Compile Include="Texts\CharacterInfo.cs" />

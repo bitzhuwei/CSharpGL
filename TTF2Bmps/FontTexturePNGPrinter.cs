@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TTF2Bmps
+namespace Font2Bmps
 {
-    class TTFTexturePNGPrinter
+    class FontTexturePNGPrinter
     {
-        private CSharpGL.Objects.Texts.TTFTexture ttfTexture;
+        private CSharpGL.Objects.Texts.FontTexture ttfTexture;
 
-        public TTFTexturePNGPrinter(CSharpGL.Objects.Texts.TTFTexture ttfTexture)
+        public FontTexturePNGPrinter(CSharpGL.Objects.Texts.FontTexture ttfTexture)
         {
             // TODO: Complete member initialization
             this.ttfTexture = ttfTexture;

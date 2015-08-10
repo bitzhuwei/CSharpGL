@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TTF2Bmps
+namespace Font2Bmps
 {
     public partial class FormMain : Form
     {
@@ -51,16 +51,18 @@ namespace TTF2Bmps
                 return;
             }
 
-            this.btnStart.Enabled = false;
-            this.btnBrowseTTFFile.Enabled = false;
-            this.numFontHeight.Enabled = false;
-            this.numMaxTexturWidth.Enabled = false;
-            this.gbFirstUnicode.Enabled = false;
-            this.gbLastUnicode.Enabled = false;
-            this.chkGlyphList.Enabled = false;
+            //this.btnStart.Enabled = false;
+            //this.btnBrowseTTFFile.Enabled = false;
+            //this.numFontHeight.Enabled = false;
+            //this.numMaxTexturWidth.Enabled = false;
+            //this.gbFirstUnicode.Enabled = false;
+            //this.gbLastUnicode.Enabled = false;
+            //this.chkGlyphList.Enabled = false;
+            //this.chkFontHeightLine.Enabled = false;
 
-            this.pgbProgress.Visible = true;
-            this.pgbSingleFileProgress.Visible = true;
+            //this.pgbProgress.Visible = true;
+            //this.pgbSingleFileProgress.Visible = true;
+            WorkingSwitch(true);
 
             int fontHeight = (int)numFontHeight.Value;
             int maxTexturWidth = (int)numMaxTexturWidth.Value;
@@ -72,6 +74,29 @@ namespace TTF2Bmps
                 firstChar, lastChar, this.selectedTTFFiles,
                 generateGlyphList, drawHeightLine);
             this.bgWorker.RunWorkerAsync(data);
+        }
+
+        void WorkingSwitch(bool working)
+        {
+            bool starting = working;
+            bool ended = !working;
+
+            this.btnStart.Enabled = ended;
+            this.btnBrowseTTFFile.Enabled = ended;
+            this.numFontHeight.Enabled = ended;
+            this.numMaxTexturWidth.Enabled = ended;
+            this.gbFirstUnicode.Enabled = ended;
+            this.gbLastUnicode.Enabled = ended;
+            this.chkGlyphList.Enabled = ended;
+            this.chkFontHeightLine.Enabled = ended;
+
+            this.pgbProgress.Visible = starting;
+            this.pgbSingleFileProgress.Visible = starting;
+
+            //this.lblSingleFileProgress.Text = string.Empty;
+            //this.lblTotal.Text = string.Empty;
+            this.lblSingleFileProgress.Visible = starting;
+            this.lblTotal.Visible = starting;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -86,7 +111,7 @@ namespace TTF2Bmps
             int lastIndex = (int)lastChar;
             this.txtLastIndex.Text = lastIndex.ToString();
 
-            this.lblSingleFileProgress.Text = string.Empty;
+            WorkingSwitch(false);
         }
 
         private void rdoFirstChar_CheckedChanged(object sender, EventArgs e)
@@ -190,11 +215,11 @@ namespace TTF2Bmps
 
                 string destFullname = fontFullname + ".png";
 
-                TTFTexture ttfTexture = null;
+                FontTexture ttfTexture = null;
 
                 try
                 {
-                    foreach (var progress in TTFTextureYieldHelper.GetTTFTexture(
+                    foreach (var progress in FontTextureYieldHelper.GetTTFTexture(
                         fontFullname, data.fontHeight, data.firstChar, data.lastChar, data.maxTexturWidth))
                     {
                         ttfTexture = progress.ttfTexture;
@@ -219,13 +244,13 @@ namespace TTF2Bmps
                     }
 
                     {
-                        TTFTextureXmlPrinter printer = new TTFTextureXmlPrinter(ttfTexture);
+                        FontTextureXmlPrinter printer = new FontTextureXmlPrinter(ttfTexture);
                         printer.Print(fontFullname);
                     }
 
                     if (data.generateGlyphList)
                     {
-                        TTFTexturePNGPrinter printer = new TTFTexturePNGPrinter(ttfTexture);
+                        FontTexturePNGPrinter printer = new FontTexturePNGPrinter(ttfTexture);
                         foreach (var progress in printer.Print(fontFullname, data.maxTexturWidth))
                         {
                             bgWorker.ReportProgress(index * magicNumber / count, progress);
@@ -250,7 +275,7 @@ namespace TTF2Bmps
                     progress = magicNumber,
                     message = string.Format("All is done for {0}", fileInfo.Name),
                 };
-                bgWorker.ReportProgress(index++ * magicNumber / count, thisFileDone);
+                bgWorker.ReportProgress(magicNumber, thisFileDone);
 
                 //Process.Start("explorer", destFullname);
             }
@@ -264,6 +289,7 @@ namespace TTF2Bmps
                 if (value < pgbProgress.Minimum) value = pgbProgress.Minimum;
                 if (value > pgbProgress.Maximum) value = pgbProgress.Maximum;
                 pgbProgress.Value = value;
+                this.lblTotal.Text = string.Format("Total: {0}%", value);
             }
             {
                 SingleFileProgress progress = e.UserState as SingleFileProgress;
@@ -274,7 +300,6 @@ namespace TTF2Bmps
 
                 this.lblSingleFileProgress.Text = progress.message;
             }
-
         }
 
         private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -328,16 +353,18 @@ namespace TTF2Bmps
             pgbProgress.Value = pgbProgress.Minimum;
             pgbSingleFileProgress.Value = pgbSingleFileProgress.Minimum;
 
-            this.btnStart.Enabled = true;
-            this.btnBrowseTTFFile.Enabled = true;
-            this.numFontHeight.Enabled = true;
-            this.numMaxTexturWidth.Enabled = true;
-            this.gbFirstUnicode.Enabled = true;
-            this.gbLastUnicode.Enabled = true;
-            this.chkGlyphList.Enabled = true;
+            //this.btnStart.Enabled = true;
+            //this.btnBrowseTTFFile.Enabled = true;
+            //this.numFontHeight.Enabled = true;
+            //this.numMaxTexturWidth.Enabled = true;
+            //this.gbFirstUnicode.Enabled = true;
+            //this.gbLastUnicode.Enabled = true;
+            //this.chkGlyphList.Enabled = true;
+            //this.chkFontHeightLine.Enabled = true;
 
-            this.pgbProgress.Visible = false;
-            this.pgbSingleFileProgress.Visible = false;
+            //this.pgbProgress.Visible = false;
+            //this.pgbSingleFileProgress.Visible = false;
+            WorkingSwitch(false);
         }
 
     }

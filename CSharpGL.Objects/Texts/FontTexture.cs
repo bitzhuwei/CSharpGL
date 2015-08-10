@@ -12,7 +12,7 @@ namespace CSharpGL.Objects.Texts
     /// <summary>
     /// 用一个纹理绘制指定范围内的所有可见字符
     /// </summary>
-    public class TTFTexture : IDisposable
+    public class FontTexture : IDisposable
     {
 
         /// <summary>
@@ -45,10 +45,10 @@ namespace CSharpGL.Objects.Texts
         /// </summary>
         public Dictionary<char, CharacterInfo> CharInfoDict { get; set; }
 
-        internal TTFTexture() { }
+        internal FontTexture() { }
 
         /// <summary>
-        /// 获取一个<see cref="TTFTexture"/>实例。
+        /// 获取一个<see cref="FontTexture"/>实例。
         /// </summary>
         /// <param name="ttfFullname"></param>
         /// <param name="fontHeight"></param>
@@ -56,14 +56,14 @@ namespace CSharpGL.Objects.Texts
         /// <param name="lastChar"></param>
         /// <param name="maxTextureWidth"></param>
         /// <returns></returns>
-        public static TTFTexture GetTTFTexture(string ttfFullname, int fontHeight, char firstChar, char lastChar, int maxTextureWidth)
+        public static FontTexture GetTTFTexture(string ttfFullname, int fontHeight, char firstChar, char lastChar, int maxTextureWidth)
         {
-            var result = TTFTextureHelper.GetTTFTexture(ttfFullname, fontHeight, firstChar, lastChar, maxTextureWidth);
+            var result = FontTextureHelper.GetTTFTexture(ttfFullname, fontHeight, firstChar, lastChar, maxTextureWidth);
 
             return result;
         }
 
-        ~TTFTexture()
+        ~FontTexture()
         {
             this.Dispose();
         }

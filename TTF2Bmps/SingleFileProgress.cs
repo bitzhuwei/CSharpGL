@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TTF2Bmps
+namespace Font2Bmps
 {
 
     class SingleFileProgress

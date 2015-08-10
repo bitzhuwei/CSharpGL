@@ -7,8 +7,8 @@
     <ProjectGuid>{4D781838-957F-4CBB-87F0-BB846AE7FF2F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TTF2Bmps</RootNamespace>
-    <AssemblyName>TTF2Bmps</AssemblyName>
+    <RootNamespace>Font2Bmps</RootNamespace>
+    <AssemblyName>Font2Bmps</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>TTF2Bmps.ico</ApplicationIcon>
+    <ApplicationIcon>Font2Bmps.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -57,12 +57,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TTFTextureXmlPrinter.cs" />
-    <Compile Include="TTFTexturePNGPrinter.cs" />
+    <Compile Include="FontTextureXmlPrinter.cs" />
+    <Compile Include="FontTexturePNGPrinter.cs" />
     <Compile Include="WorkerData.cs" />
     <Compile Include="WorkerResult.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -102,7 +103,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TTF2Bmps.ico" />
+    <Content Include="Font2Bmps.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

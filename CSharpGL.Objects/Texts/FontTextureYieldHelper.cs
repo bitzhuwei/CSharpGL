@@ -11,7 +11,7 @@ using System.Xml.Linq;
 
 namespace CSharpGL.Objects.Texts
 {
-    public static class TTFTextureYieldHelper
+    public static class FontTextureYieldHelper
     {
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace CSharpGL.Objects.Texts
             face.Dispose();
             library.Dispose();
 
-            var result = new TTFTexture()
+            var result = new FontTexture()
             {
                 TtfFullname = ttfFullname,
                 FontHeight = fontHeight,
@@ -70,7 +70,7 @@ namespace CSharpGL.Objects.Texts
             {
                 percent = 100,
                 ttfTexture = result,
-                message = string.Format("got ttf texture for {0}", fileInfo.Name),
+                message = string.Format("got font texture for {0}", fileInfo.Name),
             };
         }
 
@@ -154,7 +154,7 @@ namespace CSharpGL.Objects.Texts
                 yield return new TTFTextureYeildingState()
                 {
                     percent = index++ * 100 / count,
-                    message = string.Format("print glyph for {0}", c),
+                    message = c.ToString(),//string.Format("print glyph for [{0}]", c),
                 };
             }
 
@@ -164,7 +164,7 @@ namespace CSharpGL.Objects.Texts
             {
                 percent = index++ * 100 / count,
                 bigBitmap = bigBitmap,
-                message = string.Format("texture is ready"),
+                message = "texture is ready",
             };
         }
 
@@ -232,7 +232,8 @@ namespace CSharpGL.Objects.Texts
                 yield return new TTFTextureYeildingState()
                 {
                     percent = index++ * 100 / count,
-                    message = string.Format("generating blue print"),
+                    //message = "generating blueprint",
+                    message = "blueprint",
                 };
             }
 
@@ -242,7 +243,7 @@ namespace CSharpGL.Objects.Texts
                 dict = charInfoDict,
                 textureWidth = textureWidth,
                 textureHeight = textureHeight,
-                message = string.Format("generating blue print"),
+                message = "blueprint done",
             };
         }
 
@@ -250,7 +251,7 @@ namespace CSharpGL.Objects.Texts
         {
             public string message;
             public int percent;
-            public TTFTexture ttfTexture;
+            public FontTexture ttfTexture;
             internal System.Drawing.Bitmap bigBitmap;
             internal Dictionary<char, CharacterInfo> dict;
             internal int textureWidth;

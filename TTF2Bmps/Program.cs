@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TTF2Bmps
+namespace Font2Bmps
 {
     static class Program
     {

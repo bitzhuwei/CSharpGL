@@ -7,13 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace TTF2Bmps
+namespace Font2Bmps
 {
-    class TTFTextureXmlPrinter
+    class FontTextureXmlPrinter
     {
-        private CSharpGL.Objects.Texts.TTFTexture ttfTexture;
+        private CSharpGL.Objects.Texts.FontTexture ttfTexture;
 
-        public TTFTextureXmlPrinter(CSharpGL.Objects.Texts.TTFTexture ttfTexture)
+        public FontTextureXmlPrinter(CSharpGL.Objects.Texts.FontTexture ttfTexture)
         {
             // TODO: Complete member initialization
             this.ttfTexture = ttfTexture;
@@ -22,7 +22,7 @@ namespace TTF2Bmps
 
         public void Print(string fontFullname)
         {
-            XElement xElement = TTFTextureHelper.ToXElement(this.ttfTexture);
+            XElement xElement = FontTextureHelper.ToXElement(this.ttfTexture);
             xElement.Save(fontFullname + ".xml");
         }
 
