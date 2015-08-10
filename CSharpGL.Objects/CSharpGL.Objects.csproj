@@ -72,7 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderContexts\RenderContext.cs" />
     <Compile Include="RenderContexts\VersionAttribute.cs" />
-    <Compile Include="RenderMode.cs" />
+    <Compile Include="RenderModes.cs" />
     <Compile Include="Shaders\ShaderProgram.cs" />
     <Compile Include="Texts\CharacterInfoDictHelper.cs" />
     <Compile Include="Texts\CharacterInfoHelper.cs" />
@@ -85,17 +85,17 @@
     <Compile Include="Texts\CharacterInfo.cs" />
     <Compile Include="Texts\ModernSingleTextureFont.cs" />
     <Compile Include="Texts\FreeTypes\BBox.cs" />
-    <Compile Include="Texts\FreeTypes\Bitmap.cs" />
+    <Compile Include="Texts\FreeTypes\FT_BitmapBuffer.cs" />
     <Compile Include="Texts\FreeTypes\FreeTypeObjects.cs" />
     <Compile Include="Texts\FreeTypes\FreeTypeAPI.cs" />
     <Compile Include="Texts\FreeTypes\FreeTypeEnumerations.cs" />
     <Compile Include="Texts\FreeTypes\FT_BitmapGlyph.cs" />
     <Compile Include="Texts\FreeTypes\FT_Face.cs" />
     <Compile Include="Texts\FreeTypes\FT_Library.cs" />
-    <Compile Include="Texts\FreeTypes\Generic.cs" />
-    <Compile Include="Texts\FreeTypes\GlyphRec.cs" />
-    <Compile Include="Texts\FreeTypes\ListRec.cs" />
-    <Compile Include="Texts\FreeTypes\Vector.cs" />
+    <Compile Include="Texts\FreeTypes\FT_Generic.cs" />
+    <Compile Include="Texts\FreeTypes\FT_GlyphRec.cs" />
+    <Compile Include="Texts\FreeTypes\FT_ListRec.cs" />
+    <Compile Include="Texts\FreeTypes\FT_Vector.cs" />
     <Compile Include="SceneElementBase.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -114,7 +114,6 @@
     <Content Include="Texts\FreeTypes\freetype.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Texts\DUMPBIN命令使用详解.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Texts\FreeTypes\freetype.exp" />
