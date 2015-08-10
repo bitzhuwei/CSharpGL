@@ -3,6 +3,10 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL.Objects.Texts.FreeTypes
 {
+    /// <summary>
+    /// FreeType对象的基类型。
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class FreeTypeObjectBase<T> : IDisposable where T : class
     {
         /// <summary>
@@ -91,7 +95,12 @@ namespace CSharpGL.Objects.Texts.FreeTypes
 
         protected override void ReleaseResource()
         {
-            FreeTypeAPI.FT_Done_FreeType(this.pointer);
+            IntPtr ptr = this.pointer;
+            if (ptr != IntPtr.Zero)
+            {
+                FreeTypeAPI.FT_Done_FreeType(ptr);
+                this.pointer = IntPtr.Zero;
+            }
         }
 
     }
@@ -122,7 +131,12 @@ namespace CSharpGL.Objects.Texts.FreeTypes
         /// </summary>
         protected override void ReleaseResource()
         {
-            FreeTypeAPI.FT_Done_Face(this.pointer);
+            IntPtr ptr = this.pointer;
+            if (ptr != IntPtr.Zero)
+            {
+                FreeTypeAPI.FT_Done_Face(this.pointer);
+                this.pointer = IntPtr.Zero;
+            }
         }
 
     }
@@ -136,7 +150,7 @@ namespace CSharpGL.Objects.Texts.FreeTypes
         /// char
         /// </summary>
         public char glyphChar;
-        public GlyphRec glyphRec;
+        public FT_GlyphRec glyphRec;
 
         /// <summary>
         /// 把字形转换为纹理
@@ -162,12 +176,15 @@ namespace CSharpGL.Objects.Texts.FreeTypes
 
             // Here we load the actual glyph for the character
             // 加载此字符的字形
-            int ret = FreeTypeAPI.FT_Load_Glyph(face.pointer, index, FT_LOAD_TYPES.FT_LOAD_DEFAULT);
-            if (ret != 0) { throw new Exception(string.Format("Could not load character '{0}'", Convert.ToChar(c))); }
-
-            int retb = FreeTypeAPI.FT_Get_Glyph(face.obj.glyphrec, out this.pointer);
-            if (retb != 0) return;
-            glyphRec = (GlyphRec)Marshal.PtrToStructure(face.obj.glyphrec, typeof(GlyphRec));
+            {
+                int ret = FreeTypeAPI.FT_Load_Glyph(face.pointer, index, FT_LOAD_TYPES.FT_LOAD_DEFAULT);
+                if (ret != 0) { throw new Exception(string.Format("Could not load character '{0}'", Convert.ToChar(c))); }
+            }
+            {
+                int ret = FreeTypeAPI.FT_Get_Glyph(face.obj.glyphrec, out this.pointer);
+                if (ret != 0) return;
+                this.glyphRec = (FT_GlyphRec)Marshal.PtrToStructure(face.obj.glyphrec, typeof(FT_GlyphRec));
+            }
 
             FreeTypeAPI.FT_Glyph_To_Bitmap(out this.pointer, FT_RENDER_MODES.FT_RENDER_MODE_NORMAL, 0, 1);
             this.obj = (FT_BitmapGlyph)Marshal.PtrToStructure(this.pointer, typeof(FT_BitmapGlyph));

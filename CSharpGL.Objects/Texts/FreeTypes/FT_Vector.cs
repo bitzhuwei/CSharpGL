@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Texts.FreeTypes
 {
-
     [StructLayout(LayoutKind.Sequential)]
-    public class GlyphRec
+    public class FT_Vector
     {
-        public System.IntPtr library;
-        public System.IntPtr clazz;
-        public int format;
-        public Vector advance;
+        public int x;
+        public int y;
     }
 }

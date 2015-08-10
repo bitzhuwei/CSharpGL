@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Texts.FreeTypes
 {
+    /// <summary>
+    /// 封装了一些FreeType的函数。
+    /// </summary>
     public static class FreeTypeAPI
     {
         const string freetypeDll = @"Texts\FreeTypes\freetype.dll";
@@ -35,18 +38,22 @@ namespace CSharpGL.Objects.Texts.FreeTypes
             string fname,
             int index,
             out System.IntPtr face);
+
         [DllImport(freetypeDll, CallingConvention = CallingConvention.Cdecl)]
         public static extern void FT_Set_Char_Size(System.IntPtr face,
             int width,
             int height,
             int horz_resolution,
             int vert_resolution);
+
         [DllImport(freetypeDll, CallingConvention = CallingConvention.Cdecl)]
         public static extern void FT_Set_Pixel_Sizes(System.IntPtr face,
             int pixel_width,
             int pixel_height);
+
         [DllImport(freetypeDll, CallingConvention = CallingConvention.Cdecl)]
         public static extern void FT_Done_Face(System.IntPtr face);
+
         [DllImport(freetypeDll, CallingConvention = CallingConvention.Cdecl)]
         public static extern int FT_Get_Char_Index(System.IntPtr face, int c);
 
@@ -61,9 +68,11 @@ namespace CSharpGL.Objects.Texts.FreeTypes
         public static extern int FT_Load_Glyph(System.IntPtr face,
             int index,
             FT_LOAD_TYPES flags);
+
         [DllImport(freetypeDll, CallingConvention = CallingConvention.Cdecl)]
         public static extern int FT_Get_Glyph(System.IntPtr glyphrec,
             out System.IntPtr glyph);
+
         [DllImport(freetypeDll, CallingConvention = CallingConvention.Cdecl)]
         public static extern void FT_Glyph_To_Bitmap(out System.IntPtr glyph,
             FT_RENDER_MODES render_mode,

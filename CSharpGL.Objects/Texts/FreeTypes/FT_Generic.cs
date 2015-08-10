@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Texts.FreeTypes
 {
+
     [StructLayout(LayoutKind.Sequential)]
-    public class ListRec
+    public class FT_Generic
     {
-        public System.IntPtr head;
-        public System.IntPtr tail;
+        public System.IntPtr data;
+        public System.IntPtr finalizer;
     }
 }

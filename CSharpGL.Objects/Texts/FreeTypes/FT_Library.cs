@@ -11,7 +11,7 @@ namespace CSharpGL.Objects.Texts.FreeTypes
     public class FT_Library
     {
         public System.IntPtr memory;
-        public Generic generic;
+        public FT_Generic generic;
         public int major;
         public int minor;
         public int patch;
@@ -20,7 +20,7 @@ namespace CSharpGL.Objects.Texts.FreeTypes
         public System.IntPtr module11, module12, module13, module14, module15, module16, module17, module18, module19, module20;
         public System.IntPtr module21, module22, module23, module24, module25, module26, module27, module28, module29, module30;
         public System.IntPtr module31;
-        public ListRec renderers;
+        public FT_ListRec renderers;
         public System.IntPtr renderer;
         public System.IntPtr auto_hinter;
         public System.IntPtr raster_pool;

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Texts.FreeTypes
 {
+    /// <summary>
+    /// 字形的包围盒。
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public class BBox
     {

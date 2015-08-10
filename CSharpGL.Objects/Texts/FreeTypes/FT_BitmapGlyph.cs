@@ -10,13 +10,13 @@ namespace CSharpGL.Objects.Texts.FreeTypes
     [StructLayout(LayoutKind.Sequential)]
     public class FT_BitmapGlyph
     {
-        public GlyphRec root;
+        public FT_GlyphRec root;
         public int left;
         /// <summary>
         /// 基线高度。
         /// </summary>
         public int top;
-        public Bitmap bitmap;
+        public FT_BitmapBuffer bitmap;
     }
 
 }

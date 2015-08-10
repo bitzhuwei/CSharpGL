@@ -9,9 +9,11 @@ namespace CSharpGL.Objects.Texts.FreeTypes
 {
 
     [StructLayout(LayoutKind.Sequential)]
-    public class Generic
+    public class FT_GlyphRec
     {
-        public System.IntPtr data;
-        public System.IntPtr finalizer;
+        public System.IntPtr library;
+        public System.IntPtr clazz;
+        public int format;
+        public FT_Vector advance;
     }
 }

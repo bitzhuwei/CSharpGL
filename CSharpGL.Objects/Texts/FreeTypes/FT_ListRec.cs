@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace CSharpGL.Objects.Texts.FreeTypes
 {
     [StructLayout(LayoutKind.Sequential)]
-    public class Vector
+    public class FT_ListRec
     {
-        public int x;
-        public int y;
+        public System.IntPtr head;
+        public System.IntPtr tail;
     }
 }

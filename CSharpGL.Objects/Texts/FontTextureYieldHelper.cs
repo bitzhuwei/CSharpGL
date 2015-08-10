@@ -197,6 +197,22 @@ namespace CSharpGL.Objects.Texts
             for (char c = firstChar; c <= lastChar; c++)
             {
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, fontHeight);
+                {
+                    var rect = glyph.glyphRec;
+                    var glyphChar = glyph.glyphChar;
+                    var left = glyph.obj.left;
+                    var top = glyph.obj.top;
+                    var x = glyph.obj.root.advance.x >> 6;
+                    var y = glyph.obj.root.advance.y >> 6;
+                    var clazz = glyph.obj.root.clazz;
+                    var format = glyph.obj.root.format;
+                    var library = glyph.obj.root.library;
+                    var num_grays = glyph.obj.bitmap.num_grays;
+                    var palette = glyph.obj.bitmap.palette;
+                    var palette_mode = glyph.obj.bitmap.palette_mode;
+                    var pitch = glyph.obj.bitmap.pitch;
+                    var pixel_mode = glyph.obj.bitmap.pixel_mode;
+                }
 
                 bool zeroSize = (glyph.obj.bitmap.rows == 0 && glyph.obj.bitmap.width == 0);
 

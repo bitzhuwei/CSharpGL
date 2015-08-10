@@ -24,7 +24,7 @@ namespace CSharpGL.Objects.Texts.FreeTypes
         public System.IntPtr available_sizes;
         public int num_charmaps;
         public System.IntPtr charmaps;
-        public Generic generic;
+        public FT_Generic generic;
         public BBox box;
         public ushort units_per_EM;
         public short ascender;
@@ -40,8 +40,8 @@ namespace CSharpGL.Objects.Texts.FreeTypes
         public System.IntPtr driver;
         public System.IntPtr memory;
         public System.IntPtr stream;
-        public ListRec sizes_list;
-        public Generic autohint;
+        public FT_ListRec sizes_list;
+        public FT_Generic autohint;
         public System.IntPtr extensions;
         public System.IntPtr internal_face;
 
