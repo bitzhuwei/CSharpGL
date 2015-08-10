@@ -40,5 +40,10 @@ namespace CSharpGL.Winforms.Demo
             (new FormModernSingleTextureFont()).Show();
         }
 
+        private void btnScientificCamera_Click(object sender, EventArgs e)
+        {
+            (new FormScientificCamera()).Show();
+        }
+
     }
 }
