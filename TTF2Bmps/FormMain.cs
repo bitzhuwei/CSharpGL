@@ -220,7 +220,7 @@ namespace Font2Bmps
                 try
                 {
                     foreach (var progress in FontTextureYieldHelper.GetTTFTexture(
-                        fontFullname, data.fontHeight, data.firstChar, data.lastChar, data.maxTexturWidth))
+                        fontFullname, data.fontHeight, data.maxTexturWidth, data.firstChar, data.lastChar))
                     {
                         ttfTexture = progress.ttfTexture;
                         var singleFileProgress = new SingleFileProgress() { progress = progress.percent, message = progress.message };
