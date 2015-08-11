@@ -115,14 +115,28 @@ namespace CSharpGL.Objects.Texts
             {
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, fontHeight);
                 int size = glyph.obj.bitmap.width * glyph.obj.bitmap.rows;
-                bool zeroBuffer = glyph.obj.bitmap.buffer == IntPtr.Zero;
-                if ((size == 0) && (!zeroBuffer)) { throw new Exception(string.Format("glyph size({0}) for non zero buffer({1})", 0, glyph.obj.bitmap.buffer)); }
-                if ((!(size == 0)) && zeroBuffer) { throw new Exception(string.Format("glyph size({0}) for zero buffer({1})", size, glyph.obj.bitmap.buffer)); }
 
-                if (!(size == 0))
                 {
-                    byte[] byteBitmap = new byte[size];
+                    bool zeroBuffer = glyph.obj.bitmap.buffer == IntPtr.Zero;
+                    if ((size == 0) && (!zeroBuffer)) { throw new Exception(string.Format("glyph size({0}) for non zero buffer({1})", 0, glyph.obj.bitmap.buffer)); }
+                    if ((size != 0) && zeroBuffer) { throw new Exception(string.Format("glyph size({0}) for zero buffer({1})", size, glyph.obj.bitmap.buffer)); }
+                }
+
+                byte[] byteBitmap = null;
+
+                if ((c == ' ') && (size == 0))
+                {
+                    size = charInfoDict[' '].width * charInfoDict[' '].height;
+                    byteBitmap = new byte[size];
+                }
+                else if (size != 0)
+                {
+                    byteBitmap = new byte[size];
                     Marshal.Copy(glyph.obj.bitmap.buffer, byteBitmap, 0, byteBitmap.Length);
+                }
+
+                if (size != 0)
+                {
                     CharacterInfo cInfo;
                     if (charInfoDict.TryGetValue(c, out cInfo))
                     {
@@ -199,15 +213,24 @@ namespace CSharpGL.Objects.Texts
 
                 bool zeroSize = (glyph.obj.bitmap.rows == 0 && glyph.obj.bitmap.width == 0);
 
-                bool zeroBuffer = glyph.obj.bitmap.buffer == IntPtr.Zero;
-                if (zeroSize && (!zeroBuffer)) { throw new Exception(); }
-                if ((!zeroSize) && zeroBuffer) { throw new Exception(); }
+                {
+                    bool zeroBuffer = glyph.obj.bitmap.buffer == IntPtr.Zero;
+                    if (zeroSize && (!zeroBuffer)) { throw new Exception(); }
+                    if ((!zeroSize) && zeroBuffer) { throw new Exception(); }
+                }
+
+                int glyphWidth = glyph.obj.bitmap.width;
+                int glyphHeight = glyph.obj.bitmap.rows;
+
+                if (c == ' ' && zeroSize)// 空格需要特殊处理
+                {
+                    zeroSize = false;
+                    glyphWidth = fontHeight / 2;
+                    glyphHeight = fontHeight;
+                }
 
                 if (!zeroSize)
                 {
-                    int glyphWidth = glyph.obj.bitmap.width;
-                    int glyphHeight = glyph.obj.bitmap.rows;
-
                     if (glyphXOffset + glyphWidth + 1 <= maxTextureWidth)
                     {
                         textureWidth = Math.Max(textureWidth, glyphXOffset + glyphWidth + 1);
