@@ -53,11 +53,11 @@
     <Compile Include="FormCylinderVAOElement.Designer.cs">
       <DependentUpon>FormCylinderVAOElement.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormModernSingleTextureFont.cs">
+    <Compile Include="FormFontElement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormModernSingleTextureFont.Designer.cs">
-      <DependentUpon>FormModernSingleTextureFont.cs</DependentUpon>
+    <Compile Include="FormFontElement.Designer.cs">
+      <DependentUpon>FormFontElement.cs</DependentUpon>
     </Compile>
     <Compile Include="FormPyramidVAOElement.cs">
       <SubType>Form</SubType>
@@ -97,8 +97,8 @@
     <EmbeddedResource Include="FormCylinderVAOElement.resx">
       <DependentUpon>FormCylinderVAOElement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormModernSingleTextureFont.resx">
-      <DependentUpon>FormModernSingleTextureFont.cs</DependentUpon>
+    <EmbeddedResource Include="FormFontElement.resx">
+      <DependentUpon>FormFontElement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPyramidVAOElement.resx">
       <DependentUpon>FormPyramidVAOElement.cs</DependentUpon>

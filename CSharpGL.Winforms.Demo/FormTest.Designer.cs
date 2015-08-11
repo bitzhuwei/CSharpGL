@@ -72,7 +72,7 @@
             this.btnModernSingleTextureFont.Name = "btnModernSingleTextureFont";
             this.btnModernSingleTextureFont.Size = new System.Drawing.Size(353, 29);
             this.btnModernSingleTextureFont.TabIndex = 4;
-            this.btnModernSingleTextureFont.Text = "ModernSingleTextureFont";
+            this.btnModernSingleTextureFont.Text = "FontElement";
             this.btnModernSingleTextureFont.UseVisualStyleBackColor = true;
             this.btnModernSingleTextureFont.Click += new System.EventHandler(this.btnFreeTypeTextVAOElement_Click);
             // 

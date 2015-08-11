@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Winforms.Demo
 {
-    partial class FormModernSingleTextureFont
+    partial class FormFontElement
     {
         /// <summary>
         /// Required designer variable.

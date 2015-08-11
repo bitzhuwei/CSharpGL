@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
 {
-    public partial class FormModernSingleTextureFont : Form
+    public partial class FormFontElement : Form
     {
         ScientificCamera camera; //= new ScientificCamera(CameraTypes.Ortho);
 
@@ -16,7 +16,7 @@ namespace CSharpGL.Winforms.Demo
 
         FontElement element;// = new ModernSingleTextureFont("simsun.ttf");
         private float rotation;
-        public FormModernSingleTextureFont()
+        public FormFontElement()
         {
             InitializeComponent();
 

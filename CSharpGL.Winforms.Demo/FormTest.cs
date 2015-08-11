@@ -52,7 +52,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void btnFreeTypeTextVAOElement_Click(object sender, EventArgs e)
         {
-            (new FormModernSingleTextureFont()).Show();
+            (new FormFontElement()).Show();
         }
 
     }
