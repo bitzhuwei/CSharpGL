@@ -208,9 +208,9 @@ namespace CSharpGL.Objects.Texts
                     int glyphWidth = glyph.obj.bitmap.width;
                     int glyphHeight = glyph.obj.bitmap.rows;
 
-                    if (glyphXOffset + glyphWidth <= maxTextureWidth)
+                    if (glyphXOffset + glyphWidth + 1 <= maxTextureWidth)
                     {
-                        textureWidth = Math.Max(textureWidth, glyphXOffset + glyphWidth);
+                        textureWidth = Math.Max(textureWidth, glyphXOffset + glyphWidth + 1);
                     }
                     else// 此字形将超出最大宽度，所以要换行。
                     {
@@ -225,8 +225,7 @@ namespace CSharpGL.Objects.Texts
                     cInfo.width = glyphWidth; cInfo.height = glyphHeight;
                     charInfoDict.Add(c, cInfo);
 
-                    //glyphXOffset += glyphWidth + 1;
-                    glyphXOffset += glyphWidth;
+                    glyphXOffset += glyphWidth + 1;
                 }
 
                 if (c == char.MaxValue) { break; }
