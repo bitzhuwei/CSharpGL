@@ -13,7 +13,7 @@ namespace Font2Bmps
         public char lastChar;
         public string[] selectedTTFFiles;
         public bool generateGlyphList;
-        public bool drawHeightLine;
+        public bool drawBBox;
 
         public WorkerData(int fontHeight, int maxTexturWidth,
             char firstChar, char lastChar, string[] selectedTTFFiles,
@@ -26,7 +26,7 @@ namespace Font2Bmps
             this.lastChar = lastChar;
             this.selectedTTFFiles = selectedTTFFiles;
             this.generateGlyphList = generateGlyphList;
-            this.drawHeightLine = drawHeightLine;
+            this.drawBBox = drawHeightLine;
         }
     }
 }

@@ -68,11 +68,11 @@ namespace Font2Bmps
             int maxTexturWidth = (int)numMaxTexturWidth.Value;
             char firstChar = (char)int.Parse(this.txtFirstIndex.Text);
             char lastChar = (char)int.Parse(this.txtLastIndex.Text);
-            bool generateGlyphList = this.chkGlyphList.Checked;
-            bool drawHeightLine = this.chkFontHeightLine.Checked;
+            bool generateGlyphList = this.chkDumpGlyphList.Checked;
+            bool drawBBox = this.chkDrawBBox.Checked;
             WorkerData data = new WorkerData(fontHeight, maxTexturWidth,
                 firstChar, lastChar, this.selectedTTFFiles,
-                generateGlyphList, drawHeightLine);
+                generateGlyphList, drawBBox);
             this.bgWorker.RunWorkerAsync(data);
         }
 
@@ -87,8 +87,8 @@ namespace Font2Bmps
             this.numMaxTexturWidth.Enabled = ended;
             this.gbFirstUnicode.Enabled = ended;
             this.gbLastUnicode.Enabled = ended;
-            this.chkGlyphList.Enabled = ended;
-            this.chkFontHeightLine.Enabled = ended;
+            this.chkDumpGlyphList.Enabled = ended;
+            this.chkDrawBBox.Enabled = ended;
 
             this.pgbProgress.Visible = starting;
             this.pgbSingleFileProgress.Visible = starting;
@@ -236,43 +236,22 @@ namespace Font2Bmps
                         }
                     }
 
-                    if (data.drawHeightLine)
+                    System.Drawing.Bitmap bigBitmap = ttfTexture.BigBitmap;
+                    if (data.drawBBox)
                     {
-                        System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(ttfTexture.BigBitmap);
                         Graphics g = Graphics.FromImage(bigBitmap);
                         int vertialLineIndex = 0;
                         int characterCount = ttfTexture.CharInfoDict.Values.Count;
                         int lastPercent = 0;
                         foreach (var item in ttfTexture.CharInfoDict.Values)
                         {
-                            Point leftTop = new Point(item.xoffset, item.yoffset);
-                            Point leftBottom = new Point(item.xoffset, item.yoffset + ttfTexture.FontHeight - 1);
-                            Point rightTop = new Point(item.xoffset + item.width - 1, item.yoffset);
-                            Point rightBottom = new Point(item.xoffset + item.width - 1, item.yoffset + ttfTexture.FontHeight - 1);
-                            // 上边
-                            g.DrawLine(pen, leftTop, rightTop);
-                            // 下边
-                            g.DrawLine(anotherPen, leftBottom, rightBottom);
-                            // 左边
-                            g.DrawLine(pen, leftTop, leftBottom);
-                            // 右边
-                            g.DrawLine(anotherPen, rightTop, rightBottom);
-                            //// 上边
-                            //g.DrawLine(pen,
-                            //    new Point(item.xoffset, item.yoffset),
-                            //    new Point(item.xoffset + item.width - 1, item.yoffset));
-                            //// 下边
-                            //g.DrawLine(anotherPen,
-                            //    new Point(item.xoffset, item.yoffset + ttfTexture.FontHeight),
-                            //    new Point(item.xoffset + item.width - 1, item.yoffset + ttfTexture.FontHeight - 1));
-                            //// 左边
-                            //g.DrawLine(pen,
-                            //    new Point(item.xoffset, item.yoffset),
-                            //    new Point(item.xoffset, item.yoffset + ttfTexture.FontHeight));
-                            //// 右边
-                            //g.DrawLine(anotherPen,
-                            //    new Point(item.xoffset + item.width - 1, item.yoffset),
-                            //    new Point(item.xoffset + item.width - 1, item.yoffset + ttfTexture.FontHeight - 1));
+                            int left = item.xoffset;
+                            int right = item.xoffset + item.width - 1;
+                            int top = item.yoffset;
+                            int bottom = item.yoffset + ttfTexture.FontHeight - 1;
+                            Point[] points = new Point[] { new Point(left, top), new Point(right, top), new Point(right, bottom), new Point(left, bottom), new Point(left, top) };
+                            g.DrawLines(pen, points);
+
                             int percent = vertialLineIndex++ * 100 / characterCount;
                             if (percent != lastPercent)
                             {
@@ -281,13 +260,11 @@ namespace Font2Bmps
                                 lastPercent = percent;
                             }
                         }
+                        g.Dispose();
                         bigBitmap.Save(destFullname);
-                        bigBitmap.Dispose();
                     }
-                    else
-                    {
-                        ttfTexture.BigBitmap.Save(destFullname);
-                    }
+
+                    bigBitmap.Save(destFullname);
 
                     {
                         FontTextureXmlPrinter printer = new FontTextureXmlPrinter(ttfTexture);
@@ -310,10 +287,10 @@ namespace Font2Bmps
                     result.builder = builder;
                 }
 
-                builder.AppendLine("sucessfully done!");
-                builder.AppendLine();
-
                 if (ttfTexture != null) { ttfTexture.Dispose(); }
+
+                if (result.builder != builder) { builder.AppendLine("sucessfully done!"); }
+                builder.AppendLine();
 
                 SingleFileProgress thisFileDone = new SingleFileProgress()
                 {
@@ -322,20 +299,11 @@ namespace Font2Bmps
                     message = string.Format("All is done for {0}", fileInfo.Name),
                 };
                 bgWorker.ReportProgress(fontFileIndex++ * magicNumber / fontFileCount, thisFileDone);
-                //bgWorker.ReportProgress(magicNumber, thisFileDone);
-
-                //Process.Start("explorer", destFullname);
             }
         }
 
         const int horizontalFactor = 1;
-        const int verticalFactor = 1;
         Pen pen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, };
-        Pen anotherPen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, DashOffset = horizontalFactor };
-        Pen evenHorizontalLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, };
-        Pen oddHorizontalLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, DashOffset = horizontalFactor };
-        Pen evenVerticalLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { verticalFactor, verticalFactor }, };
-        Pen oddVerticalLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { verticalFactor, verticalFactor }, DashOffset = verticalFactor };
 
         private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {

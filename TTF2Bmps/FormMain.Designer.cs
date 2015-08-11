@@ -51,9 +51,9 @@
             this.pgbProgress = new System.Windows.Forms.ProgressBar();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.pgbSingleFileProgress = new System.Windows.Forms.ProgressBar();
-            this.chkGlyphList = new System.Windows.Forms.CheckBox();
+            this.chkDumpGlyphList = new System.Windows.Forms.CheckBox();
             this.lblSingleFileProgress = new System.Windows.Forms.Label();
-            this.chkFontHeightLine = new System.Windows.Forms.CheckBox();
+            this.chkDrawBBox = new System.Windows.Forms.CheckBox();
             this.lblTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numFontHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxTexturWidth)).BeginInit();
@@ -320,13 +320,13 @@
             //
             // chkGlyphList
             //
-            this.chkGlyphList.AutoSize = true;
-            this.chkGlyphList.Location = new System.Drawing.Point(19, 110);
-            this.chkGlyphList.Name = "chkGlyphList";
-            this.chkGlyphList.Size = new System.Drawing.Size(109, 19);
-            this.chkGlyphList.TabIndex = 10;
-            this.chkGlyphList.Text = "glyph list";
-            this.chkGlyphList.UseVisualStyleBackColor = true;
+            this.chkDumpGlyphList.AutoSize = true;
+            this.chkDumpGlyphList.Location = new System.Drawing.Point(19, 110);
+            this.chkDumpGlyphList.Name = "chkGlyphList";
+            this.chkDumpGlyphList.Size = new System.Drawing.Size(109, 19);
+            this.chkDumpGlyphList.TabIndex = 10;
+            this.chkDumpGlyphList.Text = "Dump glyph list";
+            this.chkDumpGlyphList.UseVisualStyleBackColor = true;
             //
             // lblSingleFileProgress
             //
@@ -343,15 +343,15 @@
             //
             // chkFontHeightLine
             //
-            this.chkFontHeightLine.AutoSize = true;
-            this.chkFontHeightLine.Checked = true;
-            this.chkFontHeightLine.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkFontHeightLine.Location = new System.Drawing.Point(19, 135);
-            this.chkFontHeightLine.Name = "chkFontHeightLine";
-            this.chkFontHeightLine.Size = new System.Drawing.Size(117, 19);
-            this.chkFontHeightLine.TabIndex = 10;
-            this.chkFontHeightLine.Text = "height line";
-            this.chkFontHeightLine.UseVisualStyleBackColor = true;
+            this.chkDrawBBox.AutoSize = true;
+            this.chkDrawBBox.Checked = true;
+            this.chkDrawBBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDrawBBox.Location = new System.Drawing.Point(19, 135);
+            this.chkDrawBBox.Name = "chkFontHeightLine";
+            this.chkDrawBBox.Size = new System.Drawing.Size(117, 19);
+            this.chkDrawBBox.TabIndex = 10;
+            this.chkDrawBBox.Text = "Draw BBox";
+            this.chkDrawBBox.UseVisualStyleBackColor = true;
             //
             // lblTotal
             //
@@ -370,8 +370,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1135, 167);
-            this.Controls.Add(this.chkFontHeightLine);
-            this.Controls.Add(this.chkGlyphList);
+            this.Controls.Add(this.chkDrawBBox);
+            this.Controls.Add(this.chkDumpGlyphList);
             this.Controls.Add(this.pgbSingleFileProgress);
             this.Controls.Add(this.pgbProgress);
             this.Controls.Add(this.gbLastUnicode);
@@ -427,9 +427,9 @@
         private System.Windows.Forms.ProgressBar pgbProgress;
         private System.ComponentModel.BackgroundWorker bgWorker;
         private System.Windows.Forms.ProgressBar pgbSingleFileProgress;
-        private System.Windows.Forms.CheckBox chkGlyphList;
+        private System.Windows.Forms.CheckBox chkDumpGlyphList;
         private System.Windows.Forms.Label lblSingleFileProgress;
-        private System.Windows.Forms.CheckBox chkFontHeightLine;
+        private System.Windows.Forms.CheckBox chkDrawBBox;
         private System.Windows.Forms.Label lblTotal;
     }
 }
