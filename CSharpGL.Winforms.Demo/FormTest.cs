@@ -45,5 +45,10 @@ namespace CSharpGL.Winforms.Demo
             (new FormScientificCamera()).Show();
         }
 
+        private void btnSatelliteRotation_Click(object sender, EventArgs e)
+        {
+            (new FormSatelliteRotation()).Show();
+        }
+
     }
 }

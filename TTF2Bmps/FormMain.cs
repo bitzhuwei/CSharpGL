@@ -227,13 +227,19 @@ namespace Font2Bmps
                         bgWorker.ReportProgress(index * magicNumber / count, singleFileProgress);
                     }
 
-                    if(data.drawHeightLine)
+                    if (data.drawHeightLine)
                     {
                         System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(ttfTexture.BigBitmap);
                         Graphics g = Graphics.FromImage(bigBitmap);
                         for (int row = 0; row < bigBitmap.Height; row += ttfTexture.FontHeight)
                         {
-                            g.DrawLine(redDotPen, new Point(0, row - 1), new Point(bigBitmap.Width, row - 1));
+                            Pen pen = (row / ttfTexture.FontHeight) % 2 == 0 ? evenLinePen : oddLinePen;
+                            g.DrawLine(pen,
+                                new Point(0, row),
+                                new Point(bigBitmap.Width, row));
+                            g.DrawLine(pen,
+                                new Point(0, row + ttfTexture.FontHeight - 1),
+                                new Point(bigBitmap.Width, row + ttfTexture.FontHeight - 1));
                         }
                         bigBitmap.Save(destFullname);
                         bigBitmap.Dispose();
@@ -282,7 +288,9 @@ namespace Font2Bmps
             }
         }
 
-        Pen redDotPen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { 5, 5 } };
+        Pen evenLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { 5, 15 }, };
+        Pen oddLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { 5, 15 }, DashOffset = 10 };
+
         private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             {

@@ -33,6 +33,7 @@
             this.btnModernSingleTextureFont = new System.Windows.Forms.Button();
             this.btnPyramidVAOElement = new System.Windows.Forms.Button();
             this.btnScientificCamera = new System.Windows.Forms.Button();
+            this.btnSatelliteRotation = new System.Windows.Forms.Button();
             this.SuspendLayout();
             //
             // btnUnmanagedArray
@@ -100,11 +101,25 @@
             this.btnScientificCamera.UseVisualStyleBackColor = true;
             this.btnScientificCamera.Click += new System.EventHandler(this.btnScientificCamera_Click);
             //
+            // btnSatelliteRotation
+            //
+            this.btnSatelliteRotation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSatelliteRotation.Location = new System.Drawing.Point(13, 199);
+            this.btnSatelliteRotation.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSatelliteRotation.Name = "btnSatelliteRotation";
+            this.btnSatelliteRotation.Size = new System.Drawing.Size(353, 29);
+            this.btnSatelliteRotation.TabIndex = 0;
+            this.btnSatelliteRotation.Text = "SatelliteRotation";
+            this.btnSatelliteRotation.UseVisualStyleBackColor = true;
+            this.btnSatelliteRotation.Click += new System.EventHandler(this.btnSatelliteRotation_Click);
+            //
             // FormTest
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 328);
+            this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnScientificCamera);
             this.Controls.Add(this.btnModernSingleTextureFont);
             this.Controls.Add(this.btnPyramidVAOElement);
@@ -124,5 +139,6 @@
         private System.Windows.Forms.Button btnModernSingleTextureFont;
         private System.Windows.Forms.Button btnPyramidVAOElement;
         private System.Windows.Forms.Button btnScientificCamera;
+        private System.Windows.Forms.Button btnSatelliteRotation;
     }
 }

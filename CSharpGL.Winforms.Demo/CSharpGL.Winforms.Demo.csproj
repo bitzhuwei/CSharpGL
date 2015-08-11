@@ -65,6 +65,12 @@
     <Compile Include="FormPyramidVAOElement.Designer.cs">
       <DependentUpon>FormPyramidVAOElement.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSatelliteRotation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSatelliteRotation.Designer.cs">
+      <DependentUpon>FormSatelliteRotation.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormScientificCamera.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPyramidVAOElement.resx">
       <DependentUpon>FormPyramidVAOElement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSatelliteRotation.resx">
+      <DependentUpon>FormSatelliteRotation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormScientificCamera.resx">
       <DependentUpon>FormScientificCamera.cs</DependentUpon>
