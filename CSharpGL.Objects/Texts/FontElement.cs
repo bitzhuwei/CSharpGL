@@ -21,7 +21,9 @@ namespace CSharpGL.Objects.Texts
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_TexCoord = "in_TexCoord";
-        public const string strtransformMatrix = "transformMatrix";
+        public const string strprojectionMatrix = "projectionMatrix";
+        public const string strviewMatrix = "viewMatrix";
+        public const string strmodelMatrix = "modelMatrix";
         public const string strtex = "tex";
         public const string strcolor = "color";
 

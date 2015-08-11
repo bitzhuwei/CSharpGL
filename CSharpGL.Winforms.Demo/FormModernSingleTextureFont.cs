@@ -47,12 +47,14 @@ namespace CSharpGL.Winforms.Demo
             satelliteRoration = new SatelliteRotator(camera);
 
             //element = new ModernSingleTextureFont("simsun.ttf", 48, '祝', '神');//char.MinValue, char.MaxValue);
-            element = new FontElement("simsun.ttf", 48, '一', '龟');//包含了几乎所有汉字字符
+            //element = new FontElement("simsun.ttf", 48, '一', '龟');//包含了几乎所有汉字字符
+            element = new FontElement("simsun.ttf", 48, '!', '~');
 
             element.Initialize();
 
             //element.SetText("祝神");
-            element.SetText("一龟");
+            //element.SetText("一龟");
+            element.SetText("Thequickbrownfoxjumpsoverthelazydog!");
 
             element.BeforeRendering += element_BeforeRendering;
             element.AfterRendering += element_AfterRendering;
@@ -89,25 +91,15 @@ namespace CSharpGL.Winforms.Demo
 
             shaderProgram.Bind();
 
-            shaderProgram.SetUniform(FontElement.strtex, texture);
 
             mat4 projectionMatrix = this.camera.GetProjectionMat4();
             mat4 viewMatrix = this.camera.GetViewMat4();
-            mat4 matrix = projectionMatrix * viewMatrix;
-            shaderProgram.SetUniformMatrix4(FontElement.strtransformMatrix, matrix.to_array());
-
-            const float scale = 3.5f;
-            rotation += 0.1f;
-            mat4 transformMatrix = glm.translate(mat4.identity(), new vec3(0, -2, 0));
-            transformMatrix = glm.rotate(transformMatrix, rotation, new vec3(0, 1, 0));
-            transformMatrix = glm.scale(transformMatrix, new vec3(scale, scale, scale));
-            //shader.SetUniformMatrix4("transformMatrix", transformMatrix.to_array());
-
+            mat4 modelMatrix = mat4.identity();
+            shaderProgram.SetUniformMatrix4(FontElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(FontElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(FontElement.strmodelMatrix, modelMatrix.to_array());
             shaderProgram.SetUniform(FontElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
-            //GL.Uniform1(this.texLocation, this.texture[0]);
-            //GL.Uniform4(this.colorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
-            //GL.Uniform4(this.colorLocation, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
-
+            shaderProgram.SetUniform(FontElement.strtex, texture);
         }
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
