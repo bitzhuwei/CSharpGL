@@ -14,7 +14,7 @@ namespace CSharpGL.Winforms.Demo
 
         SatelliteRotation satelliteRoration;
 
-        ModernSingleTextureFont element;// = new ModernSingleTextureFont("simsun.ttf");
+        FontElement element;// = new ModernSingleTextureFont("simsun.ttf");
         private float rotation;
         public FormModernSingleTextureFont()
         {
@@ -47,7 +47,7 @@ namespace CSharpGL.Winforms.Demo
             satelliteRoration = new SatelliteRotation(camera);
 
             //element = new ModernSingleTextureFont("simsun.ttf", 48, '祝', '神');//char.MinValue, char.MaxValue);
-            element = new ModernSingleTextureFont("simsun.ttf", 48, '一', '龟');//包含了几乎所有汉字字符
+            element = new FontElement("simsun.ttf", 48, '一', '龟');//包含了几乎所有汉字字符
 
             element.Initialize();
 
@@ -89,12 +89,12 @@ namespace CSharpGL.Winforms.Demo
 
             shaderProgram.Bind();
 
-            shaderProgram.SetUniform(ModernSingleTextureFont.strtex, texture);
+            shaderProgram.SetUniform(FontElement.strtex, texture);
 
             mat4 projectionMatrix = this.camera.GetProjectionMat4();
             mat4 viewMatrix = this.camera.GetViewMat4();
             mat4 matrix = projectionMatrix * viewMatrix;
-            shaderProgram.SetUniformMatrix4(ModernSingleTextureFont.strtransformMatrix, matrix.to_array());
+            shaderProgram.SetUniformMatrix4(FontElement.strtransformMatrix, matrix.to_array());
 
             const float scale = 3.5f;
             rotation += 0.1f;
@@ -103,7 +103,7 @@ namespace CSharpGL.Winforms.Demo
             transformMatrix = glm.scale(transformMatrix, new vec3(scale, scale, scale));
             //shader.SetUniformMatrix4("transformMatrix", transformMatrix.to_array());
 
-            shaderProgram.SetUniform(ModernSingleTextureFont.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
+            shaderProgram.SetUniform(FontElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
             //GL.Uniform1(this.texLocation, this.texture[0]);
             //GL.Uniform4(this.colorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
             //GL.Uniform4(this.colorLocation, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
