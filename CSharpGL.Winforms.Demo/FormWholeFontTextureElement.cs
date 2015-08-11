@@ -18,10 +18,6 @@ namespace CSharpGL.Winforms.Demo
         SatelliteRotator rotator;
         ScientificCamera camera;
         WholeFontTextureElement element;
-        public mat4 projectionMatrix;
-        public mat4 viewMatrix;
-        public mat4 modelMatrix;
-        private float rotation;
 
         public FormWholeFontTextureElement()
         {
@@ -79,17 +75,18 @@ namespace CSharpGL.Winforms.Demo
                 GL.Enable(GL.GL_BLEND);
                 GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
             }
-            //rotation += 3.0f;
-            modelMatrix = mat4.identity();// glm.rotate(rotation, new vec3(0, 1, 0));
-            viewMatrix = this.camera.GetViewMat4();
-            projectionMatrix = this.camera.GetProjectionMat4();
-            mat4 matrix = projectionMatrix * viewMatrix * modelMatrix;
+
+            mat4 modelMatrix = mat4.identity();
+            mat4 viewMatrix = this.camera.GetViewMat4();
+            mat4 projectionMatrix = this.camera.GetProjectionMat4();
 
             ShaderProgram shaderProgram = element.shaderProgram;
             shaderProgram.Bind();
             shaderProgram.SetUniform(WholeFontTextureElement.strtex, texture);
             shaderProgram.SetUniform(WholeFontTextureElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
-            shaderProgram.SetUniformMatrix4(WholeFontTextureElement.strtransformMatrix, matrix.to_array());
+            shaderProgram.SetUniformMatrix4(WholeFontTextureElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(WholeFontTextureElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(WholeFontTextureElement.strmodelMatrix, modelMatrix.to_array());
         }
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
@@ -123,7 +120,10 @@ namespace CSharpGL.Winforms.Demo
         {
             this.lblCameraType.Text = string.Format("camera type: {0}", this.camera.CameraType);
 
-            MessageBox.Show("Use 'c' to switch camera types between perspective and ortho");
+            MessageBox.Show(string.Format("{1}{0}{2}",
+                Environment.NewLine,
+                "Use 'c' to switch camera types between perspective and ortho",
+                "Use 'b' to switch blend effect"));
         }
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)

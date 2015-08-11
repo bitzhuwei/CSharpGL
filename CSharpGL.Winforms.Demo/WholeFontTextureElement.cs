@@ -14,7 +14,7 @@ namespace CSharpGL.Winforms.Demo
 {
     class WholeFontTextureElement : SceneElementBase, IDisposable
     {
-        public bool blend;
+        internal bool blend = true;
 
         public uint[] texture = new uint[1];
         private FontTexture ttfTexture;
@@ -22,7 +22,9 @@ namespace CSharpGL.Winforms.Demo
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_TexCoord = "in_TexCoord";
-        public const string strtransformMatrix = "transformMatrix";
+        public const string strprojectionMatrix = "projectionMatrix";
+        public const string strviewMatrix = "viewMatrix";
+        public const string strmodelMatrix = "modelMatrix";
         public const string strtex = "tex";
         public const string strcolor = "color";
 
