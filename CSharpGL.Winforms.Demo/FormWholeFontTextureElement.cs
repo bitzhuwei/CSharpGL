@@ -91,6 +91,7 @@ namespace CSharpGL.Winforms.Demo
             ShaderProgram shaderProgram = element.shaderProgram;
             shaderProgram.Bind();
             shaderProgram.SetUniform(WholeFontTextureElement.strtex, texture);
+            shaderProgram.SetUniform(WholeFontTextureElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
             shaderProgram.SetUniformMatrix4(WholeFontTextureElement.strtransformMatrix, matrix.to_array());
         }
 
