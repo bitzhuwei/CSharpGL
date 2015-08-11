@@ -20,14 +20,16 @@ namespace CSharpGL.Winforms.Demo
         {
             InitializeComponent();
 
-            if (ScientificCamera.cameraDict.ContainsKey("FormModernSingleTextureFont"))
+            if(CameraDictionary.Instance.ContainsKey("FormModernSingleTextureFont"))
             {
-                this.camera = ScientificCamera.cameraDict["FormModernSingleTextureFont"];
+                this.camera = CameraDictionary.Instance["FormModernSingleTextureFont"];
             }
             else
             {
-                this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height, "FormModernSingleTextureFont");
+                this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
+                CameraDictionary.Instance.Add("FormModernSingleTextureFont", this.camera);
             }
+
             IPerspectiveCamera perspectiveCamera = this.camera;
             perspectiveCamera.FieldOfView = 60f;
             perspectiveCamera.AspectRatio = (double)this.glCanvas1.Width / (double)this.glCanvas1.Height;

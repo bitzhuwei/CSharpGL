@@ -53,7 +53,7 @@
             //
             this.btnCylinderVAOElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCylinderVAOElement.Location = new System.Drawing.Point(13, 51);
+            this.btnCylinderVAOElement.Location = new System.Drawing.Point(13, 200);
             this.btnCylinderVAOElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnCylinderVAOElement.Name = "btnCylinderVAOElement";
             this.btnCylinderVAOElement.Size = new System.Drawing.Size(353, 29);
@@ -66,7 +66,7 @@
             //
             this.btnModernSingleTextureFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModernSingleTextureFont.Location = new System.Drawing.Point(13, 125);
+            this.btnModernSingleTextureFont.Location = new System.Drawing.Point(13, 89);
             this.btnModernSingleTextureFont.Margin = new System.Windows.Forms.Padding(4);
             this.btnModernSingleTextureFont.Name = "btnModernSingleTextureFont";
             this.btnModernSingleTextureFont.Size = new System.Drawing.Size(353, 29);
@@ -79,7 +79,7 @@
             //
             this.btnPyramidVAOElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPyramidVAOElement.Location = new System.Drawing.Point(13, 88);
+            this.btnPyramidVAOElement.Location = new System.Drawing.Point(13, 52);
             this.btnPyramidVAOElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnPyramidVAOElement.Name = "btnPyramidVAOElement";
             this.btnPyramidVAOElement.Size = new System.Drawing.Size(353, 29);
@@ -92,7 +92,7 @@
             //
             this.btnScientificCamera.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnScientificCamera.Location = new System.Drawing.Point(13, 162);
+            this.btnScientificCamera.Location = new System.Drawing.Point(13, 126);
             this.btnScientificCamera.Margin = new System.Windows.Forms.Padding(4);
             this.btnScientificCamera.Name = "btnScientificCamera";
             this.btnScientificCamera.Size = new System.Drawing.Size(353, 29);
@@ -105,7 +105,7 @@
             //
             this.btnSatelliteRotation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSatelliteRotation.Location = new System.Drawing.Point(13, 199);
+            this.btnSatelliteRotation.Location = new System.Drawing.Point(13, 163);
             this.btnSatelliteRotation.Margin = new System.Windows.Forms.Padding(4);
             this.btnSatelliteRotation.Name = "btnSatelliteRotation";
             this.btnSatelliteRotation.Size = new System.Drawing.Size(353, 29);

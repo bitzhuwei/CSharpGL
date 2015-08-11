@@ -21,39 +21,19 @@ namespace CSharpGL.Winforms.Demo
 
         SatelliteRotation satelliteRoration;
 
-        protected override void OnHandleDestroyed(EventArgs e)
-        {
-            base.OnHandleDestroyed(e);
-
-        }
-        /// <summary>
-        ///
-        /// </summary>
         public FormCylinderVAOElement()
         {
             InitializeComponent();
 
-            if (ScientificCamera.cameraDict.ContainsKey("FormCylinderVAOElement"))
+            if (CameraDictionary.Instance.ContainsKey("FormCylinderVAOElement"))
             {
-                this.camera = ScientificCamera.cameraDict["FormCylinderVAOElement"];
+                this.camera = CameraDictionary.Instance["FormCylinderVAOElement"];
             }
             else
             {
-                this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height, "FormCylinderVAOElement");
+                this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
+                CameraDictionary.Instance.Add("FormCylinderVAOElement", this.camera);
             }
-            IPerspectiveCamera perspectiveCamera = this.camera;
-            perspectiveCamera.FieldOfView = 60f;
-            perspectiveCamera.AspectRatio = (double)this.glCanvas1.Width / (double)this.glCanvas1.Height;
-            perspectiveCamera.Near = 0.01;
-            perspectiveCamera.Far = 10000;
-
-            IOrthoCamera orthoCamera = this.camera;
-            orthoCamera.Left = -this.glCanvas1.Width / 2;
-            orthoCamera.Right = this.glCanvas1.Width / 2;
-            orthoCamera.Bottom = -this.glCanvas1.Height / 2;
-            orthoCamera.Top = this.glCanvas1.Height / 2;
-            orthoCamera.Near = -10000;
-            orthoCamera.Far = 10000;
 
             satelliteRoration = new SatelliteRotation(camera);
 
@@ -76,15 +56,15 @@ namespace CSharpGL.Winforms.Demo
 
         void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            ShaderProgram shaderProgram = element.shaderProgram;
-
-            shaderProgram.Bind();
-
             mat4 projectionMatrix = camera.GetProjectionMat4();
 
             mat4 viewMatrix = camera.GetViewMat4();
 
             mat4 modelMatrix = mat4.identity();
+
+            ShaderProgram shaderProgram = element.shaderProgram;
+
+            shaderProgram.Bind();
 
             shaderProgram.SetUniformMatrix4(CylinderVAOElement.strprojectionMatrix, projectionMatrix.to_array());
             shaderProgram.SetUniformMatrix4(CylinderVAOElement.strviewMatrix, viewMatrix.to_array());
@@ -98,6 +78,8 @@ namespace CSharpGL.Winforms.Demo
 
         private void FormGLCanvas_Load(object sender, EventArgs e)
         {
+            MessageBox.Show("Use 'c' to switch camera types between perspective and ortho");
+
             // Init GL
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             // first resize
@@ -196,26 +178,28 @@ namespace CSharpGL.Winforms.Demo
             builder.Append(string.Format("position:{0}", this.camera.Position));
             builder.Append(string.Format(" target:{0}", this.camera.Target));
             builder.Append(string.Format(" up:{0}", this.camera.UpVector));
+            builder.Append(string.Format(" camera type: {0}", this.camera.CameraType));
 
             this.txtInfo.Text = builder.ToString();
         }
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 'b')
+            if (e.KeyChar == 'c')
             {
-                //element.blend = !element.blend;
-            }
-            else if (e.KeyChar == 'c')
-            {
-                if (camera.CameraType == CameraTypes.Perspecitive)
+                switch (this.camera.CameraType)
                 {
-                    camera.CameraType = CameraTypes.Ortho;
+                    case CameraTypes.Perspecitive:
+                        this.camera.CameraType = CameraTypes.Ortho;
+                        break;
+                    case CameraTypes.Ortho:
+                        this.camera.CameraType = CameraTypes.Perspecitive;
+                        break;
+                    default:
+                        throw new NotImplementedException();
                 }
-                else
-                {
-                    camera.CameraType = CameraTypes.Perspecitive;
-                }
+
+                PrintCameraInfo();
             }
 
         }

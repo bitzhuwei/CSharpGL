@@ -27,13 +27,14 @@ namespace CSharpGL.Winforms.Demo
         {
             InitializeComponent();
 
-            if (ScientificCamera.cameraDict.ContainsKey("FormSatelliteRotation"))
+            if (CameraDictionary.Instance.ContainsKey("FormSatelliteRotation"))
             {
-                this.camera = ScientificCamera.cameraDict["FormSatelliteRotation"];
+                this.camera = CameraDictionary.Instance["FormSatelliteRotation"];
             }
             else
             {
-                this.camera = new ScientificCamera(CameraTypes.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height, "FormSatelliteRotation");
+                this.camera = new ScientificCamera(CameraTypes.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
+                CameraDictionary.Instance.Add("FormSatelliteRotation", this.camera);
             }
 
             rotator = new SatelliteRotation(this.camera);

@@ -26,13 +26,14 @@ namespace CSharpGL.Winforms.Demo
         {
             InitializeComponent();
 
-            if (ScientificCamera.cameraDict.ContainsKey("FormScientificCamera"))
+            if (CameraDictionary.Instance.ContainsKey("FormScientificCamera"))
             {
-                this.camera = ScientificCamera.cameraDict["FormScientificCamera"];
+                this.camera = CameraDictionary.Instance["FormScientificCamera"];
             }
             else
             {
-                this.camera = new ScientificCamera(CameraTypes.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height, "FormScientificCamera");
+                this.camera = new ScientificCamera(CameraTypes.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
+                CameraDictionary.Instance.Add("FormScientificCamera", this.camera);
             }
 
 

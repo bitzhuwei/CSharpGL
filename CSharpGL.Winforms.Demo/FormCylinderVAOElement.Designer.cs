@@ -38,12 +38,12 @@
             this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.glCanvas1.Location = new System.Drawing.Point(13, 103);
+            this.glCanvas1.Location = new System.Drawing.Point(13, 75);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(784, 384);
+            this.glCanvas1.Size = new System.Drawing.Size(784, 412);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.OpenGLDraw += new System.EventHandler<CSharpGL.Winforms.RenderEventArgs>(this.glCanvas1_OpenGLDraw);
             this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
@@ -60,17 +60,17 @@
             this.txtInfo.Multiline = true;
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.ReadOnly = true;
-            this.txtInfo.Size = new System.Drawing.Size(784, 84);
+            this.txtInfo.Size = new System.Drawing.Size(784, 56);
             this.txtInfo.TabIndex = 3;
             //
-            // FormGLCanvas
+            // FormCylinderVAOElement
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 500);
             this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "FormGLCanvas";
+            this.Name = "FormCylinderVAOElement";
             this.Text = "FormGLCanvas";
             this.Load += new System.EventHandler(this.FormGLCanvas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();

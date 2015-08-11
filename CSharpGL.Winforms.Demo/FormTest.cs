@@ -20,14 +20,9 @@ namespace CSharpGL.Winforms.Demo
         private void btnUnmanagedArray_Click(object sender, EventArgs e)
         {
             UnmanagedArrayTest.TypicalScene();
-            string message = string.Format("{0}", "Done!");
+            string message = string.Format("{0}", "All successfully done!");
             MessageBox.Show(message, "tip", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-        }
-
-        private void btnCylinderVAOElement_Click(object sender, EventArgs e)
-        {
-            (new FormCylinderVAOElement()).Show();
         }
 
         private void btnPyramidVAOElement_Click(object sender, EventArgs e)
@@ -48,6 +43,11 @@ namespace CSharpGL.Winforms.Demo
         private void btnSatelliteRotation_Click(object sender, EventArgs e)
         {
             (new FormSatelliteRotation()).Show();
+        }
+
+        private void btnCylinderVAOElement_Click(object sender, EventArgs e)
+        {
+            (new FormCylinderVAOElement()).Show();
         }
 
     }
