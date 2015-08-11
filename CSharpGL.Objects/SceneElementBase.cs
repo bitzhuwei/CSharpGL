@@ -51,7 +51,8 @@ namespace CSharpGL.Objects
             EventHandler<RenderEventArgs> beforeRendering = this.BeforeRendering;
             if (beforeRendering != null)
             {
-                beforeRendering(this, new RenderEventArgs(renderMode));
+                var args = new RenderEventArgs(renderMode);
+                beforeRendering(this, args);
             }
 
             DoRender(renderMode);
@@ -59,7 +60,8 @@ namespace CSharpGL.Objects
             EventHandler<RenderEventArgs> afterRendering = this.AfterRendering;
             if (afterRendering != null)
             {
-                afterRendering(this, new RenderEventArgs(renderMode));
+                var args = new RenderEventArgs(renderMode);
+                afterRendering(this, args);
             }
         }
 
@@ -91,7 +93,7 @@ namespace CSharpGL.Objects
             this.RenderMode = renderMode;
         }
 
-        public RenderModes RenderMode { get; set; }
+        public RenderModes RenderMode { get; protected set; }
 
         public override string ToString()
         {

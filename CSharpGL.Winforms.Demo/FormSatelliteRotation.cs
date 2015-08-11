@@ -18,10 +18,12 @@ namespace CSharpGL.Winforms.Demo
         SatelliteRotator rotator;
         ScientificCamera camera;
         PyramidVAOElement element;
-        public mat4 projectionMatrix;
-        public mat4 viewMatrix;
-        public mat4 modelMatrix;
+        WholeFontTextureElement fontTextureElement;
+        //public mat4 projectionMatrix;
+        //public mat4 viewMatrix;
+        //public mat4 modelMatrix;
         private float rotation;
+        private bool renderElement = true;
 
         public FormSatelliteRotation()
         {
@@ -45,6 +47,47 @@ namespace CSharpGL.Winforms.Demo
 
             element.BeforeRendering += element_BeforeRendering;
             element.AfterRendering += element_AfterRendering;
+
+            fontTextureElement = new WholeFontTextureElement("msyh.ttc.png", "msyh.ttc.xml");
+            fontTextureElement.Initialize();
+
+            fontTextureElement.BeforeRendering += fontTextureElement_BeforeRendering;
+            fontTextureElement.AfterRendering += fontTextureElement_AfterRendering;
+        }
+
+        void fontTextureElement_AfterRendering(object sender, Objects.RenderEventArgs e)
+        {
+            fontTextureElement.shaderProgram.Unbind();
+            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+
+            if (fontTextureElement.blend)
+            {
+                GL.Disable(GL.GL_BLEND);
+            }
+        }
+
+        void fontTextureElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        {
+            uint texture = fontTextureElement.texture[0];
+            GL.BindTexture(GL.GL_TEXTURE_2D, texture);
+
+            if (fontTextureElement.blend)
+            {
+                GL.Enable(GL.GL_BLEND);
+                GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+            }
+            //rotation += 3.0f;
+            mat4 modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
+            mat4 viewMatrix = this.camera.GetViewMat4();
+            mat4 projectionMatrix = this.camera.GetProjectionMat4();
+
+            ShaderProgram shaderProgram = fontTextureElement.shaderProgram;
+            shaderProgram.Bind();
+            shaderProgram.SetUniform(WholeFontTextureElement.strtex, texture);
+            shaderProgram.SetUniform(WholeFontTextureElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
+            shaderProgram.SetUniformMatrix4(PyramidVAOElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(PyramidVAOElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(PyramidVAOElement.strmodelMatrix, modelMatrix.to_array());
         }
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
@@ -59,12 +102,10 @@ namespace CSharpGL.Winforms.Demo
 
         void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            {
-                //rotation += 3.0f;
-                modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
-                viewMatrix = this.camera.GetViewMat4();
-                projectionMatrix = this.camera.GetProjectionMat4();
-            }
+            //rotation += 3.0f;
+            mat4 modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
+            mat4 viewMatrix = this.camera.GetViewMat4();
+            mat4 projectionMatrix = this.camera.GetProjectionMat4();
 
             ShaderProgram shaderProgram = element.shaderProgram;
             shaderProgram.Bind();
@@ -79,7 +120,9 @@ namespace CSharpGL.Winforms.Demo
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            element.Render(Objects.RenderModes.Render);
+            if (this.renderElement)
+                element.Render(Objects.RenderModes.Render);
+            fontTextureElement.Render(Objects.RenderModes.Render);
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
@@ -110,7 +153,15 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 'c')
+            if (e.KeyChar == 'e')
+            {
+                this.renderElement = !this.renderElement;
+            }
+            if (e.KeyChar == 'b')
+            {
+                this.fontTextureElement.blend = !this.fontTextureElement.blend;
+            }
+            else if (e.KeyChar == 'c')
             {
                 switch (this.camera.CameraType)
                 {
