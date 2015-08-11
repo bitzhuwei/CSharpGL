@@ -96,7 +96,7 @@ namespace CSharpGL.Objects.Texts
             if (bmp != null)
             {
                 this.BigBitmap = null;
-                this.CharInfoDict.Clear();
+                //this.CharInfoDict.Clear();
                 bmp.Dispose();
             }
 
