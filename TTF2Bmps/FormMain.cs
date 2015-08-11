@@ -245,22 +245,34 @@ namespace Font2Bmps
                         int lastPercent = 0;
                         foreach (var item in ttfTexture.CharInfoDict.Values)
                         {
+                            Point leftTop = new Point(item.xoffset, item.yoffset);
+                            Point leftBottom = new Point(item.xoffset, item.yoffset + ttfTexture.FontHeight - 1);
+                            Point rightTop = new Point(item.xoffset + item.width - 1, item.yoffset);
+                            Point rightBottom = new Point(item.xoffset + item.width - 1, item.yoffset + ttfTexture.FontHeight - 1);
                             // 上边
-                            g.DrawLine(pen,
-                                new Point(item.xoffset, item.yoffset),
-                                new Point(item.xoffset + item.width - 1, item.yoffset));
+                            g.DrawLine(pen, leftTop, rightTop);
                             // 下边
-                            g.DrawLine(anotherPen,
-                                new Point(item.xoffset, item.yoffset + ttfTexture.FontHeight - 1),
-                                new Point(item.xoffset + item.width - 1, item.yoffset + ttfTexture.FontHeight - 1));
+                            g.DrawLine(anotherPen, leftBottom, rightBottom);
                             // 左边
-                            g.DrawLine(pen,
-                                new Point(item.xoffset, item.yoffset),
-                                new Point(item.xoffset, item.yoffset + ttfTexture.FontHeight));
+                            g.DrawLine(pen, leftTop, leftBottom);
                             // 右边
-                            g.DrawLine(anotherPen,
-                                new Point(item.xoffset + item.width - 1, item.yoffset),
-                                new Point(item.xoffset + item.width - 1, item.yoffset + ttfTexture.FontHeight));
+                            g.DrawLine(anotherPen, rightTop, rightBottom);
+                            //// 上边
+                            //g.DrawLine(pen,
+                            //    new Point(item.xoffset, item.yoffset),
+                            //    new Point(item.xoffset + item.width - 1, item.yoffset));
+                            //// 下边
+                            //g.DrawLine(anotherPen,
+                            //    new Point(item.xoffset, item.yoffset + ttfTexture.FontHeight),
+                            //    new Point(item.xoffset + item.width - 1, item.yoffset + ttfTexture.FontHeight - 1));
+                            //// 左边
+                            //g.DrawLine(pen,
+                            //    new Point(item.xoffset, item.yoffset),
+                            //    new Point(item.xoffset, item.yoffset + ttfTexture.FontHeight));
+                            //// 右边
+                            //g.DrawLine(anotherPen,
+                            //    new Point(item.xoffset + item.width - 1, item.yoffset),
+                            //    new Point(item.xoffset + item.width - 1, item.yoffset + ttfTexture.FontHeight - 1));
                             int percent = vertialLineIndex++ * 100 / characterCount;
                             if (percent != lastPercent)
                             {
@@ -319,7 +331,7 @@ namespace Font2Bmps
         const int horizontalFactor = 1;
         const int verticalFactor = 1;
         Pen pen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, };
-        Pen anotherPen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, DashOffset=horizontalFactor };
+        Pen anotherPen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, DashOffset = horizontalFactor };
         Pen evenHorizontalLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, };
         Pen oddHorizontalLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, DashOffset = horizontalFactor };
         Pen evenVerticalLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { verticalFactor, verticalFactor }, };

@@ -84,7 +84,7 @@
     <EmbeddedResource Include="Texts\freetype.frag" />
     <EmbeddedResource Include="Texts\freetype.vert" />
     <Compile Include="Texts\CharacterInfo.cs" />
-    <Compile Include="Texts\ModernSingleTextureFont.cs" />
+    <Compile Include="Texts\FontElement.cs" />
     <Compile Include="Texts\FreeTypes\BBox.cs" />
     <Compile Include="Texts\FreeTypes\FT_BitmapBuffer.cs" />
     <Compile Include="Texts\FreeTypes\FreeTypeObjects.cs" />
