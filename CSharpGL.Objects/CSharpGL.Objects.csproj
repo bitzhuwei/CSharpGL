@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cameras\BoundingBox.cs" />
+    <Compile Include="Cameras\Camera2Matrix.cs" />
     <Compile Include="Cameras\CameraHelper.cs">
       <SubType>Code</SubType>
     </Compile>
