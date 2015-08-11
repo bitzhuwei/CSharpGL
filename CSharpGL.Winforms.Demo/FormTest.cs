@@ -30,11 +30,6 @@ namespace CSharpGL.Winforms.Demo
             (new FormPyramidVAOElement()).Show();
         }
 
-        private void btnFreeTypeTextVAOElement_Click(object sender, EventArgs e)
-        {
-            (new FormModernSingleTextureFont()).Show();
-        }
-
         private void btnScientificCamera_Click(object sender, EventArgs e)
         {
             (new FormScientificCamera()).Show();
@@ -53,6 +48,11 @@ namespace CSharpGL.Winforms.Demo
         private void btnWholeFontTextureElement_Click(object sender, EventArgs e)
         {
             (new FormWholeFontTextureElement()).Show();
+        }
+
+        private void btnFreeTypeTextVAOElement_Click(object sender, EventArgs e)
+        {
+            (new FormModernSingleTextureFont()).Show();
         }
 
     }

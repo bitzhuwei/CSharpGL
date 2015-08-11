@@ -36,10 +36,10 @@
             this.btnSatelliteRotation = new System.Windows.Forms.Button();
             this.btnWholeFontTextureElement = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            //
+            // 
             // btnUnmanagedArray
-            //
-            this.btnUnmanagedArray.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.btnUnmanagedArray.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUnmanagedArray.Location = new System.Drawing.Point(13, 15);
             this.btnUnmanagedArray.Margin = new System.Windows.Forms.Padding(4);
@@ -49,12 +49,12 @@
             this.btnUnmanagedArray.Text = "UnmanagedArray";
             this.btnUnmanagedArray.UseVisualStyleBackColor = true;
             this.btnUnmanagedArray.Click += new System.EventHandler(this.btnUnmanagedArray_Click);
-            //
+            // 
             // btnCylinderVAOElement
-            //
-            this.btnCylinderVAOElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.btnCylinderVAOElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCylinderVAOElement.Location = new System.Drawing.Point(13, 200);
+            this.btnCylinderVAOElement.Location = new System.Drawing.Point(13, 163);
             this.btnCylinderVAOElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnCylinderVAOElement.Name = "btnCylinderVAOElement";
             this.btnCylinderVAOElement.Size = new System.Drawing.Size(353, 29);
@@ -62,12 +62,12 @@
             this.btnCylinderVAOElement.Text = "CylinderVAOElement";
             this.btnCylinderVAOElement.UseVisualStyleBackColor = true;
             this.btnCylinderVAOElement.Click += new System.EventHandler(this.btnCylinderVAOElement_Click);
-            //
+            // 
             // btnModernSingleTextureFont
-            //
-            this.btnModernSingleTextureFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.btnModernSingleTextureFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModernSingleTextureFont.Location = new System.Drawing.Point(13, 89);
+            this.btnModernSingleTextureFont.Location = new System.Drawing.Point(13, 237);
             this.btnModernSingleTextureFont.Margin = new System.Windows.Forms.Padding(4);
             this.btnModernSingleTextureFont.Name = "btnModernSingleTextureFont";
             this.btnModernSingleTextureFont.Size = new System.Drawing.Size(353, 29);
@@ -75,10 +75,10 @@
             this.btnModernSingleTextureFont.Text = "ModernSingleTextureFont";
             this.btnModernSingleTextureFont.UseVisualStyleBackColor = true;
             this.btnModernSingleTextureFont.Click += new System.EventHandler(this.btnFreeTypeTextVAOElement_Click);
-            //
+            // 
             // btnPyramidVAOElement
-            //
-            this.btnPyramidVAOElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.btnPyramidVAOElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPyramidVAOElement.Location = new System.Drawing.Point(13, 52);
             this.btnPyramidVAOElement.Margin = new System.Windows.Forms.Padding(4);
@@ -88,12 +88,12 @@
             this.btnPyramidVAOElement.Text = "PyramidVAOElement";
             this.btnPyramidVAOElement.UseVisualStyleBackColor = true;
             this.btnPyramidVAOElement.Click += new System.EventHandler(this.btnPyramidVAOElement_Click);
-            //
+            // 
             // btnScientificCamera
-            //
-            this.btnScientificCamera.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.btnScientificCamera.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnScientificCamera.Location = new System.Drawing.Point(13, 126);
+            this.btnScientificCamera.Location = new System.Drawing.Point(13, 89);
             this.btnScientificCamera.Margin = new System.Windows.Forms.Padding(4);
             this.btnScientificCamera.Name = "btnScientificCamera";
             this.btnScientificCamera.Size = new System.Drawing.Size(353, 29);
@@ -101,12 +101,12 @@
             this.btnScientificCamera.Text = "ScientificCamera";
             this.btnScientificCamera.UseVisualStyleBackColor = true;
             this.btnScientificCamera.Click += new System.EventHandler(this.btnScientificCamera_Click);
-            //
+            // 
             // btnSatelliteRotation
-            //
-            this.btnSatelliteRotation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.btnSatelliteRotation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSatelliteRotation.Location = new System.Drawing.Point(13, 163);
+            this.btnSatelliteRotation.Location = new System.Drawing.Point(13, 126);
             this.btnSatelliteRotation.Margin = new System.Windows.Forms.Padding(4);
             this.btnSatelliteRotation.Name = "btnSatelliteRotation";
             this.btnSatelliteRotation.Size = new System.Drawing.Size(353, 29);
@@ -114,12 +114,12 @@
             this.btnSatelliteRotation.Text = "SatelliteRotation";
             this.btnSatelliteRotation.UseVisualStyleBackColor = true;
             this.btnSatelliteRotation.Click += new System.EventHandler(this.btnSatelliteRotation_Click);
-            //
+            // 
             // btnWholeFontTextureElement
-            //
-            this.btnWholeFontTextureElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.btnWholeFontTextureElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnWholeFontTextureElement.Location = new System.Drawing.Point(13, 237);
+            this.btnWholeFontTextureElement.Location = new System.Drawing.Point(13, 200);
             this.btnWholeFontTextureElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnWholeFontTextureElement.Name = "btnWholeFontTextureElement";
             this.btnWholeFontTextureElement.Size = new System.Drawing.Size(353, 29);
@@ -127,9 +127,9 @@
             this.btnWholeFontTextureElement.Text = "WholeFontTextureElement";
             this.btnWholeFontTextureElement.UseVisualStyleBackColor = true;
             this.btnWholeFontTextureElement.Click += new System.EventHandler(this.btnWholeFontTextureElement_Click);
-            //
+            // 
             // FormTest
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 328);
