@@ -116,6 +116,11 @@ namespace CSharpGL.Objects.Texts
                     size = charInfoDict[' '].width * charInfoDict[' '].height;
                     byteBitmap = new byte[size];
                 }
+                else if ((c == '\t') && (size == 0))
+                {
+                    size = charInfoDict['\t'].width * charInfoDict['\t'].height;
+                    byteBitmap = new byte[size];
+                }
                 else if (size != 0)
                 {
                     byteBitmap = new byte[size];
@@ -241,8 +246,19 @@ namespace CSharpGL.Objects.Texts
                 if (c == ' ' && zeroSize)// 空格需要特殊处理
                 {
                     zeroSize = false;
-                    glyphWidth = fontHeight / 2;
-                    glyphHeight = fontHeight;
+                    FreeTypeBitmapGlyph tabGlyph = new FreeTypeBitmapGlyph(face, '\t', fontHeight);
+                    glyphWidth = tabGlyph.obj.bitmap.width / 8;
+                    if (glyphWidth < 1) { glyphWidth = fontHeight / 2; }
+                    glyphHeight = tabGlyph.obj.bitmap.rows;
+                    //if (glyphHeight < 1) { glyphHeight = 1; }
+                }
+                else if (c == '\t' && zeroSize)// tab可能需要特殊处理
+                {
+                    zeroSize = false;
+                    glyphWidth = glyph.obj.bitmap.width;
+                    if (glyphWidth < 1) { glyphWidth = fontHeight * 2; }
+                    glyphHeight = glyph.obj.bitmap.rows;
+                    //if (glyphHeight < 1) { glyphHeight = 1; }
                 }
 
                 if (!zeroSize)

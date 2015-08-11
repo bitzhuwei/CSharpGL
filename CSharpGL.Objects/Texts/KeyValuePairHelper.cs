@@ -15,7 +15,7 @@ namespace CSharpGL.Objects.Texts
         public static XElement ToXElement(this KeyValuePair<char, CharacterInfo> pair)
         {
             XElement result = new XElement(strKeyValuePair,
-                new XAttribute(strCharacter, pair.Key),
+                new XAttribute(strCharacter, (int)pair.Key),
                 pair.Value.ToXElement());
 
             return result;
@@ -23,7 +23,7 @@ namespace CSharpGL.Objects.Texts
 
         public static KeyValuePair<char, CharacterInfo> Parse(XElement xElement)
         {
-            char c = xElement.Attribute(strCharacter).Value[0];
+            char c = (char)int.Parse(xElement.Attribute(strCharacter).Value);
             CharacterInfo cInfo = CharacterInfoHelper.Parse(xElement.Element(CharacterInfoHelper.strCharacterInfo));
 
             KeyValuePair<char, CharacterInfo> result = new KeyValuePair<char, CharacterInfo>(c, cInfo);

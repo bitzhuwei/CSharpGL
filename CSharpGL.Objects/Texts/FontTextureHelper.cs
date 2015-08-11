@@ -21,8 +21,8 @@ namespace CSharpGL.Objects.Texts
         {
             XElement result = new XElement(strTTFTexture,
                 new XAttribute(strFontHeight, texture.FontHeight),
-                new XAttribute(strFirstChar, texture.FirstChar),
-                new XAttribute(strLastChar, texture.LastChar),
+                new XAttribute(strFirstChar, (int)texture.FirstChar),
+                new XAttribute(strLastChar, (int)texture.LastChar),
                 texture.CharInfoDict.ToXElement());
 
             return result;
@@ -32,8 +32,8 @@ namespace CSharpGL.Objects.Texts
         {
             FontTexture result = new FontTexture();
             result.FontHeight = int.Parse(xElement.Attribute(strFontHeight).Value);
-            result.FirstChar = char.Parse(xElement.Attribute(strFirstChar).Value);
-            result.LastChar = char.Parse(xElement.Attribute(strLastChar).Value);
+            result.FirstChar = (char)int.Parse(xElement.Attribute(strFirstChar).Value);
+            result.LastChar = (char)int.Parse(xElement.Attribute(strLastChar).Value);
             result.CharInfoDict = CharacterInfoDictHelper.Parse(
                 xElement.Element(CharacterInfoDictHelper.strCharacterInfoDict));
 
@@ -129,6 +129,11 @@ namespace CSharpGL.Objects.Texts
                     size = charInfoDict[' '].width * charInfoDict[' '].height;
                     byteBitmap = new byte[size];
                 }
+                else if ((c == '\t') && (size == 0))
+                {
+                    size = charInfoDict['\t'].width * charInfoDict['\t'].height;
+                    byteBitmap = new byte[size];
+                }
                 else if (size != 0)
                 {
                     byteBitmap = new byte[size];
@@ -222,11 +227,23 @@ namespace CSharpGL.Objects.Texts
                 int glyphWidth = glyph.obj.bitmap.width;
                 int glyphHeight = glyph.obj.bitmap.rows;
 
+
                 if (c == ' ' && zeroSize)// 空格需要特殊处理
                 {
                     zeroSize = false;
-                    glyphWidth = fontHeight / 2;
-                    glyphHeight = fontHeight;
+                    FreeTypeBitmapGlyph tabGlyph = new FreeTypeBitmapGlyph(face, '\t', fontHeight);
+                    glyphWidth = tabGlyph.obj.bitmap.width / 8;
+                    if (glyphWidth < 1) { glyphWidth = fontHeight / 2; }
+                    glyphHeight = tabGlyph.obj.bitmap.rows;
+                    //if (glyphHeight < 1) { glyphHeight = 1; }
+                }
+                else if (c == '\t' && zeroSize)// tab可能需要特殊处理
+                {
+                    zeroSize = false;
+                    glyphWidth = glyph.obj.bitmap.width;
+                    if (glyphWidth < 1) { glyphWidth = fontHeight * 2; }
+                    glyphHeight = glyph.obj.bitmap.rows;
+                    //if (glyphHeight < 1) { glyphHeight = 1; }
                 }
 
                 if (!zeroSize)
