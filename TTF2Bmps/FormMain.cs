@@ -199,8 +199,8 @@ namespace Font2Bmps
         private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             WorkerData data = e.Argument as WorkerData;
-            int count = data.selectedTTFFiles.Length;
-            int index = 1;
+            int fontFileCount = data.selectedTTFFiles.Length;
+            int fontFileIndex = 1;
             const int magicNumber = 100;
 
             WorkerResult result = new WorkerResult(null, data);
@@ -210,7 +210,7 @@ namespace Font2Bmps
 
             foreach (var fontFullname in this.selectedTTFFiles)
             {
-                builder.Append(index); builder.Append("/"); builder.Append(count);
+                builder.Append(fontFileIndex); builder.Append("/"); builder.Append(fontFileCount);
                 builder.Append(": "); builder.AppendLine(fontFullname);
 
                 string destFullname = fontFullname + ".png";
@@ -219,27 +219,53 @@ namespace Font2Bmps
 
                 try
                 {
-                    foreach (var progress in FontTextureYieldHelper.GetTTFTexture(
-                        fontFullname, data.fontHeight, data.maxTexturWidth, data.firstChar, data.lastChar))
                     {
-                        ttfTexture = progress.ttfTexture;
-                        var singleFileProgress = new SingleFileProgress() { progress = progress.percent, message = progress.message };
-                        bgWorker.ReportProgress(index * magicNumber / count, singleFileProgress);
+                        int lastPercent = 0;
+                        foreach (var progress in FontTextureYieldHelper.GetTTFTexture(
+                            fontFullname, data.fontHeight, data.maxTexturWidth, data.firstChar, data.lastChar))
+                        {
+                            ttfTexture = progress.ttfTexture;
+                            if (progress.percent != lastPercent)
+                            {
+                                var singleFileProgress = new SingleFileProgress() { progress = progress.percent, message = progress.message };
+                                bgWorker.ReportProgress(fontFileIndex * magicNumber / fontFileCount, singleFileProgress);
+                                lastPercent = progress.percent;
+                            }
+                        }
                     }
 
                     if (data.drawHeightLine)
                     {
                         System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(ttfTexture.BigBitmap);
                         Graphics g = Graphics.FromImage(bigBitmap);
-                        for (int row = 0; row < bigBitmap.Height; row += ttfTexture.FontHeight)
+                        int vertialLineIndex = 0;
+                        int characterCount = ttfTexture.CharInfoDict.Values.Count;
+                        int lastPercent = 0;
+                        foreach (var item in ttfTexture.CharInfoDict.Values)
                         {
-                            Pen pen = (row / ttfTexture.FontHeight) % 2 == 0 ? evenLinePen : oddLinePen;
+                            // 上边
                             g.DrawLine(pen,
-                                new Point(0, row),
-                                new Point(bigBitmap.Width, row));
+                                new Point(item.xoffset, item.yoffset),
+                                new Point(item.xoffset + item.width - 1, item.yoffset));
+                            // 下边
                             g.DrawLine(pen,
-                                new Point(0, row + ttfTexture.FontHeight - 1),
-                                new Point(bigBitmap.Width, row + ttfTexture.FontHeight - 1));
+                                new Point(item.xoffset, item.yoffset + ttfTexture.FontHeight - 1),
+                                new Point(item.xoffset + item.width - 1, item.yoffset + ttfTexture.FontHeight - 1));
+                            // 左边
+                            g.DrawLine(pen,
+                                new Point(item.xoffset, item.yoffset),
+                                new Point(item.xoffset, item.yoffset + ttfTexture.FontHeight));
+                            // 右边
+                            g.DrawLine(pen,
+                                new Point(item.xoffset + item.width - 1, item.yoffset),
+                                new Point(item.xoffset + item.width - 1, item.yoffset + ttfTexture.FontHeight));
+                            int percent = vertialLineIndex++ * 100 / characterCount;
+                            if (percent != lastPercent)
+                            {
+                                var singleFileProgress = new SingleFileProgress() { progress = percent, message = "drawing vertial lines" };
+                                bgWorker.ReportProgress(fontFileIndex * magicNumber / fontFileCount, singleFileProgress);
+                                lastPercent = percent;
+                            }
                         }
                         bigBitmap.Save(destFullname);
                         bigBitmap.Dispose();
@@ -259,7 +285,7 @@ namespace Font2Bmps
                         FontTexturePNGPrinter printer = new FontTexturePNGPrinter(ttfTexture);
                         foreach (var progress in printer.Print(fontFullname, data.maxTexturWidth))
                         {
-                            bgWorker.ReportProgress(index * magicNumber / count, progress);
+                            bgWorker.ReportProgress(fontFileIndex * magicNumber / fontFileCount, progress);
                         }
                     }
                 }
@@ -281,15 +307,20 @@ namespace Font2Bmps
                     progress = magicNumber,
                     message = string.Format("All is done for {0}", fileInfo.Name),
                 };
-                bgWorker.ReportProgress(index++ * magicNumber / count, thisFileDone);
+                bgWorker.ReportProgress(fontFileIndex++ * magicNumber / fontFileCount, thisFileDone);
                 //bgWorker.ReportProgress(magicNumber, thisFileDone);
 
                 //Process.Start("explorer", destFullname);
             }
         }
 
-        Pen evenLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { 5, 15 }, };
-        Pen oddLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { 5, 15 }, DashOffset = 10 };
+        const int horizontalFactor = 1;
+        const int verticalFactor = 1;
+        Pen pen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, };
+        Pen evenHorizontalLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, };
+        Pen oddHorizontalLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, DashOffset = horizontalFactor };
+        Pen evenVerticalLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { verticalFactor, verticalFactor }, };
+        Pen oddVerticalLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { verticalFactor, verticalFactor }, DashOffset = verticalFactor };
 
         private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
