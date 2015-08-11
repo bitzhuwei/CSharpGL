@@ -72,29 +72,28 @@ namespace CSharpGL.Objects.Texts
             {
                 char c = value[i];
                 CharacterInfo cInfo;
+                float x1 = 0;
+                float x2 = 1;
+                float y1 = 0;
+                float y2 = 1;
                 if (this.ttfTexture.CharInfoDict.TryGetValue(c, out cInfo))
                 {
-                    float x1 = (float)cInfo.xoffset / (float)bigBitmap.Width;
-                    float x2 = (float)(cInfo.xoffset + cInfo.width) / (float)bigBitmap.Width;
-                    float y1 = (float)cInfo.yoffset / (float)bigBitmap.Height;
-                    float y2 = (float)(cInfo.yoffset + this.ttfTexture.FontHeight) / (float)bigBitmap.Height;
-
-                    //in_Position[i * 4 + 0] = new vec3(cInfo.xoffset, 0, 0);
-                    //in_Position[i * 4 + 1] = new vec3(cInfo.xoffset + cInfo.width, 0, 0);
-                    //in_Position[i * 4 + 2] = new vec3(cInfo.xoffset + cInfo.width, this.ttfTexture.FontHeight, 0);
-                    //in_Position[i * 4 + 3] = new vec3(cInfo.xoffset, this.ttfTexture.FontHeight, 0);
-                    in_Position[i * 4 + 0] = new vec3(i, 0, 0);
-                    in_Position[i * 4 + 1] = new vec3(i + 1, 0, 0);
-                    in_Position[i * 4 + 2] = new vec3(i + 1, 1, 0);
-                    in_Position[i * 4 + 3] = new vec3(i, 1, 0);
-
-                    in_TexCoord[i * 4 + 0] = new vec2(x1, y1);
-                    in_TexCoord[i * 4 + 1] = new vec2(x2, y1);
-                    in_TexCoord[i * 4 + 2] = new vec2(x2, y2);
-                    in_TexCoord[i * 4 + 3] = new vec2(x1, y2);
+                    x1 = (float)cInfo.xoffset / (float)bigBitmap.Width;
+                    x2 = (float)(cInfo.xoffset + cInfo.width) / (float)bigBitmap.Width;
+                    y1 = (float)cInfo.yoffset / (float)bigBitmap.Height;
+                    y2 = (float)(cInfo.yoffset + this.ttfTexture.FontHeight) / (float)bigBitmap.Height;
                 }
-                else
-                { throw new Exception(string.Format("Not support for display the char [{0}]", c)); }
+                //else
+                //{ throw new Exception(string.Format("Not support for display the char [{0}]", c)); }
+                in_Position[i * 4 + 0] = new vec3(i, 0, 0);
+                in_Position[i * 4 + 1] = new vec3(i + 1, 0, 0);
+                in_Position[i * 4 + 2] = new vec3(i + 1, 1, 0);
+                in_Position[i * 4 + 3] = new vec3(i, 1, 0);
+
+                in_TexCoord[i * 4 + 0] = new vec2(x1, y1);
+                in_TexCoord[i * 4 + 1] = new vec2(x2, y1);
+                in_TexCoord[i * 4 + 2] = new vec2(x2, y2);
+                in_TexCoord[i * 4 + 3] = new vec2(x1, y2);
             }
 
             if (vao[0] != 0)

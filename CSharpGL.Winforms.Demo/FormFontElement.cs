@@ -48,13 +48,13 @@ namespace CSharpGL.Winforms.Demo
 
             //element = new ModernSingleTextureFont("simsun.ttf", 48, '祝', '神');//char.MinValue, char.MaxValue);
             //element = new FontElement("simsun.ttf", 48, '一', '龟');//包含了几乎所有汉字字符
-            element = new FontElement("simsun.ttf", 48, '!', '~');
+            element = new FontElement("simsun.ttf", 48, (char)0, '~');
 
             element.Initialize();
 
             //element.SetText("祝神");
             //element.SetText("一龟");
-            element.SetText("Thequickbrownfoxjumpsoverthelazydog!");
+            element.SetText("The quickbrownfoxjumpsoverthelazydog!");
 
             element.BeforeRendering += element_BeforeRendering;
             element.AfterRendering += element_AfterRendering;
