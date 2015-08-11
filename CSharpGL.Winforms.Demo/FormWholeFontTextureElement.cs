@@ -42,7 +42,6 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.Load += FormWholeFontTextureElement_Load;
 
-            //element = new WholeFontTextureElement("STLITI.TTF.png", "STLITI.TTF.xml");
             element = new WholeFontTextureElement("msyh.ttc.png", "msyh.ttc.xml");
             element.Initialize();
 
