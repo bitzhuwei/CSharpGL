@@ -12,7 +12,7 @@ namespace CSharpGL.Winforms.Demo
     {
         ScientificCamera camera; //= new ScientificCamera(CameraTypes.Ortho);
 
-        SatelliteRotation satelliteRoration;
+        SatelliteRotator satelliteRoration;
 
         FontElement element;// = new ModernSingleTextureFont("simsun.ttf");
         private float rotation;
@@ -44,7 +44,7 @@ namespace CSharpGL.Winforms.Demo
             orthoCamera.Near = -10000;
             orthoCamera.Far = 10000;
 
-            satelliteRoration = new SatelliteRotation(camera);
+            satelliteRoration = new SatelliteRotator(camera);
 
             //element = new ModernSingleTextureFont("simsun.ttf", 48, '祝', '神');//char.MinValue, char.MaxValue);
             element = new FontElement("simsun.ttf", 48, '一', '龟');//包含了几乎所有汉字字符

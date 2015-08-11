@@ -9,7 +9,7 @@ namespace CSharpGL.Objects.Cameras
     /// Rotates a camera on a sphere, whose center is camera's Target.
     /// <para>Just like a satellite moves around a fixed star.</para>
     /// </summary>
-    public class SatelliteRotation //: IMouseRotation
+    public class SatelliteRotator //: IMouseRotation
     {
         private Point downPosition = new Point();
         private Size bound = new Size();
@@ -25,7 +25,7 @@ namespace CSharpGL.Objects.Cameras
         /// <para>Just like a satellite moves around a fixed star.</para>
         /// </summary>
         /// <param name="camera"></param>
-        public SatelliteRotation(IScientificCamera camera = null)
+        public SatelliteRotator(IScientificCamera camera = null)
         {
             this.Camera = camera;
         }

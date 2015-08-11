@@ -45,7 +45,7 @@
             this.btnUnmanagedArray.Margin = new System.Windows.Forms.Padding(4);
             this.btnUnmanagedArray.Name = "btnUnmanagedArray";
             this.btnUnmanagedArray.Size = new System.Drawing.Size(353, 29);
-            this.btnUnmanagedArray.TabIndex = 3;
+            this.btnUnmanagedArray.TabIndex = 6;
             this.btnUnmanagedArray.Text = "UnmanagedArray";
             this.btnUnmanagedArray.UseVisualStyleBackColor = true;
             this.btnUnmanagedArray.Click += new System.EventHandler(this.btnUnmanagedArray_Click);
@@ -58,7 +58,7 @@
             this.btnCylinderVAOElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnCylinderVAOElement.Name = "btnCylinderVAOElement";
             this.btnCylinderVAOElement.Size = new System.Drawing.Size(353, 29);
-            this.btnCylinderVAOElement.TabIndex = 2;
+            this.btnCylinderVAOElement.TabIndex = 1;
             this.btnCylinderVAOElement.Text = "CylinderVAOElement";
             this.btnCylinderVAOElement.UseVisualStyleBackColor = true;
             this.btnCylinderVAOElement.Click += new System.EventHandler(this.btnCylinderVAOElement_Click);
@@ -71,7 +71,7 @@
             this.btnModernSingleTextureFont.Margin = new System.Windows.Forms.Padding(4);
             this.btnModernSingleTextureFont.Name = "btnModernSingleTextureFont";
             this.btnModernSingleTextureFont.Size = new System.Drawing.Size(353, 29);
-            this.btnModernSingleTextureFont.TabIndex = 0;
+            this.btnModernSingleTextureFont.TabIndex = 4;
             this.btnModernSingleTextureFont.Text = "ModernSingleTextureFont";
             this.btnModernSingleTextureFont.UseVisualStyleBackColor = true;
             this.btnModernSingleTextureFont.Click += new System.EventHandler(this.btnFreeTypeTextVAOElement_Click);
@@ -84,7 +84,7 @@
             this.btnPyramidVAOElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnPyramidVAOElement.Name = "btnPyramidVAOElement";
             this.btnPyramidVAOElement.Size = new System.Drawing.Size(353, 29);
-            this.btnPyramidVAOElement.TabIndex = 1;
+            this.btnPyramidVAOElement.TabIndex = 5;
             this.btnPyramidVAOElement.Text = "PyramidVAOElement";
             this.btnPyramidVAOElement.UseVisualStyleBackColor = true;
             this.btnPyramidVAOElement.Click += new System.EventHandler(this.btnPyramidVAOElement_Click);
@@ -97,7 +97,7 @@
             this.btnScientificCamera.Margin = new System.Windows.Forms.Padding(4);
             this.btnScientificCamera.Name = "btnScientificCamera";
             this.btnScientificCamera.Size = new System.Drawing.Size(353, 29);
-            this.btnScientificCamera.TabIndex = 0;
+            this.btnScientificCamera.TabIndex = 3;
             this.btnScientificCamera.Text = "ScientificCamera";
             this.btnScientificCamera.UseVisualStyleBackColor = true;
             this.btnScientificCamera.Click += new System.EventHandler(this.btnScientificCamera_Click);
@@ -110,7 +110,7 @@
             this.btnSatelliteRotation.Margin = new System.Windows.Forms.Padding(4);
             this.btnSatelliteRotation.Name = "btnSatelliteRotation";
             this.btnSatelliteRotation.Size = new System.Drawing.Size(353, 29);
-            this.btnSatelliteRotation.TabIndex = 0;
+            this.btnSatelliteRotation.TabIndex = 2;
             this.btnSatelliteRotation.Text = "SatelliteRotation";
             this.btnSatelliteRotation.UseVisualStyleBackColor = true;
             this.btnSatelliteRotation.Click += new System.EventHandler(this.btnSatelliteRotation_Click);
@@ -123,7 +123,7 @@
             this.btnWholeFontTextureElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnWholeFontTextureElement.Name = "btnWholeFontTextureElement";
             this.btnWholeFontTextureElement.Size = new System.Drawing.Size(353, 29);
-            this.btnWholeFontTextureElement.TabIndex = 2;
+            this.btnWholeFontTextureElement.TabIndex = 0;
             this.btnWholeFontTextureElement.Text = "WholeFontTextureElement";
             this.btnWholeFontTextureElement.UseVisualStyleBackColor = true;
             this.btnWholeFontTextureElement.Click += new System.EventHandler(this.btnWholeFontTextureElement_Click);
@@ -133,12 +133,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 328);
+            this.Controls.Add(this.btnWholeFontTextureElement);
+            this.Controls.Add(this.btnCylinderVAOElement);
             this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnScientificCamera);
             this.Controls.Add(this.btnModernSingleTextureFont);
             this.Controls.Add(this.btnPyramidVAOElement);
-            this.Controls.Add(this.btnWholeFontTextureElement);
-            this.Controls.Add(this.btnCylinderVAOElement);
             this.Controls.Add(this.btnUnmanagedArray);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormTest";

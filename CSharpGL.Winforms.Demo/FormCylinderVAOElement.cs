@@ -19,7 +19,7 @@ namespace CSharpGL.Winforms.Demo
 
         ScientificCamera camera;
 
-        SatelliteRotation satelliteRoration;
+        SatelliteRotator satelliteRoration;
 
         public FormCylinderVAOElement()
         {
@@ -35,7 +35,7 @@ namespace CSharpGL.Winforms.Demo
                 CameraDictionary.Instance.Add("FormCylinderVAOElement", this.camera);
             }
 
-            satelliteRoration = new SatelliteRotation(camera);
+            satelliteRoration = new SatelliteRotator(camera);
 
             var faceCount = 18;
             var radius = 1f;

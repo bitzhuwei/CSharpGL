@@ -15,7 +15,7 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormSatelliteRotation : Form
     {
-        SatelliteRotation rotator;
+        SatelliteRotator rotator;
         ScientificCamera camera;
         PyramidVAOElement element;
         public mat4 projectionMatrix;
@@ -37,7 +37,7 @@ namespace CSharpGL.Winforms.Demo
                 CameraDictionary.Instance.Add("FormSatelliteRotation", this.camera);
             }
 
-            rotator = new SatelliteRotation(this.camera);
+            rotator = new SatelliteRotator(this.camera);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
             element = new PyramidVAOElement();

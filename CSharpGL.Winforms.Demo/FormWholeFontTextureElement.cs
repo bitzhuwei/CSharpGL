@@ -15,7 +15,7 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormWholeFontTextureElement : Form
     {
-        SatelliteRotation rotator;
+        SatelliteRotator rotator;
         ScientificCamera camera;
         WholeFontTextureElement element;
         public mat4 projectionMatrix;
@@ -37,7 +37,7 @@ namespace CSharpGL.Winforms.Demo
                 CameraDictionary.Instance.Add("FormWholeFontTextureElement", this.camera);
             }
 
-            rotator = new SatelliteRotation(this.camera);
+            rotator = new SatelliteRotator(this.camera);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
             this.glCanvas1.MouseMove += glCanvas1_MouseMove;
@@ -62,16 +62,13 @@ namespace CSharpGL.Winforms.Demo
         void element_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
             element.shaderProgram.Unbind();
-            {
-                GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
 
-                if (element.blend)
-                {
-                    GL.Disable(GL.GL_BLEND);
-                }
+            if (element.blend)
+            {
+                GL.Disable(GL.GL_BLEND);
             }
         }
-
         void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
             uint texture = element.texture[0];
@@ -83,7 +80,7 @@ namespace CSharpGL.Winforms.Demo
                 GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
             }
             //rotation += 3.0f;
-            modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
+            modelMatrix = mat4.identity();// glm.rotate(rotation, new vec3(0, 1, 0));
             viewMatrix = this.camera.GetViewMat4();
             projectionMatrix = this.camera.GetProjectionMat4();
             mat4 matrix = projectionMatrix * viewMatrix * modelMatrix;
@@ -131,7 +128,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar== 'b')
+            if (e.KeyChar == 'b')
             {
                 this.element.blend = !this.element.blend;
             }

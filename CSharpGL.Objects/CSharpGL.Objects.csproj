@@ -59,7 +59,7 @@
     <Compile Include="Cameras\IPerspectiveViewCamera.cs" />
     <Compile Include="Cameras\IScientificCamera.cs" />
     <Compile Include="Cameras\IViewCamera.cs" />
-    <Compile Include="Cameras\SatelliteRotation.cs" />
+    <Compile Include="Cameras\SatelliteRotator.cs" />
     <Compile Include="Cameras\ScientificCamera.cs" />
     <Compile Include="Cameras\ViewTypes.cs" />
     <Compile Include="GLColor.cs" />
