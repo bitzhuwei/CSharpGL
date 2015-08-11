@@ -255,7 +255,7 @@ namespace Font2Bmps
                             int percent = vertialLineIndex++ * 100 / characterCount;
                             if (percent != lastPercent)
                             {
-                                var singleFileProgress = new SingleFileProgress() { fontName = fontName, progress = percent, message = "drawing vertial lines" };
+                                var singleFileProgress = new SingleFileProgress() { fontName = fontName, progress = percent, message = "drawing bboxes" };
                                 bgWorker.ReportProgress(fontFileIndex * magicNumber / fontFileCount, singleFileProgress);
                                 lastPercent = percent;
                             }

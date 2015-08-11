@@ -318,12 +318,12 @@
             this.pgbSingleFileProgress.TabIndex = 9;
             this.pgbSingleFileProgress.Visible = false;
             //
-            // chkGlyphList
+            // chkDumpGlyphList
             //
             this.chkDumpGlyphList.AutoSize = true;
             this.chkDumpGlyphList.Location = new System.Drawing.Point(19, 110);
-            this.chkDumpGlyphList.Name = "chkGlyphList";
-            this.chkDumpGlyphList.Size = new System.Drawing.Size(109, 19);
+            this.chkDumpGlyphList.Name = "chkDumpGlyphList";
+            this.chkDumpGlyphList.Size = new System.Drawing.Size(149, 19);
             this.chkDumpGlyphList.TabIndex = 10;
             this.chkDumpGlyphList.Text = "Dump glyph list";
             this.chkDumpGlyphList.UseVisualStyleBackColor = true;
@@ -333,7 +333,7 @@
             this.lblSingleFileProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSingleFileProgress.AutoSize = true;
-            this.lblSingleFileProgress.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblSingleFileProgress.BackColor = System.Drawing.SystemColors.Control;
             this.lblSingleFileProgress.Location = new System.Drawing.Point(647, 56);
             this.lblSingleFileProgress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSingleFileProgress.Name = "lblSingleFileProgress";
@@ -341,14 +341,14 @@
             this.lblSingleFileProgress.TabIndex = 2;
             this.lblSingleFileProgress.Text = "singleFileProgress";
             //
-            // chkFontHeightLine
+            // chkDrawBBox
             //
             this.chkDrawBBox.AutoSize = true;
             this.chkDrawBBox.Checked = true;
             this.chkDrawBBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDrawBBox.Location = new System.Drawing.Point(19, 135);
-            this.chkDrawBBox.Name = "chkFontHeightLine";
-            this.chkDrawBBox.Size = new System.Drawing.Size(117, 19);
+            this.chkDrawBBox.Name = "chkDrawBBox";
+            this.chkDrawBBox.Size = new System.Drawing.Size(101, 19);
             this.chkDrawBBox.TabIndex = 10;
             this.chkDrawBBox.Text = "Draw BBox";
             this.chkDrawBBox.UseVisualStyleBackColor = true;
