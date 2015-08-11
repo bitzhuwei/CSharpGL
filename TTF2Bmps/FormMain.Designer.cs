@@ -361,9 +361,9 @@
             this.lblTotal.Location = new System.Drawing.Point(647, 106);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(87, 15);
+            this.lblTotal.Size = new System.Drawing.Size(127, 15);
             this.lblTotal.TabIndex = 2;
-            this.lblTotal.Text = "Total: {0}";
+            this.lblTotal.Text = "Working on: {0}";
             //
             // FormMain
             //

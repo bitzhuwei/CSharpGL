@@ -9,6 +9,7 @@ namespace Font2Bmps
 
     class SingleFileProgress
     {
+        public string fontName;
         public int progress;
         public string message;
     }

@@ -213,6 +213,8 @@ namespace Font2Bmps
                 builder.Append(fontFileIndex); builder.Append("/"); builder.Append(fontFileCount);
                 builder.Append(": "); builder.AppendLine(fontFullname);
 
+                FileInfo fileInfo = new FileInfo(fontFullname);
+                string fontName = fileInfo.Name;
                 string destFullname = fontFullname + ".png";
 
                 FontTexture ttfTexture = null;
@@ -227,7 +229,7 @@ namespace Font2Bmps
                             ttfTexture = progress.ttfTexture;
                             if (progress.percent != lastPercent)
                             {
-                                var singleFileProgress = new SingleFileProgress() { progress = progress.percent, message = progress.message };
+                                var singleFileProgress = new SingleFileProgress() { fontName = fontName, progress = progress.percent, message = progress.message };
                                 bgWorker.ReportProgress(fontFileIndex * magicNumber / fontFileCount, singleFileProgress);
                                 lastPercent = progress.percent;
                             }
@@ -248,7 +250,7 @@ namespace Font2Bmps
                                 new Point(item.xoffset, item.yoffset),
                                 new Point(item.xoffset + item.width - 1, item.yoffset));
                             // 下边
-                            g.DrawLine(pen,
+                            g.DrawLine(anotherPen,
                                 new Point(item.xoffset, item.yoffset + ttfTexture.FontHeight - 1),
                                 new Point(item.xoffset + item.width - 1, item.yoffset + ttfTexture.FontHeight - 1));
                             // 左边
@@ -256,13 +258,13 @@ namespace Font2Bmps
                                 new Point(item.xoffset, item.yoffset),
                                 new Point(item.xoffset, item.yoffset + ttfTexture.FontHeight));
                             // 右边
-                            g.DrawLine(pen,
+                            g.DrawLine(anotherPen,
                                 new Point(item.xoffset + item.width - 1, item.yoffset),
                                 new Point(item.xoffset + item.width - 1, item.yoffset + ttfTexture.FontHeight));
                             int percent = vertialLineIndex++ * 100 / characterCount;
                             if (percent != lastPercent)
                             {
-                                var singleFileProgress = new SingleFileProgress() { progress = percent, message = "drawing vertial lines" };
+                                var singleFileProgress = new SingleFileProgress() { fontName = fontName, progress = percent, message = "drawing vertial lines" };
                                 bgWorker.ReportProgress(fontFileIndex * magicNumber / fontFileCount, singleFileProgress);
                                 lastPercent = percent;
                             }
@@ -301,9 +303,9 @@ namespace Font2Bmps
 
                 if (ttfTexture != null) { ttfTexture.Dispose(); }
 
-                FileInfo fileInfo = new FileInfo(fontFullname);
                 SingleFileProgress thisFileDone = new SingleFileProgress()
                 {
+                    fontName = fontName,
                     progress = magicNumber,
                     message = string.Format("All is done for {0}", fileInfo.Name),
                 };
@@ -317,6 +319,7 @@ namespace Font2Bmps
         const int horizontalFactor = 1;
         const int verticalFactor = 1;
         Pen pen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, };
+        Pen anotherPen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, DashOffset=horizontalFactor };
         Pen evenHorizontalLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, };
         Pen oddHorizontalLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { horizontalFactor, horizontalFactor }, DashOffset = horizontalFactor };
         Pen evenVerticalLinePen = new Pen(Color.Red) { DashStyle = System.Drawing.Drawing2D.DashStyle.Custom, DashPattern = new float[] { verticalFactor, verticalFactor }, };
@@ -324,15 +327,15 @@ namespace Font2Bmps
 
         private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            SingleFileProgress progress = e.UserState as SingleFileProgress;
             {
                 var value = e.ProgressPercentage;
                 if (value < pgbProgress.Minimum) value = pgbProgress.Minimum;
                 if (value > pgbProgress.Maximum) value = pgbProgress.Maximum;
                 pgbProgress.Value = value;
-                this.lblTotal.Text = string.Format("Total: {0}%", value);
+                this.lblTotal.Text = string.Format("Working on: {0}", progress.fontName);
             }
             {
-                SingleFileProgress progress = e.UserState as SingleFileProgress;
                 var value = progress.progress;
                 if (value < pgbSingleFileProgress.Minimum) value = pgbSingleFileProgress.Minimum;
                 if (value > pgbSingleFileProgress.Maximum) value = pgbSingleFileProgress.Maximum;
