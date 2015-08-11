@@ -137,6 +137,8 @@
     <None Include="simsun.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <EmbeddedResource Include="Texts\freetype.frag" />
+    <EmbeddedResource Include="Texts\freetype.vert" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -158,6 +160,20 @@
       <Project>{0d6e73c8-27b8-4614-9861-f4f22808ea7c}</Project>
       <Name>CSharpGL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="msyh.ttc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="msyh.ttc.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="STLITI.TTF.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="STLITI.TTF.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

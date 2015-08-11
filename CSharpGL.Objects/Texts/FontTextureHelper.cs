@@ -49,7 +49,7 @@ namespace CSharpGL.Objects.Texts
         /// <returns></returns>
         public static FontTexture GetTTFTexture(string textureFullname, string xmlFullname)
         {
-            XElement ttfTextureElement = new XElement(xmlFullname);
+            XElement ttfTextureElement = XElement.Load(xmlFullname); //new XElement(xmlFullname);
             FontTexture result = Parse(ttfTextureElement);
 
             System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(textureFullname);

@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TTFTExture FontHeight="30" FirstChar="!" LastChar="~">
+  <CharacterInfoDict>
+    <KeyValuePair Character="!">
+      <CharacterInfo XOffset="0" YOffset="0" width="4" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="&quot;">
+      <CharacterInfo XOffset="4" YOffset="0" width="8" height="7" />
+    </KeyValuePair>
+    <KeyValuePair Character="#">
+      <CharacterInfo XOffset="12" YOffset="0" width="17" height="21" />
+    </KeyValuePair>
+    <KeyValuePair Character="$">
+      <CharacterInfo XOffset="29" YOffset="0" width="14" height="29" />
+    </KeyValuePair>
+    <KeyValuePair Character="%">
+      <CharacterInfo XOffset="43" YOffset="0" width="24" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="&amp;">
+      <CharacterInfo XOffset="67" YOffset="0" width="24" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="'">
+      <CharacterInfo XOffset="91" YOffset="0" width="4" height="7" />
+    </KeyValuePair>
+    <KeyValuePair Character="(">
+      <CharacterInfo XOffset="95" YOffset="0" width="8" height="28" />
+    </KeyValuePair>
+    <KeyValuePair Character=")">
+      <CharacterInfo XOffset="103" YOffset="0" width="7" height="28" />
+    </KeyValuePair>
+    <KeyValuePair Character="*">
+      <CharacterInfo XOffset="110" YOffset="0" width="11" height="12" />
+    </KeyValuePair>
+    <KeyValuePair Character="+">
+      <CharacterInfo XOffset="121" YOffset="0" width="14" height="14" />
+    </KeyValuePair>
+    <KeyValuePair Character=",">
+      <CharacterInfo XOffset="135" YOffset="0" width="5" height="8" />
+    </KeyValuePair>
+    <KeyValuePair Character="-">
+      <CharacterInfo XOffset="140" YOffset="0" width="9" height="2" />
+    </KeyValuePair>
+    <KeyValuePair Character=".">
+      <CharacterInfo XOffset="149" YOffset="0" width="4" height="4" />
+    </KeyValuePair>
+    <KeyValuePair Character="/">
+      <CharacterInfo XOffset="153" YOffset="0" width="13" height="27" />
+    </KeyValuePair>
+    <KeyValuePair Character="0">
+      <CharacterInfo XOffset="166" YOffset="0" width="16" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="1">
+      <CharacterInfo XOffset="182" YOffset="0" width="13" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="2">
+      <CharacterInfo XOffset="195" YOffset="0" width="14" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="3">
+      <CharacterInfo XOffset="209" YOffset="0" width="14" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="4">
+      <CharacterInfo XOffset="223" YOffset="0" width="17" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="5">
+      <CharacterInfo XOffset="240" YOffset="0" width="14" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="6">
+      <CharacterInfo XOffset="254" YOffset="0" width="15" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="7">
+      <CharacterInfo XOffset="269" YOffset="0" width="16" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="8">
+      <CharacterInfo XOffset="285" YOffset="0" width="15" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="9">
+      <CharacterInfo XOffset="0" YOffset="30" width="15" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character=":">
+      <CharacterInfo XOffset="15" YOffset="30" width="4" height="17" />
+    </KeyValuePair>
+    <KeyValuePair Character=";">
+      <CharacterInfo XOffset="19" YOffset="30" width="5" height="21" />
+    </KeyValuePair>
+    <KeyValuePair Character="&lt;">
+      <CharacterInfo XOffset="24" YOffset="30" width="14" height="15" />
+    </KeyValuePair>
+    <KeyValuePair Character="=">
+      <CharacterInfo XOffset="38" YOffset="30" width="14" height="9" />
+    </KeyValuePair>
+    <KeyValuePair Character="&gt;">
+      <CharacterInfo XOffset="52" YOffset="30" width="14" height="15" />
+    </KeyValuePair>
+    <KeyValuePair Character="?">
+      <CharacterInfo XOffset="66" YOffset="30" width="11" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="@">
+      <CharacterInfo XOffset="77" YOffset="30" width="25" height="26" />
+    </KeyValuePair>
+    <KeyValuePair Character="A">
+      <CharacterInfo XOffset="102" YOffset="30" width="21" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="B">
+      <CharacterInfo XOffset="123" YOffset="30" width="14" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="C">
+      <CharacterInfo XOffset="137" YOffset="30" width="17" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="D">
+      <CharacterInfo XOffset="154" YOffset="30" width="18" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="E">
+      <CharacterInfo XOffset="172" YOffset="30" width="12" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="F">
+      <CharacterInfo XOffset="184" YOffset="30" width="12" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="G">
+      <CharacterInfo XOffset="196" YOffset="30" width="19" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="H">
+      <CharacterInfo XOffset="215" YOffset="30" width="17" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="I">
+      <CharacterInfo XOffset="232" YOffset="30" width="7" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="J">
+      <CharacterInfo XOffset="239" YOffset="30" width="9" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="K">
+      <CharacterInfo XOffset="248" YOffset="30" width="16" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="L">
+      <CharacterInfo XOffset="264" YOffset="30" width="12" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="M">
+      <CharacterInfo XOffset="276" YOffset="30" width="23" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="N">
+      <CharacterInfo XOffset="0" YOffset="60" width="18" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="O">
+      <CharacterInfo XOffset="18" YOffset="60" width="21" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="P">
+      <CharacterInfo XOffset="39" YOffset="60" width="14" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="Q">
+      <CharacterInfo XOffset="53" YOffset="60" width="22" height="29" />
+    </KeyValuePair>
+    <KeyValuePair Character="R">
+      <CharacterInfo XOffset="75" YOffset="60" width="17" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="S">
+      <CharacterInfo XOffset="92" YOffset="60" width="14" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="T">
+      <CharacterInfo XOffset="106" YOffset="60" width="17" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="U">
+      <CharacterInfo XOffset="123" YOffset="60" width="17" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="V">
+      <CharacterInfo XOffset="140" YOffset="60" width="20" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="W">
+      <CharacterInfo XOffset="160" YOffset="60" width="31" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="X">
+      <CharacterInfo XOffset="191" YOffset="60" width="19" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="Y">
+      <CharacterInfo XOffset="210" YOffset="60" width="18" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="Z">
+      <CharacterInfo XOffset="228" YOffset="60" width="17" height="23" />
+    </KeyValuePair>
+    <KeyValuePair Character="[">
+      <CharacterInfo XOffset="245" YOffset="60" width="5" height="28" />
+    </KeyValuePair>
+    <KeyValuePair Character="\">
+      <CharacterInfo XOffset="250" YOffset="60" width="12" height="26" />
+    </KeyValuePair>
+    <KeyValuePair Character="]">
+      <CharacterInfo XOffset="262" YOffset="60" width="5" height="28" />
+    </KeyValuePair>
+    <KeyValuePair Character="^">
+      <CharacterInfo XOffset="267" YOffset="60" width="14" height="13" />
+    </KeyValuePair>
+    <KeyValuePair Character="_">
+      <CharacterInfo XOffset="281" YOffset="60" width="13" height="2" />
+    </KeyValuePair>
+    <KeyValuePair Character="`">
+      <CharacterInfo XOffset="0" YOffset="90" width="7" height="5" />
+    </KeyValuePair>
+    <KeyValuePair Character="a">
+      <CharacterInfo XOffset="7" YOffset="90" width="14" height="17" />
+    </KeyValuePair>
+    <KeyValuePair Character="b">
+      <CharacterInfo XOffset="21" YOffset="90" width="15" height="24" />
+    </KeyValuePair>
+    <KeyValuePair Character="c">
+      <CharacterInfo XOffset="36" YOffset="90" width="13" height="17" />
+    </KeyValuePair>
+    <KeyValuePair Character="d">
+      <CharacterInfo XOffset="49" YOffset="90" width="15" height="24" />
+    </KeyValuePair>
+    <KeyValuePair Character="e">
+      <CharacterInfo XOffset="64" YOffset="90" width="15" height="17" />
+    </KeyValuePair>
+    <KeyValuePair Character="f">
+      <CharacterInfo XOffset="79" YOffset="90" width="10" height="24" />
+    </KeyValuePair>
+    <KeyValuePair Character="g">
+      <CharacterInfo XOffset="89" YOffset="90" width="15" height="24" />
+    </KeyValuePair>
+    <KeyValuePair Character="h">
+      <CharacterInfo XOffset="104" YOffset="90" width="13" height="24" />
+    </KeyValuePair>
+    <KeyValuePair Character="i">
+      <CharacterInfo XOffset="117" YOffset="90" width="4" height="24" />
+    </KeyValuePair>
+    <KeyValuePair Character="j">
+      <CharacterInfo XOffset="121" YOffset="90" width="9" height="31" />
+    </KeyValuePair>
+    <KeyValuePair Character="k">
+      <CharacterInfo XOffset="130" YOffset="90" width="13" height="24" />
+    </KeyValuePair>
+    <KeyValuePair Character="l">
+      <CharacterInfo XOffset="143" YOffset="90" width="3" height="24" />
+    </KeyValuePair>
+    <KeyValuePair Character="m">
+      <CharacterInfo XOffset="146" YOffset="90" width="23" height="17" />
+    </KeyValuePair>
+    <KeyValuePair Character="n">
+      <CharacterInfo XOffset="169" YOffset="90" width="13" height="17" />
+    </KeyValuePair>
+    <KeyValuePair Character="o">
+      <CharacterInfo XOffset="182" YOffset="90" width="16" height="17" />
+    </KeyValuePair>
+    <KeyValuePair Character="p">
+      <CharacterInfo XOffset="198" YOffset="90" width="15" height="24" />
+    </KeyValuePair>
+    <KeyValuePair Character="q">
+      <CharacterInfo XOffset="213" YOffset="90" width="15" height="24" />
+    </KeyValuePair>
+    <KeyValuePair Character="r">
+      <CharacterInfo XOffset="228" YOffset="90" width="8" height="17" />
+    </KeyValuePair>
+    <KeyValuePair Character="s">
+      <CharacterInfo XOffset="236" YOffset="90" width="11" height="17" />
+    </KeyValuePair>
+    <KeyValuePair Character="t">
+      <CharacterInfo XOffset="247" YOffset="90" width="10" height="22" />
+    </KeyValuePair>
+    <KeyValuePair Character="u">
+      <CharacterInfo XOffset="257" YOffset="90" width="14" height="17" />
+    </KeyValuePair>
+    <KeyValuePair Character="v">
+      <CharacterInfo XOffset="271" YOffset="90" width="16" height="17" />
+    </KeyValuePair>
+    <KeyValuePair Character="w">
+      <CharacterInfo XOffset="0" YOffset="120" width="24" height="17" />
+    </KeyValuePair>
+    <KeyValuePair Character="x">
+      <CharacterInfo XOffset="24" YOffset="120" width="15" height="17" />
+    </KeyValuePair>
+    <KeyValuePair Character="y">
+      <CharacterInfo XOffset="39" YOffset="120" width="16" height="24" />
+    </KeyValuePair>
+    <KeyValuePair Character="z">
+      <CharacterInfo XOffset="55" YOffset="120" width="13" height="17" />
+    </KeyValuePair>
+    <KeyValuePair Character="{">
+      <CharacterInfo XOffset="68" YOffset="120" width="7" height="28" />
+    </KeyValuePair>
+    <KeyValuePair Character="|">
+      <CharacterInfo XOffset="75" YOffset="120" width="2" height="32" />
+    </KeyValuePair>
+    <KeyValuePair Character="}">
+      <CharacterInfo XOffset="77" YOffset="120" width="7" height="28" />
+    </KeyValuePair>
+    <KeyValuePair Character="~">
+      <CharacterInfo XOffset="84" YOffset="120" width="15" height="5" />
+    </KeyValuePair>
+  </CharacterInfoDict>
+</TTFTExture>

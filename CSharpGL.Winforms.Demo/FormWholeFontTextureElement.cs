@@ -43,8 +43,11 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.MouseMove += glCanvas1_MouseMove;
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
+            this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
+            this.Load += FormWholeFontTextureElement_Load;
 
-            element = new WholeFontTextureElement("WholeFontTextureElement.png", "WholeFontTextureElement.xml");
+            //element = new WholeFontTextureElement("STLITI.TTF.png", "STLITI.TTF.xml");
+            element = new WholeFontTextureElement("msyh.ttc.png", "msyh.ttc.xml");
             element.Initialize();
 
             element.BeforeRendering += element_BeforeRendering;
@@ -59,23 +62,36 @@ namespace CSharpGL.Winforms.Demo
         void element_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
             element.shaderProgram.Unbind();
+            {
+                GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+
+                if (element.blend)
+                {
+                    GL.Disable(GL.GL_BLEND);
+                }
+            }
         }
 
         void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
+            uint texture = element.texture[0];
+            GL.BindTexture(GL.GL_TEXTURE_2D, texture);
+
+            if (element.blend)
             {
-                //rotation += 3.0f;
-                modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
-                viewMatrix = this.camera.GetViewMat4();
-                projectionMatrix = this.camera.GetProjectionMat4();
+                GL.Enable(GL.GL_BLEND);
+                GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
             }
+            //rotation += 3.0f;
+            modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
+            viewMatrix = this.camera.GetViewMat4();
+            projectionMatrix = this.camera.GetProjectionMat4();
+            mat4 matrix = projectionMatrix * viewMatrix * modelMatrix;
 
             ShaderProgram shaderProgram = element.shaderProgram;
             shaderProgram.Bind();
-
-            shaderProgram.SetUniformMatrix4(PyramidVAOElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(PyramidVAOElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(PyramidVAOElement.strmodelMatrix, modelMatrix.to_array());
+            shaderProgram.SetUniform(WholeFontTextureElement.strtex, texture);
+            shaderProgram.SetUniformMatrix4(WholeFontTextureElement.strtransformMatrix, matrix.to_array());
         }
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
@@ -105,7 +121,7 @@ namespace CSharpGL.Winforms.Demo
             this.rotator.MouseUp(e.X, e.Y);
         }
 
-        private void FormSatelliteRotation_Load(object sender, EventArgs e)
+        private void FormWholeFontTextureElement_Load(object sender, EventArgs e)
         {
             this.lblCameraType.Text = string.Format("camera type: {0}", this.camera.CameraType);
 
@@ -114,7 +130,11 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 'c')
+            if(e.KeyChar== 'b')
+            {
+                this.element.blend = !this.element.blend;
+            }
+            else if (e.KeyChar == 'c')
             {
                 switch (this.camera.CameraType)
                 {

@@ -34,6 +34,7 @@
             this.btnPyramidVAOElement = new System.Windows.Forms.Button();
             this.btnScientificCamera = new System.Windows.Forms.Button();
             this.btnSatelliteRotation = new System.Windows.Forms.Button();
+            this.btnWholeFontTextureElement = new System.Windows.Forms.Button();
             this.SuspendLayout();
             //
             // btnUnmanagedArray
@@ -114,6 +115,19 @@
             this.btnSatelliteRotation.UseVisualStyleBackColor = true;
             this.btnSatelliteRotation.Click += new System.EventHandler(this.btnSatelliteRotation_Click);
             //
+            // btnWholeFontTextureElement
+            //
+            this.btnWholeFontTextureElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnWholeFontTextureElement.Location = new System.Drawing.Point(13, 237);
+            this.btnWholeFontTextureElement.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWholeFontTextureElement.Name = "btnWholeFontTextureElement";
+            this.btnWholeFontTextureElement.Size = new System.Drawing.Size(353, 29);
+            this.btnWholeFontTextureElement.TabIndex = 2;
+            this.btnWholeFontTextureElement.Text = "WholeFontTextureElement";
+            this.btnWholeFontTextureElement.UseVisualStyleBackColor = true;
+            this.btnWholeFontTextureElement.Click += new System.EventHandler(this.btnWholeFontTextureElement_Click);
+            //
             // FormTest
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -123,6 +137,7 @@
             this.Controls.Add(this.btnScientificCamera);
             this.Controls.Add(this.btnModernSingleTextureFont);
             this.Controls.Add(this.btnPyramidVAOElement);
+            this.Controls.Add(this.btnWholeFontTextureElement);
             this.Controls.Add(this.btnCylinderVAOElement);
             this.Controls.Add(this.btnUnmanagedArray);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -140,5 +155,6 @@
         private System.Windows.Forms.Button btnPyramidVAOElement;
         private System.Windows.Forms.Button btnScientificCamera;
         private System.Windows.Forms.Button btnSatelliteRotation;
+        private System.Windows.Forms.Button btnWholeFontTextureElement;
     }
 }
