@@ -50,7 +50,7 @@ namespace CSharpGL.Winforms.Demo
         /// <param name="radius">轴（圆柱）的半径</param>
         /// <param name="height">轴（圆柱）的长度</param>
         /// <param name="faceCount">轴（圆柱）的面数（越多则越圆滑）</param>
-        public AxisElement(float radius = 0.1f, float height = 30, int faceCount = 18)
+        public AxisElement(float radius = 0.1f, float height = 10, int faceCount = 10)
         {
             this.radius = radius;
             this.height = height;
