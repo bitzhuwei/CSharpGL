@@ -10,6 +10,8 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormTranslateOnScreen : Form
     {
+        float translateX = 0, translateY = 0, translateZ = 0;
+
         AxisElement element;
 
         ScientificCamera camera;
@@ -54,9 +56,11 @@ namespace CSharpGL.Winforms.Demo
         void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
             mat4 projectionMatrix = camera.GetProjectionMat4();
+            projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
 
             mat4 viewMatrix = camera.GetViewMat4();
 
+            //mat4 modelMatrix = glm.translate(mat4.identity(), new vec3(translateX, translateY, translateZ));// mat4.identity();
             mat4 modelMatrix = mat4.identity();
 
             ShaderProgram shaderProgram = element.shaderProgram;
@@ -75,8 +79,12 @@ namespace CSharpGL.Winforms.Demo
 
         private void FormTranslateOnScreen_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Use 'c' to switch camera types between perspective and ortho");
-
+            MessageBox.Show(string.Format("{1}{0}{2}{0}{3}{0}{4}",
+                Environment.NewLine,
+                "Use 'c' to switch camera types between perspective and ortho",
+                "w/s for y axis up/down",
+                "a/d for x axis left/right",
+                "e/q for z axis near/far"));
             // Init GL
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             // first resize
@@ -149,6 +157,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
+            const float interval = 0.1f;
             if (e.KeyChar == 'c')
             {
                 switch (this.camera.CameraType)
@@ -165,7 +174,30 @@ namespace CSharpGL.Winforms.Demo
 
                 PrintCameraInfo();
             }
-
+            else if (e.KeyChar == 'w')
+            {
+                translateY += interval;
+            }
+            else if (e.KeyChar == 's')
+            {
+                translateY -= interval;
+            }
+            else if (e.KeyChar == 'a')
+            {
+                translateX -= interval;
+            }
+            else if (e.KeyChar == 'd')
+            {
+                translateX += interval;
+            }
+            else if (e.KeyChar == 'q')
+            {
+                translateZ -= interval;
+            }
+            else if (e.KeyChar == 'e')
+            {
+                translateZ += interval;
+            }
         }
 
     }

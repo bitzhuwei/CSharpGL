@@ -146,7 +146,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 328);
+            this.ClientSize = new System.Drawing.Size(379, 404);
             this.Controls.Add(this.btnWholeFontTextureElement);
             this.Controls.Add(this.btnCylinderVAOElement);
             this.Controls.Add(this.btnSatelliteRotation);
