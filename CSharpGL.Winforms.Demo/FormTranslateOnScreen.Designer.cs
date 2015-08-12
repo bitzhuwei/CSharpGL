@@ -52,6 +52,7 @@
             this.glCanvas1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.glCanvas1_MouseDown);
             this.glCanvas1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.glCanvas1_MouseMove);
             this.glCanvas1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.glCanvas1_MouseUp);
+            this.glCanvas1.Resize += new System.EventHandler(this.glCanvas_Resize);
             // 
             // statusStrip1
             // 

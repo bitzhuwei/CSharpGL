@@ -78,8 +78,8 @@ namespace CSharpGL.Winforms.Demo
                 {
                     int face = i / 2;
                     positionArray[i] = new vec3(
+                        (i % 2 == 1 ? 0 : 1) * this.height / 2,
                         (float)(this.radius * Math.Cos(face * (Math.PI * 2) / faceCount)),
-                        (i % 2 == 1 ? -1 : 1) * this.height / 2,
                         (float)(this.radius * Math.Sin(face * (Math.PI * 2) / faceCount))
                         );
                 }

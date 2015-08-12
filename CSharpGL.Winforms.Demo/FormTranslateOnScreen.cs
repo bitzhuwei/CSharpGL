@@ -38,8 +38,8 @@ namespace CSharpGL.Winforms.Demo
             satelliteRoration = new SatelliteRotator(camera);
 
             var faceCount = 18;
-            var radius = 1f;
-            var height = 3f;
+            var radius = 0.1f;
+            var height = 30f;
             element = new AxisElement(radius, height, faceCount);
             element.Initialize();
 
@@ -83,7 +83,7 @@ namespace CSharpGL.Winforms.Demo
             // Init GL
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             // first resize
-            FormTranslateOnScreen_Resize(this.glCanvas1, e);
+            glCanvas_Resize(this.glCanvas1, e);
         }
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
@@ -131,7 +131,7 @@ namespace CSharpGL.Winforms.Demo
 
         }
 
-        private void FormTranslateOnScreen_Resize(object sender, EventArgs e)
+        private void glCanvas_Resize(object sender, EventArgs e)
         {
             ////  Set the projection matrix.
             //GL.MatrixMode(GL.GL_PROJECTION);
