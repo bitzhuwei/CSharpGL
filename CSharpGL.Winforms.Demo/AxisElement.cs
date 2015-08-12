@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Winforms.Demo
 {
+    /// <summary>
+    /// 绘制三维坐标轴
+    /// </summary>
     public class AxisElement : SceneElementBase, IDisposable
     {
 
@@ -41,7 +44,13 @@ namespace CSharpGL.Winforms.Demo
         private float height;
         private int faceCount;
 
-        public AxisElement(float radius, float height, int faceCount = 18)
+        /// <summary>
+        /// 绘制三维坐标轴
+        /// </summary>
+        /// <param name="radius">轴（圆柱）的半径</param>
+        /// <param name="height">轴（圆柱）的长度</param>
+        /// <param name="faceCount">轴（圆柱）的面数（越多则越圆滑）</param>
+        public AxisElement(float radius = 0.1f, float height = 30, int faceCount = 18)
         {
             this.radius = radius;
             this.height = height;
@@ -66,7 +75,7 @@ namespace CSharpGL.Winforms.Demo
 
             vao = new uint[3];
             GL.GenVertexArrays(3, vao);
-            vec3[] colors=new vec3[]{new vec3(1,0,0),new vec3(0,1,0),new vec3(0,0,1)};
+            vec3[] colors = new vec3[] { new vec3(1, 0, 0), new vec3(0, 1, 0), new vec3(0, 0, 1) };
             for (int axisIndex = 0; axisIndex < 3; axisIndex++)
             {
                 GL.BindVertexArray(vao[axisIndex]);
