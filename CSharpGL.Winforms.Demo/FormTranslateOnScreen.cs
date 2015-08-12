@@ -1,14 +1,9 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects.Cameras;
+using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
@@ -37,10 +32,11 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotator(camera);
 
+            //var planColor = new vec3(1, 1, 0);
             //var faceCount = 10;
             //var radius = 0.1f;
             //var height = 10f;
-            //element = new AxisElement(radius, height, faceCount);
+            //element = new AxisElement(planColor, radius, height, faceCount);
             element = new AxisElement();
             element.Initialize();
 

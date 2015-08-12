@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AxisElement.cs" />
     <Compile Include="FormCylinderVAOElement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,8 +134,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="AxisElement.vert" />
-    <EmbeddedResource Include="AxisElement.frag" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

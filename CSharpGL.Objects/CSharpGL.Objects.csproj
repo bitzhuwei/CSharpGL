@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SceneElements\AxisElement.cs" />
     <Compile Include="Cameras\BoundingBox.cs" />
     <Compile Include="Cameras\Camera2Matrix.cs" />
     <Compile Include="Cameras\CameraHelper.cs">
@@ -117,6 +118,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="SceneElements\AxisElement.frag" />
+    <EmbeddedResource Include="SceneElements\AxisElement.vert" />
     <None Include="Texts\FreeTypes\freetype.exp" />
     <None Include="Texts\FreeTypes\freetype.lib" />
     <None Include="Texts\Modern OpenGL Text Rendering.mht" />

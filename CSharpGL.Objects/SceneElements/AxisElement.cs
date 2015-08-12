@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Winforms.Demo
+namespace CSharpGL.Objects.SceneElements
 {
     /// <summary>
     /// 绘制三维坐标轴
     /// </summary>
     public class AxisElement : SceneElementBase, IDisposable
     {
+        static readonly vec3 defaultPlanColor = new vec3(1, 1, 1);
 
         /// <summary>
         /// shader program
@@ -55,12 +56,30 @@ namespace CSharpGL.Winforms.Demo
             this.radius = radius;
             this.length = length;
             this.faceCount = faceCount;
+
+            this.planColor = new vec3(1, 1, 1);
+        }
+
+        /// <summary>
+        /// 绘制三维坐标轴
+        /// </summary>
+        /// <param name="planColor">XZ平面的颜色</param>
+        /// <param name="radius">轴（圆柱）的半径</param>
+        /// <param name="length">轴（圆柱）的长度</param>
+        /// <param name="faceCount">轴（圆柱）的面数（越多则越圆滑）</param>
+        public AxisElement(vec3 planColor, float radius = 0.3f, float length = 10, int faceCount = 10)
+        {
+            this.radius = radius;
+            this.length = length;
+            this.faceCount = faceCount;
+
+            this.planColor = planColor;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"AxisElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"AxisElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.AxisElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.AxisElement.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -175,7 +194,7 @@ namespace CSharpGL.Winforms.Demo
                     UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(4);
                     for (int i = 0; i < colorArray.Length; i++)
                     {
-                        colorArray[i] = new vec3(1, 1, 0);
+                        colorArray[i] = this.planColor;
                     }
 
                     uint colorLocation = shaderProgram.GetAttributeLocation(strin_Color);
@@ -234,6 +253,7 @@ namespace CSharpGL.Winforms.Demo
         protected Boolean disposed;
         private PrimitiveModes planPrimitveMode;
         private int planVertexCount;
+        private vec3 planColor;
 
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources
