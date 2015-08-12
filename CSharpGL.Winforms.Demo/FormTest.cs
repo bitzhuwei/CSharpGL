@@ -65,5 +65,10 @@ namespace CSharpGL.Winforms.Demo
             (new FormSimpleUIRect()).Show();
         }
 
+        private void btnModernSimpleUIRect_Click(object sender, EventArgs e)
+        {
+            (new FormModernSimpleUI()).Show();
+        }
+
     }
 }

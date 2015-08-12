@@ -59,6 +59,12 @@
     <Compile Include="FormFontElement.Designer.cs">
       <DependentUpon>FormFontElement.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormModernSimpleUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModernSimpleUI.Designer.cs">
+      <DependentUpon>FormModernSimpleUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPyramidVAOElement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFontElement.resx">
       <DependentUpon>FormFontElement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModernSimpleUI.resx">
+      <DependentUpon>FormModernSimpleUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPyramidVAOElement.resx">
       <DependentUpon>FormPyramidVAOElement.cs</DependentUpon>

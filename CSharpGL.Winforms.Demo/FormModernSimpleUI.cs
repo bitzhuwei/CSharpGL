@@ -15,9 +15,9 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
 {
-    public partial class FormSimpleUIRect : Form
+    public partial class FormModernSimpleUI : Form
     {
-        SimpleUIRect uiRectElement;
+        ModernSimpleUIRect uiRectElement;
 
         AxisElement axisElement;
 
@@ -25,23 +25,23 @@ namespace CSharpGL.Winforms.Demo
 
         SatelliteRotator satelliteRoration;
 
-        public FormSimpleUIRect()
+        public FormModernSimpleUI()
         {
             InitializeComponent();
 
-            if (CameraDictionary.Instance.ContainsKey(this.GetType().Name))
+            if (CameraDictionary.Instance.ContainsKey("FormModernSimpleUI"))
             {
-                this.camera = CameraDictionary.Instance[this.GetType().Name];
+                this.camera = CameraDictionary.Instance["FormModernSimpleUI"];
             }
             else
             {
                 this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
-                CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
+                CameraDictionary.Instance.Add("FormModernSimpleUI", this.camera);
             }
 
             satelliteRoration = new SatelliteRotator(camera);
 
-            uiRectElement = new SimpleUIRect(AnchorStyles.Left | AnchorStyles.Bottom, new Padding(10, 10, 10, 10), new Size(40, 30));
+            uiRectElement = new ModernSimpleUIRect(AnchorStyles.Left | AnchorStyles.Bottom, new Padding(10, 10, 10, 10), new Size(40, 30));
             uiRectElement.Initialize();
             uiRectElement.BeforeRendering += uiRectElement_BeforeRendering;
             uiRectElement.AfterRendering += uiRectElement_AfterRendering;
@@ -182,6 +182,5 @@ namespace CSharpGL.Winforms.Demo
                 }
             }
         }
-
     }
 }
