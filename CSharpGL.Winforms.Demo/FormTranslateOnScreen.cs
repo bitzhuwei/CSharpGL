@@ -25,14 +25,14 @@ namespace CSharpGL.Winforms.Demo
         {
             InitializeComponent();
 
-            if (CameraDictionary.Instance.ContainsKey("FormCylinderVAOElement"))
+            if (CameraDictionary.Instance.ContainsKey("FormTranslateOnScreen"))
             {
-                this.camera = CameraDictionary.Instance["FormCylinderVAOElement"];
+                this.camera = CameraDictionary.Instance["FormTranslateOnScreen"];
             }
             else
             {
                 this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
-                CameraDictionary.Instance.Add("FormCylinderVAOElement", this.camera);
+                CameraDictionary.Instance.Add("FormTranslateOnScreen", this.camera);
             }
 
             satelliteRoration = new SatelliteRotator(camera);
@@ -92,47 +92,14 @@ namespace CSharpGL.Winforms.Demo
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             element.Render(Objects.RenderModes.Render);
-            ////  Load the identity matrix.
-            //GL.LoadIdentity();
-
-            ////  Rotate around the Y axis.
-            //GL.Rotate(rotation, 0.0f, 1.0f, 0.0f);
-
-            ////  Draw a coloured pyramid.
-            //GL.Begin(GL.GL_TRIANGLES);
-            //GL.Color(1.0f, 0.0f, 0.0f);
-            //GL.Vertex(0.0f, 1.0f, 0.0f);
-            //GL.Color(0.0f, 1.0f, 0.0f);
-            //GL.Vertex(-1.0f, -1.0f, 1.0f);
-            //GL.Color(0.0f, 0.0f, 1.0f);
-            //GL.Vertex(1.0f, -1.0f, 1.0f);
-            //GL.Color(1.0f, 0.0f, 0.0f);
-            //GL.Vertex(0.0f, 1.0f, 0.0f);
-            //GL.Color(0.0f, 0.0f, 1.0f);
-            //GL.Vertex(1.0f, -1.0f, 1.0f);
-            //GL.Color(0.0f, 1.0f, 0.0f);
-            //GL.Vertex(1.0f, -1.0f, -1.0f);
-            //GL.Color(1.0f, 0.0f, 0.0f);
-            //GL.Vertex(0.0f, 1.0f, 0.0f);
-            //GL.Color(0.0f, 1.0f, 0.0f);
-            //GL.Vertex(1.0f, -1.0f, -1.0f);
-            //GL.Color(0.0f, 0.0f, 1.0f);
-            //GL.Vertex(-1.0f, -1.0f, -1.0f);
-            //GL.Color(1.0f, 0.0f, 0.0f);
-            //GL.Vertex(0.0f, 1.0f, 0.0f);
-            //GL.Color(0.0f, 0.0f, 1.0f);
-            //GL.Vertex(-1.0f, -1.0f, -1.0f);
-            //GL.Color(0.0f, 1.0f, 0.0f);
-            //GL.Vertex(-1.0f, -1.0f, 1.0f);
-            //GL.End();
-
-            ////  Nudge the rotation.
-            //rotation += 3.0f;
-
         }
 
         private void glCanvas_Resize(object sender, EventArgs e)
         {
+            if (this.camera != null)
+            {
+                this.camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
+            }
             ////  Set the projection matrix.
             //GL.MatrixMode(GL.GL_PROJECTION);
 

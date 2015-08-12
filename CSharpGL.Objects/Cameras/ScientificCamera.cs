@@ -27,6 +27,10 @@ namespace CSharpGL.Objects.Cameras
         public ScientificCamera(CameraTypes cameraType, double width, double height)
         {
             Name = "Scientific Camera: " + count++;
+
+            this.lastHeight = width;
+            this.lastHeight = height;
+
             IPerspectiveCamera perspectiveCamera = this;
             perspectiveCamera.FieldOfView = 60f;
             perspectiveCamera.AspectRatio = width / height;
@@ -48,6 +52,46 @@ namespace CSharpGL.Objects.Cameras
 
             this.CameraType = cameraType;
         }
+
+        public void Resize(double width, double height)
+        {
+            double aspectRatio = width / height;
+
+            IPerspectiveCamera perspectiveCamera = this;
+            perspectiveCamera.AspectRatio = aspectRatio;
+
+            const int factor = 100;
+            IOrthoCamera orthoCamera = this;
+
+            double lastAspectRatio = this.lastWidth / this.lastHeight;
+            if (aspectRatio > lastAspectRatio)
+            {
+                double top = orthoCamera.Top;
+                double newRight = top * aspectRatio;
+                orthoCamera.Left = -newRight;
+                orthoCamera.Right = newRight;
+            }
+            else if (aspectRatio < lastAspectRatio)
+            {
+                double right = orthoCamera.Right;
+                double newTop = right / aspectRatio;
+                orthoCamera.Bottom = -newTop;
+                orthoCamera.Top = newTop;
+            }
+            //if (width / 2 / factor != orthoCamera.Right)
+            //{
+            //    orthoCamera.Left = -width / 2 / factor;
+            //    orthoCamera.Right = width / 2 / factor;
+            //}
+            //if (height / 2 / factor != orthoCamera.Top)
+            //{
+            //    orthoCamera.Bottom = -height / 2 / factor;
+            //    orthoCamera.Top = height / 2 / factor;
+            //}
+        }
+
+        double lastWidth;
+        double lastHeight;
 
         /// <summary>
         /// Gets or sets the target.
@@ -78,10 +122,10 @@ namespace CSharpGL.Objects.Cameras
         /// </summary>
         private mat4 projectionMatrix = mat4.identity();
 
-        /// <summary>
-        /// The screen aspect ratio.
-        /// </summary>
-        private double aspectRatio = 1.0f;
+        ///// <summary>
+        ///// The screen aspect ratio.
+        ///// </summary>
+        //private double aspectRatio = 1.0f;
 
         /// <summary>
         /// Gets or sets the position.
@@ -105,11 +149,11 @@ namespace CSharpGL.Objects.Cameras
 
         double IPerspectiveCamera.FieldOfView { get; set; }
 
-        double IPerspectiveCamera.AspectRatio
-        {
-            get { return aspectRatio; }
-            set { aspectRatio = value; }
-        }
+        double IPerspectiveCamera.AspectRatio { get; set; }
+        //{
+        //    get { return aspectRatio; }
+        //    set { aspectRatio = value; }
+        //}
 
         double IPerspectiveCamera.Near { get; set; }
 
