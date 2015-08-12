@@ -92,7 +92,7 @@ namespace CSharpGL.Winforms.Demo
                     {
                         int face = i / 2;
                         float[] components = new float[]{
-                        (i % 2 == 1 ? 0 : 1) * this.length,
+                            i % 2 == 1 ? 0 : this.length,
                             (float)(this.radius * Math.Cos(face * (Math.PI * 2) / faceCount)),
                             (float)(this.radius * Math.Sin(face * (Math.PI * 2) / faceCount))};
                         positionArray[i] = new vec3(
