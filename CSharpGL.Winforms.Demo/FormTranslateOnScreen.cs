@@ -22,14 +22,14 @@ namespace CSharpGL.Winforms.Demo
         {
             InitializeComponent();
 
-            if (CameraDictionary.Instance.ContainsKey("FormTranslateOnScreen"))
+            if (CameraDictionary.Instance.ContainsKey(this.GetType().Name))
             {
-                this.camera = CameraDictionary.Instance["FormTranslateOnScreen"];
+                this.camera = CameraDictionary.Instance[this.GetType().Name];
             }
             else
             {
                 this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
-                CameraDictionary.Instance.Add("FormTranslateOnScreen", this.camera);
+                CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
             }
 
             satelliteRoration = new SatelliteRotator(camera);
