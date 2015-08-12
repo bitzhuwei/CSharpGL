@@ -37,10 +37,11 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotator(camera);
 
-            var faceCount = 10;
-            var radius = 0.1f;
-            var height = 10f;
-            element = new AxisElement(radius, height, faceCount);
+            //var faceCount = 10;
+            //var radius = 0.1f;
+            //var height = 10f;
+            //element = new AxisElement(radius, height, faceCount);
+            element = new AxisElement();
             element.Initialize();
 
             element.BeforeRendering += element_BeforeRendering;
