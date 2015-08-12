@@ -152,7 +152,7 @@ namespace CSharpGL.Winforms.Demo
             builder.Append(string.Format(" up:{0}", this.camera.UpVector));
             builder.Append(string.Format(" camera type: {0}", this.camera.CameraType));
 
-            this.lblInfo.Text = builder.ToString();
+            this.txtInfo.Text = builder.ToString();
         }
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
