@@ -115,14 +115,7 @@ namespace CSharpGL.Winforms.Demo
                     UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(faceCount * 2);
                     for (int i = 0; i < colorArray.Length; i++)
                     {
-                        //if (i % 2 == 0)
-                        {
-                            colorArray[i] = colors[axisIndex]; //new vec3(1, 0, 0); //new vec3((i % 3) / 3.0f, (i + 1) % 3 / 3.0f, (i + 2) % 3 / 3.0f);
-                        }
-                        //else
-                        {
-                            //colorArray[i] = new vec3(1,1,1); //new vec3((i % 3) / 3.0f, (i + 1) % 3 / 3.0f, (i + 2) % 3 / 3.0f);
-                        }
+                        colorArray[i] = colors[axisIndex];
                     }
 
                     uint colorLocation = shaderProgram.GetAttributeLocation(strin_Color);
@@ -177,15 +170,11 @@ namespace CSharpGL.Winforms.Demo
                     plan.Dispose();
                 }
 
-
                 //  Now do the same for the colour data.
                 {
-
                     UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(4);
                     for (int i = 0; i < colorArray.Length; i++)
                     {
-                        //colorArray[i] = new vec3(1, 0, 1);
-                        //colorArray[i] = new vec3(0, 1, 1);
                         colorArray[i] = new vec3(1, 1, 0);
                     }
 
@@ -211,7 +200,6 @@ namespace CSharpGL.Winforms.Demo
             InitializeShader(out shaderProgram);
 
             InitializeVAO();
-
         }
 
         protected override void DoRender(RenderModes renderMode)
