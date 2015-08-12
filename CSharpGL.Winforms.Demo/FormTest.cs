@@ -55,5 +55,10 @@ namespace CSharpGL.Winforms.Demo
             (new FormFontElement()).Show();
         }
 
+        private void btnTranslateOnScreen_Click(object sender, EventArgs e)
+        {
+            (new FormTranslateOnScreen()).Show();
+        }
+
     }
 }

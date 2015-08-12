@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AxisElement.cs" />
     <Compile Include="FormCylinderVAOElement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +84,12 @@
     <Compile Include="FormTest.Designer.cs">
       <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTranslateOnScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTranslateOnScreen.Designer.cs">
+      <DependentUpon>FormTranslateOnScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormWholeFontTextureElement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +119,9 @@
     <EmbeddedResource Include="FormTest.resx">
       <DependentUpon>FormTest.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormTranslateOnScreen.resx">
+      <DependentUpon>FormTranslateOnScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormWholeFontTextureElement.resx">
       <DependentUpon>FormWholeFontTextureElement.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,6 +135,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="AxisElement.vert" />
+    <EmbeddedResource Include="AxisElement.frag" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

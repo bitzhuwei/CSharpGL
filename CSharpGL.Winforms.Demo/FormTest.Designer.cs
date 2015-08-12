@@ -35,6 +35,7 @@
             this.btnScientificCamera = new System.Windows.Forms.Button();
             this.btnSatelliteRotation = new System.Windows.Forms.Button();
             this.btnWholeFontTextureElement = new System.Windows.Forms.Button();
+            this.btnTranslateOnScreen = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUnmanagedArray
@@ -128,6 +129,19 @@
             this.btnWholeFontTextureElement.UseVisualStyleBackColor = true;
             this.btnWholeFontTextureElement.Click += new System.EventHandler(this.btnWholeFontTextureElement_Click);
             // 
+            // btnTranslateOnScreen
+            // 
+            this.btnTranslateOnScreen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTranslateOnScreen.Location = new System.Drawing.Point(13, 274);
+            this.btnTranslateOnScreen.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTranslateOnScreen.Name = "btnTranslateOnScreen";
+            this.btnTranslateOnScreen.Size = new System.Drawing.Size(353, 29);
+            this.btnTranslateOnScreen.TabIndex = 4;
+            this.btnTranslateOnScreen.Text = "TranslateOnScreen";
+            this.btnTranslateOnScreen.UseVisualStyleBackColor = true;
+            this.btnTranslateOnScreen.Click += new System.EventHandler(this.btnTranslateOnScreen_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -137,6 +151,7 @@
             this.Controls.Add(this.btnCylinderVAOElement);
             this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnScientificCamera);
+            this.Controls.Add(this.btnTranslateOnScreen);
             this.Controls.Add(this.btnModernSingleTextureFont);
             this.Controls.Add(this.btnPyramidVAOElement);
             this.Controls.Add(this.btnUnmanagedArray);
@@ -156,5 +171,6 @@
         private System.Windows.Forms.Button btnScientificCamera;
         private System.Windows.Forms.Button btnSatelliteRotation;
         private System.Windows.Forms.Button btnWholeFontTextureElement;
+        private System.Windows.Forms.Button btnTranslateOnScreen;
     }
 }
