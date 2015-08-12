@@ -36,6 +36,7 @@
             this.btnSatelliteRotation = new System.Windows.Forms.Button();
             this.btnWholeFontTextureElement = new System.Windows.Forms.Button();
             this.btnTranslateOnScreen = new System.Windows.Forms.Button();
+            this.btnSimpleUIRect = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUnmanagedArray
@@ -142,6 +143,19 @@
             this.btnTranslateOnScreen.UseVisualStyleBackColor = true;
             this.btnTranslateOnScreen.Click += new System.EventHandler(this.btnTranslateOnScreen_Click);
             // 
+            // btnSimpleUIRect
+            // 
+            this.btnSimpleUIRect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSimpleUIRect.Location = new System.Drawing.Point(13, 311);
+            this.btnSimpleUIRect.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSimpleUIRect.Name = "btnSimpleUIRect";
+            this.btnSimpleUIRect.Size = new System.Drawing.Size(353, 29);
+            this.btnSimpleUIRect.TabIndex = 4;
+            this.btnSimpleUIRect.Text = "SimpleUIRect";
+            this.btnSimpleUIRect.UseVisualStyleBackColor = true;
+            this.btnSimpleUIRect.Click += new System.EventHandler(this.btnSimpleUIRect_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -151,6 +165,7 @@
             this.Controls.Add(this.btnCylinderVAOElement);
             this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnScientificCamera);
+            this.Controls.Add(this.btnSimpleUIRect);
             this.Controls.Add(this.btnTranslateOnScreen);
             this.Controls.Add(this.btnModernSingleTextureFont);
             this.Controls.Add(this.btnPyramidVAOElement);
@@ -172,5 +187,6 @@
         private System.Windows.Forms.Button btnSatelliteRotation;
         private System.Windows.Forms.Button btnWholeFontTextureElement;
         private System.Windows.Forms.Button btnTranslateOnScreen;
+        private System.Windows.Forms.Button btnSimpleUIRect;
     }
 }

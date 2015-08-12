@@ -77,6 +77,12 @@
     <Compile Include="FormScientificCamera.Designer.cs">
       <DependentUpon>FormScientificCamera.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSimpleUIRect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSimpleUIRect.Designer.cs">
+      <DependentUpon>FormSimpleUIRect.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormScientificCamera.resx">
       <DependentUpon>FormScientificCamera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSimpleUIRect.resx">
+      <DependentUpon>FormSimpleUIRect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTest.resx">
       <DependentUpon>FormTest.cs</DependentUpon>
