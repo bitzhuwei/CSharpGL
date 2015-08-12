@@ -78,26 +78,38 @@ namespace CSharpGL.Winforms.Demo
 
         void uiRectElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            //element.shaderProgram.Unbind();
+            this.uiRectElement.shaderProgram.Unbind();
         }
 
         void uiRectElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            //mat4 projectionMatrix = camera.GetProjectionMat4();
-            //projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
+            SimpleUIRectArgs args = this.uiRectElement.GetArgs();
 
-            //mat4 viewMatrix = camera.GetViewMat4();
+            mat4 projectionMatrix = glm.ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top,
+                this.uiRectElement.zNear, this.uiRectElement.zFar);
 
-            ////mat4 modelMatrix = glm.translate(mat4.identity(), new vec3(translateX, translateY, translateZ));// mat4.identity();
-            //mat4 modelMatrix = mat4.identity();
+            mat4 viewMatrix;
+            IViewCamera camera = null;// this.camera;
+            if (camera == null)
+            {
+                viewMatrix = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
+            }
+            else
+            {
+                vec3 position = camera.Position - camera.Target;
+                position.Normalize();
+                viewMatrix = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
+            }
 
-            //ShaderProgram shaderProgram = element.shaderProgram;
+            mat4 modelMatrix = glm.scale(mat4.identity(), new vec3(args.UIWidth / 2, args.UIHeight / 2, 1));
 
-            //shaderProgram.Bind();
+            ShaderProgram shaderProgram = this.uiRectElement.shaderProgram;
 
-            //shaderProgram.SetUniformMatrix4(CylinderVAOElement.strprojectionMatrix, projectionMatrix.to_array());
-            //shaderProgram.SetUniformMatrix4(CylinderVAOElement.strviewMatrix, viewMatrix.to_array());
-            //shaderProgram.SetUniformMatrix4(CylinderVAOElement.strmodelMatrix, modelMatrix.to_array());
+            shaderProgram.Bind();
+
+            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strmodelMatrix, modelMatrix.to_array());
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

@@ -61,16 +61,14 @@ namespace CSharpGL.Objects.UI.SimpleUI
             this.zNear = zNear;
             this.zFar = zFar;
             if (rectColor == null)
-            { this.RectColor = new GLColor(1, 0, 0, 1); }
+            { this.RectColor = new vec3(1, 0, 0); }
             else
-            { this.RectColor = new GLColor(1, 0, 0, 1); }
+            { this.RectColor = new vec3(1, 0, 0); }
 
             this.RenderBound = true;
         }
 
-        #region IRenderable 成员
-
-        public void CalculateViewport(SimpleUIRectArgs args)
+        protected void CalculateViewport(SimpleUIRectArgs args)
         {
             int[] viewport = new int[4];
             GL.GetInteger(GetTarget.Viewport, viewport);
@@ -78,7 +76,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
             args.viewHeight = viewport[3];
         }
 
-        public void CalculateCoords(int viewWidth, int viewHeight, SimpleUIRectArgs args)
+        protected void CalculateCoords(int viewWidth, int viewHeight, SimpleUIRectArgs args)
         {
             if ((Anchor & leftRightAnchor) == leftRightAnchor)
             {
@@ -138,31 +136,6 @@ namespace CSharpGL.Objects.UI.SimpleUI
             }
         }
 
-
-        #endregion
-
-        /// <summary>
-        /// render UI model at axis's center(0, 0, 0) in <paramref name="UIWidth"/> and <paramref name="UIHeight"/>.
-        /// <para>The <see cref="SimpleUIRect.RenderMode()"/> only draws a rectangle to show the UI's scope.</para>
-        /// </summary>
-        /// <param name="UIWidth"></param>
-        /// <param name="UIHeight"></param>
-        /// <param name="gl"></param>
-        /// <param name="renderMode"></param>
-        protected virtual void RenderModel(SimpleUIRectArgs args, RenderModes renderMode)
-        {
-            if (this.RenderBound)
-            {
-                GL.Begin(PrimitiveModes.LineLoop);
-                GL.Color(RectColor);
-                GL.Vertex(-args.UIWidth / 2, -args.UIHeight / 2, 0);
-                GL.Vertex(args.UIWidth / 2, -args.UIHeight / 2, 0);
-                GL.Vertex(args.UIWidth / 2, args.UIHeight / 2, 0);
-                GL.Vertex(-args.UIWidth / 2, args.UIHeight / 2, 0);
-                GL.End();
-            }
-        }
-
         /// <summary>
         /// leftRightAnchor = (AnchorStyles.Left | AnchorStyles.Right); 
         /// </summary>
@@ -172,21 +145,6 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// topBottomAnchor = (AnchorStyles.Top | AnchorStyles.Bottom);
         /// </summary>
         protected const AnchorStyles topBottomAnchor = (AnchorStyles.Top | AnchorStyles.Bottom);
-
-        //protected int viewWidth;
-        //protected int viewHeight;
-        //protected int UIWidth;
-        //protected int UIHeight;
-        //protected int left;
-        //protected int bottom;
-        protected SimpleUIRectArgs args = new SimpleUIRectArgs();
-
-        /// <summary>
-        /// if Camera is null, this UI rectangle area will be drawn with an invoking
-        /// <para>gl.LookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);</para>
-        /// <para>otherwise, it uses gl.LookAt(Camera's (Position - Target), Target, UpVector);</para>
-        /// </summary>
-        public virtual IScientificCamera Camera { get; set; }
 
         /// <summary>
         /// the edges of the OpenGLControl to which a SimpleUIRect is bound and determines how it is resized with its parent.
@@ -216,65 +174,80 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         public int zFar { get; set; }
 
-        public GLColor RectColor { get; set; }
+        public vec3 RectColor { get; set; }
 
         public bool RenderBound { get; set; }
 
-        #region IHasObjectSpace 成员
-
-        /// <summary>
-        /// Prepare projection matrix.
-        /// </summary>
-        /// <param name="gl"></param>
-        public virtual void PushObjectSpace()
+        public SimpleUIRectArgs GetArgs()
         {
-            this.args = new SimpleUIRectArgs();
+            var args = new SimpleUIRectArgs();
+
             CalculateViewport(args);
 
             CalculateCoords(args.viewWidth, args.viewHeight, args);
 
-            //mat4 projectionMatrix = glm.ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top, zNear, zFar);
-            GL.MatrixMode(GL.GL_PROJECTION);
-            GL.PushMatrix();
-            GL.LoadIdentity();
-            GL.Ortho(args.left, args.right, args.bottom, args.top, zNear, zFar);
-
-            //mat4 viewMatrix = glm.lookAt()
-            IViewCamera camera = this.Camera;
-            if (camera == null)
-            {
-                GL.gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);
-                //throw new Exception("Camera not set!");
-            }
-            else
-            {
-                vec3 position = camera.Position - camera.Target;
-                position.Normalize();
-                GL.gluLookAt(position.x, position.y, position.z,
-                    0, 0, 0,
-                    camera.UpVector.x, camera.UpVector.y, camera.UpVector.z);
-            }
-
-            GL.MatrixMode(GL.GL_MODELVIEW);
-            GL.PushMatrix();
+            return args;
         }
-
-
-        public virtual void PopObjectSpace()
-        {
-            GL.MatrixMode(GL.GL_PROJECTION);
-            GL.PopMatrix();
-
-            GL.MatrixMode(GL.GL_MODELVIEW);
-            GL.PopMatrix();
-        }
-
-        #endregion
-
 
         protected override void DoInitialize()
         {
             this.shaderProgram = InitializeShader();
+
+            InitVAO();
+        }
+
+        private void InitVAO()
+        {
+            this.axisPrimitiveMode = PrimitiveModes.LineLoop;
+            this.axisVertexCount = 4;
+            this.vao = new uint[1];
+
+            GL.GenVertexArrays(1, vao);
+
+            GL.BindVertexArray(vao[0]);
+
+            //  Create a vertex buffer for the vertex data.
+            {
+                UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(4);
+                positionArray[0] = new vec3(-1, -1, 0);
+                positionArray[1] = new vec3(1, -1, 0);
+                positionArray[2] = new vec3(1, 1, 0);
+                positionArray[3] = new vec3(-1, 1, 0);
+
+                uint positionLocation = shaderProgram.GetAttributeLocation(strin_Position);
+
+                uint[] ids = new uint[1];
+                GL.GenBuffers(1, ids);
+                GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
+                GL.BufferData(BufferTarget.ArrayBuffer, positionArray, BufferUsage.StaticDraw);
+                GL.VertexAttribPointer(positionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+                GL.EnableVertexAttribArray(positionLocation);
+
+                positionArray.Dispose();
+            }
+
+            //  Now do the same for the colour data.
+            {
+                UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(4);
+                for (int i = 0; i < colorArray.Length; i++)
+                {
+                    colorArray[i] = this.RectColor;
+                }
+
+                uint colorLocation = shaderProgram.GetAttributeLocation(strin_Color);
+
+                uint[] ids = new uint[1];
+                GL.GenBuffers(1, ids);
+                GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
+                GL.BufferData(BufferTarget.ArrayBuffer, colorArray, BufferUsage.StaticDraw);
+                GL.VertexAttribPointer(colorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+                GL.EnableVertexAttribArray(colorLocation);
+
+                colorArray.Dispose();
+            }
+
+            //  Unbind the vertex array, we've finished specifying data for it.
+            GL.BindVertexArray(0);
         }
 
         protected ShaderProgram InitializeShader()
@@ -292,11 +265,14 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         protected override void DoRender(RenderModes renderMode)
         {
-            PushObjectSpace();
+            if (this.RenderBound)
+            {
+                GL.BindVertexArray(vao[0]);
 
-            RenderModel(args, renderMode);
+                GL.DrawArrays(this.axisPrimitiveMode, 0, 4);
 
-            PopObjectSpace();
+                GL.BindVertexArray(0);
+            }
         }
     }
 }

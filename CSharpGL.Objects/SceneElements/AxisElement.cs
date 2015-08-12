@@ -103,9 +103,6 @@ namespace CSharpGL.Objects.SceneElements
 
                 //  Create a vertex buffer for the vertex data.
                 {
-                    uint[] ids = new uint[1];
-                    GL.GenBuffers(1, ids);
-                    GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
                     UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(faceCount * 2);
                     for (int i = 0; i < faceCount * 2; i++)
                     {
@@ -120,6 +117,9 @@ namespace CSharpGL.Objects.SceneElements
 
                     uint positionLocation = shaderProgram.GetAttributeLocation(strin_Position);
 
+                    uint[] ids = new uint[1];
+                    GL.GenBuffers(1, ids);
+                    GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
                     GL.BufferData(BufferTarget.ArrayBuffer, positionArray, BufferUsage.StaticDraw);
                     GL.VertexAttribPointer(positionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                     GL.EnableVertexAttribArray(positionLocation);
@@ -128,9 +128,6 @@ namespace CSharpGL.Objects.SceneElements
 
                 //  Now do the same for the colour data.
                 {
-                    uint[] ids = new uint[1];
-                    GL.GenBuffers(1, ids);
-                    GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
                     UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(faceCount * 2);
                     for (int i = 0; i < colorArray.Length; i++)
                     {
@@ -139,15 +136,15 @@ namespace CSharpGL.Objects.SceneElements
 
                     uint colorLocation = shaderProgram.GetAttributeLocation(strin_Color);
 
+                    uint[] ids = new uint[1];
+                    GL.GenBuffers(1, ids);
+                    GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
                     GL.BufferData(BufferTarget.ArrayBuffer, colorArray, BufferUsage.StaticDraw);
                     GL.VertexAttribPointer(colorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                     GL.EnableVertexAttribArray(colorLocation);
                     colorArray.Dispose();
                 }
                 {
-                    uint[] ids = new uint[1];
-                    GL.GenBuffers(1, ids);
-                    GL.BindBuffer(BufferTarget.ElementArrayBuffer, ids[0]);
                     UnmanagedArray<uint> cylinderIndex = new UnmanagedArray<uint>(faceCount * 2 + 2);
                     for (int i = 0; i < cylinderIndex.Length - 2; i++)
                     {
@@ -155,6 +152,10 @@ namespace CSharpGL.Objects.SceneElements
                     }
                     cylinderIndex[cylinderIndex.Length - 2] = 0;
                     cylinderIndex[cylinderIndex.Length - 1] = 1;
+
+                    uint[] ids = new uint[1];
+                    GL.GenBuffers(1, ids);
+                    GL.BindBuffer(BufferTarget.ElementArrayBuffer, ids[0]);
                     GL.BufferData(BufferTarget.ElementArrayBuffer, cylinderIndex, BufferUsage.StaticDraw);
                     cylinderIndex.Dispose();
                 }
