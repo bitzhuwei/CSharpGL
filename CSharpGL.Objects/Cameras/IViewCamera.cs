@@ -4,7 +4,7 @@ using System.ComponentModel;
 namespace CSharpGL.Objects.Cameras
 {
     /// <summary>
-    /// Use thsi for view matrix.
+    /// Use this for view matrix.
     /// <para>Typical usage: projection * view * model in GLSL.</para>
     /// </summary>
     public interface IViewCamera
