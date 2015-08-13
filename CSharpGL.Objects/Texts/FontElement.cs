@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.Texts
     public class FontElement : SceneElementBase, IDisposable
     {
 
-        public bool blend;
+        public bool blend = true;
 
         public uint[] texture = new uint[1];
         private FontTexture ttfTexture;
@@ -67,7 +67,8 @@ namespace CSharpGL.Objects.Texts
             UnmanagedArray<vec3> in_Position = new UnmanagedArray<vec3>(this.vertexCount);
             UnmanagedArray<vec2> in_TexCoord = new UnmanagedArray<vec2>(this.vertexCount);
             Bitmap bigBitmap = this.ttfTexture.BigBitmap;
-
+            // TODO: 想办法把元素位置放到(0, 0, 0)
+            float halfLength = (float)value.Length / 2;
             for (int i = 0; i < value.Length; i++)
             {
                 char c = value[i];
@@ -85,10 +86,10 @@ namespace CSharpGL.Objects.Texts
                 }
                 //else
                 //{ throw new Exception(string.Format("Not support for display the char [{0}]", c)); }
-                in_Position[i * 4 + 0] = new vec3(i, 0, 0);
-                in_Position[i * 4 + 1] = new vec3(i + 1, 0, 0);
-                in_Position[i * 4 + 2] = new vec3(i + 1, 1, 0);
-                in_Position[i * 4 + 3] = new vec3(i, 1, 0);
+                in_Position[i * 4 + 0] = new vec3(i - halfLength, 0, 0);
+                in_Position[i * 4 + 1] = new vec3(i + 1 - halfLength, 0, 0);
+                in_Position[i * 4 + 2] = new vec3(i + 1 - halfLength, 1, 0);
+                in_Position[i * 4 + 3] = new vec3(i - halfLength, 1, 0);
 
                 in_TexCoord[i * 4 + 0] = new vec2(x1, y1);
                 in_TexCoord[i * 4 + 1] = new vec2(x2, y1);
@@ -300,8 +301,8 @@ namespace CSharpGL.Objects.Texts
 
         private void InitShaderProgram()
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Texts.freetype.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Texts.freetype.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Texts.FontElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Texts.FontElement.frag");
             var shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 

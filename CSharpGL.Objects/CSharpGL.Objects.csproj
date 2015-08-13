@@ -89,8 +89,8 @@
     <Compile Include="UI\SimpleUI\SimpleUIAxis.cs" />
     <Compile Include="UI\SimpleUI\IUILayoutArgs.cs" />
     <Compile Include="UI\SimpleUI\SimpleUICube.cs" />
-    <EmbeddedResource Include="Texts\freetype.frag" />
-    <EmbeddedResource Include="Texts\freetype.vert" />
+    <EmbeddedResource Include="Texts\FontElement.frag" />
+    <EmbeddedResource Include="Texts\FontElement.vert" />
     <Compile Include="Texts\CharacterInfo.cs" />
     <Compile Include="Texts\FontElement.cs" />
     <Compile Include="Texts\FreeTypes\BBox.cs" />

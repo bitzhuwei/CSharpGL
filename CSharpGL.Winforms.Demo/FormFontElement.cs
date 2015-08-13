@@ -54,7 +54,7 @@ namespace CSharpGL.Winforms.Demo
 
             //element.SetText("祝神");
             //element.SetText("一龟");
-            element.SetText("The quickbrownfoxjumpsoverthelazydog!");
+            element.SetText("The quick brown fox jumps over the lazy dog!");
 
             element.BeforeRendering += element_BeforeRendering;
             element.AfterRendering += element_AfterRendering;
