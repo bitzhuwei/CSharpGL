@@ -17,10 +17,10 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormSimpleUIColorPalette : Form
     {
-        SimpleUIColorPalette uiLeftBottomAxis;
-        SimpleUIColorPalette uiLeftTopAxis;
-        SimpleUIColorPalette uiRightBottomAxis;
-        SimpleUIColorPalette uiRightTopAxis;
+        SimpleUIColorIndicator uiLeftBottomAxis;
+        SimpleUIColorIndicator uiLeftTopAxis;
+        SimpleUIColorIndicator uiRightBottomAxis;
+        SimpleUIColorIndicator uiRightTopAxis;
 
         AxisElement axisElement;
 
@@ -47,10 +47,10 @@ namespace CSharpGL.Winforms.Demo
             Padding padding = new System.Windows.Forms.Padding(40, 40, 40, 40);
             Size size = new Size(100, 100);
             //Size size = new Size(5, 5);
-            uiLeftBottomAxis = new SimpleUIColorPalette(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
-            uiLeftTopAxis = new SimpleUIColorPalette(AnchorStyles.Left | AnchorStyles.Top, padding, size);
-            uiRightBottomAxis = new SimpleUIColorPalette(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
-            uiRightTopAxis = new SimpleUIColorPalette(AnchorStyles.Right | AnchorStyles.Top, padding, size);
+            uiLeftBottomAxis = new SimpleUIColorIndicator(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
+            uiLeftTopAxis = new SimpleUIColorIndicator(AnchorStyles.Left | AnchorStyles.Top, padding, size);
+            uiRightBottomAxis = new SimpleUIColorIndicator(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
+            uiRightTopAxis = new SimpleUIColorIndicator(AnchorStyles.Right | AnchorStyles.Top, padding, size);
 
             uiLeftBottomAxis.Initialize();
             uiLeftTopAxis.Initialize();
@@ -107,14 +107,14 @@ namespace CSharpGL.Winforms.Demo
 
         void SimpleUIAxis_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            SimpleUIColorPalette element = sender as SimpleUIColorPalette;
+            SimpleUIColorIndicator element = sender as SimpleUIColorIndicator;
 
             element.shaderProgram.Unbind();
         }
 
         void SimpleUIAxis_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            SimpleUIColorPalette element = sender as SimpleUIColorPalette;
+            SimpleUIColorIndicator element = sender as SimpleUIColorIndicator;
 
             mat4 projectionMatrix, viewMatrix, modelMatrix;
             float maxDepth = (float)Math.Sqrt(3);

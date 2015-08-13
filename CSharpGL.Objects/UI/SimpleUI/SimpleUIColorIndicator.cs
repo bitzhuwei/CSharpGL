@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Objects.UI.SimpleUI
 {
-    public class SimpleUIColorPalette : SceneElementBase, IUILayout//, IRenderable, IHasObjectSpace
+    public class SimpleUIColorIndicator : SceneElementBase, IUILayout//, IRenderable, IHasObjectSpace
     {
         /// <summary>
         /// shader program
@@ -47,7 +47,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
         /// <param name="rectColor">default color is red.</param>
-        public SimpleUIColorPalette(AnchorStyles anchor, Padding margin, System.Drawing.Size size, int zNear = -1000, int zFar = 1000)
+        public SimpleUIColorIndicator(AnchorStyles anchor, Padding margin, System.Drawing.Size size, int zNear = -1000, int zFar = 1000)
         {
             IUILayout layout = this;
             layout.Anchor = anchor;
@@ -145,8 +145,8 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         protected ShaderProgram InitializeShader()
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"UI.SimpleUI.SimpleUIColorPalette.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"UI.SimpleUI.SimpleUIColorPalette.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"UI.SimpleUI.SimpleUIColorIndicator.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"UI.SimpleUI.SimpleUIColorIndicator.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
