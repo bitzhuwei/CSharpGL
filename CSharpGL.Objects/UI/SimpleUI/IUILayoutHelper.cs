@@ -19,7 +19,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="modelMatrix"></param>
         public static void GetMatrix(this IUILayout uiElement, out mat4 projectionMatrix, out mat4 modelMatrix)
         {
-            SimpleUIRectArgs args = uiElement.GetArgs();
+            IUILayoutArgs args = uiElement.GetArgs();
 
             projectionMatrix = glm.ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top,
                 uiElement.zNear, uiElement.zFar);
@@ -38,9 +38,9 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// </summary>
         const AnchorStyles topBottomAnchor = (AnchorStyles.Top | AnchorStyles.Bottom);
 
-        static SimpleUIRectArgs GetArgs(this IUILayout uiElement)
+        static IUILayoutArgs GetArgs(this IUILayout uiElement)
         {
-            var args = new SimpleUIRectArgs();
+            var args = new IUILayoutArgs();
 
             CalculateViewport(args);
 
@@ -49,7 +49,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
             return args;
         }
 
-        static void CalculateViewport(SimpleUIRectArgs args)
+        static void CalculateViewport(IUILayoutArgs args)
         {
             int[] viewport = new int[4];
             GL.GetInteger(GetTarget.Viewport, viewport);
@@ -57,7 +57,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
             args.viewHeight = viewport[3];
         }
 
-        static void CalculateCoords(IUILayout uiElement, int viewWidth, int viewHeight, SimpleUIRectArgs args)
+        static void CalculateCoords(IUILayout uiElement, int viewWidth, int viewHeight, IUILayoutArgs args)
         {
             if ((uiElement.Anchor & leftRightAnchor) == leftRightAnchor)
             {

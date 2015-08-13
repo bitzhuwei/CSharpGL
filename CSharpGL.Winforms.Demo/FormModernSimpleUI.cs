@@ -83,7 +83,7 @@ namespace CSharpGL.Winforms.Demo
 
         void uiRectElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            SimpleUIRectArgs args = this.uiRectElement.GetArgs();
+            IUILayoutArgs args = this.uiRectElement.GetArgs();
 
             mat4 projectionMatrix = glm.ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top,
                 this.uiRectElement.zNear, this.uiRectElement.zFar);

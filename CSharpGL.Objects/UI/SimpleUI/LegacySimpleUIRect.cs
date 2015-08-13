@@ -51,7 +51,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         //    RenderModel(args, renderMode);
         //}
 
-        protected void CalculateViewport(SimpleUIRectArgs args)
+        protected void CalculateViewport(IUILayoutArgs args)
         {
             int[] viewport = new int[4];
             GL.GetInteger(GetTarget.Viewport, viewport);
@@ -59,7 +59,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
             args.viewHeight = viewport[3];
         }
 
-        protected void CalculateCoords(int viewWidth, int viewHeight, SimpleUIRectArgs args)
+        protected void CalculateCoords(int viewWidth, int viewHeight, IUILayoutArgs args)
         {
             if ((Anchor & leftRightAnchor) == leftRightAnchor)
             {
@@ -130,7 +130,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="UIHeight"></param>
         /// <param name="gl"></param>
         /// <param name="renderMode"></param>
-        protected virtual void RenderModel(SimpleUIRectArgs args, RenderModes renderMode)
+        protected virtual void RenderModel(IUILayoutArgs args, RenderModes renderMode)
         {
             if (this.RenderBound)
             {
@@ -160,7 +160,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         //protected int UIHeight;
         //protected int left;
         //protected int bottom;
-        protected SimpleUIRectArgs args = new SimpleUIRectArgs();
+        protected IUILayoutArgs args = new IUILayoutArgs();
 
         /// <summary>
         /// if Camera is null, this UI rectangle area will be drawn with an invoking
@@ -209,7 +209,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="gl"></param>
         public virtual void PushObjectSpace()
         {
-            this.args = new SimpleUIRectArgs();
+            this.args = new IUILayoutArgs();
             //int viewWidth;
             //int viewHeight;
             CalculateViewport(args);

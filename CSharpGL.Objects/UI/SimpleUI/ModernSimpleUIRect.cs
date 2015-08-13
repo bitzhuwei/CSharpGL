@@ -68,7 +68,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
             this.RenderBound = true;
         }
 
-        protected void CalculateViewport(SimpleUIRectArgs args)
+        protected void CalculateViewport(IUILayoutArgs args)
         {
             int[] viewport = new int[4];
             GL.GetInteger(GetTarget.Viewport, viewport);
@@ -76,7 +76,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
             args.viewHeight = viewport[3];
         }
 
-        protected void CalculateCoords(int viewWidth, int viewHeight, SimpleUIRectArgs args)
+        protected void CalculateCoords(int viewWidth, int viewHeight, IUILayoutArgs args)
         {
             if ((Anchor & leftRightAnchor) == leftRightAnchor)
             {
@@ -178,9 +178,9 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         public bool RenderBound { get; set; }
 
-        public SimpleUIRectArgs GetArgs()
+        public IUILayoutArgs GetArgs()
         {
-            var args = new SimpleUIRectArgs();
+            var args = new IUILayoutArgs();
 
             CalculateViewport(args);
 

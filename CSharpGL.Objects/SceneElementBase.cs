@@ -12,12 +12,22 @@ namespace CSharpGL.Objects
     /// </summary>
     public abstract class SceneElementBase
     {
+
+        public int ID { get; protected set; }
+
+        public static int idCounter = 0;
+
+        public override string ToString()
+        {
+            return string.Format("element: {0}", this.ID.ToString());
+        }
+
         /// <summary>
         /// 用OPENGL渲染一个元素。
         /// </summary>
         public SceneElementBase()
         {
-
+            this.ID = idCounter++;
         }
 
         protected bool initialized = false;

@@ -8,9 +8,8 @@ namespace CSharpGL.Objects.UI.SimpleUI
 {
     /// <summary>
     /// pass viewport and UI's rect information.
-    /// <para>TODO: 重命名为UILayoutArgs</para>
     /// </summary>
-    public class SimpleUIRectArgs
+    public class IUILayoutArgs
     {
         /// <summary>
         /// viewport's width.
