@@ -14,6 +14,15 @@ namespace CSharpGL.Objects.UI.SimpleUI
     {
         public AxisElement axisElement;
 
+        public int id { get; protected set; }
+
+        public static int idCounter = 0;
+
+        public override string ToString()
+        {
+            return this.id.ToString();
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -29,6 +38,8 @@ namespace CSharpGL.Objects.UI.SimpleUI
             int zNear = -1000, int zFar = 1000, GLColor rectColor = null,
             float radius = 0.3f, float length = 10, int faceCount = 10)
         {
+            this.id = idCounter++;
+
             this.axisElement = new AxisElement(radius, length, faceCount);
 
             IUILayout layout = this;

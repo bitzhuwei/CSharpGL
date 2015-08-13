@@ -18,6 +18,9 @@ namespace CSharpGL.Winforms.Demo
     public partial class FormSimpleUIAxis : Form
     {
         SimpleUIAxis uiLeftBottomAxis;
+        SimpleUIAxis uiLeftTopAxis;
+        SimpleUIAxis uiRightBottomAxis;
+        SimpleUIAxis uiRightTopAxis;
 
         AxisElement axisElement;
 
@@ -43,8 +46,8 @@ namespace CSharpGL.Winforms.Demo
 
             uiLeftBottomAxis = new SimpleUIAxis(AnchorStyles.Left | AnchorStyles.Bottom, new Padding(20, 20, 20, 20), new Size(5, 5));
             uiLeftBottomAxis.Initialize();
-            uiLeftBottomAxis.BeforeRendering += uiRectElement_BeforeRendering;
-            uiLeftBottomAxis.AfterRendering += uiRectElement_AfterRendering;
+            uiLeftBottomAxis.BeforeRendering += SimpleUIAxisElement_BeforeRendering;
+            uiLeftBottomAxis.AfterRendering += SimpleUIAxisElement_AfterRendering;
 
             axisElement = new AxisElement();
             axisElement.Initialize();
@@ -76,13 +79,17 @@ namespace CSharpGL.Winforms.Demo
             shaderProgram.SetUniformMatrix4(AxisElement.strmodelMatrix, modelMatrix.to_array());
         }
 
-        void uiRectElement_AfterRendering(object sender, Objects.RenderEventArgs e)
+        void SimpleUIAxisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            this.uiLeftBottomAxis.axisElement.shaderProgram.Unbind();
+            SimpleUIAxis element = sender as SimpleUIAxis;
+
+            element.axisElement.shaderProgram.Unbind();
         }
 
-        void uiRectElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        void SimpleUIAxisElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
+            SimpleUIAxis element = sender as SimpleUIAxis;
+
             mat4 viewMatrix;
             IViewCamera camera = this.camera;
             if (camera == null)
@@ -98,9 +105,9 @@ namespace CSharpGL.Winforms.Demo
 
             {
                 mat4 projectionMatrix, modelMatrix;
-                this.uiLeftBottomAxis.GetMatrix(out projectionMatrix, out modelMatrix);
+                element.GetMatrix(out projectionMatrix, out modelMatrix);
 
-                ShaderProgram shaderProgram = this.uiLeftBottomAxis.axisElement.shaderProgram;
+                ShaderProgram shaderProgram = element.axisElement.shaderProgram;
 
                 shaderProgram.Bind();
 
