@@ -46,6 +46,12 @@ namespace CSharpGL.Winforms.Demo
             element.AfterRendering += element_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
+            this.glCanvas1.KeyPress += glCanvas1_KeyPress;
+            this.glCanvas1.MouseDown += glCanvas1_MouseDown;
+            this.glCanvas1.MouseMove += glCanvas1_MouseMove;
+            this.glCanvas1.MouseUp += glCanvas1_MouseUp;
+            this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
+            this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
         void element_AfterRendering(object sender, Objects.RenderEventArgs e)
@@ -86,20 +92,20 @@ namespace CSharpGL.Winforms.Demo
                 "a/d for x axis left/right",
                 "e/q for z axis near/far"));
             // Init GL
-            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             // first resize
-            glCanvas_Resize(this.glCanvas1, e);
+            //glCanvas1_Resize(this.glCanvas1, e);
         }
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
         {
             //  Clear the color and depth buffer.
+            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             element.Render(Objects.RenderModes.Render);
         }
 
-        private void glCanvas_Resize(object sender, EventArgs e)
+        private void glCanvas1_Resize(object sender, EventArgs e)
         {
             if (this.camera != null)
             {

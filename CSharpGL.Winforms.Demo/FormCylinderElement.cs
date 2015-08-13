@@ -47,6 +47,12 @@ namespace CSharpGL.Winforms.Demo
             element.AfterRendering += element_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
+            this.glCanvas1.KeyPress += glCanvas1_KeyPress;
+            this.glCanvas1.MouseDown += glCanvas1_MouseDown;
+            this.glCanvas1.MouseMove += glCanvas1_MouseMove;
+            this.glCanvas1.MouseUp += glCanvas1_MouseUp;
+            this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
+            this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
         void element_AfterRendering(object sender, Objects.RenderEventArgs e)

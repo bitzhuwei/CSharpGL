@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
 {
-    public partial class FormSimpleUIAxis : Form
+    public partial class FormSimpleUIColorPalette : Form
     {
         SimpleUIAxis uiLeftBottomAxis;
         SimpleUIAxis uiLeftTopAxis;
@@ -33,7 +33,7 @@ namespace CSharpGL.Winforms.Demo
 
         SatelliteRotator satelliteRoration;
 
-        public FormSimpleUIAxis()
+        public FormSimpleUIColorPalette()
         {
             InitializeComponent();
 

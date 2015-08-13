@@ -42,6 +42,30 @@ namespace CSharpGL.Winforms.Demo
 
             element.BeforeRendering += element_BeforeRendering;
             element.AfterRendering += element_AfterRendering;
+
+            this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
+            //this.glCanvas1.KeyPress += glCanvas1_KeyPress;
+            //this.glCanvas1.MouseDown += glCanvas1_MouseDown;
+            //this.glCanvas1.MouseMove += glCanvas1_MouseMove;
+            //this.glCanvas1.MouseUp += glCanvas1_MouseUp;
+            this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
+            this.glCanvas1.Resize += glCanvas1_Resize;
+        }
+
+        private void glCanvas1_Resize(object sender, EventArgs e)
+        {
+            if (this.camera != null)
+            {
+                this.camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
+            }
+        }
+
+        private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (this.camera != null)
+            {
+                this.camera.Scale(e.Delta);
+            }
         }
 
         void element_AfterRendering(object sender, Objects.RenderEventArgs e)

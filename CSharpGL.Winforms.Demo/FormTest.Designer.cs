@@ -39,6 +39,7 @@
             this.btnLegacySimpleUIRect = new System.Windows.Forms.Button();
             this.btnSimpleUIRect = new System.Windows.Forms.Button();
             this.btnSimpleUIAxis = new System.Windows.Forms.Button();
+            this.btnSimpleUIColorPalette = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUnmanagedArray
@@ -102,7 +103,7 @@
             this.btnCamera.Name = "btnCamera";
             this.btnCamera.Size = new System.Drawing.Size(353, 29);
             this.btnCamera.TabIndex = 3;
-            this.btnCamera.Text = "Camera";
+            this.btnCamera.Text = "Camera(MouseWheel)";
             this.btnCamera.UseVisualStyleBackColor = true;
             this.btnCamera.Click += new System.EventHandler(this.btnCamera_Click);
             // 
@@ -115,7 +116,7 @@
             this.btnSatelliteRotation.Name = "btnSatelliteRotation";
             this.btnSatelliteRotation.Size = new System.Drawing.Size(353, 29);
             this.btnSatelliteRotation.TabIndex = 2;
-            this.btnSatelliteRotation.Text = "SatelliteRotation";
+            this.btnSatelliteRotation.Text = "PyramidElement+SatelliteRotation";
             this.btnSatelliteRotation.UseVisualStyleBackColor = true;
             this.btnSatelliteRotation.Click += new System.EventHandler(this.btnSatelliteRotation_Click);
             // 
@@ -184,15 +185,29 @@
             this.btnSimpleUIAxis.UseVisualStyleBackColor = true;
             this.btnSimpleUIAxis.Click += new System.EventHandler(this.btnSimpleUIAxis_Click);
             // 
+            // btnSimpleUIColorPalette
+            // 
+            this.btnSimpleUIColorPalette.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSimpleUIColorPalette.Location = new System.Drawing.Point(13, 422);
+            this.btnSimpleUIColorPalette.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSimpleUIColorPalette.Name = "btnSimpleUIColorPalette";
+            this.btnSimpleUIColorPalette.Size = new System.Drawing.Size(353, 29);
+            this.btnSimpleUIColorPalette.TabIndex = 4;
+            this.btnSimpleUIColorPalette.Text = "SimpleUIColorPalette";
+            this.btnSimpleUIColorPalette.UseVisualStyleBackColor = true;
+            this.btnSimpleUIColorPalette.Click += new System.EventHandler(this.btnSimpleUIColorPalette_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 445);
+            this.ClientSize = new System.Drawing.Size(379, 485);
             this.Controls.Add(this.btnWholeFontTextureElement);
             this.Controls.Add(this.btnCylinderElement);
             this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnCamera);
+            this.Controls.Add(this.btnSimpleUIColorPalette);
             this.Controls.Add(this.btnSimpleUIAxis);
             this.Controls.Add(this.btnSimpleUIRect);
             this.Controls.Add(this.btnLegacySimpleUIRect);
@@ -220,5 +235,6 @@
         private System.Windows.Forms.Button btnLegacySimpleUIRect;
         private System.Windows.Forms.Button btnSimpleUIRect;
         private System.Windows.Forms.Button btnSimpleUIAxis;
+        private System.Windows.Forms.Button btnSimpleUIColorPalette;
     }
 }

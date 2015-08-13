@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Winforms.Demo
 {
-    partial class FormTranslateOnScreen
+    partial class FormSimpleUIColorPalette
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
             this.txtInfo = new System.Windows.Forms.TextBox();
+            this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // txtInfo
+            // 
+            this.txtInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInfo.Location = new System.Drawing.Point(12, 12);
+            this.txtInfo.Multiline = true;
+            this.txtInfo.Name = "txtInfo";
+            this.txtInfo.Size = new System.Drawing.Size(788, 68);
+            this.txtInfo.TabIndex = 10;
             // 
             // glCanvas1
             // 
@@ -44,27 +54,17 @@
             this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(786, 353);
-            this.glCanvas1.TabIndex = 0;
+            this.glCanvas1.TabIndex = 9;
             // 
-            // txtInfo
-            // 
-            this.txtInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInfo.Location = new System.Drawing.Point(12, 12);
-            this.txtInfo.Multiline = true;
-            this.txtInfo.Name = "txtInfo";
-            this.txtInfo.Size = new System.Drawing.Size(788, 68);
-            this.txtInfo.TabIndex = 2;
-            // 
-            // FormTranslateOnScreen
+            // FormSimpleUIColorPalette
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 453);
             this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "FormTranslateOnScreen";
-            this.Text = "FormTranslateOnScreen";
+            this.Name = "FormSimpleUIColorPalette";
+            this.Text = "FormSimpleUIColorPalette";
             this.Load += new System.EventHandler(this.FormTranslateOnScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
@@ -74,7 +74,7 @@
 
         #endregion
 
-        private GLCanvas glCanvas1;
         private System.Windows.Forms.TextBox txtInfo;
+        private GLCanvas glCanvas1;
     }
 }

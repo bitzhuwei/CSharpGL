@@ -10,12 +10,12 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormFontElement : Form
     {
-        ScientificCamera camera; //= new ScientificCamera(CameraTypes.Ortho);
+        ScientificCamera camera;
 
         SatelliteRotator satelliteRoration;
 
-        FontElement element;// = new ModernSingleTextureFont("simsun.ttf");
-        private float rotation;
+        FontElement element;
+
         public FormFontElement()
         {
             InitializeComponent();
@@ -60,6 +60,20 @@ namespace CSharpGL.Winforms.Demo
             element.AfterRendering += element_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
+            this.glCanvas1.KeyPress += glCanvas1_KeyPress;
+            this.glCanvas1.MouseDown += glCanvas1_MouseDown;
+            this.glCanvas1.MouseMove += glCanvas1_MouseMove;
+            this.glCanvas1.MouseUp += glCanvas1_MouseUp;
+            this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
+            this.glCanvas1.Resize += glCanvas1_Resize;
+        }
+
+        private void glCanvas1_Resize(object sender, EventArgs e)
+        {
+            if (this.camera != null)
+            {
+                this.camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
+            }
         }
 
         void element_AfterRendering(object sender, Objects.RenderEventArgs e)
@@ -109,6 +123,8 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
         {
+            PrintCameraInfo();
+
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
             element.Render(Objects.RenderModes.Render);
@@ -117,13 +133,16 @@ namespace CSharpGL.Winforms.Demo
         private void FormFreeTypeTextVAOElement_Load(object sender, EventArgs e)
         {
             PrintCameraInfo();
+            MessageBox.Show(string.Format("{1}{0}{2}",
+                Environment.NewLine,
+                "Use 'c' to switch camera types between perspective and ortho",
+                "Use 'b' to switch blend effect"));
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
             satelliteRoration.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
             satelliteRoration.MouseDown(e.X, e.Y);
-            PrintCameraInfo();
         }
 
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
@@ -131,14 +150,12 @@ namespace CSharpGL.Winforms.Demo
             if (satelliteRoration.mouseDownFlag)
             {
                 satelliteRoration.MouseMove(e.X, e.Y);
-                PrintCameraInfo();
             }
         }
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
         {
             satelliteRoration.MouseUp(e.X, e.Y);
-            PrintCameraInfo();
         }
 
         private void PrintCameraInfo()
