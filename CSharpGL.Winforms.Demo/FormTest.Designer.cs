@@ -104,7 +104,7 @@
             this.btnCamera.Name = "btnCamera";
             this.btnCamera.Size = new System.Drawing.Size(353, 29);
             this.btnCamera.TabIndex = 3;
-            this.btnCamera.Text = "Camera(MouseWheel)";
+            this.btnCamera.Text = "PyramidElement+Camera(MouseWheel)";
             this.btnCamera.UseVisualStyleBackColor = true;
             this.btnCamera.Click += new System.EventHandler(this.btnCamera_Click);
             // 

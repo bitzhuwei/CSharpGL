@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CylinderElement.cs" />
     <Compile Include="GLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -83,12 +82,6 @@
   <ItemGroup>
     <EmbeddedResource Include="GLCanvas.frag" />
     <EmbeddedResource Include="GLCanvas.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Cylinder.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Cylinder.frag" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

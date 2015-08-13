@@ -65,6 +65,7 @@
     <Compile Include="Cameras\ScientificCamera.cs" />
     <Compile Include="Cameras\ViewTypes.cs" />
     <Compile Include="GLColor.cs" />
+    <Compile Include="SceneElements\CylinderElement.cs" />
     <Compile Include="Shaders\ShaderCompilationException.cs" />
     <Compile Include="Shaders\Shader.cs" />
     <Compile Include="ManifestResourceLoader.cs" />
@@ -127,6 +128,8 @@
   <ItemGroup>
     <EmbeddedResource Include="SceneElements\AxisElement.frag" />
     <EmbeddedResource Include="SceneElements\AxisElement.vert" />
+    <EmbeddedResource Include="SceneElements\CylinderElement.frag" />
+    <EmbeddedResource Include="SceneElements\CylinderElement.vert" />
     <None Include="Texts\FreeTypes\freetype.exp" />
     <None Include="Texts\FreeTypes\freetype.lib" />
     <None Include="Texts\Modern OpenGL Text Rendering.mht" />

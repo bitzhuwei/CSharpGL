@@ -54,8 +54,8 @@ namespace CSharpGL.Winforms
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Cylinder.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Cylinder.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.CylinderElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.CylinderElement.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
