@@ -41,19 +41,19 @@ namespace CSharpGL.Objects.SceneElements
         protected int axisVertexCount;
 
         private float radius;
-        private float length;
+        private float axisLength;
         private int faceCount;
 
         /// <summary>
         /// 绘制三维坐标轴
         /// </summary>
         /// <param name="radius">轴（圆柱）的半径</param>
-        /// <param name="length">轴（圆柱）的长度</param>
+        /// <param name="axisLength">轴（圆柱）的长度</param>
         /// <param name="faceCount">轴（圆柱）的面数（越多则越圆滑）</param>
-        public AxisElement(float radius = 0.3f, float length = 10, int faceCount = 10)
+        public AxisElement(float radius = 0.3f, float axisLength = 10, int faceCount = 10)
         {
             this.radius = radius;
-            this.length = length;
+            this.axisLength = axisLength;
             this.faceCount = faceCount;
 
             this.planColor = new vec3(1, 1, 1);
@@ -69,7 +69,7 @@ namespace CSharpGL.Objects.SceneElements
         public AxisElement(vec3 planColor, float radius = 0.3f, float length = 10, int faceCount = 10)
         {
             this.radius = radius;
-            this.length = length;
+            this.axisLength = length;
             this.faceCount = faceCount;
 
             this.planColor = planColor;
@@ -107,7 +107,7 @@ namespace CSharpGL.Objects.SceneElements
                     {
                         int face = i / 2;
                         float[] components = new float[]{
-                            i % 2 == 1 ? 0 : this.length,
+                            i % 2 == 1 ? 0 : this.axisLength,
                             (float)(this.radius * Math.Cos(face * (Math.PI * 2) / faceCount)),
                             (float)(this.radius * Math.Sin(face * (Math.PI * 2) / faceCount))};
                         positionArray[i] = new vec3(
@@ -171,7 +171,7 @@ namespace CSharpGL.Objects.SceneElements
                 //  Create a vertex buffer for the vertex data.
                 {
                     UnmanagedArray<vec3> plan = new UnmanagedArray<vec3>(4);
-                    float length = this.length;
+                    float length = this.axisLength;
                     plan[0] = new vec3(-length, 0, -length);
                     plan[1] = new vec3(-length, 0, length);
                     plan[2] = new vec3(length, 0, length);

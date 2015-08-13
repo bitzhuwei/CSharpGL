@@ -22,6 +22,11 @@ namespace CSharpGL.Winforms.Demo
         SimpleUIAxis uiRightBottomAxis;
         SimpleUIAxis uiRightTopAxis;
 
+        SimpleUIRect uiLeftBottomRect;
+        SimpleUIRect uiLeftTopRect;
+        SimpleUIRect uiRightBottomRect;
+        SimpleUIRect uiRightTopRect;
+
         AxisElement axisElement;
 
         ScientificCamera camera;
@@ -57,15 +62,35 @@ namespace CSharpGL.Winforms.Demo
             uiRightBottomAxis.Initialize();
             uiRightTopAxis.Initialize();
 
-            uiLeftBottomAxis.BeforeRendering += SimpleUIAxisElement_BeforeRendering;
-            uiLeftTopAxis.BeforeRendering += SimpleUIAxisElement_BeforeRendering;
-            uiRightBottomAxis.BeforeRendering += SimpleUIAxisElement_BeforeRendering;
-            uiRightTopAxis.BeforeRendering += SimpleUIAxisElement_BeforeRendering;
+            uiLeftBottomAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
+            uiLeftTopAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
+            uiRightBottomAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
+            uiRightTopAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
 
-            uiLeftBottomAxis.AfterRendering += SimpleUIAxisElement_AfterRendering;
-            uiLeftTopAxis.AfterRendering += SimpleUIAxisElement_AfterRendering;
-            uiRightBottomAxis.AfterRendering += SimpleUIAxisElement_AfterRendering;
-            uiRightTopAxis.AfterRendering += SimpleUIAxisElement_AfterRendering;
+            uiLeftBottomAxis.AfterRendering += SimpleUIAxis_AfterRendering;
+            uiLeftTopAxis.AfterRendering += SimpleUIAxis_AfterRendering;
+            uiRightBottomAxis.AfterRendering += SimpleUIAxis_AfterRendering;
+            uiRightTopAxis.AfterRendering += SimpleUIAxis_AfterRendering;
+
+            uiLeftBottomRect = new SimpleUIRect(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
+            uiLeftTopRect = new SimpleUIRect(AnchorStyles.Left | AnchorStyles.Top, padding, size);
+            uiRightBottomRect = new SimpleUIRect(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
+            uiRightTopRect = new SimpleUIRect(AnchorStyles.Right | AnchorStyles.Top, padding, size);
+
+            uiLeftBottomRect.Initialize();
+            uiLeftTopRect.Initialize();
+            uiRightBottomRect.Initialize();
+            uiRightTopRect.Initialize();
+
+            uiLeftBottomRect.BeforeRendering += SimpleUIRect_BeforeRendering;
+            uiLeftTopRect.BeforeRendering += SimpleUIRect_BeforeRendering;
+            uiRightBottomRect.BeforeRendering += SimpleUIRect_BeforeRendering;
+            uiRightTopRect.BeforeRendering += SimpleUIRect_BeforeRendering;
+
+            uiLeftBottomRect.AfterRendering += SimpleUIRect_AfterRendering;
+            uiLeftTopRect.AfterRendering += SimpleUIRect_AfterRendering;
+            uiRightBottomRect.AfterRendering += SimpleUIRect_AfterRendering;
+            uiRightTopRect.AfterRendering += SimpleUIRect_AfterRendering;
 
             axisElement = new AxisElement();
             axisElement.Initialize();
@@ -75,40 +100,50 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
         }
 
-        void axisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
+        void SimpleUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            AxisElement element = sender as AxisElement;
+            SimpleUIRect element = sender as SimpleUIRect;
 
             element.shaderProgram.Unbind();
         }
 
-        void axisElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        void SimpleUIRect_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            AxisElement element = sender as AxisElement;
+            SimpleUIRect element = sender as SimpleUIRect;
 
-            mat4 projectionMatrix = camera.GetProjectionMat4();
+            mat4 viewMatrix;
+            IViewCamera camera = this.camera;
+            if (camera == null)
+            {
+                viewMatrix = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
+            }
+            else
+            {
+                vec3 position = camera.Position - camera.Target;
+                position.Normalize();
+                viewMatrix = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
+            }
 
-            mat4 viewMatrix = camera.GetViewMat4();
-
-            mat4 modelMatrix = mat4.identity();
+            mat4 projectionMatrix, modelMatrix;
+            element.GetMatrix(out projectionMatrix, out modelMatrix);
 
             ShaderProgram shaderProgram = element.shaderProgram;
 
             shaderProgram.Bind();
 
-            shaderProgram.SetUniformMatrix4(AxisElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(AxisElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(AxisElement.strmodelMatrix, modelMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(SimpleUIRect.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(SimpleUIRect.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(SimpleUIRect.strmodelMatrix, modelMatrix.to_array());
         }
 
-        void SimpleUIAxisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
+        void SimpleUIAxis_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
             SimpleUIAxis element = sender as SimpleUIAxis;
 
             element.axisElement.shaderProgram.Unbind();
         }
 
-        void SimpleUIAxisElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        void SimpleUIAxis_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
             SimpleUIAxis element = sender as SimpleUIAxis;
 
@@ -129,6 +164,32 @@ namespace CSharpGL.Winforms.Demo
             element.GetMatrix(out projectionMatrix, out modelMatrix);
 
             ShaderProgram shaderProgram = element.axisElement.shaderProgram;
+
+            shaderProgram.Bind();
+
+            shaderProgram.SetUniformMatrix4(AxisElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(AxisElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(AxisElement.strmodelMatrix, modelMatrix.to_array());
+        }
+
+        void axisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
+        {
+            AxisElement element = sender as AxisElement;
+
+            element.shaderProgram.Unbind();
+        }
+
+        void axisElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        {
+            AxisElement element = sender as AxisElement;
+
+            mat4 projectionMatrix = camera.GetProjectionMat4();
+
+            mat4 viewMatrix = camera.GetViewMat4();
+
+            mat4 modelMatrix = mat4.identity();
+
+            ShaderProgram shaderProgram = element.shaderProgram;
 
             shaderProgram.Bind();
 
@@ -161,6 +222,11 @@ namespace CSharpGL.Winforms.Demo
             uiLeftTopAxis.Render(Objects.RenderModes.Render);
             uiRightBottomAxis.Render(Objects.RenderModes.Render);
             uiRightTopAxis.Render(Objects.RenderModes.Render);
+
+            uiLeftBottomRect.Render(Objects.RenderModes.Render);
+            uiLeftTopRect.Render(Objects.RenderModes.Render);
+            uiRightBottomRect.Render(Objects.RenderModes.Render);
+            uiRightTopRect.Render(Objects.RenderModes.Render);
         }
 
         private void glCanvas_Resize(object sender, EventArgs e)

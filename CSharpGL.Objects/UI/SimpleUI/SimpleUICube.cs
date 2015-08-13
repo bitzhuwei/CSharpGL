@@ -47,7 +47,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
         /// <param name="rectColor">default color is red.</param>
-        public SimpleUICube(AnchorStyles anchor, Padding margin, System.Drawing.Size size, int zNear = -1000, int zFar = 1000, GLColor rectColor = null)
+        public SimpleUICube(AnchorStyles anchor, Padding margin, System.Drawing.Size size, int zNear = -1000, int zFar = 1000)
         {
             IUILayout layout = this;
             layout.Anchor = anchor;
@@ -55,12 +55,6 @@ namespace CSharpGL.Objects.UI.SimpleUI
             layout.Size = size;
             layout.zNear = zNear;
             layout.zFar = zFar;
-            if (rectColor == null)
-            { layout.RectColor = new vec3(1, 0, 0); }
-            else
-            { layout.RectColor = new vec3(1, 0, 0); }
-
-            layout.RenderBound = true;
         }
 
         protected override void DoInitialize()
@@ -164,15 +158,11 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         protected override void DoRender(RenderModes renderMode)
         {
-            IUILayout layout = this;
-            if (layout.RenderBound)
-            {
-                GL.BindVertexArray(vao[0]);
+            GL.BindVertexArray(vao[0]);
 
-                GL.DrawArrays(this.axisPrimitiveMode, 0, this.axisVertexCount);
+            GL.DrawArrays(this.axisPrimitiveMode, 0, this.axisVertexCount);
 
-                GL.BindVertexArray(0);
-            }
+            GL.BindVertexArray(0);
         }
 
         AnchorStyles IUILayout.Anchor { get; set; }
@@ -185,8 +175,5 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         int IUILayout.zFar { get; set; }
 
-        vec3 IUILayout.RectColor { get; set; }
-
-        bool IUILayout.RenderBound { get; set; }
     }
 }

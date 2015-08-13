@@ -13,8 +13,6 @@ namespace CSharpGL.Objects.UI.SimpleUI
     public class SimpleUIAxis : SceneElementBase, IUILayout, IDisposable
     {
         public AxisElement axisElement;
-        //public ModernSimpleUIRect uiRect;
-        //public SimpleUICube uiCube;
 
         /// <summary>
         /// 
@@ -29,13 +27,12 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="rectColor">default color is red.</param>
         public SimpleUIAxis(AnchorStyles anchor, Padding margin, System.Drawing.Size size,
             int zNear = -1000, int zFar = 1000, GLColor rectColor = null,
-            float radius = 0.3f, float length = 10, int faceCount = 10)
+            float radius = 0.3f, float axisLength = 10, int faceCount = 10)
         {
-            radius = radius / length;
-            length = 1;
-            this.axisElement = new AxisElement(radius, length, faceCount);
-            //this.uiRect = new ModernSimpleUIRect(anchor, margin, size, zNear, zFar, rectColor);
-            //this.uiCube = new SimpleUICube(anchor, margin, size, zNear, zFar, rectColor);
+            // 把AxiesElement缩放到恰好放进此UI
+            radius = radius / axisLength / 2;
+            axisLength = 0.5f;
+            this.axisElement = new AxisElement(radius, axisLength, faceCount);
 
             IUILayout layout = this;
             layout.Anchor = anchor;
@@ -43,12 +40,6 @@ namespace CSharpGL.Objects.UI.SimpleUI
             layout.Size = size;
             layout.zNear = zNear;
             layout.zFar = zFar;
-            if (rectColor == null)
-            { layout.RectColor = new vec3(1, 0, 0); }
-            else
-            { layout.RectColor = new vec3(1, 0, 0); }
-
-            layout.RenderBound = true;
         }
 
         #region IDisposable Members
@@ -111,25 +102,17 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         int IUILayout.zFar { get; set; }
 
-        vec3 IUILayout.RectColor { get; set; }
-
-        bool IUILayout.RenderBound { get; set; }
-
         #endregion IUILayout
 
 
         protected override void DoInitialize()
         {
             this.axisElement.Initialize();
-            //this.uiRect.Initialize();
-            //this.uiCube.Initialize();
         }
 
         protected override void DoRender(RenderModes renderMode)
         {
             this.axisElement.Render(renderMode);
-            //this.uiRect.Render(renderMode);
-            //this.uiCube.Render(renderMode);
         }
     }
 }

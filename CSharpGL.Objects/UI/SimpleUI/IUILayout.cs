@@ -41,8 +41,5 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         int zFar { get; set; }
 
-        vec3 RectColor { get; set; }
-
-        bool RenderBound { get; set; }
     }
 }
