@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Winforms
+namespace CSharpGL.Objects.SceneElements
 {
     /// <summary>
     /// 圆柱体

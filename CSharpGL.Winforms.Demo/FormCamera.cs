@@ -1,5 +1,6 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects.Cameras;
+using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
 using System;
 using System.Collections.Generic;

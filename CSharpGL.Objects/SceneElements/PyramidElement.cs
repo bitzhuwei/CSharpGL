@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Winforms
+namespace CSharpGL.Objects.SceneElements
 {
     public class PyramidElement : SceneElementBase
     {
