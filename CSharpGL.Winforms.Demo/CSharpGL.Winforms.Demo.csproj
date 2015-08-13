@@ -65,6 +65,12 @@
     <Compile Include="FormSimpleUIColorPalette.Designer.cs">
       <DependentUpon>FormSimpleUIColorPalette.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSimpleUICube.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSimpleUICube.Designer.cs">
+      <DependentUpon>FormSimpleUICube.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSimpleUIRect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSimpleUIColorPalette.resx">
       <DependentUpon>FormSimpleUIColorPalette.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSimpleUICube.resx">
+      <DependentUpon>FormSimpleUICube.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSimpleUIRect.resx">
       <DependentUpon>FormSimpleUIRect.cs</DependentUpon>

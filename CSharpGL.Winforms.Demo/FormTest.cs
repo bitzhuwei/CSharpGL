@@ -76,10 +76,16 @@ namespace CSharpGL.Winforms.Demo
             (new FormSimpleUIAxis()).Show();
         }
 
+        private void btnSimpleUICube_Click(object sender, EventArgs e)
+        {
+            (new FormSimpleUICube()).Show();
+        }
+
         private void btnSimpleUIColorPalette_Click(object sender, EventArgs e)
         {
             (new FormSimpleUIColorPalette()).Show();
         }
+
 
     }
 }

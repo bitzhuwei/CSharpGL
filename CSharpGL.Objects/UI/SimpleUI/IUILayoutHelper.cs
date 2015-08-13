@@ -20,7 +20,10 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="viewMatrix"></param>
         /// <param name="modelMatrix"></param>
         /// <param name="camera">如果为null，会以glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0))计算默认值。</param>
-        public static void GetMatrix(this IUILayout uiElement, out mat4 projectionMatrix, out mat4 viewMatrix, out mat4 modelMatrix, IViewCamera camera = null)
+        /// <param name="maxDepth">UI元素能接触到的最大深度。</param>
+        public static void GetMatrix(this IUILayout uiElement, 
+            out mat4 projectionMatrix, out mat4 viewMatrix, out mat4 modelMatrix, 
+            IViewCamera camera = null, float maxDepth = 1.0f)
         {
             IUILayoutArgs args = uiElement.GetArgs();
             float max = (float)Math.Max(args.UIWidth, args.UIHeight);
@@ -30,7 +33,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
                     uiElement.zNear, uiElement.zFar);
 
                 // 把UI元素移到ortho长方体的最靠近camera的地方，这样就可以把UI元素放到OpenGL最前方。
-                projectionMatrix = glm.translate(projectionMatrix, new vec3(0, 0, uiElement.zFar - max / 2));
+                projectionMatrix = glm.translate(projectionMatrix, new vec3(0, 0, uiElement.zFar - max / 2 * maxDepth));
             }
             {
                 if (camera == null)
@@ -49,26 +52,6 @@ namespace CSharpGL.Objects.UI.SimpleUI
             }
         }
 
-
-        /// <summary>
-        /// 获取此UI元素的投影矩阵和模型矩阵
-        /// </summary>
-        /// <param name="uiElement"></param>
-        /// <param name="projectionMatrix"></param>
-        /// <param name="modelMatrix"></param>
-        public static void GetMatrix(this IUILayout uiElement, out mat4 projectionMatrix, out mat4 modelMatrix)
-        {
-            IUILayoutArgs args = uiElement.GetArgs();
-
-            projectionMatrix = glm.ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top,
-                uiElement.zNear, uiElement.zFar);
-
-            float max = (float)Math.Max(args.UIWidth, args.UIHeight);
-            // 把UI元素移到ortho长方体的最靠近camera的地方，这样就可以把UI元素放到OpenGL最前方。
-            projectionMatrix = glm.translate(projectionMatrix, new vec3(0, 0, uiElement.zFar - max / 2));
-
-            modelMatrix = glm.scale(mat4.identity(), new vec3(max / 2, max / 2, max / 2));
-        }
 
         /// <summary>
         /// leftRightAnchor = (AnchorStyles.Left | AnchorStyles.Right); 

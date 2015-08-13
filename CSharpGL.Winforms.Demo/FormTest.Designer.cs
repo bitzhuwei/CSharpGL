@@ -40,6 +40,7 @@
             this.btnSimpleUIRect = new System.Windows.Forms.Button();
             this.btnSimpleUIAxis = new System.Windows.Forms.Button();
             this.btnSimpleUIColorPalette = new System.Windows.Forms.Button();
+            this.btnSimpleUICube = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUnmanagedArray
@@ -189,7 +190,7 @@
             // 
             this.btnSimpleUIColorPalette.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSimpleUIColorPalette.Location = new System.Drawing.Point(13, 422);
+            this.btnSimpleUIColorPalette.Location = new System.Drawing.Point(13, 459);
             this.btnSimpleUIColorPalette.Margin = new System.Windows.Forms.Padding(4);
             this.btnSimpleUIColorPalette.Name = "btnSimpleUIColorPalette";
             this.btnSimpleUIColorPalette.Size = new System.Drawing.Size(353, 29);
@@ -198,15 +199,29 @@
             this.btnSimpleUIColorPalette.UseVisualStyleBackColor = true;
             this.btnSimpleUIColorPalette.Click += new System.EventHandler(this.btnSimpleUIColorPalette_Click);
             // 
+            // btnSimpleUICube
+            // 
+            this.btnSimpleUICube.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSimpleUICube.Location = new System.Drawing.Point(13, 422);
+            this.btnSimpleUICube.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSimpleUICube.Name = "btnSimpleUICube";
+            this.btnSimpleUICube.Size = new System.Drawing.Size(353, 29);
+            this.btnSimpleUICube.TabIndex = 4;
+            this.btnSimpleUICube.Text = "SimpleUICube";
+            this.btnSimpleUICube.UseVisualStyleBackColor = true;
+            this.btnSimpleUICube.Click += new System.EventHandler(this.btnSimpleUICube_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 485);
+            this.ClientSize = new System.Drawing.Size(379, 567);
             this.Controls.Add(this.btnWholeFontTextureElement);
             this.Controls.Add(this.btnCylinderElement);
             this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnCamera);
+            this.Controls.Add(this.btnSimpleUICube);
             this.Controls.Add(this.btnSimpleUIColorPalette);
             this.Controls.Add(this.btnSimpleUIAxis);
             this.Controls.Add(this.btnSimpleUIRect);
@@ -236,5 +251,6 @@
         private System.Windows.Forms.Button btnSimpleUIRect;
         private System.Windows.Forms.Button btnSimpleUIAxis;
         private System.Windows.Forms.Button btnSimpleUIColorPalette;
+        private System.Windows.Forms.Button btnSimpleUICube;
     }
 }
