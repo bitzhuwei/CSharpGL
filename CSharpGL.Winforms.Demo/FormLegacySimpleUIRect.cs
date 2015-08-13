@@ -15,9 +15,9 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
 {
-    public partial class FormSimpleUIRect : Form
+    public partial class FormLegacySimpleUIRect : Form
     {
-        SimpleUIRect uiRectElement;
+        LegacySimpleUIRect uiRectElement;
 
         AxisElement axisElement;
 
@@ -25,7 +25,7 @@ namespace CSharpGL.Winforms.Demo
 
         SatelliteRotator satelliteRoration;
 
-        public FormSimpleUIRect()
+        public FormLegacySimpleUIRect()
         {
             InitializeComponent();
 
@@ -41,7 +41,7 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotator(camera);
 
-            uiRectElement = new SimpleUIRect(AnchorStyles.Left | AnchorStyles.Bottom, new Padding(10, 10, 10, 10), new Size(40, 30));
+            uiRectElement = new LegacySimpleUIRect(AnchorStyles.Left | AnchorStyles.Bottom, new Padding(10, 10, 10, 10), new Size(40, 30));
             uiRectElement.Initialize();
             uiRectElement.BeforeRendering += uiRectElement_BeforeRendering;
             uiRectElement.AfterRendering += uiRectElement_AfterRendering;

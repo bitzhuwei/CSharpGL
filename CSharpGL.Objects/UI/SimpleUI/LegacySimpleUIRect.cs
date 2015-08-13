@@ -14,7 +14,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
     /// Draw a rectangle on OpenGL control like a <see cref="Windows.Forms.Control"/> drawn on a <see cref="windows.Forms.Form"/>.
     /// Set its properties(Anchor, Margin, Size, etc) to adjust its behaviour.
     /// </summary>
-    public class SimpleUIRect : SceneElementBase//, IRenderable, IHasObjectSpace
+    public class LegacySimpleUIRect : SceneElementBase//, IRenderable, IHasObjectSpace
     {
         /// <summary>
         /// 
@@ -27,7 +27,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
         /// <param name="rectColor">default color is red.</param>
-        public SimpleUIRect(AnchorStyles anchor, Padding margin, System.Drawing.Size size, int zNear = -1000, int zFar = 1000, GLColor rectColor = null)
+        public LegacySimpleUIRect(AnchorStyles anchor, Padding margin, System.Drawing.Size size, int zNear = -1000, int zFar = 1000, GLColor rectColor = null)
         {
             this.Anchor = anchor;
             this.Margin = margin;
@@ -124,7 +124,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         /// <summary>
         /// render UI model at axis's center(0, 0, 0) in <paramref name="UIWidth"/> and <paramref name="UIHeight"/>.
-        /// <para>The <see cref="SimpleUIRect.RenderMode()"/> only draws a rectangle to show the UI's scope.</para>
+        /// <para>The <see cref="LegacySimpleUIRect.RenderMode()"/> only draws a rectangle to show the UI's scope.</para>
         /// </summary>
         /// <param name="UIWidth"></param>
         /// <param name="UIHeight"></param>

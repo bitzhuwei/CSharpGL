@@ -87,7 +87,7 @@
     <Compile Include="UI\SimpleUI\IUILayoutHelper.cs" />
     <Compile Include="UI\SimpleUI\ModernSimpleUIRect.cs" />
     <Compile Include="UI\SimpleUI\SimpleUIAxis.cs" />
-    <Compile Include="UI\SimpleUI\SimpleUIRect.cs" />
+    <Compile Include="UI\SimpleUI\LegacySimpleUIRect.cs" />
     <Compile Include="UI\SimpleUI\SimpleUIRectArgs.cs" />
     <EmbeddedResource Include="Texts\freetype.frag" />
     <EmbeddedResource Include="Texts\freetype.vert" />

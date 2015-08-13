@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Winforms.Demo
 {
-    partial class FormSimpleUIRect
+    partial class FormLegacySimpleUIRect
     {
         /// <summary>
         /// Required designer variable.

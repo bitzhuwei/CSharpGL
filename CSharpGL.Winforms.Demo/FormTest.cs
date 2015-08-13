@@ -60,9 +60,9 @@ namespace CSharpGL.Winforms.Demo
             (new FormTranslateOnScreen()).Show();
         }
 
-        private void btnSimpleUIRect_Click(object sender, EventArgs e)
+        private void btnLegacySimpleUIRect_Click(object sender, EventArgs e)
         {
-            (new FormSimpleUIRect()).Show();
+            (new FormLegacySimpleUIRect()).Show();
         }
 
         private void btnModernSimpleUIRect_Click(object sender, EventArgs e)
