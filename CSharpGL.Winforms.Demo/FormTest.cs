@@ -70,5 +70,10 @@ namespace CSharpGL.Winforms.Demo
             (new FormModernSimpleUI()).Show();
         }
 
+        private void btnSimpleUIAxis_Click(object sender, EventArgs e)
+        {
+            (new FormSimpleUIAxis()).Show();
+        }
+
     }
 }

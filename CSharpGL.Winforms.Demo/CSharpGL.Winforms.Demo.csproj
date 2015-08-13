@@ -101,6 +101,12 @@
     <Compile Include="FormTranslateOnScreen.Designer.cs">
       <DependentUpon>FormTranslateOnScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSimpleUIAxis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSimpleUIAxis.Designer.cs">
+      <DependentUpon>FormSimpleUIAxis.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormWholeFontTextureElement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormTranslateOnScreen.resx">
       <DependentUpon>FormTranslateOnScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSimpleUIAxis.resx">
+      <DependentUpon>FormSimpleUIAxis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWholeFontTextureElement.resx">
       <DependentUpon>FormWholeFontTextureElement.cs</DependentUpon>

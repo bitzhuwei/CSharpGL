@@ -38,6 +38,7 @@
             this.btnTranslateOnScreen = new System.Windows.Forms.Button();
             this.btnSimpleUIRect = new System.Windows.Forms.Button();
             this.btnModernSimpleUIRect = new System.Windows.Forms.Button();
+            this.btnSimpleUIAxis = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUnmanagedArray
@@ -170,15 +171,29 @@
             this.btnModernSimpleUIRect.UseVisualStyleBackColor = true;
             this.btnModernSimpleUIRect.Click += new System.EventHandler(this.btnModernSimpleUIRect_Click);
             // 
+            // btnSimpleUIAxis
+            // 
+            this.btnSimpleUIAxis.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSimpleUIAxis.Location = new System.Drawing.Point(13, 385);
+            this.btnSimpleUIAxis.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSimpleUIAxis.Name = "btnSimpleUIAxis";
+            this.btnSimpleUIAxis.Size = new System.Drawing.Size(353, 29);
+            this.btnSimpleUIAxis.TabIndex = 4;
+            this.btnSimpleUIAxis.Text = "SimpleUIAxis";
+            this.btnSimpleUIAxis.UseVisualStyleBackColor = true;
+            this.btnSimpleUIAxis.Click += new System.EventHandler(this.btnSimpleUIAxis_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 404);
+            this.ClientSize = new System.Drawing.Size(379, 445);
             this.Controls.Add(this.btnWholeFontTextureElement);
             this.Controls.Add(this.btnCylinderVAOElement);
             this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnScientificCamera);
+            this.Controls.Add(this.btnSimpleUIAxis);
             this.Controls.Add(this.btnModernSimpleUIRect);
             this.Controls.Add(this.btnSimpleUIRect);
             this.Controls.Add(this.btnTranslateOnScreen);
@@ -204,5 +219,6 @@
         private System.Windows.Forms.Button btnTranslateOnScreen;
         private System.Windows.Forms.Button btnSimpleUIRect;
         private System.Windows.Forms.Button btnModernSimpleUIRect;
+        private System.Windows.Forms.Button btnSimpleUIAxis;
     }
 }
