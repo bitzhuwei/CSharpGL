@@ -22,7 +22,6 @@ namespace CSharpGL.Winforms.Demo
             UnmanagedArrayTest.TypicalScene();
             string message = string.Format("{0}", "All successfully done!");
             MessageBox.Show(message, "tip", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
         }
 
         private void btnPyramidVAOElement_Click(object sender, EventArgs e)
@@ -62,7 +61,9 @@ namespace CSharpGL.Winforms.Demo
 
         private void btnLegacySimpleUIRect_Click(object sender, EventArgs e)
         {
-            (new FormLegacySimpleUIRect()).Show();
+            //(new FormLegacySimpleUIRect()).Show();
+            string message = string.Format("{0}", "This is no longer useful!");
+            MessageBox.Show(message, "tip", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnModernSimpleUIRect_Click(object sender, EventArgs e)

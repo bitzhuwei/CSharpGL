@@ -15,7 +15,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
     /// Draw a rectangle on OpenGL control like a <see cref="Windows.Forms.Control"/> drawn on a <see cref="windows.Forms.Form"/>.
     /// Set its properties(Anchor, Margin, Size, etc) to adjust its behaviour.
     /// </summary>
-    public class ModernSimpleUIRect : SceneElementBase, IUILayout//, IRenderable, IHasObjectSpace
+    public class SimpleUIRect : SceneElementBase, IUILayout//, IRenderable, IHasObjectSpace
     {
         /// <summary>
         /// shader program
@@ -53,7 +53,8 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
         /// <param name="rectColor">default color is red.</param>
-        public ModernSimpleUIRect(AnchorStyles anchor, Padding margin, System.Drawing.Size size, int zNear = -1000, int zFar = 1000, GLColor rectColor = null)
+        public SimpleUIRect(AnchorStyles anchor, Padding margin, System.Drawing.Size size, 
+            int zNear = -1000, int zFar = 1000, GLColor rectColor = null)
         {
             IUILayout layout = this;
             layout.Anchor = anchor;
@@ -133,8 +134,8 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         protected ShaderProgram InitializeShader()
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"UI.SimpleUI.ModernSimpleUIRect.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"UI.SimpleUI.ModernSimpleUIRect.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"UI.SimpleUI.SimpleUIRect.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"UI.SimpleUI.SimpleUIRect.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);

@@ -85,9 +85,8 @@
     <Compile Include="Texts\FontTextureHelper.cs" />
     <Compile Include="UI\SimpleUI\IUILayout.cs" />
     <Compile Include="UI\SimpleUI\IUILayoutHelper.cs" />
-    <Compile Include="UI\SimpleUI\ModernSimpleUIRect.cs" />
+    <Compile Include="UI\SimpleUI\SimpleUIRect.cs" />
     <Compile Include="UI\SimpleUI\SimpleUIAxis.cs" />
-    <Compile Include="UI\SimpleUI\LegacySimpleUIRect.cs" />
     <Compile Include="UI\SimpleUI\IUILayoutArgs.cs" />
     <Compile Include="UI\SimpleUI\SimpleUICube.cs" />
     <EmbeddedResource Include="Texts\freetype.frag" />
@@ -131,8 +130,8 @@
     <None Include="Texts\FreeTypes\freetype.exp" />
     <None Include="Texts\FreeTypes\freetype.lib" />
     <None Include="Texts\Modern OpenGL Text Rendering.mht" />
-    <EmbeddedResource Include="UI\SimpleUI\ModernSimpleUIRect.frag" />
-    <EmbeddedResource Include="UI\SimpleUI\ModernSimpleUIRect.vert" />
+    <EmbeddedResource Include="UI\SimpleUI\SimpleUIRect.frag" />
+    <EmbeddedResource Include="UI\SimpleUI\SimpleUIRect.vert" />
     <EmbeddedResource Include="UI\SimpleUI\SimpleUICube.vert" />
     <EmbeddedResource Include="UI\SimpleUI\SimpleUICube.frag" />
   </ItemGroup>

@@ -17,7 +17,7 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormModernSimpleUI : Form
     {
-        ModernSimpleUIRect uiRectElement;
+        SimpleUIRect uiRectElement;
 
         AxisElement axisElement;
 
@@ -41,7 +41,7 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotator(camera);
 
-            uiRectElement = new ModernSimpleUIRect(AnchorStyles.Left | AnchorStyles.Bottom, new Padding(10, 10, 10, 10), new Size(40, 30));
+            uiRectElement = new SimpleUIRect(AnchorStyles.Left | AnchorStyles.Bottom, new Padding(10, 10, 10, 10), new Size(40, 30));
             uiRectElement.Initialize();
             uiRectElement.BeforeRendering += uiRectElement_BeforeRendering;
             uiRectElement.AfterRendering += uiRectElement_AfterRendering;
@@ -82,14 +82,14 @@ namespace CSharpGL.Winforms.Demo
 
         void uiRectElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            ModernSimpleUIRect element = sender as ModernSimpleUIRect;
+            SimpleUIRect element = sender as SimpleUIRect;
 
             element.shaderProgram.Unbind();
         }
 
         void uiRectElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            ModernSimpleUIRect element = sender as ModernSimpleUIRect;
+            SimpleUIRect element = sender as SimpleUIRect;
 
             mat4 viewMatrix;
             IViewCamera camera = null;// this.camera;
