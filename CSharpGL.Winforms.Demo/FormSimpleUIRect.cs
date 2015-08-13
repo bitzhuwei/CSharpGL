@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
 {
-    public partial class FormModernSimpleUI : Form
+    public partial class FormSimpleUIRect : Form
     {
         SimpleUIRect uiRectElement;
 
@@ -25,7 +25,7 @@ namespace CSharpGL.Winforms.Demo
 
         SatelliteRotator satelliteRoration;
 
-        public FormModernSimpleUI()
+        public FormSimpleUIRect()
         {
             InitializeComponent();
 
@@ -91,21 +91,9 @@ namespace CSharpGL.Winforms.Demo
         {
             SimpleUIRect element = sender as SimpleUIRect;
 
-            mat4 viewMatrix;
-            IViewCamera camera = null;// this.camera;
-            if (camera == null)
-            {
-                viewMatrix = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
-            }
-            else
-            {
-                vec3 position = camera.Position - camera.Target;
-                position.Normalize();
-                viewMatrix = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
-            }
+            mat4 projectionMatrix, viewMatrix, modelMatrix;
 
-            mat4 projectionMatrix, modelMatrix;
-            element.GetMatrix(out projectionMatrix, out modelMatrix);
+            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, null);
 
             ShaderProgram shaderProgram = element.shaderProgram;
 

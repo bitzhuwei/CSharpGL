@@ -66,9 +66,9 @@ namespace CSharpGL.Winforms.Demo
             MessageBox.Show(message, "tip", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void btnModernSimpleUIRect_Click(object sender, EventArgs e)
+        private void btnSimpleUIRect_Click(object sender, EventArgs e)
         {
-            (new FormModernSimpleUI()).Show();
+            (new FormSimpleUIRect()).Show();
         }
 
         private void btnSimpleUIAxis_Click(object sender, EventArgs e)

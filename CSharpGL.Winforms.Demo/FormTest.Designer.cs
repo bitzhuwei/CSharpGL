@@ -37,7 +37,7 @@
             this.btnWholeFontTextureElement = new System.Windows.Forms.Button();
             this.btnTranslateOnScreen = new System.Windows.Forms.Button();
             this.btnLegacySimpleUIRect = new System.Windows.Forms.Button();
-            this.btnModernSimpleUIRect = new System.Windows.Forms.Button();
+            this.btnSimpleUIRect = new System.Windows.Forms.Button();
             this.btnSimpleUIAxis = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -158,18 +158,18 @@
             this.btnLegacySimpleUIRect.UseVisualStyleBackColor = true;
             this.btnLegacySimpleUIRect.Click += new System.EventHandler(this.btnLegacySimpleUIRect_Click);
             // 
-            // btnModernSimpleUIRect
+            // btnSimpleUIRect
             // 
-            this.btnModernSimpleUIRect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnSimpleUIRect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModernSimpleUIRect.Location = new System.Drawing.Point(13, 348);
-            this.btnModernSimpleUIRect.Margin = new System.Windows.Forms.Padding(4);
-            this.btnModernSimpleUIRect.Name = "btnModernSimpleUIRect";
-            this.btnModernSimpleUIRect.Size = new System.Drawing.Size(353, 29);
-            this.btnModernSimpleUIRect.TabIndex = 4;
-            this.btnModernSimpleUIRect.Text = "ModernSimpleUIRect";
-            this.btnModernSimpleUIRect.UseVisualStyleBackColor = true;
-            this.btnModernSimpleUIRect.Click += new System.EventHandler(this.btnModernSimpleUIRect_Click);
+            this.btnSimpleUIRect.Location = new System.Drawing.Point(13, 348);
+            this.btnSimpleUIRect.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSimpleUIRect.Name = "btnSimpleUIRect";
+            this.btnSimpleUIRect.Size = new System.Drawing.Size(353, 29);
+            this.btnSimpleUIRect.TabIndex = 4;
+            this.btnSimpleUIRect.Text = "SimpleUIRect";
+            this.btnSimpleUIRect.UseVisualStyleBackColor = true;
+            this.btnSimpleUIRect.Click += new System.EventHandler(this.btnSimpleUIRect_Click);
             // 
             // btnSimpleUIAxis
             // 
@@ -194,7 +194,7 @@
             this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnCamera);
             this.Controls.Add(this.btnSimpleUIAxis);
-            this.Controls.Add(this.btnModernSimpleUIRect);
+            this.Controls.Add(this.btnSimpleUIRect);
             this.Controls.Add(this.btnLegacySimpleUIRect);
             this.Controls.Add(this.btnTranslateOnScreen);
             this.Controls.Add(this.btnModernSingleTextureFont);
@@ -218,7 +218,7 @@
         private System.Windows.Forms.Button btnWholeFontTextureElement;
         private System.Windows.Forms.Button btnTranslateOnScreen;
         private System.Windows.Forms.Button btnLegacySimpleUIRect;
-        private System.Windows.Forms.Button btnModernSimpleUIRect;
+        private System.Windows.Forms.Button btnSimpleUIRect;
         private System.Windows.Forms.Button btnSimpleUIAxis;
     }
 }

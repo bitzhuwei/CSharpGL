@@ -1,4 +1,5 @@
 ﻿using CSharpGL.Maths;
+using CSharpGL.Objects.Cameras;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,44 @@ namespace CSharpGL.Objects.UI.SimpleUI
 {
     public static class IUILayoutHelper
     {
+
+        /// <summary>
+        /// 获取此UI元素的投影矩阵、视图矩阵和模型矩阵
+        /// </summary>
+        /// <param name="uiElement"></param>
+        /// <param name="projectionMatrix"></param>
+        /// <param name="viewMatrix"></param>
+        /// <param name="modelMatrix"></param>
+        /// <param name="camera">如果为null，会以glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0))计算默认值。</param>
+        public static void GetMatrix(this IUILayout uiElement, out mat4 projectionMatrix, out mat4 viewMatrix, out mat4 modelMatrix, IViewCamera camera = null)
+        {
+            IUILayoutArgs args = uiElement.GetArgs();
+            float max = (float)Math.Max(args.UIWidth, args.UIHeight);
+
+            {
+                projectionMatrix = glm.ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top,
+                    uiElement.zNear, uiElement.zFar);
+
+                // 把UI元素移到ortho长方体的最靠近camera的地方，这样就可以把UI元素放到OpenGL最前方。
+                projectionMatrix = glm.translate(projectionMatrix, new vec3(0, 0, uiElement.zFar - max / 2));
+            }
+            {
+                if (camera == null)
+                {
+                    viewMatrix = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
+                }
+                else
+                {
+                    vec3 position = camera.Position - camera.Target;
+                    position.Normalize();
+                    viewMatrix = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
+                }
+            }
+            {
+                modelMatrix = glm.scale(mat4.identity(), new vec3(max / 2, max / 2, max / 2));
+            }
+        }
+
 
         /// <summary>
         /// 获取此UI元素的投影矩阵和模型矩阵

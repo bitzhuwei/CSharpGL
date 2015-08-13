@@ -111,21 +111,9 @@ namespace CSharpGL.Winforms.Demo
         {
             SimpleUIRect element = sender as SimpleUIRect;
 
-            mat4 viewMatrix;
-            IViewCamera camera = this.camera;
-            if (camera == null)
-            {
-                viewMatrix = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
-            }
-            else
-            {
-                vec3 position = camera.Position - camera.Target;
-                position.Normalize();
-                viewMatrix = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
-            }
+            mat4 projectionMatrix, viewMatrix, modelMatrix;
 
-            mat4 projectionMatrix, modelMatrix;
-            element.GetMatrix(out projectionMatrix, out modelMatrix);
+            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
 
             ShaderProgram shaderProgram = element.shaderProgram;
 
@@ -147,21 +135,9 @@ namespace CSharpGL.Winforms.Demo
         {
             SimpleUIAxis element = sender as SimpleUIAxis;
 
-            mat4 viewMatrix;
-            IViewCamera camera = this.camera;
-            if (camera == null)
-            {
-                viewMatrix = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
-            }
-            else
-            {
-                vec3 position = camera.Position - camera.Target;
-                position.Normalize();
-                viewMatrix = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
-            }
+            mat4 projectionMatrix,viewMatrix, modelMatrix;
 
-            mat4 projectionMatrix, modelMatrix;
-            element.GetMatrix(out projectionMatrix, out modelMatrix);
+            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
 
             ShaderProgram shaderProgram = element.axisElement.shaderProgram;
 

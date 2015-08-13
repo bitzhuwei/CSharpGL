@@ -59,11 +59,11 @@
     <Compile Include="FormFontElement.Designer.cs">
       <DependentUpon>FormFontElement.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormModernSimpleUI.cs">
+    <Compile Include="FormSimpleUIRect.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormModernSimpleUI.Designer.cs">
-      <DependentUpon>FormModernSimpleUI.cs</DependentUpon>
+    <Compile Include="FormSimpleUIRect.Designer.cs">
+      <DependentUpon>FormSimpleUIRect.cs</DependentUpon>
     </Compile>
     <Compile Include="FormPyramidElement.cs">
       <SubType>Form</SubType>
@@ -118,8 +118,8 @@
     <EmbeddedResource Include="FormFontElement.resx">
       <DependentUpon>FormFontElement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormModernSimpleUI.resx">
-      <DependentUpon>FormModernSimpleUI.cs</DependentUpon>
+    <EmbeddedResource Include="FormSimpleUIRect.resx">
+      <DependentUpon>FormSimpleUIRect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPyramidElement.resx">
       <DependentUpon>FormPyramidElement.cs</DependentUpon>
