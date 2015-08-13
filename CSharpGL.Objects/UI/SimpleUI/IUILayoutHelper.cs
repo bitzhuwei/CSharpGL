@@ -25,6 +25,9 @@ namespace CSharpGL.Objects.UI.SimpleUI
                 uiElement.zNear, uiElement.zFar);
 
             float max = (float)Math.Max(args.UIWidth, args.UIHeight);
+            // 把UI元素移到ortho长方体的最靠近camera的地方，这样就可以把UI元素放到OpenGL最前方。
+            projectionMatrix = glm.translate(projectionMatrix, new vec3(0, 0, uiElement.zFar - max / 2));
+
             modelMatrix = glm.scale(mat4.identity(), new vec3(max / 2, max / 2, max / 2));
         }
 
