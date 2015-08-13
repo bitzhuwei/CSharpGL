@@ -1,21 +1,15 @@
 ﻿using CSharpGL.Maths;
-using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Shaders;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace CSharpGL.Objects.UI.SimpleUI
 {
-    /// <summary>
-    /// Draw a rectangle on OpenGL control like a <see cref="Windows.Forms.Control"/> drawn on a <see cref="windows.Forms.Form"/>.
-    /// Set its properties(Anchor, Margin, Size, etc) to adjust its behaviour.
-    /// </summary>
-    public class ModernSimpleUIRect : SceneElementBase, IUILayout//, IRenderable, IHasObjectSpace
+    public class SimpleUICube : SceneElementBase, IUILayout//, IRenderable, IHasObjectSpace
     {
         /// <summary>
         /// shader program
@@ -53,7 +47,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
         /// <param name="rectColor">default color is red.</param>
-        public ModernSimpleUIRect(AnchorStyles anchor, Padding margin, System.Drawing.Size size, int zNear = -1000, int zFar = 1000, GLColor rectColor = null)
+        public SimpleUICube(AnchorStyles anchor, Padding margin, System.Drawing.Size size, int zNear = -1000, int zFar = 1000, GLColor rectColor = null)
         {
             IUILayout layout = this;
             layout.Anchor = anchor;
@@ -78,8 +72,8 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         private void InitVAO()
         {
-            this.axisPrimitiveMode = PrimitiveModes.LineLoop;
-            this.axisVertexCount = 4;
+            this.axisPrimitiveMode = PrimitiveModes.Lines;
+            this.axisVertexCount = 8 * 3;
             this.vao = new uint[1];
 
             GL.GenVertexArrays(1, vao);
@@ -88,11 +82,34 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
             //  Create a vertex buffer for the vertex data.
             {
-                UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(4);
-                positionArray[0] = new vec3(-1, -1, 0);
-                positionArray[1] = new vec3(1, -1, 0);
-                positionArray[2] = new vec3(1, 1, 0);
-                positionArray[3] = new vec3(-1, 1, 0);
+                UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(8 * 3);
+                // x axis
+                positionArray[0] = new vec3(-1, -1, -1);
+                positionArray[1] = new vec3(1, -1, -1);
+                positionArray[2] = new vec3(-1, -1, 1);
+                positionArray[3] = new vec3(1, -1, 1);
+                positionArray[4] = new vec3(-1, 1, 1);
+                positionArray[5] = new vec3(1, 1, 1);
+                positionArray[6] = new vec3(-1, 1, -1);
+                positionArray[7] = new vec3(1, 1, -1);
+                // y axis
+                positionArray[8 + 0] = new vec3(-1, -1, -1);
+                positionArray[8 + 1] = new vec3(-1, 1, -1);
+                positionArray[8 + 2] = new vec3(-1, -1, 1);
+                positionArray[8 + 3] = new vec3(-1, 1, 1);
+                positionArray[8 + 4] = new vec3(1, -1, 1);
+                positionArray[8 + 5] = new vec3(1, 1, 1);
+                positionArray[8 + 6] = new vec3(1, -1, -1);
+                positionArray[8 + 7] = new vec3(1, 1, -1);
+                // z axis
+                positionArray[16 + 0] = new vec3(-1, -1, -1);
+                positionArray[16 + 1] = new vec3(-1, -1, 1);
+                positionArray[16 + 2] = new vec3(-1, 1, -1);
+                positionArray[16 + 3] = new vec3(-1, 1, 1);
+                positionArray[16 + 4] = new vec3(1, 1, -1);
+                positionArray[16 + 5] = new vec3(1, 1, 1);
+                positionArray[16 + 6] = new vec3(1, -1, -1);
+                positionArray[16 + 7] = new vec3(1, -1, 1);
 
                 uint positionLocation = shaderProgram.GetAttributeLocation(strin_Position);
 
@@ -108,11 +125,12 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
             //  Now do the same for the colour data.
             {
-                UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(4);
-                vec3 color = ((IUILayout)this).RectColor;
+                UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(8 * 3);
+                //vec3 color = ((IUILayout)this).RectColor;
+                vec3[] colors = new vec3[] { new vec3(1, 0, 0), new vec3(0, 1, 0), new vec3(0, 0, 1), };
                 for (int i = 0; i < colorArray.Length; i++)
                 {
-                    colorArray[i] = color;
+                    colorArray[i] = colors[i / 8];
                 }
 
                 uint colorLocation = shaderProgram.GetAttributeLocation(strin_Color);
@@ -133,8 +151,8 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         protected ShaderProgram InitializeShader()
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"UI.SimpleUI.ModernSimpleUIRect.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"UI.SimpleUI.ModernSimpleUIRect.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"UI.SimpleUI.SimpleUICube.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"UI.SimpleUI.SimpleUICube.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
