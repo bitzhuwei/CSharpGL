@@ -13,7 +13,7 @@ namespace CSharpGL.Winforms
     /// <summary>
     /// 圆柱体
     /// </summary>
-    public class CylinderVAOElement : SceneElementBase
+    public class CylinderElement : SceneElementBase
     {
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace CSharpGL.Winforms
         private float height;
         private int faceCount;
 
-        public CylinderVAOElement(float radius, float height, int faceCount = 18)
+        public CylinderElement(float radius, float height, int faceCount = 18)
         {
             this.radius = radius;
             this.height = height;

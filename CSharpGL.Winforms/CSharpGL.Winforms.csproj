@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CylinderVAOElement.cs" />
+    <Compile Include="CylinderElement.cs" />
     <Compile Include="GLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -54,7 +54,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GLCanvasHelper.cs" />
-    <Compile Include="PyramidVAOElement.cs" />
+    <Compile Include="PyramidElement.cs" />
     <Compile Include="RenderEventArgs.cs" />
     <Compile Include="RenderTriggers.cs" />
   </ItemGroup>

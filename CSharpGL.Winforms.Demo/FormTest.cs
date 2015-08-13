@@ -24,14 +24,14 @@ namespace CSharpGL.Winforms.Demo
             MessageBox.Show(message, "tip", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void btnPyramidVAOElement_Click(object sender, EventArgs e)
+        private void btnPyramidElement_Click(object sender, EventArgs e)
         {
-            (new FormPyramidVAOElement()).Show();
+            (new FormPyramidElement()).Show();
         }
 
-        private void btnScientificCamera_Click(object sender, EventArgs e)
+        private void btnCamera_Click(object sender, EventArgs e)
         {
-            (new FormScientificCamera()).Show();
+            (new FormCamera()).Show();
         }
 
         private void btnSatelliteRotation_Click(object sender, EventArgs e)
@@ -39,9 +39,9 @@ namespace CSharpGL.Winforms.Demo
             (new FormSatelliteRotation()).Show();
         }
 
-        private void btnCylinderVAOElement_Click(object sender, EventArgs e)
+        private void btnCylinderElement_Click(object sender, EventArgs e)
         {
-            (new FormCylinderVAOElement()).Show();
+            (new FormCylinderElement()).Show();
         }
 
         private void btnWholeFontTextureElement_Click(object sender, EventArgs e)

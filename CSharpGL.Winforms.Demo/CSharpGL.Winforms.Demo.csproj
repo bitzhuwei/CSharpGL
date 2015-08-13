@@ -47,11 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormCylinderVAOElement.cs">
+    <Compile Include="FormCylinderElement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCylinderVAOElement.Designer.cs">
-      <DependentUpon>FormCylinderVAOElement.cs</DependentUpon>
+    <Compile Include="FormCylinderElement.Designer.cs">
+      <DependentUpon>FormCylinderElement.cs</DependentUpon>
     </Compile>
     <Compile Include="FormFontElement.cs">
       <SubType>Form</SubType>
@@ -65,11 +65,11 @@
     <Compile Include="FormModernSimpleUI.Designer.cs">
       <DependentUpon>FormModernSimpleUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPyramidVAOElement.cs">
+    <Compile Include="FormPyramidElement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPyramidVAOElement.Designer.cs">
-      <DependentUpon>FormPyramidVAOElement.cs</DependentUpon>
+    <Compile Include="FormPyramidElement.Designer.cs">
+      <DependentUpon>FormPyramidElement.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSatelliteRotation.cs">
       <SubType>Form</SubType>
@@ -77,11 +77,11 @@
     <Compile Include="FormSatelliteRotation.Designer.cs">
       <DependentUpon>FormSatelliteRotation.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormScientificCamera.cs">
+    <Compile Include="FormCamera.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormScientificCamera.Designer.cs">
-      <DependentUpon>FormScientificCamera.cs</DependentUpon>
+    <Compile Include="FormCamera.Designer.cs">
+      <DependentUpon>FormCamera.cs</DependentUpon>
     </Compile>
     <Compile Include="FormTest.cs">
       <SubType>Form</SubType>
@@ -112,8 +112,8 @@
     <Compile Include="CameraDictionary.cs" />
     <Compile Include="UnmanagedArrayTest.cs" />
     <Compile Include="WholeFontTextureElement.cs" />
-    <EmbeddedResource Include="FormCylinderVAOElement.resx">
-      <DependentUpon>FormCylinderVAOElement.cs</DependentUpon>
+    <EmbeddedResource Include="FormCylinderElement.resx">
+      <DependentUpon>FormCylinderElement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFontElement.resx">
       <DependentUpon>FormFontElement.cs</DependentUpon>
@@ -121,14 +121,14 @@
     <EmbeddedResource Include="FormModernSimpleUI.resx">
       <DependentUpon>FormModernSimpleUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPyramidVAOElement.resx">
-      <DependentUpon>FormPyramidVAOElement.cs</DependentUpon>
+    <EmbeddedResource Include="FormPyramidElement.resx">
+      <DependentUpon>FormPyramidElement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSatelliteRotation.resx">
       <DependentUpon>FormSatelliteRotation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormScientificCamera.resx">
-      <DependentUpon>FormScientificCamera.cs</DependentUpon>
+    <EmbeddedResource Include="FormCamera.resx">
+      <DependentUpon>FormCamera.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTest.resx">
       <DependentUpon>FormTest.cs</DependentUpon>

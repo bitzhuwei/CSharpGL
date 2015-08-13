@@ -13,15 +13,15 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
 {
-    public partial class FormCylinderVAOElement : Form
+    public partial class FormCylinderElement : Form
     {
-        CylinderVAOElement element;
+        CylinderElement element;
 
         ScientificCamera camera;
 
         SatelliteRotator satelliteRoration;
 
-        public FormCylinderVAOElement()
+        public FormCylinderElement()
         {
             InitializeComponent();
 
@@ -40,7 +40,7 @@ namespace CSharpGL.Winforms.Demo
             var faceCount = 18;
             var radius = 1f;
             var height = 3f;
-            element = new CylinderVAOElement(radius, height, faceCount);
+            element = new CylinderElement(radius, height, faceCount);
             element.Initialize();
 
             element.BeforeRendering += element_BeforeRendering;
@@ -66,9 +66,9 @@ namespace CSharpGL.Winforms.Demo
 
             shaderProgram.Bind();
 
-            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strmodelMatrix, modelMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(CylinderElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(CylinderElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(CylinderElement.strmodelMatrix, modelMatrix.to_array());
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

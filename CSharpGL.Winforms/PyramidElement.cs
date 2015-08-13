@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Winforms
 {
-    public class PyramidVAOElement : SceneElementBase
+    public class PyramidElement : SceneElementBase
     {
 
         /// <summary>

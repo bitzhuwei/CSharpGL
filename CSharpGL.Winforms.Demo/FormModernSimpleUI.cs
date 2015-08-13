@@ -75,9 +75,9 @@ namespace CSharpGL.Winforms.Demo
 
             shaderProgram.Bind();
 
-            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strmodelMatrix, modelMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(CylinderElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(CylinderElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(CylinderElement.strmodelMatrix, modelMatrix.to_array());
         }
 
         void uiRectElement_AfterRendering(object sender, Objects.RenderEventArgs e)
@@ -111,9 +111,9 @@ namespace CSharpGL.Winforms.Demo
 
             shaderProgram.Bind();
 
-            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strmodelMatrix, modelMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(CylinderElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(CylinderElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(CylinderElement.strmodelMatrix, modelMatrix.to_array());
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
@@ -123,12 +123,8 @@ namespace CSharpGL.Winforms.Demo
 
         private void FormTranslateOnScreen_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(string.Format("{1}{0}{2}{0}{3}{0}{4}",
-                Environment.NewLine,
-                "Use 'c' to switch camera types between perspective and ortho",
-                "w/s for y axis up/down",
-                "a/d for x axis left/right",
-                "e/q for z axis near/far"));
+            MessageBox.Show(string.Format("{0}",
+                "Use 'c' to switch camera types between perspective and ortho"));
         }
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)

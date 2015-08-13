@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Winforms.Demo
 {
-    partial class FormPyramidVAOElement
+    partial class FormCylinderElement
     {
         /// <summary>
         /// Required designer variable.
@@ -29,38 +29,59 @@
         private void InitializeComponent()
         {
             this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
+            this.txtInfo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
-            //
+            // 
             // glCanvas1
-            //
-            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.glCanvas1.Location = new System.Drawing.Point(13, 13);
+            this.glCanvas1.Location = new System.Drawing.Point(13, 75);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(577, 400);
+            this.glCanvas1.Size = new System.Drawing.Size(784, 412);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.OpenGLDraw += new System.EventHandler<CSharpGL.Winforms.RenderEventArgs>(this.glCanvas1_OpenGLDraw);
-            //
-            // FormPyramidVAOElement
-            //
+            this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
+            this.glCanvas1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.glCanvas1_MouseDown);
+            this.glCanvas1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.glCanvas1_MouseMove);
+            this.glCanvas1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.glCanvas1_MouseUp);
+            this.glCanvas1.Resize += new System.EventHandler(this.glCanvas1_Resize);
+            // 
+            // txtInfo
+            // 
+            this.txtInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInfo.Location = new System.Drawing.Point(13, 12);
+            this.txtInfo.Multiline = true;
+            this.txtInfo.Name = "txtInfo";
+            this.txtInfo.ReadOnly = true;
+            this.txtInfo.Size = new System.Drawing.Size(784, 56);
+            this.txtInfo.TabIndex = 3;
+            // 
+            // FormCylinderElement
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 426);
+            this.ClientSize = new System.Drawing.Size(810, 500);
+            this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "FormPyramidVAOElement";
-            this.Text = "FormPyramidVAOElement";
+            this.Name = "FormCylinderElement";
+            this.Text = "CylinderElement+SatelliteRotation";
+            this.Load += new System.EventHandler(this.FormGLCanvas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private GLCanvas glCanvas1;
+        private System.Windows.Forms.TextBox txtInfo;
     }
 }

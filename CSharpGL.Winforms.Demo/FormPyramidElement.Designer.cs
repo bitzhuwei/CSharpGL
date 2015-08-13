@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Winforms.Demo
 {
-    partial class FormScientificCamera
+    partial class FormPyramidElement
     {
         /// <summary>
         /// Required designer variable.
@@ -42,19 +42,18 @@
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(708, 398);
+            this.glCanvas1.Size = new System.Drawing.Size(577, 400);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.OpenGLDraw += new System.EventHandler<CSharpGL.Winforms.RenderEventArgs>(this.glCanvas1_OpenGLDraw);
             //
-            // FormScientificCamera
+            // FormPyramidVAOElement
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 424);
+            this.ClientSize = new System.Drawing.Size(603, 426);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "FormScientificCamera";
-            this.Text = "FormScientificCamera";
-            this.Load += new System.EventHandler(this.FormScientificCamera_Load);
+            this.Name = "FormPyramidVAOElement";
+            this.Text = "FormPyramidVAOElement";
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
 

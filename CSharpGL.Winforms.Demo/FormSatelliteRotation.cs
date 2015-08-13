@@ -17,7 +17,7 @@ namespace CSharpGL.Winforms.Demo
     {
         SatelliteRotator rotator;
         ScientificCamera camera;
-        PyramidVAOElement element;
+        PyramidElement element;
 
         public FormSatelliteRotation()
         {
@@ -36,7 +36,7 @@ namespace CSharpGL.Winforms.Demo
             rotator = new SatelliteRotator(this.camera);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
-            element = new PyramidVAOElement();
+            element = new PyramidElement();
             element.Initialize();
 
             element.BeforeRendering += element_BeforeRendering;
@@ -62,9 +62,9 @@ namespace CSharpGL.Winforms.Demo
             ShaderProgram shaderProgram = element.shaderProgram;
             shaderProgram.Bind();
 
-            shaderProgram.SetUniformMatrix4(PyramidVAOElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(PyramidVAOElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(PyramidVAOElement.strmodelMatrix, modelMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(PyramidElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(PyramidElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(PyramidElement.strmodelMatrix, modelMatrix.to_array());
         }
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.btnUnmanagedArray = new System.Windows.Forms.Button();
-            this.btnCylinderVAOElement = new System.Windows.Forms.Button();
+            this.btnCylinderElement = new System.Windows.Forms.Button();
             this.btnModernSingleTextureFont = new System.Windows.Forms.Button();
-            this.btnPyramidVAOElement = new System.Windows.Forms.Button();
-            this.btnScientificCamera = new System.Windows.Forms.Button();
+            this.btnPyramidElement = new System.Windows.Forms.Button();
+            this.btnCamera = new System.Windows.Forms.Button();
             this.btnSatelliteRotation = new System.Windows.Forms.Button();
             this.btnWholeFontTextureElement = new System.Windows.Forms.Button();
             this.btnTranslateOnScreen = new System.Windows.Forms.Button();
@@ -54,18 +54,18 @@
             this.btnUnmanagedArray.UseVisualStyleBackColor = true;
             this.btnUnmanagedArray.Click += new System.EventHandler(this.btnUnmanagedArray_Click);
             // 
-            // btnCylinderVAOElement
+            // btnCylinderElement
             // 
-            this.btnCylinderVAOElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnCylinderElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCylinderVAOElement.Location = new System.Drawing.Point(13, 163);
-            this.btnCylinderVAOElement.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCylinderVAOElement.Name = "btnCylinderVAOElement";
-            this.btnCylinderVAOElement.Size = new System.Drawing.Size(353, 29);
-            this.btnCylinderVAOElement.TabIndex = 1;
-            this.btnCylinderVAOElement.Text = "CylinderVAOElement";
-            this.btnCylinderVAOElement.UseVisualStyleBackColor = true;
-            this.btnCylinderVAOElement.Click += new System.EventHandler(this.btnCylinderVAOElement_Click);
+            this.btnCylinderElement.Location = new System.Drawing.Point(13, 163);
+            this.btnCylinderElement.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCylinderElement.Name = "btnCylinderElement";
+            this.btnCylinderElement.Size = new System.Drawing.Size(353, 29);
+            this.btnCylinderElement.TabIndex = 1;
+            this.btnCylinderElement.Text = "CylinderElement+SatelliteRotation";
+            this.btnCylinderElement.UseVisualStyleBackColor = true;
+            this.btnCylinderElement.Click += new System.EventHandler(this.btnCylinderElement_Click);
             // 
             // btnModernSingleTextureFont
             // 
@@ -80,31 +80,31 @@
             this.btnModernSingleTextureFont.UseVisualStyleBackColor = true;
             this.btnModernSingleTextureFont.Click += new System.EventHandler(this.btnFreeTypeTextVAOElement_Click);
             // 
-            // btnPyramidVAOElement
+            // btnPyramidElement
             // 
-            this.btnPyramidVAOElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnPyramidElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPyramidVAOElement.Location = new System.Drawing.Point(13, 52);
-            this.btnPyramidVAOElement.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPyramidVAOElement.Name = "btnPyramidVAOElement";
-            this.btnPyramidVAOElement.Size = new System.Drawing.Size(353, 29);
-            this.btnPyramidVAOElement.TabIndex = 5;
-            this.btnPyramidVAOElement.Text = "PyramidVAOElement";
-            this.btnPyramidVAOElement.UseVisualStyleBackColor = true;
-            this.btnPyramidVAOElement.Click += new System.EventHandler(this.btnPyramidVAOElement_Click);
+            this.btnPyramidElement.Location = new System.Drawing.Point(13, 52);
+            this.btnPyramidElement.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPyramidElement.Name = "btnPyramidElement";
+            this.btnPyramidElement.Size = new System.Drawing.Size(353, 29);
+            this.btnPyramidElement.TabIndex = 5;
+            this.btnPyramidElement.Text = "PyramidElement";
+            this.btnPyramidElement.UseVisualStyleBackColor = true;
+            this.btnPyramidElement.Click += new System.EventHandler(this.btnPyramidElement_Click);
             // 
-            // btnScientificCamera
+            // btnCamera
             // 
-            this.btnScientificCamera.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnCamera.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnScientificCamera.Location = new System.Drawing.Point(13, 89);
-            this.btnScientificCamera.Margin = new System.Windows.Forms.Padding(4);
-            this.btnScientificCamera.Name = "btnScientificCamera";
-            this.btnScientificCamera.Size = new System.Drawing.Size(353, 29);
-            this.btnScientificCamera.TabIndex = 3;
-            this.btnScientificCamera.Text = "ScientificCamera";
-            this.btnScientificCamera.UseVisualStyleBackColor = true;
-            this.btnScientificCamera.Click += new System.EventHandler(this.btnScientificCamera_Click);
+            this.btnCamera.Location = new System.Drawing.Point(13, 89);
+            this.btnCamera.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCamera.Name = "btnCamera";
+            this.btnCamera.Size = new System.Drawing.Size(353, 29);
+            this.btnCamera.TabIndex = 3;
+            this.btnCamera.Text = "Camera";
+            this.btnCamera.UseVisualStyleBackColor = true;
+            this.btnCamera.Click += new System.EventHandler(this.btnCamera_Click);
             // 
             // btnSatelliteRotation
             // 
@@ -190,15 +190,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 445);
             this.Controls.Add(this.btnWholeFontTextureElement);
-            this.Controls.Add(this.btnCylinderVAOElement);
+            this.Controls.Add(this.btnCylinderElement);
             this.Controls.Add(this.btnSatelliteRotation);
-            this.Controls.Add(this.btnScientificCamera);
+            this.Controls.Add(this.btnCamera);
             this.Controls.Add(this.btnSimpleUIAxis);
             this.Controls.Add(this.btnModernSimpleUIRect);
             this.Controls.Add(this.btnLegacySimpleUIRect);
             this.Controls.Add(this.btnTranslateOnScreen);
             this.Controls.Add(this.btnModernSingleTextureFont);
-            this.Controls.Add(this.btnPyramidVAOElement);
+            this.Controls.Add(this.btnPyramidElement);
             this.Controls.Add(this.btnUnmanagedArray);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormTest";
@@ -210,10 +210,10 @@
         #endregion
 
         private System.Windows.Forms.Button btnUnmanagedArray;
-        private System.Windows.Forms.Button btnCylinderVAOElement;
+        private System.Windows.Forms.Button btnCylinderElement;
         private System.Windows.Forms.Button btnModernSingleTextureFont;
-        private System.Windows.Forms.Button btnPyramidVAOElement;
-        private System.Windows.Forms.Button btnScientificCamera;
+        private System.Windows.Forms.Button btnPyramidElement;
+        private System.Windows.Forms.Button btnCamera;
         private System.Windows.Forms.Button btnSatelliteRotation;
         private System.Windows.Forms.Button btnWholeFontTextureElement;
         private System.Windows.Forms.Button btnTranslateOnScreen;
