@@ -34,7 +34,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <summary>
         /// 顶点数
         /// </summary>
-        protected int axisVertexCount;
+        protected int vertexCount;
 
         /// <summary>
         /// 
@@ -47,10 +47,12 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
         /// <param name="rectColor">default color is red.</param>
-        public SimpleUIColorIndicator(IUILayoutParam param)
+        public SimpleUIColorIndicator(IUILayoutParam param, ColorPalette colorPalette)
         {
             IUILayout layout = this;
             layout.Param = param;
+
+            this.ColorPalette = colorPalette;
         }
 
         protected override void DoInitialize()
@@ -62,44 +64,28 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         private void InitVAO()
         {
-            this.axisPrimitiveMode = PrimitiveModes.Lines;
-            this.axisVertexCount = 8 * 3;
+            this.axisPrimitiveMode = PrimitiveModes.QuadStrip;
+            GLColor[] colors = this.ColorPalette.Colors;
+            float[] coords = this.ColorPalette.Coords;
+            this.vertexCount = coords.Length * 2;
             this.vao = new uint[1];
 
+            float coordLength = coords[coords.Length - 1] - coords[0];
             GL.GenVertexArrays(1, vao);
 
             GL.BindVertexArray(vao[0]);
 
             //  Create a vertex buffer for the vertex data.
             {
-                UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(8 * 3);
-                // x axis
-                positionArray[0] = new vec3(-1, -1, -1);
-                positionArray[1] = new vec3(1, -1, -1);
-                positionArray[2] = new vec3(-1, -1, 1);
-                positionArray[3] = new vec3(1, -1, 1);
-                positionArray[4] = new vec3(-1, 1, 1);
-                positionArray[5] = new vec3(1, 1, 1);
-                positionArray[6] = new vec3(-1, 1, -1);
-                positionArray[7] = new vec3(1, 1, -1);
-                // y axis
-                positionArray[8 + 0] = new vec3(-1, -1, -1);
-                positionArray[8 + 1] = new vec3(-1, 1, -1);
-                positionArray[8 + 2] = new vec3(-1, -1, 1);
-                positionArray[8 + 3] = new vec3(-1, 1, 1);
-                positionArray[8 + 4] = new vec3(1, -1, 1);
-                positionArray[8 + 5] = new vec3(1, 1, 1);
-                positionArray[8 + 6] = new vec3(1, -1, -1);
-                positionArray[8 + 7] = new vec3(1, 1, -1);
-                // z axis
-                positionArray[16 + 0] = new vec3(-1, -1, -1);
-                positionArray[16 + 1] = new vec3(-1, -1, 1);
-                positionArray[16 + 2] = new vec3(-1, 1, -1);
-                positionArray[16 + 3] = new vec3(-1, 1, 1);
-                positionArray[16 + 4] = new vec3(1, 1, -1);
-                positionArray[16 + 5] = new vec3(1, 1, 1);
-                positionArray[16 + 6] = new vec3(1, -1, -1);
-                positionArray[16 + 7] = new vec3(1, -1, 1);
+                UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(this.vertexCount);
+                positionArray[0] = new vec3(-0.5f, -0.5f, 0);
+                positionArray[1] = new vec3(-0.5f, 0.5f, 0);
+                for (int i = 1; i < coords.Length; i++)
+                {
+                    float x = (coords[i] - coords[0]) / coordLength - 0.5f;
+                    positionArray[i * 2 + 0] = new vec3(x, -0.5f, 0);
+                    positionArray[i * 2 + 1] = new vec3(x, 0.5f, 0);
+                }
 
                 uint positionLocation = shaderProgram.GetAttributeLocation(strin_Position);
 
@@ -115,12 +101,13 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
             //  Now do the same for the colour data.
             {
-                UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(8 * 3);
-                //vec3 color = ((IUILayout)this).RectColor;
-                vec3[] colors = new vec3[] { new vec3(1, 0, 0), new vec3(0, 1, 0), new vec3(0, 0, 1), };
-                for (int i = 0; i < colorArray.Length; i++)
+                UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(this.vertexCount);
+                for (int i = 0; i < colors.Length; i++)
                 {
-                    colorArray[i] = colors[i / 8];
+                    GLColor color = colors[i];
+                    //TODO:试验成功后换vec4试试
+                    colorArray[i * 2 + 0] = new vec3(color.R, color.G, color.B);//, color.A);
+                    colorArray[i * 2 + 1] = new vec3(color.R, color.G, color.B);//, color.A);
                 }
 
                 uint colorLocation = shaderProgram.GetAttributeLocation(strin_Color);
@@ -156,11 +143,13 @@ namespace CSharpGL.Objects.UI.SimpleUI
         {
             GL.BindVertexArray(vao[0]);
 
-            GL.DrawArrays(this.axisPrimitiveMode, 0, this.axisVertexCount);
+            GL.DrawArrays(this.axisPrimitiveMode, 0, this.vertexCount);
 
             GL.BindVertexArray(0);
         }
 
         public IUILayoutParam Param { get; set; }
+
+        public ColorPalette ColorPalette { get; set; }
     }
 }

@@ -15,12 +15,10 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
 {
-    public partial class FormSimpleUIColorPalette : Form
+    public partial class FormSimpleUIColorIndicator : Form
     {
-        SimpleUIColorIndicator uiLeftBottomAxis;
-        SimpleUIColorIndicator uiLeftTopAxis;
-        SimpleUIColorIndicator uiRightBottomAxis;
-        SimpleUIColorIndicator uiRightTopAxis;
+        SimpleUIColorIndicator uiBottomColorIndicator;
+        SimpleUIColorIndicator uiTopColorIndicator;
 
         AxisElement axisElement;
 
@@ -28,7 +26,7 @@ namespace CSharpGL.Winforms.Demo
 
         SatelliteRotator satelliteRoration;
 
-        public FormSimpleUIColorPalette()
+        public FormSimpleUIColorIndicator()
         {
             InitializeComponent();
 
@@ -44,33 +42,26 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotator(camera);
 
+            ColorPalette colorPalette = ColorPaletteFactory.CreateRainbow();
+
             Padding padding = new System.Windows.Forms.Padding(40, 40, 40, 40);
             Size size = new Size(100, 100);
             //Size size = new Size(5, 5);
             IUILayoutParam param;
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
-            uiLeftBottomAxis = new SimpleUIColorIndicator(param);
-            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
-            uiLeftTopAxis = new SimpleUIColorIndicator(param);
-            param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
-            uiRightBottomAxis = new SimpleUIColorIndicator(param);
-            param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Top, padding, size);
-            uiRightTopAxis = new SimpleUIColorIndicator(param);
+            //param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right, padding, size);
+            uiBottomColorIndicator = new SimpleUIColorIndicator(param, colorPalette);
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right, padding, size);
+            uiTopColorIndicator = new SimpleUIColorIndicator(param, colorPalette);
 
-            uiLeftBottomAxis.Initialize();
-            uiLeftTopAxis.Initialize();
-            uiRightBottomAxis.Initialize();
-            uiRightTopAxis.Initialize();
+            uiBottomColorIndicator.Initialize();
+            uiTopColorIndicator.Initialize();
 
-            uiLeftBottomAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
-            uiLeftTopAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
-            uiRightBottomAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
-            uiRightTopAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
+            uiBottomColorIndicator.BeforeRendering += SimpleUIColorIndicator_BeforeRendering;
+            uiTopColorIndicator.BeforeRendering += SimpleUIColorIndicator_BeforeRendering;
 
-            uiLeftBottomAxis.AfterRendering += SimpleUIAxis_AfterRendering;
-            uiLeftTopAxis.AfterRendering += SimpleUIAxis_AfterRendering;
-            uiRightBottomAxis.AfterRendering += SimpleUIAxis_AfterRendering;
-            uiRightTopAxis.AfterRendering += SimpleUIAxis_AfterRendering;
+            uiBottomColorIndicator.AfterRendering += SimpleUIColorIndicator_AfterRendering;
+            uiTopColorIndicator.AfterRendering += SimpleUIColorIndicator_AfterRendering;
 
             axisElement = new AxisElement();
             axisElement.Initialize();
@@ -86,45 +77,20 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
-        void SimpleUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            SimpleUIRect element = sender as SimpleUIRect;
-
-            element.shaderProgram.Unbind();
-        }
-
-        void SimpleUIRect_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            SimpleUIRect element = sender as SimpleUIRect;
-
-            mat4 projectionMatrix, viewMatrix, modelMatrix;
-
-            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
-
-            ShaderProgram shaderProgram = element.shaderProgram;
-
-            shaderProgram.Bind();
-
-            shaderProgram.SetUniformMatrix4(SimpleUIColorIndicator.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimpleUIColorIndicator.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimpleUIColorIndicator.strmodelMatrix, modelMatrix.to_array());
-        }
-
-        void SimpleUIAxis_AfterRendering(object sender, Objects.RenderEventArgs e)
+        void SimpleUIColorIndicator_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
             SimpleUIColorIndicator element = sender as SimpleUIColorIndicator;
 
             element.shaderProgram.Unbind();
         }
 
-        void SimpleUIAxis_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        void SimpleUIColorIndicator_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
             SimpleUIColorIndicator element = sender as SimpleUIColorIndicator;
 
             mat4 projectionMatrix, viewMatrix, modelMatrix;
-            float maxDepth = (float)Math.Sqrt(3);
 
-            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera, maxDepth);
+            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix);
 
             ShaderProgram shaderProgram = element.shaderProgram;
 
@@ -181,10 +147,8 @@ namespace CSharpGL.Winforms.Demo
 
             axisElement.Render(Objects.RenderModes.Render);
 
-            uiLeftBottomAxis.Render(Objects.RenderModes.Render);
-            uiLeftTopAxis.Render(Objects.RenderModes.Render);
-            uiRightBottomAxis.Render(Objects.RenderModes.Render);
-            uiRightTopAxis.Render(Objects.RenderModes.Render);
+            uiBottomColorIndicator.Render(Objects.RenderModes.Render);
+            uiTopColorIndicator.Render(Objects.RenderModes.Render);
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)

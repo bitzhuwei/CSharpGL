@@ -83,7 +83,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void btnSimpleUIColorPalette_Click(object sender, EventArgs e)
         {
-            (new FormSimpleUIColorPalette()).Show();
+            (new FormSimpleUIColorIndicator()).Show();
         }
 
 

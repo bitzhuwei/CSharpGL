@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Winforms.Demo
 {
-    partial class FormSimpleUIColorPalette
+    partial class FormSimpleUIColorIndicator
     {
         /// <summary>
         /// Required designer variable.

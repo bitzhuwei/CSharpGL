@@ -59,11 +59,11 @@
     <Compile Include="FormFontElement.Designer.cs">
       <DependentUpon>FormFontElement.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSimpleUIColorPalette.cs">
+    <Compile Include="FormSimpleUIColorIndicator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSimpleUIColorPalette.Designer.cs">
-      <DependentUpon>FormSimpleUIColorPalette.cs</DependentUpon>
+    <Compile Include="FormSimpleUIColorIndicator.Designer.cs">
+      <DependentUpon>FormSimpleUIColorIndicator.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSimpleUICube.cs">
       <SubType>Form</SubType>
@@ -130,8 +130,8 @@
     <EmbeddedResource Include="FormFontElement.resx">
       <DependentUpon>FormFontElement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSimpleUIColorPalette.resx">
-      <DependentUpon>FormSimpleUIColorPalette.cs</DependentUpon>
+    <EmbeddedResource Include="FormSimpleUIColorIndicator.resx">
+      <DependentUpon>FormSimpleUIColorIndicator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSimpleUICube.resx">
       <DependentUpon>FormSimpleUICube.cs</DependentUpon>
