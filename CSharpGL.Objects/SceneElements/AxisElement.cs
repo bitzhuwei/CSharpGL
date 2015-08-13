@@ -14,7 +14,6 @@ namespace CSharpGL.Objects.SceneElements
     /// </summary>
     public class AxisElement : SceneElementBase, IDisposable
     {
-        static readonly vec3 defaultPlanColor = new vec3(1, 1, 1);
 
         /// <summary>
         /// shader program

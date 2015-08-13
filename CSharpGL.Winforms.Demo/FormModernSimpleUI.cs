@@ -56,18 +56,22 @@ namespace CSharpGL.Winforms.Demo
 
         void axisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            axisElement.shaderProgram.Unbind();
+            AxisElement element = sender as AxisElement;
+
+            element.shaderProgram.Unbind();
         }
 
         void axisElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
+            AxisElement element = sender as AxisElement;
+
             mat4 projectionMatrix = camera.GetProjectionMat4();
 
             mat4 viewMatrix = camera.GetViewMat4();
 
             mat4 modelMatrix = mat4.identity();
 
-            ShaderProgram shaderProgram = axisElement.shaderProgram;
+            ShaderProgram shaderProgram = element.shaderProgram;
 
             shaderProgram.Bind();
 
@@ -78,15 +82,14 @@ namespace CSharpGL.Winforms.Demo
 
         void uiRectElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            this.uiRectElement.shaderProgram.Unbind();
+            ModernSimpleUIRect element = sender as ModernSimpleUIRect;
+
+            element.shaderProgram.Unbind();
         }
 
         void uiRectElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            IUILayoutArgs args = this.uiRectElement.GetArgs();
-
-            mat4 projectionMatrix = glm.ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top,
-                this.uiRectElement.zNear, this.uiRectElement.zFar);
+            ModernSimpleUIRect element = sender as ModernSimpleUIRect;
 
             mat4 viewMatrix;
             IViewCamera camera = null;// this.camera;
@@ -101,9 +104,10 @@ namespace CSharpGL.Winforms.Demo
                 viewMatrix = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
             }
 
-            mat4 modelMatrix = glm.scale(mat4.identity(), new vec3(args.UIWidth / 2, args.UIHeight / 2, 1));
+            mat4 projectionMatrix, modelMatrix;
+            element.GetMatrix(out projectionMatrix, out modelMatrix);
 
-            ShaderProgram shaderProgram = this.uiRectElement.shaderProgram;
+            ShaderProgram shaderProgram = element.shaderProgram;
 
             shaderProgram.Bind();
 

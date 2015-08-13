@@ -88,7 +88,7 @@
     <Compile Include="UI\SimpleUI\ModernSimpleUIRect.cs" />
     <Compile Include="UI\SimpleUI\SimpleUIAxis.cs" />
     <Compile Include="UI\SimpleUI\LegacySimpleUIRect.cs" />
-    <Compile Include="UI\SimpleUI\SimpleUIRectArgs.cs" />
+    <Compile Include="UI\SimpleUI\IUILayoutArgs.cs" />
     <EmbeddedResource Include="Texts\freetype.frag" />
     <EmbeddedResource Include="Texts\freetype.vert" />
     <Compile Include="Texts\CharacterInfo.cs" />
@@ -130,8 +130,8 @@
     <None Include="Texts\FreeTypes\freetype.exp" />
     <None Include="Texts\FreeTypes\freetype.lib" />
     <None Include="Texts\Modern OpenGL Text Rendering.mht" />
-    <EmbeddedResource Include="UI\SimpleUI\SimpleUIRect.frag" />
-    <EmbeddedResource Include="UI\SimpleUI\SimpleUIRect.vert" />
+    <EmbeddedResource Include="UI\SimpleUI\ModernSimpleUIRect.frag" />
+    <EmbeddedResource Include="UI\SimpleUI\ModernSimpleUIRect.vert" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

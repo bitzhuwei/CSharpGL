@@ -124,18 +124,16 @@ namespace CSharpGL.Winforms.Demo
                 viewMatrix = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
             }
 
-            {
-                mat4 projectionMatrix, modelMatrix;
-                element.GetMatrix(out projectionMatrix, out modelMatrix);
+            mat4 projectionMatrix, modelMatrix;
+            element.GetMatrix(out projectionMatrix, out modelMatrix);
 
-                ShaderProgram shaderProgram = element.axisElement.shaderProgram;
+            ShaderProgram shaderProgram = element.axisElement.shaderProgram;
 
-                shaderProgram.Bind();
+            shaderProgram.Bind();
 
-                shaderProgram.SetUniformMatrix4(AxisElement.strprojectionMatrix, projectionMatrix.to_array());
-                shaderProgram.SetUniformMatrix4(AxisElement.strviewMatrix, viewMatrix.to_array());
-                shaderProgram.SetUniformMatrix4(AxisElement.strmodelMatrix, modelMatrix.to_array());
-            }
+            shaderProgram.SetUniformMatrix4(AxisElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(AxisElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(AxisElement.strmodelMatrix, modelMatrix.to_array());
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
@@ -158,8 +156,8 @@ namespace CSharpGL.Winforms.Demo
 
             axisElement.Render(Objects.RenderModes.Render);
 
-            uiLeftBottomAxis.Render(Objects.RenderModes.Render); 
-            uiLeftTopAxis .Render(Objects.RenderModes.Render);
+            uiLeftBottomAxis.Render(Objects.RenderModes.Render);
+            uiLeftTopAxis.Render(Objects.RenderModes.Render);
             uiRightBottomAxis.Render(Objects.RenderModes.Render);
             uiRightTopAxis.Render(Objects.RenderModes.Render);
         }
