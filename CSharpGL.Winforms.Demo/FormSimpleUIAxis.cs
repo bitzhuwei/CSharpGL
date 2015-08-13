@@ -17,7 +17,7 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormSimpleUIAxis : Form
     {
-        SimpleUIAxis uiAxisElement;
+        SimpleUIAxis uiLeftBottomAxis;
 
         AxisElement axisElement;
 
@@ -41,10 +41,10 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotator(camera);
 
-            uiAxisElement = new SimpleUIAxis(AnchorStyles.Left | AnchorStyles.Bottom, new Padding(20,20,20,20), new Size(5,5));
-            uiAxisElement.Initialize();
-            uiAxisElement.BeforeRendering += uiRectElement_BeforeRendering;
-            uiAxisElement.AfterRendering += uiRectElement_AfterRendering;
+            uiLeftBottomAxis = new SimpleUIAxis(AnchorStyles.Left | AnchorStyles.Bottom, new Padding(20, 20, 20, 20), new Size(5, 5));
+            uiLeftBottomAxis.Initialize();
+            uiLeftBottomAxis.BeforeRendering += uiRectElement_BeforeRendering;
+            uiLeftBottomAxis.AfterRendering += uiRectElement_AfterRendering;
 
             axisElement = new AxisElement();
             axisElement.Initialize();
@@ -78,17 +78,11 @@ namespace CSharpGL.Winforms.Demo
 
         void uiRectElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            this.uiAxisElement.shaderProgram.Unbind();
+            this.uiLeftBottomAxis.axisElement.shaderProgram.Unbind();
         }
 
         void uiRectElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            SimpleUIRectArgs args = this.uiAxisElement.GetArgs();
-
-            IUILayout layout = this.uiAxisElement;
-            mat4 projectionMatrix = glm.ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top,
-                layout.zNear, layout.zFar);
-
             mat4 viewMatrix;
             IViewCamera camera = this.camera;
             if (camera == null)
@@ -102,17 +96,17 @@ namespace CSharpGL.Winforms.Demo
                 viewMatrix = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
             }
 
-            mat4 modelMatrix = glm.scale(mat4.identity(), 
-                new vec3(args.UIWidth / 2, args.UIHeight / 2, (float)Math.Max(args.UIWidth, args.UIHeight) / 2));
-
             {
-                ShaderProgram shaderProgram = this.uiAxisElement.shaderProgram;
+                mat4 projectionMatrix, modelMatrix;
+                this.uiLeftBottomAxis.GetMatrix(out projectionMatrix, out modelMatrix);
+
+                ShaderProgram shaderProgram = this.uiLeftBottomAxis.axisElement.shaderProgram;
 
                 shaderProgram.Bind();
 
-                shaderProgram.SetUniformMatrix4(SimpleUIAxis.strprojectionMatrix, projectionMatrix.to_array());
-                shaderProgram.SetUniformMatrix4(SimpleUIAxis.strviewMatrix, viewMatrix.to_array());
-                shaderProgram.SetUniformMatrix4(SimpleUIAxis.strmodelMatrix, modelMatrix.to_array());
+                shaderProgram.SetUniformMatrix4(AxisElement.strprojectionMatrix, projectionMatrix.to_array());
+                shaderProgram.SetUniformMatrix4(AxisElement.strviewMatrix, viewMatrix.to_array());
+                shaderProgram.SetUniformMatrix4(AxisElement.strmodelMatrix, modelMatrix.to_array());
             }
         }
 
@@ -123,12 +117,8 @@ namespace CSharpGL.Winforms.Demo
 
         private void FormTranslateOnScreen_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(string.Format("{1}{0}{2}{0}{3}{0}{4}",
-                Environment.NewLine,
-                "Use 'c' to switch camera types between perspective and ortho",
-                "w/s for y axis up/down",
-                "a/d for x axis left/right",
-                "e/q for z axis near/far"));
+            MessageBox.Show(string.Format("{0}",
+                "Use 'c' to switch camera types between perspective and ortho"));
         }
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
@@ -139,7 +129,7 @@ namespace CSharpGL.Winforms.Demo
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             axisElement.Render(Objects.RenderModes.Render);
-            uiAxisElement.Render(Objects.RenderModes.Render);
+            uiLeftBottomAxis.Render(Objects.RenderModes.Render);
         }
 
         private void glCanvas_Resize(object sender, EventArgs e)

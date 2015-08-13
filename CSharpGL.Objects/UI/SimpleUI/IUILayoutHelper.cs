@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpGL.Maths;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,23 @@ namespace CSharpGL.Objects.UI.SimpleUI
     {
 
         /// <summary>
+        /// 获取此UI元素的投影矩阵和模型矩阵
+        /// </summary>
+        /// <param name="uiElement"></param>
+        /// <param name="projectionMatrix"></param>
+        /// <param name="modelMatrix"></param>
+        public static void GetMatrix(this IUILayout uiElement, out mat4 projectionMatrix, out mat4 modelMatrix)
+        {
+            SimpleUIRectArgs args = uiElement.GetArgs();
+
+            projectionMatrix = glm.ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top,
+                uiElement.zNear, uiElement.zFar);
+
+            float max = (float)Math.Max(args.UIWidth, args.UIHeight);
+            modelMatrix = glm.scale(mat4.identity(), new vec3(max / 2, max / 2, max / 2));
+        }
+
+        /// <summary>
         /// leftRightAnchor = (AnchorStyles.Left | AnchorStyles.Right); 
         /// </summary>
         const AnchorStyles leftRightAnchor = (AnchorStyles.Left | AnchorStyles.Right);
@@ -20,7 +38,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// </summary>
         const AnchorStyles topBottomAnchor = (AnchorStyles.Top | AnchorStyles.Bottom);
 
-        public static SimpleUIRectArgs GetArgs(this IUILayout uiElement)
+        static SimpleUIRectArgs GetArgs(this IUILayout uiElement)
         {
             var args = new SimpleUIRectArgs();
 
