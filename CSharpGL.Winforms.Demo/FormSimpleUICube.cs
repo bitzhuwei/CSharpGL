@@ -17,7 +17,7 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormSimpleUICube : Form
     {
-        
+
         SimpleUICube uiLeftBottomRect;
         SimpleUICube uiLeftTopRect;
         SimpleUICube uiRightBottomRect;
@@ -48,10 +48,15 @@ namespace CSharpGL.Winforms.Demo
             Padding padding = new System.Windows.Forms.Padding(40, 40, 40, 40);
             Size size = new Size(100, 100);
             //Size size = new Size(5, 5);
-            uiLeftBottomRect = new SimpleUICube(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
-            uiLeftTopRect = new SimpleUICube(AnchorStyles.Left | AnchorStyles.Top, padding, size);
-            uiRightBottomRect = new SimpleUICube(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
-            uiRightTopRect = new SimpleUICube(AnchorStyles.Right | AnchorStyles.Top, padding, size);
+            IUILayoutParam param;
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
+            uiLeftBottomRect = new SimpleUICube(param);
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
+            uiLeftTopRect = new SimpleUICube(param);
+            param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
+            uiRightBottomRect = new SimpleUICube(param);
+            param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Top, padding, size);
+            uiRightTopRect = new SimpleUICube(param);
 
             uiLeftBottomRect.Initialize();
             uiLeftTopRect.Initialize();

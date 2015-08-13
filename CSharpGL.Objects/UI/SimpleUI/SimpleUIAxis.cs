@@ -28,8 +28,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
         /// <param name="rectColor">default color is red.</param>
-        public SimpleUIAxis(AnchorStyles anchor, Padding margin, System.Drawing.Size size,
-            int zNear = -1000, int zFar = 1000, GLColor rectColor = null,
+        public SimpleUIAxis(IUILayoutParam param, GLColor rectColor = null,
             float radius = 0.3f, float axisLength = 10, int faceCount = 10)
         {
             // 把AxiesElement缩放到恰好放进此UI
@@ -38,11 +37,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
             this.axisElement = new AxisElement(radius, axisLength, faceCount);
 
             IUILayout layout = this;
-            layout.Anchor = anchor;
-            layout.Margin = margin;
-            layout.Size = size;
-            layout.zNear = zNear;
-            layout.zFar = zFar;
+            layout.Param = param;
         }
 
         #region IDisposable Members
@@ -95,15 +90,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         #region IUILayout
 
-        AnchorStyles IUILayout.Anchor { get; set; }
-
-        Padding IUILayout.Margin { get; set; }
-
-        System.Drawing.Size IUILayout.Size { get; set; }
-
-        int IUILayout.zNear { get; set; }
-
-        int IUILayout.zFar { get; set; }
+        public IUILayoutParam Param { get; set; }
 
         #endregion IUILayout
 

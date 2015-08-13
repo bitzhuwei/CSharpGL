@@ -87,7 +87,8 @@
     <Compile Include="Texts\FontTextureHelper.cs" />
     <Compile Include="UI\SimpleUI\IUILayout.cs" />
     <Compile Include="UI\SimpleUI\IUILayoutHelper.cs" />
-    <Compile Include="UI\SimpleUI\SimpleUIColorPalette.cs" />
+    <Compile Include="UI\SimpleUI\IUILayoutParam.cs" />
+    <Compile Include="UI\SimpleUI\SimpleUIColorIndicator.cs" />
     <Compile Include="UI\SimpleUI\SimpleUIRect.cs" />
     <Compile Include="UI\SimpleUI\SimpleUIAxis.cs" />
     <Compile Include="UI\SimpleUI\IUILayoutArgs.cs" />
@@ -141,8 +142,8 @@
     <EmbeddedResource Include="UI\SimpleUI\SimpleUIRect.vert" />
     <EmbeddedResource Include="UI\SimpleUI\SimpleUICube.vert" />
     <EmbeddedResource Include="UI\SimpleUI\SimpleUICube.frag" />
-    <EmbeddedResource Include="UI\SimpleUI\SimpleUIColorPalette.vert" />
-    <EmbeddedResource Include="UI\SimpleUI\SimpleUIColorPalette.frag" />
+    <EmbeddedResource Include="UI\SimpleUI\SimpleUIColorIndicator.vert" />
+    <EmbeddedResource Include="UI\SimpleUI\SimpleUIColorIndicator.frag" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

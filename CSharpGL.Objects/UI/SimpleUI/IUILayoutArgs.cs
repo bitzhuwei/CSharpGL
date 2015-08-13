@@ -9,7 +9,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
     /// <summary>
     /// pass viewport and UI's rect information.
     /// </summary>
-    public class IUILayoutArgs
+    internal class IUILayoutArgs
     {
         /// <summary>
         /// viewport's width.

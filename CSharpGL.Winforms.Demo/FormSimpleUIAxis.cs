@@ -52,10 +52,15 @@ namespace CSharpGL.Winforms.Demo
             Padding padding = new System.Windows.Forms.Padding(40, 40, 40, 40);
             Size size = new Size(100, 100);
             //Size size = new Size(5, 5);
-            uiLeftBottomAxis = new SimpleUIAxis(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
-            uiLeftTopAxis = new SimpleUIAxis(AnchorStyles.Left | AnchorStyles.Top, padding, size);
-            uiRightBottomAxis = new SimpleUIAxis(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
-            uiRightTopAxis = new SimpleUIAxis(AnchorStyles.Right | AnchorStyles.Top, padding, size);
+            IUILayoutParam param;
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
+            uiLeftBottomAxis = new SimpleUIAxis(param);
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
+            uiLeftTopAxis = new SimpleUIAxis(param);
+            param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
+            uiRightBottomAxis = new SimpleUIAxis(param);
+            param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Top, padding, size);
+            uiRightTopAxis = new SimpleUIAxis(param);
 
             uiLeftBottomAxis.Initialize();
             uiLeftTopAxis.Initialize();
@@ -72,10 +77,14 @@ namespace CSharpGL.Winforms.Demo
             uiRightBottomAxis.AfterRendering += SimpleUIAxis_AfterRendering;
             uiRightTopAxis.AfterRendering += SimpleUIAxis_AfterRendering;
 
-            uiLeftBottomRect = new SimpleUIRect(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
-            uiLeftTopRect = new SimpleUIRect(AnchorStyles.Left | AnchorStyles.Top, padding, size);
-            uiRightBottomRect = new SimpleUIRect(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
-            uiRightTopRect = new SimpleUIRect(AnchorStyles.Right | AnchorStyles.Top, padding, size);
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
+            uiLeftBottomRect = new SimpleUIRect(param);
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
+            uiLeftTopRect = new SimpleUIRect(param);
+            param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
+            uiRightBottomRect = new SimpleUIRect(param);
+            param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Top, padding, size);
+            uiRightTopRect = new SimpleUIRect(param);
 
             uiLeftBottomRect.Initialize();
             uiLeftTopRect.Initialize();

@@ -51,14 +51,10 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
         /// <param name="rectColor">default color is red.</param>
-        public SimpleUICube(AnchorStyles anchor, Padding margin, System.Drawing.Size size, int zNear = -1000, int zFar = 1000)
+        public SimpleUICube(IUILayoutParam param)
         {
             IUILayout layout = this;
-            layout.Anchor = anchor;
-            layout.Margin = margin;
-            layout.Size = size;
-            layout.zNear = zNear;
-            layout.zFar = zFar;
+            layout.Param = param;
         }
 
         protected override void DoInitialize()
@@ -169,15 +165,6 @@ namespace CSharpGL.Objects.UI.SimpleUI
             GL.BindVertexArray(0);
         }
 
-        AnchorStyles IUILayout.Anchor { get; set; }
-
-        Padding IUILayout.Margin { get; set; }
-
-        System.Drawing.Size IUILayout.Size { get; set; }
-
-        int IUILayout.zNear { get; set; }
-
-        int IUILayout.zFar { get; set; }
-
+        public IUILayoutParam Param { get; set; }
     }
 }

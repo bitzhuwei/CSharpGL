@@ -47,10 +47,15 @@ namespace CSharpGL.Winforms.Demo
             Padding padding = new System.Windows.Forms.Padding(40, 40, 40, 40);
             Size size = new Size(100, 100);
             //Size size = new Size(5, 5);
-            uiLeftBottomAxis = new SimpleUIColorIndicator(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
-            uiLeftTopAxis = new SimpleUIColorIndicator(AnchorStyles.Left | AnchorStyles.Top, padding, size);
-            uiRightBottomAxis = new SimpleUIColorIndicator(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
-            uiRightTopAxis = new SimpleUIColorIndicator(AnchorStyles.Right | AnchorStyles.Top, padding, size);
+            IUILayoutParam param;
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
+            uiLeftBottomAxis = new SimpleUIColorIndicator(param);
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
+            uiLeftTopAxis = new SimpleUIColorIndicator(param);
+            param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
+            uiRightBottomAxis = new SimpleUIColorIndicator(param);
+            param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Top, padding, size);
+            uiRightTopAxis = new SimpleUIColorIndicator(param);
 
             uiLeftBottomAxis.Initialize();
             uiLeftTopAxis.Initialize();
