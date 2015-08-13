@@ -85,8 +85,9 @@ namespace CSharpGL.Winforms.Demo
         {
             SimpleUIRectArgs args = this.uiAxisElement.GetArgs();
 
+            IUILayout layout = this.uiAxisElement;
             mat4 projectionMatrix = glm.ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top,
-                this.uiAxisElement.zNear, this.uiAxisElement.zFar);
+                layout.zNear, layout.zFar);
 
             mat4 viewMatrix;
             IViewCamera camera = this.camera;

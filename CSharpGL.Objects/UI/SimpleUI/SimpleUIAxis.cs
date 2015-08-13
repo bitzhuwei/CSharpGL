@@ -10,9 +10,8 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Objects.UI.SimpleUI
 {
-    public class SimpleUIAxis : SceneElementBase, IDisposable
+    public class SimpleUIAxis : SceneElementBase, IUILayout, IDisposable
     {
-        
 
         /// <summary>
         /// 
@@ -35,139 +34,20 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
             this.planColor = new vec3(1, 1, 1);
 
-            this.Anchor = anchor;
-            this.Margin = margin;
-            this.Size = size;
-            this.zNear = zNear;
-            this.zFar = zFar;
+            IUILayout layout = this;
+            layout.Anchor = anchor;
+            layout.Margin = margin;
+            layout.Size = size;
+            layout.zNear = zNear;
+            layout.zFar = zFar;
             if (rectColor == null)
-            { this.RectColor = new vec3(1, 0, 0); }
+            { layout.RectColor = new vec3(1, 0, 0); }
             else
-            { this.RectColor = new vec3(1, 0, 0); }
+            { layout.RectColor = new vec3(1, 0, 0); }
 
-            this.RenderBound = true;
+            layout.RenderBound = true;
         }
 
-        protected void CalculateViewport(SimpleUIRectArgs args)
-        {
-            int[] viewport = new int[4];
-            GL.GetInteger(GetTarget.Viewport, viewport);
-            args.viewWidth = viewport[2];
-            args.viewHeight = viewport[3];
-        }
-
-        protected void CalculateCoords(int viewWidth, int viewHeight, SimpleUIRectArgs args)
-        {
-            if ((Anchor & leftRightAnchor) == leftRightAnchor)
-            {
-                args.UIWidth = viewWidth - Margin.Left - Margin.Right;
-                if (args.UIWidth < 0) { args.UIWidth = 0; }
-            }
-            else
-            {
-                args.UIWidth = this.Size.Width;
-            }
-
-            if ((Anchor & topBottomAnchor) == topBottomAnchor)
-            {
-                args.UIHeight = viewHeight - Margin.Top - Margin.Bottom;
-                if (args.UIHeight < 0) { args.UIHeight = 0; }
-            }
-            else
-            {
-                args.UIHeight = this.Size.Height;
-            }
-
-            if ((Anchor & leftRightAnchor) == AnchorStyles.None)
-            {
-                args.left = -(args.UIWidth / 2
-                    + (viewWidth - args.UIWidth) * ((double)Margin.Left / (double)(Margin.Left + Margin.Right)));
-            }
-            else if ((Anchor & leftRightAnchor) == AnchorStyles.Left)
-            {
-                args.left = -(args.UIWidth / 2 + Margin.Left);
-            }
-            else if ((Anchor & leftRightAnchor) == AnchorStyles.Right)
-            {
-                args.left = -(viewWidth - args.UIWidth / 2 - Margin.Right);
-            }
-            else // if ((Anchor & leftRightAnchor) == leftRightAnchor)
-            {
-                args.left = -(args.UIWidth / 2 + Margin.Left);
-            }
-
-            if ((Anchor & topBottomAnchor) == AnchorStyles.None)
-            {
-                args.bottom = -viewHeight / 2;
-                args.bottom = -(args.UIHeight / 2
-                    + (viewHeight - args.UIHeight) * ((double)Margin.Bottom / (double)(Margin.Bottom + Margin.Top)));
-            }
-            else if ((Anchor & topBottomAnchor) == AnchorStyles.Bottom)
-            {
-                args.bottom = -(args.UIHeight / 2 + Margin.Bottom);
-            }
-            else if ((Anchor & topBottomAnchor) == AnchorStyles.Top)
-            {
-                args.bottom = -(viewHeight - args.UIHeight / 2 - Margin.Top);
-            }
-            else // if ((Anchor & topBottomAnchor) == topBottomAnchor)
-            {
-                args.bottom = -(args.UIHeight / 2 + Margin.Bottom);
-            }
-        }
-
-        /// <summary>
-        /// leftRightAnchor = (AnchorStyles.Left | AnchorStyles.Right); 
-        /// </summary>
-        protected const AnchorStyles leftRightAnchor = (AnchorStyles.Left | AnchorStyles.Right);
-
-        /// <summary>
-        /// topBottomAnchor = (AnchorStyles.Top | AnchorStyles.Bottom);
-        /// </summary>
-        protected const AnchorStyles topBottomAnchor = (AnchorStyles.Top | AnchorStyles.Bottom);
-
-        /// <summary>
-        /// the edges of the OpenGLControl to which a SimpleUIRect is bound and determines how it is resized with its parent.
-        /// <para>something like AnchorStyles.Left | AnchorStyles.Bottom.</para>
-        /// </summary>
-        public System.Windows.Forms.AnchorStyles Anchor { get; set; }
-
-        /// <summary>
-        /// Gets or sets the space between viewport and SimpleRect.
-        /// </summary>
-        public System.Windows.Forms.Padding Margin { get; set; }
-
-        ///// <summary>
-        ///// Left bottom point's location on view port.
-        ///// <para>This works when <see cref="OpenGLUIRect.Anchor"/>.Left & <see cref="OpenGLUIRect.Anchor"/>.Right is <see cref="OpenGLUIRect.Anchor"/>.None.
-        ///// or <see cref="OpenGLUIRect.Anchor"/>.Top & <see cref="OpenGLUIRect.Anchor"/>.Bottom is <see cref="OpenGLUIRect.Anchor"/>.None.</para>
-        ///// </summary>
-        //public System.Drawing.Point Location { get; set; }
-
-        /// <summary>
-        /// Stores width when <see cref="OpenGLUIRect.Anchor"/>.Left & <see cref="OpenGLUIRect.Anchor"/>.Right is <see cref="OpenGLUIRect.Anchor"/>.None.
-        /// <para> and height when <see cref="OpenGLUIRect.Anchor"/>.Top & <see cref="OpenGLUIRect.Anchor"/>.Bottom is <see cref="OpenGLUIRect.Anchor"/>.None.</para>
-        /// </summary>
-        public System.Drawing.Size Size { get; set; }
-
-        public int zNear { get; set; }
-
-        public int zFar { get; set; }
-
-        public vec3 RectColor { get; set; }
-
-        public bool RenderBound { get; set; }
-
-        public SimpleUIRectArgs GetArgs()
-        {
-            var args = new SimpleUIRectArgs();
-
-            CalculateViewport(args);
-
-            CalculateCoords(args.viewWidth, args.viewHeight, args);
-
-            return args;
-        }
 
         //////////////////////////////////////////////////////////////////////////////////////
         // AxisElement part
@@ -180,6 +60,10 @@ namespace CSharpGL.Objects.UI.SimpleUI
         public const string strprojectionMatrix = "projectionMatrix";
         public const string strviewMatrix = "viewMatrix";
         public const string strmodelMatrix = "modelMatrix";
+
+        private PrimitiveModes planPrimitveMode;
+        private int planVertexCount;
+        private vec3 planColor;
 
         /// <summary>
         /// VAO
@@ -376,9 +260,6 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// Internal variable which checks if Dispose has already been called
         /// </summary>
         protected Boolean disposed;
-        private PrimitiveModes planPrimitveMode;
-        private int planVertexCount;
-        private vec3 planColor;
 
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources
@@ -420,5 +301,20 @@ namespace CSharpGL.Objects.UI.SimpleUI
         }
 
         #endregion
+
+        AnchorStyles IUILayout.Anchor { get; set; }
+
+        Padding IUILayout.Margin { get; set; }
+
+        System.Drawing.Size IUILayout.Size { get; set; }
+
+        int IUILayout.zNear { get; set; }
+
+        int IUILayout.zFar { get; set; }
+
+        vec3 IUILayout.RectColor { get; set; }
+
+        bool IUILayout.RenderBound { get; set; }
+
     }
 }
