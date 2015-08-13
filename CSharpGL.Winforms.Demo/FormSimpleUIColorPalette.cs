@@ -17,15 +17,10 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormSimpleUIColorPalette : Form
     {
-        SimpleUIAxis uiLeftBottomAxis;
-        SimpleUIAxis uiLeftTopAxis;
-        SimpleUIAxis uiRightBottomAxis;
-        SimpleUIAxis uiRightTopAxis;
-
-        SimpleUIRect uiLeftBottomRect;
-        SimpleUIRect uiLeftTopRect;
-        SimpleUIRect uiRightBottomRect;
-        SimpleUIRect uiRightTopRect;
+        SimpleUIColorPalette uiLeftBottomAxis;
+        SimpleUIColorPalette uiLeftTopAxis;
+        SimpleUIColorPalette uiRightBottomAxis;
+        SimpleUIColorPalette uiRightTopAxis;
 
         AxisElement axisElement;
 
@@ -52,10 +47,10 @@ namespace CSharpGL.Winforms.Demo
             Padding padding = new System.Windows.Forms.Padding(40, 40, 40, 40);
             Size size = new Size(100, 100);
             //Size size = new Size(5, 5);
-            uiLeftBottomAxis = new SimpleUIAxis(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
-            uiLeftTopAxis = new SimpleUIAxis(AnchorStyles.Left | AnchorStyles.Top, padding, size);
-            uiRightBottomAxis = new SimpleUIAxis(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
-            uiRightTopAxis = new SimpleUIAxis(AnchorStyles.Right | AnchorStyles.Top, padding, size);
+            uiLeftBottomAxis = new SimpleUIColorPalette(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
+            uiLeftTopAxis = new SimpleUIColorPalette(AnchorStyles.Left | AnchorStyles.Top, padding, size);
+            uiRightBottomAxis = new SimpleUIColorPalette(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
+            uiRightTopAxis = new SimpleUIColorPalette(AnchorStyles.Right | AnchorStyles.Top, padding, size);
 
             uiLeftBottomAxis.Initialize();
             uiLeftTopAxis.Initialize();
@@ -71,26 +66,6 @@ namespace CSharpGL.Winforms.Demo
             uiLeftTopAxis.AfterRendering += SimpleUIAxis_AfterRendering;
             uiRightBottomAxis.AfterRendering += SimpleUIAxis_AfterRendering;
             uiRightTopAxis.AfterRendering += SimpleUIAxis_AfterRendering;
-
-            uiLeftBottomRect = new SimpleUIRect(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
-            uiLeftTopRect = new SimpleUIRect(AnchorStyles.Left | AnchorStyles.Top, padding, size);
-            uiRightBottomRect = new SimpleUIRect(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
-            uiRightTopRect = new SimpleUIRect(AnchorStyles.Right | AnchorStyles.Top, padding, size);
-
-            uiLeftBottomRect.Initialize();
-            uiLeftTopRect.Initialize();
-            uiRightBottomRect.Initialize();
-            uiRightTopRect.Initialize();
-
-            uiLeftBottomRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-            uiLeftTopRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-            uiRightBottomRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-            uiRightTopRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-
-            uiLeftBottomRect.AfterRendering += SimpleUIRect_AfterRendering;
-            uiLeftTopRect.AfterRendering += SimpleUIRect_AfterRendering;
-            uiRightBottomRect.AfterRendering += SimpleUIRect_AfterRendering;
-            uiRightTopRect.AfterRendering += SimpleUIRect_AfterRendering;
 
             axisElement = new AxisElement();
             axisElement.Initialize();
@@ -132,20 +107,21 @@ namespace CSharpGL.Winforms.Demo
 
         void SimpleUIAxis_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            SimpleUIAxis element = sender as SimpleUIAxis;
+            SimpleUIColorPalette element = sender as SimpleUIColorPalette;
 
-            element.axisElement.shaderProgram.Unbind();
+            element.shaderProgram.Unbind();
         }
 
         void SimpleUIAxis_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            SimpleUIAxis element = sender as SimpleUIAxis;
+            SimpleUIColorPalette element = sender as SimpleUIColorPalette;
 
             mat4 projectionMatrix, viewMatrix, modelMatrix;
+            float maxDepth = (float)Math.Sqrt(3);
 
-            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
+            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera, maxDepth);
 
-            ShaderProgram shaderProgram = element.axisElement.shaderProgram;
+            ShaderProgram shaderProgram = element.shaderProgram;
 
             shaderProgram.Bind();
 
@@ -204,11 +180,6 @@ namespace CSharpGL.Winforms.Demo
             uiLeftTopAxis.Render(Objects.RenderModes.Render);
             uiRightBottomAxis.Render(Objects.RenderModes.Render);
             uiRightTopAxis.Render(Objects.RenderModes.Render);
-
-            uiLeftBottomRect.Render(Objects.RenderModes.Render);
-            uiLeftTopRect.Render(Objects.RenderModes.Render);
-            uiRightBottomRect.Render(Objects.RenderModes.Render);
-            uiRightTopRect.Render(Objects.RenderModes.Render);
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
