@@ -105,9 +105,9 @@ namespace CSharpGL.Winforms.Demo
 
             shaderProgram.Bind();
 
-            shaderProgram.SetUniformMatrix4(SimpleUIRect.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimpleUIRect.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimpleUIRect.strmodelMatrix, modelMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(SimpleUIColorIndicator.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(SimpleUIColorIndicator.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(SimpleUIColorIndicator.strmodelMatrix, modelMatrix.to_array());
         }
 
         void SimpleUIAxis_AfterRendering(object sender, Objects.RenderEventArgs e)

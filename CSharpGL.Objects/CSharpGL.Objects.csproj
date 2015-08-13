@@ -85,6 +85,7 @@
     <Compile Include="Texts\FontTexture.cs" />
     <Compile Include="Texts\FontTextureYieldHelper.cs" />
     <Compile Include="Texts\FontTextureHelper.cs" />
+    <Compile Include="UI\SimpleUI\ColorPalette.cs" />
     <Compile Include="UI\SimpleUI\IUILayout.cs" />
     <Compile Include="UI\SimpleUI\IUILayoutHelper.cs" />
     <Compile Include="UI\SimpleUI\IUILayoutParam.cs" />
