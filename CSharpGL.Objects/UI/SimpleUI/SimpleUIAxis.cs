@@ -13,6 +13,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
     public class SimpleUIAxis : SceneElementBase, IUILayout, IDisposable
     {
         public AxisElement axisElement;
+        public ModernSimpleUIRect uiRect;
 
         /// <summary>
         /// 
@@ -29,7 +30,10 @@ namespace CSharpGL.Objects.UI.SimpleUI
             int zNear = -1000, int zFar = 1000, GLColor rectColor = null,
             float radius = 0.3f, float length = 10, int faceCount = 10)
         {
+            radius = radius / length;
+            length = 1;
             this.axisElement = new AxisElement(radius, length, faceCount);
+            this.uiRect = new ModernSimpleUIRect(anchor, margin, size, zNear, zFar, rectColor);
 
             IUILayout layout = this;
             layout.Anchor = anchor;
@@ -115,11 +119,13 @@ namespace CSharpGL.Objects.UI.SimpleUI
         protected override void DoInitialize()
         {
             this.axisElement.Initialize();
+            this.uiRect.Initialize();
         }
 
         protected override void DoRender(RenderModes renderMode)
         {
             this.axisElement.Render(renderMode);
+            this.uiRect.Render(renderMode);
         }
     }
 }

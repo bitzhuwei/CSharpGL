@@ -45,7 +45,8 @@ namespace CSharpGL.Winforms.Demo
             satelliteRoration = new SatelliteRotator(camera);
 
             Padding padding = new System.Windows.Forms.Padding(40, 40, 40, 40);
-            Size size = new Size(5, 5);
+            Size size = new Size(100, 100);
+            //Size size = new Size(5, 5);
             uiLeftBottomAxis = new SimpleUIAxis(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
             uiLeftTopAxis = new SimpleUIAxis(AnchorStyles.Left | AnchorStyles.Top, padding, size);
             uiRightBottomAxis = new SimpleUIAxis(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
