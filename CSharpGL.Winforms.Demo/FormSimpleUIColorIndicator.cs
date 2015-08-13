@@ -45,11 +45,10 @@ namespace CSharpGL.Winforms.Demo
             ColorPalette colorPalette = ColorPaletteFactory.CreateRainbow();
 
             Padding padding = new System.Windows.Forms.Padding(40, 40, 40, 40);
-            Size size = new Size(100, 100);
+            Size size = new Size(100, 30);
             //Size size = new Size(5, 5);
             IUILayoutParam param;
-            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
-            //param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right, padding, size);
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right, padding, size);
             uiBottomColorIndicator = new SimpleUIColorIndicator(param, colorPalette);
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right, padding, size);
             uiTopColorIndicator = new SimpleUIColorIndicator(param, colorPalette);

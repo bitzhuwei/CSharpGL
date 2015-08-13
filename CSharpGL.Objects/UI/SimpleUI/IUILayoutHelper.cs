@@ -48,7 +48,8 @@ namespace CSharpGL.Objects.UI.SimpleUI
                 }
             }
             {
-                modelMatrix = glm.scale(mat4.identity(), new vec3(max / 2, max / 2, max / 2));
+                //modelMatrix = glm.scale(mat4.identity(), new vec3(max / 2, max / 2, max / 2));
+                modelMatrix = glm.scale(mat4.identity(), new vec3(args.UIWidth / 2, args.UIHeight / 2, max / 2));
             }
         }
 
