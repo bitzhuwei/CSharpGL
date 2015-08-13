@@ -77,8 +77,8 @@ namespace CSharpGL.Winforms
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"GLCanvas.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"GLCanvas.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.PyramidElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.PyramidElement.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);

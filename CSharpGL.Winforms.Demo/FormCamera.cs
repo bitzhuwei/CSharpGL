@@ -44,7 +44,7 @@ namespace CSharpGL.Winforms.Demo
             element.AfterRendering += element_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
-            //this.glCanvas1.KeyPress += glCanvas1_KeyPress;
+            this.glCanvas1.KeyPress += glCanvas1_KeyPress;
             //this.glCanvas1.MouseDown += glCanvas1_MouseDown;
             //this.glCanvas1.MouseMove += glCanvas1_MouseMove;
             //this.glCanvas1.MouseUp += glCanvas1_MouseUp;
@@ -98,7 +98,29 @@ namespace CSharpGL.Winforms.Demo
 
         private void FormScientificCamera_Load(object sender, EventArgs e)
         {
+            this.lblCameraType.Text = string.Format("camera type: {0}", this.camera.CameraType);
 
+            MessageBox.Show("Use 'c' to switch camera types between perspective and ortho");
+        }
+
+        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 'c')
+            {
+                switch (this.camera.CameraType)
+                {
+                    case CameraTypes.Perspecitive:
+                        this.camera.CameraType = CameraTypes.Ortho;
+                        break;
+                    case CameraTypes.Ortho:
+                        this.camera.CameraType = CameraTypes.Perspecitive;
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+
+                this.lblCameraType.Text = string.Format("camera type: {0}", this.camera.CameraType);
+            }
         }
     }
 }
