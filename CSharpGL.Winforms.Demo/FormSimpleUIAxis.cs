@@ -44,11 +44,12 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotator(camera);
 
-            const int padding = 40;
-            uiLeftBottomAxis = new SimpleUIAxis(AnchorStyles.Left | AnchorStyles.Bottom, new Padding(padding, padding, padding, padding), new Size(5, 5));
-            uiLeftTopAxis = new SimpleUIAxis(AnchorStyles.Left | AnchorStyles.Top, new Padding(padding, padding, padding, padding), new Size(5, 5));
-            uiRightBottomAxis = new SimpleUIAxis(AnchorStyles.Right | AnchorStyles.Bottom, new Padding(padding, padding, padding, padding), new Size(5, 5));
-            uiRightTopAxis = new SimpleUIAxis(AnchorStyles.Right | AnchorStyles.Top, new Padding(padding, padding, padding, padding), new Size(5, 5));
+            Padding padding = new System.Windows.Forms.Padding(40, 40, 40, 40);
+            Size size = new Size(5, 5);
+            uiLeftBottomAxis = new SimpleUIAxis(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
+            uiLeftTopAxis = new SimpleUIAxis(AnchorStyles.Left | AnchorStyles.Top, padding, size);
+            uiRightBottomAxis = new SimpleUIAxis(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
+            uiRightTopAxis = new SimpleUIAxis(AnchorStyles.Right | AnchorStyles.Top, padding, size);
 
             uiLeftBottomAxis.Initialize();
             uiLeftTopAxis.Initialize();
