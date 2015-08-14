@@ -334,7 +334,7 @@ namespace CSharpGL.Objects.Cameras
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="delta"></param>
-        public static void Scale(this IScientificCamera camera, int delta)
+        public static void MouseWheel(this IScientificCamera camera, int delta)
         {
             //if (camera.CameraType == CameraTypes.Perspecitive)
             {

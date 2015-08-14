@@ -1,7 +1,9 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects.Cameras;
+using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
 using CSharpGL.Objects.Texts;
+using CSharpGL.Objects.UI.SimpleUI;
 using System;
 using System.Text;
 using System.Windows.Forms;
@@ -15,6 +17,7 @@ namespace CSharpGL.Winforms.Demo
         SatelliteRotator satelliteRoration;
 
         FontElement element;
+        SimpleUIAxis uiAxisElement;
 
         public FormFontElement()
         {
@@ -59,6 +62,13 @@ namespace CSharpGL.Winforms.Demo
             element.BeforeRendering += element_BeforeRendering;
             element.AfterRendering += element_AfterRendering;
 
+            uiAxisElement = new SimpleUIAxis(
+                new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, 
+                    new Padding(0, 0, 0, 0), new System.Drawing.Size(100, 100)));
+            uiAxisElement.Initialize();
+            uiAxisElement.BeforeRendering += uiAxisElement_BeforeRendering;
+            uiAxisElement.AfterRendering += uiAxisElement_AfterRendering;
+
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
@@ -66,6 +76,30 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.Resize += glCanvas1_Resize;
+        }
+
+        void uiAxisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
+        {
+            SimpleUIAxis element = sender as SimpleUIAxis;
+
+            element.axisElement.shaderProgram.Unbind();
+        }
+
+        void uiAxisElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        {
+            SimpleUIAxis element = sender as SimpleUIAxis;
+
+            mat4 projectionMatrix, viewMatrix, modelMatrix;
+
+            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
+
+            ShaderProgram shaderProgram = element.axisElement.shaderProgram;
+
+            shaderProgram.Bind();
+
+            shaderProgram.SetUniformMatrix4(AxisElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(AxisElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(AxisElement.strmodelMatrix, modelMatrix.to_array());
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
@@ -118,7 +152,7 @@ namespace CSharpGL.Winforms.Demo
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
-            this.camera.Scale(e.Delta);
+            this.camera.MouseWheel(e.Delta);
         }
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
@@ -127,7 +161,9 @@ namespace CSharpGL.Winforms.Demo
 
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+
             element.Render(Objects.RenderModes.Render);
+            uiAxisElement.Render(Objects.RenderModes.Render);
         }
 
         private void FormFreeTypeTextVAOElement_Load(object sender, EventArgs e)

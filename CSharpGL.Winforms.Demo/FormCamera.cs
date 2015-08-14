@@ -65,7 +65,7 @@ namespace CSharpGL.Winforms.Demo
         {
             if (this.camera != null)
             {
-                this.camera.Scale(e.Delta);
+                this.camera.MouseWheel(e.Delta);
             }
         }
 

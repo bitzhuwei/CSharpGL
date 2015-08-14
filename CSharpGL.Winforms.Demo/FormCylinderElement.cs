@@ -74,7 +74,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
-            this.camera.Scale(e.Delta);
+            this.camera.MouseWheel(e.Delta);
         }
 
         private void FormGLCanvas_Load(object sender, EventArgs e)
