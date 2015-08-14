@@ -84,10 +84,20 @@ namespace CSharpGL.Winforms.Demo
             uiRightBottomRect.BeforeRendering += SimpleUIRect_BeforeRendering;
             uiRightTopRect.BeforeRendering += SimpleUIRect_BeforeRendering;
 
+            legacyLeftBottomRect.BeforeRendering += legacyUIRect_BeforeRendering;
+            legacyLeftTopRect.BeforeRendering += legacyUIRect_BeforeRendering;
+            legacyRightBottomRect.BeforeRendering += legacyUIRect_BeforeRendering;
+            legacyRightTopRect.BeforeRendering += legacyUIRect_BeforeRendering;
+
             uiLeftBottomRect.AfterRendering += SimpleUIRect_AfterRendering;
             uiLeftTopRect.AfterRendering += SimpleUIRect_AfterRendering;
             uiRightBottomRect.AfterRendering += SimpleUIRect_AfterRendering;
             uiRightTopRect.AfterRendering += SimpleUIRect_AfterRendering;
+
+            legacyLeftBottomRect.AfterRendering += legacyUIRect_AfterRendering;
+            legacyLeftTopRect.AfterRendering += legacyUIRect_AfterRendering;
+            legacyRightBottomRect.AfterRendering += legacyUIRect_AfterRendering;
+            legacyRightTopRect.AfterRendering += legacyUIRect_AfterRendering;
 
             axisElement = new AxisElement();
             axisElement.Initialize();
@@ -103,6 +113,48 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
+        void legacyUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
+        {
+            LegacySimpleUIRect element = sender as LegacySimpleUIRect;
+
+            GL.MatrixMode(GL.GL_PROJECTION);
+            GL.PopMatrix();
+
+            GL.MatrixMode(GL.GL_MODELVIEW);
+            GL.PopMatrix();
+        }
+
+        void legacyUIRect_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        {
+            LegacySimpleUIRect element = sender as LegacySimpleUIRect;
+
+            IUILayoutArgs args = element.GetArgs();
+
+            GL.MatrixMode(GL.GL_PROJECTION);
+            GL.PushMatrix();
+            GL.LoadIdentity();
+            GL.Ortho(args.left, args.right, args.bottom, args.top, element.Param.zNear, element.Param.zFar);
+
+            IViewCamera camera = this.camera;
+            if (camera == null)
+            {
+                GL.gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);
+                //throw new Exception("Camera not set!");
+            }
+            else
+            {
+                vec3 position = camera.Position - camera.Target;
+                position.Normalize();
+                GL.gluLookAt(position.x, position.y, position.z,
+                    0, 0, 0,
+                    camera.UpVector.x, camera.UpVector.y, camera.UpVector.z);
+            }
+
+            GL.MatrixMode(GL.GL_MODELVIEW);
+            GL.PushMatrix();
+            GL.Scale(args.UIWidth / 2, args.UIHeight / 2, 1);
+        }
+
         void SimpleUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
             SimpleUIRect element = sender as SimpleUIRect;
@@ -116,7 +168,7 @@ namespace CSharpGL.Winforms.Demo
 
             mat4 projectionMatrix, viewMatrix, modelMatrix;
 
-            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix);
+            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
 
             ShaderProgram shaderProgram = element.shaderProgram;
 
