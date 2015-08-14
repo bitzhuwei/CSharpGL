@@ -38,8 +38,6 @@ namespace CSharpGL.Objects.UI.SimpleUI
             { this.RectColor = new GLColor(1, 0, 0, 1); }
             else
             { this.RectColor = new GLColor(1, 0, 0, 1); }
-
-            this.RenderBound = true;
         }
 
         /// <summary>
@@ -50,33 +48,20 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="UIHeight"></param>
         /// <param name="gl"></param>
         /// <param name="renderMode"></param>
-        protected virtual void RenderModel(IUILayoutArgs args, RenderModes renderMode)
+        protected virtual void RenderModel(RenderModes renderMode)
         {
-            if (this.RenderBound)
-            {
-                GL.Begin(PrimitiveModes.LineLoop);
-                GL.Color(RectColor);
-                //GL.Vertex(-args.UIWidth / 2, -args.UIHeight / 2, 0);
-                //GL.Vertex(args.UIWidth / 2, -args.UIHeight / 2, 0);
-                //GL.Vertex(args.UIWidth / 2, args.UIHeight / 2, 0);
-                //GL.Vertex(-args.UIWidth / 2, args.UIHeight / 2, 0);
-                GL.Vertex(-1, -1, 0);
-                GL.Vertex(1, -1, 0);
-                GL.Vertex(1, 1, 0);
-                GL.Vertex(-1, 1, 0);
-                GL.End();
-            }
+            GL.Begin(PrimitiveModes.LineLoop);
+            GL.Color(RectColor);
+            //GL.Vertex(-args.UIWidth / 2, -args.UIHeight / 2, 0);
+            //GL.Vertex(args.UIWidth / 2, -args.UIHeight / 2, 0);
+            //GL.Vertex(args.UIWidth / 2, args.UIHeight / 2, 0);
+            //GL.Vertex(-args.UIWidth / 2, args.UIHeight / 2, 0);
+            GL.Vertex(-1, -1, 0);
+            GL.Vertex(1, -1, 0);
+            GL.Vertex(1, 1, 0);
+            GL.Vertex(-1, 1, 0);
+            GL.End();
         }
-
-        /// <summary>
-        /// leftRightAnchor = (AnchorStyles.Left | AnchorStyles.Right); 
-        /// </summary>
-        protected const AnchorStyles leftRightAnchor = (AnchorStyles.Left | AnchorStyles.Right);
-
-        /// <summary>
-        /// topBottomAnchor = (AnchorStyles.Top | AnchorStyles.Bottom);
-        /// </summary>
-        protected const AnchorStyles topBottomAnchor = (AnchorStyles.Top | AnchorStyles.Bottom);
 
         //protected int viewWidth;
         //protected int viewHeight;
@@ -84,7 +69,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         //protected int UIHeight;
         //protected int left;
         //protected int bottom;
-        protected IUILayoutArgs args = new IUILayoutArgs();
+        //protected IUILayoutArgs args = new IUILayoutArgs();
 
         /// <summary>
         /// if Camera is null, this UI rectangle area will be drawn with an invoking
@@ -94,8 +79,6 @@ namespace CSharpGL.Objects.UI.SimpleUI
         public virtual IScientificCamera Camera { get; set; }
 
         public GLColor RectColor { get; set; }
-
-        public bool RenderBound { get; set; }
 
         #region IHasObjectSpace 成员
 
@@ -112,7 +95,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
             ////int UIWidth, UIHeight, left, bottom;
             //CalculateCoords(args.viewportWidth, args.viewportHeight, args);
-            this.args = this.GetArgs();
+            var args = this.GetArgs();
 
             GL.MatrixMode(GL.GL_PROJECTION);
             GL.PushMatrix();
@@ -159,7 +142,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         {
             PushObjectSpace();
 
-            RenderModel(args, renderMode);
+            RenderModel(renderMode);
 
             PopObjectSpace();
         }
