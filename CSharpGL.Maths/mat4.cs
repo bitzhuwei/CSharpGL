@@ -46,13 +46,7 @@ namespace CSharpGL.Maths
         /// <param name="cols">The colums of the matrix.</param>
         public mat4(vec4[] cols)
         {
-            this.cols = new[]
-            {
-                cols[0],
-                cols[1],
-                cols[2],
-                cols[3]
-            };
+            this.cols = new[] { cols[0], cols[1], cols[2], cols[3] };
         }
 
         public mat4(vec4 a, vec4 b, vec4 c, vec4 d)
