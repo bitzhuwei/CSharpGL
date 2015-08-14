@@ -89,6 +89,7 @@
     <Compile Include="UI\SimpleUI\IUILayout.cs" />
     <Compile Include="UI\SimpleUI\IUILayoutHelper.cs" />
     <Compile Include="UI\SimpleUI\IUILayoutParam.cs" />
+    <Compile Include="UI\SimpleUI\LegacySimpleUIRect.cs" />
     <Compile Include="UI\SimpleUI\SimpleUIColorIndicator.cs" />
     <Compile Include="UI\SimpleUI\SimpleUIRect.cs" />
     <Compile Include="UI\SimpleUI\SimpleUIAxis.cs" />

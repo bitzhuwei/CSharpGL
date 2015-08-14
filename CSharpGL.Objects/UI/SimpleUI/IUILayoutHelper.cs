@@ -70,7 +70,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
             CalculateViewport(args);
 
-            CalculateCoords(uiElement, args.viewWidth, args.viewHeight, args);
+            CalculateCoords(uiElement, args.viewportWidth, args.viewportHeight, args);
 
             return args;
         }
@@ -79,17 +79,17 @@ namespace CSharpGL.Objects.UI.SimpleUI
         {
             int[] viewport = new int[4];
             GL.GetInteger(GetTarget.Viewport, viewport);
-            args.viewWidth = viewport[2];
-            args.viewHeight = viewport[3];
+            args.viewportWidth = viewport[2];
+            args.viewportHeight = viewport[3];
         }
 
-        static void CalculateCoords(IUILayout uiElement, int viewWidth, int viewHeight, IUILayoutArgs args)
+        static void CalculateCoords(IUILayout uiElement, int viewportWidth, int viewportHeight, IUILayoutArgs args)
         {
             IUILayoutParam param = uiElement.Param;
 
             if ((param.Anchor & leftRightAnchor) == leftRightAnchor)
             {
-                args.UIWidth = viewWidth - param.Margin.Left - param.Margin.Right;
+                args.UIWidth = viewportWidth - param.Margin.Left - param.Margin.Right;
                 if (args.UIWidth < 0) { args.UIWidth = 0; }
             }
             else
@@ -99,7 +99,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
             if ((param.Anchor & topBottomAnchor) == topBottomAnchor)
             {
-                args.UIHeight = viewHeight - param.Margin.Top - param.Margin.Bottom;
+                args.UIHeight = viewportHeight - param.Margin.Top - param.Margin.Bottom;
                 if (args.UIHeight < 0) { args.UIHeight = 0; }
             }
             else
@@ -110,7 +110,8 @@ namespace CSharpGL.Objects.UI.SimpleUI
             if ((param.Anchor & leftRightAnchor) == AnchorStyles.None)
             {
                 args.left = -(args.UIWidth / 2
-                    + (viewWidth - args.UIWidth) * ((double)param.Margin.Left / (double)(param.Margin.Left + param.Margin.Right)));
+                    + (viewportWidth - args.UIWidth)
+                        * ((double)param.Margin.Left / (double)(param.Margin.Left + param.Margin.Right)));
             }
             else if ((param.Anchor & leftRightAnchor) == AnchorStyles.Left)
             {
@@ -118,7 +119,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
             }
             else if ((param.Anchor & leftRightAnchor) == AnchorStyles.Right)
             {
-                args.left = -(viewWidth - args.UIWidth / 2 - param.Margin.Right);
+                args.left = -(viewportWidth - args.UIWidth / 2 - param.Margin.Right);
             }
             else // if ((Anchor & leftRightAnchor) == leftRightAnchor)
             {
@@ -127,9 +128,10 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
             if ((param.Anchor & topBottomAnchor) == AnchorStyles.None)
             {
-                args.bottom = -viewHeight / 2;
+                args.bottom = -viewportHeight / 2;
                 args.bottom = -(args.UIHeight / 2
-                    + (viewHeight - args.UIHeight) * ((double)param.Margin.Bottom / (double)(param.Margin.Bottom + param.Margin.Top)));
+                    + (viewportHeight - args.UIHeight) 
+                        * ((double)param.Margin.Bottom / (double)(param.Margin.Bottom + param.Margin.Top)));
             }
             else if ((param.Anchor & topBottomAnchor) == AnchorStyles.Bottom)
             {
@@ -137,7 +139,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
             }
             else if ((param.Anchor & topBottomAnchor) == AnchorStyles.Top)
             {
-                args.bottom = -(viewHeight - args.UIHeight / 2 - param.Margin.Top);
+                args.bottom = -(viewportHeight - args.UIHeight / 2 - param.Margin.Top);
             }
             else // if ((Anchor & topBottomAnchor) == topBottomAnchor)
             {

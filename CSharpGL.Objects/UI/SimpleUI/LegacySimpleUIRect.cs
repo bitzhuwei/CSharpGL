@@ -55,8 +55,8 @@ namespace CSharpGL.Objects.UI.SimpleUI
         {
             int[] viewport = new int[4];
             GL.GetInteger(GetTarget.Viewport, viewport);
-            args.viewWidth = viewport[2];
-            args.viewHeight = viewport[3];
+            args.viewportWidth= viewport[2];
+            args.viewportHeight= viewport[3];
         }
 
         protected void CalculateCoords(int viewWidth, int viewHeight, IUILayoutArgs args)
@@ -215,7 +215,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
             CalculateViewport(args);
 
             //int UIWidth, UIHeight, left, bottom;
-            CalculateCoords(args.viewWidth, args.viewHeight, args);
+            CalculateCoords(args.viewportWidth, args.viewportHeight, args);
 
             GL.MatrixMode(GL.GL_PROJECTION);
             GL.PushMatrix();

@@ -59,6 +59,12 @@
     <Compile Include="FormFontElement.Designer.cs">
       <DependentUpon>FormFontElement.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormLegacySimpleUIRect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLegacySimpleUIRect.Designer.cs">
+      <DependentUpon>FormLegacySimpleUIRect.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSimpleUIColorIndicator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFontElement.resx">
       <DependentUpon>FormFontElement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLegacySimpleUIRect.resx">
+      <DependentUpon>FormLegacySimpleUIRect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSimpleUIColorIndicator.resx">
       <DependentUpon>FormSimpleUIColorIndicator.cs</DependentUpon>

@@ -41,7 +41,8 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotator(camera);
 
-            uiRectElement = new LegacySimpleUIRect(AnchorStyles.Left | AnchorStyles.Bottom, new Padding(10, 10, 10, 10), new Size(40, 30));
+            uiRectElement = new LegacySimpleUIRect(
+                AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right, new Padding(10, 10, 10, 10), new Size(40, 30));
             uiRectElement.Initialize();
             uiRectElement.BeforeRendering += uiRectElement_BeforeRendering;
             uiRectElement.AfterRendering += uiRectElement_AfterRendering;
@@ -71,9 +72,9 @@ namespace CSharpGL.Winforms.Demo
 
             shaderProgram.Bind();
 
-            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(CylinderVAOElement.strmodelMatrix, modelMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(AxisElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(AxisElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(AxisElement.strmodelMatrix, modelMatrix.to_array());
         }
 
         void uiRectElement_AfterRendering(object sender, Objects.RenderEventArgs e)
@@ -102,7 +103,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
-            this.camera.Scale(e.Delta);
+            this.camera.MouseWheel(e.Delta);
         }
 
         private void FormTranslateOnScreen_Load(object sender, EventArgs e)

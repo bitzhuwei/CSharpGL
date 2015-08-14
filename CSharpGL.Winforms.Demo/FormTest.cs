@@ -61,9 +61,9 @@ namespace CSharpGL.Winforms.Demo
 
         private void btnLegacySimpleUIRect_Click(object sender, EventArgs e)
         {
-            //(new FormLegacySimpleUIRect()).Show();
-            string message = string.Format("{0}", "This is no longer useful!");
-            MessageBox.Show(message, "tip", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            (new FormLegacySimpleUIRect()).Show();
+            //string message = string.Format("{0}", "This is no longer useful!");
+            //MessageBox.Show(message, "tip", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnSimpleUIRect_Click(object sender, EventArgs e)

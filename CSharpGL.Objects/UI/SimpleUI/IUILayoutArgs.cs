@@ -9,17 +9,17 @@ namespace CSharpGL.Objects.UI.SimpleUI
     /// <summary>
     /// pass viewport and UI's rect information.
     /// </summary>
-    internal class IUILayoutArgs
+    public class IUILayoutArgs
     {
         /// <summary>
         /// viewport's width.
         /// </summary>
-        public int viewWidth;
+        public int viewportWidth;
 
         /// <summary>
         /// viewport's height.
         /// </summary>
-        public int viewHeight;
+        public int viewportHeight;
 
         /// <summary>
         /// UI's width in viewport.
@@ -44,17 +44,17 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <summary>
         /// right in gl.Ortho(left, right, bottom, top, zNear, zFar);
         /// </summary>
-        public double right { get { return left + viewWidth; } }
+        public double right { get { return left + viewportWidth; } }
 
         /// <summary>
         /// top in gl.Ortho(left, right, bottom, top, zNear, zFar);
         /// </summary>
-        public double top { get { return bottom + viewHeight; } }
+        public double top { get { return bottom + viewportHeight; } }
 
         public override string ToString()
         {
             return string.Format("viewport:{0}, {1}, UI: {2}, {3}, ortho: {4}, {5}, {6}, {7}",
-                viewWidth, viewHeight, UIWidth, UIHeight, left, right, bottom, top);
+                viewportWidth, viewportHeight, UIWidth, UIHeight, left, right, bottom, top);
         }
     }
 }
