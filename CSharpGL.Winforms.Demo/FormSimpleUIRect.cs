@@ -17,6 +17,10 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormSimpleUIRect : Form
     {
+        LegacySimpleUIRect legacyLeftBottomRect;
+        LegacySimpleUIRect legacyLeftTopRect;
+        LegacySimpleUIRect legacyRightBottomRect;
+        LegacySimpleUIRect legacyRightTopRect;
 
         SimpleUIRect uiLeftBottomRect;
         SimpleUIRect uiLeftTopRect;
@@ -51,17 +55,29 @@ namespace CSharpGL.Winforms.Demo
             IUILayoutParam param;
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
             uiLeftBottomRect = new SimpleUIRect(param);
+            legacyLeftBottomRect = new LegacySimpleUIRect(param, new Objects.GLColor(1, 1, 1, 1));
+
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
             uiLeftTopRect = new SimpleUIRect(param);
+            legacyLeftTopRect = new LegacySimpleUIRect(param, new Objects.GLColor(1, 1, 1, 1));
+
             param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
             uiRightBottomRect = new SimpleUIRect(param);
+            legacyRightBottomRect = new LegacySimpleUIRect(param, new Objects.GLColor(1, 1, 1, 1));
+
             param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Top, padding, size);
             uiRightTopRect = new SimpleUIRect(param);
+            legacyRightTopRect = new LegacySimpleUIRect(param, new Objects.GLColor(1, 1, 1, 1));
 
             uiLeftBottomRect.Initialize();
             uiLeftTopRect.Initialize();
             uiRightBottomRect.Initialize();
             uiRightTopRect.Initialize();
+
+            legacyLeftBottomRect.Initialize();
+            legacyLeftTopRect.Initialize();
+            legacyRightBottomRect.Initialize();
+            legacyRightTopRect.Initialize();
 
             uiLeftBottomRect.BeforeRendering += SimpleUIRect_BeforeRendering;
             uiLeftTopRect.BeforeRendering += SimpleUIRect_BeforeRendering;
@@ -161,6 +177,11 @@ namespace CSharpGL.Winforms.Demo
             uiLeftTopRect.Render(Objects.RenderModes.Render);
             uiRightBottomRect.Render(Objects.RenderModes.Render);
             uiRightTopRect.Render(Objects.RenderModes.Render);
+
+            legacyLeftBottomRect.Render(Objects.RenderModes.Render);
+            legacyLeftTopRect.Render(Objects.RenderModes.Render);
+            legacyRightBottomRect.Render(Objects.RenderModes.Render);
+            legacyRightTopRect.Render(Objects.RenderModes.Render);
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)

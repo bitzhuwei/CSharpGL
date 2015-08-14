@@ -37,7 +37,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
             if (rectColor == null)
             { this.RectColor = new GLColor(1, 0, 0, 1); }
             else
-            { this.RectColor = new GLColor(1, 0, 0, 1); }
+            { this.RectColor = rectColor; }
         }
 
         /// <summary>
