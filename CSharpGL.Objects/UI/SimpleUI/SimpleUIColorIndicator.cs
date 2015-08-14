@@ -142,24 +142,30 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         protected override void DoRender(RenderModes renderMode)
         {
-            int[] polygonMode = new int[2] ;
+            // 记录当前多边形状态
+            int[] polygonMode = new int[2];
             GL.GetInteger(GetTarget.PolygonMode, polygonMode);
 
             GL.BindVertexArray(vao[0]);
 
+            // 画面
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Filled);
             GL.DrawArrays(this.axisPrimitiveMode, 0, this.vertexCount);
 
+            // 启用静态顶点属性
             GL.DisableVertexAttribArray(in_ColorLocation);
             GL.VertexAttrib3(in_ColorLocation, 1.0f, 1.0f, 1.0f);
 
+            // 画线
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Lines);
             GL.DrawArrays(this.axisPrimitiveMode, 0, this.vertexCount);
 
+            // 恢复顶点属性数组
             GL.EnableVertexAttribArray(in_ColorLocation);
 
             GL.BindVertexArray(0);
 
+            // 恢复多边形状态
             GL.PolygonMode(PolygonModeFaces.Front, (PolygonModes)polygonMode[0]);
             GL.PolygonMode(PolygonModeFaces.Back, (PolygonModes)polygonMode[1]);
         }
