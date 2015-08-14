@@ -49,6 +49,7 @@ namespace CSharpGL.Winforms.Demo
             //Size size = new Size(5, 5);
             IUILayoutParam param;
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right, padding, size);
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
             uiBottomColorIndicator = new SimpleUIColorIndicator(param, colorPalette);
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right, padding, size);
             uiTopColorIndicator = new SimpleUIColorIndicator(param, colorPalette);
@@ -185,6 +186,10 @@ namespace CSharpGL.Winforms.Demo
             builder.Append(string.Format(" target:{0}", this.camera.Target));
             builder.Append(string.Format(" up:{0}", this.camera.UpVector));
             builder.Append(string.Format(" camera type: {0}", this.camera.CameraType));
+            builder.Append(string.Format(" window: {0}, {1}", this.glCanvas1.Width, this.glCanvas1.Height));
+            int [] viewport = new int[4];
+            GL.GetInteger(GetTarget.Viewport, viewport);
+            builder.Append(string.Format(" viewport: {0}, {1}", viewport[2], viewport[3]));
 
             this.txtInfo.Text = builder.ToString();
         }

@@ -50,5 +50,11 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// top in gl.Ortho(left, right, bottom, top, zNear, zFar);
         /// </summary>
         public double top { get { return bottom + viewHeight; } }
+
+        public override string ToString()
+        {
+            return string.Format("viewport:{0}, {1}, UI: {2}, {3}, ortho: {4}, {5}, {6}, {7}",
+                viewWidth, viewHeight, UIWidth, UIHeight, left, right, bottom, top);
+        }
     }
 }
