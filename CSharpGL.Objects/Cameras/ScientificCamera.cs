@@ -48,7 +48,7 @@ namespace CSharpGL.Objects.Cameras
 
             this.Target = new vec3(0, 0, 0);
             this.UpVector = new vec3(0, 1, 0);
-            this.Position = new vec3(1, 0, 0);
+            this.Position = new vec3(0, 0, 1);
 
             this.CameraType = cameraType;
         }
