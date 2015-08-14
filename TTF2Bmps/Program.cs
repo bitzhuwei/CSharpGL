@@ -18,5 +18,10 @@ namespace Font2Bmps
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
         }
+        /*
+         汉字范围：
+一/19968
+龥/40869
+         */
     }
 }

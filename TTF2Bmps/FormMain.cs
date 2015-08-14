@@ -51,17 +51,6 @@ namespace Font2Bmps
                 return;
             }
 
-            //this.btnStart.Enabled = false;
-            //this.btnBrowseTTFFile.Enabled = false;
-            //this.numFontHeight.Enabled = false;
-            //this.numMaxTexturWidth.Enabled = false;
-            //this.gbFirstUnicode.Enabled = false;
-            //this.gbLastUnicode.Enabled = false;
-            //this.chkGlyphList.Enabled = false;
-            //this.chkFontHeightLine.Enabled = false;
-
-            //this.pgbProgress.Visible = true;
-            //this.pgbSingleFileProgress.Visible = true;
             WorkingSwitch(true);
 
             int fontHeight = (int)numFontHeight.Value;
@@ -93,8 +82,6 @@ namespace Font2Bmps
             this.pgbProgress.Visible = starting;
             this.pgbSingleFileProgress.Visible = starting;
 
-            //this.lblSingleFileProgress.Text = string.Empty;
-            //this.lblTotal.Text = string.Empty;
             this.lblSingleFileProgress.Visible = starting;
             this.lblTotal.Visible = starting;
         }
@@ -376,17 +363,6 @@ namespace Font2Bmps
             pgbProgress.Value = pgbProgress.Minimum;
             pgbSingleFileProgress.Value = pgbSingleFileProgress.Minimum;
 
-            //this.btnStart.Enabled = true;
-            //this.btnBrowseTTFFile.Enabled = true;
-            //this.numFontHeight.Enabled = true;
-            //this.numMaxTexturWidth.Enabled = true;
-            //this.gbFirstUnicode.Enabled = true;
-            //this.gbLastUnicode.Enabled = true;
-            //this.chkGlyphList.Enabled = true;
-            //this.chkFontHeightLine.Enabled = true;
-
-            //this.pgbProgress.Visible = false;
-            //this.pgbSingleFileProgress.Visible = false;
             WorkingSwitch(false);
         }
 
