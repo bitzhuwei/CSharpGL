@@ -118,10 +118,14 @@ namespace CSharpGL.Objects.Texts
                 in_Position[i * 4 + 2] = tmpPositions[i * 4 + 2] - new vec3(totalLength / 2, 0, 0);
                 in_Position[i * 4 + 3] = tmpPositions[i * 4 + 3] - new vec3(totalLength / 2, 0, 0);
 
-                in_TexCoord[i * 4 + 0] = new vec2(x1, y1);
-                in_TexCoord[i * 4 + 1] = new vec2(x2, y1);
-                in_TexCoord[i * 4 + 2] = new vec2(x2, y2);
-                in_TexCoord[i * 4 + 3] = new vec2(x1, y2);
+                //in_TexCoord[i * 4 + 0] = new vec2(x1, y1);
+                //in_TexCoord[i * 4 + 1] = new vec2(x2, y1);
+                //in_TexCoord[i * 4 + 2] = new vec2(x2, y2);
+                //in_TexCoord[i * 4 + 3] = new vec2(x1, y2);
+                in_TexCoord[i * 4 + 0] = new vec2(x1, y2);
+                in_TexCoord[i * 4 + 1] = new vec2(x2, y2);
+                in_TexCoord[i * 4 + 2] = new vec2(x2, y1);
+                in_TexCoord[i * 4 + 3] = new vec2(x1, y1);
             }
 
             if (vao[0] != 0)
