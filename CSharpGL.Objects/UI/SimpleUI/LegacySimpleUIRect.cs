@@ -129,10 +129,14 @@ namespace CSharpGL.Objects.UI.SimpleUI
             {
                 GL.Begin(PrimitiveModes.LineLoop);
                 GL.Color(RectColor);
-                GL.Vertex(-args.UIWidth / 2, -args.UIHeight / 2, 0);
-                GL.Vertex(args.UIWidth / 2, -args.UIHeight / 2, 0);
-                GL.Vertex(args.UIWidth / 2, args.UIHeight / 2, 0);
-                GL.Vertex(-args.UIWidth / 2, args.UIHeight / 2, 0);
+                //GL.Vertex(-args.UIWidth / 2, -args.UIHeight / 2, 0);
+                //GL.Vertex(args.UIWidth / 2, -args.UIHeight / 2, 0);
+                //GL.Vertex(args.UIWidth / 2, args.UIHeight / 2, 0);
+                //GL.Vertex(-args.UIWidth / 2, args.UIHeight / 2, 0);
+                GL.Vertex(-1, -1, 0);
+                GL.Vertex(1, -1, 0);
+                GL.Vertex(1, 1, 0);
+                GL.Vertex(-1, 1, 0);
                 GL.End();
             }
         }
@@ -204,6 +208,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
             GL.MatrixMode(GL.GL_MODELVIEW);
             GL.PushMatrix();
+            GL.Scale(args.UIWidth / 2, args.UIHeight / 2, 1);
         }
 
         public virtual void PopObjectSpace()
