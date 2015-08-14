@@ -14,7 +14,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
     /// Draw a rectangle on OpenGL control like a <see cref="Windows.Forms.Control"/> drawn on a <see cref="windows.Forms.Form"/>.
     /// Set its properties(Anchor, Margin, Size, etc) to adjust its behaviour.
     /// </summary>
-    public class LegacySimpleUIRect : SceneElementBase//, IRenderable, IHasObjectSpace
+    public class LegacySimpleUIRect : SceneElementBase, IUILayout//, IRenderable, IHasObjectSpace
     {
         /// <summary>
         /// 
@@ -27,13 +27,13 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
         /// <param name="rectColor">default color is red.</param>
-        public LegacySimpleUIRect(AnchorStyles anchor, Padding margin, System.Drawing.Size size, int zNear = -1000, int zFar = 1000, GLColor rectColor = null)
+        //public LegacySimpleUIRect(AnchorStyles anchor, Padding margin, System.Drawing.Size size, int zNear = -1000, int zFar = 1000, GLColor rectColor = null)
+        public LegacySimpleUIRect(IUILayoutParam param,
+            //AnchorStyles anchor, Padding margin, System.Drawing.Size size, int zNear = -1000, int zFar = 1000, 
+            GLColor rectColor = null)
         {
-            this.Anchor = anchor;
-            this.Margin = margin;
-            this.Size = size;
-            this.zNear = zNear;
-            this.zFar = zFar;
+            this.Param = param;
+
             if (rectColor == null)
             { this.RectColor = new GLColor(1, 0, 0, 1); }
             else
@@ -44,78 +44,71 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         #region IRenderable 成员
 
-        //public void Render(RenderModes renderMode)
-        //{
-        //    //if (renderMode == RenderMode.HitTest) { return; }
-
-        //    RenderModel(args, renderMode);
-        //}
-
         protected void CalculateViewport(IUILayoutArgs args)
         {
             int[] viewport = new int[4];
             GL.GetInteger(GetTarget.Viewport, viewport);
-            args.viewportWidth= viewport[2];
-            args.viewportHeight= viewport[3];
+            args.viewportWidth = viewport[2];
+            args.viewportHeight = viewport[3];
         }
 
         protected void CalculateCoords(int viewWidth, int viewHeight, IUILayoutArgs args)
         {
-            if ((Anchor & leftRightAnchor) == leftRightAnchor)
+            if ((this.Param.Anchor & leftRightAnchor) == leftRightAnchor)
             {
-                args.UIWidth = viewWidth - Margin.Left - Margin.Right;
+                args.UIWidth = viewWidth - this.Param.Margin.Left - this.Param.Margin.Right;
                 if (args.UIWidth < 0) { args.UIWidth = 0; }
             }
             else
             {
-                args.UIWidth = this.Size.Width;
+                args.UIWidth = this.Param.Size.Width;
             }
 
-            if ((Anchor & topBottomAnchor) == topBottomAnchor)
+            if ((this.Param.Anchor & topBottomAnchor) == topBottomAnchor)
             {
-                args.UIHeight = viewHeight - Margin.Top - Margin.Bottom;
+                args.UIHeight = viewHeight - this.Param.Margin.Top - this.Param.Margin.Bottom;
                 if (args.UIHeight < 0) { args.UIHeight = 0; }
             }
             else
             {
-                args.UIHeight = this.Size.Height;
+                args.UIHeight = this.Param.Size.Height;
             }
 
-            if ((Anchor & leftRightAnchor) == AnchorStyles.None)
+            if ((this.Param.Anchor & leftRightAnchor) == AnchorStyles.None)
             {
                 args.left = -(args.UIWidth / 2
-                    + (viewWidth - args.UIWidth) * ((double)Margin.Left / (double)(Margin.Left + Margin.Right)));
+                    + (viewWidth - args.UIWidth) * ((double)this.Param.Margin.Left / (double)(this.Param.Margin.Left + this.Param.Margin.Right)));
             }
-            else if ((Anchor & leftRightAnchor) == AnchorStyles.Left)
+            else if ((this.Param.Anchor & leftRightAnchor) == AnchorStyles.Left)
             {
-                args.left = -(args.UIWidth / 2 + Margin.Left);
+                args.left = -(args.UIWidth / 2 + this.Param.Margin.Left);
             }
-            else if ((Anchor & leftRightAnchor) == AnchorStyles.Right)
+            else if ((this.Param.Anchor & leftRightAnchor) == AnchorStyles.Right)
             {
-                args.left = -(viewWidth - args.UIWidth / 2 - Margin.Right);
+                args.left = -(viewWidth - args.UIWidth / 2 - this.Param.Margin.Right);
             }
             else // if ((Anchor & leftRightAnchor) == leftRightAnchor)
             {
-                args.left = -(args.UIWidth / 2 + Margin.Left);
+                args.left = -(args.UIWidth / 2 + this.Param.Margin.Left);
             }
 
-            if ((Anchor & topBottomAnchor) == AnchorStyles.None)
+            if ((this.Param.Anchor & topBottomAnchor) == AnchorStyles.None)
             {
                 args.bottom = -viewHeight / 2;
                 args.bottom = -(args.UIHeight / 2
-                    + (viewHeight - args.UIHeight) * ((double)Margin.Bottom / (double)(Margin.Bottom + Margin.Top)));
+                    + (viewHeight - args.UIHeight) * ((double)this.Param.Margin.Bottom / (double)(this.Param.Margin.Bottom + this.Param.Margin.Top)));
             }
-            else if ((Anchor & topBottomAnchor) == AnchorStyles.Bottom)
+            else if ((this.Param.Anchor & topBottomAnchor) == AnchorStyles.Bottom)
             {
-                args.bottom = -(args.UIHeight / 2 + Margin.Bottom);
+                args.bottom = -(args.UIHeight / 2 + this.Param.Margin.Bottom);
             }
-            else if ((Anchor & topBottomAnchor) == AnchorStyles.Top)
+            else if ((this.Param.Anchor & topBottomAnchor) == AnchorStyles.Top)
             {
-                args.bottom = -(viewHeight - args.UIHeight / 2 - Margin.Top);
+                args.bottom = -(viewHeight - args.UIHeight / 2 - this.Param.Margin.Top);
             }
             else // if ((Anchor & topBottomAnchor) == topBottomAnchor)
             {
-                args.bottom = -(args.UIHeight / 2 + Margin.Bottom);
+                args.bottom = -(args.UIHeight / 2 + this.Param.Margin.Bottom);
             }
         }
 
@@ -169,34 +162,6 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// </summary>
         public virtual IScientificCamera Camera { get; set; }
 
-        /// <summary>
-        /// the edges of the OpenGLControl to which a SimpleUIRect is bound and determines how it is resized with its parent.
-        /// <para>something like AnchorStyles.Left | AnchorStyles.Bottom.</para>
-        /// </summary>
-        public System.Windows.Forms.AnchorStyles Anchor { get; set; }
-
-        /// <summary>
-        /// Gets or sets the space between viewport and SimpleRect.
-        /// </summary>
-        public System.Windows.Forms.Padding Margin { get; set; }
-
-        ///// <summary>
-        ///// Left bottom point's location on view port.
-        ///// <para>This works when <see cref="OpenGLUIRect.Anchor"/>.Left & <see cref="OpenGLUIRect.Anchor"/>.Right is <see cref="OpenGLUIRect.Anchor"/>.None.
-        ///// or <see cref="OpenGLUIRect.Anchor"/>.Top & <see cref="OpenGLUIRect.Anchor"/>.Bottom is <see cref="OpenGLUIRect.Anchor"/>.None.</para>
-        ///// </summary>
-        //public System.Drawing.Point Location { get; set; }
-
-        /// <summary>
-        /// Stores width when <see cref="OpenGLUIRect.Anchor"/>.Left & <see cref="OpenGLUIRect.Anchor"/>.Right is <see cref="OpenGLUIRect.Anchor"/>.None.
-        /// <para> and height when <see cref="OpenGLUIRect.Anchor"/>.Top & <see cref="OpenGLUIRect.Anchor"/>.Bottom is <see cref="OpenGLUIRect.Anchor"/>.None.</para>
-        /// </summary>
-        public System.Drawing.Size Size { get; set; }
-
-        public int zNear { get; set; }
-
-        public int zFar { get; set; }
-
         public GLColor RectColor { get; set; }
 
         public bool RenderBound { get; set; }
@@ -220,7 +185,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
             GL.MatrixMode(GL.GL_PROJECTION);
             GL.PushMatrix();
             GL.LoadIdentity();
-            GL.Ortho(args.left, args.right, args.bottom, args.top, zNear, zFar);
+            GL.Ortho(args.left, args.right, args.bottom, args.top, this.Param.zNear, this.Param.zFar);
 
             IViewCamera camera = this.Camera;
             if (camera == null)
@@ -265,5 +230,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
             PopObjectSpace();
         }
+
+        public IUILayoutParam Param { get; set; }
     }
 }

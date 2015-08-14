@@ -42,7 +42,7 @@ namespace CSharpGL.Winforms.Demo
             satelliteRoration = new SatelliteRotator(camera);
 
             uiRectElement = new LegacySimpleUIRect(
-                AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right, new Padding(10, 10, 10, 10), new Size(40, 30));
+                new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right, new Padding(10, 10, 10, 10), new Size(40, 30)));
             uiRectElement.Initialize();
             uiRectElement.BeforeRendering += uiRectElement_BeforeRendering;
             uiRectElement.AfterRendering += uiRectElement_AfterRendering;
