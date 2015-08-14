@@ -35,6 +35,8 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// 顶点数
         /// </summary>
         protected int vertexCount;
+        private uint in_ColorLocation;
+        private uint in_PositionLocation;
 
         /// <summary>
         /// 
@@ -87,14 +89,12 @@ namespace CSharpGL.Objects.UI.SimpleUI
                     positionArray[i * 2 + 1] = new vec3(x, 0.5f, 0);
                 }
 
-                uint positionLocation = shaderProgram.GetAttributeLocation(strin_Position);
-
                 uint[] ids = new uint[1];
                 GL.GenBuffers(1, ids);
                 GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
                 GL.BufferData(BufferTarget.ArrayBuffer, positionArray, BufferUsage.StaticDraw);
-                GL.VertexAttribPointer(positionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-                GL.EnableVertexAttribArray(positionLocation);
+                GL.VertexAttribPointer(in_PositionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+                GL.EnableVertexAttribArray(in_PositionLocation);
 
                 positionArray.Dispose();
             }
@@ -110,14 +110,12 @@ namespace CSharpGL.Objects.UI.SimpleUI
                     colorArray[i * 2 + 1] = new vec3(color.R, color.G, color.B);//, color.A);
                 }
 
-                uint colorLocation = shaderProgram.GetAttributeLocation(strin_Color);
-
                 uint[] ids = new uint[1];
                 GL.GenBuffers(1, ids);
                 GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
                 GL.BufferData(BufferTarget.ArrayBuffer, colorArray, BufferUsage.StaticDraw);
-                GL.VertexAttribPointer(colorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-                GL.EnableVertexAttribArray(colorLocation);
+                GL.VertexAttribPointer(in_ColorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+                GL.EnableVertexAttribArray(in_ColorLocation);
 
                 colorArray.Dispose();
             }
@@ -134,6 +132,9 @@ namespace CSharpGL.Objects.UI.SimpleUI
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
+            in_PositionLocation = shaderProgram.GetAttributeLocation(strin_Position);
+            in_ColorLocation = shaderProgram.GetAttributeLocation(strin_Color);
+
             shaderProgram.AssertValid();
 
             return shaderProgram;
@@ -141,11 +142,26 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         protected override void DoRender(RenderModes renderMode)
         {
+            int[] polygonMode = new int[2] ;
+            GL.GetInteger(GetTarget.PolygonMode, polygonMode);
+
             GL.BindVertexArray(vao[0]);
 
+            GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Filled);
             GL.DrawArrays(this.axisPrimitiveMode, 0, this.vertexCount);
 
+            GL.DisableVertexAttribArray(in_ColorLocation);
+            GL.VertexAttrib3(in_ColorLocation, 1.0f, 1.0f, 1.0f);
+
+            GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Lines);
+            GL.DrawArrays(this.axisPrimitiveMode, 0, this.vertexCount);
+
+            GL.EnableVertexAttribArray(in_ColorLocation);
+
             GL.BindVertexArray(0);
+
+            GL.PolygonMode(PolygonModeFaces.Front, (PolygonModes)polygonMode[0]);
+            GL.PolygonMode(PolygonModeFaces.Back, (PolygonModes)polygonMode[1]);
         }
 
         public IUILayoutParam Param { get; set; }
