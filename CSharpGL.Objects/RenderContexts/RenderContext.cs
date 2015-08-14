@@ -101,7 +101,9 @@ namespace CSharpGL.Objects.RenderContexts
                     GL.WGL_CONTEXT_MAJOR_VERSION_ARB, requestedVersionNumber.Major,  
                     GL.WGL_CONTEXT_MINOR_VERSION_ARB, requestedVersionNumber.Minor,
                     GL.WGL_CONTEXT_FLAGS_ARB, GL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,// compatible profile
+#if DEBUG
                     GL.WGL_CONTEXT_FLAGS_ARB, GL.WGL_CONTEXT_DEBUG_BIT_ARB,// this is a debug context
+#endif
                     0
                 };
                 IntPtr hrc = GL.CreateContextAttribsARB(this.DeviceContextHandle, IntPtr.Zero, attributes);
