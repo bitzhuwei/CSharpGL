@@ -67,8 +67,35 @@ namespace CSharpGL.Objects.Texts
             UnmanagedArray<vec3> in_Position = new UnmanagedArray<vec3>(this.vertexCount);
             UnmanagedArray<vec2> in_TexCoord = new UnmanagedArray<vec2>(this.vertexCount);
             Bitmap bigBitmap = this.ttfTexture.BigBitmap;
-            // TODO: 想办法把元素位置放到(0, 0, 0)
-            float halfLength = (float)value.Length / 2;
+            // step 1: set width for each glyph
+            vec3[] tmpPositions = new vec3[this.vertexCount];
+            float totalLength = 0;
+            for (int i = 0; i < value.Length; i++)
+            {
+                char c = value[i];
+                CharacterInfo cInfo;
+                if (this.ttfTexture.CharInfoDict.TryGetValue(c, out cInfo))
+                {
+                    float glyphWidth = (float)cInfo.width / (float)this.ttfTexture.FontHeight;
+                    if (i == 0)
+                    {
+                        tmpPositions[i * 4 + 0] = new vec3(0, 0, 0);
+                        tmpPositions[i * 4 + 1] = new vec3(glyphWidth, 0, 0);
+                        tmpPositions[i * 4 + 2] = new vec3(glyphWidth, 1, 0);
+                        tmpPositions[i * 4 + 3] = new vec3(0, 1, 0);
+                    }
+                    else
+                    {
+                        tmpPositions[i * 4 + 0] = tmpPositions[i * 4 + 0 - 4 + 1];
+                        tmpPositions[i * 4 + 1] = tmpPositions[i * 4 + 0] + new vec3(glyphWidth, 0, 0);
+                        tmpPositions[i * 4 + 3] = tmpPositions[i * 4 + 3 - 4 - 1];
+                        tmpPositions[i * 4 + 2] = tmpPositions[i * 4 + 3] + new vec3(glyphWidth, 0, 0);
+                    }
+                    totalLength += glyphWidth;
+                }
+                //else
+                //{ throw new Exception(string.Format("Not support for display the char [{0}]", c)); }
+            }
             for (int i = 0; i < value.Length; i++)
             {
                 char c = value[i];
@@ -86,10 +113,10 @@ namespace CSharpGL.Objects.Texts
                 }
                 //else
                 //{ throw new Exception(string.Format("Not support for display the char [{0}]", c)); }
-                in_Position[i * 4 + 0] = new vec3(i - halfLength, 0, 0);
-                in_Position[i * 4 + 1] = new vec3(i + 1 - halfLength, 0, 0);
-                in_Position[i * 4 + 2] = new vec3(i + 1 - halfLength, 1, 0);
-                in_Position[i * 4 + 3] = new vec3(i - halfLength, 1, 0);
+                in_Position[i * 4 + 0] = tmpPositions[i * 4 + 0] - new vec3(totalLength / 2, 0, 0);
+                in_Position[i * 4 + 1] = tmpPositions[i * 4 + 1] - new vec3(totalLength / 2, 0, 0);
+                in_Position[i * 4 + 2] = tmpPositions[i * 4 + 2] - new vec3(totalLength / 2, 0, 0);
+                in_Position[i * 4 + 3] = tmpPositions[i * 4 + 3] - new vec3(totalLength / 2, 0, 0);
 
                 in_TexCoord[i * 4 + 0] = new vec2(x1, y1);
                 in_TexCoord[i * 4 + 1] = new vec2(x2, y1);
