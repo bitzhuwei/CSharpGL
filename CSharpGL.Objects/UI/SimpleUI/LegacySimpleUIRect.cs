@@ -42,79 +42,6 @@ namespace CSharpGL.Objects.UI.SimpleUI
             this.RenderBound = true;
         }
 
-        #region IRenderable 成员
-
-        protected void CalculateViewport(IUILayoutArgs args)
-        {
-            int[] viewport = new int[4];
-            GL.GetInteger(GetTarget.Viewport, viewport);
-            args.viewportWidth = viewport[2];
-            args.viewportHeight = viewport[3];
-        }
-
-        protected void CalculateCoords(int viewWidth, int viewHeight, IUILayoutArgs args)
-        {
-            if ((this.Param.Anchor & leftRightAnchor) == leftRightAnchor)
-            {
-                args.UIWidth = viewWidth - this.Param.Margin.Left - this.Param.Margin.Right;
-                if (args.UIWidth < 0) { args.UIWidth = 0; }
-            }
-            else
-            {
-                args.UIWidth = this.Param.Size.Width;
-            }
-
-            if ((this.Param.Anchor & topBottomAnchor) == topBottomAnchor)
-            {
-                args.UIHeight = viewHeight - this.Param.Margin.Top - this.Param.Margin.Bottom;
-                if (args.UIHeight < 0) { args.UIHeight = 0; }
-            }
-            else
-            {
-                args.UIHeight = this.Param.Size.Height;
-            }
-
-            if ((this.Param.Anchor & leftRightAnchor) == AnchorStyles.None)
-            {
-                args.left = -(args.UIWidth / 2
-                    + (viewWidth - args.UIWidth) * ((double)this.Param.Margin.Left / (double)(this.Param.Margin.Left + this.Param.Margin.Right)));
-            }
-            else if ((this.Param.Anchor & leftRightAnchor) == AnchorStyles.Left)
-            {
-                args.left = -(args.UIWidth / 2 + this.Param.Margin.Left);
-            }
-            else if ((this.Param.Anchor & leftRightAnchor) == AnchorStyles.Right)
-            {
-                args.left = -(viewWidth - args.UIWidth / 2 - this.Param.Margin.Right);
-            }
-            else // if ((Anchor & leftRightAnchor) == leftRightAnchor)
-            {
-                args.left = -(args.UIWidth / 2 + this.Param.Margin.Left);
-            }
-
-            if ((this.Param.Anchor & topBottomAnchor) == AnchorStyles.None)
-            {
-                args.bottom = -viewHeight / 2;
-                args.bottom = -(args.UIHeight / 2
-                    + (viewHeight - args.UIHeight) * ((double)this.Param.Margin.Bottom / (double)(this.Param.Margin.Bottom + this.Param.Margin.Top)));
-            }
-            else if ((this.Param.Anchor & topBottomAnchor) == AnchorStyles.Bottom)
-            {
-                args.bottom = -(args.UIHeight / 2 + this.Param.Margin.Bottom);
-            }
-            else if ((this.Param.Anchor & topBottomAnchor) == AnchorStyles.Top)
-            {
-                args.bottom = -(viewHeight - args.UIHeight / 2 - this.Param.Margin.Top);
-            }
-            else // if ((Anchor & topBottomAnchor) == topBottomAnchor)
-            {
-                args.bottom = -(args.UIHeight / 2 + this.Param.Margin.Bottom);
-            }
-        }
-
-
-        #endregion
-
         /// <summary>
         /// render UI model at axis's center(0, 0, 0) in <paramref name="UIWidth"/> and <paramref name="UIHeight"/>.
         /// <para>The <see cref="LegacySimpleUIRect.RenderMode()"/> only draws a rectangle to show the UI's scope.</para>
@@ -178,13 +105,14 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// <param name="gl"></param>
         public virtual void PushObjectSpace()
         {
-            this.args = new IUILayoutArgs();
-            //int viewWidth;
-            //int viewHeight;
-            CalculateViewport(args);
+            //this.args = new IUILayoutArgs();
+            ////int viewWidth;
+            ////int viewHeight;
+            //CalculateViewport(args);
 
-            //int UIWidth, UIHeight, left, bottom;
-            CalculateCoords(args.viewportWidth, args.viewportHeight, args);
+            ////int UIWidth, UIHeight, left, bottom;
+            //CalculateCoords(args.viewportWidth, args.viewportHeight, args);
+            this.args = this.GetArgs();
 
             GL.MatrixMode(GL.GL_PROJECTION);
             GL.PushMatrix();

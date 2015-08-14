@@ -64,7 +64,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         /// </summary>
         const AnchorStyles topBottomAnchor = (AnchorStyles.Top | AnchorStyles.Bottom);
 
-        static IUILayoutArgs GetArgs(this IUILayout uiElement)
+        internal static IUILayoutArgs GetArgs(this IUILayout uiElement)
         {
             var args = new IUILayoutArgs();
 
