@@ -21,6 +21,7 @@ namespace CSharpGL.Maths
         public static mat4 frustum(float left, float right, float bottom, float top, float nearVal, float farVal)
         {
             var result = mat4.identity();
+
             result[0, 0] = (2.0f * nearVal) / (right - left);
             result[1, 1] = (2.0f * nearVal) / (top - bottom);
             result[2, 0] = (right + left) / (right - left);
@@ -28,6 +29,8 @@ namespace CSharpGL.Maths
             result[2, 2] = -(farVal + nearVal) / (farVal - nearVal);
             result[2, 3] = -1.0f;
             result[3, 2] = -(2.0f * farVal * nearVal) / (farVal - nearVal);
+            result[3, 3] = 0.0f;
+
             return result;
         }
 
@@ -137,29 +140,13 @@ namespace CSharpGL.Maths
         /// <returns>A <see cref="mat4"/> that contains the projection matrix for the perspective transformation.</returns>
         public static mat4 perspective(float fovy, float aspect, float zNear, float zFar)
         {
-            //var tanHalfFovy = (float)Math.Tan(fovy / 2.0f);
-
-            //var originalResult = mat4.identity();
-            //originalResult[0, 0] = 1.0f / (aspect * tanHalfFovy);
-            //originalResult[1, 1] = 1.0f / (tanHalfFovy);
-            //originalResult[2, 2] = -(zFar + zNear) / (zFar - zNear);
-            //originalResult[2, 3] = -1.0f;
-            //originalResult[3, 2] = -(2.0f * zFar * zNear) / (zFar - zNear);
-            //return originalResult;
-
-            var result = mat4.identity();
             float tangent = (float)Math.Tan(fovy / 2.0f);
             float height = zNear * tangent;
             float width = height * aspect;
+
             float l = -width, r = width, b = -height, t = height, n = zNear, f = zFar;
-            result[0, 0] = 2.0f * n / (r - l);// = 2.0f * zNear / (2.0f * zNear * tangent * aspect)
-            result[1, 1] = 2.0f * n / (t - b);// = 2.0f * zNear / (2.0f * zNear * tangent)
-            //result[2, 0] = (r + l) / (r - l);// = 0.0f
-            //result[2, 1] = (t + b) / (t - b);// = 0.0f
-            result[2, 2] = -(f + n) / (f - n);
-            result[2, 3] = -1.0f;
-            result[3, 2] = -(2.0f * f * n) / (f - n);
-            result[3, 3] = 0.0f;//originalResult 没有把这里赋值为0！ 
+
+            mat4 result = frustum(l, r, b, t, n, f);
 
             return result;
         }
