@@ -5791,15 +5791,49 @@ namespace CSharpGL
 
 
         #region debugging and profiling
+        // https://www.opengl.org/registry/specs/ARB/debug_output.txt
 
+        /// <summary>
+        /// 设置Debug模式的回掉函数。
+        /// </summary>
+        /// <param name="callback"></param>
+        /// <param name="userParam"></param>
         public static void DebugMessageCallback(DEBUGPROC callback , IntPtr userParam)
         {
             GetDelegateFor<glDebugMessageCallback>()(callback, userParam);
         }
 
-        public delegate void DEBUGPROC(uint source, uint type, uint id, uint severity,
-            int length, StringBuilder message, IntPtr userParam);
+        //public delegate void DEBUGPROC(uint source, uint type, uint id, uint severity,
+            //int length, StringBuilder message, IntPtr userParam);
         private delegate void glDebugMessageCallback(DEBUGPROC callback, IntPtr userParam);
+        public delegate void DEBUGPROC(
+            CSharpGL.Enumerations.DebugSource source,
+            CSharpGL.Enumerations.DebugType type, 
+            uint id,
+            CSharpGL.Enumerations.DebugSeverity severity,
+            int length, 
+            StringBuilder message,
+            IntPtr userParam);
+
+        public const uint GL_DEBUG_SOURCE_API_ARB = 0x8246;
+        public const uint GL_DEBUG_SOURCE_WINDOW_SYSTEM_ARB = 0x8247;
+        public const uint GL_DEBUG_SOURCE_SHADER_COMPILER_ARB = 0x8248;
+        public const uint GL_DEBUG_SOURCE_THIRD_PARTY_ARB = 0x8249;
+        public const uint GL_DEBUG_SOURCE_APPLICATION_ARB = 0x824A;
+        public const uint GL_DEBUG_SOURCE_OTHER_ARB = 0x824B;
+
+        public const uint GL_DEBUG_TYPE_ERROR_ARB = 0x824C;
+        public const uint GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB = 0x824D;
+        public const uint GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB = 0x824E;
+        public const uint GL_DEBUG_TYPE_PORTABILITY_ARB = 0x824F;
+        public const uint GL_DEBUG_TYPE_PERFORMANCE_ARB = 0x8250;
+        public const uint GL_DEBUG_TYPE_OTHER_ARB = 0x8251;
+
+        public const uint GL_DEBUG_SEVERITY_HIGH_ARB = 0x9146;
+        public const uint GL_DEBUG_SEVERITY_MEDIUM_ARB = 0x9147;
+        public const uint GL_DEBUG_SEVERITY_LOW_ARB = 0x9148;
+        public const uint GL_DEBUG_SEVERITY_NOTIFICATION_ARB = 0x9149;
+
 
         #endregion debugging and profiling
     }
