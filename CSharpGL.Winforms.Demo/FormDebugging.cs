@@ -298,14 +298,23 @@ namespace CSharpGL.Winforms.Demo
 
         private void FormDebugging_Load(object sender, EventArgs e)
         {
+            byte x;
+            x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
+
+            GL.Disable(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
+            x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
+
+            GL.Enable(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
+            x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
+
             GL.DebugMessageCallback(callback, IntPtr.Zero);
         }
 
         private void callback(CSharpGL.Enumerations.DebugSource source,
-            CSharpGL.Enumerations.DebugType type, 
+            CSharpGL.Enumerations.DebugType type,
             uint id,
             CSharpGL.Enumerations.DebugSeverity severity,
-            int length, 
+            int length,
             StringBuilder message,
             IntPtr userParam)
         {

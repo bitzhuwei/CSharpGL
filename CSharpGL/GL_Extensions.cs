@@ -5791,6 +5791,7 @@ namespace CSharpGL
 
 
         #region debugging and profiling
+
         // https://www.opengl.org/registry/specs/ARB/debug_output.txt
 
         /// <summary>
@@ -5798,7 +5799,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="callback"></param>
         /// <param name="userParam"></param>
-        public static void DebugMessageCallback(DEBUGPROC callback , IntPtr userParam)
+        public static void DebugMessageCallback(DEBUGPROC callback, IntPtr userParam)
         {
             GetDelegateFor<glDebugMessageCallback>()(callback, userParam);
         }
@@ -5806,12 +5807,14 @@ namespace CSharpGL
         private delegate void glDebugMessageCallback(DEBUGPROC callback, IntPtr userParam);
         public delegate void DEBUGPROC(
             CSharpGL.Enumerations.DebugSource source,
-            CSharpGL.Enumerations.DebugType type, 
+            CSharpGL.Enumerations.DebugType type,
             uint id,
             CSharpGL.Enumerations.DebugSeverity severity,
-            int length, 
+            int length,
             StringBuilder message,
             IntPtr userParam);
+
+        public const uint GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB = 0x8242;
 
         public const uint GL_DEBUG_SOURCE_API_ARB = 0x8246;
         public const uint GL_DEBUG_SOURCE_WINDOW_SYSTEM_ARB = 0x8247;
