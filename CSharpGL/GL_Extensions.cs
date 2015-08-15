@@ -5795,10 +5795,13 @@ namespace CSharpGL
         // https://www.opengl.org/registry/specs/ARB/debug_output.txt
         // https://www.opengl.org/wiki/Debug_Output
         /// <summary>
-        /// 设置Debug模式的回掉函数。
+        /// 设置Debug模式的回调函数。
         /// </summary>
-        /// <param name="callback"></param>
-        /// <param name="userParam"></param>
+        /// <param name="callback">使用一个字段来持有
+        /// <para>callback = new GL.DEBUGPROC(this.callbackProc);</para>
+        /// 这样就可以避免垃圾回收的问题。
+        /// </param>
+        /// <param name="userParam">建议使用<see cref="UnmanagedArray.Header"/></param>
         public static void DebugMessageCallback(DEBUGPROC callback, IntPtr userParam)
         {
             GetDelegateFor<glDebugMessageCallback>()(callback, userParam);

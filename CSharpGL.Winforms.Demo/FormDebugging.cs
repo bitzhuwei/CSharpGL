@@ -296,7 +296,7 @@ namespace CSharpGL.Winforms.Demo
             }
         }
 
-        CSharpGL.GL.DEBUGPROC debugProc;
+        CSharpGL.GL.DEBUGPROC callback;
 
         private void FormDebugging_Load(object sender, EventArgs e)
         {
@@ -312,9 +312,9 @@ namespace CSharpGL.Winforms.Demo
             UnmanagedArray<float> userParam = new UnmanagedArray<float>(3);
             userParam[0] = 0.125f; userParam[1] = 1.4142f; userParam[2] = float.MaxValue;
 
-            debugProc = new GL.DEBUGPROC(this.callback);
+            callback = new GL.DEBUGPROC(this.callbackProc);
 
-            GL.DebugMessageCallback(debugProc, userParam.Header);
+            GL.DebugMessageCallback(callback, userParam.Header);
 
             //GL.DebugMessageControl(GL.GL_DONT_CARE, GL.GL_DONT_CARE, GL.GL_DONT_CARE, 0, null, true);
             GL.DebugMessageControl(
@@ -329,12 +329,15 @@ namespace CSharpGL.Winforms.Demo
                 Enumerations.DebugSource.DEBUG_SOURCE_APPLICATION_ARB,
                 Enumerations.DebugType.DEBUG_TYPE_OTHER_ARB,
                 0x4752415A,
-                Enumerations.DebugSeverity.DEBUG_SEVERITY_NOTIFICATION_ARB,
+                //Enumerations.DebugSeverity.DEBUG_SEVERITY_NOTIFICATION_ARB,// not valid
+                Enumerations.DebugSeverity.DEBUG_SEVERITY_HIGH_ARB,
+                //Enumerations.DebugSeverity.DEBUG_SEVERITY_MEDIUM_ARB,
+                //Enumerations.DebugSeverity.DEBUG_SEVERITY_LOW_ARB,
                 -1,
                 builder);
         }
 
-        private void callback(CSharpGL.Enumerations.DebugSource source,
+        private void callbackProc(CSharpGL.Enumerations.DebugSource source,
             CSharpGL.Enumerations.DebugType type,
             uint id,
             CSharpGL.Enumerations.DebugSeverity severity,
