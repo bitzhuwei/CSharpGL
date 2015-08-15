@@ -296,6 +296,8 @@ namespace CSharpGL.Winforms.Demo
             }
         }
 
+        CSharpGL.GL.DEBUGPROC debugProc;
+
         private void FormDebugging_Load(object sender, EventArgs e)
         {
             byte x;
@@ -309,7 +311,10 @@ namespace CSharpGL.Winforms.Demo
 
             UnmanagedArray<float> userParam = new UnmanagedArray<float>(3);
             userParam[0] = 0.125f; userParam[1] = 1.4142f; userParam[2] = float.MaxValue;
-            GL.DebugMessageCallback(callback, userParam.Header);
+
+            debugProc = new GL.DEBUGPROC(this.callback);
+
+            GL.DebugMessageCallback(debugProc, userParam.Header);
 
             //GL.DebugMessageControl(GL.GL_DONT_CARE, GL.GL_DONT_CARE, GL.GL_DONT_CARE, 0, null, true);
             GL.DebugMessageControl(
@@ -354,7 +359,14 @@ namespace CSharpGL.Winforms.Demo
                 sw.Write("length: ");
                 sw.Write(length); sw.Write(", ");
                 sw.Write("message: ");
-                sw.Write(message.ToString()); sw.Write(", ");
+                if (message != null)
+                {
+                    sw.Write(message.ToString()); sw.Write(", ");
+                }
+                else
+                {
+                    sw.Write("<null>"); sw.Write(", ");
+                }
                 sw.Write("userParam: ");
                 sw.Write(userParam);
                 sw.WriteLine();
