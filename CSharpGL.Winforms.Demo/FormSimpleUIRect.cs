@@ -49,11 +49,11 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotator(camera);
 
-            Padding padding = new System.Windows.Forms.Padding(10,10,10,10);
+            Padding padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
             Size size = new Size(100, 100);
             //Size size = new Size(5, 5);
             IUILayoutParam param;
-            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom| AnchorStyles.Right , padding, size);
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right, padding, size);
             uiLeftBottomRect = new SimpleUIRect(param);
             //param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, new Padding(0, 0, 0, 0), new Size(50, 50));
             legacyLeftBottomRect = new LegacySimpleUIRect(param, new Objects.GLColor(1, 1, 1, 1));
@@ -204,22 +204,13 @@ namespace CSharpGL.Winforms.Demo
             GL.GetFloat(GetTarget.ModelviewMatix, legacyModelViewMatrix);
             this.strlegacyModelViewMatrix = FloatsToString(legacyModelViewMatrix);
 
-            mat4 p = FloatsToMat4(legacyProjectionMatrix);
-            mat4 mv = FloatsToMat4(legacyModelViewMatrix);
+            mat4 p = legacyProjectionMatrix.ToMat4();
+            mat4 mv = legacyModelViewMatrix.ToMat4();
             mat4 mvp = p * mv;
             this.strlegacyMVP = FloatsToString(mvp.to_array());
         }
 
-        mat4 FloatsToMat4(float[] values)
-        {
-            mat4 result = new mat4(
-                new vec4(values[0], values[1], values[2], values[3]),
-                new vec4(values[4], values[5], values[6], values[7]),
-                new vec4(values[8], values[9], values[10], values[11]),
-                new vec4(values[12], values[13], values[14], values[15])
-                );
-            return result;
-        }
+       
         void SimpleUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
             SimpleUIRect element = sender as SimpleUIRect;
@@ -233,62 +224,23 @@ namespace CSharpGL.Winforms.Demo
 
             mat4 projectionMatrix, viewMatrix, modelMatrix;
 
-            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
-            projectionMatrix = new mat4(
-                new vec4(
-                    legacyProjectionMatrix[0],
-                    legacyProjectionMatrix[1],
-                    legacyProjectionMatrix[2],
-                    legacyProjectionMatrix[3]),
-                new vec4(
-                    legacyProjectionMatrix[4 + 0],
-                    legacyProjectionMatrix[4 + 1],
-                    legacyProjectionMatrix[4 + 2],
-                    legacyProjectionMatrix[4 + 3]),
-                new vec4(
-                    legacyProjectionMatrix[8 + 0],
-                    legacyProjectionMatrix[8 + 1],
-                    legacyProjectionMatrix[8 + 2],
-                    legacyProjectionMatrix[8 + 3]),
-                new vec4(
-                    legacyProjectionMatrix[12 + 0],
-                    legacyProjectionMatrix[12 + 1],
-                    legacyProjectionMatrix[12 + 2],
-                    legacyProjectionMatrix[12 + 3])
-                    );
-            viewMatrix = new mat4(
-              new vec4(
-                  legacyModelViewMatrix[0],
-                  legacyModelViewMatrix[1],
-                  legacyModelViewMatrix[2],
-                  legacyModelViewMatrix[3]),
-              new vec4(
-                  legacyModelViewMatrix[4 + 0],
-                  legacyModelViewMatrix[4 + 1],
-                  legacyModelViewMatrix[4 + 2],
-                  legacyModelViewMatrix[4 + 3]),
-              new vec4(
-                  legacyModelViewMatrix[8 + 0],
-                  legacyModelViewMatrix[8 + 1],
-                  legacyModelViewMatrix[8 + 2],
-                  legacyModelViewMatrix[8 + 3]),
-              new vec4(
-                  legacyModelViewMatrix[12 + 0],
-                  legacyModelViewMatrix[12 + 1],
-                  legacyModelViewMatrix[12 + 2],
-                  legacyModelViewMatrix[12 + 3])
-                  );
-            modelMatrix = mat4.identity();
-
-            modernProjectionMatrix = projectionMatrix.to_array();
-            this.strmodernProjectionMatrix = FloatsToString(modernProjectionMatrix);
-            modernViewMatrix = viewMatrix.to_array();
-            this.strmodernViewMatrix = FloatsToString(modernViewMatrix);
-            modernModelMatrix = modelMatrix.to_array();
-            this.strmodernModelMatrix = FloatsToString(modernModelMatrix);
-            this.strmodernModelViewMatrix = FloatsToString((viewMatrix * modelMatrix).to_array());
-            mat4 modernMVP = projectionMatrix * viewMatrix * modelMatrix;
-            this.strmodernMVP = FloatsToString((modernMVP).to_array());
+            {
+                //element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
+                projectionMatrix = legacyProjectionMatrix.ToMat4();
+                viewMatrix = legacyModelViewMatrix.ToMat4();
+                modelMatrix = mat4.identity();
+            }
+            {
+                modernProjectionMatrix = projectionMatrix.to_array();
+                this.strmodernProjectionMatrix = FloatsToString(modernProjectionMatrix);
+                modernViewMatrix = viewMatrix.to_array();
+                this.strmodernViewMatrix = FloatsToString(modernViewMatrix);
+                modernModelMatrix = modelMatrix.to_array();
+                this.strmodernModelMatrix = FloatsToString(modernModelMatrix);
+                this.strmodernModelViewMatrix = FloatsToString((viewMatrix * modelMatrix).to_array());
+                mat4 modernMVP = projectionMatrix * viewMatrix * modelMatrix;
+                this.strmodernMVP = FloatsToString((modernMVP).to_array());
+            }
 
             ShaderProgram shaderProgram = element.shaderProgram;
 
