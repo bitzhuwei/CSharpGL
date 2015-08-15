@@ -50,6 +50,7 @@
     <Compile Include="glm_inverse.cs" />
     <Compile Include="glm_camera.cs" />
     <Compile Include="glm_trigonometric.cs" />
+    <Compile Include="mat4Helper.cs" />
     <Compile Include="vec2.cs" />
     <Compile Include="vec3.cs" />
     <Compile Include="vecHelper.cs" />

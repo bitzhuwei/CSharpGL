@@ -82,12 +82,5 @@ namespace CSharpGL.Maths
             return result;
         }
 
-        public static mat4 ToMat4(this float[] values, int startIndex = 0)
-        {
-            mat4 result = new mat4(
-                values.ToVec4(startIndex + 0), values.ToVec4(startIndex + 4), values.ToVec4(startIndex + 8), values.ToVec4(startIndex + 12));
-
-            return result;
-        }
     }
 }
