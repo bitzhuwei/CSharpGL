@@ -19,7 +19,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void btnUnmanagedArray_Click(object sender, EventArgs e)
         {
-            UnmanagedArrayTest.TypicalScene();
+            TestUnmanagedArray.TypicalScene();
             string message = string.Format("{0}", "All successfully done!");
             MessageBox.Show(message, "tip", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

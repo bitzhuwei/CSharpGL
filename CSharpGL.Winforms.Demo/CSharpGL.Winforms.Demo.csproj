@@ -128,7 +128,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CameraDictionary.cs" />
-    <Compile Include="UnmanagedArrayTest.cs" />
+    <Compile Include="TestUnmanagedArray.cs" />
     <Compile Include="WholeFontTextureElement.cs" />
     <EmbeddedResource Include="FormCylinderElement.resx">
       <DependentUpon>FormCylinderElement.cs</DependentUpon>
