@@ -125,37 +125,6 @@ namespace CSharpGL.Winforms.Demo
             GL.PopMatrix();
         }
 
-        float[] legacyProjectionMatrix = new float[16];
-        //float[] legacyViewMatrix = new float[16];
-        float[] legacyModelViewMatrix = new float[16];
-        float[] modernProjectionMatrix = new float[16];
-        float[] modernViewMatrix = new float[16];
-        float[] modernModelMatrix = new float[16];
-
-        string strlegacyProjectionMatrix = "";
-        //string strlegacyViewMatrix = "";
-        string strlegacyModelViewMatrix = "";
-        string strlegacyMVP = "";
-
-        string strmodernProjectionMatrix = "";
-        string strmodernViewMatrix = "";
-        string strmodernModelMatrix = "";
-        string strmodernModelViewMatrix = "";
-        string strmodernMVP = "";
-
-        string FloatsToString(float[] values)
-        {
-            StringBuilder builder = new StringBuilder();
-
-            for (int i = 0; i < values.Length; i++)
-            {
-                builder.Append(values[i]);
-                builder.Append(", ");
-            }
-
-            return builder.ToString();
-        }
-
         void legacyUIRect_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
             LegacySimpleUIRect element = sender as LegacySimpleUIRect;
@@ -166,12 +135,6 @@ namespace CSharpGL.Winforms.Demo
             GL.PushMatrix();
             GL.LoadIdentity();
             GL.Ortho(args.left, args.right, args.bottom, args.top, element.Param.zNear, element.Param.zFar);
-
-            GL.GetFloat(GetTarget.ProjectionMatrix, legacyProjectionMatrix);
-            this.strlegacyProjectionMatrix = FloatsToString(legacyProjectionMatrix);
-
-            GL.GetFloat(GetTarget.ModelviewMatix, legacyModelViewMatrix);
-            this.strlegacyModelViewMatrix = FloatsToString(legacyModelViewMatrix);
 
             IViewCamera camera = this.camera;
             if (camera == null)
@@ -188,29 +151,13 @@ namespace CSharpGL.Winforms.Demo
                     camera.UpVector.x, camera.UpVector.y, camera.UpVector.z);
             }
 
-            GL.GetFloat(GetTarget.ProjectionMatrix, legacyProjectionMatrix);
-            this.strlegacyProjectionMatrix = FloatsToString(legacyProjectionMatrix);
-
-            GL.GetFloat(GetTarget.ModelviewMatix, legacyModelViewMatrix);
-            this.strlegacyModelViewMatrix = FloatsToString(legacyModelViewMatrix);
-
             GL.MatrixMode(GL.GL_MODELVIEW);
             GL.PushMatrix();
             GL.Scale(args.UIWidth / 2, args.UIHeight / 2, args.UIWidth);
 
-            GL.GetFloat(GetTarget.ProjectionMatrix, legacyProjectionMatrix);
-            this.strlegacyProjectionMatrix = FloatsToString(legacyProjectionMatrix);
-
-            GL.GetFloat(GetTarget.ModelviewMatix, legacyModelViewMatrix);
-            this.strlegacyModelViewMatrix = FloatsToString(legacyModelViewMatrix);
-
-            mat4 p = legacyProjectionMatrix.ToMat4();
-            mat4 mv = legacyModelViewMatrix.ToMat4();
-            mat4 mvp = p * mv;
-            this.strlegacyMVP = FloatsToString(mvp.to_array());
         }
 
-       
+
         void SimpleUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
             SimpleUIRect element = sender as SimpleUIRect;
@@ -224,23 +171,7 @@ namespace CSharpGL.Winforms.Demo
 
             mat4 projectionMatrix, viewMatrix, modelMatrix;
 
-            {
-                //element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
-                projectionMatrix = legacyProjectionMatrix.ToMat4();
-                viewMatrix = legacyModelViewMatrix.ToMat4();
-                modelMatrix = mat4.identity();
-            }
-            {
-                modernProjectionMatrix = projectionMatrix.to_array();
-                this.strmodernProjectionMatrix = FloatsToString(modernProjectionMatrix);
-                modernViewMatrix = viewMatrix.to_array();
-                this.strmodernViewMatrix = FloatsToString(modernViewMatrix);
-                modernModelMatrix = modelMatrix.to_array();
-                this.strmodernModelMatrix = FloatsToString(modernModelMatrix);
-                this.strmodernModelViewMatrix = FloatsToString((viewMatrix * modelMatrix).to_array());
-                mat4 modernMVP = projectionMatrix * viewMatrix * modelMatrix;
-                this.strmodernMVP = FloatsToString((modernMVP).to_array());
-            }
+            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
 
             ShaderProgram shaderProgram = element.shaderProgram;
 
@@ -249,9 +180,6 @@ namespace CSharpGL.Winforms.Demo
             shaderProgram.SetUniformMatrix4(SimpleUIRect.strprojectionMatrix, projectionMatrix.to_array());
             shaderProgram.SetUniformMatrix4(SimpleUIRect.strviewMatrix, viewMatrix.to_array());
             shaderProgram.SetUniformMatrix4(SimpleUIRect.strmodelMatrix, modelMatrix.to_array());
-            //shaderProgram.SetUniformMatrix4(SimpleUIRect.strprojectionMatrix, modernMVP.to_array());
-            //shaderProgram.SetUniformMatrix4(SimpleUIRect.strviewMatrix, modelMatrix.to_array());
-            //shaderProgram.SetUniformMatrix4(SimpleUIRect.strmodelMatrix, modelMatrix.to_array());
         }
 
         void axisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
