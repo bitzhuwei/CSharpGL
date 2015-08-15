@@ -5797,7 +5797,7 @@ namespace CSharpGL
             GetDelegateFor<glDebugMessageCallback>()(callback, userParam);
         }
 
-        public delegate IntPtr DEBUGPROC(uint source, uint type, uint id, uint severity,
+        public delegate void DEBUGPROC(uint source, uint type, uint id, uint severity,
             int length, StringBuilder message, IntPtr userParam);
         private delegate void glDebugMessageCallback(DEBUGPROC callback, IntPtr userParam);
 

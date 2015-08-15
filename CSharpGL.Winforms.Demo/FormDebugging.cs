@@ -301,12 +301,11 @@ namespace CSharpGL.Winforms.Demo
             GL.DebugMessageCallback(callback, IntPtr.Zero);
         }
 
-        private IntPtr callback(uint source, uint type, uint id, uint severity,
+        private void callback(uint source, uint type, uint id, uint severity,
             int length, StringBuilder message, IntPtr userParam)
         {
             Console.WriteLine("hello debugging");
 
-            return IntPtr.Zero;
         }
     }
 }
