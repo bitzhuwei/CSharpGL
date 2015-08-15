@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{73073EFA-DDE4-4574-9D1A-FE6EF0824910}</ProjectGuid>
+    <ProjectGuid>{99C2F4E5-3275-4681-AEC4-F59D97C158A8}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharpGL.ConsoleDemo</RootNamespace>
-    <AssemblyName>CSharpGL.ConsoleDemo</AssemblyName>
+    <RootNamespace>DumpUnicode2File</RootNamespace>
+    <AssemblyName>DumpUnicode2File</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
