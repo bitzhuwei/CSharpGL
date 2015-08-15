@@ -5793,7 +5793,7 @@ namespace CSharpGL
         #region debugging and profiling
 
         // https://www.opengl.org/registry/specs/ARB/debug_output.txt
-
+        // https://www.opengl.org/wiki/Debug_Output
         /// <summary>
         /// 设置Debug模式的回掉函数。
         /// </summary>
