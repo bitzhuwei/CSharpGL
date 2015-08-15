@@ -307,22 +307,24 @@ namespace CSharpGL.Winforms.Demo
             GL.Enable(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
             x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);// x is 1
 
-            GL.DebugMessageCallback(callback, IntPtr.Zero);
+            UnmanagedArray<float> userParam = new UnmanagedArray<float>(3);
+            userParam[0] = 0.125f; userParam[1] = 1.4142f; userParam[2] = float.MaxValue;
+            GL.DebugMessageCallback(callback, userParam.Header);
 
             //GL.DebugMessageControl(GL.GL_DONT_CARE, GL.GL_DONT_CARE, GL.GL_DONT_CARE, 0, null, true);
             GL.DebugMessageControl(
-                 Enumerations.DebugMessageControlSource.DontCare,
-                 Enumerations.DebugMessageControlType.DontCare,
-                  Enumerations.DebugMessageControlSeverity.DontCare,
+                 Enumerations.DebugMessageControlSource.DONT_CARE,
+                 Enumerations.DebugMessageControlType.DONT_CARE,
+                  Enumerations.DebugMessageControlSeverity.DONT_CARE,
                   0, null, true);
 
             StringBuilder builder = new StringBuilder();
             builder.Append("hello, this is app!");
             GL.DebugMessageInsert(
-                Enumerations.DebugSource.APPLICATION_ARB,
-                Enumerations.DebugType.OTHER_ARB,
+                Enumerations.DebugSource.DEBUG_SOURCE_APPLICATION_ARB,
+                Enumerations.DebugType.DEBUG_TYPE_OTHER_ARB,
                 0x4752415A,
-                Enumerations.DebugSeverity.HIGH_ARB,
+                Enumerations.DebugSeverity.DEBUG_SEVERITY_NOTIFICATION_ARB,
                 -1,
                 builder);
         }
@@ -335,7 +337,28 @@ namespace CSharpGL.Winforms.Demo
             StringBuilder message,
             IntPtr userParam)
         {
-            Console.WriteLine("hello debugging2!");
+            DateTime now = DateTime.Now;
+            string time = string.Format("{0:yyyyMMddHHmm}", now);
+            string filename = string.Format("debuggingAndProfiling{0}.txt", time);
+            using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filename, true))
+            {
+                sw.WriteLine(string.Format("{0:yyyy-MM-dd HH:mm:ss.ffff}:", DateTime.Now));
+                sw.Write("source: ");
+                sw.Write(source); sw.Write(", ");
+                sw.Write("type: ");
+                sw.Write(type); sw.Write(", ");
+                sw.Write("id: ");
+                sw.Write(id); sw.Write(", ");
+                sw.Write("severity: ");
+                sw.Write(severity); sw.Write(", ");
+                sw.Write("length: ");
+                sw.Write(length); sw.Write(", ");
+                sw.Write("message: ");
+                sw.Write(message.ToString()); sw.Write(", ");
+                sw.Write("userParam: ");
+                sw.Write(userParam);
+                sw.WriteLine();
+            }
         }
     }
 }

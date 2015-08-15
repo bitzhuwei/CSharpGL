@@ -28,23 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
             this.txtInfo = new System.Windows.Forms.TextBox();
+            this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // glCanvas1
-            // 
-            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.glCanvas1.Location = new System.Drawing.Point(13, 87);
-            this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.glCanvas1.Name = "glCanvas1";
-            this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
-            this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(786, 353);
-            this.glCanvas1.TabIndex = 0;
             // 
             // txtInfo
             // 
@@ -55,6 +42,19 @@
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.Size = new System.Drawing.Size(788, 68);
             this.txtInfo.TabIndex = 7;
+            // 
+            // glCanvas1
+            // 
+            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.glCanvas1.Location = new System.Drawing.Point(13, 87);
+            this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.glCanvas1.Name = "glCanvas1";
+            this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL4_3;
+            this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
+            this.glCanvas1.Size = new System.Drawing.Size(786, 353);
+            this.glCanvas1.TabIndex = 0;
             // 
             // FormDebugging
             // 
