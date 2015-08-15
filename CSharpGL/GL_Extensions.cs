@@ -5835,6 +5835,25 @@ namespace CSharpGL
         public const uint GL_DEBUG_SEVERITY_LOW_ARB = 0x9148;
         public const uint GL_DEBUG_SEVERITY_NOTIFICATION_ARB = 0x9149;
 
+        public static void DebugMessageControl(
+            uint source,
+            uint type,
+            uint severity,
+            int count,
+            int[] ids,
+            bool enabled)
+        {
+            GetDelegateFor<glDebugMessageControl>()(source, type, severity, count, ids, enabled);
+        }
+        private delegate void glDebugMessageControl(
+            uint source,
+            uint type,
+            uint severity,
+            int count,
+            int[] ids,
+            bool enabled);
+
+
 
         #endregion debugging and profiling
     }

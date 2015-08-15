@@ -299,15 +299,17 @@ namespace CSharpGL.Winforms.Demo
         private void FormDebugging_Load(object sender, EventArgs e)
         {
             byte x;
-            x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
+            x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);// x is 0
 
             GL.Disable(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
-            x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
+            x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);// x is 0
 
             GL.Enable(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
-            x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
+            x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);// x is 1
 
             GL.DebugMessageCallback(callback, IntPtr.Zero);
+
+            GL.DebugMessageControl(GL.GL_DONT_CARE, GL.GL_DONT_CARE, GL.GL_DONT_CARE, 0, null, true);
         }
 
         private void callback(CSharpGL.Enumerations.DebugSource source,
