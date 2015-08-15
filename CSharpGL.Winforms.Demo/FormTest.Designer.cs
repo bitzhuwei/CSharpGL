@@ -41,6 +41,7 @@
             this.btnSimpleUIAxis = new System.Windows.Forms.Button();
             this.btnSimpleUIColorPalette = new System.Windows.Forms.Button();
             this.btnSimpleUICube = new System.Windows.Forms.Button();
+            this.btnDebugging = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -212,6 +213,19 @@
             this.btnSimpleUICube.UseVisualStyleBackColor = true;
             this.btnSimpleUICube.Click += new System.EventHandler(this.btnSimpleUICube_Click);
             // 
+            // btnDebugging
+            // 
+            this.btnDebugging.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDebugging.Location = new System.Drawing.Point(13, 496);
+            this.btnDebugging.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDebugging.Name = "btnDebugging";
+            this.btnDebugging.Size = new System.Drawing.Size(353, 29);
+            this.btnDebugging.TabIndex = 4;
+            this.btnDebugging.Text = "Debugging and profiling";
+            this.btnDebugging.UseVisualStyleBackColor = true;
+            this.btnDebugging.Click += new System.EventHandler(this.btnDebugging_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -222,6 +236,7 @@
             this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnCamera);
             this.Controls.Add(this.btnSimpleUICube);
+            this.Controls.Add(this.btnDebugging);
             this.Controls.Add(this.btnSimpleUIColorPalette);
             this.Controls.Add(this.btnSimpleUIAxis);
             this.Controls.Add(this.btnSimpleUIRect);
@@ -252,5 +267,6 @@
         private System.Windows.Forms.Button btnSimpleUIAxis;
         private System.Windows.Forms.Button btnSimpleUIColorPalette;
         private System.Windows.Forms.Button btnSimpleUICube;
+        private System.Windows.Forms.Button btnDebugging;
     }
 }

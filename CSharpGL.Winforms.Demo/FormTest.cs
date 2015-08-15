@@ -87,6 +87,11 @@ namespace CSharpGL.Winforms.Demo
             (new FormSimpleUIColorIndicator()).Show();
         }
 
+        private void btnDebugging_Click(object sender, EventArgs e)
+        {
+            (new FormDebugging()).Show();
+        }
+
 
     }
 }

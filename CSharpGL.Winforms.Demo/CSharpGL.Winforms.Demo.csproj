@@ -53,6 +53,12 @@
     <Compile Include="FormCylinderElement.Designer.cs">
       <DependentUpon>FormCylinderElement.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDebugging.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDebugging.Designer.cs">
+      <DependentUpon>FormDebugging.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormFontElement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     <Compile Include="WholeFontTextureElement.cs" />
     <EmbeddedResource Include="FormCylinderElement.resx">
       <DependentUpon>FormCylinderElement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDebugging.resx">
+      <DependentUpon>FormDebugging.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFontElement.resx">
       <DependentUpon>FormFontElement.cs</DependentUpon>

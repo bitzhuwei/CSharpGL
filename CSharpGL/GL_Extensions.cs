@@ -5788,5 +5788,19 @@ namespace CSharpGL
         public const uint GL_MAX_VERTEX_ATTRIB_BINDINGS = 0x82DA;
 
         #endregion
+
+
+        #region debugging and profiling
+
+        public static void DebugMessageCallback(DEBUGPROC callback , IntPtr userParam)
+        {
+            GetDelegateFor<glDebugMessageCallback>()(callback, userParam);
+        }
+
+        public delegate IntPtr DEBUGPROC(uint source, uint type, uint id, uint severity,
+            int length, StringBuilder message, IntPtr userParam);
+        private delegate void glDebugMessageCallback(DEBUGPROC callback, IntPtr userParam);
+
+        #endregion debugging and profiling
     }
 }
