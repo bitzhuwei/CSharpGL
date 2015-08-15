@@ -5838,6 +5838,15 @@ namespace CSharpGL
         public const uint GL_DEBUG_SEVERITY_LOW_ARB = 0x9148;
         public const uint GL_DEBUG_SEVERITY_NOTIFICATION_ARB = 0x9149;
 
+        /// <summary>
+        /// 设置哪些属性的消息能够/不能被传入callback函数。
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="type"></param>
+        /// <param name="severity"></param>
+        /// <param name="count"></param>
+        /// <param name="ids"></param>
+        /// <param name="enabled"></param>
         public static void DebugMessageControl(
             CSharpGL.Enumerations.DebugMessageControlSource source,
             CSharpGL.Enumerations.DebugMessageControlType type,
@@ -5856,6 +5865,15 @@ namespace CSharpGL
             int[] ids,
             bool enabled);
 
+        /// <summary>
+        /// 用户App或工具用此函数可向Debug流写入一条消息。
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        /// <param name="severity"></param>
+        /// <param name="length">用-1即可。</param>
+        /// <param name="buf"></param>
         public static void DebugMessageInsert(
             CSharpGL.Enumerations.DebugSource source,
             CSharpGL.Enumerations.DebugType type,
