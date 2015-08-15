@@ -144,11 +144,24 @@ namespace CSharpGL.Maths
         /// <returns>The product of <paramref name="lhs"/> and <paramref name="rhs"/>.</returns>
         public static mat2 operator *(mat2 lhs, mat2 rhs)
         {
-            return new mat2(new[]
+            mat2 originalVersion = new mat2(new[]
             {
-			    lhs[0][0] * rhs[0] + lhs[1][0] * rhs[1],
-			    lhs[0][1] * rhs[0] + lhs[1][1] * rhs[1]
+                lhs[0][0] * rhs[0] + lhs[1][0] * rhs[1],
+                lhs[0][1] * rhs[0] + lhs[1][1] * rhs[1]
             });
+
+            mat2 result = new mat2(
+                new vec2(
+                    lhs[0][0] * rhs[0][0] + lhs[1][0] * rhs[0][1],
+                    lhs[0][1] * rhs[0][0] + lhs[1][1] * rhs[0][1]
+                    ),
+                new vec2(
+                    lhs[0][0] * rhs[1][0] + lhs[1][0] * rhs[1][1],
+                    lhs[0][1] * rhs[1][0] + lhs[1][1] * rhs[1][1]
+                    )
+                    );
+
+            return result;
         }
 
         public static mat2 operator *(mat2 lhs, float s)

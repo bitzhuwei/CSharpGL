@@ -135,10 +135,13 @@ namespace CSharpGL.Winforms.Demo
         string strlegacyProjectionMatrix = "";
         //string strlegacyViewMatrix = "";
         string strlegacyModelViewMatrix = "";
+        string strlegacyMVP = "";
+
         string strmodernProjectionMatrix = "";
         string strmodernViewMatrix = "";
         string strmodernModelMatrix = "";
         string strmodernModelViewMatrix = "";
+        string strmodernMVP = "";
 
         string FloatsToString(float[] values)
         {
@@ -200,8 +203,23 @@ namespace CSharpGL.Winforms.Demo
 
             GL.GetFloat(GetTarget.ModelviewMatix, legacyModelViewMatrix);
             this.strlegacyModelViewMatrix = FloatsToString(legacyModelViewMatrix);
+
+            mat4 p = FloatsToMat4(legacyProjectionMatrix);
+            mat4 mv = FloatsToMat4(legacyModelViewMatrix);
+            mat4 mvp = p * mv;
+            this.strlegacyMVP = FloatsToString(mvp.to_array());
         }
 
+        mat4 FloatsToMat4(float[] values)
+        {
+            mat4 result = new mat4(
+                new vec4(values[0], values[1], values[2], values[3]),
+                new vec4(values[4], values[5], values[6], values[7]),
+                new vec4(values[8], values[9], values[10], values[11]),
+                new vec4(values[12], values[13], values[14], values[15])
+                );
+            return result;
+        }
         void SimpleUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
             SimpleUIRect element = sender as SimpleUIRect;
@@ -269,6 +287,8 @@ namespace CSharpGL.Winforms.Demo
             modernModelMatrix = modelMatrix.to_array();
             this.strmodernModelMatrix = FloatsToString(modernModelMatrix);
             this.strmodernModelViewMatrix = FloatsToString((viewMatrix * modelMatrix).to_array());
+            mat4 modernMVP = projectionMatrix * viewMatrix * modelMatrix;
+            this.strmodernMVP = FloatsToString((modernMVP).to_array());
 
             ShaderProgram shaderProgram = element.shaderProgram;
 
@@ -277,6 +297,9 @@ namespace CSharpGL.Winforms.Demo
             shaderProgram.SetUniformMatrix4(SimpleUIRect.strprojectionMatrix, projectionMatrix.to_array());
             shaderProgram.SetUniformMatrix4(SimpleUIRect.strviewMatrix, viewMatrix.to_array());
             shaderProgram.SetUniformMatrix4(SimpleUIRect.strmodelMatrix, modelMatrix.to_array());
+            //shaderProgram.SetUniformMatrix4(SimpleUIRect.strprojectionMatrix, modernMVP.to_array());
+            //shaderProgram.SetUniformMatrix4(SimpleUIRect.strviewMatrix, modelMatrix.to_array());
+            //shaderProgram.SetUniformMatrix4(SimpleUIRect.strmodelMatrix, modelMatrix.to_array());
         }
 
         void axisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
