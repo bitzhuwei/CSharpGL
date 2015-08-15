@@ -118,10 +118,24 @@ namespace CSharpGL.Maths
              */
             float tanHalfFovy = 1.0f / matrix[1, 1];
             fovy = 2 * (float)(Math.Atan(tanHalfFovy));
+            if (fovy < 0) { fovy = -fovy; }
             //aspectRatio = 1.0f / matrix[0, 0] / tanHalfFovy;
             aspectRatio = matrix[1, 1] / matrix[0, 0];
-            zNear = matrix[3, 2] / (1 - matrix[2, 2]);
-            zFar = matrix[3, 2] / (1 + matrix[2, 2]);
+            if (matrix[2, 2] == 1.0f)
+            {
+                zFar = 0.0f;
+                zNear = 0.0f;
+            }
+            else if (matrix[2, 2] == -1.0f)
+            {
+                zNear = 0.0f;
+                zFar = float.PositiveInfinity;
+            }
+            else
+            {
+                zNear = matrix[3, 2] / (matrix[2, 2] - 1);
+                zFar = matrix[3, 2] / (matrix[2, 2] + 1);
+            }
 
             if (matrix[0, 0] == 0.0f || matrix[1, 1] == 0.0f || matrix[2, 2] == 0.0f)
             {
@@ -136,7 +150,7 @@ namespace CSharpGL.Maths
                 return false;
             }
 
-            if (matrix[3, 2] != -1.0f)
+            if (matrix[2, 3] != -1.0f)
             {
                 return false;
             }
