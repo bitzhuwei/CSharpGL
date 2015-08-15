@@ -61,5 +61,33 @@ namespace CSharpGL.Maths
             return (float)result;
         }
 
+        public static vec4 ToVec4(this float[] array, int startIndex = 0)
+        {
+            vec4 result = new vec4(array[startIndex], array[startIndex + 1], array[startIndex + 2], array[startIndex + 3]);
+
+            return result;
+        }
+
+        public static vec3 ToVec3(this float[] array, int startIndex = 0)
+        {
+            vec3 result = new vec3(array[startIndex], array[startIndex + 1], array[startIndex + 2]);
+
+            return result;
+        }
+
+        public static vec2 ToVec2(this float[] array, int startIndex = 0)
+        {
+            vec2 result = new vec2(array[startIndex], array[startIndex + 1]);
+
+            return result;
+        }
+
+        public static mat4 ToMat4(this float[] values, int startIndex = 0)
+        {
+            mat4 result = new mat4(
+                values.ToVec4(startIndex + 0), values.ToVec4(startIndex + 4), values.ToVec4(startIndex + 8), values.ToVec4(startIndex + 12));
+
+            return result;
+        }
     }
 }
