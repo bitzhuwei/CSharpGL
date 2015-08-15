@@ -17,9 +17,10 @@ namespace CSharpGL.Winforms.Demo
             InitializeComponent();
         }
 
-        private void btnUnmanagedArray_Click(object sender, EventArgs e)
+        private void btnBasis_Click(object sender, EventArgs e)
         {
-            UnmanagedArrayTest.TypicalScene();
+            TestUnmanagedArray.TypicalScene();
+            TestProjectionFunctions.TypicalScene();
             string message = string.Format("{0}", "All successfully done!");
             MessageBox.Show(message, "tip", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

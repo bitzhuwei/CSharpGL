@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CSharpGL.Winforms.Demo
 {
-    class UnmanagedArrayTest
+    class TestUnmanagedArray
     {
         internal static void TypicalScene()
         {
