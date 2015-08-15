@@ -5836,9 +5836,9 @@ namespace CSharpGL
         public const uint GL_DEBUG_SEVERITY_NOTIFICATION_ARB = 0x9149;
 
         public static void DebugMessageControl(
-            uint source,
-            uint type,
-            uint severity,
+            CSharpGL.Enumerations.DebugMessageControlSource source,
+            CSharpGL.Enumerations.DebugMessageControlType type,
+            CSharpGL.Enumerations.DebugMessageControlSeverity severity,
             int count,
             int[] ids,
             bool enabled)
@@ -5846,13 +5846,30 @@ namespace CSharpGL
             GetDelegateFor<glDebugMessageControl>()(source, type, severity, count, ids, enabled);
         }
         private delegate void glDebugMessageControl(
-            uint source,
-            uint type,
-            uint severity,
+            CSharpGL.Enumerations.DebugMessageControlSource source,
+            CSharpGL.Enumerations.DebugMessageControlType type,
+            CSharpGL.Enumerations.DebugMessageControlSeverity severity,
             int count,
             int[] ids,
             bool enabled);
 
+        public static void DebugMessageInsert(
+            CSharpGL.Enumerations.DebugSource source,
+            CSharpGL.Enumerations.DebugType type,
+            uint id,
+            CSharpGL.Enumerations.DebugSeverity severity,
+            int length,
+            StringBuilder buf)
+        {
+            GetDelegateFor<glDebugMessageInsert>()(source, type, id, severity, length, buf);
+        }
+        private delegate void glDebugMessageInsert(
+            CSharpGL.Enumerations.DebugSource source,
+            CSharpGL.Enumerations.DebugType type,
+            uint id,
+            CSharpGL.Enumerations.DebugSeverity severity,
+            int length,
+            StringBuilder buf);
 
 
         #endregion debugging and profiling

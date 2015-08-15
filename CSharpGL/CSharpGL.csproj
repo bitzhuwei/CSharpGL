@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\DebugMessageControlParams.cs" />
     <Compile Include="Enumerations\DEBUGPROCParams.cs" />
     <Compile Include="Enumerations\GetTarget.cs" />
     <Compile Include="Enumerations\Buffer.cs" />

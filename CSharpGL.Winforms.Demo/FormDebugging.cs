@@ -309,7 +309,22 @@ namespace CSharpGL.Winforms.Demo
 
             GL.DebugMessageCallback(callback, IntPtr.Zero);
 
-            GL.DebugMessageControl(GL.GL_DONT_CARE, GL.GL_DONT_CARE, GL.GL_DONT_CARE, 0, null, true);
+            //GL.DebugMessageControl(GL.GL_DONT_CARE, GL.GL_DONT_CARE, GL.GL_DONT_CARE, 0, null, true);
+            GL.DebugMessageControl(
+                 Enumerations.DebugMessageControlSource.DontCare,
+                 Enumerations.DebugMessageControlType.DontCare,
+                  Enumerations.DebugMessageControlSeverity.DontCare,
+                  0, null, true);
+
+            StringBuilder builder = new StringBuilder();
+            builder.Append("hello, this is app!");
+            GL.DebugMessageInsert(
+                Enumerations.DebugSource.APPLICATION_ARB,
+                Enumerations.DebugType.OTHER_ARB,
+                0x4752415A,
+                Enumerations.DebugSeverity.HIGH_ARB,
+                -1,
+                builder);
         }
 
         private void callback(CSharpGL.Enumerations.DebugSource source,
