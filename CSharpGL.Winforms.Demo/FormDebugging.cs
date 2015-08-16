@@ -297,9 +297,13 @@ namespace CSharpGL.Winforms.Demo
         }
 
         CSharpGL.GL.DEBUGPROC callback;
+        private FormWhiteBoard frmWhiteBoard;
 
         private void FormDebugging_Load(object sender, EventArgs e)
         {
+            frmWhiteBoard = new FormWhiteBoard();
+            frmWhiteBoard.Show();
+
             byte x;
             x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);// x is 0
 
@@ -346,33 +350,41 @@ namespace CSharpGL.Winforms.Demo
             IntPtr userParam)
         {
             DateTime now = DateTime.Now;
-            string time = string.Format("{0:yyyyMMddHHmm}", now);
-            string filename = string.Format("debuggingAndProfiling{0}.txt", time);
-            using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filename, true))
+            
+            StringBuilder builder = new StringBuilder();
             {
-                sw.WriteLine(string.Format("{0:yyyy-MM-dd HH:mm:ss.ffff}:", DateTime.Now));
-                sw.Write("source: ");
-                sw.Write(source); sw.Write(", ");
-                sw.Write("type: ");
-                sw.Write(type); sw.Write(", ");
-                sw.Write("id: ");
-                sw.Write(id); sw.Write(", ");
-                sw.Write("severity: ");
-                sw.Write(severity); sw.Write(", ");
-                sw.Write("length: ");
-                sw.Write(length); sw.Write(", ");
-                sw.Write("message: ");
+                builder.AppendLine(string.Format("{0:yyyy-MM-dd HH:mm:ss.ffff}:", now));
+                builder.Append("source: ");
+                builder.Append(source); builder.Append(", ");
+                builder.Append("type: ");
+                builder.Append(type); builder.Append(", ");
+                builder.Append("id: ");
+                builder.Append(id); builder.Append(", ");
+                builder.Append("severity: ");
+                builder.Append(severity); builder.Append(", ");
+                builder.Append("length: ");
+                builder.Append(length); builder.Append(", ");
+                builder.Append("message: ");
                 if (message != null)
                 {
-                    sw.Write(message.ToString()); sw.Write(", ");
+                    builder.Append(message.ToString()); builder.Append(", ");
                 }
                 else
                 {
-                    sw.Write("<null>"); sw.Write(", ");
+                    builder.Append("<null>"); builder.Append(", ");
                 }
-                sw.Write("userParam: ");
-                sw.Write(userParam);
-                sw.WriteLine();
+                builder.Append("userParam: ");
+                builder.Append(userParam);
+                builder.AppendLine();
+            }
+
+            string text = builder.ToString();
+            this.frmWhiteBoard.AppendText(text);
+
+            string filename = string.Format("debuggingAndProfiling{0:yyyyMMddHHmm}.txt", now);
+            using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filename, true))
+            {
+                sw.Write(text); 
             }
         }
     }

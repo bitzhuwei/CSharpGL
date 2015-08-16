@@ -125,6 +125,12 @@
     <Compile Include="FormSimpleUIAxis.Designer.cs">
       <DependentUpon>FormSimpleUIAxis.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormWhiteBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWhiteBoard.Designer.cs">
+      <DependentUpon>FormWhiteBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormWholeFontTextureElement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSimpleUIAxis.resx">
       <DependentUpon>FormSimpleUIAxis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWhiteBoard.resx">
+      <DependentUpon>FormWhiteBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWholeFontTextureElement.resx">
       <DependentUpon>FormWholeFontTextureElement.cs</DependentUpon>
