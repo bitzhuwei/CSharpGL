@@ -5792,6 +5792,8 @@ namespace CSharpGL
 
         #region debugging and profiling
 
+        public const uint GL_DEBUG_OUTPUT = 0x92E0;
+
         // https://www.opengl.org/registry/specs/ARB/debug_output.txt
         // https://www.opengl.org/wiki/Debug_Output
         /// <summary>

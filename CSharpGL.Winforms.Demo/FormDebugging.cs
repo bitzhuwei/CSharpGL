@@ -305,6 +305,14 @@ namespace CSharpGL.Winforms.Demo
             frmWhiteBoard.Show();
 
             byte x;
+            x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT);// x is 1
+
+            GL.Disable(GL.GL_DEBUG_OUTPUT);
+            x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT);// x is 0
+
+            GL.Enable(GL.GL_DEBUG_OUTPUT);
+            x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT);// x is 1
+
             x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);// x is 0
 
             GL.Disable(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
