@@ -845,7 +845,14 @@ namespace CSharpGL
             }
 
             IntPtr context = Win32.wglGetCurrentContext();
-            debugProcDict.Add(context, callback);
+            if (debugProcDict.ContainsKey(context))
+            {
+                debugProcDict[context] = callback;
+            }
+            else
+            {
+                debugProcDict.Add(context, callback);
+            }
 
             GetDelegateFor<glDebugMessageCallback>()(innerCallbackProc, userParam);
         }

@@ -316,9 +316,9 @@ namespace CSharpGL.Winforms.Demo
             UnmanagedArray<float> userParam = new UnmanagedArray<float>(3);
             userParam[0] = 0.125f; userParam[1] = 1.4142f; userParam[2] = float.MaxValue;
 
-            callback = new GL.DebugProc(this.callbackProc);
+            //callback = new GL.DebugProc(this.callbackProc);
 
-            GL.DebugMessageCallback(callback, userParam.Header);
+            GL.DebugMessageCallback(this.callbackProc, userParam.Header);
 
             //GL.DebugMessageControl(GL.GL_DONT_CARE, GL.GL_DONT_CARE, GL.GL_DONT_CARE, 0, null, true);
             GL.DebugMessageControl(
