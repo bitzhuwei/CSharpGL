@@ -5868,6 +5868,8 @@ namespace CSharpGL
 
         #endregion debugging and profiling
 
+
+
         #region transform feedbacks
 
         public static void GenTransformFeedbacks(int n, uint[] ids)
@@ -5911,6 +5913,9 @@ namespace CSharpGL
             GetDelegateFor<glResumeTransformFeedback>()();
         }
         private delegate void glResumeTransformFeedback();
+
+        public const uint GL_ATOMIC_COUNTER_BUFFER = 0x92C0;
+        public const uint GL_UNIFORM_BUFFER = 0x8A11;
 
         #endregion transform feedbacks
     }

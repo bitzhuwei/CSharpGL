@@ -936,9 +936,13 @@ namespace CSharpGL
         {
             BindTransformFeedback((uint)target, id);
         }
-        public static void BindBufferBase(BindBufferBaseTarget target, uint index, uint buffer)
+        public static void BindBufferBase(BindBufferTarget target, uint index, uint buffer)
         {
             GetDelegateFor<glBindBufferBase>()((uint)target, index, buffer);
+        }
+        public static void BindBufferRange(BindBufferTarget target, uint index, uint buffer, int offset, int size)
+        {
+            BindBufferRange((uint)target, index, buffer, offset, size);
         }
         public static void BeginTransformFeedback(BeginTransformFeedbackPrimitiveMode primitiveMode)
         {
