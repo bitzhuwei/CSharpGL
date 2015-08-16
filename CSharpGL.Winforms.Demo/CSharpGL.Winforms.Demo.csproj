@@ -113,6 +113,12 @@
     <Compile Include="FormTest.Designer.cs">
       <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTransformFeedback.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTransformFeedback.Designer.cs">
+      <DependentUpon>FormTransformFeedback.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTranslateOnScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormTest.resx">
       <DependentUpon>FormTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTransformFeedback.resx">
+      <DependentUpon>FormTransformFeedback.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTranslateOnScreen.resx">
       <DependentUpon>FormTranslateOnScreen.cs</DependentUpon>

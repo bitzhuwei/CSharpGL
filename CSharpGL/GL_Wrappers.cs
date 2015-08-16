@@ -829,5 +829,98 @@ namespace CSharpGL
         {
             GL.PolygonMode((uint)face, (uint)mode);
         }
+
+        #region debugging and profiling
+
+        /// <summary>
+        /// 设置Debug模式的回调函数。
+        /// </summary>
+        /// <param name="callback"></param>
+        /// <param name="userParam">建议使用<see cref="UnmanagedArray.Header"/></param>
+        public static void DebugMessageCallback(DebugProc callback, IntPtr userParam)
+        {
+            if (innerCallbackProc == null)
+            {
+                innerCallbackProc = new DEBUGPROC(innerCallback);
+            }
+
+            IntPtr context = Win32.wglGetCurrentContext();
+            debugProcDict.Add(context, callback);
+
+            GetDelegateFor<glDebugMessageCallback>()(innerCallbackProc, userParam);
+        }
+
+        static readonly Dictionary<IntPtr, DebugProc> debugProcDict = new Dictionary<IntPtr, DebugProc>();
+        static DEBUGPROC innerCallbackProc;
+
+        private static void innerCallback(
+            uint source, uint type, uint id, uint severity, int length, StringBuilder message, IntPtr userParam)
+        {
+            IntPtr context = Win32.wglGetCurrentContext();
+            DebugProc proc = debugProcDict[context];
+
+            if (proc != null)
+            {
+                proc(
+                    (Enumerations.DebugSource)source,
+                    (Enumerations.DebugType)type,
+                    id,
+                    (Enumerations.DebugSeverity)severity,
+                    length,
+                    message,
+                    userParam);
+            }
+        }
+
+        public delegate void DebugProc(
+            CSharpGL.Enumerations.DebugSource source,
+            CSharpGL.Enumerations.DebugType type,
+            uint id,
+            CSharpGL.Enumerations.DebugSeverity severity,
+            int length,
+            StringBuilder message,
+            IntPtr userParam);
+
+        /// <summary>
+        /// 设置哪些属性的消息能够/不能被传入callback函数。
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="type"></param>
+        /// <param name="severity"></param>
+        /// <param name="count"></param>
+        /// <param name="ids"></param>
+        /// <param name="enabled"></param>
+        public static void DebugMessageControl(
+            CSharpGL.Enumerations.DebugMessageControlSource source,
+            CSharpGL.Enumerations.DebugMessageControlType type,
+            CSharpGL.Enumerations.DebugMessageControlSeverity severity,
+            int count,
+            int[] ids,
+            bool enabled)
+        {
+            DebugMessageControl((uint)source, (uint)type, (uint)severity, count, ids, enabled);
+        }
+
+        /// <summary>
+        /// 用户App或工具用此函数可向Debug流写入一条消息。
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        /// <param name="severity"></param>
+        /// <param name="length">用-1即可。</param>
+        /// <param name="buf"></param>
+        public static void DebugMessageInsert(
+            CSharpGL.Enumerations.DebugSource source,
+            CSharpGL.Enumerations.DebugType type,
+            uint id,
+            CSharpGL.Enumerations.DebugSeverity severity,
+            int length,
+            StringBuilder buf)
+        {
+            DebugMessageInsert((uint)source, (uint)type, id, (uint)severity, length, buf);
+        }
+
+        #endregion debugging and profiling
     }
 }

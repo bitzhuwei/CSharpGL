@@ -5809,13 +5809,7 @@ namespace CSharpGL
 
         private delegate void glDebugMessageCallback(DEBUGPROC callback, IntPtr userParam);
         public delegate void DEBUGPROC(
-            CSharpGL.Enumerations.DebugSource source,
-            CSharpGL.Enumerations.DebugType type,
-            uint id,
-            CSharpGL.Enumerations.DebugSeverity severity,
-            int length,
-            StringBuilder message,
-            IntPtr userParam);
+            uint source, uint type, uint id, uint severity, int length, StringBuilder message, IntPtr userParam);
 
         public const uint GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB = 0x8242;
 
@@ -5848,22 +5842,12 @@ namespace CSharpGL
         /// <param name="ids"></param>
         /// <param name="enabled"></param>
         public static void DebugMessageControl(
-            CSharpGL.Enumerations.DebugMessageControlSource source,
-            CSharpGL.Enumerations.DebugMessageControlType type,
-            CSharpGL.Enumerations.DebugMessageControlSeverity severity,
-            int count,
-            int[] ids,
-            bool enabled)
+            uint source, uint type, uint severity, int count, int[] ids, bool enabled)
         {
             GetDelegateFor<glDebugMessageControl>()(source, type, severity, count, ids, enabled);
         }
         private delegate void glDebugMessageControl(
-            CSharpGL.Enumerations.DebugMessageControlSource source,
-            CSharpGL.Enumerations.DebugMessageControlType type,
-            CSharpGL.Enumerations.DebugMessageControlSeverity severity,
-            int count,
-            int[] ids,
-            bool enabled);
+            uint source, uint type, uint severity, int count, int[] ids, bool enabled);
 
         /// <summary>
         /// 用户App或工具用此函数可向Debug流写入一条消息。
@@ -5875,24 +5859,31 @@ namespace CSharpGL
         /// <param name="length">用-1即可。</param>
         /// <param name="buf"></param>
         public static void DebugMessageInsert(
-            CSharpGL.Enumerations.DebugSource source,
-            CSharpGL.Enumerations.DebugType type,
-            uint id,
-            CSharpGL.Enumerations.DebugSeverity severity,
-            int length,
-            StringBuilder buf)
+            uint source, uint type, uint id, uint severity, int length, StringBuilder buf)
         {
             GetDelegateFor<glDebugMessageInsert>()(source, type, id, severity, length, buf);
         }
         private delegate void glDebugMessageInsert(
-            CSharpGL.Enumerations.DebugSource source,
-            CSharpGL.Enumerations.DebugType type,
-            uint id,
-            CSharpGL.Enumerations.DebugSeverity severity,
-            int length,
-            StringBuilder buf);
+            uint source, uint type, uint id, uint severity, int length, StringBuilder buf);
 
 
         #endregion debugging and profiling
+
+        #region transform feedbacks
+
+        public static void GenTransformFeedbacks(int n, uint[] ids)
+        {
+            GetDelegateFor<glGenTransformFeedbacks>()(n, ids);
+        }
+
+        private delegate void glGenTransformFeedbacks(int n, uint[] ids);
+
+        public static void BindTransformFeedback(uint target, uint id)
+        {
+            GetDelegateFor<glBindTransformFeedback>()(target, id);
+        }
+        private delegate void glBindTransformFeedback(uint target, uint id);
+
+        #endregion transform feedbacks
     }
 }

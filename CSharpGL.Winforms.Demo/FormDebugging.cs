@@ -296,7 +296,7 @@ namespace CSharpGL.Winforms.Demo
             }
         }
 
-        CSharpGL.GL.DEBUGPROC callback;
+        CSharpGL.GL.DebugProc callback;
         private FormWhiteBoard frmWhiteBoard;
 
         private void FormDebugging_Load(object sender, EventArgs e)
@@ -316,7 +316,7 @@ namespace CSharpGL.Winforms.Demo
             UnmanagedArray<float> userParam = new UnmanagedArray<float>(3);
             userParam[0] = 0.125f; userParam[1] = 1.4142f; userParam[2] = float.MaxValue;
 
-            callback = new GL.DEBUGPROC(this.callbackProc);
+            callback = new GL.DebugProc(this.callbackProc);
 
             GL.DebugMessageCallback(callback, userParam.Header);
 
