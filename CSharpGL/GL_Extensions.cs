@@ -5836,7 +5836,7 @@ namespace CSharpGL
         public const uint GL_DEBUG_SEVERITY_HIGH_ARB = 0x9146;
         public const uint GL_DEBUG_SEVERITY_MEDIUM_ARB = 0x9147;
         public const uint GL_DEBUG_SEVERITY_LOW_ARB = 0x9148;
-        public const uint GL_DEBUG_SEVERITY_NOTIFICATION_ARB = 0x9149;
+        //public const uint GL_DEBUG_SEVERITY_NOTIFICATION_ARB = 0x9149;
 
         /// <summary>
         /// 设置哪些属性的消息能够/不能被传入callback函数。
