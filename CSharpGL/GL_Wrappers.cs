@@ -929,5 +929,23 @@ namespace CSharpGL
         }
 
         #endregion debugging and profiling
+
+        #region transform feedback
+
+        public static void BindTransformFeedback(TransformFeedbackTarget target, uint id)
+        {
+            BindTransformFeedback((uint)target, id);
+        }
+        public static void BindBufferBase(BindBufferBaseTarget target, uint index, uint buffer)
+        {
+            GetDelegateFor<glBindBufferBase>()((uint)target, index, buffer);
+        }
+        public static void BeginTransformFeedback(BeginTransformFeedbackPrimitiveMode primitiveMode)
+        {
+            BeginTransformFeedback((uint)primitiveMode);
+        }
+
+
+        #endregion transform feedback
     }
 }

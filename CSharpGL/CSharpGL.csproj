@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\BeginTransformFeedbackPrimitiveMode.cs" />
+    <Compile Include="Enumerations\BindBufferBaseTarget.cs" />
+    <Compile Include="Enumerations\TransformFeedbackTarget.cs" />
     <Compile Include="Enumerations\DebugMessageControlParams.cs" />
     <Compile Include="Enumerations\DEBUGPROCParams.cs" />
     <Compile Include="Enumerations\GetTarget.cs" />

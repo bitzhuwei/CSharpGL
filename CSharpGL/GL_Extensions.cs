@@ -5866,7 +5866,6 @@ namespace CSharpGL
         private delegate void glDebugMessageInsert(
             uint source, uint type, uint id, uint severity, int length, StringBuilder buf);
 
-
         #endregion debugging and profiling
 
         #region transform feedbacks
@@ -5883,6 +5882,35 @@ namespace CSharpGL
             GetDelegateFor<glBindTransformFeedback>()(target, id);
         }
         private delegate void glBindTransformFeedback(uint target, uint id);
+
+        public const uint GL_TRANSFORM_FEEDBACK = 0x8E22;
+        public const uint GL_TRANSFORM_FEEDBACK_BUFFER_PAUSED = 0x8E23;
+        public const uint GL_TRANSFORM_FEEDBACK_BUFFER_ACTIVE = 0x8E24;
+        public const uint GL_TRANSFORM_FEEDBACK_BINDING = 0x8E25;
+
+        public static void IsTransformFeedback(uint id)
+        {
+            GetDelegateFor<glIsTransformFeedback>()(id);
+        }
+        private delegate void glIsTransformFeedback(uint id);
+
+        public static void DeleteTransformFeedbacks(int n, uint[] ids)
+        {
+            GetDelegateFor<glDeleteTransformFeedbacks>()(n, ids);
+        }
+        private delegate void glDeleteTransformFeedbacks(int n, uint[] ids);
+
+        public static void PauseTransformFeedback()
+        {
+            GetDelegateFor<glPauseTransformFeedback>()();
+        }
+        private delegate void glPauseTransformFeedback();
+
+        public static void ResumeTransformFeedback()
+        {
+            GetDelegateFor<glResumeTransformFeedback>()();
+        }
+        private delegate void glResumeTransformFeedback();
 
         #endregion transform feedbacks
     }
