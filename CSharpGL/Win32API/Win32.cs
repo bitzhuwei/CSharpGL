@@ -81,13 +81,19 @@ namespace CSharpGL
         public static extern IntPtr wglGetCurrentContext();
 
         /// <summary>
+        /// The wglGetCurrentDC function obtains a handle to the device context that is associated with the current OpenGL rendering context of the calling thread.
+        /// </summary>
+        /// <returns></returns>
+        [DllImport(OpenGL32, SetLastError = true)]
+        public static extern IntPtr wglGetCurrentDC();
+        /// <summary>
         /// Make the specified render context current.
         /// </summary>
         /// <param name="hdc">The handle to the device context.</param>
         /// <param name="hrc">The handle to the render context.</param>
         /// <returns></returns>
         [DllImport(OpenGL32, SetLastError = true)]
-        public static extern int wglMakeCurrent(IntPtr hdc, IntPtr hrc);
+        public static extern bool wglMakeCurrent(IntPtr hdc, IntPtr hrc);
 
         /// <summary>
         /// Creates a render context from the device context.

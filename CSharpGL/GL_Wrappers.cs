@@ -832,8 +832,10 @@ namespace CSharpGL
 
         #region debugging and profiling
 
+        // TODO: 此函数的'try to remove unused items from rc2ProcDict'部分尚需检测。
         /// <summary>
         /// 设置Debug模式的回调函数。
+        /// <para>此函数的'try to remove unused items from rc2ProcDict'部分尚需检测。</para>
         /// </summary>
         /// <param name="callback"></param>
         /// <param name="userParam">建议使用<see cref="UnmanagedArray.Header"/></param>
@@ -844,27 +846,57 @@ namespace CSharpGL
                 innerCallbackProc = new DEBUGPROC(innerCallback);
             }
 
-            IntPtr context = Win32.wglGetCurrentContext();
-            if (debugProcDict.ContainsKey(context))
+            IntPtr renderContext = Win32.wglGetCurrentContext();
+            IntPtr deviceContext = Win32.wglGetCurrentDC();
+            if (rc2ProcDict.ContainsKey(renderContext))
             {
-                debugProcDict[context] = callback;
+                rc2ProcDict[renderContext] = callback;
+                rc2dcDict[renderContext] = deviceContext;
             }
             else
             {
-                debugProcDict.Add(context, callback);
+                rc2ProcDict.Add(renderContext, callback);
+                rc2dcDict.Add(renderContext, deviceContext);
+                debugProcDictCount++;
+                // try to remove unused items from rc2ProcDict
+                if (debugProcDictCount > maxDebugProcDictCount)
+                {
+                    List<IntPtr> unusedRCList = new List<IntPtr>();
+                    foreach (var item in rc2dcDict)
+                    {
+                        if (!Win32.wglMakeCurrent(item.Value, item.Key))// 这种检测方式可行吗？
+                        {
+                            unusedRCList.Add(item.Key);
+                        }
+                    }
+                    foreach (var item in unusedRCList)
+                    {
+                        rc2ProcDict.Remove(item);
+                        rc2dcDict.Remove(item);
+                    }
+
+                    debugProcDictCount -= unusedRCList.Count;
+
+                    maxDebugProcDictCount = debugProcDictCount + 100;
+
+                    Win32.wglMakeCurrent(renderContext, deviceContext);
+                }
             }
 
             GetDelegateFor<glDebugMessageCallback>()(innerCallbackProc, userParam);
         }
 
-        static readonly Dictionary<IntPtr, DebugProc> debugProcDict = new Dictionary<IntPtr, DebugProc>();
+        static int debugProcDictCount = 0;
+        static int maxDebugProcDictCount = 100;
+        static readonly Dictionary<IntPtr, DebugProc> rc2ProcDict = new Dictionary<IntPtr, DebugProc>();
+        static readonly Dictionary<IntPtr, IntPtr> rc2dcDict = new Dictionary<IntPtr, IntPtr>();
         static DEBUGPROC innerCallbackProc;
 
         private static void innerCallback(
             uint source, uint type, uint id, uint severity, int length, StringBuilder message, IntPtr userParam)
         {
             IntPtr context = Win32.wglGetCurrentContext();
-            DebugProc proc = debugProcDict[context];
+            DebugProc proc = rc2ProcDict[context];
 
             if (proc != null)
             {
