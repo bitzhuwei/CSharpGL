@@ -296,8 +296,9 @@ namespace CSharpGL.Winforms.Demo
             }
         }
 
-        CSharpGL.GL.DebugProc callback;
+        //CSharpGL.GL.DebugProc callback;
         private FormWhiteBoard frmWhiteBoard;
+        private System.Runtime.InteropServices.GCHandle userParamInstance;
 
         private void FormDebugging_Load(object sender, EventArgs e)
         {
@@ -321,14 +322,14 @@ namespace CSharpGL.Winforms.Demo
             GL.Enable(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
             x = GL.IsEnabled(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);// x is 1
 
-            UnmanagedArray<float> userParam = new UnmanagedArray<float>(3);
-            userParam[0] = 0.125f; userParam[1] = 1.4142f; userParam[2] = float.MaxValue;
+            // 必须是struct
+            UserParamStruct data = new UserParamStruct() { integer = 123, handle = this.glCanvas1.Handle };
+            this.userParamInstance = System.Runtime.InteropServices.GCHandle.Alloc(
+                data, System.Runtime.InteropServices.GCHandleType.Pinned);
+            IntPtr ptr = userParamInstance.AddrOfPinnedObject();
 
-            //callback = new GL.DebugProc(this.callbackProc);
+            GL.DebugMessageCallback(this.callbackProc, ptr);
 
-            GL.DebugMessageCallback(this.callbackProc, userParam.Header);
-
-            //GL.DebugMessageControl(GL.GL_DONT_CARE, GL.GL_DONT_CARE, GL.GL_DONT_CARE, 0, null, true);
             GL.DebugMessageControl(
                  Enumerations.DebugMessageControlSource.DONT_CARE,
                  Enumerations.DebugMessageControlType.DONT_CARE,
@@ -349,6 +350,17 @@ namespace CSharpGL.Winforms.Demo
                 builder);
         }
 
+        struct UserParamStruct
+        {
+            public int integer;
+            public IntPtr handle;
+        }
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            base.OnHandleDestroyed(e);
+
+            this.userParamInstance.Free();
+        }
         private void callbackProc(CSharpGL.Enumerations.DebugSource source,
             CSharpGL.Enumerations.DebugType type,
             uint id,
@@ -357,8 +369,10 @@ namespace CSharpGL.Winforms.Demo
             StringBuilder message,
             IntPtr userParam)
         {
+            var obj = System.Runtime.InteropServices.Marshal.PtrToStructure(userParam, typeof(UserParamStruct));
+
             DateTime now = DateTime.Now;
-            
+
             StringBuilder builder = new StringBuilder();
             {
                 builder.AppendLine(string.Format("{0:yyyy-MM-dd HH:mm:ss.ffff}:", now));
@@ -392,7 +406,7 @@ namespace CSharpGL.Winforms.Demo
             string filename = string.Format("debuggingAndProfiling{0:yyyyMMddHHmm}.txt", now);
             using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filename, true))
             {
-                sw.Write(text); 
+                sw.Write(text);
             }
         }
     }
