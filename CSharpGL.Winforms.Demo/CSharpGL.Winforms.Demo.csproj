@@ -148,6 +148,9 @@
     <Compile Include="CameraDictionary.cs" />
     <Compile Include="TestProjectionFunctions.cs" />
     <Compile Include="TestUnmanagedArray.cs" />
+    <None Include="TransformFeedback\feedback.frag" />
+    <None Include="TransformFeedback\feedback.vert" />
+    <None Include="TransformFeedback\transform.vert" />
     <Compile Include="WholeFontTextureElement.cs" />
     <EmbeddedResource Include="FormCylinderElement.resx">
       <DependentUpon>FormCylinderElement.cs</DependentUpon>
