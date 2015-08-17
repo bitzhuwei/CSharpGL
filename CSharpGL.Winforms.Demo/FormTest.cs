@@ -92,6 +92,11 @@ namespace CSharpGL.Winforms.Demo
             (new FormDebugging()).Show();
         }
 
+        private void btnWell_Click(object sender, EventArgs e)
+        {
+            (new FormWell()).Show();
+        }
+
 
     }
 }

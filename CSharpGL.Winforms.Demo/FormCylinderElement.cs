@@ -32,7 +32,7 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotator(camera);
 
-            var faceCount = 18;
+            var faceCount = 3;
             var radius = 1f;
             var height = 3f;
             element = new CylinderElement(radius, height, faceCount);

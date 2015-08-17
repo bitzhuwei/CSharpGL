@@ -42,6 +42,7 @@
             this.btnSimpleUIColorPalette = new System.Windows.Forms.Button();
             this.btnSimpleUICube = new System.Windows.Forms.Button();
             this.btnDebugging = new System.Windows.Forms.Button();
+            this.btnWell = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -226,16 +227,30 @@
             this.btnDebugging.UseVisualStyleBackColor = true;
             this.btnDebugging.Click += new System.EventHandler(this.btnDebugging_Click);
             // 
+            // btnWell
+            // 
+            this.btnWell.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnWell.Location = new System.Drawing.Point(13, 533);
+            this.btnWell.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWell.Name = "btnWell";
+            this.btnWell.Size = new System.Drawing.Size(353, 29);
+            this.btnWell.TabIndex = 4;
+            this.btnWell.Text = "Well";
+            this.btnWell.UseVisualStyleBackColor = true;
+            this.btnWell.Click += new System.EventHandler(this.btnWell_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 567);
+            this.ClientSize = new System.Drawing.Size(379, 587);
             this.Controls.Add(this.btnWholeFontTextureElement);
             this.Controls.Add(this.btnCylinderElement);
             this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnCamera);
             this.Controls.Add(this.btnSimpleUICube);
+            this.Controls.Add(this.btnWell);
             this.Controls.Add(this.btnDebugging);
             this.Controls.Add(this.btnSimpleUIColorPalette);
             this.Controls.Add(this.btnSimpleUIAxis);
@@ -268,5 +283,6 @@
         private System.Windows.Forms.Button btnSimpleUIColorPalette;
         private System.Windows.Forms.Button btnSimpleUICube;
         private System.Windows.Forms.Button btnDebugging;
+        private System.Windows.Forms.Button btnWell;
     }
 }

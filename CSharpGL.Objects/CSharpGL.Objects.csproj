@@ -67,6 +67,9 @@
     <Compile Include="GLColor.cs" />
     <Compile Include="SceneElements\CylinderElement.cs" />
     <Compile Include="SceneElements\PyramidElement.cs" />
+    <Compile Include="SceneElements\Well.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Shaders\ShaderCompilationException.cs" />
     <Compile Include="Shaders\Shader.cs" />
     <Compile Include="ManifestResourceLoader.cs" />
@@ -137,6 +140,8 @@
     <EmbeddedResource Include="SceneElements\CylinderElement.vert" />
     <EmbeddedResource Include="SceneElements\PyramidElement.vert" />
     <EmbeddedResource Include="SceneElements\PyramidElement.frag" />
+    <EmbeddedResource Include="SceneElements\Well.frag" />
+    <EmbeddedResource Include="SceneElements\Well.vert" />
     <None Include="Texts\FreeTypes\freetype.exp" />
     <None Include="Texts\FreeTypes\freetype.lib" />
     <None Include="Texts\Modern OpenGL Text Rendering.mht" />
