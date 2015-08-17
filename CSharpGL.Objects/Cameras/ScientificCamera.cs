@@ -12,6 +12,10 @@ namespace CSharpGL.Objects.Cameras
         IPerspectiveViewCamera, IOrthoViewCamera,
         IViewCamera, IPerspectiveCamera, IOrthoCamera
     {
+        public static readonly vec3 defaultTarget = new vec3();
+        public static readonly vec3 defaultPosition = new vec3(0, 0, 1);
+        public static readonly vec3 defaultUpVector = new vec3(0, 1, 0);
+
         static int count = 0;
 
         public string Name { get; set; }
@@ -46,9 +50,9 @@ namespace CSharpGL.Objects.Cameras
             orthoCamera.Near = -10000;
             orthoCamera.Far = 10000;
 
-            this.Target = new vec3(0, 0, 0);
-            this.UpVector = new vec3(0, 1, 0);
-            this.Position = new vec3(0, 0, 1);
+            this.Target = defaultTarget;
+            this.Position = defaultPosition;
+            this.UpVector = defaultUpVector;
 
             this.CameraType = cameraType;
         }

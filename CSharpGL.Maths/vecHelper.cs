@@ -49,6 +49,19 @@ namespace CSharpGL.Maths
         }
 
         /// <summary>
+        /// 计算内积
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
+        public static float ScalarProduct(this vec3 vector, vec3 rhs)
+        {
+            float result = vector.x * rhs.x + vector.y * rhs.y + vector.z * rhs.z;
+
+            return result;
+        }
+
+        /// <summary>
         /// 获取向量长度
         /// </summary>
         /// <param name="vector"></param>
