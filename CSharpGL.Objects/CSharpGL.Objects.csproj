@@ -66,6 +66,8 @@
     <Compile Include="Cameras\ViewTypes.cs" />
     <Compile Include="GLColor.cs" />
     <Compile Include="SceneElements\CylinderElement.cs" />
+    <Compile Include="SceneElements\FontResource.cs" />
+    <Compile Include="SceneElements\PointSpriteFontElement.cs" />
     <Compile Include="SceneElements\PyramidElement.cs" />
     <Compile Include="SceneElements\Well.cs">
       <SubType>Code</SubType>
@@ -128,6 +130,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cameras\Camera.png" />
+    <EmbeddedResource Include="SceneElements\LucidaTypewriterRegular.ttf.png" />
+    <EmbeddedResource Include="SceneElements\LucidaTypewriterRegular.ttf.xml" />
     <Content Include="Shaders\GLSLVersion.html" />
     <Content Include="Texts\FreeTypes\freetype.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -142,6 +146,8 @@
     <EmbeddedResource Include="SceneElements\PyramidElement.frag" />
     <EmbeddedResource Include="SceneElements\Well.frag" />
     <EmbeddedResource Include="SceneElements\Well.vert" />
+    <EmbeddedResource Include="SceneElements\PointSpriteFontElement.frag" />
+    <EmbeddedResource Include="SceneElements\PointSpriteFontElement.vert" />
     <None Include="Texts\FreeTypes\freetype.exp" />
     <None Include="Texts\FreeTypes\freetype.lib" />
     <None Include="Texts\Modern OpenGL Text Rendering.mht" />
