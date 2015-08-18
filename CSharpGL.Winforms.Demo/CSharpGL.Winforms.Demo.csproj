@@ -71,6 +71,12 @@
     <Compile Include="FormLegacySimpleUIRect.Designer.cs">
       <DependentUpon>FormLegacySimpleUIRect.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPointSpriteFontElement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPointSpriteFontElement.Designer.cs">
+      <DependentUpon>FormPointSpriteFontElement.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSimpleUIColorIndicator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormLegacySimpleUIRect.resx">
       <DependentUpon>FormLegacySimpleUIRect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPointSpriteFontElement.resx">
+      <DependentUpon>FormPointSpriteFontElement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSimpleUIColorIndicator.resx">
       <DependentUpon>FormSimpleUIColorIndicator.cs</DependentUpon>

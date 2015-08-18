@@ -43,6 +43,8 @@
             this.btnSimpleUICube = new System.Windows.Forms.Button();
             this.btnDebugging = new System.Windows.Forms.Button();
             this.btnWell = new System.Windows.Forms.Button();
+            this.btnAlwaysFaceCamera = new System.Windows.Forms.Button();
+            this.btnFormPointSpriteFontElement = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -240,16 +242,45 @@
             this.btnWell.UseVisualStyleBackColor = true;
             this.btnWell.Click += new System.EventHandler(this.btnWell_Click);
             // 
+            // btnAlwaysFaceCamera
+            // 
+            this.btnAlwaysFaceCamera.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAlwaysFaceCamera.Enabled = false;
+            this.btnAlwaysFaceCamera.Location = new System.Drawing.Point(13, 570);
+            this.btnAlwaysFaceCamera.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAlwaysFaceCamera.Name = "btnAlwaysFaceCamera";
+            this.btnAlwaysFaceCamera.Size = new System.Drawing.Size(353, 29);
+            this.btnAlwaysFaceCamera.TabIndex = 4;
+            this.btnAlwaysFaceCamera.Text = "Always Face Camera";
+            this.btnAlwaysFaceCamera.UseVisualStyleBackColor = true;
+            this.btnAlwaysFaceCamera.Click += new System.EventHandler(this.btnAlwaysFaceCamera_Click);
+            // 
+            // btnFormPointSpriteFontElement
+            // 
+            this.btnFormPointSpriteFontElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFormPointSpriteFontElement.Location = new System.Drawing.Point(13, 607);
+            this.btnFormPointSpriteFontElement.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormPointSpriteFontElement.Name = "btnFormPointSpriteFontElement";
+            this.btnFormPointSpriteFontElement.Size = new System.Drawing.Size(353, 29);
+            this.btnFormPointSpriteFontElement.TabIndex = 4;
+            this.btnFormPointSpriteFontElement.Text = "FormPointSpriteFontElement";
+            this.btnFormPointSpriteFontElement.UseVisualStyleBackColor = true;
+            this.btnFormPointSpriteFontElement.Click += new System.EventHandler(this.btnFormPointSpriteFontElement_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 587);
+            this.ClientSize = new System.Drawing.Size(379, 659);
             this.Controls.Add(this.btnWholeFontTextureElement);
             this.Controls.Add(this.btnCylinderElement);
             this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnCamera);
             this.Controls.Add(this.btnSimpleUICube);
+            this.Controls.Add(this.btnFormPointSpriteFontElement);
+            this.Controls.Add(this.btnAlwaysFaceCamera);
             this.Controls.Add(this.btnWell);
             this.Controls.Add(this.btnDebugging);
             this.Controls.Add(this.btnSimpleUIColorPalette);
@@ -284,5 +315,7 @@
         private System.Windows.Forms.Button btnSimpleUICube;
         private System.Windows.Forms.Button btnDebugging;
         private System.Windows.Forms.Button btnWell;
+        private System.Windows.Forms.Button btnAlwaysFaceCamera;
+        private System.Windows.Forms.Button btnFormPointSpriteFontElement;
     }
 }

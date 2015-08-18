@@ -36,21 +36,36 @@ namespace CSharpGL.Objects.SceneElements
         public const string strprojectionMatrix = "projectionMatrix";
         public const string strviewMatrix = "viewMatrix";
         public const string strmodelMatrix = "modelMatrix";
+        public const string strColor = "color";
+        public const string strtex = "tex";
         private uint attributeIndexPosition;
         private int fontSize;
         private int textureWidth;
+        public vec3 textColor;
 
         /// <summary>
         /// 用shader+VAO+组装的texture显示字符串
         /// </summary>
         /// <param name="content">要显示的字符串</param>
         /// <param name="position">字符串的中心位置</param>
-        public PointSpriteFontElement(string content, vec3 position, int fontSize = 32)
+        /// <param name="color">文字颜色，默认为黑色</param>
+        /// <param name="fontSize">字体大小，默认为32</param>
+        public PointSpriteFontElement(string content, vec3 position, GLColor color = null, int fontSize = 32)
         {
             if (fontSize >= maxPointSize) { throw new ArgumentException(); }
 
             this.content = content;
             this.position = position;
+
+            if (color == null)
+            {
+                textColor = new vec3(0, 0, 0);
+            }
+            else
+            {
+                textColor = new vec3(color.R, color.G, color.B);
+            }
+
             this.fontSize = fontSize;
         }
 
@@ -118,28 +133,30 @@ namespace CSharpGL.Objects.SceneElements
                 int currentTextureWidth = 0;
                 int currentWidthPosition = 0;
                 int currentHeightPosition = 0;
-                if (totalLength * this.fontSize / FontResource.Instance.FontHeight> maxPointSize)// 超过1行能显示的内容
+                if (totalLength * this.fontSize / FontResource.Instance.FontHeight > maxPointSize)// 超过1行能显示的内容
                 {
                     currentTextureWidth = maxPointSize * FontResource.Instance.FontHeight / this.fontSize;
 
                     int lineCount = (glyphsLength - 1) / currentTextureWidth + 1;
                     // 确保整篇文字的高度在贴图中间。
-                    currentHeightPosition = (glyphsLength - FontResource.Instance.FontHeight * lineCount) / 2;
+                    currentHeightPosition = (currentTextureWidth - FontResource.Instance.FontHeight * lineCount) / 2
+                        - FontResource.Instance.FontHeight / 2;
                 }
                 else//只在一行内即可显示所有字符
                 {
+                    currentTextureWidth = totalLength;
+
                     if (totalLength >= FontResource.Instance.FontHeight)
                     {
-                        currentHeightPosition = (glyphsLength - FontResource.Instance.FontHeight) / 2;
+                        // 确保整篇文字的高度在贴图中间。
+                        currentHeightPosition = (currentTextureWidth - FontResource.Instance.FontHeight) / 2;
+                            //- FontResource.Instance.FontHeight / 2;
                     }
                     else
                     {
-                        // 确保整篇文字的高度在贴图中间。
                         currentWidthPosition = (FontResource.Instance.FontHeight - glyphsLength) / 2;
                         glyphsLength = FontResource.Instance.FontHeight;
                     }
-
-                    currentTextureWidth = totalLength;
                 }
 
                 //this.textureWidth = textureWidth * this.fontSize / FontResource.Instance.FontHeight;
@@ -294,8 +311,16 @@ namespace CSharpGL.Objects.SceneElements
             //  Bind the out vertex array.
             GL.BindVertexArray(vao[0]);
             //int size = this.fontSize * this.textureWidth;
-            int size = this.textureWidth / 8;
+            int size = this.textureWidth;
             //if (size > maxTextureWidth) { size = maxTextureWidth; }
+            //if (size > maxPointSize)
+            //{
+            //    GL.PointParameter(GL.GL_POINT_SIZE_MAX_ARB, size);
+            //    maxPointSize = size;
+            //}
+            //int[] pointSizeRange = new int[2];
+            //GL.GetInteger(GetTarget.PointSizeRange, pointSizeRange);
+
             GL.PointSize(size);
 
             GL.DrawArrays((uint)this.primitiveMode, 0, 1);

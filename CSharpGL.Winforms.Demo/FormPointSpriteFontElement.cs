@@ -16,9 +16,12 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormPointSpriteFontElement : Form
     {
+        float translateX = 0, translateY = 0, translateZ = 0;
+
         SatelliteRotator rotator;
         ScientificCamera camera;
-        PointSpriteFontElement element;
+        PointSpriteFontElement textElement;
+        PyramidElement pyramidElement;
 
         public FormPointSpriteFontElement()
         {
@@ -37,13 +40,27 @@ namespace CSharpGL.Winforms.Demo
             rotator = new SatelliteRotator(this.camera);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
-            element = new PointSpriteFontElement("good!", new vec3(0, 0, 0));
-            element = new PointSpriteFontElement("good good!", new vec3(0, 0, 0));
-            element = new PointSpriteFontElement("QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm", new vec3(0, 0, 0));
-            element.Initialize();
+            textElement = new PointSpriteFontElement("good!", new vec3(0, 0, 0));
+            textElement = new PointSpriteFontElement("good good!", new vec3(0, 0, 0));
+            textElement = new PointSpriteFontElement("good good good!", new vec3(0, 0, 0));
+            textElement = new PointSpriteFontElement("good good good good!", new vec3(0, 0, 0));
+            textElement = new PointSpriteFontElement("good good good good good!", new vec3(0, 0, 0));
+            textElement = new PointSpriteFontElement("good good good good good good!", new vec3(0, 0, 0));
+            textElement = new PointSpriteFontElement("good good good good good good good!", new vec3(0, 0, 0));
+            textElement = new PointSpriteFontElement("good good good good good good good good!", new vec3(0, 0, 0));
+            textElement = new PointSpriteFontElement("good good good good good good good good good!", new vec3(0, 0, 0));
+            textElement = new PointSpriteFontElement("good good good good good good good good good good!", new vec3(0, 0, 0));
+            textElement = new PointSpriteFontElement("good good good good good good good good good good good!", new vec3(0, 0, 0));
+            //textElement = new PointSpriteFontElement("QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm", new vec3(0, 0, 0));
+            textElement.Initialize();
 
-            element.BeforeRendering += element_BeforeRendering;
-            element.AfterRendering += element_AfterRendering;
+            textElement.BeforeRendering += textElement_BeforeRendering;
+            textElement.AfterRendering += textElement_AfterRendering;
+
+            pyramidElement = new PyramidElement();
+            pyramidElement.Initialize();
+            pyramidElement.BeforeRendering += pyramidElement_BeforeRendering;
+            pyramidElement.AfterRendering += pyramidElement_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -52,6 +69,26 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.Resize += glCanvas1_Resize;
+        }
+
+        void pyramidElement_AfterRendering(object sender, Objects.RenderEventArgs e)
+        {
+            pyramidElement.shaderProgram.Unbind();
+        }
+
+        void pyramidElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        {
+            mat4 modelMatrix = mat4.identity();
+            mat4 viewMatrix = this.camera.GetViewMat4();
+            mat4 projectionMatrix = this.camera.GetProjectionMat4();
+            projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
+
+            ShaderProgram shaderProgram = pyramidElement.shaderProgram;
+            shaderProgram.Bind();
+
+            shaderProgram.SetUniformMatrix4(PointSpriteFontElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(PointSpriteFontElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(PointSpriteFontElement.strmodelMatrix, modelMatrix.to_array());
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
@@ -67,28 +104,30 @@ namespace CSharpGL.Winforms.Demo
             this.camera.MouseWheel(e.Delta);
         }
 
-        void element_AfterRendering(object sender, Objects.RenderEventArgs e)
+        void textElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            element.shaderProgram.Unbind();
+            textElement.shaderProgram.Unbind();
 
             GL.BindTexture(GL.GL_TEXTURE_2D, 0);
         }
 
-        void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        void textElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
             mat4 modelMatrix = mat4.identity();
             mat4 viewMatrix = this.camera.GetViewMat4();
             mat4 projectionMatrix = this.camera.GetProjectionMat4();
+            projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
 
-            GL.BindTexture(GL.GL_TEXTURE_2D, element.texture[0]);
+            GL.BindTexture(GL.GL_TEXTURE_2D, textElement.texture[0]);
 
-            ShaderProgram shaderProgram = element.shaderProgram;
+            ShaderProgram shaderProgram = textElement.shaderProgram;
             shaderProgram.Bind();
 
-            shaderProgram.SetUniformMatrix4(PyramidElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(PyramidElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(PyramidElement.strmodelMatrix, modelMatrix.to_array());
-            shaderProgram.SetUniform("tex", element.texture[0]);
+            shaderProgram.SetUniformMatrix4(PointSpriteFontElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(PointSpriteFontElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(PointSpriteFontElement.strmodelMatrix, modelMatrix.to_array());
+            shaderProgram.SetUniform(PointSpriteFontElement.strtex, textElement.texture[0]);
+            shaderProgram.SetUniform(PointSpriteFontElement.strColor, textElement.textColor.x, textElement.textColor.y, textElement.textColor.z);
         }
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
@@ -96,7 +135,8 @@ namespace CSharpGL.Winforms.Demo
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            element.Render(Objects.RenderModes.Render);
+            pyramidElement.Render(Objects.RenderModes.Render);
+            textElement.Render(Objects.RenderModes.Render);
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
@@ -127,6 +167,8 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
+            const float interval = 0.1f;
+
             if (e.KeyChar == 'c')
             {
                 switch (this.camera.CameraType)
@@ -142,6 +184,30 @@ namespace CSharpGL.Winforms.Demo
                 }
 
                 this.lblCameraType.Text = string.Format("camera type: {0}", this.camera.CameraType);
+            }
+            else if (e.KeyChar == 'w')
+            {
+                translateY += interval;
+            }
+            else if (e.KeyChar == 's')
+            {
+                translateY -= interval;
+            }
+            else if (e.KeyChar == 'a')
+            {
+                translateX -= interval;
+            }
+            else if (e.KeyChar == 'd')
+            {
+                translateX += interval;
+            }
+            else if (e.KeyChar == 'q')
+            {
+                translateZ -= interval;
+            }
+            else if (e.KeyChar == 'e')
+            {
+                translateZ += interval;
             }
         }
     }

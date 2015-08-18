@@ -97,6 +97,16 @@ namespace CSharpGL.Winforms.Demo
             (new FormWell()).Show();
         }
 
+        private void btnAlwaysFaceCamera_Click(object sender, EventArgs e)
+        {
+            //(new FormAlwaysFaceCamera()).Show();
+        }
+
+        private void btnFormPointSpriteFontElement_Click(object sender, EventArgs e)
+        {
+            (new FormPointSpriteFontElement()).Show();
+        }
+
 
     }
 }
