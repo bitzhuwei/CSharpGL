@@ -40,17 +40,17 @@ namespace CSharpGL.Winforms.Demo
             rotator = new SatelliteRotator(this.camera);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
-            textElement = new PointSpriteStringElement("good!", new vec3(0, 0, 0));
-            textElement = new PointSpriteStringElement("good good!", new vec3(0, 0, 0));
-            textElement = new PointSpriteStringElement("good good good!", new vec3(0, 0, 0));
-            textElement = new PointSpriteStringElement("good good good good!", new vec3(0, 0, 0));
-            textElement = new PointSpriteStringElement("good good good good good!", new vec3(0, 0, 0));
-            textElement = new PointSpriteStringElement("good good good good good good!", new vec3(0, 0, 0));
-            textElement = new PointSpriteStringElement("good good good good good good good!", new vec3(0, 0, 0));
-            textElement = new PointSpriteStringElement("good good good good good good good good!", new vec3(0, 0, 0));
-            textElement = new PointSpriteStringElement("good good good good good good good good good!", new vec3(0, 0, 0));
-            textElement = new PointSpriteStringElement("good good good good good good good good good good!", new vec3(0, 0, 0));
-            textElement = new PointSpriteStringElement("good good good good good good good good good good good!", new vec3(0, 0, 0));
+            textElement = new PointSpriteStringElement("HTMLHHTMLHHTMLHHTMLH", new vec3(0, 0, 0));
+            //textElement = new PointSpriteStringElement("good good!", new vec3(0, 0, 0));
+            //textElement = new PointSpriteStringElement("good good good!", new vec3(0, 0, 0));
+            //textElement = new PointSpriteStringElement("good good good good!", new vec3(0, 0, 0));
+            //textElement = new PointSpriteStringElement("good good good good good!", new vec3(0, 0, 0));
+            //textElement = new PointSpriteStringElement("good good good good good good!", new vec3(0, 0, 0));
+            //textElement = new PointSpriteStringElement("good good good good good good good!", new vec3(0, 0, 0));
+            //textElement = new PointSpriteStringElement("good good good good good good good good!", new vec3(0, 0, 0));
+            //textElement = new PointSpriteStringElement("good good good good good good good good good!", new vec3(0, 0, 0));
+            //textElement = new PointSpriteStringElement("good good good good good good good good good good!", new vec3(0, 0, 0));
+            //textElement = new PointSpriteStringElement("good good good good good good good good good good good!", new vec3(0, 0, 0));
             //textElement = new PointSpriteFontElement("QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm", new vec3(0, 0, 0));
             textElement.Initialize();
 
@@ -143,8 +143,11 @@ namespace CSharpGL.Winforms.Demo
             shaderProgram.SetUniformMatrix4(PointSpriteStringElement.strmodelMatrix, modelMatrix.to_array());
             shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, textElement.PointSize);
             shaderProgram.SetUniform(PointSpriteStringElement.strtex, textElement.texture[0]);
-            shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, textElement.textColor.x, textElement.textColor.y, textElement.textColor.z);
+            //shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, textElement.textColor.x, textElement.textColor.y, textElement.textColor.z);
+            shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
         }
+
+        Random random = new Random();
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
         {
