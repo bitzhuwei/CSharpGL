@@ -12,7 +12,7 @@ namespace CSharpGL.Objects.Texts
 {
     public static class FontTextureHelper
     {
-        public const string strTTFTexture = "TTFTExture";
+        public const string strTTFTexture = "TTFTexture";
         public const string strFontHeight = "FontHeight";
         public const string strFirstChar = "FirstChar";
         public const string strLastChar = "LastChar";
