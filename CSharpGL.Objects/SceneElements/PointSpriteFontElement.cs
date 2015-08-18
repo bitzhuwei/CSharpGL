@@ -154,7 +154,7 @@ namespace CSharpGL.Objects.SceneElements
                     }
                     else
                     {
-                        currentWidthPosition = (FontResource.Instance.FontHeight - glyphsLength) / 2;
+                        currentWidthPosition = (currentTextureWidth - glyphsLength) / 2;
                         glyphsLength = FontResource.Instance.FontHeight;
                     }
                 }
