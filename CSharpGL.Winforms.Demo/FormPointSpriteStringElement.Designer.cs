@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Winforms.Demo
 {
-    partial class FormPointSpriteFontElement
+    partial class FormPointSpriteStringElement
     {
         /// <summary>
         /// Required designer variable.

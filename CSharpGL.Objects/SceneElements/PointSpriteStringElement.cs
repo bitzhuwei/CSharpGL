@@ -14,15 +14,18 @@ namespace CSharpGL.Objects.SceneElements
     /// <summary>
     /// 用shader+VAO+组装的texture显示字符串
     /// </summary>
-    public class PointSpriteFontElement : SceneElementBase
+    public class PointSpriteStringElement : SceneElementBase, IDisposable
     {
-        private static readonly int maxPointSize;
-        static PointSpriteFontElement()
-        {
-            int[] sizeRange = new int[2];
-            GL.GetInteger(GetTarget.PointSizeRange, sizeRange);
-            maxPointSize = sizeRange[1];
-        }
+        /// <summary>
+        /// TODO: 想办法实施有效的静态ctor.
+        /// </summary>
+        private static readonly int maxPointSize = 255;
+        //static PointSpriteStringElement()
+        //{
+        //    int[] sizeRange = new int[2];
+        //    GL.GetInteger(GetTarget.PointSizeRange, sizeRange);
+        //    maxPointSize = sizeRange[1];
+        //}
 
         // source data
         private string content;
@@ -36,10 +39,12 @@ namespace CSharpGL.Objects.SceneElements
         public const string strprojectionMatrix = "projectionMatrix";
         public const string strviewMatrix = "viewMatrix";
         public const string strmodelMatrix = "modelMatrix";
-        public const string strColor = "color";
+        public const string strpointSize = "pointSize";
+        public const string strtextColor = "textColor";
         public const string strtex = "tex";
         private uint attributeIndexPosition;
-        private int fontSize;
+        public int FontSize { get; private set; }
+        public float PointSize { get { return textureWidth / 10.0f; } set { } }
         private int textureWidth;
         public vec3 textColor;
 
@@ -50,7 +55,7 @@ namespace CSharpGL.Objects.SceneElements
         /// <param name="position">字符串的中心位置</param>
         /// <param name="color">文字颜色，默认为黑色</param>
         /// <param name="fontSize">字体大小，默认为32</param>
-        public PointSpriteFontElement(string content, vec3 position, GLColor color = null, int fontSize = 32)
+        public PointSpriteStringElement(string content, vec3 position, GLColor color = null, int fontSize = 32)
         {
             if (fontSize >= maxPointSize) { throw new ArgumentException(); }
 
@@ -66,7 +71,7 @@ namespace CSharpGL.Objects.SceneElements
                 textColor = new vec3(color.R, color.G, color.B);
             }
 
-            this.fontSize = fontSize;
+            this.FontSize = fontSize;
         }
 
         protected override void DoInitialize()
@@ -78,32 +83,10 @@ namespace CSharpGL.Objects.SceneElements
             InitVAO();
         }
 
-        //private void InitTexture(string content)
-        //{
-        //    Bitmap newImage = new Bitmap("PointSpriteFontElement-Texture.png");
-        //    // step 6: generate texture
-        //    //  Lock the image bits (so that we can pass them to OGL).
-        //    BitmapData bitmapData = newImage.LockBits(new Rectangle(0, 0, newImage.Width, newImage.Height),
-        //        ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-        //    //GL.ActiveTexture(GL.GL_TEXTURE0);
-        //    GL.GenTextures(1, texture);
-        //    GL.BindTexture(GL.GL_TEXTURE_2D, texture[0]);
-        //    GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA,
-        //        newImage.Width, newImage.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
-        //        bitmapData.Scan0);
-        //    //  Unlock the image.
-        //    newImage.UnlockBits(bitmapData);
-        //    /* We require 1 byte alignment when uploading texture data */
-        //    //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
-        //    /* Clamping to edges is important to prevent artifacts when scaling */
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
-        //    /* Linear filtering usually looks best for text */
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
-        //    newImage.Dispose();
-        //}
-
+        /// <summary>
+        /// TODO: 这里生成的中间贴图太大，有优化的空间
+        /// </summary>
+        /// <param name="content"></param>
         private void InitTexture(string content)
         {
             // step 1: get totalWidth
@@ -133,9 +116,9 @@ namespace CSharpGL.Objects.SceneElements
                 int currentTextureWidth = 0;
                 int currentWidthPosition = 0;
                 int currentHeightPosition = 0;
-                if (totalLength * this.fontSize / FontResource.Instance.FontHeight > maxPointSize)// 超过1行能显示的内容
+                if (totalLength * this.FontSize / FontResource.Instance.FontHeight > maxPointSize)// 超过1行能显示的内容
                 {
-                    currentTextureWidth = maxPointSize * FontResource.Instance.FontHeight / this.fontSize;
+                    currentTextureWidth = maxPointSize * FontResource.Instance.FontHeight / this.FontSize;
 
                     int lineCount = (glyphsLength - 1) / currentTextureWidth + 1;
                     // 确保整篇文字的高度在贴图中间。
@@ -150,7 +133,7 @@ namespace CSharpGL.Objects.SceneElements
                     {
                         // 确保整篇文字的高度在贴图中间。
                         currentHeightPosition = (currentTextureWidth - FontResource.Instance.FontHeight) / 2;
-                            //- FontResource.Instance.FontHeight / 2;
+                        //- FontResource.Instance.FontHeight / 2;
                     }
                     else
                     {
@@ -172,15 +155,6 @@ namespace CSharpGL.Objects.SceneElements
                     CharacterInfo cInfo;
                     if (FontResource.Instance.CharInfoDict.TryGetValue(c, out cInfo))
                     {
-                        //for (int col = 0; col < cInfo.width; col++)
-                        //{
-                        //    for (int row = 0; row < FontResource.Instance.FontHeight; row++)
-                        //    {
-                        //        var color = bigBitmap.GetPixel(cInfo.xoffset + col, cInfo.yoffset + row);
-                        //        contentBitmap.SetPixel(currentWidthPosition + col, currentHeightPosition + row, color);
-                        //    }
-                        //}
-
                         gContentBitmap.DrawImage(bigBitmap,
                             new Rectangle(currentWidthPosition, currentHeightPosition, cInfo.width, FontResource.Instance.FontHeight),
                             new Rectangle(cInfo.xoffset, cInfo.yoffset, cInfo.width, FontResource.Instance.FontHeight),
@@ -210,7 +184,7 @@ namespace CSharpGL.Objects.SceneElements
 
                 targetTextureWidth = textureMaxSize[0];
                 //System.Drawing.Bitmap bitmap = contentBitmap;
-                int scaledWidth = 8 * contentBitmap.Width * this.fontSize / FontResource.Instance.FontHeight;
+                int scaledWidth = 8 * contentBitmap.Width * this.FontSize / FontResource.Instance.FontHeight;
 
                 for (int size = 1; size <= textureMaxSize[0]; size *= 2)
                 {
@@ -296,8 +270,8 @@ namespace CSharpGL.Objects.SceneElements
         private void InitShaderProgram()
         {
             //  Create the shader program.
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.PointSpriteFontElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.PointSpriteFontElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.PointSpriteStringElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.PointSpriteStringElement.frag");
             var shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
             this.attributeIndexPosition = shaderProgram.GetAttributeLocation("in_Position");
@@ -321,7 +295,7 @@ namespace CSharpGL.Objects.SceneElements
             //int[] pointSizeRange = new int[2];
             //GL.GetInteger(GetTarget.PointSizeRange, pointSizeRange);
 
-            GL.PointSize(size);
+            //GL.PointSize(size);
 
             GL.DrawArrays((uint)this.primitiveMode, 0, 1);
 
@@ -330,6 +304,64 @@ namespace CSharpGL.Objects.SceneElements
 
             GL.PointSize(1);
         }
+
+        ~PointSpriteStringElement()
+        {
+            this.Dispose();
+        }
+
+        #region IDisposable Members
+
+        /// <summary>
+        /// Internal variable which checks if Dispose has already been called
+        /// </summary>
+        protected Boolean disposed;
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected void Dispose(Boolean disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                // Managed cleanup code here, while managed refs still valid
+            }
+            // Unmanaged cleanup code here
+            //GL.DeleteTextures(1, this.texture);
+            try
+            {
+                //int count = this.texture.Length;
+                //GL.DeleteTextures(count, this.texture);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
+            disposed = true;
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            // Call the private Dispose(bool) helper and indicate
+            // that we are explicitly disposing
+            this.Dispose(true);
+
+            // Tell the garbage collector that the object doesn't require any
+            // cleanup when collected since Dispose was called explicitly.
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
     }
 
 }

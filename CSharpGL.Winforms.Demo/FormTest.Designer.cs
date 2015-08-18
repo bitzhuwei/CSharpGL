@@ -42,7 +42,6 @@
             this.btnSimpleUIColorPalette = new System.Windows.Forms.Button();
             this.btnSimpleUICube = new System.Windows.Forms.Button();
             this.btnDebugging = new System.Windows.Forms.Button();
-            this.btnWell = new System.Windows.Forms.Button();
             this.btnAlwaysFaceCamera = new System.Windows.Forms.Button();
             this.btnFormPointSpriteFontElement = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -229,19 +228,6 @@
             this.btnDebugging.UseVisualStyleBackColor = true;
             this.btnDebugging.Click += new System.EventHandler(this.btnDebugging_Click);
             // 
-            // btnWell
-            // 
-            this.btnWell.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnWell.Location = new System.Drawing.Point(13, 533);
-            this.btnWell.Margin = new System.Windows.Forms.Padding(4);
-            this.btnWell.Name = "btnWell";
-            this.btnWell.Size = new System.Drawing.Size(353, 29);
-            this.btnWell.TabIndex = 4;
-            this.btnWell.Text = "Well";
-            this.btnWell.UseVisualStyleBackColor = true;
-            this.btnWell.Click += new System.EventHandler(this.btnWell_Click);
-            // 
             // btnAlwaysFaceCamera
             // 
             this.btnAlwaysFaceCamera.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -260,7 +246,7 @@
             // 
             this.btnFormPointSpriteFontElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFormPointSpriteFontElement.Location = new System.Drawing.Point(13, 607);
+            this.btnFormPointSpriteFontElement.Location = new System.Drawing.Point(13, 533);
             this.btnFormPointSpriteFontElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormPointSpriteFontElement.Name = "btnFormPointSpriteFontElement";
             this.btnFormPointSpriteFontElement.Size = new System.Drawing.Size(353, 29);
@@ -281,7 +267,6 @@
             this.Controls.Add(this.btnSimpleUICube);
             this.Controls.Add(this.btnFormPointSpriteFontElement);
             this.Controls.Add(this.btnAlwaysFaceCamera);
-            this.Controls.Add(this.btnWell);
             this.Controls.Add(this.btnDebugging);
             this.Controls.Add(this.btnSimpleUIColorPalette);
             this.Controls.Add(this.btnSimpleUIAxis);
@@ -314,7 +299,6 @@
         private System.Windows.Forms.Button btnSimpleUIColorPalette;
         private System.Windows.Forms.Button btnSimpleUICube;
         private System.Windows.Forms.Button btnDebugging;
-        private System.Windows.Forms.Button btnWell;
         private System.Windows.Forms.Button btnAlwaysFaceCamera;
         private System.Windows.Forms.Button btnFormPointSpriteFontElement;
     }
