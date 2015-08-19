@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.SceneElements
     /// <summary>
     /// 圆柱体
     /// </summary>
-    public class CylinderElement : SceneElementBase
+    public class CylinderElement : SceneElementBase, IMVP
     {
 
         /// <summary>
@@ -22,9 +22,7 @@ namespace CSharpGL.Objects.SceneElements
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
-        public const string strprojectionMatrix = "projectionMatrix";
-        public const string strviewMatrix = "viewMatrix";
-        public const string strmodelMatrix = "modelMatrix";
+        public const string strMVP = "MVP";
 
         /// <summary>
         /// VAO
@@ -44,6 +42,7 @@ namespace CSharpGL.Objects.SceneElements
         private float radius;
         private float height;
         private int faceCount;
+        private mat4 currentMVP;
 
         public CylinderElement(float radius, float height, int faceCount = 18)
         {
@@ -155,6 +154,25 @@ namespace CSharpGL.Objects.SceneElements
             GL.DrawElements(primitiveMode, faceCount * 2 + 2, GL.GL_UNSIGNED_INT, IntPtr.Zero);
 
             GL.BindVertexArray(0);
+        }
+
+        void IMVP.UpdateMVP(mat4 mvp)
+        {
+            this.currentMVP = mvp;
+
+            ShaderProgram shaderProgram = this.shaderProgram;
+
+            shaderProgram.Bind();
+
+            shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+        }
+
+
+        void IMVP.UnbindShaderProgram()
+        {
+            ShaderProgram shaderProgram = this.shaderProgram;
+
+            shaderProgram.Unbind();
         }
     }
 }

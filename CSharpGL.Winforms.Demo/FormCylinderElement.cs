@@ -1,4 +1,5 @@
 ﻿using CSharpGL.Maths;
+using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
@@ -32,7 +33,7 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotator(camera);
 
-            var faceCount = 3;
+            var faceCount = 18;
             var radius = 1f;
             var height = 3f;
             element = new CylinderElement(radius, height, faceCount);
@@ -52,7 +53,9 @@ namespace CSharpGL.Winforms.Demo
 
         void element_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            element.shaderProgram.Unbind();
+            IMVP element = sender as IMVP;
+
+            element.UnbindShaderProgram();
         }
 
         void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
@@ -63,13 +66,11 @@ namespace CSharpGL.Winforms.Demo
 
             mat4 modelMatrix = mat4.identity();
 
-            ShaderProgram shaderProgram = element.shaderProgram;
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
-            shaderProgram.Bind();
+            IMVP element = sender as IMVP;
 
-            shaderProgram.SetUniformMatrix4(CylinderElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(CylinderElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(CylinderElement.strmodelMatrix, modelMatrix.to_array());
+            element.UpdateMVP(mvp);
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

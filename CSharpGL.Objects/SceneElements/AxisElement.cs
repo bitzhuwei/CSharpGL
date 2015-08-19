@@ -295,7 +295,7 @@ namespace CSharpGL.Objects.SceneElements
 
         #endregion
 
-        public void UpdateMVP(mat4 mvp)
+        void IMVP.UpdateMVP(mat4 mvp)
         {
             this.currentMVP = mvp;
 
@@ -307,7 +307,7 @@ namespace CSharpGL.Objects.SceneElements
         }
 
 
-        public void UnbindShaderProgram()
+        void IMVP.UnbindShaderProgram()
         {
             ShaderProgram shaderProgram = this.shaderProgram;
 
