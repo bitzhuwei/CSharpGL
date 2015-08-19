@@ -275,37 +275,37 @@ namespace CSharpGL.Texts
         }
 
 
-        public static void GetTextureWidthHeight(this FontTexture fontTexture, int maxTextureWidth, out int width, out int height)
-        {
-            int textureWidth = maxTextureWidth;
-            int textureHeight = maxTextureWidth;
-            System.Drawing.Bitmap bitmap = fontTexture.BigBitmap;
+        //public static void GetTextureWidthHeight(this FontTexture fontTexture, int maxTextureWidth, out int width, out int height)
+        //{
+        //    int textureWidth = maxTextureWidth;
+        //    int textureHeight = maxTextureWidth;
+        //    System.Drawing.Bitmap bitmap = fontTexture.BigBitmap;
 
-            for (int size = 1; size <= maxTextureWidth; size *= 2)
-            {
-                if (bitmap.Width < size)
-                {
-                    textureWidth = size / 2;
-                    break;
-                }
-                if (bitmap.Width == size)
-                    textureWidth = size;
+        //    for (int size = 1; size <= maxTextureWidth; size *= 2)
+        //    {
+        //        if (bitmap.Width < size)
+        //        {
+        //            textureWidth = size / 2;
+        //            break;
+        //        }
+        //        if (bitmap.Width == size)
+        //            textureWidth = size;
 
-            }
+        //    }
 
-            for (int size = 1; size <= maxTextureWidth; size *= 2)
-            {
-                if (bitmap.Height < size)
-                {
-                    textureHeight = size / 2;
-                    break;
-                }
-                if (bitmap.Height == size)
-                    textureHeight = size;
-            }
+        //    for (int size = 1; size <= maxTextureWidth; size *= 2)
+        //    {
+        //        if (bitmap.Height < size)
+        //        {
+        //            textureHeight = size / 2;
+        //            break;
+        //        }
+        //        if (bitmap.Height == size)
+        //            textureHeight = size;
+        //    }
 
-            width = textureWidth;
-            height = textureHeight;
-        }
+        //    width = textureWidth;
+        //    height = textureHeight;
+        //}
     }
 }

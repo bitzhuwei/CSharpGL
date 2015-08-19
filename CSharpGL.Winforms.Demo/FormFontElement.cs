@@ -122,8 +122,8 @@ namespace CSharpGL.Winforms.Demo
 
         void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            uint texture = element.texture[0];
-            GL.BindTexture(GL.GL_TEXTURE_2D, texture);
+            Texture2D texture = element.texture;
+            texture.Bind();
 
             if (element.blend)
             {
@@ -143,7 +143,7 @@ namespace CSharpGL.Winforms.Demo
             shaderProgram.SetUniformMatrix4(FontElement.strviewMatrix, viewMatrix.to_array());
             shaderProgram.SetUniformMatrix4(FontElement.strmodelMatrix, modelMatrix.to_array());
             shaderProgram.SetUniform(FontElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
-            shaderProgram.SetUniform(FontElement.strtex, texture);
+            shaderProgram.SetUniform(FontElement.strtex, texture.Name);
         }
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

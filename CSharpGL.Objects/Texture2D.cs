@@ -17,7 +17,7 @@ namespace CSharpGL.Objects
         private uint[] texture = new uint[1];
 
         /// <summary>
-        /// 纹理名（用于标识一个纹理，由OpenGL指定）
+        /// 纹理名（用于标识一个纹理，由OpenGL指定），可在shader中用于指定uniform sampler2D纹理变量。
         /// </summary>
         public uint Name { get { return this.texture[0]; } }
 
