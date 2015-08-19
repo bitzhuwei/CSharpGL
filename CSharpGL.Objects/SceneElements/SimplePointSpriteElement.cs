@@ -15,6 +15,18 @@ namespace CSharpGL.Objects.SceneElements
     /// </summary>
     public class SimplePointSpriteElement : SceneElementBase, IDisposable
     {
+
+        /// <summary>
+        /// 这是一个使用point sprite进行渲染的简单的例子。
+        /// </summary>
+        /// <param name="pointSize"></param>
+        /// <param name="foreshortening">是否启用近大远小</param>
+        public SimplePointSpriteElement(float pointSize = 64.0f, bool foreshortening = true)
+        {
+            this.PointSize = pointSize;
+            this.Foreshortening = foreshortening;
+        }
+
         /// <summary>
         /// shader program
         /// </summary>
@@ -24,6 +36,8 @@ namespace CSharpGL.Objects.SceneElements
         public const string strviewMatrix = "viewMatrix";
         public const string strmodelMatrix = "modelMatrix";
         public const string strtex = "tex";
+        public const string strpointSize = "pointSize";
+        public const string strforeshortening = "foreshortening";
 
         /// <summary>
         /// VAO
@@ -135,6 +149,8 @@ namespace CSharpGL.Objects.SceneElements
 
             this.shaderProgram.Bind();
             shaderProgram.SetUniform(strtex, this.texture[0]);
+            shaderProgram.SetUniform(strpointSize, this.PointSize);
+            shaderProgram.SetUniform(strforeshortening, (this.Foreshortening ? 1.0f : 0.0f));
         }
 
         private void InitTexture()
@@ -268,5 +284,9 @@ namespace CSharpGL.Objects.SceneElements
         }
 
         #endregion
+
+        public float PointSize { get; set; }
+
+        public bool Foreshortening { get; set; }
     }
 }
