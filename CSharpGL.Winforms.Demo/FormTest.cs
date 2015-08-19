@@ -50,7 +50,7 @@ namespace CSharpGL.Winforms.Demo
             (new FormWholeFontTextureElement()).Show();
         }
 
-        private void btnFreeTypeTextVAOElement_Click(object sender, EventArgs e)
+        private void btnFormFontElement_Click(object sender, EventArgs e)
         {
             (new FormFontElement()).Show();
         }

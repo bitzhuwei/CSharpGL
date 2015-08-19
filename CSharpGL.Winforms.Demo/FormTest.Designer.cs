@@ -30,7 +30,7 @@
         {
             this.btnBasis = new System.Windows.Forms.Button();
             this.btnCylinderElement = new System.Windows.Forms.Button();
-            this.btnModernSingleTextureFont = new System.Windows.Forms.Button();
+            this.btnFormFontElement = new System.Windows.Forms.Button();
             this.btnPyramidElement = new System.Windows.Forms.Button();
             this.btnCamera = new System.Windows.Forms.Button();
             this.btnSatelliteRotation = new System.Windows.Forms.Button();
@@ -72,18 +72,18 @@
             this.btnCylinderElement.UseVisualStyleBackColor = true;
             this.btnCylinderElement.Click += new System.EventHandler(this.btnCylinderElement_Click);
             // 
-            // btnModernSingleTextureFont
+            // btnFormFontElement
             // 
-            this.btnModernSingleTextureFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnFormFontElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModernSingleTextureFont.Location = new System.Drawing.Point(13, 237);
-            this.btnModernSingleTextureFont.Margin = new System.Windows.Forms.Padding(4);
-            this.btnModernSingleTextureFont.Name = "btnModernSingleTextureFont";
-            this.btnModernSingleTextureFont.Size = new System.Drawing.Size(353, 29);
-            this.btnModernSingleTextureFont.TabIndex = 4;
-            this.btnModernSingleTextureFont.Text = "FontElement";
-            this.btnModernSingleTextureFont.UseVisualStyleBackColor = true;
-            this.btnModernSingleTextureFont.Click += new System.EventHandler(this.btnFreeTypeTextVAOElement_Click);
+            this.btnFormFontElement.Location = new System.Drawing.Point(13, 237);
+            this.btnFormFontElement.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormFontElement.Name = "btnFormFontElement";
+            this.btnFormFontElement.Size = new System.Drawing.Size(353, 29);
+            this.btnFormFontElement.TabIndex = 4;
+            this.btnFormFontElement.Text = "FormFontElement";
+            this.btnFormFontElement.UseVisualStyleBackColor = true;
+            this.btnFormFontElement.Click += new System.EventHandler(this.btnFormFontElement_Click);
             // 
             // btnPyramidElement
             // 
@@ -272,7 +272,7 @@
             this.Controls.Add(this.btnSimpleUIRect);
             this.Controls.Add(this.btnLegacySimpleUIRect);
             this.Controls.Add(this.btnTranslateOnScreen);
-            this.Controls.Add(this.btnModernSingleTextureFont);
+            this.Controls.Add(this.btnFormFontElement);
             this.Controls.Add(this.btnPyramidElement);
             this.Controls.Add(this.btnBasis);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -286,7 +286,7 @@
 
         private System.Windows.Forms.Button btnBasis;
         private System.Windows.Forms.Button btnCylinderElement;
-        private System.Windows.Forms.Button btnModernSingleTextureFont;
+        private System.Windows.Forms.Button btnFormFontElement;
         private System.Windows.Forms.Button btnPyramidElement;
         private System.Windows.Forms.Button btnCamera;
         private System.Windows.Forms.Button btnSatelliteRotation;
