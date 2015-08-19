@@ -21,10 +21,11 @@ namespace CSharpGL.Objects.SceneElements
         /// </summary>
         /// <param name="pointSize"></param>
         /// <param name="foreshortening">是否启用近大远小</param>
-        public SimplePointSpriteElement(float pointSize = 64.0f, bool foreshortening = true)
+        public SimplePointSpriteElement(float pointSize = 64.0f, bool foreshortening = true, FragShaderType fragShaderType = FragShaderType.Simple)
         {
             this.PointSize = pointSize;
             this.Foreshortening = foreshortening;
+            this.fragShaderType = fragShaderType;
         }
 
         /// <summary>
@@ -58,13 +59,28 @@ namespace CSharpGL.Objects.SceneElements
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
             var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.SimplePointSpriteElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.SimplePointSpriteElement.frag");
+            string fragmentShaderSource = string.Empty;
+            switch (this.fragShaderType)
+            {
+                case FragShaderType.Simple:
+                    fragmentShaderSource = ManifestResourceLoader.LoadTextFile(
+                        @"SceneElements.SimplePointSpriteElement_Simple.frag");
+                    break;
+                case FragShaderType.Analytic:
+                    fragmentShaderSource = ManifestResourceLoader.LoadTextFile(
+                        @"SceneElements.SimplePointSpriteElement_Analytic.frag");
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
             shaderProgram.AssertValid();
         }
+
+        static Random random = new Random();
 
         protected void InitializeVAO()
         {
@@ -88,7 +104,8 @@ namespace CSharpGL.Objects.SceneElements
                     {
                         for (int k = 0; k < axisCount; k++)
                         {
-                            positionArray[index++] = 10 * new vec3(i - axisCount / 2, j - axisCount / 2, k - axisCount / 2);
+                            //positionArray[index++] = 10 * new vec3(i - axisCount / 2, j - axisCount / 2, k - axisCount / 2);
+                            positionArray[index++] = 10 * new vec3((float)random.NextDouble() - 0.5f, (float)random.NextDouble() - 0.5f, (float)random.NextDouble() - 0.5f);
                         }
                     }
                 }
@@ -243,6 +260,7 @@ namespace CSharpGL.Objects.SceneElements
         /// Internal variable which checks if Dispose has already been called
         /// </summary>
         protected Boolean disposed;
+        private FragShaderType fragShaderType;
 
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources
@@ -288,5 +306,11 @@ namespace CSharpGL.Objects.SceneElements
         public float PointSize { get; set; }
 
         public bool Foreshortening { get; set; }
+    }
+
+    public enum FragShaderType
+    {
+        Simple,
+        Analytic,
     }
 }

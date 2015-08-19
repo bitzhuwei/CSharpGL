@@ -99,7 +99,14 @@ namespace CSharpGL.Winforms.Demo
 
         private void btnSimplePointSprite_Click(object sender, EventArgs e)
         {
-            (new FormSimplePointSprite()).Show();
+            FormSimplePointSpriteSettings settings = new FormSimplePointSpriteSettings();
+            if (settings.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                float fontSize = settings.FontSize;
+                bool foreshortening = settings.Foreshortening;
+                var type = settings.FragmentShaderType;
+                (new FormSimplePointSprite(fontSize, foreshortening, type)).Show();
+            }
         }
 
 

@@ -70,7 +70,7 @@
     <Compile Include="SceneElements\PointSpriteStringElement.cs" />
     <Compile Include="SceneElements\PyramidElement.cs" />
     <EmbeddedResource Include="SceneElements\SimplePointSpriteElement.vert" />
-    <EmbeddedResource Include="SceneElements\SimplePointSpriteElement.frag" />
+    <EmbeddedResource Include="SceneElements\SimplePointSpriteElement_Simple.frag" />
     <Compile Include="SceneElements\SimplePointSpriteElement.cs" />
     <Compile Include="Shaders\ShaderCompilationException.cs" />
     <Compile Include="Shaders\Shader.cs" />
@@ -147,6 +147,7 @@
     <EmbeddedResource Include="SceneElements\PyramidElement.frag" />
     <EmbeddedResource Include="SceneElements\PointSpriteStringElement.frag" />
     <EmbeddedResource Include="SceneElements\PointSpriteStringElement.vert" />
+    <EmbeddedResource Include="SceneElements\SimplePointSpriteElement_Analytic.frag" />
     <None Include="Texts\FreeTypes\freetype.exp" />
     <None Include="Texts\FreeTypes\freetype.lib" />
     <None Include="Texts\Modern OpenGL Text Rendering.mht" />

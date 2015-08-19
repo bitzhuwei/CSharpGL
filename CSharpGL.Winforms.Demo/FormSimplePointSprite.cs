@@ -28,7 +28,7 @@ namespace CSharpGL.Winforms.Demo
 
         SatelliteRotator satelliteRoration;
 
-        public FormSimplePointSprite()
+        public FormSimplePointSprite(float fontSize, bool foreshortening, FragShaderType type)
         {
             InitializeComponent();
 
@@ -72,7 +72,7 @@ namespace CSharpGL.Winforms.Demo
             uiRightBottomAxis.AfterRendering += SimpleUIAxis_AfterRendering;
             uiRightTopAxis.AfterRendering += SimpleUIAxis_AfterRendering;
 
-            pointSpriteElement = new SimplePointSpriteElement();
+            pointSpriteElement = new SimplePointSpriteElement(fontSize, foreshortening, type);
             pointSpriteElement.Initialize();
             pointSpriteElement.BeforeRendering += pointSpriteElement_BeforeRendering;
             pointSpriteElement.AfterRendering += pointSpriteElement_AfterRendering;
