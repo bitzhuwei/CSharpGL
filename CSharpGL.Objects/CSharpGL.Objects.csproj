@@ -137,6 +137,7 @@
     <EmbeddedResource Include="SceneElements\LucidaTypewriterRegular.ttf.png" />
     <EmbeddedResource Include="SceneElements\LucidaTypewriterRegular.ttf.xml" />
     <EmbeddedResource Include="SceneElements\SimplePointSpriteElement.png" />
+    <Content Include="readme.txt" />
     <Content Include="Shaders\GLSLVersion.html" />
     <Content Include="Texts\FreeTypes\freetype.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
