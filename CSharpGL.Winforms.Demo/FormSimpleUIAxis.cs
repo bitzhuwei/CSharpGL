@@ -1,4 +1,5 @@
 ﻿using CSharpGL.Maths;
+using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
@@ -152,7 +153,9 @@ namespace CSharpGL.Winforms.Demo
         {
             SimpleUIAxis element = sender as SimpleUIAxis;
 
-            element.axisElement.shaderProgram.Unbind();
+            IMVP axisElement = element.axisElement;
+
+            axisElement.UnbindShaderProgram();
         }
 
         void SimpleUIAxis_BeforeRendering(object sender, Objects.RenderEventArgs e)
@@ -163,26 +166,20 @@ namespace CSharpGL.Winforms.Demo
 
             element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
 
-            ShaderProgram shaderProgram = element.axisElement.shaderProgram;
+            IMVP axisElement = element.axisElement;
 
-            shaderProgram.Bind();
-
-            shaderProgram.SetUniformMatrix4(AxisElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(AxisElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(AxisElement.strmodelMatrix, modelMatrix.to_array());
+            axisElement.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
         }
 
         void axisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            AxisElement element = sender as AxisElement;
+            IMVP element = sender as IMVP;
 
-            element.shaderProgram.Unbind();
+            element.UnbindShaderProgram();
         }
 
         void axisElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            AxisElement element = sender as AxisElement;
-
             mat4 projectionMatrix = camera.GetProjectionMat4();
             projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
 
@@ -190,13 +187,11 @@ namespace CSharpGL.Winforms.Demo
 
             mat4 modelMatrix = mat4.identity();
 
-            ShaderProgram shaderProgram = element.shaderProgram;
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
-            shaderProgram.Bind();
+            IMVP element = sender as IMVP;
 
-            shaderProgram.SetUniformMatrix4(AxisElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(AxisElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(AxisElement.strmodelMatrix, modelMatrix.to_array());
+            element.UpdateMVP(mvp);
         }
 
         void axisElement2_AfterRendering(object sender, Objects.RenderEventArgs e)
@@ -217,13 +212,13 @@ namespace CSharpGL.Winforms.Demo
 
             mat4 modelMatrix = mat4.identity();
 
-            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
             ShaderProgram shaderProgram = element.shaderProgram;
 
             shaderProgram.Bind();
 
-            shaderProgram.SetUniformMatrix4(AxisElement2.strMVP, mvp.to_array());
+            shaderProgram.SetUniformMatrix4(SimpleUIRect.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(SimpleUIRect.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(SimpleUIRect.strmodelMatrix, modelMatrix.to_array());
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

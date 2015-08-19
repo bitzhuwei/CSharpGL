@@ -12,7 +12,7 @@ namespace CSharpGL.Objects.SceneElements
     /// <summary>
     /// 绘制三维坐标轴
     /// </summary>
-    public class AxisElement : SceneElementBase, IDisposable
+    public class AxisElement : SceneElementBase, IMVP, IDisposable
     {
 
         /// <summary>
@@ -21,9 +21,8 @@ namespace CSharpGL.Objects.SceneElements
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
-        public const string strprojectionMatrix = "projectionMatrix";
-        public const string strviewMatrix = "viewMatrix";
-        public const string strmodelMatrix = "modelMatrix";
+        const string strMVP = "MVP";
+        mat4 currentMVP;
 
         /// <summary>
         /// VAO
@@ -295,5 +294,24 @@ namespace CSharpGL.Objects.SceneElements
         }
 
         #endregion
+
+        public void UpdateMVP(mat4 mvp)
+        {
+            this.currentMVP = mvp;
+
+            ShaderProgram shaderProgram = this.shaderProgram;
+
+            shaderProgram.Bind();
+
+            shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+        }
+
+
+        public void UnbindShaderProgram()
+        {
+            ShaderProgram shaderProgram = this.shaderProgram;
+
+            shaderProgram.Unbind();
+        }
     }
 }

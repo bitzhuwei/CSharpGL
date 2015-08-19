@@ -21,7 +21,9 @@ namespace CSharpGL.Objects.SceneElements
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
-        public const string strMVP = "MVP";
+        public const string strprojectionMatrix = "projectionMatrix";
+        public const string strviewMatrix = "viewMatrix";
+        public const string strmodelMatrix = "modelMatrix";
 
         /// <summary>
         /// VAO

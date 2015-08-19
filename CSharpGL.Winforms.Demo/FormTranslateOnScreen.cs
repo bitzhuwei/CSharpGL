@@ -1,4 +1,5 @@
 ﻿using CSharpGL.Maths;
+using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
@@ -56,7 +57,9 @@ namespace CSharpGL.Winforms.Demo
 
         void element_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            element.shaderProgram.Unbind();
+            IMVP element = sender as IMVP;
+
+            element.UnbindShaderProgram();
         }
 
         void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
@@ -66,16 +69,13 @@ namespace CSharpGL.Winforms.Demo
 
             mat4 viewMatrix = camera.GetViewMat4();
 
-            //mat4 modelMatrix = glm.translate(mat4.identity(), new vec3(translateX, translateY, translateZ));// mat4.identity();
             mat4 modelMatrix = mat4.identity();
 
-            ShaderProgram shaderProgram = element.shaderProgram;
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
-            shaderProgram.Bind();
+            IMVP element = sender as IMVP;
 
-            shaderProgram.SetUniformMatrix4(AxisElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(AxisElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(AxisElement.strmodelMatrix, modelMatrix.to_array());
+            element.UpdateMVP(mvp);
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

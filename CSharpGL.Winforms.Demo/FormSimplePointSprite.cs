@@ -1,4 +1,5 @@
 ﻿using CSharpGL.Maths;
+using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
@@ -125,13 +126,9 @@ namespace CSharpGL.Winforms.Demo
 
             element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
 
-            ShaderProgram shaderProgram = element.axisElement.shaderProgram;
+            IMVP axisElement = element.axisElement;
 
-            shaderProgram.Bind();
-
-            shaderProgram.SetUniformMatrix4(AxisElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(AxisElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(AxisElement.strmodelMatrix, modelMatrix.to_array());
+            axisElement.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
         }
 
         void pointSpriteElement_AfterRendering(object sender, Objects.RenderEventArgs e)
