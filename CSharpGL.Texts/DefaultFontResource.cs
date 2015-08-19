@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Xml.Linq;
 
-namespace CSharpGL.Objects.SceneElements
+namespace CSharpGL.Texts
 {
     /// <summary>
     /// 含有字形贴图及其配置信息的单例类型。
     /// </summary>
-    public sealed class FontResource : IDisposable
+    public sealed class DefaultFontResource : IDisposable
     {
-        private static FontResource instance = new FontResource();
+        private static DefaultFontResource instance = new DefaultFontResource();
 
-        public static FontResource Instance
+        public static DefaultFontResource Instance
         {
             get
             {
@@ -21,11 +21,11 @@ namespace CSharpGL.Objects.SceneElements
             }
         }
 
-        private FontResource()
+        private DefaultFontResource()
         {
-            this.FontBitmap = ManifestResourceLoader.LoadBitmap("SceneElements.LucidaTypewriterRegular.ttf.png");
+            this.FontBitmap = ManifestResourceLoader.LoadBitmap("LucidaTypewriterRegular.ttf.png");
 
-            string xmlContent = ManifestResourceLoader.LoadTextFile("SceneElements.LucidaTypewriterRegular.ttf.xml");
+            string xmlContent = ManifestResourceLoader.LoadTextFile("LucidaTypewriterRegular.ttf.xml");
             XElement xElement = XElement.Parse(xmlContent, LoadOptions.None);
             this.FontHeight = int.Parse(xElement.Attribute(FontTextureHelper.strFontHeight).Value);
             this.FirstChar = (char)int.Parse(xElement.Attribute(FontTextureHelper.strFirstChar).Value);
@@ -59,7 +59,7 @@ namespace CSharpGL.Objects.SceneElements
         /// </summary>
         public Dictionary<char, CharacterInfo> CharInfoDict { get; private set; }
 
-        ~FontResource()
+        ~DefaultFontResource()
         {
             this.Dispose();
         }

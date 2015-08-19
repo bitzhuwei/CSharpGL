@@ -148,7 +148,6 @@ namespace CSharpGL.Objects
                 if (disposing)
                 {
                     // TODO: Dispose managed resources.
-                    GL.DeleteTextures(this.texture.Length, this.texture);
                 } // end if
 
                 // TODO: Dispose unmanaged resources.

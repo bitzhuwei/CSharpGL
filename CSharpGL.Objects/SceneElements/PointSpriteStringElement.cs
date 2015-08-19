@@ -95,7 +95,7 @@ namespace CSharpGL.Objects.SceneElements
                 {
                     char c = content[i];
                     CharacterInfo cInfo;
-                    if (FontResource.Instance.CharInfoDict.TryGetValue(c, out cInfo))
+                    if (DefaultFontResource.Instance.CharInfoDict.TryGetValue(c, out cInfo))
                     {
                         int glyphWidth = cInfo.width;
                         glyphsLength += glyphWidth;
@@ -110,34 +110,34 @@ namespace CSharpGL.Objects.SceneElements
             // step 2: setup contentBitmap
             Bitmap contentBitmap = null;
             {
-                int interval = FontResource.Instance.FontHeight / 5; if (interval < 1) { interval = 1; }
+                int interval = DefaultFontResource.Instance.FontHeight / 5; if (interval < 1) { interval = 1; }
                 int totalLength = glyphsLength + interval * (content.Length - 1);
                 int currentTextureWidth = 0;
                 int currentWidthPosition = 0;
                 int currentHeightPosition = 0;
-                if (totalLength * this.FontSize > maxPointSize * FontResource.Instance.FontHeight)// 超过1行能显示的内容
+                if (totalLength * this.FontSize > maxPointSize * DefaultFontResource.Instance.FontHeight)// 超过1行能显示的内容
                 {
-                    currentTextureWidth = maxPointSize * FontResource.Instance.FontHeight / this.FontSize;
+                    currentTextureWidth = maxPointSize * DefaultFontResource.Instance.FontHeight / this.FontSize;
 
                     int lineCount = (glyphsLength - 1) / currentTextureWidth + 1;
                     // 确保整篇文字的高度在贴图中间。
-                    currentHeightPosition = (currentTextureWidth - FontResource.Instance.FontHeight * lineCount) / 2;
+                    currentHeightPosition = (currentTextureWidth - DefaultFontResource.Instance.FontHeight * lineCount) / 2;
                     //- FontResource.Instance.FontHeight / 2;
                 }
                 else//只在一行内即可显示所有字符
                 {
                     currentTextureWidth = totalLength;
 
-                    if (totalLength >= FontResource.Instance.FontHeight)
+                    if (totalLength >= DefaultFontResource.Instance.FontHeight)
                     {
                         // 确保整篇文字的高度在贴图中间。
-                        currentHeightPosition = (currentTextureWidth - FontResource.Instance.FontHeight) / 2;
+                        currentHeightPosition = (currentTextureWidth - DefaultFontResource.Instance.FontHeight) / 2;
                         //- FontResource.Instance.FontHeight / 2;
                     }
                     else
                     {
                         currentWidthPosition = (currentTextureWidth - glyphsLength) / 2;
-                        glyphsLength = FontResource.Instance.FontHeight;
+                        glyphsLength = DefaultFontResource.Instance.FontHeight;
                     }
                 }
 
@@ -147,22 +147,22 @@ namespace CSharpGL.Objects.SceneElements
 
                 contentBitmap = new Bitmap(currentTextureWidth, currentTextureWidth);
                 Graphics gContentBitmap = Graphics.FromImage(contentBitmap);
-                Bitmap bigBitmap = FontResource.Instance.FontBitmap;
+                Bitmap bigBitmap = DefaultFontResource.Instance.FontBitmap;
                 for (int i = 0; i < content.Length; i++)
                 {
                     char c = content[i];
                     CharacterInfo cInfo;
-                    if (FontResource.Instance.CharInfoDict.TryGetValue(c, out cInfo))
+                    if (DefaultFontResource.Instance.CharInfoDict.TryGetValue(c, out cInfo))
                     {
                         if (currentWidthPosition + cInfo.width > contentBitmap.Width)
                         {
                             currentWidthPosition = 0;
-                            currentHeightPosition += FontResource.Instance.FontHeight;
+                            currentHeightPosition += DefaultFontResource.Instance.FontHeight;
                         }
 
                         gContentBitmap.DrawImage(bigBitmap,
-                            new Rectangle(currentWidthPosition, currentHeightPosition, cInfo.width, FontResource.Instance.FontHeight),
-                            new Rectangle(cInfo.xoffset, cInfo.yoffset, cInfo.width, FontResource.Instance.FontHeight),
+                            new Rectangle(currentWidthPosition, currentHeightPosition, cInfo.width, DefaultFontResource.Instance.FontHeight),
+                            new Rectangle(cInfo.xoffset, cInfo.yoffset, cInfo.width, DefaultFontResource.Instance.FontHeight),
                             GraphicsUnit.Pixel);
 
                         currentWidthPosition += cInfo.width + interval;
@@ -185,7 +185,7 @@ namespace CSharpGL.Objects.SceneElements
 
                 targetTextureWidth = textureMaxSize[0];
                 //System.Drawing.Bitmap bitmap = contentBitmap;
-                int scaledWidth = 8 * contentBitmap.Width * this.FontSize / FontResource.Instance.FontHeight;
+                int scaledWidth = 8 * contentBitmap.Width * this.FontSize / DefaultFontResource.Instance.FontHeight;
 
                 for (int size = 1; size <= textureMaxSize[0]; size *= 2)
                 {

@@ -50,11 +50,14 @@
     <Content Include="FreeTypes\freetype.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="LucidaTypewriterRegular.ttf.png" />
+    <EmbeddedResource Include="LucidaTypewriterRegular.ttf.xml" />
     <Content Include="readme.txt" />
     <Compile Include="CharacterInfo.cs" />
     <Compile Include="CharacterInfoDictHelper.cs" />
     <Compile Include="CharacterInfoHelper.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="DefaultFontResource.cs" />
     <Compile Include="FontTexture.cs" />
     <Compile Include="FontTextureHelper.cs" />
     <Compile Include="FontTextureYieldHelper.cs" />
@@ -77,6 +80,12 @@
     <None Include="FreeTypes\freetype.exp" />
     <None Include="FreeTypes\freetype.lib" />
     <None Include="Modern OpenGL Text Rendering.mht" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
