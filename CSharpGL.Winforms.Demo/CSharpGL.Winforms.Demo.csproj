@@ -77,6 +77,12 @@
     <Compile Include="FormPointSpriteStringElement.Designer.cs">
       <DependentUpon>FormPointSpriteStringElement.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSimplePointSprite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSimplePointSprite.Designer.cs">
+      <DependentUpon>FormSimplePointSprite.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSimpleUIColorIndicator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPointSpriteStringElement.resx">
       <DependentUpon>FormPointSpriteStringElement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSimplePointSprite.resx">
+      <DependentUpon>FormSimplePointSprite.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSimpleUIColorIndicator.resx">
       <DependentUpon>FormSimpleUIColorIndicator.cs</DependentUpon>

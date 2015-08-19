@@ -69,6 +69,9 @@
     <Compile Include="SceneElements\FontResource.cs" />
     <Compile Include="SceneElements\PointSpriteStringElement.cs" />
     <Compile Include="SceneElements\PyramidElement.cs" />
+    <EmbeddedResource Include="SceneElements\SimplePointSpriteElement.vert" />
+    <EmbeddedResource Include="SceneElements\SimplePointSpriteElement.frag" />
+    <Compile Include="SceneElements\SimplePointSpriteElement.cs" />
     <Compile Include="Shaders\ShaderCompilationException.cs" />
     <Compile Include="Shaders\Shader.cs" />
     <Compile Include="ManifestResourceLoader.cs" />
@@ -129,6 +132,7 @@
     <Content Include="Cameras\Camera.png" />
     <EmbeddedResource Include="SceneElements\LucidaTypewriterRegular.ttf.png" />
     <EmbeddedResource Include="SceneElements\LucidaTypewriterRegular.ttf.xml" />
+    <EmbeddedResource Include="SceneElements\SimplePointSpriteElement.png" />
     <Content Include="Shaders\GLSLVersion.html" />
     <Content Include="Texts\FreeTypes\freetype.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

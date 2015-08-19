@@ -97,9 +97,9 @@ namespace CSharpGL.Winforms.Demo
             (new FormPointSpriteStringElement()).Show();
         }
 
-        private void btnAlwaysFaceCamera_Click(object sender, EventArgs e)
+        private void btnSimplePointSprite_Click(object sender, EventArgs e)
         {
-            //(new FormAlwaysFaceCamera()).Show();
+            (new FormSimplePointSprite()).Show();
         }
 
 
