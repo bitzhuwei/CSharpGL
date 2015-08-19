@@ -139,8 +139,8 @@ namespace CSharpGL.Objects.SceneElements
             GL.Enable(GL.GL_POINT_SPRITE_ARB);
             //GL.TexEnv(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);//TODO: test TexEnvi()
             GL.TexEnvf(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);
-            GL.Enable(GL.GL_POINT_SMOOTH);
-            GL.Hint(GL.GL_POINT_SMOOTH_HINT, GL.GL_NICEST);
+            //GL.Enable(GL.GL_POINT_SMOOTH);
+            //GL.Hint(GL.GL_POINT_SMOOTH_HINT, GL.GL_NICEST);
             GL.Enable(GL.GL_BLEND);
             GL.BlendEquation(GL.GL_FUNC_ADD_EXT);
             GL.BlendFuncSeparate(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
