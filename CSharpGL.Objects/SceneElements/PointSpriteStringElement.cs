@@ -285,25 +285,11 @@ namespace CSharpGL.Objects.SceneElements
             // 用VAO+EBO进行渲染。
             //  Bind the out vertex array.
             GL.BindVertexArray(vao[0]);
-            //int size = this.fontSize * this.textureWidth;
-            int size = this.textureWidth;
-            //if (size > maxTextureWidth) { size = maxTextureWidth; }
-            //if (size > maxPointSize)
-            //{
-            //    GL.PointParameter(GL.GL_POINT_SIZE_MAX_ARB, size);
-            //    maxPointSize = size;
-            //}
-            //int[] pointSizeRange = new int[2];
-            //GL.GetInteger(GetTarget.PointSizeRange, pointSizeRange);
-
-            //GL.PointSize(size);
 
             GL.DrawArrays((uint)this.primitiveMode, 0, 1);
 
             //  Unbind our vertex array and shader.
             GL.BindVertexArray(0);
-
-            GL.PointSize(1);
         }
 
         ~PointSpriteStringElement()
