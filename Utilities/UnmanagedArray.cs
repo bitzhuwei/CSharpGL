@@ -131,59 +131,58 @@ namespace System
             allocatedArrays.Clear();
         }
 
-        ~UnmanagedArrayBase()
-        {
-            this.Dispose();
-        }
 
         #region IDisposable Members
-
-        /// <summary>
-        /// Internal variable which checks if Dispose has already been called
-        /// </summary>
-        protected Boolean disposed;
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected void Dispose(Boolean disposing)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-                //Managed cleanup code here, while managed refs still valid
-            }
-            //Unmanaged cleanup code here
-            IntPtr ptr = this.Header;
-
-            if (ptr != IntPtr.Zero)
-            {
-                this.Length = 0;
-                this.Header = IntPtr.Zero;
-                Marshal.FreeHGlobal(ptr);
-            }
-
-            disposed = true;
-        }
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose()
         {
-            // Call the private Dispose(bool) helper and indicate
-            // that we are explicitly disposing
             this.Dispose(true);
-
-            // Tell the garbage collector that the object doesn't require any
-            // cleanup when collected since Dispose was called explicitly.
             GC.SuppressFinalize(this);
+        } // end sub
+
+        /// <summary>
+        /// Destruct instance of the class.
+        /// </summary>
+        ~UnmanagedArrayBase()
+        {
+            this.Dispose(false);
         }
+
+        /// <summary>
+        /// Backing field to track whether Dispose has been called.
+        /// </summary>
+        private bool disposedValue = false;
+
+        /// <summary>
+        /// Dispose managed and unmanaged resources of this instance.
+        /// </summary>
+        /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
+        protected virtual void Dispose(bool disposing)
+        {
+
+            if (this.disposedValue == false)
+            {
+                if (disposing)
+                {
+                    // TODO: Dispose managed resources.
+                } // end if
+
+                // TODO: Dispose unmanaged resources.
+                IntPtr ptr = this.Header;
+
+                if (ptr != IntPtr.Zero)
+                {
+                    this.Length = 0;
+                    this.Header = IntPtr.Zero;
+                    Marshal.FreeHGlobal(ptr);
+                }
+            } // end if
+
+            this.disposedValue = true;
+        } // end sub
 
         #endregion
 
