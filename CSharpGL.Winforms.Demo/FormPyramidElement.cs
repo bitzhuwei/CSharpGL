@@ -1,4 +1,5 @@
 ﻿using CSharpGL.Maths;
+using CSharpGL.Objects;
 using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
 using System.Windows.Forms;
@@ -35,14 +36,13 @@ namespace CSharpGL.Winforms.Demo
 
         void pyramidElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            PyramidElement element = sender as PyramidElement;
-            element.shaderProgram.Unbind();
+            IMVP element = sender as IMVP;
+
+            element.UnbindShaderProgram();
         }
 
         void pyramidElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            PyramidElement element = sender as PyramidElement;
-
             rotation += 3.0f;
             mat4 modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
 
@@ -53,12 +53,11 @@ namespace CSharpGL.Winforms.Demo
             GL.GetInteger(GetTarget.Viewport, viewport);
             projectionMatrix = glm.perspective(60.0f, (float)viewport[2] / (float)viewport[3], 0.01f, 100.0f);
 
-            ShaderProgram shaderProgram = element.shaderProgram;
-            shaderProgram.Bind();
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
-            shaderProgram.SetUniformMatrix4(PyramidElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(PyramidElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(PyramidElement.strmodelMatrix, modelMatrix.to_array());
+            IMVP element = sender as IMVP;
+
+            element.UpdateMVP(mvp);
         }
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)

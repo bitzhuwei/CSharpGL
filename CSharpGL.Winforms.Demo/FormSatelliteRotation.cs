@@ -1,4 +1,5 @@
 ﻿using CSharpGL.Maths;
+using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
@@ -60,21 +61,24 @@ namespace CSharpGL.Winforms.Demo
 
         void element_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            element.shaderProgram.Unbind();
+            IMVP element = sender as IMVP;
+
+            element.UnbindShaderProgram();
         }
 
         void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
+            mat4 projectionMatrix = camera.GetProjectionMat4();
+
+            mat4 viewMatrix = camera.GetViewMat4();
+
             mat4 modelMatrix = mat4.identity();
-            mat4 viewMatrix = this.camera.GetViewMat4();
-            mat4 projectionMatrix = this.camera.GetProjectionMat4();
 
-            ShaderProgram shaderProgram = element.shaderProgram;
-            shaderProgram.Bind();
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
-            shaderProgram.SetUniformMatrix4(PyramidElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(PyramidElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(PyramidElement.strmodelMatrix, modelMatrix.to_array());
+            IMVP element = sender as IMVP;
+
+            element.UpdateMVP(mvp);
         }
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
