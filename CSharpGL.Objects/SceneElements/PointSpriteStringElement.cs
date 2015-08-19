@@ -14,7 +14,7 @@ namespace CSharpGL.Objects.SceneElements
     /// <summary>
     /// 用shader+VAO+组装的texture显示字符串
     /// </summary>
-    public class PointSpriteStringElement : SceneElementBase, IDisposable
+    public class PointSpriteStringElement : SceneElementBase, IMVP, IDisposable
     {
         /// <summary>
         /// TODO: 想办法实施有效的静态ctor.
@@ -32,13 +32,12 @@ namespace CSharpGL.Objects.SceneElements
         private vec3 position;
 
         // result data
+        private PrimitiveModes primitiveMode;
         public uint[] texture = new uint[1];
         uint[] vao = new uint[1];
         public ShaderProgram shaderProgram;
-        private PrimitiveModes primitiveMode;
-        public const string strprojectionMatrix = "projectionMatrix";
-        public const string strviewMatrix = "viewMatrix";
-        public const string strmodelMatrix = "modelMatrix";
+        private mat4 currentMVP;
+        public const string strMVP = "MVP";
         public const string strpointSize = "pointSize";
         public const string strtextColor = "textColor";
         public const string strtex = "tex";
@@ -364,6 +363,46 @@ namespace CSharpGL.Objects.SceneElements
         }
 
         #endregion
+
+        void IMVP.UpdateMVP(mat4 mvp)
+        {
+            this.currentMVP = mvp;
+
+            GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
+            GL.Enable(GL.GL_POINT_SPRITE_ARB);
+            //GL.TexEnv(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);//TODO: test TexEnvi()
+            GL.TexEnvf(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);
+            GL.Enable(GL.GL_POINT_SMOOTH);
+            GL.Hint(GL.GL_POINT_SMOOTH_HINT, GL.GL_NICEST);
+            GL.Enable(GL.GL_BLEND);
+            GL.BlendEquation(GL.GL_FUNC_ADD_EXT);
+            GL.BlendFuncSeparate(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
+
+            GL.BindTexture(GL.GL_TEXTURE_2D, this.texture[0]);
+
+            ShaderProgram shaderProgram = this.shaderProgram;
+            shaderProgram.Bind();
+
+            shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+            shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.PointSize);
+            shaderProgram.SetUniform(PointSpriteStringElement.strtex, this.texture[0]);
+            shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, this.textColor.x, this.textColor.y, this.textColor.z);
+            //shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+        }
+
+
+        void IMVP.UnbindShaderProgram()
+        {
+            ShaderProgram shaderProgram = this.shaderProgram;
+            shaderProgram.Unbind();
+
+            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+
+            GL.Disable(GL.GL_BLEND);
+            GL.Disable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
+            GL.Disable(GL.GL_POINT_SPRITE_ARB);
+            GL.Disable(GL.GL_POINT_SMOOTH);
+        }
     }
 
 }

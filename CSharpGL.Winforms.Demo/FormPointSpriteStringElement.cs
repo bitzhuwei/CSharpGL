@@ -1,4 +1,5 @@
 ﻿using CSharpGL.Maths;
+using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
@@ -86,9 +87,9 @@ namespace CSharpGL.Winforms.Demo
             ShaderProgram shaderProgram = pyramidElement.shaderProgram;
             shaderProgram.Bind();
 
-            shaderProgram.SetUniformMatrix4(PointSpriteStringElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(PointSpriteStringElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(PointSpriteStringElement.strmodelMatrix, modelMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(PyramidElement.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(PyramidElement.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(PyramidElement.strmodelMatrix, modelMatrix.to_array());
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
@@ -106,45 +107,23 @@ namespace CSharpGL.Winforms.Demo
 
         void textElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            textElement.shaderProgram.Unbind();
 
-            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
-
-            GL.Disable(GL.GL_BLEND);
-            GL.Disable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
-            GL.Disable(GL.GL_POINT_SPRITE_ARB);
-            GL.Disable(GL.GL_POINT_SMOOTH);
         }
 
         void textElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            mat4 modelMatrix = mat4.identity();
-            mat4 viewMatrix = this.camera.GetViewMat4();
-            mat4 projectionMatrix = this.camera.GetProjectionMat4();
+            mat4 projectionMatrix = camera.GetProjectionMat4();
             projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
 
-            GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
-            GL.Enable(GL.GL_POINT_SPRITE_ARB);
-            //GL.TexEnv(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);//TODO: test TexEnvi()
-            GL.TexEnvf(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);
-            GL.Enable(GL.GL_POINT_SMOOTH);
-            GL.Hint(GL.GL_POINT_SMOOTH_HINT, GL.GL_NICEST);
-            GL.Enable(GL.GL_BLEND);
-            GL.BlendEquation(GL.GL_FUNC_ADD_EXT);
-            GL.BlendFuncSeparate(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
+            mat4 viewMatrix = camera.GetViewMat4();
 
-            GL.BindTexture(GL.GL_TEXTURE_2D, textElement.texture[0]);
+            mat4 modelMatrix = mat4.identity();
 
-            ShaderProgram shaderProgram = textElement.shaderProgram;
-            shaderProgram.Bind();
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
-            shaderProgram.SetUniformMatrix4(PointSpriteStringElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(PointSpriteStringElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(PointSpriteStringElement.strmodelMatrix, modelMatrix.to_array());
-            shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, textElement.PointSize);
-            shaderProgram.SetUniform(PointSpriteStringElement.strtex, textElement.texture[0]);
-            //shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, textElement.textColor.x, textElement.textColor.y, textElement.textColor.z);
-            shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+            IMVP element = sender as IMVP;
+
+            element.UpdateMVP(mvp);
         }
 
         Random random = new Random();

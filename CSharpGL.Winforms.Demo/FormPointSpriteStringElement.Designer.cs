@@ -73,7 +73,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.glCanvas1);
             this.Name = "FormPointSpriteStringElement";
-            this.Text = "FormPointSpriteFontElement";
+            this.Text = "FormPointSpriteStringElement";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();

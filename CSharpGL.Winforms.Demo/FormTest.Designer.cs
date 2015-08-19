@@ -43,7 +43,7 @@
             this.btnSimpleUICube = new System.Windows.Forms.Button();
             this.btnDebugging = new System.Windows.Forms.Button();
             this.btnSimplePointSprite = new System.Windows.Forms.Button();
-            this.btnFormPointSpriteFontElement = new System.Windows.Forms.Button();
+            this.btnFormPointSpriteStringElement = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -241,18 +241,18 @@
             this.btnSimplePointSprite.UseVisualStyleBackColor = true;
             this.btnSimplePointSprite.Click += new System.EventHandler(this.btnSimplePointSprite_Click);
             // 
-            // btnFormPointSpriteFontElement
+            // btnFormPointSpriteStringElement
             // 
-            this.btnFormPointSpriteFontElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnFormPointSpriteStringElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFormPointSpriteFontElement.Location = new System.Drawing.Point(13, 533);
-            this.btnFormPointSpriteFontElement.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFormPointSpriteFontElement.Name = "btnFormPointSpriteFontElement";
-            this.btnFormPointSpriteFontElement.Size = new System.Drawing.Size(353, 29);
-            this.btnFormPointSpriteFontElement.TabIndex = 4;
-            this.btnFormPointSpriteFontElement.Text = "FormPointSpriteFontElement";
-            this.btnFormPointSpriteFontElement.UseVisualStyleBackColor = true;
-            this.btnFormPointSpriteFontElement.Click += new System.EventHandler(this.btnFormPointSpriteFontElement_Click);
+            this.btnFormPointSpriteStringElement.Location = new System.Drawing.Point(13, 533);
+            this.btnFormPointSpriteStringElement.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormPointSpriteStringElement.Name = "btnFormPointSpriteStringElement";
+            this.btnFormPointSpriteStringElement.Size = new System.Drawing.Size(353, 29);
+            this.btnFormPointSpriteStringElement.TabIndex = 4;
+            this.btnFormPointSpriteStringElement.Text = "FormPointSpriteStringElement";
+            this.btnFormPointSpriteStringElement.UseVisualStyleBackColor = true;
+            this.btnFormPointSpriteStringElement.Click += new System.EventHandler(this.btnFormPointSpriteStringElement_Click);
             // 
             // FormTest
             // 
@@ -264,7 +264,7 @@
             this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnCamera);
             this.Controls.Add(this.btnSimpleUICube);
-            this.Controls.Add(this.btnFormPointSpriteFontElement);
+            this.Controls.Add(this.btnFormPointSpriteStringElement);
             this.Controls.Add(this.btnSimplePointSprite);
             this.Controls.Add(this.btnDebugging);
             this.Controls.Add(this.btnSimpleUIColorPalette);
@@ -299,6 +299,6 @@
         private System.Windows.Forms.Button btnSimpleUICube;
         private System.Windows.Forms.Button btnDebugging;
         private System.Windows.Forms.Button btnSimplePointSprite;
-        private System.Windows.Forms.Button btnFormPointSpriteFontElement;
+        private System.Windows.Forms.Button btnFormPointSpriteStringElement;
     }
 }
