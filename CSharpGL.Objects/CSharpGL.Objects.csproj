@@ -89,6 +89,7 @@
     <Compile Include="RenderContexts\VersionAttribute.cs" />
     <Compile Include="RenderModes.cs" />
     <Compile Include="Shaders\ShaderProgram.cs" />
+    <Compile Include="Texture2D.cs" />
     <Compile Include="UI\SimpleUI\ColorPalette.cs" />
     <Compile Include="UI\SimpleUI\IUILayout.cs" />
     <Compile Include="UI\SimpleUI\IUILayoutHelper.cs" />
