@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace CSharpGL.Objects.Texts.FreeTypes
+namespace CSharpGL.Texts.FreeTypes
 {
     /// <summary>
     /// FreeType对象的基类型。

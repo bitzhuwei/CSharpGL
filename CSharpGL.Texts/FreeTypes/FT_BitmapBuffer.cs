@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Texts.FreeTypes
+namespace CSharpGL.Texts.FreeTypes
 {
     /// <summary>
     /// 字形的具体信息

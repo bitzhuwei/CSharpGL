@@ -4,5 +4,4 @@ ManifestResourceLoader用于从DLL内加载文本文件或图片文件。
 SceneElementBase（及IMVP等）定义了绘图场景中的一个元素的基本骨架。
 Shader等封装了OpenGL对GLSL所需的操作。
 RenderContexts里有FBORenderContext等用于创建渲染上下文的类型。（是否应放到CSharpGL.Winforms？）
-Texts里有在OpenGL中绘制文字的类型。这里的内容将独立出去。
 UI里有在OpenGL中绘制UI的类型。（目前modern opengl版的UI还有点问题：对齐的距离有偏差）

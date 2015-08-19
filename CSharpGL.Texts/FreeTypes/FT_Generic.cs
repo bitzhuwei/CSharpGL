@@ -5,15 +5,13 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Texts.FreeTypes
+namespace CSharpGL.Texts.FreeTypes
 {
 
     [StructLayout(LayoutKind.Sequential)]
-    public class FT_GlyphRec
+    public class FT_Generic
     {
-        public System.IntPtr library;
-        public System.IntPtr clazz;
-        public int format;
-        public FT_Vector advance;
+        public System.IntPtr data;
+        public System.IntPtr finalizer;
     }
 }

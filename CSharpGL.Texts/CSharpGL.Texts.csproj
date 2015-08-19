@@ -35,6 +35,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics.Vectors, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Binary\System.Numerics.Vectors.dll</HintPath>
@@ -46,9 +47,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FreeTypes\freetype.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="readme.txt" />
+    <Compile Include="CharacterInfo.cs" />
+    <Compile Include="CharacterInfoDictHelper.cs" />
+    <Compile Include="CharacterInfoHelper.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="FontTexture.cs" />
+    <Compile Include="FontTextureHelper.cs" />
+    <Compile Include="FontTextureYieldHelper.cs" />
+    <Compile Include="FreeTypes\BBox.cs" />
+    <Compile Include="FreeTypes\FreeTypeAPI.cs" />
+    <Compile Include="FreeTypes\FreeTypeEnumerations.cs" />
+    <Compile Include="FreeTypes\FreeTypeObjects.cs" />
+    <Compile Include="FreeTypes\FT_BitmapBuffer.cs" />
+    <Compile Include="FreeTypes\FT_BitmapGlyph.cs" />
+    <Compile Include="FreeTypes\FT_Face.cs" />
+    <Compile Include="FreeTypes\FT_Generic.cs" />
+    <Compile Include="FreeTypes\FT_GlyphRec.cs" />
+    <Compile Include="FreeTypes\FT_Library.cs" />
+    <Compile Include="FreeTypes\FT_ListRec.cs" />
+    <Compile Include="FreeTypes\FT_Vector.cs" />
+    <Compile Include="KeyValuePairHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FreeTypes\freetype.exp" />
+    <None Include="FreeTypes\freetype.lib" />
+    <None Include="Modern OpenGL Text Rendering.mht" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,7 +3,6 @@ using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
-using CSharpGL.Objects.Texts;
 using CSharpGL.Objects.UI.SimpleUI;
 using System;
 using System.Text;

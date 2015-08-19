@@ -1,4 +1,5 @@
-﻿using CSharpGL.Objects.Texts.FreeTypes;
+﻿using CSharpGL.Texts.FreeTypes;
+using CSharpGL.Texts.FreeTypes;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace CSharpGL.Objects.Texts
+namespace CSharpGL.Texts
 {
     public static class FontTextureHelper
     {

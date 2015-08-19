@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Texts.FreeTypes
+namespace CSharpGL.Texts.FreeTypes
 {
     public enum FT_LOAD_TYPES
     {

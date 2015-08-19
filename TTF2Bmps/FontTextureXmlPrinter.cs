@@ -1,4 +1,4 @@
-﻿using CSharpGL.Objects.Texts;
+﻿using CSharpGL.Texts;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,9 +11,9 @@ namespace Font2Bmps
 {
     class FontTextureXmlPrinter
     {
-        private CSharpGL.Objects.Texts.FontTexture ttfTexture;
+        private CSharpGL.Texts.FontTexture ttfTexture;
 
-        public FontTextureXmlPrinter(CSharpGL.Objects.Texts.FontTexture ttfTexture)
+        public FontTextureXmlPrinter(CSharpGL.Texts.FontTexture ttfTexture)
         {
             // TODO: Complete member initialization
             this.ttfTexture = ttfTexture;

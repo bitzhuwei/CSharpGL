@@ -70,6 +70,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SceneElements\CylinderElement.cs" />
+    <Compile Include="SceneElements\FontElement.cs" />
     <Compile Include="SceneElements\FontResource.cs" />
     <Compile Include="SceneElements\PointSpriteStringElement.cs" />
     <Compile Include="SceneElements\PyramidElement.cs" />
@@ -88,12 +89,6 @@
     <Compile Include="RenderContexts\VersionAttribute.cs" />
     <Compile Include="RenderModes.cs" />
     <Compile Include="Shaders\ShaderProgram.cs" />
-    <Compile Include="Texts\CharacterInfoDictHelper.cs" />
-    <Compile Include="Texts\CharacterInfoHelper.cs" />
-    <Compile Include="Texts\KeyValuePairHelper.cs" />
-    <Compile Include="Texts\FontTexture.cs" />
-    <Compile Include="Texts\FontTextureYieldHelper.cs" />
-    <Compile Include="Texts\FontTextureHelper.cs" />
     <Compile Include="UI\SimpleUI\ColorPalette.cs" />
     <Compile Include="UI\SimpleUI\IUILayout.cs" />
     <Compile Include="UI\SimpleUI\IUILayoutHelper.cs" />
@@ -104,28 +99,16 @@
     <Compile Include="UI\SimpleUI\SimpleUIAxis.cs" />
     <Compile Include="UI\SimpleUI\IUILayoutArgs.cs" />
     <Compile Include="UI\SimpleUI\SimpleUICube.cs" />
-    <EmbeddedResource Include="Texts\FontElement.frag" />
-    <EmbeddedResource Include="Texts\FontElement.vert" />
-    <Compile Include="Texts\CharacterInfo.cs" />
-    <Compile Include="Texts\FontElement.cs" />
-    <Compile Include="Texts\FreeTypes\BBox.cs" />
-    <Compile Include="Texts\FreeTypes\FT_BitmapBuffer.cs" />
-    <Compile Include="Texts\FreeTypes\FreeTypeObjects.cs" />
-    <Compile Include="Texts\FreeTypes\FreeTypeAPI.cs" />
-    <Compile Include="Texts\FreeTypes\FreeTypeEnumerations.cs" />
-    <Compile Include="Texts\FreeTypes\FT_BitmapGlyph.cs" />
-    <Compile Include="Texts\FreeTypes\FT_Face.cs" />
-    <Compile Include="Texts\FreeTypes\FT_Library.cs" />
-    <Compile Include="Texts\FreeTypes\FT_Generic.cs" />
-    <Compile Include="Texts\FreeTypes\FT_GlyphRec.cs" />
-    <Compile Include="Texts\FreeTypes\FT_ListRec.cs" />
-    <Compile Include="Texts\FreeTypes\FT_Vector.cs" />
     <Compile Include="SceneElementBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSharpGL.Maths\CSharpGL.Maths.csproj">
       <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
       <Name>CSharpGL.Maths</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CSharpGL.Texts\CSharpGL.Texts.csproj">
+      <Project>{febc2c4a-e846-44e7-99c1-ecf2816abf40}</Project>
+      <Name>CSharpGL.Texts</Name>
     </ProjectReference>
     <ProjectReference Include="..\CSharpGL\CSharpGL.csproj">
       <Project>{0d6e73c8-27b8-4614-9861-f4f22808ea7c}</Project>
@@ -139,9 +122,6 @@
     <EmbeddedResource Include="SceneElements\SimplePointSpriteElement.png" />
     <Content Include="readme.txt" />
     <Content Include="Shaders\GLSLVersion.html" />
-    <Content Include="Texts\FreeTypes\freetype.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SceneElements\AxisElement.frag" />
@@ -155,9 +135,6 @@
     <EmbeddedResource Include="SceneElements\SimplePointSpriteElement_Analytic.frag" />
     <EmbeddedResource Include="SceneElements\AxisElement2.vert" />
     <EmbeddedResource Include="SceneElements\AxisElement2.frag" />
-    <None Include="Texts\FreeTypes\freetype.exp" />
-    <None Include="Texts\FreeTypes\freetype.lib" />
-    <None Include="Texts\Modern OpenGL Text Rendering.mht" />
     <EmbeddedResource Include="UI\SimpleUI\SimpleUIRect.frag" />
     <EmbeddedResource Include="UI\SimpleUI\SimpleUIRect.vert" />
     <EmbeddedResource Include="UI\SimpleUI\SimpleUICube.vert" />
@@ -166,6 +143,12 @@
     <EmbeddedResource Include="UI\SimpleUI\SimpleUIColorIndicator.frag" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="SceneElements\FontElement.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SceneElements\FontElement.vert" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

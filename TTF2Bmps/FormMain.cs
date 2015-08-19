@@ -1,6 +1,5 @@
 ﻿using CSharpGL;
-using CSharpGL.Objects.Texts;
-using CSharpGL.Objects.Texts.FreeTypes;
+using CSharpGL.Texts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

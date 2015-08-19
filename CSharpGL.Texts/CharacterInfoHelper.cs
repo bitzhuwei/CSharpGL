@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace CSharpGL.Objects.Texts
+namespace CSharpGL.Texts
 {
     /// <summary>
     /// 绘制一个字符所需要的所有信息

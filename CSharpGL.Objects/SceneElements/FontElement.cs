@@ -1,11 +1,12 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Shaders;
+using CSharpGL.Texts;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace CSharpGL.Objects.Texts
+namespace CSharpGL.Objects.SceneElements
 {
     /// <summary>
     /// 用一个纹理绘制所有指定范围内的可见字符（具有指定的高度和字体）
@@ -332,8 +333,8 @@ namespace CSharpGL.Objects.Texts
 
         private void InitShaderProgram()
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Texts.FontElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Texts.FontElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.FontElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.FontElement.frag");
             var shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 

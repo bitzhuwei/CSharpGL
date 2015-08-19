@@ -1,4 +1,4 @@
-﻿using CSharpGL.Objects.Texts.FreeTypes;
+﻿using CSharpGL.Texts.FreeTypes;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Texts
+namespace CSharpGL.Texts
 {
     /// <summary>
     /// 用一个纹理绘制指定范围内的所有可见字符

@@ -1,4 +1,4 @@
-﻿using CSharpGL.Objects.Texts;
+﻿using CSharpGL.Texts;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

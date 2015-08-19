@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Objects.Texts
+namespace CSharpGL.Texts
 {
     /// <summary>
     /// 绘制一个字符所需要的所有信息

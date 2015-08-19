@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Texts.FreeTypes
+namespace CSharpGL.Texts.FreeTypes
 {
     /// <summary>
     /// 一个TTF文件里的字形会被转换为Face。Face就是一个TTF里字形的集合。

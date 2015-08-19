@@ -5,14 +5,14 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Texts.FreeTypes
+namespace CSharpGL.Texts.FreeTypes
 {
     /// <summary>
     /// 封装了一些FreeType的函数。
     /// </summary>
     public static class FreeTypeAPI
     {
-        const string freetypeDll = @"Texts\FreeTypes\freetype.dll";
+        const string freetypeDll = @"FreeTypes\freetype.dll";
 
         /// <summary>
         /// Before using any other FreeType function, we need to initialize the library

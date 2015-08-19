@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace CSharpGL.Objects.Texts
+namespace CSharpGL.Texts
 {
     public static class CharacterInfoDictHelper
     {
