@@ -1,0 +1,563 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SharpFont</name>
+    </assembly>
+    <members>
+        <member name="T:SharpFont.InvalidFontException">
+            <summary>
+            Represents errors that occur due to invalid data in a font file.
+            </summary>
+        </member>
+        <member name="M:SharpFont.InvalidFontException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpFont.InvalidFontException"/> class.
+            </summary>
+        </member>
+        <member name="M:SharpFont.InvalidFontException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpFont.InvalidFontException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+        </member>
+        <member name="M:SharpFont.InvalidFontException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpFont.InvalidFontException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="M:SharpFont.InvalidFontException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpFont.InvalidFontException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info"/> parameter is null. </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0). </exception>
+        </member>
+        <member name="T:SharpFont.FontFace">
+            <summary>
+            Represents a single font face, maintaining all font data in memory.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontFace.IsFixedWidth">
+            <summary>
+            Indicates whether the font's glyphs share a fixed width.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontFace.Weight">
+            <summary>
+            The visual weight of the font.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontFace.Stretch">
+            <summary>
+            The visual stretching appearance of the font's glyphs.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontFace.Style">
+            <summary>
+            The font's style.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontFace.Family">
+            <summary>
+            The name of the family to which the font belongs (e.g. "Arial").
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontFace.Subfamily">
+            <summary>
+            The subname within the family (e.g. "Regular").
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontFace.FullName">
+            <summary>
+            The full human-friendly name of the font (e.g. "Arial Regular").
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontFace.UniqueID">
+            <summary>
+            A unique identifier for the font (this is self assigned by the font designer so it may not actually be unique).
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontFace.Version">
+            <summary>
+            The font's version string.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontFace.Description">
+            <summary>
+            An optional description string for the font.
+            </summary>
+        </member>
+        <member name="M:SharpFont.FontFace.#ctor(System.IO.Stream)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpFont.FontFace"/> class.
+            </summary>
+            <param name="stream">A stream pointing to the font file.</param>
+            <remarks>
+            All relevant font data is loaded into memory and retained by the FontFace object.
+            Once the constructor finishes you are free to close the stream.
+            </remarks>
+        </member>
+        <member name="M:SharpFont.FontFace.ComputePixelSize(System.Single,System.Int32)">
+            <summary>
+            Computes a pixel size given a point size and screen DPI.
+            </summary>
+            <param name="pointSize">The font point size.</param>
+            <param name="dpi">The DPI of the screen.</param>
+            <returns>The pixel size at the given resolution.</returns>
+        </member>
+        <member name="M:SharpFont.FontFace.GetFaceMetrics(System.Single)">
+            <summary>
+            Gets metrics for the font as a whole at a particular pixel size.
+            </summary>
+            <param name="pixelSize">The size of the font, in pixels.</param>
+            <returns>The font's face metrics.</returns>
+        </member>
+        <member name="M:SharpFont.FontFace.GetGlyph(SharpFont.CodePoint,System.Single)">
+            <summary>
+            Gets glyph data for a specific character.
+            </summary>
+            <param name="codePoint">The Unicode codepoint for which to retrieve glyph data.</param>
+            <param name="pixelSize">The desired size of the font, in pixels.</param>
+            <returns>The glyph data if the font supports the given character; otherwise, <c>null</c>.</returns>
+        </member>
+        <member name="M:SharpFont.FontFace.GetKerning(SharpFont.CodePoint,SharpFont.CodePoint,System.Single)">
+            <summary>
+            Gets kerning information for a pair of characters.
+            </summary>
+            <param name="left">The left character.</param>
+            <param name="right">The right character.</param>
+            <param name="pixelSize">The size of the font, in pixels.</param>
+            <returns>The amount of kerning to apply, if any.</returns>
+        </member>
+        <member name="M:SharpFont.FontFace.ToString">
+            <summary>
+            Returns a string representation of the font.
+            </summary>
+            <returns>The full name of the font.</returns>
+        </member>
+        <member name="T:SharpFont.Glyph">
+            <summary>
+            Represents a single glyph of a font.
+            </summary>
+        </member>
+        <member name="F:SharpFont.Glyph.Width">
+            <summary>
+            The width of the glyph.
+            </summary>
+        </member>
+        <member name="F:SharpFont.Glyph.Height">
+            <summary>
+            The height of the glyph.
+            </summary>
+        </member>
+        <member name="F:SharpFont.Glyph.RenderWidth">
+            <summary>
+            The integer width of the glyph, as it will be rendered.
+            </summary>
+        </member>
+        <member name="F:SharpFont.Glyph.RenderHeight">
+            <summary>
+            The integer height of the glyph, as it will be rendered.
+            </summary>
+        </member>
+        <member name="F:SharpFont.Glyph.HorizontalMetrics">
+            <summary>
+            The metrics to use when the glyph is laid out horizontally.
+            </summary>
+        </member>
+        <member name="F:SharpFont.Glyph.VerticalMetrics">
+            <summary>
+            The metrics to use when the glyph is laid out vertically.
+            </summary>
+        </member>
+        <member name="M:SharpFont.Glyph.RenderTo(SharpFont.Surface)">
+            <summary>
+            Renders the glyph to the given surface.
+            </summary>
+            <param name="surface">The target surface.</param>
+            <remarks>
+            If the surface is not large enough, the glyph will be clipped to fit.
+            </remarks>
+        </member>
+        <member name="T:SharpFont.FaceMetrics">
+            <summary>
+            Contains various metrics that apply to a font face as a whole, scaled for a particular size.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FaceMetrics.CellAscent">
+            <summary>
+            The distance from the baseline up to the top of the em box.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FaceMetrics.CellDescent">
+            <summary>
+            The distance from the baseline down to the bottom of the em box.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FaceMetrics.LineHeight">
+            <summary>
+            The baseline-to-baseline distance.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FaceMetrics.XHeight">
+            <summary>
+            The average height of "lowercase" characters.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FaceMetrics.CapHeight">
+            <summary>
+            The average height of "uppercase" characters.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FaceMetrics.UnderlineSize">
+            <summary>
+            The thickness of an underline marker.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FaceMetrics.UnderlinePosition">
+            <summary>
+            The distance from the baseline at which to place the underline marker.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FaceMetrics.StrikeoutSize">
+            <summary>
+            The thickness of a strikeout marker.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FaceMetrics.StrikeoutPosition">
+            <summary>
+            The distance from the baseline at which to place the strikeout marker.
+            </summary>
+        </member>
+        <member name="M:SharpFont.FaceMetrics.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpFont.FaceMetrics"/> class.
+            </summary>
+            <param name="cellAscent">The cell ascent.</param>
+            <param name="cellDescent">The cell descent.</param>
+            <param name="lineHeight">The line height.</param>
+            <param name="xHeight">The average height of "lowercase" characters.</param>
+            <param name="capHeight">The average height of "uppercase" characters.</param>
+            <param name="underlineSize">The underline size.</param>
+            <param name="underlinePosition">The underline position.</param>
+            <param name="strikeoutSize">The strikeout size.</param>
+            <param name="strikeoutPosition">The strikeout position.</param>
+        </member>
+        <member name="T:SharpFont.GlyphMetrics">
+            <summary>
+            Contains metrics for a single glyph.
+            </summary>
+        </member>
+        <member name="F:SharpFont.GlyphMetrics.Bearing">
+            <summary>
+            The leading bearings; this is the offset from the pen at which to position the glyph.
+            </summary>
+        </member>
+        <member name="F:SharpFont.GlyphMetrics.Advance">
+            <summary>
+            The glyph advance; this is the distance to advance the pen after positioning the glyph.
+            </summary>
+        </member>
+        <member name="F:SharpFont.GlyphMetrics.LinearAdvance">
+            <summary>
+            The linear advance; this is the original advance distance unaffected by hinting.
+            Use this if you want a guaranteed smooth transition of advances across various pixel sizes.
+            </summary>
+        </member>
+        <member name="M:SharpFont.GlyphMetrics.#ctor(System.Numerics.Vector2,System.Single,System.Single)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpFont.GlyphMetrics"/> struct.
+            </summary>
+            <param name="bearing">The bearings.</param>
+            <param name="advance">The advance distance.</param>
+            <param name="linearAdvance">The linear unhinted advance distance.</param>
+        </member>
+        <member name="T:SharpFont.Surface">
+            <summary>
+            Represents an image surface in memory.
+            </summary>
+        </member>
+        <member name="P:SharpFont.Surface.Bits">
+            <summary>
+            A pointer to the image data.
+            </summary>
+        </member>
+        <member name="P:SharpFont.Surface.Width">
+            <summary>
+            The width of the image, in pixels.
+            </summary>
+        </member>
+        <member name="P:SharpFont.Surface.Height">
+            <summary>
+            The height of the image, in pixels.
+            </summary>
+        </member>
+        <member name="P:SharpFont.Surface.Pitch">
+            <summary>
+            The width of a row of pixels, in bytes.
+            </summary>
+        </member>
+        <member name="T:SharpFont.CodePoint">
+            <summary>
+            Represents a single Unicode codepoint.
+            </summary>
+        </member>
+        <member name="M:SharpFont.CodePoint.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpFont.CodePoint"/> struct.
+            </summary>
+            <param name="codePoint">The 32-bit value of the codepoint.</param>
+        </member>
+        <member name="M:SharpFont.CodePoint.#ctor(System.Char)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpFont.CodePoint"/> struct.
+            </summary>
+            <param name="character">The 16-bit value of the codepoint.</param>
+        </member>
+        <member name="M:SharpFont.CodePoint.#ctor(System.Char,System.Char)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpFont.CodePoint"/> struct.
+            </summary>
+            <param name="highSurrogate">The first member of a surrogate pair representing the codepoint.</param>
+            <param name="lowSurrogate">The second member of a surrogate pair representing the codepoint.</param>
+        </member>
+        <member name="M:SharpFont.CodePoint.CompareTo(SharpFont.CodePoint)">
+            <summary>
+            Compares this instance to the specified value.
+            </summary>
+            <param name="other">The value to compare.</param>
+            <returns>A signed number indicating the relative values of this instance and <paramref name="other"/>.</returns>
+        </member>
+        <member name="M:SharpFont.CodePoint.Equals(SharpFont.CodePoint)">
+            <summary>
+            Returns a value indicating whether this instance is equal to the specified object.
+            </summary>
+            <param name="obj">The object to compare.</param>
+            <returns><c>true</c> if this instance equals <paramref name="other"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:SharpFont.CodePoint.Equals(System.Object)">
+            <summary>
+            Returns a value indicating whether this instance is equal to the specified object.
+            </summary>
+            <param name="obj">The object to compare.</param>
+            <returns><c>true</c> if this instance equals <paramref name="obj"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:SharpFont.CodePoint.GetHashCode">
+            <summary>
+            Returns the hash code for this instance.
+            </summary>
+            <returns>The instance's hashcode.</returns>
+        </member>
+        <member name="M:SharpFont.CodePoint.ToString">
+            <summary>
+            Converts the value to its equivalent string representation.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SharpFont.CodePoint.op_Equality(SharpFont.CodePoint,SharpFont.CodePoint)">
+            <summary>
+            Implements the equality operator.
+            </summary>
+            <param name="left">The left hand side of the operator.</param>
+            <param name="right">The right hand side of the operator.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SharpFont.CodePoint.op_Inequality(SharpFont.CodePoint,SharpFont.CodePoint)">
+            <summary>
+            Implements the inequality operator.
+            </summary>
+            <param name="left">The left hand side of the operator.</param>
+            <param name="right">The right hand side of the operator.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SharpFont.CodePoint.op_LessThan(SharpFont.CodePoint,SharpFont.CodePoint)">
+            <summary>
+            Implements the less-than operator.
+            </summary>
+            <param name="left">The left hand side of the operator.</param>
+            <param name="right">The right hand side of the operator.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SharpFont.CodePoint.op_GreaterThan(SharpFont.CodePoint,SharpFont.CodePoint)">
+            <summary>
+            Implements the greater-than operator.
+            </summary>
+            <param name="left">The left hand side of the operator.</param>
+            <param name="right">The right hand side of the operator.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SharpFont.CodePoint.op_LessThanOrEqual(SharpFont.CodePoint,SharpFont.CodePoint)">
+            <summary>
+            Implements the less-than-or-equal-to operator.
+            </summary>
+            <param name="left">The left hand side of the operator.</param>
+            <param name="right">The right hand side of the operator.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SharpFont.CodePoint.op_GreaterThanOrEqual(SharpFont.CodePoint,SharpFont.CodePoint)">
+            <summary>
+            Implements the greater-than-or-equal-to operator.
+            </summary>
+            <param name="left">The left hand side of the operator.</param>
+            <param name="right">The right hand side of the operator.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SharpFont.CodePoint.op_Explicit(System.Int32)~SharpFont.CodePoint">
+            <summary>
+            Implements an explicit conversion from integer to <see cref="T:SharpFont.CodePoint"/>.
+            </summary>
+            <param name="codePoint">The codepoint value.</param>
+        </member>
+        <member name="M:SharpFont.CodePoint.op_Implicit(System.Char)~SharpFont.CodePoint">
+            <summary>
+            Implements an implicit conversion from character to <see cref="T:SharpFont.CodePoint"/>.
+            </summary>
+            <param name="character">The character value.</param>
+        </member>
+        <member name="M:SharpFont.CodePoint.op_Explicit(SharpFont.CodePoint)~System.Char">
+            <summary>
+            Implements an explicit conversion from <see cref="T:SharpFont.CodePoint"/> to character.
+            </summary>
+            <param name="codePoint">The codepoint value.</param>
+        </member>
+        <member name="T:SharpFont.FontWeight">
+            <summary>
+            Specifies various font weights.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontWeight.Unknown">
+            <summary>
+            The weight is unknown or unspecified.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontWeight.Thin">
+            <summary>
+            Very thin.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontWeight.ExtraLight">
+            <summary>
+            Extra light.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontWeight.Light">
+            <summary>
+            Light.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontWeight.Normal">
+            <summary>
+            Normal.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontWeight.Medium">
+            <summary>
+            Medium.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontWeight.SemiBold">
+            <summary>
+            Somewhat bold.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontWeight.Bold">
+            <summary>
+            Bold.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontWeight.ExtraBold">
+            <summary>
+            Extra bold.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontWeight.Black">
+            <summary>
+            Extremely bold.
+            </summary>
+        </member>
+        <member name="T:SharpFont.FontStretch">
+            <summary>
+            Specifies the font stretching level.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontStretch.Unknown">
+            <summary>
+            The stretch is unknown or unspecified.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontStretch.UltraCondensed">
+            <summary>
+            Ultra condensed.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontStretch.ExtraCondensed">
+            <summary>
+            Extra condensed.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontStretch.Condensed">
+            <summary>
+            Condensed.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontStretch.SemiCondensed">
+            <summary>
+            Somewhat condensed.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontStretch.Normal">
+            <summary>
+            Normal.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontStretch.SemiExpanded">
+            <summary>
+            Somewhat expanded.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontStretch.Expanded">
+            <summary>
+            Expanded.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontStretch.ExtraExpanded">
+            <summary>
+            Extra expanded.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontStretch.UltraExpanded">
+            <summary>
+            Ultra expanded.
+            </summary>
+        </member>
+        <member name="T:SharpFont.FontStyle">
+            <summary>
+            Specifies various font styles.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontStyle.Regular">
+            <summary>
+            No particular styles applied.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontStyle.Bold">
+            <summary>
+            The font is emboldened.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontStyle.Italic">
+            <summary>
+            The font is stylistically italic.
+            </summary>
+        </member>
+        <member name="F:SharpFont.FontStyle.Oblique">
+            <summary>
+            The font is algorithmically italic / angled.
+            </summary>
+        </member>
+    </members>
+</doc>
