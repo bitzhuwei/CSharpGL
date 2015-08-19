@@ -65,7 +65,6 @@
     <Compile Include="GL_Wrappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enumerations\ShadeModel.cs" />
-    <Compile Include="UnmanagedArray.cs" />
     <Compile Include="Win32API\BITMAPINFO.cs" />
     <Compile Include="Win32API\ClassStyles.cs" />
     <Compile Include="Win32API\Delegates.cs" />
@@ -80,7 +79,12 @@
     <Compile Include="Win32API\WindowStylesEx.cs" />
     <Compile Include="Win32API\WNDCLASSEX.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

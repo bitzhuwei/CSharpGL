@@ -79,7 +79,6 @@
     <Compile Include="SceneElements\SimplePointSpriteElement.cs" />
     <Compile Include="Shaders\ShaderCompilationException.cs" />
     <Compile Include="Shaders\Shader.cs" />
-    <Compile Include="ManifestResourceLoader.cs" />
     <Compile Include="RenderContexts\DIBSection.cs" />
     <Compile Include="RenderContexts\FBORenderContext.cs" />
     <Compile Include="RenderContexts\GLVersion.cs" />
@@ -114,6 +113,10 @@
     <ProjectReference Include="..\CSharpGL\CSharpGL.csproj">
       <Project>{0d6e73c8-27b8-4614-9861-f4f22808ea7c}</Project>
       <Name>CSharpGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

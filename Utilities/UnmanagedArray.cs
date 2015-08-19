@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL
+namespace System
 {
 
     /// <summary>
@@ -41,9 +41,9 @@ namespace CSharpGL
                     throw new IndexOutOfRangeException("index of UnmanagedArray is out of range");
 
                 var pItem = this.Header + (index * elementSize);
-                //var obj = Marshal.PtrToStructure(pItem, typeof(T));
-                //T result = (T)obj;
-                T result = Marshal.PtrToStructure<T>(pItem);// works in .net 4.5.1
+                var obj = Marshal.PtrToStructure(pItem, typeof(T));
+                T result = (T)obj;
+                //T result = Marshal.PtrToStructure<T>(pItem);// works in .net 4.5.1
                 return result;
             }
             set
@@ -52,8 +52,8 @@ namespace CSharpGL
                     throw new IndexOutOfRangeException("index of UnmanagedArray is out of range");
 
                 var pItem = this.Header + (index * elementSize);
-                //Marshal.StructureToPtr(value, pItem, true);
-                Marshal.StructureToPtr<T>(value, pItem, true);// works in .net 4.5.1
+                Marshal.StructureToPtr(value, pItem, true);
+                //Marshal.StructureToPtr<T>(value, pItem, true);// works in .net 4.5.1
             }
         }
 
