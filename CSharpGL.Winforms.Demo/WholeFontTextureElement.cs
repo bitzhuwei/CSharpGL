@@ -16,7 +16,8 @@ namespace CSharpGL.Winforms.Demo
     {
         internal bool blend = true;
 
-        public uint[] texture = new uint[1];
+        //public uint[] texture = new uint[1];
+        public Texture2D texture;
         private FontTexture ttfTexture;
 
         public ShaderProgram shaderProgram;
@@ -110,7 +111,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void InitTexture()
         {
-            System.Drawing.Bitmap bigBitmap = this.ttfTexture.BigBitmap;
+            //System.Drawing.Bitmap bigBitmap = this.ttfTexture.BigBitmap;
 
             //CreateTextureObject(bigBitmap);
             CreateTextureObject(this.ttfTexture);
@@ -119,61 +120,67 @@ namespace CSharpGL.Winforms.Demo
             //bigBitmap.Save("WholeFontTextureElement.png");
         }
 
-        private void CreateTextureObject(FontTexture ttfTexture)
+        private void CreateTextureObject(FontTexture fontTexture)
         {
-            //	Get the maximum texture size supported by OpenGL.
-            int[] textureMaxSize = { 0 };
-            GL.GetInteger(GetTarget.MaxTextureSize, textureMaxSize);
-
-            //	Find the target width and height sizes, which is just the highest
-            //	posible power of two that'll fit into the image.
-            int textureWidth;
-            int textureHeight;
-            ttfTexture.GetTextureWidthHeight(textureMaxSize[0], out textureWidth, out textureHeight);
-
-            System.Drawing.Bitmap bigBitmap = ttfTexture.BigBitmap;
-            System.Drawing.Bitmap newImage = bigBitmap;
-
-            //  If need to scale, do so now.
-            if (bigBitmap.Width != textureWidth || bigBitmap.Height != textureHeight)
-            {
-                //  Resize the image.
-                newImage = (System.Drawing.Bitmap)bigBitmap.GetThumbnailImage(textureWidth, textureHeight, null, IntPtr.Zero);
-            }
-
-            //  Lock the image bits (so that we can pass them to OGL).
-            BitmapData bitmapData = newImage.LockBits(new Rectangle(0, 0, newImage.Width, newImage.Height),
-                ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-
-            //GL.ActiveTexture(GL.GL_TEXTURE0);
-            GL.GenTextures(1, texture);
-            GL.BindTexture(GL.GL_TEXTURE_2D, texture[0]);
-
-            GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA,
-                newImage.Width, newImage.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
-                bitmapData.Scan0);
-
-            //  Unlock the image.
-            newImage.UnlockBits(bitmapData);
-
-            //  Dispose of the image file.
-            if (newImage != bigBitmap)
-            {
-                newImage.Dispose();
-            }
-
-            /* We require 1 byte alignment when uploading texture data */
-            //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
-
-            /* Clamping to edges is important to prevent artifacts when scaling */
-            GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
-            GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
-
-            /* Linear filtering usually looks best for text */
-            GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
-            GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
-
+            this.texture = new Texture2D();
+            this.texture.Initialize(fontTexture.BigBitmap);
         }
+
+        //private void CreateTextureObject(FontTexture ttfTexture)
+        //{
+        //    //	Get the maximum texture size supported by OpenGL.
+        //    int[] textureMaxSize = { 0 };
+        //    GL.GetInteger(GetTarget.MaxTextureSize, textureMaxSize);
+
+        //    //	Find the target width and height sizes, which is just the highest
+        //    //	posible power of two that'll fit into the image.
+        //    int textureWidth;
+        //    int textureHeight;
+        //    ttfTexture.GetTextureWidthHeight(textureMaxSize[0], out textureWidth, out textureHeight);
+
+        //    System.Drawing.Bitmap bigBitmap = ttfTexture.BigBitmap;
+        //    System.Drawing.Bitmap newImage = bigBitmap;
+
+        //    //  If need to scale, do so now.
+        //    if (bigBitmap.Width != textureWidth || bigBitmap.Height != textureHeight)
+        //    {
+        //        //  Resize the image.
+        //        newImage = (System.Drawing.Bitmap)bigBitmap.GetThumbnailImage(textureWidth, textureHeight, null, IntPtr.Zero);
+        //    }
+
+        //    //  Lock the image bits (so that we can pass them to OGL).
+        //    BitmapData bitmapData = newImage.LockBits(new Rectangle(0, 0, newImage.Width, newImage.Height),
+        //        ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+
+        //    //GL.ActiveTexture(GL.GL_TEXTURE0);
+        //    GL.GenTextures(1, texture);
+        //    GL.BindTexture(GL.GL_TEXTURE_2D, texture[0]);
+
+        //    GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA,
+        //        newImage.Width, newImage.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
+        //        bitmapData.Scan0);
+
+        //    //  Unlock the image.
+        //    newImage.UnlockBits(bitmapData);
+
+        //    //  Dispose of the image file.
+        //    if (newImage != bigBitmap)
+        //    {
+        //        newImage.Dispose();
+        //    }
+
+        //    /* We require 1 byte alignment when uploading texture data */
+        //    //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
+
+        //    /* Clamping to edges is important to prevent artifacts when scaling */
+        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
+        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
+
+        //    /* Linear filtering usually looks best for text */
+        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
+        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
+
+        //}
 
         private void InitShaderProgram()
         {
@@ -195,53 +202,53 @@ namespace CSharpGL.Winforms.Demo
         }
 
 
-        ~WholeFontTextureElement()
-        {
-            this.Dispose();
-        }
-
         #region IDisposable Members
-
-        /// <summary>
-        /// Internal variable which checks if Dispose has already been called
-        /// </summary>
-        protected Boolean disposed;
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected void Dispose(Boolean disposing)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-                //Managed cleanup code here, while managed refs still valid
-            }
-            //Unmanaged cleanup code here
-            this.ttfTexture.Dispose();
-
-            disposed = true;
-        }
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose()
         {
-            // Call the private Dispose(bool) helper and indicate
-            // that we are explicitly disposing
             this.Dispose(true);
-
-            // Tell the garbage collector that the object doesn't require any
-            // cleanup when collected since Dispose was called explicitly.
             GC.SuppressFinalize(this);
+        } // end sub
+
+        /// <summary>
+        /// Destruct instance of the class.
+        /// </summary>
+        ~WholeFontTextureElement()
+        {
+            this.Dispose(false);
         }
 
+        /// <summary>
+        /// Backing field to track whether Dispose has been called.
+        /// </summary>
+        private bool disposedValue = false;
+
+        /// <summary>
+        /// Dispose managed and unmanaged resources of this instance.
+        /// </summary>
+        /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
+        protected virtual void Dispose(bool disposing)
+        {
+
+            if (this.disposedValue == false)
+            {
+                if (disposing)
+                {
+                    // TODO: Dispose managed resources.
+                } // end if
+
+                // TODO: Dispose unmanaged resources.
+                this.ttfTexture.Dispose();
+
+            } // end if
+
+            this.disposedValue = true;
+        } // end sub
+
         #endregion
+
     }
 }

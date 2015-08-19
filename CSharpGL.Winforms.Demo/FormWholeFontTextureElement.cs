@@ -76,8 +76,8 @@ namespace CSharpGL.Winforms.Demo
         }
         void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            uint texture = element.texture[0];
-            GL.BindTexture(GL.GL_TEXTURE_2D, texture);
+            CSharpGL.Objects.Texture2D texture = element.texture;
+            texture.Bind();
 
             if (element.blend)
             {
@@ -91,7 +91,7 @@ namespace CSharpGL.Winforms.Demo
 
             ShaderProgram shaderProgram = element.shaderProgram;
             shaderProgram.Bind();
-            shaderProgram.SetUniform(WholeFontTextureElement.strtex, texture);
+            shaderProgram.SetUniform(WholeFontTextureElement.strtex, texture.Name);
             shaderProgram.SetUniform(WholeFontTextureElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
             shaderProgram.SetUniformMatrix4(WholeFontTextureElement.strprojectionMatrix, projectionMatrix.to_array());
             shaderProgram.SetUniformMatrix4(WholeFontTextureElement.strviewMatrix, viewMatrix.to_array());

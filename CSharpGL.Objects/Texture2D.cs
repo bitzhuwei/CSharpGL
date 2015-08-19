@@ -16,6 +16,11 @@ namespace CSharpGL.Objects
         private bool initialized;
         private uint[] texture = new uint[1];
 
+        /// <summary>
+        /// 纹理名（用于标识一个纹理，由OpenGL指定）
+        /// </summary>
+        public uint Name { get { return this.texture[0]; } }
+
         public void Initialize(System.Drawing.Bitmap bitmap)
         {
             if (!this.initialized)
@@ -143,10 +148,24 @@ namespace CSharpGL.Objects
                 if (disposing)
                 {
                     // TODO: Dispose managed resources.
+                    GL.DeleteTextures(this.texture.Length, this.texture);
                 } // end if
 
                 // TODO: Dispose unmanaged resources.
-                GL.DeleteTextures(this.texture.Length, this.texture);
+                // 为什么此函数会引发异常？
+                /*
+                 * 未处理System.AccessViolationException
+  HResult=-2147467261
+  Message=尝试读取或写入受保护的内存。这通常指示其他内存已损坏。
+  Source=CSharpGL
+  StackTrace:
+       在 CSharpGL.GL.DeleteTextures(Int32 n, UInt32[] textures)
+       在 CSharpGL.Objects.Texture2D.Dispose(Boolean disposing)
+       在 CSharpGL.Objects.Texture2D.Finalize()
+  InnerException: 
+
+                 */
+                //GL.DeleteTextures(this.texture.Length, this.texture);
 
             } // end if
 
@@ -154,5 +173,10 @@ namespace CSharpGL.Objects
         } // end sub
 
         #endregion
+
+        public void Bind()
+        {
+            GL.BindTexture(GL.GL_TEXTURE_2D, this.texture[0]);
+        }
     }
 }
