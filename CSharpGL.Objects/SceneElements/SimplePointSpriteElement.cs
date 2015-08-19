@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.SceneElements
     /// <summary>
     /// 这是一个使用point sprite进行渲染的简单的例子。
     /// </summary>
-    public class SimplePointSpriteElement : SceneElementBase, IDisposable
+    public class SimplePointSpriteElement : SceneElementBase,IMVP, IDisposable
     {
 
         /// <summary>
@@ -33,9 +33,7 @@ namespace CSharpGL.Objects.SceneElements
         /// </summary>
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
-        public const string strprojectionMatrix = "projectionMatrix";
-        public const string strviewMatrix = "viewMatrix";
-        public const string strmodelMatrix = "modelMatrix";
+        public const string strMVP = "MVP";
         public const string strtex = "tex";
         public const string strpointSize = "pointSize";
         public const string strforeshortening = "foreshortening";
@@ -261,6 +259,7 @@ namespace CSharpGL.Objects.SceneElements
         /// </summary>
         protected Boolean disposed;
         private FragShaderType fragShaderType;
+        private mat4 currentMVP;
 
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources
@@ -306,6 +305,25 @@ namespace CSharpGL.Objects.SceneElements
         public float PointSize { get; set; }
 
         public bool Foreshortening { get; set; }
+
+        void IMVP.UpdateMVP(mat4 mvp)
+        {
+            this.currentMVP = mvp;
+
+            ShaderProgram shaderProgram = this.shaderProgram;
+
+            shaderProgram.Bind();
+
+            shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+        }
+
+
+        void IMVP.UnbindShaderProgram()
+        {
+            ShaderProgram shaderProgram = this.shaderProgram;
+
+            shaderProgram.Unbind();
+        }
     }
 
     public enum FragShaderType

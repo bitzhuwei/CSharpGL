@@ -133,28 +133,24 @@ namespace CSharpGL.Winforms.Demo
 
         void pointSpriteElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            SimplePointSpriteElement element = sender as SimplePointSpriteElement;
+            IMVP element = sender as IMVP;
 
-            element.shaderProgram.Unbind();
+            element.UnbindShaderProgram();
         }
 
         void pointSpriteElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            SimplePointSpriteElement element = sender as SimplePointSpriteElement;
-
             mat4 projectionMatrix = camera.GetProjectionMat4();
 
             mat4 viewMatrix = camera.GetViewMat4();
 
             mat4 modelMatrix = mat4.identity();
 
-            ShaderProgram shaderProgram = element.shaderProgram;
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
-            shaderProgram.Bind();
+            IMVP element = sender as IMVP;
 
-            shaderProgram.SetUniformMatrix4(SimplePointSpriteElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimplePointSpriteElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimplePointSpriteElement.strmodelMatrix, modelMatrix.to_array());
+            element.UpdateMVP(mvp);
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
