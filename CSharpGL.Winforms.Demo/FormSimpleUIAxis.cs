@@ -15,6 +15,9 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
 {
+    /// <summary>
+    /// 本例演示了SimpleUIAxis、SimpleUIRect的用法，也证明了CSharpGL.Maths库里的mat4的mvp相乘的结果与glgl里的结果相同。
+    /// </summary>
     public partial class FormSimpleUIAxis : Form
     {
         SimpleUIAxis uiLeftBottomAxis;
@@ -28,6 +31,7 @@ namespace CSharpGL.Winforms.Demo
         SimpleUIRect uiRightTopRect;
 
         AxisElement axisElement;
+        AxisElement2 axisElement2;
 
         ScientificCamera camera;
 
@@ -106,6 +110,11 @@ namespace CSharpGL.Winforms.Demo
             axisElement.BeforeRendering += axisElement_BeforeRendering;
             axisElement.AfterRendering += axisElement_AfterRendering;
 
+            axisElement2 = new AxisElement2();
+            axisElement2.Initialize();
+            axisElement2.BeforeRendering += axisElement2_BeforeRendering;
+            axisElement2.AfterRendering += axisElement2_AfterRendering;
+
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
@@ -175,6 +184,7 @@ namespace CSharpGL.Winforms.Demo
             AxisElement element = sender as AxisElement;
 
             mat4 projectionMatrix = camera.GetProjectionMat4();
+            projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
 
             mat4 viewMatrix = camera.GetViewMat4();
 
@@ -187,6 +197,33 @@ namespace CSharpGL.Winforms.Demo
             shaderProgram.SetUniformMatrix4(AxisElement.strprojectionMatrix, projectionMatrix.to_array());
             shaderProgram.SetUniformMatrix4(AxisElement.strviewMatrix, viewMatrix.to_array());
             shaderProgram.SetUniformMatrix4(AxisElement.strmodelMatrix, modelMatrix.to_array());
+        }
+
+        void axisElement2_AfterRendering(object sender, Objects.RenderEventArgs e)
+        {
+            AxisElement2 element = sender as AxisElement2;
+
+            element.shaderProgram.Unbind();
+        }
+
+        void axisElement2_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        {
+            AxisElement2 element = sender as AxisElement2;
+
+            mat4 projectionMatrix = camera.GetProjectionMat4();
+            projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
+
+            mat4 viewMatrix = camera.GetViewMat4();
+
+            mat4 modelMatrix = mat4.identity();
+
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+
+            ShaderProgram shaderProgram = element.shaderProgram;
+
+            shaderProgram.Bind();
+
+            shaderProgram.SetUniformMatrix4(AxisElement2.strMVP, mvp.to_array());
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
@@ -207,7 +244,15 @@ namespace CSharpGL.Winforms.Demo
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            axisElement.Render(Objects.RenderModes.Render);
+            if (this.renderState == 2 || this.renderState == 4)
+            {
+                axisElement.Render(Objects.RenderModes.Render);
+            }
+
+            if (this.renderState == 3 || this.renderState == 4)
+            {
+                axisElement2.Render(Objects.RenderModes.Render);
+            }
 
             uiLeftBottomAxis.Render(Objects.RenderModes.Render);
             uiLeftTopAxis.Render(Objects.RenderModes.Render);
@@ -251,13 +296,21 @@ namespace CSharpGL.Winforms.Demo
         private void PrintCameraInfo()
         {
             StringBuilder builder = new StringBuilder();
-            builder.Append(string.Format("position:{0}", this.camera.Position));
+            builder.Append(string.Format("camera:"));
+            builder.Append(string.Format(" position:{0}", this.camera.Position));
             builder.Append(string.Format(" target:{0}", this.camera.Target));
             builder.Append(string.Format(" up:{0}", this.camera.UpVector));
             builder.Append(string.Format(" camera type: {0}", this.camera.CameraType));
+            builder.Append(string.Format(" rendering: {0}, {1}",
+                this.renderState == 2 || this.renderState == 4,
+                this.renderState == 3 || this.renderState == 4));
 
             this.txtInfo.Text = builder.ToString();
         }
+
+        float translateX = 0, translateY = 0, translateZ = 0;
+        const float interval = 0.1f;
+        private int renderState = 4;
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -274,6 +327,46 @@ namespace CSharpGL.Winforms.Demo
                     default:
                         throw new NotImplementedException();
                 }
+            }
+            else if (e.KeyChar == '1')
+            {
+                this.renderState = 1;
+            }
+            else if (e.KeyChar == '2')
+            {
+                this.renderState = 2;
+            }
+            else if (e.KeyChar == '3')
+            {
+                this.renderState = 3;
+            }
+            else if (e.KeyChar == '4')
+            {
+                this.renderState = 4;
+            }
+            else if (e.KeyChar == 'w')
+            {
+                translateY += interval;
+            }
+            else if (e.KeyChar == 's')
+            {
+                translateY -= interval;
+            }
+            else if (e.KeyChar == 'a')
+            {
+                translateX -= interval;
+            }
+            else if (e.KeyChar == 'd')
+            {
+                translateX += interval;
+            }
+            else if (e.KeyChar == 'q')
+            {
+                translateZ -= interval;
+            }
+            else if (e.KeyChar == 'e')
+            {
+                translateZ += interval;
             }
         }
     }

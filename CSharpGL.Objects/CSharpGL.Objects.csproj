@@ -65,6 +65,9 @@
     <Compile Include="Cameras\ScientificCamera.cs" />
     <Compile Include="Cameras\ViewTypes.cs" />
     <Compile Include="GLColor.cs" />
+    <Compile Include="SceneElements\AxisElement2.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="SceneElements\CylinderElement.cs" />
     <Compile Include="SceneElements\FontResource.cs" />
     <Compile Include="SceneElements\PointSpriteStringElement.cs" />
@@ -148,6 +151,8 @@
     <EmbeddedResource Include="SceneElements\PointSpriteStringElement.frag" />
     <EmbeddedResource Include="SceneElements\PointSpriteStringElement.vert" />
     <EmbeddedResource Include="SceneElements\SimplePointSpriteElement_Analytic.frag" />
+    <EmbeddedResource Include="SceneElements\AxisElement2.vert" />
+    <EmbeddedResource Include="SceneElements\AxisElement2.frag" />
     <None Include="Texts\FreeTypes\freetype.exp" />
     <None Include="Texts\FreeTypes\freetype.lib" />
     <None Include="Texts\Modern OpenGL Text Rendering.mht" />

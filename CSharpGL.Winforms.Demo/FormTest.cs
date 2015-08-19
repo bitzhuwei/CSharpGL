@@ -75,6 +75,7 @@ namespace CSharpGL.Winforms.Demo
         private void btnSimpleUIAxis_Click(object sender, EventArgs e)
         {
             (new FormSimpleUIAxis()).Show();
+            //(new FormSimpleUIAxis2()).Show();
         }
 
         private void btnSimpleUICube_Click(object sender, EventArgs e)
