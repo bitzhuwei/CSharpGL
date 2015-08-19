@@ -22,7 +22,7 @@ namespace CSharpGL
         ///元素类型为sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool或其它struct的非托管数组。
         /// </summary>
         /// <param name="count"></param>
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        //[MethodImpl(MethodImplOptions.Synchronized)]
         public UnmanagedArray(int count)
             : base(count, Marshal.SizeOf(typeof(T)))
         {
@@ -104,7 +104,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="elementCount">元素的总数。</param>
         /// <param name="elementSize">单个元素的字节数。</param>
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        //[MethodImpl(MethodImplOptions.Synchronized)]
         protected UnmanagedArrayBase(int elementCount, int elementSize)
         {
             this.Length = elementCount;
