@@ -15,7 +15,7 @@ namespace System
     /// <para>Check http://www.cnblogs.com/bitzhuwei/p/huge-unmanged-array-in-csharp.html </para>
     /// </summary>
     /// <typeparam name="T">sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool或其它struct, 不能使用enum类型作为T。</typeparam>
-    public class UnmanagedArray<T> : UnmanagedArrayBase where T : struct
+    public sealed class UnmanagedArray<T> : UnmanagedArrayBase where T : struct
     {
 
         /// <summary>
