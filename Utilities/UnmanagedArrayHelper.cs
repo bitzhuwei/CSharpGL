@@ -37,6 +37,11 @@ namespace System
             return header;
         }
 
+        /// <summary>
+        /// 获取非托管数组的最后一个元素的地址。
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
         public static unsafe void* LastElement(this UnmanagedArrayBase array)
         {
             var last = (void*)(array.Header + (array.ByteLength - array.ByteLength / array.Length));
