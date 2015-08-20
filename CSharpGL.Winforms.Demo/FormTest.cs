@@ -21,6 +21,7 @@ namespace CSharpGL.Winforms.Demo
         {
             TestUnmanagedArray.TypicalScene();
             TestProjectionFunctions.TypicalScene();
+            UnmanagedArrayHelper.TypicalScene();
             string message = string.Format("{0}", "All successfully done!");
             MessageBox.Show(message, "tip", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
