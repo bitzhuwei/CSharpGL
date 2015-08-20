@@ -37,6 +37,13 @@ namespace System
             return header;
         }
 
+        public static unsafe void* LastElement(this UnmanagedArrayBase array)
+        {
+            var last = (void*)(array.Header + (array.ByteLength - array.ByteLength / array.Length));
+
+            return last;
+        }
+
         /// <summary>
         /// 获取非托管数组的最后一个元素的地址再向后一个单位的地址。
         /// </summary>
@@ -44,9 +51,9 @@ namespace System
         /// <returns></returns>
         public static unsafe void* TailAddress(this UnmanagedArrayBase array)
         {
-            var last = (void*)(array.Header + array.ByteLength);
+            var tail = (void*)(array.Header + array.ByteLength);
 
-            return last;
+            return tail;
         }
 
         public static void TypicalScene()
@@ -66,9 +73,10 @@ namespace System
             unsafe
             {
                 int* header = (int*)array2.FirstElement();
+                int* last = (int*)array2.LastElement();
                 int* tailAddress = (int*)array2.TailAddress();
                 int value = 0;
-                for (int* ptr = header; ptr < tailAddress; ptr++)
+                for (int* ptr = header; ptr <= last/*or: ptr < tailAddress*/; ptr++)
                 {
                     *ptr = value++;
                 }
