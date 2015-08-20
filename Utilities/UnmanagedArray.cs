@@ -104,7 +104,7 @@ namespace System
         /// </summary>
         /// <param name="elementCount">元素的总数。</param>
         /// <param name="elementSize">单个元素的字节数。</param>
-        //[MethodImpl(MethodImplOptions.Synchronized)]
+        //[MethodImpl(MethodImplOptions.Synchronized)]//这造成死锁，不知道是为什么
         protected UnmanagedArrayBase(int elementCount, int elementSize)
         {
             this.Length = elementCount;
@@ -113,22 +113,36 @@ namespace System
             int memSize = elementCount * elementSize;
             this.Header = Marshal.AllocHGlobal(memSize);
 
-            allocatedArrays.Add(this);
+            lock (synObj)
+            {
+                allocatedArrays.Add(this);
+            }
+            //UnmanagedArrayBase.Add(this);
         }
 
+        private static readonly object synObj = new object();
         private static readonly List<IDisposable> allocatedArrays = new List<IDisposable>();
 
+        //[MethodImpl(MethodImplOptions.Synchronized)]//这造成死锁，不知道是为什么
+        private static void Add(UnmanagedArrayBase array)
+        {
+            allocatedArrays.Add(array);
+        }
         /// <summary>
         /// 立即释放所有<see cref="UnmanagedArray"/>。
         /// </summary>
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        //[MethodImpl(MethodImplOptions.Synchronized)]//这造成死锁，不知道是为什么
         public static void FreeAll()
         {
-            foreach (var item in allocatedArrays)
+            lock (synObj)
             {
-                item.Dispose();
+                foreach (var item in allocatedArrays)
+                {
+                    item.Dispose();
+                }
+
+                allocatedArrays.Clear();
             }
-            allocatedArrays.Clear();
         }
 
 
