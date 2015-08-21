@@ -33,6 +33,7 @@ namespace CSharpGL.Winforms.Demo
         ScientificCamera camera;
 
         SatelliteRotator satelliteRoration;
+        private int renderSign;
 
         public FormSimpleUIRect()
         {
@@ -135,7 +136,8 @@ namespace CSharpGL.Winforms.Demo
             GL.MatrixMode(GL.GL_PROJECTION);
             GL.PushMatrix();
             GL.LoadIdentity();
-            GL.Ortho(args.left, args.right, args.bottom, args.top, element.Param.zNear, element.Param.zFar);
+            GL.Ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top, element.Param.zNear, element.Param.zFar);
+            //GL.Ortho(args.left / 2, args.right / 2, args.bottom / 2, args.top / 2, element.Param.zNear, element.Param.zFar);
 
             IViewCamera camera = this.camera;
             if (camera == null)
@@ -209,8 +211,10 @@ namespace CSharpGL.Winforms.Demo
 
         private void FormTranslateOnScreen_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(string.Format("{0}",
-                "Use 'c' to switch camera types between perspective and ortho"));
+            MessageBox.Show(string.Format("{1}{0}{2}",
+                Environment.NewLine,
+                "Use 'c' to switch camera types between perspective and ortho",
+                "Use 'a' to switch render sign between legacy and modern opengl"));
         }
 
         private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
@@ -222,15 +226,20 @@ namespace CSharpGL.Winforms.Demo
 
             axisElement.Render(Objects.RenderModes.Render);
 
-            uiLeftBottomRect.Render(Objects.RenderModes.Render);
-            //uiLeftTopRect.Render(Objects.RenderModes.Render);
-            //uiRightBottomRect.Render(Objects.RenderModes.Render);
-            //uiRightTopRect.Render(Objects.RenderModes.Render);
-
-            legacyLeftBottomRect.Render(Objects.RenderModes.Render);
-            //legacyLeftTopRect.Render(Objects.RenderModes.Render);
-            //legacyRightBottomRect.Render(Objects.RenderModes.Render);
-            //legacyRightTopRect.Render(Objects.RenderModes.Render);
+            if (this.renderSign % 2 == 0)
+            {
+                uiLeftBottomRect.Render(Objects.RenderModes.Render);
+                //uiLeftTopRect.Render(Objects.RenderModes.Render);
+                //uiRightBottomRect.Render(Objects.RenderModes.Render);
+                //uiRightTopRect.Render(Objects.RenderModes.Render);
+            }
+            else if (this.renderSign % 2 == 1)
+            {
+                legacyLeftBottomRect.Render(Objects.RenderModes.Render);
+                //legacyLeftTopRect.Render(Objects.RenderModes.Render);
+                //legacyRightBottomRect.Render(Objects.RenderModes.Render);
+                //legacyRightTopRect.Render(Objects.RenderModes.Render);
+            }
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
@@ -287,6 +296,10 @@ namespace CSharpGL.Winforms.Demo
                     default:
                         throw new NotImplementedException();
                 }
+            }
+            else if (e.KeyChar == 'a')
+            {
+                this.renderSign = (this.renderSign + 1) % 2;
             }
         }
     }

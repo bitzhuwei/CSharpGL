@@ -29,9 +29,25 @@ namespace CSharpGL.Objects.UI.SimpleUI
             float max = (float)Math.Max(args.UIWidth, args.UIHeight);
 
             {
-                projectionMatrix = glm.ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top,
+                //projectionMatrix = glm.ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top,
+                // TODO: / 2后与legacy opengl的UI元素显示就完全一致了。为什么？？？
+                projectionMatrix = glm.ortho((float)args.left / 2, (float)args.right / 2, (float)args.bottom / 2, (float)args.top / 2,
                     uiElement.Param.zNear, uiElement.Param.zFar);
+                //{
+                //    float[] matrix = new float[16];
 
+                //    GL.MatrixMode(GL.GL_PROJECTION);
+                //    GL.PushMatrix();
+                //    GL.GetFloat(GetTarget.ProjectionMatrix, matrix);
+
+                //    GL.LoadIdentity();
+                //    GL.GetFloat(GetTarget.ProjectionMatrix, matrix);
+
+                //    GL.Ortho(args.left / 2, args.right / 2, args.bottom / 2, args.top / 2, uiElement.Param.zNear, uiElement.Param.zFar);
+                //    GL.GetFloat(GetTarget.ProjectionMatrix, matrix);// this equals projectionMatrix
+
+                //    GL.PopMatrix();
+                //}
                 // 把UI元素移到ortho长方体的最靠近camera的地方，这样就可以把UI元素放到OpenGL最前方。
                 projectionMatrix = glm.translate(projectionMatrix, new vec3(0, 0, uiElement.Param.zFar - max / 2 * maxDepth));
             }
@@ -46,10 +62,48 @@ namespace CSharpGL.Objects.UI.SimpleUI
                     position.Normalize();
                     viewMatrix = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
                 }
+                //{
+                //    float[] matrix = new float[16];
+
+                //    GL.MatrixMode(GL.GL_MODELVIEW);
+                //    GL.PushMatrix();
+                //    GL.GetFloat(GetTarget.ModelviewMatix, matrix);
+
+                //    GL.LoadIdentity();
+                //    GL.GetFloat(GetTarget.ModelviewMatix, matrix);
+
+                //    if(camera==null)
+                //    {
+                //        GL.gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);
+                //    }
+                //    else
+                //    {
+                //        vec3 position = camera.Position - camera.Target;
+                //        position.Normalize();
+                //        GL.gluLookAt(position.x, position.y, position.z, 0, 0, 0, camera.UpVector.x, camera.UpVector.y, camera.UpVector.z);
+                //    }
+                //    GL.GetFloat(GetTarget.ModelviewMatix, matrix);// this equals viewMatrix
+
+                //    GL.PopMatrix();
+                //}
             }
             {
-                //modelMatrix = glm.scale(mat4.identity(), new vec3(max / 2, max / 2, max / 2));
                 modelMatrix = glm.scale(mat4.identity(), new vec3(args.UIWidth / 2, args.UIHeight / 2, max / 2));
+                //{
+                //    float[] matrix = new float[16];
+
+                //    GL.MatrixMode(GL.GL_MODELVIEW);
+                //    GL.PushMatrix();
+                //    GL.GetFloat(GetTarget.ModelviewMatix, matrix);
+
+                //    GL.LoadIdentity();
+                //    GL.GetFloat(GetTarget.ModelviewMatix, matrix);
+
+                //    GL.Scale(args.UIWidth / 2, args.UIHeight / 2, max / 2);
+                //    GL.GetFloat(GetTarget.ModelviewMatix, matrix);// this equals modelMatrix
+
+                //    GL.PopMatrix();
+                //}
             }
         }
 
@@ -130,7 +184,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
             {
                 args.bottom = -viewportHeight / 2;
                 args.bottom = -(args.UIHeight / 2
-                    + (viewportHeight - args.UIHeight) 
+                    + (viewportHeight - args.UIHeight)
                         * ((double)param.Margin.Bottom / (double)(param.Margin.Bottom + param.Margin.Top)));
             }
             else if ((param.Anchor & topBottomAnchor) == AnchorStyles.Bottom)
