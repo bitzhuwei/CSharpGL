@@ -90,11 +90,6 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.Resize += glCanvas1_Resize;
 
-            Application.Idle += Application_Idle;
-        }
-
-        void Application_Idle(object sender, EventArgs e)
-        {
             UpdateInfo();
         }
 
@@ -291,7 +286,7 @@ namespace CSharpGL.Winforms.Demo
 
             element.positiveX = (float)(100 - e.NewValue) / 100;
             element.positiveTexX = (float)(100 - e.NewValue) / 100 / 2 + 0.5f;
-
+            UpdateInfo();
         }
 
         private void UpdateInfo()
@@ -316,6 +311,7 @@ namespace CSharpGL.Winforms.Demo
 
             element.positiveY = (float)(100 - e.NewValue) / 100;
             element.positiveTexY = (float)(100 - e.NewValue) / 100 / 2 + 0.5f;
+            UpdateInfo();
         }
 
         private void positiveZ_Scroll(object sender, ScrollEventArgs e)
@@ -324,6 +320,7 @@ namespace CSharpGL.Winforms.Demo
 
             element.positiveZ = (float)(100 - e.NewValue) / 100;
             element.positiveTexZ = (float)(100 - e.NewValue) / 100 / 2 + 0.5f;
+            UpdateInfo();
         }
 
         private void negtiveX_Scroll(object sender, ScrollEventArgs e)
@@ -332,6 +329,7 @@ namespace CSharpGL.Winforms.Demo
 
             element.negativeX = (float)(-100 - e.NewValue) / 100;
             element.negativeTexX = (float)(-100 - e.NewValue) / 100 / 2 + 0.5f;
+            UpdateInfo();
         }
 
         private void negtiveY_Scroll(object sender, ScrollEventArgs e)
@@ -340,6 +338,7 @@ namespace CSharpGL.Winforms.Demo
 
             element.negativeY = (float)(-100 - e.NewValue) / 100;
             element.negativeTexY = (float)(-100 - e.NewValue) / 100 / 2 + 0.5f;
+            UpdateInfo();
         }
 
         private void negtiveZ_Scroll(object sender, ScrollEventArgs e)
@@ -348,6 +347,7 @@ namespace CSharpGL.Winforms.Demo
 
             element.negativeZ = (float)(-100 - e.NewValue) / 100;
             element.negativeTexZ = (float)(-100 - e.NewValue) / 100 / 2 + 0.5f;
+            UpdateInfo();
         }
     }
 }
