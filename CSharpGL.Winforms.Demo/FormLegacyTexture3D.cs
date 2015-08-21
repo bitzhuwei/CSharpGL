@@ -46,10 +46,10 @@ namespace CSharpGL.Winforms.Demo
             //Size size = new Size(5, 5);
             IUILayoutParam param;
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
-            legacyUIRect = new LegacySimpleUIRect(param, new Objects.GLColor(1, 1, 1, 1));
+            legacyUIRect = new LegacySimpleUIRect(param, new Objects.GLColor(1, 0, 0, 1));
 
             param = new IUILayoutParam(AnchorStyles.Bottom | AnchorStyles.Right, padding, size);
-            modernUIRect = new SimpleUIRect(param, new GLColor(1, 1, 1, 1));
+            modernUIRect = new SimpleUIRect(param, new GLColor(0, 1, 1, 1));
 
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
             leftUIAxis = new SimpleUIAxis(param, new GLColor(1, 1, 1, 1));
