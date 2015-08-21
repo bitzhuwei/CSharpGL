@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Texts", "CSharpGL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{F1B5534A-134C-4FA6-B172-A2F20D8F96ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Objects.Demos", "CSharpGL.Objects.Demos\CSharpGL.Objects.Demos.csproj", "{6338EC8C-0F61-4AB2-99F8-B262D9ADFDA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{F1B5534A-134C-4FA6-B172-A2F20D8F96ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1B5534A-134C-4FA6-B172-A2F20D8F96ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1B5534A-134C-4FA6-B172-A2F20D8F96ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6338EC8C-0F61-4AB2-99F8-B262D9ADFDA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6338EC8C-0F61-4AB2-99F8-B262D9ADFDA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6338EC8C-0F61-4AB2-99F8-B262D9ADFDA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6338EC8C-0F61-4AB2-99F8-B262D9ADFDA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
