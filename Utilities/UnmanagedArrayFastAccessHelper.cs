@@ -12,7 +12,7 @@ namespace System
     /// <summary>
     /// 获取<see cref="UnmanagedArray"/>的指针，进行快速读写。
     /// </summary>
-    public static class UnmanagedArrayHelper
+    public static class UnmanagedArrayFastAccessHelper
     {
         ///// <summary>
         ///// 错误	1	无法获取托管类型(“T”)的地址和大小，或无法声明指向它的指针	C:\Users\威\Documents\GitHub\CSharpGL\Utilities\UnmanagedArrayHelper.cs	16	33	Utilities
