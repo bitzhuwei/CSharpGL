@@ -72,6 +72,12 @@
     <Compile Include="FormLegacySimpleUIRect.Designer.cs">
       <DependentUpon>FormLegacySimpleUIRect.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormLegacyTexture3D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLegacyTexture3D.Designer.cs">
+      <DependentUpon>FormLegacyTexture3D.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPointSpriteStringElement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormLegacySimpleUIRect.resx">
       <DependentUpon>FormLegacySimpleUIRect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLegacyTexture3D.resx">
+      <DependentUpon>FormLegacyTexture3D.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPointSpriteStringElement.resx">
       <DependentUpon>FormPointSpriteStringElement.cs</DependentUpon>

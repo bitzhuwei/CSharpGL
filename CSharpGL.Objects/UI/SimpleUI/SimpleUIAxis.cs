@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
     /// <summary>
     /// 用一个<see cref="AxisElement"/>绘制一个固定在窗口某处的坐标系。
     /// </summary>
-    public class SimpleUIAxis : SceneElementBase, IUILayout, IDisposable
+    public class SimpleUIAxis : SceneElementBase, IUILayout, IMVP, IDisposable
     {
         public AxisElement axisElement;
 
@@ -103,6 +103,19 @@ namespace CSharpGL.Objects.UI.SimpleUI
         protected override void DoRender(RenderModes renderMode)
         {
             this.axisElement.Render(renderMode);
+        }
+
+        void IMVP.UpdateMVP(mat4 mvp)
+        {
+            IMVP element = this.axisElement as IMVP;
+            element.UpdateMVP(mvp);
+        }
+
+
+        void IMVP.UnbindShaderProgram()
+        {
+            IMVP element = this.axisElement as IMVP;
+            element.UnbindShaderProgram();
         }
     }
 }

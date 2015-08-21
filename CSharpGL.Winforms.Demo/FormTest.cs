@@ -111,6 +111,11 @@ namespace CSharpGL.Winforms.Demo
             }
         }
 
+        private void btnFormLegacyTexture3D_Click(object sender, EventArgs e)
+        {
+            (new FormLegacyTexture3D()).Show();
+        }
+
 
     }
 }
