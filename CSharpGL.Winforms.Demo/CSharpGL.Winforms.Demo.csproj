@@ -271,6 +271,10 @@
       <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
       <Name>CSharpGL.Maths</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CSharpGL.Objects.Demos\CSharpGL.Objects.Demos.csproj">
+      <Project>{6338ec8c-0f61-4ab2-99f8-b262d9adfda3}</Project>
+      <Name>CSharpGL.Objects.Demos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CSharpGL.Objects\CSharpGL.Objects.csproj">
       <Project>{b340c561-2e18-42af-a52d-e6d9f924293e}</Project>
       <Name>CSharpGL.Objects</Name>

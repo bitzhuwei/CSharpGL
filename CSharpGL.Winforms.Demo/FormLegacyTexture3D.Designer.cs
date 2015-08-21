@@ -38,6 +38,7 @@
             this.negtiveX = new System.Windows.Forms.VScrollBar();
             this.label3 = new System.Windows.Forms.Label();
             this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
+            this.lblInfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,6 +49,7 @@
             this.positiveZ.Name = "positiveZ";
             this.positiveZ.Size = new System.Drawing.Size(21, 145);
             this.positiveZ.TabIndex = 1;
+            this.positiveZ.Scroll += new System.Windows.Forms.ScrollEventHandler(this.positiveZ_Scroll);
             // 
             // label1
             // 
@@ -78,6 +80,7 @@
             this.negtiveZ.Name = "negtiveZ";
             this.negtiveZ.Size = new System.Drawing.Size(21, 145);
             this.negtiveZ.TabIndex = 1;
+            this.negtiveZ.Scroll += new System.Windows.Forms.ScrollEventHandler(this.negtiveZ_Scroll);
             // 
             // positiveY
             // 
@@ -86,6 +89,7 @@
             this.positiveY.Name = "positiveY";
             this.positiveY.Size = new System.Drawing.Size(21, 145);
             this.positiveY.TabIndex = 1;
+            this.positiveY.Scroll += new System.Windows.Forms.ScrollEventHandler(this.positiveY_Scroll);
             // 
             // negtiveY
             // 
@@ -96,6 +100,7 @@
             this.negtiveY.Name = "negtiveY";
             this.negtiveY.Size = new System.Drawing.Size(21, 145);
             this.negtiveY.TabIndex = 1;
+            this.negtiveY.Scroll += new System.Windows.Forms.ScrollEventHandler(this.negtiveY_Scroll);
             // 
             // positiveX
             // 
@@ -104,6 +109,7 @@
             this.positiveX.Name = "positiveX";
             this.positiveX.Size = new System.Drawing.Size(21, 145);
             this.positiveX.TabIndex = 1;
+            this.positiveX.Scroll += new System.Windows.Forms.ScrollEventHandler(this.positiveX_Scroll);
             // 
             // negtiveX
             // 
@@ -114,6 +120,7 @@
             this.negtiveX.Name = "negtiveX";
             this.negtiveX.Size = new System.Drawing.Size(21, 145);
             this.negtiveX.TabIndex = 1;
+            this.negtiveX.Scroll += new System.Windows.Forms.ScrollEventHandler(this.negtiveX_Scroll);
             // 
             // label3
             // 
@@ -135,15 +142,26 @@
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(674, 455);
+            this.glCanvas1.Size = new System.Drawing.Size(583, 540);
             this.glCanvas1.TabIndex = 0;
+            // 
+            // lblInfo
+            // 
+            this.lblInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblInfo.Location = new System.Drawing.Point(603, 324);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(148, 229);
+            this.lblInfo.TabIndex = 2;
+            this.lblInfo.Text = "X:{0}, Y:{1}, Z:{2}";
             // 
             // FormLegacyTexture3D
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(763, 481);
+            this.ClientSize = new System.Drawing.Size(763, 566);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.negtiveX);
@@ -173,5 +191,6 @@
         private System.Windows.Forms.VScrollBar positiveX;
         private System.Windows.Forms.VScrollBar negtiveX;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblInfo;
     }
 }

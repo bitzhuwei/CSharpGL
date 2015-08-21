@@ -1,7 +1,9 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
+using CSharpGL.Objects.Demos;
 using CSharpGL.Objects.SceneElements;
+using CSharpGL.Objects.Shaders;
 using CSharpGL.Objects.UI.SimpleUI;
 using System;
 using System.Collections.Generic;
@@ -21,6 +23,8 @@ namespace CSharpGL.Winforms.Demo
         SimpleUIRect modernUIRect;
         SimpleUIAxis leftUIAxis;
         SimpleUIAxis rightUIAxis;
+        LegacyTexture3DCubeElement element;
+
         ScientificCamera camera;
         private SatelliteRotator satelliteRoration;
 
@@ -57,6 +61,7 @@ namespace CSharpGL.Winforms.Demo
             param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
             rightUIAxis = new SimpleUIAxis(param, new GLColor(1, 1, 1, 1));
 
+
             legacyUIRect.Initialize();
             modernUIRect.Initialize();
             leftUIAxis.Initialize();
@@ -72,6 +77,11 @@ namespace CSharpGL.Winforms.Demo
             leftUIAxis.AfterRendering += SimpleUIElement_AfterRendering;
             rightUIAxis.AfterRendering += SimpleUIElement_AfterRendering;
 
+            element = new LegacyTexture3DCubeElement();
+            element.Initialize();
+            element.BeforeRendering += element_BeforeRendering;
+            element.AfterRendering += element_AfterRendering;
+
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
@@ -79,6 +89,50 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.Resize += glCanvas1_Resize;
+
+            Application.Idle += Application_Idle;
+        }
+
+        void Application_Idle(object sender, EventArgs e)
+        {
+            UpdateInfo();
+        }
+
+        void element_AfterRendering(object sender, Objects.RenderEventArgs e)
+        {
+            GL.MatrixMode(GL.GL_MODELVIEW);
+            GL.PopMatrix();
+
+            GL.MatrixMode(GL.GL_PROJECTION);
+            GL.PopMatrix();
+        }
+
+        void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        {
+            GL.MatrixMode(GL.GL_PROJECTION);
+            GL.PushMatrix();
+            GL.LoadIdentity();
+            GL.gluPerspective(60, (double)glCanvas1.Width / (double)glCanvas1.Height, 0.001, 1000);
+
+            IViewCamera camera = this.camera;
+            if (camera == null)
+            {
+                GL.gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);
+                //throw new Exception("Camera not set!");
+            }
+            else
+            {
+                vec3 position = camera.Position - camera.Target;
+                position.Normalize();
+                GL.gluLookAt(position.x, position.y, position.z,
+                    0, 0, 0,
+                    camera.UpVector.x, camera.UpVector.y, camera.UpVector.z);
+            }
+
+            GL.MatrixMode(GL.GL_MODELVIEW);
+            GL.PushMatrix();
+            GL.LoadIdentity();
+            GL.Scale(0.1, 0.1, 0.1);
         }
 
         void legacyUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
@@ -171,6 +225,7 @@ namespace CSharpGL.Winforms.Demo
             modernUIRect.Render(Objects.RenderModes.Render);
             leftUIAxis.Render(Objects.RenderModes.Render);
             rightUIAxis.Render(Objects.RenderModes.Render);
+            element.Render(Objects.RenderModes.Render);
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
@@ -228,6 +283,71 @@ namespace CSharpGL.Winforms.Demo
                         throw new NotImplementedException();
                 }
             }
+        }
+
+        private void positiveX_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (element == null) { return; }
+
+            element.positiveX = (float)(100 - e.NewValue) / 100;
+            element.positiveTexX = (float)(100 - e.NewValue) / 100 / 2 + 0.5f;
+
+        }
+
+        private void UpdateInfo()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append(string.Format("+:{6}X:{0}~{3}{6}Y:{1}~{4}{6}Z:{2}~{5}",
+                element.positiveX, element.positiveY, element.positiveZ,
+                element.positiveTexX, element.positiveTexY, element.positiveTexZ,
+                Environment.NewLine));
+            builder.AppendLine();
+            builder.Append(string.Format("-:{6}X:{0}~{3}{6}Y:{1}~{4}{6}Z:{2}~{5}",
+                element.negativeX, element.negativeY, element.negativeZ,
+                element.negativeTexX, element.negativeTexY, element.negativeTexZ,
+                Environment.NewLine));
+
+            this.lblInfo.Text = builder.ToString();
+        }
+
+        private void positiveY_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (element == null) { return; }
+
+            element.positiveY = (float)(100 - e.NewValue) / 100;
+            element.positiveTexY = (float)(100 - e.NewValue) / 100 / 2 + 0.5f;
+        }
+
+        private void positiveZ_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (element == null) { return; }
+
+            element.positiveZ = (float)(100 - e.NewValue) / 100;
+            element.positiveTexZ = (float)(100 - e.NewValue) / 100 / 2 + 0.5f;
+        }
+
+        private void negtiveX_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (element == null) { return; }
+
+            element.negativeX = (float)(-100 - e.NewValue) / 100;
+            element.negativeTexX = (float)(-100 - e.NewValue) / 100 / 2 + 0.5f;
+        }
+
+        private void negtiveY_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (element == null) { return; }
+
+            element.negativeY = (float)(-100 - e.NewValue) / 100;
+            element.negativeTexY = (float)(-100 - e.NewValue) / 100 / 2 + 0.5f;
+        }
+
+        private void negtiveZ_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (element == null) { return; }
+
+            element.negativeZ = (float)(-100 - e.NewValue) / 100;
+            element.negativeTexZ = (float)(-100 - e.NewValue) / 100 / 2 + 0.5f;
         }
     }
 }
