@@ -81,11 +81,11 @@ namespace CSharpGL.Winforms.Demo
                 { throw new Exception(); }
             }
 
-            // 测试foreach
-            foreach (var item in vec3Array.Elements())
-            {
-                Console.WriteLine(item);
-            }
+            //// 测试foreach
+            //foreach (var item in vec3Array.Elements())
+            //{
+            //    Console.WriteLine(item);
+            //}
 
             // 释放此数组占用的内存，这之后就不能再使用vec3Array了。
             vec3Array.Dispose();

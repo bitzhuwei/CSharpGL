@@ -5,11 +5,12 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Utilities;
 
 namespace System
 {
     /// <summary>
-    /// 
+    /// 获取<see cref="UnmanagedArray"/>的指针，进行快速读写。
     /// </summary>
     public static class UnmanagedArrayHelper
     {
@@ -32,7 +33,7 @@ namespace System
         /// <returns></returns>
         public static unsafe void* FirstElement(this UnmanagedArrayBase array)
         {
-            var header = (void*)array.Header;
+            void* header = array.Header.ToPointer();
 
             return header;
         }
@@ -44,7 +45,7 @@ namespace System
         /// <returns></returns>
         public static unsafe void* LastElement(this UnmanagedArrayBase array)
         {
-            var last = (void*)(array.Header + (array.ByteLength - array.ByteLength / array.Length));
+            var last = (array.Header + (array.ByteLength - array.ByteLength / array.Length)).ToPointer();
 
             return last;
         }
@@ -56,53 +57,10 @@ namespace System
         /// <returns></returns>
         public static unsafe void* TailAddress(this UnmanagedArrayBase array)
         {
-            var tail = (void*)(array.Header + array.ByteLength);
+            void* tail = (array.Header + array.ByteLength).ToPointer();
 
             return tail;
         }
 
-        public static void TypicalScene()
-        {
-            int length = 1000000;
-            UnmanagedArray<int> array = new UnmanagedArray<int>(length);
-            UnmanagedArray<int> array2 = new UnmanagedArray<int>(length);
-
-            long tick = DateTime.Now.Ticks;
-            for (int i = 0; i < length; i++)
-            {
-                array[i] = i;
-            }
-            long totalTicks = DateTime.Now.Ticks - tick;
-
-            tick = DateTime.Now.Ticks;
-            unsafe
-            {
-                int* header = (int*)array2.FirstElement();
-                int* last = (int*)array2.LastElement();
-                int* tailAddress = (int*)array2.TailAddress();
-                int value = 0;
-                for (int* ptr = header; ptr <= last/*or: ptr < tailAddress*/; ptr++)
-                {
-                    *ptr = value++;
-                }
-            }
-            long totalTicks2 = DateTime.Now.Ticks - tick;
-            Console.WriteLine("ticks: {0}, {1}", totalTicks, totalTicks2);// unsafe method works faster.
-
-            for (int i = 0; i < length; i++)
-            {
-                if (array[i] != i)
-                {
-                    Console.WriteLine("something wrong here");
-                }
-                if (array2[i] != i)
-                {
-                    Console.WriteLine("something wrong here");
-                }
-            }
-
-            array.Dispose();
-            array2.Dispose();
-        }
     }
 }

@@ -20,8 +20,8 @@ namespace CSharpGL.Winforms.Demo
         private void btnBasis_Click(object sender, EventArgs e)
         {
             TestUnmanagedArray.TypicalScene();
+            TestUnmanagedArrayHelper.TypicalScene();
             TestProjectionFunctions.TypicalScene();
-            UnmanagedArrayHelper.TypicalScene();
             string message = string.Format("{0}", "All successfully done!");
             MessageBox.Show(message, "tip", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

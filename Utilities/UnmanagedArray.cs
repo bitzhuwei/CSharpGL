@@ -57,17 +57,18 @@ namespace System
             }
         }
 
-        /// <summary>
-        /// 按索引顺序依次获取各个元素。
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<T> Elements()
-        {
-            for (int i = 0; i < this.Length; i++)
-            {
-                yield return this[i];
-            }
-        }
+        // 速度较慢，不再提供。
+        ///// <summary>
+        ///// 按索引顺序依次获取各个元素。
+        ///// </summary>
+        ///// <returns></returns>
+        //public IEnumerable<T> Elements()
+        //{
+        //    for (int i = 0; i < this.Length; i++)
+        //    {
+        //        yield return this[i];
+        //    }
+        //}
     }
 
     /// <summary>
