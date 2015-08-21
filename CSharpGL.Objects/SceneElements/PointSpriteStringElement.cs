@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace CSharpGL.Objects.SceneElements
 {
     /// <summary>
-    /// 用shader+VAO+组装的texture显示字符串
+    /// 用shader+VAO+组装的texture显示一个指定的字符串
     /// </summary>
     public class PointSpriteStringElement : SceneElementBase, IMVP, IDisposable
     {

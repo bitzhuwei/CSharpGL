@@ -100,8 +100,8 @@ namespace CSharpGL.Objects.SceneElements
                 GL.BindVertexArray(vao[axisIndex]);
 
                 //  Create a vertex buffer for the vertex data.
+                using (var positionArray = new UnmanagedArray<vec3>(faceCount * 2))
                 {
-                    UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(faceCount * 2);
                     for (int i = 0; i < faceCount * 2; i++)
                     {
                         int face = i / 2;
@@ -121,12 +121,11 @@ namespace CSharpGL.Objects.SceneElements
                     GL.BufferData(BufferTarget.ArrayBuffer, positionArray, BufferUsage.StaticDraw);
                     GL.VertexAttribPointer(positionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                     GL.EnableVertexAttribArray(positionLocation);
-                    positionArray.Dispose();
                 }
 
                 //  Now do the same for the colour data.
+                using (var colorArray = new UnmanagedArray<vec3>(faceCount * 2))
                 {
-                    UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(faceCount * 2);
                     for (int i = 0; i < colorArray.Length; i++)
                     {
                         colorArray[i] = colors[axisIndex];
@@ -140,10 +139,10 @@ namespace CSharpGL.Objects.SceneElements
                     GL.BufferData(BufferTarget.ArrayBuffer, colorArray, BufferUsage.StaticDraw);
                     GL.VertexAttribPointer(colorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                     GL.EnableVertexAttribArray(colorLocation);
-                    colorArray.Dispose();
                 }
+
+                using (var cylinderIndex = new UnmanagedArray<uint>(faceCount * 2 + 2))
                 {
-                    UnmanagedArray<uint> cylinderIndex = new UnmanagedArray<uint>(faceCount * 2 + 2);
                     for (int i = 0; i < cylinderIndex.Length - 2; i++)
                     {
                         cylinderIndex[i] = (uint)i;
@@ -155,7 +154,6 @@ namespace CSharpGL.Objects.SceneElements
                     GL.GenBuffers(1, ids);
                     GL.BindBuffer(BufferTarget.ElementArrayBuffer, ids[0]);
                     GL.BufferData(BufferTarget.ElementArrayBuffer, cylinderIndex, BufferUsage.StaticDraw);
-                    cylinderIndex.Dispose();
                 }
                 //  Unbind the vertex array, we've finished specifying data for it.
                 GL.BindVertexArray(0);
@@ -168,8 +166,8 @@ namespace CSharpGL.Objects.SceneElements
                 GL.BindVertexArray(vao[3]);
 
                 //  Create a vertex buffer for the vertex data.
+                using (var plan = new UnmanagedArray<vec3>(4))
                 {
-                    UnmanagedArray<vec3> plan = new UnmanagedArray<vec3>(4);
                     float length = this.axisLength;
                     plan[0] = new vec3(-length, 0, -length);
                     plan[1] = new vec3(-length, 0, length);
@@ -184,13 +182,11 @@ namespace CSharpGL.Objects.SceneElements
                     GL.BufferData(BufferTarget.ArrayBuffer, plan, BufferUsage.StaticDraw);
                     GL.VertexAttribPointer(positionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                     GL.EnableVertexAttribArray(positionLocation);
-
-                    plan.Dispose();
                 }
 
                 //  Now do the same for the colour data.
+                using (var colorArray = new UnmanagedArray<vec3>(4))
                 {
-                    UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(4);
                     for (int i = 0; i < colorArray.Length; i++)
                     {
                         colorArray[i] = this.planColor;
@@ -204,8 +200,6 @@ namespace CSharpGL.Objects.SceneElements
                     GL.BufferData(BufferTarget.ArrayBuffer, colorArray, BufferUsage.StaticDraw);
                     GL.VertexAttribPointer(colorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                     GL.EnableVertexAttribArray(colorLocation);
-
-                    colorArray.Dispose();
                 }
 
                 //  Unbind the vertex array, we've finished specifying data for it.
