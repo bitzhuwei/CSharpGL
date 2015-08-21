@@ -15,7 +15,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
     /// Draw a rectangle on OpenGL control like a <see cref="Windows.Forms.Control"/> drawn on a <see cref="windows.Forms.Form"/>.
     /// Set its properties(Anchor, Margin, Size, etc) to adjust its behaviour.
     /// </summary>
-    public class SimpleUIRect : SceneElementBase, IUILayout//, IRenderable, IHasObjectSpace
+    public class SimpleUIRect : SceneElementBase, IUILayout, IMVP//, IRenderable, IHasObjectSpace
     {
         /// <summary>
         /// shader program
@@ -23,9 +23,7 @@ namespace CSharpGL.Objects.UI.SimpleUI
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
-        public const string strprojectionMatrix = "projectionMatrix";
-        public const string strviewMatrix = "viewMatrix";
-        public const string strmodelMatrix = "modelMatrix";
+        public const string strMVP = "MVP";
 
         /// <summary>
         /// VAO
@@ -152,5 +150,22 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         public IUILayoutParam Param { get; set; }
 
+
+        void IMVP.UpdateMVP(mat4 mvp)
+        {
+            ShaderProgram shaderProgram = this.shaderProgram;
+
+            shaderProgram.Bind();
+
+            shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+        }
+
+
+        void IMVP.UnbindShaderProgram()
+        {
+            ShaderProgram shaderProgram = this.shaderProgram;
+
+            shaderProgram.Unbind();
+        }
     }
 }

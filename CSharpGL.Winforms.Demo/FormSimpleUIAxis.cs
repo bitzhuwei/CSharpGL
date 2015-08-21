@@ -127,26 +127,23 @@ namespace CSharpGL.Winforms.Demo
 
         void SimpleUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            SimpleUIRect element = sender as SimpleUIRect;
-
-            element.shaderProgram.Unbind();
+            IMVP element = sender as IMVP;
+            element.UnbindShaderProgram();
         }
 
         void SimpleUIRect_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            SimpleUIRect element = sender as SimpleUIRect;
-
             mat4 projectionMatrix, viewMatrix, modelMatrix;
 
-            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
+            {
+                IUILayout element = sender as IUILayout;
+                element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
+            }
 
-            ShaderProgram shaderProgram = element.shaderProgram;
-
-            shaderProgram.Bind();
-
-            shaderProgram.SetUniformMatrix4(SimpleUIRect.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimpleUIRect.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimpleUIRect.strmodelMatrix, modelMatrix.to_array());
+            {
+                IMVP element = sender as IMVP;
+                element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
+            }
         }
 
         void SimpleUIAxis_AfterRendering(object sender, Objects.RenderEventArgs e)
@@ -216,9 +213,9 @@ namespace CSharpGL.Winforms.Demo
 
             shaderProgram.Bind();
 
-            shaderProgram.SetUniformMatrix4(SimpleUIRect.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimpleUIRect.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimpleUIRect.strmodelMatrix, modelMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(AxisElement2.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(AxisElement2.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(AxisElement2.strmodelMatrix, modelMatrix.to_array());
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

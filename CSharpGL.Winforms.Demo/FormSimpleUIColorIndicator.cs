@@ -1,4 +1,5 @@
 ﻿using CSharpGL.Maths;
+using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
@@ -96,35 +97,31 @@ namespace CSharpGL.Winforms.Demo
 
             shaderProgram.Bind();
 
-            shaderProgram.SetUniformMatrix4(SimpleUIRect.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimpleUIRect.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimpleUIRect.strmodelMatrix, modelMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(SimpleUIColorIndicator.strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(SimpleUIColorIndicator.strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(SimpleUIColorIndicator.strmodelMatrix, modelMatrix.to_array());
         }
 
         void axisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            AxisElement element = sender as AxisElement;
+            IMVP element = sender as IMVP;
 
-            element.shaderProgram.Unbind();
+            element.UnbindShaderProgram();
         }
 
         void axisElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
-            AxisElement element = sender as AxisElement;
-
             mat4 projectionMatrix = camera.GetProjectionMat4();
 
             mat4 viewMatrix = camera.GetViewMat4();
 
             mat4 modelMatrix = mat4.identity();
 
-            ShaderProgram shaderProgram = element.shaderProgram;
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
-            shaderProgram.Bind();
+            IMVP element = sender as IMVP;
 
-            shaderProgram.SetUniformMatrix4(SimpleUIRect.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimpleUIRect.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimpleUIRect.strmodelMatrix, modelMatrix.to_array());
+            element.UpdateMVP(mvp);
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
