@@ -13,6 +13,7 @@ namespace CSharpGL.Objects.SceneElements
 {
     /// <summary>
     /// 用shader+VAO+组装的texture显示一个指定的字符串
+    /// <para>代表一个三维空间内的内容不可变的字符串</para>
     /// </summary>
     public class PointSpriteStringElement : SceneElementBase, IMVP, IDisposable
     {
