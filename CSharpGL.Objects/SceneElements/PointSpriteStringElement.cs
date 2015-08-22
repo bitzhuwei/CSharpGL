@@ -164,7 +164,7 @@ namespace CSharpGL.Objects.SceneElements
 
         protected override void DoInitialize()
         {
-            InitTexture(this.content, this.fontSize, this.resource);
+            InitTexture(this.content, this.fontSize, this.maxRowWidth, this.resource);
 
             InitShaderProgram();
 
@@ -175,7 +175,7 @@ namespace CSharpGL.Objects.SceneElements
         /// TODO: 这里生成的中间贴图太大，有优化的空间
         /// </summary>
         /// <param name="content"></param>
-        private void InitTexture(string content, int fontSize, FontResource fontResource)
+        private void InitTexture(string content, int fontSize, int maxRowWidth, FontResource fontResource)
         {
             // step 1: get totalWidth
             int glyphsLength = 0;
