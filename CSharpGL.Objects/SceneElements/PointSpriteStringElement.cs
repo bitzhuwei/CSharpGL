@@ -44,7 +44,6 @@ namespace CSharpGL.Objects.SceneElements
         public uint[] texture = new uint[1];
         uint[] vao = new uint[1];
         public ShaderProgram shaderProgram;
-        private mat4 currentMVP;
         public const string strMVP = "MVP";
         public const string strpointSize = "pointSize";
         public const string strtextColor = "textColor";
@@ -263,36 +262,63 @@ namespace CSharpGL.Objects.SceneElements
                     }
                 }
                 gContentBitmap.Dispose();
-                //contentBitmap.Save("PointSpriteFontElement-contentBitmap.png");
+                contentBitmap.Save("PointSpriteStringElement-contentBitmap.png");
+                System.Drawing.Bitmap bmp = null;
+                if (totalLength * fontSize > maxRowWidth * fontResource.FontHeight)// 超过1行能显示的内容
+                {
+                    bmp = (System.Drawing.Bitmap)contentBitmap.GetThumbnailImage(
+                        maxRowWidth, maxRowWidth, null, IntPtr.Zero);
+                }
+                else//只在一行内即可显示所有字符
+                {
+                    if (totalLength >= fontResource.FontHeight)
+                    {
+                        bmp = (System.Drawing.Bitmap)contentBitmap.GetThumbnailImage(
+                            totalLength * this.fontSize / this.resource.FontHeight,
+                            totalLength * this.fontSize / this.resource.FontHeight,
+                            null, IntPtr.Zero);
+
+                    }
+                    else
+                    {
+                        bmp = (System.Drawing.Bitmap)contentBitmap.GetThumbnailImage(
+                            fontSize, fontSize, null, IntPtr.Zero);
+                    }
+                }
+                contentBitmap.Dispose();
+                contentBitmap = bmp;
+                contentBitmap.Save("PointSpriteStringElement-contentBitmap-scaled.png");
             }
 
             // step 4: get texture's size 
             int targetTextureWidth;
             {
 
-                //	Get the maximum texture size supported by OpenGL.
-                int[] textureMaxSize = { 0 };
-                GL.GetInteger(GetTarget.MaxTextureSize, textureMaxSize);
+                ////	Get the maximum texture size supported by OpenGL.
+                //int[] textureMaxSize = { 0 };
+                //GL.GetInteger(GetTarget.MaxTextureSize, textureMaxSize);
 
-                //	Find the target width and height sizes, which is just the highest
-                //	posible power of two that'll fit into the image.
+                ////	Find the target width and height sizes, which is just the highest
+                ////	posible power of two that'll fit into the image.
 
-                targetTextureWidth = textureMaxSize[0];
-                //System.Drawing.Bitmap bitmap = contentBitmap;
-                int scaledWidth = 8 * contentBitmap.Width * fontSize / fontResource.FontHeight;
+                //targetTextureWidth = textureMaxSize[0];
+                ////System.Drawing.Bitmap bitmap = contentBitmap;
+                //int scaledWidth = 8 * contentBitmap.Width * fontSize / fontResource.FontHeight;
 
-                for (int size = 1; size <= textureMaxSize[0]; size *= 2)
-                {
-                    if (scaledWidth < size)
-                    {
-                        targetTextureWidth = size / 2;
-                        break;
-                    }
-                    if (scaledWidth == size)
-                        targetTextureWidth = size;
-                }
+                //for (int size = 1; size <= textureMaxSize[0]; size *= 2)
+                //{
+                //    if (scaledWidth < size)
+                //    {
+                //        targetTextureWidth = size / 2;
+                //        break;
+                //    }
+                //    if (scaledWidth == size)
+                //        targetTextureWidth = size;
+                //}
 
-                this.textureWidth = targetTextureWidth;
+                //this.textureWidth = targetTextureWidth;
+                this.textureWidth = contentBitmap.Width;
+                targetTextureWidth = contentBitmap.Width;
             }
 
             // step 5: scale contentBitmap to right size
@@ -448,8 +474,6 @@ namespace CSharpGL.Objects.SceneElements
 
         void IMVP.UpdateMVP(mat4 mvp)
         {
-            this.currentMVP = mvp;
-
             GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
             GL.Enable(GL.GL_POINT_SPRITE_ARB);
             //GL.TexEnv(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);//TODO: test TexEnvi()
@@ -467,7 +491,8 @@ namespace CSharpGL.Objects.SceneElements
 
             shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
             //shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.PointSize);
-            shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, textureWidth / 10.0f);
+            //shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, textureWidth / 10.0f);
+            shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.textureWidth/1.0f);
             shaderProgram.SetUniform(PointSpriteStringElement.strtex, this.texture[0]);
             shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, this.textColor.x, this.textColor.y, this.textColor.z);
             //shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
