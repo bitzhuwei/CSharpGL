@@ -56,17 +56,17 @@ namespace CSharpGL.Objects.SceneElements
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.SimplePointSpriteElement.vert");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SimplePointSpriteElement.vert");
             string fragmentShaderSource = string.Empty;
             switch (this.fragShaderType)
             {
                 case FragShaderType.Simple:
                     fragmentShaderSource = ManifestResourceLoader.LoadTextFile(
-                        @"SceneElements.SimplePointSpriteElement_Simple.frag");
+                        @"SimplePointSpriteElement_Simple.frag");
                     break;
                 case FragShaderType.Analytic:
                     fragmentShaderSource = ManifestResourceLoader.LoadTextFile(
-                        @"SceneElements.SimplePointSpriteElement_Analytic.frag");
+                        @"SimplePointSpriteElement_Analytic.frag");
                     break;
                 default:
                     throw new NotImplementedException();
@@ -170,7 +170,7 @@ namespace CSharpGL.Objects.SceneElements
 
         private void InitTexture()
         {
-            System.Drawing.Bitmap contentBitmap = ManifestResourceLoader.LoadBitmap("SceneElements.SimplePointSpriteElement.png");
+            System.Drawing.Bitmap contentBitmap = ManifestResourceLoader.LoadBitmap("SimplePointSpriteElement.png");
 
             // step 4: get texture's size 
             int targetTextureWidth;

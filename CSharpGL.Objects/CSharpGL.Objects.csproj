@@ -73,9 +73,6 @@
     <Compile Include="SceneElements\FontElement.cs" />
     <Compile Include="SceneElements\PointSpriteStringElement.cs" />
     <Compile Include="SceneElements\PyramidElement.cs" />
-    <EmbeddedResource Include="SceneElements\SimplePointSpriteElement.vert" />
-    <EmbeddedResource Include="SceneElements\SimplePointSpriteElement_Simple.frag" />
-    <Compile Include="SceneElements\SimplePointSpriteElement.cs" />
     <Compile Include="Shaders\ShaderCompilationException.cs" />
     <Compile Include="Shaders\Shader.cs" />
     <Compile Include="RenderContexts\DIBSection.cs" />
@@ -120,7 +117,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cameras\Camera.png" />
-    <EmbeddedResource Include="SceneElements\SimplePointSpriteElement.png" />
     <Content Include="readme.txt" />
     <Content Include="Shaders\GLSLVersion.html" />
   </ItemGroup>
@@ -133,7 +129,6 @@
     <EmbeddedResource Include="SceneElements\PyramidElement.frag" />
     <EmbeddedResource Include="SceneElements\PointSpriteStringElement.frag" />
     <EmbeddedResource Include="SceneElements\PointSpriteStringElement.vert" />
-    <EmbeddedResource Include="SceneElements\SimplePointSpriteElement_Analytic.frag" />
     <EmbeddedResource Include="SceneElements\AxisElement2.vert" />
     <EmbeddedResource Include="SceneElements\AxisElement2.frag" />
     <EmbeddedResource Include="UI\SimpleUI\SimpleUIRect.frag" />
