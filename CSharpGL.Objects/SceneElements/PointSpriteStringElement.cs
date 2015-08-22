@@ -177,9 +177,10 @@ namespace CSharpGL.Objects.SceneElements
         /// <param name="content"></param>
         private void InitTexture(string content, int fontSize, int maxRowWidth, FontResource fontResource)
         {
-            // step 1: get totalWidth
-            int glyphsLength = 0;
+            // step 1: get totalLength
+            int totalLength = 0;
             {
+                int glyphsLength = 0;
                 for (int i = 0; i < content.Length; i++)
                 {
                     char c = content[i];
@@ -194,13 +195,15 @@ namespace CSharpGL.Objects.SceneElements
                 }
 
                 //glyphsLength = (glyphsLength * this.fontSize / FontResource.Instance.FontHeight);
+                int interval = fontResource.FontHeight / 10; if (interval < 1) { interval = 1; }
+                totalLength = glyphsLength + interval * (content.Length - 1);
             }
 
             // step 2: setup contentBitmap
             Bitmap contentBitmap = null;
             {
-                int interval = fontResource.FontHeight / 5; if (interval < 1) { interval = 1; }
-                int totalLength = glyphsLength + interval * (content.Length - 1);
+                int interval = fontResource.FontHeight / 10; if (interval < 1) { interval = 1; }
+                //int totalLength = glyphsLength + interval * (content.Length - 1);
                 int currentTextureWidth = 0;
                 int currentWidthPos = 0;
                 int currentHeightPos = 0;
@@ -208,7 +211,7 @@ namespace CSharpGL.Objects.SceneElements
                 {
                     currentTextureWidth = maxRowWidth * fontResource.FontHeight / fontSize;
 
-                    int lineCount = (glyphsLength - 1) / currentTextureWidth + 1;
+                    int lineCount = (totalLength - 1) / currentTextureWidth + 1;
                     // 确保整篇文字的高度在贴图中间。
                     currentHeightPos = (currentTextureWidth - fontResource.FontHeight * lineCount) / 2;
                     //- FontResource.Instance.FontHeight / 2;
@@ -227,8 +230,8 @@ namespace CSharpGL.Objects.SceneElements
                     {
                         currentTextureWidth = fontResource.FontHeight;
 
-                        currentWidthPos = (currentTextureWidth - glyphsLength) / 2;
-                        glyphsLength = fontResource.FontHeight;
+                        currentWidthPos = (currentTextureWidth - totalLength) / 2;
+                        //glyphsLength = fontResource.FontHeight;
                     }
                 }
 
