@@ -127,16 +127,18 @@ namespace CSharpGL.Objects.SceneElements
                 }
                 else//只在一行内即可显示所有字符
                 {
-                    currentTextureWidth = totalLength;
-
                     if (totalLength >= DefaultFontResource.Instance.FontHeight)
                     {
+                        currentTextureWidth = totalLength;
+
                         // 确保整篇文字的高度在贴图中间。
                         currentHeightPosition = (currentTextureWidth - DefaultFontResource.Instance.FontHeight) / 2;
                         //- FontResource.Instance.FontHeight / 2;
                     }
                     else
                     {
+                        currentTextureWidth = DefaultFontResource.Instance.FontHeight;
+
                         currentWidthPosition = (currentTextureWidth - glyphsLength) / 2;
                         glyphsLength = DefaultFontResource.Instance.FontHeight;
                     }
