@@ -219,17 +219,25 @@ namespace CSharpGL.Winforms.Demo
             string text = this.txtText.Text;
             GLColor color = this.lblFontColor.BackColor;
             int fontSize = (int)this.numFontSize.Value;
-            var textElement = new PointSpriteStringElement(this.txtText.Text, new vec3(0, 1, 0), color, fontSize);
-            textElement.Initialize();
-            textElement.BeforeRendering += textElement_BeforeRendering;
-            textElement.AfterRendering += textElement_AfterRendering;
+            //if (this.textElement == null)
+            {
+                var textElement = new PointSpriteStringElement(text, new vec3(0, 1, 0), color, fontSize, null);
+                textElement.Initialize();
+                textElement.BeforeRendering += textElement_BeforeRendering;
+                textElement.AfterRendering += textElement_AfterRendering;
 
-            this.textElement = textElement;
+                this.textElement = textElement;
+            }
+            //else
+            //{
+            //    var textElement = this.textElement;
+            //    textElement.UpdateProperties(text, color, fontSize, null);
+            //}
         }
 
         private void lblFontColor_Click(object sender, EventArgs e)
         {
-            if(this.colorDialog1.ShowDialog()== System.Windows.Forms.DialogResult.OK)
+            if (this.colorDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 this.lblFontColor.BackColor = this.colorDialog1.Color;
             }

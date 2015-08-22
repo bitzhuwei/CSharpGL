@@ -57,7 +57,7 @@
     <Compile Include="CharacterInfoDictHelper.cs" />
     <Compile Include="CharacterInfoHelper.cs" />
     <Compile Include="Class1.cs" />
-    <Compile Include="DefaultFontResource.cs" />
+    <Compile Include="FontResource.cs" />
     <Compile Include="FontTexture.cs" />
     <Compile Include="FontTextureHelper.cs" />
     <Compile Include="FontTextureYieldHelper.cs" />
