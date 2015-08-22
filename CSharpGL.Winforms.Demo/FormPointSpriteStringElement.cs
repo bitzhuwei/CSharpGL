@@ -41,7 +41,7 @@ namespace CSharpGL.Winforms.Demo
             rotator = new SatelliteRotator(this.camera);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
-            textElement = new PointSpriteStringElement("HTMLHHTMLHHTMLHHTMLH", new vec3(0, 0, 0));
+            textElement = new PointSpriteStringElement("HTMLHHTMLHHTMLHHTMLH", new vec3(0, 1, 0));
             //textElement = new PointSpriteStringElement("good good!", new vec3(0, 0, 0));
             //textElement = new PointSpriteStringElement("good good good!", new vec3(0, 0, 0));
             //textElement = new PointSpriteStringElement("good good good good!", new vec3(0, 0, 0));
@@ -212,6 +212,16 @@ namespace CSharpGL.Winforms.Demo
             {
                 translateZ += interval;
             }
+        }
+
+        private void btnUpdateText_Click(object sender, EventArgs e)
+        {
+            var textElement = new PointSpriteStringElement(this.txtText.Text, new vec3(0, 1, 0));
+            textElement.Initialize();
+            textElement.BeforeRendering += textElement_BeforeRendering;
+            textElement.AfterRendering += textElement_AfterRendering;
+
+            this.textElement = textElement;
         }
     }
 }
