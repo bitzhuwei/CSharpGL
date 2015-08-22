@@ -30,11 +30,18 @@
         {
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblCameraType = new System.Windows.Forms.ToolStripStatusLabel();
-            this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
             this.txtText = new System.Windows.Forms.TextBox();
             this.btnUpdateText = new System.Windows.Forms.Button();
+            this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
+            this.numFontSize = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.lblFontColor = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFontSize)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -54,32 +61,20 @@
             this.lblCameraType.Size = new System.Drawing.Size(126, 20);
             this.lblCameraType.Text = "camera type: {0}";
             // 
-            // glCanvas1
-            // 
-            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.glCanvas1.Location = new System.Drawing.Point(13, 44);
-            this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.glCanvas1.Name = "glCanvas1";
-            this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
-            this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(774, 426);
-            this.glCanvas1.TabIndex = 4;
-            // 
             // txtText
             // 
             this.txtText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtText.Location = new System.Drawing.Point(13, 12);
+            this.txtText.Location = new System.Drawing.Point(105, 12);
             this.txtText.Name = "txtText";
-            this.txtText.Size = new System.Drawing.Size(649, 25);
+            this.txtText.Size = new System.Drawing.Size(683, 25);
             this.txtText.TabIndex = 6;
+            this.txtText.Text = "HTMLHHTMLHHTMLHHTMLH";
             // 
             // btnUpdateText
             // 
             this.btnUpdateText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdateText.Location = new System.Drawing.Point(668, 14);
+            this.btnUpdateText.Location = new System.Drawing.Point(668, 41);
             this.btnUpdateText.Name = "btnUpdateText";
             this.btnUpdateText.Size = new System.Drawing.Size(120, 23);
             this.btnUpdateText.TabIndex = 7;
@@ -87,20 +82,88 @@
             this.btnUpdateText.UseVisualStyleBackColor = true;
             this.btnUpdateText.Click += new System.EventHandler(this.btnUpdateText_Click);
             // 
+            // glCanvas1
+            // 
+            this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.glCanvas1.Location = new System.Drawing.Point(13, 75);
+            this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.glCanvas1.Name = "glCanvas1";
+            this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
+            this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
+            this.glCanvas1.Size = new System.Drawing.Size(774, 395);
+            this.glCanvas1.TabIndex = 4;
+            // 
+            // numFontSize
+            // 
+            this.numFontSize.Location = new System.Drawing.Point(105, 43);
+            this.numFontSize.Name = "numFontSize";
+            this.numFontSize.Size = new System.Drawing.Size(120, 25);
+            this.numFontSize.TabIndex = 8;
+            this.numFontSize.Value = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 15);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Font Size:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 15);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Text:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(231, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 15);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Font Color:";
+            // 
+            // lblFontColor
+            // 
+            this.lblFontColor.BackColor = System.Drawing.Color.Black;
+            this.lblFontColor.Location = new System.Drawing.Point(332, 45);
+            this.lblFontColor.Name = "lblFontColor";
+            this.lblFontColor.Size = new System.Drawing.Size(99, 15);
+            this.lblFontColor.TabIndex = 9;
+            this.lblFontColor.Click += new System.EventHandler(this.lblFontColor_Click);
+            // 
             // FormPointSpriteStringElement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 509);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblFontColor);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.numFontSize);
             this.Controls.Add(this.btnUpdateText);
             this.Controls.Add(this.txtText);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.glCanvas1);
             this.Name = "FormPointSpriteStringElement";
             this.Text = "FormPointSpriteStringElement";
+            this.Load += new System.EventHandler(this.FormPointSpriteStringElement_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFontSize)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -113,5 +176,11 @@
         private GLCanvas glCanvas1;
         private System.Windows.Forms.TextBox txtText;
         private System.Windows.Forms.Button btnUpdateText;
+        private System.Windows.Forms.NumericUpDown numFontSize;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Label lblFontColor;
     }
 }
