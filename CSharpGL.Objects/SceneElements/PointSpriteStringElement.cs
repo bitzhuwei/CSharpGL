@@ -18,9 +18,18 @@ namespace CSharpGL.Objects.SceneElements
     public class PointSpriteStringElement : SceneElementBase, IMVP, IDisposable
     {
         /// <summary>
-        /// TODO: 想办法实施有效的静态ctor.
+        /// 如果一行字符串太长，会在达到此值时开启下一行。
         /// </summary>
-        private static readonly int maxPointSize = 255;
+        private int maxRowWidth = 255;
+
+        /// <summary>
+        /// 如果一行字符串太长，会在达到此值时开启下一行。
+        /// </summary>
+        public int MaxRowWidth
+        {
+            get { return maxRowWidth; }
+            set { maxRowWidth = value; }
+        }
         //static PointSpriteStringElement()
         //{
         //    int[] sizeRange = new int[2];
@@ -124,9 +133,9 @@ namespace CSharpGL.Objects.SceneElements
         /// <param name="fontSize">字体大小，默认为32</param>
         /// <param name="fontResource">字体资源。默认的字体资源只支持ASCII码。</param>
         public PointSpriteStringElement(
-            string content, vec3 position, GLColor color = null, int fontSize = 32, FontResource fontResource = null)
+            string content, vec3 position, GLColor color = null, int fontSize = 32, int maxRowWidth = 255, FontResource fontResource = null)
         {
-            if (fontSize >= maxPointSize) { throw new ArgumentException(); }
+            if (fontSize >= maxRowWidth) { throw new ArgumentException(); }
 
             this.content = content;
             this.position = position;
@@ -141,6 +150,7 @@ namespace CSharpGL.Objects.SceneElements
             }
 
             this.fontSize = fontSize;
+            this.maxRowWidth = maxRowWidth;
 
             if (fontResource == null)
             {
@@ -194,9 +204,9 @@ namespace CSharpGL.Objects.SceneElements
                 int currentTextureWidth = 0;
                 int currentWidthPos = 0;
                 int currentHeightPos = 0;
-                if (totalLength * fontSize > maxPointSize * fontResource.FontHeight)// 超过1行能显示的内容
+                if (totalLength * fontSize > maxRowWidth * fontResource.FontHeight)// 超过1行能显示的内容
                 {
-                    currentTextureWidth = maxPointSize * fontResource.FontHeight / fontSize;
+                    currentTextureWidth = maxRowWidth * fontResource.FontHeight / fontSize;
 
                     int lineCount = (glyphsLength - 1) / currentTextureWidth + 1;
                     // 确保整篇文字的高度在贴图中间。
