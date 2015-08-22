@@ -217,8 +217,9 @@ namespace CSharpGL.Winforms.Demo
         private void btnUpdateText_Click(object sender, EventArgs e)
         {
             string text = this.txtText.Text;
+            GLColor color = this.lblFontColor.BackColor;
             int fontSize = (int)this.numFontSize.Value;
-            var textElement = new PointSpriteStringElement(this.txtText.Text, new vec3(0, 1, 0), null, fontSize);
+            var textElement = new PointSpriteStringElement(this.txtText.Text, new vec3(0, 1, 0), color, fontSize);
             textElement.Initialize();
             textElement.BeforeRendering += textElement_BeforeRendering;
             textElement.AfterRendering += textElement_AfterRendering;
