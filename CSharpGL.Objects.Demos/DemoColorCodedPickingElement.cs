@@ -77,7 +77,7 @@ namespace CSharpGL.Objects.Demos
 
             // prepare positions
             {
-                const float unitSpace = 2.5f;
+                const float unitSpace = 6f;
                 var positionArray = new UnmanagedArray<vec3>(size * size * size * 8);
                 int index = 0;
                 for (int i = 0; i < size; i++)
@@ -117,10 +117,10 @@ namespace CSharpGL.Objects.Demos
                     {
                         for (int k = 0; k < size; k++)
                         {
-                            //vec3 color = new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+                            vec3 color = new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
                             for (int cubeIndex = 0; cubeIndex < 8; cubeIndex++)
                             {
-                                vec3 color = new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+                                //vec3 color = new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
                                 colorArray[index++] = color;
                             }
                         }
