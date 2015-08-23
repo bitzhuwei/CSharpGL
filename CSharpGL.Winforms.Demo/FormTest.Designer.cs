@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTest));
             this.btnBasis = new System.Windows.Forms.Button();
             this.btnCylinderElement = new System.Windows.Forms.Button();
             this.btnFormFontElement = new System.Windows.Forms.Button();
@@ -290,6 +291,7 @@
             this.Controls.Add(this.btnFormFontElement);
             this.Controls.Add(this.btnPyramidElement);
             this.Controls.Add(this.btnBasis);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormTest";
             this.Text = "测试窗口";
