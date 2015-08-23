@@ -81,24 +81,67 @@ namespace CSharpGL.Objects.Demos.UIs
             this.vao = new uint[1];
 
             float coordLength = coords[coords.Length - 1] - coords[0];
-            GL.GenVertexArrays(1, vao);
-
-            GL.BindVertexArray(vao[0]);
-
-            //  Create a vertex buffer for the vertex data.
             {
-                UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(this.vertexCount);
-                positionArray[0] = new vec3(-0.5f, -0.5f, 0);
-                positionArray[1] = new vec3(-0.5f, 0.5f, 0);
+                GL.GenVertexArrays(1, vao);
+
+                GL.BindVertexArray(vao[0]);
+
+                //  Create a vertex buffer for the vertex data.
+                {
+                    UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(this.vertexCount);
+                    positionArray[0] = new vec3(-0.5f, -0.5f, 0);
+                    positionArray[1] = new vec3(-0.5f, 0.5f, 0);
+                    for (int i = 1; i < coords.Length; i++)
+                    {
+                        float x = (coords[i] - coords[0]) / coordLength - 0.5f;
+                        positionArray[i * 2 + 0] = new vec3(x, -0.5f, 0);
+                        positionArray[i * 2 + 1] = new vec3(x, 0.5f, 0);
+                    }
+
+                    uint[] ids = new uint[1];
+                    GL.GenBuffers(1, ids);
+                    GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
+                    GL.BufferData(BufferTarget.ArrayBuffer, positionArray, BufferUsage.StaticDraw);
+                    GL.VertexAttribPointer(in_PositionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+                    GL.EnableVertexAttribArray(in_PositionLocation);
+
+                    positionArray.Dispose();
+                }
+
+                //  Now do the same for the colour data.
+                {
+                    UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(this.vertexCount);
+                    for (int i = 0; i < colors.Length; i++)
+                    {
+                        GLColor color = colors[i];
+                        //TODO:试验成功后换vec4试试
+                        colorArray[i * 2 + 0] = new vec3(color.R, color.G, color.B);//, color.A);
+                        colorArray[i * 2 + 1] = new vec3(color.R, color.G, color.B);//, color.A);
+                    }
+
+                    uint[] ids = new uint[1];
+                    GL.GenBuffers(1, ids);
+                    GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
+                    GL.BufferData(BufferTarget.ArrayBuffer, colorArray, BufferUsage.StaticDraw);
+                    GL.VertexAttribPointer(in_ColorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+                    GL.EnableVertexAttribArray(in_ColorLocation);
+
+                    colorArray.Dispose();
+                }
+
+                //  Unbind the vertex array, we've finished specifying data for it.
+                GL.BindVertexArray(0);
+            }
+
+            // prepare numbers
+            {
                 const float numberPosY = -0.6f;
                 this.numbers[0] = new PointSpriteStringElement(
                     this.Min.ToShortString(), new vec3(-0.5f, numberPosY, 0));
-                //this.numbers[0].Initialize();
+                this.numbers[0].Initialize();
                 for (int i = 1; i < coords.Length; i++)
                 {
                     float x = (coords[i] - coords[0]) / coordLength - 0.5f;
-                    positionArray[i * 2 + 0] = new vec3(x, -0.5f, 0);
-                    positionArray[i * 2 + 1] = new vec3(x, 0.5f, 0);
                     if (i + 1 == coords.Length)
                     {
                         this.numbers[i] = new PointSpriteStringElement(
@@ -109,42 +152,9 @@ namespace CSharpGL.Objects.Demos.UIs
                         this.numbers[i] = new PointSpriteStringElement(
                             this.Max.ToShortString(), new vec3(x, numberPosY, 0));
                     }
-                    //this.numbers[i].Initialize();
+                    this.numbers[i].Initialize();
                 }
-
-                uint[] ids = new uint[1];
-                GL.GenBuffers(1, ids);
-                GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
-                GL.BufferData(BufferTarget.ArrayBuffer, positionArray, BufferUsage.StaticDraw);
-                GL.VertexAttribPointer(in_PositionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-                GL.EnableVertexAttribArray(in_PositionLocation);
-
-                positionArray.Dispose();
             }
-
-            //  Now do the same for the colour data.
-            {
-                UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(this.vertexCount);
-                for (int i = 0; i < colors.Length; i++)
-                {
-                    GLColor color = colors[i];
-                    //TODO:试验成功后换vec4试试
-                    colorArray[i * 2 + 0] = new vec3(color.R, color.G, color.B);//, color.A);
-                    colorArray[i * 2 + 1] = new vec3(color.R, color.G, color.B);//, color.A);
-                }
-
-                uint[] ids = new uint[1];
-                GL.GenBuffers(1, ids);
-                GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
-                GL.BufferData(BufferTarget.ArrayBuffer, colorArray, BufferUsage.StaticDraw);
-                GL.VertexAttribPointer(in_ColorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-                GL.EnableVertexAttribArray(in_ColorLocation);
-
-                colorArray.Dispose();
-            }
-
-            //  Unbind the vertex array, we've finished specifying data for it.
-            GL.BindVertexArray(0);
         }
 
         protected ShaderProgram InitializeShader()
