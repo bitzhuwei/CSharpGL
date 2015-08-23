@@ -22,24 +22,24 @@ namespace CSharpGL.Objects.SceneElements
         /// </summary>
         private int maxRowWidth = 255;
 
-        /// <summary>
-        /// 如果一行字符串太长，会在达到此值时开启下一行。
-        /// </summary>
-        public int MaxRowWidth
-        {
-            get { return maxRowWidth; }
-            set
-            {
-                if (0 < value && value < 257)
-                {
-                    maxRowWidth = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("max row width must between 0 and 257(not include 0 or 257)");
-                }
-            }
-        }
+        ///// <summary>
+        ///// 如果一行字符串太长，会在达到此值时开启下一行。
+        ///// </summary>
+        //public int MaxRowWidth
+        //{
+        //    get { return maxRowWidth; }
+        //    set
+        //    {
+        //        if (0 < value && value < 257)
+        //        {
+        //            maxRowWidth = value;
+        //        }
+        //        else
+        //        {
+        //            throw new ArgumentOutOfRangeException("max row width must between 0 and 257(not include 0 or 257)");
+        //        }
+        //    }
+        //}
         //static PointSpriteStringElement()
         //{
         //    int[] sizeRange = new int[2];
@@ -159,7 +159,14 @@ namespace CSharpGL.Objects.SceneElements
             }
 
             this.fontSize = fontSize;
-            this.MaxRowWidth = maxRowWidth;
+            if (0 < maxRowWidth && maxRowWidth < 257)
+            {
+                this.maxRowWidth = maxRowWidth;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("max row width must between 0 and 257(not include 0 or 257)");
+            }
 
             if (fontResource == null)
             {
@@ -500,20 +507,17 @@ namespace CSharpGL.Objects.SceneElements
             shaderProgram.Bind();
 
             shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
-            //shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.PointSize);
-            //shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, textureWidth / 10.0f);
-            int[] poinSizes = new int[2];
-            GL.GetInteger(GetTarget.PointSizeRange, poinSizes);
-            if (this.textureWidth > poinSizes[1])
-            {
-                GL.PointParameter(GL.GL_POINT_SIZE_MAX_ARB, this.textureWidth);
-                GL.GetInteger(GetTarget.PointSizeRange, poinSizes);
-                Console.WriteLine("asf");
-            }
+            //int[] poinSizes = new int[2];
+            //GL.GetInteger(GetTarget.PointSizeRange, poinSizes);
+            //if (this.textureWidth > poinSizes[1])
+            //{
+            //    GL.PointParameter(GL.GL_POINT_SIZE_MAX_ARB, this.textureWidth);
+            //    GL.GetInteger(GetTarget.PointSizeRange, poinSizes);
+            //    Console.WriteLine("asf");
+            //}
             shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.textureWidth / 1.0f);
             shaderProgram.SetUniform(PointSpriteStringElement.strtex, this.texture[0]);
             shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, this.textColor.x, this.textColor.y, this.textColor.z);
-            //shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
         }
 
 
