@@ -22,14 +22,24 @@ namespace CSharpGL.Objects.SceneElements
         /// </summary>
         private int maxRowWidth = 255;
 
-        ///// <summary>
-        ///// 如果一行字符串太长，会在达到此值时开启下一行。
-        ///// </summary>
-        //public int MaxRowWidth
-        //{
-        //    get { return maxRowWidth; }
-        //    set { maxRowWidth = value; }
-        //}
+        /// <summary>
+        /// 如果一行字符串太长，会在达到此值时开启下一行。
+        /// </summary>
+        public int MaxRowWidth
+        {
+            get { return maxRowWidth; }
+            set
+            {
+                if (0 < value && value < 257)
+                {
+                    maxRowWidth = value;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("max row width must between 0 and 257(not include 0 or 257)");
+                }
+            }
+        }
         //static PointSpriteStringElement()
         //{
         //    int[] sizeRange = new int[2];
@@ -132,8 +142,7 @@ namespace CSharpGL.Objects.SceneElements
         /// <param name="fontSize">字体大小，默认为32</param>
         /// <param name="fontResource">字体资源。默认的字体资源只支持ASCII码。</param>
         public PointSpriteStringElement(
-            string content, vec3 position, GLColor color = null, int fontSize = 32,// int maxRowWidth = 255
-            FontResource fontResource = null)
+            string content, vec3 position, GLColor color = null, int fontSize = 32, int maxRowWidth = 255, FontResource fontResource = null)
         {
             if (fontSize >= maxRowWidth) { throw new ArgumentException(); }
 
@@ -150,7 +159,7 @@ namespace CSharpGL.Objects.SceneElements
             }
 
             this.fontSize = fontSize;
-            //this.maxRowWidth = maxRowWidth;
+            this.MaxRowWidth = maxRowWidth;
 
             if (fontResource == null)
             {
