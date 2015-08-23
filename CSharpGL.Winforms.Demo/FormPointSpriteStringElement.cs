@@ -222,7 +222,8 @@ namespace CSharpGL.Winforms.Demo
             int maxRowWidth = (int)this.numMaxRowWidth.Value;
             //if (this.textElement == null)
             {
-                var textElement = new PointSpriteStringElement(text, new vec3(0, 1, 0), color, fontSize, maxRowWidth, null);
+                var textElement = new PointSpriteStringElement(text, new vec3(0, 1, 0), color, fontSize, //maxRowWidth, 
+                    null);
                 textElement.Initialize();
                 textElement.BeforeRendering += textElement_BeforeRendering;
                 textElement.AfterRendering += textElement_AfterRendering;

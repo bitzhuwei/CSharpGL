@@ -22,14 +22,14 @@ namespace CSharpGL.Objects.SceneElements
         /// </summary>
         private int maxRowWidth = 255;
 
-        /// <summary>
-        /// 如果一行字符串太长，会在达到此值时开启下一行。
-        /// </summary>
-        public int MaxRowWidth
-        {
-            get { return maxRowWidth; }
-            set { maxRowWidth = value; }
-        }
+        ///// <summary>
+        ///// 如果一行字符串太长，会在达到此值时开启下一行。
+        ///// </summary>
+        //public int MaxRowWidth
+        //{
+        //    get { return maxRowWidth; }
+        //    set { maxRowWidth = value; }
+        //}
         //static PointSpriteStringElement()
         //{
         //    int[] sizeRange = new int[2];
@@ -132,7 +132,8 @@ namespace CSharpGL.Objects.SceneElements
         /// <param name="fontSize">字体大小，默认为32</param>
         /// <param name="fontResource">字体资源。默认的字体资源只支持ASCII码。</param>
         public PointSpriteStringElement(
-            string content, vec3 position, GLColor color = null, int fontSize = 32, int maxRowWidth = 255, FontResource fontResource = null)
+            string content, vec3 position, GLColor color = null, int fontSize = 32,// int maxRowWidth = 255
+            FontResource fontResource = null)
         {
             if (fontSize >= maxRowWidth) { throw new ArgumentException(); }
 
@@ -149,7 +150,7 @@ namespace CSharpGL.Objects.SceneElements
             }
 
             this.fontSize = fontSize;
-            this.maxRowWidth = maxRowWidth;
+            //this.maxRowWidth = maxRowWidth;
 
             if (fontResource == null)
             {
@@ -492,6 +493,14 @@ namespace CSharpGL.Objects.SceneElements
             shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
             //shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.PointSize);
             //shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, textureWidth / 10.0f);
+            int[] poinSizes = new int[2];
+            GL.GetInteger(GetTarget.PointSizeRange, poinSizes);
+            if (this.textureWidth > poinSizes[1])
+            {
+                GL.PointParameter(GL.GL_POINT_SIZE_MAX_ARB, this.textureWidth);
+                GL.GetInteger(GetTarget.PointSizeRange, poinSizes);
+                Console.WriteLine("asf");
+            }
             shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.textureWidth / 1.0f);
             shaderProgram.SetUniform(PointSpriteStringElement.strtex, this.texture[0]);
             shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, this.textColor.x, this.textColor.y, this.textColor.z);
