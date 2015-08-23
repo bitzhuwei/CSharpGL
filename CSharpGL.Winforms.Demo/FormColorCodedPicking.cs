@@ -34,6 +34,8 @@ namespace CSharpGL.Winforms.Demo
                 CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
             }
 
+            this.camera.Position = new vec3(30, 30, 30);
+
             rotator = new SatelliteRotator(this.camera);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
