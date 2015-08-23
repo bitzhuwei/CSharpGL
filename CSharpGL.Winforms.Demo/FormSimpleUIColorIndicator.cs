@@ -19,9 +19,10 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormSimpleUIColorIndicator : Form
     {
-        SimpleUIColorIndicator uiBottomColorIndicator;
+        //SimpleUIColorIndicator uiBottomColorIndicator;
         SimpleUIColorIndicator uiTopColorIndicator;
-        SimpleUIPointSpriteStringElement[] numbers;
+        //SimpleUIPointSpriteStringElement[] numbers;
+        NewSimpleUIColorIndicator newIndicator;
 
         AxisElement axisElement;
 
@@ -53,51 +54,54 @@ namespace CSharpGL.Winforms.Demo
             IUILayoutParam param;
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right, padding, size);
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
-            uiBottomColorIndicator = new SimpleUIColorIndicator(param, colorPalette, -100, 100, 5);
+            //uiBottomColorIndicator = new SimpleUIColorIndicator(param, colorPalette, -100, 100, 5);
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right, padding, size);
             uiTopColorIndicator = new SimpleUIColorIndicator(param, colorPalette, -100, 100, 5);
 
-            uiBottomColorIndicator.Initialize();
+            //uiBottomColorIndicator.Initialize();
             uiTopColorIndicator.Initialize();
 
-            uiBottomColorIndicator.BeforeRendering += SimpleUIColorIndicator_BeforeRendering;
+            //uiBottomColorIndicator.BeforeRendering += SimpleUIColorIndicator_BeforeRendering;
             uiTopColorIndicator.BeforeRendering += SimpleUIColorIndicator_BeforeRendering;
 
-            uiBottomColorIndicator.AfterRendering += SimpleUIColorIndicator_AfterRendering;
+            //uiBottomColorIndicator.AfterRendering += SimpleUIColorIndicator_AfterRendering;
             uiTopColorIndicator.AfterRendering += SimpleUIColorIndicator_AfterRendering;
 
-            const float posY=-1.0f;
-            float[] coords = colorPalette.Coords;
-            float coordLength = coords[coords.Length - 1] - coords[0];
-            this.numbers = new SimpleUIPointSpriteStringElement[5];
-            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right, padding, size);
-            this.numbers[0] = new SimpleUIPointSpriteStringElement(param, (-100.0f).ToShortString(),
-                new vec3(-0.5f, posY, 0));
-            this.numbers[0].Initialize();
-            this.numbers[0].BeforeRendering += number_BeforeRendering;
-            this.numbers[0].AfterRendering += number_AfterRendering;
-            for (int i = 1; i < coords.Length; i++)
-            {
-                float x = (coords[i] - coords[0]) / coordLength - 0.5f;
-                if (i + 1 == coords.Length)
-                {
-                    var number = new SimpleUIPointSpriteStringElement(param,
-                        (100.0f).ToShortString(), new vec3(x, posY, 0));
-                    number.Initialize();
-                    number.BeforeRendering += number_BeforeRendering;
-                    number.AfterRendering += number_AfterRendering;
-                    this.numbers[i] = number;
-                }
-                else
-                {
-                    var number = new SimpleUIPointSpriteStringElement(param,
-                        (-100.0f + i * (100 - (-100)) / 5).ToShortString(), new vec3(x, posY, 0));
-                    number.Initialize();
-                    number.BeforeRendering += number_BeforeRendering;
-                    number.AfterRendering += number_AfterRendering;
-                    this.numbers[i] = number;
-                }
-            }
+            //const float posY=-1.0f;
+            //float[] coords = colorPalette.Coords;
+            //float coordLength = coords[coords.Length - 1] - coords[0];
+            //this.numbers = new SimpleUIPointSpriteStringElement[5];
+            //param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right, padding, size);
+            //this.numbers[0] = new SimpleUIPointSpriteStringElement(param, (-100.0f).ToShortString(),
+            //    new vec3(-0.5f, posY, 0));
+            //this.numbers[0].Initialize();
+            //this.numbers[0].BeforeRendering += number_BeforeRendering;
+            //this.numbers[0].AfterRendering += number_AfterRendering;
+            //for (int i = 1; i < coords.Length; i++)
+            //{
+            //    float x = (coords[i] - coords[0]) / coordLength - 0.5f;
+            //    if (i + 1 == coords.Length)
+            //    {
+            //        var number = new SimpleUIPointSpriteStringElement(param,
+            //            (100.0f).ToShortString(), new vec3(x, posY, 0));
+            //        number.Initialize();
+            //        number.BeforeRendering += number_BeforeRendering;
+            //        number.AfterRendering += number_AfterRendering;
+            //        this.numbers[i] = number;
+            //    }
+            //    else
+            //    {
+            //        var number = new SimpleUIPointSpriteStringElement(param,
+            //            (-100.0f + i * (100 - (-100)) / 5).ToShortString(), new vec3(x, posY, 0));
+            //        number.Initialize();
+            //        number.BeforeRendering += number_BeforeRendering;
+            //        number.AfterRendering += number_AfterRendering;
+            //        this.numbers[i] = number;
+            //    }
+            //}
+            this.newIndicator = new NewSimpleUIColorIndicator(param, colorPalette, -100, 100, 5);
+            this.newIndicator.Initialize();
+
 
             axisElement = new AxisElement();
             axisElement.Initialize();
@@ -205,13 +209,16 @@ namespace CSharpGL.Winforms.Demo
 
             axisElement.Render(Objects.RenderModes.Render);
 
-            uiBottomColorIndicator.Render(Objects.RenderModes.Render);
+            //uiBottomColorIndicator.Render(Objects.RenderModes.Render);
             uiTopColorIndicator.Render(Objects.RenderModes.Render);
 
-            foreach (var item in this.numbers)
-            {
-                item.Render(Objects.RenderModes.Render);
-            }
+            //foreach (var item in this.numbers)
+            //{
+            //    item.Render(Objects.RenderModes.Render);
+            //}
+
+            this.newIndicator.Render(Objects.RenderModes.Render);
+
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
