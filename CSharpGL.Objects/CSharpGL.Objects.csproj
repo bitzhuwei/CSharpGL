@@ -88,6 +88,7 @@
     <Compile Include="UIs\IUILayoutHelper.cs" />
     <Compile Include="UIs\IUILayoutParam.cs" />
     <Compile Include="UIs\SimpleUIAxis.cs" />
+    <Compile Include="UIs\SimpleUIPointSpriteStringElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSharpGL.Maths\CSharpGL.Maths.csproj">
@@ -120,7 +121,12 @@
     <EmbeddedResource Include="SceneElements\AxisElement2.vert" />
     <EmbeddedResource Include="SceneElements\AxisElement2.frag" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="UIs\SimpleUIPointSpriteStringElement.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UIs\SimpleUIPointSpriteStringElement.frag" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
