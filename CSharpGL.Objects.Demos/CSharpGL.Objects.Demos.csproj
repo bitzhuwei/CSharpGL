@@ -49,6 +49,7 @@
     <Compile Include="SceneElements\PyramidElement.cs" />
     <Compile Include="UIs\ColorPalette.cs" />
     <Compile Include="UIs\LegacySimpleUIRect.cs" />
+    <Compile Include="UIs\NewSimpleUIColorIndicator.cs" />
     <Compile Include="UIs\SimpleUIColorIndicator.cs" />
     <Compile Include="UIs\SimpleUICube.cs" />
     <Compile Include="UIs\SimpleUIRect.cs" />
