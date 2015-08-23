@@ -15,7 +15,7 @@ namespace CSharpGL.Objects.Demos.UIs
         private SimpleUIColorIndicator bar;
         private SimpleUIPointSpriteStringElement[] numbers;
 
-        public NewSimpleUIColorIndicator(IUILayoutParam param, ColorPalette colorPalette, float min, float max, float step)
+        public NewSimpleUIColorIndicator(IUILayoutParam param, ColorPalette colorPalette, GLColor textColor, float min, float max, float step)
         {
             this.bar = new SimpleUIColorIndicator(param, colorPalette, min, max, step);
 
@@ -24,20 +24,20 @@ namespace CSharpGL.Objects.Demos.UIs
             this.numbers = new SimpleUIPointSpriteStringElement[coords.Length];
             const float posY = -1.0f;
             this.numbers[0] = new SimpleUIPointSpriteStringElement(
-                param, (-100.0f).ToShortString(), new vec3(-0.5f, posY, 0));
+                param, (-100.0f).ToShortString(), new vec3(-0.5f, posY, 0), textColor, 20);
             for (int i = 1; i < coords.Length; i++)
             {
                 float x = (coords[i] - coords[0]) / coordLength - 0.5f;
                 if (i + 1 == coords.Length)
                 {
                     var number = new SimpleUIPointSpriteStringElement(param,
-                        (100.0f).ToShortString(), new vec3(x, posY, 0));
+                        (100.0f).ToShortString(), new vec3(x, posY, 0), textColor, 20);
                     this.numbers[i] = number;
                 }
                 else
                 {
                     var number = new SimpleUIPointSpriteStringElement(param,
-                        (-100.0f + i * (100 - (-100)) / 5).ToShortString(), new vec3(x, posY, 0));
+                        (-100.0f + i * (100 - (-100)) / 5).ToShortString(), new vec3(x, posY, 0), textColor, 20);
                     this.numbers[i] = number;
                 }
             }
