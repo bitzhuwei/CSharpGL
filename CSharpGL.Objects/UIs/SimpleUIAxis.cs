@@ -62,13 +62,9 @@ namespace CSharpGL.Objects.Demos.UIs
             if (disposing)
             {
                 //Managed cleanup code here, while managed refs still valid
+                this.axisElement.Dispose();
             }
             //Unmanaged cleanup code here
-            if (this.axisElement != null)
-            {
-                this.axisElement.Dispose();
-                this.axisElement = null;
-            }
 
             disposed = true;
         }
