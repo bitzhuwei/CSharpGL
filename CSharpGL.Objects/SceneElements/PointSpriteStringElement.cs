@@ -144,7 +144,7 @@ namespace CSharpGL.Objects.SceneElements
         public PointSpriteStringElement(
             string content, vec3 position, GLColor color = null, int fontSize = 32, int maxRowWidth = 256, FontResource fontResource = null)
         {
-            if (fontSize >= 256) { throw new ArgumentException(); }
+            if (fontSize > 256) { throw new ArgumentException(); }
 
             this.content = content;
             this.position = position;

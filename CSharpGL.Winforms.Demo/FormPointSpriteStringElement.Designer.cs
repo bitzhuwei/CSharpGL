@@ -101,6 +101,11 @@
             // numFontSize
             // 
             this.numFontSize.Location = new System.Drawing.Point(105, 43);
+            this.numFontSize.Maximum = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
             this.numFontSize.Name = "numFontSize";
             this.numFontSize.Size = new System.Drawing.Size(73, 25);
             this.numFontSize.TabIndex = 8;
@@ -150,7 +155,7 @@
             // 
             this.numMaxRowWidth.Location = new System.Drawing.Point(309, 43);
             this.numMaxRowWidth.Maximum = new decimal(new int[] {
-            1000,
+            256,
             0,
             0,
             0});
