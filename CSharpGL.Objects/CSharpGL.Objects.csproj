@@ -46,7 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorCodedPicking\Class1.cs" />
+    <Compile Include="ColorCodedPicking\ColorCodedPickingShaderHelper.cs" />
+    <Compile Include="ColorCodedPicking\GeometryTypes.cs" />
+    <Compile Include="ColorCodedPicking\GeometryTypesHelper.cs" />
+    <Compile Include="ColorCodedPicking\IColorCodedPicking.cs" />
+    <Compile Include="ColorCodedPicking\IColorCodedPickingHelper.cs" />
+    <Compile Include="ColorCodedPicking\IPickedGeometry.cs" />
+    <Compile Include="ColorCodedPicking\PickedGeometryBase.cs" />
+    <Compile Include="ColorCodedPicking\PickedGeometryColored.cs" />
+    <Compile Include="ColorCodedPicking\SharedStageInfo.cs" />
     <Compile Include="IMVP.cs" />
+    <Compile Include="IRenderable.cs" />
+    <Compile Include="PrimitiveModesHelper.cs" />
     <Compile Include="SceneElements\AxisElement.cs" />
     <Compile Include="Cameras\BoundingBox.cs" />
     <Compile Include="Cameras\Camera2Matrix.cs" />
@@ -110,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cameras\Camera.png" />
+    <Content Include="ColorCodedPicking\ColorCodedPicking.png" />
     <Content Include="readme.txt" />
     <Content Include="Shaders\GLSLVersion.html" />
   </ItemGroup>
@@ -126,6 +139,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UIs\SimpleUIPointSpriteStringElement.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ColorCodedPicking\ColorCodedPicking.cd" />
+    <None Include="ColorCodedPicking\PickingShader.frag" />
+    <None Include="ColorCodedPicking\PickingShader.vert" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

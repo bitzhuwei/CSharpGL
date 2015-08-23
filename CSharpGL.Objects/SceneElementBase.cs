@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace CSharpGL.Objects
 {
     /// <summary>
-    /// 用OPENGL渲染一个元素。
+    /// 用OPENGL初始化和渲染一个元素。
     /// </summary>
-    public abstract class SceneElementBase
+    public abstract class SceneElementBase : IRenderable
     {
 
         public int ID { get; protected set; }
