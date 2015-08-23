@@ -142,7 +142,8 @@ namespace CSharpGL.Objects.SceneElements
         /// <param name="fontSize">字体大小，默认为32</param>
         /// <param name="fontResource">字体资源。默认的字体资源只支持ASCII码。</param>
         public PointSpriteStringElement(
-            string content, vec3 position, GLColor color = null, int fontSize = 32, int maxRowWidth = 256, FontResource fontResource = null)
+            string content, vec3 position, 
+            GLColor color = null, int fontSize = 32, int maxRowWidth = 256, FontResource fontResource = null)
         {
             if (fontSize > 256) { throw new ArgumentException(); }
 
