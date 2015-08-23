@@ -72,7 +72,7 @@
             this.txtText.Name = "txtText";
             this.txtText.Size = new System.Drawing.Size(683, 25);
             this.txtText.TabIndex = 6;
-            this.txtText.Text = "HTMLHHTMLHHTMLHHTMLH";
+            this.txtText.Text = "hi well";
             // 
             // btnUpdateText
             // 
@@ -163,7 +163,7 @@
             this.numMaxRowWidth.Size = new System.Drawing.Size(73, 25);
             this.numMaxRowWidth.TabIndex = 8;
             this.numMaxRowWidth.Value = new decimal(new int[] {
-            255,
+            256,
             0,
             0,
             0});
