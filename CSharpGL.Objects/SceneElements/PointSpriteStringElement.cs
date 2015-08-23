@@ -492,7 +492,7 @@ namespace CSharpGL.Objects.SceneElements
             shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
             //shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.PointSize);
             //shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, textureWidth / 10.0f);
-            shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.textureWidth/1.0f);
+            shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.textureWidth / 1.0f);
             shaderProgram.SetUniform(PointSpriteStringElement.strtex, this.texture[0]);
             shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, this.textColor.x, this.textColor.y, this.textColor.z);
             //shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
