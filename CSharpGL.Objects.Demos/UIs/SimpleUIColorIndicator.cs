@@ -1,4 +1,5 @@
 ﻿using CSharpGL.Maths;
+using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
 using CSharpGL.Objects.UIs;
 using System;
@@ -12,7 +13,7 @@ namespace CSharpGL.Objects.Demos.UIs
 {
     public class SimpleUIColorIndicator : SceneElementBase, IUILayout//, IRenderable, IHasObjectSpace
     {
-        /// <summary>
+             /// <summary>
         /// shader program
         /// </summary>
         public ShaderProgram shaderProgram;
@@ -26,6 +27,7 @@ namespace CSharpGL.Objects.Demos.UIs
         /// VAO
         /// </summary>
         protected uint[] vao;
+        private PointSpriteStringElement[] numbers;
 
         /// <summary>
         /// 图元类型
@@ -50,12 +52,16 @@ namespace CSharpGL.Objects.Demos.UIs
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
         /// <param name="rectColor">default color is red.</param>
-        public SimpleUIColorIndicator(IUILayoutParam param, ColorPalette colorPalette)
+        public SimpleUIColorIndicator(IUILayoutParam param, ColorPalette colorPalette, float min, float max, float step)
         {
             IUILayout layout = this;
             layout.Param = param;
 
             this.ColorPalette = colorPalette;
+
+            this.Min = min;
+            this.Max = max;
+            this.Step = step;
         }
 
         protected override void DoInitialize()
@@ -70,6 +76,7 @@ namespace CSharpGL.Objects.Demos.UIs
             this.axisPrimitiveMode = PrimitiveModes.QuadStrip;
             GLColor[] colors = this.ColorPalette.Colors;
             float[] coords = this.ColorPalette.Coords;
+            this.numbers = new PointSpriteStringElement[coords.Length];
             this.vertexCount = coords.Length * 2;
             this.vao = new uint[1];
 
@@ -83,11 +90,26 @@ namespace CSharpGL.Objects.Demos.UIs
                 UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(this.vertexCount);
                 positionArray[0] = new vec3(-0.5f, -0.5f, 0);
                 positionArray[1] = new vec3(-0.5f, 0.5f, 0);
+                const float numberPosY = -0.6f;
+                this.numbers[0] = new PointSpriteStringElement(
+                    this.Min.ToShortString(), new vec3(-0.5f, numberPosY, 0));
+                //this.numbers[0].Initialize();
                 for (int i = 1; i < coords.Length; i++)
                 {
                     float x = (coords[i] - coords[0]) / coordLength - 0.5f;
                     positionArray[i * 2 + 0] = new vec3(x, -0.5f, 0);
                     positionArray[i * 2 + 1] = new vec3(x, 0.5f, 0);
+                    if (i + 1 == coords.Length)
+                    {
+                        this.numbers[i] = new PointSpriteStringElement(
+                            (this.Min + i * this.Step).ToShortString(), new vec3(x, numberPosY, 0));
+                    }
+                    else
+                    {
+                        this.numbers[i] = new PointSpriteStringElement(
+                            this.Max.ToShortString(), new vec3(x, numberPosY, 0));
+                    }
+                    //this.numbers[i].Initialize();
                 }
 
                 uint[] ids = new uint[1];
@@ -169,10 +191,22 @@ namespace CSharpGL.Objects.Demos.UIs
             // 恢复多边形状态
             GL.PolygonMode(PolygonModeFaces.Front, (PolygonModes)polygonMode[0]);
             GL.PolygonMode(PolygonModeFaces.Back, (PolygonModes)polygonMode[1]);
+
+            //// 绘制文字
+            //foreach (var item in this.numbers)
+            //{
+            //    item.Render(renderMode);
+            //}
         }
 
         public IUILayoutParam Param { get; set; }
 
         public ColorPalette ColorPalette { get; set; }
+
+        public float Min { get; set; }
+
+        public float Max { get; set; }
+
+        public float Step { get; set; }
     }
 }
