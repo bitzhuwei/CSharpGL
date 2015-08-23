@@ -1,6 +1,7 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Shaders;
+using CSharpGL.Objects.UIs;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 
 
-namespace CSharpGL.Objects.UI.SimpleUI
+namespace CSharpGL.Objects.Demos.UIs
 {
     /// <summary>
     /// Draw a rectangle on OpenGL control like a <see cref="Windows.Forms.Control"/> drawn on a <see cref="windows.Forms.Form"/>.
@@ -128,8 +129,8 @@ namespace CSharpGL.Objects.UI.SimpleUI
 
         protected ShaderProgram InitializeShader()
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"UI.SimpleUI.SimpleUIRect.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"UI.SimpleUI.SimpleUIRect.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"UIs.SimpleUIRect.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"UIs.SimpleUIRect.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);

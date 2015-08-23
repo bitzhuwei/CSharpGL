@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Objects.UI.SimpleUI
+namespace CSharpGL.Objects.Demos.UIs
 {
 
     public class ColorPalette

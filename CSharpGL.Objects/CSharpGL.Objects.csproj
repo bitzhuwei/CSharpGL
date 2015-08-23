@@ -69,10 +69,7 @@
     <Compile Include="SceneElements\AxisElement2.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SceneElements\CylinderElement.cs" />
-    <Compile Include="SceneElements\FontElement.cs" />
     <Compile Include="SceneElements\PointSpriteStringElement.cs" />
-    <Compile Include="SceneElements\PyramidElement.cs" />
     <Compile Include="Shaders\ShaderCompilationException.cs" />
     <Compile Include="Shaders\Shader.cs" />
     <Compile Include="RenderContexts\DIBSection.cs" />
@@ -85,17 +82,12 @@
     <Compile Include="RenderModes.cs" />
     <Compile Include="Shaders\ShaderProgram.cs" />
     <Compile Include="Texture2D.cs" />
-    <Compile Include="UI\SimpleUI\ColorPalette.cs" />
-    <Compile Include="UI\SimpleUI\IUILayout.cs" />
-    <Compile Include="UI\SimpleUI\IUILayoutHelper.cs" />
-    <Compile Include="UI\SimpleUI\IUILayoutParam.cs" />
-    <Compile Include="UI\SimpleUI\LegacySimpleUIRect.cs" />
-    <Compile Include="UI\SimpleUI\SimpleUIColorIndicator.cs" />
-    <Compile Include="UI\SimpleUI\SimpleUIRect.cs" />
-    <Compile Include="UI\SimpleUI\SimpleUIAxis.cs" />
-    <Compile Include="UI\SimpleUI\IUILayoutArgs.cs" />
-    <Compile Include="UI\SimpleUI\SimpleUICube.cs" />
     <Compile Include="SceneElementBase.cs" />
+    <Compile Include="UIs\IUILayout.cs" />
+    <Compile Include="UIs\IUILayoutArgs.cs" />
+    <Compile Include="UIs\IUILayoutHelper.cs" />
+    <Compile Include="UIs\IUILayoutParam.cs" />
+    <Compile Include="UIs\SimpleUIAxis.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSharpGL.Maths\CSharpGL.Maths.csproj">
@@ -123,28 +115,12 @@
   <ItemGroup>
     <EmbeddedResource Include="SceneElements\AxisElement.frag" />
     <EmbeddedResource Include="SceneElements\AxisElement.vert" />
-    <EmbeddedResource Include="SceneElements\CylinderElement.frag" />
-    <EmbeddedResource Include="SceneElements\CylinderElement.vert" />
-    <EmbeddedResource Include="SceneElements\PyramidElement.vert" />
-    <EmbeddedResource Include="SceneElements\PyramidElement.frag" />
     <EmbeddedResource Include="SceneElements\PointSpriteStringElement.frag" />
     <EmbeddedResource Include="SceneElements\PointSpriteStringElement.vert" />
     <EmbeddedResource Include="SceneElements\AxisElement2.vert" />
     <EmbeddedResource Include="SceneElements\AxisElement2.frag" />
-    <EmbeddedResource Include="UI\SimpleUI\SimpleUIRect.frag" />
-    <EmbeddedResource Include="UI\SimpleUI\SimpleUIRect.vert" />
-    <EmbeddedResource Include="UI\SimpleUI\SimpleUICube.vert" />
-    <EmbeddedResource Include="UI\SimpleUI\SimpleUICube.frag" />
-    <EmbeddedResource Include="UI\SimpleUI\SimpleUIColorIndicator.vert" />
-    <EmbeddedResource Include="UI\SimpleUI\SimpleUIColorIndicator.frag" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <EmbeddedResource Include="SceneElements\FontElement.frag" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="SceneElements\FontElement.vert" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

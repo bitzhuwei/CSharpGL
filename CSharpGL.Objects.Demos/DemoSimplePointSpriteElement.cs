@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.Demos
     /// <summary>
     /// 这是一个使用point sprite进行渲染的简单的例子。
     /// </summary>
-    public class SimplePointSpriteElement : SceneElementBase,IMVP, IDisposable
+    public class DemoSimplePointSpriteElement : SceneElementBase,IMVP, IDisposable
     {
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace CSharpGL.Objects.Demos
         /// </summary>
         /// <param name="pointSize"></param>
         /// <param name="foreshortening">是否启用近大远小</param>
-        public SimplePointSpriteElement(float pointSize = 64.0f, bool foreshortening = true, FragShaderType fragShaderType = FragShaderType.Simple)
+        public DemoSimplePointSpriteElement(float pointSize = 64.0f, bool foreshortening = true, FragShaderType fragShaderType = FragShaderType.Simple)
         {
             this.PointSize = pointSize;
             this.Foreshortening = foreshortening;
@@ -56,17 +56,17 @@ namespace CSharpGL.Objects.Demos
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SimplePointSpriteElement.vert");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoSimplePointSpriteElement.vert");
             string fragmentShaderSource = string.Empty;
             switch (this.fragShaderType)
             {
                 case FragShaderType.Simple:
                     fragmentShaderSource = ManifestResourceLoader.LoadTextFile(
-                        @"SimplePointSpriteElement_Simple.frag");
+                        @"DemoSimplePointSpriteElement_Simple.frag");
                     break;
                 case FragShaderType.Analytic:
                     fragmentShaderSource = ManifestResourceLoader.LoadTextFile(
-                        @"SimplePointSpriteElement_Analytic.frag");
+                        @"DemoSimplePointSpriteElement_Analytic.frag");
                     break;
                 default:
                     throw new NotImplementedException();
@@ -170,7 +170,7 @@ namespace CSharpGL.Objects.Demos
 
         private void InitTexture()
         {
-            System.Drawing.Bitmap contentBitmap = ManifestResourceLoader.LoadBitmap("SimplePointSpriteElement.png");
+            System.Drawing.Bitmap contentBitmap = ManifestResourceLoader.LoadBitmap("DemoSimplePointSpriteElement.png");
 
             // step 4: get texture's size 
             int targetTextureWidth;

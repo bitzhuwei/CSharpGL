@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSharpGL.Objects.UI.SimpleUI
+namespace CSharpGL.Objects.UIs
 {
     public struct IUILayoutParam
     {

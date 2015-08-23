@@ -1,6 +1,7 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
+using CSharpGL.Objects.UIs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSharpGL.Objects.UI.SimpleUI
+namespace CSharpGL.Objects.Demos.UIs
 {
     /// <summary>
     /// 用一个<see cref="AxisElement"/>绘制一个固定在窗口某处的坐标系。

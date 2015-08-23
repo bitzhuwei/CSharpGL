@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace CSharpGL.Objects.UI.SimpleUI
+namespace CSharpGL.Objects.UIs
 {
     /// <summary>
     /// pass viewport and UI's rect information.

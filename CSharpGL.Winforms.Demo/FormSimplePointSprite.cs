@@ -2,9 +2,10 @@
 using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Demos;
+using CSharpGL.Objects.Demos.UIs;
 using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
-using CSharpGL.Objects.UI.SimpleUI;
+using CSharpGL.Objects.UIs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,7 @@ namespace CSharpGL.Winforms.Demo
         SimpleUIAxis uiRightBottomAxis;
         SimpleUIAxis uiRightTopAxis;
 
-        SimplePointSpriteElement pointSpriteElement;
+        DemoSimplePointSpriteElement pointSpriteElement;
 
         ScientificCamera camera;
 
@@ -74,7 +75,7 @@ namespace CSharpGL.Winforms.Demo
             uiRightBottomAxis.AfterRendering += SimpleUIAxis_AfterRendering;
             uiRightTopAxis.AfterRendering += SimpleUIAxis_AfterRendering;
 
-            pointSpriteElement = new SimplePointSpriteElement(fontSize, foreshortening, type);
+            pointSpriteElement = new DemoSimplePointSpriteElement(fontSize, foreshortening, type);
             pointSpriteElement.Initialize();
             pointSpriteElement.BeforeRendering += pointSpriteElement_BeforeRendering;
             pointSpriteElement.AfterRendering += pointSpriteElement_AfterRendering;

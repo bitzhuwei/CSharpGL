@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.UI.SimpleUI
+namespace CSharpGL.Objects.UIs
 {
     /// <summary>
     /// 实现在OpenGL窗口中的UI布局

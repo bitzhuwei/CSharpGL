@@ -2,9 +2,10 @@
 using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Demos;
+using CSharpGL.Objects.Demos.UIs;
 using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
-using CSharpGL.Objects.UI.SimpleUI;
+using CSharpGL.Objects.UIs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +24,7 @@ namespace CSharpGL.Winforms.Demo
         SimpleUIRect modernUIRect;
         SimpleUIAxis leftUIAxis;
         SimpleUIAxis rightUIAxis;
-        LegacyTexture3DCubeElement element;
+        DemoLegacyTexture3DCubeElement element;
 
         ScientificCamera camera;
         private SatelliteRotator satelliteRoration;
@@ -77,7 +78,7 @@ namespace CSharpGL.Winforms.Demo
             leftUIAxis.AfterRendering += SimpleUIElement_AfterRendering;
             rightUIAxis.AfterRendering += SimpleUIElement_AfterRendering;
 
-            element = new LegacyTexture3DCubeElement();
+            element = new DemoLegacyTexture3DCubeElement();
             element.Initialize();
             element.BeforeRendering += element_BeforeRendering;
             element.AfterRendering += element_AfterRendering;

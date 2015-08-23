@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CSharpGL.Objects.SceneElements
 {
     /// <summary>
-    /// 绘制三维坐标轴
+    /// 绘制三维坐标轴2：用三个独立的mat4记录和传递projection * view * model
     /// </summary>
     public class AxisElement2 : SceneElementBase, IDisposable
     {

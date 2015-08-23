@@ -1,5 +1,6 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects.Cameras;
+using CSharpGL.Objects.UIs;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 
 
-namespace CSharpGL.Objects.UI.SimpleUI
+namespace CSharpGL.Objects.Demos.UIs
 {
     /// <summary>
     /// Draw a rectangle on OpenGL control like a <see cref="Windows.Forms.Control"/> drawn on a <see cref="windows.Forms.Form"/>.
