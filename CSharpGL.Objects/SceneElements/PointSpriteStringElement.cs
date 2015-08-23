@@ -142,7 +142,7 @@ namespace CSharpGL.Objects.SceneElements
         /// <param name="fontSize">字体大小，默认为32</param>
         /// <param name="fontResource">字体资源。默认的字体资源只支持ASCII码。</param>
         public PointSpriteStringElement(
-            string content, vec3 position, GLColor color = null, int fontSize = 32, int maxRowWidth = 255, FontResource fontResource = null)
+            string content, vec3 position, GLColor color = null, int fontSize = 32, int maxRowWidth = 256, FontResource fontResource = null)
         {
             if (fontSize >= maxRowWidth) { throw new ArgumentException(); }
 
@@ -159,6 +159,7 @@ namespace CSharpGL.Objects.SceneElements
             }
 
             this.fontSize = fontSize;
+
             if (0 < maxRowWidth && maxRowWidth < 257)
             {
                 this.maxRowWidth = maxRowWidth;
@@ -170,7 +171,7 @@ namespace CSharpGL.Objects.SceneElements
 
             if (fontResource == null)
             {
-                this.resource = FontResource.Instance;
+                this.resource = FontResource.Default;
             }
             else
             {
@@ -262,7 +263,7 @@ namespace CSharpGL.Objects.SceneElements
                 {
                     char c = content[i];
                     CharacterInfo cInfo;
-                    if (FontResource.Instance.CharInfoDict.TryGetValue(c, out cInfo))
+                    if (fontResource.CharInfoDict.TryGetValue(c, out cInfo))
                     {
                         if (currentWidthPos + cInfo.width > contentBitmap.Width)
                         {
@@ -279,7 +280,7 @@ namespace CSharpGL.Objects.SceneElements
                     }
                 }
                 gContentBitmap.Dispose();
-                contentBitmap.Save("PointSpriteStringElement-contentBitmap.png");
+                //contentBitmap.Save("PointSpriteStringElement-contentBitmap.png");
                 System.Drawing.Bitmap bmp = null;
                 if (totalLength * fontSize > maxRowWidth * fontResource.FontHeight)// 超过1行能显示的内容
                 {
@@ -291,8 +292,8 @@ namespace CSharpGL.Objects.SceneElements
                     if (totalLength >= fontResource.FontHeight)
                     {
                         bmp = (System.Drawing.Bitmap)contentBitmap.GetThumbnailImage(
-                            totalLength * this.fontSize / this.resource.FontHeight,
-                            totalLength * this.fontSize / this.resource.FontHeight,
+                            totalLength * fontSize / resource.FontHeight,
+                            totalLength * fontSize / resource.FontHeight,
                             null, IntPtr.Zero);
 
                     }
@@ -304,7 +305,7 @@ namespace CSharpGL.Objects.SceneElements
                 }
                 contentBitmap.Dispose();
                 contentBitmap = bmp;
-                contentBitmap.Save("PointSpriteStringElement-contentBitmap-scaled.png");
+                //contentBitmap.Save("PointSpriteStringElement-contentBitmap-scaled.png");
             }
 
             // step 4: get texture's size 
@@ -515,7 +516,7 @@ namespace CSharpGL.Objects.SceneElements
             //    GL.GetInteger(GetTarget.PointSizeRange, poinSizes);
             //    Console.WriteLine("asf");
             //}
-            shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.textureWidth / 1.0f);
+            shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.textureWidth + 0.0f);
             shaderProgram.SetUniform(PointSpriteStringElement.strtex, this.texture[0]);
             shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, this.textColor.x, this.textColor.y, this.textColor.z);
         }

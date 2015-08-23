@@ -11,13 +11,13 @@ namespace CSharpGL.Texts
     /// </summary>
     public sealed class FontResource : IDisposable
     {
-        private static FontResource instance = new FontResource();
+        private static FontResource defaultInstance = new FontResource();
 
-        public static FontResource Instance
+        public static FontResource Default
         {
             get
             {
-                return instance;
+                return defaultInstance;
             }
         }
 
