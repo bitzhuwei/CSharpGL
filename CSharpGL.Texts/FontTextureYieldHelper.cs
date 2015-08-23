@@ -246,11 +246,11 @@ namespace CSharpGL.Texts
                 if (c == ' ' && zeroSize)// 空格需要特殊处理
                 {
                     zeroSize = false;
-                    FreeTypeBitmapGlyph tabGlyph = new FreeTypeBitmapGlyph(face, '\t', fontHeight);
+                    FreeTypeBitmapGlyph tabGlyph = new FreeTypeBitmapGlyph(face, ' ', fontHeight);
                     glyphWidth = tabGlyph.obj.bitmap.width / 8;
-                    if (glyphWidth < 1) { glyphWidth = fontHeight / 2; }
+                    if (glyphWidth < 1) { glyphWidth = fontHeight / 3; }
                     glyphHeight = tabGlyph.obj.bitmap.rows;
-                    //if (glyphHeight < 1) { glyphHeight = 1; }
+                    if (glyphHeight < 1) { glyphHeight = 1; }
                 }
                 else if (c == '\t' && zeroSize)// tab可能需要特殊处理
                 {
@@ -258,7 +258,7 @@ namespace CSharpGL.Texts
                     glyphWidth = glyph.obj.bitmap.width;
                     if (glyphWidth < 1) { glyphWidth = fontHeight * 2; }
                     glyphHeight = glyph.obj.bitmap.rows;
-                    //if (glyphHeight < 1) { glyphHeight = 1; }
+                    if (glyphHeight < 1) { glyphHeight = 1; }
                 }
 
                 if (!zeroSize)

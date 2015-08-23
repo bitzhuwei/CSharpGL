@@ -18,9 +18,28 @@ namespace CSharpGL.Objects.SceneElements
     public class PointSpriteStringElement : SceneElementBase, IMVP, IDisposable
     {
         /// <summary>
-        /// TODO: 想办法实施有效的静态ctor.
+        /// 如果一行字符串太长，会在达到此值时开启下一行。
         /// </summary>
-        private static readonly int maxPointSize = 255;
+        private int maxRowWidth = 255;
+
+        ///// <summary>
+        ///// 如果一行字符串太长，会在达到此值时开启下一行。
+        ///// </summary>
+        //public int MaxRowWidth
+        //{
+        //    get { return maxRowWidth; }
+        //    set
+        //    {
+        //        if (0 < value && value < 257)
+        //        {
+        //            maxRowWidth = value;
+        //        }
+        //        else
+        //        {
+        //            throw new ArgumentOutOfRangeException("max row width must between 0 and 257(not include 0 or 257)");
+        //        }
+        //    }
+        //}
         //static PointSpriteStringElement()
         //{
         //    int[] sizeRange = new int[2];
@@ -28,8 +47,6 @@ namespace CSharpGL.Objects.SceneElements
         //    maxPointSize = sizeRange[1];
         //}
 
-        // source data
-        private string content;
         private vec3 position;
 
         // result data
@@ -37,16 +54,84 @@ namespace CSharpGL.Objects.SceneElements
         public uint[] texture = new uint[1];
         uint[] vao = new uint[1];
         public ShaderProgram shaderProgram;
-        private mat4 currentMVP;
         public const string strMVP = "MVP";
         public const string strpointSize = "pointSize";
         public const string strtextColor = "textColor";
         public const string strtex = "tex";
         private uint attributeIndexPosition;
-        public int FontSize { get; private set; }
-        public float PointSize { get { return textureWidth / 10.0f; } set { } }
+
+        private string content;
+        ///// <summary>
+        ///// 要显示的字符串。
+        ///// </summary>
+        //public string Content
+        //{
+        //    get { return content; }
+        //    set
+        //    {
+        //        if (content != value)
+        //        {
+        //            content = value;
+        //            InitTexture(this.content, this.FontSize, this.resouce);
+        //        }
+        //    }
+        //}
+
+        private int fontSize;
+        ///// <summary>
+        ///// 字符大小。
+        ///// </summary>
+        //public int FontSize
+        //{
+        //    get { return fontSize; }
+        //    set
+        //    {
+        //        if (fontSize != value)
+        //        {
+        //            fontSize = value;
+        //            InitTexture(this.content, this.fontSize, this.resouce);
+        //        }
+        //    }
+        //}
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public float PointSize { get { return textureWidth / 10.0f; } private set { } }
+
         private int textureWidth;
-        public vec3 textColor;
+
+        private vec3 textColor;
+        ///// <summary>
+        ///// 获取或设置此字符串的颜色。
+        ///// </summary>
+        //public GLColor Color
+        //{
+        //    get { return new GLColor(textColor.x, textColor.y, textColor.z, 1); }
+        //    set { this.textColor = new vec3(value.R, value.G, value.B); }
+        //}
+
+        private FontResource resource;
+        ///// <summary>
+        ///// 获取或设置此字符串的字体资源。
+        ///// </summary>
+        //public FontResource Resource
+        //{
+        //    get { return this.resouce; }
+        //    set
+        //    {
+        //        if (value != this.resouce)
+        //        {
+        //            this.resouce = value;
+        //            InitTexture(this.content, this.FontSize, this.resouce);
+        //        }
+        //    }
+        //}
+
+        //public void UpdateProperties(string content, GLColor color, int fontSize, FontResource fontResource)
+        //{
+
+        //}
 
         /// <summary>
         /// 用shader+VAO+组装的texture显示字符串
@@ -55,9 +140,11 @@ namespace CSharpGL.Objects.SceneElements
         /// <param name="position">字符串的中心位置</param>
         /// <param name="color">文字颜色，默认为黑色</param>
         /// <param name="fontSize">字体大小，默认为32</param>
-        public PointSpriteStringElement(string content, vec3 position, GLColor color = null, int fontSize = 32)
+        /// <param name="fontResource">字体资源。默认的字体资源只支持ASCII码。</param>
+        public PointSpriteStringElement(
+            string content, vec3 position, GLColor color = null, int fontSize = 32, int maxRowWidth = 256, FontResource fontResource = null)
         {
-            if (fontSize >= maxPointSize) { throw new ArgumentException(); }
+            if (fontSize > 256) { throw new ArgumentException(); }
 
             this.content = content;
             this.position = position;
@@ -71,12 +158,30 @@ namespace CSharpGL.Objects.SceneElements
                 textColor = new vec3(color.R, color.G, color.B);
             }
 
-            this.FontSize = fontSize;
+            this.fontSize = fontSize;
+
+            if (0 < maxRowWidth && maxRowWidth < 257)
+            {
+                this.maxRowWidth = maxRowWidth;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("max row width must between 0 and 257(not include 0 or 257)");
+            }
+
+            if (fontResource == null)
+            {
+                this.resource = FontResource.Default;
+            }
+            else
+            {
+                this.resource = fontResource;
+            }
         }
 
         protected override void DoInitialize()
         {
-            InitTexture(this.content);
+            InitTexture(this.content, this.fontSize, this.maxRowWidth, this.resource);
 
             InitShaderProgram();
 
@@ -87,16 +192,17 @@ namespace CSharpGL.Objects.SceneElements
         /// TODO: 这里生成的中间贴图太大，有优化的空间
         /// </summary>
         /// <param name="content"></param>
-        private void InitTexture(string content)
+        private void InitTexture(string content, int fontSize, int maxRowWidth, FontResource fontResource)
         {
-            // step 1: get totalWidth
-            int glyphsLength = 0;
+            // step 1: get totalLength
+            int totalLength = 0;
             {
+                int glyphsLength = 0;
                 for (int i = 0; i < content.Length; i++)
                 {
                     char c = content[i];
                     CharacterInfo cInfo;
-                    if (DefaultFontResource.Instance.CharInfoDict.TryGetValue(c, out cInfo))
+                    if (fontResource.CharInfoDict.TryGetValue(c, out cInfo))
                     {
                         int glyphWidth = cInfo.width;
                         glyphsLength += glyphWidth;
@@ -106,39 +212,43 @@ namespace CSharpGL.Objects.SceneElements
                 }
 
                 //glyphsLength = (glyphsLength * this.fontSize / FontResource.Instance.FontHeight);
+                int interval = fontResource.FontHeight / 10; if (interval < 1) { interval = 1; }
+                totalLength = glyphsLength + interval * (content.Length - 1);
             }
 
             // step 2: setup contentBitmap
             Bitmap contentBitmap = null;
             {
-                int interval = DefaultFontResource.Instance.FontHeight / 5; if (interval < 1) { interval = 1; }
-                int totalLength = glyphsLength + interval * (content.Length - 1);
+                int interval = fontResource.FontHeight / 10; if (interval < 1) { interval = 1; }
+                //int totalLength = glyphsLength + interval * (content.Length - 1);
                 int currentTextureWidth = 0;
-                int currentWidthPosition = 0;
-                int currentHeightPosition = 0;
-                if (totalLength * this.FontSize > maxPointSize * DefaultFontResource.Instance.FontHeight)// 超过1行能显示的内容
+                int currentWidthPos = 0;
+                int currentHeightPos = 0;
+                if (totalLength * fontSize > maxRowWidth * fontResource.FontHeight)// 超过1行能显示的内容
                 {
-                    currentTextureWidth = maxPointSize * DefaultFontResource.Instance.FontHeight / this.FontSize;
+                    currentTextureWidth = maxRowWidth * fontResource.FontHeight / fontSize;
 
-                    int lineCount = (glyphsLength - 1) / currentTextureWidth + 1;
+                    int lineCount = (totalLength - 1) / currentTextureWidth + 1;
                     // 确保整篇文字的高度在贴图中间。
-                    currentHeightPosition = (currentTextureWidth - DefaultFontResource.Instance.FontHeight * lineCount) / 2;
+                    currentHeightPos = (currentTextureWidth - fontResource.FontHeight * lineCount) / 2;
                     //- FontResource.Instance.FontHeight / 2;
                 }
                 else//只在一行内即可显示所有字符
                 {
-                    currentTextureWidth = totalLength;
-
-                    if (totalLength >= DefaultFontResource.Instance.FontHeight)
+                    if (totalLength >= fontResource.FontHeight)
                     {
+                        currentTextureWidth = totalLength;
+
                         // 确保整篇文字的高度在贴图中间。
-                        currentHeightPosition = (currentTextureWidth - DefaultFontResource.Instance.FontHeight) / 2;
+                        currentHeightPos = (currentTextureWidth - fontResource.FontHeight) / 2;
                         //- FontResource.Instance.FontHeight / 2;
                     }
                     else
                     {
-                        currentWidthPosition = (currentTextureWidth - glyphsLength) / 2;
-                        glyphsLength = DefaultFontResource.Instance.FontHeight;
+                        currentTextureWidth = fontResource.FontHeight;
+
+                        currentWidthPos = (currentTextureWidth - totalLength) / 2;
+                        //glyphsLength = fontResource.FontHeight;
                     }
                 }
 
@@ -148,58 +258,85 @@ namespace CSharpGL.Objects.SceneElements
 
                 contentBitmap = new Bitmap(currentTextureWidth, currentTextureWidth);
                 Graphics gContentBitmap = Graphics.FromImage(contentBitmap);
-                Bitmap bigBitmap = DefaultFontResource.Instance.FontBitmap;
+                Bitmap bigBitmap = fontResource.FontBitmap;
                 for (int i = 0; i < content.Length; i++)
                 {
                     char c = content[i];
                     CharacterInfo cInfo;
-                    if (DefaultFontResource.Instance.CharInfoDict.TryGetValue(c, out cInfo))
+                    if (fontResource.CharInfoDict.TryGetValue(c, out cInfo))
                     {
-                        if (currentWidthPosition + cInfo.width > contentBitmap.Width)
+                        if (currentWidthPos + cInfo.width > contentBitmap.Width)
                         {
-                            currentWidthPosition = 0;
-                            currentHeightPosition += DefaultFontResource.Instance.FontHeight;
+                            currentWidthPos = 0;
+                            currentHeightPos += fontResource.FontHeight;
                         }
 
                         gContentBitmap.DrawImage(bigBitmap,
-                            new Rectangle(currentWidthPosition, currentHeightPosition, cInfo.width, DefaultFontResource.Instance.FontHeight),
-                            new Rectangle(cInfo.xoffset, cInfo.yoffset, cInfo.width, DefaultFontResource.Instance.FontHeight),
+                            new Rectangle(currentWidthPos, currentHeightPos, cInfo.width, fontResource.FontHeight),
+                            new Rectangle(cInfo.xoffset, cInfo.yoffset, cInfo.width, fontResource.FontHeight),
                             GraphicsUnit.Pixel);
 
-                        currentWidthPosition += cInfo.width + interval;
+                        currentWidthPos += cInfo.width + interval;
                     }
                 }
                 gContentBitmap.Dispose();
-                //contentBitmap.Save("PointSpriteFontElement-contentBitmap.png");
+                //contentBitmap.Save("PointSpriteStringElement-contentBitmap.png");
+                System.Drawing.Bitmap bmp = null;
+                if (totalLength * fontSize > maxRowWidth * fontResource.FontHeight)// 超过1行能显示的内容
+                {
+                    bmp = (System.Drawing.Bitmap)contentBitmap.GetThumbnailImage(
+                        maxRowWidth, maxRowWidth, null, IntPtr.Zero);
+                }
+                else//只在一行内即可显示所有字符
+                {
+                    if (totalLength >= fontResource.FontHeight)
+                    {
+                        bmp = (System.Drawing.Bitmap)contentBitmap.GetThumbnailImage(
+                            totalLength * fontSize / resource.FontHeight,
+                            totalLength * fontSize / resource.FontHeight,
+                            null, IntPtr.Zero);
+
+                    }
+                    else
+                    {
+                        bmp = (System.Drawing.Bitmap)contentBitmap.GetThumbnailImage(
+                            fontSize, fontSize, null, IntPtr.Zero);
+                    }
+                }
+                contentBitmap.Dispose();
+                contentBitmap = bmp;
+                //contentBitmap.Save("PointSpriteStringElement-contentBitmap-scaled.png");
             }
 
             // step 4: get texture's size 
             int targetTextureWidth;
             {
 
-                //	Get the maximum texture size supported by OpenGL.
-                int[] textureMaxSize = { 0 };
-                GL.GetInteger(GetTarget.MaxTextureSize, textureMaxSize);
+                ////	Get the maximum texture size supported by OpenGL.
+                //int[] textureMaxSize = { 0 };
+                //GL.GetInteger(GetTarget.MaxTextureSize, textureMaxSize);
 
-                //	Find the target width and height sizes, which is just the highest
-                //	posible power of two that'll fit into the image.
+                ////	Find the target width and height sizes, which is just the highest
+                ////	posible power of two that'll fit into the image.
 
-                targetTextureWidth = textureMaxSize[0];
-                //System.Drawing.Bitmap bitmap = contentBitmap;
-                int scaledWidth = 8 * contentBitmap.Width * this.FontSize / DefaultFontResource.Instance.FontHeight;
+                //targetTextureWidth = textureMaxSize[0];
+                ////System.Drawing.Bitmap bitmap = contentBitmap;
+                //int scaledWidth = 8 * contentBitmap.Width * fontSize / fontResource.FontHeight;
 
-                for (int size = 1; size <= textureMaxSize[0]; size *= 2)
-                {
-                    if (scaledWidth < size)
-                    {
-                        targetTextureWidth = size / 2;
-                        break;
-                    }
-                    if (scaledWidth == size)
-                        targetTextureWidth = size;
-                }
+                //for (int size = 1; size <= textureMaxSize[0]; size *= 2)
+                //{
+                //    if (scaledWidth < size)
+                //    {
+                //        targetTextureWidth = size / 2;
+                //        break;
+                //    }
+                //    if (scaledWidth == size)
+                //        targetTextureWidth = size;
+                //}
 
-                this.textureWidth = targetTextureWidth;
+                //this.textureWidth = targetTextureWidth;
+                this.textureWidth = contentBitmap.Width;
+                targetTextureWidth = contentBitmap.Width;
             }
 
             // step 5: scale contentBitmap to right size
@@ -207,13 +344,15 @@ namespace CSharpGL.Objects.SceneElements
             if (contentBitmap.Width != targetTextureWidth || contentBitmap.Height != targetTextureWidth)
             {
                 //  Resize the image.
-                targetImage = (System.Drawing.Bitmap)contentBitmap.GetThumbnailImage(targetTextureWidth, targetTextureWidth, null, IntPtr.Zero);
+                targetImage = (System.Drawing.Bitmap)contentBitmap.GetThumbnailImage(
+                    targetTextureWidth, targetTextureWidth, null, IntPtr.Zero);
             }
 
             // step 6: generate texture
             {
                 //  Lock the image bits (so that we can pass them to OGL).
-                BitmapData bitmapData = targetImage.LockBits(new Rectangle(0, 0, targetImage.Width, targetImage.Height),
+                BitmapData bitmapData = targetImage.LockBits(
+                    new Rectangle(0, 0, targetImage.Width, targetImage.Height),
                     ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
                 //GL.ActiveTexture(GL.GL_TEXTURE0);
                 GL.GenTextures(1, texture);
@@ -353,8 +492,6 @@ namespace CSharpGL.Objects.SceneElements
 
         void IMVP.UpdateMVP(mat4 mvp)
         {
-            this.currentMVP = mvp;
-
             GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
             GL.Enable(GL.GL_POINT_SPRITE_ARB);
             //GL.TexEnv(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);//TODO: test TexEnvi()
@@ -371,10 +508,17 @@ namespace CSharpGL.Objects.SceneElements
             shaderProgram.Bind();
 
             shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
-            shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.PointSize);
+            //int[] poinSizes = new int[2];
+            //GL.GetInteger(GetTarget.PointSizeRange, poinSizes);
+            //if (this.textureWidth > poinSizes[1])
+            //{
+            //    GL.PointParameter(GL.GL_POINT_SIZE_MAX_ARB, this.textureWidth);
+            //    GL.GetInteger(GetTarget.PointSizeRange, poinSizes);
+            //    Console.WriteLine("asf");
+            //}
+            shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.textureWidth + 0.0f);
             shaderProgram.SetUniform(PointSpriteStringElement.strtex, this.texture[0]);
             shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, this.textColor.x, this.textColor.y, this.textColor.z);
-            //shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
         }
 
 
@@ -390,6 +534,7 @@ namespace CSharpGL.Objects.SceneElements
             GL.Disable(GL.GL_POINT_SPRITE_ARB);
             GL.Disable(GL.GL_POINT_SMOOTH);
         }
+
     }
 
 }

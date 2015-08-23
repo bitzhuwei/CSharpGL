@@ -9,19 +9,19 @@ namespace CSharpGL.Texts
     /// <summary>
     /// 含有字形贴图及其配置信息的单例类型。
     /// </summary>
-    public sealed class DefaultFontResource : IDisposable
+    public sealed class FontResource : IDisposable
     {
-        private static DefaultFontResource instance = new DefaultFontResource();
+        private static FontResource defaultInstance = new FontResource();
 
-        public static DefaultFontResource Instance
+        public static FontResource Default
         {
             get
             {
-                return instance;
+                return defaultInstance;
             }
         }
 
-        private DefaultFontResource()
+        private FontResource()
         {
             this.FontBitmap = ManifestResourceLoader.LoadBitmap("LucidaTypewriterRegular.ttf.png");
 
@@ -59,7 +59,7 @@ namespace CSharpGL.Texts
         /// </summary>
         public Dictionary<char, CharacterInfo> CharInfoDict { get; private set; }
 
-        ~DefaultFontResource()
+        ~FontResource()
         {
             this.Dispose();
         }
