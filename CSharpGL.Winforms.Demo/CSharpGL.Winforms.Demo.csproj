@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormColorCodedPicking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormColorCodedPicking.Designer.cs">
+      <DependentUpon>FormColorCodedPicking.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCylinderElement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,9 @@
     <None Include="TransformFeedback\transform.vert" />
     <Compile Include="TestUnmanagedArrayHelper.cs" />
     <Compile Include="WholeFontTextureElement.cs" />
+    <EmbeddedResource Include="FormColorCodedPicking.resx">
+      <DependentUpon>FormColorCodedPicking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCylinderElement.resx">
       <DependentUpon>FormCylinderElement.cs</DependentUpon>
     </EmbeddedResource>

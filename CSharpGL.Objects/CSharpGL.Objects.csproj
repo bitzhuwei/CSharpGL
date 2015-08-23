@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorCodedPicking\Class1.cs" />
     <Compile Include="ColorCodedPicking\ColorCodedPickingShaderHelper.cs" />
     <Compile Include="ColorCodedPicking\GeometryTypes.cs" />
     <Compile Include="ColorCodedPicking\GeometryTypesHelper.cs" />

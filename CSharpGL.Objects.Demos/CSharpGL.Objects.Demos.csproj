@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DemoColorCodedPickingElement.cs" />
     <Compile Include="DemoLegacyTexture3DCubeElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DemoSimplePointSpriteElement.cs" />
@@ -126,6 +127,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SceneElements\CylinderElement.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DemoColorCodedPickingElement.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DemoColorCodedPickingElement.frag" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

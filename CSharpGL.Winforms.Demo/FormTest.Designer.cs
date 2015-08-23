@@ -46,6 +46,7 @@
             this.btnSimplePointSprite = new System.Windows.Forms.Button();
             this.btnFormPointSpriteStringElement = new System.Windows.Forms.Button();
             this.btnFormLegacyTexture3D = new System.Windows.Forms.Button();
+            this.btnFormColorCodedPicking = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -260,6 +261,7 @@
             // 
             this.btnFormLegacyTexture3D.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFormLegacyTexture3D.Enabled = false;
             this.btnFormLegacyTexture3D.Location = new System.Drawing.Point(13, 607);
             this.btnFormLegacyTexture3D.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormLegacyTexture3D.Name = "btnFormLegacyTexture3D";
@@ -269,17 +271,31 @@
             this.btnFormLegacyTexture3D.UseVisualStyleBackColor = true;
             this.btnFormLegacyTexture3D.Click += new System.EventHandler(this.btnFormLegacyTexture3D_Click);
             // 
+            // btnFormColorCodedPicking
+            // 
+            this.btnFormColorCodedPicking.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFormColorCodedPicking.Location = new System.Drawing.Point(13, 644);
+            this.btnFormColorCodedPicking.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormColorCodedPicking.Name = "btnFormColorCodedPicking";
+            this.btnFormColorCodedPicking.Size = new System.Drawing.Size(353, 29);
+            this.btnFormColorCodedPicking.TabIndex = 4;
+            this.btnFormColorCodedPicking.Text = "FormColorCodedPicking";
+            this.btnFormColorCodedPicking.UseVisualStyleBackColor = true;
+            this.btnFormColorCodedPicking.Click += new System.EventHandler(this.btnFormColorCodedPicking_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 691);
+            this.ClientSize = new System.Drawing.Size(379, 717);
             this.Controls.Add(this.btnWholeFontTextureElement);
             this.Controls.Add(this.btnCylinderElement);
             this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnCamera);
             this.Controls.Add(this.btnSimpleUICube);
             this.Controls.Add(this.btnFormPointSpriteStringElement);
+            this.Controls.Add(this.btnFormColorCodedPicking);
             this.Controls.Add(this.btnFormLegacyTexture3D);
             this.Controls.Add(this.btnSimplePointSprite);
             this.Controls.Add(this.btnDebugging);
@@ -318,5 +334,6 @@
         private System.Windows.Forms.Button btnSimplePointSprite;
         private System.Windows.Forms.Button btnFormPointSpriteStringElement;
         private System.Windows.Forms.Button btnFormLegacyTexture3D;
+        private System.Windows.Forms.Button btnFormColorCodedPicking;
     }
 }

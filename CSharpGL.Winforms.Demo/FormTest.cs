@@ -116,6 +116,11 @@ namespace CSharpGL.Winforms.Demo
             (new FormLegacyTexture3D()).Show();
         }
 
+        private void btnFormColorCodedPicking_Click(object sender, EventArgs e)
+        {
+            (new FormColorCodedPicking()).Show();
+        }
+
 
     }
 }
