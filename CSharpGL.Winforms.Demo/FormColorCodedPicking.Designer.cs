@@ -56,7 +56,6 @@
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.Manual;
             this.glCanvas1.Size = new System.Drawing.Size(613, 349);
             this.glCanvas1.TabIndex = 0;
-            this.glCanvas1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.glCanvas1_MouseClick);
             // 
             // FormColorCodedPicking
             // 

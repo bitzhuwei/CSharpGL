@@ -8,31 +8,41 @@ namespace CSharpGL.Objects.ColorCodedPicking
     /// </summary>
     public static class PickingShaderProgram //: IDisposable
     {
-        static readonly object synObj = new object();
+        //static readonly object synObj = new object();
 
         public static ShaderProgram GetPickingShaderProgram()
         {
-            if (shaderProgram == null)
-            {
-                lock (synObj)
-                {
-                    if (shaderProgram == null)
-                    {
-                        var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"ColorCodedPicking.PickingShader.vert");
-                        string fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"ColorCodedPicking.PickingShader.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"ColorCodedPicking.PickingShader.vert");
+            string fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"ColorCodedPicking.PickingShader.frag");
 
-                        shaderProgram = new ShaderProgram();
-                        shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
+            var shaderProgram = new ShaderProgram();
+            shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-                        shaderProgram.AssertValid();
-                    }
-                }
-            }
+            shaderProgram.AssertValid();
 
             return shaderProgram;
         }
 
-        private static ShaderProgram shaderProgram = null;
+        //private static ShaderProgram shaderProgram = null;
 
+        //static PickingShaderProgram()
+        //{
+            //if (shaderProgram == null)
+            //{
+            //    lock (synObj)
+            //    {
+            //        if (shaderProgram == null)
+            //        {
+            //            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"ColorCodedPicking.PickingShader.vert");
+            //            string fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"ColorCodedPicking.PickingShader.frag");
+
+            //            shaderProgram = new ShaderProgram();
+            //            shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
+
+            //            shaderProgram.AssertValid();
+            //        }
+            //    }
+            //}
+        //}
     }
 }

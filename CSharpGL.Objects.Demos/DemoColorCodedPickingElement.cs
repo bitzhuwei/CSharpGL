@@ -61,6 +61,7 @@ namespace CSharpGL.Objects.Demos
         public DemoColorCodedPickingElement(int size)
         {
             this.size = size;
+            this.pickingShaderProgram = PickingShaderProgram.GetPickingShaderProgram();
         }
 
         protected override void DoInitialize()
@@ -81,7 +82,7 @@ namespace CSharpGL.Objects.Demos
         {
             if (e.RenderMode == RenderModes.HitTest)
             {
-                this.currentShaderProgram = PickingShaderProgram.GetPickingShaderProgram();
+                this.currentShaderProgram = this.pickingShaderProgram;
 
             }
             else
@@ -209,6 +210,7 @@ namespace CSharpGL.Objects.Demos
         }
 
         private int count = 3;
+        private ShaderProgram pickingShaderProgram;
 
         public int Count
         {
@@ -278,7 +280,7 @@ namespace CSharpGL.Objects.Demos
             ShaderProgram shaderProgram = this.currentShaderProgram;
 
             shaderProgram.Bind();
-            if (shaderProgram == PickingShaderProgram.GetPickingShaderProgram())
+            if (shaderProgram == this.pickingShaderProgram)
             {
                 shaderProgram.SetUniform("pickingBaseID", ((IColorCodedPicking)this).PickingBaseID);
                 shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());

@@ -28,14 +28,14 @@ namespace CSharpGL.Winforms.Demo
         {
             InitializeComponent();
 
-            if (CameraDictionary.Instance.ContainsKey(this.GetType().Name))
-            {
-                this.camera = CameraDictionary.Instance[this.GetType().Name];
-            }
-            else
+            //if (CameraDictionary.Instance.ContainsKey(this.GetType().Name))
+            //{
+            //    this.camera = CameraDictionary.Instance[this.GetType().Name];
+            //}
+            //else
             {
                 this.camera = new ScientificCamera(CameraTypes.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
-                CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
+                //CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
             }
 
             const int size = 3;
@@ -64,26 +64,6 @@ namespace CSharpGL.Winforms.Demo
 
             this.Load += FormColorCodedPicking_Load;
         }
-
-        //void uiAxis_AfterRendering(object sender, Objects.RenderEventArgs e)
-        //{
-        //    IMVP element = sender as IMVP;
-        //    element.UnbindShaderProgram();
-        //}
-
-        //void uiAxis_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        //{
-        //    mat4 projectionMatrix, viewMatrix, modelMatrix;
-        //    {
-        //        IUILayout element = sender as IUILayout;
-        //        element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
-        //    }
-
-        //    {
-        //        IMVP element = sender as IMVP;
-        //        element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
-        //    }
-        //}
 
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
@@ -151,6 +131,21 @@ namespace CSharpGL.Winforms.Demo
 
                 this.glCanvas1.Invalidate();
             }
+
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                IPickedGeometry pickedGeometry = this.Pick(e.X, e.Y);
+                if (pickedGeometry != null)
+                {
+                    this.txtPickedInfo.Text = string.Format("{0:yyyy-MM-dd HH:mm:ss.ff} {1}",
+                        DateTime.Now, pickedGeometry);
+                }
+                else
+                {
+                    this.txtPickedInfo.Text = string.Format("{0:yyyy-MM-dd HH:mm:ss.ff} {1}",
+                        DateTime.Now, "nothing picked");
+                }
+            }
         }
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
@@ -169,7 +164,8 @@ namespace CSharpGL.Winforms.Demo
             builder.AppendLine("Use 'c' to switch camera types between perspective and ortho");
             builder.AppendLine("Use 'j' to increase faces");
             builder.AppendLine("Use 'k' to decrease faces");
-            builder.AppendLine("Use right click to pick a primitive.");
+            //builder.AppendLine("Use right click to pick a primitive.");
+            builder.AppendLine("Click Down Right Mouse to pick a primitive.");
             MessageBox.Show(builder.ToString());
         }
 
@@ -205,26 +201,27 @@ namespace CSharpGL.Winforms.Demo
             }
         }
 
-        private void glCanvas1_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                IPickedGeometry pickedGeometry = this.Pick(e.X, e.Y);
-                if (pickedGeometry != null)
-                {
-                    this.txtPickedInfo.Text = string.Format("{0:yyyy-MM-dd HH-mm-ss.ff} {1}",
-                        DateTime.Now, pickedGeometry);
-                }
-                else
-                {
-                    this.txtPickedInfo.Text = string.Format("{0:yyyy-MM-dd HH-mm-ss.ff} {1}",
-                        DateTime.Now, "nothing picked");
-                }
-            }
-        }
+        //private void glCanvas1_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    if (e.Button == System.Windows.Forms.MouseButtons.Right)
+        //    {
+        //        IPickedGeometry pickedGeometry = this.Pick(e.X, e.Y);
+        //        if (pickedGeometry != null)
+        //        {
+        //            this.txtPickedInfo.Text = string.Format("{0:yyyy-MM-dd HH:mm:ss.ff} {1}",
+        //                DateTime.Now, pickedGeometry);
+        //        }
+        //        else
+        //        {
+        //            this.txtPickedInfo.Text = string.Format("{0:yyyy-MM-dd HH:mm:ss.ff} {1}",
+        //                DateTime.Now, "nothing picked");
+        //        }
+        //    }
+        //}
 
         private IPickedGeometry Pick(int x, int y)
         {
+            //this.glCanvas1.MakeCurrent();
             // render the scene for color-coded picking.
             GL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
@@ -239,8 +236,9 @@ namespace CSharpGL.Winforms.Demo
             GL.Flush();
 
             // get coded color.
-            byte[] codedColor = new byte[4];
-            GL.ReadPixels(x, this.glCanvas1.Height - y - 1, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, codedColor);
+            //byte[] codedColor = new byte[4];
+            UnmanagedArray<byte> codedColor = new UnmanagedArray<byte>(4);
+            GL.ReadPixels(x, this.glCanvas1.Height - y - 1, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, codedColor.Header);
             if (codedColor[0] == byte.MaxValue && codedColor[1] == byte.MaxValue
                 && codedColor[2] == byte.MaxValue && codedColor[3] == byte.MaxValue)
             {

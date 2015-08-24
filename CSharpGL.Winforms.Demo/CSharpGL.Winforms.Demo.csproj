@@ -185,7 +185,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CameraDictionary.cs" />
     <Compile Include="ScientificVisual3DControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
