@@ -69,14 +69,7 @@ namespace CSharpGL.Winforms.Demo
             rightUIAxis.Initialize();
 
             legacyUIRect.BeforeRendering += legacyUIRect_BeforeRendering;
-            //modernUIRect.BeforeRendering += SimpleUIElement_BeforeRendering;
-            //leftUIAxis.BeforeRendering += SimpleUIElement_BeforeRendering;
-            //rightUIAxis.BeforeRendering += SimpleUIElement_BeforeRendering;
-
             legacyUIRect.AfterRendering += legacyUIRect_AfterRendering;
-            //modernUIRect.AfterRendering += SimpleUIElement_AfterRendering;
-            //leftUIAxis.AfterRendering += SimpleUIElement_AfterRendering;
-            //rightUIAxis.AfterRendering += SimpleUIElement_AfterRendering;
 
             element = new DemoLegacyTexture3DCubeElement();
             element.Initialize();

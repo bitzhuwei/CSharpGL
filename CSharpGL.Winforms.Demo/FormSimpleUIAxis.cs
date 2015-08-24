@@ -87,16 +87,6 @@ namespace CSharpGL.Winforms.Demo
             uiRightBottomRect.Initialize();
             uiRightTopRect.Initialize();
 
-            uiLeftBottomRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-            uiLeftTopRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-            uiRightBottomRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-            uiRightTopRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-
-            uiLeftBottomRect.AfterRendering += SimpleUIRect_AfterRendering;
-            uiLeftTopRect.AfterRendering += SimpleUIRect_AfterRendering;
-            uiRightBottomRect.AfterRendering += SimpleUIRect_AfterRendering;
-            uiRightTopRect.AfterRendering += SimpleUIRect_AfterRendering;
-
             axisElement = new AxisElement();
             axisElement.Initialize();
             axisElement.BeforeRendering += axisElement_BeforeRendering;
@@ -116,26 +106,26 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
-        void SimpleUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            IMVP element = sender as IMVP;
-            element.UnbindShaderProgram();
-        }
+        //void SimpleUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
+        //{
+        //    IMVP element = sender as IMVP;
+        //    element.UnbindShaderProgram();
+        //}
 
-        void SimpleUIRect_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            mat4 projectionMatrix, viewMatrix, modelMatrix;
+        //void SimpleUIRect_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        //{
+        //    mat4 projectionMatrix, viewMatrix, modelMatrix;
 
-            {
-                IUILayout element = sender as IUILayout;
-                element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
-            }
+        //    {
+        //        IUILayout element = sender as IUILayout;
+        //        element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
+        //    }
 
-            {
-                IMVP element = sender as IMVP;
-                element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
-            }
-        }
+        //    {
+        //        IMVP element = sender as IMVP;
+        //        element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
+        //    }
+        //}
 
         void axisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
