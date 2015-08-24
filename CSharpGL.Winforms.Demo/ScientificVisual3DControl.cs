@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSharpGL.Objects.RenderContexts;
+using CSharpGL.Objects;
+using CSharpGL.Objects.Cameras;
 
 namespace CSharpGL.Winforms.Demo
 {
@@ -21,6 +23,23 @@ namespace CSharpGL.Winforms.Demo
 
         private bool designMode;
 
+        private List<SceneElementBase> elementList = new List<SceneElementBase>();
+
+        /// <summary>
+        /// 获取此控件内的元素列表。
+        /// </summary>
+        public List<SceneElementBase> ElementList
+        {
+            get { return elementList; }
+        }
+
+        private IScientificCamera camera;
+
+        public IScientificCamera Camera
+        {
+            get { return camera; }
+        }
+        
         /// <summary>
         /// 可执行OpenGL渲染的控件。
         /// </summary>
@@ -47,6 +66,8 @@ namespace CSharpGL.Winforms.Demo
         void ISupportInitialize.EndInit()
         {
             CreateRenderContext();
+
+            this.camera = new ScientificCamera(CameraTypes.Perspecitive, this.Width, this.Height);
         }
 
         #endregion
@@ -96,7 +117,11 @@ namespace CSharpGL.Winforms.Demo
                 else
                 {
                     //	If there is a draw handler, then call it.
-                    DoOpenGLDraw(new RenderEventArgs(graphics));
+                    //DoOpenGLDraw(new RenderEventArgs(graphics));
+                    foreach (var item in this.elementList)
+                    {
+                        item.Render(RenderModes.Render);
+                    }
                 }
 
                 //	Blit our offscreen bitmap.
@@ -225,22 +250,6 @@ namespace CSharpGL.Winforms.Demo
                 this.redrawTimer.Interval = value;
             }
         }
-
-        /// <summary>
-        /// Call this function in derived classes to do the OpenGL Draw event.
-        /// </summary>
-        private void DoOpenGLDraw(RenderEventArgs e)
-        {
-            var handler = OpenGLDraw;
-            if (handler != null)
-                handler(this, e);
-        }
-
-        /// <summary>
-        /// Occurs when OpenGL drawing should be performed.
-        /// </summary>
-        [Description("Called whenever OpenGL drawing should occur."), Category("CSharpGL")]
-        public event EventHandler<RenderEventArgs> OpenGLDraw;
 
     }
 }
