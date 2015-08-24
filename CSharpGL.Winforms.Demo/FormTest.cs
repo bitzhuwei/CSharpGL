@@ -121,6 +121,11 @@ namespace CSharpGL.Winforms.Demo
             (new FormColorCodedPicking()).Show();
         }
 
+        private void btnFormScientificVisual3DControl_Click(object sender, EventArgs e)
+        {
+            (new FormScientificVisual3DControl()).Show();
+        }
+
 
     }
 }

@@ -47,13 +47,12 @@
             this.btnFormPointSpriteStringElement = new System.Windows.Forms.Button();
             this.btnFormLegacyTexture3D = new System.Windows.Forms.Button();
             this.btnFormColorCodedPicking = new System.Windows.Forms.Button();
+            this.btnFormScientificVisual3DControl = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
             // 
-            this.btnBasis.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBasis.Location = new System.Drawing.Point(13, 15);
+            this.btnBasis.Location = new System.Drawing.Point(13, 13);
             this.btnBasis.Margin = new System.Windows.Forms.Padding(4);
             this.btnBasis.Name = "btnBasis";
             this.btnBasis.Size = new System.Drawing.Size(353, 29);
@@ -64,9 +63,7 @@
             // 
             // btnCylinderElement
             // 
-            this.btnCylinderElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCylinderElement.Location = new System.Drawing.Point(13, 163);
+            this.btnCylinderElement.Location = new System.Drawing.Point(13, 161);
             this.btnCylinderElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnCylinderElement.Name = "btnCylinderElement";
             this.btnCylinderElement.Size = new System.Drawing.Size(353, 29);
@@ -77,9 +74,7 @@
             // 
             // btnFormFontElement
             // 
-            this.btnFormFontElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFormFontElement.Location = new System.Drawing.Point(13, 237);
+            this.btnFormFontElement.Location = new System.Drawing.Point(13, 235);
             this.btnFormFontElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormFontElement.Name = "btnFormFontElement";
             this.btnFormFontElement.Size = new System.Drawing.Size(353, 29);
@@ -90,9 +85,7 @@
             // 
             // btnPyramidElement
             // 
-            this.btnPyramidElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPyramidElement.Location = new System.Drawing.Point(13, 52);
+            this.btnPyramidElement.Location = new System.Drawing.Point(13, 50);
             this.btnPyramidElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnPyramidElement.Name = "btnPyramidElement";
             this.btnPyramidElement.Size = new System.Drawing.Size(353, 29);
@@ -103,9 +96,7 @@
             // 
             // btnCamera
             // 
-            this.btnCamera.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCamera.Location = new System.Drawing.Point(13, 89);
+            this.btnCamera.Location = new System.Drawing.Point(13, 87);
             this.btnCamera.Margin = new System.Windows.Forms.Padding(4);
             this.btnCamera.Name = "btnCamera";
             this.btnCamera.Size = new System.Drawing.Size(353, 29);
@@ -116,9 +107,7 @@
             // 
             // btnSatelliteRotation
             // 
-            this.btnSatelliteRotation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSatelliteRotation.Location = new System.Drawing.Point(13, 126);
+            this.btnSatelliteRotation.Location = new System.Drawing.Point(13, 124);
             this.btnSatelliteRotation.Margin = new System.Windows.Forms.Padding(4);
             this.btnSatelliteRotation.Name = "btnSatelliteRotation";
             this.btnSatelliteRotation.Size = new System.Drawing.Size(353, 29);
@@ -129,9 +118,7 @@
             // 
             // btnWholeFontTextureElement
             // 
-            this.btnWholeFontTextureElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnWholeFontTextureElement.Location = new System.Drawing.Point(13, 200);
+            this.btnWholeFontTextureElement.Location = new System.Drawing.Point(13, 198);
             this.btnWholeFontTextureElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnWholeFontTextureElement.Name = "btnWholeFontTextureElement";
             this.btnWholeFontTextureElement.Size = new System.Drawing.Size(353, 29);
@@ -142,9 +129,7 @@
             // 
             // btnTranslateOnScreen
             // 
-            this.btnTranslateOnScreen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTranslateOnScreen.Location = new System.Drawing.Point(13, 274);
+            this.btnTranslateOnScreen.Location = new System.Drawing.Point(13, 272);
             this.btnTranslateOnScreen.Margin = new System.Windows.Forms.Padding(4);
             this.btnTranslateOnScreen.Name = "btnTranslateOnScreen";
             this.btnTranslateOnScreen.Size = new System.Drawing.Size(353, 29);
@@ -155,9 +140,7 @@
             // 
             // btnLegacySimpleUIRect
             // 
-            this.btnLegacySimpleUIRect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLegacySimpleUIRect.Location = new System.Drawing.Point(13, 311);
+            this.btnLegacySimpleUIRect.Location = new System.Drawing.Point(13, 309);
             this.btnLegacySimpleUIRect.Margin = new System.Windows.Forms.Padding(4);
             this.btnLegacySimpleUIRect.Name = "btnLegacySimpleUIRect";
             this.btnLegacySimpleUIRect.Size = new System.Drawing.Size(353, 29);
@@ -168,9 +151,7 @@
             // 
             // btnSimpleUIRect
             // 
-            this.btnSimpleUIRect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSimpleUIRect.Location = new System.Drawing.Point(13, 348);
+            this.btnSimpleUIRect.Location = new System.Drawing.Point(13, 346);
             this.btnSimpleUIRect.Margin = new System.Windows.Forms.Padding(4);
             this.btnSimpleUIRect.Name = "btnSimpleUIRect";
             this.btnSimpleUIRect.Size = new System.Drawing.Size(353, 29);
@@ -181,9 +162,7 @@
             // 
             // btnSimpleUIAxis
             // 
-            this.btnSimpleUIAxis.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSimpleUIAxis.Location = new System.Drawing.Point(13, 385);
+            this.btnSimpleUIAxis.Location = new System.Drawing.Point(13, 383);
             this.btnSimpleUIAxis.Margin = new System.Windows.Forms.Padding(4);
             this.btnSimpleUIAxis.Name = "btnSimpleUIAxis";
             this.btnSimpleUIAxis.Size = new System.Drawing.Size(353, 29);
@@ -194,9 +173,7 @@
             // 
             // btnSimpleUIColorPalette
             // 
-            this.btnSimpleUIColorPalette.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSimpleUIColorPalette.Location = new System.Drawing.Point(13, 459);
+            this.btnSimpleUIColorPalette.Location = new System.Drawing.Point(13, 457);
             this.btnSimpleUIColorPalette.Margin = new System.Windows.Forms.Padding(4);
             this.btnSimpleUIColorPalette.Name = "btnSimpleUIColorPalette";
             this.btnSimpleUIColorPalette.Size = new System.Drawing.Size(353, 29);
@@ -207,9 +184,7 @@
             // 
             // btnSimpleUICube
             // 
-            this.btnSimpleUICube.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSimpleUICube.Location = new System.Drawing.Point(13, 422);
+            this.btnSimpleUICube.Location = new System.Drawing.Point(13, 420);
             this.btnSimpleUICube.Margin = new System.Windows.Forms.Padding(4);
             this.btnSimpleUICube.Name = "btnSimpleUICube";
             this.btnSimpleUICube.Size = new System.Drawing.Size(353, 29);
@@ -220,9 +195,7 @@
             // 
             // btnDebugging
             // 
-            this.btnDebugging.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDebugging.Location = new System.Drawing.Point(13, 496);
+            this.btnDebugging.Location = new System.Drawing.Point(13, 494);
             this.btnDebugging.Margin = new System.Windows.Forms.Padding(4);
             this.btnDebugging.Name = "btnDebugging";
             this.btnDebugging.Size = new System.Drawing.Size(353, 29);
@@ -233,9 +206,7 @@
             // 
             // btnSimplePointSprite
             // 
-            this.btnSimplePointSprite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSimplePointSprite.Location = new System.Drawing.Point(13, 570);
+            this.btnSimplePointSprite.Location = new System.Drawing.Point(13, 568);
             this.btnSimplePointSprite.Margin = new System.Windows.Forms.Padding(4);
             this.btnSimplePointSprite.Name = "btnSimplePointSprite";
             this.btnSimplePointSprite.Size = new System.Drawing.Size(353, 29);
@@ -246,9 +217,7 @@
             // 
             // btnFormPointSpriteStringElement
             // 
-            this.btnFormPointSpriteStringElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFormPointSpriteStringElement.Location = new System.Drawing.Point(13, 533);
+            this.btnFormPointSpriteStringElement.Location = new System.Drawing.Point(13, 531);
             this.btnFormPointSpriteStringElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormPointSpriteStringElement.Name = "btnFormPointSpriteStringElement";
             this.btnFormPointSpriteStringElement.Size = new System.Drawing.Size(353, 29);
@@ -259,10 +228,8 @@
             // 
             // btnFormLegacyTexture3D
             // 
-            this.btnFormLegacyTexture3D.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFormLegacyTexture3D.Enabled = false;
-            this.btnFormLegacyTexture3D.Location = new System.Drawing.Point(13, 607);
+            this.btnFormLegacyTexture3D.Location = new System.Drawing.Point(13, 605);
             this.btnFormLegacyTexture3D.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormLegacyTexture3D.Name = "btnFormLegacyTexture3D";
             this.btnFormLegacyTexture3D.Size = new System.Drawing.Size(353, 29);
@@ -273,9 +240,7 @@
             // 
             // btnFormColorCodedPicking
             // 
-            this.btnFormColorCodedPicking.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFormColorCodedPicking.Location = new System.Drawing.Point(13, 644);
+            this.btnFormColorCodedPicking.Location = new System.Drawing.Point(13, 642);
             this.btnFormColorCodedPicking.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormColorCodedPicking.Name = "btnFormColorCodedPicking";
             this.btnFormColorCodedPicking.Size = new System.Drawing.Size(353, 29);
@@ -284,17 +249,29 @@
             this.btnFormColorCodedPicking.UseVisualStyleBackColor = true;
             this.btnFormColorCodedPicking.Click += new System.EventHandler(this.btnFormColorCodedPicking_Click);
             // 
+            // btnFormScientificVisual3DControl
+            // 
+            this.btnFormScientificVisual3DControl.Location = new System.Drawing.Point(374, 13);
+            this.btnFormScientificVisual3DControl.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormScientificVisual3DControl.Name = "btnFormScientificVisual3DControl";
+            this.btnFormScientificVisual3DControl.Size = new System.Drawing.Size(353, 29);
+            this.btnFormScientificVisual3DControl.TabIndex = 4;
+            this.btnFormScientificVisual3DControl.Text = "FormScientificVisual3DControl";
+            this.btnFormScientificVisual3DControl.UseVisualStyleBackColor = true;
+            this.btnFormScientificVisual3DControl.Click += new System.EventHandler(this.btnFormScientificVisual3DControl_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 717);
+            this.ClientSize = new System.Drawing.Size(749, 685);
             this.Controls.Add(this.btnWholeFontTextureElement);
             this.Controls.Add(this.btnCylinderElement);
             this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnCamera);
             this.Controls.Add(this.btnSimpleUICube);
             this.Controls.Add(this.btnFormPointSpriteStringElement);
+            this.Controls.Add(this.btnFormScientificVisual3DControl);
             this.Controls.Add(this.btnFormColorCodedPicking);
             this.Controls.Add(this.btnFormLegacyTexture3D);
             this.Controls.Add(this.btnSimplePointSprite);
@@ -335,5 +312,6 @@
         private System.Windows.Forms.Button btnFormPointSpriteStringElement;
         private System.Windows.Forms.Button btnFormLegacyTexture3D;
         private System.Windows.Forms.Button btnFormColorCodedPicking;
+        private System.Windows.Forms.Button btnFormScientificVisual3DControl;
     }
 }

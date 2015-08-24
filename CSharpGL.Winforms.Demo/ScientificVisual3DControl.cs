@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using CSharpGL.Objects.RenderContexts;
 using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
+using CSharpGL.Maths;
 
 namespace CSharpGL.Winforms.Demo
 {
@@ -22,6 +23,17 @@ namespace CSharpGL.Winforms.Demo
         protected RenderContext renderContext;
 
         private bool designMode;
+
+        private vec4 clearColor = new vec4(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+
+        /// <summary>
+        /// vec4(0, 0, 0, 0) ~ vec4(1, 1, 1, 1)
+        /// </summary>
+        public vec4 ClearColor
+        {
+            get { return clearColor; }
+            set { clearColor = value; }
+        }
 
         private List<SceneElementBase> elementList = new List<SceneElementBase>();
 
@@ -39,7 +51,18 @@ namespace CSharpGL.Winforms.Demo
         {
             get { return camera; }
         }
-        
+
+        SatelliteRotator rotator;
+
+        ///// <summary>
+        ///// TODO: 扩展此处。此处不应只接受SatelliteRotator类型。
+        ///// </summary>
+        //public SatelliteRotator Rotator
+        //{
+        //    get { return rotator; }
+        //    set { rotator = value; }
+        //}
+
         /// <summary>
         /// 可执行OpenGL渲染的控件。
         /// </summary>
@@ -55,6 +78,33 @@ namespace CSharpGL.Winforms.Demo
             // check http://stackoverflow.com/questions/34664/designmode-with-controls
             this.designMode = this.DesignMode || System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime;
 
+            
+
+        }
+
+        void scientificVisual3DControl1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.rotator.MouseUp(e.X, e.Y);
+            }
+        }
+
+        void scientificVisual3DControl1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (this.rotator.mouseDownFlag && e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.rotator.MouseMove(e.X, e.Y);
+            }
+        }
+
+        void scientificVisual3DControl1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.rotator.SetBounds(this.Width, this.Height);
+                this.rotator.MouseDown(e.X, e.Y);
+            }
         }
 
         #region ISupportInitialize 成员
@@ -68,6 +118,12 @@ namespace CSharpGL.Winforms.Demo
             CreateRenderContext();
 
             this.camera = new ScientificCamera(CameraTypes.Perspecitive, this.Width, this.Height);
+
+            this.rotator = new SatelliteRotator(this.camera);
+
+            this.MouseDown += scientificVisual3DControl1_MouseDown;
+            this.MouseMove += scientificVisual3DControl1_MouseMove;
+            this.MouseUp += scientificVisual3DControl1_MouseUp;
         }
 
         #endregion
@@ -116,6 +172,9 @@ namespace CSharpGL.Winforms.Demo
                 }
                 else
                 {
+                    GL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+                    GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+
                     var arg = new RenderEventArgs(RenderModes.Render, this.camera);
                     //	If there is a draw handler, then call it.
                     //DoOpenGLDraw(new RenderEventArgs(graphics));
