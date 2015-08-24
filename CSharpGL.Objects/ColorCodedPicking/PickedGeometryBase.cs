@@ -53,7 +53,7 @@ namespace CSharpGL.Objects.ColorCodedPicking
                 }
             }
 
-            string result = string.Format("{0}: P: {1} ID:{2}/{3} ∈{4}",
+            string result = string.Format("{0}: P: {1} vertex ID:{2}/{3} ∈{4}",
                 GeometryType, strPositions, lastVertexID, stageVertexID, From);
             return result;
             //return base.ToString();

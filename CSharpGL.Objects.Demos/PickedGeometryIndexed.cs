@@ -36,7 +36,7 @@ namespace CSharpGL.Objects.Demos
                 }
             }
 
-            string result = string.Format("{0}: Pos: {1} Cube Index: {2} ID:{3}/{4} ∈{5}",
+            string result = string.Format("{0}: Pos: {1} Cube Index: {2} vertex ID:{3}/{4} ∈{5}",
                 GeometryType, strPositions, CubeIndex, lastVertexID, stageVertexID, From);
 
             return result;

@@ -137,13 +137,16 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
-            this.rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
-            this.rotator.MouseDown(e.X, e.Y);
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
+                this.rotator.MouseDown(e.X, e.Y);
+            }
         }
 
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.rotator.mouseDownFlag)
+            if (this.rotator.mouseDownFlag && e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 this.rotator.MouseMove(e.X, e.Y);
 
@@ -153,7 +156,10 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
         {
-            this.rotator.MouseUp(e.X, e.Y);
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.rotator.MouseUp(e.X, e.Y);
+            }
         }
 
         private void FormColorCodedPicking_Load(object sender, EventArgs e)
@@ -179,7 +185,7 @@ namespace CSharpGL.Winforms.Demo
             else if (e.KeyChar == 'k')
             {
                 this.element.Count--;
-                
+
                 this.glCanvas1.Invalidate();
             }
             else if (e.KeyChar == 'c')

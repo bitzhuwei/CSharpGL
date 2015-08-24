@@ -79,10 +79,6 @@
     <EmbeddedResource Include="GLCanvas.ico" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GLCanvas.frag" />
-    <EmbeddedResource Include="GLCanvas.vert" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
