@@ -1,31 +1,27 @@
 ﻿using CSharpGL.Maths;
+using CSharpGL.Objects.ColorCodedPicking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.ColorCodedPicking
+namespace CSharpGL.Objects.Demos
 {
-    /// <summary>
-    /// The color-coded picking result.
-    /// <para>Representing a primitive.</para>
-    /// </summary>
-    public class PickedGeometryColored : PickedGeometryBase 
+    class PickedGeometryIndexed : PickedGeometryBase
     {
         /// <summary>
         /// Gets or sets colors of this primitive.
         /// </summary>
-        public vec3[] colors { get; set; }
+        //public int PrimitiveIndex { get; set; }
+        public uint CubeIndex { get; set; }
 
         public override string ToString()
         {
             var positions = this.positions;
             if (positions == null) { positions = new vec3[0]; }
-            var colors = this.colors;
-            if (colors == null) { colors = new vec3[0]; }
 
             string strPositions = positions.PrintArray();
-            string strColors = colors.PrintArray();
 
             uint stageVertexID = this.StageVertexID;
             IColorCodedPicking picking = this.From;
@@ -40,12 +36,11 @@ namespace CSharpGL.Objects.ColorCodedPicking
                 }
             }
 
-            string result = string.Format("{0}: P: {1} C: {2} ID:{3}/{4} ∈{5}",
-                GeometryType, strPositions, strColors, lastVertexID, stageVertexID, From);
+            string result = string.Format("{0}: Pos: {1} Cube Index: {2} ID:{3}/{4} ∈{5}",
+                GeometryType, strPositions, CubeIndex, lastVertexID, stageVertexID, From);
 
             return result;
             //return base.ToString();
         }
-
     }
 }

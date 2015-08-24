@@ -23,8 +23,9 @@ namespace System
             StringBuilder builder = new StringBuilder();
             foreach (var item in array)
             {
+                builder.Append('[');
                 builder.Append(item);
-                builder.Append(", ");
+                builder.Append("], ");
             }
 
             return builder.ToString();

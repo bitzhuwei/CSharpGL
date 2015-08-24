@@ -54,6 +54,7 @@
     <Compile Include="ColorCodedPicking\IPickedGeometry.cs" />
     <Compile Include="ColorCodedPicking\PickedGeometryBase.cs" />
     <Compile Include="ColorCodedPicking\PickedGeometryColored.cs" />
+    <Compile Include="ColorCodedPicking\PickingShaderProgram.cs" />
     <Compile Include="ColorCodedPicking\SharedStageInfo.cs" />
     <Compile Include="IMVP.cs" />
     <Compile Include="IRenderable.cs" />
@@ -141,8 +142,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ColorCodedPicking\ColorCodedPicking.cd" />
-    <None Include="ColorCodedPicking\PickingShader.frag" />
-    <None Include="ColorCodedPicking\PickingShader.vert" />
+    <EmbeddedResource Include="ColorCodedPicking\PickingShader.frag" />
+    <EmbeddedResource Include="ColorCodedPicking\PickingShader.vert" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

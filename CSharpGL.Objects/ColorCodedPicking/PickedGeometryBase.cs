@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpGL.Maths;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace CSharpGL.Objects.ColorCodedPicking
         /// <summary>
         /// Gets or sets positions of this primitive's vertices.
         /// </summary>
-        public float[] positions { get; set; }
+        public vec3[] positions { get; set; }
 
         /// <summary>
         /// The last vertex's id that constructs the picked primitive.
@@ -35,9 +36,9 @@ namespace CSharpGL.Objects.ColorCodedPicking
         public override string ToString()
         {
             var positions = this.positions;
-            if (positions == null) { positions = new float[0]; }
+            if (positions == null) { positions = new vec3[0]; }
 
-            string strPositions = positions.PrintVectors();
+            string strPositions = positions.PrintArray();
 
             uint stageVertexID = this.StageVertexID;
             IColorCodedPicking picking = this.From;

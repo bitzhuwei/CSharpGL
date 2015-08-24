@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpGL.Maths;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace CSharpGL.Objects.ColorCodedPicking
         /// <summary>
         /// Gets or sets positions of this primitive's vertices.
         /// </summary>
-        float[] positions { get; set; }
+        vec3[] positions { get; set; }
 
         /// <summary>
         /// The scene's element from which this <see cref="IPickedGeometry"/>'s instance is picked.

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpGL.Maths;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -113,7 +114,12 @@ namespace CSharpGL.Objects.ColorCodedPicking
                         geometryPositions[j] = positions[i];
                     }
 
-                    pickedGeometry.positions = geometryPositions;
+                    var poss = new vec3[vertexCount];
+                    for (int t = 0; t < vertexCount; t++)
+                    {
+                        poss[t] = new vec3(geometryPositions[t * 3 + 0], geometryPositions[t * 3 + 1], geometryPositions[t * 3 + 2]);
+                    }
+                    pickedGeometry.positions = poss;
                 }
             }
 

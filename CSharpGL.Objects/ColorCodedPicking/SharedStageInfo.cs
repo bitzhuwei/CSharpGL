@@ -33,20 +33,20 @@ namespace CSharpGL.Objects.ColorCodedPicking
         /// <summary>
         /// Render the element that inherts <see cref="IColorCodedPicking"/> for color coded picking.
         /// </summary>
-        /// <param name="picking"></param>
+        /// <param name="pickable"></param>
         /// <param name="gl"></param>
         /// <param name="renderMode"></param>
-        public virtual void RenderForPicking(IColorCodedPicking picking, RenderModes renderMode)
+        public virtual void RenderForPicking(IColorCodedPicking pickable, RenderModes renderMode)
         {
-            if (picking != null)
+            if (pickable != null)
             {
-                picking.PickingBaseID = this.RenderedVertexCount;
+                pickable.PickingBaseID = this.RenderedVertexCount;
 
                 //  render the element.
-                IRenderable renderable = picking;
+                IRenderable renderable = pickable;
                 renderable.Render(renderMode);
 
-                uint rendered = this.RenderedVertexCount + picking.GetVertexCount();
+                uint rendered = this.RenderedVertexCount + pickable.GetVertexCount();
                 if (this.RenderedVertexCount <= rendered)
                 {
                     this.RenderedVertexCount = rendered;
@@ -55,7 +55,7 @@ namespace CSharpGL.Objects.ColorCodedPicking
                 {
                     throw new OverflowException(
                         string.Format("Too many geometries({0} + {1} > {2}) for color coded picking.",
-                            this.RenderedVertexCount, picking.GetVertexCount(), uint.MaxValue));
+                            this.RenderedVertexCount, pickable.GetVertexCount(), uint.MaxValue));
                 }
             }
         }

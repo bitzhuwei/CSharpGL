@@ -14,8 +14,12 @@ namespace CSharpGL.Objects.Demos
     /// </summary>
     public class DemoColorCodedPickingElement : SceneElementBase, IColorCodedPicking, IMVP
     {
+        const float unitSpace = 6f;
         private static readonly vec3[] unitCubePos;
         private static readonly uint[] unitCubeIndex;
+        /// <summary>
+        /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/482613/o_Cube-small.jpg
+        /// </summary>
         static DemoColorCodedPickingElement()
         {
             unitCubePos = new vec3[8];
@@ -47,6 +51,7 @@ namespace CSharpGL.Objects.Demos
 
 
         private ShaderProgram shaderProgram;
+        private ShaderProgram currentShaderProgram;
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
         const string strMVP = "MVP";
@@ -63,6 +68,26 @@ namespace CSharpGL.Objects.Demos
             this.shaderProgram = InitializeShader();
 
             InitVAO();
+
+            this.BeforeRendering += DemoColorCodedPickingElement_BeforeRendering;
+            this.AfterRendering += DemoColorCodedPickingElement_AfterRendering;
+        }
+
+        void DemoColorCodedPickingElement_AfterRendering(object sender, RenderEventArgs e)
+        {
+        }
+
+        void DemoColorCodedPickingElement_BeforeRendering(object sender, RenderEventArgs e)
+        {
+            if (e.RenderMode == RenderModes.HitTest)
+            {
+                this.currentShaderProgram = PickingShaderProgram.GetPickingShaderProgram();
+
+            }
+            else
+            {
+                this.currentShaderProgram = this.shaderProgram;
+            }
         }
 
         private void InitVAO()
@@ -77,7 +102,6 @@ namespace CSharpGL.Objects.Demos
 
             // prepare positions
             {
-                const float unitSpace = 6f;
                 var positionArray = new UnmanagedArray<vec3>(size * size * size * 8);
                 int index = 0;
                 for (int i = 0; i < size; i++)
@@ -117,10 +141,10 @@ namespace CSharpGL.Objects.Demos
                     {
                         for (int k = 0; k < size; k++)
                         {
-                            vec3 color = new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+                            //vec3 color = new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
                             for (int cubeIndex = 0; cubeIndex < 8; cubeIndex++)
                             {
-                                //vec3 color = new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+                                vec3 color = new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
                                 colorArray[index++] = color;
                             }
                         }
@@ -184,7 +208,7 @@ namespace CSharpGL.Objects.Demos
             return shaderProgram;
         }
 
-        //public int count = 3;
+        public int count = 3;
 
         protected override void DoRender(RenderModes renderMode)
         {
@@ -193,10 +217,10 @@ namespace CSharpGL.Objects.Demos
 
             GL.BindVertexArray(vao[0]);
 
-            int size = this.size;
-            int count = size * size * size * 15;
-            GL.DrawElements(PrimitiveModes.TriangleStrip, count, GL.GL_UNSIGNED_INT, IntPtr.Zero);
-            //GL.DrawElements(PrimitiveModes.TriangleStrip, this.count, GL.GL_UNSIGNED_INT, IntPtr.Zero);
+            //int size = this.size;
+            //int count = size * size * size * 15;
+            //GL.DrawElements(PrimitiveModes.TriangleStrip, count, GL.GL_UNSIGNED_INT, IntPtr.Zero);
+            GL.DrawElements(PrimitiveModes.TriangleStrip, this.count, GL.GL_UNSIGNED_INT, IntPtr.Zero);
 
             GL.BindVertexArray(0);
 
@@ -207,32 +231,65 @@ namespace CSharpGL.Objects.Demos
 
         uint IColorCodedPicking.GetVertexCount()
         {
-            throw new NotImplementedException();
+            int size = this.size;
+            int count = size * size * size * 15;
+            return (uint)count;
         }
 
         IPickedGeometry IColorCodedPicking.Pick(uint stageVertexID)
         {
-            throw new NotImplementedException();
+            IColorCodedPicking element = this as IColorCodedPicking;
+            PickedGeometryIndexed pickedGeometry = element.TryPick<PickedGeometryIndexed>(
+                PrimitiveModes.TriangleStrip, stageVertexID);
+
+            if (pickedGeometry == null) { return null; }
+
+            // Fill primitive's positions and colors. This maybe changes much more than lines above in second dev.
+            uint lastVertexID;
+            if (element.GetLastVertexIDOfPickedGeometry(stageVertexID, out lastVertexID))
+            {
+                pickedGeometry.CubeIndex = lastVertexID;// / 15;
+
+                //int vertexCount = pickedGeometry.GeometryType.GetVertexCount();
+                //var cubeIndex = lastVertexID % 15;
+                //vec3[] geometryPositions = new vec3[vertexCount];
+                //{
+                //    geometryPositions[2] = unitCubePos[unitCubeIndex[cubeIndex--]];
+                //    geometryPositions[1] = unitCubePos[unitCubeIndex[cubeIndex--]];
+                //    geometryPositions[0] = unitCubePos[unitCubeIndex[cubeIndex--]];
+                //}
+                //pickedGeometry.positions = geometryPositions;
+
+            }
+
+            return pickedGeometry;
         }
 
-        void IRenderable.Render(RenderModes renderMode)
-        {
-            throw new NotImplementedException();
-        }
+        //void IRenderable.Render(RenderModes renderMode)
+        //{
+        //    base.Render(renderMode);
+        //}
 
         void IMVP.UpdateMVP(mat4 mvp)
         {
-            ShaderProgram shaderProgram = this.shaderProgram;
+            ShaderProgram shaderProgram = this.currentShaderProgram;
 
             shaderProgram.Bind();
-
-            shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+            if (shaderProgram == PickingShaderProgram.GetPickingShaderProgram())
+            {
+                shaderProgram.SetUniform("pickingBaseID", ((IColorCodedPicking)this).PickingBaseID);
+                shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+            }
+            else
+            {
+                shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+            }
         }
 
 
         void IMVP.UnbindShaderProgram()
         {
-            ShaderProgram shaderProgram = this.shaderProgram;
+            ShaderProgram shaderProgram = this.currentShaderProgram;
 
             shaderProgram.Unbind();
         }
