@@ -96,8 +96,8 @@ namespace CSharpGL.Objects.Demos.UIs
         {
             this.axisElement.Initialize();
 
-            this.BeforeRendering += IUILayoutHelper.GetSimpleUI_BeforeRendering();
-            this.AfterRendering += IUILayoutHelper.GetSimpleUI_AfterRendering();
+            this.BeforeRendering += this.GetSimpleUI_BeforeRendering();
+            this.AfterRendering += this.GetSimpleUI_AfterRendering();
         }
 
         protected override void DoRender(RenderEventArgs e)

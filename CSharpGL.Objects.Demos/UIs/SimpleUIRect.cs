@@ -71,8 +71,8 @@ namespace CSharpGL.Objects.Demos.UIs
 
             InitVAO();
 
-            base.BeforeRendering += IUILayoutHelper.GetSimpleUI_BeforeRendering();
-            base.AfterRendering += IUILayoutHelper.GetSimpleUI_AfterRendering();
+            base.BeforeRendering += this.GetSimpleUI_BeforeRendering();
+            base.AfterRendering += this.GetSimpleUI_AfterRendering();
         }
 
         private void InitVAO()

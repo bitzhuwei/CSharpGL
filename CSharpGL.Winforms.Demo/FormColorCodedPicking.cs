@@ -210,14 +210,8 @@ namespace CSharpGL.Winforms.Demo
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 IPickedGeometry pickedGeometry = this.Pick(e.X, e.Y);
-                if (pickedGeometry != null)
-                {
-                    this.txtPickedInfo.Text = DateTime.Now + " " + pickedGeometry.ToString();
-                }
-                else
-                {
-                    this.txtPickedInfo.Text = DateTime.Now + " " + "nothing picked";
-                }
+                this.txtPickedInfo.Text = string.Format("{0:yyyy-MM-dd HH-mm-ss.ff} {1}",
+                    DateTime.Now, pickedGeometry);
             }
         }
 
