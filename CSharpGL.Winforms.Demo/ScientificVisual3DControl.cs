@@ -82,9 +82,6 @@ namespace CSharpGL.Winforms.Demo
 
             // check http://stackoverflow.com/questions/34664/designmode-with-controls
             this.designMode = this.DesignMode || System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime;
-
-            
-
         }
 
         void scientificVisual3DControl1_MouseUp(object sender, MouseEventArgs e)

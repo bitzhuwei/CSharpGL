@@ -144,6 +144,8 @@ namespace CSharpGL.Objects.SceneElements
 
             InitializeVAO(out vao, out primitiveMode, out vertexCount);
 
+            //base.BeforeRendering += IMVPHelper.Getelement_BeforeRendering();
+            //base.AfterRendering += IMVPHelper.Getelement_AfterRendering();
         }
 
         protected override void DoRender(RenderEventArgs e)

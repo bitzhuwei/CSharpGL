@@ -22,6 +22,7 @@ namespace CSharpGL.Winforms.Demo
         LegacySimpleUIRect legacyLeftBottomRect;
 
         SimpleUIRect uiLeftBottomRect;
+        SimpleUIAxis uiLeftBottomAxis;
 
         AxisElement axisElement;
 
@@ -47,14 +48,16 @@ namespace CSharpGL.Winforms.Demo
 
             Padding padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
             Size size = new Size(100, 100);
-            //Size size = new Size(5, 5);
             IUILayoutParam param;
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right, padding, size);
             uiLeftBottomRect = new SimpleUIRect(param);
             legacyLeftBottomRect = new LegacySimpleUIRect(param, new Objects.GLColor(1, 1, 1, 1));
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
+            uiLeftBottomAxis = new SimpleUIAxis(param);
 
             uiLeftBottomRect.Initialize();
             legacyLeftBottomRect.Initialize();
+            uiLeftBottomAxis.Initialize();
 
             legacyLeftBottomRect.BeforeRendering += legacyUIRect_BeforeRendering;
             legacyLeftBottomRect.AfterRendering += legacyUIRect_AfterRendering;
@@ -116,28 +119,6 @@ namespace CSharpGL.Winforms.Demo
 
         }
 
-
-        //void SimpleUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
-        //{
-        //    IMVP element = sender as IMVP;
-        //    element.UnbindShaderProgram();
-        //}
-
-        //void SimpleUIRect_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        //{
-        //    mat4 projectionMatrix, viewMatrix, modelMatrix;
-
-        //    {
-        //        IUILayout element = sender as IUILayout;
-        //        element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
-        //    }
-
-        //    {
-        //        IMVP element = sender as IMVP;
-        //        element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
-        //    }
-        //}
-
         void axisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
             AxisElement element = sender as AxisElement;
@@ -190,6 +171,8 @@ namespace CSharpGL.Winforms.Demo
             //legacyLeftTopRect.Render(arg);
             //legacyRightBottomRect.Render(arg);
             //legacyRightTopRect.Render(arg);
+
+            uiLeftBottomAxis.Render(arg);
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)

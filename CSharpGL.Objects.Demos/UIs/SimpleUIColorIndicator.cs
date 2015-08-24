@@ -50,35 +50,35 @@ namespace CSharpGL.Objects.Demos.UIs
             foreach (var item in this.numbers)
             {
                 item.Initialize();
-                item.BeforeRendering += number_BeforeRendering;
-                item.AfterRendering += number_AfterRendering;
+                //item.BeforeRendering += number_BeforeRendering;
+                //item.AfterRendering += number_AfterRendering;
             }
         }
 
-        void number_AfterRendering(object sender, RenderEventArgs e)
-        {
-            IMVP element = sender as IMVP;
+        //void number_AfterRendering(object sender, RenderEventArgs e)
+        //{
+        //    IMVP element = sender as IMVP;
 
-            element.UnbindShaderProgram();
-        }
+        //    element.UnbindShaderProgram();
+        //}
 
-        void number_BeforeRendering(object sender, RenderEventArgs e)
-        {
-            mat4 projectionMatrix, viewMatrix, modelMatrix;
+        //void number_BeforeRendering(object sender, RenderEventArgs e)
+        //{
+        //    mat4 projectionMatrix, viewMatrix, modelMatrix;
 
-            {
-                IUILayout element = sender as IUILayout;
-                element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix);
-            }
+        //    {
+        //        IUILayout element = sender as IUILayout;
+        //        element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix);
+        //    }
 
-            {
-                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+        //    {
+        //        mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
-                IMVP element = sender as IMVP;
+        //        IMVP element = sender as IMVP;
 
-                element.UpdateMVP(mvp);
-            }
-        }
+        //        element.UpdateMVP(mvp);
+        //    }
+        //}
 
         protected override void DoRender(RenderEventArgs e)
         {

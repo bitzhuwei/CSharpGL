@@ -31,6 +31,9 @@ namespace CSharpGL.Objects.UIs
         protected override void DoInitialize()
         {
             this.element.Initialize();
+
+            this.BeforeRendering += IUILayoutHelper.GetSimpleUI_BeforeRendering();
+            this.AfterRendering += IUILayoutHelper.GetSimpleUI_AfterRendering();
         }
 
         protected override void DoRender(RenderEventArgs e)
