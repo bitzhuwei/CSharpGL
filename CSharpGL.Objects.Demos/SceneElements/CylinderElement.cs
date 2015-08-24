@@ -42,7 +42,6 @@ namespace CSharpGL.Objects.SceneElements
         private float radius;
         private float height;
         private int faceCount;
-        private mat4 currentMVP;
 
         public CylinderElement(float radius, float height, int faceCount = 18)
         {
@@ -158,21 +157,13 @@ namespace CSharpGL.Objects.SceneElements
 
         void IMVP.UpdateMVP(mat4 mvp)
         {
-            this.currentMVP = mvp;
-
-            ShaderProgram shaderProgram = this.shaderProgram;
-
-            shaderProgram.Bind();
-
-            shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+            IMVPHelper.DoUpdateMVP(this, mvp);
         }
 
 
         void IMVP.UnbindShaderProgram()
         {
-            ShaderProgram shaderProgram = this.shaderProgram;
-
-            shaderProgram.Unbind();
+            IMVPHelper.DoUnbindShaderProgram(this);
         }
 
         ShaderProgram IMVP.GetShaderProgram()

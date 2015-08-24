@@ -46,8 +46,6 @@ namespace CSharpGL.Winforms.Demo
             uiRectElement = new LegacySimpleUIRect(
                 new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right, new Padding(10, 10, 10, 10), new Size(40, 30)));
             uiRectElement.Initialize();
-            uiRectElement.BeforeRendering += uiRectElement_BeforeRendering;
-            uiRectElement.AfterRendering += uiRectElement_AfterRendering;
 
             axisElement = new AxisElement();
             axisElement.Initialize();
@@ -79,48 +77,6 @@ namespace CSharpGL.Winforms.Demo
             element.UpdateMVP(mvp);
         }
 
-        void uiRectElement_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            LegacySimpleUIRect element = sender as LegacySimpleUIRect;
-
-            GL.MatrixMode(GL.GL_PROJECTION);
-            GL.PopMatrix();
-
-            GL.MatrixMode(GL.GL_MODELVIEW);
-            GL.PopMatrix();
-        }
-
-        void uiRectElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            LegacySimpleUIRect element = sender as LegacySimpleUIRect;
-
-            IUILayoutArgs args = element.GetArgs();
-
-            GL.MatrixMode(GL.GL_PROJECTION);
-            GL.PushMatrix();
-            GL.LoadIdentity();
-            GL.Ortho(args.left, args.right, args.bottom, args.top, element.Param.zNear, element.Param.zFar);
-
-            IViewCamera camera = this.camera;
-            if (camera == null)
-            {
-                GL.gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);
-                //throw new Exception("Camera not set!");
-            }
-            else
-            {
-                vec3 position = camera.Position - camera.Target;
-                position.Normalize();
-                GL.gluLookAt(position.x, position.y, position.z,
-                    0, 0, 0,
-                    camera.UpVector.x, camera.UpVector.y, camera.UpVector.z);
-            }
-
-            GL.MatrixMode(GL.GL_MODELVIEW);
-            GL.PushMatrix();
-            GL.Scale(args.UIWidth / 2, args.UIHeight / 2, args.UIWidth);
-        }
-
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
@@ -145,7 +101,9 @@ namespace CSharpGL.Winforms.Demo
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
             axisElement.Render(arg);
-            uiRectElement.Render(arg);
+
+            var uiArg = new RenderEventArgs(RenderModes.Render, null);
+            uiRectElement.Render(uiArg);
         }
 
         private void glCanvas_Resize(object sender, EventArgs e)

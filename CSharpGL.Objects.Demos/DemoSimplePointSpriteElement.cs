@@ -259,7 +259,6 @@ namespace CSharpGL.Objects.Demos
         /// </summary>
         protected Boolean disposed;
         private FragShaderType fragShaderType;
-        private mat4 currentMVP;
 
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources
@@ -308,21 +307,12 @@ namespace CSharpGL.Objects.Demos
 
         void IMVP.UpdateMVP(mat4 mvp)
         {
-            this.currentMVP = mvp;
-
-            ShaderProgram shaderProgram = this.shaderProgram;
-
-            shaderProgram.Bind();
-
-            shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+            IMVPHelper.DoUpdateMVP(this, mvp);
         }
-
 
         void IMVP.UnbindShaderProgram()
         {
-            ShaderProgram shaderProgram = this.shaderProgram;
-
-            shaderProgram.Unbind();
+            IMVPHelper.DoUnbindShaderProgram(this);
         }
 
         ShaderProgram IMVP.GetShaderProgram()

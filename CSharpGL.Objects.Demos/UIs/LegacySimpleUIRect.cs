@@ -43,6 +43,53 @@ namespace CSharpGL.Objects.Demos.UIs
 
         protected override void DoInitialize()
         {
+            this.BeforeRendering += legacyUIRect_BeforeRendering;
+            this.AfterRendering += legacyUIRect_AfterRendering;
+        }
+
+        void legacyUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
+        {
+            LegacySimpleUIRect element = sender as LegacySimpleUIRect;
+
+            GL.MatrixMode(GL.GL_PROJECTION);
+            GL.PopMatrix();
+
+            GL.MatrixMode(GL.GL_MODELVIEW);
+            GL.PopMatrix();
+        }
+
+        void legacyUIRect_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        {
+            LegacySimpleUIRect element = sender as LegacySimpleUIRect;
+
+            IUILayoutArgs args = element.GetArgs();
+
+            GL.MatrixMode(GL.GL_PROJECTION);
+            GL.PushMatrix();
+            GL.LoadIdentity();
+            GL.Ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top, element.Param.zNear, element.Param.zFar);
+            //GL.Ortho(args.left / 2, args.right / 2, args.bottom / 2, args.top / 2, element.Param.zNear, element.Param.zFar);
+
+            IViewCamera camera = e.Camera;
+
+            if (camera == null)
+            {
+                GL.gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);
+                //throw new Exception("Camera not set!");
+            }
+            else
+            {
+                vec3 position = camera.Position - camera.Target;
+                position.Normalize();
+                GL.gluLookAt(position.x, position.y, position.z,
+                    0, 0, 0,
+                    camera.UpVector.x, camera.UpVector.y, camera.UpVector.z);
+            }
+
+            GL.MatrixMode(GL.GL_MODELVIEW);
+            GL.PushMatrix();
+            GL.Scale(args.UIWidth / 2, args.UIHeight / 2, args.UIWidth);
+
         }
 
         protected override void DoRender(RenderEventArgs e)

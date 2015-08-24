@@ -20,14 +20,14 @@ namespace CSharpGL.Winforms.Demo
     public partial class FormSimpleUIRect : Form
     {
         LegacySimpleUIRect legacyLeftBottomRect;
-        //LegacySimpleUIRect legacyLeftTopRect;
-        //LegacySimpleUIRect legacyRightBottomRect;
-        //LegacySimpleUIRect legacyRightTopRect;
+        LegacySimpleUIRect legacyLeftTopRect;
+        LegacySimpleUIRect legacyRightBottomRect;
+        LegacySimpleUIRect legacyRightTopRect;
 
         SimpleUIRect uiLeftBottomRect;
-        //SimpleUIRect uiLeftTopRect;
-        //SimpleUIRect uiRightBottomRect;
-        //SimpleUIRect uiRightTopRect;
+        SimpleUIRect uiLeftTopRect;
+        SimpleUIRect uiRightBottomRect;
+        SimpleUIRect uiRightTopRect;
 
         AxisElement axisElement;
 
@@ -54,54 +54,32 @@ namespace CSharpGL.Winforms.Demo
 
             Padding padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
             Size size = new Size(100, 100);
-            //Size size = new Size(5, 5);
             IUILayoutParam param;
-            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right, padding, size);
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
             uiLeftBottomRect = new SimpleUIRect(param);
-            //param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, new Padding(0, 0, 0, 0), new Size(50, 50));
             legacyLeftBottomRect = new LegacySimpleUIRect(param, new Objects.GLColor(1, 1, 1, 1));
 
-            //param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
-            //uiLeftTopRect = new SimpleUIRect(param);
-            //legacyLeftTopRect = new LegacySimpleUIRect(param, new Objects.GLColor(1, 1, 1, 1));
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
+            uiLeftTopRect = new SimpleUIRect(param);
+            legacyLeftTopRect = new LegacySimpleUIRect(param, new Objects.GLColor(1, 1, 1, 1));
 
-            //param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
-            //uiRightBottomRect = new SimpleUIRect(param);
-            //legacyRightBottomRect = new LegacySimpleUIRect(param, new Objects.GLColor(1, 1, 1, 1));
+            param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
+            uiRightBottomRect = new SimpleUIRect(param);
+            legacyRightBottomRect = new LegacySimpleUIRect(param, new Objects.GLColor(1, 1, 1, 1));
 
-            //param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Top, padding, size);
-            //uiRightTopRect = new SimpleUIRect(param);
-            //legacyRightTopRect = new LegacySimpleUIRect(param, new Objects.GLColor(1, 1, 1, 1));
+            param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Top, padding, size);
+            uiRightTopRect = new SimpleUIRect(param);
+            legacyRightTopRect = new LegacySimpleUIRect(param, new Objects.GLColor(1, 1, 1, 1));
 
             uiLeftBottomRect.Initialize();
-            //uiLeftTopRect.Initialize();
-            //uiRightBottomRect.Initialize();
-            //uiRightTopRect.Initialize();
+            uiLeftTopRect.Initialize();
+            uiRightBottomRect.Initialize();
+            uiRightTopRect.Initialize();
 
             legacyLeftBottomRect.Initialize();
-            //legacyLeftTopRect.Initialize();
-            //legacyRightBottomRect.Initialize();
-            //legacyRightTopRect.Initialize();
-
-            uiLeftBottomRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-            //uiLeftTopRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-            //uiRightBottomRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-            //uiRightTopRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-
-            legacyLeftBottomRect.BeforeRendering += legacyUIRect_BeforeRendering;
-            //legacyLeftTopRect.BeforeRendering += legacyUIRect_BeforeRendering;
-            //legacyRightBottomRect.BeforeRendering += legacyUIRect_BeforeRendering;
-            //legacyRightTopRect.BeforeRendering += legacyUIRect_BeforeRendering;
-
-            uiLeftBottomRect.AfterRendering += SimpleUIRect_AfterRendering;
-            //uiLeftTopRect.AfterRendering += SimpleUIRect_AfterRendering;
-            //uiRightBottomRect.AfterRendering += SimpleUIRect_AfterRendering;
-            //uiRightTopRect.AfterRendering += SimpleUIRect_AfterRendering;
-
-            legacyLeftBottomRect.AfterRendering += legacyUIRect_AfterRendering;
-            //legacyLeftTopRect.AfterRendering += legacyUIRect_AfterRendering;
-            //legacyRightBottomRect.AfterRendering += legacyUIRect_AfterRendering;
-            //legacyRightTopRect.AfterRendering += legacyUIRect_AfterRendering;
+            legacyLeftTopRect.Initialize();
+            legacyRightBottomRect.Initialize();
+            legacyRightTopRect.Initialize();
 
             axisElement = new AxisElement();
             axisElement.Initialize();
@@ -115,72 +93,6 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.Resize += glCanvas1_Resize;
-        }
-
-        void legacyUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            LegacySimpleUIRect element = sender as LegacySimpleUIRect;
-
-            GL.MatrixMode(GL.GL_PROJECTION);
-            GL.PopMatrix();
-
-            GL.MatrixMode(GL.GL_MODELVIEW);
-            GL.PopMatrix();
-        }
-
-        void legacyUIRect_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            LegacySimpleUIRect element = sender as LegacySimpleUIRect;
-
-            IUILayoutArgs args = element.GetArgs();
-
-            GL.MatrixMode(GL.GL_PROJECTION);
-            GL.PushMatrix();
-            GL.LoadIdentity();
-            GL.Ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top, element.Param.zNear, element.Param.zFar);
-            //GL.Ortho(args.left / 2, args.right / 2, args.bottom / 2, args.top / 2, element.Param.zNear, element.Param.zFar);
-
-            IViewCamera camera = this.camera;
-            if (camera == null)
-            {
-                GL.gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);
-                //throw new Exception("Camera not set!");
-            }
-            else
-            {
-                vec3 position = camera.Position - camera.Target;
-                position.Normalize();
-                GL.gluLookAt(position.x, position.y, position.z,
-                    0, 0, 0,
-                    camera.UpVector.x, camera.UpVector.y, camera.UpVector.z);
-            }
-
-            GL.MatrixMode(GL.GL_MODELVIEW);
-            GL.PushMatrix();
-            GL.Scale(args.UIWidth / 2, args.UIHeight / 2, args.UIWidth);
-
-        }
-
-
-        void SimpleUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            IMVP element = sender as IMVP;
-            element.UnbindShaderProgram();
-        }
-
-        void SimpleUIRect_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            mat4 projectionMatrix, viewMatrix, modelMatrix;
-
-            {
-                IUILayout element = sender as IUILayout;
-                element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
-            }
-
-            {
-                IMVP element = sender as IMVP;
-                element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
-            }
         }
 
         void axisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
@@ -227,19 +139,20 @@ namespace CSharpGL.Winforms.Demo
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
             axisElement.Render(arg);
 
+            var uiArg = new RenderEventArgs(RenderModes.Render, null);
             if (this.renderSign % 2 == 0)
             {
-                uiLeftBottomRect.Render(arg);
-                //uiLeftTopRect.Render(arg);
-                //uiRightBottomRect.Render(arg);
-                //uiRightTopRect.Render(arg);
+                uiLeftBottomRect.Render(uiArg);
+                uiLeftTopRect.Render(uiArg);
+                uiRightBottomRect.Render(uiArg);
+                uiRightTopRect.Render(uiArg);
             }
             else if (this.renderSign % 2 == 1)
             {
-                legacyLeftBottomRect.Render(arg);
-                //legacyLeftTopRect.Render(arg);
-                //legacyRightBottomRect.Render(arg);
-                //legacyRightTopRect.Render(arg);
+                legacyLeftBottomRect.Render(uiArg);
+                legacyLeftTopRect.Render(uiArg);
+                legacyRightBottomRect.Render(uiArg);
+                legacyRightTopRect.Render(uiArg);
             }
         }
 

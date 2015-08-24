@@ -22,7 +22,6 @@ namespace CSharpGL.Objects.SceneElements
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
         const string strMVP = "MVP";
-        mat4 currentMVP;
 
         /// <summary>
         /// VAO
@@ -291,21 +290,13 @@ namespace CSharpGL.Objects.SceneElements
 
         void IMVP.UpdateMVP(mat4 mvp)
         {
-            this.currentMVP = mvp;
-
-            ShaderProgram shaderProgram = this.shaderProgram;
-
-            shaderProgram.Bind();
-
-            shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+            IMVPHelper.DoUpdateMVP(this, mvp);
         }
 
 
         void IMVP.UnbindShaderProgram()
         {
-            ShaderProgram shaderProgram = this.shaderProgram;
-
-            shaderProgram.Unbind();
+            IMVPHelper.DoUnbindShaderProgram(this);
         }
 
         ShaderProgram IMVP.GetShaderProgram()
