@@ -66,7 +66,7 @@ namespace CSharpGL.Winforms.Demo
         //}
 
         SimpleUIAxis uiAxis;
-        NewSimpleUIColorIndicator uiColorIndicator;
+        SimpleUIColorIndicator uiColorIndicator;
 
         /// <summary>
         /// 可执行OpenGL渲染的控件。
@@ -141,7 +141,7 @@ namespace CSharpGL.Winforms.Demo
                 IUILayoutParam param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom,
                     new Padding(100, 30, 40, 30), new Size(30, 30));
                 ColorPalette colorPalette = ColorPaletteFactory.CreateRainbow();
-                var uiColorIndicator = new NewSimpleUIColorIndicator(param, colorPalette, new Objects.GLColor(1, 1, 1, 1), -100, 100, 5);
+                var uiColorIndicator = new SimpleUIColorIndicator(param, colorPalette, new Objects.GLColor(1, 1, 1, 1), -100, 100, 5);
                 uiColorIndicator.Initialize();
                 this.ElementList.Add(uiColorIndicator);
             }

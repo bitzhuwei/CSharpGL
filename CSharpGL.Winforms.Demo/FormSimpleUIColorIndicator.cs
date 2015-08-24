@@ -19,7 +19,7 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormSimpleUIColorIndicator : Form
     {
-        NewSimpleUIColorIndicator colorIndicator;
+        SimpleUIColorIndicator colorIndicator;
 
         AxisElement axisElement;
 
@@ -49,7 +49,7 @@ namespace CSharpGL.Winforms.Demo
             Size size = new Size(100, 30);
             IUILayoutParam param;
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right, padding, size);
-            this.colorIndicator = new NewSimpleUIColorIndicator(param, colorPalette, new GLColor(1, 1, 1, 1), -100, 100, 5);
+            this.colorIndicator = new SimpleUIColorIndicator(param, colorPalette, new GLColor(1, 1, 1, 1), -100, 100, 5);
             this.colorIndicator.Initialize();
 
             axisElement = new AxisElement();

@@ -1,222 +1,126 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
-using CSharpGL.Objects.UIs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using CSharpGL.Objects.UIs;
 
 namespace CSharpGL.Objects.Demos.UIs
 {
-    public class SimpleUIColorIndicator : SceneElementBase, IUILayout//, IRenderable, IHasObjectSpace
+    public class SimpleUIColorIndicator : SceneElementBase//, IMVP,IUILayout
     {
-             /// <summary>
-        /// shader program
-        /// </summary>
-        public ShaderProgram shaderProgram;
-        const string strin_Position = "in_Position";
-        const string strin_Color = "in_Color";
-        public const string strprojectionMatrix = "projectionMatrix";
-        public const string strviewMatrix = "viewMatrix";
-        public const string strmodelMatrix = "modelMatrix";
+        private SimpleUIColorIndicatorBar bar;
+        private SimpleUIPointSpriteStringElement[] numbers;
 
-        /// <summary>
-        /// VAO
-        /// </summary>
-        protected uint[] vao;
-        private PointSpriteStringElement[] numbers;
-
-        /// <summary>
-        /// 图元类型
-        /// </summary>
-        protected PrimitiveModes axisPrimitiveMode;
-
-        /// <summary>
-        /// 顶点数
-        /// </summary>
-        protected int vertexCount;
-        private uint in_ColorLocation;
-        private uint in_PositionLocation;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="anchor">the edges of the viewport to which a SimpleUIRect is bound and determines how it is resized with its parent.
-        /// <para>something like AnchorStyles.Left | AnchorStyles.Bottom.</para></param>
-        /// <param name="margin">the space between viewport and SimpleRect.</param>
-        /// <param name="size">Stores width when <see cref="OpenGLUIRect.Anchor"/>.Left &amp; <see cref="OpenGLUIRect.Anchor"/>.Right is <see cref="OpenGLUIRect.Anchor"/>.None.
-        /// <para> and height when <see cref="OpenGLUIRect.Anchor"/>.Top &amp; <see cref="OpenGLUIRect.Anchor"/>.Bottom is <see cref="OpenGLUIRect.Anchor"/>.None.</para></param>
-        /// <param name="zNear"></param>
-        /// <param name="zFar"></param>
-        /// <param name="rectColor">default color is red.</param>
-        public SimpleUIColorIndicator(IUILayoutParam param, ColorPalette colorPalette, float min, float max, float step)
+        public SimpleUIColorIndicator(IUILayoutParam param, ColorPalette colorPalette, GLColor textColor, float min, float max, float step)
         {
-            IUILayout layout = this;
-            layout.Param = param;
+            this.bar = new SimpleUIColorIndicatorBar(param, colorPalette, min, max, step);
 
-            this.ColorPalette = colorPalette;
-
-            this.Min = min;
-            this.Max = max;
-            this.Step = step;
+            float[] coords = colorPalette.Coords;
+            float coordLength = coords[coords.Length - 1] - coords[0];
+            this.numbers = new SimpleUIPointSpriteStringElement[coords.Length];
+            const float posY = -1.0f;
+            this.numbers[0] = new SimpleUIPointSpriteStringElement(
+                param, (-100.0f).ToShortString(), new vec3(-0.5f, posY, 0), textColor, 20);
+            for (int i = 1; i < coords.Length; i++)
+            {
+                float x = (coords[i] - coords[0]) / coordLength - 0.5f;
+                if (i + 1 == coords.Length)
+                {
+                    var number = new SimpleUIPointSpriteStringElement(param,
+                        (100.0f).ToShortString(), new vec3(x, posY, 0), textColor, 20);
+                    this.numbers[i] = number;
+                }
+                else
+                {
+                    var number = new SimpleUIPointSpriteStringElement(param,
+                        (-100.0f + i * (100 - (-100)) / 5).ToShortString(), new vec3(x, posY, 0), textColor, 20);
+                    this.numbers[i] = number;
+                }
+            }
         }
 
         protected override void DoInitialize()
         {
-            this.shaderProgram = InitializeShader();
+            this.bar.Initialize();
+            this.bar.BeforeRendering += bar_BeforeRendering;
+            this.bar.AfterRendering += bar_AfterRendering;
 
-            InitVAO();
-        }
-
-        private void InitVAO()
-        {
-            this.axisPrimitiveMode = PrimitiveModes.QuadStrip;
-            GLColor[] colors = this.ColorPalette.Colors;
-            float[] coords = this.ColorPalette.Coords;
-            this.numbers = new PointSpriteStringElement[coords.Length];
-            this.vertexCount = coords.Length * 2;
-            this.vao = new uint[1];
-
-            float coordLength = coords[coords.Length - 1] - coords[0];
+            foreach (var item in this.numbers)
             {
-                GL.GenVertexArrays(1, vao);
-
-                GL.BindVertexArray(vao[0]);
-
-                //  Create a vertex buffer for the vertex data.
-                {
-                    UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(this.vertexCount);
-                    positionArray[0] = new vec3(-0.5f, -0.5f, 0);
-                    positionArray[1] = new vec3(-0.5f, 0.5f, 0);
-                    for (int i = 1; i < coords.Length; i++)
-                    {
-                        float x = (coords[i] - coords[0]) / coordLength - 0.5f;
-                        positionArray[i * 2 + 0] = new vec3(x, -0.5f, 0);
-                        positionArray[i * 2 + 1] = new vec3(x, 0.5f, 0);
-                    }
-
-                    uint[] ids = new uint[1];
-                    GL.GenBuffers(1, ids);
-                    GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
-                    GL.BufferData(BufferTarget.ArrayBuffer, positionArray, BufferUsage.StaticDraw);
-                    GL.VertexAttribPointer(in_PositionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-                    GL.EnableVertexAttribArray(in_PositionLocation);
-
-                    positionArray.Dispose();
-                }
-
-                //  Now do the same for the colour data.
-                {
-                    UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(this.vertexCount);
-                    for (int i = 0; i < colors.Length; i++)
-                    {
-                        GLColor color = colors[i];
-                        //TODO:试验成功后换vec4试试
-                        colorArray[i * 2 + 0] = new vec3(color.R, color.G, color.B);//, color.A);
-                        colorArray[i * 2 + 1] = new vec3(color.R, color.G, color.B);//, color.A);
-                    }
-
-                    uint[] ids = new uint[1];
-                    GL.GenBuffers(1, ids);
-                    GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
-                    GL.BufferData(BufferTarget.ArrayBuffer, colorArray, BufferUsage.StaticDraw);
-                    GL.VertexAttribPointer(in_ColorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-                    GL.EnableVertexAttribArray(in_ColorLocation);
-
-                    colorArray.Dispose();
-                }
-
-                //  Unbind the vertex array, we've finished specifying data for it.
-                GL.BindVertexArray(0);
-            }
-
-            // prepare numbers
-            {
-                const float numberPosY = -0.6f;
-                this.numbers[0] = new PointSpriteStringElement(
-                    this.Min.ToShortString(), new vec3(-0.5f, numberPosY, 0));
-                this.numbers[0].Initialize();
-                for (int i = 1; i < coords.Length; i++)
-                {
-                    float x = (coords[i] - coords[0]) / coordLength - 0.5f;
-                    if (i + 1 == coords.Length)
-                    {
-                        this.numbers[i] = new PointSpriteStringElement(
-                            (this.Min + i * this.Step).ToShortString(), new vec3(x, numberPosY, 0));
-                    }
-                    else
-                    {
-                        this.numbers[i] = new PointSpriteStringElement(
-                            this.Max.ToShortString(), new vec3(x, numberPosY, 0));
-                    }
-                    this.numbers[i].Initialize();
-                }
+                item.Initialize();
+                item.BeforeRendering += number_BeforeRendering;
+                item.AfterRendering += number_AfterRendering;
             }
         }
 
-        protected ShaderProgram InitializeShader()
+        void number_AfterRendering(object sender, RenderEventArgs e)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"UIs.SimpleUIColorIndicator.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"UIs.SimpleUIColorIndicator.frag");
+            IMVP element = sender as IMVP;
 
-            shaderProgram = new ShaderProgram();
-            shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
+            element.UnbindShaderProgram();
+        }
 
-            in_PositionLocation = shaderProgram.GetAttributeLocation(strin_Position);
-            in_ColorLocation = shaderProgram.GetAttributeLocation(strin_Color);
+        void number_BeforeRendering(object sender, RenderEventArgs e)
+        {
+            mat4 projectionMatrix, viewMatrix, modelMatrix;
 
-            shaderProgram.AssertValid();
+            {
+                IUILayout element = sender as IUILayout;
+                element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix);
+            }
 
-            return shaderProgram;
+            {
+                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+
+                IMVP element = sender as IMVP;
+
+                element.UpdateMVP(mvp);
+            }
+        }
+
+        void bar_AfterRendering(object sender, RenderEventArgs e)
+        {
+            SimpleUIColorIndicatorBar element = sender as SimpleUIColorIndicatorBar;
+
+            element.shaderProgram.Unbind();
+        }
+
+        void bar_BeforeRendering(object sender, RenderEventArgs e)
+        {
+            mat4 projectionMatrix, viewMatrix, modelMatrix;
+            {
+                IUILayout element = sender as IUILayout;
+
+                element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix);
+            }
+
+            {
+                SimpleUIColorIndicatorBar element = sender as SimpleUIColorIndicatorBar;
+
+                ShaderProgram shaderProgram = element.shaderProgram;
+
+                shaderProgram.Bind();
+
+                shaderProgram.SetUniformMatrix4(SimpleUIColorIndicatorBar.strprojectionMatrix, projectionMatrix.to_array());
+                shaderProgram.SetUniformMatrix4(SimpleUIColorIndicatorBar.strviewMatrix, viewMatrix.to_array());
+                shaderProgram.SetUniformMatrix4(SimpleUIColorIndicatorBar.strmodelMatrix, modelMatrix.to_array());
+            }
         }
 
         protected override void DoRender(RenderEventArgs e)
         {
-            // 记录当前多边形状态
-            int[] polygonMode = new int[2];
-            GL.GetInteger(GetTarget.PolygonMode, polygonMode);
+            this.bar.Render(e);
 
-            GL.BindVertexArray(vao[0]);
-
-            // 画面
-            GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Filled);
-            GL.DrawArrays(this.axisPrimitiveMode, 0, this.vertexCount);
-
-            // 启用静态顶点属性
-            GL.DisableVertexAttribArray(in_ColorLocation);
-            GL.VertexAttrib3(in_ColorLocation, 1.0f, 1.0f, 1.0f);
-
-            // 画线
-            GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Lines);
-            GL.DrawArrays(this.axisPrimitiveMode, 0, this.vertexCount);
-
-            // 恢复顶点属性数组
-            GL.EnableVertexAttribArray(in_ColorLocation);
-
-            GL.BindVertexArray(0);
-
-            // 恢复多边形状态
-            GL.PolygonMode(PolygonModeFaces.Front, (PolygonModes)polygonMode[0]);
-            GL.PolygonMode(PolygonModeFaces.Back, (PolygonModes)polygonMode[1]);
-
-            //// 绘制文字
-            //foreach (var item in this.numbers)
-            //{
-            //    item.Render(renderMode);
-            //}
+            foreach (var item in this.numbers)
+            {
+                item.Render(e);
+            }
         }
 
         public IUILayoutParam Param { get; set; }
-
-        public ColorPalette ColorPalette { get; set; }
-
-        public float Min { get; set; }
-
-        public float Max { get; set; }
-
-        public float Step { get; set; }
     }
 }
