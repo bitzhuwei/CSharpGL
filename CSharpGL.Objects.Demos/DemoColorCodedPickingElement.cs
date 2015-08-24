@@ -208,7 +208,19 @@ namespace CSharpGL.Objects.Demos
             return shaderProgram;
         }
 
-        public int count = 3;
+        private int count = 3;
+
+        public int Count
+        {
+            get { return count; }
+            set
+            {
+                int size = this.size;
+                int count = size * size * size * 15;
+                if (3 <= value && value <= count)
+                { this.count = value; }
+            }
+        }
 
         protected override void DoRender(RenderModes renderMode)
         {

@@ -38,7 +38,7 @@ namespace CSharpGL.Winforms.Demo
                 CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
             }
 
-            const int size = 1;
+            const int size = 3;
             this.camera.Position = new vec3(size * 3, size * 3, size * 3);
 
             rotator = new SatelliteRotator(this.camera);
@@ -172,13 +172,13 @@ namespace CSharpGL.Winforms.Demo
         {
             if (e.KeyChar == 'j')
             {
-                this.element.count++;
+                this.element.Count++;
 
                 this.glCanvas1.Invalidate();
             }
             else if (e.KeyChar == 'k')
             {
-                this.element.count--;
+                this.element.Count--;
                 
                 this.glCanvas1.Invalidate();
             }
