@@ -53,8 +53,6 @@ namespace CSharpGL.Winforms.Demo
             IUILayoutParam uiParam = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, uiPadding, uiSize);
             uiAxis = new SimpleUIAxis(uiParam);
             uiAxis.Initialize();
-            uiAxis.BeforeRendering += uiAxis_BeforeRendering;
-            uiAxis.AfterRendering += uiAxis_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -67,25 +65,25 @@ namespace CSharpGL.Winforms.Demo
             this.Load += FormColorCodedPicking_Load;
         }
 
-        void uiAxis_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            IMVP element = sender as IMVP;
-            element.UnbindShaderProgram();
-        }
+        //void uiAxis_AfterRendering(object sender, Objects.RenderEventArgs e)
+        //{
+        //    IMVP element = sender as IMVP;
+        //    element.UnbindShaderProgram();
+        //}
 
-        void uiAxis_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            mat4 projectionMatrix, viewMatrix, modelMatrix;
-            {
-                IUILayout element = sender as IUILayout;
-                element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
-            }
+        //void uiAxis_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        //{
+        //    mat4 projectionMatrix, viewMatrix, modelMatrix;
+        //    {
+        //        IUILayout element = sender as IUILayout;
+        //        element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
+        //    }
 
-            {
-                IMVP element = sender as IMVP;
-                element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
-            }
-        }
+        //    {
+        //        IMVP element = sender as IMVP;
+        //        element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
+        //    }
+        //}
 
         private void glCanvas1_Resize(object sender, EventArgs e)
         {

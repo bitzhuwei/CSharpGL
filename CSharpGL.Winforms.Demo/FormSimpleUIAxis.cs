@@ -73,16 +73,6 @@ namespace CSharpGL.Winforms.Demo
             uiRightBottomAxis.Initialize();
             uiRightTopAxis.Initialize();
 
-            //uiLeftBottomAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
-            //uiLeftTopAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
-            //uiRightBottomAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
-            //uiRightTopAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
-
-            //uiLeftBottomAxis.AfterRendering += SimpleUIAxis_AfterRendering;
-            //uiLeftTopAxis.AfterRendering += SimpleUIAxis_AfterRendering;
-            //uiRightBottomAxis.AfterRendering += SimpleUIAxis_AfterRendering;
-            //uiRightTopAxis.AfterRendering += SimpleUIAxis_AfterRendering;
-
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
             uiLeftBottomRect = new SimpleUIRect(param);
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
@@ -146,28 +136,6 @@ namespace CSharpGL.Winforms.Demo
                 element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
             }
         }
-
-        //void SimpleUIAxis_AfterRendering(object sender, Objects.RenderEventArgs e)
-        //{
-        //    SimpleUIAxis element = sender as SimpleUIAxis;
-
-        //    IMVP axisElement = element.axisElement;
-
-        //    axisElement.UnbindShaderProgram();
-        //}
-
-        //void SimpleUIAxis_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        //{
-        //    SimpleUIAxis element = sender as SimpleUIAxis;
-
-        //    mat4 projectionMatrix, viewMatrix, modelMatrix;
-
-        //    element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
-
-        //    IMVP axisElement = element.axisElement;
-
-        //    axisElement.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
-        //}
 
         void axisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {

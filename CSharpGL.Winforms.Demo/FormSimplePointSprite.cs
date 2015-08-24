@@ -65,16 +65,6 @@ namespace CSharpGL.Winforms.Demo
             uiRightBottomAxis.Initialize();
             uiRightTopAxis.Initialize();
 
-            uiLeftBottomAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
-            uiLeftTopAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
-            uiRightBottomAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
-            uiRightTopAxis.BeforeRendering += SimpleUIAxis_BeforeRendering;
-
-            uiLeftBottomAxis.AfterRendering += SimpleUIAxis_AfterRendering;
-            uiLeftTopAxis.AfterRendering += SimpleUIAxis_AfterRendering;
-            uiRightBottomAxis.AfterRendering += SimpleUIAxis_AfterRendering;
-            uiRightTopAxis.AfterRendering += SimpleUIAxis_AfterRendering;
-
             pointSpriteElement = new DemoSimplePointSpriteElement(fontSize, foreshortening, type);
             pointSpriteElement.Initialize();
             pointSpriteElement.BeforeRendering += pointSpriteElement_BeforeRendering;
@@ -108,26 +98,6 @@ namespace CSharpGL.Winforms.Demo
                 IMVP element = sender as IMVP;
                 element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
             }
-        }
-
-        void SimpleUIAxis_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            SimpleUIAxis element = sender as SimpleUIAxis;
-
-            element.axisElement.shaderProgram.Unbind();
-        }
-
-        void SimpleUIAxis_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            SimpleUIAxis element = sender as SimpleUIAxis;
-
-            mat4 projectionMatrix, viewMatrix, modelMatrix;
-
-            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
-
-            IMVP axisElement = element.axisElement;
-
-            axisElement.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
         }
 
         void pointSpriteElement_AfterRendering(object sender, Objects.RenderEventArgs e)

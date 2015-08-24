@@ -69,14 +69,14 @@ namespace CSharpGL.Winforms.Demo
             rightUIAxis.Initialize();
 
             legacyUIRect.BeforeRendering += legacyUIRect_BeforeRendering;
-            modernUIRect.BeforeRendering += SimpleUIElement_BeforeRendering;
-            leftUIAxis.BeforeRendering += SimpleUIElement_BeforeRendering;
-            rightUIAxis.BeforeRendering += SimpleUIElement_BeforeRendering;
+            //modernUIRect.BeforeRendering += SimpleUIElement_BeforeRendering;
+            //leftUIAxis.BeforeRendering += SimpleUIElement_BeforeRendering;
+            //rightUIAxis.BeforeRendering += SimpleUIElement_BeforeRendering;
 
             legacyUIRect.AfterRendering += legacyUIRect_AfterRendering;
-            modernUIRect.AfterRendering += SimpleUIElement_AfterRendering;
-            leftUIAxis.AfterRendering += SimpleUIElement_AfterRendering;
-            rightUIAxis.AfterRendering += SimpleUIElement_AfterRendering;
+            //modernUIRect.AfterRendering += SimpleUIElement_AfterRendering;
+            //leftUIAxis.AfterRendering += SimpleUIElement_AfterRendering;
+            //rightUIAxis.AfterRendering += SimpleUIElement_AfterRendering;
 
             element = new DemoLegacyTexture3DCubeElement();
             element.Initialize();
@@ -173,28 +173,6 @@ namespace CSharpGL.Winforms.Demo
             GL.PushMatrix();
             GL.Scale(args.UIWidth / 2, args.UIHeight / 2, args.UIWidth);
 
-        }
-
-
-        void SimpleUIElement_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            IMVP element = sender as IMVP;
-            element.UnbindShaderProgram();
-        }
-
-        void SimpleUIElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            mat4 projectionMatrix, viewMatrix, modelMatrix;
-
-            {
-                IUILayout element = sender as IUILayout;
-                element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
-            }
-
-            {
-                IMVP element = sender as IMVP;
-                element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
-            }
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

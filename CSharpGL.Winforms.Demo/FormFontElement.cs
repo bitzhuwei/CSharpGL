@@ -30,7 +30,7 @@ namespace CSharpGL.Winforms.Demo
             }
             else
             {
-                this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
+                this.camera = new ScientificCamera(CameraTypes.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
             }
 
@@ -47,6 +47,8 @@ namespace CSharpGL.Winforms.Demo
             orthoCamera.Top = this.glCanvas1.Height / 2;
             orthoCamera.Near = -10000;
             orthoCamera.Far = 10000;
+
+            this.camera.Position = new vec3(0, 0, 9.23f);
 
             satelliteRoration = new SatelliteRotator(camera);
 
@@ -67,8 +69,6 @@ namespace CSharpGL.Winforms.Demo
                 new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, 
                     new Padding(0, 0, 0, 0), new System.Drawing.Size(100, 100)));
             uiAxisElement.Initialize();
-            uiAxisElement.BeforeRendering += uiAxisElement_BeforeRendering;
-            uiAxisElement.AfterRendering += uiAxisElement_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -77,26 +77,6 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.Resize += glCanvas1_Resize;
-        }
-
-        void uiAxisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            SimpleUIAxis element = sender as SimpleUIAxis;
-
-            element.axisElement.shaderProgram.Unbind();
-        }
-
-        void uiAxisElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            SimpleUIAxis element = sender as SimpleUIAxis;
-
-            mat4 projectionMatrix, viewMatrix, modelMatrix;
-
-            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
-
-            IMVP axisElement = element.axisElement;
-
-            axisElement.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
