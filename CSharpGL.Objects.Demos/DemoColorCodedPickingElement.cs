@@ -248,18 +248,9 @@ namespace CSharpGL.Objects.Demos
             uint lastVertexID;
             if (element.GetLastVertexIDOfPickedGeometry(stageVertexID, out lastVertexID))
             {
-                pickedGeometry.CubeIndex = lastVertexID;// / 15;
-
-                //int vertexCount = pickedGeometry.GeometryType.GetVertexCount();
-                //var cubeIndex = lastVertexID % 15;
-                //vec3[] geometryPositions = new vec3[vertexCount];
-                //{
-                //    geometryPositions[2] = unitCubePos[unitCubeIndex[cubeIndex--]];
-                //    geometryPositions[1] = unitCubePos[unitCubeIndex[cubeIndex--]];
-                //    geometryPositions[0] = unitCubePos[unitCubeIndex[cubeIndex--]];
-                //}
-                //pickedGeometry.positions = geometryPositions;
-
+                pickedGeometry.CubeIndex = lastVertexID / 8;
+                var vertexIndex = lastVertexID % 8;
+                pickedGeometry.positions = new vec3[1] { unitCubePos[vertexIndex] };
             }
 
             return pickedGeometry;
