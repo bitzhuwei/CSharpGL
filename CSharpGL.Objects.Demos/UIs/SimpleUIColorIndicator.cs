@@ -46,8 +46,6 @@ namespace CSharpGL.Objects.Demos.UIs
         protected override void DoInitialize()
         {
             this.bar.Initialize();
-            this.bar.BeforeRendering += bar_BeforeRendering;
-            this.bar.AfterRendering += bar_AfterRendering;
 
             foreach (var item in this.numbers)
             {
@@ -82,42 +80,15 @@ namespace CSharpGL.Objects.Demos.UIs
             }
         }
 
-        void bar_AfterRendering(object sender, RenderEventArgs e)
-        {
-            SimpleUIColorIndicatorBar element = sender as SimpleUIColorIndicatorBar;
-
-            element.shaderProgram.Unbind();
-        }
-
-        void bar_BeforeRendering(object sender, RenderEventArgs e)
-        {
-            mat4 projectionMatrix, viewMatrix, modelMatrix;
-            {
-                IUILayout element = sender as IUILayout;
-
-                element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix);
-            }
-
-            {
-                SimpleUIColorIndicatorBar element = sender as SimpleUIColorIndicatorBar;
-
-                ShaderProgram shaderProgram = element.shaderProgram;
-
-                shaderProgram.Bind();
-
-                shaderProgram.SetUniformMatrix4(SimpleUIColorIndicatorBar.strprojectionMatrix, projectionMatrix.to_array());
-                shaderProgram.SetUniformMatrix4(SimpleUIColorIndicatorBar.strviewMatrix, viewMatrix.to_array());
-                shaderProgram.SetUniformMatrix4(SimpleUIColorIndicatorBar.strmodelMatrix, modelMatrix.to_array());
-            }
-        }
-
         protected override void DoRender(RenderEventArgs e)
         {
-            this.bar.Render(e);
+            // 去掉Camera，UI就不会旋转。
+            RenderEventArgs barArg = new RenderEventArgs(e.RenderMode, null);
+            this.bar.Render(barArg);
 
             foreach (var item in this.numbers)
             {
-                item.Render(e);
+                item.Render(barArg);
             }
         }
 

@@ -11,33 +11,31 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Objects.Demos.UIs
 {
-    public class SimpleUIColorIndicatorBar : SceneElementBase, IUILayout//, IRenderable, IHasObjectSpace
+    public class SimpleUIColorIndicatorBar : SceneElementBase, IUILayout, IMVP
     {
-             /// <summary>
+        /// <summary>
         /// shader program
         /// </summary>
-        public ShaderProgram shaderProgram;
-        const string strin_Position = "in_Position";
-        const string strin_Color = "in_Color";
-        public const string strprojectionMatrix = "projectionMatrix";
-        public const string strviewMatrix = "viewMatrix";
-        public const string strmodelMatrix = "modelMatrix";
+        private ShaderProgram shaderProgram;
+        private const string strin_Position = "in_Position";
+        private const string strin_Color = "in_Color";
+        private const string strMVP = "MVP";
 
         /// <summary>
         /// VAO
         /// </summary>
-        protected uint[] vao;
+        private uint[] vao;
         private PointSpriteStringElement[] numbers;
 
         /// <summary>
         /// 图元类型
         /// </summary>
-        protected PrimitiveModes axisPrimitiveMode;
+        private PrimitiveModes axisPrimitiveMode;
 
         /// <summary>
         /// 顶点数
         /// </summary>
-        protected int vertexCount;
+        private int vertexCount;
         private uint in_ColorLocation;
         private uint in_PositionLocation;
 
@@ -69,6 +67,9 @@ namespace CSharpGL.Objects.Demos.UIs
             this.shaderProgram = InitializeShader();
 
             InitVAO();
+
+            this.BeforeRendering += IUILayoutHelper.GetSimpleUI_BeforeRendering();
+            this.AfterRendering += IUILayoutHelper.GetSimpleUI_AfterRendering();
         }
 
         private void InitVAO()
@@ -201,12 +202,6 @@ namespace CSharpGL.Objects.Demos.UIs
             // 恢复多边形状态
             GL.PolygonMode(PolygonModeFaces.Front, (PolygonModes)polygonMode[0]);
             GL.PolygonMode(PolygonModeFaces.Back, (PolygonModes)polygonMode[1]);
-
-            //// 绘制文字
-            //foreach (var item in this.numbers)
-            //{
-            //    item.Render(renderMode);
-            //}
         }
 
         public IUILayoutParam Param { get; set; }
@@ -218,5 +213,18 @@ namespace CSharpGL.Objects.Demos.UIs
         public float Max { get; set; }
 
         public float Step { get; set; }
+
+        void IMVP.UpdateMVP(mat4 mvp)
+        {
+            ShaderProgram shaderProgram = this.shaderProgram;
+
+            shaderProgram.Bind();
+            shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+        }
+
+        void IMVP.UnbindShaderProgram()
+        {
+            this.shaderProgram.Unbind();
+        }
     }
 }
