@@ -225,21 +225,22 @@ namespace CSharpGL.Winforms.Demo
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            axisElement.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+            axisElement.Render(arg);
 
             if (this.renderSign % 2 == 0)
             {
-                uiLeftBottomRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
-                //uiLeftTopRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
-                //uiRightBottomRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
-                //uiRightTopRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+                uiLeftBottomRect.Render(arg);
+                //uiLeftTopRect.Render(arg);
+                //uiRightBottomRect.Render(arg);
+                //uiRightTopRect.Render(arg);
             }
             else if (this.renderSign % 2 == 1)
             {
-                legacyLeftBottomRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
-                //legacyLeftTopRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
-                //legacyRightBottomRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
-                //legacyRightTopRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+                legacyLeftBottomRect.Render(arg);
+                //legacyLeftTopRect.Render(arg);
+                //legacyRightBottomRect.Render(arg);
+                //legacyRightTopRect.Render(arg);
             }
         }
 

@@ -237,25 +237,27 @@ namespace CSharpGL.Winforms.Demo
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
+            var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+
             if (this.renderState == 2 || this.renderState == 4)
             {
-                axisElement.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+                axisElement.Render(arg);
             }
 
             if (this.renderState == 3 || this.renderState == 4)
             {
-                axisElement2.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+                axisElement2.Render(arg);
             }
 
-            uiLeftBottomAxis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
-            uiLeftTopAxis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
-            uiRightBottomAxis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
-            uiRightTopAxis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            uiLeftBottomAxis.Render(arg);
+            uiLeftTopAxis.Render(arg);
+            uiRightBottomAxis.Render(arg);
+            uiRightTopAxis.Render(arg);
 
-            uiLeftBottomRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
-            uiLeftTopRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
-            uiRightBottomRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
-            uiRightTopRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            uiLeftBottomRect.Render(arg);
+            uiLeftTopRect.Render(arg);
+            uiRightBottomRect.Render(arg);
+            uiRightTopRect.Render(arg);
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)

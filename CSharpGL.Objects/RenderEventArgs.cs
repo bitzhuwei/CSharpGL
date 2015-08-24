@@ -23,9 +23,15 @@ namespace CSharpGL.Objects
             this.RenderMode = renderMode;
             this.Camera = camera;
         }
+        
+        /// <summary>
+        /// 获取Camera
+        /// </summary>
+        public IScientificCamera Camera { get; private set; }
 
-        public IScientificCamera Camera { get; set; }
-
-        public RenderModes RenderMode { get; set; }
+        /// <summary>
+        /// 获取渲染模式
+        /// </summary>
+        public RenderModes RenderMode { get; private set; }
     }
 }

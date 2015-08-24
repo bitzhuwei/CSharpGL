@@ -159,8 +159,9 @@ namespace CSharpGL.Winforms.Demo
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            element.Render(new RenderEventArgs(RenderModes.Render, this.camera));
-            uiAxisElement.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+            element.Render(arg);
+            uiAxisElement.Render(arg);
         }
 
         private void FormFreeTypeTextVAOElement_Load(object sender, EventArgs e)

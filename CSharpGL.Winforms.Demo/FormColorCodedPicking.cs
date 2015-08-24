@@ -131,8 +131,9 @@ namespace CSharpGL.Winforms.Demo
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            element.Render(new RenderEventArgs(RenderModes.Render, this.camera));
-            uiAxis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+            element.Render(arg);
+            uiAxis.Render(arg);
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
@@ -230,9 +231,10 @@ namespace CSharpGL.Winforms.Demo
 
             SharedStageInfo info = new SharedStageInfo();
             info.Reset();
+            var arg = new RenderEventArgs(RenderModes.HitTest, this.camera);
 
             IColorCodedPicking pickable = this.element;
-            info.RenderForPicking(pickable, new RenderEventArgs(RenderModes.HitTest, this.camera));
+            info.RenderForPicking(pickable, arg);
 
             GL.Flush();
 

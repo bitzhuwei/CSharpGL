@@ -143,8 +143,9 @@ namespace CSharpGL.Winforms.Demo
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            axisElement.Render(new RenderEventArgs(RenderModes.Render, this.camera));
-            uiRectElement.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+            axisElement.Render(arg);
+            uiRectElement.Render(arg);
         }
 
         private void glCanvas_Resize(object sender, EventArgs e)

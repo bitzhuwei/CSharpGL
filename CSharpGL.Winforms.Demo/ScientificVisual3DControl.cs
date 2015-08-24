@@ -116,11 +116,12 @@ namespace CSharpGL.Winforms.Demo
                 }
                 else
                 {
+                    var arg = new RenderEventArgs(RenderModes.Render, this.camera);
                     //	If there is a draw handler, then call it.
                     //DoOpenGLDraw(new RenderEventArgs(graphics));
                     foreach (var item in this.elementList)
                     {
-                        item.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+                        item.Render(arg);
                     }
                 }
 

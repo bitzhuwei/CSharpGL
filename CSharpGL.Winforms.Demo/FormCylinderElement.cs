@@ -93,7 +93,8 @@ namespace CSharpGL.Winforms.Demo
             //  Clear the color and depth buffer.
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            element.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+            element.Render(arg);
             ////  Load the identity matrix.
             //GL.LoadIdentity();
 
