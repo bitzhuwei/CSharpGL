@@ -45,7 +45,7 @@ namespace CSharpGL.Objects.Demos.UIs
         {
         }
 
-        protected override void DoRender(RenderModes renderMode)
+        protected override void DoRender(RenderEventArgs e)
         {
             //PushObjectSpace();
 

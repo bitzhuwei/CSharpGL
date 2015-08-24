@@ -15,6 +15,6 @@ namespace CSharpGL.Objects
         /// 渲染一个元素。
         /// </summary>
         /// <param name="renderMode"></param>
-        void Render(RenderModes renderMode);
+        void Render(RenderEventArgs e);
     }
 }

@@ -59,6 +59,7 @@
     <Compile Include="IMVP.cs" />
     <Compile Include="IRenderable.cs" />
     <Compile Include="PrimitiveModesHelper.cs" />
+    <Compile Include="RenderEventArgs.cs" />
     <Compile Include="SceneElements\AxisElement.cs" />
     <Compile Include="Cameras\BoundingBox.cs" />
     <Compile Include="Cameras\Camera2Matrix.cs" />

@@ -173,7 +173,7 @@ namespace CSharpGL.Objects.Demos.UIs
             return shaderProgram;
         }
 
-        protected override void DoRender(RenderModes renderMode)
+        protected override void DoRender(RenderEventArgs e)
         {
             // 记录当前多边形状态
             int[] polygonMode = new int[2];

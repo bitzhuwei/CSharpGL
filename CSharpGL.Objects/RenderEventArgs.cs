@@ -1,14 +1,16 @@
-﻿using System;
+﻿using CSharpGL.Objects;
+using CSharpGL.Objects.Cameras;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Winforms
+namespace CSharpGL.Objects
 {
     /// <summary>
-    /// The RenderEventArgs - arguments used for render envets.
+    /// 渲染事件的参数。
     /// </summary>
     public class RenderEventArgs
     {
@@ -16,14 +18,14 @@ namespace CSharpGL.Winforms
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
         /// <param name="graphics">The graphics.</param>
-        public RenderEventArgs(Graphics graphics)
+        public RenderEventArgs(RenderModes renderMode, IScientificCamera camera)
         {
-            Graphics = graphics;
+            this.RenderMode = renderMode;
+            this.Camera = camera;
         }
 
-        /// <summary>
-        /// Gets the graphics.
-        /// </summary>
-        public Graphics Graphics { get; private set; }
+        public IScientificCamera Camera { get; set; }
+
+        public RenderModes RenderMode { get; set; }
     }
 }

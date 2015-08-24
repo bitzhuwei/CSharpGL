@@ -214,24 +214,24 @@ namespace CSharpGL.Winforms.Demo
                 "Use 'c' to switch camera types between perspective and ortho"));
         }
 
-        private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
+        void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             PrintCameraInfo();
 
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            axisElement.Render(Objects.RenderModes.Render);
+            axisElement.Render(new RenderEventArgs(RenderModes.Render, this.camera));
 
-            uiLeftBottomRect.Render(Objects.RenderModes.Render);
-            //uiLeftTopRect.Render(Objects.RenderModes.Render);
-            //uiRightBottomRect.Render(Objects.RenderModes.Render);
-            //uiRightTopRect.Render(Objects.RenderModes.Render);
+            uiLeftBottomRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            //uiLeftTopRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            //uiRightBottomRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            //uiRightTopRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
 
-            legacyLeftBottomRect.Render(Objects.RenderModes.Render);
-            //legacyLeftTopRect.Render(Objects.RenderModes.Render);
-            //legacyRightBottomRect.Render(Objects.RenderModes.Render);
-            //legacyRightTopRect.Render(Objects.RenderModes.Render);
+            legacyLeftBottomRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            //legacyLeftTopRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            //legacyRightBottomRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            //legacyRightTopRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)

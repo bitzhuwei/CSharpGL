@@ -194,7 +194,7 @@ namespace CSharpGL.Winforms.Demo
             this.shaderProgram = shaderProgram;
         }
 
-        protected override void DoRender(RenderModes renderMode)
+        protected override void DoRender(RenderEventArgs e)
         {
             GL.BindVertexArray(vao[0]);
             GL.DrawArrays(this.mode, 0, this.vertexCount);

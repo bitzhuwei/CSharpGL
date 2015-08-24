@@ -285,7 +285,7 @@ namespace CSharpGL.Objects.SceneElements
             this.shaderProgram = shaderProgram;
         }
 
-        protected override void DoRender(RenderModes renderMode)
+        protected override void DoRender(RenderEventArgs e)
         {
             // 用VAO+EBO进行渲染。
             //  Bind the out vertex array.

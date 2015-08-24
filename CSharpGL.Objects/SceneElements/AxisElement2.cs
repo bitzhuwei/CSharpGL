@@ -221,7 +221,7 @@ namespace CSharpGL.Objects.SceneElements
             InitializeVAO();
         }
 
-        protected override void DoRender(RenderModes renderMode)
+        protected override void DoRender(RenderEventArgs e)
         {
             // 画坐标轴
             for (int i = 0; i < 3; i++)

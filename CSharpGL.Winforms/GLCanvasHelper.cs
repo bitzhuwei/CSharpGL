@@ -17,7 +17,7 @@ namespace CSharpGL.Winforms
 
         //public static void DrawWithElement()
         //{
-        //    pyramidVAOElement.Render(Objects.RenderModes.Render);
+        //    pyramidVAOElement.Render(new RenderEventArgs(RenderModes.Render, this.camera));
         //}
 
         public static void ResizeGL(double width, double height)

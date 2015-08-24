@@ -152,15 +152,15 @@ namespace CSharpGL.Winforms.Demo
             this.camera.MouseWheel(e.Delta);
         }
 
-        private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
+        void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             PrintCameraInfo();
 
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            element.Render(Objects.RenderModes.Render);
-            uiAxisElement.Render(Objects.RenderModes.Render);
+            element.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            uiAxisElement.Render(new RenderEventArgs(RenderModes.Render, this.camera));
         }
 
         private void FormFreeTypeTextVAOElement_Load(object sender, EventArgs e)

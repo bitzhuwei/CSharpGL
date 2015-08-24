@@ -210,18 +210,18 @@ namespace CSharpGL.Winforms.Demo
                 "Use 'a' to switch render sign between legacy and modern opengl"));
         }
 
-        private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
+        void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             //PrintCameraInfo();
 
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            legacyUIRect.Render(Objects.RenderModes.Render);
-            modernUIRect.Render(Objects.RenderModes.Render);
-            leftUIAxis.Render(Objects.RenderModes.Render);
-            rightUIAxis.Render(Objects.RenderModes.Render);
-            element.Render(Objects.RenderModes.Render);
+            legacyUIRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            modernUIRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            leftUIAxis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            rightUIAxis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            element.Render(new RenderEventArgs(RenderModes.Render, this.camera));
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)

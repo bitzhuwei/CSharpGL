@@ -55,7 +55,7 @@
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(786, 353);
             this.glCanvas1.TabIndex = 3;
-            this.glCanvas1.OpenGLDraw += new System.EventHandler<CSharpGL.Winforms.RenderEventArgs>(this.glCanvas1_OpenGLDraw);
+            this.glCanvas1.OpenGLDraw += new System.EventHandler<System.Windows.Forms.PaintEventArgs>(this.glCanvas1_OpenGLDraw);
             this.glCanvas1.Load += new System.EventHandler(this.FormTranslateOnScreen_Load);
             this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
             this.glCanvas1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.glCanvas1_MouseDown);

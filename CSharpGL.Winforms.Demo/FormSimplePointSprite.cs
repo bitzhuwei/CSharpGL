@@ -163,19 +163,19 @@ namespace CSharpGL.Winforms.Demo
                 "Use 'c' to switch camera types between perspective and ortho"));
         }
 
-        private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
+        void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             PrintCameraInfo();
 
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            pointSpriteElement.Render(Objects.RenderModes.Render);
+            pointSpriteElement.Render(new RenderEventArgs(RenderModes.Render, this.camera));
 
-            uiLeftBottomAxis.Render(Objects.RenderModes.Render);
-            uiLeftTopAxis.Render(Objects.RenderModes.Render);
-            uiRightBottomAxis.Render(Objects.RenderModes.Render);
-            uiRightTopAxis.Render(Objects.RenderModes.Render);
+            uiLeftBottomAxis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            uiLeftTopAxis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            uiRightBottomAxis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            uiRightTopAxis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)

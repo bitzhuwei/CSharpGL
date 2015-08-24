@@ -146,7 +146,7 @@ namespace CSharpGL.Objects.SceneElements
 
         }
 
-        protected override void DoRender(RenderModes renderMode)
+        protected override void DoRender(RenderEventArgs e)
         {
             GL.BindVertexArray(vao[0]);
 

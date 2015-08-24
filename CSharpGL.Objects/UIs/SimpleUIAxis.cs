@@ -97,9 +97,9 @@ namespace CSharpGL.Objects.Demos.UIs
             this.axisElement.Initialize();
         }
 
-        protected override void DoRender(RenderModes renderMode)
+        protected override void DoRender(RenderEventArgs e)
         {
-            this.axisElement.Render(renderMode);
+            this.axisElement.Render(e);
         }
 
         void IMVP.UpdateMVP(mat4 mvp)

@@ -111,13 +111,13 @@ namespace CSharpGL.Objects.Demos.UIs
             }
         }
 
-        protected override void DoRender(RenderModes renderMode)
+        protected override void DoRender(RenderEventArgs e)
         {
-            this.bar.Render(renderMode);
+            this.bar.Render(e);
 
             foreach (var item in this.numbers)
             {
-                item.Render(renderMode);
+                item.Render(e);
             }
         }
 

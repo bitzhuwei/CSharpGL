@@ -242,7 +242,7 @@ namespace CSharpGL.Objects.Demos
             }
         }
 
-        protected override void DoRender(RenderModes renderMode)
+        protected override void DoRender(RenderEventArgs e)
         {
             GL.BindVertexArray(vao[0]);
 

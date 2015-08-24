@@ -120,7 +120,7 @@ namespace CSharpGL.Winforms.Demo
                     //DoOpenGLDraw(new RenderEventArgs(graphics));
                     foreach (var item in this.elementList)
                     {
-                        item.Render(RenderModes.Render);
+                        item.Render(new RenderEventArgs(RenderModes.Render, this.camera));
                     }
                 }
 

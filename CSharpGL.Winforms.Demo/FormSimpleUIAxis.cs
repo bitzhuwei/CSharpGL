@@ -230,7 +230,7 @@ namespace CSharpGL.Winforms.Demo
                 "Use 'c' to switch camera types between perspective and ortho"));
         }
 
-        private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
+        void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             PrintCameraInfo();
 
@@ -239,23 +239,23 @@ namespace CSharpGL.Winforms.Demo
 
             if (this.renderState == 2 || this.renderState == 4)
             {
-                axisElement.Render(Objects.RenderModes.Render);
+                axisElement.Render(new RenderEventArgs(RenderModes.Render, this.camera));
             }
 
             if (this.renderState == 3 || this.renderState == 4)
             {
-                axisElement2.Render(Objects.RenderModes.Render);
+                axisElement2.Render(new RenderEventArgs(RenderModes.Render, this.camera));
             }
 
-            uiLeftBottomAxis.Render(Objects.RenderModes.Render);
-            uiLeftTopAxis.Render(Objects.RenderModes.Render);
-            uiRightBottomAxis.Render(Objects.RenderModes.Render);
-            uiRightTopAxis.Render(Objects.RenderModes.Render);
+            uiLeftBottomAxis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            uiLeftTopAxis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            uiRightBottomAxis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            uiRightTopAxis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
 
-            uiLeftBottomRect.Render(Objects.RenderModes.Render);
-            uiLeftTopRect.Render(Objects.RenderModes.Render);
-            uiRightBottomRect.Render(Objects.RenderModes.Render);
-            uiRightTopRect.Render(Objects.RenderModes.Render);
+            uiLeftBottomRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            uiLeftTopRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            uiRightBottomRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            uiRightTopRect.Render(new RenderEventArgs(RenderModes.Render, this.camera));
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)

@@ -33,9 +33,9 @@ namespace CSharpGL.Objects.UIs
             this.element.Initialize();
         }
 
-        protected override void DoRender(RenderModes renderMode)
+        protected override void DoRender(RenderEventArgs e)
         {
-            this.element.Render(renderMode);
+            this.element.Render(e);
         }
 
         ~SimpleUIPointSpriteStringElement()

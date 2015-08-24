@@ -100,7 +100,7 @@ namespace CSharpGL.Winforms
                 else
                 {
                     //	If there is a draw handler, then call it.
-                    DoOpenGLDraw(new RenderEventArgs(graphics));
+                    DoOpenGLDraw(e);
                 }
 
                 //	Blit our offscreen bitmap.
@@ -233,7 +233,7 @@ namespace CSharpGL.Winforms
         /// <summary>
         /// Call this function in derived classes to do the OpenGL Draw event.
         /// </summary>
-        private void DoOpenGLDraw(RenderEventArgs e)
+        private void DoOpenGLDraw(PaintEventArgs e)
         {
             var handler = OpenGLDraw;
             if (handler != null)
@@ -244,7 +244,7 @@ namespace CSharpGL.Winforms
         /// Occurs when OpenGL drawing should be performed.
         /// </summary>
         [Description("Called whenever OpenGL drawing should occur."), Category("CSharpGL")]
-        public event EventHandler<RenderEventArgs> OpenGLDraw;
+        public event EventHandler<PaintEventArgs> OpenGLDraw;
 
     }
 

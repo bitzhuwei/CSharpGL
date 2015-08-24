@@ -54,24 +54,22 @@ namespace CSharpGL.Objects
         /// 渲染
         /// </summary>
         /// <param name="renderMode"></param>
-        public void Render(RenderModes renderMode)
+        public void Render(RenderEventArgs e)
         {
             if (!initialized) { Initialize(); }
 
             EventHandler<RenderEventArgs> beforeRendering = this.BeforeRendering;
             if (beforeRendering != null)
             {
-                var args = new RenderEventArgs(renderMode);
-                beforeRendering(this, args);
+                beforeRendering(this, e);
             }
 
-            DoRender(renderMode);
+            DoRender(e);
 
             EventHandler<RenderEventArgs> afterRendering = this.AfterRendering;
             if (afterRendering != null)
             {
-                var args = new RenderEventArgs(renderMode);
-                afterRendering(this, args);
+                afterRendering(this, e);
             }
         }
 
@@ -79,7 +77,7 @@ namespace CSharpGL.Objects
         /// 执行渲染操作
         /// </summary>
         /// <param name="renderMode"></param>
-        protected abstract void DoRender(RenderModes renderMode);
+        protected abstract void DoRender(RenderEventArgs e);
 
         /// <summary>
         /// 在渲染前进行某些准备（更新camera矩阵信息等）
@@ -93,22 +91,22 @@ namespace CSharpGL.Objects
 
     }
 
-    /// <summary>
-    /// 渲染事件的参数。
-    /// </summary>
-    public class RenderEventArgs : EventArgs
-    {
-        public RenderEventArgs(RenderModes renderMode)
-        {
-            this.RenderMode = renderMode;
-        }
+    ///// <summary>
+    ///// 渲染事件的参数。
+    ///// </summary>
+    //public class RenderEventArgs : EventArgs
+    //{
+    //    public RenderEventArgs(RenderModes renderMode)
+    //    {
+    //        this.RenderMode = renderMode;
+    //    }
 
-        public RenderModes RenderMode { get; protected set; }
+    //    public RenderModes RenderMode { get; protected set; }
 
-        public override string ToString()
-        {
-            return string.Format("{0}", this.RenderMode);
-            //return base.ToString();
-        }
-    }
+    //    public override string ToString()
+    //    {
+    //        return string.Format("{0}", this.RenderMode);
+    //        //return base.ToString();
+    //    }
+    //}
 }

@@ -88,12 +88,12 @@ namespace CSharpGL.Winforms.Demo
             glCanvas1_Resize(this.glCanvas1, e);
         }
 
-        private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
+        void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             //  Clear the color and depth buffer.
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            element.Render(Objects.RenderModes.Render);
+            element.Render(new RenderEventArgs(RenderModes.Render, this.camera));
             ////  Load the identity matrix.
             //GL.LoadIdentity();
 

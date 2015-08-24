@@ -94,7 +94,7 @@ namespace CSharpGL.Objects.Demos
             }
         }
 
-        protected override void DoRender(RenderModes renderMode)
+        protected override void DoRender(RenderEventArgs e)
         {
             GL.BindTexture(GL.GL_TEXTURE_3D, this.textureName[0]);
             GL.ActiveTexture(GL.GL_TEXTURE0);

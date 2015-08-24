@@ -36,7 +36,7 @@ namespace CSharpGL.Objects.ColorCodedPicking
         /// <param name="pickable"></param>
         /// <param name="gl"></param>
         /// <param name="renderMode"></param>
-        public virtual void RenderForPicking(IColorCodedPicking pickable, RenderModes renderMode)
+        public virtual void RenderForPicking(IColorCodedPicking pickable, RenderEventArgs e)
         {
             if (pickable != null)
             {
@@ -44,7 +44,7 @@ namespace CSharpGL.Objects.ColorCodedPicking
 
                 //  render the element.
                 IRenderable renderable = pickable;
-                renderable.Render(renderMode);
+                renderable.Render(e);
 
                 uint rendered = this.RenderedVertexCount + pickable.GetVertexCount();
                 if (this.RenderedVertexCount <= rendered)

@@ -222,7 +222,7 @@ namespace CSharpGL.Objects.Demos
             }
         }
 
-        protected override void DoRender(RenderModes renderMode)
+        protected override void DoRender(RenderEventArgs e)
         {
             GL.Enable(GL.GL_PRIMITIVE_RESTART);
             GL.PrimitiveRestartIndex(uint.MaxValue);

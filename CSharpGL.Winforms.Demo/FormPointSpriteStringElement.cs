@@ -133,13 +133,13 @@ namespace CSharpGL.Winforms.Demo
 
         Random random = new Random();
 
-        private void glCanvas1_OpenGLDraw(object sender, RenderEventArgs e)
+        void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            pyramidElement.Render(Objects.RenderModes.Render);
-            textElement.Render(Objects.RenderModes.Render);
+            pyramidElement.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+            textElement.Render(new RenderEventArgs(RenderModes.Render, this.camera));
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
