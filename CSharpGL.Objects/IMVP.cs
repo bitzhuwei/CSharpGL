@@ -1,4 +1,5 @@
 ﻿using CSharpGL.Maths;
+using CSharpGL.Objects.Shaders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +23,12 @@ namespace CSharpGL.Objects
         /// 解绑当前shader program。
         /// </summary>
         void UnbindShaderProgram();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Shaders.ShaderProgram GetShaderProgram();
+
     }
 }

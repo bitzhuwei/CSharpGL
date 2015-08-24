@@ -102,6 +102,10 @@ namespace CSharpGL.Objects.UIs
             element.UnbindShaderProgram();
         }
 
+        ShaderProgram IMVP.GetShaderProgram()
+        {
+            return ((IMVP)this.element).GetShaderProgram();
+        }
 
         IUILayoutParam IUILayout.Param { get; set; }
     }

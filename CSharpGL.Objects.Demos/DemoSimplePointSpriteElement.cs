@@ -324,6 +324,11 @@ namespace CSharpGL.Objects.Demos
 
             shaderProgram.Unbind();
         }
+
+        ShaderProgram IMVP.GetShaderProgram()
+        {
+            return this.shaderProgram;
+        }
     }
 
     public enum FragShaderType

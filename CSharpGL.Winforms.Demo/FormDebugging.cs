@@ -121,9 +121,8 @@ namespace CSharpGL.Winforms.Demo
 
         void axisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            AxisElement element = sender as AxisElement;
-
-            element.shaderProgram.Unbind();
+            IMVP element = sender as IMVP;
+            element.UnbindShaderProgram();
         }
 
         void axisElement_BeforeRendering(object sender, Objects.RenderEventArgs e)

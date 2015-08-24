@@ -171,5 +171,10 @@ namespace CSharpGL.Objects.Demos.UIs
 
             shaderProgram.Unbind();
         }
+
+        ShaderProgram IMVP.GetShaderProgram()
+        {
+            return this.shaderProgram;
+        }
     }
 }

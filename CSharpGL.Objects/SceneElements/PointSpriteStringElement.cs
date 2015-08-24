@@ -400,6 +400,10 @@ namespace CSharpGL.Objects.SceneElements
             GL.Disable(GL.GL_POINT_SMOOTH);
         }
 
+        ShaderProgram IMVP.GetShaderProgram()
+        {
+            return this.shaderProgram;
+        }
     }
 
 }

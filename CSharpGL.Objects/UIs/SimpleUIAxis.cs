@@ -117,5 +117,10 @@ namespace CSharpGL.Objects.Demos.UIs
             IMVP element = this.axisElement as IMVP;
             element.UnbindShaderProgram();
         }
+
+        ShaderProgram IMVP.GetShaderProgram()
+        {
+            return ((IMVP)this.axisElement).GetShaderProgram();
+        }
     }
 }

@@ -174,5 +174,10 @@ namespace CSharpGL.Objects.SceneElements
 
             shaderProgram.Unbind();
         }
+
+        ShaderProgram IMVP.GetShaderProgram()
+        {
+            return this.shaderProgram;
+        }
     }
 }

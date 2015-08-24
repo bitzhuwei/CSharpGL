@@ -18,7 +18,7 @@ namespace CSharpGL.Objects.SceneElements
         /// <summary>
         /// shader program
         /// </summary>
-        public ShaderProgram shaderProgram;
+        private ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
         const string strMVP = "MVP";
@@ -306,6 +306,11 @@ namespace CSharpGL.Objects.SceneElements
             ShaderProgram shaderProgram = this.shaderProgram;
 
             shaderProgram.Unbind();
+        }
+
+        ShaderProgram IMVP.GetShaderProgram()
+        {
+            return this.shaderProgram;
         }
     }
 }

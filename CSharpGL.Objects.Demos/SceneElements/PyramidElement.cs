@@ -72,7 +72,6 @@ namespace CSharpGL.Objects.SceneElements
 			new vec3(0.0f, 0.0f, 1.0f),
 			new vec3(0.0f, 1.0f, 0.0f),
 		};
-        private mat4 currentMVP;
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
@@ -159,21 +158,19 @@ namespace CSharpGL.Objects.SceneElements
 
         void IMVP.UpdateMVP(mat4 mvp)
         {
-            this.currentMVP = mvp;
-
-            ShaderProgram shaderProgram = this.shaderProgram;
-
-            shaderProgram.Bind();
-
-            shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+            IMVPHelper.DoUpdateMVP(this, mvp);
         }
 
 
         void IMVP.UnbindShaderProgram()
         {
-            ShaderProgram shaderProgram = this.shaderProgram;
+            IMVPHelper.DoUnbindShaderProgram(this);
+        }
 
-            shaderProgram.Unbind();
+
+        ShaderProgram IMVP.GetShaderProgram()
+        {
+            return this.shaderProgram;
         }
     }
 }

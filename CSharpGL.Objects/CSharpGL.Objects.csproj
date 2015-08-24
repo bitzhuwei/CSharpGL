@@ -57,6 +57,7 @@
     <Compile Include="ColorCodedPicking\PickingShaderProgram.cs" />
     <Compile Include="ColorCodedPicking\SharedStageInfo.cs" />
     <Compile Include="IMVP.cs" />
+    <Compile Include="IMVPHelper.cs" />
     <Compile Include="IRenderable.cs" />
     <Compile Include="PrimitiveModesHelper.cs" />
     <Compile Include="RenderEventArgs.cs" />
