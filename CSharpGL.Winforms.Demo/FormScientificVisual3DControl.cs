@@ -31,6 +31,12 @@ namespace CSharpGL.Winforms.Demo
             //uiAxis.Initialize();
             //this.scientificVisual3DControl1.ElementList.Add(uiAxis);
 
+            //IUILayoutParam param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Right|  AnchorStyles.Bottom,
+            //    new Padding(100, 30, 40, 30), new Size(30,30));
+            //ColorPalette colorPalette = ColorPaletteFactory.CreateRainbow();
+            //var uiColorIndicator = new NewSimpleUIColorIndicator(param, colorPalette, new Objects.GLColor(1, 1, 1, 1), -100, 100, 5);
+            //uiColorIndicator.Initialize();
+            //this.scientificVisual3DControl1.ElementList.Add(uiColorIndicator);
         }
 
     }

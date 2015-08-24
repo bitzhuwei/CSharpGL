@@ -65,6 +65,9 @@ namespace CSharpGL.Winforms.Demo
         //    set { rotator = value; }
         //}
 
+        SimpleUIAxis uiAxis;
+        NewSimpleUIColorIndicator uiColorIndicator;
+
         /// <summary>
         /// 可执行OpenGL渲染的控件。
         /// </summary>
@@ -127,11 +130,21 @@ namespace CSharpGL.Winforms.Demo
             this.MouseMove += scientificVisual3DControl1_MouseMove;
             this.MouseUp += scientificVisual3DControl1_MouseUp;
 
-            IUILayoutParam param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom,
-                new Padding(10, 10, 10, 10), new Size(50, 50));
-            var uiAxis = new SimpleUIAxis(param);
-            uiAxis.Initialize();
-            this.ElementList.Add(uiAxis);
+            {
+                IUILayoutParam param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom,
+                    new Padding(10, 10, 10, 10), new Size(50, 50));
+                var uiAxis = new SimpleUIAxis(param);
+                uiAxis.Initialize();
+                this.ElementList.Add(uiAxis);
+            }
+            {
+                IUILayoutParam param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom,
+                    new Padding(100, 30, 40, 30), new Size(30, 30));
+                ColorPalette colorPalette = ColorPaletteFactory.CreateRainbow();
+                var uiColorIndicator = new NewSimpleUIColorIndicator(param, colorPalette, new Objects.GLColor(1, 1, 1, 1), -100, 100, 5);
+                uiColorIndicator.Initialize();
+                this.ElementList.Add(uiColorIndicator);
+            }
         }
 
         #endregion
