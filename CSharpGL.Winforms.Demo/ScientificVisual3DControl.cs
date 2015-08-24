@@ -133,7 +133,7 @@ namespace CSharpGL.Winforms.Demo
             {
                 IUILayoutParam param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(10, 10, 10, 10), new Size(50, 50));
-                var uiAxis = new SimpleUIAxis(param);
+                uiAxis = new SimpleUIAxis(param);
                 uiAxis.Initialize();
                 this.ElementList.Add(uiAxis);
             }
@@ -141,7 +141,7 @@ namespace CSharpGL.Winforms.Demo
                 IUILayoutParam param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom,
                     new Padding(100, 30, 40, 30), new Size(30, 30));
                 ColorPalette colorPalette = ColorPaletteFactory.CreateRainbow();
-                var uiColorIndicator = new SimpleUIColorIndicator(param, colorPalette, new Objects.GLColor(1, 1, 1, 1), -100, 100, 5);
+                uiColorIndicator = new SimpleUIColorIndicator(param, colorPalette, new Objects.GLColor(1, 1, 1, 1), -100, 100, 5);
                 uiColorIndicator.Initialize();
                 this.ElementList.Add(uiColorIndicator);
             }
