@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CameraDictionary.cs" />
     <Compile Include="FormColorCodedPicking.cs">
       <SubType>Form</SubType>
     </Compile>
