@@ -35,7 +35,7 @@
             this.btnPyramidElement = new System.Windows.Forms.Button();
             this.btnCamera = new System.Windows.Forms.Button();
             this.btnSatelliteRotation = new System.Windows.Forms.Button();
-            this.btnWholeFontTextureElement = new System.Windows.Forms.Button();
+            this.btnFormWholeFontTextureElement = new System.Windows.Forms.Button();
             this.btnTranslateOnScreen = new System.Windows.Forms.Button();
             this.btnLegacySimpleUIRect = new System.Windows.Forms.Button();
             this.btnSimpleUIRect = new System.Windows.Forms.Button();
@@ -118,14 +118,14 @@
             // 
             // btnWholeFontTextureElement
             // 
-            this.btnWholeFontTextureElement.Location = new System.Drawing.Point(13, 198);
-            this.btnWholeFontTextureElement.Margin = new System.Windows.Forms.Padding(4);
-            this.btnWholeFontTextureElement.Name = "btnWholeFontTextureElement";
-            this.btnWholeFontTextureElement.Size = new System.Drawing.Size(353, 29);
-            this.btnWholeFontTextureElement.TabIndex = 0;
-            this.btnWholeFontTextureElement.Text = "WholeFontTextureElement";
-            this.btnWholeFontTextureElement.UseVisualStyleBackColor = true;
-            this.btnWholeFontTextureElement.Click += new System.EventHandler(this.btnWholeFontTextureElement_Click);
+            this.btnFormWholeFontTextureElement.Location = new System.Drawing.Point(13, 198);
+            this.btnFormWholeFontTextureElement.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormWholeFontTextureElement.Name = "btnFormWholeFontTextureElement";
+            this.btnFormWholeFontTextureElement.Size = new System.Drawing.Size(353, 29);
+            this.btnFormWholeFontTextureElement.TabIndex = 0;
+            this.btnFormWholeFontTextureElement.Text = "FormWholeFontTextureElement";
+            this.btnFormWholeFontTextureElement.UseVisualStyleBackColor = true;
+            this.btnFormWholeFontTextureElement.Click += new System.EventHandler(this.btnFormWholeFontTextureElement_Click);
             // 
             // btnTranslateOnScreen
             // 
@@ -265,7 +265,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(749, 685);
-            this.Controls.Add(this.btnWholeFontTextureElement);
+            this.Controls.Add(this.btnFormWholeFontTextureElement);
             this.Controls.Add(this.btnCylinderElement);
             this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnCamera);
@@ -300,7 +300,7 @@
         private System.Windows.Forms.Button btnPyramidElement;
         private System.Windows.Forms.Button btnCamera;
         private System.Windows.Forms.Button btnSatelliteRotation;
-        private System.Windows.Forms.Button btnWholeFontTextureElement;
+        private System.Windows.Forms.Button btnFormWholeFontTextureElement;
         private System.Windows.Forms.Button btnTranslateOnScreen;
         private System.Windows.Forms.Button btnLegacySimpleUIRect;
         private System.Windows.Forms.Button btnSimpleUIRect;

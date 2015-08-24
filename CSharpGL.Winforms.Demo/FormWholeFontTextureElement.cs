@@ -37,7 +37,7 @@ namespace CSharpGL.Winforms.Demo
             rotator = new SatelliteRotator(this.camera);
             this.Load += FormWholeFontTextureElement_Load;
 
-            element = new WholeFontTextureElement("msyh.ttc.png", "msyh.ttc.xml");
+            element = new WholeFontTextureElement("FormWholeFontTextureElement.png", "FormWholeFontTextureElement.xml");
             element.Initialize();
 
             element.BeforeRendering += element_BeforeRendering;

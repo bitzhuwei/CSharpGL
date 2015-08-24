@@ -46,7 +46,7 @@ namespace CSharpGL.Winforms.Demo
             (new FormCylinderElement()).Show();
         }
 
-        private void btnWholeFontTextureElement_Click(object sender, EventArgs e)
+        private void btnFormWholeFontTextureElement_Click(object sender, EventArgs e)
         {
             (new FormWholeFontTextureElement()).Show();
         }

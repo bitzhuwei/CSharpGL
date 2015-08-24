@@ -327,11 +327,11 @@
     <Content Include="CSharpGL.ico" />
     <Content Include="CSharpGL.png" />
     <EmbeddedResource Include="ScientificVisual3DControl.ico" />
-    <Content Include="msyh.ttc.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="FormWholeFontTextureElement.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="msyh.ttc.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="FormWholeFontTextureElement.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="readme.txt" />
   </ItemGroup>
