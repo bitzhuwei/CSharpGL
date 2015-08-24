@@ -11,6 +11,8 @@ using CSharpGL.Objects.RenderContexts;
 using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Maths;
+using CSharpGL.Objects.UIs;
+using CSharpGL.Objects.Demos.UIs;
 
 namespace CSharpGL.Winforms.Demo
 {
@@ -124,6 +126,12 @@ namespace CSharpGL.Winforms.Demo
             this.MouseDown += scientificVisual3DControl1_MouseDown;
             this.MouseMove += scientificVisual3DControl1_MouseMove;
             this.MouseUp += scientificVisual3DControl1_MouseUp;
+
+            IUILayoutParam param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom,
+                new Padding(10, 10, 10, 10), new Size(50, 50));
+            var uiAxis = new SimpleUIAxis(param);
+            uiAxis.Initialize();
+            this.ElementList.Add(uiAxis);
         }
 
         #endregion
@@ -143,7 +151,7 @@ namespace CSharpGL.Winforms.Demo
             //  Set the most basic OpenGL styles.
             GL.ShadeModel(GL.GL_SMOOTH);
             // 天蓝色背景
-            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+            GL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
             GL.ClearDepth(1.0f);
             GL.Enable(GL.GL_DEPTH_TEST);
             GL.DepthFunc(GL.GL_LEQUAL);
@@ -163,7 +171,7 @@ namespace CSharpGL.Winforms.Demo
                 if (this.designMode)
                 {
                     // 天蓝色背景
-                    GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+                    GL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
 
                     GLCanvasHelper.ResizeGL(this.Width, this.Height);
 
