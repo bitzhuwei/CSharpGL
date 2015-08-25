@@ -6,6 +6,7 @@ namespace CSharpGL.Maths
     /// <summary>
     /// Represents a four dimensional vector.
     /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]
     public struct vec4
     {
         public float x;
