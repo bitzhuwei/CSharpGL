@@ -1,11 +1,13 @@
 using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL.Maths
 {
     /// <summary>
     /// Represents a 4x4 matrix.
     /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4 * 4)]
     public struct mat4
     {
         public override string ToString()
@@ -217,6 +219,7 @@ namespace CSharpGL.Maths
         /// <summary>
         /// The columms of the matrix.
         /// </summary>
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
         private vec4[] cols;
     }
 }
