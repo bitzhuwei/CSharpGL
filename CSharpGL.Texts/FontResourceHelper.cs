@@ -22,6 +22,7 @@ namespace CSharpGL.Texts
         public static System.Drawing.Bitmap GenerateBitmapForString(this FontResource fontResource,
             string content, int fontSize, int maxRowWidth)
         {
+            //fontResource.FontBitmap.Save("FontBitmap.png");
             // step 1: get totalLength
             int totalLength = 0;
             {
