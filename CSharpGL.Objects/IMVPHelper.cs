@@ -96,7 +96,7 @@ namespace CSharpGL.Objects
         //    element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
         //}
         /// <summary>
-        /// 
+        /// 请确保此元素的GLSL中含有uniform mat4 MVP;并作为位置转换矩阵。
         /// </summary>
         /// <param name="element"></param>
         /// <param name="mvp"></param>
