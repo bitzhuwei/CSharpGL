@@ -54,7 +54,7 @@ namespace CSharpGL.Objects.SceneElements
         private uint[] texture = new uint[1];
         uint[] vao = new uint[1];
         public ShaderProgram shaderProgram;
-        public const string strMVP = "MVP";
+        //public const string strMVP = "MVP";
         public const string strpointSize = "pointSize";
         public const string strtextColor = "textColor";
         public const string strtex = "tex";
@@ -369,10 +369,8 @@ namespace CSharpGL.Objects.SceneElements
 
             GL.BindTexture(GL.GL_TEXTURE_2D, this.texture[0]);
 
-            ShaderProgram shaderProgram = this.shaderProgram;
-            shaderProgram.Bind();
+            IMVPHelper.DoUpdateMVP(this, mvp);
 
-            shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
             //int[] poinSizes = new int[2];
             //GL.GetInteger(GetTarget.PointSizeRange, poinSizes);
             //if (this.textureWidth > poinSizes[1])
@@ -389,8 +387,7 @@ namespace CSharpGL.Objects.SceneElements
 
         void IMVP.UnbindShaderProgram()
         {
-            ShaderProgram shaderProgram = this.shaderProgram;
-            shaderProgram.Unbind();
+            IMVPHelper.DoUnbindShaderProgram(this);
 
             GL.BindTexture(GL.GL_TEXTURE_2D, 0);
 
