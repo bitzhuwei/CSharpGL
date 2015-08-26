@@ -61,7 +61,7 @@ namespace CSharpGL.Objects.Demos
         public DemoColorCodedPickingElement(int size)
         {
             this.size = size;
-            this.pickingShaderProgram = PickingShaderProgram.GetPickingShaderProgram();
+            this.pickingShaderProgram = PickingShaderHelper.GetPickingShaderProgram();
         }
 
         protected override void DoInitialize()

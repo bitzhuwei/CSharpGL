@@ -6,7 +6,7 @@ namespace CSharpGL.Objects.ColorCodedPicking
     /// <summary>
     /// Description of PickingShaderProgram
     /// </summary>
-    public static class PickingShaderProgram //: IDisposable
+    public static class PickingShaderHelper //: IDisposable
     {
         //static readonly object synObj = new object();
 
