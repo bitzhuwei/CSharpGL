@@ -54,7 +54,7 @@
     <Compile Include="ColorCodedPicking\IPickedGeometry.cs" />
     <Compile Include="ColorCodedPicking\PickedGeometryBase.cs" />
     <Compile Include="ColorCodedPicking\PickedGeometryColored.cs" />
-    <Compile Include="ColorCodedPicking\PickingShaderProgram.cs" />
+    <Compile Include="ColorCodedPicking\PickingShaderHelper.cs" />
     <Compile Include="ColorCodedPicking\SharedStageInfo.cs" />
     <Compile Include="IMVP.cs" />
     <Compile Include="IMVPHelper.cs" />
