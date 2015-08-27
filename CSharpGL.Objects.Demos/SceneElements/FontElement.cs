@@ -11,7 +11,7 @@ namespace CSharpGL.Objects.SceneElements
     /// <summary>
     /// 用一个纹理绘制所有指定范围内的可见字符（具有指定的高度和字体）
     /// </summary>
-    public class FontElement : SceneElementBase, IDisposable
+    public class FontElement : SceneElementBase, IMVP, IDisposable
     {
 
         public bool blend = true;
@@ -23,9 +23,6 @@ namespace CSharpGL.Objects.SceneElements
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_TexCoord = "in_TexCoord";
-        public const string strprojectionMatrix = "projectionMatrix";
-        public const string strviewMatrix = "viewMatrix";
-        public const string strmodelMatrix = "modelMatrix";
         public const string strtex = "tex";
         public const string strcolor = "color";
 
@@ -275,6 +272,21 @@ namespace CSharpGL.Objects.SceneElements
 
         #endregion
 
+
+        void IMVP.UpdateMVP(mat4 mvp)
+        {
+            IMVPHelper.DoUpdateMVP(this, mvp);
+        }
+
+        void IMVP.UnbindShaderProgram()
+        {
+            IMVPHelper.DoUnbindShaderProgram(this);
+        }
+
+        ShaderProgram IMVP.GetShaderProgram()
+        {
+            return this.shaderProgram;
+        }
     }
 
 }

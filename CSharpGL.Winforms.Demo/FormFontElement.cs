@@ -89,10 +89,10 @@ namespace CSharpGL.Winforms.Demo
 
         void element_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            ShaderProgram shaderProgram = element.shaderProgram;
+            IMVP iMVP = sender as IMVP;
+            iMVP.UnbindShaderProgram();
 
-            shaderProgram.Unbind();
-
+            var element = sender as FontElement;
             if (element.blend)
             {
                 GL.Disable(GL.GL_BLEND);
@@ -103,6 +103,7 @@ namespace CSharpGL.Winforms.Demo
 
         void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
+            var element = sender as FontElement;
             Texture2D texture = element.texture;
             texture.Bind();
 
@@ -116,15 +117,14 @@ namespace CSharpGL.Winforms.Demo
 
             shaderProgram.Bind();
 
+            shaderProgram.SetUniform(FontElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
+            shaderProgram.SetUniform(FontElement.strtex, texture.Name);
 
             mat4 projectionMatrix = this.camera.GetProjectionMat4();
             mat4 viewMatrix = this.camera.GetViewMat4();
             mat4 modelMatrix = mat4.identity();
-            shaderProgram.SetUniformMatrix4(FontElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(FontElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(FontElement.strmodelMatrix, modelMatrix.to_array());
-            shaderProgram.SetUniform(FontElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
-            shaderProgram.SetUniform(FontElement.strtex, texture.Name);
+            IMVP iMVP = sender as IMVP;
+            iMVP.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
         }
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
