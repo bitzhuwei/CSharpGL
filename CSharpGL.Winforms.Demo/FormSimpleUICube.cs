@@ -47,7 +47,7 @@ namespace CSharpGL.Winforms.Demo
 
             satelliteRoration = new SatelliteRotator(camera);
 
-            Padding padding = new System.Windows.Forms.Padding(40, 40, 40, 40);
+            Padding padding = new System.Windows.Forms.Padding(038, 038, 038, 038);
             Size size = new Size(100, 100);
             //Size size = new Size(5, 5);
             IUILayoutParam param;
@@ -65,16 +65,6 @@ namespace CSharpGL.Winforms.Demo
             uiRightBottomRect.Initialize();
             uiRightTopRect.Initialize();
 
-            uiLeftBottomRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-            uiLeftTopRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-            uiRightBottomRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-            uiRightTopRect.BeforeRendering += SimpleUIRect_BeforeRendering;
-
-            uiLeftBottomRect.AfterRendering += SimpleUIRect_AfterRendering;
-            uiLeftTopRect.AfterRendering += SimpleUIRect_AfterRendering;
-            uiRightBottomRect.AfterRendering += SimpleUIRect_AfterRendering;
-            uiRightTopRect.AfterRendering += SimpleUIRect_AfterRendering;
-
             axisElement = new AxisElement();
             axisElement.Initialize();
             axisElement.BeforeRendering += axisElement_BeforeRendering;
@@ -87,31 +77,6 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.Resize += glCanvas1_Resize;
-        }
-
-        void SimpleUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            SimpleUICube element = sender as SimpleUICube;
-
-            element.shaderProgram.Unbind();
-        }
-
-        void SimpleUIRect_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            SimpleUICube element = sender as SimpleUICube;
-
-            mat4 projectionMatrix, viewMatrix, modelMatrix;
-
-            float maxDepth = (float)Math.Sqrt(3);
-            element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera, maxDepth);
-
-            ShaderProgram shaderProgram = element.shaderProgram;
-
-            shaderProgram.Bind();
-
-            shaderProgram.SetUniformMatrix4(SimpleUICube.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimpleUICube.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(SimpleUICube.strmodelMatrix, modelMatrix.to_array());
         }
 
         void axisElement_AfterRendering(object sender, Objects.RenderEventArgs e)

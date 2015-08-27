@@ -22,7 +22,7 @@ namespace CSharpGL.Objects.UIs
         /// <param name="maxDepth">UI元素能接触到的最大深度。</param>
         public static void GetMatrix(this IUILayout uiElement,
             out mat4 projectionMatrix, out mat4 viewMatrix, out mat4 modelMatrix,
-            IViewCamera camera = null, float maxDepth = 1.0f)
+            IViewCamera camera = null, float maxDepth = 2.0f)
         {
             IUILayoutArgs args = uiElement.GetArgs();
             float max = (float)Math.Max(args.UIWidth, args.UIHeight);

@@ -59,9 +59,9 @@
     <Compile Include="IMVP.cs" />
     <Compile Include="IMVPHelper.cs" />
     <Compile Include="IRenderable.cs" />
-    <Compile Include="PrimitiveModesHelper.cs" />
+    <Compile Include="ColorCodedPicking\PrimitiveModesHelper.cs" />
     <Compile Include="RenderEventArgs.cs" />
-    <Compile Include="SceneElementBaseHelper.cs" />
+    <Compile Include="UIs\IUILayoutRenderingHelper.cs" />
     <Compile Include="SceneElements\AxisElement.cs" />
     <Compile Include="Cameras\BoundingBox.cs" />
     <Compile Include="Cameras\Camera2Matrix.cs" />

@@ -14,7 +14,7 @@ namespace CSharpGL.Objects.Demos.UIs
     /// Draw a cube on OpenGL control like a <see cref="Windows.Forms.Control"/> drawn on a <see cref="windows.Forms.Form"/>.
     /// Set its properties(Anchor, Margin, Size, etc) to adjust its behaviour.
     /// </summary>
-    public class SimpleUICube : SceneElementBase, IUILayout//, IRenderable, IHasObjectSpace
+    public class SimpleUICube : SceneElementBase, IUILayout, IMVP//, IRenderable, IHasObjectSpace
     {
         /// <summary>
         /// shader program
@@ -22,9 +22,9 @@ namespace CSharpGL.Objects.Demos.UIs
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
-        public const string strprojectionMatrix = "projectionMatrix";
-        public const string strviewMatrix = "viewMatrix";
-        public const string strmodelMatrix = "modelMatrix";
+        //public const string strprojectionMatrix = "projectionMatrix";
+        //public const string strviewMatrix = "viewMatrix";
+        //public const string strmodelMatrix = "modelMatrix";
 
         /// <summary>
         /// VAO
@@ -63,6 +63,9 @@ namespace CSharpGL.Objects.Demos.UIs
             this.shaderProgram = InitializeShader();
 
             InitVAO();
+
+            this.BeforeRendering += this.GetSimpleUI_BeforeRendering();
+            this.AfterRendering += this.GetSimpleUI_AfterRendering();
         }
 
         private void InitVAO()
@@ -78,33 +81,34 @@ namespace CSharpGL.Objects.Demos.UIs
             //  Create a vertex buffer for the vertex data.
             {
                 UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(8 * 3);
+                const float halfLength = 0.5f;
                 // x axis
-                positionArray[0] = new vec3(-1, -1, -1);
-                positionArray[1] = new vec3(1, -1, -1);
-                positionArray[2] = new vec3(-1, -1, 1);
-                positionArray[3] = new vec3(1, -1, 1);
-                positionArray[4] = new vec3(-1, 1, 1);
-                positionArray[5] = new vec3(1, 1, 1);
-                positionArray[6] = new vec3(-1, 1, -1);
-                positionArray[7] = new vec3(1, 1, -1);
+                positionArray[0] = new vec3(-halfLength, -halfLength, -halfLength);
+                positionArray[1] = new vec3(halfLength, -halfLength, -halfLength);
+                positionArray[2] = new vec3(-halfLength, -halfLength, halfLength);
+                positionArray[3] = new vec3(halfLength, -halfLength, halfLength);
+                positionArray[4] = new vec3(-halfLength, halfLength, halfLength);
+                positionArray[5] = new vec3(halfLength, halfLength, halfLength);
+                positionArray[6] = new vec3(-halfLength, halfLength, -halfLength);
+                positionArray[7] = new vec3(halfLength, halfLength, -halfLength);
                 // y axis
-                positionArray[8 + 0] = new vec3(-1, -1, -1);
-                positionArray[8 + 1] = new vec3(-1, 1, -1);
-                positionArray[8 + 2] = new vec3(-1, -1, 1);
-                positionArray[8 + 3] = new vec3(-1, 1, 1);
-                positionArray[8 + 4] = new vec3(1, -1, 1);
-                positionArray[8 + 5] = new vec3(1, 1, 1);
-                positionArray[8 + 6] = new vec3(1, -1, -1);
-                positionArray[8 + 7] = new vec3(1, 1, -1);
+                positionArray[8 + 0] = new vec3(-halfLength, -halfLength, -halfLength);
+                positionArray[8 + 1] = new vec3(-halfLength, halfLength, -halfLength);
+                positionArray[8 + 2] = new vec3(-halfLength, -halfLength, halfLength);
+                positionArray[8 + 3] = new vec3(-halfLength, halfLength, halfLength);
+                positionArray[8 + 4] = new vec3(halfLength, -halfLength, halfLength);
+                positionArray[8 + 5] = new vec3(halfLength, halfLength, halfLength);
+                positionArray[8 + 6] = new vec3(halfLength, -halfLength, -halfLength);
+                positionArray[8 + 7] = new vec3(halfLength, halfLength, -halfLength);
                 // z axis
-                positionArray[16 + 0] = new vec3(-1, -1, -1);
-                positionArray[16 + 1] = new vec3(-1, -1, 1);
-                positionArray[16 + 2] = new vec3(-1, 1, -1);
-                positionArray[16 + 3] = new vec3(-1, 1, 1);
-                positionArray[16 + 4] = new vec3(1, 1, -1);
-                positionArray[16 + 5] = new vec3(1, 1, 1);
-                positionArray[16 + 6] = new vec3(1, -1, -1);
-                positionArray[16 + 7] = new vec3(1, -1, 1);
+                positionArray[16 + 0] = new vec3(-halfLength, -halfLength, -halfLength);
+                positionArray[16 + 1] = new vec3(-halfLength, -halfLength, halfLength);
+                positionArray[16 + 2] = new vec3(-halfLength, halfLength, -halfLength);
+                positionArray[16 + 3] = new vec3(-halfLength, halfLength, halfLength);
+                positionArray[16 + 4] = new vec3(halfLength, halfLength, -halfLength);
+                positionArray[16 + 5] = new vec3(halfLength, halfLength, halfLength);
+                positionArray[16 + 6] = new vec3(halfLength, -halfLength, -halfLength);
+                positionArray[16 + 7] = new vec3(halfLength, -halfLength, halfLength);
 
                 uint positionLocation = shaderProgram.GetAttributeLocation(strin_Position);
 
@@ -167,5 +171,20 @@ namespace CSharpGL.Objects.Demos.UIs
         }
 
         public IUILayoutParam Param { get; set; }
+
+        void IMVP.UpdateMVP(mat4 mvp)
+        {
+            IMVPHelper.DoUpdateMVP(this, mvp);
+        }
+
+        void IMVP.UnbindShaderProgram()
+        {
+            IMVPHelper.DoUnbindShaderProgram(this);
+        }
+
+        ShaderProgram IMVP.GetShaderProgram()
+        {
+            return this.shaderProgram;
+        }
     }
 }

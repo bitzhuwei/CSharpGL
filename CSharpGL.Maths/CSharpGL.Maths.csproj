@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="glm_vec.cs" />
     <Compile Include="mat2.cs" />
     <Compile Include="mat3.cs" />
