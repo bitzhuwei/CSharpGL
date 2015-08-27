@@ -138,7 +138,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void btnFormMapBuffer_Click(object sender, EventArgs e)
         {
-
+            (new FormMapBuffer()).Show();
         }
 
 

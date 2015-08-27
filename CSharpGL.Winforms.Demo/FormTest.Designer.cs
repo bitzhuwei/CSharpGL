@@ -289,7 +289,6 @@
             // 
             // btnFormMapBuffer
             // 
-            this.btnFormMapBuffer.Enabled = false;
             this.btnFormMapBuffer.Location = new System.Drawing.Point(374, 124);
             this.btnFormMapBuffer.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormMapBuffer.Name = "btnFormMapBuffer";

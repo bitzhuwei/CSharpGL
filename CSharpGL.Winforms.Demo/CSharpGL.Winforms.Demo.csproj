@@ -52,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CameraDictionary.cs" />
+    <Compile Include="FormMapBuffer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMapBuffer.Designer.cs">
+      <DependentUpon>FormMapBuffer.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormColorCodedPicking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +199,9 @@
       <DependentUpon>ScientificVisual3DControl.cs</DependentUpon>
     </Compile>
     <Compile Include="TestProjectionFunctions.cs" />
+    <EmbeddedResource Include="FormMapBuffer.resx">
+      <DependentUpon>FormMapBuffer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TransformFeedback\feedback.frag" />
     <EmbeddedResource Include="TransformFeedback\feedback.vert" />
     <EmbeddedResource Include="TransformFeedback\transform.vert" />

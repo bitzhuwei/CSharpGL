@@ -773,6 +773,28 @@ namespace CSharpGL
             GL.BindBuffer((uint)target, id);
         }
 
+
+        /// <summary>
+        /// 把服务端（GPU）上的当前Buffer Object映射到客户端（CPU）的内存上。
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="access"></param>
+        /// <returns></returns>
+        public static IntPtr MapBuffer(BufferTarget target, MapBufferAccess access)
+        {
+            return GetDelegateFor<glMapBuffer>()((uint)target, (uint)access);
+        }
+        
+        /// <summary>
+        /// 把客户端（CPU）上的当前Buffer Object映射到服务端（GPU）的内存上。
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static bool UnmapBuffer(BufferTarget target)
+        {
+            return GetDelegateFor<glUnmapBuffer>()((uint)target);
+        }
+
         /// <summary>
         /// This function sets the image for the currently binded texture.
         /// </summary>
