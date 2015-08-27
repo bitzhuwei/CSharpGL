@@ -335,5 +335,21 @@ namespace CSharpGL.Winforms.Demo
 
         }
 
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            base.OnHandleDestroyed(e);
+
+            GL.DeleteVertexArrays(1, TransformVertexArrayName);
+            GL.DeleteBuffers(1, TransformArrayBufferName);
+            TransformProgramName.Delete();
+
+            GL.DeleteVertexArrays(1, FeedbackVertexArrayName);
+            GL.DeleteBuffers(1, FeedbackArrayBufferName);
+            FeedbackProgram.Delete();
+
+            GL.DeleteQueries(1, Query);
+            GL.DeleteTransformFeedbacks(1, FeedbackName);
+
+        }
     }
 }
