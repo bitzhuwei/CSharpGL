@@ -216,6 +216,8 @@ namespace CSharpGL
         FeedbackBufferSize = GL.GL_FEEDBACK_BUFFER_SIZE,
         FeedbackBufferType = GL.GL_FEEDBACK_BUFFER_TYPE,
         SelectionBufferPointer = GL.GL_SELECTION_BUFFER_POINTER,
-        SelectionBufferSize = GL.GL_SELECTION_BUFFER_SIZE
-    }	
+        SelectionBufferSize = GL.GL_SELECTION_BUFFER_SIZE,
+
+        UniformBufferOffsetAlignment = GL.GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT,
+    }
 }

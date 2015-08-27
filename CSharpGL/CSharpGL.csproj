@@ -56,6 +56,7 @@
     <Compile Include="Enumerations\TexImage2D.cs" />
     <Compile Include="Enumerations\GetTexImage.cs" />
     <Compile Include="Enumerations\TexSubImage2D.cs" />
+    <Compile Include="Enumerations\UniformType.cs" />
     <Compile Include="GL.cs" />
     <Compile Include="GLU_Consts.cs" />
     <Compile Include="GLU_Functions.cs" />

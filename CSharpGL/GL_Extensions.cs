@@ -995,6 +995,10 @@ namespace CSharpGL
         {
             return GetDelegateFor<glMapBuffer>()(target, access);
         }
+        public static IntPtr MapBufferRange(uint target, int offset, int length, uint access)
+        {
+            return GetDelegateFor<glMapBufferRange>()(target, offset, length, access);
+        }
         public static bool UnmapBuffer(uint target)
         {
             return GetDelegateFor<glUnmapBuffer>()(target);
@@ -1025,6 +1029,7 @@ namespace CSharpGL
         private delegate void glBufferSubData(uint target, int offset, int size, IntPtr data);
         private delegate void glGetBufferSubData(uint target, int offset, int size, IntPtr data);
         private delegate IntPtr glMapBuffer(uint target, uint access);
+        private delegate IntPtr glMapBufferRange(uint target, int offset, int length, uint access);
         private delegate bool glUnmapBuffer(uint target);
         private delegate void glGetBufferParameteriv(uint target, uint pname, int[] parameters);
         private delegate void glGetBufferPointerv(uint target, uint pname, IntPtr[] parameters);
@@ -5918,6 +5923,34 @@ namespace CSharpGL
 
         public const uint GL_ATOMIC_COUNTER_BUFFER = 0x92C0;
         public const uint GL_UNIFORM_BUFFER = 0x8A11;
+
+        //void glUniformBlockBinding(GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding);
+        public static void UniformBlockBinding(uint program, uint uniformBlockIndex, uint uniformBlockBinding)
+        {
+            GetDelegateFor<glUniformBlockBinding>()(program, uniformBlockIndex, uniformBlockBinding);
+        }
+        private delegate void glUniformBlockBinding(uint program, uint uniformBlockIndex, uint uniformBlockBinding);
+
+        public static uint GetUniformBlockIndex(uint program, string uniformBlockName)
+        {
+            return GetDelegateFor<glGetUniformBlockIndex>()(program, uniformBlockName);
+        }
+        private delegate uint glGetUniformBlockIndex(uint program, string uniformBlockName);
+
+        public const uint GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT = 0x8A34;
+
+        public const uint GL_MAP_READ_BIT = 0x0001;
+        public const uint GL_MAP_WRITE_BIT = 0x0002;
+        public const uint GL_MAP_INVALIDATE_RANGE_BIT = 0x0004;
+        public const uint GL_MAP_INVALIDATE_BUFFER_BIT = 0x0008;
+        public const uint GL_MAP_FLUSH_EXPLICIT_BIT = 0x0010;
+        public const uint GL_MAP_UNSYNCHRONIZED_BIT = 0x0020;
+
+        public static void DrawTransformFeedback(uint mode, uint id)
+        {
+            GetDelegateFor<glDrawTransformFeedback>()(mode, id);
+        }
+        private delegate void glDrawTransformFeedback(uint mode, uint id);
 
         #endregion transform feedbacks
     }

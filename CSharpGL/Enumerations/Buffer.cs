@@ -10,6 +10,8 @@ namespace CSharpGL
     {
         ArrayBuffer = GL.GL_ARRAY_BUFFER,
         ElementArrayBuffer = GL.GL_ELEMENT_ARRAY_BUFFER,
+        UniformBuffer = GL.GL_UNIFORM_BUFFER,
+        //TransformFeedback = GL.GL_TRANSFORM_FEEDBACK,
     }
 
     public enum BufferUsage : uint
