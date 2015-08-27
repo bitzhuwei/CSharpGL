@@ -21,6 +21,7 @@ namespace CSharpGL.Winforms.Demo
     {
         SimpleUIAxis uiAxis;
         ScientificCamera camera;
+        SatelliteRotator satelliteRoration;
 
         uint[] TimerQueryName = new uint[1];
         uint[] Query = new uint[1];
@@ -41,11 +42,7 @@ namespace CSharpGL.Winforms.Demo
         {
             InitializeComponent();
 
-            {
-                this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
-                //CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
-            }
-
+            this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
             satelliteRoration = new SatelliteRotator(camera);
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
@@ -103,7 +100,7 @@ namespace CSharpGL.Winforms.Demo
         }
         private void FormTransformFeedback_Load(object sender, EventArgs e)
         {
-            IUILayoutParam param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, 
+            IUILayoutParam param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom,
                 new Padding(10, 10, 10, 10), new Size(50, 50));
             this.uiAxis = new SimpleUIAxis(param);
 
@@ -150,7 +147,6 @@ namespace CSharpGL.Winforms.Demo
             GL.GenVertexArrays(1, TransformVertexArrayName);
             GL.BindVertexArray(TransformVertexArrayName[0]);
             GL.BindBuffer(BufferTarget.ArrayBuffer, TransformArrayBufferName[0]);
-            //GL.VertexAttribPointer(semantic::attr::POSITION, 4, GL_FLOAT, GL_FALSE, 0, 0);
             GL.VertexAttribPointer(POSITION, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
             GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
@@ -181,7 +177,7 @@ namespace CSharpGL.Winforms.Demo
             int[] UniformBufferOffset = new int[1];
             GL.GetInteger(GetTarget.UniformBufferOffsetAlignment, UniformBufferOffset);
             int mat4Size = Marshal.SizeOf(typeof(mat4));
-            int UniformBlockSize = Math.Max(mat4Size/*64*/ /*Marshal.SizeOf(typeof(mat4))*/, UniformBufferOffset[0]);
+            int UniformBlockSize = Math.Max(mat4Size, UniformBufferOffset[0]);
 
             GL.BindBuffer(BufferTarget.UniformBuffer, BufferName[1]);
             var buffer = new UnmanagedArray<float>(16);
@@ -293,18 +289,10 @@ namespace CSharpGL.Winforms.Demo
 
         private void DoRender(object sender, PaintEventArgs e)
         {
-            //
-            //GL.m::vec2 WindowSize(this->getWindowSize());
-
             // Compute the MVP (Model View Projection matrix)
             {
                 GL.BindBuffer(BufferTarget.UniformBuffer, BufferName[1]);//BufferName[TRANSFORM]
-                //GL.m::mat4* Pointer = reinterpret_cast<GL.m::mat4*>(GL.MapBufferRange(GL_UNIFORM_BUFFER, 0, sizeof(GL.m::mat4), GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT));
                 var Pointer = GL.MapBufferRange(GL.GL_UNIFORM_BUFFER, 0, 64, (uint)(GL.GL_MAP_WRITE_BIT | GL.GL_MAP_INVALIDATE_BUFFER_BIT));
-                //GL.m::mat4 Projection = GL.m::perspective(GL.m::pi<float>() * 0.25f, WindowSize.x / WindowSize.y, 0.1f, 100.0f);
-                //mat4 projection = glm.perspective((float)Math.PI * 0.25f, (float)this.glCanvas1.Width / (float)this.glCanvas1.Height, 0.1f, 100.0f);
-                //mat4 Model = mat4.identity();
-                //var newMat4 = projection * this.view() * Model;
 
                 var tmp = new UnmanagedArray<mat4>(1);
                 mat4 projection = this.camera.GetProjectionMat4();
@@ -317,9 +305,6 @@ namespace CSharpGL.Winforms.Demo
                 tmp.Dispose();
             }
 
-            // Set the display viewport
-            //GL.Viewport(0, 0, static_cast<GLsizei>(WindowSize.x), static_cast<GLsizei>(WindowSize.y));
-
             // Clear color buffer
             //GL.ClearBufferfv(GL_COLOR, 0, &GL.m.vec4(0.0f, 0.0f, 0.0f, 1.0f)[0]);
             GL.ClearBuffer(GL.GL_COLOR, 0, new float[] { 0.0f, 0.0f, 0.0f, 1.0f });
@@ -328,7 +313,6 @@ namespace CSharpGL.Winforms.Demo
             // Disable rasterisation, vertices processing only!
             GL.Enable(GL.GL_RASTERIZER_DISCARD);
 
-            //GL.UseProgram(TransformProgramName);
             TransformProgramName.Bind();
 
             GL.BindVertexArray(TransformVertexArrayName[0]);
@@ -344,7 +328,6 @@ namespace CSharpGL.Winforms.Demo
             GL.Disable(GL.GL_RASTERIZER_DISCARD);
 
             // Second draw, reuse the captured attributes
-            //GL.UseProgram(FeedbackProgram);
             FeedbackProgram.Bind();
 
             GL.BindVertexArray(FeedbackVertexArrayName[0]);
@@ -352,23 +335,5 @@ namespace CSharpGL.Winforms.Demo
 
         }
 
-        mat4 view()
-        {
-            translateZ += 0.1f;
-            rotateX += 0.1f;
-            rotateY += 0.1f;
-            //mat4 ViewTranslate = glm.translate(mat4.identity(), new vec3(0.0f, 0.0f, -this->TranlationCurrent.y));
-            mat4 ViewTranslate = glm.translate(mat4.identity(), new vec3(0.0f, 0.0f, translateZ));
-            //mat4 ViewRotateX = glm.rotate(ViewTranslate, this->RotationCurrent.y, new vec3(1.f, 0.f, 0.f));
-            mat4 ViewRotateX = glm.rotate(ViewTranslate, rotateY, new vec3(1.0f, 0.0f, 0.0f));
-            //mat4 View = glm.rotate(ViewRotateX, this->RotationCurrent.x, glm.vec3(0.f, 1.f, 0.f));
-            mat4 View = glm.rotate(ViewRotateX, rotateX, new vec3(0.0f, 1.0f, 0.0f));
-            return View;
-        }
-
-        float translateZ;
-        float rotateY;
-        float rotateX;
-        private SatelliteRotator satelliteRoration;
     }
 }
