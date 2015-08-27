@@ -250,10 +250,11 @@ namespace CSharpGL.Objects.Demos
             
             GL.UnmapBuffer(BufferTarget.ArrayBuffer);
 
-            //using(var mappingBuffer = new MappingBuffer(BufferTarget.ArrayBuffer, this.colorBuffer[0], MapBufferAccess.ReadWrite))
-            //{
-            //    colorArray.CopyTo(mappingBuffer.BufferPointer);
-            //}
+            // This do the same thing: update buffer object
+            using (var mappingBuffer = new MappingBuffer(BufferTarget.ArrayBuffer, this.colorBuffer[0], MapBufferAccess.ReadWrite))
+            {
+                colorArray.CopyTo(mappingBuffer.BufferPointer);
+            }
 
             colorArray.Dispose();
         }
