@@ -19,7 +19,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void btnBasis_Click(object sender, EventArgs e)
         {
-            TestUnmanagedArray.TypicalScene();
+            //TestUnmanagedArray.TypicalScene();
             TestUnmanagedArrayHelper.TypicalScene();
             TestProjectionFunctions.TypicalScene();
             string message = string.Format("{0}", "All successfully done!");

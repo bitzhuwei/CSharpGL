@@ -7,21 +7,11 @@ namespace CSharpGL.Maths
     /// <summary>
     /// Represents a 4x4 matrix.
     /// </summary>
-    //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4 * 4)]
     public struct mat4
     {
         public override string ToString()
         {
-            //if (cols == null)
-            //{ return "<null>"; }
             var builder = new System.Text.StringBuilder();
-            //for (int i = 0; i < cols.Length; i++)
-            //{
-            //    builder.Append(cols[i]);
-            //    builder.Append(" + ");
-            //}
-            //return builder.ToString();
-            //return base.ToString();
             var cols = new vec4[] { col0, col1, col2, col3 };
             for (int i = 0; i < cols.Length; i++)
             {
@@ -39,13 +29,6 @@ namespace CSharpGL.Maths
         /// <param name="scale">The scale.</param>
         public mat4(float scale)
         {
-            //cols = new[]
-            //{
-            //    new vec4(scale, 0.0f, 0.0f, 0.0f),
-            //    new vec4(0.0f, scale, 0.0f, 0.0f),
-            //    new vec4(0.0f, 0.0f, scale, 0.0f),
-            //    new vec4(0.0f, 0.0f, 0.0f, scale),
-            //};
             this.col0 = new vec4(scale, 0, 0, 0);
             this.col1 = new vec4(0, scale, 0, 0);
             this.col2 = new vec4(0, 0, scale, 0);
@@ -59,7 +42,6 @@ namespace CSharpGL.Maths
         /// <param name="cols">The colums of the matrix.</param>
         public mat4(vec4[] cols)
         {
-            //this.cols = new[] { cols[0], cols[1], cols[2], cols[3] };
             this.col0 = cols[0];
             this.col1 = cols[1];
             this.col2 = cols[2];
@@ -68,10 +50,6 @@ namespace CSharpGL.Maths
 
         public mat4(vec4 a, vec4 b, vec4 c, vec4 d)
         {
-            //this.cols = new[]
-            //{
-            //    a, b, c, d
-            //};
             this.col0 = a;
             this.col1 = b;
             this.col2 = c;
@@ -86,13 +64,6 @@ namespace CSharpGL.Maths
         {
             return new mat4
             {
-                //cols = new[] 
-                //{
-                //    new vec4(1,0,0,0),
-                //    new vec4(0,1,0,0),
-                //    new vec4(0,0,1,0),
-                //    new vec4(0,0,0,1)
-                //}
                 col0 = new vec4(1, 0, 0, 0),
                 col1 = new vec4(0, 1, 0, 0),
                 col2 = new vec4(0, 0, 1, 0),
@@ -114,8 +85,6 @@ namespace CSharpGL.Maths
         /// <returns>The column at index <paramref name="column"/>.</returns>
         public vec4 this[int column]
         {
-            //get { return cols[column]; }
-            //set { cols[column] = value; }
             get
             {
                 if (column == 0) { return this.col0; }
@@ -151,8 +120,6 @@ namespace CSharpGL.Maths
         /// </returns>
         public float this[int column, int row]
         {
-            //get { return cols[column][row]; }
-            //set { cols[column][row] = value; }
             get
             {
                 if (column == 0) { return this.col0[row]; }
@@ -190,7 +157,6 @@ namespace CSharpGL.Maths
             result[4 + 0] = col1.x; result[4 + 1] = col1.y; result[4 + 2] = col1.z; result[4 + 3] = col1.w;
             result[8 + 0] = col2.x; result[8 + 1] = col2.y; result[8 + 2] = col2.z; result[8 + 3] = col2.w;
             result[12 + 0] = col3.x; result[12 + 1] = col3.y; result[12 + 2] = col3.z; result[12 + 3] = col3.w;
-            //return cols.SelectMany(v => v.to_array()).ToArray();
 
             return result;
         }
@@ -201,10 +167,6 @@ namespace CSharpGL.Maths
         /// <returns>The <see cref="mat3"/> portion of this matrix.</returns>
         public mat3 to_mat3()
         {
-            //return new mat3(new[] {
-            //new vec3(cols[0][0], cols[0][1], cols[0][2]),
-            //new vec3(cols[1][0], cols[1][1], cols[1][2]),
-            //new vec3(cols[2][0], cols[2][1], cols[2][2])});
             return new mat3(new vec3[]
             {
                 new vec3(col0),
@@ -241,14 +203,6 @@ namespace CSharpGL.Maths
         /// <returns>The product of <paramref name="lhs"/> and <paramref name="rhs"/>.</returns>
         public static mat4 operator *(mat4 lhs, mat4 rhs)
         {
-            //mat4 originalVersion = new mat4(new[]
-            //{
-            //    lhs[0][0] * rhs[0] + lhs[1][0] * rhs[1] + lhs[2][0] * rhs[2] + lhs[3][0] * rhs[3],
-            //    lhs[0][1] * rhs[0] + lhs[1][1] * rhs[1] + lhs[2][1] * rhs[2] + lhs[3][1] * rhs[3],
-            //    lhs[0][2] * rhs[0] + lhs[1][2] * rhs[1] + lhs[2][2] * rhs[2] + lhs[3][2] * rhs[3],
-            //    lhs[0][3] * rhs[0] + lhs[1][3] * rhs[1] + lhs[2][3] * rhs[2] + lhs[3][3] * rhs[3]
-            //});
-
             mat4 result = new mat4(
                 new vec4(
                     lhs[0][0] * rhs[0][0] + lhs[1][0] * rhs[0][1] + lhs[2][0] * rhs[0][2] + lhs[3][0] * rhs[0][3],
@@ -292,11 +246,6 @@ namespace CSharpGL.Maths
 
         #endregion
 
-        ///// <summary>
-        ///// The columms of the matrix.
-        ///// </summary>
-        //[MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        //private vec4[] cols;
         private vec4 col0;
         private vec4 col1;
         private vec4 col2;

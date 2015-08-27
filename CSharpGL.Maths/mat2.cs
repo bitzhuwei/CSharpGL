@@ -10,16 +10,7 @@ namespace CSharpGL.Maths
     {
         public override string ToString()
         {
-            //if (cols == null)
-            //{ return "<null>"; }
             var builder = new System.Text.StringBuilder();
-            //for (int i = 0; i < cols.Length; i++)
-            //{
-            //    builder.Append(cols[i]);
-            //    builder.Append(" + ");
-            //}
-            //return builder.ToString();
-            //return base.ToString();
             var cols = new vec2[] { col0, col1};
             for (int i = 0; i < cols.Length; i++)
             {
@@ -38,11 +29,6 @@ namespace CSharpGL.Maths
         /// <param name="scale">The scale.</param>
         public mat2(float scale)
         {
-            //cols = new[]
-            //{
-            //    new vec2(scale, 0.0f),
-            //    new vec2(0.0f, scale)
-            //};
             this.col0 = new vec2(scale, 0);
             this.col1 = new vec2(0, scale);
         }
@@ -54,31 +40,18 @@ namespace CSharpGL.Maths
         /// <param name="cols">The colums of the matrix.</param>
         public mat2(vec2[] cols)
         {
-            //this.cols = new[]
-            //{
-            //    cols[0],
-            //    cols[1]
-            //};
             this.col0 = cols[0];
             this.col1 = cols[1];
         }
 
         public mat2(vec2 a, vec2 b)
         {
-            //this.cols = new[]
-            //{
-            //    a, b
-            //};
             this.col0 = a;
             this.col1 = b;
         }
 
         public mat2(float a, float b, float c, float d)
         {
-            //this.cols = new[]
-            //{
-            //    new vec2(a,b), new vec2(c,d)
-            //};
             this.col0 = new vec2(a, b);
             this.col1 = new vec2(c, d);
         }
@@ -91,13 +64,6 @@ namespace CSharpGL.Maths
         {
             return new mat2
             {
-                //cols = new[] 
-                //{
-                //    new vec4(1,0,0,0),
-                //    new vec4(0,1,0,0),
-                //    new vec4(0,0,1,0),
-                //    new vec4(0,0,0,1)
-                //}
                 col0 = new vec2(1, 0),
                 col1 = new vec2(0, 1),
             };
@@ -117,8 +83,6 @@ namespace CSharpGL.Maths
         /// <returns>The column at index <paramref name="column"/>.</returns>
         public vec2 this[int column]
         {
-            //get { return cols[column]; }
-            //set { cols[column] = value; }
             get
             {
                 if (column == 0) { return this.col0; }
@@ -150,8 +114,6 @@ namespace CSharpGL.Maths
         /// </returns>
         public float this[int column, int row]
         {
-            //get { return cols[column][row]; }
-            //set { cols[column][row] = value; }
             get
             {
                 if (column == 0) { return this.col0[row]; }
@@ -180,10 +142,9 @@ namespace CSharpGL.Maths
         /// <returns></returns>
         public float[] to_array()
         {
-            float[] result = new float[16];
+            float[] result = new float[4];
             result[0 + 0] = col0.x; result[0 + 1] = col0.y;
-            result[4 + 0] = col1.x; result[4 + 1] = col1.y;
-            //return cols.SelectMany(v => v.to_array()).ToArray();
+            result[2 + 0] = col1.x; result[2 + 1] = col1.y;
 
             return result;
         }
@@ -214,12 +175,6 @@ namespace CSharpGL.Maths
         /// <returns>The product of <paramref name="lhs"/> and <paramref name="rhs"/>.</returns>
         public static mat2 operator *(mat2 lhs, mat2 rhs)
         {
-            //mat2 originalVersion = new mat2(new[]
-            //{
-            //    lhs[0][0] * rhs[0] + lhs[1][0] * rhs[1],
-            //    lhs[0][1] * rhs[0] + lhs[1][1] * rhs[1]
-            //});
-
             mat2 result = new mat2(
                 new vec2(
                     lhs[0][0] * rhs[0][0] + lhs[1][0] * rhs[0][1],
@@ -245,10 +200,6 @@ namespace CSharpGL.Maths
 
         #endregion
 
-        ///// <summary>
-        ///// The columms of the matrix.
-        ///// </summary>
-        //private vec2[] cols;
         private vec2 col0;
         private vec2 col1;
     }

@@ -10,16 +10,7 @@ namespace CSharpGL.Maths
     {
         public override string ToString()
         {
-            //if (cols == null)
-            //{ return "<null>"; }
             var builder = new System.Text.StringBuilder();
-            //for (int i = 0; i < cols.Length; i++)
-            //{
-            //    builder.Append(cols[i]);
-            //    builder.Append(" + ");
-            //}
-            //return builder.ToString();
-            //return base.ToString();
             var cols = new vec3[] { col0, col1, col2 };
             for (int i = 0; i < cols.Length; i++)
             {
@@ -38,12 +29,6 @@ namespace CSharpGL.Maths
         /// <param name="scale">The scale.</param>
         public mat3(float scale)
         {
-            //cols = new[]
-            //{
-            //    new vec3(scale, 0.0f, 0.0f),
-            //    new vec3(0.0f, scale, 0.0f),
-            //    new vec3(0.0f, 0.0f, scale)
-            //};
             this.col0 = new vec3(scale, 0, 0);
             this.col1 = new vec3(0, scale, 0);
             this.col2 = new vec3(0, 0, scale);
@@ -56,12 +41,6 @@ namespace CSharpGL.Maths
         /// <param name="cols">The colums of the matrix.</param>
         public mat3(vec3[] cols)
         {
-            //this.cols = new[]
-            //{
-            //    cols[0],
-            //    cols[1],
-            //    cols[2]
-            //};
             this.col0 = cols[0];
             this.col1 = cols[1];
             this.col2 = cols[2];
@@ -69,10 +48,6 @@ namespace CSharpGL.Maths
 
         public mat3(vec3 a, vec3 b, vec3 c)
         {
-            //this.cols = new[]
-            //{
-            //    a, b, c
-            //};
             this.col0 = a;
             this.col1 = b;
             this.col2 = c;
@@ -86,12 +61,6 @@ namespace CSharpGL.Maths
         {
             return new mat3
             {
-                //cols = new[] 
-                //{
-                //    new vec3(1,0,0),
-                //    new vec3(0,1,0),
-                //    new vec3(0,0,1)
-                //}
                 col0 = new vec3(1, 0, 0),
                 col1 = new vec3(0, 1, 0),
                 col2 = new vec3(0, 0, 1),
@@ -112,8 +81,6 @@ namespace CSharpGL.Maths
         /// <returns>The column at index <paramref name="column"/>.</returns>
         public vec3 this[int column]
         {
-            //get { return cols[column]; }
-            //set { cols[column] = value; }
             get
             {
                 if (column == 0) { return this.col0; }
@@ -147,8 +114,6 @@ namespace CSharpGL.Maths
         /// </returns>
         public float this[int column, int row]
         {
-            //get { return cols[column][row]; }
-            //set { cols[column][row] = value; }
             get
             {
                 if (column == 0) { return this.col0[row]; }
@@ -179,7 +144,6 @@ namespace CSharpGL.Maths
         /// <returns></returns>
         public float[] to_array()
         {
-            //return cols.SelectMany(v => v.to_array()).ToArray();
             float[] result = new float[9];
             result[0 + 0] = col0.x; result[0 + 1] = col0.y; result[0 + 2] = col0.z;
             result[3 + 0] = col1.x; result[3 + 1] = col1.y; result[3 + 2] = col1.z;
@@ -193,9 +157,6 @@ namespace CSharpGL.Maths
         /// <returns>The <see cref="mat3"/> portion of this matrix.</returns>
         public mat2 to_mat2()
         {
-            //return new mat2(new[] {
-            //new vec2(cols[0][0], cols[0][1]),
-            //new vec2(cols[1][0], cols[1][1])});
             return new mat2(new vec2[]
                 {
                     new vec2(col0.x,col0.y),
@@ -230,13 +191,6 @@ namespace CSharpGL.Maths
         /// <returns>The product of <paramref name="lhs"/> and <paramref name="rhs"/>.</returns>
         public static mat3 operator *(mat3 lhs, mat3 rhs)
         {
-            //mat3 originalVersion = new mat3(new[]
-            //{
-            //    lhs[0][0] * rhs[0] + lhs[1][0] * rhs[1] + lhs[2][0] * rhs[2],
-            //    lhs[0][1] * rhs[0] + lhs[1][1] * rhs[1] + lhs[2][1] * rhs[2],
-            //    lhs[0][2] * rhs[0] + lhs[1][2] * rhs[1] + lhs[2][2] * rhs[2]
-            //});
-
             mat3 result = new mat3(
                 new vec3(
                     lhs[0][0] * rhs[0][0] + lhs[1][0] * rhs[0][1] + lhs[2][0] * rhs[0][2],
@@ -270,10 +224,6 @@ namespace CSharpGL.Maths
 
         #endregion
 
-        ///// <summary>
-        ///// The columms of the matrix.
-        ///// </summary>
-        //private vec3[] cols;
         private vec3 col0;
         private vec3 col1;
         private vec3 col2;

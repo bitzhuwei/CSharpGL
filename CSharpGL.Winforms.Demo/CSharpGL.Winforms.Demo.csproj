@@ -193,7 +193,6 @@
       <DependentUpon>ScientificVisual3DControl.cs</DependentUpon>
     </Compile>
     <Compile Include="TestProjectionFunctions.cs" />
-    <Compile Include="TestUnmanagedArray.cs" />
     <EmbeddedResource Include="TransformFeedback\feedback.frag" />
     <EmbeddedResource Include="TransformFeedback\feedback.vert" />
     <EmbeddedResource Include="TransformFeedback\transform.vert" />
