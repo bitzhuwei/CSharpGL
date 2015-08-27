@@ -1,5 +1,6 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects;
+using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Demos.UIs;
 using CSharpGL.Objects.Shaders;
 using CSharpGL.Objects.UIs;
@@ -19,6 +20,7 @@ namespace CSharpGL.Winforms.Demo
     public partial class FormTransformFeedback : Form
     {
         SimpleUIAxis uiAxis;
+        ScientificCamera camera;
 
         uint[] TimerQueryName = new uint[1];
         uint[] Query = new uint[1];
@@ -38,24 +40,83 @@ namespace CSharpGL.Winforms.Demo
         public FormTransformFeedback()
         {
             InitializeComponent();
+
+            {
+                this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
+                //CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
+            }
+
+            satelliteRoration = new SatelliteRotator(camera);
+
+            this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
+            this.glCanvas1.MouseDown += glCanvas1_MouseDown;
+            this.glCanvas1.MouseMove += glCanvas1_MouseMove;
+            this.glCanvas1.MouseUp += glCanvas1_MouseUp;
+            this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
+            this.glCanvas1.Resize += glCanvas1_Resize;
+        }
+        private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
+        {
+            this.camera.MouseWheel(e.Delta);
         }
 
+        private void glCanvas1_Resize(object sender, EventArgs e)
+        {
+            if (this.camera != null)
+            {
+                this.camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
+            }
+            ////  Set the projection matrix.
+            //GL.MatrixMode(GL.GL_PROJECTION);
+
+            ////  Load the identity.
+            //GL.LoadIdentity();
+
+            ////  Create a perspective transformation.
+            //GL.gluPerspective(60.0f, (double)Width / (double)Height, 0.01, 100.0);
+
+            ////  Use the 'look at' helper function to position and aim the camera.
+            //GL.gluLookAt(-5, 5, -5, 0, 0, 0, 0, 1, 0);
+
+            ////  Set the modelview matrix.
+            //GL.MatrixMode(GL.GL_MODELVIEW);
+        }
+
+
+        private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
+        {
+            satelliteRoration.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
+            satelliteRoration.MouseDown(e.X, e.Y);
+        }
+
+        private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (satelliteRoration.mouseDownFlag)
+            {
+                satelliteRoration.MouseMove(e.X, e.Y);
+            }
+        }
+
+        private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
+        {
+            satelliteRoration.MouseUp(e.X, e.Y);
+        }
         private void FormTransformFeedback_Load(object sender, EventArgs e)
         {
             IUILayoutParam param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, 
                 new Padding(10, 10, 10, 10), new Size(50, 50));
             this.uiAxis = new SimpleUIAxis(param);
 
-            frmWhiteBoard = new FormWhiteBoard();
-            frmWhiteBoard.Show();
+            //frmWhiteBoard = new FormWhiteBoard();
+            //frmWhiteBoard.Show();
 
-            GL.Enable(GL.GL_DEBUG_OUTPUT);
-            GL.Enable(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
-            GL.DebugMessageControl(
-                Enumerations.DebugMessageControlSource.DONT_CARE,
-                Enumerations.DebugMessageControlType.DONT_CARE,
-                Enumerations.DebugMessageControlSeverity.DONT_CARE, 0, null, true);
-            GL.DebugMessageCallback(this.CallbackProc, this.Handle);
+            //GL.Enable(GL.GL_DEBUG_OUTPUT);
+            //GL.Enable(GL.GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
+            //GL.DebugMessageControl(
+            //    Enumerations.DebugMessageControlSource.DONT_CARE,
+            //    Enumerations.DebugMessageControlType.DONT_CARE,
+            //    Enumerations.DebugMessageControlSeverity.DONT_CARE, 0, null, true);
+            //GL.DebugMessageCallback(this.CallbackProc, this.Handle);
 
             GL.GenQueries(1, TimerQueryName);
 
@@ -241,17 +302,14 @@ namespace CSharpGL.Winforms.Demo
                 //GL.m::mat4* Pointer = reinterpret_cast<GL.m::mat4*>(GL.MapBufferRange(GL_UNIFORM_BUFFER, 0, sizeof(GL.m::mat4), GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT));
                 var Pointer = GL.MapBufferRange(GL.GL_UNIFORM_BUFFER, 0, 64, (uint)(GL.GL_MAP_WRITE_BIT | GL.GL_MAP_INVALIDATE_BUFFER_BIT));
                 //GL.m::mat4 Projection = GL.m::perspective(GL.m::pi<float>() * 0.25f, WindowSize.x / WindowSize.y, 0.1f, 100.0f);
-                mat4 projection = glm.perspective((float)Math.PI * 0.25f, (float)this.glCanvas1.Width / (float)this.glCanvas1.Height, 0.1f, 100.0f);
-                mat4 Model = mat4.identity();
-                var newMat4 = projection * this.view() * Model;
+                //mat4 projection = glm.perspective((float)Math.PI * 0.25f, (float)this.glCanvas1.Width / (float)this.glCanvas1.Height, 0.1f, 100.0f);
+                //mat4 Model = mat4.identity();
+                //var newMat4 = projection * this.view() * Model;
 
-                UnmanagedArray<float> tmp = new UnmanagedArray<float>(16);
-                var floats = newMat4.to_array();
-                for (int i = 0; i < 16; i++)
-                {
-                    tmp[i] = floats[i];
-                }
-                //MemoryHelper.CopyMemory(Pointer, tmp.Header, 64);
+                var tmp = new UnmanagedArray<mat4>(1);
+                mat4 projection = this.camera.GetProjectionMat4();
+                mat4 view = this.camera.GetViewMat4();
+                tmp[0] = projection * view;
                 tmp.CopyTo(Pointer);
 
                 GL.UnmapBuffer(GL.GL_UNIFORM_BUFFER);
@@ -311,5 +369,6 @@ namespace CSharpGL.Winforms.Demo
         float translateZ;
         float rotateY;
         float rotateX;
+        private SatelliteRotator satelliteRoration;
     }
 }
