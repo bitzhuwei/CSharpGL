@@ -20,7 +20,7 @@ namespace System
         /// <param name="destination">例如用glMapBuffer()得到的地址。</param>
         public static void CopyTo(this UnmanagedArrayBase source, IntPtr destination)
         {
-            CopyMemory(destination, source.Header, source.ByteLength);
+            CopyMemory(destination, source.Header, (uint)source.ByteLength);
         }
 
         /// <summary>

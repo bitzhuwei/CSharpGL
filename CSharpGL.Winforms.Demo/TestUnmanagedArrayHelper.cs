@@ -220,6 +220,61 @@ namespace CSharpGL.Winforms.Demo
 
             }
 
+            // 测试mat4类型
+            {
+                var vec3Array = new UnmanagedArray<mat4>(count);
+                startTick = DateTime.Now.Ticks;
+                for (int i = 0; i < count; i++)
+                {
+                    vec3Array[i] = new mat4(new vec4(i, i + 1, i + 2, i + 3), new vec4(i, i + 1, i + 2, i + 3), new vec4(i, i + 1, i + 2, i + 3), new vec4(i, i + 1, i + 2, i + 3));
+                }
+                for (int i = 0; i < count; i++)
+                {
+                    var item = vec3Array[i];
+                    var old = new mat4(new vec4(i, i + 1, i + 2, i + 3), new vec4(i, i + 1, i + 2, i + 3), new vec4(i, i + 1, i + 2, i + 3), new vec4(i, i + 1, i + 2, i + 3));
+                    for (int col = 0; col < 4; col++)
+                    {
+                        for (int row = 0; row < 4; row++)
+                        {
+                            if (item[col][row] != old[col][row])
+                            { throw new Exception(); }
+                        }
+                    }
+                }
+                interval = DateTime.Now.Ticks - startTick;
+
+                unsafe
+                {
+                    startTick = DateTime.Now.Ticks;
+                    mat4* header = (mat4*)vec3Array.FirstElement();
+                    mat4* last = (mat4*)vec3Array.LastElement();
+                    mat4* tailAddress = (mat4*)vec3Array.TailAddress();
+                    int i = 0;
+                    for (mat4* ptr = header; ptr <= last/*or: ptr < tailAddress*/; ptr++)
+                    {
+                        *ptr = new mat4(new vec4(i, i + 1, i + 2, i + 3), new vec4(i, i + 1, i + 2, i + 3), new vec4(i, i + 1, i + 2, i + 3), new vec4(i, i + 1, i + 2, i + 3));
+                        i++;
+                    }
+                    i = 0;
+                    for (mat4* ptr = header; ptr <= last/*or: ptr < tailAddress*/; ptr++, i++)
+                    {
+                        var item = *ptr;
+                        var old = new mat4(new vec4(i, i + 1, i + 2, i + 3), new vec4(i, i + 1, i + 2, i + 3), new vec4(i, i + 1, i + 2, i + 3), new vec4(i, i + 1, i + 2, i + 3));
+                        for (int col = 0; col < 4; col++)
+                        {
+                            for (int row = 0; row < 4; row++)
+                            {
+                                if (item[col][row] != old[col][row])
+                                { throw new Exception(); }
+                            }
+                        }
+                    }
+                    interval2 = DateTime.Now.Ticks - startTick;
+                }
+                Console.WriteLine("Ticks: safe: {0} vs unsafe: {1}", interval, interval2);
+
+            }
+
             // 立即释放所有非托管数组占用的内存，任何之前创建的UnmanagedBase数组都不再可用了。
             UnmanagedArray<int>.FreeAll();
         }

@@ -126,6 +126,21 @@ namespace CSharpGL.Winforms.Demo
             (new FormScientificVisual3DControl()).Show();
         }
 
+        private void btnFormTransformFeedback_Click(object sender, EventArgs e)
+        {
+            (new FormTransformFeedback()).Show();
+        }
+
+        private void btnFormInstancedRendering_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFormMapBuffer_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

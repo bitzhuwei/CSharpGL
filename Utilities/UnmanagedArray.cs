@@ -85,7 +85,7 @@ namespace System
         /// <summary>
         /// 元素的总数。
         /// </summary>
-        public uint Length { get; private set; }
+        public int Length { get; private set; }
 
         /// <summary>
         /// 单个元素的字节数。
@@ -95,9 +95,9 @@ namespace System
         /// <summary>
         /// 申请到的字节数。（元素的总数 * 单个元素的字节数）。
         /// </summary>
-        public uint ByteLength
+        public int ByteLength
         {
-            get { return (uint)(this.Length * this.elementSize); }
+            get { return (this.Length * this.elementSize); }
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace System
         //[MethodImpl(MethodImplOptions.Synchronized)]//这造成死锁，不知道是为什么
         protected UnmanagedArrayBase(int elementCount, int elementSize)
         {
-            this.Length = (uint)elementCount;
+            this.Length = elementCount;
             this.elementSize = elementSize;
 
             int memSize = elementCount * elementSize;

@@ -48,6 +48,9 @@
             this.btnFormLegacyTexture3D = new System.Windows.Forms.Button();
             this.btnFormColorCodedPicking = new System.Windows.Forms.Button();
             this.btnFormScientificVisual3DControl = new System.Windows.Forms.Button();
+            this.btnFormTransformFeedback = new System.Windows.Forms.Button();
+            this.btnFormInstancedRendering = new System.Windows.Forms.Button();
+            this.btnFormMapBuffer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -116,7 +119,7 @@
             this.btnSatelliteRotation.UseVisualStyleBackColor = true;
             this.btnSatelliteRotation.Click += new System.EventHandler(this.btnSatelliteRotation_Click);
             // 
-            // btnWholeFontTextureElement
+            // btnFormWholeFontTextureElement
             // 
             this.btnFormWholeFontTextureElement.Location = new System.Drawing.Point(13, 198);
             this.btnFormWholeFontTextureElement.Margin = new System.Windows.Forms.Padding(4);
@@ -260,6 +263,39 @@
             this.btnFormScientificVisual3DControl.UseVisualStyleBackColor = true;
             this.btnFormScientificVisual3DControl.Click += new System.EventHandler(this.btnFormScientificVisual3DControl_Click);
             // 
+            // btnFormTransformFeedback
+            // 
+            this.btnFormTransformFeedback.Location = new System.Drawing.Point(374, 50);
+            this.btnFormTransformFeedback.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormTransformFeedback.Name = "btnFormTransformFeedback";
+            this.btnFormTransformFeedback.Size = new System.Drawing.Size(353, 29);
+            this.btnFormTransformFeedback.TabIndex = 4;
+            this.btnFormTransformFeedback.Text = "FormTransformFeedback";
+            this.btnFormTransformFeedback.UseVisualStyleBackColor = true;
+            this.btnFormTransformFeedback.Click += new System.EventHandler(this.btnFormTransformFeedback_Click);
+            // 
+            // btnFormInstancedRendering
+            // 
+            this.btnFormInstancedRendering.Location = new System.Drawing.Point(374, 87);
+            this.btnFormInstancedRendering.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormInstancedRendering.Name = "btnFormInstancedRendering";
+            this.btnFormInstancedRendering.Size = new System.Drawing.Size(353, 29);
+            this.btnFormInstancedRendering.TabIndex = 4;
+            this.btnFormInstancedRendering.Text = "FormInstancedRendering";
+            this.btnFormInstancedRendering.UseVisualStyleBackColor = true;
+            this.btnFormInstancedRendering.Click += new System.EventHandler(this.btnFormInstancedRendering_Click);
+            // 
+            // btnFormMapBuffer
+            // 
+            this.btnFormMapBuffer.Location = new System.Drawing.Point(374, 124);
+            this.btnFormMapBuffer.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormMapBuffer.Name = "btnFormMapBuffer";
+            this.btnFormMapBuffer.Size = new System.Drawing.Size(353, 29);
+            this.btnFormMapBuffer.TabIndex = 4;
+            this.btnFormMapBuffer.Text = "FormMapBuffer";
+            this.btnFormMapBuffer.UseVisualStyleBackColor = true;
+            this.btnFormMapBuffer.Click += new System.EventHandler(this.btnFormMapBuffer_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -271,6 +307,9 @@
             this.Controls.Add(this.btnCamera);
             this.Controls.Add(this.btnSimpleUICube);
             this.Controls.Add(this.btnFormPointSpriteStringElement);
+            this.Controls.Add(this.btnFormMapBuffer);
+            this.Controls.Add(this.btnFormInstancedRendering);
+            this.Controls.Add(this.btnFormTransformFeedback);
             this.Controls.Add(this.btnFormScientificVisual3DControl);
             this.Controls.Add(this.btnFormColorCodedPicking);
             this.Controls.Add(this.btnFormLegacyTexture3D);
@@ -313,5 +352,8 @@
         private System.Windows.Forms.Button btnFormLegacyTexture3D;
         private System.Windows.Forms.Button btnFormColorCodedPicking;
         private System.Windows.Forms.Button btnFormScientificVisual3DControl;
+        private System.Windows.Forms.Button btnFormTransformFeedback;
+        private System.Windows.Forms.Button btnFormInstancedRendering;
+        private System.Windows.Forms.Button btnFormMapBuffer;
     }
 }

@@ -8,6 +8,27 @@ namespace CSharpGL.Maths
     /// </summary>
     public struct mat3
     {
+        public override string ToString()
+        {
+            //if (cols == null)
+            //{ return "<null>"; }
+            var builder = new System.Text.StringBuilder();
+            //for (int i = 0; i < cols.Length; i++)
+            //{
+            //    builder.Append(cols[i]);
+            //    builder.Append(" + ");
+            //}
+            //return builder.ToString();
+            //return base.ToString();
+            var cols = new vec3[] { col0, col1, col2 };
+            for (int i = 0; i < cols.Length; i++)
+            {
+                builder.Append(cols[i]);
+                builder.Append(" + ");
+            }
+            return builder.ToString();
+        }
+
         #region Construction
 
         /// <summary>
@@ -17,12 +38,15 @@ namespace CSharpGL.Maths
         /// <param name="scale">The scale.</param>
         public mat3(float scale)
         {
-            cols = new[]
-            {
-                new vec3(scale, 0.0f, 0.0f),
-                new vec3(0.0f, scale, 0.0f),
-                new vec3(0.0f, 0.0f, scale)
-            };
+            //cols = new[]
+            //{
+            //    new vec3(scale, 0.0f, 0.0f),
+            //    new vec3(0.0f, scale, 0.0f),
+            //    new vec3(0.0f, 0.0f, scale)
+            //};
+            this.col0 = new vec3(scale, 0, 0);
+            this.col1 = new vec3(0, scale, 0);
+            this.col2 = new vec3(0, 0, scale);
         }
 
         /// <summary>
@@ -32,20 +56,26 @@ namespace CSharpGL.Maths
         /// <param name="cols">The colums of the matrix.</param>
         public mat3(vec3[] cols)
         {
-            this.cols = new[]
-            {
-                cols[0],
-                cols[1],
-                cols[2]
-            };
+            //this.cols = new[]
+            //{
+            //    cols[0],
+            //    cols[1],
+            //    cols[2]
+            //};
+            this.col0 = cols[0];
+            this.col1 = cols[1];
+            this.col2 = cols[2];
         }
 
         public mat3(vec3 a, vec3 b, vec3 c)
         {
-            this.cols = new[]
-            {
-                a, b, c
-            };
+            //this.cols = new[]
+            //{
+            //    a, b, c
+            //};
+            this.col0 = a;
+            this.col1 = b;
+            this.col2 = c;
         }
 
         /// <summary>
@@ -56,12 +86,15 @@ namespace CSharpGL.Maths
         {
             return new mat3
             {
-                cols = new[] 
-                {
-                    new vec3(1,0,0),
-                    new vec3(0,1,0),
-                    new vec3(0,0,1)
-                }
+                //cols = new[] 
+                //{
+                //    new vec3(1,0,0),
+                //    new vec3(0,1,0),
+                //    new vec3(0,0,1)
+                //}
+                col0 = new vec3(1, 0, 0),
+                col1 = new vec3(0, 1, 0),
+                col2 = new vec3(0, 0, 1),
             };
         }
 
@@ -79,8 +112,26 @@ namespace CSharpGL.Maths
         /// <returns>The column at index <paramref name="column"/>.</returns>
         public vec3 this[int column]
         {
-            get { return cols[column]; }
-            set { cols[column] = value; }
+            //get { return cols[column]; }
+            //set { cols[column] = value; }
+            get
+            {
+                if (column == 0) { return this.col0; }
+                if (column == 1) { return this.col1; }
+                if (column == 2) { return this.col2; }
+
+                throw new ArgumentOutOfRangeException();
+            }
+            set
+            {
+                if (column == 0) { this.col0 = value; }
+                else if (column == 1) { this.col1 = value; }
+                else if (column == 2) { this.col2 = value; }
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+            }
         }
 
         /// <summary>
@@ -96,8 +147,26 @@ namespace CSharpGL.Maths
         /// </returns>
         public float this[int column, int row]
         {
-            get { return cols[column][row]; }
-            set { cols[column][row] = value; }
+            //get { return cols[column][row]; }
+            //set { cols[column][row] = value; }
+            get
+            {
+                if (column == 0) { return this.col0[row]; }
+                if (column == 1) { return this.col1[row]; }
+                if (column == 2) { return this.col2[row]; }
+
+                throw new ArgumentOutOfRangeException();
+            }
+            set
+            {
+                if (column == 0) { this.col0[row] = value; }
+                else if (column == 1) { this.col1[row] = value; }
+                else if (column == 2) { this.col2[row] = value; }
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+            }
         }
 
         #endregion
@@ -110,7 +179,12 @@ namespace CSharpGL.Maths
         /// <returns></returns>
         public float[] to_array()
         {
-            return cols.SelectMany(v => v.to_array()).ToArray();
+            //return cols.SelectMany(v => v.to_array()).ToArray();
+            float[] result = new float[9];
+            result[0 + 0] = col0.x; result[0 + 1] = col0.y; result[0 + 2] = col0.z;
+            result[3 + 0] = col1.x; result[3 + 1] = col1.y; result[3 + 2] = col1.z;
+            result[6 + 0] = col2.x; result[6 + 1] = col2.y; result[6 + 2] = col2.z;
+            return result;
         }
 
         /// <summary>
@@ -119,9 +193,14 @@ namespace CSharpGL.Maths
         /// <returns>The <see cref="mat3"/> portion of this matrix.</returns>
         public mat2 to_mat2()
         {
-            return new mat2(new[] {
-			new vec2(cols[0][0], cols[0][1]),
-			new vec2(cols[1][0], cols[1][1])});
+            //return new mat2(new[] {
+            //new vec2(cols[0][0], cols[0][1]),
+            //new vec2(cols[1][0], cols[1][1])});
+            return new mat2(new vec2[]
+                {
+                    new vec2(col0.x,col0.y),
+                    new vec2(col1.x,col1.y),
+                });
         }
 
         #endregion
@@ -191,9 +270,12 @@ namespace CSharpGL.Maths
 
         #endregion
 
-        /// <summary>
-        /// The columms of the matrix.
-        /// </summary>
-        private vec3[] cols;
+        ///// <summary>
+        ///// The columms of the matrix.
+        ///// </summary>
+        //private vec3[] cols;
+        private vec3 col0;
+        private vec3 col1;
+        private vec3 col2;
     }
 }

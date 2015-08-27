@@ -194,10 +194,11 @@
     </Compile>
     <Compile Include="TestProjectionFunctions.cs" />
     <Compile Include="TestUnmanagedArray.cs" />
-    <None Include="TransformFeedback\feedback.frag" />
-    <None Include="TransformFeedback\feedback.vert" />
-    <None Include="TransformFeedback\transform.vert" />
+    <EmbeddedResource Include="TransformFeedback\feedback.frag" />
+    <EmbeddedResource Include="TransformFeedback\feedback.vert" />
+    <EmbeddedResource Include="TransformFeedback\transform.vert" />
     <Compile Include="TestUnmanagedArrayHelper.cs" />
+    <Compile Include="TransformShaderProgram.cs" />
     <Compile Include="WholeFontTextureElement.cs" />
     <EmbeddedResource Include="FormColorCodedPicking.resx">
       <DependentUpon>FormColorCodedPicking.cs</DependentUpon>
