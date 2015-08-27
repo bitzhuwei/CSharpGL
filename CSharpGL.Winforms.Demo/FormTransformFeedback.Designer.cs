@@ -40,7 +40,7 @@
             this.glCanvas1.Location = new System.Drawing.Point(13, 13);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.glCanvas1.Name = "glCanvas1";
-            this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
+            this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL4_0;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(593, 379);
             this.glCanvas1.TabIndex = 0;

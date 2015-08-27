@@ -117,9 +117,10 @@ namespace CSharpGL.Winforms.Demo
             BufferName = new uint[2];
             GL.GenBuffers(BufferName.Length, BufferName);
 
-            //int[] UniformBufferOffset = new int[1];
-            //GL.GetInteger(GetTarget.UniformBufferOffsetAlignment, UniformBufferOffset);
-            //int UniformBlockSize = Math.Max(64/*Marshal.SizeOf(typeof(mat4))*/, UniformBufferOffset[0]);
+            int[] UniformBufferOffset = new int[1];
+            GL.GetInteger(GetTarget.UniformBufferOffsetAlignment, UniformBufferOffset);
+            int mat4Size = Marshal.SizeOf(typeof(mat4));
+            int UniformBlockSize = Math.Max(mat4Size/*64*/ /*Marshal.SizeOf(typeof(mat4))*/, UniformBufferOffset[0]);
 
             GL.BindBuffer(BufferTarget.UniformBuffer, BufferName[1]);
             var buffer = new UnmanagedArray<float>(16);
@@ -165,7 +166,7 @@ namespace CSharpGL.Winforms.Demo
             }
             {
                 var index = GL.GetUniformBlockIndex(TransformProgramName.ShaderProgramObject, "transform");
-                GL.UniformBlockBinding(FeedbackProgram.ShaderProgramObject, index, (uint)UniformType.TRANSFORM0);
+                GL.UniformBlockBinding(TransformProgramName.ShaderProgramObject, index, (uint)UniformType.TRANSFORM0);
             }
         }
 

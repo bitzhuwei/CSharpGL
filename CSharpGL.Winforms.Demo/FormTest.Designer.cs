@@ -265,7 +265,6 @@
             // 
             // btnFormTransformFeedback
             // 
-            this.btnFormTransformFeedback.Enabled = false;
             this.btnFormTransformFeedback.Location = new System.Drawing.Point(374, 50);
             this.btnFormTransformFeedback.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormTransformFeedback.Name = "btnFormTransformFeedback";
