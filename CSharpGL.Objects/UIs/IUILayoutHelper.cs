@@ -19,7 +19,7 @@ namespace CSharpGL.Objects.UIs
         /// <param name="viewMatrix"></param>
         /// <param name="modelMatrix"></param>
         /// <param name="camera">如果为null，会以glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0))计算默认值。</param>
-        /// <param name="maxDepth">UI元素能接触到的最大深度。</param>
+        /// <param name="maxDepth">UI元素的外接球半径的倍数。</param>
         public static void GetMatrix(this IUILayout uiElement,
             out mat4 projectionMatrix, out mat4 viewMatrix, out mat4 modelMatrix,
             IViewCamera camera = null, float maxDepth = 2.0f)
@@ -32,6 +32,7 @@ namespace CSharpGL.Objects.UIs
                 // TODO: / 2后与legacy opengl的UI元素显示就完全一致了。为什么？？？
                 projectionMatrix = glm.ortho((float)args.left / 2, (float)args.right / 2, (float)args.bottom / 2, (float)args.top / 2,
                     uiElement.Param.zNear, uiElement.Param.zFar);
+                // 下面注释掉的代码是用来测试legacy OpenGL的matrix与GLM库计算的matrix是否相同用的。已经证明了两者完全相同，此处仅作留念+以防万一。
                 //{
                 //    float[] matrix = new float[16];
 
@@ -51,9 +52,14 @@ namespace CSharpGL.Objects.UIs
                 projectionMatrix = glm.translate(projectionMatrix, new vec3(0, 0, uiElement.Param.zFar - max / 2 * maxDepth));
             }
             {
+                // UI元素不在三维场景中，所以其Camera可以是null。
                 if (camera == null)
                 {
-                    viewMatrix = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
+                    //viewMatrix = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
+                    viewMatrix = glm.lookAt(
+                        ScientificCamera.defaultPosition, 
+                        ScientificCamera.defaultTarget, 
+                        ScientificCamera.defaultUpVector);
                 }
                 else
                 {
@@ -61,6 +67,7 @@ namespace CSharpGL.Objects.UIs
                     position.Normalize();
                     viewMatrix = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
                 }
+                // 下面注释掉的代码是用来测试legacy OpenGL的matrix与GLM库计算的matrix是否相同用的。已经证明了两者完全相同，此处仅作留念+以防万一。
                 //{
                 //    float[] matrix = new float[16];
 
@@ -88,6 +95,7 @@ namespace CSharpGL.Objects.UIs
             }
             {
                 modelMatrix = glm.scale(mat4.identity(), new vec3(args.UIWidth / 2, args.UIHeight / 2, max / 2));
+                // 下面注释掉的代码是用来测试legacy OpenGL的matrix与GLM库计算的matrix是否相同用的。已经证明了两者完全相同，此处仅作留念+以防万一。
                 //{
                 //    float[] matrix = new float[16];
 
@@ -116,7 +124,12 @@ namespace CSharpGL.Objects.UIs
         /// topBottomAnchor = (AnchorStyles.Top | AnchorStyles.Bottom);
         /// </summary>
         const AnchorStyles topBottomAnchor = (AnchorStyles.Top | AnchorStyles.Bottom);
-
+        
+        /// <summary>
+        /// 获取为UI元素布局所需的参数对象。
+        /// </summary>
+        /// <param name="uiElement"></param>
+        /// <returns></returns>
         public static IUILayoutArgs GetArgs(this IUILayout uiElement)
         {
             var args = new IUILayoutArgs();
@@ -128,6 +141,10 @@ namespace CSharpGL.Objects.UIs
             return args;
         }
 
+        /// <summary>
+        /// 计算opengl画布的大小。
+        /// </summary>
+        /// <param name="args"></param>
         static void CalculateViewport(IUILayoutArgs args)
         {
             int[] viewport = new int[4];
@@ -136,6 +153,13 @@ namespace CSharpGL.Objects.UIs
             args.viewportHeight = viewport[3];
         }
 
+        /// <summary>
+        /// 根据UI元素的布局设定，计算其应有的宽高及其在ortho()中应有的参数。
+        /// </summary>
+        /// <param name="uiElement"></param>
+        /// <param name="viewportWidth"></param>
+        /// <param name="viewportHeight"></param>
+        /// <param name="args"></param>
         static void CalculateCoords(IUILayout uiElement, int viewportWidth, int viewportHeight, IUILayoutArgs args)
         {
             IUILayoutParam param = uiElement.Param;

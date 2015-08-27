@@ -52,6 +52,8 @@ namespace CSharpGL.Objects
         /// 对Xxx : SceneElementBase, IMVP有效的After事件。
         /// <para>如果场景中有很多元素，就不要用这个通用委托了。它会为每个元素计算一次MVP矩阵，所以会比较费时。</para>
         /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="element"></param>
         /// <returns></returns>
         public static EventHandler<RenderEventArgs> GetIMVPElement_AfterRendering<T>(this T element)
             where T : SceneElementBase, IMVP
@@ -74,6 +76,8 @@ namespace CSharpGL.Objects
         /// 对Xxx : SceneElementBase, IMVP有效的Before事件。
         /// <para>如果场景中有很多元素，就不要用这个通用委托了。它会为每个元素计算一次MVP矩阵，所以会比较费时。</para>
         /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="element"></param>
         /// <returns></returns>
         public static EventHandler<RenderEventArgs> GetIMVPElement_BeforeRendering<T>(this T element)
             where T : SceneElementBase, IMVP
@@ -103,6 +107,8 @@ namespace CSharpGL.Objects
 
         static void IMVPElement_BeforeRendering(object sender, RenderEventArgs e)
         {
+            // 三维场景中所有的元素都应在Camera的照耀下现形，没有Camera就不知道元素该放哪儿。
+            // UI元素不在三维场景中，所以其Camera可以是null。
             if (e.Camera == null)
             {
                 throw new ArgumentNullException();
