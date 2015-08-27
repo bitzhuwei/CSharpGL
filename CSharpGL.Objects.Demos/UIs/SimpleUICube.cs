@@ -22,9 +22,6 @@ namespace CSharpGL.Objects.Demos.UIs
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
-        //public const string strprojectionMatrix = "projectionMatrix";
-        //public const string strviewMatrix = "viewMatrix";
-        //public const string strmodelMatrix = "modelMatrix";
 
         /// <summary>
         /// VAO
@@ -125,7 +122,6 @@ namespace CSharpGL.Objects.Demos.UIs
             //  Now do the same for the colour data.
             {
                 UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(8 * 3);
-                //vec3 color = ((IUILayout)this).RectColor;
                 vec3[] colors = new vec3[] { new vec3(1, 0, 0), new vec3(0, 1, 0), new vec3(0, 0, 1), };
                 for (int i = 0; i < colorArray.Length; i++)
                 {
