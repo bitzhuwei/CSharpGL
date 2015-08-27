@@ -71,9 +71,9 @@ namespace CSharpGL.Objects.Demos
             InitVAO();
 
             this.BeforeRendering += DemoColorCodedPickingElement_BeforeRendering;
-            //this.BeforeRendering += this.Getelement_BeforeRendering();
+            this.BeforeRendering += this.GetIMVPElement_BeforeRendering();
             this.AfterRendering += DemoColorCodedPickingElement_AfterRendering;
-            //this.AfterRendering += this.Getelement_AfterRendering();
+            this.AfterRendering += this.GetIMVPElement_AfterRendering();
         }
 
         void DemoColorCodedPickingElement_AfterRendering(object sender, RenderEventArgs e)

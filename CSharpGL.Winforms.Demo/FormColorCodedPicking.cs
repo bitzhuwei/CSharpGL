@@ -45,8 +45,8 @@ namespace CSharpGL.Winforms.Demo
 
             element = new DemoColorCodedPickingElement(size);
             element.Initialize();
-            element.BeforeRendering += element_BeforeRendering;
-            element.AfterRendering += element_AfterRendering;
+            //element.BeforeRendering += element_BeforeRendering;
+            //element.AfterRendering += element_AfterRendering;
 
             Padding uiPadding = new System.Windows.Forms.Padding(10, 10, 10, 10);
             Size uiSize = new System.Drawing.Size(50, 50);

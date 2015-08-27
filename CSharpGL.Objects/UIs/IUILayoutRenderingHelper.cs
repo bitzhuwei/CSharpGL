@@ -16,7 +16,7 @@ namespace CSharpGL.Objects
 
         /// <summary>
         /// 对Xxx : SceneElementBase, IUILayout, IMVP有效的After事件。
-        /// <para>此处用泛型方法是为了让编译器检测where约束条件，同时这也更可用。</para>
+        /// <para>此处用泛型方法是为了让编译器检测where约束条件，这样就没有“坑”了。</para>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="element"></param>
@@ -40,7 +40,7 @@ namespace CSharpGL.Objects
 
         /// <summary>
         /// 对Xxx : SceneElementBase, IUILayout, IMVP有效的Before事件。
-        /// <para>此处用泛型方法是为了让编译器检测where约束条件，同时这也更可用。</para>
+        /// <para>此处用泛型方法是为了让编译器检测where约束条件，这样就没有“坑”了。</para>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="element"></param>
