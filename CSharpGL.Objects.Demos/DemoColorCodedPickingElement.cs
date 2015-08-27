@@ -301,7 +301,7 @@ namespace CSharpGL.Objects.Demos
 
         ShaderProgram IMVP.GetShaderProgram()
         {
-            return this.shaderProgram;
+            return this.currentShaderProgram;
         }
     }
 }
