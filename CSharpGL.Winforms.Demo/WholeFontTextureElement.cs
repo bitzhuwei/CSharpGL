@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Winforms.Demo
 {
-    class WholeFontTextureElement : SceneElementBase, IDisposable
+    class WholeFontTextureElement : SceneElementBase, IMVP, IDisposable
     {
         internal bool blend = true;
 
@@ -23,9 +23,6 @@ namespace CSharpGL.Winforms.Demo
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_TexCoord = "in_TexCoord";
-        public const string strprojectionMatrix = "projectionMatrix";
-        public const string strviewMatrix = "viewMatrix";
-        public const string strmodelMatrix = "modelMatrix";
         public const string strtex = "tex";
         public const string strcolor = "color";
 
@@ -125,8 +122,8 @@ namespace CSharpGL.Winforms.Demo
 
         private void InitShaderProgram()
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Texts.freetype.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Texts.freetype.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"WholeFontTextureElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"WholeFontTextureElement.frag");
             var shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
@@ -191,5 +188,20 @@ namespace CSharpGL.Winforms.Demo
 
         #endregion
 
+
+        void IMVP.UpdateMVP(mat4 mvp)
+        {
+            IMVPHelper.DoUpdateMVP(this, mvp);
+        }
+
+        void IMVP.UnbindShaderProgram()
+        {
+            IMVPHelper.DoUnbindShaderProgram(this);
+        }
+
+        ShaderProgram IMVP.GetShaderProgram()
+        {
+            return this.shaderProgram;
+        }
     }
 }

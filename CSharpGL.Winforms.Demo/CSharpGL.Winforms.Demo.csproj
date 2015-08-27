@@ -296,8 +296,8 @@
     <None Include="simsun.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <EmbeddedResource Include="Texts\freetype.frag" />
-    <EmbeddedResource Include="Texts\freetype.vert" />
+    <EmbeddedResource Include="WholeFontTextureElement.frag" />
+    <EmbeddedResource Include="WholeFontTextureElement.vert" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

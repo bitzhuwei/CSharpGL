@@ -1,7 +1,9 @@
 ﻿using CSharpGL.Maths;
 using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
+using CSharpGL.Objects.Demos.UIs;
 using CSharpGL.Objects.Shaders;
+using CSharpGL.Objects.UIs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +21,7 @@ namespace CSharpGL.Winforms.Demo
         SatelliteRotator rotator;
         ScientificCamera camera;
         WholeFontTextureElement element;
+        SimpleUIAxis uiAxis;
 
         public FormWholeFontTextureElement()
         {
@@ -42,6 +45,11 @@ namespace CSharpGL.Winforms.Demo
 
             element.BeforeRendering += element_BeforeRendering;
             element.AfterRendering += element_AfterRendering;
+
+            IUILayoutParam param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom,
+                new Padding(10, 10, 10, 10), new Size(40, 40));
+            uiAxis = new SimpleUIAxis(param);
+            uiAxis.Initialize();
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -67,7 +75,9 @@ namespace CSharpGL.Winforms.Demo
 
         void element_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
-            element.shaderProgram.Unbind();
+            IMVP iMVP = element as IMVP;
+            iMVP.UnbindShaderProgram();
+
             GL.BindTexture(GL.GL_TEXTURE_2D, 0);
 
             if (element.blend)
@@ -94,9 +104,9 @@ namespace CSharpGL.Winforms.Demo
             shaderProgram.Bind();
             shaderProgram.SetUniform(WholeFontTextureElement.strtex, texture.Name);
             shaderProgram.SetUniform(WholeFontTextureElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
-            shaderProgram.SetUniformMatrix4(WholeFontTextureElement.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(WholeFontTextureElement.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(WholeFontTextureElement.strmodelMatrix, modelMatrix.to_array());
+
+            IMVP iMVP = element as IMVP;
+            iMVP.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
         }
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -106,6 +116,7 @@ namespace CSharpGL.Winforms.Demo
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
             element.Render(arg);
+            uiAxis.Render(arg);
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
