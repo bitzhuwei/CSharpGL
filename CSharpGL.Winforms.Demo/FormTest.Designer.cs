@@ -265,6 +265,7 @@
             // 
             // btnFormTransformFeedback
             // 
+            this.btnFormTransformFeedback.Enabled = false;
             this.btnFormTransformFeedback.Location = new System.Drawing.Point(374, 50);
             this.btnFormTransformFeedback.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormTransformFeedback.Name = "btnFormTransformFeedback";
@@ -276,6 +277,7 @@
             // 
             // btnFormInstancedRendering
             // 
+            this.btnFormInstancedRendering.Enabled = false;
             this.btnFormInstancedRendering.Location = new System.Drawing.Point(374, 87);
             this.btnFormInstancedRendering.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormInstancedRendering.Name = "btnFormInstancedRendering";
@@ -287,6 +289,7 @@
             // 
             // btnFormMapBuffer
             // 
+            this.btnFormMapBuffer.Enabled = false;
             this.btnFormMapBuffer.Location = new System.Drawing.Point(374, 124);
             this.btnFormMapBuffer.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormMapBuffer.Name = "btnFormMapBuffer";
