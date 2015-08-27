@@ -111,9 +111,6 @@ namespace CSharpGL.Winforms.Demo
 
         private void InitTexture()
         {
-            //System.Drawing.Bitmap bigBitmap = this.ttfTexture.BigBitmap;
-
-            //CreateTextureObject(bigBitmap);
             CreateTextureObject(this.ttfTexture);
 
             //// TODO: 测试用，可删除。
@@ -125,62 +122,6 @@ namespace CSharpGL.Winforms.Demo
             this.texture = new Texture2D();
             this.texture.Initialize(fontTexture.BigBitmap);
         }
-
-        //private void CreateTextureObject(FontTexture ttfTexture)
-        //{
-        //    //	Get the maximum texture size supported by OpenGL.
-        //    int[] textureMaxSize = { 0 };
-        //    GL.GetInteger(GetTarget.MaxTextureSize, textureMaxSize);
-
-        //    //	Find the target width and height sizes, which is just the highest
-        //    //	posible power of two that'll fit into the image.
-        //    int textureWidth;
-        //    int textureHeight;
-        //    ttfTexture.GetTextureWidthHeight(textureMaxSize[0], out textureWidth, out textureHeight);
-
-        //    System.Drawing.Bitmap bigBitmap = ttfTexture.BigBitmap;
-        //    System.Drawing.Bitmap newImage = bigBitmap;
-
-        //    //  If need to scale, do so now.
-        //    if (bigBitmap.Width != textureWidth || bigBitmap.Height != textureHeight)
-        //    {
-        //        //  Resize the image.
-        //        newImage = (System.Drawing.Bitmap)bigBitmap.GetThumbnailImage(textureWidth, textureHeight, null, IntPtr.Zero);
-        //    }
-
-        //    //  Lock the image bits (so that we can pass them to OGL).
-        //    BitmapData bitmapData = newImage.LockBits(new Rectangle(0, 0, newImage.Width, newImage.Height),
-        //        ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-
-        //    //GL.ActiveTexture(GL.GL_TEXTURE0);
-        //    GL.GenTextures(1, texture);
-        //    GL.BindTexture(GL.GL_TEXTURE_2D, texture[0]);
-
-        //    GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA,
-        //        newImage.Width, newImage.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
-        //        bitmapData.Scan0);
-
-        //    //  Unlock the image.
-        //    newImage.UnlockBits(bitmapData);
-
-        //    //  Dispose of the image file.
-        //    if (newImage != bigBitmap)
-        //    {
-        //        newImage.Dispose();
-        //    }
-
-        //    /* We require 1 byte alignment when uploading texture data */
-        //    //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
-
-        //    /* Clamping to edges is important to prevent artifacts when scaling */
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
-
-        //    /* Linear filtering usually looks best for text */
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
-        //    GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
-
-        //}
 
         private void InitShaderProgram()
         {
