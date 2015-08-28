@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayHelper.cs" />
+    <Compile Include="ByteArrayHelper.cs" />
     <Compile Include="FloatHelper.cs" />
     <Compile Include="ManifestResourceLoader.cs" />
     <Compile Include="UnmanagedArrayHelper.cs" />

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReadBook.Common
+namespace RedBook.Common
 {
     public class VBM
     {
@@ -18,6 +19,7 @@ namespace ReadBook.Common
     {
         public uint magic;
         public uint size;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
         public string name;//char name[64];
         public uint num_attribs;
         public uint num_frames;
@@ -31,6 +33,7 @@ namespace ReadBook.Common
 
     public struct VBM_ATTRIB_HEADER
     {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
         public string name; //char name[64];
         public uint type;
         public uint components;
@@ -77,6 +80,7 @@ namespace ReadBook.Common
         /// <summary>
         /// Name of material
         /// </summary>
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
         public string name;//char name[32]; 
         /// <summary>
         /// Ambient color
@@ -113,19 +117,23 @@ namespace ReadBook.Common
         /// <summary>
         /// Ambient map (texture)
         /// </summary>
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
         public string ambient_map;   // char ambient_map[64];                   
         /// <summary>
         /// Diffuse map (texture)
         /// </summary>
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
         public string diffuse_map;   // char diffuse_map[64];   
         /// <summary>
         /// Specular map (texture)
         /// </summary>
 
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
         public string specular_map;  // char specular_map[64];                  
         /// <summary>
         /// Normal map (texture)
         /// </summary>
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
         public string normal_map;    // char normal_map[64];                    
     }
 }
