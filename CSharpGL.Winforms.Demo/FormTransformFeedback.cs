@@ -136,7 +136,8 @@ namespace CSharpGL.Winforms.Demo
             feedbackObj = new uint[1];
             GL.GenTransformFeedbacks(1, feedbackObj);
             GL.BindTransformFeedback(GL.GL_TRANSFORM_FEEDBACK, feedbackObj[0]);
-            GL.BindBufferBase(GL.GL_TRANSFORM_FEEDBACK_BUFFER, 0, feedBackBuffer[0]);
+            //GL.BindBufferBase(GL.GL_TRANSFORM_FEEDBACK_BUFFER, 0, feedBackBuffer[0]);
+            GL.BindBufferBase(TransformFeedbackBufferTarget.TransformFeedbackBuffer, 0, feedBackBuffer[0]);
             GL.BindTransformFeedback(GL.GL_TRANSFORM_FEEDBACK, 0);
 
             return true;

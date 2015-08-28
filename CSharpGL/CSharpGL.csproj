@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerations\BeginTransformFeedbackPrimitiveMode.cs" />
-    <Compile Include="Enumerations\BindBufferTarget.cs" />
+    <Compile Include="Enumerations\TransformFeedbackBufferTarget.cs" />
     <Compile Include="Enumerations\MapBufferAccess.cs" />
     <Compile Include="Enumerations\TransformFeedbackTarget.cs" />
     <Compile Include="Enumerations\DebugMessageControlParams.cs" />
