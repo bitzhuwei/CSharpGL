@@ -19,6 +19,8 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormTransformFeedback : Form
     {
+        FormWhiteBoard frmWhiteBoard;
+
         SimpleUIAxis uiAxis;
         ScientificCamera camera;
         SatelliteRotator satelliteRoration;
@@ -26,17 +28,16 @@ namespace CSharpGL.Winforms.Demo
         uint[] TimerQueryName = new uint[1];
         uint[] Query = new uint[1];
 
-        private FormWhiteBoard frmWhiteBoard;
         private TransformShaderProgram transformProgram;
         private ShaderProgram feedbackProgram;
         private uint[] BufferName;
-        private uint[] TransformArrayBufferName;
-        private uint[] FeedbackArrayBufferName;
-        private uint[] TransformVertexArrayName;
+        private uint[] transformBuffer;
+        private uint[] feedBackBuffer;
+        private uint[] transformArray;
         const uint POSITION = 0;
-        private uint[] FeedbackVertexArrayName;
         const uint COLOR = 3;
-        private uint[] FeedbackName;
+        private uint[] feedbackArray;
+        private uint[] feedbackObj;
 
         public FormTransformFeedback()
         {
@@ -132,10 +133,10 @@ namespace CSharpGL.Winforms.Demo
         bool initFeedback()
         {
             // Generate a buffer object
-            FeedbackName = new uint[1];
-            GL.GenTransformFeedbacks(1, FeedbackName);
-            GL.BindTransformFeedback(GL.GL_TRANSFORM_FEEDBACK, FeedbackName[0]);
-            GL.BindBufferBase(GL.GL_TRANSFORM_FEEDBACK_BUFFER, 0, FeedbackArrayBufferName[0]);
+            feedbackObj = new uint[1];
+            GL.GenTransformFeedbacks(1, feedbackObj);
+            GL.BindTransformFeedback(GL.GL_TRANSFORM_FEEDBACK, feedbackObj[0]);
+            GL.BindBufferBase(GL.GL_TRANSFORM_FEEDBACK_BUFFER, 0, feedBackBuffer[0]);
             GL.BindTransformFeedback(GL.GL_TRANSFORM_FEEDBACK, 0);
 
             return true;
@@ -143,10 +144,10 @@ namespace CSharpGL.Winforms.Demo
         bool initVertexArray()
         {
             // Build a vertex array object
-            TransformVertexArrayName = new uint[1];
-            GL.GenVertexArrays(1, TransformVertexArrayName);
-            GL.BindVertexArray(TransformVertexArrayName[0]);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, TransformArrayBufferName[0]);
+            transformArray = new uint[1];
+            GL.GenVertexArrays(1, transformArray);
+            GL.BindVertexArray(transformArray[0]);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, transformBuffer[0]);
             GL.VertexAttribPointer(POSITION, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
             GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
@@ -154,10 +155,10 @@ namespace CSharpGL.Winforms.Demo
             GL.BindVertexArray(0);
 
             // Build a vertex array object
-            FeedbackVertexArrayName = new uint[1];
-            GL.GenVertexArrays(1, FeedbackVertexArrayName);
-            GL.BindVertexArray(FeedbackVertexArrayName[0]);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, FeedbackArrayBufferName[0]);
+            feedbackArray = new uint[1];
+            GL.GenVertexArrays(1, feedbackArray);
+            GL.BindVertexArray(feedbackArray[0]);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, feedBackBuffer[0]);
             GL.VertexAttribPointer(POSITION, 4, GL.GL_FLOAT, false, 4 * 8, IntPtr.Zero);
             GL.VertexAttribPointer(COLOR, 4, GL.GL_FLOAT, false, 4 * 8, new IntPtr(16));
             GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
@@ -180,13 +181,13 @@ namespace CSharpGL.Winforms.Demo
             int UniformBlockSize = Math.Max(mat4Size, UniformBufferOffset[0]);
 
             GL.BindBuffer(BufferTarget.UniformBuffer, BufferName[1]);
-            var buffer = new UnmanagedArray<float>(16);
+            var buffer = new UnmanagedArray<byte>(UniformBlockSize);
             GL.BufferData(BufferTarget.UniformBuffer, buffer, BufferUsage.DynamicDraw);
             GL.BindBuffer(BufferTarget.UniformBuffer, 0);
 
-            TransformArrayBufferName = new uint[1];
-            GL.GenBuffers(TransformArrayBufferName.Length, TransformArrayBufferName);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, TransformArrayBufferName[0]);
+            transformBuffer = new uint[1];
+            GL.GenBuffers(transformBuffer.Length, transformBuffer);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, transformBuffer[0]);
             UnmanagedArray<vec4> positionData = new UnmanagedArray<vec4>(6);
             positionData[0] = new vec4(-1.0f, -1.0f, 0.0f, 1.0f);
             positionData[1] = new vec4(1.0f, -1.0f, 0.0f, 1.0f);
@@ -197,9 +198,9 @@ namespace CSharpGL.Winforms.Demo
             GL.BufferData(BufferTarget.ArrayBuffer, positionData, BufferUsage.StaticDraw);
             GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
-            FeedbackArrayBufferName = new uint[1];
-            GL.GenBuffers(FeedbackArrayBufferName.Length, FeedbackArrayBufferName);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, FeedbackArrayBufferName[0]);
+            feedBackBuffer = new uint[1];
+            GL.GenBuffers(feedBackBuffer.Length, feedBackBuffer);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, feedBackBuffer[0]);
             UnmanagedArray<vec4> tmp = new UnmanagedArray<vec4>(2 * 6);
             GL.BufferData(BufferTarget.ArrayBuffer, tmp, BufferUsage.StaticDraw);
             GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
@@ -315,11 +316,11 @@ namespace CSharpGL.Winforms.Demo
 
             transformProgram.Bind();
 
-            GL.BindVertexArray(TransformVertexArrayName[0]);
+            GL.BindVertexArray(transformArray[0]);
             //GL.BindBufferBase(GL.GL_UNIFORM_BUFFER, semantic.uniform.TRANSFORM0, BufferName[buffer.TRANSFORM]);
             GL.BindBufferBase(GL.GL_UNIFORM_BUFFER, 1, BufferName[1]);
 
-            GL.BindTransformFeedback(GL.GL_TRANSFORM_FEEDBACK, FeedbackName[0]);
+            GL.BindTransformFeedback(GL.GL_TRANSFORM_FEEDBACK, feedbackObj[0]);
             GL.BeginTransformFeedback(GL.GL_TRIANGLES);
             GL.DrawArraysInstanced(GL.GL_TRIANGLES, 0, 6, 1);//VertexCount: 6
             GL.EndTransformFeedback();
@@ -330,8 +331,8 @@ namespace CSharpGL.Winforms.Demo
             // Second draw, reuse the captured attributes
             feedbackProgram.Bind();
 
-            GL.BindVertexArray(FeedbackVertexArrayName[0]);
-            GL.DrawTransformFeedback(GL.GL_TRIANGLES, FeedbackName[0]);
+            GL.BindVertexArray(feedbackArray[0]);
+            GL.DrawTransformFeedback(GL.GL_TRIANGLES, feedbackObj[0]);
 
         }
 
@@ -339,16 +340,16 @@ namespace CSharpGL.Winforms.Demo
         {
             base.OnHandleDestroyed(e);
 
-            GL.DeleteVertexArrays(1, TransformVertexArrayName);
-            GL.DeleteBuffers(1, TransformArrayBufferName);
+            GL.DeleteVertexArrays(1, transformArray);
+            GL.DeleteBuffers(1, transformBuffer);
             transformProgram.Delete();
 
-            GL.DeleteVertexArrays(1, FeedbackVertexArrayName);
-            GL.DeleteBuffers(1, FeedbackArrayBufferName);
+            GL.DeleteVertexArrays(1, feedbackArray);
+            GL.DeleteBuffers(1, feedBackBuffer);
             feedbackProgram.Delete();
 
             GL.DeleteQueries(1, Query);
-            GL.DeleteTransformFeedbacks(1, FeedbackName);
+            GL.DeleteTransformFeedbacks(1, feedbackObj);
 
         }
     }
