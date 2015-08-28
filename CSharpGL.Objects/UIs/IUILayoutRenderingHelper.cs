@@ -65,7 +65,7 @@ namespace CSharpGL.Objects
         static void SimpleUI_AfterRendering(object sender, RenderEventArgs e)
         {
             IMVP element = sender as IMVP;
-            element.UnbindShaderProgram();
+            element.ResetShaderProgram();
         }
 
         static void SimpleUI_BeforeRendering(object sender, RenderEventArgs e)
@@ -78,7 +78,7 @@ namespace CSharpGL.Objects
 
             {
                 IMVP element = sender as IMVP;
-                element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
+                element.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
             }
         }
     }

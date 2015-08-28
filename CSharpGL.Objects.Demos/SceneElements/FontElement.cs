@@ -273,12 +273,12 @@ namespace CSharpGL.Objects.SceneElements
         #endregion
 
 
-        void IMVP.UpdateMVP(mat4 mvp)
+        void IMVP.SetShaderProgram(mat4 mvp)
         {
             IMVPHelper.DoUpdateMVP(this, mvp);
         }
 
-        void IMVP.UnbindShaderProgram()
+        void IMVP.ResetShaderProgram()
         {
             IMVPHelper.DoUnbindShaderProgram(this);
         }

@@ -201,13 +201,13 @@ namespace CSharpGL.Objects.Demos
             GL.Disable(GL.GL_PRIMITIVE_RESTART);
         }
 
-        void IMVP.UpdateMVP(mat4 mvp)
+        void IMVP.SetShaderProgram(mat4 mvp)
         {
             IMVPHelper.DoUpdateMVP(this, mvp);
         }
 
 
-        void IMVP.UnbindShaderProgram()
+        void IMVP.ResetShaderProgram()
         {
             IMVPHelper.DoUnbindShaderProgram(this);
         }

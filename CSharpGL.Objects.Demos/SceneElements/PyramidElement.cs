@@ -156,13 +156,13 @@ namespace CSharpGL.Objects.SceneElements
             GL.BindVertexArray(0);
         }
 
-        void IMVP.UpdateMVP(mat4 mvp)
+        void IMVP.SetShaderProgram(mat4 mvp)
         {
             IMVPHelper.DoUpdateMVP(this, mvp);
         }
 
 
-        void IMVP.UnbindShaderProgram()
+        void IMVP.ResetShaderProgram()
         {
             IMVPHelper.DoUnbindShaderProgram(this);
         }

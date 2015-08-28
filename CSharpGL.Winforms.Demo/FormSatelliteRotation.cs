@@ -63,7 +63,7 @@ namespace CSharpGL.Winforms.Demo
         {
             IMVP element = sender as IMVP;
 
-            element.UnbindShaderProgram();
+            element.ResetShaderProgram();
         }
 
         void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
@@ -78,7 +78,7 @@ namespace CSharpGL.Winforms.Demo
 
             IMVP element = sender as IMVP;
 
-            element.UpdateMVP(mvp);
+            element.SetShaderProgram(mvp);
         }
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

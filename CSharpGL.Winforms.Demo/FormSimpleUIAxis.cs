@@ -131,7 +131,7 @@ namespace CSharpGL.Winforms.Demo
         {
             IMVP element = sender as IMVP;
 
-            element.UnbindShaderProgram();
+            element.ResetShaderProgram();
         }
 
         void axisElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
@@ -147,7 +147,7 @@ namespace CSharpGL.Winforms.Demo
 
             IMVP element = sender as IMVP;
 
-            element.UpdateMVP(mvp);
+            element.SetShaderProgram(mvp);
         }
 
         void axisElement2_AfterRendering(object sender, Objects.RenderEventArgs e)

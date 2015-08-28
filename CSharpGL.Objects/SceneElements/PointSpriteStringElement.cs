@@ -355,7 +355,7 @@ namespace CSharpGL.Objects.SceneElements
 
         #endregion
 
-        void IMVP.UpdateMVP(mat4 mvp)
+        void IMVP.SetShaderProgram(mat4 mvp)
         {
             GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
             GL.Enable(GL.GL_POINT_SPRITE_ARB);
@@ -385,7 +385,7 @@ namespace CSharpGL.Objects.SceneElements
         }
 
 
-        void IMVP.UnbindShaderProgram()
+        void IMVP.ResetShaderProgram()
         {
             IMVPHelper.DoUnbindShaderProgram(this);
 

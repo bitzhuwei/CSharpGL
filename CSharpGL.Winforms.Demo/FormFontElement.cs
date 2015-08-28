@@ -90,7 +90,7 @@ namespace CSharpGL.Winforms.Demo
         void element_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
             IMVP iMVP = sender as IMVP;
-            iMVP.UnbindShaderProgram();
+            iMVP.ResetShaderProgram();
 
             var element = sender as FontElement;
             if (element.blend)
@@ -124,7 +124,7 @@ namespace CSharpGL.Winforms.Demo
             mat4 viewMatrix = this.camera.GetViewMat4();
             mat4 modelMatrix = mat4.identity();
             IMVP iMVP = sender as IMVP;
-            iMVP.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
+            iMVP.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
         }
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

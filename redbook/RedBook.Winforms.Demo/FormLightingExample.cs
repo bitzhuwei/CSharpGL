@@ -2,6 +2,8 @@
 using CSharpGL.Maths;
 using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
+using CSharpGL.Objects.Demos.UIs;
+using CSharpGL.Objects.UIs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +18,7 @@ namespace RedBook.Winforms.Demo
 {
     public partial class FormLightingExample : Form
     {
+        SimpleUIAxis uiAxis;
         LightingExample element;
         SatelliteRotator rotator;
         ScientificCamera camera;
@@ -42,6 +45,12 @@ namespace RedBook.Winforms.Demo
 
             //element.BeforeRendering += element_BeforeRendering;
             //element.AfterRendering += element_AfterRendering;
+
+            IUILayoutParam param = new IUILayoutParam(
+                AnchorStyles.Left | AnchorStyles.Bottom,
+                new Padding(10, 10, 10, 10), new Size(50, 50));
+            uiAxis = new SimpleUIAxis(param);
+            uiAxis.Initialize();
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -76,7 +85,7 @@ namespace RedBook.Winforms.Demo
         {
             IMVP element = sender as IMVP;
 
-            element.UnbindShaderProgram();
+            element.ResetShaderProgram();
         }
 
         void element_BeforeRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
@@ -91,7 +100,7 @@ namespace RedBook.Winforms.Demo
 
             IMVP element = sender as IMVP;
 
-            element.UpdateMVP(mvp);
+            element.SetShaderProgram(mvp);
         }
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -101,6 +110,7 @@ namespace RedBook.Winforms.Demo
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
             element.Render(arg);
+            uiAxis.Render(arg);
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)

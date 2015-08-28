@@ -100,7 +100,7 @@ namespace CSharpGL.Objects
         static void IMVPElement_AfterRendering(object sender, RenderEventArgs e)
         {
             IMVP element = sender as IMVP;
-            element.UnbindShaderProgram();
+            element.ResetShaderProgram();
         }
 
         private static readonly mat4 modelMatrix = mat4.identity();
@@ -128,7 +128,7 @@ namespace CSharpGL.Objects
             mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
             IMVP element = sender as IMVP;
-            element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
+            element.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
         }
 
     }

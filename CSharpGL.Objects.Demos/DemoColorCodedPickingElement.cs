@@ -277,7 +277,7 @@ namespace CSharpGL.Objects.Demos
         //    base.Render(renderMode);
         //}
 
-        void IMVP.UpdateMVP(mat4 mvp)
+        void IMVP.SetShaderProgram(mat4 mvp)
         {
             ShaderProgram shaderProgram = this.currentShaderProgram;
 
@@ -294,7 +294,7 @@ namespace CSharpGL.Objects.Demos
         }
 
 
-        void IMVP.UnbindShaderProgram()
+        void IMVP.ResetShaderProgram()
         {
             ShaderProgram shaderProgram = this.currentShaderProgram;
 

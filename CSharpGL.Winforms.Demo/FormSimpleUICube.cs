@@ -82,7 +82,7 @@ namespace CSharpGL.Winforms.Demo
         void axisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
             IMVP element = sender as IMVP;
-            element.UnbindShaderProgram();
+            element.ResetShaderProgram();
         }
 
         void axisElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
@@ -97,7 +97,7 @@ namespace CSharpGL.Winforms.Demo
 
             IMVP element = sender as IMVP;
 
-            element.UpdateMVP(mvp);
+            element.SetShaderProgram(mvp);
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

@@ -90,16 +90,16 @@ namespace CSharpGL.Objects.UIs
 
         #endregion
 
-        void IMVP.UpdateMVP(mat4 mvp)
+        void IMVP.SetShaderProgram(mat4 mvp)
         {
             IMVP element = this.element as IMVP;
-            element.UpdateMVP(mvp);
+            element.SetShaderProgram(mvp);
         }
 
-        void IMVP.UnbindShaderProgram()
+        void IMVP.ResetShaderProgram()
         {
             IMVP element = this.element as IMVP;
-            element.UnbindShaderProgram();
+            element.ResetShaderProgram();
         }
 
         ShaderProgram IMVP.GetShaderProgram()

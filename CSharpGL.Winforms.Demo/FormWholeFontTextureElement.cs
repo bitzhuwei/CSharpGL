@@ -76,7 +76,7 @@ namespace CSharpGL.Winforms.Demo
         void element_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
             IMVP iMVP = element as IMVP;
-            iMVP.UnbindShaderProgram();
+            iMVP.ResetShaderProgram();
 
             GL.BindTexture(GL.GL_TEXTURE_2D, 0);
 
@@ -106,7 +106,7 @@ namespace CSharpGL.Winforms.Demo
             shaderProgram.SetUniform(WholeFontTextureElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
 
             IMVP iMVP = element as IMVP;
-            iMVP.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
+            iMVP.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
         }
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

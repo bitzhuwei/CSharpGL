@@ -105,17 +105,17 @@ namespace CSharpGL.Objects.Demos.UIs
             this.axisElement.Render(e);
         }
 
-        void IMVP.UpdateMVP(mat4 mvp)
+        void IMVP.SetShaderProgram(mat4 mvp)
         {
             IMVP element = this.axisElement as IMVP;
-            element.UpdateMVP(mvp);
+            element.SetShaderProgram(mvp);
         }
 
 
-        void IMVP.UnbindShaderProgram()
+        void IMVP.ResetShaderProgram()
         {
             IMVP element = this.axisElement as IMVP;
-            element.UnbindShaderProgram();
+            element.ResetShaderProgram();
         }
 
         ShaderProgram IMVP.GetShaderProgram()

@@ -17,12 +17,12 @@ namespace CSharpGL.Objects
         /// 更新此元素的MVP值。
         /// </summary>
         /// <param name="mvp">三个矩阵的乘积（Projection * View * Model）</param>
-        void UpdateMVP(mat4 mvp);
+        void SetShaderProgram(mat4 mvp);
 
         /// <summary>
         /// 解绑当前shader program。
         /// </summary>
-        void UnbindShaderProgram();
+        void ResetShaderProgram();
 
         /// <summary>
         /// 
