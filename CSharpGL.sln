@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Util
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Objects.Demos", "CSharpGL.Objects.Demos\CSharpGL.Objects.Demos.csproj", "{6338EC8C-0F61-4AB2-99F8-B262D9ADFDA3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "redbook", "redbook", "{F29E7A48-2DB4-4F35-958E-547E8200F847}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadBook.Common", "redbook\ReadBook.Common\ReadBook.Common.csproj", "{E4256DF9-FE11-401B-8C56-620A697B2222}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +87,10 @@ Global
 		{6338EC8C-0F61-4AB2-99F8-B262D9ADFDA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6338EC8C-0F61-4AB2-99F8-B262D9ADFDA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6338EC8C-0F61-4AB2-99F8-B262D9ADFDA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4256DF9-FE11-401B-8C56-620A697B2222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4256DF9-FE11-401B-8C56-620A697B2222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4256DF9-FE11-401B-8C56-620A697B2222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4256DF9-FE11-401B-8C56-620A697B2222}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,5 +100,6 @@ Global
 		{666B35CE-7E2A-41A0-B0F4-1058CA1327DA} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
 		{5DECD1EA-BCAD-439F-9C26-261D0662E591} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
 		{99C2F4E5-3275-4681-AEC4-F59D97C158A8} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
+		{E4256DF9-FE11-401B-8C56-620A697B2222} = {F29E7A48-2DB4-4F35-958E-547E8200F847}
 	EndGlobalSection
 EndGlobal
