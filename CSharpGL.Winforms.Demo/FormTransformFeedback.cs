@@ -27,8 +27,8 @@ namespace CSharpGL.Winforms.Demo
         uint[] Query = new uint[1];
 
         private FormWhiteBoard frmWhiteBoard;
-        private TransformShaderProgram TransformProgramName;
-        private ShaderProgram FeedbackProgram;
+        private TransformShaderProgram transformProgram;
+        private ShaderProgram feedbackProgram;
         private uint[] BufferName;
         private uint[] TransformArrayBufferName;
         private uint[] FeedbackArrayBufferName;
@@ -209,21 +209,21 @@ namespace CSharpGL.Winforms.Demo
         {
             {
                 var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"TransformFeedback.transform.vert");
-                TransformProgramName = new TransformShaderProgram();
-                TransformProgramName.Create(vertexShaderSource);
-                TransformProgramName.AssertValid();
+                transformProgram = new TransformShaderProgram();
+                transformProgram.Create(vertexShaderSource);
+                transformProgram.AssertValid();
             }
             {
                 var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"TransformFeedback.feedback.vert");
                 var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"TransformFeedback.feedback.frag");
 
-                FeedbackProgram = new ShaderProgram();
-                FeedbackProgram.Create(vertexShaderSource, fragmentShaderSource, null);
-                FeedbackProgram.AssertValid();
+                feedbackProgram = new ShaderProgram();
+                feedbackProgram.Create(vertexShaderSource, fragmentShaderSource, null);
+                feedbackProgram.AssertValid();
             }
             {
-                var index = GL.GetUniformBlockIndex(TransformProgramName.ShaderProgramObject, "transform");
-                GL.UniformBlockBinding(TransformProgramName.ShaderProgramObject, index, (uint)UniformType.TRANSFORM0);
+                var index = GL.GetUniformBlockIndex(transformProgram.ShaderProgramObject, "transform");
+                GL.UniformBlockBinding(transformProgram.ShaderProgramObject, index, (uint)UniformType.TRANSFORM0);
             }
         }
 
@@ -313,7 +313,7 @@ namespace CSharpGL.Winforms.Demo
             // Disable rasterisation, vertices processing only!
             GL.Enable(GL.GL_RASTERIZER_DISCARD);
 
-            TransformProgramName.Bind();
+            transformProgram.Bind();
 
             GL.BindVertexArray(TransformVertexArrayName[0]);
             //GL.BindBufferBase(GL.GL_UNIFORM_BUFFER, semantic.uniform.TRANSFORM0, BufferName[buffer.TRANSFORM]);
@@ -328,7 +328,7 @@ namespace CSharpGL.Winforms.Demo
             GL.Disable(GL.GL_RASTERIZER_DISCARD);
 
             // Second draw, reuse the captured attributes
-            FeedbackProgram.Bind();
+            feedbackProgram.Bind();
 
             GL.BindVertexArray(FeedbackVertexArrayName[0]);
             GL.DrawTransformFeedback(GL.GL_TRIANGLES, FeedbackName[0]);
@@ -341,11 +341,11 @@ namespace CSharpGL.Winforms.Demo
 
             GL.DeleteVertexArrays(1, TransformVertexArrayName);
             GL.DeleteBuffers(1, TransformArrayBufferName);
-            TransformProgramName.Delete();
+            transformProgram.Delete();
 
             GL.DeleteVertexArrays(1, FeedbackVertexArrayName);
             GL.DeleteBuffers(1, FeedbackArrayBufferName);
-            FeedbackProgram.Delete();
+            feedbackProgram.Delete();
 
             GL.DeleteQueries(1, Query);
             GL.DeleteTransformFeedbacks(1, FeedbackName);
