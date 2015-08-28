@@ -1643,6 +1643,8 @@ namespace CSharpGL
         public const uint GL_MAX_TEXTURE_IMAGE_UNITS = 0x8872;
         public const uint GL_FRAGMENT_SHADER = 0x8B30;
         public const uint GL_VERTEX_SHADER = 0x8B31;
+        public const uint GL_TESS_CONTROL_SHADER = 0x8E88;
+        public const uint GL_TESS_EVALUATION_SHADER = 0x8E87;
         public const uint GL_MAX_FRAGMENT_UNIFORM_COMPONENTS = 0x8B49;
         public const uint GL_MAX_VERTEX_UNIFORM_COMPONENTS = 0x8B4A;
         public const uint GL_MAX_VARYING_FLOATS = 0x8B4B;
