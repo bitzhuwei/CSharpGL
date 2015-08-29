@@ -43,17 +43,6 @@ namespace RedBook.Winforms.Demo
 
         float aspect_ratio;
 
-        static Random random = new Random();
-        static vec3 GetRandomVec3(float minmag = 0.0f, float maxmag = 1.0f)
-        {
-            var distance = maxmag - minmag;
-            vec3 result = new vec3(
-                (float)(random.NextDouble() * distance + minmag),
-                (float)(random.NextDouble() * distance + minmag),
-                (float)(random.NextDouble() * distance + minmag)
-                );
-            return result;
-        }
 
         static string render_vs =
 @"#version 430 core
@@ -179,6 +168,8 @@ void main(void)
 
         #endregion
 
+        static Random random = new Random();
+
         protected override void DoInitialize()
         {
             // Initialize our compute program
@@ -203,7 +194,7 @@ void main(void)
                     vec4* array = (vec4*)positions.ToPointer();
                     for (int i = 0; i < PARTICLE_COUNT; i++)
                     {
-                        array[i] = new vec4(GetRandomVec3(), (float)random.NextDouble());
+                        array[i] = new vec4(Vec3Helper.GetRandomVec3(), (float)random.NextDouble());
                     }
                 }
                 GL.UnmapBuffer(BufferTarget.ArrayBuffer);
@@ -222,7 +213,7 @@ void main(void)
                     vec4* array = (vec4*)velocities.ToPointer();
                     for (int i = 0; i < PARTICLE_COUNT; i++)
                     {
-                        array[i] = new vec4(GetRandomVec3(), (float)random.NextDouble());
+                        array[i] = new vec4(Vec3Helper.GetRandomVec3(), (float)random.NextDouble());
                     }
                 }
                 GL.UnmapBuffer(BufferTarget.ArrayBuffer);
