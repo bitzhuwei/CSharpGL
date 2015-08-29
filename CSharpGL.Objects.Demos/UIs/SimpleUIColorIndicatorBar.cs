@@ -30,7 +30,7 @@ namespace CSharpGL.Objects.Demos.UIs
         /// <summary>
         /// 图元类型
         /// </summary>
-        private PrimitiveModes axisPrimitiveMode;
+        private DrawMode axisPrimitiveMode;
 
         /// <summary>
         /// 顶点数
@@ -74,7 +74,7 @@ namespace CSharpGL.Objects.Demos.UIs
 
         private void InitVAO()
         {
-            this.axisPrimitiveMode = PrimitiveModes.QuadStrip;
+            this.axisPrimitiveMode = DrawMode.QuadStrip;
             GLColor[] colors = this.ColorPalette.Colors;
             float[] coords = this.ColorPalette.Coords;
             this.numbers = new PointSpriteStringElement[coords.Length];

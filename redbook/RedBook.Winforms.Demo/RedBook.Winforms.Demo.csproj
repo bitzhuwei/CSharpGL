@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormFurRendering.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFurRendering.Designer.cs">
+      <DependentUpon>FormFurRendering.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTeapot.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeapotExampleHelper.cs" />
     <Compile Include="TeapotExample.cs" />
+    <EmbeddedResource Include="FormFurRendering.resx">
+      <DependentUpon>FormFurRendering.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormTeapot.resx">
       <DependentUpon>FormTeapot.cs</DependentUpon>
     </EmbeddedResource>
@@ -97,6 +106,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="teapot.cont" />
+    <EmbeddedResource Include="teapot.eval" />
+    <EmbeddedResource Include="teapot.frag" />
+    <EmbeddedResource Include="teapot.vert" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -10,10 +10,10 @@ namespace RedBook.Winforms.Demo
 {
     class TeapotExampleHelper
     {
-        const int NumTeapotVertices = 306;
-        const int NumTeapotPatches = 32;
-        const int NumTeapotVerticesPerPatch = 16;  // 4x4 Bezier patches
-        const int NumTeapotIndices = NumTeapotVerticesPerPatch * NumTeapotPatches;
+        public const int NumTeapotVertices = 306;
+        public const int NumTeapotPatches = 32;
+        public const int NumTeapotVerticesPerPatch = 16;  // 4x4 Bezier patches
+        public const int NumTeapotIndices = NumTeapotVerticesPerPatch * NumTeapotPatches;
 
         #region TeapotVertices
 

@@ -47,7 +47,7 @@ namespace CSharpGL.Objects.Demos
         /// <summary>
         /// 图元类型
         /// </summary>
-        protected PrimitiveModes primitiveMode;
+        protected DrawMode primitiveMode;
 
         /// <summary>
         /// 顶点数
@@ -82,7 +82,7 @@ namespace CSharpGL.Objects.Demos
 
         protected void InitializeVAO()
         {
-            this.primitiveMode = PrimitiveModes.Points;
+            this.primitiveMode = DrawMode.Points;
             const int axisCount = 3;
             const int count = axisCount * axisCount * axisCount;
             this.vertexCount = count;

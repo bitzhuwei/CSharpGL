@@ -26,7 +26,7 @@ namespace CSharpGL.Objects.SceneElements
         public const string strtex = "tex";
         public const string strcolor = "color";
 
-        private PrimitiveModes mode;
+        private DrawMode mode;
         private uint[] vao = new uint[1];
         private uint[] vbo = new uint[2];
         private int vertexCount;
@@ -59,7 +59,7 @@ namespace CSharpGL.Objects.SceneElements
         {
             if (value == null) { value = string.Empty; }
 
-            this.mode = PrimitiveModes.Quads;
+            this.mode = DrawMode.Quads;
             this.vertexCount = 4 * value.Length;
 
             //  Create a vertex buffer for the vertex data.

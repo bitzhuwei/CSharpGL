@@ -2261,6 +2261,7 @@ namespace CSharpGL
         public const uint GL_LINES_ADJACENCY = 0x000A;
         public const uint GL_LINE_STRIP_ADJACENCY = 0x000B;
         public const uint GL_TRIANGLES_ADJACENCY = 0x000C;
+        public const uint GL_PATCHES = 0xE;
         public const uint GL_TRIANGLE_STRIP_ADJACENCY = 0x000D;
         public const uint GL_PROGRAM_POINT_SIZE = 0x8642;
         public const uint GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS = 0x8C29;
@@ -5955,5 +5956,35 @@ namespace CSharpGL
         private delegate void glDrawTransformFeedback(uint mode, uint id);
 
         #endregion transform feedbacks
+
+        #region patch
+
+        /// <summary>
+        /// specifies the parameters for patch primitives
+        /// </summary>
+        /// <param name="pname">Specifies the name of the parameter to set.</param>
+        /// <param name="value">Specifies the new value for the parameter given by <paramref name="pname"/>​.</param>
+        public static void PatchParameter(uint pname, int value)
+        {
+            GetDelegateFor<glPatchParameteri>()(pname, value);
+        }
+        private delegate void glPatchParameteri(uint pname, int value);
+
+        /// <summary>
+        /// specifies the parameters for patch primitives
+        /// </summary>
+        /// <param name="pname">Specifies the name of the parameter to set.</param>
+        /// <param name="values">Specifies the address of an array containing the new values for the parameter given by <paramref name="pname"/>​.</param>
+        public static void PatchParameter(uint pname, float[] values)
+        {
+            GetDelegateFor<glPatchParameterfv>()(pname, values);
+        }
+        private delegate void glPatchParameterfv(uint pname, float[] values);
+
+        public const uint GL_PATCH_VERTICES = 0x8E72;
+        public const uint GL_PATCH_DEFAULT_INNER_LEVEL = 0x8E73;
+        public const uint GL_PATCH_DEFAULT_OUTER_LEVEL = 0x8E74;
+
+        #endregion patch
     }
 }

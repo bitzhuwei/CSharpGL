@@ -31,7 +31,7 @@ namespace CSharpGL.Objects.SceneElements
         /// <summary>
         /// 图元类型
         /// </summary>
-        protected PrimitiveModes axisPrimitiveMode;
+        protected DrawMode axisPrimitiveMode;
 
         /// <summary>
         /// 顶点数
@@ -86,7 +86,7 @@ namespace CSharpGL.Objects.SceneElements
 
         protected void InitializeVAO()
         {
-            this.axisPrimitiveMode = PrimitiveModes.QuadStrip;
+            this.axisPrimitiveMode = DrawMode.QuadStrip;// PrimitiveModes.QuadStrip;
             this.axisVertexCount = faceCount * 2;
             this.vao = new uint[4];
 
@@ -159,7 +159,7 @@ namespace CSharpGL.Objects.SceneElements
             }
             // 计算XZ平面
             {
-                this.planPrimitveMode = PrimitiveModes.LineLoop;
+                this.planPrimitveMode = DrawMode.LineLoop;
                 this.planVertexCount = 4;
 
                 GL.BindVertexArray(vao[3]);
@@ -221,6 +221,7 @@ namespace CSharpGL.Objects.SceneElements
                 GL.BindVertexArray(vao[i]);
 
                 //GL.DrawArrays(primitiveMode, 0, vertexCount);
+                //GL.DrawElements(axisPrimitiveMode, faceCount * 2 + 2, GL.GL_UNSIGNED_INT, IntPtr.Zero);
                 GL.DrawElements(axisPrimitiveMode, faceCount * 2 + 2, GL.GL_UNSIGNED_INT, IntPtr.Zero);
 
                 GL.BindVertexArray(0);
@@ -243,7 +244,7 @@ namespace CSharpGL.Objects.SceneElements
         /// Internal variable which checks if Dispose has already been called
         /// </summary>
         protected Boolean disposed;
-        private PrimitiveModes planPrimitveMode;
+        private DrawMode planPrimitveMode;
         private int planVertexCount;
         private vec3 planColor;
 

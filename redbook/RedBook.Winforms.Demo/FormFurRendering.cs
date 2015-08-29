@@ -16,15 +16,14 @@ using System.Windows.Forms;
 
 namespace RedBook.Winforms.Demo
 {
-    public partial class FormTeapot : Form
+    public partial class FormFurRendering : Form
     {
         SimpleUIAxis uiAxis;
-        //LightingExample element;
-        TeapotExample element;
+        LightingExample element;
         SatelliteRotator rotator;
         ScientificCamera camera;
 
-        public FormTeapot()
+        public FormFurRendering()
         {
             InitializeComponent();
 
@@ -41,7 +40,7 @@ namespace RedBook.Winforms.Demo
             rotator = new SatelliteRotator(this.camera);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
-            element = new TeapotExample();
+            element = new LightingExample();
             element.Initialize();
 
             //element.BeforeRendering += element_BeforeRendering;
@@ -61,6 +60,12 @@ namespace RedBook.Winforms.Demo
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.Resize += glCanvas1_Resize;
             this.Load += Form_Load;
+        }
+
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            base.OnHandleDestroyed(e);
+            this.element.Dispose();
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)

@@ -28,7 +28,7 @@ namespace CSharpGL.Objects.SceneElements
         /// <summary>
         /// 图元类型
         /// </summary>
-        protected PrimitiveModes primitiveMode;
+        protected DrawMode primitiveMode;
 
         /// <summary>
         /// 顶点数
@@ -84,9 +84,9 @@ namespace CSharpGL.Objects.SceneElements
             shaderProgram.AssertValid();
         }
 
-        protected void InitializeVAO(out uint[] vao, out PrimitiveModes primitiveMode, out int vertexCount)
+        protected void InitializeVAO(out uint[] vao, out DrawMode primitiveMode, out int vertexCount)
         {
-            primitiveMode = PrimitiveModes.Triangles;
+            primitiveMode = DrawMode.Triangles;
             vertexCount = positions.Length;
 
             vao = new uint[1];

@@ -26,5 +26,15 @@ namespace RedBook.Winforms.Demo
         {
             (new FormLightingExample()).Show();
         }
+
+        private void btnTeapotExample_Click(object sender, EventArgs e)
+        {
+            (new FormTeapot()).Show();
+        }
+
+        private void btnFurRendering_Click(object sender, EventArgs e)
+        {
+            (new FormFurRendering()).Show();
+        }
     }
 }

@@ -26,14 +26,14 @@ namespace CSharpGL.Winforms.Demo
         public const string strtex = "tex";
         public const string strcolor = "color";
 
-        private PrimitiveModes mode;
+        private DrawMode mode;
         private uint[] vao = new uint[1];
         private uint[] vbo = new uint[2];
         private int vertexCount;
 
         private void InitVAO()
         {
-            this.mode = PrimitiveModes.Quads;
+            this.mode = DrawMode.Quads;
             this.vertexCount = 4;
 
             //  Create a vertex buffer for the vertex data.

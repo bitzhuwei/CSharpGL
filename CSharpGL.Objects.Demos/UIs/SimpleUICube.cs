@@ -31,7 +31,7 @@ namespace CSharpGL.Objects.Demos.UIs
         /// <summary>
         /// 图元类型
         /// </summary>
-        protected PrimitiveModes axisPrimitiveMode;
+        protected DrawMode axisPrimitiveMode;
 
         /// <summary>
         /// 顶点数
@@ -67,7 +67,7 @@ namespace CSharpGL.Objects.Demos.UIs
 
         private void InitVAO()
         {
-            this.axisPrimitiveMode = PrimitiveModes.Lines;
+            this.axisPrimitiveMode = DrawMode.Lines;
             this.axisVertexCount = 8 * 3;
             this.vao = new uint[1];
 

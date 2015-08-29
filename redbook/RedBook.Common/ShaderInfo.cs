@@ -89,7 +89,7 @@ namespace RedBook.Common
         }
     }
 
-    public enum ShaderType
+    public enum ShaderType : uint
     {
         VertexShader = GL.GL_VERTEX_SHADER,
         TessellationControlShader = GL.GL_TESS_CONTROL_SHADER,

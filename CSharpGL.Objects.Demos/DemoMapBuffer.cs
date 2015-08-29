@@ -194,7 +194,8 @@ namespace CSharpGL.Objects.Demos
 
             int size = this.size;
             int count = size * size * size * 15;
-            GL.DrawElements(PrimitiveModes.TriangleStrip, count, GL.GL_UNSIGNED_INT, IntPtr.Zero);
+            //GL.DrawElements(PrimitiveModes.TriangleStrip, count, GL.GL_UNSIGNED_INT, IntPtr.Zero);
+            GL.DrawElements(DrawMode.TriangleStrip, count, GL.GL_UNSIGNED_INT, IntPtr.Zero);
 
             GL.BindVertexArray(0);
 

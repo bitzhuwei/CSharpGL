@@ -621,13 +621,13 @@ namespace CSharpGL
         /// <param name="first">Specifies the starting	index in the enabled arrays.</param>
         /// <param name="count">Specifies the number of indices to be rendered.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DrawArrays(PrimitiveModes mode, int first, int count)
+        public static void DrawArrays(DrawMode mode, int first, int count)
         {
             GL.DrawArrays((uint)mode, first, count);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void MultiDrawArrays(PrimitiveModes mode, int[] first, int[] count, int primcount)
+        public static void MultiDrawArrays(DrawMode mode, int[] first, int[] count, int primcount)
         {
             GetDelegateFor<glMultiDrawArrays>()((uint)mode, first, count, primcount);
         }
@@ -640,13 +640,13 @@ namespace CSharpGL
         /// <param name="type">Specifies the type of the values in indices.	Must be one of OpenGL.UNSIGNED_BYTE, OpenGL.UNSIGNED_SHORT, or OpenGL.UNSIGNED_INT.</param>
         /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DrawElements(PrimitiveModes mode, int count, uint type, IntPtr indices)
+        public static void DrawElements(DrawMode mode, int count, uint type, IntPtr indices)
         {
             GL.DrawElements((uint)mode, count, type, indices);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void MultiDrawElements(PrimitiveModes mode, int[] count, uint type, IntPtr indices, int primcount)
+        public static void MultiDrawElements(DrawMode mode, int[] count, uint type, IntPtr indices, int primcount)
         {
             GetDelegateFor<glMultiDrawElements>()((uint)mode, count, type, indices, primcount);
         }
@@ -658,25 +658,25 @@ namespace CSharpGL
         /// <param name="count">Specifies the number of elements to be rendered.</param>
         /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DrawElements(PrimitiveModes mode, int count, uint type, uint[] indices)
+        public static void DrawElements(DrawMode mode, int count, uint type, uint[] indices)
         {
             GL.DrawElements((uint)mode, count, type, indices);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DrawRangeElements(PrimitiveModes mode, uint start, uint end, int count, uint type, IntPtr indices)
+        public static void DrawRangeElements(DrawMode mode, uint start, uint end, int count, uint type, IntPtr indices)
         {
             GetDelegateFor<glDrawRangeElements>()((uint)mode, start, end, count, type, indices);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DrawArraysInstanced(PrimitiveModes mode, int first, int count, int primcount)
+        public static void DrawArraysInstanced(DrawMode mode, int first, int count, int primcount)
         {
             GetDelegateFor<glDrawArraysInstanced>()((uint)mode, first, count, primcount);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DrawElementsInstanced(PrimitiveModes mode, int count, uint type, IntPtr indices, int primcount)
+        public static void DrawElementsInstanced(DrawMode mode, int count, uint type, IntPtr indices, int primcount)
         {
             GetDelegateFor<glDrawElementsInstanced>()((uint)mode, count, type, indices, primcount);
         }
@@ -1021,5 +1021,30 @@ namespace CSharpGL
 
 
         #endregion transform feedback
+
+
+        #region patch
+
+        /// <summary>
+        /// specifies the parameters for patch primitives
+        /// </summary>
+        /// <param name="pname">Specifies the name of the parameter to set.</param>
+        /// <param name="value">Specifies the new value for the parameter given by <paramref name="pname"/>​.</param>
+        public static void PatchParameter(PatchParameterName pname, int value)
+        {
+            PatchParameter((uint)pname, value);
+        }
+
+        /// <summary>
+        /// specifies the parameters for patch primitives
+        /// </summary>
+        /// <param name="pname">Specifies the name of the parameter to set.</param>
+        /// <param name="values">Specifies the address of an array containing the new values for the parameter given by <paramref name="pname"/>​.</param>
+        public static void PatchParameter(PatchParameterName pname, float[] values)
+        {
+            PatchParameter((uint)pname, values);
+        }
+
+        #endregion patch
     }
 }
