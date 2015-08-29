@@ -127,7 +127,6 @@
     <Content Include="Cameras\Camera.png" />
     <Content Include="ColorCodedPicking\ColorCodedPicking.png" />
     <Content Include="readme.txt" />
-    <Content Include="Shaders\GLSLVersion.html" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SceneElements\AxisElement.frag" />
