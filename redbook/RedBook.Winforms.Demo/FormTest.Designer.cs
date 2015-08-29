@@ -31,6 +31,7 @@
             this.btnLightingExample = new System.Windows.Forms.Button();
             this.btnTeapotExample = new System.Windows.Forms.Button();
             this.btnFurRendering = new System.Windows.Forms.Button();
+            this.btnParticleSimulatorExample = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLightingExample
@@ -64,12 +65,23 @@
             this.btnFurRendering.UseVisualStyleBackColor = true;
             this.btnFurRendering.Click += new System.EventHandler(this.btnFurRendering_Click);
             // 
+            // btnParticleSimulatorExample
+            // 
+            this.btnParticleSimulatorExample.Location = new System.Drawing.Point(12, 99);
+            this.btnParticleSimulatorExample.Name = "btnParticleSimulatorExample";
+            this.btnParticleSimulatorExample.Size = new System.Drawing.Size(254, 23);
+            this.btnParticleSimulatorExample.TabIndex = 0;
+            this.btnParticleSimulatorExample.Text = "ParticleSimulatorExample";
+            this.btnParticleSimulatorExample.UseVisualStyleBackColor = true;
+            this.btnParticleSimulatorExample.Click += new System.EventHandler(this.btnParticleSimulatorExample_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 626);
             this.Controls.Add(this.btnTeapotExample);
+            this.Controls.Add(this.btnParticleSimulatorExample);
             this.Controls.Add(this.btnFurRendering);
             this.Controls.Add(this.btnLightingExample);
             this.Name = "FormTest";
@@ -84,5 +96,6 @@
         private System.Windows.Forms.Button btnLightingExample;
         private System.Windows.Forms.Button btnTeapotExample;
         private System.Windows.Forms.Button btnFurRendering;
+        private System.Windows.Forms.Button btnParticleSimulatorExample;
     }
 }

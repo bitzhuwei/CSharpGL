@@ -36,5 +36,10 @@ namespace RedBook.Winforms.Demo
         {
             (new FormFurRendering()).Show();
         }
+
+        private void btnParticleSimulatorExample_Click(object sender, EventArgs e)
+        {
+            (new FormParticleSimulator()).Show();
+        }
     }
 }

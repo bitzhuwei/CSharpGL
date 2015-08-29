@@ -5986,5 +5986,52 @@ namespace CSharpGL
         public const uint GL_PATCH_DEFAULT_OUTER_LEVEL = 0x8E74;
 
         #endregion patch
+
+        #region texture
+
+        /// <summary>
+        /// bind a level of a texture to an image unit.
+        /// </summary>
+        /// <param name="unit">Specifies the index of the image unit to which to bind the texture.</param>
+        /// <param name="texture">Specifies the name of the texture to bind to the image unit.</param>
+        /// <param name="level">Specifies the level of the texture that is to be bound.</param>
+        /// <param name="layered">Specifies whether a layered texture binding is to be established.</param>
+        /// <param name="layer">If <paramref name="layered"/>​ is false, specifies the layer of texture​ to be bound to the image unit. Ignored otherwise.</param>
+        /// <param name="access">Specifies a token indicating the type of access that will be performed on the image.</param>
+        /// <param name="format">Specifies the format that the elements of the image will be treated as for the purposes of formatted stores.</param>
+        public static void BindImageTexture(uint unit, uint texture, int level, bool layered, int layer, uint access, uint format)
+        {
+            GetDelegateFor<glBindImageTexture>()(unit, texture, level, layered, layer, access, format);
+        }
+
+        private delegate void glBindImageTexture(uint unit, uint texture, int level, bool layered, int layer, uint access, uint format);
+
+        #endregion texture
+
+        /// <summary>
+        /// defines a barrier ordering memory transactions
+        /// </summary>
+        /// <param name="barriers">Specifies the barriers to insert.</param>
+        public static void MemoryBarrier(uint barriers)
+        {
+            GetDelegateFor<glMemoryBarrier>()(barriers);
+        }
+        private delegate void glMemoryBarrier(uint barriers);
+
+        public const uint GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT = 0x00000001;
+        public const uint GL_ELEMENT_ARRAY_BARRIER_BIT = 0x00000002;
+        public const uint GL_UNIFORM_BARRIER_BIT = 0x00000004;
+        public const uint GL_TEXTURE_FETCH_BARRIER_BIT = 0x00000008;
+        public const uint GL_SHADER_IMAGE_ACCESS_BARRIER_BIT = 0x00000020;
+        public const uint GL_COMMAND_BARRIER_BIT = 0x00000040;
+        public const uint GL_PIXEL_BUFFER_BARRIER_BIT = 0x00000080;
+        public const uint GL_TEXTURE_UPDATE_BARRIER_BIT = 0x00000100;
+        public const uint GL_BUFFER_UPDATE_BARRIER_BIT = 0x00000200;
+        public const uint GL_FRAMEBUFFER_BARRIER_BIT = 0x00000400;
+        public const uint GL_TRANSFORM_FEEDBACK_BARRIER_BIT = 0x00000800;
+        public const uint GL_ATOMIC_COUNTER_BARRIER_BIT = 0x00001000;
+        public const uint GL_QUERY_BUFFER_BARRIER_BIT = 0x00008000;
+        public const uint GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT = 0x00004000;
+
     }
 }

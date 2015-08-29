@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -50,6 +51,12 @@
     <Compile Include="FormFurRendering.Designer.cs">
       <DependentUpon>FormFurRendering.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormParticleSimulator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormParticleSimulator.Designer.cs">
+      <DependentUpon>FormParticleSimulator.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTeapot.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +76,7 @@
       <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
     <Compile Include="FurExample.cs" />
+    <Compile Include="ParticleSimulatorExample.cs" />
     <Compile Include="LightingExample.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,6 +84,9 @@
     <Compile Include="TeapotExample.cs" />
     <EmbeddedResource Include="FormFurRendering.resx">
       <DependentUpon>FormFurRendering.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormParticleSimulator.resx">
+      <DependentUpon>FormParticleSimulator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTeapot.resx">
       <DependentUpon>FormTeapot.cs</DependentUpon>
