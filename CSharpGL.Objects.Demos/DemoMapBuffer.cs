@@ -218,46 +218,71 @@ namespace CSharpGL.Objects.Demos
             return this.shaderProgram;
         }
 
+        Random random = new Random();
+
         /// <summary>
         /// 用随机颜色更新当前的颜色。
         /// </summary>
         public void UpdateColorBuffer()
         {
-            var colorArray = new UnmanagedArray<vec3>(size * size * size * 8);
-            Random random = new Random();
-            int index = 0;
-            for (int i = 0; i < size; i++)
             {
-                for (int j = 0; j < size; j++)
+                // update buffer object.
+                GL.BindBuffer(BufferTarget.ArrayBuffer, this.colorBuffer[0]);
+
+                IntPtr destColors = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+
+                //colorArray.CopyTo(destColors);
+                unsafe
                 {
-                    for (int k = 0; k < size; k++)
+                    vec3* array = (vec3*)destColors.ToPointer();
+                    int index = 0;
+                    for (int i = 0; i < size; i++)
                     {
-                        //vec3 color = new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
-                        for (int cubeIndex = 0; cubeIndex < 8; cubeIndex++)
+                        for (int j = 0; j < size; j++)
                         {
-                            vec3 color = new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
-                            colorArray[index++] = color;
+                            for (int k = 0; k < size; k++)
+                            {
+                                //vec3 color = new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+                                for (int cubeIndex = 0; cubeIndex < 8; cubeIndex++)
+                                {
+                                    vec3 color = new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+                                    array[index++] = color;
+                                }
+                            }
                         }
                     }
                 }
+
+                GL.UnmapBuffer(BufferTarget.ArrayBuffer);
             }
 
-            // update buffer object.
-            GL.BindBuffer(BufferTarget.ArrayBuffer, this.colorBuffer[0]);
+            //// This do the same thing: update buffer object
+            //using (var mappingBuffer = new MappingBuffer(BufferTarget.ArrayBuffer, this.colorBuffer[0], MapBufferAccess.ReadWrite))
+            //{
+            //    //colorArray.CopyTo(mappingBuffer.BufferPointer);
+            //    unsafe
+            //    {
+            //        vec3* array = (vec3*)mappingBuffer.BufferPointer.ToPointer();
+            //        int index = 0;
+            //        for (int i = 0; i < size; i++)
+            //        {
+            //            for (int j = 0; j < size; j++)
+            //            {
+            //                for (int k = 0; k < size; k++)
+            //                {
+            //                    //vec3 color = new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+            //                    for (int cubeIndex = 0; cubeIndex < 8; cubeIndex++)
+            //                    {
+            //                        vec3 color = new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+            //                        array[index++] = color;
+            //                    }
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
 
-            IntPtr destColors = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
-
-            colorArray.CopyTo(destColors);
-            
-            GL.UnmapBuffer(BufferTarget.ArrayBuffer);
-
-            // This do the same thing: update buffer object
-            using (var mappingBuffer = new MappingBuffer(BufferTarget.ArrayBuffer, this.colorBuffer[0], MapBufferAccess.ReadWrite))
-            {
-                colorArray.CopyTo(mappingBuffer.BufferPointer);
-            }
-
-            colorArray.Dispose();
+            //colorArray.Dispose();
         }
     }
 }

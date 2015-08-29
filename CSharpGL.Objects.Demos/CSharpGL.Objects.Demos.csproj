@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -44,7 +45,6 @@
     <Compile Include="DemoColorCodedPickingElement.cs" />
     <Compile Include="DemoLegacyTexture3DCubeElement.cs" />
     <Compile Include="DemoMapBuffer.cs" />
-    <Compile Include="MappingBuffer.cs" />
     <Compile Include="PickedGeometryIndexed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DemoSimplePointSpriteElement.cs" />

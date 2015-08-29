@@ -299,8 +299,13 @@ namespace CSharpGL.Winforms.Demo
                 var tmp = new UnmanagedArray<mat4>(1);
                 mat4 projection = this.camera.GetProjectionMat4();
                 mat4 view = this.camera.GetViewMat4();
-                tmp[0] = projection * view;
-                tmp.CopyTo(Pointer);
+                //tmp[0] = projection * view;
+                //tmp.CopyTo(Pointer);
+                unsafe
+                {
+                    mat4* current = (mat4*)Pointer.ToPointer();
+                    current[0] = projection * view;
+                }
 
                 GL.UnmapBuffer(GL.GL_UNIFORM_BUFFER);
 
