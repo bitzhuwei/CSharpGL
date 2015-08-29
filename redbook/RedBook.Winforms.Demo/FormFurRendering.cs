@@ -33,7 +33,8 @@ namespace RedBook.Winforms.Demo
             //}
             //else
             {
-                this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
+                this.camera = new ScientificCamera(CameraTypes.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
+                this.camera.Position *= 204;
                 //CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
             }
 
@@ -156,6 +157,22 @@ namespace RedBook.Winforms.Demo
                 }
 
                 this.lblCameraType.Text = string.Format("camera type: {0}", this.camera.CameraType);
+            }
+            else if(e.KeyChar=='s')
+            {
+                this.element.translateY -= 1;
+            }
+            else if(e.KeyChar=='w')
+            {
+                this.element.translateY += 1;
+            }
+            else if(e.KeyChar=='a')
+            {
+                this.element.translateX -= 1;
+            }
+            else if(e.KeyChar=='d')
+            {
+                this.element.translateX += 1;
             }
         }
     }
