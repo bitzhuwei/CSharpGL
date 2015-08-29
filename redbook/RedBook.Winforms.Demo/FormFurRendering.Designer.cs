@@ -73,7 +73,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.glCanvas1);
             this.Name = "FormFurRendering";
-            this.Text = "FormLightingExample";
+            this.Text = "FormFurRendering";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
