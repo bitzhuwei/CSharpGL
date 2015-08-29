@@ -264,10 +264,10 @@ void main(void)
                     //              rotate(b + t * 360.0f, 0.0f, 1.0f, 0.0f) *
                     //              rotate(c + t * 360.0f, 0.0f, 0.0f, 1.0f) *
                     //              translate(10.0f + a, 40.0f + b, 50.0f + c);
-                    matrices[n] = 
-                          glm.rotate(a + t * 360.0f, new vec3(1, 0, 0))
-                        * glm.rotate(b + t * 360.0f, new vec3(0, 1, 0))
-                        * glm.rotate(c + t * 360.0f, new vec3(0, 0, 1))
+                    matrices[n] =
+                          glm.rotate(a + t * 1.0f, new vec3(1, 0, 0))
+                        * glm.rotate(b + t * 1.0f, new vec3(0, 1, 0))
+                        * glm.rotate(c + t * 1.0f, new vec3(0, 0, 1))
                         * glm.translate(mat4.identity(), new vec3(10.0f + a, 40.0f + b, 50.0f + c));
                 }
             }

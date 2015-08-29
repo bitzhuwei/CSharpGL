@@ -72,8 +72,8 @@
             this.ClientSize = new System.Drawing.Size(705, 509);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "FormLightingExample";
-            this.Text = "FormLightingExample";
+            this.Name = "FormInstancedRendering";
+            this.Text = "FormInstancedRendering";
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
