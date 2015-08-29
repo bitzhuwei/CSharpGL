@@ -294,7 +294,7 @@ namespace CSharpGL.Winforms.Demo
             // Compute the MVP (Model View Projection matrix)
             {
                 GL.BindBuffer(BufferTarget.UniformBuffer, BufferName[1]);//BufferName[TRANSFORM]
-                var Pointer = GL.MapBufferRange(GL.GL_UNIFORM_BUFFER, 0, 64, (uint)(GL.GL_MAP_WRITE_BIT | GL.GL_MAP_INVALIDATE_BUFFER_BIT));
+                var mvpPointer = GL.MapBufferRange(GL.GL_UNIFORM_BUFFER, 0, 64, (uint)(GL.GL_MAP_WRITE_BIT | GL.GL_MAP_INVALIDATE_BUFFER_BIT));
 
                 var tmp = new UnmanagedArray<mat4>(1);
                 mat4 projection = this.camera.GetProjectionMat4();
@@ -303,8 +303,8 @@ namespace CSharpGL.Winforms.Demo
                 //tmp.CopyTo(Pointer);
                 unsafe
                 {
-                    mat4* current = (mat4*)Pointer.ToPointer();
-                    current[0] = projection * view;
+                    mat4* array = (mat4*)mvpPointer.ToPointer();
+                    array[0] = projection * view;
                 }
 
                 GL.UnmapBuffer(GL.GL_UNIFORM_BUFFER);

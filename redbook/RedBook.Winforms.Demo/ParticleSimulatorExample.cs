@@ -200,10 +200,10 @@ void main(void)
                     0, PARTICLE_COUNT * Marshal.SizeOf(typeof(vec4)), GL.GL_MAP_WRITE_BIT | GL.GL_MAP_INVALIDATE_BUFFER_BIT);
                 unsafe
                 {
-                    vec4* current = (vec4*)positions.ToPointer();
+                    vec4* array = (vec4*)positions.ToPointer();
                     for (int i = 0; i < PARTICLE_COUNT; i++)
                     {
-                        current[i] = new vec4(GetRandomVec3(), (float)random.NextDouble());
+                        array[i] = new vec4(GetRandomVec3(), (float)random.NextDouble());
                     }
                 }
                 GL.UnmapBuffer(BufferTarget.ArrayBuffer);
@@ -219,10 +219,10 @@ void main(void)
                     0, PARTICLE_COUNT * Marshal.SizeOf(typeof(vec4)), GL.GL_MAP_WRITE_BIT | GL.GL_MAP_INVALIDATE_BUFFER_BIT);
                 unsafe
                 {
-                    vec4* current = (vec4*)velocities.ToPointer();
+                    vec4* array = (vec4*)velocities.ToPointer();
                     for (int i = 0; i < PARTICLE_COUNT; i++)
                     {
-                        current[i] = new vec4(GetRandomVec3(), (float)random.NextDouble());
+                        array[i] = new vec4(GetRandomVec3(), (float)random.NextDouble());
                     }
                 }
                 GL.UnmapBuffer(BufferTarget.ArrayBuffer);
@@ -277,10 +277,10 @@ void main(void)
                 0, 32 * Marshal.SizeOf(typeof(vec4)), GL.GL_MAP_WRITE_BIT | GL.GL_MAP_INVALIDATE_BUFFER_BIT);
             unsafe
             {
-                vec4* current = (vec4*)attractors.ToPointer();
+                vec4* array = (vec4*)attractors.ToPointer();
                 for (int i = 0; i < 32; i++)
                 {
-                    current[i] = new vec4(
+                    array[i] = new vec4(
                         (float)Math.Sin(time * (float)(i + 4) * 7.5f * 20.0f) * 50.0f,
                         (float)Math.Cos(time * (float)(i + 7) * 3.9f * 20.0f) * 50.0f,
                         (float)(Math.Sin(time * (float)(i + 3) * 5.3f * 20.0f) * Math.Cos(time * (float)(i + 5) * 9.1f) * 100.0f),
