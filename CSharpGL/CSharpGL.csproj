@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Enumerations\BeginTransformFeedbackPrimitiveMode.cs" />
     <Compile Include="Enumerations\DrawMode.cs" />
+    <Compile Include="Enumerations\MemoryBarrierFlags.cs" />
     <Compile Include="Enumerations\PatchParameterName.cs" />
     <Compile Include="Enumerations\TransformFeedbackBufferTarget.cs" />
     <Compile Include="Enumerations\MapBufferAccess.cs" />

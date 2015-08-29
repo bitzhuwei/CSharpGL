@@ -784,7 +784,7 @@ namespace CSharpGL
         {
             return GetDelegateFor<glMapBuffer>()((uint)target, (uint)access);
         }
-        
+
         /// <summary>
         /// 把客户端（CPU）上的当前Buffer Object映射到服务端（GPU）的内存上。
         /// </summary>
@@ -1046,5 +1046,19 @@ namespace CSharpGL
         }
 
         #endregion patch
+
+        #region texture
+
+        /// <summary>
+        /// defines a barrier ordering memory transactions
+        /// </summary>
+        /// <param name="barriers">Specifies the barriers to insert.</param>
+        public static void MemoryBarrier(MemoryBarrierFlags barriers)
+        {
+            MemoryBarrier((uint)barriers);
+        }
+
+        #endregion texture
+
     }
 }

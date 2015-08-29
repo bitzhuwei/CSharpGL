@@ -259,17 +259,18 @@ void main(void)
 
         }
 
-        long start_ticks = 0;
-        long last_ticks;
+        uint start_ticks = 0;
+        uint last_ticks;
         protected override void DoRender(RenderEventArgs e)
         {
             if (start_ticks == 0)
             {
-                start_ticks = DateTime.Now.Ticks;
-                last_ticks = DateTime.Now.Ticks;
+                start_ticks = GetTickCount();
+                last_ticks = GetTickCount();
             }
-            long current_ticks = DateTime.Now.Ticks;
-            float time = ((start_ticks - current_ticks) & 0xFFFFF) / (0xFFFFF);
+            uint current_ticks = GetTickCount();
+            const float factor = 0xFFFFF;
+            float time = ((start_ticks - current_ticks) & 0xFFFFF) / factor;// *1.0f / 0.075f;
             float delta_time = (float)(current_ticks - last_ticks) * 0.075f;
 
             IntPtr attractors = GL.MapBufferRange(GL.GL_UNIFORM_BUFFER,
@@ -307,18 +308,25 @@ void main(void)
             // Dispatch
             GL.DispatchCompute(PARTICLE_GROUP_COUNT, 1, 1);
 
-            //GL.MemoryBarrier(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
             GL.MemoryBarrier(MemoryBarrierFlags.ShaderImageAccessBarrier);
 
             //vmath::mat4 mvp = vmath::perspective(45.0f, aspect_ratio, 0.1f, 1000.0f) *
             //vmath::translate(0.0f, 0.0f, -60.0f) *
             //vmath::rotate(time * 1000.0f, vmath::vec3(0.0f, 1.0f, 0.0f));
+
+            //int[] viewport = new int[4];
+            //GL.GetInteger(GetTarget.Viewport, viewport);
+            //mat4 projection = glm.perspective((float)(45.0f * Math.PI / 180.0f), (float)viewport[2] / (float)viewport[3], 0.1f, 1000.0f);
+            //mat4 view1 = glm.translate(mat4.identity(), new vec3(0.0f, 0.0f, -60.0f));
+            //mat4 view2 = glm.rotate(mat4.identity(), time * 1000.0f, new vec3(0.0f, 1.0f, 0.0f));
+            //mat4 mvp = projection * view1 * view2;
+
             mat4 mvp = e.Camera.GetProjectionMat4() * e.Camera.GetViewMat4();
 
 
             // Clear, select the rendering program and draw a full screen quad
             //GL.Clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            //GL.Disable(GL_DEPTH_TEST);
+            GL.Disable(GL.GL_DEPTH_TEST);
             GL.UseProgram(render_prog);
             GL.UniformMatrix4(0, 1, false, mvp.to_array());
             GL.BindVertexArray(render_vao[0]);
@@ -331,5 +339,7 @@ void main(void)
             last_ticks = current_ticks;
         }
 
+        [DllImport("kernel32")]
+        static extern uint GetTickCount();
     }
 }
