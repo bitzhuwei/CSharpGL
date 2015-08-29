@@ -325,8 +325,7 @@ void main(void)
 
 
             // Clear, select the rendering program and draw a full screen quad
-            //GL.Clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            GL.Disable(GL.GL_DEPTH_TEST);
+            //GL.Disable(GL.GL_DEPTH_TEST);
             GL.UseProgram(render_prog);
             GL.UniformMatrix4(0, 1, false, mvp.to_array());
             GL.BindVertexArray(render_vao[0]);
