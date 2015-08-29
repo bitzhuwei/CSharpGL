@@ -289,10 +289,10 @@ void main(void)
             prj_matrix = glm.translate(prj_matrix, new vec3(translateX, translateY, 0));
 
             basicShaderProgram.Bind();
-            //basicShaderProgram.SetUniformMatrix4("projection_matrix", prj_matrix.to_array());
-            //basicShaderProgram.SetUniformMatrix4("model_matrix", mv_matrix.to_array());
-            GL.UniformMatrix4(base_model_matrix_pos, 1, false, mv_matrix.to_array());
-            GL.UniformMatrix4(base_projection_matrix_pos, 1, false, prj_matrix.to_array());
+            basicShaderProgram.SetUniformMatrix4("projection_matrix", prj_matrix.to_array());
+            basicShaderProgram.SetUniformMatrix4("model_matrix", mv_matrix.to_array());
+            //GL.UniformMatrix4(base_model_matrix_pos, 1, false, mv_matrix.to_array());
+            //GL.UniformMatrix4(base_projection_matrix_pos, 1, false, prj_matrix.to_array());
 
             GL.Disable(GL.GL_BLEND);
             GL.Enable(GL.GL_CULL_FACE);
