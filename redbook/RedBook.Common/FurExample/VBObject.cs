@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedBook.Common
+namespace RedBook.Common.FurExample
 {
     public class VBObject : IDisposable
     {
@@ -24,41 +24,18 @@ namespace RedBook.Common
 
         public bool LoadFromVBM(string filename, int vertexIndex, int normalIndex, int texCoord0Index)
         {
-            //FILE * f = NULL;
             FileStream f = new FileStream(filename, FileMode.Open, FileAccess.Read);
             BinaryReader br = new BinaryReader(f);
 
-            //f = fopen(filename, "rb");
-            //if(f == NULL)
-            //return false;
-
-            //fseek(f, 0, SEEK_END);
-            //size_t filesize = ftell(f);
-            //fseek(f, 0, SEEK_SET);
             long filesize = f.Length;
-            //f.Seek(0, SeekOrigin.End);
-            //f.Seek(0, SeekOrigin.Begin);
 
             byte[] data = new byte[filesize];
             UnmanagedArray<byte> raw_data;
             f.Read(data, 0, (int)filesize);
-            //f.Close();
             f.Seek(0, SeekOrigin.Begin);
 
-            //VBM_HEADER * header = (VBM_HEADER *)data;
             VBM_HEADER header = br.ReadStruct<VBM_HEADER>();
-            //raw_data = data + header.size + header->num_attribs * sizeof(VBM_ATTRIB_HEADER) + header->num_frames * sizeof(VBM_FRAME_HEADER);
-            //{
-            //    long offset = header.size + header.num_attribs * Marshal.SizeOf(typeof(VBM_ATTRIB_HEADER)) + header.num_frames * Marshal.SizeOf(typeof(VBM_FRAME_HEADER)); 
-            //    raw_data = new UnmanagedArray<byte>((int)(data.Length - offset));
-            //    for (int i = 0; i < raw_data.Length; i++)
-            //    {
-            //        raw_data[i] = data[offset+i];
-            //    }
-            //}
-            //VBM_ATTRIB_HEADER * attrib_header = (VBM_ATTRIB_HEADER *)(data + header.size);
             VBM_ATTRIB_HEADER attrib_header = br.ReadStruct<VBM_ATTRIB_HEADER>();
-            //VBM_FRAME_HEADER * frame_header = (VBM_FRAME_HEADER *)(data + header.size + header.num_attribs * sizeof(VBM_ATTRIB_HEADER));
             {
                 long offset = header.size + header.num_attribs * Marshal.SizeOf(typeof(VBM_ATTRIB_HEADER));
                 f.Seek(offset, SeekOrigin.Begin);
@@ -67,10 +44,8 @@ namespace RedBook.Common
 
             uint total_data_size = 0;
 
-            //memcpy(&m_header, header, header.size < Marshal.SizeOf(typeof(VBM_HEADER)) ? header.size : Marshal.SizeOf(typeof(VBM_HEADER)));
             this.m_header = header;
 
-            //memcpy(m_attrib, attrib_header, header.num_attribs * Marshal.SizeOf(typeof(VBM_ATTRIB_HEADER)));
             {
                 long offset = header.size;// +header.num_attribs * Marshal.SizeOf(typeof(VBM_ATTRIB_HEADER));
                 f.Seek(offset, SeekOrigin.Begin);
@@ -81,7 +56,6 @@ namespace RedBook.Common
                 this.m_attrib[i] = br.ReadStruct<VBM_ATTRIB_HEADER>();
             }
 
-            //memcpy(m_frame, frame_header, header.num_frames * Marshal.SizeOf(typeof(VBM_FRAME_HEADER)));
             {
                 long offset = header.size + header.num_attribs * Marshal.SizeOf(typeof(VBM_ATTRIB_HEADER));// +header.num_frames * Marshal.SizeOf(typeof(VBM_FRAME_HEADER));
                 f.Seek(offset, SeekOrigin.Begin);
@@ -157,46 +131,6 @@ namespace RedBook.Common
 
             GL.BindVertexArray(0);
 
-            if (m_header.num_materials != 0)
-            {
-                m_material = new VBM_MATERIAL[m_header.num_materials];
-                //memcpy(m_material, raw_data + total_data_size, m_header.num_materials * sizeof(VBM_MATERIAL));
-                {
-                    var offset = header.size + total_data_size;
-                    f.Seek(offset, SeekOrigin.Begin);
-                }
-                for (int t = 0; t < m_header.num_materials; t++)
-                {
-                    m_material[t] = br.ReadStruct<VBM_MATERIAL>();
-                }
-                total_data_size += (uint)(m_header.num_materials * Marshal.SizeOf(typeof(VBM_MATERIAL)));
-                m_material_textures = new material_texture[m_header.num_materials];
-                //memset(m_material_textures, 0, m_header.num_materials * sizeof(*m_material_textures));
-                {
-                    var offset = 0;
-                    f.Seek(0, SeekOrigin.Begin);
-                }
-                for (int t = 0; t < m_header.num_materials; t++)
-                {
-                    m_material_textures[t] = br.ReadStruct<material_texture>();
-                }
-            }
-
-            if (m_header.num_chunks != 0)
-            {
-                m_chunks = new VBM_RENDER_CHUNK[m_header.num_chunks];
-                //memcpy(m_chunks, raw_data + total_data_size, m_header.num_chunks * sizeof(VBM_RENDER_CHUNK));
-                {
-                    var offset = m_header.size + total_data_size;
-                    f.Seek(offset, SeekOrigin.Begin);
-                }
-                for (int t = 0; t < m_header.num_chunks; t++)
-                {
-                    m_chunks[t] = br.ReadStruct<VBM_RENDER_CHUNK>();
-                }
-                //total_data_size += m_header.num_chunks * sizeof(VBM_RENDER_CHUNK);
-            }
-
             raw_data.Dispose();
 
             return true;
@@ -241,52 +175,25 @@ namespace RedBook.Common
 
             GL.BindVertexArray(m_vao[0]);
 
-            if (m_header.num_chunks > 0)
+            if (instances != 0)
             {
-                uint chunk = 6; // (t >> 1) % m_header.num_chunks;
-
-                for (chunk = 0; chunk < m_header.num_chunks; chunk++)
-                {
-                    uint material_index = m_chunks[chunk].material_index;
-                    // if (m_material_textures[material_index].normal != 0)
-                    {
-                        GL.ActiveTexture(GL.GL_TEXTURE2);
-                        GL.BindTexture(GL.GL_TEXTURE_2D, m_material_textures[material_index].normal);
-                        GL.ActiveTexture(GL.GL_TEXTURE1);
-                        GL.BindTexture(GL.GL_TEXTURE_2D, m_material_textures[material_index].specular);
-                        GL.ActiveTexture(GL.GL_TEXTURE0);
-                        GL.BindTexture(GL.GL_TEXTURE_2D, m_material_textures[material_index].diffuse);
-                        //VBM_MATERIAL* material = m_material[m_chunks[chunk].material_index];
-                        GL.DrawArrays(GL.GL_TRIANGLES, (int)m_chunks[chunk].first, (int)m_chunks[chunk].count);
-                    }
-                }
+                if (m_header.num_indices != 0)
+                    GL.DrawElementsInstanced(GL.GL_TRIANGLES, (int)m_frame[frame_index].count, GL.GL_UNSIGNED_INT, new IntPtr(m_frame[frame_index].first * sizeof(uint)), (int)instances);
+                else
+                    GL.DrawArraysInstanced(GL.GL_TRIANGLES, (int)m_frame[frame_index].first, (int)m_frame[frame_index].count, (int)instances);
             }
             else
             {
-                if (instances > 0)
-                {
-                    if (m_header.num_indices > 0)
-                        GL.DrawElementsInstanced(GL.GL_TRIANGLES, (int)m_frame[frame_index].count, GL.GL_UNSIGNED_INT, new IntPtr(m_frame[frame_index].first * sizeof(uint)), (int)instances);
-                    else
-                        GL.DrawArraysInstanced(GL.GL_TRIANGLES, (int)m_frame[frame_index].first, (int)m_frame[frame_index].count, (int)instances);
-                }
+                if (m_header.num_indices != 0)
+                    GL.DrawElements(GL.GL_TRIANGLES, (int)m_frame[frame_index].count, GL.GL_UNSIGNED_INT, new IntPtr(m_frame[frame_index].first * sizeof(uint)));
                 else
-                {
-                    if (m_header.num_indices > 0)
-                        GL.DrawElements(GL.GL_TRIANGLES, (int)m_frame[frame_index].count, GL.GL_UNSIGNED_INT, new IntPtr(m_frame[frame_index].first * sizeof(uint)));
-                    else
-                        GL.DrawArrays(GL.GL_TRIANGLES, (int)m_frame[frame_index].first, (int)m_frame[frame_index].count);
-                }
+                    GL.DrawArrays(GL.GL_TRIANGLES, (int)m_frame[frame_index].first, (int)m_frame[frame_index].count);
             }
+
             GL.BindVertexArray(0);
         }
 
         #region simple functions
-
-        public uint GetVertexCount(uint frame = 0)
-        {
-            return frame < m_header.num_frames ? m_frame[frame].count : 0;
-        }
 
         public uint GetAttributeCount()
         {
@@ -296,61 +203,6 @@ namespace RedBook.Common
         public string GetAttributeName(uint index)
         {
             return index < m_header.num_attribs ? m_attrib[index].name : string.Empty;
-        }
-
-        public uint GetFrameCount()
-        {
-            return m_header.num_frames;
-        }
-
-        public uint GetMaterialCount()
-        {
-            return m_header.num_materials;
-        }
-
-        public string GetMaterialName(uint material_index)
-        {
-            return m_material[material_index].name;
-        }
-
-        public vec3 GetMaterialAmbient(uint material_index)
-        {
-            return new vec3(m_material[material_index].ambient.x, m_material[material_index].ambient.y, m_material[material_index].ambient.z);
-        }
-
-        public vec3 GetMaterialDiffuse(uint material_index)
-        {
-            return new vec3(m_material[material_index].diffuse.x, m_material[material_index].diffuse.y, m_material[material_index].diffuse.z);
-        }
-
-        public string GetMaterialDiffuseMapName(uint material_index)
-        {
-            return m_material[material_index].diffuse_map;
-        }
-
-        public string GetMaterialSpecularMapName(uint material_index)
-        {
-            return m_material[material_index].specular_map;
-        }
-
-        public string GetMaterialNormalMapName(uint material_index)
-        {
-            return m_material[material_index].normal_map;
-        }
-
-        public void SetMaterialDiffuseTexture(uint material_index, uint texname)
-        {
-            m_material_textures[material_index].diffuse = texname;
-        }
-
-        public void SetMaterialSpecularTexture(uint material_index, uint texname)
-        {
-            m_material_textures[material_index].specular = texname;
-        }
-
-        public void SetMaterialNormalTexture(uint material_index, uint texname)
-        {
-            m_material_textures[material_index].normal = texname;
         }
 
         public void BindVertexArray()
@@ -367,8 +219,6 @@ namespace RedBook.Common
         protected VBM_HEADER m_header;
         protected VBM_ATTRIB_HEADER[] m_attrib;
         protected VBM_FRAME_HEADER[] m_frame;
-        protected VBM_MATERIAL[] m_material;
-        protected VBM_RENDER_CHUNK[] m_chunks;
 
         protected struct material_texture
         {

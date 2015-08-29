@@ -94,6 +94,7 @@ namespace RedBook.Common
         VertexShader = GL.GL_VERTEX_SHADER,
         TessellationControlShader = GL.GL_TESS_CONTROL_SHADER,
         TessellationEvaluationShader = GL.GL_TESS_EVALUATION_SHADER,
+        GeometryShader = GL.GL_GEOMETRY_SHADER,
         FragmentShader = GL.GL_FRAGMENT_SHADER,
     }
 }

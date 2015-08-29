@@ -19,7 +19,7 @@ namespace RedBook.Winforms.Demo
     public partial class FormFurRendering : Form
     {
         SimpleUIAxis uiAxis;
-        LightingExample element;
+        FurExample element;
         SatelliteRotator rotator;
         ScientificCamera camera;
 
@@ -40,7 +40,7 @@ namespace RedBook.Winforms.Demo
             rotator = new SatelliteRotator(this.camera);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
-            element = new LightingExample();
+            element = new FurExample();
             element.Initialize();
 
             //element.BeforeRendering += element_BeforeRendering;

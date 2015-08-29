@@ -4,6 +4,7 @@ using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Shaders;
 using RedBook.Common;
+using RedBook.Common.LightingExample;
 using System;
 
 namespace RedBook.Winforms.Demo

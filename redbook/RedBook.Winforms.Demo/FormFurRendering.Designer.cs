@@ -43,7 +43,7 @@
             this.glCanvas1.Location = new System.Drawing.Point(13, 13);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.glCanvas1.Name = "glCanvas1";
-            this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
+            this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL3_0;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(679, 467);
             this.glCanvas1.TabIndex = 0;
@@ -65,14 +65,14 @@
             this.lblCameraType.Size = new System.Drawing.Size(118, 20);
             this.lblCameraType.Text = "lblCameraType";
             // 
-            // FormLightingExample
+            // FormFurRendering
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(705, 509);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "FormLightingExample";
+            this.Name = "FormFurRendering";
             this.Text = "FormLightingExample";
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
