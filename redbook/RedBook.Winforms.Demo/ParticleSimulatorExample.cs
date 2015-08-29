@@ -256,10 +256,10 @@ void main(void)
         {
             if (start_ticks == 0)
             {
-                start_ticks = GetTickCount();
-                last_ticks = GetTickCount();
+                start_ticks = TimerHelper.GetTickCount();
+                last_ticks = TimerHelper.GetTickCount();
             }
-            uint current_ticks = GetTickCount();
+            uint current_ticks = TimerHelper.GetTickCount();
             const float factor = 0xFFFFF;
             float time = ((start_ticks - current_ticks) & 0xFFFFF) / factor;// *1.0f / 0.075f;
             float delta_time = (float)(current_ticks - last_ticks) * 0.075f;
@@ -329,7 +329,5 @@ void main(void)
             last_ticks = current_ticks;
         }
 
-        [DllImport("kernel32")]
-        static extern uint GetTickCount();
     }
 }

@@ -51,6 +51,12 @@
     <Compile Include="FormFurRendering.Designer.cs">
       <DependentUpon>FormFurRendering.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormInstancedRendering.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInstancedRendering.Designer.cs">
+      <DependentUpon>FormInstancedRendering.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormParticleSimulator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,7 @@
       <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
     <Compile Include="FurExample.cs" />
+    <Compile Include="InstancedRenderingExample.cs" />
     <Compile Include="ParticleSimulatorExample.cs" />
     <Compile Include="LightingExample.cs" />
     <Compile Include="Program.cs" />
@@ -84,6 +91,9 @@
     <Compile Include="TeapotExample.cs" />
     <EmbeddedResource Include="FormFurRendering.resx">
       <DependentUpon>FormFurRendering.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInstancedRendering.resx">
+      <DependentUpon>FormInstancedRendering.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormParticleSimulator.resx">
       <DependentUpon>FormParticleSimulator.cs</DependentUpon>
@@ -106,6 +116,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="media\armadillo_low.vbm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="media\ninja.vbm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

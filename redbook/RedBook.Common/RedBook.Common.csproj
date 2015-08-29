@@ -46,6 +46,7 @@
     <Compile Include="ShaderInfo.cs" />
     <Compile Include="LightingExample\VBM.cs" />
     <Compile Include="LightingExample\VBObject.cs" />
+    <Compile Include="TimerHelper.cs" />
     <Compile Include="Vec3Helper.cs" />
   </ItemGroup>
   <ItemGroup>

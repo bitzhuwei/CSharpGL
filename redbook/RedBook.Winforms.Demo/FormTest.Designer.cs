@@ -32,6 +32,7 @@
             this.btnTeapotExample = new System.Windows.Forms.Button();
             this.btnFurRendering = new System.Windows.Forms.Button();
             this.btnParticleSimulatorExample = new System.Windows.Forms.Button();
+            this.btnInstancedRendering = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLightingExample
@@ -75,12 +76,23 @@
             this.btnParticleSimulatorExample.UseVisualStyleBackColor = true;
             this.btnParticleSimulatorExample.Click += new System.EventHandler(this.btnParticleSimulatorExample_Click);
             // 
+            // btnInstancedRendering
+            // 
+            this.btnInstancedRendering.Location = new System.Drawing.Point(12, 128);
+            this.btnInstancedRendering.Name = "btnInstancedRendering";
+            this.btnInstancedRendering.Size = new System.Drawing.Size(254, 23);
+            this.btnInstancedRendering.TabIndex = 0;
+            this.btnInstancedRendering.Text = "InstancedRendering";
+            this.btnInstancedRendering.UseVisualStyleBackColor = true;
+            this.btnInstancedRendering.Click += new System.EventHandler(this.btnInstancedRendering_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 626);
             this.Controls.Add(this.btnTeapotExample);
+            this.Controls.Add(this.btnInstancedRendering);
             this.Controls.Add(this.btnParticleSimulatorExample);
             this.Controls.Add(this.btnFurRendering);
             this.Controls.Add(this.btnLightingExample);
@@ -97,5 +109,6 @@
         private System.Windows.Forms.Button btnTeapotExample;
         private System.Windows.Forms.Button btnFurRendering;
         private System.Windows.Forms.Button btnParticleSimulatorExample;
+        private System.Windows.Forms.Button btnInstancedRendering;
     }
 }
