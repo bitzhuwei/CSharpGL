@@ -189,6 +189,7 @@ void main(void)
             GL.GenBuffers(1, color_buffer);
             GL.BindBuffer(BufferTarget.ArrayBuffer, color_buffer[0]);
             GL.BufferData(BufferTarget.ArrayBuffer, colors, BufferUsage.DynamicDraw);
+            colors.Dispose();
 
             // Now we set up the color array. We want each instance of our geometry
             // to assume a different color, so we'll just pack colors into a buffer
@@ -209,6 +210,8 @@ void main(void)
             GL.GenBuffers(1, model_matrix_buffer);
             GL.BindBuffer(BufferTarget.ArrayBuffer, model_matrix_buffer[0]);
             GL.BufferData(BufferTarget.ArrayBuffer, tmp, BufferUsage.DynamicDraw);
+            tmp.Dispose();
+
             // Loop over each column of the matrix...
             for (int i = 0; i < 4; i++)
             {
@@ -260,10 +263,6 @@ void main(void)
                     float b = 50.0f * (float)(n) / 5.0f;
                     float c = 50.0f * (float)(n) / 6.0f;
 
-                    //matrices[n] = rotate(a + t * 360.0f, 1.0f, 0.0f, 0.0f) *
-                    //              rotate(b + t * 360.0f, 0.0f, 1.0f, 0.0f) *
-                    //              rotate(c + t * 360.0f, 0.0f, 0.0f, 1.0f) *
-                    //              translate(10.0f + a, 40.0f + b, 50.0f + c);
                     matrices[n] =
                           glm.rotate(a + t * 1.0f, new vec3(1, 0, 0))
                         * glm.rotate(b + t * 1.0f, new vec3(0, 1, 0))
@@ -287,8 +286,6 @@ void main(void)
 
             // Render INSTANCE_COUNT objects
             vboObject.Render(0, INSTANCE_COUNT);
-
-            //lookat(vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f));
 
         }
 
