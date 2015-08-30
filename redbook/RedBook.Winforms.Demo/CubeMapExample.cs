@@ -3,6 +3,7 @@ using CSharpGL.Maths;
 using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Shaders;
+using Picture.DDS;
 using RedBook.Common;
 using RedBook.Common.LightingExample;
 using System;
@@ -87,8 +88,8 @@ void main(void)
         uint[] cube_vbo = new uint[1];
         uint[] cube_element_buffer = new uint[1];
 
-        //uint tex;
-        Texture2D tex;
+        uint tex;
+        //Texture2D tex;
         int skybox_rotate_loc;
 
         int object_mat_mvp_loc;
@@ -205,10 +206,15 @@ void main(void)
             cube_indices[14] = 3;
             cube_indices[15] = 7;
 
-            tex = new Texture2D();
-            //System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(@"media\TantolundenCube.dds");
-            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(@"media\TantolundenCube.png");
-            tex.Initialize(bmp);
+            //tex = new Texture2D();
+            //System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(@"media\TantolundenCube.png");
+            //tex.Initialize(bmp);
+            vglImageData data = new vglImageData();
+            tex = vgl.vglLoadTexture(@"media\TantolundenCube.dds", 0, ref data);
+
+            uint e = GL.GetError();
+
+            vgl.vglUnloadImage(ref data);
 
             vboObject.LoadFromVBM(@"media\unit_torus.vbm", 0, 1, 2);
 
@@ -240,7 +246,8 @@ void main(void)
                 GL.UseProgram(skybox_prog);
                 GL.Enable(GL.GL_TEXTURE_CUBE_MAP_SEAMLESS);
 
-                GL.Uniform1(skyboxTexLocation, (float)tex.Name);
+                //GL.Uniform1(skyboxTexLocation, (float)tex.Name);
+                GL.Uniform1(skyboxTexLocation, tex);
                 int[] viewport = new int[4];
                 GL.GetInteger(GetTarget.Viewport, viewport);
                 aspect = (float)viewport[2] / (float)viewport[3];
@@ -256,7 +263,8 @@ void main(void)
             {
                 GL.UseProgram(object_prog);
 
-                GL.Uniform1(objectTexLocation, (float)tex.Name);
+                //GL.Uniform1(objectTexLocation, (float)tex.Name);
+                GL.Uniform1(objectTexLocation, tex);
 
                 //tc_matrix = vmath::translate(vmath::vec3(0.0f, 0.0f, -4.0f)) *
                 //vmath::rotate(80.0f * 3.0f * t, Y) * vmath::rotate(70.0f * 3.0f * t, Z);

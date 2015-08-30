@@ -10,7 +10,7 @@ namespace Picture.DDS
 {
     public partial class vgl
     {
-        void vglLoadDDS(string filename, ref vglImageData image)
+        public static void vglLoadDDS(string filename, ref vglImageData image)
         {
             System.IO.FileStream f = new System.IO.FileStream(filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
             System.IO.BinaryReader br = new System.IO.BinaryReader(f);

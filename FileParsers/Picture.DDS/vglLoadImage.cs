@@ -8,7 +8,7 @@ namespace Picture.DDS
 {
     public partial class vgl
     {
-        void vglLoadImage(string filename, ref vglImageData image)
+        public static void vglLoadImage(string filename, ref vglImageData image)
         {
             vglLoadDDS(filename, ref image);
         }

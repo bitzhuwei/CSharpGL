@@ -9,7 +9,7 @@ namespace Picture.DDS
 {
     public partial class vgl
     {
-        void vglUnloadImage(ref vglImageData image)
+        public static void vglUnloadImage(ref vglImageData image)
         {
             Marshal.FreeHGlobal(image.mip[0].data);
         }

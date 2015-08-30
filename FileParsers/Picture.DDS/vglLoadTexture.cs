@@ -9,7 +9,7 @@ namespace Picture.DDS
 {
     public partial class vgl
     {
-        uint vglLoadTexture(string filename, uint texture, ref vglImageData image)
+        public static uint vglLoadTexture(string filename, uint texture, ref vglImageData image)
         {
             //vglImageData local_image;
             int level;
@@ -28,6 +28,8 @@ namespace Picture.DDS
 
             GL.BindTexture(image.target, texture);
 
+            if (image.mip == null)
+            { image.mip = new vglImageMipData[vermilion.MAX_TEXTURE_MIPS]; }
             IntPtr ptr = image.mip[0].data;
 
             switch (image.target)
@@ -142,7 +144,8 @@ namespace Picture.DDS
             }
 
             int[] swizzle = new int[4];
-            image.swizzle.CopyTo(swizzle, 0);
+            for (int i = 0; i < 4;i++ )
+            { swizzle[i] = (int)image.swizzle[i]; }
             GL.TexParameteriv(image.target, GL.GL_TEXTURE_SWIZZLE_RGBA, swizzle);
 
             //if (image == &local_image)

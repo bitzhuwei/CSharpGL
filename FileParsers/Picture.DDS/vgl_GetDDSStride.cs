@@ -8,7 +8,7 @@ namespace Picture.DDS
 {
     public partial class vgl
     {
-        int vgl_GetDDSStride(ref DDS_FILE_HEADER header, int width)
+        public static int vgl_GetDDSStride(ref DDS_FILE_HEADER header, int width)
         {
             if (header.std_header.ddspf.dwFlags == DDSSignal.DDS_DDPF_FOURCC &&
                     header.std_header.ddspf.dwFourCC == DDSSignal.DDS_FOURCC_DX10)

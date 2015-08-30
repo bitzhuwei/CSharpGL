@@ -22,7 +22,7 @@ namespace Picture.DDS
     // Each texture image data structure contains an array of MAX_TEXTURE_MIPS
     // of these mipmap structures. The structure represents the mipmap data for
     // all slices at that level.
-    struct vglImageMipData
+    public struct vglImageMipData
     {
         public int width;                              // Width of this mipmap level
         public int height;                             // Height of this mipmap level
@@ -34,7 +34,7 @@ namespace Picture.DDS
 
     // This is the main image data structure. It contains all the parameters needed
     // to place texture data into a texture object using OpenGL.
-    struct vglImageData
+    public struct vglImageData
     {
         public uint target;                              // Texture target (1D, 2D, cubemap, array, etc.)
         public uint internalFormat;                      // Recommended internal format (GL_RGBA32F, etc).

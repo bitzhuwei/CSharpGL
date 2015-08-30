@@ -9,8 +9,10 @@ namespace Picture.DDS
 {
     public partial class vgl
     {
-        bool vgl_DDSHeaderToImageDataHeader(ref DDS_FILE_HEADER header, ref vglImageData image)
+        public static bool vgl_DDSHeaderToImageDataHeader(ref DDS_FILE_HEADER header, ref vglImageData image)
         {
+            image.swizzle = new uint[4];
+
             if (header.std_header.ddspf.dwFlags == DDSSignal.DDS_DDPF_FOURCC &&
                 header.std_header.ddspf.dwFourCC == DDSSignal.DDS_FOURCC_DX10)
             {

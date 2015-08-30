@@ -9,7 +9,7 @@ namespace Picture.DDS
 {
     public partial class vgl
     {
-        uint vgl_GetTargetFromDDSHeader(ref DDS_FILE_HEADER header)
+        public static uint vgl_GetTargetFromDDSHeader(ref DDS_FILE_HEADER header)
         {
             // If the DX10 header is present it's format should be non-zero (unless it's unknown)
             if (header.dxt10_header.format != 0)
