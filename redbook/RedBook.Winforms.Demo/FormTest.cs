@@ -46,5 +46,10 @@ namespace RedBook.Winforms.Demo
         {
             (new FormInstancedRendering()).Show();
         }
+
+        private void btnCubeMap_Click(object sender, EventArgs e)
+        {
+            (new FormCubeMap()).Show();
+        }
     }
 }

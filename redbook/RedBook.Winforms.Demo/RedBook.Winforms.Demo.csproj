@@ -57,6 +57,12 @@
     <Compile Include="FormInstancedRendering.Designer.cs">
       <DependentUpon>FormInstancedRendering.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCubeMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCubeMap.Designer.cs">
+      <DependentUpon>FormCubeMap.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormParticleSimulator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,7 @@
     </Compile>
     <Compile Include="FurExample.cs" />
     <Compile Include="InstancedRenderingExample.cs" />
+    <Compile Include="CubeMapExample.cs" />
     <Compile Include="ParticleSimulatorExample.cs" />
     <Compile Include="LightingExample.cs" />
     <Compile Include="Program.cs" />
@@ -94,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormInstancedRendering.resx">
       <DependentUpon>FormInstancedRendering.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCubeMap.resx">
+      <DependentUpon>FormCubeMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormParticleSimulator.resx">
       <DependentUpon>FormParticleSimulator.cs</DependentUpon>
@@ -175,6 +185,14 @@
       <Project>{22558a60-4e2a-4ec5-85d0-300d8ca5c6f4}</Project>
       <Name>RedBook.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="media\TantolundenCube.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="media\TantolundenCube.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

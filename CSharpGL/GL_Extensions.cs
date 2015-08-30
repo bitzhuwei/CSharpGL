@@ -6033,5 +6033,7 @@ namespace CSharpGL
         public const uint GL_QUERY_BUFFER_BARRIER_BIT = 0x00008000;
         public const uint GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT = 0x00004000;
 
+
+        public const uint GL_TEXTURE_CUBE_MAP_SEAMLESS = 0x884F;
     }
 }

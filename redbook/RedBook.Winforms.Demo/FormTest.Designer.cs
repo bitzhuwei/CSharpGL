@@ -33,6 +33,7 @@
             this.btnFurRendering = new System.Windows.Forms.Button();
             this.btnParticleSimulatorExample = new System.Windows.Forms.Button();
             this.btnInstancedRendering = new System.Windows.Forms.Button();
+            this.btnCubeMap = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLightingExample
@@ -86,12 +87,23 @@
             this.btnInstancedRendering.UseVisualStyleBackColor = true;
             this.btnInstancedRendering.Click += new System.EventHandler(this.btnInstancedRendering_Click);
             // 
+            // btnCubeMap
+            // 
+            this.btnCubeMap.Location = new System.Drawing.Point(12, 157);
+            this.btnCubeMap.Name = "btnCubeMap";
+            this.btnCubeMap.Size = new System.Drawing.Size(254, 23);
+            this.btnCubeMap.TabIndex = 0;
+            this.btnCubeMap.Text = "CubeMap";
+            this.btnCubeMap.UseVisualStyleBackColor = true;
+            this.btnCubeMap.Click += new System.EventHandler(this.btnCubeMap_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 626);
             this.Controls.Add(this.btnTeapotExample);
+            this.Controls.Add(this.btnCubeMap);
             this.Controls.Add(this.btnInstancedRendering);
             this.Controls.Add(this.btnParticleSimulatorExample);
             this.Controls.Add(this.btnFurRendering);
@@ -110,5 +122,6 @@
         private System.Windows.Forms.Button btnFurRendering;
         private System.Windows.Forms.Button btnParticleSimulatorExample;
         private System.Windows.Forms.Button btnInstancedRendering;
+        private System.Windows.Forms.Button btnCubeMap;
     }
 }
