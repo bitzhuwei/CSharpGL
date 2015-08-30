@@ -33,8 +33,10 @@ namespace RedBook.Winforms.Demo
             //}
             //else
             {
-                this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
+                this.camera = new ScientificCamera(CameraTypes.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 //CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
+                this.camera.UpVector = new vec3(-0.07f, 0.96f, 0.29f);
+                this.camera.Position = new vec3(0.03f, 0.03f, 0.03f);
             }
 
             rotator = new SatelliteRotator(this.camera);

@@ -255,7 +255,8 @@ void main(void)
                 int[] viewport = new int[4];
                 GL.GetInteger(GetTarget.Viewport, viewport);
                 aspect = (float)viewport[2] / (float)viewport[3];
-                tc_matrix = glm.perspective((float)(35.0f * Math.PI / 180.0f), aspect, 0.1f, 100.0f) * tc_matrix;
+                //tc_matrix = glm.perspective((float)(35.0f * Math.PI / 180.0f), aspect, 0.1f, 100.0f) * tc_matrix;
+                tc_matrix = e.Camera.GetProjectionMat4() * e.Camera.GetViewMat4();
 
                 GL.UniformMatrix4(skybox_rotate_loc, 1, false, tc_matrix.to_array());
                 GL.BindVertexArray(vao[0]);
@@ -272,7 +273,8 @@ void main(void)
                 //tc_matrix = glm.translate(mat4.identity(), new vec3(0, 0, -4))
                 //    * glm.rotate(3 * t, Y)
                 //    * glm.rotate(3 * t, Z);
-                tc_matrix = e.Camera.GetViewMat4();
+                const float scale = 0.01f;
+                tc_matrix = e.Camera.GetViewMat4() * glm.scale(mat4.identity(), new vec3(scale, scale, scale));
 
                 GL.UniformMatrix4(object_mat_mv_loc, 1, false, tc_matrix.to_array());
 
