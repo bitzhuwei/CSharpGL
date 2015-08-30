@@ -20,6 +20,9 @@ namespace Picture.DDS
 
             //fread(&file_header, sizeof(file_header.magic) + sizeof(file_header.std_header), 1, f);
             file_header = br.ReadStruct<DDS_FILE_HEADER>();
+            file_header.dxt10_header.format = 0;
+            file_header.dxt10_header.array_size = 0;
+            f.Position = Marshal.SizeOf(file_header.magic) + Marshal.SizeOf(file_header.std_header);
 
             if (file_header.magic != DDSSignal.DDS_MAGIC)
             {
@@ -47,6 +50,7 @@ namespace Picture.DDS
 
             image.totalDataSize = (int)(file_size - current_pos);
             var data = new UnmanagedArray<byte>(image.totalDataSize);
+            if (image.mip == null) { image.mip = new vglImageMipData[vermilion.MAX_TEXTURE_MIPS]; }
             image.mip[0].data = data.Header;
             //image.mip[0].data = new byte[image.totalDataSize];
 

@@ -263,17 +263,17 @@ void main(void)
             {
                 GL.UseProgram(object_prog);
 
-                //GL.Uniform1(objectTexLocation, (float)tex.Name);
                 GL.Uniform1(objectTexLocation, tex);
 
-                //tc_matrix = vmath::translate(vmath::vec3(0.0f, 0.0f, -4.0f)) *
-                //vmath::rotate(80.0f * 3.0f * t, Y) * vmath::rotate(70.0f * 3.0f * t, Z);
-                tc_matrix = glm.translate(mat4.identity(), new vec3(0, 0, -4))
-                    * glm.rotate(3 * t, Y)
-                    * glm.rotate(3 * t, Z);
+                //tc_matrix = glm.translate(mat4.identity(), new vec3(0, 0, -4))
+                //    * glm.rotate(3 * t, Y)
+                //    * glm.rotate(3 * t, Z);
+                tc_matrix = e.Camera.GetViewMat4();
 
                 GL.UniformMatrix4(object_mat_mv_loc, 1, false, tc_matrix.to_array());
-                tc_matrix = glm.perspective(35.0f, 1.0f / aspect, 0.1f, 100.0f) * tc_matrix;
+
+                //tc_matrix = glm.perspective(35.0f, 1.0f / aspect, 0.1f, 100.0f) * tc_matrix;
+                tc_matrix = e.Camera.GetProjectionMat4() * tc_matrix;
                 GL.UniformMatrix4(object_mat_mvp_loc, 1, false, tc_matrix.to_array());
 
                 GL.Clear(GL.GL_DEPTH_BUFFER_BIT);

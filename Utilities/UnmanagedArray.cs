@@ -192,7 +192,13 @@ namespace System
                 {
                     this.Length = 0;
                     this.Header = IntPtr.Zero;
-                    Marshal.FreeHGlobal(ptr);
+                    try
+                    {
+                        Marshal.FreeHGlobal(ptr);
+                    }
+                    catch (Exception)
+                    {
+                    }
                 }
             } // end if
 
