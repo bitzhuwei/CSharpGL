@@ -251,7 +251,7 @@ void main(void)
                 int[] viewport = new int[4];
                 GL.GetInteger(GetTarget.Viewport, viewport);
                 aspect = (float)viewport[2] / (float)viewport[3];
-                tc_matrix = glm.perspective(35.0f, 1.0f / aspect, 0.1f, 100.0f) * tc_matrix;
+                tc_matrix = glm.perspective(35.0f, aspect, 0.1f, 100.0f) * tc_matrix;
 
                 GL.UniformMatrix4(skybox_rotate_loc, 1, false, tc_matrix.to_array());
                 GL.BindVertexArray(vao[0]);
