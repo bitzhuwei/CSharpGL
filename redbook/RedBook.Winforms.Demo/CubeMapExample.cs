@@ -168,23 +168,6 @@ void main(void)
             cube_vertices[5] = new vec3(1.0f, -1.0f, 1.0f);
             cube_vertices[6] = new vec3(1.0f, 1.0f, -1.0f);
             cube_vertices[7] = new vec3(1.0f, 1.0f, 1.0f);
-            GL.BufferData(BufferTarget.ArrayBuffer, cube_vertices, BufferUsage.StaticDraw);
-            cube_vertices.Dispose();
-
-            GL.GenVertexArrays(1, vao);
-            GL.BindVertexArray(vao[0]);
-            GL.VertexAttribPointer(0, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-            GL.EnableVertexAttribArray(0);
-
-            GL.GenBuffers(1, cube_element_buffer);
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, cube_element_buffer[0]);
-            GL.BufferData(BufferTarget.ElementArrayBuffer, cube_vertices, BufferUsage.StaticDraw);
-
-            skybox_rotate_loc = GL.GetUniformLocation(skybox_prog, "tc_rotate");
-            object_mat_mvp_loc = GL.GetUniformLocation(object_prog, "mat_mvp");
-            object_mat_mv_loc = GL.GetUniformLocation(object_prog, "mat_mv");
-            skyboxTexLocation = GL.GetUniformLocation(skybox_prog, "tex");
-            objectTexLocation = GL.GetUniformLocation(object_prog, "tex");
 
             var cube_indices = new UnmanagedArray<ushort>(16);
             // First strip
@@ -205,6 +188,27 @@ void main(void)
             cube_indices[13] = 5;
             cube_indices[14] = 3;
             cube_indices[15] = 7;
+
+            GL.BufferData(BufferTarget.ArrayBuffer, cube_vertices, BufferUsage.StaticDraw);
+            cube_vertices.Dispose();
+
+            GL.GenVertexArrays(1, vao);
+            GL.BindVertexArray(vao[0]);
+            GL.VertexAttribPointer(0, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+            GL.EnableVertexAttribArray(0);
+
+            GL.GenBuffers(1, cube_element_buffer);
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, cube_element_buffer[0]);
+            GL.BufferData(BufferTarget.ElementArrayBuffer, cube_indices, BufferUsage.StaticDraw);
+            cube_indices.Dispose();
+
+            skybox_rotate_loc = GL.GetUniformLocation(skybox_prog, "tc_rotate");
+            object_mat_mvp_loc = GL.GetUniformLocation(object_prog, "mat_mvp");
+            object_mat_mv_loc = GL.GetUniformLocation(object_prog, "mat_mv");
+            skyboxTexLocation = GL.GetUniformLocation(skybox_prog, "tex");
+            objectTexLocation = GL.GetUniformLocation(object_prog, "tex");
+
+
 
             //tex = new Texture2D();
             //System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(@"media\TantolundenCube.png");
