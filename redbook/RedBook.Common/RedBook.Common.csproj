@@ -48,7 +48,6 @@
     <Compile Include="LightingExample\VBObject.cs" />
     <Compile Include="TimerHelper.cs" />
     <Compile Include="Vec3Helper.cs" />
-    <Compile Include="vermilion.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CSharpGL.Maths\CSharpGL.Maths.csproj">
