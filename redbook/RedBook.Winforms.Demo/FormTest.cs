@@ -51,5 +51,10 @@ namespace RedBook.Winforms.Demo
         {
             (new FormCubeMap()).Show();
         }
+
+        private void btnLoadTexture_Click(object sender, EventArgs e)
+        {
+            (new FormLoadTexture()).Show();
+        }
     }
 }

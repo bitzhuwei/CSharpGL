@@ -45,6 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoadTextureExample.cs" />
+    <Compile Include="FormLoadTexture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLoadTexture.Designer.cs">
+      <DependentUpon>FormLoadTexture.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormFurRendering.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +103,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeapotExampleHelper.cs" />
     <Compile Include="TeapotExample.cs" />
+    <EmbeddedResource Include="FormLoadTexture.resx">
+      <DependentUpon>FormLoadTexture.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFurRendering.resx">
       <DependentUpon>FormFurRendering.cs</DependentUpon>
     </EmbeddedResource>
@@ -195,6 +205,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="media\TantolundenCube.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="media\test.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
