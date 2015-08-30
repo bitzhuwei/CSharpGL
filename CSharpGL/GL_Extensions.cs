@@ -6006,6 +6006,24 @@ namespace CSharpGL
 
         private delegate void glBindImageTexture(uint unit, uint texture, int level, bool layered, int layer, uint access, uint format);
 
+        public static void TexStorage1D(uint target, int levels, uint internalformat, int width)
+        {
+            GetDelegateFor<glTexStorage1D>()(target, levels, internalformat, width);
+        }
+        private delegate void glTexStorage1D(uint target, int levels, uint internalformat, int width);
+
+        public static void TexStorage2D(uint target, int levels, uint internalformat, int width, int height)
+        {
+            GetDelegateFor<glTexStorage2D>()(target, levels, internalformat, width, height);
+        }
+        private delegate void glTexStorage2D(uint target, int levels, uint internalformat, int width, int height);
+
+        public static void TexStorage3D(uint target, int levels, uint internalformat, int width, int height, int depth)
+        {
+            GetDelegateFor<glTexStorage3D>()(target, levels, internalformat, width, height, depth);
+        }
+        private delegate void glTexStorage3D(uint target, int levels, uint internalformat, int width, int height, int depth);
+
         #endregion texture
 
         /// <summary>
@@ -6035,5 +6053,25 @@ namespace CSharpGL
 
 
         public const uint GL_TEXTURE_CUBE_MAP_SEAMLESS = 0x884F;
+
+
+        public const uint GL_HALF_FLOAT = 0x140B;
+        public const uint GL_DEPTH_STENCIL = 0x84F9;
+        public const uint GL_FLOAT_32_UNSIGNED_INT_24_8_REV = 0x8DAD;
+        public const uint GL_DEPTH32F_STENCIL8 = 0x8CAD;
+        public const uint GL_RGB10_A2UI = 0x906F;
+        public const uint GL_DEPTH_COMPONENT32F = 0x8CAC;
+        public const uint GL_DEPTH24_STENCIL8 = 0x88F0;
+        public const uint GL_COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT_ARB = 0x8E8F;
+        public const uint GL_COMPRESSED_RGB_BPTC_SIGNED_FLOAT_ARB = 0x8E8E;
+        public const uint GL_COMPRESSED_RGBA_BPTC_UNORM_ARB = 0x8E8C;
+        public const uint GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM_ARB = 0x8E8D;
+
+        public const uint GL_TEXTURE_SWIZZLE_R = 0x8E42;
+        public const uint GL_TEXTURE_SWIZZLE_G = 0x8E43;
+        public const uint GL_TEXTURE_SWIZZLE_B = 0x8E44;
+        public const uint GL_TEXTURE_SWIZZLE_A = 0x8E45;
+        public const uint GL_TEXTURE_SWIZZLE_RGBA = 0x8E46;
+
     }
 }

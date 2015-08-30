@@ -2708,6 +2708,34 @@ namespace CSharpGL
         /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_1D.</param>
         /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
         /// <param name="xoffset">Specifies a texel offset in the x direction within the texture array.</param>
+        /// <param name="width">Specifies the width of the texture subimage.</param>
+        /// <param name="format">Specifies the format of the pixel data.</param>
+        /// <param name="type">Specifies the data type of the pixel	data.</param>
+        /// <param name="pixels">Specifies a pointer to the image data in memory.</param>
+        [DllImport(Win32.OpenGL32, EntryPoint = "glTexSubImage1D", SetLastError = true)]
+        public static extern void TexSubImage1D(uint target, int level, int xoffset, int width, uint format, uint type, IntPtr pixels);
+
+        /// <summary>
+        /// Specify a two-dimensional texture subimage.
+        /// </summary>
+        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_1D.</param>
+        /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
+        /// <param name="xoffset">Specifies a texel offset in the x direction within the texture array.</param>
+        /// <param name="yoffset">Specifies a texel offset in the y direction within the texture array.</param>
+        /// <param name="width">Specifies the width of the texture subimage.</param>
+        /// <param name="height">Specifies the height of the texture subimage.</param>
+        /// <param name="format">Specifies the format of the pixel data.</param>
+        /// <param name="type">Specifies the data type of the pixel	data.</param>
+        /// <param name="pixels">Specifies a pointer to the image data in memory.</param>
+        [DllImport(Win32.OpenGL32, EntryPoint = "glTexSubImage2D", SetLastError = true)]
+        public static extern void TexSubImage2D(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, int[] pixels);
+
+        /// <summary>
+        /// Specify a two-dimensional texture subimage.
+        /// </summary>
+        /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_1D.</param>
+        /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
+        /// <param name="xoffset">Specifies a texel offset in the x direction within the texture array.</param>
         /// <param name="yoffset">Specifies a texel offset in the y direction within the texture array.</param>
         /// <param name="width">Specifies the width of the texture subimage.</param>
         /// <param name="height">Specifies the height of the texture subimage.</param>
@@ -2716,7 +2744,6 @@ namespace CSharpGL
         /// <param name="pixels">Specifies a pointer to the image data in memory.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glTexSubImage2D", SetLastError = true)]
         public static extern void TexSubImage2D(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, IntPtr pixels);
-        //public static extern void TexSubImage2D(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, int[] pixels);
 
         /// <summary>
         /// This function applies a translation transformation to the current matrix.

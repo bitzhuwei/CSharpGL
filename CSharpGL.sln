@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedBook.Common", "redbook\R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedBook.Winforms.Demo", "redbook\RedBook.Winforms.Demo\RedBook.Winforms.Demo.csproj", "{38815DFE-0DEA-4A16-ADD8-E621529E4A47}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FileParsers", "FileParsers", "{B408B2F5-AA2B-4766-ABD2-8C898C6595CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Picture.DDS", "FileParsers\Picture.DDS\Picture.DDS.csproj", "{1B0A57A9-76F5-4A0C-B5A2-5DCFB3ADBE25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +101,10 @@ Global
 		{38815DFE-0DEA-4A16-ADD8-E621529E4A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38815DFE-0DEA-4A16-ADD8-E621529E4A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38815DFE-0DEA-4A16-ADD8-E621529E4A47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B0A57A9-76F5-4A0C-B5A2-5DCFB3ADBE25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B0A57A9-76F5-4A0C-B5A2-5DCFB3ADBE25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B0A57A9-76F5-4A0C-B5A2-5DCFB3ADBE25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B0A57A9-76F5-4A0C-B5A2-5DCFB3ADBE25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,5 +116,6 @@ Global
 		{99C2F4E5-3275-4681-AEC4-F59D97C158A8} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
 		{22558A60-4E2A-4EC5-85D0-300D8CA5C6F4} = {F29E7A48-2DB4-4F35-958E-547E8200F847}
 		{38815DFE-0DEA-4A16-ADD8-E621529E4A47} = {F29E7A48-2DB4-4F35-958E-547E8200F847}
+		{1B0A57A9-76F5-4A0C-B5A2-5DCFB3ADBE25} = {B408B2F5-AA2B-4766-ABD2-8C898C6595CC}
 	EndGlobalSection
 EndGlobal

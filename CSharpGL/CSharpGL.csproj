@@ -47,6 +47,9 @@
     <Compile Include="Enumerations\DrawMode.cs" />
     <Compile Include="Enumerations\MemoryBarrierFlags.cs" />
     <Compile Include="Enumerations\PatchParameterName.cs" />
+    <Compile Include="Enumerations\TexStorage3DTarget.cs" />
+    <Compile Include="Enumerations\TexStorage2DTarget.cs" />
+    <Compile Include="Enumerations\TexStorage1DTarget.cs" />
     <Compile Include="Enumerations\TransformFeedbackBufferTarget.cs" />
     <Compile Include="Enumerations\MapBufferAccess.cs" />
     <Compile Include="Enumerations\TransformFeedbackTarget.cs" />

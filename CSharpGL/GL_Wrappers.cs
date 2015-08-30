@@ -1058,6 +1058,47 @@ namespace CSharpGL
             MemoryBarrier((uint)barriers);
         }
 
+        // https://www.opengl.org/wiki/GLAPI/glTexStorage1D
+        /// <summary>
+        /// simultaneously specify storage for all levels of a one-dimensional texture
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="levels"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        public static void TexStorage1D(TexStorage1DTarget target, int levels, uint internalformat, int width)
+        {
+            TexStorage1D((uint)target, levels, internalformat, width);
+        }
+
+        // https://www.opengl.org/wiki/GLAPI/glTexStorage2D
+        /// <summary>
+        /// simultaneously specify storage for all levels of a two-dimensional or one-dimensional array texture
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="levels"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        public static void TexStorage2D(TexStorage2DTarget target, int levels, uint internalformat, int width, int height)
+        {
+            TexStorage2D((uint)target, levels, internalformat, width, height);
+        }
+
+        // https://www.opengl.org/wiki/GLAPI/glTexStorage3D
+        /// <summary>
+        /// simultaneously specify storage for all levels of a three-dimensional, two-dimensional array or cube-map array texture
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="levels"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="depth"></param>
+        public static void TexStorage3D(TexStorage3DTarget target, int levels, uint internalformat, int width, int height, int depth)
+        {
+            TexStorage3D((uint)target, levels, internalformat, width, height, depth);
+        }
         #endregion texture
 
     }
