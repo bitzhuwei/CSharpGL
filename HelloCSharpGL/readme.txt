@@ -1,0 +1,1 @@
+﻿http://www.cnblogs.com/bitzhuwei/p/CSharpGL-1-start-from-a-simple-demo-with-legacy-modern-opengl.html
