@@ -110,7 +110,6 @@ namespace CSharpGL.Winforms.Demo
         {
             CreateTextureObject(this.ttfTexture);
 
-            //// TODO: 测试用，可删除。
             //bigBitmap.Save("WholeFontTextureElement.png");
         }
 

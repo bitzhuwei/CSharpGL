@@ -19,7 +19,6 @@ namespace Font2Bmps
             char firstChar, char lastChar, string[] selectedTTFFiles,
             bool generateGlyphList, bool drawHeightLine)
         {
-            // TODO: Complete member initialization
             this.fontHeight = fontHeight;
             this.maxTexturWidth = maxTexturWidth;
             this.firstChar = firstChar;

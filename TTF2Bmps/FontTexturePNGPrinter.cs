@@ -15,7 +15,6 @@ namespace Font2Bmps
 
         public FontTexturePNGPrinter(CSharpGL.Texts.FontTexture ttfTexture)
         {
-            // TODO: Complete member initialization
             this.ttfTexture = ttfTexture;
             this.font = new Font("微软雅黑", ttfTexture.FontHeight / 2);
             this.outputWidth = ttfTexture.FontHeight * 40;

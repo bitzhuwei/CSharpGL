@@ -235,8 +235,13 @@ namespace CSharpGL.Objects.Shaders
             //  location and add it.
             if (uniformNamesToLocations.ContainsKey(uniformName) == false)
             {
-                uniformNamesToLocations[uniformName] = GL.GetUniformLocation(ShaderProgramObject, uniformName);
-                //  TODO: if it's not found, we should probably throw an exception.
+                int location = GL.GetUniformLocation(ShaderProgramObject, uniformName);
+                if (location < 0)
+                { throw new Exception(string.Format("invalid uniform name [{0}]'s location [{1}]", uniformName, location)); }
+                else
+                {
+                    uniformNamesToLocations[uniformName] = location;
+                }
             }
 
             //  Return the uniform location.

@@ -188,11 +188,9 @@ namespace CSharpGL.Objects.SceneElements
         {
             System.Drawing.Bitmap bigBitmap = this.ttfTexture.BigBitmap;
 
-            //CreateTextureObject(bigBitmap);
             CreateTextureObject(this.ttfTexture);
 
-            // TODO: 测试用，可删除。
-            bigBitmap.Save("modernSingleTextureFont.png");
+            //bigBitmap.Save("modernSingleTextureFont.png");
         }
 
         private void CreateTextureObject(FontTexture ttfTexture)

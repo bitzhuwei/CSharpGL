@@ -111,20 +111,19 @@ namespace CSharpGL.Objects.Demos.UIs
 
                 //  Now do the same for the colour data.
                 {
-                    UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(this.vertexCount);
+                    var colorArray = new UnmanagedArray<vec4>(this.vertexCount);
                     for (int i = 0; i < colors.Length; i++)
                     {
                         GLColor color = colors[i];
-                        //TODO:试验成功后换vec4试试
-                        colorArray[i * 2 + 0] = new vec3(color.R, color.G, color.B);//, color.A);
-                        colorArray[i * 2 + 1] = new vec3(color.R, color.G, color.B);//, color.A);
+                        colorArray[i * 2 + 0] = new vec4(color.R, color.G, color.B, color.A);
+                        colorArray[i * 2 + 1] = new vec4(color.R, color.G, color.B, color.A);
                     }
 
                     uint[] ids = new uint[1];
                     GL.GenBuffers(1, ids);
                     GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
                     GL.BufferData(BufferTarget.ArrayBuffer, colorArray, BufferUsage.StaticDraw);
-                    GL.VertexAttribPointer(in_ColorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+                    GL.VertexAttribPointer(in_ColorLocation, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                     GL.EnableVertexAttribArray(in_ColorLocation);
 
                     colorArray.Dispose();

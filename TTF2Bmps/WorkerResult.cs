@@ -12,7 +12,6 @@ namespace Font2Bmps
 
         public WorkerResult(StringBuilder builder, WorkerData data)
         {
-            // TODO: Complete member initialization
             this.builder = builder;
             this.data = data;
         }
