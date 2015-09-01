@@ -70,8 +70,10 @@ namespace CSharpGL.Maths
         public static mat4 lookAt(vec3 eye, vec3 center, vec3 up)
         {
             vec3 f = normalize(center - eye);
-            vec3 s = normalize(cross(f, up));
-            vec3 u = cross(s, f);
+            //vec3 s = normalize(cross(f, up));
+            vec3 s = normalize(f.cross(up));
+            //vec3 u = cross(s, f);
+            vec3 u = s.cross(f);
 
             mat4 Result = new mat4(1);
             Result[0, 0] = s.x;
@@ -83,9 +85,9 @@ namespace CSharpGL.Maths
             Result[0, 2] = -f.x;
             Result[1, 2] = -f.y;
             Result[2, 2] = -f.z;
-            Result[3, 0] = -dot(s, eye);
-            Result[3, 1] = -dot(u, eye);
-            Result[3, 2] = dot(f, eye);
+            Result[3, 0] = -s.dot(eye);// dot(s, eye);
+            Result[3, 1] = -u.dot(eye);// dot(u, eye);
+            Result[3, 2] = f.dot(eye);// dot(f, eye);
             return Result;
         }
 
@@ -222,7 +224,7 @@ namespace CSharpGL.Maths
             tmp = proj * tmp;
 
             tmp /= tmp.w;
-            tmp = tmp * 0.5f + 0.5f;
+            tmp = tmp * 0.5f + new vec4(0.5f, 0.5f, 0.5f, 0.5f);
             tmp[0] = tmp[0] * viewport[2] + viewport[0];
             tmp[1] = tmp[1] * viewport[3] + viewport[1];
 
@@ -342,7 +344,7 @@ namespace CSharpGL.Maths
             vec4 tmp = new vec4(win, (1f));
             tmp.x = (tmp.x - (viewport[0])) / (viewport[2]);
             tmp.y = (tmp.y - (viewport[1])) / (viewport[3]);
-            tmp = tmp * (2f) - (1f);
+            tmp = tmp * (2f) - new vec4(1, 1, 1, 1);
 
             vec4 obj = Inverse * tmp;
             obj /= obj.w;

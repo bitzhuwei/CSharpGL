@@ -38,13 +38,15 @@ namespace CSharpGL.Maths
         /// <summary>
         /// 计算向量积
         /// </summary>
-        /// <param name="vector"></param>
+        /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static vec3 VectorProduct(this vec3 vector, vec3 rhs)
+        public static vec3 VectorProduct(this vec3 lhs, vec3 rhs)
         {
-            var result = new vec3((vector.y * rhs.z) - (vector.z * rhs.y), (vector.z * rhs.x) - (vector.x * rhs.z),
-                (vector.x * rhs.y) - (vector.y * rhs.x));
+            var result = new vec3(
+                (lhs.y * rhs.z) - (lhs.z * rhs.y), 
+                (lhs.z * rhs.x) - (lhs.x * rhs.z),
+                (lhs.x * rhs.y) - (lhs.y * rhs.x));
             return result;
         }
 

@@ -68,20 +68,20 @@ namespace CSharpGL.Maths
             return new vec3(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z);
         }
 
-        public static vec3 operator +(vec3 lhs, float rhs)
-        {
-            return new vec3(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs);
-        }
+        //public static vec3 operator +(vec3 lhs, float rhs)
+        //{
+        //    return new vec3(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs);
+        //}
 
         public static vec3 operator -(vec3 lhs, vec3 rhs)
         {
             return new vec3(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z);
         }
 
-        public static vec3 operator -(vec3 lhs, float rhs)
-        {
-            return new vec3(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs);
-        }
+        //public static vec3 operator -(vec3 lhs, float rhs)
+        //{
+        //    return new vec3(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs);
+        //}
 
         public static vec3 operator *(vec3 self, float s)
         {
@@ -100,6 +100,27 @@ namespace CSharpGL.Maths
         public static vec3 operator *(vec3 lhs, vec3 rhs)
         {
             return new vec3(rhs.x * lhs.x, rhs.y * lhs.y, rhs.z * lhs.z);
+        }
+
+        public float dot(vec3 rhs)
+        {
+            var result = this.x * rhs.x + this.y * rhs.y + this.z * rhs.z;
+            return result;
+        }
+
+        public float Magnitude()
+        {
+            double result = Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+
+            return (float)result;
+        }
+
+        public vec3 cross(vec3 rhs)
+        {
+            return new vec3(
+                this.y * rhs.z - rhs.y * this.z,
+                this.z * rhs.x - rhs.z * this.x,
+                this.x * rhs.y - rhs.x * this.y);
         }
 
         public float[] to_array()

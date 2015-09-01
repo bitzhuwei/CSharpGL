@@ -42,7 +42,7 @@ namespace CSharpGL.Objects.Cameras
         public static mat4 GetProjectionMat4(this IPerspectiveCamera camera)
         {
             mat4 perspective = glm.perspective(
-                (float)(camera.FieldOfView / 360.0 * Math.PI * 2),
+                (float)(camera.FieldOfView * Math.PI / 180.0f),
                 (float)camera.AspectRatio, (float)camera.Near, (float)camera.Far);
             return perspective;
         }
@@ -54,7 +54,8 @@ namespace CSharpGL.Objects.Cameras
         /// <returns></returns>
         public static mat4 GetProjectionMat4(this IOrthoCamera camera)
         {
-            mat4 ortho = glm.ortho((float)camera.Left, (float)camera.Right,
+            mat4 ortho = glm.ortho(
+                (float)camera.Left, (float)camera.Right,
                 (float)camera.Bottom, (float)camera.Top,
                 (float)camera.Near, (float)camera.Far);
             return ortho;

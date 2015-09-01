@@ -50,6 +50,7 @@
     <Compile Include="Cameras\IBoundingBox.cs" />
     <Compile Include="Cameras\IBoundingBoxHelper.cs" />
     <Compile Include="Cameras\ICameraRotator.cs" />
+    <Compile Include="Cameras\MouseWheelHelper.cs" />
     <Compile Include="ColorCodedPicking\ColorCodedPickingShaderHelper.cs" />
     <Compile Include="ColorCodedPicking\GeometryTypes.cs" />
     <Compile Include="ColorCodedPicking\GeometryTypesHelper.cs" />

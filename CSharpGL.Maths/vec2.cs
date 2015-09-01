@@ -90,6 +90,19 @@ namespace CSharpGL.Maths
             return new vec2(lhs.x / rhs, lhs.y / rhs);
         }
 
+        public float dot(vec2 rhs)
+        {
+            var result = this.x * rhs.x + this.y * rhs.y;
+            return result;
+        }
+
+        public float Magnitude()
+        {
+            double result = Math.Sqrt(this.x * this.x + this.y * this.y);
+
+            return (float)result;
+
+        }
         public float[] to_array()
         {
             return new[] { x, y };

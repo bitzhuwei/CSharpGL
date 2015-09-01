@@ -68,15 +68,15 @@ namespace CSharpGL.Maths
             return new vec4(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z, lhs.w + rhs.w);
         }
 
-        public static vec4 operator +(vec4 lhs, float rhs)
-        {
-            return new vec4(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs, lhs.w + rhs);
-        }
+        //public static vec4 operator +(vec4 lhs, float rhs)
+        //{
+        //    return new vec4(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs, lhs.w + rhs);
+        //}
 
-        public static vec4 operator -(vec4 lhs, float rhs)
-        {
-            return new vec4(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs, lhs.w - rhs);
-        }
+        //public static vec4 operator -(vec4 lhs, float rhs)
+        //{
+        //    return new vec4(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs, lhs.w - rhs);
+        //}
 
         public static vec4 operator -(vec4 lhs, vec4 rhs)
         {
@@ -101,6 +101,19 @@ namespace CSharpGL.Maths
         public static vec4 operator /(vec4 lhs, float rhs)
         {
             return new vec4(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs, lhs.w / rhs);
+        }
+
+        public float dot(vec4 rhs)
+        {
+            var result = this.x * rhs.x + this.y * rhs.y + this.z * rhs.z + this.w * rhs.w;
+            return result;
+        }
+
+        public float Magnitude()
+        {
+            double result = Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w);
+
+            return (float)result;
         }
 
         public float[] to_array()
