@@ -69,7 +69,7 @@ namespace CSharpGL.Objects.Cameras
                         back.y * cos + right.y * sin,
                         back.z * cos + right.z * sin);
                     back = newBack;
-                    right = up.VectorProduct(back);
+                    right = up.cross(back);
                     back.Normalize();
                     right.Normalize();
                 }
@@ -82,7 +82,7 @@ namespace CSharpGL.Objects.Cameras
                         back.y * cos + up.y * sin,
                         back.z * cos + up.z * sin);
                     back = newBack;
-                    up = back.VectorProduct(right);
+                    up = back.cross(right);
                     back.Normalize();
                     up.Normalize();
                 }
@@ -118,8 +118,8 @@ namespace CSharpGL.Objects.Cameras
             if (camera != null)
             {
                 vec3 back = camera.Position - camera.Target;
-                vec3 right = Camera.UpVector.VectorProduct(back);
-                vec3 up = back.VectorProduct(right);
+                vec3 right = Camera.UpVector.cross(back);
+                vec3 up = back.cross(right);
                 back.Normalize();
                 right.Normalize();
                 up.Normalize();
