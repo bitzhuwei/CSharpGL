@@ -69,10 +69,8 @@ namespace CSharpGL.Maths
         /// <returns></returns>
         public static mat4 lookAt(vec3 eye, vec3 center, vec3 up)
         {
-            vec3 f = normalize(center - eye);
-            //vec3 s = normalize(cross(f, up));
-            vec3 s = normalize(f.cross(up));
-            //vec3 u = cross(s, f);
+            vec3 f = (center - eye); f.Normalize();
+            vec3 s = f.cross(up); s.Normalize();
             vec3 u = s.cross(f);
 
             mat4 Result = new mat4(1);
@@ -243,7 +241,7 @@ namespace CSharpGL.Maths
             float c = cos(angle);
             float s = sin(angle);
 
-            vec3 axis = normalize(v);
+            vec3 axis = v; axis.Normalize();// normalize(v);
             vec3 temp = (1.0f - c) * axis;
 
             mat4 rotate = mat4.identity();

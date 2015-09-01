@@ -10,23 +10,23 @@ namespace CSharpGL.Maths
     public static partial class glm
     {
 
-        public static vec2 normalize(vec2 v)
-        {
-            float sqr = v.x * v.x + v.y * v.y;
-            return v * (1.0f / (float)Math.Sqrt(sqr));
-        }
+        //public static vec2 normalize(vec2 v)
+        //{
+        //    float sqr = v.x * v.x + v.y * v.y;
+        //    return v * (1.0f / (float)Math.Sqrt(sqr));
+        //}
 
-        public static vec3 normalize(vec3 v)
-        {
-            float sqr = v.x * v.x + v.y * v.y + v.z * v.z;
-            return v * (1.0f / (float)Math.Sqrt(sqr));
-        }
+        //public static vec3 normalize(vec3 v)
+        //{
+        //    float sqr = v.x * v.x + v.y * v.y + v.z * v.z;
+        //    return v * (1.0f / (float)Math.Sqrt(sqr));
+        //}
 
-        public static vec4 normalize(vec4 v)
-        {
-            float sqr = v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w;
-            return v * (1.0f / (float)Math.Sqrt(sqr));
-        }
+        //public static vec4 normalize(vec4 v)
+        //{
+        //    float sqr = v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w;
+        //    return v * (1.0f / (float)Math.Sqrt(sqr));
+        //}
     }
 
     // ReSharper restore InconsistentNaming
