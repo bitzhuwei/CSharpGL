@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects
 {
-    public static class SceneElementBaseHelper
+    public static class IUILayoutRenderingHelper
     {
         private static readonly object synObj = new object();
         private static EventHandler<RenderEventArgs> simpleUIAxis_BeforeRendering = null;
