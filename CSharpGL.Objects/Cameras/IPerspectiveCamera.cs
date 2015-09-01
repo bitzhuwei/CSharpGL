@@ -10,7 +10,7 @@
         /// Gets or sets the field of view.
         /// </summary>
         /// <value>
-        /// The field of view in radius.
+        /// The field of view in degrees.
         /// </value>
         double FieldOfView { get; set; }
 

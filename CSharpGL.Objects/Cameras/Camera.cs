@@ -42,7 +42,7 @@ namespace CSharpGL.Objects.Cameras
             this.lastHeight = height;
 
             IPerspectiveCamera perspectiveCamera = this;
-            perspectiveCamera.FieldOfView = (float)(60f * Math.PI / 180.0f);
+            perspectiveCamera.FieldOfView = 60.0f;
             perspectiveCamera.AspectRatio = width / height;
             perspectiveCamera.Near = 0.01;
             perspectiveCamera.Far = 10000;
