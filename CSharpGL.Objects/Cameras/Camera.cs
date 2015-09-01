@@ -1,42 +1,48 @@
 ﻿using CSharpGL.Maths;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace CSharpGL.Objects.Cameras
 {
     /// <summary>
-    /// projects in perspective view or ortho view.
+    /// 摄像机。
     /// </summary>
     public class Camera :
         ICamera,
         IPerspectiveViewCamera, IOrthoViewCamera,
         IViewCamera, IPerspectiveCamera, IOrthoCamera
     {
-        public static readonly vec3 defaultTarget = new vec3();
+        /// <summary>
+        /// 默认目标为vec3(0, 0, 0)
+        /// </summary>
+        public static readonly vec3 defaultTarget = new vec3(0, 0, 0);
+
+        /// <summary>
+        /// 默认位置为vec3(0, 0, 1)
+        /// </summary>
         public static readonly vec3 defaultPosition = new vec3(0, 0, 1);
+
+        /// <summary>
+        /// 默认上方为vec3(0, 1, 0)
+        /// </summary>
         public static readonly vec3 defaultUpVector = new vec3(0, 1, 0);
-
-        static int count = 0;
-
-        public string Name { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("{0}/{1}", Name, count);
-            //return base.ToString();
-        }
 
         internal Camera() { }
 
+        /// <summary>
+        /// 摄像机。
+        /// </summary>
+        /// <param name="cameraType">类型</param>
+        /// <param name="width">OpenGL窗口的宽度</param>
+        /// <param name="height">OpenGL窗口的高度</param>
         public Camera(CameraType cameraType, double width, double height)
         {
-            Name = "Scientific Camera: " + count++;
-
             this.lastHeight = width;
             this.lastHeight = height;
 
             IPerspectiveCamera perspectiveCamera = this;
-            perspectiveCamera.FieldOfView = 60f;
+            perspectiveCamera.FieldOfView = (float)(60f * Math.PI / 180.0f);
             perspectiveCamera.AspectRatio = width / height;
             perspectiveCamera.Near = 0.01;
             perspectiveCamera.Far = 10000;
@@ -64,7 +70,6 @@ namespace CSharpGL.Objects.Cameras
             IPerspectiveCamera perspectiveCamera = this;
             perspectiveCamera.AspectRatio = aspectRatio;
 
-            const int factor = 100;
             IOrthoCamera orthoCamera = this;
 
             double lastAspectRatio = this.lastWidth / this.lastHeight;
@@ -82,6 +87,8 @@ namespace CSharpGL.Objects.Cameras
                 orthoCamera.Bottom = -newTop;
                 orthoCamera.Top = newTop;
             }
+
+            //const int factor = 100;
             //if (width / 2 / factor != orthoCamera.Right)
             //{
             //    orthoCamera.Left = -width / 2 / factor;
@@ -154,10 +161,6 @@ namespace CSharpGL.Objects.Cameras
         double IPerspectiveCamera.FieldOfView { get; set; }
 
         double IPerspectiveCamera.AspectRatio { get; set; }
-        //{
-        //    get { return aspectRatio; }
-        //    set { aspectRatio = value; }
-        //}
 
         double IPerspectiveCamera.Near { get; set; }
 

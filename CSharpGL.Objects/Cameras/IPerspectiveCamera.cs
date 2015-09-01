@@ -10,12 +10,12 @@
         /// Gets or sets the field of view.
         /// </summary>
         /// <value>
-        /// The field of view.
+        /// The field of view in radius.
         /// </value>
         double FieldOfView { get; set; }
 
         /// <summary>
-        /// Gets or sets the aspect.
+        /// Gets or sets the aspect(width / height).
         /// </summary>
         /// <value>
         /// The aspect.
