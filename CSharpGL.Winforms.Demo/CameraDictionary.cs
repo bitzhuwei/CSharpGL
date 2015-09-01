@@ -7,7 +7,7 @@ namespace CSharpGL.Winforms.Demo
     /// <summary>
     /// Description of CameraDictionary
     /// </summary>
-    public sealed class CameraDictionary : Dictionary<string, ScientificCamera>
+    public sealed class CameraDictionary : Dictionary<string, Camera>
     {
         private static CameraDictionary instance = new CameraDictionary();
 

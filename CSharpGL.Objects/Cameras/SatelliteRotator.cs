@@ -9,7 +9,7 @@ namespace CSharpGL.Objects.Cameras
     /// Rotates a camera on a sphere, whose center is camera's Target.
     /// <para>Just like a satellite moves around a fixed star.</para>
     /// </summary>
-    public class SatelliteRotator //: IMouseRotation
+    public class SatelliteRotator : ICameraRotator
     {
         private Point downPosition = new Point();
         private Size bound = new Size();
@@ -25,7 +25,7 @@ namespace CSharpGL.Objects.Cameras
         /// <para>Just like a satellite moves around a fixed star.</para>
         /// </summary>
         /// <param name="camera"></param>
-        public SatelliteRotator(IScientificCamera camera = null)
+        public SatelliteRotator(ICamera camera = null)
         {
             this.Camera = camera;
         }
@@ -39,11 +39,9 @@ namespace CSharpGL.Objects.Cameras
         }
 
 
-        #region IRotation 成员
+        private ICamera originalCamera;
 
-        private IScientificCamera originalCamera;
-
-        public IScientificCamera Camera { get; set; }
+        public ICamera Camera { get; set; }
 
         public void MouseUp(int x, int y)
         {
@@ -131,13 +129,13 @@ namespace CSharpGL.Objects.Cameras
                 this.up = up;
 
                 if (this.originalCamera == null)
-                { this.originalCamera = new ScientificCamera(); }
+                { this.originalCamera = new Camera(); }
                 this.originalCamera.Position = camera.Position;
                 this.originalCamera.UpVector = camera.UpVector;
             }
         }
 
-        public void ResetRotation()
+        public void Reset()
         {
             IViewCamera camera = this.Camera;
             if (camera == null) { return; }
@@ -147,7 +145,5 @@ namespace CSharpGL.Objects.Cameras
             camera.Position = originalCamera.Position;
             camera.UpVector = originalCamera.UpVector;
         }
-
-        #endregion
     }
 }

@@ -21,7 +21,7 @@ namespace RedBook.Winforms.Demo
         SimpleUIAxis uiAxis;
         FurExample element;
         SatelliteRotator rotator;
-        ScientificCamera camera;
+        Camera camera;
 
         public FormFurRendering()
         {
@@ -33,7 +33,7 @@ namespace RedBook.Winforms.Demo
             //}
             //else
             {
-                this.camera = new ScientificCamera(CameraTypes.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
+                this.camera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 this.camera.Position *= 204;
                 //CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
             }
@@ -124,11 +124,11 @@ namespace RedBook.Winforms.Demo
             {
                 switch (this.camera.CameraType)
                 {
-                    case CameraTypes.Perspecitive:
-                        this.camera.CameraType = CameraTypes.Ortho;
+                    case CameraType.Perspecitive:
+                        this.camera.CameraType = CameraType.Ortho;
                         break;
-                    case CameraTypes.Ortho:
-                        this.camera.CameraType = CameraTypes.Perspecitive;
+                    case CameraType.Ortho:
+                        this.camera.CameraType = CameraType.Perspecitive;
                         break;
                     default:
                         throw new NotImplementedException();

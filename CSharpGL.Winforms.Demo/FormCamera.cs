@@ -17,7 +17,7 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormCamera : Form
     {
-        ScientificCamera camera;
+        Camera camera;
         PyramidElement element;
         public mat4 projectionMatrix;
         public mat4 viewMatrix;
@@ -34,7 +34,7 @@ namespace CSharpGL.Winforms.Demo
             //}
             //else
             {
-                this.camera = new ScientificCamera(CameraTypes.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
+                this.camera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 //CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
             }
 
@@ -113,11 +113,11 @@ namespace CSharpGL.Winforms.Demo
             {
                 switch (this.camera.CameraType)
                 {
-                    case CameraTypes.Perspecitive:
-                        this.camera.CameraType = CameraTypes.Ortho;
+                    case CameraType.Perspecitive:
+                        this.camera.CameraType = CameraType.Ortho;
                         break;
-                    case CameraTypes.Ortho:
-                        this.camera.CameraType = CameraTypes.Perspecitive;
+                    case CameraType.Ortho:
+                        this.camera.CameraType = CameraType.Perspecitive;
                         break;
                     default:
                         throw new NotImplementedException();

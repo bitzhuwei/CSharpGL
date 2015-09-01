@@ -18,7 +18,7 @@ namespace CSharpGL.Objects
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
         /// <param name="graphics">The graphics.</param>
-        public RenderEventArgs(RenderModes renderMode, IScientificCamera camera)
+        public RenderEventArgs(RenderModes renderMode, ICamera camera)
         {
             this.RenderMode = renderMode;
             this.Camera = camera;
@@ -27,7 +27,7 @@ namespace CSharpGL.Objects
         /// <summary>
         /// 获取Camera
         /// </summary>
-        public IScientificCamera Camera { get; private set; }
+        public ICamera Camera { get; private set; }
 
         /// <summary>
         /// 获取渲染模式

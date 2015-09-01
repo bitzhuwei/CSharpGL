@@ -47,9 +47,9 @@ namespace CSharpGL.Winforms.Demo
             get { return elementList; }
         }
 
-        private IScientificCamera camera;
+        private ICamera camera;
 
-        public IScientificCamera Camera
+        public ICamera Camera
         {
             get { return camera; }
         }
@@ -119,7 +119,7 @@ namespace CSharpGL.Winforms.Demo
         {
             CreateRenderContext();
 
-            this.camera = new ScientificCamera(CameraTypes.Perspecitive, this.Width, this.Height);
+            this.camera = new Camera(CameraType.Perspecitive, this.Width, this.Height);
 
             this.rotator = new SatelliteRotator(this.camera);
 

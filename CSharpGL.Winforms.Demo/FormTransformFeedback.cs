@@ -22,7 +22,7 @@ namespace CSharpGL.Winforms.Demo
         FormWhiteBoard frmWhiteBoard;
 
         SimpleUIAxis uiAxis;
-        ScientificCamera camera;
+        Camera camera;
         SatelliteRotator satelliteRoration;
 
         uint[] TimerQueryName = new uint[1];
@@ -43,7 +43,7 @@ namespace CSharpGL.Winforms.Demo
         {
             InitializeComponent();
 
-            this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
+            this.camera = new Camera(CameraType.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
             satelliteRoration = new SatelliteRotator(camera);
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;

@@ -57,9 +57,9 @@ namespace CSharpGL.Objects.UIs
                 {
                     //viewMatrix = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
                     viewMatrix = glm.lookAt(
-                        ScientificCamera.defaultPosition, 
-                        ScientificCamera.defaultTarget, 
-                        ScientificCamera.defaultUpVector);
+                        Camera.defaultPosition, 
+                        Camera.defaultTarget, 
+                        Camera.defaultUpVector);
                 }
                 else
                 {

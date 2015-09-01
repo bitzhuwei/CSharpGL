@@ -13,7 +13,7 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormFontElement : Form
     {
-        ScientificCamera camera;
+        Camera camera;
 
         SatelliteRotator satelliteRoration;
 
@@ -30,7 +30,7 @@ namespace CSharpGL.Winforms.Demo
             //}
             //else
             {
-                this.camera = new ScientificCamera(CameraTypes.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
+                this.camera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 //CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
             }
 
@@ -190,13 +190,13 @@ namespace CSharpGL.Winforms.Demo
             }
             else if (e.KeyChar == 'c')
             {
-                if (camera.CameraType == CameraTypes.Perspecitive)
+                if (camera.CameraType == CameraType.Perspecitive)
                 {
-                    camera.CameraType = CameraTypes.Ortho;
+                    camera.CameraType = CameraType.Ortho;
                 }
                 else
                 {
-                    camera.CameraType = CameraTypes.Perspecitive;
+                    camera.CameraType = CameraType.Perspecitive;
                 }
             }
 

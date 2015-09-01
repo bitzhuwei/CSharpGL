@@ -15,16 +15,16 @@ namespace CSharpGL.Objects.Cameras
         /// </summary>
         /// <param name="camera"></param>
         /// <returns></returns>
-        public static mat4 GetProjectionMat4(this IScientificCamera camera)
+        public static mat4 GetProjectionMat4(this ICamera camera)
         {
             mat4 result;
 
             switch (camera.CameraType)
             {
-                case CameraTypes.Perspecitive:
+                case CameraType.Perspecitive:
                     result = ((IPerspectiveCamera)camera).GetProjectionMat4();
                     break;
-                case CameraTypes.Ortho:
+                case CameraType.Ortho:
                     result = ((IOrthoCamera)camera).GetProjectionMat4();
                     break;
                 default:

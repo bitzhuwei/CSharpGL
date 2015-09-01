@@ -7,8 +7,8 @@ namespace CSharpGL.Objects.Cameras
     /// <summary>
     /// projects in perspective view or ortho view.
     /// </summary>
-    public class ScientificCamera :
-        IScientificCamera,
+    public class Camera :
+        ICamera,
         IPerspectiveViewCamera, IOrthoViewCamera,
         IViewCamera, IPerspectiveCamera, IOrthoCamera
     {
@@ -26,9 +26,9 @@ namespace CSharpGL.Objects.Cameras
             //return base.ToString();
         }
 
-        internal ScientificCamera() { }
+        internal Camera() { }
 
-        public ScientificCamera(CameraTypes cameraType, double width, double height)
+        public Camera(CameraType cameraType, double width, double height)
         {
             Name = "Scientific Camera: " + count++;
 
@@ -147,7 +147,7 @@ namespace CSharpGL.Objects.Cameras
         /// <summary>
         /// camera's perspective type.
         /// </summary>
-        public CameraTypes CameraType { get; set; }
+        public CameraType CameraType { get; set; }
 
         #region IPerspectiveCamera 成员
 

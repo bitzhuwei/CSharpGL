@@ -31,7 +31,7 @@ namespace CSharpGL.Winforms.Demo
 
         AxisElement axisElement;
 
-        ScientificCamera camera;
+        Camera camera;
 
         SatelliteRotator satelliteRoration;
         private int renderSign;
@@ -46,7 +46,7 @@ namespace CSharpGL.Winforms.Demo
             //}
             //else
             {
-                this.camera = new ScientificCamera(CameraTypes.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
+                this.camera = new Camera(CameraType.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
                 //CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
             }
 
@@ -201,11 +201,11 @@ namespace CSharpGL.Winforms.Demo
             {
                 switch (this.camera.CameraType)
                 {
-                    case CameraTypes.Perspecitive:
-                        this.camera.CameraType = CameraTypes.Ortho;
+                    case CameraType.Perspecitive:
+                        this.camera.CameraType = CameraType.Ortho;
                         break;
-                    case CameraTypes.Ortho:
-                        this.camera.CameraType = CameraTypes.Perspecitive;
+                    case CameraType.Ortho:
+                        this.camera.CameraType = CameraType.Perspecitive;
                         break;
                     default:
                         throw new NotImplementedException();

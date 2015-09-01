@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cameras\BoundingBox.cs" />
+    <Compile Include="Cameras\IBoundingBox.cs" />
+    <Compile Include="Cameras\IBoundingBoxHelper.cs" />
+    <Compile Include="Cameras\ICameraRotator.cs" />
     <Compile Include="ColorCodedPicking\ColorCodedPickingShaderHelper.cs" />
     <Compile Include="ColorCodedPicking\GeometryTypes.cs" />
     <Compile Include="ColorCodedPicking\GeometryTypesHelper.cs" />
@@ -63,22 +67,19 @@
     <Compile Include="RenderEventArgs.cs" />
     <Compile Include="UIs\IUILayoutRenderingHelper.cs" />
     <Compile Include="SceneElements\AxisElement.cs" />
-    <Compile Include="Cameras\BoundingBox.cs" />
     <Compile Include="Cameras\Camera2Matrix.cs" />
     <Compile Include="Cameras\CameraHelper.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Cameras\CameraTypes.cs" />
-    <Compile Include="Cameras\IBoundingBox.cs" />
-    <Compile Include="Cameras\IBoundingBoxHelper.cs" />
+    <Compile Include="Cameras\CameraType.cs" />
     <Compile Include="Cameras\IOrthoCamera.cs" />
     <Compile Include="Cameras\IOrthoViewCamera.cs" />
     <Compile Include="Cameras\IPerspectiveCamera.cs" />
     <Compile Include="Cameras\IPerspectiveViewCamera.cs" />
-    <Compile Include="Cameras\IScientificCamera.cs" />
+    <Compile Include="Cameras\ICamera.cs" />
     <Compile Include="Cameras\IViewCamera.cs" />
     <Compile Include="Cameras\SatelliteRotator.cs" />
-    <Compile Include="Cameras\ScientificCamera.cs" />
+    <Compile Include="Cameras\Camera.cs" />
     <Compile Include="Cameras\ViewTypes.cs" />
     <Compile Include="GLColor.cs" />
     <Compile Include="SceneElements\AxisElement2.cs">
@@ -124,7 +125,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Cameras\Camera.png" />
     <Content Include="ColorCodedPicking\ColorCodedPicking.png" />
     <Content Include="readme.txt" />
   </ItemGroup>
