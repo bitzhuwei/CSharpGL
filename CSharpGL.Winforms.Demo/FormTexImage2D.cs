@@ -150,5 +150,24 @@ namespace CSharpGL.Winforms.Demo
             }
         }
 
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            if(this.openFileDialog1.ShowDialog()== System.Windows.Forms.DialogResult.OK)
+            {
+                this.txtTextureFile.Text = this.openFileDialog1.FileName;
+                this.btnOK.Enabled = true;
+            }
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            var element = new DemoTexImage2D(this.txtTextureFile.Text);
+            element.Initialize();
+            element.BeforeRendering += element_BeforeRendering;
+            element.AfterRendering += element_AfterRendering;
+
+            this.element = element;
+        }
+
     }
 }

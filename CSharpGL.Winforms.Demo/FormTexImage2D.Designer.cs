@@ -39,6 +39,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cmbFormat = new System.Windows.Forms.ComboBox();
             this.btnOK = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -90,15 +91,18 @@
             this.txtTextureFile.Name = "txtTextureFile";
             this.txtTextureFile.Size = new System.Drawing.Size(539, 25);
             this.txtTextureFile.TabIndex = 3;
+            this.txtTextureFile.Text = "DemoTexImage2D.bmp";
             // 
             // btnBrowse
             // 
+            this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBrowse.Location = new System.Drawing.Point(690, 12);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(97, 23);
             this.btnBrowse.TabIndex = 4;
             this.btnBrowse.Text = "browse...";
             this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // cmbInternalformat
             // 
@@ -107,6 +111,7 @@
             this.cmbInternalformat.Name = "cmbInternalformat";
             this.cmbInternalformat.Size = new System.Drawing.Size(121, 23);
             this.cmbInternalformat.TabIndex = 5;
+            this.cmbInternalformat.Visible = false;
             // 
             // label2
             // 
@@ -116,6 +121,7 @@
             this.label2.Size = new System.Drawing.Size(127, 15);
             this.label2.TabIndex = 6;
             this.label2.Text = "internalformat:";
+            this.label2.Visible = false;
             // 
             // label3
             // 
@@ -125,6 +131,7 @@
             this.label3.Size = new System.Drawing.Size(63, 15);
             this.label3.TabIndex = 7;
             this.label3.Text = "format:";
+            this.label3.Visible = false;
             // 
             // cmbFormat
             // 
@@ -133,15 +140,23 @@
             this.cmbFormat.Name = "cmbFormat";
             this.cmbFormat.Size = new System.Drawing.Size(121, 23);
             this.cmbFormat.TabIndex = 8;
+            this.cmbFormat.Visible = false;
             // 
             // btnOK
             // 
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOK.Enabled = false;
             this.btnOK.Location = new System.Drawing.Point(690, 43);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(97, 23);
             this.btnOK.TabIndex = 4;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "图片文件(*.jpg,*.gif,*.bmp,*.png)|*.jpg;*.gif;*.bmp;*.png";
             // 
             // FormTexImage2D
             // 
@@ -182,5 +197,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbFormat;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
