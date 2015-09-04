@@ -29,6 +29,8 @@ namespace CSharpGL.Winforms.Demo
                 //CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
             }
 
+            this.camera.Position = new vec3(2, 2, 2);
+
             rotator = new SatelliteRotator(this.camera);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
@@ -112,6 +114,17 @@ namespace CSharpGL.Winforms.Demo
 
         private void FormSatelliteRotation_Load(object sender, EventArgs e)
         {
+            {
+                var items = new TexImage2DFormats[] { TexImage2DFormats.Alpha, TexImage2DFormats.Luminance, TexImage2DFormats.LuminanceAlpha, TexImage2DFormats.RGB, TexImage2DFormats.RGBA };
+
+                foreach (var item in items)
+                {
+                    this.cmbFormat.Items.Add(item);
+                    this.cmbInternalformat.Items.Add(item);
+                }
+                
+            }
+
             this.lblCameraType.Text = string.Format("camera type: {0}", this.camera.CameraType);
 
             MessageBox.Show("Use 'c' to switch camera types between perspective and ortho");
