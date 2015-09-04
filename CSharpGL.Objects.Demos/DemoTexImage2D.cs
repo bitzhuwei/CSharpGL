@@ -1,5 +1,4 @@
 ﻿using CSharpGL.Maths;
-using CSharpGL.Objects;
 using CSharpGL.Objects.Shaders;
 using System;
 using System.Collections.Generic;
@@ -7,17 +6,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.SceneElements
+namespace CSharpGL.Objects.Demos
 {
-    public class PyramidElement : SceneElementBase, IMVP
+    public class DemoTexImage2D : SceneElementBase, IMVP
     {
+
+        public DemoTexImage2D(string textureFile)
+        {
+            this.textureFile = textureFile;
+        }
+
+        Texture2D tex = new Texture2D();
 
         /// <summary>
         /// shader program
         /// </summary>
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
-        const string strin_Color = "in_Color";
+        const string strin_uv = "in_uv";
         public const string strMVP = "MVP";
 
         /// <summary>
@@ -40,43 +46,65 @@ namespace CSharpGL.Objects.SceneElements
         /// </summary>
         static vec3[] positions = new vec3[]
 		{
-			new vec3(0.0f, 1.0f, 0.0f),
-			new vec3(-1.0f, -1.0f, 1.0f),
-			new vec3(1.0f, -1.0f, 1.0f),
-			new vec3(0.0f, 1.0f, 0.0f),
-			new vec3(1.0f, -1.0f, 1.0f),
-			new vec3(1.0f, -1.0f, -1.0f),
-			new vec3(0.0f, 1.0f, 0.0f),
-			new vec3(1.0f, -1.0f, -1.0f),
+			new vec3(-1.0f, -1.0f, 1.0f),	
+			new vec3(1.0f, -1.0f, 1.0f),	
+			new vec3(1.0f, 1.0f, 1.0f),	
+			new vec3(-1.0f, 1.0f, 1.0f),	
 			new vec3(-1.0f, -1.0f, -1.0f),
-			new vec3(0.0f, 1.0f, 0.0f),
+			new vec3(-1.0f, 1.0f, -1.0f),	
+			new vec3(1.0f, 1.0f, -1.0f),	
+			new vec3(1.0f, -1.0f, -1.0f),	
+			new vec3(-1.0f, 1.0f, -1.0f),	
+			new vec3(-1.0f, 1.0f, 1.0f),	
+			new vec3(1.0f, 1.0f, 1.0f),	
+			new vec3(1.0f, 1.0f, -1.0f),	
 			new vec3(-1.0f, -1.0f, -1.0f),
-			new vec3(-1.0f, -1.0f, 1.0f),
+			new vec3(1.0f, -1.0f, -1.0f),	
+			new vec3(1.0f, -1.0f, 1.0f),	
+			new vec3(-1.0f, -1.0f, 1.0f),	
+			new vec3(1.0f, -1.0f, -1.0f),	
+			new vec3(1.0f, 1.0f, -1.0f),	
+			new vec3(1.0f, 1.0f, 1.0f),	
+			new vec3(1.0f, -1.0f, 1.0f),	
+			new vec3(-1.0f, -1.0f, -1.0f),
+			new vec3(-1.0f, -1.0f, 1.0f),	
+			new vec3(-1.0f, 1.0f, 1.0f),	
+			new vec3(-1.0f, 1.0f, -1.0f),	
 		};
 
-        /// <summary>
-        /// 金字塔的color array.
-        /// </summary>
-        static vec3[] colors = new vec3[]
-		{
-			new vec3(1.0f, 0.0f, 0.0f),
-			new vec3(0.0f, 1.0f, 0.0f),
-			new vec3(0.0f, 0.0f, 1.0f),
-			new vec3(1.0f, 0.0f, 0.0f),
-			new vec3(0.0f, 0.0f, 1.0f),
-			new vec3(0.0f, 1.0f, 0.0f),
-			new vec3(1.0f, 0.0f, 0.0f),
-			new vec3(0.0f, 1.0f, 0.0f),
-			new vec3(0.0f, 0.0f, 1.0f),
-			new vec3(1.0f, 0.0f, 0.0f),
-			new vec3(0.0f, 0.0f, 1.0f),
-			new vec3(0.0f, 1.0f, 0.0f),
-		};
+        static readonly vec2[] uvs = new vec2[]
+        {
+            new vec2(0.0f, 0.0f),
+            new vec2(1.0f, 0.0f),
+            new vec2(1.0f, 1.0f),
+            new vec2(0.0f, 1.0f),
+            new vec2(1.0f, 0.0f),
+            new vec2(1.0f, 1.0f),
+            new vec2(0.0f, 1.0f),
+            new vec2(0.0f, 0.0f),
+            new vec2(0.0f, 1.0f),
+            new vec2(0.0f, 0.0f),
+            new vec2(1.0f, 0.0f),
+            new vec2(1.0f, 1.0f),
+            new vec2(1.0f, 1.0f),
+            new vec2(0.0f, 1.0f),
+            new vec2(0.0f, 0.0f),
+            new vec2(1.0f, 0.0f),
+            new vec2(1.0f, 0.0f),
+            new vec2(1.0f, 1.0f),
+            new vec2(0.0f, 1.0f),
+            new vec2(0.0f, 0.0f),
+            new vec2(0.0f, 0.0f),
+            new vec2(1.0f, 0.0f),
+            new vec2(1.0f, 1.0f),
+            new vec2(0.0f, 1.0f),
+        };
+        private string textureFile;
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.PyramidElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.PyramidElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoTexImage2D.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoTexImage2D.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -86,7 +114,7 @@ namespace CSharpGL.Objects.SceneElements
 
         protected void InitializeVAO(out uint[] vao, out DrawMode primitiveMode, out int vertexCount)
         {
-            primitiveMode = DrawMode.Triangles;
+            primitiveMode = DrawMode.Quads;
             vertexCount = positions.Length;
 
             vao = new uint[1];
@@ -98,7 +126,7 @@ namespace CSharpGL.Objects.SceneElements
                 uint[] ids = new uint[1];
                 GL.GenBuffers(1, ids);
                 GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
-                UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(positions.Length);
+                var positionArray = new UnmanagedArray<vec3>(positions.Length);
                 for (int i = 0; i < positions.Length; i++)
                 {
                     positionArray[i] = positions[i];
@@ -112,33 +140,33 @@ namespace CSharpGL.Objects.SceneElements
 
                 positionArray.Dispose();
             }
-
-            //  Now do the same for the colour data.
+            //  Create a vertex buffer for the uv data.
             {
                 uint[] ids = new uint[1];
                 GL.GenBuffers(1, ids);
                 GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
-                UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(positions.Length);
-                for (int i = 0; i < colors.Length; i++)
+                var uvArray = new UnmanagedArray<vec2>(uvs.Length);
+                for (int i = 0; i < uvs.Length; i++)
                 {
-                    colorArray[i] = colors[i];
+                    uvArray[i] = uvs[i];
                 }
 
-                uint colorLocation = shaderProgram.GetAttributeLocation(strin_Color);
+                uint uvLocation = shaderProgram.GetAttributeLocation(strin_uv);
 
-                GL.BufferData(BufferTarget.ArrayBuffer, colorArray, BufferUsage.StaticDraw);
-                GL.VertexAttribPointer(colorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-                GL.EnableVertexAttribArray(colorLocation);
+                GL.BufferData(BufferTarget.ArrayBuffer, uvArray, BufferUsage.StaticDraw);
+                GL.VertexAttribPointer(uvLocation, 2, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+                GL.EnableVertexAttribArray(uvLocation);
 
-                colorArray.Dispose();
+                uvArray.Dispose();
             }
-
             //  Unbind the vertex array, we've finished specifying data for it.
             GL.BindVertexArray(0);
         }
 
         protected override void DoInitialize()
         {
+            InitializeTexture2D();
+
             InitializeShader(out shaderProgram);
 
             InitializeVAO(out vao, out primitiveMode, out vertexCount);
@@ -146,6 +174,13 @@ namespace CSharpGL.Objects.SceneElements
             //base.BeforeRendering += IMVPHelper.Getelement_BeforeRendering();
             //base.AfterRendering += IMVPHelper.Getelement_AfterRendering();
         }
+
+        private void InitializeTexture2D()
+        {
+            this.tex = new Texture2D();
+            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(this.textureFile);
+            this.tex.Initialize(bmp);
+       }
 
         protected override void DoRender(RenderEventArgs e)
         {
@@ -158,6 +193,8 @@ namespace CSharpGL.Objects.SceneElements
 
         void IMVP.SetShaderProgram(mat4 mvp)
         {
+            this.tex.Bind();
+
             IMVPHelper.SetMVP(this, mvp);
         }
 
@@ -165,6 +202,8 @@ namespace CSharpGL.Objects.SceneElements
         void IMVP.ResetShaderProgram()
         {
             IMVPHelper.ResetMVP(this);
+
+            this.tex.Unbind();
         }
 
 

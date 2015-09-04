@@ -215,13 +215,13 @@ namespace CSharpGL.Objects.Demos.UIs
 
         void IMVP.SetShaderProgram(mat4 mvp)
         {
-            IMVPHelper.DoUpdateMVP(this, mvp);
+            IMVPHelper.SetMVP(this, mvp);
         }
 
 
         void IMVP.ResetShaderProgram()
         {
-            IMVPHelper.DoUnbindShaderProgram(this);
+            IMVPHelper.ResetMVP(this);
         }
 
         ShaderProgram IMVP.GetShaderProgram()

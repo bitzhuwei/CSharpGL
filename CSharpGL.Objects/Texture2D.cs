@@ -177,5 +177,10 @@ namespace CSharpGL.Objects
         {
             GL.BindTexture(GL.GL_TEXTURE_2D, this.texture[0]);
         }
+
+        public void Unbind()
+        {
+            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace CSharpGL.Objects
         /// </summary>
         /// <param name="element"></param>
         /// <param name="mvp"></param>
-        public static void DoUpdateMVP(this IMVP element, mat4 mvp)
+        public static void SetMVP(this IMVP element, mat4 mvp)
         {
             ShaderProgram shaderProgram = element.GetShaderProgram();
 
@@ -37,7 +37,7 @@ namespace CSharpGL.Objects
         /// 请确保此元素的GLSL中含有uniform mat4 MVP;并作为位置转换矩阵。
         /// </summary>
         /// <param name="element"></param>
-        public static void DoUnbindShaderProgram(this IMVP element)
+        public static void ResetMVP(this IMVP element)
         {
             ShaderProgram shaderProgram = element.GetShaderProgram();
 

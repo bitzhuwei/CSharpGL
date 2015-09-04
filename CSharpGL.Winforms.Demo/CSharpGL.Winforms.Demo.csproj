@@ -100,6 +100,12 @@
     <Compile Include="FormPointSpriteStringElement.Designer.cs">
       <DependentUpon>FormPointSpriteStringElement.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTexImage2D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTexImage2D.Designer.cs">
+      <DependentUpon>FormTexImage2D.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormScientificVisual3DControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     <Compile Include="TestProjectionFunctions.cs" />
     <EmbeddedResource Include="FormMapBuffer.resx">
       <DependentUpon>FormMapBuffer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTexImage2D.resx">
+      <DependentUpon>FormTexImage2D.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TransformFeedback\feedback.frag" />
     <EmbeddedResource Include="TransformFeedback\feedback.vert" />

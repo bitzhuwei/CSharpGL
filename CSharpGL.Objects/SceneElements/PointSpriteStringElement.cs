@@ -369,7 +369,7 @@ namespace CSharpGL.Objects.SceneElements
 
             GL.BindTexture(GL.GL_TEXTURE_2D, this.texture[0]);
 
-            IMVPHelper.DoUpdateMVP(this, mvp);
+            IMVPHelper.SetMVP(this, mvp);
 
             //int[] poinSizes = new int[2];
             //GL.GetInteger(GetTarget.PointSizeRange, poinSizes);
@@ -387,7 +387,7 @@ namespace CSharpGL.Objects.SceneElements
 
         void IMVP.ResetShaderProgram()
         {
-            IMVPHelper.DoUnbindShaderProgram(this);
+            IMVPHelper.ResetMVP(this);
 
             GL.BindTexture(GL.GL_TEXTURE_2D, 0);
 

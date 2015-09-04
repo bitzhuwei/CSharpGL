@@ -141,6 +141,11 @@ namespace CSharpGL.Winforms.Demo
             (new FormMapBuffer()).Show();
         }
 
+        private void btnTexImage2D_Click(object sender, EventArgs e)
+        {
+            (new FormTexImage2D()).Show();
+        }
+
 
     }
 }

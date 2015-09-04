@@ -51,6 +51,7 @@
             this.btnFormTransformFeedback = new System.Windows.Forms.Button();
             this.btnFormInstancedRendering = new System.Windows.Forms.Button();
             this.btnFormMapBuffer = new System.Windows.Forms.Button();
+            this.btnTexImage2D = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -77,7 +78,7 @@
             // 
             // btnFormFontElement
             // 
-            this.btnFormFontElement.Location = new System.Drawing.Point(13, 235);
+            this.btnFormFontElement.Location = new System.Drawing.Point(13, 272);
             this.btnFormFontElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormFontElement.Name = "btnFormFontElement";
             this.btnFormFontElement.Size = new System.Drawing.Size(353, 29);
@@ -121,7 +122,7 @@
             // 
             // btnFormWholeFontTextureElement
             // 
-            this.btnFormWholeFontTextureElement.Location = new System.Drawing.Point(13, 198);
+            this.btnFormWholeFontTextureElement.Location = new System.Drawing.Point(13, 235);
             this.btnFormWholeFontTextureElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormWholeFontTextureElement.Name = "btnFormWholeFontTextureElement";
             this.btnFormWholeFontTextureElement.Size = new System.Drawing.Size(353, 29);
@@ -132,7 +133,7 @@
             // 
             // btnTranslateOnScreen
             // 
-            this.btnTranslateOnScreen.Location = new System.Drawing.Point(13, 272);
+            this.btnTranslateOnScreen.Location = new System.Drawing.Point(13, 309);
             this.btnTranslateOnScreen.Margin = new System.Windows.Forms.Padding(4);
             this.btnTranslateOnScreen.Name = "btnTranslateOnScreen";
             this.btnTranslateOnScreen.Size = new System.Drawing.Size(353, 29);
@@ -143,7 +144,7 @@
             // 
             // btnLegacySimpleUIRect
             // 
-            this.btnLegacySimpleUIRect.Location = new System.Drawing.Point(13, 309);
+            this.btnLegacySimpleUIRect.Location = new System.Drawing.Point(13, 346);
             this.btnLegacySimpleUIRect.Margin = new System.Windows.Forms.Padding(4);
             this.btnLegacySimpleUIRect.Name = "btnLegacySimpleUIRect";
             this.btnLegacySimpleUIRect.Size = new System.Drawing.Size(353, 29);
@@ -154,7 +155,7 @@
             // 
             // btnSimpleUIRect
             // 
-            this.btnSimpleUIRect.Location = new System.Drawing.Point(13, 346);
+            this.btnSimpleUIRect.Location = new System.Drawing.Point(13, 383);
             this.btnSimpleUIRect.Margin = new System.Windows.Forms.Padding(4);
             this.btnSimpleUIRect.Name = "btnSimpleUIRect";
             this.btnSimpleUIRect.Size = new System.Drawing.Size(353, 29);
@@ -165,7 +166,7 @@
             // 
             // btnSimpleUIAxis
             // 
-            this.btnSimpleUIAxis.Location = new System.Drawing.Point(13, 383);
+            this.btnSimpleUIAxis.Location = new System.Drawing.Point(13, 420);
             this.btnSimpleUIAxis.Margin = new System.Windows.Forms.Padding(4);
             this.btnSimpleUIAxis.Name = "btnSimpleUIAxis";
             this.btnSimpleUIAxis.Size = new System.Drawing.Size(353, 29);
@@ -176,7 +177,7 @@
             // 
             // btnSimpleUIColorPalette
             // 
-            this.btnSimpleUIColorPalette.Location = new System.Drawing.Point(13, 457);
+            this.btnSimpleUIColorPalette.Location = new System.Drawing.Point(13, 494);
             this.btnSimpleUIColorPalette.Margin = new System.Windows.Forms.Padding(4);
             this.btnSimpleUIColorPalette.Name = "btnSimpleUIColorPalette";
             this.btnSimpleUIColorPalette.Size = new System.Drawing.Size(353, 29);
@@ -187,7 +188,7 @@
             // 
             // btnSimpleUICube
             // 
-            this.btnSimpleUICube.Location = new System.Drawing.Point(13, 420);
+            this.btnSimpleUICube.Location = new System.Drawing.Point(13, 457);
             this.btnSimpleUICube.Margin = new System.Windows.Forms.Padding(4);
             this.btnSimpleUICube.Name = "btnSimpleUICube";
             this.btnSimpleUICube.Size = new System.Drawing.Size(353, 29);
@@ -198,7 +199,7 @@
             // 
             // btnDebugging
             // 
-            this.btnDebugging.Location = new System.Drawing.Point(13, 494);
+            this.btnDebugging.Location = new System.Drawing.Point(13, 531);
             this.btnDebugging.Margin = new System.Windows.Forms.Padding(4);
             this.btnDebugging.Name = "btnDebugging";
             this.btnDebugging.Size = new System.Drawing.Size(353, 29);
@@ -209,7 +210,7 @@
             // 
             // btnSimplePointSprite
             // 
-            this.btnSimplePointSprite.Location = new System.Drawing.Point(13, 568);
+            this.btnSimplePointSprite.Location = new System.Drawing.Point(13, 605);
             this.btnSimplePointSprite.Margin = new System.Windows.Forms.Padding(4);
             this.btnSimplePointSprite.Name = "btnSimplePointSprite";
             this.btnSimplePointSprite.Size = new System.Drawing.Size(353, 29);
@@ -220,7 +221,7 @@
             // 
             // btnFormPointSpriteStringElement
             // 
-            this.btnFormPointSpriteStringElement.Location = new System.Drawing.Point(13, 531);
+            this.btnFormPointSpriteStringElement.Location = new System.Drawing.Point(13, 568);
             this.btnFormPointSpriteStringElement.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormPointSpriteStringElement.Name = "btnFormPointSpriteStringElement";
             this.btnFormPointSpriteStringElement.Size = new System.Drawing.Size(353, 29);
@@ -232,7 +233,7 @@
             // btnFormLegacyTexture3D
             // 
             this.btnFormLegacyTexture3D.Enabled = false;
-            this.btnFormLegacyTexture3D.Location = new System.Drawing.Point(13, 605);
+            this.btnFormLegacyTexture3D.Location = new System.Drawing.Point(13, 642);
             this.btnFormLegacyTexture3D.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormLegacyTexture3D.Name = "btnFormLegacyTexture3D";
             this.btnFormLegacyTexture3D.Size = new System.Drawing.Size(353, 29);
@@ -243,7 +244,7 @@
             // 
             // btnFormColorCodedPicking
             // 
-            this.btnFormColorCodedPicking.Location = new System.Drawing.Point(13, 642);
+            this.btnFormColorCodedPicking.Location = new System.Drawing.Point(13, 679);
             this.btnFormColorCodedPicking.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormColorCodedPicking.Name = "btnFormColorCodedPicking";
             this.btnFormColorCodedPicking.Size = new System.Drawing.Size(353, 29);
@@ -297,12 +298,24 @@
             this.btnFormMapBuffer.UseVisualStyleBackColor = true;
             this.btnFormMapBuffer.Click += new System.EventHandler(this.btnFormMapBuffer_Click);
             // 
+            // btnTexImage2D
+            // 
+            this.btnTexImage2D.Location = new System.Drawing.Point(13, 198);
+            this.btnTexImage2D.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTexImage2D.Name = "btnTexImage2D";
+            this.btnTexImage2D.Size = new System.Drawing.Size(353, 29);
+            this.btnTexImage2D.TabIndex = 1;
+            this.btnTexImage2D.Text = "TexImage2D";
+            this.btnTexImage2D.UseVisualStyleBackColor = true;
+            this.btnTexImage2D.Click += new System.EventHandler(this.btnTexImage2D_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(749, 685);
+            this.ClientSize = new System.Drawing.Size(749, 720);
             this.Controls.Add(this.btnFormWholeFontTextureElement);
+            this.Controls.Add(this.btnTexImage2D);
             this.Controls.Add(this.btnCylinderElement);
             this.Controls.Add(this.btnSatelliteRotation);
             this.Controls.Add(this.btnCamera);
@@ -356,5 +369,6 @@
         private System.Windows.Forms.Button btnFormTransformFeedback;
         private System.Windows.Forms.Button btnFormInstancedRendering;
         private System.Windows.Forms.Button btnFormMapBuffer;
+        private System.Windows.Forms.Button btnTexImage2D;
     }
 }
