@@ -10,6 +10,12 @@ namespace System
 {
     public static class ByteArrayHelper
     {
+        /// <summary>
+        /// 从给定的字节数组解析得到指定的struct对象。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="bytes"></param>
+        /// <param name="result"></param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void GetStruct<T>(this byte[] bytes, out T result) where T : struct
         {
@@ -22,6 +28,13 @@ namespace System
             GetStruct<T>(bytes, 0, out result);
         }
 
+        /// <summary>
+        /// 从给定的字节数组解析得到指定的struct对象。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="bytes"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="result"></param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void GetStruct<T>(this byte[] bytes, int startIndex, out T result) where T : struct
         {
