@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Picture.DDS", "FileParsers\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloCSharpGL", "HelloCSharpGL\HelloCSharpGL.csproj", "{655F1AE9-A103-4C09-9ECA-2E57EA5D8149}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpFont", "SharpFont\SharpFont.csproj", "{8492DA27-3077-43A2-80B0-D51E7DA83BD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{655F1AE9-A103-4C09-9ECA-2E57EA5D8149}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{655F1AE9-A103-4C09-9ECA-2E57EA5D8149}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{655F1AE9-A103-4C09-9ECA-2E57EA5D8149}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8492DA27-3077-43A2-80B0-D51E7DA83BD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8492DA27-3077-43A2-80B0-D51E7DA83BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8492DA27-3077-43A2-80B0-D51E7DA83BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8492DA27-3077-43A2-80B0-D51E7DA83BD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
