@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedBook.Winforms.Demo", "De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.UIs", "Functions\CSharpGL.UIs\CSharpGL.UIs.csproj", "{292F0A6F-6D7E-42FE-8B5C-3FBA11FC9B49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.ColorCodedPicking", "Functions\CSharpGL.ColorCodedPicking\CSharpGL.ColorCodedPicking.csproj", "{04255068-DA28-4CC0-AF34-3E5AF828AB03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -127,6 +129,10 @@ Global
 		{292F0A6F-6D7E-42FE-8B5C-3FBA11FC9B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{292F0A6F-6D7E-42FE-8B5C-3FBA11FC9B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{292F0A6F-6D7E-42FE-8B5C-3FBA11FC9B49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04255068-DA28-4CC0-AF34-3E5AF828AB03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04255068-DA28-4CC0-AF34-3E5AF828AB03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04255068-DA28-4CC0-AF34-3E5AF828AB03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04255068-DA28-4CC0-AF34-3E5AF828AB03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -151,5 +157,6 @@ Global
 		{22558A60-4E2A-4EC5-85D0-300D8CA5C6F4} = {F29E7A48-2DB4-4F35-958E-547E8200F847}
 		{38815DFE-0DEA-4A16-ADD8-E621529E4A47} = {F29E7A48-2DB4-4F35-958E-547E8200F847}
 		{292F0A6F-6D7E-42FE-8B5C-3FBA11FC9B49} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
+		{04255068-DA28-4CC0-AF34-3E5AF828AB03} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 	EndGlobalSection
 EndGlobal

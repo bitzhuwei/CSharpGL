@@ -1,5 +1,5 @@
 ﻿using GLM;
-using CSharpGL.Objects.ColorCodedPicking;
+using CSharpGL.ColorCodedPicking;
 using CSharpGL.Objects.Shaders;
 using System;
 using System.Collections.Generic;

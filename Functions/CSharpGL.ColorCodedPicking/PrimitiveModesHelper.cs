@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.ColorCodedPicking
+namespace CSharpGL.ColorCodedPicking
 {
     static class PrimitiveModesHelper
     {

@@ -4,28 +4,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Objects.ColorCodedPicking
+namespace CSharpGL.ColorCodedPicking
 {
     /// <summary>
     /// The color-coded picking result.
     /// <para>Representing a primitive.</para>
     /// </summary>
-    public class PickedGeometryColored : PickedGeometryBase 
+    public abstract class PickedGeometryBase : IPickedGeometry
     {
         /// <summary>
-        /// Gets or sets colors of this primitive.
+        /// Gets or sets primitive's geometry type.
         /// </summary>
-        public vec3[] colors { get; set; }
+        public GeometryTypes GeometryType { get; set; }
+
+        /// <summary>
+        /// Gets or sets positions of this primitive's vertices.
+        /// </summary>
+        public vec3[] positions { get; set; }
+
+        /// <summary>
+        /// The last vertex's id that constructs the picked primitive.
+        /// <para>This id is in scene's all <see cref="IColorCodedPicking"/>s' order.</para>
+        /// </summary>
+        public uint StageVertexID { get; set; }
+
+        /// <summary>
+        /// The element that this picked primitive belongs to.
+        /// </summary>
+        public virtual IColorCodedPicking From { get; set; }
 
         public override string ToString()
         {
             var positions = this.positions;
             if (positions == null) { positions = new vec3[0]; }
-            var colors = this.colors;
-            if (colors == null) { colors = new vec3[0]; }
 
             string strPositions = positions.PrintArray();
-            string strColors = colors.PrintArray();
 
             uint stageVertexID = this.StageVertexID;
             IColorCodedPicking picking = this.From;
@@ -40,9 +53,8 @@ namespace CSharpGL.Objects.ColorCodedPicking
                 }
             }
 
-            string result = string.Format("{0}: P: {1} C: {2} ID:{3}/{4} ∈{5}",
-                GeometryType, strPositions, strColors, lastVertexID, stageVertexID, From);
-
+            string result = string.Format("{0}: P: {1} vertex ID:{2}/{3} ∈{4}",
+                GeometryType, strPositions, lastVertexID, stageVertexID, From);
             return result;
             //return base.ToString();
         }

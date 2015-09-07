@@ -1,9 +1,10 @@
-﻿﻿using System;
+﻿﻿using CSharpGL.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Objects.ColorCodedPicking
+namespace CSharpGL.ColorCodedPicking
 {
     /// <summary>
     /// This type's instance is used in <see cref="ColorCodedPickingScene.Draw(RenderMode.HitTest)"/>

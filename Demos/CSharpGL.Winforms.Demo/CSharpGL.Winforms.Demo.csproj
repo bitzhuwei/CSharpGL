@@ -332,6 +332,10 @@
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Functions\CSharpGL.ColorCodedPicking\CSharpGL.ColorCodedPicking.csproj">
+      <Project>{04255068-da28-4cc0-af34-3e5af828ab03}</Project>
+      <Name>CSharpGL.ColorCodedPicking</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Functions\CSharpGL.Texts\CSharpGL.Texts.csproj">
       <Project>{febc2c4a-e846-44e7-99c1-ecf2816abf40}</Project>
       <Name>CSharpGL.Texts</Name>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Objects.ColorCodedPicking
+namespace CSharpGL.ColorCodedPicking
 {
     /// <summary>
     /// The picked geometry of color-coded picking.

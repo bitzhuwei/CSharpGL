@@ -1,9 +1,10 @@
-﻿using System;
+﻿using CSharpGL.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Objects.ColorCodedPicking
+namespace CSharpGL.ColorCodedPicking
 {
     /// <summary>
     /// Scene element that implemented this interface will take part in color-coded picking when using <see cref="MyScene.Draw(RenderMode.HitTest);"/>.

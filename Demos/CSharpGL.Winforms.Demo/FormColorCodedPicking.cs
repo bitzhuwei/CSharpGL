@@ -1,7 +1,7 @@
 ﻿using GLM;
 using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
-using CSharpGL.Objects.ColorCodedPicking;
+using CSharpGL.ColorCodedPicking;
 using CSharpGL.Objects.Demos;
 using CSharpGL.Objects.Demos.UIs;
 using CSharpGL.UIs;
