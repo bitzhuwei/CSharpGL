@@ -66,6 +66,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="readme.txt" />
     <Content Include="release-notes.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
