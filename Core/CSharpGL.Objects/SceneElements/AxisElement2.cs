@@ -11,6 +11,7 @@ namespace CSharpGL.Objects.SceneElements
 {
     /// <summary>
     /// 绘制三维坐标轴2：用三个独立的mat4记录和传递projection * view * model
+    /// <para>充当此类库里的示例元素</para>
     /// </summary>
     public class AxisElement2 : SceneElementBase, IDisposable
     {

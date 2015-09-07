@@ -11,6 +11,7 @@ namespace CSharpGL.Objects.SceneElements
 {
     /// <summary>
     /// 绘制三维坐标轴
+    /// <para>充当此类库里的示例元素</para>
     /// </summary>
     public class AxisElement : SceneElementBase, IMVP, IDisposable
     {
