@@ -81,7 +81,6 @@
   <ItemGroup>
     <None Include="FreeTypes\freetype.exp" />
     <None Include="FreeTypes\freetype.lib" />
-    <None Include="Modern OpenGL Text Rendering.mht" />
     <EmbeddedResource Include="PointSpriteStringElement.frag" />
     <EmbeddedResource Include="PointSpriteStringElement.vert" />
   </ItemGroup>
