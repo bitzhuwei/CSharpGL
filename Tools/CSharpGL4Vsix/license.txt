@@ -1,0 +1,1 @@
+﻿CSharpGL是我受到SharpGL的启发，在整理了SharpGL，GLM，SharpFont等开源库的基础上，做的一个新的C#版OpenGL库，希望它能做到易学易用，简化OpenGL开发，减少低级错误，帮助初学者更快地由入门到精通。CSharpGL已在GitHub开源，欢迎对OpenGL有兴趣的同学加入（https://github.com/bitzhuwei/CSharpGL）

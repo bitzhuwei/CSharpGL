@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="CSharpGL..1869c570-3c6f-473d-8888-8cb22b784564" Version="1.0" Language="en-US" Publisher="bitzhuwei" />
+    <DisplayName>CSharpGL</DisplayName>
+    <Description xml:space="preserve">CSharpGL是我受到SharpGL的启发，在整理了SharpGL，GLM，SharpFont等开源库的基础上，做的一个新的C#版OpenGL库，希望它能做到易学易用，简化OpenGL开发，减少低级错误，帮助初学者更快地由入门到精通。CSharpGL已在GitHub开源，欢迎对OpenGL有兴趣的同学加入（https://github.com/bitzhuwei/CSharpGL）</Description>
+    <MoreInfo>http://www.cnblogs.com/bitzhuwei/p/CSharpGL-an-easy-to-learn-and-easy-to-use-OpenGL-library-in-csharp.html</MoreInfo>
+    <License>license.txt</License>
+    <GettingStartedGuide>http://www.cnblogs.com/bitzhuwei/p/CSharpGL-1-start-from-a-simple-demo-with-legacy-modern-opengl.html</GettingStartedGuide>
+    <ReleaseNotes>release-notes.txt</ReleaseNotes>
+    <Icon>CSharpGL.ico</Icon>
+    <PreviewImage>Preview.png</PreviewImage>
+    <Tags>opengl</Tags>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[12.0]" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\HelloCSharpGL.zip" />
+  </Assets>
+</PackageManifest>
