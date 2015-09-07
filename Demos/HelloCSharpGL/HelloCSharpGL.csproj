@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{655F1AE9-A103-4C09-9ECA-2E57EA5D8149}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HelloCSharpGL</RootNamespace>
+    <AssemblyName>HelloCSharpGL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="readme.txt" />
+    <Compile Include="FormLegacyOpenGL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLegacyOpenGL.Designer.cs">
+      <DependentUpon>FormLegacyOpenGL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormModernOpenGL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModernOpenGL.Designer.cs">
+      <DependentUpon>FormModernOpenGL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PyramidDemo.cs" />
+    <EmbeddedResource Include="FormLegacyOpenGL.resx">
+      <DependentUpon>FormLegacyOpenGL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModernOpenGL.resx">
+      <DependentUpon>FormModernOpenGL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="PyramidDemo.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="PyramidDemo.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\CSharpGL.Maths\CSharpGL.Maths.csproj">
+      <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
+      <Name>CSharpGL.Maths</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\CSharpGL.Objects\CSharpGL.Objects.csproj">
+      <Project>{b340c561-2e18-42af-a52d-e6d9f924293e}</Project>
+      <Name>CSharpGL.Objects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\CSharpGL.Winforms\CSharpGL.Winforms.csproj">
+      <Project>{63ef1f63-9251-4e20-bce3-843c7f4d482b}</Project>
+      <Name>CSharpGL.Winforms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\CSharpGL\CSharpGL.csproj">
+      <Project>{0d6e73c8-27b8-4614-9861-f4f22808ea7c}</Project>
+      <Name>CSharpGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Utilities\Utilities.csproj">
+      <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
