@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace CSharpGL.Maths
+namespace GLM
 {
     /// <summary>
     /// Represents a 4x4 matrix.

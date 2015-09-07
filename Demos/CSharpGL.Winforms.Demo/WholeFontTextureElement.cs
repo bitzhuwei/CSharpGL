@@ -1,4 +1,4 @@
-﻿using CSharpGL.Maths;
+﻿using GLM;
 using CSharpGL.Objects;
 using CSharpGL.Objects.Shaders;
 using CSharpGL.Texts;

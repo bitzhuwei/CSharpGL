@@ -1,6 +1,6 @@
 using System;
 
-namespace CSharpGL.Maths
+namespace GLM
 {
     /// <summary>
     /// The glm class contains static functions as exposed in the glm namespace of the 

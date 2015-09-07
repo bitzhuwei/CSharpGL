@@ -7,7 +7,7 @@
     <ProjectGuid>{425B5714-8C57-48E4-A88A-3CCE10096F7B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharpGL.Maths</RootNamespace>
+    <RootNamespace>GLM</RootNamespace>
     <AssemblyName>CSharpGL.Maths</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

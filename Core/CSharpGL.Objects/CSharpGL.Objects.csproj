@@ -100,9 +100,9 @@
     <Compile Include="SceneElementBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSharpGL.Maths\CSharpGL.Maths.csproj">
+    <ProjectReference Include="..\GLM\GLM.csproj">
       <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
-      <Name>CSharpGL.Maths</Name>
+      <Name>GLM</Name>
     </ProjectReference>
     <ProjectReference Include="..\CSharpGL\CSharpGL.csproj">
       <Project>{0d6e73c8-27b8-4614-9861-f4f22808ea7c}</Project>

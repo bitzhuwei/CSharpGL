@@ -163,9 +163,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\CSharpGL.Maths\CSharpGL.Maths.csproj">
+    <ProjectReference Include="..\..\..\Core\GLM\GLM.csproj">
       <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
-      <Name>CSharpGL.Maths</Name>
+      <Name>GLM</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Functions\CSharpGL.UIs\CSharpGL.UIs.csproj">
       <Project>{292f0a6f-6d7e-42fe-8b5c-3fba11fc9b49}</Project>

@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace CSharpGL.Maths
+namespace GLM
 {
     /// <summary>
     /// Represents a two dimensional vector.

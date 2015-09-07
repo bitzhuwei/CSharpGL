@@ -1,5 +1,5 @@
 ﻿using CSharpGL;
-using CSharpGL.Maths;
+using GLM;
 using CSharpGL.Objects.Shaders;
 using System;
 using System.Collections.Generic;

@@ -60,9 +60,9 @@
     <Compile Include="UIs\SimpleUIRect.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\CSharpGL.Maths\CSharpGL.Maths.csproj">
+    <ProjectReference Include="..\..\Core\GLM\GLM.csproj">
       <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
-      <Name>CSharpGL.Maths</Name>
+      <Name>GLM</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Core\CSharpGL.Objects\CSharpGL.Objects.csproj">
       <Project>{b340c561-2e18-42af-a52d-e6d9f924293e}</Project>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Maths
+namespace GLM
 {
     public static class mat4Helper
     {

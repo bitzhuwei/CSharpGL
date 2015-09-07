@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace CSharpGL.Maths
+namespace GLM
 {
     /// <summary>
     /// Represents a 2x2 matrix.

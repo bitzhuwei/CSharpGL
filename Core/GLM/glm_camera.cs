@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Maths
+namespace GLM
 {
     // ReSharper disable InconsistentNaming
     public static partial class glm

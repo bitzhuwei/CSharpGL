@@ -1,5 +1,5 @@
 ﻿
-using CSharpGL.Maths;
+using GLM;
 using System.ComponentModel;
 namespace CSharpGL.Objects.Cameras
 {

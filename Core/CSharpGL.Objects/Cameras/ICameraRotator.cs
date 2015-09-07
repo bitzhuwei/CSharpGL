@@ -1,4 +1,4 @@
-﻿using CSharpGL.Maths;
+﻿using GLM;
 using System;
 using System.Drawing;
 

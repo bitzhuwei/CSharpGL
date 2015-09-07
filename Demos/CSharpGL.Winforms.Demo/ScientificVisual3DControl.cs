@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using CSharpGL.Objects.RenderContexts;
 using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
-using CSharpGL.Maths;
+using GLM;
 using CSharpGL.UIs;
 using CSharpGL.Objects.Demos.UIs;
 

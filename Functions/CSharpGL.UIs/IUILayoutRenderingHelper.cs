@@ -1,4 +1,4 @@
-﻿using CSharpGL.Maths;
+﻿using GLM;
 using CSharpGL.UIs;
 using System;
 using System.Collections.Generic;
