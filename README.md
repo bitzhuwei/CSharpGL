@@ -1,10 +1,34 @@
 # CSharpGL
 纠集整理SharpGL，GLM，SharpFont等开源库，努力做一个更好用的纯C#版OpenGL。
 
-<p style="text-align: center;"><span style="font-size: 16pt;"><strong>CSharpGL(0)一个易学易用的C#版OpenGL </strong></span></p>
+<p><img src="http://images2015.cnblogs.com/blog/383191/201509/383191-20150908133820794-1595596727.png" alt="" width="64" height="64" /><img src="http://images2015.cnblogs.com/blog/383191/201509/383191-20150908133828090-2134647437.png" alt="" width="272" height="64" /></p>
 <p>CSharpGL是我受到<span style="line-height: 1.5;">SharpGL的启发，在整理了SharpGL，GLM，SharpFont等开源库的基础上，做的一个新的</span><span style="color: red;">C#版OpenGL库</span><span style="line-height: 1.5;">，希望它能做到易学易用，简化OpenGL开发，减少低级错误，帮助初学者更快地由入门到精通。</span></p>
-<p>CSharpGL已在GitHub开源，欢迎对OpenGL有兴趣的同学加入
+<p>CSharpGL已在GitHub开源，欢迎对OpenGL有兴趣的同学加入（<a href="https://github.com/bitzhuwei/CSharpGL" target="_blank">https://github.com/bitzhuwei/CSharpGL</a>）</p>
+<p>下面这段话引自（<a href="http://blog.sina.com.cn/s/blog_7cfb366d0101eglm.html" target="_blank">http://blog.sina.com.cn/s/blog_7cfb366d0101eglm.html</a>）</p>
+<blockquote>学习OpenGL之所以痛苦，是因为首先只有两本推荐的，一本红宝书《OpenGL编程指南》；一本蓝宝书《OpenGL超级宝典》，初学者看他的东西往往会不知所云。在学习初期，除了少的可怜的书之外，更缺乏调试器。本身物体在三维空间，输错一个正负号就有可能让你找不到你的物体在哪里，没有调试的话你甚至不知道中间过程的时候，物体到底是什么样子。也就是说基本就是一抹黑，你可能既不知道你顶点坐标是否正确，也不知道某些个API是不是调用错误，抑或者是像深度缓冲没开等等，只能靠运气一般的去调去试。我就是这么可怜的度过了那段时间，现在想起来真心感叹，没人带没人教就是这么惨。</blockquote>
 
+<h1>CSharpGL.vsix</h1>
+<p>我制作了一个CSharpGL.vsix插件，安装后可以使用模板项目来体会CSharpGL的用法。</p>
+<h2>安装CSharpGL.vsix</h2>
+<p>原本我想把CSharpGL.vsix上传到visualstudiogallery，结果试了多少次都失败了。</p>
+<p>您可以在（<a href="http://files.cnblogs.com/files/bitzhuwei/CSharpGL.vsix.rar">http://files.cnblogs.com/files/bitzhuwei/CSharpGL.vsix.rar</a>）下载之。</p>
+<p>解压后安装很简单。</p>
+<p><img src="http://images2015.cnblogs.com/blog/383191/201509/383191-20150908021125856-142020205.png" alt="" /></p>
+<p>安装后关闭即可。</p>
+<p><img src="http://images2015.cnblogs.com/blog/383191/201509/383191-20150908021126903-12457472.png" alt="" /></p>
+<p>&nbsp;</p>
+<h2>使用CSharpGL.vsix</h2>
+<p>安装完成后，重启visual studio 2013。</p>
+<p>我们来新建一个示例项目。</p>
+<p><img src="http://images2015.cnblogs.com/blog/383191/201509/383191-20150908021127872-1531891577.png" alt="" /></p>
+<p>在项目模板中，出现了新增的HelloCSharpGL，我们来创建它。</p>
+<p><img src="http://images2015.cnblogs.com/blog/383191/201509/383191-20150908021129934-786736530.png" alt="" /></p>
+<p>点击"确定"，即可自动生成一个完整的项目。</p>
+<p><img src="http://images2015.cnblogs.com/blog/383191/201509/383191-20150908021130997-2102201143.png" alt="" /></p>
+<p>现在直接启动，即可看到效果。</p>
+<p><img src="http://images2015.cnblogs.com/blog/383191/201509/383191-20150908021132637-427032682.png" alt="" /></p>
+<p><img src="http://images2015.cnblogs.com/blog/383191/201509/383191-20150908021133278-546436100.png" alt="" /></p>
+<p>现在你可以在此项目基础上进行各种尝试。</p>
 <h1>CSharpGL有什么？</h1>
 <p>下面是目前CSharpGL的一部分示例。</p>
 <h2>绘制模型</h2>
@@ -53,7 +77,6 @@
 <p>CSharpGL还拿来了GLM、SharpFont等开源项目，用于计算矩阵、获取字形贴图等操作。</p>
 
 <div>
-<p>&nbsp;</p>
 <h1>CSharpGL与其他C#OpenGL类库的对比</h1>
 <h2>SharpGL</h2>
 <p>创建OpenGL Render Context的过程只支持Windows平台。</p>
@@ -97,4 +120,4 @@
 <p>可以看到，我的计划就是找很多很多的例子，转换成C#版，安排到CSharpGL里，在这过程中丰富CSharpGL的类库。这样，既有大量的例子可以学习模仿，又有强大的可复用类库，CSharpGL就能实现易学易用的目标了。</p>
 <p>我计划针对所有实现了的功能、机制逐个写一篇随笔。本篇算是开篇。</p>
 <h1>总结</h1>
-<p>学OpenGL有2年了，从NEHE到SharpGL，从《3D Math Primer for Graphics and Game Development》到《OpenGL Programming Guide》，算是对OpenGL有了初级的认识。最近我纠集整理了SharpGL，GLM，SharpFont等开源库，想做一个更好用的纯C#版OpenGL。欢迎对OpenGL有兴趣的同学加入。
+<p>学OpenGL有2年了，从NEHE到SharpGL，从《3D Math Primer for Graphics and Game Development》到《OpenGL Programming Guide》，算是对OpenGL有了初级的认识。最近我纠集整理了SharpGL，GLM，SharpFont等开源库，想做一个更好用的纯C#版OpenGL。欢迎对OpenGL有兴趣的同学加入（<a href="https://github.com/bitzhuwei/CSharpGL" target="_blank">https://github.com/bitzhuwei/CSharpGL</a>）</p>
