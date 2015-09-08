@@ -44,7 +44,6 @@
     <Compile Include="Chunk.cs" />
     <Compile Include="ChunkData.cs" />
     <Compile Include="ChunkID.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="MaterialD3S.cs" />
     <Compile Include="Model.cs" />
