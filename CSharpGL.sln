@@ -66,6 +66,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{2F6498
 		Assets\System.Numerics.Vectors.xml = Assets\System.Numerics.Vectors.xml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL._3DSFiles", "Functions\CSharpGL._3DSFiles\CSharpGL._3DSFiles.csproj", "{2C4FC122-BD74-4F1F-BCED-D44CF6CA7FA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -152,6 +154,10 @@ Global
 		{DCE01A2B-BFA9-4D57-85AD-6A59A3212B92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCE01A2B-BFA9-4D57-85AD-6A59A3212B92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCE01A2B-BFA9-4D57-85AD-6A59A3212B92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C4FC122-BD74-4F1F-BCED-D44CF6CA7FA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C4FC122-BD74-4F1F-BCED-D44CF6CA7FA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C4FC122-BD74-4F1F-BCED-D44CF6CA7FA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C4FC122-BD74-4F1F-BCED-D44CF6CA7FA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -178,5 +184,6 @@ Global
 		{292F0A6F-6D7E-42FE-8B5C-3FBA11FC9B49} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 		{04255068-DA28-4CC0-AF34-3E5AF828AB03} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 		{DCE01A2B-BFA9-4D57-85AD-6A59A3212B92} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
+		{2C4FC122-BD74-4F1F-BCED-D44CF6CA7FA1} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 	EndGlobalSection
 EndGlobal
