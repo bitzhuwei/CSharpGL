@@ -53,6 +53,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.ColorCodedPicking"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL4Vsix", "Tools\CSharpGL4Vsix\CSharpGL4Vsix.csproj", "{DCE01A2B-BFA9-4D57-85AD-6A59A3212B92}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{2F6498B7-1671-444D-A45A-68DF5FD7247B}"
+	ProjectSection(SolutionItems) = preProject
+		Assets\CSharpGL-banner.png = Assets\CSharpGL-banner.png
+		Assets\CSharpGL.ico = Assets\CSharpGL.ico
+		Assets\CSharpGL.png = Assets\CSharpGL.png
+		Assets\HelloCSharpGL.png = Assets\HelloCSharpGL.png
+		Assets\Preview.png = Assets\Preview.png
+		Assets\Preview2.png = Assets\Preview2.png
+		Assets\System.Numerics.Vectors.dll = Assets\System.Numerics.Vectors.dll
+		Assets\System.Numerics.Vectors.pdb = Assets\System.Numerics.Vectors.pdb
+		Assets\System.Numerics.Vectors.xml = Assets\System.Numerics.Vectors.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
