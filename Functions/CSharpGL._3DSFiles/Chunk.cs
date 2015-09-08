@@ -35,13 +35,13 @@ namespace CSharpGL._3DSFiles
                 switch (chunk.Identifier)
                 {
                     case ChunkID._3D_EDITOR_CHUNK:
-                        ReadSubChunk(chunk,reader);
+                        ReadSubChunk(chunk, reader);
                         break;
                     case ChunkID.OBJECT_BLOCK:
                         var i = 0;
                         do
                         {
-                            
+
                         } while (true);
                         ReadSubChunk(chunk, reader);
                         break;

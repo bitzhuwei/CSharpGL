@@ -10,7 +10,7 @@ namespace CSharpGL._3DSFiles
     {
         Chunk mainChunk;
 
-        protected _3DSFile(){}
+        protected _3DSFile() { }
         public static _3DSFile Parse(string filename)
         {
             if (!System.IO.File.Exists(filename)) { return null; }

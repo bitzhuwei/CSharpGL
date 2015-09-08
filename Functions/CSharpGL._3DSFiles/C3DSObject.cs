@@ -25,71 +25,71 @@ namespace CSharpGL._3DSFiles
         int totalMaterials;
 
     }
-	// File chunk header.
-	class stChunk
-	{
-	   short id;
-	   uint length;
-	   uint bytesRead;
-	};
+    // File chunk header.
+    class stChunk
+    {
+        short id;
+        uint length;
+        uint bytesRead;
+    };
 
-	// Vertex position.
-	class stVertex
-	{
-	   float x, y, z;
-	};
+    // Vertex position.
+    class stVertex
+    {
+        float x, y, z;
+    };
 
-	// Triangle.
-	class stFace
-	{
-	   uint[] indices=new uint[3];
-	   stVertex normal;
-	   int matId;
-	};
+    // Triangle.
+    class stFace
+    {
+        uint[] indices = new uint[3];
+        stVertex normal;
+        int matId;
+    };
 
-	// Triangle as it is in the file.
-	class stFileFace
-	{
-	   ushort[] indices=new ushort[3];
+    // Triangle as it is in the file.
+    class stFileFace
+    {
+        ushort[] indices = new ushort[3];
         ushort vis;
-	};
+    };
 
-	// RGB color value.
-	class stColor
-	{
-		byte r, g, b;
-	   //unsigned char r, g, b;
-	};
+    // RGB color value.
+    class stColor
+    {
+        byte r, g, b;
+        //unsigned char r, g, b;
+    };
 
-	// Texture coordinate for a vertex pos.
-	class stTexCoord
-	{
-	   float tu, tv;
-	};
+    // Texture coordinate for a vertex pos.
+    class stTexCoord
+    {
+        float tu, tv;
+    };
 
-	// Material of a face.
-	class stMaterial
-	{
-       //stMaterial() { name[0] = '/0'; textureName[0] = '/0'; }
-	   String name;
-	   //char name[256];
-	   stColor color;
-	   String textureName;
-	   //char textureName[256];
-	};
+    // Material of a face.
+    class stMaterial
+    {
+        //stMaterial() { name[0] = '/0'; textureName[0] = '/0'; }
+        String name;
+        //char name[256];
+        stColor color;
+        String textureName;
+        //char textureName[256];
+    };
 
-	// Mesh object.  A file can have more than 1.
-	class stMesh
-	{
-		String name;
-	    //char name[256];
+    // Mesh object.  A file can have more than 1.
+    class stMesh
+    {
+        String name;
+        //char name[256];
 
-	    stFace pFaces;
-	    stVertex pVertices;
-	    stTexCoord pTexCoords;
+        stFace pFaces;
+        stVertex pVertices;
+        stTexCoord pTexCoords;
 
-	    uint totalFaces;
-	    uint totalVertices;
-	    uint totalTexCoords;
-	};
+        uint totalFaces;
+        uint totalVertices;
+        uint totalTexCoords;
+    };
 }

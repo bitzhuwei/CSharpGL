@@ -89,7 +89,7 @@ namespace CSharpGL._3DSFiles
             /// sub defines of _3DEditorChunk
             /// </summary>
             EditorMaterial = 0xAFFF,
-            
+
             MaterialName = 0xA000,
             AmbientColor = 0xA010,
             DiffuseColor = 0xA020,
@@ -470,14 +470,14 @@ namespace CSharpGL._3DSFiles
             return e;
         }
 
-        void SkipChunk(ThreeDSChunk chunk, int maxSkip=-1)
+        void SkipChunk(ThreeDSChunk chunk, int maxSkip = -1)
         {
             int length = (int)chunk.Length - chunk.BytesRead;
             if (maxSkip != -1)
             {
                 if (length > maxSkip)//Something wrong about 3ds file may happen here.
                 {
-                    length = maxSkip; 
+                    length = maxSkip;
                 }
             }
             reader.ReadBytes(length);
