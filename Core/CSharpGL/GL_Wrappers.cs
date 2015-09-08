@@ -605,6 +605,246 @@ namespace CSharpGL
 
         #endregion GL.Vertex
 
+        #region GL.TexCoord
+
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        public static void TexCoord(double s)
+        {
+            GL.TexCoord1d(s);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        public static void TexCoord(double[] v)
+        {
+            if (v.Length == 1)
+                GL.TexCoord1dv(v);
+            else if (v.Length == 2)
+                GL.TexCoord2dv(v);
+            else if (v.Length == 3)
+                GL.TexCoord3dv(v);
+            else if (v.Length == 4)
+                GL.TexCoord4dv(v);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        public static void TexCoord(float s)
+        {
+            GL.TexCoord1f(s);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates. WARNING: if you
+        /// can call something more explicit, like TexCoord2f then call that, it's
+        /// much faster.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        public static void TexCoord(float[] v)
+        {
+            if (v.Length == 1)
+                GL.TexCoord1fv(v);
+            else if (v.Length == 2)
+                GL.TexCoord2fv(v);
+            else if (v.Length == 3)
+                GL.TexCoord3fv(v);
+            else if (v.Length == 4)
+                GL.TexCoord4fv(v);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        public static void TexCoord(int s)
+        {
+            GL.TexCoord1i(s);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        public static void TexCoord(int[] v)
+        {
+            if (v.Length == 1)
+                GL.TexCoord1iv(v);
+            else if (v.Length == 2)
+                GL.TexCoord2iv(v);
+            else if (v.Length == 3)
+                GL.TexCoord3iv(v);
+            else if (v.Length == 4)
+                GL.TexCoord4iv(v);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        public static void TexCoord(short s)
+        {
+            GL.TexCoord1s(s);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        public static void TexCoord(short[] v)
+        {
+            if (v.Length == 1)
+                GL.TexCoord1sv(v);
+            else if (v.Length == 2)
+                GL.TexCoord2sv(v);
+            else if (v.Length == 3)
+                GL.TexCoord3sv(v);
+            else if (v.Length == 4)
+                GL.TexCoord4sv(v);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        public static void TexCoord(double s, double t)
+        {
+            GL.TexCoord2d(s, t);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        public static void TexCoord(float s, float t)
+        {
+            GL.TexCoord2f(s, t);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        public static void TexCoord(int s, int t)
+        {
+            GL.TexCoord2i(s, t);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        public static void TexCoord(short s, short t)
+        {
+            GL.TexCoord2s(s, t);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        public static void TexCoord(double s, double t, double r)
+        {
+            GL.TexCoord3d(s, t, r);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        public static void TexCoord(float s, float t, float r)
+        {
+            GL.TexCoord3f(s, t, r);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        public static void TexCoord(int s, int t, int r)
+        {
+            GL.TexCoord3i(s, t, r);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        public static void TexCoord(short s, short t, short r)
+        {
+            GL.TexCoord3s(s, t, r);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        /// <param name="q">Texture Coordinate.</param>
+        public static void TexCoord(double s, double t, double r, double q)
+        {
+            GL.TexCoord4d(s, t, r, q);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        /// <param name="q">Texture Coordinate.</param>
+        public static void TexCoord(float s, float t, float r, float q)
+        {
+            GL.TexCoord4f(s, t, r, q);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        /// <param name="q">Texture Coordinate.</param>
+        public static void TexCoord(int s, int t, int r, int q)
+        {
+            GL.TexCoord4i(s, t, r, q);
+        }
+
+        /// <summary>
+        /// This function sets the current texture coordinates.
+        /// </summary>
+        /// <param name="s">Texture Coordinate.</param>
+        /// <param name="t">Texture Coordinate.</param>
+        /// <param name="r">Texture Coordinate.</param>
+        /// <param name="q">Texture Coordinate.</param>
+        public static void TexCoord(short s, short t, short r, short q)
+        {
+            GL.TexCoord4s(s, t, r, q);
+        }
+
+
+        #endregion GL.TexCoord
+
         [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Begin(PrimitiveModes primitiveMode)
