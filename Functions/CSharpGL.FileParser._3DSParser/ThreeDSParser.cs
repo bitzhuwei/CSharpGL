@@ -31,8 +31,7 @@ namespace CSharpGL.FileParser._3DSParser
             reader.BaseStream.Seek(0, SeekOrigin.Begin);
 
             ChunkBase chunk = reader.ReadChunk();
-            //if (chunk.ID != (ushort)ThreeDSChunkType.MainChunk)
-            if (chunk.GetType() != typeof(MainChunk))
+            if (chunk.GetID() != (ushort)ThreeDSChunkType.MainChunk)
             { throw new Exception("Not a proper 3DS file."); }
 
             ProcessChunk(chunk);
