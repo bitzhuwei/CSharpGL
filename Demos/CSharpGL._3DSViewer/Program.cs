@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpGL.FileParser._3DSParser;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,9 +15,18 @@ namespace CSharpGL._3DSViewer
         [STAThread]
         static void Main()
         {
+            Test3DSFiles();
+            return;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form3DSViewer());
+        }
+
+        private static void Test3DSFiles()
+        {
+            var filename = "spaceship.3DS";
+            ThreeDSParser parser = new ThreeDSParser();
+            parser.Parse(filename);
         }
     }
 }

@@ -1,184 +1,58 @@
-// Title:	ThreeDSFile.cs
-// Author: 	Scott Ellington <scott.ellington@gmail.com>
-//
-// Copyright (C) 2006 Scott Ellington and authors
-//
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-// 
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+Ôªøusing CSharpGL.FileParser._3DSParser.Chunks;
 using System;
-using System.IO;
-using System.Text;
 using System.Collections.Generic;
-
 using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CSharpGL._3DSFiles
+namespace CSharpGL.FileParser._3DSParser
 {
-    /*
-0x4D4D // Main Chunk
-©¿©§ 0x0002 // M3D Version
-©¿©§ 0x3D3D // 3D Editor Chunk
-©¶  ©¿©§ 0x4000 // Object Block
-©¶  ©¶  ©¿©§ 0x4100 // Triangular Mesh
-©¶  ©¶  ©¶  ©¿©§ 0x4110 // Vertices List
-©¶  ©¶  ©¶  ©¿©§ 0x4120 // Faces Description
-©¶  ©¶  ©¶  ©¶  ©¿©§ 0x4130 // Faces Material
-©¶  ©¶  ©¶  ©¶  ©∏©§ 0x4150 // Smoothing Group List
-©¶  ©¶  ©¶  ©¿©§ 0x4140 // Mapping Coordinates List
-©¶  ©¶  ©¶  ©∏©§ 0x4160 // Local Coordinates System
-©¶  ©¶  ©¿©§ 0x4600 // Light
-©¶  ©¶  ©¶  ©∏©§ 0x4610 // Spotlight
-©¶  ©¶  ©∏©§ 0x4700 // Camera
-©¶  ©∏©§ 0xAFFF // Material Block
-©¶     ©¿©§ 0xA000 // Material Name
-©¶     ©¿©§ 0xA010 // Ambient Color
-©¶     ©¿©§ 0xA020 // Diffuse Color
-©¶     ©¿©§ 0xA030 // Specular Color
-©¶     ©¿©§ 0xA200 // Texture Map 1
-©¶     ©¿©§ 0xA230 // Bump Map
-©¶     ©∏©§ 0xA220 // Reflection Map
-©¶        ©¶  // Sub Chunks For Each Map 
-©¶        ©¿©§ 0xA300 // Mapping Filename
-©¶        ©∏©§ 0xA351 // Mapping Parameters
-©∏©§ 0xB000 // Keyframer Chunk
-   ©¿©§ 0xB002 // Mesh Information Block
-   ©¿©§ 0xB007 // Spot Light Information Block
-   ©∏©§ 0xB008 // Frames (Start and End)
-      ©¿©§ 0xB010 // Object Name
-      ©¿©§ 0xB013 // Object Pivot Point
-      ©¿©§ 0xB020 // Position Track
-      ©¿©§ 0xB021 // Rotation Track
-      ©¿©§ 0xB022 // Scale Track
-      ©∏©§ 0xB030 // Hierarchy Position
-     */
     /// <summary>
-    /// 
+    /// *.3dsÊñá‰ª∂Ëß£ÊûêÂô®„ÄÇ
     /// </summary>
-    public class ThreeDSFile
+    public partial class ThreeDSParser
     {
-        enum ThreeDSChunkType
+
+        /// <summary>
+        /// ÈÄêÊ≠•Ëß£Êûê*.3dsÊñá‰ª∂„ÄÇ
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="_3dsFilename"></param>
+        /// <returns></returns>
+        public MainChunk Parse(string _3dsFilename)
         {
-            MainChunk = 0x4D4D,
-            /// <summary>
-            /// this is the start of the editor config
-            /// </summary>
-            _3DEditorChunk = 0x3D3D,
-            CVersion = 0x0002,
-            /// <summary>
-            /// this is the start of the keyframer config
-            /// </summary>
-            KeyFramerChunk = 0xB000,//todo
-            /// <summary>
-            /// sub defines of _3DEditorChunk
-            /// </summary>
-            EditorMaterial = 0xAFFF,
+            base_dir = new FileInfo(_3dsFilename).DirectoryName + "/";
 
-            MaterialName = 0xA000,
-            AmbientColor = 0xA010,
-            DiffuseColor = 0xA020,
-            SpecularColor = 0xA030,
-            C_MATSHININESS = 0xA040,
-            TextureMap = 0xA200,
-            MappingFilename = 0xA300,
-            ObjectBlock = 0x4000,
-            TriangularMesh = 0x4100,
-            VerticesList = 0x4110,
-            FacesDescription = 0x4120,
-            FacesMaterial = 0x4130,
-            /// <summary>
-            /// UV
-            /// </summary>
-            MappingCoordinatesList = 0x4140,
-
-
-        }
-
-        class ThreeDSChunk
-        {
-            public ushort ID;
-            public uint Length;
-            public int BytesRead;
-
-            public ThreeDSChunk(BinaryReader reader)
-            {
-                // 2 byte ID
-                ID = reader.ReadUInt16();
-                //Console.WriteLine ("ID: {0}", ID.ToString("x"));
-
-                // 4 byte length
-                Length = reader.ReadUInt32();
-                //Console.WriteLine ("Length: {0}", Length);
-
-                // = 6
-                BytesRead = 6;
-            }
-
-            public override string ToString()
-            {
-                return string.Format("{0}, {1}, {2}", (ThreeDSChunkType)ID, Length, BytesRead);
-                //return base.ToString();
-            }
-        }
-
-        BinaryReader reader;
-
-        ThreeDSModel model = new ThreeDSModel();
-        public ThreeDSModel ThreeDSModel
-        {
-            get
-            {
-                return model;
-            }
-        }
-
-        Dictionary<string, ThreeDSMaterial> materials = new Dictionary<string, ThreeDSMaterial>();
-
-        string base_dir;
-
-        public ThreeDSFile(string file_name)
-        {
-            base_dir = new FileInfo(file_name).DirectoryName + "/";
-
-            FileStream file;
-            file = new FileStream(file_name, FileMode.Open, FileAccess.Read);
+            file = new FileStream(_3dsFilename, FileMode.Open, FileAccess.Read);
 
             reader = new BinaryReader(file);
             reader.BaseStream.Seek(0, SeekOrigin.Begin);
 
-            ThreeDSChunk chunk = new ThreeDSChunk(reader);
-            if (chunk.ID != (short)ThreeDSChunkType.MainChunk)
-                throw new Exception("Not a proper 3DS file.");
+            ChunkBase chunk = reader.ReadChunk();
+            //if (chunk.ID != (ushort)ThreeDSChunkType.MainChunk)
+            if (chunk.GetType() != typeof(MainChunk))
+            { throw new Exception("Not a proper 3DS file."); }
 
             ProcessChunk(chunk);
 
             reader.Close();
             file.Close();
+
+            reader = null;
+            file = null;
+
+            return chunk as MainChunk;
         }
 
-        void ProcessChunk(ThreeDSChunk chunk)
+        private void ProcessChunk(ChunkBase chunk)
         {
             while (chunk.BytesRead < chunk.Length)
             {
-                ThreeDSChunk child = new ThreeDSChunk(reader);
+                ChunkBase child = reader.ReadChunk();
 
-                switch ((ThreeDSChunkType)child.ID)
+                switch ((ThreeDSChunkType)child.GetID())
                 {
                     case ThreeDSChunkType.CVersion:
 
@@ -190,7 +64,7 @@ namespace CSharpGL._3DSFiles
 
                     case ThreeDSChunkType._3DEditorChunk:
 
-                        ThreeDSChunk obj_chunk = new ThreeDSChunk(reader);
+                        ChunkBase obj_chunk = reader.ReadChunk();
 
                         // not sure whats up with this chunk
                         SkipChunk(obj_chunk);
@@ -230,16 +104,17 @@ namespace CSharpGL._3DSFiles
             }
         }
 
-        void ProcessMaterialChunk(ThreeDSChunk chunk)
+
+        void ProcessMaterialChunk(ChunkBase chunk)
         {
             string name = string.Empty;
             ThreeDSMaterial m = new ThreeDSMaterial();
 
             while (chunk.BytesRead < chunk.Length)
             {
-                ThreeDSChunk child = new ThreeDSChunk(reader);
+                ChunkBase child = reader.ReadChunk();
 
-                switch ((ThreeDSChunkType)child.ID)
+                switch ((ThreeDSChunkType)child.GetID())
                 {
                     case ThreeDSChunkType.MaterialName:
 
@@ -287,12 +162,12 @@ namespace CSharpGL._3DSFiles
             materials.Add(name, m);
         }
 
-        void ProcessTexMapChunk(ThreeDSChunk chunk, ThreeDSMaterial m)
+        void ProcessTexMapChunk(ChunkBase chunk, ThreeDSMaterial m)
         {
             while (chunk.BytesRead < chunk.Length)
             {
-                ThreeDSChunk child = new ThreeDSChunk(reader);
-                switch ((ThreeDSChunkType)child.ID)
+                ChunkBase child = reader.ReadChunk();
+                switch ((ThreeDSChunkType)child.GetID())
                 {
                     case ThreeDSChunkType.MappingFilename:
 
@@ -368,36 +243,36 @@ namespace CSharpGL._3DSFiles
             }
         }
 
-        float[] ProcessColorChunk(ThreeDSChunk chunk)
+        float[] ProcessColorChunk(ChunkBase chunk)
         {
-            ThreeDSChunk child = new ThreeDSChunk(reader);
+            ChunkBase child = reader.ReadChunk();
             float[] c = new float[] { (float)reader.ReadByte() / 256, (float)reader.ReadByte() / 256, (float)reader.ReadByte() / 256 };
             //Console.WriteLine ( "R {0} G {1} B {2}", c.R, c.B, c.G );
             chunk.BytesRead += (int)child.Length;
             return c;
         }
 
-        int ProcessPercentageChunk(ThreeDSChunk chunk)
+        int ProcessPercentageChunk(ChunkBase chunk)
         {
-            ThreeDSChunk child = new ThreeDSChunk(reader);
+            ChunkBase child = reader.ReadChunk();
             int per = reader.ReadUInt16();
             child.BytesRead += 2;
             chunk.BytesRead += child.BytesRead;
             return per;
         }
 
-        ThreeDSMesh ProcessObjectChunk(ThreeDSChunk chunk)
+        ThreeDSMesh ProcessObjectChunk(ChunkBase chunk)
         {
             return ProcessObjectChunk(chunk, new ThreeDSMesh());
         }
 
-        ThreeDSMesh ProcessObjectChunk(ThreeDSChunk chunk, ThreeDSMesh e)
+        ThreeDSMesh ProcessObjectChunk(ChunkBase chunk, ThreeDSMesh e)
         {
             while (chunk.BytesRead < chunk.Length)
             {
-                ThreeDSChunk child = new ThreeDSChunk(reader);
+                ChunkBase child = reader.ReadChunk();
 
-                switch ((ThreeDSChunkType)child.ID)
+                switch ((ThreeDSChunkType)child.GetID())
                 {
                     case ThreeDSChunkType.TriangularMesh:
 
@@ -470,7 +345,7 @@ namespace CSharpGL._3DSFiles
             return e;
         }
 
-        void SkipChunk(ThreeDSChunk chunk, int maxSkip = -1)
+        void SkipChunk(ChunkBase chunk, int maxSkip = -1)
         {
             int length = (int)chunk.Length - chunk.BytesRead;
             if (maxSkip != -1)
@@ -484,7 +359,7 @@ namespace CSharpGL._3DSFiles
             chunk.BytesRead += length;
         }
 
-        string ProcessString(ThreeDSChunk chunk)
+        string ProcessString(ChunkBase chunk)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -501,7 +376,7 @@ namespace CSharpGL._3DSFiles
             return sb.ToString();
         }
 
-        Vector[] ReadVertices(ThreeDSChunk chunk)
+        Vector[] ReadVertices(ChunkBase chunk)
         {
             ushort numVerts = reader.ReadUInt16();
             chunk.BytesRead += 2;
@@ -527,7 +402,7 @@ namespace CSharpGL._3DSFiles
             return verts;
         }
 
-        Triangle[] ReadIndices(ThreeDSChunk chunk)
+        Triangle[] ReadIndices(ChunkBase chunk)
         {
             ushort numIdcs = reader.ReadUInt16();
             chunk.BytesRead += 2;
@@ -551,12 +426,11 @@ namespace CSharpGL._3DSFiles
             return idcs;
         }
 
-        /*
-           public static void Main (string[] argv)
-           {
-           if (argv.Length <= 0) return;
-           new ThreeDSFile ( argv[0] );
-           }
-           */
+        //public event EventHandler<ParsingArgs> ChunkParsed;
+        private string base_dir;
+        private BinaryReader reader;
+        private FileStream file;
+        private ThreeDSModel model = new ThreeDSModel();
+        private Dictionary<string, ThreeDSMaterial> materials = new Dictionary<string, ThreeDSMaterial>();
     }
 }

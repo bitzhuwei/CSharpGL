@@ -27,13 +27,13 @@ using System.Collections.Generic;
 
 namespace CSharpGL._3DSFiles
 {
-    public class Model
+    public class ThreeDSModel
     {
-        public List<Entity> Entities = new List<Entity>();
+        public List<ThreeDSMesh> Entities = new List<ThreeDSMesh>();
 
         public void Render()
         {
-            foreach (Entity e in Entities)
+            foreach (ThreeDSMesh e in Entities)
                 e.Render();
         }
     }
