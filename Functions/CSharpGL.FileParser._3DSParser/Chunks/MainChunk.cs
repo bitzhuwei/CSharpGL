@@ -8,9 +8,22 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 {
     public class MainChunk : ChunkBase
     {
-        //public override ushort GetChunkType()
-        //{
-        //    return 0x4D4D; // Main Chunk
-        //}
+        public override void Process(ParsingContext context)
+        {
+            var chunk = this;
+            var reader = context.reader;
+
+            while (chunk.BytesRead < chunk.Length)
+            {
+                ChunkBase child = reader.ReadChunk();
+                child.Process(context);
+                child.Parent = this;
+
+                this.Childern.Add(child);
+
+                chunk.BytesRead += child.BytesRead;
+                //Console.WriteLine ( "ID: {0} Length: {1} Read: {2}", chunk.ID.ToString("x"), chunk.Length , chunk.BytesRead );
+            }
+        }
     }
 }

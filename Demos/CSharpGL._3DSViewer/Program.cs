@@ -24,7 +24,7 @@ namespace CSharpGL._3DSViewer
 
         private static void Test3DSFiles()
         {
-            var filename = "spaceship.3DS";
+            var filename = "Books.3DS";
             ThreeDSParser parser = new ThreeDSParser();
             parser.Parse(filename);
         }
