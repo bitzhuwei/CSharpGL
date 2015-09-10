@@ -12,10 +12,17 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
     public class UndefinedChunk : ChunkBase
     {
         public ushort ID;
+        public bool IsChunk { get; private set; }
+
+        public UndefinedChunk()
+        {
+            this.IsChunk = true;
+        }
 
         public override string ToString()
         {
-            return string.Format("(0x{0:X4}), length: {1}, read bytes: {2}", ID, Length, BytesRead);
+            return string.Format("{3}(0x{0:X4}), length: {1}, read bytes: {2}", ID, Length, BytesRead,
+                this.IsChunk ? "Unknown Chunk" : "Fake Chunk");
         }
 
         internal override void Process(ParsingContext context)
@@ -37,6 +44,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             if (chunk.Length != chunk.BytesRead)
             {
                 chunk.Length = chunk.BytesRead;
+                this.IsChunk = false;
             }
         }
 
