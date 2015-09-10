@@ -36,7 +36,9 @@ namespace CSharpGL._3DSViewer
 
         private TreeNode BuildTree(ChunkBase chunk)
         {
-            TreeNode node = new TreeNode(string.Format("{0}(0x{1:X})", chunk.GetType().Name,chunk.GetID()));
+            //TreeNode node = new TreeNode(string.Format("{0}(0x{1:X})", chunk.GetType().Name, chunk.GetID()));
+            TreeNode node = new TreeNode(chunk.ToString());
+
             foreach (var item in chunk.Childern)
             {
                 var itemNode = BuildTree(item);

@@ -12,7 +12,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         public override string ToString()
         {
-            return string.Format("chunk type id: {0}, length: {1}, read bytes: {2}", ID, Length, BytesRead);
+            return string.Format("0x{0:X4}, length: {1}, read bytes: {2}", ID, Length, BytesRead);
         }
 
         internal override void Process(ParsingContext context)

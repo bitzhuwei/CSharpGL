@@ -23,7 +23,7 @@ namespace CSharpGL.FileParser._3DSParser
         /// <returns></returns>
         public MainChunk Parse(string _3dsFilename)
         {
-            var base_dir = new FileInfo(_3dsFilename).DirectoryName + "/";
+            var base_dir = new FileInfo(_3dsFilename).DirectoryName;// +"/";
             var file = new FileStream(_3dsFilename, FileMode.Open, FileAccess.Read);
             var reader = new BinaryReader(file);
             reader.BaseStream.Seek(0, SeekOrigin.Begin);
