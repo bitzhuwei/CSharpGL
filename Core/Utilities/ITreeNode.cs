@@ -19,6 +19,6 @@ namespace System
         /// <summary>
         /// 子结点。
         /// </summary>
-        List<ITreeNode> Children { get; }
+        IList<ITreeNode> Children { get; }
     }
 }

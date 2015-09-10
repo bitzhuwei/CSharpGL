@@ -88,11 +88,11 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             get { return this.Parent; }
         }
 
-        List<ITreeNode> ITreeNode.Children
+        IList<ITreeNode> ITreeNode.Children
         {
             get
             {
-                List<ITreeNode> result = new List<ITreeNode>(this.Children.Count);
+                IList<ITreeNode> result = new List<ITreeNode>(this.Children.Count);
                 foreach (var item in this.Children)
                 {
                     result.Add(item);
