@@ -8,9 +8,5 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 {
     class LocalCoordinatesSystemChunk : ChunkBase
     {
-        internal override void Process(ParsingContext context)
-        {
-            base.Process(context);
-        }
     }
 }

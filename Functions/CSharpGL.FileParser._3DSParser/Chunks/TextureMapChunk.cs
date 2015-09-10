@@ -10,7 +10,6 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
     {
         internal override void Process(ParsingContext context)
         {
-            //base.Process(context);
             var reader = context.reader;
             var chunk = this;
 
@@ -20,9 +19,8 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                 child.BytesRead += 2;
                 chunk.BytesRead += child.BytesRead;
             }
-            {
-                base.Process(context);
-            }
+
+            this.ChunkBaseProcess(context);
         }
     }
 }

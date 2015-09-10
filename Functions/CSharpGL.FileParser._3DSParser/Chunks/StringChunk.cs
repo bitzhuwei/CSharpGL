@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.FileParser._3DSParser.Chunks
 {
+    /// <summary>
+    /// 此类型chunk的内容只有一个字符串。
+    /// </summary>
     public abstract class StringChunk : ChunkBase
     {
         protected string Content;
 
         internal override void Process(ParsingContext context)
+        {
+            StringChunkProcess(context);
+        }
+
+        internal void StringChunkProcess(ParsingContext context)
         {
             var reader = context.reader;
 

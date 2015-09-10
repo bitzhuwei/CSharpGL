@@ -15,21 +15,21 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
         //public ColorChunk SpecularColorChunk;
         //public PercentageChunk ShininessChunk;
 
-        internal override void Process(ParsingContext context)
-        {
-            var reader = context.reader;
-            var chunk = this;
+        //internal override void Process(ParsingContext context)
+        //{
+        //    var reader = context.reader;
+        //    var chunk = this;
 
-            while (chunk.BytesRead < chunk.Length)
-            {
-                ChunkBase child = reader.ReadChunk();
-                child.Parent = chunk;
-                this.Childern.Add(child);
+        //    while (chunk.BytesRead < chunk.Length)
+        //    {
+        //        ChunkBase child = reader.ReadChunk();
+        //        child.Parent = chunk;
+        //        this.Childern.Add(child);
 
-                child.Process(context);
+        //        child.Process(context);
 
-                chunk.BytesRead += child.BytesRead;
-            }
-        }
+        //        chunk.BytesRead += child.BytesRead;
+        //    }
+        //}
     }
 }

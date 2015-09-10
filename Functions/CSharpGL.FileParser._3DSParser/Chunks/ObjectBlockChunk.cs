@@ -31,7 +31,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                 this.Name = builder.ToString();
             }
 
-            base.Process(context);
+            this.ChunkBaseProcess(context);
         }
 
         public override string ToString()

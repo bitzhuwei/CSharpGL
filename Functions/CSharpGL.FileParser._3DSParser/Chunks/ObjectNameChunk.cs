@@ -14,5 +14,12 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
         {
             return string.Format("{0}, Object Name: {1}", this.GetBasicInfo(), Name);
         }
+
+        internal override void Process(ParsingContext context)
+        {
+            this.StringChunkProcess(context);
+
+            this.ChunkBaseProcess(context);
+        }
     }
 }

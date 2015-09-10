@@ -32,6 +32,11 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         internal virtual void Process(ParsingContext context)
         {
+            ChunkBaseProcess(context);
+        }
+
+        internal void ChunkBaseProcess(ParsingContext context)
+        {
             var chunk = this;
             var reader = context.reader;
 

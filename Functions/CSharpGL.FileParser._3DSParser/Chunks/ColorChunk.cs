@@ -15,6 +15,15 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
         {
             var reader = context.reader;
 
+            //COL_TRU 0x0011 //真彩色模式，以char存放3个分量
+            /*
+0x0011：字节格式的颜色。
+父chunk：任何可能的chunk
+子chunk：无
+长度：头长度+内容长度
+内容：
+颜色（三个字节red,green,blue）
+             */
             var child = reader.ReadChunk();
             this.R = (float)reader.ReadByte() / 256;
             this.G = (float)reader.ReadByte() / 256;
