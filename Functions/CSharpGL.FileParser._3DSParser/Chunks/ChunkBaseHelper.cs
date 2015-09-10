@@ -153,6 +153,8 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         public static ChunkBase ReadChunk(this BinaryReader reader)
         {
+            long position = reader.BaseStream.Position;
+
             // 2 byte ID
             ushort id = reader.ReadUInt16();
             // 4 byte length
@@ -166,13 +168,14 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                 object obj = Activator.CreateInstance(type);
                 ChunkBase result = obj as ChunkBase;
                 //result.ID = id;//不再需要记录ID，此对象的类型就指明了它的ID。
+                result.Position = position;
                 result.Length = length;
                 result.BytesRead = bytesRead;
                 return result;
             }
             else
             {
-                return new UndefinedChunk() { ID = id, Length = length, BytesRead = bytesRead, };
+                return new UndefinedChunk() { Position = position, ID = id, Length = length, BytesRead = bytesRead, };
             }
         }
 

@@ -11,8 +11,20 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
         public ChunkBase Parent;
         public List<ChunkBase> Childern;
 
+        /// <summary>
+        /// 此chunk的长度（字节数）
+        /// </summary>
         public uint Length;
+
+        /// <summary>
+        /// 此chunk已经读了多少
+        /// </summary>
         public uint BytesRead;
+
+        /// <summary>
+        /// 此chunk在文件中的位置。
+        /// </summary>
+        public long Position { get; internal set; }
 
         public ChunkBase()
         {
@@ -21,8 +33,8 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         protected string GetBasicInfo()
         {
-            return string.Format("{0}(0x{3:X4}), length: {1}, read bytes: {2}",
-                this.GetType().Name, Length, BytesRead, this.GetID());
+            return string.Format("{0}(0x{3:X4}), position: {1}, length: {2}, read bytes: {3}",
+                this.GetType().Name, this.Position, Length, BytesRead, this.GetID());
         }
 
         public override string ToString()
