@@ -8,7 +8,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 {
     class _3DEditorChunk : ChunkBase
     {
-        //public override void Process(ParsingContext context)
+        //internal override void Process(ParsingContext context)
         //{
         //    var reader = context.reader;
 

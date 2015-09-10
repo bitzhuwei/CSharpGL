@@ -24,7 +24,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             return string.Format("{0}, length: {1}, read bytes: {2}", this.GetType().Name, Length, BytesRead);
         }
 
-        public virtual void Process(ParsingContext context)
+        internal virtual void Process(ParsingContext context)
         {
             var chunk = this;
             var reader = context.reader;

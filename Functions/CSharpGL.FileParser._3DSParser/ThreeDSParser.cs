@@ -43,7 +43,7 @@ namespace CSharpGL.FileParser._3DSParser
         }
 
         //public event EventHandler<ParsingArgs> ChunkParsed;
-        private ThreeDSModel model = new ThreeDSModel();
-        private Dictionary<string, ThreeDSMaterial> materials = new Dictionary<string, ThreeDSMaterial>();
+        //private ThreeDSModel model = new ThreeDSModel();
+        //private Dictionary<string, ThreeDSMaterial> materials = new Dictionary<string, ThreeDSMaterial>();
     }
 }

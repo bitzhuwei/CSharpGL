@@ -13,7 +13,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
         /// </summary>
         public int Version;
 
-        public override void Process(ParsingContext context)
+        internal override void Process(ParsingContext context)
         {
             var reader = context.reader;
 

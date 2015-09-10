@@ -15,7 +15,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
         //public ColorChunk SpecularColorChunk;
         //public PercentageChunk ShininessChunk;
 
-        public override void Process(ParsingContext context)
+        internal override void Process(ParsingContext context)
         {
             ProcessMaterialChunk(context);
         }

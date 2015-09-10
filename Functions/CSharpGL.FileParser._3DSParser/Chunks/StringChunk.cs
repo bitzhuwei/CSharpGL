@@ -10,7 +10,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
     {
         protected string Content;
 
-        public override void Process(ParsingContext context)
+        internal override void Process(ParsingContext context)
         {
             ProcessString(context);
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.FileParser._3DSParser
 {
-    public class ParsingContext : IDisposable
+    class ParsingContext : IDisposable
     {
         public string base_dir;
         public FileStream file;

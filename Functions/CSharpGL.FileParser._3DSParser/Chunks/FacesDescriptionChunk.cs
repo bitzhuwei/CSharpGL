@@ -10,7 +10,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
     {
         public Triangle[] triangleIndexes;
 
-        public override void Process(ParsingContext context)
+        internal override void Process(ParsingContext context)
         {
             var reader = context.reader;
             var chunk = this;

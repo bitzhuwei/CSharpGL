@@ -8,7 +8,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 {
     class SmoothingGroupListChunk : ChunkBase
     {
-        public override void Process(ParsingContext context)
+        internal override void Process(ParsingContext context)
         {
             var chunk = this;
             var reader = context.reader;

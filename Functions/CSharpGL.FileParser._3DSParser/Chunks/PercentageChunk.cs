@@ -9,7 +9,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
     {
         protected ushort percentage;
 
-        public override void Process(ParsingContext context)
+        internal override void Process(ParsingContext context)
         {
             var reader = context.reader;
 

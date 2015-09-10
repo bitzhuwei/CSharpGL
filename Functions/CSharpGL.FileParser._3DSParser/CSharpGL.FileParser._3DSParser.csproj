@@ -82,7 +82,6 @@
     <Compile Include="Chunks\VerticesListChunk.cs" />
     <Compile Include="Chunks\_3DEditorChunk.cs" />
     <Compile Include="ParsingContext.cs" />
-    <Compile Include="ThreeDSChunkType.cs" />
     <Compile Include="ThreeDSMaterial.cs" />
     <Compile Include="ThreeDSMesh.cs" />
     <Compile Include="ThreeDSModel.cs" />
