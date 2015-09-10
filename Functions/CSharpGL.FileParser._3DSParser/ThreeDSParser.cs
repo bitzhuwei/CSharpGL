@@ -31,7 +31,6 @@ namespace CSharpGL.FileParser._3DSParser
             var context = new ParsingContext() { base_dir = base_dir, file = file, reader = reader, };
 
             ChunkBase chunk = reader.ReadChunk();
-            //if (chunk.GetID() != (ushort)ThreeDSChunkType.MainChunk)
             if (chunk.GetType() != typeof(MainChunk))
             { throw new Exception("Not a proper 3DS file."); }
 
@@ -42,8 +41,5 @@ namespace CSharpGL.FileParser._3DSParser
             return chunk as MainChunk;
         }
 
-        //public event EventHandler<ParsingArgs> ChunkParsed;
-        //private ThreeDSModel model = new ThreeDSModel();
-        //private Dictionary<string, ThreeDSMaterial> materials = new Dictionary<string, ThreeDSMaterial>();
     }
 }

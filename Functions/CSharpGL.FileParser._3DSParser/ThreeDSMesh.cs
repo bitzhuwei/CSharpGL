@@ -2,17 +2,6 @@ using System;
 
 namespace CSharpGL.FileParser._3DSParser
 {
-    public struct TexCoord
-    {
-        public float U;
-        public float V;
-
-        public TexCoord(float u, float v)
-        {
-            U = u;
-            V = v;
-        }
-    }
 
     public class ThreeDSMesh
     {
