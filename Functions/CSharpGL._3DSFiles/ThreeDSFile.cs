@@ -480,7 +480,8 @@ namespace CSharpGL._3DSFiles
                     length = maxSkip;
                 }
             }
-            reader.ReadBytes(length);
+            //reader.ReadBytes(length);
+            reader.BaseStream.Position += length;
             chunk.BytesRead += length;
         }
 

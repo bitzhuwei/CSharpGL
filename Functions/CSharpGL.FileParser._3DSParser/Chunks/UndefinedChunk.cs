@@ -29,7 +29,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                 length = Math.Min(length, another);
             }
 
-            reader.ReadBytes((int)length);
+            reader.BaseStream.Position += length;
             chunk.BytesRead += length;
         }
 
