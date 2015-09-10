@@ -26,7 +26,8 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             //if ((parent != null) && (parent is TextureMapChunk))
             if ((parent != null))
             {
-                length = Math.Min(length, parent.Length - parent.BytesRead - this.BytesRead);
+                var another = parent.Length - parent.BytesRead - this.BytesRead;
+                length = Math.Min(length, another);
             }
 
             reader.ReadBytes((int)length);

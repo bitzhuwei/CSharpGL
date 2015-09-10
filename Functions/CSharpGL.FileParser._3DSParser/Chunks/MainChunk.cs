@@ -22,7 +22,6 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                 child.Process(context);
 
                 chunk.BytesRead += child.BytesRead;
-                //Console.WriteLine ( "ID: {0} Length: {1} Read: {2}", chunk.ID.ToString("x"), chunk.Length , chunk.BytesRead );
             }
         }
     }

@@ -48,6 +48,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                         chunkTypeDict.Add(typeof(AmbientColorChunk), 0xA010);
                         chunkTypeDict.Add(typeof(DiffuseColorChunk), 0xA020);
                         chunkTypeDict.Add(typeof(SpecularColorChunk), 0xA030);
+                        chunkTypeDict.Add(typeof(MatShininessChunk), 0xA040);
                         chunkTypeDict.Add(typeof(TextureMapChunk), 0xA200);
                         chunkTypeDict.Add(typeof(BumpMapChunk), 0xA230);
                         chunkTypeDict.Add(typeof(ReflectionMapChunk), 0xA220);
@@ -103,6 +104,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                         chunkIDDict.Add(0xA010, typeof(AmbientColorChunk));
                         chunkIDDict.Add(0xA020, typeof(DiffuseColorChunk));
                         chunkIDDict.Add(0xA030, typeof(SpecularColorChunk));
+                        chunkIDDict.Add(0xA040, typeof(MatShininessChunk));
                         chunkIDDict.Add(0xA200, typeof(TextureMapChunk));
                         chunkIDDict.Add(0xA230, typeof(BumpMapChunk));
                         chunkIDDict.Add(0xA220, typeof(ReflectionMapChunk));
