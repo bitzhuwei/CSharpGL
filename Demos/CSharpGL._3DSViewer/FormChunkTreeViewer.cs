@@ -29,13 +29,14 @@ namespace CSharpGL._3DSViewer
                 var mainChunk = parser.Parse(filename);
                 var node = BuildTree(mainChunk);
                 this.treeView1.Nodes.Add(node);
+                this.treeView1.ExpandAll();
                 this.Text = string.Format("{0} - 3ds tree viewer", filename);
             }
         }
 
         private TreeNode BuildTree(ChunkBase chunk)
         {
-            TreeNode node = new TreeNode(chunk.GetType().Name);
+            TreeNode node = new TreeNode(string.Format("{0}(0x{1:X})", chunk.GetType().Name,chunk.GetID()));
             foreach (var item in chunk.Childern)
             {
                 var itemNode = BuildTree(item);
