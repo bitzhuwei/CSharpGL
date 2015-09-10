@@ -14,6 +14,9 @@ namespace CSharpGL._3DSViewer
 {
     public partial class FormChunkTreeViewer : Form
     {
+        TreeNode fullTree;
+        TreeNode simpleTree;
+
         public FormChunkTreeViewer()
         {
             InitializeComponent();
@@ -23,25 +26,49 @@ namespace CSharpGL._3DSViewer
         {
             if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                this.treeView1.Nodes.Clear();
                 var filename = this.openFileDialog1.FileName;
                 ThreeDSParser parser = new ThreeDSParser();
                 var mainChunk = parser.Parse(filename);
-                var node = BuildTree(mainChunk);
-                this.treeView1.Nodes.Add(node);
+
+                this.fullTree = BuildFullTree(mainChunk);
+                this.simpleTree = BuildSimpleTree(mainChunk);
+
+                this.treeView1.Nodes.Clear();
+                this.treeView1.Nodes.Add(this.fullTree);
                 this.treeView1.ExpandAll();
-                this.Text = string.Format("{0} - 3ds tree viewer", filename);
+
+                this.Text = string.Format("{0} - 3DS Chunk Viewer - http://bitzhuwei.cnblogs.com", filename);
+                this.chkHideUndefinedChunks.Enabled = true;
             }
         }
 
-        private TreeNode BuildTree(ChunkBase chunk)
+        private TreeNode BuildSimpleTree(ChunkBase chunk)
         {
-            //TreeNode node = new TreeNode(string.Format("{0}(0x{1:X})", chunk.GetType().Name, chunk.GetID()));
             TreeNode node = new TreeNode(chunk.ToString());
+            node.Tag = chunk;
+            node.ToolTipText = chunk.ToString();
 
             foreach (var item in chunk.Childern)
             {
-                var itemNode = BuildTree(item);
+                if (item.GetType() != typeof(UndefinedChunk))
+                {
+                    var itemNode = BuildSimpleTree(item);
+                    node.Nodes.Add(itemNode);
+                }
+            }
+
+            return node;
+        }
+
+        private TreeNode BuildFullTree(ChunkBase chunk)
+        {
+            TreeNode node = new TreeNode(chunk.ToString());
+            node.Tag = chunk;
+            node.ToolTipText = chunk.ToString();
+
+            foreach (var item in chunk.Childern)
+            {
+                var itemNode = BuildFullTree(item);
                 node.Nodes.Add(itemNode);
             }
 
@@ -52,5 +79,22 @@ namespace CSharpGL._3DSViewer
         {
             this.Close();
         }
+
+        private void chkHideUndefinedChunks_CheckedChanged(object sender, EventArgs e)
+        {
+            this.treeView1.Nodes.Clear();
+
+            if(this.chkHideUndefinedChunks.Checked)
+            {
+                this.treeView1.Nodes.Add(simpleTree);
+            }
+            else
+            {
+                this.treeView1.Nodes.Add(fullTree);
+            }
+
+            this.treeView1.ExpandAll();
+        }
+
     }
 }

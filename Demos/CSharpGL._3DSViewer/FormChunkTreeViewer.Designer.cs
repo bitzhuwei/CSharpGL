@@ -61,6 +61,7 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.chkHideUndefinedChunks = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,9 +70,10 @@
             this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.treeView1.Location = new System.Drawing.Point(12, 31);
+            this.treeView1.Location = new System.Drawing.Point(12, 56);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(463, 210);
+            this.treeView1.ShowNodeToolTips = true;
+            this.treeView1.Size = new System.Drawing.Size(463, 185);
             this.treeView1.TabIndex = 0;
             // 
             // menuStrip1
@@ -271,13 +273,13 @@
             // 自定义CToolStripMenuItem
             // 
             this.自定义CToolStripMenuItem.Name = "自定义CToolStripMenuItem";
-            this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
             this.自定义CToolStripMenuItem.Text = "自定义(&C)";
             // 
             // 选项OToolStripMenuItem
             // 
             this.选项OToolStripMenuItem.Name = "选项OToolStripMenuItem";
-            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
             this.选项OToolStripMenuItem.Text = "选项(&O)";
             // 
             // 帮助HToolStripMenuItem
@@ -296,46 +298,59 @@
             // 内容CToolStripMenuItem
             // 
             this.内容CToolStripMenuItem.Name = "内容CToolStripMenuItem";
-            this.内容CToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            this.内容CToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.内容CToolStripMenuItem.Text = "内容(&C)";
             // 
             // 索引IToolStripMenuItem
             // 
             this.索引IToolStripMenuItem.Name = "索引IToolStripMenuItem";
-            this.索引IToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            this.索引IToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.索引IToolStripMenuItem.Text = "索引(&I)";
             // 
             // 搜索SToolStripMenuItem
             // 
             this.搜索SToolStripMenuItem.Name = "搜索SToolStripMenuItem";
-            this.搜索SToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            this.搜索SToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.搜索SToolStripMenuItem.Text = "搜索(&S)";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(144, 6);
             // 
             // 关于AToolStripMenuItem
             // 
             this.关于AToolStripMenuItem.Name = "关于AToolStripMenuItem";
-            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.关于AToolStripMenuItem.Text = "关于(&A)...";
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.Filter = "*.3ds|*.3ds";
             // 
+            // chkHideUndefinedChunks
+            // 
+            this.chkHideUndefinedChunks.AutoSize = true;
+            this.chkHideUndefinedChunks.Enabled = false;
+            this.chkHideUndefinedChunks.Location = new System.Drawing.Point(12, 31);
+            this.chkHideUndefinedChunks.Name = "chkHideUndefinedChunks";
+            this.chkHideUndefinedChunks.Size = new System.Drawing.Size(197, 19);
+            this.chkHideUndefinedChunks.TabIndex = 2;
+            this.chkHideUndefinedChunks.Text = "Hide Undefined Chunks";
+            this.chkHideUndefinedChunks.UseVisualStyleBackColor = true;
+            this.chkHideUndefinedChunks.CheckedChanged += new System.EventHandler(this.chkHideUndefinedChunks_CheckedChanged);
+            // 
             // FormChunkTreeViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(487, 253);
+            this.Controls.Add(this.chkHideUndefinedChunks);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormChunkTreeViewer";
-            this.Text = "FormChunkTreeViewer";
+            this.Text = "3DS Chunk Viewer";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -377,5 +392,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem 关于AToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.CheckBox chkHideUndefinedChunks;
     }
 }
