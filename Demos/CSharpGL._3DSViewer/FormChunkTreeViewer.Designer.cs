@@ -277,12 +277,14 @@
             this.自定义CToolStripMenuItem.Name = "自定义CToolStripMenuItem";
             this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.自定义CToolStripMenuItem.Text = "自定义(&C)";
+            this.自定义CToolStripMenuItem.Visible = false;
             // 
             // 选项OToolStripMenuItem
             // 
             this.选项OToolStripMenuItem.Name = "选项OToolStripMenuItem";
             this.选项OToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.选项OToolStripMenuItem.Text = "选项(&O)";
+            this.选项OToolStripMenuItem.Visible = false;
             // 
             // 帮助HToolStripMenuItem
             // 
