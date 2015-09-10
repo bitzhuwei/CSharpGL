@@ -34,5 +34,13 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
             this.vertexes = vertexes;
         }
+
+        public override string ToString()
+        {
+            int length = 0;
+            if (vertexes != null)
+            { length = vertexes.Length; }
+            return string.Format("{0}, {1} vertexes", this.GetBasicInfo(), length);
+        }
     }
 }

@@ -21,5 +21,10 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
             chunk.BytesRead += child.BytesRead;
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, Shininess: {1}", this.GetBasicInfo(), Shininess);
+        }
     }
 }

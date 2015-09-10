@@ -33,5 +33,10 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
             base.Process(context);
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, Name: {1}", this.GetBasicInfo(), Name);
+        }
     }
 }

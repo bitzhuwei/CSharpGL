@@ -13,7 +13,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         public override string ToString()
         {
-            return string.Format("{0}, TextureFilename: {1}", base.ToString(), this.TextureFilename);
+            return string.Format("{0}, TextureFilename: {1}", this.GetBasicInfo(), this.TextureFilename);
         }
 
         internal override void Process(ParsingContext context)

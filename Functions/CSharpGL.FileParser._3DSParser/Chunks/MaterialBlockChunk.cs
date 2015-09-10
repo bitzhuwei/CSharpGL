@@ -17,11 +17,6 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         internal override void Process(ParsingContext context)
         {
-            ProcessMaterialChunk(context);
-        }
-
-        void ProcessMaterialChunk(ParsingContext context)
-        {
             var reader = context.reader;
             var chunk = this;
 

@@ -22,5 +22,10 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             this.Version = version;
             this.BytesRead += 4;
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, Version: {1}", this.GetBasicInfo(), Version);
+        }
     }
 }

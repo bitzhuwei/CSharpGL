@@ -37,5 +37,10 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                 chunk.BytesRead += length;
             }
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, UsesMaterial: {1}", this.GetBasicInfo(), UsesMaterial);
+        }
     }
 }

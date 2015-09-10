@@ -19,9 +19,14 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             this.Childern = new List<ChunkBase>();
         }
 
-        public override string ToString()
+        protected string GetBasicInfo()
         {
             return string.Format("{0}, length: {1}, read bytes: {2}", this.GetType().Name, Length, BytesRead);
+        }
+
+        public override string ToString()
+        {
+            return GetBasicInfo();
         }
 
         internal virtual void Process(ParsingContext context)

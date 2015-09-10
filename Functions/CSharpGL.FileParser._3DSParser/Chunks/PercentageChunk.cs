@@ -20,7 +20,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         public override string ToString()
         {
-            return string.Format("{0}, percentage: {1}", base.ToString(), this.percentage);
+            return string.Format("{0}, percentage: {1}", this.GetBasicInfo(), this.percentage);
         }
     }
 }

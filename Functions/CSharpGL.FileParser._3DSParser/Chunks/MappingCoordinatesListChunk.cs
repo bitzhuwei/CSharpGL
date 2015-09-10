@@ -29,5 +29,13 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
             this.texCoords = texCoords;
         }
+
+        public override string ToString()
+        {
+            int length = 0;
+            if (texCoords != null)
+            { length = texCoords.Length; }
+            return string.Format("{0}, {1} texCoords", this.GetBasicInfo(), length);
+        }
     }
 }

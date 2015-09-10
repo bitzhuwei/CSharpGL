@@ -32,5 +32,13 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
             this.triangleIndexes = indexes;
         }
+
+        public override string ToString()
+        {
+            int length = 0;
+            if (triangleIndexes != null)
+            { length = triangleIndexes.Length; }
+            return string.Format("{0}, {1} triangleIndexes", this.GetBasicInfo(), length);
+        }
     }
 }
