@@ -132,14 +132,15 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         public static ushort GetID(this ChunkBase chunk)
         {
-            Type type = chunk.GetType();
             ushort value;
-            if (type == typeof(UndefinedChunk))
+
+            if (chunk is UndefinedChunk)
             {
                 value = (chunk as UndefinedChunk).ID;
             }
             else
             {
+                Type type = chunk.GetType();
                 value = chunkTypeDict[type];//如果此处不存在此type的key，说明static构造函数需要添加此类型的字典信息。
             }
 
