@@ -70,10 +70,11 @@
             this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.treeView1.HideSelection = false;
             this.treeView1.Location = new System.Drawing.Point(12, 56);
             this.treeView1.Name = "treeView1";
             this.treeView1.ShowNodeToolTips = true;
-            this.treeView1.Size = new System.Drawing.Size(463, 185);
+            this.treeView1.Size = new System.Drawing.Size(463, 490);
             this.treeView1.TabIndex = 0;
             // 
             // menuStrip1
@@ -344,7 +345,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(487, 253);
+            this.ClientSize = new System.Drawing.Size(487, 558);
             this.Controls.Add(this.chkHideUndefinedChunks);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.menuStrip1);
