@@ -15,18 +15,21 @@ namespace CSharpGL._3DSViewer
         [STAThread]
         static void Main()
         {
-            Test3DSFiles();
-            return;
+            //Test3DSFiles();
+            //return;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form3DSViewer());
+            //Application.Run(new Form3DSViewer());
+            Application.Run(new FormChunkTreeViewer());
         }
 
         private static void Test3DSFiles()
         {
-            var filename = "Books.3DS";
+            //var filename = "Books.3DS";
+            var filename = "spaceship.3DS";
             ThreeDSParser parser = new ThreeDSParser();
-            parser.Parse(filename);
+            var mainChunk = parser.Parse(filename);
+
         }
     }
 }

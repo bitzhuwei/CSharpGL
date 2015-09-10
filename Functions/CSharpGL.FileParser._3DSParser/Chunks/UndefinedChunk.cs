@@ -17,20 +17,65 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         public override void Process(ParsingContext context)
         {
-            //SkipChunk(context);
-            int length = (int)this.Length - this.BytesRead;
-            if (this.Parent != null)
+            var chunk = this;
+            var reader = context.reader;
+            var parent = this.Parent;
+
+            uint length = this.Length - this.BytesRead;
+
+            //if ((parent != null) && (parent is TextureMapChunk))
+            if ((parent != null))
             {
-                var parent = this.Parent;
-                var maxSkip = (int)(parent.Length - parent.BytesRead - this.BytesRead);
-                if (length > maxSkip)//Something wrong about 3ds file may happen here.
-                {
-                    length = maxSkip;
-                }
+                length = Math.Min(length, parent.Length - parent.BytesRead - this.BytesRead);
             }
-            context.reader.ReadBytes(length);
-            this.BytesRead += length;
+
+            reader.ReadBytes((int)length);
+            chunk.BytesRead += length;
+            //while (chunk.BytesRead < chunk.Length)
+            //{
+            //    ChunkBase child = reader.ReadChunk();
+            //    child.Parent = this;
+            //    this.Childern.Add(child);
+
+            //    child.Process(context);
+
+            //    //chunk.BytesRead += child.BytesRead;
+            //    chunk.BytesRead += child.Length;
+            //    //Console.WriteLine ( "ID: {0} Length: {1} Read: {2}", chunk.ID.ToString("x"), chunk.Length , chunk.BytesRead );
+            //}
         }
+        //public override void Process(ParsingContext context)
+        //{
+        //    //SkipChunk(context);
+        //    //
+        //    var chunk = this;
+        //    var reader = context.reader;
+
+        //    while (chunk.BytesRead < chunk.Length)
+        //    {
+        //        ChunkBase child = reader.ReadChunk();
+        //        child.Parent = this;
+        //        this.Childern.Add(child);
+
+        //        child.Process(context);
+
+        //        chunk.BytesRead += child.BytesRead;
+        //        //Console.WriteLine ( "ID: {0} Length: {1} Read: {2}", chunk.ID.ToString("x"), chunk.Length , chunk.BytesRead );
+        //    }
+        //    //
+        //    //int length = (int)this.Length - this.BytesRead;
+        //    //if (this.Parent != null)
+        //    //{
+        //    //    var parent = this.Parent;
+        //    //    var maxSkip = (int)(parent.Length - parent.BytesRead - this.BytesRead);
+        //    //    if (length > maxSkip)//Something wrong about 3ds file may happen here.
+        //    //    {
+        //    //        length = maxSkip;
+        //    //    }
+        //    //}
+        //    //context.reader.ReadBytes(length);
+        //    //this.BytesRead += length;
+        //}
 
         public void Process(ParsingContext context, int maxSkip)
         {
@@ -39,15 +84,15 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         void SkipChunk(ParsingContext context, int maxSkip = -1)
         {
-            int length = (int)this.Length - this.BytesRead;
+            uint length = this.Length - this.BytesRead;
             if (maxSkip != -1)
             {
                 if (length > maxSkip)//Something wrong about 3ds file may happen here.
                 {
-                    length = maxSkip;
+                    length = (uint)maxSkip;
                 }
             }
-            context.reader.ReadBytes(length);
+            context.reader.ReadBytes((int)length);
             this.BytesRead += length;
         }
     }

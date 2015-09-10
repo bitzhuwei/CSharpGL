@@ -22,7 +22,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             StringBuilder builder = new StringBuilder();
 
             byte b = reader.ReadByte();
-            int idx = 0;
+            uint idx = 0;
             while (b != 0)
             {
                 builder.Append((char)b);

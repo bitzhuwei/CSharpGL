@@ -13,7 +13,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         //public ushort ID;
         public uint Length;
-        public int BytesRead;
+        public uint BytesRead;
 
         public ChunkBase()
         {

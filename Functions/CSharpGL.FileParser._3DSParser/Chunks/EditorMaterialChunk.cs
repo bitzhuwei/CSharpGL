@@ -31,9 +31,10 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             while (chunk.BytesRead < chunk.Length)
             {
                 ChunkBase child = reader.ReadChunk();
-                child.Process(context);
                 child.Parent = chunk;
                 this.Childern.Add(child);
+
+                child.Process(context);
 
                 chunk.BytesRead += child.BytesRead;
             }
