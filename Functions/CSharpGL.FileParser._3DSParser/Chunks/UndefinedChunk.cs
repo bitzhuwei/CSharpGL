@@ -34,6 +34,10 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
             reader.BaseStream.Position += length;
             chunk.BytesRead += length;
+            //if (chunk.Length > chunk.BytesRead)
+            //{
+            //    chunk.Length = chunk.BytesRead;
+            //}
         }
 
     }

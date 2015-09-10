@@ -8,5 +8,21 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 {
     public class TextureMapChunk : ChunkBase
     {
+        internal override void Process(ParsingContext context)
+        {
+            //base.Process(context);
+            var reader = context.reader;
+            var chunk = this;
+
+            {
+                var child = reader.ReadChunk();
+                int per = reader.ReadUInt16();
+                child.BytesRead += 2;
+                chunk.BytesRead += child.BytesRead;
+            }
+            {
+                base.Process(context);
+            }
+        }
     }
 }

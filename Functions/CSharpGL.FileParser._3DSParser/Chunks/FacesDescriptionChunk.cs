@@ -28,9 +28,10 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                 reader.ReadUInt16();
             }
             chunk.BytesRead += (uint)((2 * 4) * indexes.Length);
-            //SkipChunk ( chunk );
 
             this.triangleIndexes = indexes;
+
+            base.Process(context);
         }
 
         public override string ToString()

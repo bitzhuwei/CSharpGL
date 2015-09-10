@@ -21,7 +21,8 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         protected string GetBasicInfo()
         {
-            return string.Format("{0}, length: {1}, read bytes: {2}", this.GetType().Name, Length, BytesRead);
+            return string.Format("{0}(0x{3:X4}), length: {1}, read bytes: {2}",
+                this.GetType().Name, Length, BytesRead, this.GetID());
         }
 
         public override string ToString()
@@ -34,7 +35,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             var chunk = this;
             var reader = context.reader;
 
-            while (chunk.BytesRead < chunk.Length)
+            while (chunk.BytesRead + ChunkBaseHelper.HeaderLength < chunk.Length)//如果还能读出一个子chunk。
             {
                 ChunkBase child = reader.ReadChunk();
                 child.Parent = this;
@@ -43,6 +44,23 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                 child.Process(context);
 
                 chunk.BytesRead += child.BytesRead;
+            }
+
+            {
+                var parent = this.Parent;
+
+                uint length = this.Length - this.BytesRead;
+                if (length > 0)
+                {
+                    if ((parent != null))
+                    {
+                        var another = parent.Length - parent.BytesRead - this.BytesRead;
+                        length = Math.Min(length, another);
+                    }
+
+                    reader.BaseStream.Position += length;
+                    chunk.BytesRead += length;
+                }
             }
         }
 

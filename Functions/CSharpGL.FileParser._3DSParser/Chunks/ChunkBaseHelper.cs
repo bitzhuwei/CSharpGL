@@ -149,6 +149,8 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             return value;
         }
 
+        public const uint HeaderLength = 6;
+
         public static ChunkBase ReadChunk(this BinaryReader reader)
         {
             // 2 byte ID
@@ -156,7 +158,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             // 4 byte length
             uint length = reader.ReadUInt32();
             // 2 + 4 = 6
-            uint bytesRead = 6;
+            uint bytesRead = HeaderLength;
 
             Type type;
             if (chunkIDDict.TryGetValue(id, out type))

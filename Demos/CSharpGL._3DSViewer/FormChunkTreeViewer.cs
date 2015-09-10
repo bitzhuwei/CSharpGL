@@ -47,6 +47,10 @@ namespace CSharpGL._3DSViewer
             TreeNode node = new TreeNode(chunk.ToString());
             node.Tag = chunk;
             node.ToolTipText = chunk.ToString();
+            if (chunk.Length != chunk.BytesRead)
+            {
+                node.BackColor = Color.Red;
+            }
 
             foreach (var item in chunk.Childern)
             {
@@ -65,6 +69,10 @@ namespace CSharpGL._3DSViewer
             TreeNode node = new TreeNode(chunk.ToString());
             node.Tag = chunk;
             node.ToolTipText = chunk.ToString();
+            if (chunk.Length != chunk.BytesRead)
+            {
+                node.BackColor = Color.Red;
+            }
 
             foreach (var item in chunk.Childern)
             {
