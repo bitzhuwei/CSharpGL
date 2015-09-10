@@ -16,7 +16,7 @@ namespace CSharpGL.FileParser._3DSParser
     {
 
         /// <summary>
-        /// 逐步解析*.3ds文件。
+        /// 解析*.3ds文件。
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="_3dsFilename"></param>

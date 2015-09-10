@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.FileParser._3DSParser.Chunks
 {
+    /// <summary>
+    /// 3ds文件有上千种Chunk，我们暂时不会都解析出来（也没必要全解析出来）。所以我们用一个“未定义的Chunk”类型来代表那些我们不想解析的Chunk类型。
+    /// </summary>
     public class UndefinedChunk : ChunkBase
     {
         public ushort ID;
