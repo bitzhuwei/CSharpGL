@@ -81,6 +81,7 @@
     <Compile Include="Chunks\MainChunk.cs" />
     <Compile Include="Chunks\VerticesListChunk.cs" />
     <Compile Include="Chunks\_3DEditorChunk.cs" />
+    <Content Include="readme.txt" />
     <Compile Include="ParsingContext.cs" />
     <Compile Include="TexCoord.cs" />
     <Compile Include="ThreeDSParser.cs" />
