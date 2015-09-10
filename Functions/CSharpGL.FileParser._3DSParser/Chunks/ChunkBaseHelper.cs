@@ -42,7 +42,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                         }
                         chunkTypeDict.Add(typeof(CameraChunk), 0x4700);
                     }
-                    chunkTypeDict.Add(typeof(EditorMaterialChunk), 0xAFFF);
+                    chunkTypeDict.Add(typeof(MaterialBlockChunk), 0xAFFF);
                     {
                         chunkTypeDict.Add(typeof(MaterialNameChunk), 0xA000);
                         chunkTypeDict.Add(typeof(AmbientColorChunk), 0xA010);
@@ -98,7 +98,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                         }
                         chunkIDDict.Add(0x4700, typeof(CameraChunk));
                     }
-                    chunkIDDict.Add(0xAFFF, typeof(EditorMaterialChunk));
+                    chunkIDDict.Add(0xAFFF, typeof(MaterialBlockChunk));
                     {
                         chunkIDDict.Add(0xA000, typeof(MaterialNameChunk));
                         chunkIDDict.Add(0xA010, typeof(AmbientColorChunk));
