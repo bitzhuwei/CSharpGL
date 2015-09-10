@@ -72,6 +72,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL._3DSViewer", "Demo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.FileParser._3DSParser", "Functions\CSharpGL.FileParser._3DSParser\CSharpGL.FileParser._3DSParser.csproj", "{D2B3C9B4-7E9D-46A8-A119-7743E56253B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.FileParser._3DSParser.ToLegacyOpenGL", "Functions\CSharpGL.FileParser._3DSParser.ToLegacyOpenGL\CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.csproj", "{6EF9DD2F-70EA-46FF-9DAA-A1C2834B0A7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.FileParser._3DSParser.ToModernOpenGL", "Functions\CSharpGL.FileParser._3DSParser.ToModernOpenGL\CSharpGL.FileParser._3DSParser.ToModernOpenGL.csproj", "{EB937FBB-0032-4ACC-A1E2-B542CD02C417}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -170,6 +174,14 @@ Global
 		{D2B3C9B4-7E9D-46A8-A119-7743E56253B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2B3C9B4-7E9D-46A8-A119-7743E56253B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2B3C9B4-7E9D-46A8-A119-7743E56253B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EF9DD2F-70EA-46FF-9DAA-A1C2834B0A7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EF9DD2F-70EA-46FF-9DAA-A1C2834B0A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EF9DD2F-70EA-46FF-9DAA-A1C2834B0A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EF9DD2F-70EA-46FF-9DAA-A1C2834B0A7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB937FBB-0032-4ACC-A1E2-B542CD02C417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB937FBB-0032-4ACC-A1E2-B542CD02C417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB937FBB-0032-4ACC-A1E2-B542CD02C417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB937FBB-0032-4ACC-A1E2-B542CD02C417}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -199,5 +211,7 @@ Global
 		{2C4FC122-BD74-4F1F-BCED-D44CF6CA7FA1} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 		{123E2591-A479-41DB-9A5F-A2C5101CE308} = {05F33CBB-E502-4E48-9675-7415C6F675EE}
 		{D2B3C9B4-7E9D-46A8-A119-7743E56253B3} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
+		{6EF9DD2F-70EA-46FF-9DAA-A1C2834B0A7B} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
+		{EB937FBB-0032-4ACC-A1E2-B542CD02C417} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 	EndGlobalSection
 EndGlobal
