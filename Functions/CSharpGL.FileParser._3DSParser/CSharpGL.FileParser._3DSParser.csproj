@@ -43,7 +43,9 @@
     <Compile Include="Chunks\AmbientColorChunk.cs" />
     <Compile Include="Chunks\BumpMapChunk.cs" />
     <Compile Include="Chunks\CameraChunk.cs" />
-    <Compile Include="Chunks\ChunkBaseHelper.cs" />
+    <Compile Include="Chunks\ChunkBaseHelperDict.cs" />
+    <Compile Include="Chunks\ChunkBaseHelperDump2Text.cs" />
+    <Compile Include="Chunks\ChunkBaseHelperReadChunk.cs" />
     <Compile Include="Chunks\ChunkBase.cs" />
     <Compile Include="Chunks\ColorChunk.cs" />
     <Compile Include="Chunks\FacesDescriptionChunk.cs" />
@@ -88,6 +90,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Triangle.cs" />
     <Compile Include="Vector.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Utilities\Utilities.csproj">
+      <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

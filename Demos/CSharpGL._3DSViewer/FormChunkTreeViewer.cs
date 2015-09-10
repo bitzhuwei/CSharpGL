@@ -52,7 +52,7 @@ namespace CSharpGL._3DSViewer
                 node.BackColor = Color.Red;
             }
 
-            foreach (var item in chunk.Childern)
+            foreach (var item in chunk.Children)
             {
                 if (item.GetType() != typeof(UndefinedChunk))
                 {
@@ -74,7 +74,7 @@ namespace CSharpGL._3DSViewer
                 node.BackColor = Color.Red;
             }
 
-            foreach (var item in chunk.Childern)
+            foreach (var item in chunk.Children)
             {
                 var itemNode = BuildFullTree(item);
                 node.Nodes.Add(itemNode);
@@ -92,7 +92,7 @@ namespace CSharpGL._3DSViewer
         {
             this.treeView1.Nodes.Clear();
 
-            if(this.chkHideUndefinedChunks.Checked)
+            if (this.chkHideUndefinedChunks.Checked)
             {
                 this.treeView1.Nodes.Add(simpleTree);
             }
@@ -102,6 +102,18 @@ namespace CSharpGL._3DSViewer
             }
 
             this.treeView1.ExpandAll();
+        }
+
+        private void 导出文本ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var node = this.fullTree.Tag as ITreeNode;
+            if (node != null)
+            {
+                var text = node.DumpToText();
+                var form = new FormText();
+                form.textBox1.Text = text;
+                form.Show();
+            }
         }
 
     }

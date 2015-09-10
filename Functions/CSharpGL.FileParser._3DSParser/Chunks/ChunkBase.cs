@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.FileParser._3DSParser.Chunks
 {
-    public abstract class ChunkBase
+    public abstract class ChunkBase : ITreeNode
     {
         public ChunkBase Parent;
-        public List<ChunkBase> Childern;
+        public List<ChunkBase> Children;
 
         /// <summary>
         /// 此chunk的长度（字节数）
@@ -28,7 +28,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         public ChunkBase()
         {
-            this.Childern = new List<ChunkBase>();
+            this.Children = new List<ChunkBase>();
         }
 
         protected string GetBasicInfo()
@@ -56,7 +56,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             {
                 ChunkBase child = reader.ReadChunk();
                 child.Parent = this;
-                this.Childern.Add(child);
+                this.Children.Add(child);
 
                 child.Process(context);
 
@@ -82,5 +82,24 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
         }
 
 
+
+        ITreeNode ITreeNode.Parent
+        {
+            get { return this.Parent; }
+        }
+
+        List<ITreeNode> ITreeNode.Children
+        {
+            get
+            {
+                List<ITreeNode> result = new List<ITreeNode>(this.Children.Count);
+                foreach (var item in this.Children)
+                {
+                    result.Add(item);
+                }
+
+                return result;
+            }
+        }
     }
 }

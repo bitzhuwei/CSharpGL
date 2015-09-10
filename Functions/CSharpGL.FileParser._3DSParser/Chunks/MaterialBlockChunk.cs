@@ -24,7 +24,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
         //    {
         //        ChunkBase child = reader.ReadChunk();
         //        child.Parent = chunk;
-        //        this.Childern.Add(child);
+        //        this.Children.Add(child);
 
         //        child.Process(context);
 

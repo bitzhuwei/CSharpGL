@@ -62,6 +62,7 @@
             this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.chkHideUndefinedChunks = new System.Windows.Forms.CheckBox();
+            this.导出文本ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -265,22 +266,22 @@
             // 
             this.工具TToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.自定义CToolStripMenuItem,
-            this.选项OToolStripMenuItem});
+            this.选项OToolStripMenuItem,
+            this.导出文本ToolStripMenuItem});
             this.工具TToolStripMenuItem.Name = "工具TToolStripMenuItem";
             this.工具TToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.工具TToolStripMenuItem.Text = "工具(&T)";
-            this.工具TToolStripMenuItem.Visible = false;
             // 
             // 自定义CToolStripMenuItem
             // 
             this.自定义CToolStripMenuItem.Name = "自定义CToolStripMenuItem";
-            this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.自定义CToolStripMenuItem.Text = "自定义(&C)";
             // 
             // 选项OToolStripMenuItem
             // 
             this.选项OToolStripMenuItem.Name = "选项OToolStripMenuItem";
-            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.选项OToolStripMenuItem.Text = "选项(&O)";
             // 
             // 帮助HToolStripMenuItem
@@ -341,6 +342,13 @@
             this.chkHideUndefinedChunks.UseVisualStyleBackColor = true;
             this.chkHideUndefinedChunks.CheckedChanged += new System.EventHandler(this.chkHideUndefinedChunks_CheckedChanged);
             // 
+            // 导出文本ToolStripMenuItem
+            // 
+            this.导出文本ToolStripMenuItem.Name = "导出文本ToolStripMenuItem";
+            this.导出文本ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.导出文本ToolStripMenuItem.Text = "导出文本(&T)";
+            this.导出文本ToolStripMenuItem.Click += new System.EventHandler(this.导出文本ToolStripMenuItem_Click);
+            // 
             // FormChunkTreeViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -394,5 +402,6 @@
         private System.Windows.Forms.ToolStripMenuItem 关于AToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.CheckBox chkHideUndefinedChunks;
+        private System.Windows.Forms.ToolStripMenuItem 导出文本ToolStripMenuItem;
     }
 }

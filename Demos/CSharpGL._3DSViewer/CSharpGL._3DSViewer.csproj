@@ -56,6 +56,12 @@
     <Compile Include="FormChunkTreeViewer.Designer.cs">
       <DependentUpon>FormChunkTreeViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormText.Designer.cs">
+      <DependentUpon>FormText.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form3DSViewer.resx">
@@ -63,6 +69,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormChunkTreeViewer.resx">
       <DependentUpon>FormChunkTreeViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormText.resx">
+      <DependentUpon>FormText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
