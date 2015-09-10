@@ -56,7 +56,6 @@
     <Compile Include="Chunks\MappingCoordinatesListChunk.cs" />
     <Compile Include="Chunks\MappingFilenameChunk.cs" />
     <Compile Include="Chunks\MappingParametersChunk.cs" />
-    <Compile Include="Chunks\MaterialBlockChunk.cs" />
     <Compile Include="Chunks\MeshInformationBlockChunk.cs" />
     <Compile Include="Chunks\ObjectPivotPointChunk.cs" />
     <Compile Include="Chunks\PositionTrackChunk.cs" />
@@ -69,7 +68,7 @@
     <Compile Include="Chunks\TriangularMeshChunk.cs" />
     <Compile Include="Chunks\VersionChunk.cs" />
     <Compile Include="Chunks\DiffuseColorChunk.cs" />
-    <Compile Include="Chunks\EditorMaterialChunk.cs" />
+    <Compile Include="Chunks\MaterialBlockChunk.cs" />
     <Compile Include="Chunks\MaterialNameChunk.cs" />
     <Compile Include="Chunks\MatShininessChunk.cs" />
     <Compile Include="Chunks\ObjectBlockChunk.cs" />

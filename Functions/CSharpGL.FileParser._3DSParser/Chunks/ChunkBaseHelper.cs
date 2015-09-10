@@ -42,12 +42,13 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                         }
                         chunkTypeDict.Add(typeof(CameraChunk), 0x4700);
                     }
-                    chunkTypeDict.Add(typeof(EditorMaterialChunk), 0xAFFF);
+                    chunkTypeDict.Add(typeof(MaterialBlockChunk), 0xAFFF);
                     {
                         chunkTypeDict.Add(typeof(MaterialNameChunk), 0xA000);
                         chunkTypeDict.Add(typeof(AmbientColorChunk), 0xA010);
                         chunkTypeDict.Add(typeof(DiffuseColorChunk), 0xA020);
                         chunkTypeDict.Add(typeof(SpecularColorChunk), 0xA030);
+                        chunkTypeDict.Add(typeof(MatShininessChunk), 0xA040);
                         chunkTypeDict.Add(typeof(TextureMapChunk), 0xA200);
                         chunkTypeDict.Add(typeof(BumpMapChunk), 0xA230);
                         chunkTypeDict.Add(typeof(ReflectionMapChunk), 0xA220);
@@ -97,12 +98,13 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                         }
                         chunkIDDict.Add(0x4700, typeof(CameraChunk));
                     }
-                    chunkIDDict.Add(0xAFFF, typeof(EditorMaterialChunk));
+                    chunkIDDict.Add(0xAFFF, typeof(MaterialBlockChunk));
                     {
                         chunkIDDict.Add(0xA000, typeof(MaterialNameChunk));
                         chunkIDDict.Add(0xA010, typeof(AmbientColorChunk));
                         chunkIDDict.Add(0xA020, typeof(DiffuseColorChunk));
                         chunkIDDict.Add(0xA030, typeof(SpecularColorChunk));
+                        chunkIDDict.Add(0xA040, typeof(MatShininessChunk));
                         chunkIDDict.Add(0xA200, typeof(TextureMapChunk));
                         chunkIDDict.Add(0xA230, typeof(BumpMapChunk));
                         chunkIDDict.Add(0xA220, typeof(ReflectionMapChunk));
@@ -132,14 +134,15 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         public static ushort GetID(this ChunkBase chunk)
         {
-            Type type = chunk.GetType();
             ushort value;
-            if (type == typeof(UndefinedChunk))
+
+            if (chunk is UndefinedChunk)
             {
                 value = (chunk as UndefinedChunk).ID;
             }
             else
             {
+                Type type = chunk.GetType();
                 value = chunkTypeDict[type];//如果此处不存在此type的key，说明static构造函数需要添加此类型的字典信息。
             }
 
@@ -153,7 +156,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             // 4 byte length
             uint length = reader.ReadUInt32();
             // 2 + 4 = 6
-            int bytesRead = 6;
+            uint bytesRead = 6;
 
             Type type;
             if (chunkIDDict.TryGetValue(id, out type))

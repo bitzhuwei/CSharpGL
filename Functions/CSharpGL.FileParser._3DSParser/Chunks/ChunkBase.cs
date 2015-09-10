@@ -11,9 +11,8 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
         public ChunkBase Parent;
         public List<ChunkBase> Childern;
 
-        //public ushort ID;
         public uint Length;
-        public int BytesRead;
+        public uint BytesRead;
 
         public ChunkBase()
         {
@@ -22,13 +21,9 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         public override string ToString()
         {
-            {
-                return string.Format("type: {0}, length: {1}, read bytes: {2}", this.GetType().Name, Length, BytesRead);
-            }
-            //return base.ToString();
+            return string.Format("{0}, length: {1}, read bytes: {2}", this.GetType().Name, Length, BytesRead);
         }
 
-        //public abstract ushort GetChunkType();
         public virtual void Process(ParsingContext context)
         {
             var chunk = this;
@@ -43,7 +38,6 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                 child.Process(context);
 
                 chunk.BytesRead += child.BytesRead;
-                //Console.WriteLine ( "ID: {0} Length: {1} Read: {2}", chunk.ID.ToString("x"), chunk.Length , chunk.BytesRead );
             }
         }
 

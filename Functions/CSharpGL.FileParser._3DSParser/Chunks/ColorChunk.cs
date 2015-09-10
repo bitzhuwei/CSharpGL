@@ -20,7 +20,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             this.G = (float)reader.ReadByte() / 256;
             this.B = (float)reader.ReadByte() / 256;
             
-            this.BytesRead += (int)child.Length;
+            this.BytesRead += child.Length;
         }
     }
 }

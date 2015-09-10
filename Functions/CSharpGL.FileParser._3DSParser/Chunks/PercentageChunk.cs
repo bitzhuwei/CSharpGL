@@ -12,11 +12,15 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
         public override void Process(ParsingContext context)
         {
             var reader = context.reader;
-            var child = reader.ReadChunk();
-            this.percentage = reader.ReadUInt16();
-            child.BytesRead += 2;
 
-            this.BytesRead += child.BytesRead;
+            this.percentage = reader.ReadUInt16();
+
+            this.BytesRead += 2;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, percentage: {1}", base.ToString(), this.percentage);
         }
     }
 }

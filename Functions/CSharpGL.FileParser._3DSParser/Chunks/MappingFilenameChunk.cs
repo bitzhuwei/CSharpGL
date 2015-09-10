@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.FileParser._3DSParser.Chunks
 {
-    class MappingFilenameChunk : ChunkBase
+    class MappingFilenameChunk : PercentageChunk
     {
+        public ushort Useless { get { return this.percentage; } }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, Useless: {1}", base.ToString(), this.Useless);
+        }
     }
 }
