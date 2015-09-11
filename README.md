@@ -70,7 +70,7 @@
 <p>在上面的示例中你看到有的窗口左下角有一个坐标系，这就是一种UI元素。下面是另一个UI元素（色标）。UI元素可以指定其大小、是否绑定到上下左右边框等属性。只需实现IUILayout接口即可自动实现UI布局。你可以从示例代码中看到这一布局机制是如何实现的。这一布局机制对legacy OpenGL和modern OpenGL的效果相同。</p>
 <p><img src="http://images0.cnblogs.com/blog/383191/201508/292101101251556.png" alt="" /></p>
 <h2>渲染*.3ds文件</h2>
-<p>CSharpGL实现了3ds文件的解析器和加载器，可以解析并渲染3ds文件里的模型。例如下面这个盆景就是从（<a href="http://images2015.cnblogs.com/blog/383191/201509/383191-20150912011052731-1205655610.png" target="_blank">http://images2015.cnblogs.com/blog/383191/201509/383191-20150912011052731-1205655610.png</a>）得到的一个3ds文件的渲染结果。</p>
+<p>CSharpGL实现了3ds文件的解析器和加载器，可以解析并渲染3ds文件里的模型。例如下面这个盆景就是从（<a href="http://www.cgrealm.org/d/downpage.php?n=2&id=15764::1326768548" target="_blank">http://www.cgrealm.org/d/downpage.php?n=2&id=15764::1326768548</a>）得到的一个3ds文件的渲染结果。</p>
 <p>CSharpGL提供的3ds解析器已经能够解析40多种类型的3ds块，涵盖了大多数常用功能，且易于扩展。</p>
 <p><img src="http://images2015.cnblogs.com/blog/383191/201509/383191-20150912011052731-1205655610.png" alt="" width="1272" height="684" /></p>
 <p>&nbsp;</p>
