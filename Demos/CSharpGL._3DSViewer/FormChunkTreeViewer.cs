@@ -69,7 +69,7 @@ namespace CSharpGL._3DSViewer
         private ChunkBase BuildSimpleTree(ChunkBase chunk)
         {
             //TreeNode node = new TreeNode(chunk.ToString());
-            var newChunk = chunk.Clone() as ChunkBase;
+            var newChunk = ((ICloneable)chunk).Clone() as ChunkBase;
             newChunk.Parent = null;
             newChunk.Children = new List<ChunkBase>();
 

@@ -102,7 +102,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             }
         }
 
-        public object Clone()
+        object ICloneable.Clone()
         {
             var result = this.MemberwiseClone() as ChunkBase;
             result.Parent = null;
