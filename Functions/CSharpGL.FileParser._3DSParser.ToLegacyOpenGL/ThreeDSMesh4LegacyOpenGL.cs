@@ -115,7 +115,7 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
                 bool drawn = false;
                 foreach (var texture in textures)
                 {
-                    if (!(drawn && texture == null))
+                    if (!(drawn && texture == null)) // 如果没有贴图，就只画一次。
                     {
                         if (texture != null)
                         {
