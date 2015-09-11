@@ -11,7 +11,6 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
     {
         public static void Dump(this FramesChunk chunk, ThreeDSModel4LegacyOpenGL model)
         {
-
             foreach (var item in chunk.Children)
             {
                 if (item is ObjectNameChunk)
@@ -37,6 +36,11 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
                 else if (item is HierarchyPositionChunk)
                 {
                     (item as HierarchyPositionChunk).Dump(model);
+                }
+                else if (!(item is UndefinedChunk))
+                {
+                    throw new NotImplementedException(string.Format(
+                        "not dumper implemented for {0}", item.GetType()));
                 }
             }
         }

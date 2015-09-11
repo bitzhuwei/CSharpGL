@@ -11,7 +11,7 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
     {
         public static void Dump(this MaterialNameChunk chunk, ThreeDSModel4LegacyOpenGL model, ThreeDSMaterial4LegacyOpenGL material)
         {
-            material.Name = chunk.MaterialName;
+            material.MaterialName = chunk.MaterialName;
         }
     }
 }

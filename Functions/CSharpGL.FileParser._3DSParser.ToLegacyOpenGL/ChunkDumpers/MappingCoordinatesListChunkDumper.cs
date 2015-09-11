@@ -11,7 +11,7 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
     {
         public static void Dump(this MappingCoordinatesListChunk chunk, ThreeDSModel4LegacyOpenGL model, ThreeDSMesh4LegacyOpenGL mesh)
         {
-            mesh.texcoords = chunk.texCoords;
+            mesh.TexCoords = chunk.texCoords;
         }
     }
 }

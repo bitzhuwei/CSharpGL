@@ -11,7 +11,7 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
     {
         public static void Dump(this VerticesListChunk chunk, ThreeDSModel4LegacyOpenGL model, ThreeDSMesh4LegacyOpenGL mesh)
         {
-            mesh.vertices = chunk.vertexes;
+            mesh.Vertexes = chunk.vertexes;
         }
     }
 }

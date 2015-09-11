@@ -38,46 +38,46 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
         public string UsesMaterial;
 
         // The stored vertices 
-        public Vector[] vertices;
+        public Vector[] Vertexes;
 
         // The calculated normals
         public Vector[] normals;
 
         // The indices of the triangles which point to vertices
-        public Triangle[] indices;
+        public Triangle[] TriangleIndexes;
 
         // The coordinates which map the texture onto the entity
-        public TexCoord[] texcoords;
+        public TexCoord[] TexCoords;
 
         bool normalized = false;
 
         public void CalculateNormals()
         {
-            if (indices == null) return;
+            if (TriangleIndexes == null) return;
 
-            normals = new Vector[vertices.Length];
+            normals = new Vector[Vertexes.Length];
 
-            Vector[] temps = new Vector[indices.Length];
+            Vector[] temps = new Vector[TriangleIndexes.Length];
 
-            for (int ii = 0; ii < indices.Length; ii++)
+            for (int ii = 0; ii < TriangleIndexes.Length; ii++)
             {
-                Triangle tr = indices[ii];
+                Triangle tr = TriangleIndexes[ii];
 
-                Vector v1 = vertices[tr.vertex1] - vertices[tr.vertex2];
-                Vector v2 = vertices[tr.vertex2] - vertices[tr.vertex3];
+                Vector v1 = Vertexes[tr.vertex1] - Vertexes[tr.vertex2];
+                Vector v2 = Vertexes[tr.vertex2] - Vertexes[tr.vertex3];
 
                 temps[ii] = v1.CrossProduct(v2);
                 //Console.Write ("I");
             }
 
-            for (int ii = 0; ii < vertices.Length; ii++)
+            for (int ii = 0; ii < Vertexes.Length; ii++)
             {
                 Vector v = new Vector();
                 int shared = 0;
 
-                for (int jj = 0; jj < indices.Length; jj++)
+                for (int jj = 0; jj < TriangleIndexes.Length; jj++)
                 {
-                    Triangle tr = indices[jj];
+                    Triangle tr = TriangleIndexes[jj];
                     if (tr.vertex1 == ii || tr.vertex2 == ii || tr.vertex3 == ii)
                     {
                         v += temps[jj];

@@ -11,7 +11,7 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
     {
         public static void Dump(this FacesDescriptionChunk chunk, ThreeDSModel4LegacyOpenGL model, ThreeDSMesh4LegacyOpenGL mesh)
         {
-            mesh.indices = chunk.triangleIndexes;
+            mesh.TriangleIndexes = chunk.triangleIndexes;
 
             foreach (var item in chunk.Children)
             {
@@ -22,6 +22,11 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
                 else if (item is SmoothingGroupListChunk)
                 {
                     (item as SmoothingGroupListChunk).Dump(model, mesh);
+                }
+                else if (!(item is UndefinedChunk))
+                {
+                    throw new NotImplementedException(string.Format(
+                        "not dumper implemented for {0}", item.GetType()));
                 }
             }
         }

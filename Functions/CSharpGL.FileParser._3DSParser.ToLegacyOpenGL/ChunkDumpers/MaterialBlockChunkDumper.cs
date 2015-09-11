@@ -47,9 +47,14 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
                 {
                     (item as ReflectionMapChunk).Dump(model, material);
                 }
+                else if (!(item is UndefinedChunk))
+                {
+                    throw new NotImplementedException(string.Format(
+                        "not dumper implemented for {0}", item.GetType()));
+                }
             }
 
-            model.MaterialDict.Add(material.Name, material);
+            model.MaterialDict.Add(material.MaterialName, material);
         }
     }
 }

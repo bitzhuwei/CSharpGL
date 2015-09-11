@@ -121,15 +121,15 @@ namespace CSharpGL._3DSViewer
                     foreach (var entity in model.Entities)
                     {
                         builder.Append("entity "); builder.Append(i++); builder.Append(":");
-                        if (entity.vertices == null)
+                        if (entity.Vertexes == null)
                         {
                             if (!emptyVerticesFound)
                             { MessageBox.Show("No vertices in some entity!"); emptyVerticesFound = true; }
                         }
                         else
-                        { builder.Append(" "); builder.Append(entity.vertices.Length); builder.Append(" vertices"); }
+                        { builder.Append(" "); builder.Append(entity.Vertexes.Length); builder.Append(" vertices"); }
 
-                        if (entity.indices == null)
+                        if (entity.TriangleIndexes == null)
                         {
                             if (!emptyIndicesFound)
                             {
@@ -138,9 +138,9 @@ namespace CSharpGL._3DSViewer
                             }
                         }
                         else
-                        { builder.Append(" "); builder.Append(entity.indices.Length); builder.Append(" indices"); }
+                        { builder.Append(" "); builder.Append(entity.TriangleIndexes.Length); builder.Append(" indices"); }
 
-                        if (entity.texcoords == null)
+                        if (entity.TexCoords == null)
                         {
                             if (!emptyTexCoordsFound)
                             {
@@ -149,7 +149,7 @@ namespace CSharpGL._3DSViewer
                             }
                         }
                         else
-                        { builder.Append(" "); builder.Append(entity.texcoords.Length); builder.Append(" UVs"); }
+                        { builder.Append(" "); builder.Append(entity.TexCoords.Length); builder.Append(" UVs"); }
 
                         builder.AppendLine();
                     }
@@ -181,28 +181,28 @@ namespace CSharpGL._3DSViewer
 
             foreach (var entity in model.Entities)
             {
-                if (entity.vertices == null) { continue; }
-                if (entity.indices == null) { continue; }
+                if (entity.Vertexes == null) { continue; }
+                if (entity.TriangleIndexes == null) { continue; }
 
-                if (this.textureAdded && entity.texcoords != null)
+                if (this.textureAdded && entity.TexCoords != null)
                 {
                     //GL.Disable(GL.GL_LIGHTING);
                     GL.Enable(GL.GL_TEXTURE_2D);
                     GL.BindTexture(GL.GL_TEXTURE_2D, this.texture.Name);
                     //GL.ShadeModel(GL.GL_SMOOTH);// Enables Smooth Shading
                     GL.Begin(PrimitiveModes.Triangles);
-                    foreach (var triangle in entity.indices)
+                    foreach (var triangle in entity.TriangleIndexes)
                     {
-                        var point1 = entity.vertices[triangle.vertex1];
-                        var uv1 = entity.texcoords[triangle.vertex1];
+                        var point1 = entity.Vertexes[triangle.vertex1];
+                        var uv1 = entity.TexCoords[triangle.vertex1];
                         GL.TexCoord(uv1.U, uv1.V);
                         GL.Vertex(point1.X, point1.Y, point1.Z);
-                        var point2 = entity.vertices[triangle.vertex2];
-                        var uv2 = entity.texcoords[triangle.vertex2];
+                        var point2 = entity.Vertexes[triangle.vertex2];
+                        var uv2 = entity.TexCoords[triangle.vertex2];
                         GL.TexCoord(uv2.U, uv2.V);
                         GL.Vertex(point2.X, point2.Y, point2.Z);
-                        var point3 = entity.vertices[triangle.vertex3];
-                        var uv3 = entity.texcoords[triangle.vertex3];
+                        var point3 = entity.Vertexes[triangle.vertex3];
+                        var uv3 = entity.TexCoords[triangle.vertex3];
                         GL.TexCoord(uv3.U, uv3.V);
                         GL.Vertex(point3.X, point3.Y, point3.Z);
                     }
@@ -211,13 +211,13 @@ namespace CSharpGL._3DSViewer
                 else
                 {
                     GL.Begin(PrimitiveModes.Triangles);
-                    foreach (var triangle in entity.indices)
+                    foreach (var triangle in entity.TriangleIndexes)
                     {
-                        var point1 = entity.vertices[triangle.vertex1];
+                        var point1 = entity.Vertexes[triangle.vertex1];
                         GL.Vertex(point1.X, point1.Y, point1.Z);
-                        var point2 = entity.vertices[triangle.vertex2];
+                        var point2 = entity.Vertexes[triangle.vertex2];
                         GL.Vertex(point2.X, point2.Y, point2.Z);
-                        var point3 = entity.vertices[triangle.vertex3];
+                        var point3 = entity.Vertexes[triangle.vertex3];
                         GL.Vertex(point3.X, point3.Y, point3.Z);
                     }
                     GL.End();

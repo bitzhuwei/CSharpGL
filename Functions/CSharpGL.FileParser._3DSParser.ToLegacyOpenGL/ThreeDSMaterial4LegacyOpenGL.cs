@@ -29,7 +29,7 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
 {
     public class ThreeDSMaterial4LegacyOpenGL
     {
-        public string Name;
+        public string MaterialName;
 
         // Set Default values
         public float[] Ambient = new float[] { 0.5f, 0.5f, 0.5f };

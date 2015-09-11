@@ -25,6 +25,11 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
                 {
                     (item as FramesChunk).Dump(model);
                 }
+                else if (!(item is UndefinedChunk))
+                {
+                    throw new NotImplementedException(string.Format(
+                        "not dumper implemented for {0}", item.GetType()));
+                }
             }
         }
     }
