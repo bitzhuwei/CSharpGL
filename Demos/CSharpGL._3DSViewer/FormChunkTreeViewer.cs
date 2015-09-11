@@ -45,30 +45,8 @@ namespace CSharpGL._3DSViewer
             }
         }
 
-        //private TreeNode BuildSimpleTree(ChunkBase chunk)
-        //{
-        //    TreeNode node = new TreeNode(chunk.ToString());
-        //    node.Tag = chunk;
-        //    node.ToolTipText = chunk.ToString();
-        //    if (chunk.Length != chunk.BytesRead)
-        //    {
-        //        node.BackColor = Color.Red;
-        //    }
-
-        //    foreach (var item in chunk.Children)
-        //    {
-        //        if (item.GetType() != typeof(UndefinedChunk))
-        //        {
-        //            var itemNode = BuildSimpleTree(item);
-        //            node.Nodes.Add(itemNode);
-        //        }
-        //    }
-
-        //    return node;
-        //}
         private ChunkBase BuildSimpleTree(ChunkBase chunk)
         {
-            //TreeNode node = new TreeNode(chunk.ToString());
             var newChunk = ((ICloneable)chunk).Clone() as ChunkBase;
             newChunk.Parent = null;
             newChunk.Children = new List<ChunkBase>();
