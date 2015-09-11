@@ -44,11 +44,8 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
                 this.usesIndexes = usesIndexes;
             }
-            //{
-            //    uint length = chunk.Length - chunk.BytesRead;
-            //    reader.BaseStream.Position += length;
-            //    chunk.BytesRead += length;
-            //}
+
+            // 实际上，这一步已经没有要读取的子内容了。
             ChunkBaseProcess(context);
         }
 
