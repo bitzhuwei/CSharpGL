@@ -35,7 +35,7 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
         public float[] Ambient = new float[] { 0.5f, 0.5f, 0.5f };
         public float[] Diffuse = new float[] { 0.5f, 0.5f, 0.5f };
         public float[] Specular = new float[] { 0.5f, 0.5f, 0.5f };
-        public int Shininess = 50;
+        public ushort Shininess = 50;
 
         public string TextureFilename;
 

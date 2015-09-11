@@ -31,6 +31,10 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
                 {
                     (item as SpecularColorChunk).Dump(model, material);
                 }
+                else if(item is MatShininessChunk)
+                {
+                    (item as MatShininessChunk).Dump(model, material);
+                }
                 else if(item is TextureMapChunk)
                 {
                     (item as TextureMapChunk).Dump(model, material);

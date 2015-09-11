@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ChunkDumpers\BumpMapChunkDumper.cs" />
     <Compile Include="ChunkDumpers\HierarchyPositionChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\MatShininessChunkDumper.cs" />
     <Compile Include="ChunkDumpers\ScaleTrackChunkDumper.cs" />
     <Compile Include="ChunkDumpers\RotationTrackChunkDumper.cs" />
     <Compile Include="ChunkDumpers\PositionTrackChunkDumper.cs" />

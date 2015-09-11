@@ -9,9 +9,9 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
 {
     public static partial class ChunkDumper
     {
-        public static void Dump(this FacesMaterialChunk chunk, ThreeDSModel4LegacyOpenGL model, ThreeDSMesh4LegacyOpenGL mesh)
+        public static void Dump(this MatShininessChunk chunk, ThreeDSModel4LegacyOpenGL model, ThreeDSMaterial4LegacyOpenGL material)
         {
-            mesh.UsesMaterial = chunk.UsesMaterial;
+            material.Shininess = chunk.Shininess;
         }
     }
 }

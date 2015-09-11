@@ -35,7 +35,7 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
         // normalize in ctor
 
         //public ThreeDSMaterial material = new ThreeDSMaterial();
-        public string materialName;
+        public string UsesMaterial;
 
         // The stored vertices 
         public Vector[] vertices;
