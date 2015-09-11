@@ -51,6 +51,7 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
         public TexCoord[] TexCoords;
 
         bool normalized = false;
+        public ushort[] UsesIndexes;
 
         public void CalculateNormals()
         {
@@ -119,8 +120,9 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
 
             // Draw every triangle in the entity
             GL.Begin(GL.GL_TRIANGLES);
-            foreach (Triangle tri in TriangleIndexes)
+            foreach (var usingIndex in this.UsesIndexes)
             {
+                Triangle tri = this.TriangleIndexes[usingIndex];
                 // Vertex 1
                 if (normalized) GL.Normal3d(normals[tri.vertex1].X, normals[tri.vertex1].Y, normals[tri.vertex1].Z);
                 if (texture != null) GL.TexCoord2f(TexCoords[tri.vertex1].U, TexCoords[tri.vertex1].V);
@@ -136,6 +138,23 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
                 if (texture != null) GL.TexCoord2f(TexCoords[tri.vertex3].U, TexCoords[tri.vertex3].V);
                 GL.Vertex3d(Vertexes[tri.vertex3].X, Vertexes[tri.vertex3].Y, Vertexes[tri.vertex3].Z);
             }
+            //foreach (Triangle tri in TriangleIndexes)
+            //{
+            //    // Vertex 1
+            //    if (normalized) GL.Normal3d(normals[tri.vertex1].X, normals[tri.vertex1].Y, normals[tri.vertex1].Z);
+            //    if (texture != null) GL.TexCoord2f(TexCoords[tri.vertex1].U, TexCoords[tri.vertex1].V);
+            //    GL.Vertex3d(Vertexes[tri.vertex1].X, Vertexes[tri.vertex1].Y, Vertexes[tri.vertex1].Z);
+
+            //    // Vertex 2
+            //    if (normalized) GL.Normal3d(normals[tri.vertex2].X, normals[tri.vertex2].Y, normals[tri.vertex2].Z);
+            //    if (texture != null) GL.TexCoord2f(TexCoords[tri.vertex2].U, TexCoords[tri.vertex2].V);
+            //    GL.Vertex3d(Vertexes[tri.vertex2].X, Vertexes[tri.vertex2].Y, Vertexes[tri.vertex2].Z);
+
+            //    // Vertex 3
+            //    if (normalized) GL.Normal3d(normals[tri.vertex3].X, normals[tri.vertex3].Y, normals[tri.vertex3].Z);
+            //    if (texture != null) GL.TexCoord2f(TexCoords[tri.vertex3].U, TexCoords[tri.vertex3].V);
+            //    GL.Vertex3d(Vertexes[tri.vertex3].X, Vertexes[tri.vertex3].Y, Vertexes[tri.vertex3].Z);
+            //}
 
             GL.End();
 

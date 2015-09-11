@@ -50,6 +50,7 @@ namespace CSharpGL.FileParser._3DSParser.ToModernOpenGL
         public TexCoord[] TexCoords;
 
         bool normalized = false;
+        public ushort[] UsesIndexes;
 
         public void CalculateNormals()
         {

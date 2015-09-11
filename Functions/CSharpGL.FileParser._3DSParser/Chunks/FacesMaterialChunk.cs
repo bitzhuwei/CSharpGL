@@ -10,6 +10,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
     {
         public string UsesMaterial;
         public ushort[] usesIndexes;
+
         internal override void Process(ParsingContext context)
         {
             var reader = context.reader;
@@ -37,7 +38,9 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                 var usesIndexes = new ushort[length];
                 for (int ii = 0; ii < usesIndexes.Length; ii++)
                 {
-                    usesIndexes[ii] = reader.ReadUInt16();
+                    var value = reader.ReadUInt16();
+
+                    usesIndexes[ii] = value;
                 }
                 chunk.BytesRead += (uint)(2 * length);
 

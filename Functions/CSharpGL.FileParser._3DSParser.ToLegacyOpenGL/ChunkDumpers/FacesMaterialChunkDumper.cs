@@ -12,6 +12,7 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
         public static void Dump(this FacesMaterialChunk chunk, ThreeDSModel4LegacyOpenGL model, ThreeDSMesh4LegacyOpenGL mesh)
         {
             mesh.UsesMaterial = chunk.UsesMaterial;
+            mesh.UsesIndexes = chunk.usesIndexes;
         }
     }
 }
