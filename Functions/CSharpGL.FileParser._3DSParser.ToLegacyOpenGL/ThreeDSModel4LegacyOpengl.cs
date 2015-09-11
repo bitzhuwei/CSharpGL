@@ -32,12 +32,13 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
         public List<ThreeDSMesh4LegacyOpenGL> Entities = new List<ThreeDSMesh4LegacyOpenGL>();
         public Dictionary<string, ThreeDSMaterial4LegacyOpenGL> MaterialDict = new Dictionary<string, ThreeDSMaterial4LegacyOpenGL>();
 
-        public void Render()
+        public void Render(PolygonModes mode)
         {
             foreach (ThreeDSMesh4LegacyOpenGL mesh in Entities)
             {
-                mesh.Render(this);
+                mesh.Render(this, mode);
             }
         }
     }
+
 }

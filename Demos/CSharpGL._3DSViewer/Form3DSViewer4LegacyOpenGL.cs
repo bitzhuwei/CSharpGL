@@ -23,6 +23,8 @@ namespace CSharpGL._3DSViewer
         private float horizontal = 0;
         private float vertical = 0;
         private float zoom = 1;
+        private PolygonModes polygonMode = PolygonModes.Lines;
+
         //private Bitmap textureImage;
         //private bool textureAdded = false;
         //private Texture2D texture;
@@ -116,7 +118,7 @@ namespace CSharpGL._3DSViewer
             var model = this.model;
             if (model == null) { return; }
 
-            model.Render();
+            model.Render(polygonMode);
 
             rotation += 3;
         }
@@ -165,6 +167,24 @@ namespace CSharpGL._3DSViewer
             {
                 vertical -= verticalMoveSpeed;
             }
+            else if (e.KeyCode == Keys.M)
+            {
+                switch (this.polygonMode)
+                {
+                    case PolygonModes.Points:
+                        this.polygonMode = PolygonModes.Lines;
+                        break;
+                    case PolygonModes.Lines:
+                        this.polygonMode = PolygonModes.Filled;
+                        break;
+                    case PolygonModes.Filled:
+                        this.polygonMode = PolygonModes.Points;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             this.UpdateInfo();
         }
 
@@ -219,7 +239,7 @@ namespace CSharpGL._3DSViewer
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("WSAD for translate, QE for scale");
+            MessageBox.Show("'WSAD' for translate, 'QE' for scale, 'M' for polygon mode.");
         }
 
     }

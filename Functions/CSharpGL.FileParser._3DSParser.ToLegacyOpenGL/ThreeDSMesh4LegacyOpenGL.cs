@@ -92,7 +92,7 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
             normalized = true;
         }
 
-        public void Render(ThreeDSModel4LegacyOpenGL model)
+        public void Render(ThreeDSModel4LegacyOpenGL model, PolygonModes mode)
         {
             if (TriangleIndexes == null) return;
 
@@ -114,6 +114,8 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
             //    GL.BindTexture(GL.GL_TEXTURE_2D, material.TextureId);
             //    GL.Enable(GL.GL_TEXTURE_2D);
             //}
+
+            GL.PolygonMode(PolygonModeFaces.FrontAndBack, mode);
 
             // Draw every triangle in the entity
             GL.Begin(GL.GL_TRIANGLES);
