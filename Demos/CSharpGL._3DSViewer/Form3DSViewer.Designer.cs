@@ -400,7 +400,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Name = "Form3DSViewer";
             this.Text = "Form3DSViewer";
-            this.Click += new System.EventHandler(this.FormMain_Load);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);

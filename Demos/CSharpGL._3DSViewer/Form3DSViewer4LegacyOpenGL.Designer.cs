@@ -388,7 +388,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Name = "Form3DSViewer4LegacyOpenGL";
             this.Text = "Form3DSViewer4LegacyOpenGL";
-            this.Click += new System.EventHandler(this.FormMain_Load);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);

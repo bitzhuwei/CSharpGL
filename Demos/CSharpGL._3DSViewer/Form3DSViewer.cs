@@ -24,6 +24,7 @@ namespace CSharpGL._3DSViewer
         private Bitmap textureImage;
         private bool textureAdded = false;
         private Texture2D texture;
+        private PolygonModes polygonMode = PolygonModes.Lines;
 
         public Form3DSViewer()
         {
@@ -110,6 +111,8 @@ namespace CSharpGL._3DSViewer
             {
                 if (entity.vertices == null) { continue; }
                 if (entity.indices == null) { continue; }
+
+                GL.PolygonMode(PolygonModeFaces.FrontAndBack, polygonMode);
 
                 if (this.textureAdded && entity.texcoords != null)
                 {
@@ -198,6 +201,24 @@ namespace CSharpGL._3DSViewer
             {
                 vertical -= verticalMoveSpeed;
             }
+            else if (e.KeyCode == Keys.M)
+            {
+                switch (this.polygonMode)
+                {
+                    case PolygonModes.Points:
+                        this.polygonMode = PolygonModes.Lines;
+                        break;
+                    case PolygonModes.Lines:
+                        this.polygonMode = PolygonModes.Filled;
+                        break;
+                    case PolygonModes.Filled:
+                        this.polygonMode = PolygonModes.Points;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             this.UpdateInfo();
         }
 
@@ -273,7 +294,7 @@ namespace CSharpGL._3DSViewer
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("WSAD for translate, QE for scale");
+            MessageBox.Show("'WSAD' for translate, 'QE' for scale, 'M' for polygon mode.");
         }
 
     }
