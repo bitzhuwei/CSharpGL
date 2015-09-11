@@ -9,7 +9,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
     public class FacesMaterialChunk : ChunkBase
     {
         public string UsesMaterial;
-
+        public ushort[] usesIndexes;
         internal override void Process(ParsingContext context)
         {
             var reader = context.reader;
@@ -30,7 +30,20 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
                 this.UsesMaterial = builder.ToString();
             }
+            {
+                ushort length = reader.ReadUInt16();
+                chunk.BytesRead += 2;
+                Console.WriteLine("	Indices: {0}", length);
+                //Triangle[] indexes = new Triangle[numIdcs];
+                var usesIndexes = new ushort[length];
+                for (int ii = 0; ii < usesIndexes.Length; ii++)
+                {
+                    usesIndexes[ii] = reader.ReadUInt16();
+                }
+                chunk.BytesRead += (uint)(2 * length);
 
+                this.usesIndexes = usesIndexes;
+            }
             //{
             //    uint length = chunk.Length - chunk.BytesRead;
             //    reader.BaseStream.Position += length;
@@ -41,7 +54,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         public override string ToString()
         {
-            return string.Format("{0}, UsesMaterial: {1}", this.GetBasicInfo(), UsesMaterial);
+            return string.Format("{0}, UsesMaterial: {1}, usesIndexes: {2}", this.GetBasicInfo(), UsesMaterial, usesIndexes.Length);
         }
     }
 }
