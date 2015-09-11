@@ -34,7 +34,6 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                 ushort length = reader.ReadUInt16();
                 chunk.BytesRead += 2;
                 Console.WriteLine("	Indices: {0}", length);
-                //Triangle[] indexes = new Triangle[numIdcs];
                 var usesIndexes = new ushort[length];
                 for (int ii = 0; ii < usesIndexes.Length; ii++)
                 {
