@@ -21,8 +21,8 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         public override string ToString()
         {
-            return string.Format("{3}(0x{0:X4}), length: {1}, read bytes: {2}", ID, Length, BytesRead,
-                this.IsChunk ? "Unknown Chunk" : "Fake Chunk");
+            return string.Format("{0}(0x{1:X4}), position: {2}, length: {3}, read bytes: {4}",
+                this.IsChunk ? "Unknown Chunk" : "Fake Chunk", ID, Position, Length, BytesRead);
         }
 
         internal override void Process(ParsingContext context)

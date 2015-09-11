@@ -11,7 +11,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
         public string UsesMaterial;
         public ushort[] usesIndexes;
 
-        public static ushort[] allIndexes = new ushort[9998];
+        //public static ushort[] allIndexes = new ushort[9998];
 
         internal override void Process(ParsingContext context)
         {
@@ -41,7 +41,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                 for (int ii = 0; ii < usesIndexes.Length; ii++)
                 {
                     var value = reader.ReadUInt16();
-                    allIndexes[value] = 1;
+                    //allIndexes[value] = 1;
 
                     usesIndexes[ii] = value;
                 }
@@ -56,13 +56,13 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         public override string ToString()
         {
-            foreach (var item in allIndexes)
-            {
-                if (item != 1)
-                {
-                    Console.WriteLine(item + "adfasdfasdfasf");
-                }
-            }
+            //foreach (var item in allIndexes)
+            //{
+            //    if (item != 1)
+            //    {
+            //        Console.WriteLine(item + "adfasdfasdfasf");
+            //    }
+            //}
             return string.Format("{0}, UsesMaterial: {1}, usesIndexes: {2}", this.GetBasicInfo(), UsesMaterial, usesIndexes.Length);
         }
     }
