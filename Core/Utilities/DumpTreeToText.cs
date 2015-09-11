@@ -57,32 +57,6 @@ namespace System
             return builder.ToString();
         }
 
-        private static string GetBrantch(int tabspace)
-        {
-            if (tabspace < 1)
-                return string.Empty;
-            return (GetSpace(tabspace - 1) + "└─"/*"|-"*/);
-        }
-
-        private static string GetSpace(int tabspace)
-        {
-            lock (spaces)
-            {
-                if (tabspace < 0)
-                    tabspace = 0;
-                if (tabspace >= spaces.Count)
-                {
-                    StringBuilder builder = new StringBuilder(spaces[spaces.Count - 1]);
-                    for (int i = spaces.Count - 1; i < tabspace; i++)
-                    {
-                        builder.Append("    ");
-                        spaces.Add(builder.ToString());
-                    }
-                }
-            }
-            return spaces[tabspace];
-        }
-
         private static List<string> spaces = new List<string>()
         {
             "",
