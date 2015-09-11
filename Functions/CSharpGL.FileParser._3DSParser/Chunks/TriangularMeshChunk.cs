@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.FileParser._3DSParser.Chunks
 {
-    class TriangularMeshChunk : ChunkBase
+    public class TriangularMeshChunk : ChunkBase
     {
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.FileParser._3DSParser.Chunks
 {
-    class MappingFilenameChunk : StringChunk
+    public class MappingFilenameChunk : StringChunk
     {
         public string TextureFilename { get { return this.Content; } }
 

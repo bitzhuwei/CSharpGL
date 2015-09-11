@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.FileParser._3DSParser.Chunks
 {
-    class SmoothingGroupListChunk : ChunkBase
+    public class SmoothingGroupListChunk : ChunkBase
     {
         internal override void Process(ParsingContext context)
         {

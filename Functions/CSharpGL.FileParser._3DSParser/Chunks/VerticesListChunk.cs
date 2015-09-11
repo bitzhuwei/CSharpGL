@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.FileParser._3DSParser.Chunks
 {
-    class VerticesListChunk : ChunkBase
+    public class VerticesListChunk : ChunkBase
     {
-        Vector[] vertexes;
+        public Vector[] vertexes;
 
         internal override void Process(ParsingContext context)
         {

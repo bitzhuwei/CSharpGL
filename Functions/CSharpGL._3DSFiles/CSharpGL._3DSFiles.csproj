@@ -40,10 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="C3DSObject.cs" />
-    <Compile Include="Chunk.cs" />
-    <Compile Include="ChunkData.cs" />
-    <Compile Include="ChunkID.cs" />
     <Compile Include="ThreeDSMesh.cs" />
     <Compile Include="ThreeDSMaterial.cs" />
     <Compile Include="ThreeDSModel.cs" />
@@ -51,7 +47,6 @@
     <Compile Include="ThreeDSFile.cs" />
     <Compile Include="Triangle.cs" />
     <Compile Include="Vector.cs" />
-    <Compile Include="_3DSFile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

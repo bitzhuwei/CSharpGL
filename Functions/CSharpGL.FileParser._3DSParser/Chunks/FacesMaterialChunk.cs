@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.FileParser._3DSParser.Chunks
 {
-    class FacesMaterialChunk : ChunkBase
+    public class FacesMaterialChunk : ChunkBase
     {
         public string UsesMaterial;
 

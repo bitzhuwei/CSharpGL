@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.FileParser._3DSParser.Chunks
 {
-    class FacesDescriptionChunk : ChunkBase
+    public class FacesDescriptionChunk : ChunkBase
     {
         public Triangle[] triangleIndexes;
 

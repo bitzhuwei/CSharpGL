@@ -39,10 +39,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChunkDumpers\BumpMapChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\HierarchyPositionChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\ScaleTrackChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\RotationTrackChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\PositionTrackChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\ObjectPivotPointChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\ObjectNameChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\SpotLightInformationBlockChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\MeshInformationBlockChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\MappingParametersChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\MappingFilenameChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\TextureMapChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\SpecularColorChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\DiffuseColorChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\AmbientColorChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\MaterialNameChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\SpotlightChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\SmoothingGroupListChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\FacesMaterialChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\FacesDescriptionChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\FramesChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\LightChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\KeyframeChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\CameraChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\LocalCoordinatesSystemChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\MappingCoordinatesListChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\VerticesListChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\VersionChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\ReflectionMapChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\TriangularMeshChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\ObjectBlockChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\MaterialBlockChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\_3DEditorChunkDumper.cs" />
+    <Compile Include="ChunkDumpers\MainChunkDumper.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThreeDSMaterial.cs" />
+    <Compile Include="ThreeDSMesh.cs" />
+    <Compile Include="ThreeDSModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Utilities\Utilities.csproj">
+      <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CSharpGL.FileParser._3DSParser\CSharpGL.FileParser._3DSParser.csproj">
       <Project>{d2b3c9b4-7e9d-46a8-a119-7743e56253b3}</Project>
       <Name>CSharpGL.FileParser._3DSParser</Name>
