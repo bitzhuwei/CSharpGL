@@ -33,7 +33,7 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         protected string GetBasicInfo()
         {
-            return string.Format("{0}(0x{1:X4}), position: {2}, length: {3}, read bytes: {4}",
+            return string.Format("[{0}(0x{1:X4}), position: {2}, length: {3}, read bytes: {4}]",
                 this.GetType().Name, this.GetID(), this.Position, Length, BytesRead);
         }
 
@@ -81,7 +81,23 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
             }
         }
 
+        internal void SkipRemainingPart(ParsingContext context)
+        {
+            var chunk = this;
+            var reader = context.reader;
+            var parent = this.Parent;
 
+            uint length = this.Length - this.BytesRead;
+
+            if ((parent != null))
+            {
+                var another = parent.Length - parent.BytesRead - this.BytesRead;
+                length = Math.Min(length, another);
+            }
+
+            reader.BaseStream.Position += length;
+            chunk.BytesRead += length;
+        }
 
         ITreeNode ITreeNode.Parent
         {
