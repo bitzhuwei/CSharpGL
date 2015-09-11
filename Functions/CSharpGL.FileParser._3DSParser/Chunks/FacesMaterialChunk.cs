@@ -31,11 +31,12 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
                 this.UsesMaterial = builder.ToString();
             }
 
-            {
-                uint length = chunk.Length - chunk.BytesRead;
-                reader.BaseStream.Position += length;
-                chunk.BytesRead += length;
-            }
+            //{
+            //    uint length = chunk.Length - chunk.BytesRead;
+            //    reader.BaseStream.Position += length;
+            //    chunk.BytesRead += length;
+            //}
+            ChunkBaseProcess(context);
         }
 
         public override string ToString()
