@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.FileParser._3DSParser.Chunks
 {
-    public abstract class ChunkBase : ITreeNode
+    public abstract class ChunkBase : ITreeNode, ICloneable
     {
         public ChunkBase Parent;
         public List<ChunkBase> Children;
@@ -100,6 +100,15 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
                 return result;
             }
+        }
+
+        public object Clone()
+        {
+            var result = this.MemberwiseClone() as ChunkBase;
+            result.Parent = null;
+            result.Children = new List<ChunkBase>();
+
+            return result;
         }
     }
 }
