@@ -23,9 +23,9 @@ namespace CSharpGL._3DSViewer
         private float horizontal = 0;
         private float vertical = 0;
         private float zoom = 1;
-        private Bitmap textureImage;
-        private bool textureAdded = false;
-        private Texture2D texture;
+        //private Bitmap textureImage;
+        //private bool textureAdded = false;
+        //private Texture2D texture;
 
         ThreeDSModel4LegacyOpenGL model = null;
 
@@ -33,72 +33,9 @@ namespace CSharpGL._3DSViewer
         {
             InitializeComponent();
 
-            GL.ClearColor(0, 0, 0, 0);
+            GL.ClearColor((float)0x87 / 255.0f, (float)0xCE / 255.0f, (float)0xEB / 255.0f, (float)0x00 / 255.0f);
         }
 
-        //private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    if (this.open3DSDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-        //    {
-        //        try
-        //        {
-        //            var _3dsFile = new ThreeDSFile(this.open3DSDlg.FileName);
-        //            if (_3dsFile.ThreeDSModel.Entities == null)
-        //            {
-        //                MessageBox.Show("No entity found!");
-        //                return;
-        //            }
-        //            var builder = new StringBuilder();
-        //            int i = 1;
-        //            bool emptyVerticesFound = false, emptyIndicesFound = false, emptyTexCoordsFound = false;
-        //            foreach (var entity in _3dsFile.ThreeDSModel.Entities)
-        //            {
-        //                builder.Append("entity "); builder.Append(i++); builder.Append(":");
-        //                if (entity.vertices == null)
-        //                {
-        //                    if (!emptyVerticesFound)
-        //                    { MessageBox.Show("No vertices in some entity!"); emptyVerticesFound = true; }
-        //                }
-        //                else
-        //                { builder.Append(" "); builder.Append(entity.vertices.Length); builder.Append(" vertices"); }
-
-        //                if (entity.indices == null)
-        //                {
-        //                    if (!emptyIndicesFound)
-        //                    {
-        //                        MessageBox.Show("No faces in some entity.");
-        //                        emptyIndicesFound = true;
-        //                    }
-        //                }
-        //                else
-        //                { builder.Append(" "); builder.Append(entity.indices.Length); builder.Append(" indices"); }
-
-        //                if (entity.texcoords == null)
-        //                {
-        //                    if (!emptyTexCoordsFound)
-        //                    {
-        //                        MessageBox.Show("No UV in some entity.");
-        //                        emptyTexCoordsFound = true;
-        //                    }
-        //                }
-        //                else
-        //                { builder.Append(" "); builder.Append(entity.texcoords.Length); builder.Append(" UVs"); }
-
-        //                builder.AppendLine();
-        //            }
-
-        //            if (i == 1)
-        //            { builder.Append("no entity found."); }
-
-        //            MessageBox.Show(builder.ToString(), "Info");
-        //            this._3dsFile = _3dsFile;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(ex.Message, "Error");
-        //        }
-        //    }
-        //}
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.open3DSDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -179,50 +116,7 @@ namespace CSharpGL._3DSViewer
             var model = this.model;
             if (model == null) { return; }
 
-            foreach (var entity in model.Entities)
-            {
-                if (entity.Vertexes == null) { continue; }
-                if (entity.TriangleIndexes == null) { continue; }
-
-                if (this.textureAdded && entity.TexCoords != null)
-                {
-                    //GL.Disable(GL.GL_LIGHTING);
-                    GL.Enable(GL.GL_TEXTURE_2D);
-                    GL.BindTexture(GL.GL_TEXTURE_2D, this.texture.Name);
-                    //GL.ShadeModel(GL.GL_SMOOTH);// Enables Smooth Shading
-                    GL.Begin(PrimitiveModes.Triangles);
-                    foreach (var triangle in entity.TriangleIndexes)
-                    {
-                        var point1 = entity.Vertexes[triangle.vertex1];
-                        var uv1 = entity.TexCoords[triangle.vertex1];
-                        GL.TexCoord(uv1.U, uv1.V);
-                        GL.Vertex(point1.X, point1.Y, point1.Z);
-                        var point2 = entity.Vertexes[triangle.vertex2];
-                        var uv2 = entity.TexCoords[triangle.vertex2];
-                        GL.TexCoord(uv2.U, uv2.V);
-                        GL.Vertex(point2.X, point2.Y, point2.Z);
-                        var point3 = entity.Vertexes[triangle.vertex3];
-                        var uv3 = entity.TexCoords[triangle.vertex3];
-                        GL.TexCoord(uv3.U, uv3.V);
-                        GL.Vertex(point3.X, point3.Y, point3.Z);
-                    }
-                    GL.End();
-                }
-                else
-                {
-                    GL.Begin(PrimitiveModes.Triangles);
-                    foreach (var triangle in entity.TriangleIndexes)
-                    {
-                        var point1 = entity.Vertexes[triangle.vertex1];
-                        GL.Vertex(point1.X, point1.Y, point1.Z);
-                        var point2 = entity.Vertexes[triangle.vertex2];
-                        GL.Vertex(point2.X, point2.Y, point2.Z);
-                        var point3 = entity.Vertexes[triangle.vertex3];
-                        GL.Vertex(point3.X, point3.Y, point3.Z);
-                    }
-                    GL.End();
-                }
-            }
+            model.Render();
 
             rotation += 3;
         }
@@ -277,27 +171,6 @@ namespace CSharpGL._3DSViewer
         private void UpdateInfo()
         {
             this.lblInfo.Text = string.Format("Scale:{0:0.0000}", this.zoom);
-        }
-
-        private void toolStripItemOpenTexture_Click(object sender, EventArgs e)
-        {
-            if (openTextureDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                this.textureAdded = false;
-                try
-                {
-                    this.texture = new Texture2D();
-                    this.textureImage = new Bitmap(openTextureDlg.FileName);
-                    this.texture.Initialize(this.textureImage);
-
-                    this.textureAdded = true;
-                }
-                catch (Exception ex)
-                {
-                    this.textureAdded = false;
-                    MessageBox.Show(ex.Message);
-                }
-            }
         }
 
         private void lineTextureToolStripMenuItem_Click(object sender, EventArgs e)

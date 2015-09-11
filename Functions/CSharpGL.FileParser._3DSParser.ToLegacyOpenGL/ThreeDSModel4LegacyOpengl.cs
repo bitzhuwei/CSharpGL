@@ -36,7 +36,7 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
         {
             foreach (ThreeDSMesh4LegacyOpenGL mesh in Entities)
             {
-                mesh.Render();
+                mesh.Render(this);
             }
         }
     }
