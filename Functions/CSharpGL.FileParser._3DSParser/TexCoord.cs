@@ -16,5 +16,11 @@ namespace CSharpGL.FileParser._3DSParser
             U = u;
             V = v;
         }
+
+        public override string ToString()
+        {
+            //return base.ToString();
+            return string.Format("U: {0}, V: {1}", U, V);
+        }
     }
 }
