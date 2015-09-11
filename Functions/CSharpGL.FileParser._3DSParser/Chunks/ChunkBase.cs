@@ -33,8 +33,8 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 
         protected string GetBasicInfo()
         {
-            return string.Format("{0}(0x{3:X4}), position: {1}, length: {2}, read bytes: {3}",
-                this.GetType().Name, this.Position, Length, BytesRead, this.GetID());
+            return string.Format("{0}(0x{1:X4}), position: {2}, length: {3}, read bytes: {4}",
+                this.GetType().Name, this.GetID(), this.Position, Length, BytesRead);
         }
 
         public override string ToString()
