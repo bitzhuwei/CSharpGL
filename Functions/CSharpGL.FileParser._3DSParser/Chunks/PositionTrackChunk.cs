@@ -8,5 +8,9 @@ namespace CSharpGL.FileParser._3DSParser.Chunks
 {
     public class PositionTrackChunk : ChunkBase
     {
+        internal override void Process(ParsingContext context)
+        {
+            this.SkipRemainingPart(context);
+        }
     }
 }
