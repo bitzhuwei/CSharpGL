@@ -27,14 +27,17 @@ using System.Collections.Generic;
 
 namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
 {
-    public class ThreeDSModel
+    public class ThreeDSModel4LegacyOpenGL
     {
-        public List<ThreeDSMesh> Entities = new List<ThreeDSMesh>();
+        public List<ThreeDSMesh4LegacyOpenGL> Entities = new List<ThreeDSMesh4LegacyOpenGL>();
+        public Dictionary<string, ThreeDSMaterial4LegacyOpenGL> MaterialDict = new Dictionary<string, ThreeDSMaterial4LegacyOpenGL>();
 
         public void Render()
         {
-            foreach (ThreeDSMesh e in Entities)
-                e.Render();
+            foreach (ThreeDSMesh4LegacyOpenGL mesh in Entities)
+            {
+                mesh.Render();
+            }
         }
     }
 }

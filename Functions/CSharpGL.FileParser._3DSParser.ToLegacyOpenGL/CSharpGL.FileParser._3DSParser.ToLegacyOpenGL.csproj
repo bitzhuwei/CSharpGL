@@ -75,9 +75,9 @@
     <Compile Include="ChunkDumpers\MainChunkDumper.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThreeDSMaterial.cs" />
-    <Compile Include="ThreeDSMesh.cs" />
-    <Compile Include="ThreeDSModel.cs" />
+    <Compile Include="ThreeDSMaterial4LegacyOpenGL.cs" />
+    <Compile Include="ThreeDSMesh4LegacyOpenGL.cs" />
+    <Compile Include="ThreeDSModel4LegacyOpenGL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Utilities\Utilities.csproj">

@@ -9,8 +9,9 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
 {
     public static partial class ChunkDumper
     {
-        public static void Dump(this HierarchyPositionChunk chunk, ThreeDSModel model)
+        public static void Dump(this HierarchyPositionChunk chunk, ThreeDSModel4LegacyOpenGL model)
         {
+            // nothing to do.
         }
     }
 }

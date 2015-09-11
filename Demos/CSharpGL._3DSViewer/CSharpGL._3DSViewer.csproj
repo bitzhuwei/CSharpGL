@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form3DSViewer4LegacyOpenGL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3DSViewer4LegacyOpenGL.Designer.cs">
+      <DependentUpon>Form3DSViewer4LegacyOpenGL.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form3DSViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form3DSViewer4LegacyOpenGL.resx">
+      <DependentUpon>Form3DSViewer4LegacyOpenGL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form3DSViewer.resx">
       <DependentUpon>Form3DSViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,6 +124,14 @@
     <ProjectReference Include="..\..\Core\Utilities\Utilities.csproj">
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Functions\CSharpGL.FileParser._3DSParser.ToLegacyOpenGL\CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.csproj">
+      <Project>{6ef9dd2f-70ea-46ff-9daa-a1c2834b0a7b}</Project>
+      <Name>CSharpGL.FileParser._3DSParser.ToLegacyOpenGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Functions\CSharpGL.FileParser._3DSParser.ToModernOpenGL\CSharpGL.FileParser._3DSParser.ToModernOpenGL.csproj">
+      <Project>{eb937fbb-0032-4acc-a1e2-b542cd02c417}</Project>
+      <Name>CSharpGL.FileParser._3DSParser.ToModernOpenGL</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Functions\CSharpGL.FileParser._3DSParser\CSharpGL.FileParser._3DSParser.csproj">
       <Project>{d2b3c9b4-7e9d-46a8-a119-7743e56253b3}</Project>

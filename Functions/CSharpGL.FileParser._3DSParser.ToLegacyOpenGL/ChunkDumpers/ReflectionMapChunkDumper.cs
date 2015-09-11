@@ -9,17 +9,17 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
 {
     public static partial class ChunkDumper
     {
-        public static void Dump(this ReflectionMapChunk chunk, ThreeDSModel model)
+        public static void Dump(this ReflectionMapChunk chunk, ThreeDSModel4LegacyOpenGL model, ThreeDSMaterial4LegacyOpenGL material)
         {
             foreach (var item in chunk.Children)
             {
                 if(item is MappingFilenameChunk)
                 {
-                    (item as MappingFilenameChunk).Dump(model);
+                    (item as MappingFilenameChunk).Dump(model, material);
                 }
                 else if(item is MappingParametersChunk)
                 {
-                    (item as MappingParametersChunk).Dump(model);
+                    (item as MappingParametersChunk).Dump(model, material);
                 }
             }
         }

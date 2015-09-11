@@ -9,7 +9,7 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
 {
     public static partial class ChunkDumper
     {
-        public static void Dump(this _3DEditorChunk chunk, ThreeDSModel model)
+        public static void Dump(this _3DEditorChunk chunk, ThreeDSModel4LegacyOpenGL model)
         {
             foreach (var item in chunk.Children)
             {

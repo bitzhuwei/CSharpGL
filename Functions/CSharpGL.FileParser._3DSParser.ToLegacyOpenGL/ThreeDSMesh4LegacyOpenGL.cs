@@ -26,26 +26,16 @@ using System;
 
 namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
 {
-    public struct TexCoord
-    {
-        public float U;
-        public float V;
 
-        public TexCoord(float u, float v)
-        {
-            U = u;
-            V = v;
-        }
-    }
-
-    public class ThreeDSMesh
+    public class ThreeDSMesh4LegacyOpenGL
     {
         // TODO: OO this
         // fields should be private
         // constructor with verts and faces
         // normalize in ctor
 
-        public ThreeDSMaterial material = new ThreeDSMaterial();
+        //public ThreeDSMaterial material = new ThreeDSMaterial();
+        public string materialName;
 
         // The stored vertices 
         public Vector[] vertices;

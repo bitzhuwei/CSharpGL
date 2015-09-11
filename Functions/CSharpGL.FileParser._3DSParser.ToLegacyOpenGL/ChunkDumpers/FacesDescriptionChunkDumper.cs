@@ -9,17 +9,19 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
 {
     public static partial class ChunkDumper
     {
-        public static void Dump(this FacesDescriptionChunk chunk, ThreeDSModel model)
+        public static void Dump(this FacesDescriptionChunk chunk, ThreeDSModel4LegacyOpenGL model, ThreeDSMesh4LegacyOpenGL mesh)
         {
+            mesh.indices = chunk.triangleIndexes;
+
             foreach (var item in chunk.Children)
             {
-                if(item is FacesMaterialChunk)
+                if (item is FacesMaterialChunk)
                 {
-                    (item as FacesMaterialChunk).Dump(model);
+                    (item as FacesMaterialChunk).Dump(model, mesh);
                 }
-                else if(item is SmoothingGroupListChunk)
+                else if (item is SmoothingGroupListChunk)
                 {
-                    (item as SmoothingGroupListChunk).Dump(model);
+                    (item as SmoothingGroupListChunk).Dump(model, mesh);
                 }
             }
         }

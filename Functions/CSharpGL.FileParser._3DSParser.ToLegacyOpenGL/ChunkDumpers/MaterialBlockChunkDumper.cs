@@ -9,39 +9,43 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
 {
     public static partial class ChunkDumper
     {
-        public static void Dump(this MaterialBlockChunk chunk, ThreeDSModel model)
+        public static void Dump(this MaterialBlockChunk chunk, ThreeDSModel4LegacyOpenGL model)
         {
+            ThreeDSMaterial4LegacyOpenGL material = new ThreeDSMaterial4LegacyOpenGL();
+
             foreach (var item in chunk.Children)
             {
                 if(item is MaterialNameChunk)
                 {
-                    (item as MaterialNameChunk).Dump(model);
+                    (item as MaterialNameChunk).Dump(model, material);
                 }
                 else if(item is AmbientColorChunk)
                 {
-                    (item as AmbientColorChunk).Dump(model);
+                    (item as AmbientColorChunk).Dump(model, material);
                 }
                 else if (item is DiffuseColorChunk)
                 {
-                    (item as DiffuseColorChunk).Dump(model);
+                    (item as DiffuseColorChunk).Dump(model, material);
                 }
                 else if(item is SpecularColorChunk)
                 {
-                    (item as SpecularColorChunk).Dump(model);
+                    (item as SpecularColorChunk).Dump(model, material);
                 }
                 else if(item is TextureMapChunk)
                 {
-                    (item as TextureMapChunk).Dump(model);
+                    (item as TextureMapChunk).Dump(model, material);
                 }
                 else if(item is BumpMapChunk)
                 {
-                    (item as BumpMapChunk).Dump(model);
+                    (item as BumpMapChunk).Dump(model, material);
                 }
                 else if(item is ReflectionMapChunk)
                 {
-                    (item as ReflectionMapChunk).Dump(model);
+                    (item as ReflectionMapChunk).Dump(model, material);
                 }
             }
+
+            model.MaterialDict.Add(material.Name, material);
         }
     }
 }

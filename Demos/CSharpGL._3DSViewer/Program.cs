@@ -17,6 +17,7 @@ namespace CSharpGL._3DSViewer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form3DSViewer4LegacyOpenGL());
             Application.Run(new Form3DSViewer());
             Application.Run(new FormChunkTreeViewer());
         }
