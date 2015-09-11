@@ -111,75 +111,89 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
                 GL.Materialfv(GL.GL_FRONT_AND_BACK, GL.GL_SPECULAR, material.Specular);
                 GL.Materialf(GL.GL_FRONT_AND_BACK, GL.GL_SHININESS, material.Shininess);
 
-                Texture2D texture = material.GetTexture();
-                if (texture != null)
+                Texture2D[] textures = new Texture2D[] { material.GetTexture(), material.GetBumpTexture(), material.GetReflectionTexture(), };
+                bool drawn = false;
+                foreach (var texture in textures)
                 {
-                    GL.Enable(GL.GL_TEXTURE_2D);
-                    texture.Bind();
-                }
+                    if (!(drawn && texture == null))
+                    {
+                        if (texture != null)
+                        {
+                            GL.Enable(GL.GL_TEXTURE_2D);
+                            texture.Bind();
+                        }
 
-                GL.Begin(GL.GL_TRIANGLES);
-                foreach (var usingIndex in item.Item2)
-                {
-                    Triangle tri = this.TriangleIndexes[usingIndex];
-                    // Vertex 1
-                    if (normalized)
-                    {
-                        var normal = this.normals[tri.vertex1];
-                        GL.Normal3d(normal.X, normal.Y, normal.Z);
-                    }
-                    if (texture != null)
-                    {
-                        var texCoord = this.TexCoords[tri.vertex1];
-                        GL.TexCoord2f(texCoord.U, texCoord.V);
-                    }
-                    {
-                        var vertex = this.Vertexes[tri.vertex1];
-                        GL.Vertex3d(vertex.X, vertex.Y, vertex.Z);
+                        DrawTriangles(item, texture);
+
+                        if (texture != null)
+                        {
+                            texture.Unbind();
+                            GL.Disable(GL.GL_TEXTURE_2D);
+                        }
                     }
 
-                    // Vertex 2
-                    if (normalized)
-                    {
-                        var normal = this.normals[tri.vertex2];
-                        GL.Normal3d(normal.X, normal.Y, normal.Z);
-                    }
-                    if (texture != null)
-                    {
-                        var texCoord = this.TexCoords[tri.vertex2];
-                        GL.TexCoord2f(texCoord.U, texCoord.V);
-                    }
-                    {
-                        var vertex = this.Vertexes[tri.vertex2];
-                        GL.Vertex3d(vertex.X, vertex.Y, vertex.Z);
-                    }
-
-                    // Vertex 3
-                    if (normalized)
-                    {
-                        var normal = this.normals[tri.vertex3];
-                        GL.Normal3d(normal.X, normal.Y, normal.Z);
-                    }
-                    if (texture != null)
-                    {
-                        var texCoord = this.TexCoords[tri.vertex3];
-                        GL.TexCoord2f(texCoord.U, texCoord.V);
-                    }
-                    {
-                        var vertex = this.Vertexes[tri.vertex3];
-                        GL.Vertex3d(vertex.X, vertex.Y, vertex.Z);
-                    }
-                }
-                GL.End();
-
-                if (texture != null)
-                {
-                    texture.Unbind();
-                    GL.Disable(GL.GL_TEXTURE_2D);
+                    drawn = true;
                 }
             }
 
             //Console.WriteLine ( GL.GetError () );
+        }
+
+        private void DrawTriangles(Tuple<string, ushort[]> usingMaterialIndexes, Texture2D texture)
+        {
+            GL.Begin(GL.GL_TRIANGLES);
+            foreach (var usingIndex in usingMaterialIndexes.Item2)
+            {
+                Triangle tri = this.TriangleIndexes[usingIndex];
+                // Vertex 1
+                if (normalized)
+                {
+                    var normal = this.normals[tri.vertex1];
+                    GL.Normal3d(normal.X, normal.Y, normal.Z);
+                }
+                if (texture != null)
+                {
+                    var texCoord = this.TexCoords[tri.vertex1];
+                    GL.TexCoord2f(texCoord.U, texCoord.V);
+                }
+                {
+                    var vertex = this.Vertexes[tri.vertex1];
+                    GL.Vertex3d(vertex.X, vertex.Y, vertex.Z);
+                }
+
+                // Vertex 2
+                if (normalized)
+                {
+                    var normal = this.normals[tri.vertex2];
+                    GL.Normal3d(normal.X, normal.Y, normal.Z);
+                }
+                if (texture != null)
+                {
+                    var texCoord = this.TexCoords[tri.vertex2];
+                    GL.TexCoord2f(texCoord.U, texCoord.V);
+                }
+                {
+                    var vertex = this.Vertexes[tri.vertex2];
+                    GL.Vertex3d(vertex.X, vertex.Y, vertex.Z);
+                }
+
+                // Vertex 3
+                if (normalized)
+                {
+                    var normal = this.normals[tri.vertex3];
+                    GL.Normal3d(normal.X, normal.Y, normal.Z);
+                }
+                if (texture != null)
+                {
+                    var texCoord = this.TexCoords[tri.vertex3];
+                    GL.TexCoord2f(texCoord.U, texCoord.V);
+                }
+                {
+                    var vertex = this.Vertexes[tri.vertex3];
+                    GL.Vertex3d(vertex.X, vertex.Y, vertex.Z);
+                }
+            }
+            GL.End();
         }
     }
 }

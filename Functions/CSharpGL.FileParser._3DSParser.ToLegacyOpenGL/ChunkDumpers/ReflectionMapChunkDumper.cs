@@ -15,7 +15,9 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
             {
                 if(item is MappingFilenameChunk)
                 {
-                    (item as MappingFilenameChunk).Dump(model, material);
+                    string filename = string.Empty;
+                    (item as MappingFilenameChunk).Dump(out filename);
+                    material.ReflectionFilename = filename;
                 }
                 else if(item is MappingParametersChunk)
                 {

@@ -9,9 +9,9 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers
 {
     public static partial class ChunkDumper
     {
-        public static void Dump(this MappingFilenameChunk chunk, ThreeDSModel4LegacyOpenGL model, ThreeDSMaterial4LegacyOpenGL material)
+        public static void Dump(this MappingFilenameChunk chunk, out string filename)
         {
-            material.TextureFilename = chunk.TextureFilename;
+            filename = chunk.TextureFilename;
         }
     }
 }

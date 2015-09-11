@@ -38,8 +38,6 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
         public float[] Specular = new float[] { 0.5f, 0.5f, 0.5f };
         public ushort Shininess = 50;
 
-        public string TextureFilename;
-
         public override string ToString()
         {
             //return base.ToString();
@@ -71,7 +69,62 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
             return this.texture;
         }
 
+        bool bumpTextureInitialized = false;
+        public Texture2D GetBumpTexture()
+        {
+            if (!bumpTextureInitialized)
+            {
+                lock (synObj)
+                {
+                    if (!bumpTextureInitialized)
+                    {
+                        if (!string.IsNullOrEmpty(this.BumpFilename))
+                        {
+                            var texture = new Texture2D();
+                            var bitmap = new System.Drawing.Bitmap(this.BumpFilename);
+                            texture.Initialize(bitmap);
+                            this.BumpTexture = texture;
+                        }
+
+                        bumpTextureInitialized = true;
+                    }
+                }
+            }
+
+            return this.BumpTexture;
+        }
+
+        bool reflectionTextureInitialized = false;
+        public Texture2D GetReflectionTexture()
+        {
+            if (!reflectionTextureInitialized)
+            {
+                lock (synObj)
+                {
+                    if (!reflectionTextureInitialized)
+                    {
+                        if (!string.IsNullOrEmpty(this.ReflectionFilename))
+                        {
+                            var texture = new Texture2D();
+                            var bitmap = new System.Drawing.Bitmap(this.ReflectionFilename);
+                            texture.Initialize(bitmap);
+                            this.ReflectionTexture = texture;
+                        }
+
+                        reflectionTextureInitialized = true;
+                    }
+                }
+            }
+
+            return this.ReflectionTexture;
+        }
+
         private static readonly object synObj = new object();
         private Texture2D texture;
+        private Texture2D BumpTexture;
+        private Texture2D ReflectionTexture;
+        public string TextureFilename;
+        public string BumpFilename;
+        public string ReflectionFilename;
     }
 }
