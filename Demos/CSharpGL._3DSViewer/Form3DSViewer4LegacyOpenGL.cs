@@ -210,6 +210,7 @@ namespace CSharpGL._3DSViewer
                     return;
                 }
 
+                int uvMapCount = 0;
                 int uvMapLength = 500;
                 var pens = new Pen[] { new Pen(Color.Red), new Pen(Color.Green), new Pen(Color.Blue) };
                 int penIndex = 0;
@@ -221,7 +222,7 @@ namespace CSharpGL._3DSViewer
                         {
                             var graphics = Graphics.FromImage(uvMap);
                             var material = model.MaterialDict[item.Item1];
-                            
+
                             if (entity.TexCoords != null && entity.TriangleIndexes != null)
                             {
                                 foreach (var usingIndex in item.Item2)
@@ -244,7 +245,7 @@ namespace CSharpGL._3DSViewer
                                 graphics.FillRectangle(new SolidBrush(Color.Gray), 0, 0, uvMapLength, uvMapLength);
                             }
                             uvMap.Save(Path.Combine(file.DirectoryName,
-                                string.Format("{0}-{1}.bmp", file.Name, item.Item1)));
+                                string.Format("{0}-{1}-{2}.bmp", file.Name, uvMapCount++, item.Item1)));
 
                             graphics.Dispose();
                         }
