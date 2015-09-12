@@ -197,43 +197,62 @@ namespace CSharpGL._3DSViewer
         {
             if (open3DSDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                var _3dsFile = new ThreeDSFile(open3DSDlg.FileName);
-                int uvMapCount = 0;
+                var parser = new ThreeDSParser();
+                var filename = this.open3DSDlg.FileName;
+                var file = new FileInfo(open3DSDlg.FileName);
+
+                var tree = parser.Parse(filename);
+                ThreeDSModel4LegacyOpenGL model = null;
+                tree.Dump(out model);
+                if (model.Entities == null)
+                {
+                    MessageBox.Show("No entity found!");
+                    return;
+                }
+
                 int uvMapLength = 500;
                 var pens = new Pen[] { new Pen(Color.Red), new Pen(Color.Green), new Pen(Color.Blue) };
                 int penIndex = 0;
-                foreach (var entity in _3dsFile.ThreeDSModel.Entities)
+                foreach (var entity in model.Entities)
                 {
-                    using (var uvMap = new Bitmap(uvMapLength, uvMapLength))
+                    foreach (var item in entity.usingMaterialIndexesList)
                     {
-                        var graphics = Graphics.FromImage(uvMap);
-                        if (entity.texcoords != null && entity.indices != null)
+                        using (var uvMap = new Bitmap(uvMapLength, uvMapLength))
                         {
-                            foreach (var triangle in entity.indices)
+                            var graphics = Graphics.FromImage(uvMap);
+                            var material = model.MaterialDict[item.Item1];
+                            
+                            if (entity.TexCoords != null && entity.TriangleIndexes != null)
                             {
-                                var uv1 = entity.texcoords[triangle.vertex1];
-                                var uv2 = entity.texcoords[triangle.vertex2];
-                                var uv3 = entity.texcoords[triangle.vertex3];
-                                var p1 = new Point((int)(uv1.U * uvMapLength), (int)(uv1.V * uvMapLength));
-                                var p2 = new Point((int)(uv2.U * uvMapLength), (int)(uv2.V * uvMapLength));
-                                var p3 = new Point((int)(uv3.U * uvMapLength), (int)(uv3.V * uvMapLength));
-                                graphics.DrawLine(pens[penIndex], p1, p2);
-                                graphics.DrawLine(pens[penIndex], p2, p3);
-                                graphics.DrawLine(pens[penIndex], p3, p1);
-                                penIndex = (penIndex + 1 == pens.Length) ? 0 : penIndex + 1;
+                                foreach (var usingIndex in item.Item2)
+                                {
+                                    var tri = entity.TriangleIndexes[usingIndex];
+                                    var uv1 = entity.TexCoords[tri.vertex1];
+                                    var uv2 = entity.TexCoords[tri.vertex2];
+                                    var uv3 = entity.TexCoords[tri.vertex3];
+                                    var p1 = new Point((int)(uv1.U * uvMapLength), (int)(uv1.V * uvMapLength));
+                                    var p2 = new Point((int)(uv2.U * uvMapLength), (int)(uv2.V * uvMapLength));
+                                    var p3 = new Point((int)(uv3.U * uvMapLength), (int)(uv3.V * uvMapLength));
+                                    graphics.DrawLine(pens[penIndex], p1, p2);
+                                    graphics.DrawLine(pens[penIndex], p2, p3);
+                                    graphics.DrawLine(pens[penIndex], p3, p1);
+                                    penIndex = (penIndex + 1 == pens.Length) ? 0 : penIndex + 1;
+                                }
                             }
+                            else
+                            {
+                                graphics.FillRectangle(new SolidBrush(Color.Gray), 0, 0, uvMapLength, uvMapLength);
+                            }
+                            uvMap.Save(Path.Combine(file.DirectoryName,
+                                string.Format("{0}-{1}.bmp", file.Name, item.Item1)));
+
+                            graphics.Dispose();
                         }
-                        else
-                        {
-                            graphics.FillRectangle(new SolidBrush(Color.Gray), 0, 0, uvMapLength, uvMapLength);
-                        }
-                        var file = new FileInfo(open3DSDlg.FileName);
-                        uvMap.Save(Path.Combine(file.DirectoryName,
-                            string.Format("{0}{1}.bmp", file.Name, uvMapCount)));
-                        graphics.Dispose();
-                        Process.Start("explorer", file.DirectoryName);
+
                     }
                 }
+
+                Process.Start("explorer", file.DirectoryName);
             }
         }
 
