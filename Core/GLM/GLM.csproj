@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="glm_vec.cs" />
+    <Compile Include="GTC\quat.cs" />
     <Compile Include="mat2.cs" />
     <Compile Include="mat3.cs" />
     <Compile Include="mat4.cs" />
