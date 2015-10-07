@@ -11,6 +11,7 @@ using System.Threading;
 using CSharpGL.Objects;
 using System.ComponentModel.Design;
 using CSharpGL.Objects.RenderContexts;
+using System.Diagnostics;
 
 namespace CSharpGL.Winforms
 {
@@ -21,6 +22,8 @@ namespace CSharpGL.Winforms
     [DefaultEvent("OpenGLDraw")]
     public partial class GLCanvas : UserControl, ISupportInitialize
     {
+        private Stopwatch stopWatch = new Stopwatch();
+
         protected RenderContext renderContext;
 
         private bool designMode;
@@ -82,6 +85,8 @@ namespace CSharpGL.Winforms
             RenderContext renderContext = this.renderContext;
             if (renderContext != null)
             {
+                stopWatch.Restart();
+
                 Graphics graphics = e.Graphics;
 
                 //	Make sure it's our instance of openSharpGL that's active.
@@ -107,6 +112,10 @@ namespace CSharpGL.Winforms
                 var handleDeviceContext = graphics.GetHdc();
                 renderContext.Blit(handleDeviceContext);
                 graphics.ReleaseHdc(handleDeviceContext);
+
+                stopWatch.Stop();
+
+                this.FPS = 1000.0 / stopWatch.Elapsed.TotalMilliseconds;
             }
             else
             {
@@ -158,6 +167,8 @@ namespace CSharpGL.Winforms
                 renderContext.Dispose();
             }
         }
+
+        public double FPS { get; private set; }
 
         /// <summary>
         /// Gets or sets the desired OpenGL version.

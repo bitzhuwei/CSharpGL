@@ -14,8 +14,6 @@ namespace HelloCSharpGL
 {
     public partial class FormModernOpenGL : Form
     {
-        private Stopwatch watch = new Stopwatch();
-
         private PyramidDemo pyramidElement;
 
         public FormModernOpenGL()
@@ -25,16 +23,12 @@ namespace HelloCSharpGL
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            watch.Restart();
-
             //  Clear the color and depth buffer.
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             this.pyramidElement.Render();
 
-            watch.Stop();
-
-            this.Text = string.Format("FormModernOpenGL FPS: {0}", 1000.0 / (watch.Elapsed.TotalMilliseconds));
+            this.Text = string.Format("FormModernOpenGL FPS: {0}", this.glCanvas1.FPS);
 
         }
 
