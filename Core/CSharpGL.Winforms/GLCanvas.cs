@@ -227,10 +227,9 @@ namespace CSharpGL.Winforms
         }
 
         /// <summary>
-        /// 获取或设置在相对于上一次发生的 System.Windows.Forms.Timer.Tick 事件引发 System.Windows.Forms.Timer.Tick
-        //     事件之前的时间（以毫秒为单位）。该值不能小于 1。
+        /// 获取或设置两次重绘之间的时间间隔（以毫秒为单位）。该值不能小于 1。
         /// </summary>
-        [Description("The rate at which the control should be re-drawn, in Hertz."), Category("CSharpGL"), DefaultValue(50)]
+        [Description("获取或设置两次重绘之间的时间间隔（以毫秒为单位）。该值不能小于 1。"), Category("CSharpGL"), DefaultValue(50)]
         public int TimerTriggerInterval
         {
             get { return this.redrawTimer.Interval; }
