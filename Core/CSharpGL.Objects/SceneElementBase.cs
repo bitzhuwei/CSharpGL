@@ -8,18 +8,22 @@ using System.Threading.Tasks;
 namespace CSharpGL.Objects
 {
     /// <summary>
-    /// 用OPENGL初始化和渲染一个元素。
+    /// 用OpenGL初始化和渲染一个元素。
+    /// 只做初始化和渲染这两件事。
+    /// 渲染前后有事件event可以配置。
     /// </summary>
     public abstract class SceneElementBase : IRenderable
     {
-
+        /// <summary>
+        /// 为便于调试而设置的ID值，没有应用意义。
+        /// </summary>
         public int ID { get; protected set; }
 
         public static int idCounter = 0;
 
         public override string ToString()
         {
-            return string.Format("element: {0}", this.ID.ToString());
+            return string.Format("element: {0}，{1}", this.ID, this.GetType());
         }
 
         /// <summary>
@@ -33,7 +37,7 @@ namespace CSharpGL.Objects
         protected bool initialized = false;
 
         /// <summary>
-        /// 初始化此Element
+        /// 初始化此Element，此方法应且只应执行1次。
         /// </summary>
         public void Initialize()
         {
@@ -46,7 +50,7 @@ namespace CSharpGL.Objects
         }
 
         /// <summary>
-        /// 初始化此Element
+        /// 初始化此Element，此方法应且只应执行1次。
         /// </summary>
         protected abstract void DoInitialize();
 

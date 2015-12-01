@@ -8,6 +8,11 @@ namespace System
 {
     public static class DumpTreeToText
     {
+        /// <summary>
+        /// 像DOS的树状展示文件夹结构一样展示树结构。
+        /// </summary>
+        /// <param name="chunk"></param>
+        /// <returns></returns>
         public static string DumpToText(this ITreeNode chunk)
         {
             StringBuilder builder = new StringBuilder();
