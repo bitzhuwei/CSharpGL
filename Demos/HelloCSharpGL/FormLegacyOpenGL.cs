@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,8 @@ namespace HelloCSharpGL
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             DrawPyramid();
+
+            this.Text = string.Format("FormLegacyOpenGL FPS: {0}", this.glCanvas1.FPS);
         }
 
         public void DrawPyramid()

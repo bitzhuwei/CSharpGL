@@ -11,6 +11,7 @@ using System.Threading;
 using CSharpGL.Objects;
 using System.ComponentModel.Design;
 using CSharpGL.Objects.RenderContexts;
+using System.Diagnostics;
 
 namespace CSharpGL.Winforms
 {
@@ -21,6 +22,8 @@ namespace CSharpGL.Winforms
     [DefaultEvent("OpenGLDraw")]
     public partial class GLCanvas : UserControl, ISupportInitialize
     {
+        private Stopwatch stopWatch = new Stopwatch();
+
         protected RenderContext renderContext;
 
         private bool designMode;
@@ -82,6 +85,8 @@ namespace CSharpGL.Winforms
             RenderContext renderContext = this.renderContext;
             if (renderContext != null)
             {
+                stopWatch.Restart();
+
                 Graphics graphics = e.Graphics;
 
                 //	Make sure it's our instance of openSharpGL that's active.
@@ -107,6 +112,10 @@ namespace CSharpGL.Winforms
                 var handleDeviceContext = graphics.GetHdc();
                 renderContext.Blit(handleDeviceContext);
                 graphics.ReleaseHdc(handleDeviceContext);
+
+                stopWatch.Stop();
+
+                this.FPS = 1000.0 / stopWatch.Elapsed.TotalMilliseconds;
             }
             else
             {
@@ -158,6 +167,8 @@ namespace CSharpGL.Winforms
                 renderContext.Dispose();
             }
         }
+
+        public double FPS { get; private set; }
 
         /// <summary>
         /// Gets or sets the desired OpenGL version.
@@ -216,10 +227,9 @@ namespace CSharpGL.Winforms
         }
 
         /// <summary>
-        /// 获取或设置在相对于上一次发生的 System.Windows.Forms.Timer.Tick 事件引发 System.Windows.Forms.Timer.Tick
-        //     事件之前的时间（以毫秒为单位）。该值不能小于 1。
+        /// 获取或设置两次重绘之间的时间间隔（以毫秒为单位）。该值不能小于 1。
         /// </summary>
-        [Description("The rate at which the control should be re-drawn, in Hertz."), Category("CSharpGL"), DefaultValue(50)]
+        [Description("获取或设置两次重绘之间的时间间隔（以毫秒为单位）。该值不能小于 1。"), Category("CSharpGL"), DefaultValue(50)]
         public int TimerTriggerInterval
         {
             get { return this.redrawTimer.Interval; }

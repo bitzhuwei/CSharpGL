@@ -116,19 +116,25 @@ namespace System
 
             lock (synObj)
             {
-                allocatedArrays.Add(this);
+                //allocatedArrays.Add(this);
+                //allocatedArrays.Add(new WeakReference<IDisposable>(this));
+                allocatedArrays.Add(this.Header, new WeakReference<IDisposable>(this));
             }
             //UnmanagedArrayBase.Add(this);
         }
 
         private static readonly object synObj = new object();
-        private static readonly List<IDisposable> allocatedArrays = new List<IDisposable>();
+        //private static readonly List<IDisposable> allocatedArrays = new List<IDisposable>();
+        //private static readonly List<WeakReference<IDisposable>> allocatedArrays = new List<WeakReference<IDisposable>>();
+        private static readonly Dictionary<IntPtr, WeakReference<IDisposable>> allocatedArrays = new Dictionary<IntPtr, WeakReference<IDisposable>>();
 
-        //[MethodImpl(MethodImplOptions.Synchronized)]//这造成死锁，不知道是为什么
-        private static void Add(UnmanagedArrayBase array)
-        {
-            allocatedArrays.Add(array);
-        }
+
+        ////[MethodImpl(MethodImplOptions.Synchronized)]//这造成死锁，不知道是为什么
+        //private static void Add(UnmanagedArrayBase array)
+        //{
+        //    //allocatedArrays.Add(array);
+        //    allocatedArrays.Add(new WeakReference<IDisposable>(array));
+        //}
         /// <summary>
         /// 立即释放所有<see cref="UnmanagedArray"/>。
         /// </summary>
@@ -137,9 +143,15 @@ namespace System
         {
             lock (synObj)
             {
-                foreach (var item in allocatedArrays)
+                var list = new List<WeakReference<IDisposable>>(allocatedArrays.Values.AsEnumerable());
+                foreach (var item in list)
                 {
-                    item.Dispose();
+                    //item.Dispose();
+                    IDisposable target;
+                    if (item.TryGetTarget(out target))
+                    {
+                        target.Dispose();
+                    }
                 }
 
                 allocatedArrays.Clear();
@@ -195,6 +207,11 @@ namespace System
                     try
                     {
                         Marshal.FreeHGlobal(ptr);
+
+                        lock (synObj)
+                        {
+                            allocatedArrays.Remove(ptr);
+                        }
                     }
                     catch (Exception)
                     {
