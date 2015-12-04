@@ -146,6 +146,16 @@ namespace CSharpGL.Winforms.Demo
             (new FormTexImage2D()).Show();
         }
 
+        private void btnFormMultipleHexahedrons1_Click(object sender, EventArgs e)
+        {
+            (new FormMultipleHexahedrons1()).Show();
+        }
+
+        private void btnFormMultipleHexahedrons2_Click(object sender, EventArgs e)
+        {
+            (new FormMultipleHexahedrons2()).Show();
+        }
+
 
     }
 }

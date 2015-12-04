@@ -24,6 +24,8 @@ namespace CSharpGL.Objects.SceneElements
         /// VAO
         /// </summary>
         protected uint[] vao;
+        protected uint[] positionBufferObject;
+        protected uint[] colorBufferObject;
 
         /// <summary>
         /// 图元类型
@@ -84,20 +86,22 @@ namespace CSharpGL.Objects.SceneElements
             shaderProgram.AssertValid();
         }
 
-        protected void InitializeVAO(out uint[] vao, out DrawMode primitiveMode, out int vertexCount)
+        //protected void InitializeVAO(out uint[] vao, out DrawMode primitiveMode, out int vertexCount)
+        protected void InitializeVAO()
         {
-            primitiveMode = DrawMode.Triangles;
-            vertexCount = positions.Length;
+            this.primitiveMode = DrawMode.Triangles;
+            this.vertexCount = positions.Length;
 
-            vao = new uint[1];
+            this.vao = new uint[1];
             GL.GenVertexArrays(1, vao);
             GL.BindVertexArray(vao[0]);
 
             //  Create a vertex buffer for the vertex data.
             {
-                uint[] ids = new uint[1];
-                GL.GenBuffers(1, ids);
-                GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
+                //uint[] ids = new uint[1];
+                this.positionBufferObject = new uint[1];
+                GL.GenBuffers(1, this.positionBufferObject);
+                GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferObject[0]);
                 UnmanagedArray<vec3> positionArray = new UnmanagedArray<vec3>(positions.Length);
                 for (int i = 0; i < positions.Length; i++)
                 {
@@ -115,9 +119,10 @@ namespace CSharpGL.Objects.SceneElements
 
             //  Now do the same for the colour data.
             {
-                uint[] ids = new uint[1];
-                GL.GenBuffers(1, ids);
-                GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
+                //uint[] ids = new uint[1];
+                this.colorBufferObject = new uint[1];
+                GL.GenBuffers(1, this.colorBufferObject);
+                GL.BindBuffer(BufferTarget.ArrayBuffer, this.colorBufferObject[0]);
                 UnmanagedArray<vec3> colorArray = new UnmanagedArray<vec3>(positions.Length);
                 for (int i = 0; i < colors.Length; i++)
                 {
@@ -141,7 +146,8 @@ namespace CSharpGL.Objects.SceneElements
         {
             InitializeShader(out shaderProgram);
 
-            InitializeVAO(out vao, out primitiveMode, out vertexCount);
+            //InitializeVAO(out vao, out primitiveMode, out vertexCount);
+            InitializeVAO();
 
             //base.BeforeRendering += IMVPHelper.Getelement_BeforeRendering();
             //base.AfterRendering += IMVPHelper.Getelement_AfterRendering();
@@ -171,6 +177,15 @@ namespace CSharpGL.Objects.SceneElements
         ShaderProgram IMVP.GetShaderProgram()
         {
             return this.shaderProgram;
+        }
+
+        protected override void CleanUnmanagedRes()
+        {
+            GL.InvalidateBufferData(this.positionBufferObject[0]);
+            GL.InvalidateBufferData(this.colorBufferObject[0]);
+            GL.DeleteBuffers(this.positionBufferObject.Length, this.positionBufferObject);
+            GL.DeleteBuffers(this.colorBufferObject.Length, this.colorBufferObject);
+            GL.DeleteVertexArrays(this.vao.Length, this.vao);
         }
     }
 }

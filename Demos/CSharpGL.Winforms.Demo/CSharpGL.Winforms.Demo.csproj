@@ -52,6 +52,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CameraDictionary.cs" />
+    <Compile Include="FormMultipleHexahedrons2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMultipleHexahedrons2.Designer.cs">
+      <DependentUpon>FormMultipleHexahedrons2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMultipleHexahedrons1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMultipleHexahedrons1.Designer.cs">
+      <DependentUpon>FormMultipleHexahedrons1.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMapBuffer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +217,12 @@
       <DependentUpon>ScientificVisual3DControl.cs</DependentUpon>
     </Compile>
     <Compile Include="TestProjectionFunctions.cs" />
+    <EmbeddedResource Include="FormMultipleHexahedrons2.resx">
+      <DependentUpon>FormMultipleHexahedrons2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMultipleHexahedrons1.resx">
+      <DependentUpon>FormMultipleHexahedrons1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMapBuffer.resx">
       <DependentUpon>FormMapBuffer.cs</DependentUpon>
     </EmbeddedResource>

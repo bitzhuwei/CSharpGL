@@ -12,7 +12,7 @@ namespace CSharpGL.Objects
     /// 只做初始化和渲染这两件事。
     /// 渲染前后有事件event可以配置。
     /// </summary>
-    public abstract class SceneElementBase : IRenderable
+    public abstract class SceneElementBase : IRenderable, IDisposable
     {
         /// <summary>
         /// 为便于调试而设置的ID值，没有应用意义。
@@ -93,6 +93,70 @@ namespace CSharpGL.Objects
         /// </summary>
         public event EventHandler<RenderEventArgs> AfterRendering;
 
+
+
+        #region IDisposable Members
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        } // end sub
+
+        /// <summary>
+        /// Destruct instance of the class.
+        /// </summary>
+        ~SceneElementBase()
+        {
+            this.Dispose(false);
+        }
+
+        /// <summary>
+        /// Backing field to track whether Dispose has been called.
+        /// </summary>
+        private bool disposedValue = false;
+
+        /// <summary>
+        /// Dispose managed and unmanaged resources of this instance.
+        /// </summary>
+        /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
+        protected virtual void Dispose(bool disposing)
+        {
+
+            if (this.disposedValue == false)
+            {
+                if (disposing)
+                {
+                    // Dispose managed resources.
+                    CleanManagedRes();
+                } // end if
+
+                // Dispose unmanaged resources.
+                CleanUnmanagedRes();
+            } // end if
+
+            this.disposedValue = true;
+        } // end sub
+
+        #endregion
+
+        protected virtual void CleanUnmanagedRes()
+        {
+            // do something like this if needed.
+            //GL.InvalidateBufferData(this.vertexsBufferObject);
+            //GL.InvalidateBufferData(this.colorsBufferObject);
+            //GL.InvalidateBufferData(this.visiblesBufferObject);
+            //var buffers = new uint[] { this.vertexsBufferObject, this.colorsBufferObject, this.visiblesBufferObject };
+            //GL.DeleteBuffers(buffers.Length, buffers);
+            //GL.DeleteVertexArrays(1, new uint[] { this.vertexArrayObject });
+        }
+
+        protected virtual void CleanManagedRes()
+        {
+        }
     }
 
     ///// <summary>

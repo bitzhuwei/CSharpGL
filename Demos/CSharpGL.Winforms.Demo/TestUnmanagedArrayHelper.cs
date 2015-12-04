@@ -277,6 +277,8 @@ namespace CSharpGL.Winforms.Demo
 
             // 立即释放所有非托管数组占用的内存，任何之前创建的UnmanagedBase数组都不再可用了。
             UnmanagedArray<int>.FreeAll();
+            // or
+            UnmanagedArrayBase.FreeAll();
         }
     }
 }

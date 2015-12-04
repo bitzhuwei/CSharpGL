@@ -68,5 +68,10 @@ namespace CSharpGL.Winforms.Demo
             var arg = new RenderEventArgs(RenderModes.Render, null);
             pyramidElement.Render(arg);
         }
+
+        protected override void OnHandleDestroyed(System.EventArgs e)
+        {
+            base.OnHandleDestroyed(e);
+        }
     }
 }

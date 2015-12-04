@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DemoHexahedron2Element.cs" />
+    <Compile Include="DemoHexahedron1Element.cs" />
     <Compile Include="DemoColorCodedPickingElement.cs" />
     <Compile Include="DemoLegacyTexture3DCubeElement.cs" />
     <Compile Include="DemoMapBuffer.cs" />
@@ -158,6 +160,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DemoTexImage2D.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DemoHexahedron1Element.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DemoHexahedron1Element.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DemoHexahedron2Element.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DemoHexahedron2Element.vert" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

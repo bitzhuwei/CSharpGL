@@ -52,6 +52,10 @@
             this.btnFormInstancedRendering = new System.Windows.Forms.Button();
             this.btnFormMapBuffer = new System.Windows.Forms.Button();
             this.btnTexImage2D = new System.Windows.Forms.Button();
+            this.btnFormMultipleHexahedrons1 = new System.Windows.Forms.Button();
+            this.btnFormMultipleHexahedrons2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -309,6 +313,50 @@
             this.btnTexImage2D.UseVisualStyleBackColor = true;
             this.btnTexImage2D.Click += new System.EventHandler(this.btnTexImage2D_Click);
             // 
+            // btnFormMultipleHexahedrons1
+            // 
+            this.btnFormMultipleHexahedrons1.Location = new System.Drawing.Point(374, 161);
+            this.btnFormMultipleHexahedrons1.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormMultipleHexahedrons1.Name = "btnFormMultipleHexahedrons1";
+            this.btnFormMultipleHexahedrons1.Size = new System.Drawing.Size(353, 29);
+            this.btnFormMultipleHexahedrons1.TabIndex = 4;
+            this.btnFormMultipleHexahedrons1.Text = "FormMultipleHexahedrons1";
+            this.btnFormMultipleHexahedrons1.UseVisualStyleBackColor = true;
+            this.btnFormMultipleHexahedrons1.Click += new System.EventHandler(this.btnFormMultipleHexahedrons1_Click);
+            // 
+            // btnFormMultipleHexahedrons2
+            // 
+            this.btnFormMultipleHexahedrons2.Location = new System.Drawing.Point(374, 198);
+            this.btnFormMultipleHexahedrons2.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormMultipleHexahedrons2.Name = "btnFormMultipleHexahedrons2";
+            this.btnFormMultipleHexahedrons2.Size = new System.Drawing.Size(353, 29);
+            this.btnFormMultipleHexahedrons2.TabIndex = 4;
+            this.btnFormMultipleHexahedrons2.Text = "FormMultipleHexahedrons2";
+            this.btnFormMultipleHexahedrons2.UseVisualStyleBackColor = true;
+            this.btnFormMultipleHexahedrons2.Click += new System.EventHandler(this.btnFormMultipleHexahedrons2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(374, 235);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(353, 29);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "FormMapBuffer";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.btnFormMapBuffer_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(374, 272);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(353, 29);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "FormMapBuffer";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.btnFormMapBuffer_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -321,6 +369,10 @@
             this.Controls.Add(this.btnCamera);
             this.Controls.Add(this.btnSimpleUICube);
             this.Controls.Add(this.btnFormPointSpriteStringElement);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnFormMultipleHexahedrons2);
+            this.Controls.Add(this.btnFormMultipleHexahedrons1);
             this.Controls.Add(this.btnFormMapBuffer);
             this.Controls.Add(this.btnFormInstancedRendering);
             this.Controls.Add(this.btnFormTransformFeedback);
@@ -370,5 +422,9 @@
         private System.Windows.Forms.Button btnFormInstancedRendering;
         private System.Windows.Forms.Button btnFormMapBuffer;
         private System.Windows.Forms.Button btnTexImage2D;
+        private System.Windows.Forms.Button btnFormMultipleHexahedrons1;
+        private System.Windows.Forms.Button btnFormMultipleHexahedrons2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
