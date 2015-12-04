@@ -144,8 +144,6 @@ namespace CSharpGL.Winforms.Demo
 
         private void FormColorCodedPicking_Load(object sender, EventArgs e)
         {
-            this.txtPickedInfo.Text = string.Format("camera type: {0}", this.camera.CameraType);
-
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("Use 'c' to switch camera types between perspective and ortho");
             builder.AppendLine("Use 'j' to increase faces");
