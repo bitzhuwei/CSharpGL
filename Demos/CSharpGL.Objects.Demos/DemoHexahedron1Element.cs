@@ -92,16 +92,11 @@ namespace CSharpGL.Objects.Demos
                 this.currentShaderProgram = this.shaderProgram;
             }
         }
+        uint positionBuffer, colorBuffer, indexBuffer;
 
         private void InitVAO()
         {
             int size = this.size;
-
-            this.vao = new uint[1];
-
-            GL.GenVertexArrays(1, vao);
-
-            GL.BindVertexArray(vao[0]);
 
             // prepare positions
             {
@@ -122,16 +117,13 @@ namespace CSharpGL.Objects.Demos
                     }
                 }
 
-                uint in_PositionLocation = shaderProgram.GetAttributeLocation(strin_Position);
-
                 uint[] ids = new uint[1];
                 GL.GenBuffers(1, ids);
                 GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
                 GL.BufferData(BufferTarget.ArrayBuffer, positionArray, BufferUsage.StaticDraw);
-                GL.VertexAttribPointer(in_PositionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-                GL.EnableVertexAttribArray(in_PositionLocation);
 
                 positionArray.Dispose();
+                positionBuffer = ids[0];
             }
             // prepare colors
             {
@@ -154,17 +146,15 @@ namespace CSharpGL.Objects.Demos
                     }
                 }
 
-                uint in_ColorLocation = shaderProgram.GetAttributeLocation(strin_Color);
-
                 uint[] ids = new uint[1];
                 GL.GenBuffers(1, ids);
                 GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
                 GL.BufferData(BufferTarget.ArrayBuffer, colorArray, BufferUsage.StaticDraw);
-                GL.VertexAttribPointer(in_ColorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-                GL.EnableVertexAttribArray(in_ColorLocation);
 
                 colorArray.Dispose();
+                colorBuffer = ids[0];
             }
+
             // prepare index
             {
                 var indexArray = new UnmanagedArray<uint>(size * size * size * (14 + 1));
@@ -192,10 +182,43 @@ namespace CSharpGL.Objects.Demos
                 GL.BufferData(BufferTarget.ElementArrayBuffer, indexArray, BufferUsage.StaticDraw);
 
                 indexArray.Dispose();
+                indexBuffer = ids[0];
             }
 
-            //  Unbind the vertex array, we've finished specifying data for it.
-            GL.BindVertexArray(0);
+            // create vao
+            {
+                this.vao = new uint[1];
+
+                GL.GenVertexArrays(1, vao);
+
+                GL.BindVertexArray(vao[0]);
+
+                // prepare positions
+                {
+                    uint in_PositionLocation = shaderProgram.GetAttributeLocation(strin_Position);
+
+                    GL.BindBuffer(BufferTarget.ArrayBuffer, positionBuffer);
+                    GL.VertexAttribPointer(in_PositionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+                    GL.EnableVertexAttribArray(in_PositionLocation);
+                }
+                // prepare colors
+                {
+                    uint in_ColorLocation = shaderProgram.GetAttributeLocation(strin_Color);
+
+                    GL.BindBuffer(BufferTarget.ArrayBuffer, colorBuffer);
+                    GL.VertexAttribPointer(in_ColorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+                    GL.EnableVertexAttribArray(in_ColorLocation);
+                }
+
+                // prepare index
+                {
+                    GL.BindBuffer(BufferTarget.ElementArrayBuffer, indexBuffer);
+                }
+
+                //  Unbind the vertex array, we've finished specifying data for it.
+                GL.BindVertexArray(0);
+
+            }
         }
 
         protected ShaderProgram InitializeShader()
@@ -236,9 +259,33 @@ namespace CSharpGL.Objects.Demos
             //int size = this.size;
             //int count = size * size * size * 15;
             //GL.DrawElements(PrimitiveModes.TriangleStrip, count, GL.GL_UNSIGNED_INT, IntPtr.Zero);
+
+            //// prepare positions
+            //{
+            //    uint in_PositionLocation = shaderProgram.GetAttributeLocation(strin_Position);
+
+            //    GL.BindBuffer(BufferTarget.ArrayBuffer, positionBuffer);
+            //    GL.VertexAttribPointer(in_PositionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+            //    GL.EnableVertexAttribArray(in_PositionLocation);
+            //}
+            //// prepare colors
+            //{
+            //    uint in_ColorLocation = shaderProgram.GetAttributeLocation(strin_Color);
+
+            //    GL.BindBuffer(BufferTarget.ArrayBuffer, colorBuffer);
+            //    GL.VertexAttribPointer(in_ColorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+            //    GL.EnableVertexAttribArray(in_ColorLocation);
+            //}
+
+            //// prepare index
+            //{
+            //    GL.BindBuffer(BufferTarget.ElementArrayBuffer, indexBuffer);
+            //}
+
+
             GL.DrawElements(DrawMode.TriangleStrip, this.count, GL.GL_UNSIGNED_INT, IntPtr.Zero);
 
-            GL.BindVertexArray(0);
+            //GL.BindVertexArray(0);
 
             GL.Disable(GL.GL_PRIMITIVE_RESTART);
         }
