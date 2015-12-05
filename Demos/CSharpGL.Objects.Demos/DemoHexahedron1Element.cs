@@ -188,15 +188,12 @@ namespace CSharpGL.Objects.Demos
             // create vao
             {
                 this.vao = new uint[1];
-
                 GL.GenVertexArrays(1, vao);
-
                 GL.BindVertexArray(vao[0]);
 
                 // prepare positions
                 {
                     uint in_PositionLocation = shaderProgram.GetAttributeLocation(strin_Position);
-
                     GL.BindBuffer(BufferTarget.ArrayBuffer, positionBuffer);
                     GL.VertexAttribPointer(in_PositionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                     GL.EnableVertexAttribArray(in_PositionLocation);
@@ -204,12 +201,10 @@ namespace CSharpGL.Objects.Demos
                 // prepare colors
                 {
                     uint in_ColorLocation = shaderProgram.GetAttributeLocation(strin_Color);
-
                     GL.BindBuffer(BufferTarget.ArrayBuffer, colorBuffer);
                     GL.VertexAttribPointer(in_ColorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                     GL.EnableVertexAttribArray(in_ColorLocation);
                 }
-
                 // prepare index
                 {
                     GL.BindBuffer(BufferTarget.ElementArrayBuffer, indexBuffer);
@@ -217,7 +212,6 @@ namespace CSharpGL.Objects.Demos
 
                 //  Unbind the vertex array, we've finished specifying data for it.
                 GL.BindVertexArray(0);
-
             }
         }
 
@@ -254,16 +248,15 @@ namespace CSharpGL.Objects.Demos
             GL.Enable(GL.GL_PRIMITIVE_RESTART);
             GL.PrimitiveRestartIndex(uint.MaxValue);
 
+            // the way with VAO:
             GL.BindVertexArray(vao[0]);
-
-            //int size = this.size;
-            //int count = size * size * size * 15;
-            //GL.DrawElements(PrimitiveModes.TriangleStrip, count, GL.GL_UNSIGNED_INT, IntPtr.Zero);
-
+            GL.DrawElements(DrawMode.TriangleStrip, this.count, GL.GL_UNSIGNED_INT, IntPtr.Zero);
+            GL.BindVertexArray(0);
+            
+            // the way without vAO:
             //// prepare positions
             //{
             //    uint in_PositionLocation = shaderProgram.GetAttributeLocation(strin_Position);
-
             //    GL.BindBuffer(BufferTarget.ArrayBuffer, positionBuffer);
             //    GL.VertexAttribPointer(in_PositionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
             //    GL.EnableVertexAttribArray(in_PositionLocation);
@@ -271,21 +264,14 @@ namespace CSharpGL.Objects.Demos
             //// prepare colors
             //{
             //    uint in_ColorLocation = shaderProgram.GetAttributeLocation(strin_Color);
-
             //    GL.BindBuffer(BufferTarget.ArrayBuffer, colorBuffer);
             //    GL.VertexAttribPointer(in_ColorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
             //    GL.EnableVertexAttribArray(in_ColorLocation);
             //}
-
             //// prepare index
             //{
             //    GL.BindBuffer(BufferTarget.ElementArrayBuffer, indexBuffer);
             //}
-
-
-            GL.DrawElements(DrawMode.TriangleStrip, this.count, GL.GL_UNSIGNED_INT, IntPtr.Zero);
-
-            //GL.BindVertexArray(0);
 
             GL.Disable(GL.GL_PRIMITIVE_RESTART);
         }
