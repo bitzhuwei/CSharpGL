@@ -145,10 +145,7 @@ namespace CSharpGL.Objects
 
         protected virtual void CleanUnmanagedRes()
         {
-            // do something like this if needed.
-            //GL.InvalidateBufferData(this.vertexsBufferObject);
-            //GL.InvalidateBufferData(this.colorsBufferObject);
-            //GL.InvalidateBufferData(this.visiblesBufferObject);
+            // do something like this if needed before opengl context is destroyed.
             //var buffers = new uint[] { this.vertexsBufferObject, this.colorsBufferObject, this.visiblesBufferObject };
             //GL.DeleteBuffers(buffers.Length, buffers);
             //GL.DeleteVertexArrays(1, new uint[] { this.vertexArrayObject });
@@ -159,22 +156,4 @@ namespace CSharpGL.Objects
         }
     }
 
-    ///// <summary>
-    ///// 渲染事件的参数。
-    ///// </summary>
-    //public class RenderEventArgs : EventArgs
-    //{
-    //    public RenderEventArgs(RenderModes renderMode)
-    //    {
-    //        this.RenderMode = renderMode;
-    //    }
-
-    //    public RenderModes RenderMode { get; protected set; }
-
-    //    public override string ToString()
-    //    {
-    //        return string.Format("{0}", this.RenderMode);
-    //        //return base.ToString();
-    //    }
-    //}
 }
