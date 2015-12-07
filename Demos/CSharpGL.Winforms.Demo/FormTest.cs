@@ -156,6 +156,11 @@ namespace CSharpGL.Winforms.Demo
             (new FormMultipleHexahedrons2()).Show();
         }
 
+        private void btnFormLegacyTexture3D2_Click(object sender, EventArgs e)
+        {
+            (new FormLegacyTexture3D2()).Show();
+        }
+
 
     }
 }

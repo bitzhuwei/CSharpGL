@@ -45,6 +45,7 @@
     <Compile Include="DemoHexahedron2Element.cs" />
     <Compile Include="DemoHexahedron1Element.cs" />
     <Compile Include="DemoColorCodedPickingElement.cs" />
+    <Compile Include="DemoLegacyGLTexture3D.cs" />
     <Compile Include="DemoLegacyTexture3DCubeElement.cs" />
     <Compile Include="DemoMapBuffer.cs" />
     <Compile Include="DemoTexImage2D.cs" />

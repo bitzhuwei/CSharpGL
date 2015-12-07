@@ -54,6 +54,7 @@
             this.btnTexImage2D = new System.Windows.Forms.Button();
             this.btnFormMultipleHexahedrons1 = new System.Windows.Forms.Button();
             this.btnFormMultipleHexahedrons2 = new System.Windows.Forms.Button();
+            this.btnFormLegacyTexture3D2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -234,7 +235,6 @@
             // 
             // btnFormLegacyTexture3D
             // 
-            this.btnFormLegacyTexture3D.Enabled = false;
             this.btnFormLegacyTexture3D.Location = new System.Drawing.Point(13, 642);
             this.btnFormLegacyTexture3D.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormLegacyTexture3D.Name = "btnFormLegacyTexture3D";
@@ -333,6 +333,17 @@
             this.btnFormMultipleHexahedrons2.UseVisualStyleBackColor = true;
             this.btnFormMultipleHexahedrons2.Click += new System.EventHandler(this.btnFormMultipleHexahedrons2_Click);
             // 
+            // btnFormLegacyTexture3D2
+            // 
+            this.btnFormLegacyTexture3D2.Location = new System.Drawing.Point(374, 235);
+            this.btnFormLegacyTexture3D2.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormLegacyTexture3D2.Name = "btnFormLegacyTexture3D2";
+            this.btnFormLegacyTexture3D2.Size = new System.Drawing.Size(353, 29);
+            this.btnFormLegacyTexture3D2.TabIndex = 4;
+            this.btnFormLegacyTexture3D2.Text = "FormLegacyTexture3D-2";
+            this.btnFormLegacyTexture3D2.UseVisualStyleBackColor = true;
+            this.btnFormLegacyTexture3D2.Click += new System.EventHandler(this.btnFormLegacyTexture3D2_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -352,6 +363,7 @@
             this.Controls.Add(this.btnFormTransformFeedback);
             this.Controls.Add(this.btnFormScientificVisual3DControl);
             this.Controls.Add(this.btnFormColorCodedPicking);
+            this.Controls.Add(this.btnFormLegacyTexture3D2);
             this.Controls.Add(this.btnFormLegacyTexture3D);
             this.Controls.Add(this.btnSimplePointSprite);
             this.Controls.Add(this.btnDebugging);
@@ -398,5 +410,6 @@
         private System.Windows.Forms.Button btnTexImage2D;
         private System.Windows.Forms.Button btnFormMultipleHexahedrons1;
         private System.Windows.Forms.Button btnFormMultipleHexahedrons2;
+        private System.Windows.Forms.Button btnFormLegacyTexture3D2;
     }
 }
