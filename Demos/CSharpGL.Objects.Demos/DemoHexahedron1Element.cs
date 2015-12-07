@@ -193,14 +193,12 @@ namespace CSharpGL.Objects.Demos
 
                 // prepare positions
                 {
-                    uint in_PositionLocation = shaderProgram.GetAttributeLocation(strin_Position);
                     GL.BindBuffer(BufferTarget.ArrayBuffer, positionBuffer);
                     GL.VertexAttribPointer(in_PositionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                     GL.EnableVertexAttribArray(in_PositionLocation);
                 }
                 // prepare colors
                 {
-                    uint in_ColorLocation = shaderProgram.GetAttributeLocation(strin_Color);
                     GL.BindBuffer(BufferTarget.ArrayBuffer, colorBuffer);
                     GL.VertexAttribPointer(in_ColorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                     GL.EnableVertexAttribArray(in_ColorLocation);
@@ -223,6 +221,10 @@ namespace CSharpGL.Objects.Demos
             var shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
+            this.in_PositionLocation = shaderProgram.GetAttributeLocation(strin_Position);
+            this.in_ColorLocation = shaderProgram.GetAttributeLocation(strin_Color);
+            this.renderWireframeLocation = shaderProgram.GetUniformLocation("renderWirframe");
+
             shaderProgram.AssertValid();
 
             return shaderProgram;
@@ -230,6 +232,9 @@ namespace CSharpGL.Objects.Demos
 
         private int count = 3;
         private ShaderProgram pickingShaderProgram;
+        private uint in_PositionLocation;
+        private uint in_ColorLocation;
+        private int renderWireframeLocation;
 
         public int Count
         {
@@ -248,11 +253,27 @@ namespace CSharpGL.Objects.Demos
             GL.Enable(GL.GL_PRIMITIVE_RESTART);
             GL.PrimitiveRestartIndex(uint.MaxValue);
 
+            GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Lines);
+
+            GL.Uniform1(renderWireframeLocation, 1.0f);// shader绘制白色
+
             // the way with VAO:
             GL.BindVertexArray(vao[0]);
             GL.DrawElements(DrawMode.TriangleStrip, this.count, GL.GL_UNSIGNED_INT, IntPtr.Zero);
             GL.BindVertexArray(0);
-            
+
+            GL.Enable(GL.GL_PRIMITIVE_RESTART);
+            GL.PrimitiveRestartIndex(uint.MaxValue);
+
+            GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Filled);
+
+            GL.Uniform1(renderWireframeLocation, 0.0f);// shader绘制color buffer中的颜色
+
+            // the way with VAO:
+            GL.BindVertexArray(vao[0]);
+            GL.DrawElements(DrawMode.TriangleStrip, this.count, GL.GL_UNSIGNED_INT, IntPtr.Zero);
+            GL.BindVertexArray(0);
+
             // the way without vAO:
             //// prepare positions
             //{
