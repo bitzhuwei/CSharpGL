@@ -128,7 +128,7 @@ namespace CSharpGL.Objects.SceneElements
             }
 
             if (vao[0] != 0)
-            { GL.DeleteBuffers(1, vao); }
+            { GL.DeleteVertexArrays(vao.Length, vao); }
             if (vbo[0] != 0)
             { GL.DeleteBuffers(vbo.Length, vbo); }
 
