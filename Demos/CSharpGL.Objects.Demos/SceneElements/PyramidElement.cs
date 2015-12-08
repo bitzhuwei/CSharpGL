@@ -181,11 +181,16 @@ namespace CSharpGL.Objects.SceneElements
 
         protected override void CleanUnmanagedRes()
         {
-            GL.InvalidateBufferData(this.positionBufferObject[0]);
-            GL.InvalidateBufferData(this.colorBufferObject[0]);
-            GL.DeleteBuffers(this.positionBufferObject.Length, this.positionBufferObject);
-            GL.DeleteBuffers(this.colorBufferObject.Length, this.colorBufferObject);
-            GL.DeleteVertexArrays(this.vao.Length, this.vao);
+            try
+            {
+                GL.DeleteBuffers(this.positionBufferObject.Length, this.positionBufferObject);
+                GL.DeleteBuffers(this.colorBufferObject.Length, this.colorBufferObject);
+                GL.DeleteVertexArrays(this.vao.Length, this.vao);
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }

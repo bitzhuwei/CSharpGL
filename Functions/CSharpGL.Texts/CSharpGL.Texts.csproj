@@ -47,7 +47,9 @@
     <EmbeddedResource Include="LucidaTypewriterRegular.ttf.png" />
     <EmbeddedResource Include="LucidaTypewriterRegular.ttf.xml" />
     <Content Include="FreeTypes\freetype.2.5.4ForStudy.dll" />
-    <Content Include="FreeTypes\freetype.dll" />
+    <Content Include="FreeTypes\freetype.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="readme.txt" />
     <Compile Include="CharacterInfo.cs" />
     <Compile Include="CharacterInfoDictHelper.cs" />
