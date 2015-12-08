@@ -26,6 +26,8 @@ namespace VertexBufferObjects
             this.VarNameInShader = VarNameInShader;
             this.Size = size;
             this.Type = type;
+
+            this.AttribLocation = uint.MaxValue;// invalid value for now.
         }
 
         public override BufferTargetType Target
@@ -40,8 +42,8 @@ namespace VertexBufferObjects
         /// 此VBO代表的数组在shader中的对应名称（例如in vec3 positions里的positions）
         /// <para>index in VertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer)</para>
         /// </summary>
-        public uint AttribLocation { get; protected set; }
-
+        private uint AttribLocation;
+        
         /// <summary>
         /// 在GLSL的shader中的in变量名（例如'in vec3 position;'里的'position'）
         /// </summary>
@@ -56,17 +58,20 @@ namespace VertexBufferObjects
         /// </summary>
         public uint Type { get; protected set; }
 
-        /// <summary>
-        /// 从<paramref name="shaderProgram"/>中获取shader中各个in变量的指针。
-        /// </summary>
-        /// <param name="shaderProgram"></param>
-        public void FetchPropertyPointers(ShaderProgram shaderProgram)
-        {
-            this.AttribLocation = shaderProgram.GetAttributeLocation(this.VarNameInShader);
-        }
+        ///// <summary>
+        ///// 从<paramref name="shaderProgram"/>中获取shader中各个in变量的指针。
+        ///// </summary>
+        ///// <param name="shaderProgram"></param>
+        //public void FetchPropertyPointers(ShaderProgram shaderProgram)
+        //{
+        //    this.AttribLocation = shaderProgram.GetAttributeLocation(this.VarNameInShader);
+        //}
 
-        public override void LayoutForVAO()
+        public override void LayoutForVAO(ShaderProgram shaderProgram)
         {
+            if (this.AttribLocation == uint.MaxValue)
+            { this.AttribLocation = shaderProgram.GetAttributeLocation(this.VarNameInShader); }
+
             GL.BindBuffer(GL.GL_ARRAY_BUFFER, this.BufferID);
             GL.VertexAttribPointer(this.AttribLocation, this.Size, this.Type, false, 0, IntPtr.Zero);
             GL.EnableVertexAttribArray(this.AttribLocation);

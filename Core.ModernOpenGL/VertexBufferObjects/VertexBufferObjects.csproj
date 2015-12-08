@@ -42,6 +42,9 @@
     <Compile Include="BufferBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IShaderProgram.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UsageType.cs" />
     <Compile Include="BufferTargetType.cs" />
     <Compile Include="Class1.cs">

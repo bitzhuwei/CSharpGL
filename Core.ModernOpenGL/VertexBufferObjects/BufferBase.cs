@@ -48,7 +48,7 @@ namespace VertexBufferObjects
         /// 初始化VAO时，此buffer应做些什么？
         /// </summary>
         /// <param name="gl"></param>
-        public abstract void LayoutForVAO();
+        public abstract void LayoutForVAO(ShaderProgram shaderProgram);
 
         public virtual void Create(UnmanagedArrayBase values)
         {

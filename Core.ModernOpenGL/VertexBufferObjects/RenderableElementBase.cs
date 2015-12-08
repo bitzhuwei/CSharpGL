@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace VertexBufferObjects
 {
-    public abstract class RenderableElementBase : IVertexBuffers, IRenderable, IDisposable
+    public abstract class RenderableElementBase : IVertexBuffers, IShaderProgram, IRenderable, IDisposable
     {
 
         #region 初始化和更新VBO
@@ -117,71 +117,67 @@ namespace VertexBufferObjects
 
         void IRenderable.Render(RenderEventArgs e)
         {
-            if (vertexBufferArray == null)
-            {
-                lock (this)
-                {
-                    if (vertexBufferArray == null)
-                    {
-                        this.shaderProgram = InitShader();
-                        GenerateVAO();
-                    }
-                }
-            }
+            //if (vertexBufferArray == null)
+            //{
+            //    lock (this)
+            //    {
+            //        if (vertexBufferArray == null)
+            //        {
+            //            this.shaderProgram = GetShaderProgram();
 
-            ICamera camera = this.camera;
-            if (camera != null)
-            {
-                if (camera.CameraType == CameraType.Perspecitive)
-                {
-                    IPerspectiveViewCamera perspective = camera;
-                    this.projectionMatrix = perspective.GetProjectionMat4();
-                    this.viewMatrix = perspective.GetViewMat4();
-                }
-                else if (camera.CameraType == CameraType.Ortho)
-                {
-                    IOrthoViewCamera ortho = camera;
-                    this.projectionMatrix = ortho.GetProjectionMat4();
-                    this.viewMatrix = ortho.GetViewMat4();
-                }
-                else
-                { throw new NotImplementedException(); }
-            }
+            //            GenerateVAO(shaderProgram);
+            //        }
+            //    }
+            //}
 
-            modelMatrix = mat4.identity();
-            //  Bind the shader, set the matrices.
-            shaderProgram.Bind();
-            shaderProgram.SetUniformMatrix4("projectionMatrix", projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4("viewMatrix", viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4("modelMatrix", modelMatrix.to_array());
+            //ICamera camera = this.camera;
+            //if (camera != null)
+            //{
+            //    if (camera.CameraType == CameraType.Perspecitive)
+            //    {
+            //        IPerspectiveViewCamera perspective = camera;
+            //        this.projectionMatrix = perspective.GetProjectionMat4();
+            //        this.viewMatrix = perspective.GetViewMat4();
+            //    }
+            //    else if (camera.CameraType == CameraType.Ortho)
+            //    {
+            //        IOrthoViewCamera ortho = camera;
+            //        this.projectionMatrix = ortho.GetProjectionMat4();
+            //        this.viewMatrix = ortho.GetViewMat4();
+            //    }
+            //    else
+            //    { throw new NotImplementedException(); }
+            //}
 
-            GL.Enable(GL.GL_POLYGON_SMOOTH);
-            GL.Hint(GL.GL_POLYGON_SMOOTH_HINT, GL.GL_NICEST);
+            //modelMatrix = mat4.identity();
+            ////  Bind the shader, set the matrices.
+            //shaderProgram.Bind();
+            //shaderProgram.SetUniformMatrix4("projectionMatrix", projectionMatrix.to_array());
+            //shaderProgram.SetUniformMatrix4("viewMatrix", viewMatrix.to_array());
+            //shaderProgram.SetUniformMatrix4("modelMatrix", modelMatrix.to_array());
 
-            this.renderer.Render(new RenderEventArgs(RenderModes.Render, camera));
+            //GL.Enable(GL.GL_POLYGON_SMOOTH);
+            //GL.Hint(GL.GL_POLYGON_SMOOTH_HINT, GL.GL_NICEST);
 
-            GL.Disable(GL.GL_POLYGON_SMOOTH);
+            //this.renderer.Render(new RenderEventArgs(RenderModes.Render, camera));
 
-            shaderProgram.Unbind();
+            //GL.Disable(GL.GL_POLYGON_SMOOTH);
+
+            //shaderProgram.Unbind();
         }
 
-        private ShaderProgram InitShader()
-        {
-            String vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"HexahedronElement.vert");
-            String fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"HexahedronElement.frag");
-            ShaderProgram shaderProgram = new ShaderProgram();
-            shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
+        //private ShaderProgram InitShader()
+        //{
+        //    String vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"HexahedronElement.vert");
+        //    String fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"HexahedronElement.frag");
+        //    ShaderProgram shaderProgram = new ShaderProgram();
+        //    shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-            foreach (var vbo in this.propertyBufferDict)
-            {
-                vbo.Value.FetchPropertyPointers(shaderProgram);
-            }
+        //    shaderProgram.AssertValid();
+        //    return shaderProgram;
+        //}
 
-            shaderProgram.AssertValid();
-            return shaderProgram;
-        }
-
-        private void GenerateVAO()
+        private void GenerateVAO(ShaderProgram shaderProgram)
         {
             vertexBufferArray = new uint[1];
             GL.GenVertexArrays(1, vertexBufferArray);
@@ -189,8 +185,11 @@ namespace VertexBufferObjects
 
             foreach (var vbo in propertyBufferDict)
             {
-                vbo.Value.LayoutForVAO();
+                vbo.Value.LayoutForVAO(shaderProgram);
             }
+
+            if (indexBuffer != null)
+            { indexBuffer.LayoutForVAO(shaderProgram); }
 
             GL.BindVertexArray(0);
         }
@@ -267,5 +266,7 @@ namespace VertexBufferObjects
 
 
 
+
+        public abstract ShaderProgram GetShaderProgram();
     }
 }

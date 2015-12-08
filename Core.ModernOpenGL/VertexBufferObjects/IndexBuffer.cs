@@ -1,4 +1,5 @@
 ﻿using CSharpGL;
+using CSharpGL.Objects.Shaders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace VertexBufferObjects
 
             this.Length = values.Length;
         }
-        public override void LayoutForVAO()
+        public override void LayoutForVAO(ShaderProgram shaderProgram)
         {
             GL.BindBuffer((uint)Target, this.BufferID);
         }
