@@ -76,6 +76,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.FileParser._3DSPar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.FileParser._3DSParser.ToModernOpenGL", "Functions\CSharpGL.FileParser._3DSParser.ToModernOpenGL\CSharpGL.FileParser._3DSParser.ToModernOpenGL.csproj", "{EB937FBB-0032-4ACC-A1E2-B542CD02C417}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core.ModernOpenGL", "Core.ModernOpenGL", "{61E8913A-8982-4714-9BC4-EBE938C0BD45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VertexBufferObjects", "Core.ModernOpenGL\VertexBufferObjects\VertexBufferObjects.csproj", "{1CE26D7C-CD13-4660-91FC-703397C6F7C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -182,6 +186,10 @@ Global
 		{EB937FBB-0032-4ACC-A1E2-B542CD02C417}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB937FBB-0032-4ACC-A1E2-B542CD02C417}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB937FBB-0032-4ACC-A1E2-B542CD02C417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CE26D7C-CD13-4660-91FC-703397C6F7C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CE26D7C-CD13-4660-91FC-703397C6F7C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CE26D7C-CD13-4660-91FC-703397C6F7C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CE26D7C-CD13-4660-91FC-703397C6F7C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -213,5 +221,6 @@ Global
 		{D2B3C9B4-7E9D-46A8-A119-7743E56253B3} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 		{6EF9DD2F-70EA-46FF-9DAA-A1C2834B0A7B} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 		{EB937FBB-0032-4ACC-A1E2-B542CD02C417} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
+		{1CE26D7C-CD13-4660-91FC-703397C6F7C6} = {61E8913A-8982-4714-9BC4-EBE938C0BD45}
 	EndGlobalSection
 EndGlobal

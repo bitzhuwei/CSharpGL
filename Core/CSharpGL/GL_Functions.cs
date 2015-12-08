@@ -609,7 +609,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="mode">Specifies what kind of primitives to render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
         /// <param name="first">Specifies the starting	index in the enabled arrays.</param>
-        /// <param name="count">Specifies the number of indices to be rendered.</param>
+        /// <param name="count">Specifies the number of vertexes to be rendered.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glDrawArrays", SetLastError = true)]
         public static extern void DrawArrays(uint mode, int first, int count);
 
