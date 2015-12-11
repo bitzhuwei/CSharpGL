@@ -87,6 +87,9 @@
     <Compile Include="Shaders\ShaderProgram.cs" />
     <Compile Include="Texture2D.cs" />
     <Compile Include="SceneElementBase.cs" />
+    <Compile Include="VertexBuffers\IndexBuffer.cs" />
+    <Compile Include="VertexBuffers\PropertyBuffer.cs" />
+    <Compile Include="VertexBuffers\VertexBuffer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GLM\GLM.csproj">
@@ -112,6 +115,9 @@
     <EmbeddedResource Include="SceneElements\AxisElement2.frag" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="VertexBuffers\VertexBuffers.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
