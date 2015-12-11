@@ -202,6 +202,12 @@
     <Compile Include="FormSimpleUIAxis.Designer.cs">
       <DependentUpon>FormSimpleUIAxis.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUnmanagedArray.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUnmanagedArray.Designer.cs">
+      <DependentUpon>FormUnmanagedArray.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormWhiteBoard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormTexImage2D.resx">
       <DependentUpon>FormTexImage2D.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUnmanagedArray.resx">
+      <DependentUpon>FormUnmanagedArray.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TransformFeedback\feedback.frag" />
     <EmbeddedResource Include="TransformFeedback\feedback.vert" />

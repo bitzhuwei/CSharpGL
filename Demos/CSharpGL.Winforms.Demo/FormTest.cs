@@ -19,6 +19,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void btnBasis_Click(object sender, EventArgs e)
         {
+            (new FormUnmanagedArray()).Show();
             //TestUnmanagedArray.TypicalScene();
             TestUnmanagedArrayHelper.TypicalScene();
             TestProjectionFunctions.TypicalScene();

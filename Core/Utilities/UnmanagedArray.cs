@@ -15,25 +15,32 @@ namespace System
     /// <para>Check http://www.cnblogs.com/bitzhuwei/p/huge-unmanged-array-in-csharp.html </para>
     /// </summary>
     /// <typeparam name="T">sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool或其它struct, 不能使用enum类型作为T。</typeparam>
-    public sealed class UnmanagedArray<T> : UnmanagedArrayBase where T : struct
+    public sealed unsafe class UnmanagedArray<T> : UnmanagedArrayBase where T : struct
     {
+        /// <summary>
+        /// 此类型（即参数为T）一共申请了多少个对象？
+        /// <para>仅为调试之用，无应用意义。</para>
+        /// </summary>
+        private static int thisTypeAllocatedCount = 0;
+        private static int thisTypeDisposedCount = 0;
 
         /// <summary>
         ///元素类型为sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool或其它struct的非托管数组。
         /// </summary>
         /// <param name="count"></param>
-        //[MethodImpl(MethodImplOptions.Synchronized)]
         public UnmanagedArray(int count)
             : base(count, Marshal.SizeOf(typeof(T)))
         {
+            thisTypeAllocatedCount++;
         }
 
         /// <summary>
         /// 获取或设置索引为<paramref name="index"/>的元素。
+        /// <para>如果要处理的元素数目较大，请使用unsafe方式(<see cref="UnmanagedArrayFastAccessHelper"/>)。</para>
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public T this[int index]
+        public unsafe T this[int index]
         {
             get
             {
@@ -57,7 +64,17 @@ namespace System
             }
         }
 
-        // 速度较慢，不再提供。
+        protected override void Dispose(bool disposing)
+        {
+            if (base.disposedValue == false)
+            {
+                thisTypeDisposedCount++;
+
+                base.Dispose(disposing);
+            }
+
+            base.disposedValue = true;
+        }
         ///// <summary>
         ///// 按索引顺序依次获取各个元素。
         ///// </summary>
@@ -76,6 +93,17 @@ namespace System
     /// </summary>
     public abstract class UnmanagedArrayBase : IDisposable
     {
+        /// <summary>
+        /// 一共申请了多少个对象？
+        /// <para>仅为调试之用，无应用意义。</para>
+        /// </summary>
+        public static int allocatedCount = 0;
+
+        /// <summary>
+        /// 一共释放了多少个对象？
+        /// <para>仅为调试之用，无应用意义。</para>
+        /// </summary>
+        public static int disposedCount = 0;
 
         /// <summary>
         /// 此数组的起始位置。
@@ -114,50 +142,8 @@ namespace System
             int memSize = elementCount * elementSize;
             this.Header = Marshal.AllocHGlobal(memSize);
 
-            lock (synObj)
-            {
-                //allocatedArrays.Add(this);
-                //allocatedArrays.Add(new WeakReference<IDisposable>(this));
-                allocatedArrays.Add(this.Header, new WeakReference<IDisposable>(this));
-            }
-            //UnmanagedArrayBase.Add(this);
+            allocatedCount++;
         }
-
-        private static readonly object synObj = new object();
-        //private static readonly List<IDisposable> allocatedArrays = new List<IDisposable>();
-        //private static readonly List<WeakReference<IDisposable>> allocatedArrays = new List<WeakReference<IDisposable>>();
-        private static readonly Dictionary<IntPtr, WeakReference<IDisposable>> allocatedArrays = new Dictionary<IntPtr, WeakReference<IDisposable>>();
-
-
-        ////[MethodImpl(MethodImplOptions.Synchronized)]//这造成死锁，不知道是为什么
-        //private static void Add(UnmanagedArrayBase array)
-        //{
-        //    //allocatedArrays.Add(array);
-        //    allocatedArrays.Add(new WeakReference<IDisposable>(array));
-        //}
-        /// <summary>
-        /// 立即释放所有<see cref="UnmanagedArray"/>。
-        /// </summary>
-        //[MethodImpl(MethodImplOptions.Synchronized)]//这造成死锁，不知道是为什么
-        public static void FreeAll()
-        {
-            lock (synObj)
-            {
-                var list = new List<WeakReference<IDisposable>>(allocatedArrays.Values.AsEnumerable());
-                foreach (var item in list)
-                {
-                    //item.Dispose();
-                    IDisposable target;
-                    if (item.TryGetTarget(out target))
-                    {
-                        target.Dispose();
-                    }
-                }
-
-                allocatedArrays.Clear();
-            }
-        }
-
 
         #region IDisposable Members
 
@@ -181,7 +167,7 @@ namespace System
         /// <summary>
         /// Backing field to track whether Dispose has been called.
         /// </summary>
-        private bool disposedValue = false;
+        protected bool disposedValue = false;
 
         /// <summary>
         /// Dispose managed and unmanaged resources of this instance.
@@ -204,19 +190,10 @@ namespace System
                 {
                     this.Length = 0;
                     this.Header = IntPtr.Zero;
-                    try
-                    {
-                        Marshal.FreeHGlobal(ptr);
-
-                        lock (synObj)
-                        {
-                            allocatedArrays.Remove(ptr);
-                        }
-                    }
-                    catch (Exception)
-                    {
-                    }
+                    Marshal.FreeHGlobal(ptr);
                 }
+
+                disposedCount++;
             } // end if
 
             this.disposedValue = true;
@@ -224,5 +201,10 @@ namespace System
 
         #endregion
 
+        public override string ToString()
+        {
+            return string.Format("head: {0}, element count: {1}, byte length: {2}",
+                this.Header, this.Length, this.ByteLength);
+        }
     }
 }
