@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 namespace CSharpGL.Objects.VertexBuffers
 {
     /// <summary>
-    /// 一个vertex array object。
+    /// 一个vertex array object。（即VAO）
+    /// <para>VAO是用来管理VBO的。可以进一步减少DrawCall。</para>
     /// </summary>
     public class VertexArrayObject : IDisposable
     {
         BufferRenderer[] bufferRenderers;
 
         /// <summary>
-        /// 一个vertex array object。
+        /// 一个vertex array object。（即VAO）
+        /// <para>VAO是用来管理VBO的。可以进一步减少DrawCall。</para>
         /// </summary>
         /// <param name="propertyBuffers">给出此VAO要管理的所有VBO。</param>
         public VertexArrayObject(params BufferRenderer[] propertyBuffers)
