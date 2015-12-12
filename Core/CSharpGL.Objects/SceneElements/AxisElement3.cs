@@ -23,6 +23,9 @@ namespace CSharpGL.Objects.SceneElements
         BufferRenderer[] positionBufferRenderers = new BufferRenderer[3];
         BufferRenderer[] colorBufferRenderers = new BufferRenderer[3];
         BufferRenderer[] indexBufferRenderers = new BufferRenderer[3];
+        BufferRenderer planPositionBufferRenderer;
+        BufferRenderer planColorBufferRenderer;
+        BufferRenderer planIndexBufferRenderer;
 
         /// <summary>
         /// shader program
@@ -95,8 +98,6 @@ namespace CSharpGL.Objects.SceneElements
 
         protected unsafe void InitializeVAO()
         {
-            //this.axisPrimitiveMode = DrawMode.QuadStrip;// PrimitiveModes.QuadStrip;
-
             this.axisVertexCount = faceCount * 2;
             //this.vao = new uint[4];
 
@@ -155,53 +156,45 @@ namespace CSharpGL.Objects.SceneElements
                 this.indexBufferRenderers[axisIndex] = indexBuffer.GetRenderer();
                 indexBuffer.Dispose();
             }
-            //// 计算XZ平面
-            //{
-            //    this.planPrimitveMode = DrawMode.LineLoop;
-            //    this.planVertexCount = 4;
+            // 计算XZ平面
+            {
+                this.planPrimitveMode = DrawMode.LineLoop;
+                this.planVertexCount = 4;
 
-            //    GL.BindVertexArray(vao[3]);
+                //GL.BindVertexArray(vao[3]);
 
-            //    //  Create a vertex buffer for the vertex data.
-            //    using (var plan = new UnmanagedArray<vec3>(4))
-            //    {
-            //        float length = this.axisLength;
-            //        plan[0] = new vec3(-length, 0, -length);
-            //        plan[1] = new vec3(-length, 0, length);
-            //        plan[2] = new vec3(length, 0, length);
-            //        plan[3] = new vec3(length, 0, -length);
+                //  Create a vertex buffer for the vertex data.
+                var positionBuffer = new AxisPositionBuffer(strin_Position, BufferUsage.StaticDraw);
+                positionBuffer.Alloc(this.planVertexCount);
+                vec3* plan = (vec3*)positionBuffer.FirstElement();
+                {
+                    float length = this.axisLength;
+                    plan[0] = new vec3(-length, 0, -length);
+                    plan[1] = new vec3(-length, 0, length);
+                    plan[2] = new vec3(length, 0, length);
+                    plan[3] = new vec3(length, 0, -length);
+                }
+                this.planPositionBufferRenderer = positionBuffer.GetRenderer();
+                positionBuffer.Dispose();
 
-            //        uint positionLocation = shaderProgram.GetAttributeLocation(strin_Position);
+                //  Now do the same for the colour data.
+                var colorBuffer = new AxisColorBuffer(strin_Color, BufferUsage.StaticDraw);
+                colorBuffer.Alloc(this.planVertexCount);
+                vec3* colorArray = (vec3*)colorBuffer.FirstElement();
+                {
+                    for (int i = 0; i < this.planVertexCount; i++)
+                    {
+                        colorArray[i] = this.planColor;
+                    }
+                }
 
-            //        uint[] ids = new uint[1];
-            //        GL.GenBuffers(1, ids);
-            //        GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
-            //        GL.BufferData(BufferTarget.ArrayBuffer, plan, BufferUsage.StaticDraw);
-            //        GL.VertexAttribPointer(positionLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-            //        GL.EnableVertexAttribArray(positionLocation);
-            //    }
+                var indexBuffer = new ZeroIndexBuffer("planIndex", DrawMode.LineLoop, this.planVertexCount);
+                indexBuffer.Alloc(this.planVertexCount);//这句话实际上什么都没有做。
+                this.planIndexBufferRenderer = indexBuffer.GetRenderer();
 
-            //    //  Now do the same for the colour data.
-            //    using (var colorArray = new UnmanagedArray<vec3>(4))
-            //    {
-            //        for (int i = 0; i < colorArray.Length; i++)
-            //        {
-            //            colorArray[i] = this.planColor;
-            //        }
-
-            //        uint colorLocation = shaderProgram.GetAttributeLocation(strin_Color);
-
-            //        uint[] ids = new uint[1];
-            //        GL.GenBuffers(1, ids);
-            //        GL.BindBuffer(BufferTarget.ArrayBuffer, ids[0]);
-            //        GL.BufferData(BufferTarget.ArrayBuffer, colorArray, BufferUsage.StaticDraw);
-            //        GL.VertexAttribPointer(colorLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-            //        GL.EnableVertexAttribArray(colorLocation);
-            //    }
-
-            //    //  Unbind the vertex array, we've finished specifying data for it.
-            //    GL.BindVertexArray(0);
-            //}
+                ////  Unbind the vertex array, we've finished specifying data for it.
+                //GL.BindVertexArray(0);
+            }
         }
 
         protected override void DoInitialize()
@@ -229,14 +222,18 @@ namespace CSharpGL.Objects.SceneElements
                 this.indexBufferRenderers[i].Render(e, this.shaderProgram);
             }
 
-            //// 画平面
-            //{
-            //GL.BindVertexArray(vao[3]);
+            // 画平面
+            {
+                //GL.BindVertexArray(vao[3]);
 
-            //GL.DrawArrays(this.planPrimitveMode, 0, 4);
+                //GL.DrawArrays(this.planPrimitveMode, 0, 4);
 
-            //GL.BindVertexArray(0);
-            //}
+                //GL.BindVertexArray(0);
+
+                this.planPositionBufferRenderer.Render(e, this.shaderProgram);
+                this.planColorBufferRenderer.Render(e, this.shaderProgram);
+                this.planIndexBufferRenderer.Render(e, this.shaderProgram);
+            }
         }
 
 
