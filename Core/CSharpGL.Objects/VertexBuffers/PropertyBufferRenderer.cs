@@ -7,35 +7,31 @@ using System.Threading.Tasks;
 namespace CSharpGL.Objects.VertexBuffers
 {
     /// <summary>
-    /// 顶点的属性数组。描述顶点的位置或颜色或UV等各种属性。
-    /// <para>每个<see cref="PropertyBuffer"/>仅描述其中一个属性。</para>
+    /// 在渲染时此VBO要执行绑定自己、指明数据结构和启用此VBO等操作。
     /// </summary>
-    public abstract class PropertyBuffer : VertexBuffer
+    public class PropertyBufferRenderer : BufferRenderer
     {
-
         /// <summary>
-        /// 顶点的属性数组。描述顶点的位置或颜色或UV等各种属性。
-        /// <para>每个<see cref="PropertyBuffer"/>仅描述其中一个属性。</para>
+        /// 在渲染时此VBO要执行绑定自己、指明数据结构和启用此VBO等操作。
         /// </summary>
         /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？</param>
+        /// <param name="bufferID">用GL.GenBuffers()得到的VBO的ID。<</param>
         /// <param name="dataSize">gl.VertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);
-        /// <para>表示第2个参数</para>
-        /// </param>
+        /// <para>表示第2个参数</para></param>
         /// <param name="dataType">GL_FLOAT etc
+        /// <para>gl.VertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);</para>
         /// <para>gl.VertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);</para>
-        /// <para>表示第3个参数</para>
-        /// </param>
-        public PropertyBuffer(string varNameInVertexShader, int dataSize, uint dataType, BufferUsage usage)
-            : base(varNameInVertexShader, usage)
+        /// <para>表示第3个参数</para></param>
+        public PropertyBufferRenderer(string varNameInVertexShader, 
+            uint bufferID, int dataSize, uint dataType)
+            : base(bufferID)
         {
+            this.VarNameInVertexShader = varNameInVertexShader;
             this.DataSize = dataSize;
             this.DataType = dataType;
         }
 
-        /// <summary>
-        /// 此顶点属性VBO对应于vertex shader中的哪个in变量？
-        /// </summary>
-        public string VarNameInVertexShader { get { return base.name; } }
+        public string VarNameInVertexShader { get; set; }
 
         /// <summary>
         /// GL_FLOAT etc
@@ -51,17 +47,13 @@ namespace CSharpGL.Objects.VertexBuffers
         /// </summary>
         public int DataSize { get; private set; }
 
-        protected override BufferRenderer CreateRenderer()
+        public override void Render(RenderEventArgs e, Shaders.ShaderProgram shaderProgram)
         {
-            uint[] buffers = new uint[1];
-            GL.GenBuffers(1, buffers);
-            GL.BindBuffer(GL.GL_ARRAY_BUFFER, buffers[0]);
-            GL.BufferData(GL.GL_ARRAY_BUFFER, this.ByteLength, this.Header, (uint)this.Usage);
-
-            PropertyBufferRenderer renderer = new PropertyBufferRenderer(
-                this.VarNameInVertexShader, buffers[0], this.DataSize, this.DataType);
-
-            return renderer;
+            uint location = shaderProgram.GetAttributeLocation(this.VarNameInVertexShader);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, this.BufferID);
+            GL.VertexAttribPointer(location, this.DataSize, this.DataType, false, 0, IntPtr.Zero);
+            GL.EnableVertexAttribArray(location);
         }
+
     }
 }

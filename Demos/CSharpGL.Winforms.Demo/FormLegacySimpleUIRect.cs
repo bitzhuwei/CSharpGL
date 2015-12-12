@@ -21,7 +21,7 @@ namespace CSharpGL.Winforms.Demo
     {
         LegacySimpleUIRect uiRectElement;
 
-        AxisElement axisElement;
+        AxisElement3 axisElement;
 
         Camera camera;
 
@@ -47,7 +47,7 @@ namespace CSharpGL.Winforms.Demo
                 new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right, new Padding(10, 10, 10, 10), new Size(40, 30)));
             uiRectElement.Initialize();
 
-            axisElement = new AxisElement();
+            axisElement = new AxisElement3();
             axisElement.Initialize();
             axisElement.BeforeRendering += axisElement_BeforeRendering;
             axisElement.AfterRendering += axisElement_AfterRendering;

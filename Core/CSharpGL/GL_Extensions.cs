@@ -952,7 +952,11 @@ namespace CSharpGL
         }
         public static void DeleteBuffers(int n, uint[] buffers)
         {
-            GetDelegateFor<glDeleteBuffers>()(n, buffers);
+            IntPtr context = Win32.wglGetCurrentContext();
+            if (context != IntPtr.Zero)
+            {
+                GetDelegateFor<glDeleteBuffers>()(n, buffers);
+            }
         }
         public static void GenBuffers(int n, uint[] buffers)
         {

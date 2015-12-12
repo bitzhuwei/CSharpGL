@@ -7,29 +7,47 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.VertexBuffers
 {
+    //todo: add ToString() for vertex buffers
     /// <summary>
     /// 顶点缓存（VBO）
     /// </summary>
     public abstract class VertexBuffer : IDisposable
     {
-        protected UnmanagedArrayBase array = null;
+        private UnmanagedArrayBase array = null;
+        private bool disposedValue = false;
+        protected string name;
 
         /// <summary>
         /// 此VBO中的数据在内存中的起始地址
         /// </summary>
-        public IntPtr Data
+        public IntPtr Header
         {
             get { return (this.array == null) ? IntPtr.Zero : this.array.Header; }
         }
 
+        public unsafe void* FirstElement()
+        {
+            UnmanagedArrayBase array = this.array;
+            if (array == null) { return (void*)0; }
+            else
+            {
+                return array.FirstElement();
+            }
+        }
 
         /// <summary>
         /// 此VBO中的数据在内存中的内存大小（单位：字节）
         /// </summary>
-        public int SizeInBytes
+        public int ByteLength
         {
             get { return (this.array == null) ? 0 : this.array.ByteLength; }
 
+        }
+
+        public VertexBuffer(string name, BufferUsage usage)
+        {
+            this.name = name;
+            this.Usage = usage;
         }
 
         /// <summary>
@@ -60,7 +78,7 @@ namespace CSharpGL.Objects.VertexBuffers
             this.Dispose(false);
         }
 
-        private bool disposedValue = false;
+
 
         protected virtual void Dispose(bool disposing)
         {
@@ -83,6 +101,21 @@ namespace CSharpGL.Objects.VertexBuffers
             }
 
             this.disposedValue = true;
+        }
+
+        public BufferUsage Usage { get; private set; }
+
+        protected abstract BufferRenderer CreateRenderer();
+
+        private BufferRenderer renderer = null;
+        public BufferRenderer GetRenderer()
+        {
+            if (renderer == null)
+            {
+                renderer = CreateRenderer();
+            }
+
+            return renderer;
         }
     }
 

@@ -17,13 +17,14 @@ namespace CSharpGL.Objects
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
-        /// <param name="graphics">The graphics.</param>
+        /// <param name="renderMode">渲染模式</param>
+        /// <param name="camera">渲染时所用的camera</param>
         public RenderEventArgs(RenderModes renderMode, ICamera camera)
         {
             this.RenderMode = renderMode;
             this.Camera = camera;
         }
-        
+
         /// <summary>
         /// 获取Camera
         /// </summary>
@@ -33,5 +34,6 @@ namespace CSharpGL.Objects
         /// 获取渲染模式
         /// </summary>
         public RenderModes RenderMode { get; private set; }
+
     }
 }

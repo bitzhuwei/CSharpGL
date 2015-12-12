@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Winforms.Demo
 {
-    class WholeFontTextureElement : SceneElementBase, IMVP, IDisposable
+    class WholeFontTextureElement : SceneElementBase, IMVP
     {
         internal bool blend = true;
 
@@ -138,55 +138,12 @@ namespace CSharpGL.Winforms.Demo
             GL.BindVertexArray(0);
         }
 
-
-        #region IDisposable Members
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
+        protected override void CleanUnmanagedRes()
         {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        } // end sub
+            this.ttfTexture.Dispose();
 
-        /// <summary>
-        /// Destruct instance of the class.
-        /// </summary>
-        ~WholeFontTextureElement()
-        {
-            this.Dispose(false);
+            base.CleanUnmanagedRes();
         }
-
-        /// <summary>
-        /// Backing field to track whether Dispose has been called.
-        /// </summary>
-        private bool disposedValue = false;
-
-        /// <summary>
-        /// Dispose managed and unmanaged resources of this instance.
-        /// </summary>
-        /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
-        protected virtual void Dispose(bool disposing)
-        {
-
-            if (this.disposedValue == false)
-            {
-                if (disposing)
-                {
-                    // TODO: Dispose managed resources.
-                } // end if
-
-                // TODO: Dispose unmanaged resources.
-                this.ttfTexture.Dispose();
-
-            } // end if
-
-            this.disposedValue = true;
-        } // end sub
-
-        #endregion
-
 
         void IMVP.SetShaderProgram(mat4 mvp)
         {
