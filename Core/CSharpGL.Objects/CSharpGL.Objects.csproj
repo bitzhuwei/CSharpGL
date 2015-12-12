@@ -95,6 +95,7 @@
     <Compile Include="VertexBuffers\IndexBuffer.cs" />
     <Compile Include="VertexBuffers\IndexBufferBase.cs" />
     <Compile Include="VertexBuffers\PropertyBufferRenderer.cs" />
+    <Compile Include="VertexBuffers\VertexArrayObject.cs" />
     <Compile Include="VertexBuffers\ZeroIndexBufferRenderer.cs" />
     <Compile Include="VertexBuffers\IndexBufferRenderer.cs" />
     <Compile Include="VertexBuffers\PropertyBuffer.cs" />

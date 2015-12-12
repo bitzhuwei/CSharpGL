@@ -4740,7 +4740,11 @@ namespace CSharpGL
         }
         public static void DeleteVertexArrays(int n, uint[] arrays)
         {
-            GetDelegateFor<glDeleteVertexArrays>()(n, arrays);
+            IntPtr ptr = Win32.wglGetCurrentContext();
+            if (ptr != IntPtr.Zero)
+            {
+                GetDelegateFor<glDeleteVertexArrays>()(n, arrays);
+            }
         }
         public static void GenVertexArrays(int n, uint[] arrays)
         {
