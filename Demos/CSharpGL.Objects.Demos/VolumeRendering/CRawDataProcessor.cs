@@ -26,28 +26,27 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
             // Holds the luminance buffer
             //byte[] chBuffer = new byte[m_uImageWidth * m_uImageHeight * m_uImageCount];
-            UnmanagedArray<byte> chBuffer = new UnmanagedArray<byte>(m_uImageWidth * m_uImageHeight * m_uImageCount);
+            //UnmanagedArray<byte> chBuffer = new UnmanagedArray<byte>(m_uImageWidth * m_uImageHeight * m_uImageCount);
+            byte[] chBuffer = new byte[m_uImageWidth * m_uImageHeight * m_uImageCount];
 
             // Holds the RGBA buffer
             UnmanagedArray<byte> pRGBABuffer = new UnmanagedArray<byte>(m_uImageWidth * m_uImageHeight * m_uImageCount * 4);
-
-            //file.Read(chBuffer, 0, chBuffer.Length);
-            int i = 0;
-            while (file.Position < file.Length)
-            {
-                chBuffer[i++] = (byte)file.ReadByte();
-            }
+            file.Read(chBuffer, 0, chBuffer.Length);
 
             // Convert the data to RGBA data.
             // Here we are simply putting the same value to R, G, B and A channels.
             // Usually for raw data, the alpha value will be constructed by a threshold value given by the user 
 
-            for (int nIndx = 0; nIndx < m_uImageWidth * m_uImageHeight * m_uImageCount; ++nIndx)
+            unsafe
             {
-                pRGBABuffer[nIndx * 4] = chBuffer[nIndx];
-                pRGBABuffer[nIndx * 4 + 1] = chBuffer[nIndx];
-                pRGBABuffer[nIndx * 4 + 2] = chBuffer[nIndx];
-                pRGBABuffer[nIndx * 4 + 3] = chBuffer[nIndx];
+                byte* rgbBuffer = (byte*)pRGBABuffer.FirstElement();
+                for (int nIndx = 0; nIndx < m_uImageWidth * m_uImageHeight * m_uImageCount; ++nIndx)
+                {
+                    rgbBuffer[nIndx * 4] = chBuffer[nIndx];
+                    rgbBuffer[nIndx * 4 + 1] = chBuffer[nIndx];
+                    rgbBuffer[nIndx * 4 + 2] = chBuffer[nIndx];
+                    rgbBuffer[nIndx * 4 + 3] = chBuffer[nIndx];
+                }
             }
 
             // If this function is getting called again for another data file.
