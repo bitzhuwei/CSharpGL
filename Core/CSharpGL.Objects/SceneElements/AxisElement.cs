@@ -13,6 +13,7 @@ namespace CSharpGL.Objects.SceneElements
     /// <summary>
     /// 绘制三维坐标轴
     /// <para>充当此类库里的示例元素</para>
+    /// <para>此类型使用封装了的VAO和VBO。我认为是可以提高项目工作效率的，是个好的设计。</para>
     /// </summary>
     public class AxisElement : SceneElementBase, IMVP, IDisposable
     {
@@ -84,12 +85,13 @@ namespace CSharpGL.Objects.SceneElements
 
         protected unsafe void InitializeVAO()
         {
-            var axisVertexCount = faceCount * 2;
 
             vec3[] colors = new vec3[] { new vec3(1, 0, 0), new vec3(0, 1, 0), new vec3(0, 0, 1) };
             // 计算三个坐标轴
             for (int axisIndex = 0; axisIndex < 3; axisIndex++)
             {
+                var axisVertexCount = faceCount * 2;
+
                 //  Create a vertex buffer for the vertex data.
                 using (var positionBuffer = new AxisPositionBuffer(strin_Position, BufferUsage.StaticDraw))
                 {
