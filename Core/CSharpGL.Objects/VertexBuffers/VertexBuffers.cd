@@ -1,25 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
   <Class Name="CSharpGL.Objects.VertexBuffers.VertexBuffer">
-    <Position X="1.75" Y="0.5" Width="4.25" />
+    <Position X="7" Y="0.5" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAAkAgAgAAAAAABAAAAAAAgAAAAA=</HashCode>
+      <HashCode>BAAAAAAAACAAAgAEAAkAAAgEAAAAAiABAAAAAgAAgAA=</HashCode>
       <FileName>VertexBuffers\VertexBuffer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CSharpGL.Objects.VertexBuffers.IndexBuffer">
-    <Position X="0.5" Y="4" Width="2.25" />
+    <Position X="12.75" Y="7.75" Width="5.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAgAAAAEAAAAAAAAAAAIAAQAAAAAAAAA=</HashCode>
       <FileName>VertexBuffers\IndexBuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.Objects.VertexBuffers.PropertyBuffer">
-    <Position X="3.75" Y="4" Width="3.25" />
+    <Position X="0.5" Y="5.5" Width="6.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAEgAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
       <FileName>VertexBuffers\PropertyBuffer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.Objects.VertexBuffers.IndexBufferBase">
+    <Position X="10.75" Y="5.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VertexBuffers\IndexBufferBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.Objects.VertexBuffers.ZeroIndexBuffer">
+    <Position X="7.75" Y="7.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAEAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VertexBuffers\ZeroIndexBuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

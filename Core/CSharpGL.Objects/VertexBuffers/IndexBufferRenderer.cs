@@ -9,7 +9,7 @@ namespace CSharpGL.Objects.VertexBuffers
     /// <summary>
     /// 用GL.DrawElements()执行一个索引buffer的渲染操作。
     /// </summary>
-    public class IndexBufferRenderer : BufferRenderer
+    public class IndexBufferRenderer : IndexBufferBaseRenderer
     {
         /// <summary>
         /// 用GL.DrawElements()执行一个索引buffer的渲染操作。
@@ -20,17 +20,11 @@ namespace CSharpGL.Objects.VertexBuffers
         /// <param name="type">type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
         /// <para>表示第3个参数，表示索引元素的类型。</para></param>
         public IndexBufferRenderer(uint bufferID, DrawMode mode, int elementCount, IndexElementType type)
-            : base(bufferID)
+            : base(mode, bufferID)
         {
-            this.Mode = mode;
             this.ElementCount = elementCount;
             this.Type = type;
         }
-
-        /// <summary>
-        /// 用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）
-        /// </summary>
-        public DrawMode Mode { get; private set; }
 
         /// <summary>
         /// 索引数组中有多少个元素。

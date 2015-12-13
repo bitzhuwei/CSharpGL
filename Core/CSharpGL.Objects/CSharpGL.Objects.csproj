@@ -92,13 +92,16 @@
     <Compile Include="VertexBuffers\BufferRenderer.cs" />
     <Compile Include="VertexBuffers\IndexBuffer.cs" />
     <Compile Include="VertexBuffers\IndexBufferBase.cs" />
+    <Compile Include="VertexBuffers\IndexBufferBaseRenderer.cs" />
     <Compile Include="VertexBuffers\PropertyBufferRenderer.cs" />
     <Compile Include="VertexBuffers\VertexArrayObject.cs" />
-    <Compile Include="VertexBuffers\ZeroIndexBufferRenderer.cs" />
     <Compile Include="VertexBuffers\IndexBufferRenderer.cs" />
     <Compile Include="VertexBuffers\PropertyBuffer.cs" />
     <Compile Include="VertexBuffers\VertexBuffer.cs" />
     <Compile Include="VertexBuffers\ZeroIndexBuffer.cs" />
+    <Compile Include="VertexBuffers\ZeroIndexBufferRenderer.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GLM\GLM.csproj">
@@ -125,6 +128,7 @@
   <ItemGroup>
     <EmbeddedResource Include="SceneElements\AxisElement.frag" />
     <EmbeddedResource Include="SceneElements\AxisElement.vert" />
+    <None Include="VertexBuffers\BufferRenderers.cd" />
     <None Include="VertexBuffers\VertexBuffers.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
