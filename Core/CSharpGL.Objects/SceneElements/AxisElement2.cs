@@ -165,13 +165,13 @@ namespace CSharpGL.Objects.SceneElements
             // 计算XZ平面
             {
                 this.planPrimitveMode = DrawMode.LineLoop;
-                this.planVertexCount = 4;
+                var lanVertexCount = 4;
 
                 GL.BindVertexArray(vao[3]);
 
                 //  Create a vertex buffer for the vertex data.
                 {
-                    UnmanagedArray<vec3> plan = new UnmanagedArray<vec3>(4);
+                    UnmanagedArray<vec3> plan = new UnmanagedArray<vec3>(lanVertexCount);
                     float length = this.axisLength;
                     plan[0] = new vec3(-length, 0, -length);
                     plan[1] = new vec3(-length, 0, length);
@@ -246,55 +246,18 @@ namespace CSharpGL.Objects.SceneElements
         }
 
 
-        #region IDisposable Members
-
-        /// <summary>
-        /// Internal variable which checks if Dispose has already been called
-        /// </summary>
-        protected Boolean disposed;
-        private DrawMode planPrimitveMode;
-        private int planVertexCount;
-        private vec3 planColor;
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected void Dispose(Boolean disposing)
+        protected override void CleanUnmanagedRes()
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-                //Managed cleanup code here, while managed refs still valid
-            }
-            //Unmanaged cleanup code here
             if (vao != null)
             {
                 GL.DeleteVertexArrays(vao.Length, vao);
                 vao = null;
             }
 
-            disposed = true;
+            base.CleanUnmanagedRes();
         }
+        private DrawMode planPrimitveMode;
+        private vec3 planColor;
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            // Call the private Dispose(bool) helper and indicate
-            // that we are explicitly disposing
-            this.Dispose(true);
-
-            // Tell the garbage collector that the object doesn't require any
-            // cleanup when collected since Dispose was called explicitly.
-            GC.SuppressFinalize(this);
-        }
-
-        #endregion
     }
 }

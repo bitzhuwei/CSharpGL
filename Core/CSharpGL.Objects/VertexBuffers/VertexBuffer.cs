@@ -7,15 +7,12 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.VertexBuffers
 {
-    //todo: add ToString() for vertex buffers
     /// <summary>
     /// 顶点缓存（VBO）
     /// </summary>
     public abstract class VertexBuffer : IDisposable
     {
         private UnmanagedArrayBase array = null;
-        private bool disposedValue = false;
-        protected string name;
 
         /// <summary>
         /// 此VBO中的数据在内存中的起始地址
@@ -25,6 +22,10 @@ namespace CSharpGL.Objects.VertexBuffers
             get { return (this.array == null) ? IntPtr.Zero : this.array.Header; }
         }
 
+        /// <summary>
+        /// 获取此VBO的内存首地址。
+        /// </summary>
+        /// <returns></returns>
         public unsafe void* FirstElement()
         {
             UnmanagedArrayBase array = this.array;
@@ -44,10 +45,27 @@ namespace CSharpGL.Objects.VertexBuffers
 
         }
 
-        public VertexBuffer(string name, BufferUsage usage)
+        /// <summary>
+        /// usage in glBufferData(uint target, int size, IntPtr data, uint usage);
+        /// </summary>
+        public BufferUsage Usage { get; private set; }
+
+        /// <summary>
+        /// 顶点缓存（VBO）
+        /// </summary>
+        /// <param name="usage"></param>
+        public VertexBuffer(BufferUsage usage)
         {
-            this.name = name;
             this.Usage = usage;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("VBO: {0}, usage: {1}", this.array, Usage);
         }
 
         /// <summary>
@@ -78,7 +96,7 @@ namespace CSharpGL.Objects.VertexBuffers
             this.Dispose(false);
         }
 
-
+        private bool disposedValue = false;
 
         protected virtual void Dispose(bool disposing)
         {
@@ -103,11 +121,19 @@ namespace CSharpGL.Objects.VertexBuffers
             this.disposedValue = true;
         }
 
-        public BufferUsage Usage { get; private set; }
 
+        /// <summary>
+        /// 获取一个可渲染此VBO的渲染器。
+        /// </summary>
+        /// <returns></returns>
         protected abstract BufferRenderer CreateRenderer();
 
         private BufferRenderer renderer = null;
+
+        /// <summary>
+        /// 获取一个可渲染此VBO的渲染器。
+        /// </summary>
+        /// <returns></returns>
         public BufferRenderer GetRenderer()
         {
             if (renderer == null)

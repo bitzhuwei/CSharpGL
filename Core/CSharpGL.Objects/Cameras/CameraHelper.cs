@@ -119,7 +119,6 @@ namespace CSharpGL.Objects.Cameras
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="boundingBox"></param>
-        /// <param name="openGL"></param>
         public static void ZoomCamera(this IOrthoViewCamera camera, IBoundingBox boundingBox)
         {
             float sizeX, sizeY, sizeZ;

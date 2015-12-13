@@ -231,7 +231,6 @@ void main(void)
 
         }
 
-        static float q = 0.0f;
         static readonly vec3 X = new vec3(1.0f, 0.0f, 0.0f);
         static readonly vec3 Y = new vec3(0.0f, 1.0f, 0.0f);
         static readonly vec3 Z = new vec3(0.0f, 0.0f, 1.0f);

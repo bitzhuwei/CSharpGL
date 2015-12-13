@@ -73,7 +73,7 @@ namespace CSharpGL.Objects.VertexBuffers
 
         public override string ToString()
         {
-            return string.Format("ID: {0}", this.ID);
+            return string.Format("VAO ID: {0}", this.ID);
         }
 
 

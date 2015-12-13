@@ -25,9 +25,11 @@ namespace CSharpGL.Objects.VertexBuffers
         /// <para>gl.VertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);</para>
         /// <para>表示第3个参数</para>
         /// </param>
+        /// <param name="usage"></param>
         public PropertyBuffer(string varNameInVertexShader, int dataSize, uint dataType, BufferUsage usage)
-            : base(varNameInVertexShader, usage)
+            : base(usage)
         {
+            this.VarNameInVertexShader = varNameInVertexShader;
             this.DataSize = dataSize;
             this.DataType = dataType;
         }
@@ -35,7 +37,7 @@ namespace CSharpGL.Objects.VertexBuffers
         /// <summary>
         /// 此顶点属性VBO对应于vertex shader中的哪个in变量？
         /// </summary>
-        public string VarNameInVertexShader { get { return base.name; } }
+        public string VarNameInVertexShader { get; private set; }
 
         /// <summary>
         /// GL_FLOAT etc

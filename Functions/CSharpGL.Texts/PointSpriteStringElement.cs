@@ -142,7 +142,7 @@ namespace CSharpGL.Objects.SceneElements
         /// <param name="fontSize">字体大小，默认为32</param>
         /// <param name="fontResource">字体资源。默认的字体资源只支持ASCII码。</param>
         public PointSpriteStringElement(
-            string content, vec3 position, 
+            string content, vec3 position,
             GLColor color = null, int fontSize = 32, int maxRowWidth = 256, FontResource fontResource = null)
         {
             if (fontSize > 256) { throw new ArgumentException(); }
@@ -325,15 +325,10 @@ namespace CSharpGL.Objects.SceneElements
                 // Managed cleanup code here, while managed refs still valid
             }
             // Unmanaged cleanup code here
-            //GL.DeleteTextures(1, this.texture);
-            try
+            IntPtr ptr = Win32.wglGetCurrentContext();
+            if (ptr != IntPtr.Zero)
             {
-                //int count = this.texture.Length;
-                //GL.DeleteTextures(count, this.texture);
-            }
-            catch (Exception ex)
-            {
-
+                GL.DeleteTextures(this.texture.Length, this.texture);
             }
 
             disposed = true;

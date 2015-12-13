@@ -10,7 +10,7 @@ namespace CSharpGL.Objects.SceneElements
     public class AxisIndexBuffer : IndexBuffer
     {
         public AxisIndexBuffer()
-            : base("axisIndex", DrawMode.QuadStrip, IndexElementType.UnsignedByte, BufferUsage.StaticDraw)
+            : base(DrawMode.QuadStrip, IndexElementType.UnsignedByte, BufferUsage.StaticDraw)
         { }
     }
 }

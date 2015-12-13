@@ -70,9 +70,9 @@ namespace CSharpGL.Objects.Cameras
         /// <summary>
         /// Gets the bound dimensions.
         /// </summary>
-        /// <param name="x">The x size.</param>
-        /// <param name="y">The y size.</param>
-        /// <param name="z">The z size.</param>
+        /// <param name="xSize">The x size.</param>
+        /// <param name="ySize">The y size.</param>
+        /// <param name="zSize">The z size.</param>
         public void GetBoundDimensions(out float xSize, out float ySize, out float zSize)
         {
             vec3 diff = this.MaxPosition - this.MinPosition;
@@ -84,7 +84,6 @@ namespace CSharpGL.Objects.Cameras
         /// <summary>
         /// Render to the provided instance of GL.
         /// </summary>
-        /// <param name="gl">The OpenGL instance.</param>
         /// <param name="renderMode">The render mode.</param>
         public virtual void Render(RenderModes renderMode)
         {
@@ -132,7 +131,6 @@ namespace CSharpGL.Objects.Cameras
         /// <summary>
         /// This simulates BoundingVolume's render method.
         /// </summary>
-        /// <param name="gl"></param>
         /// <param name="renderMode"></param>
         private void QuadsDraw(RenderModes renderMode)
         {
@@ -186,7 +184,7 @@ namespace CSharpGL.Objects.Cameras
         /// <summary>
         /// Make sure the bounding box covers specifed vec3.
         /// </summary>
-        /// <param name="vec3"></param>
+        /// <param name="vertex"></param>
         public void Extend(vec3 vertex)
         {
             if (vertex.x < this.minPosition.x) { this.minPosition.x = vertex.x; }

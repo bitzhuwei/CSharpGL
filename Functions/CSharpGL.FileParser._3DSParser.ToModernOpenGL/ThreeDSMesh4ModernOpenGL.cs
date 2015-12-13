@@ -49,7 +49,7 @@ namespace CSharpGL.FileParser._3DSParser.ToModernOpenGL
         // The coordinates which map the texture onto the entity
         public TexCoord[] TexCoords;
 
-        bool normalized = false;
+        //bool normalized = false;
         public ushort[] UsesIndexes;
 
         public void CalculateNormals()
@@ -89,7 +89,7 @@ namespace CSharpGL.FileParser._3DSParser.ToModernOpenGL
                 normals[ii] = (v / shared).Normalize();
             }
             //Console.WriteLine ( "Normals Calculated!" );
-            normalized = true;
+            //normalized = true;
         }
 
         public void Render()

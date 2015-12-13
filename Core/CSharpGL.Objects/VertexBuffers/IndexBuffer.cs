@@ -6,17 +6,20 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.VertexBuffers
 {
+    /// <summary>
+    /// 索引buffer。索引指定了<see cref="PropertyBuffer"/>里各个顶点的渲染顺序。
+    /// </summary>
     public class IndexBuffer : IndexBufferBase
     {
         /// <summary>
         /// 用于存储索引的VBO。
         /// </summary>
-        /// <param name="name">此索引VBO的名字。如果有多个时，可用于区分索引。</param>
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
         /// <param name="type">type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
         /// <para>表示第3个参数，表示索引元素的类型。</para></param>
-        public IndexBuffer(string name, DrawMode mode, IndexElementType type, BufferUsage usage)
-            : base(name, mode, usage)
+        /// <param name="usage"></param>
+        public IndexBuffer(DrawMode mode, IndexElementType type, BufferUsage usage)
+            : base(mode, usage)
         {
             this.Type = type;
         }

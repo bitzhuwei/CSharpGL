@@ -15,15 +15,17 @@ namespace CSharpGL.Objects.VertexBuffers
         /// <summary>
         /// 没有显式的索引。等价于索引数组的值为[0,1,2,2,3,4,5,6,7,8,9...]
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="mode"></param>
-        /// <param name="type"></param>
-        public ZeroIndexBuffer(string name, DrawMode mode, int vertexCount)
-            : base(name, mode, BufferUsage.StaticDraw)
+        /// <param name="mode">渲染模式。</param>
+        /// <param name="vertexCount">有多少个顶点需要渲染？</param>
+        public ZeroIndexBuffer(DrawMode mode, int vertexCount)
+            : base(mode, BufferUsage.StaticDraw)
         {
             this.VertexCount = vertexCount;
         }
 
+        /// <summary>
+        /// 有多少个顶点需要渲染？
+        /// </summary>
         public int VertexCount { get; private set; }
 
         protected override UnmanagedArrayBase CreateElements(int elementCount)

@@ -22,8 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RegisterForComInterop>false</RegisterForComInterop>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>bin\Debug\CSharpGL.Objects.XML</DocumentationFile>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -55,7 +54,6 @@
     <Compile Include="IMVPHelper.cs" />
     <Compile Include="IRenderable.cs" />
     <Compile Include="RenderEventArgs.cs" />
-    <Compile Include="SceneElements\AxisElement3.cs" />
     <Compile Include="SceneElements\AxisElement.cs" />
     <Compile Include="Cameras\Camera2Matrix.cs" />
     <Compile Include="Cameras\CameraHelper.cs">
@@ -120,15 +118,13 @@
     <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SceneElements\AxisElement.frag" />
-    <EmbeddedResource Include="SceneElements\AxisElement.vert" />
     <EmbeddedResource Include="SceneElements\AxisElement2.vert" />
     <EmbeddedResource Include="SceneElements\AxisElement2.frag" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="SceneElements\AxisElement3.frag" />
-    <EmbeddedResource Include="SceneElements\AxisElement3.vert" />
+    <EmbeddedResource Include="SceneElements\AxisElement.frag" />
+    <EmbeddedResource Include="SceneElements\AxisElement.vert" />
     <None Include="VertexBuffers\VertexBuffers.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

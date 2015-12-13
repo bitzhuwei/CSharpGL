@@ -31,6 +31,9 @@ namespace CSharpGL.Objects.VertexBuffers
             this.DataType = dataType;
         }
 
+        /// <summary>
+        /// 此顶点属性VBO对应于vertex shader中的哪个in变量？
+        /// </summary>
         public string VarNameInVertexShader { get; set; }
 
         /// <summary>
