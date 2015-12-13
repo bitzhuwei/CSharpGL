@@ -208,6 +208,12 @@
     <Compile Include="FormUnmanagedArray.Designer.cs">
       <DependentUpon>FormUnmanagedArray.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormVolumeRendering01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVolumeRendering01.Designer.cs">
+      <DependentUpon>FormVolumeRendering01.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormWhiteBoard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUnmanagedArray.resx">
       <DependentUpon>FormUnmanagedArray.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVolumeRendering01.resx">
+      <DependentUpon>FormVolumeRendering01.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TransformFeedback\feedback.frag" />
     <EmbeddedResource Include="TransformFeedback\feedback.vert" />
