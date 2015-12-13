@@ -98,11 +98,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             // If not initialized, then this will be zero. So no checking is needed.
             if (0 != m_nTexId[0])
             {
-                IntPtr ptr = Win32.wglGetCurrentContext();
-                if (ptr != IntPtr.Zero)
-                {
-                    GL.DeleteTextures(1, m_nTexId);
-                }
+                GL.DeleteTextures(1, m_nTexId);
             }
         }
     }

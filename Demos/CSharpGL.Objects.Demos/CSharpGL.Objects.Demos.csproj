@@ -61,6 +61,7 @@
     <Compile Include="UIs\SimpleUIColorIndicatorBar.cs" />
     <Compile Include="UIs\SimpleUICube.cs" />
     <Compile Include="UIs\SimpleUIRect.cs" />
+    <Content Include="VolumeRendering\readme.txt" />
     <Compile Include="VolumeRendering\CRawDataProcessor.cs" />
     <Compile Include="VolumeRendering\CTranformationMgr.cs" />
     <Compile Include="VolumeRendering\DemoVolumeRendering01.cs" />

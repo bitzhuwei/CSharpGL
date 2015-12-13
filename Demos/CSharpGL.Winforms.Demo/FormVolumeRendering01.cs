@@ -153,6 +153,8 @@ namespace CSharpGL.Winforms.Demo
         private void FormVolumeRendering01_Load(object sender, EventArgs e)
         {
             this.glCanvas1_Resize(this.glCanvas1, e);
+
+            MessageBox.Show("此示例是从（http://www.codeproject.com/Articles/352270/Getting-started-with-Volume-Rendering）的C++代码转换来的。");
         }
     }
 }

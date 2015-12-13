@@ -566,7 +566,21 @@ namespace CSharpGL
         /// <param name="n">Number of textures to delete.</param>
         /// <param name="textures">The array containing the names of the textures to delete.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glDeleteTextures", SetLastError = true)]
-        public static extern void DeleteTextures(int n, uint[] textures);
+        private static extern void glDeleteTextures(int n, uint[] textures);
+
+        /// <summary>
+        /// This function deletes a set of Texture objects.
+        /// </summary>
+        /// <param name="n">Number of textures to delete.</param>
+        /// <param name="textures">The array containing the names of the textures to delete.</param>
+        public static void DeleteTextures(int n, uint[] textures)
+        {
+            IntPtr ptr = Win32.wglGetCurrentContext();
+            if (ptr != IntPtr.Zero)
+            {
+                glDeleteTextures(n, textures);
+            }
+        }
 
         /// <summary>
         /// This function sets the current depth buffer comparison function, the default it LESS.
