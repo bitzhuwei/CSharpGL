@@ -55,6 +55,7 @@
             this.btnFormMultipleHexahedrons1 = new System.Windows.Forms.Button();
             this.btnFormMultipleHexahedrons2 = new System.Windows.Forms.Button();
             this.btnFormLegacyTexture3D2 = new System.Windows.Forms.Button();
+            this.btnFormVolumeRendering01 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -344,6 +345,17 @@
             this.btnFormLegacyTexture3D2.UseVisualStyleBackColor = true;
             this.btnFormLegacyTexture3D2.Click += new System.EventHandler(this.btnFormLegacyTexture3D2_Click);
             // 
+            // btnFormVolumeRendering01
+            // 
+            this.btnFormVolumeRendering01.Location = new System.Drawing.Point(374, 272);
+            this.btnFormVolumeRendering01.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormVolumeRendering01.Name = "btnFormVolumeRendering01";
+            this.btnFormVolumeRendering01.Size = new System.Drawing.Size(353, 29);
+            this.btnFormVolumeRendering01.TabIndex = 4;
+            this.btnFormVolumeRendering01.Text = "FormVolumeRendering01";
+            this.btnFormVolumeRendering01.UseVisualStyleBackColor = true;
+            this.btnFormVolumeRendering01.Click += new System.EventHandler(this.btnFormVolumeRendering01_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -363,6 +375,7 @@
             this.Controls.Add(this.btnFormTransformFeedback);
             this.Controls.Add(this.btnFormScientificVisual3DControl);
             this.Controls.Add(this.btnFormColorCodedPicking);
+            this.Controls.Add(this.btnFormVolumeRendering01);
             this.Controls.Add(this.btnFormLegacyTexture3D2);
             this.Controls.Add(this.btnFormLegacyTexture3D);
             this.Controls.Add(this.btnSimplePointSprite);
@@ -411,5 +424,6 @@
         private System.Windows.Forms.Button btnFormMultipleHexahedrons1;
         private System.Windows.Forms.Button btnFormMultipleHexahedrons2;
         private System.Windows.Forms.Button btnFormLegacyTexture3D2;
+        private System.Windows.Forms.Button btnFormVolumeRendering01;
     }
 }

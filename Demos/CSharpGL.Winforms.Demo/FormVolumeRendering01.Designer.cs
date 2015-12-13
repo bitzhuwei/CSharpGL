@@ -71,6 +71,7 @@
             this.粘贴PToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.帮助LToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -359,6 +360,7 @@
             this.打开OToolStripButton.Name = "打开OToolStripButton";
             this.打开OToolStripButton.Size = new System.Drawing.Size(24, 24);
             this.打开OToolStripButton.Text = "打开(&O)";
+            this.打开OToolStripButton.Click += new System.EventHandler(this.打开OToolStripButton_Click);
             // 
             // 保存SToolStripButton
             // 
@@ -424,6 +426,10 @@
             this.帮助LToolStripButton.Size = new System.Drawing.Size(24, 24);
             this.帮助LToolStripButton.Text = "帮助(&L)";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // glCanvas1
             // 
             this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -449,6 +455,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormVolumeRendering01";
             this.Text = "FormVolumeRendering01";
+            this.Load += new System.EventHandler(this.FormVolumeRendering01_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -504,5 +511,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton 帮助LToolStripButton;
         private GLCanvas glCanvas1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
