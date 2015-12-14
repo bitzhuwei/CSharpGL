@@ -198,5 +198,12 @@ namespace CSharpGL.Winforms.Demo
             }
 
         }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            var value = (float)this.trackBar1.Value / 100.0f;
+            this.m_Renderer.alphaThreshold = value;
+            this.lblAlphaThreshold.Text = value.ToShortString();
+        }
     }
 }

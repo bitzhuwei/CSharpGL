@@ -42,10 +42,13 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
                 byte* rgbBuffer = (byte*)pRGBABuffer.FirstElement();
                 for (int nIndx = 0; nIndx < m_uImageWidth * m_uImageHeight * m_uImageCount; ++nIndx)
                 {
-                    rgbBuffer[nIndx * 4] = chBuffer[nIndx];
-                    rgbBuffer[nIndx * 4 + 1] = chBuffer[nIndx];
-                    rgbBuffer[nIndx * 4 + 2] = chBuffer[nIndx];
-                    rgbBuffer[nIndx * 4 + 3] = chBuffer[nIndx];
+                    byte value = chBuffer[nIndx];
+                    //if (value < 20)
+                    //{ value = 0; }
+                    rgbBuffer[nIndx * 4] = value;
+                    rgbBuffer[nIndx * 4 + 1] = value;
+                    rgbBuffer[nIndx * 4 + 2] = value;
+                    rgbBuffer[nIndx * 4 + 3] = value;
                 }
             }
 

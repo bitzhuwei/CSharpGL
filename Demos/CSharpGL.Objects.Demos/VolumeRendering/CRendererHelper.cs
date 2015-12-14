@@ -8,6 +8,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 {
     public class CRendererHelper
     {
+        public float alphaThreshold = 0.05f;
 
         public bool Initialize(CRawDataProcessor pRawDataProc_i, CTranformationMgr pTransformationMgr_i)
         {
@@ -46,7 +47,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             GL.Enable(GL.GL_ALPHA_TEST);
-            GL.AlphaFunc(GL.GL_GREATER, 0.05f);
+            GL.AlphaFunc(GL.GL_GREATER, alphaThreshold);
 
             GL.Enable(GL.GL_BLEND);
             GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
