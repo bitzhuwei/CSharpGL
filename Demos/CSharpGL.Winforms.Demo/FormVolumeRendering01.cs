@@ -51,6 +51,7 @@ namespace CSharpGL.Winforms.Demo
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             //this.camera.MouseWheel(e.Delta);
+            m_Renderer.MouseWheel(e.Delta);
         }
 
         void element_AfterRendering(object sender, Objects.RenderEventArgs e)

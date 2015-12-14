@@ -67,6 +67,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             GL.Scaled((float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetWidth(),
                 -1.0f * (float)m_pRawDataProc.GetWidth() / (float)(float)m_pRawDataProc.GetHeight(),
                 (float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetDepth());
+            GL.Scalef(wheel, wheel, wheel);
 
             // Apply the user provided transformations
             GL.MultMatrixd(m_pTransformMgr.GetMatrix());
@@ -96,5 +97,15 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
         float dOrthoSize = 1.0f;
         private CRawDataProcessor m_pRawDataProc;
         private CTranformationMgr m_pTransformMgr;
+
+        private float wheel = 1.0f;
+        public void MouseWheel(int p)
+        {
+            wheel -= (float)p / 5000.0f;
+            if(wheel<=0)
+            {
+                wheel = 0.001f;
+            }
+        }
     }
 }
