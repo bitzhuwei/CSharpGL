@@ -39,33 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BufferBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IShaderProgram.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UsageType.cs" />
-    <Compile Include="BufferTargetType.cs" />
-    <Compile Include="Class1.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IndexBuffer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IVertexBuffers.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyBuffer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RenderableElementBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Renderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\CSharpGL.Objects\CSharpGL.Objects.csproj">
