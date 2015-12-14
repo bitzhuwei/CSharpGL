@@ -9,6 +9,8 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
     public class CRendererHelper
     {
         public float alphaThreshold = 0.05f;
+        public float negativeZ = -1.0f;
+        public float positiveZ = 1.0f;
 
         public bool Initialize(CRawDataProcessor pRawDataProc_i, CTranformationMgr pTransformationMgr_i)
         {
@@ -77,7 +79,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
             GL.Enable(GL.GL_TEXTURE_3D);
             GL.BindTexture(GL.GL_TEXTURE_3D, m_pRawDataProc.GetTexture3D());
-            for (float fIndx = -1.0f; fIndx <= 1.0f; fIndx += 0.01f)
+            for (float fIndx = negativeZ; fIndx <= positiveZ; fIndx += 0.01f)
             {
                 GL.Begin(GL.GL_QUADS);
 
@@ -95,6 +97,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
                 GL.End();
             }
+            GL.BindTexture(GL.GL_TEXTURE_3D, 0);
         }
 
 

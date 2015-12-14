@@ -199,11 +199,25 @@ namespace CSharpGL.Winforms.Demo
 
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void trackAlpha_Scroll(object sender, EventArgs e)
         {
-            var value = (float)this.trackBar1.Value / 100.0f;
+            var value = (float)this.trackAlpha.Value / 100.0f;
             this.m_Renderer.alphaThreshold = value;
             this.lblAlphaThreshold.Text = value.ToShortString();
+        }
+
+        private void trackNegativeZ_Scroll(object sender, EventArgs e)
+        {
+            var value = (float)this.trackNegativeZ.Value / 100.0f;
+            this.m_Renderer.negativeZ = value;
+            this.lblNegativeZ.Text = value.ToShortString();
+        }
+
+        private void trackPositiveZ_Scroll(object sender, EventArgs e)
+        {
+            var value = (float)this.trackPositiveZ.Value / 100.0f;
+            this.m_Renderer.positiveZ = value;
+            this.lblPositiveZ.Text = value.ToShortString();
         }
     }
 }
