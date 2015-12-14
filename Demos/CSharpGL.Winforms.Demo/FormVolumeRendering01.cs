@@ -6,7 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,13 +22,14 @@ namespace CSharpGL.Winforms.Demo
         private CTranformationMgr m_pTransform = new CTranformationMgr();
         private CRendererHelper m_Renderer = new CRendererHelper();
         private bool nFlags;
+        private const string textureFilename = "head256x256x109";
 
 
         public FormVolumeRendering01()
         {
             InitializeComponent();
 
-            processor.ReadFile("head256x256x109", 256, 256, 109);
+            processor.ReadFile(textureFilename, 256, 256, 109);
             m_Renderer.Initialize(processor, m_pTransform);
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
@@ -37,7 +40,7 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.Resize += glCanvas1_Resize;
 
-       }
+        }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
@@ -91,7 +94,7 @@ namespace CSharpGL.Winforms.Demo
         {
             //this.rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
             //this.rotator.MouseDown(e.X, e.Y);
-            if(e.Button== System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 lastPoint = e.Location;
                 nFlags = true;
@@ -106,7 +109,7 @@ namespace CSharpGL.Winforms.Demo
             //{
             //    this.rotator.MouseMove(e.X, e.Y);
             //}
-            if (nFlags &&e.Button== System.Windows.Forms.MouseButtons.Left)
+            if (nFlags && e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 m_pTransform.Rotate(lastPoint.Y - e.Y, lastPoint.X - e.X, 0);
                 lastPoint = e.Location;
@@ -156,6 +159,44 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1_Resize(this.glCanvas1, e);
 
             MessageBox.Show("此示例是从（http://www.codeproject.com/Articles/352270/Getting-started-with-Volume-Rendering）的C++代码转换来的。");
+        }
+
+        private void lblExport3DTexture_Click(object sender, EventArgs e)
+        {
+            if (this.saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.Export3DTexture(textureFilename, 256, 256, 109, this.saveFileDialog1.FileName);
+
+                Process.Start("explorer", (new FileInfo(this.saveFileDialog1.FileName)).DirectoryName);
+            }
+        }
+
+
+        private void Export3DTexture(string lpDataFile_i, int imageWidth, int imageHeight, int imageCount, string exportFilename)
+        {
+            FileStream file = new FileStream(lpDataFile_i, FileMode.Open, FileAccess.Read);
+
+            byte[] chBuffer = new byte[imageWidth * imageHeight * imageCount];
+
+            // Holds the RGBA buffer
+            file.Read(chBuffer, 0, chBuffer.Length);
+
+            int index = 0;
+            for (int i = 0; i < imageCount; i++)
+            {
+                Bitmap bitmap = new Bitmap(imageWidth, imageHeight);
+                for (int col = 0; col < imageWidth; col++)
+                {
+                    for (int row = 0; row < imageHeight; row++)
+                    {
+                        byte component = chBuffer[index++];
+                        Color c = Color.FromArgb(component, component, component, component);
+                        bitmap.SetPixel(col, row, c);
+                    }
+                }
+                bitmap.Save(string.Format("{0}{1}.bmp", exportFilename, i), System.Drawing.Imaging.ImageFormat.Bmp);
+            }
+
         }
     }
 }

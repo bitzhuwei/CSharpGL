@@ -82,10 +82,13 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
                 GL.TexCoord3f(0.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
                 GL.Vertex3f(-dOrthoSize, -dOrthoSize, fIndx);
+
                 GL.TexCoord3f(1.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
                 GL.Vertex3f(dOrthoSize, -dOrthoSize, fIndx);
+
                 GL.TexCoord3f(1.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
                 GL.Vertex3f(dOrthoSize, dOrthoSize, fIndx);
+
                 GL.TexCoord3f(0.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
                 GL.Vertex3f(-dOrthoSize, dOrthoSize, fIndx);
 
