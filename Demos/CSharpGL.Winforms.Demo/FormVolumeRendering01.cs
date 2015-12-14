@@ -194,7 +194,7 @@ namespace CSharpGL.Winforms.Demo
                         bitmap.SetPixel(col, row, c);
                     }
                 }
-                bitmap.Save(string.Format("{0}{1}.bmp", exportFilename, i), System.Drawing.Imaging.ImageFormat.Bmp);
+                bitmap.Save(string.Format("{0}{1}.png", exportFilename, i), System.Drawing.Imaging.ImageFormat.Png);
             }
 
         }
