@@ -4,3 +4,4 @@ SceneElementBase（及IMVP等）定义了绘图场景中的一个元素的基本
 Shader等封装了OpenGL对GLSL所需的操作。
 RenderContexts里有FBORenderContext等用于创建渲染上下文的类型。（是否应放到CSharpGL.Winforms？）
 UI里有在OpenGL中绘制UI的类型。
+VertexBuffers里封装了VAO和VBO。
