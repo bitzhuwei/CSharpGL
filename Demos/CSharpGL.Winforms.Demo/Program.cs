@@ -19,7 +19,7 @@ namespace CSharpGL.Winforms.Demo
             //return;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormTest());
+            Application.Run(new FormVolumeRendering01());
         }
 
         /// <summary>

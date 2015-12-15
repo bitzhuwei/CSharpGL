@@ -28,7 +28,14 @@ namespace CSharpGL.Objects.VertexBuffers
                 var renderer = item as IndexBufferBaseRenderer;
                 if (renderer != null)
                 {
-                    indexBufferRenderer = renderer;
+                    if (this.indexBufferRenderer != null)
+                    {
+                        throw new Exception("More than 1 index buffer renderer!");
+                    }
+                    else
+                    {
+                        indexBufferRenderer = renderer;
+                    }
                 }
             }
         }

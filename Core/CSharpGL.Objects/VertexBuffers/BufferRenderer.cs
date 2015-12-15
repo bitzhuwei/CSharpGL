@@ -22,7 +22,7 @@ namespace CSharpGL.Objects.VertexBuffers
         /// 为给定VBO执行渲染时所需的操作。
         /// </summary>
         /// <param name="bufferID">用GL.GenBuffers()得到的VBO的ID。</param>
-        public BufferRenderer(uint bufferID)
+        internal BufferRenderer(uint bufferID)
         {
             this.BufferID = bufferID;
         }

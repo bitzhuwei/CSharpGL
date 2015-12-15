@@ -19,9 +19,18 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
         protected override void DoInitialize()
         {
+            InitShaderProgram();
+
             CRawDataProcessor processor = new CRawDataProcessor();
             processor.ReadFile(textureFilename, 256, 256, 109);
             this.textureID = processor.GetTexture3D();
+
+
+        }
+
+        private void InitShaderProgram()
+        {
+            throw new NotImplementedException();
         }
 
         float dOrthoSize = 1.0f;

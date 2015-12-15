@@ -22,7 +22,7 @@ namespace CSharpGL.Objects.VertexBuffers
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="bufferID"></param>
-        public IndexBufferBaseRenderer(DrawMode mode, uint bufferID)
+        internal IndexBufferBaseRenderer(DrawMode mode, uint bufferID)
             : base(bufferID)
         {
             this.Mode = mode;

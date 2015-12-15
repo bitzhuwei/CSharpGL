@@ -19,7 +19,7 @@ namespace CSharpGL.Objects.VertexBuffers
         /// <param name="elementCount">索引数组中有多少个元素。</param>
         /// <param name="type">type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
         /// <para>表示第3个参数，表示索引元素的类型。</para></param>
-        public IndexBufferRenderer(uint bufferID, DrawMode mode, int elementCount, IndexElementType type)
+        internal IndexBufferRenderer(uint bufferID, DrawMode mode, int elementCount, IndexElementType type)
             : base(mode, bufferID)
         {
             this.ElementCount = elementCount;

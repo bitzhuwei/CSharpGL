@@ -22,7 +22,7 @@ namespace CSharpGL.Objects.VertexBuffers
         /// <para>gl.VertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);</para>
         /// <para>gl.VertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);</para>
         /// <para>表示第3个参数</para></param>
-        public PropertyBufferRenderer(string varNameInVertexShader, 
+        internal PropertyBufferRenderer(string varNameInVertexShader, 
             uint bufferID, int dataSize, uint dataType)
             : base(bufferID)
         {
