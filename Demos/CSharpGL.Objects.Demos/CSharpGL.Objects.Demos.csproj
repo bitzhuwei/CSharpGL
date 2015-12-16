@@ -179,6 +179,12 @@
   <ItemGroup>
     <EmbeddedResource Include="DemoHexahedron2Element.vert" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VolumeRendering\DemoVolumeRendering01.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VolumeRendering\DemoVolumeRendering01.vert" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

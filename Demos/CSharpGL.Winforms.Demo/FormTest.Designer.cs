@@ -56,6 +56,7 @@
             this.btnFormMultipleHexahedrons2 = new System.Windows.Forms.Button();
             this.btnFormLegacyTexture3D2 = new System.Windows.Forms.Button();
             this.btnFormVolumeRendering01 = new System.Windows.Forms.Button();
+            this.btnFormTexture3D = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -356,6 +357,17 @@
             this.btnFormVolumeRendering01.UseVisualStyleBackColor = true;
             this.btnFormVolumeRendering01.Click += new System.EventHandler(this.btnFormVolumeRendering01_Click);
             // 
+            // btnFormTexture3D
+            // 
+            this.btnFormTexture3D.Location = new System.Drawing.Point(374, 309);
+            this.btnFormTexture3D.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormTexture3D.Name = "btnFormTexture3D";
+            this.btnFormTexture3D.Size = new System.Drawing.Size(353, 29);
+            this.btnFormTexture3D.TabIndex = 4;
+            this.btnFormTexture3D.Text = "FormTexture3D";
+            this.btnFormTexture3D.UseVisualStyleBackColor = true;
+            this.btnFormTexture3D.Click += new System.EventHandler(this.btnFormTexture3D_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -375,6 +387,7 @@
             this.Controls.Add(this.btnFormTransformFeedback);
             this.Controls.Add(this.btnFormScientificVisual3DControl);
             this.Controls.Add(this.btnFormColorCodedPicking);
+            this.Controls.Add(this.btnFormTexture3D);
             this.Controls.Add(this.btnFormVolumeRendering01);
             this.Controls.Add(this.btnFormLegacyTexture3D2);
             this.Controls.Add(this.btnFormLegacyTexture3D);
@@ -425,5 +438,6 @@
         private System.Windows.Forms.Button btnFormMultipleHexahedrons2;
         private System.Windows.Forms.Button btnFormLegacyTexture3D2;
         private System.Windows.Forms.Button btnFormVolumeRendering01;
+        private System.Windows.Forms.Button btnFormTexture3D;
     }
 }

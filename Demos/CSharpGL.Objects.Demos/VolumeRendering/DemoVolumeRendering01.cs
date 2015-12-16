@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CSharpGL.Objects.Shaders;
+using GLM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,51 +8,58 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Demos.VolumeRendering
 {
-    public class DemoVolumeRendering01 : SceneElementBase
+    public class DemoVolumeRendering01 : SceneElementBase, IMVP
     {
-        Shaders.ShaderProgram shaderProgram;
-        private string textureFilename;
-        uint textureID;
+        /// <summary>
+        /// shader program
+        /// </summary>
+        public ShaderProgram shaderProgram;
+        const string strin_Position = "in_Position";
+        const string strin_uv = "in_uv";
+        public const string strMVP = "MVP";
 
-        public DemoVolumeRendering01(string textureFilename)
+        protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            this.textureFilename = textureFilename;
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering01.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering01.frag");
+
+            shaderProgram = new ShaderProgram();
+            shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
+
+            shaderProgram.AssertValid();
         }
 
         protected override void DoInitialize()
         {
-            InitShaderProgram();
+            InitializeShader(out shaderProgram);
 
-            CRawDataProcessor processor = new CRawDataProcessor();
-            processor.ReadFile(textureFilename, 256, 256, 109);
-            this.textureID = processor.GetTexture3D();
-
-
+            //base.BeforeRendering += IMVPHelper.Getelement_BeforeRendering();
+            //base.AfterRendering += IMVPHelper.Getelement_AfterRendering();
         }
-
-        private void InitShaderProgram()
-        {
-            throw new NotImplementedException();
-        }
-
-        float dOrthoSize = 1.0f;
 
         protected override void DoRender(RenderEventArgs e)
         {
-            for (float fIndx = -1.0f; fIndx <= 1.0f; fIndx += 0.01f)
-            {
-                GL.Begin(GL.GL_QUADS);
-                GL.TexCoord3f(0.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
-                GL.Vertex3f(-dOrthoSize, -dOrthoSize, fIndx);
-                GL.TexCoord3f(1.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
-                GL.Vertex3f(dOrthoSize, -dOrthoSize, fIndx);
-                GL.TexCoord3f(1.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
-                GL.Vertex3f(dOrthoSize, dOrthoSize, fIndx);
-                GL.TexCoord3f(0.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
-                GL.Vertex3f(-dOrthoSize, dOrthoSize, fIndx);
-                GL.End();
-            }
-         
+        }
+
+        void IMVP.SetShaderProgram(mat4 mvp)
+        {
+            //this.tex.Bind();
+
+            IMVPHelper.SetMVP(this, mvp);
+        }
+
+
+        void IMVP.ResetShaderProgram()
+        {
+            IMVPHelper.ResetMVP(this);
+
+            //this.tex.Unbind();
+        }
+
+
+        ShaderProgram IMVP.GetShaderProgram()
+        {
+            return this.shaderProgram;
         }
 
     }

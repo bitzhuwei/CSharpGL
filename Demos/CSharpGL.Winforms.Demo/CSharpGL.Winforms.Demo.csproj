@@ -118,6 +118,12 @@
     <Compile Include="FormPointSpriteStringElement.Designer.cs">
       <DependentUpon>FormPointSpriteStringElement.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTexture3D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTexture3D.Designer.cs">
+      <DependentUpon>FormTexture3D.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTexImage2D.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMapBuffer.resx">
       <DependentUpon>FormMapBuffer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTexture3D.resx">
+      <DependentUpon>FormTexture3D.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTexImage2D.resx">
       <DependentUpon>FormTexImage2D.cs</DependentUpon>

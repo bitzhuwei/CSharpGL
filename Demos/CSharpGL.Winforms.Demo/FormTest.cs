@@ -167,6 +167,11 @@ namespace CSharpGL.Winforms.Demo
             (new FormVolumeRendering01()).Show();
         }
 
+        private void btnFormTexture3D_Click(object sender, EventArgs e)
+        {
+            (new FormTexture3D()).Show();
+        }
+
 
 
     }
