@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.SceneElements
     /// <summary>
     /// 绘制三维坐标轴
     /// <para>充当此类库里的示例元素</para>
-    /// <para>此类型使用封装了的VAO和VBO。我认为是可以提高项目工作效率的，是个好的设计。</para>
+    /// <para>此类型使用封装了的VAO和VBO。我认为是可以提高开发效率的，是个好的设计。</para>
     /// </summary>
     public class AxisElement : SceneElementBase, IMVP, IDisposable
     {

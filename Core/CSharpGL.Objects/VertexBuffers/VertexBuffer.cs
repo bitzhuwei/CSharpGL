@@ -23,7 +23,7 @@ namespace CSharpGL.Objects.VertexBuffers
         }
 
         /// <summary>
-        /// 获取此VBO的内存首地址。
+        /// 获取此VBO的内存首地址。用于快速读写。
         /// </summary>
         /// <returns></returns>
         public unsafe void* FirstElement()
