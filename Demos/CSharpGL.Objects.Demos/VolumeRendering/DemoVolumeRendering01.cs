@@ -111,24 +111,30 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
                 this.vao = new VertexArrayObject(this.positionBufferRenderer, this.uvBufferRenderer, this.indexBufferRenderer);
                 this.vao.Create(e, this.shaderProgram);
             }
-            
+
             this.vao.Render(e, this.shaderProgram);
-          
+
         }
 
         public BlendingSourceFactor sFactor = BlendingSourceFactor.SourceAlpha;
         public BlendingDestinationFactor dFactor = BlendingDestinationFactor.OneMinusSourceAlpha;
+        public bool blend = true;
 
         void IMVP.SetShaderProgram(mat4 mvp)
         {
             //this.tex.Bind();
             GL.CullFace(GL.GL_FRONT_AND_BACK);
+            GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Filled);
 
             GL.Enable(GL.GL_ALPHA_TEST);
             GL.AlphaFunc(GL.GL_GREATER, alphaThreshold);
 
-            GL.Enable(GL.GL_BLEND);
-            GL.BlendFunc(sFactor, dFactor);
+            bool blend = this.blend;
+            if (blend)
+            {
+                GL.Enable(GL.GL_BLEND);
+                GL.BlendFunc(sFactor, dFactor);
+            }
 
             uint textureID = this.textureProcessor.GetTexture3D();
             GL.BindTexture(GL.GL_TEXTURE_3D, textureID);

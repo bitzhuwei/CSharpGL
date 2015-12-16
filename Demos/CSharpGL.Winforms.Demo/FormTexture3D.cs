@@ -179,5 +179,10 @@ namespace CSharpGL.Winforms.Demo
             this.element.dFactor = dfactor;
         }
 
+        private void chkBlend_CheckedChanged(object sender, EventArgs e)
+        {
+            this.element.blend = this.chkBlend.Checked;
+        }
+
     }
 }

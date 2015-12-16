@@ -40,8 +40,8 @@
             this.trackNegativeZ = new System.Windows.Forms.TrackBar();
             this.trackAlpha = new System.Windows.Forms.TrackBar();
             this.cmbSFactor = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.cmbDFactor = new System.Windows.Forms.ComboBox();
+            this.chkBlend = new System.Windows.Forms.CheckBox();
             this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackPositiveZ)).BeginInit();
@@ -156,15 +156,6 @@
             this.cmbSFactor.TabIndex = 14;
             this.cmbSFactor.SelectedIndexChanged += new System.EventHandler(this.cmbSFactor_SelectedIndexChanged);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 140);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 15);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Blend:";
-            // 
             // cmbDFactor
             // 
             this.cmbDFactor.FormattingEnabled = true;
@@ -173,6 +164,19 @@
             this.cmbDFactor.Size = new System.Drawing.Size(248, 23);
             this.cmbDFactor.TabIndex = 14;
             this.cmbDFactor.SelectedIndexChanged += new System.EventHandler(this.cmbDFactor_SelectedIndexChanged);
+            // 
+            // chkBlend
+            // 
+            this.chkBlend.AutoSize = true;
+            this.chkBlend.Checked = true;
+            this.chkBlend.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBlend.Location = new System.Drawing.Point(12, 140);
+            this.chkBlend.Name = "chkBlend";
+            this.chkBlend.Size = new System.Drawing.Size(69, 19);
+            this.chkBlend.TabIndex = 15;
+            this.chkBlend.Text = "blend";
+            this.chkBlend.UseVisualStyleBackColor = true;
+            this.chkBlend.CheckedChanged += new System.EventHandler(this.chkBlend_CheckedChanged);
             // 
             // glCanvas1
             // 
@@ -192,12 +196,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(715, 571);
+            this.Controls.Add(this.chkBlend);
             this.Controls.Add(this.cmbDFactor);
             this.Controls.Add(this.cmbSFactor);
             this.Controls.Add(this.lblNegativeZ);
             this.Controls.Add(this.lblPositiveZ);
             this.Controls.Add(this.lblAlphaThreshold);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.trackPositiveZ);
@@ -234,7 +238,7 @@
         private System.Windows.Forms.TrackBar trackNegativeZ;
         private System.Windows.Forms.TrackBar trackAlpha;
         private System.Windows.Forms.ComboBox cmbSFactor;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbDFactor;
+        private System.Windows.Forms.CheckBox chkBlend;
     }
 }
