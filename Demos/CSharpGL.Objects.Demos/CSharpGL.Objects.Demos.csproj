@@ -61,8 +61,11 @@
     <Compile Include="UIs\SimpleUIColorIndicatorBar.cs" />
     <Compile Include="UIs\SimpleUICube.cs" />
     <Compile Include="UIs\SimpleUIRect.cs" />
+    <Compile Include="VolumeRendering\DemoVolumeRendering02.cs" />
     <Compile Include="VolumeRendering\QuadUV.cs" />
     <Compile Include="VolumeRendering\QuadPosition.cs" />
+    <Compile Include="VolumeRendering\VR02UVBuffer.cs" />
+    <Compile Include="VolumeRendering\VR02PositionBuffer.cs" />
     <Compile Include="VolumeRendering\VR01UVBuffer.cs" />
     <Compile Include="VolumeRendering\VR01PositionBuffer.cs" />
     <Content Include="VolumeRendering\readme.txt" />
@@ -188,6 +191,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="VolumeRendering\DemoVolumeRendering01.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VolumeRendering\DemoVolumeRendering02.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VolumeRendering\DemoVolumeRendering02.vert" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -15,7 +15,7 @@ namespace CSharpGL.Winforms.Demo
     {
         SatelliteRotator rotator;
         Camera camera;
-        DemoVolumeRendering01 element;
+        DemoVolumeRendering02 element;
 
         public FormTexture3D()
         {
@@ -36,7 +36,7 @@ namespace CSharpGL.Winforms.Demo
             rotator = new SatelliteRotator(this.camera);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
-            element = new DemoVolumeRendering01();
+            element = new DemoVolumeRendering02();
             element.Initialize();
 
             element.BeforeRendering += element_BeforeRendering;

@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 namespace CSharpGL.Objects.Demos.VolumeRendering
 {
     /// <summary>
-    /// 用多个Quad进行VR渲染。
+    /// 用多个Points进行VR渲染。
     /// </summary>
-    public class DemoVolumeRendering01 : SceneElementBase, IMVP
+    public class DemoVolumeRendering02 : SceneElementBase, IMVP
     {
         VertexArrayObject vao;
 
@@ -33,8 +33,8 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering01.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering01.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering02.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering02.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -55,6 +55,9 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
         }
 
         const int zFrameCount = 109;
+        const int xFrameCount = 256;
+        const int yFrameCount = 256;
+
         const float xLength = 1;
         const float yLength = 1;
         public float alphaThreshold = 0.05f;
@@ -62,41 +65,53 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
         private unsafe void InitVertexBuffers()
         {
             {
-                VR01PositionBuffer positionBuffer = new VR01PositionBuffer(strin_Position);
-                positionBuffer.Alloc(zFrameCount);
-                QuadPosition* array = (QuadPosition*)positionBuffer.FirstElement();
-                for (int i = 0; i < zFrameCount; i++)
+                VR02PositionBuffer positionBuffer = new VR02PositionBuffer(strin_Position);
+                positionBuffer.Alloc(xFrameCount * yFrameCount * zFrameCount);
+                vec3* array = (vec3*)positionBuffer.FirstElement();
+                int index = 0;
+                for (int i = 0; i < xFrameCount; i++)
                 {
-                    array[i] = new QuadPosition(
-                        new vec3(-xLength, -yLength, (float)i / (float)zFrameCount - 0.5f),
-                        new vec3(xLength, -yLength, (float)i / (float)zFrameCount - 0.5f),
-                        new vec3(xLength, yLength, (float)i / (float)zFrameCount - 0.5f),
-                        new vec3(-xLength, yLength, (float)i / (float)zFrameCount - 0.5f)
-                        );
+                    for (int j = 0; j < yFrameCount; j++)
+                    {
+                        for (int k = 0; k < zFrameCount; k++)
+                        {
+                            array[index++] = new vec3(
+                                (float)i / (float)xFrameCount - 0.5f,
+                                (float)j / (float)yFrameCount - 0.5f,
+                                ((float)k / (float)zFrameCount - 0.5f) * 109.0f / 256.0f
+                                );
+                        }
+                    }
                 }
                 this.positionBufferRenderer = positionBuffer.GetRenderer();
                 positionBuffer.Dispose();
             }
 
             {
-                VR01UVBuffer uvBuffer = new VR01UVBuffer(strin_uv);
-                uvBuffer.Alloc(zFrameCount);
-                QuadUV* array = (QuadUV*)uvBuffer.FirstElement();
-                for (int i = 0; i < zFrameCount; i++)
+                VR02UVBuffer uvBuffer = new VR02UVBuffer(strin_uv);
+                uvBuffer.Alloc(xFrameCount * yFrameCount * zFrameCount);
+                vec3* array = (vec3*)uvBuffer.FirstElement();
+                int index = 0;
+                for (int i = 0; i < xFrameCount; i++)
                 {
-                    array[i] = new QuadUV(
-                        new vec3(0, 0, (float)i / (float)zFrameCount),
-                        new vec3(1, 0, (float)i / (float)zFrameCount),
-                        new vec3(1, 1, (float)i / (float)zFrameCount),
-                        new vec3(0, 1, (float)i / (float)zFrameCount)
-                        );
+                    for (int j = 0; j < yFrameCount; j++)
+                    {
+                        for (int k = 0; k < zFrameCount; k++)
+                        {
+                            array[index++] = new vec3(
+                                (float)i / (float)xFrameCount,
+                                (float)j / (float)yFrameCount,
+                                (float)k / (float)zFrameCount
+                                );
+                        }
+                    }
                 }
                 this.uvBufferRenderer = uvBuffer.GetRenderer();
                 uvBuffer.Dispose();
             }
             {
-                var indexBuffer = new ZeroIndexBuffer(DrawMode.Quads, zFrameCount * 4);
-                indexBuffer.Alloc(zFrameCount);// this actually does nothing.
+                var indexBuffer = new ZeroIndexBuffer(DrawMode.Points, xFrameCount * yFrameCount * zFrameCount);
+                indexBuffer.Alloc(xFrameCount * yFrameCount * zFrameCount);// this actually does nothing.
                 this.indexBufferRenderer = indexBuffer.GetRenderer();
                 indexBuffer.Dispose();
             }
