@@ -6,6 +6,8 @@ using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
 using System;
 using System.Windows.Forms;
+using CSharpGL.Objects.Demos.VolumeRendering;
+using CSharpGL.Enumerations;
 
 namespace CSharpGL.Winforms.Demo
 {
@@ -13,7 +15,7 @@ namespace CSharpGL.Winforms.Demo
     {
         SatelliteRotator rotator;
         Camera camera;
-        DemoTexImage2D element;
+        DemoVolumeRendering01 element;
 
         public FormTexture3D()
         {
@@ -34,7 +36,7 @@ namespace CSharpGL.Winforms.Demo
             rotator = new SatelliteRotator(this.camera);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
-            element = new DemoTexImage2D("DemoTexImage2D.bmp");
+            element = new DemoVolumeRendering01();
             element.Initialize();
 
             element.BeforeRendering += element_BeforeRendering;
@@ -115,14 +117,22 @@ namespace CSharpGL.Winforms.Demo
         private void FormSatelliteRotation_Load(object sender, EventArgs e)
         {
             {
-                var items = new TexImage2DFormats[] { TexImage2DFormats.Alpha, TexImage2DFormats.Luminance, TexImage2DFormats.LuminanceAlpha, TexImage2DFormats.RGB, TexImage2DFormats.RGBA };
-
-                foreach (var item in items)
+                //public BlendingSourceFactor sFactor = BlendingSourceFactor.SourceAlpha;
+                //public BlendingDestinationFactor dFactor = BlendingDestinationFactor.OneMinusSourceAlpha;
+                var values = Enum.GetValues(typeof(BlendingSourceFactor));
+                foreach (var item in values)
                 {
-                    this.cmbFormat.Items.Add(item);
-                    this.cmbInternalformat.Items.Add(item);
+                    string name = item.ToString();
+                    this.cmbSFactor.Items.Add(name);
                 }
-                
+            }
+            {
+                var values = Enum.GetValues(typeof(BlendingDestinationFactor));
+                foreach (var item in values)
+                {
+                    string name = item.ToString();
+                    this.cmbDFactor.Items.Add(name);
+                }
             }
 
             this.lblCameraType.Text = string.Format("camera type: {0}", this.camera.CameraType);
@@ -150,23 +160,23 @@ namespace CSharpGL.Winforms.Demo
             }
         }
 
-        private void btnBrowse_Click(object sender, EventArgs e)
+        private void trackAlpha_Scroll(object sender, EventArgs e)
         {
-            if(this.openFileDialog1.ShowDialog()== System.Windows.Forms.DialogResult.OK)
-            {
-                this.txtTextureFile.Text = this.openFileDialog1.FileName;
-                this.btnOK.Enabled = true;
-            }
+            var value = (float)this.trackAlpha.Value / 100.0f;
+            this.element.alphaThreshold = value;
+            this.lblAlphaThreshold.Text = value.ToShortString();
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        private void cmbSFactor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var element = new DemoTexImage2D(this.txtTextureFile.Text);
-            element.Initialize();
-            element.BeforeRendering += element_BeforeRendering;
-            element.AfterRendering += element_AfterRendering;
+            var sfactor = (BlendingSourceFactor)Enum.Parse(typeof(BlendingSourceFactor), cmbSFactor.SelectedItem.ToString());
+            this.element.sFactor = sfactor;
+        }
 
-            this.element = element;
+        private void cmbDFactor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var dfactor = (BlendingDestinationFactor)Enum.Parse(typeof(BlendingDestinationFactor), cmbDFactor.SelectedItem.ToString());
+            this.element.dFactor = dfactor;
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpGL.Enumerations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -1341,5 +1342,14 @@ namespace CSharpGL
         }
         #endregion texture
 
+        #region Blend
+
+        public static void BlendFunc(BlendingSourceFactor sfactor, BlendingDestinationFactor dfactor)
+        {
+            BlendFunc((uint)sfactor, (uint)dfactor);
+        }
+
+
+        #endregion Blend
     }
 }
