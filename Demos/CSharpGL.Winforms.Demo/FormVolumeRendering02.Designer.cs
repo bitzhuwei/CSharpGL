@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Winforms.Demo
 {
-    partial class FormVolumeRendering01
+    partial class FormVolumeRendering02
     {
         /// <summary>
         /// Required designer variable.

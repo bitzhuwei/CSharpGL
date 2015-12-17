@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Winforms.Demo
 {
-    partial class FormTexture3D
+    partial class FormVolumeRendering03
     {
         /// <summary>
         /// Required designer variable.

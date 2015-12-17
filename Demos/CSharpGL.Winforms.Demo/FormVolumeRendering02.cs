@@ -11,13 +11,13 @@ using CSharpGL.Enumerations;
 
 namespace CSharpGL.Winforms.Demo
 {
-    public partial class FormVolumeRendering01 : Form
+    public partial class FormVolumeRendering02 : Form
     {
         SatelliteRotator rotator;
         Camera camera;
-        DemoVolumeRendering01 element;
+        DemoVolumeRendering02 element;
 
-        public FormVolumeRendering01()
+        public FormVolumeRendering02()
         {
             InitializeComponent();
 
@@ -36,7 +36,7 @@ namespace CSharpGL.Winforms.Demo
             rotator = new SatelliteRotator(this.camera);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
-            element = new DemoVolumeRendering01();
+            element = new DemoVolumeRendering02();
             element.Initialize();
 
             element.BeforeRendering += element_BeforeRendering;

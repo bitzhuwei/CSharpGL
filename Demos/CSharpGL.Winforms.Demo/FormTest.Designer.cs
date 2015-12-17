@@ -56,7 +56,9 @@
             this.btnFormMultipleHexahedrons2 = new System.Windows.Forms.Button();
             this.btnFormLegacyTexture3D2 = new System.Windows.Forms.Button();
             this.btnFormVolumeRendering01 = new System.Windows.Forms.Button();
-            this.btnFormTexture3D = new System.Windows.Forms.Button();
+            this.btnFormVolumeRendering_Hexahedron = new System.Windows.Forms.Button();
+            this.btnVR01_modernOpenGL_Quads = new System.Windows.Forms.Button();
+            this.btnVR02_modernOpenGL_Points = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -262,7 +264,7 @@
             this.btnFormScientificVisual3DControl.Location = new System.Drawing.Point(374, 13);
             this.btnFormScientificVisual3DControl.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormScientificVisual3DControl.Name = "btnFormScientificVisual3DControl";
-            this.btnFormScientificVisual3DControl.Size = new System.Drawing.Size(353, 29);
+            this.btnFormScientificVisual3DControl.Size = new System.Drawing.Size(346, 29);
             this.btnFormScientificVisual3DControl.TabIndex = 4;
             this.btnFormScientificVisual3DControl.Text = "FormScientificVisual3DControl";
             this.btnFormScientificVisual3DControl.UseVisualStyleBackColor = true;
@@ -273,7 +275,7 @@
             this.btnFormTransformFeedback.Location = new System.Drawing.Point(374, 50);
             this.btnFormTransformFeedback.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormTransformFeedback.Name = "btnFormTransformFeedback";
-            this.btnFormTransformFeedback.Size = new System.Drawing.Size(353, 29);
+            this.btnFormTransformFeedback.Size = new System.Drawing.Size(346, 29);
             this.btnFormTransformFeedback.TabIndex = 4;
             this.btnFormTransformFeedback.Text = "FormTransformFeedback";
             this.btnFormTransformFeedback.UseVisualStyleBackColor = true;
@@ -285,7 +287,7 @@
             this.btnFormInstancedRendering.Location = new System.Drawing.Point(374, 87);
             this.btnFormInstancedRendering.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormInstancedRendering.Name = "btnFormInstancedRendering";
-            this.btnFormInstancedRendering.Size = new System.Drawing.Size(353, 29);
+            this.btnFormInstancedRendering.Size = new System.Drawing.Size(346, 29);
             this.btnFormInstancedRendering.TabIndex = 4;
             this.btnFormInstancedRendering.Text = "FormInstancedRendering";
             this.btnFormInstancedRendering.UseVisualStyleBackColor = true;
@@ -296,7 +298,7 @@
             this.btnFormMapBuffer.Location = new System.Drawing.Point(374, 124);
             this.btnFormMapBuffer.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormMapBuffer.Name = "btnFormMapBuffer";
-            this.btnFormMapBuffer.Size = new System.Drawing.Size(353, 29);
+            this.btnFormMapBuffer.Size = new System.Drawing.Size(346, 29);
             this.btnFormMapBuffer.TabIndex = 4;
             this.btnFormMapBuffer.Text = "FormMapBuffer";
             this.btnFormMapBuffer.UseVisualStyleBackColor = true;
@@ -318,7 +320,7 @@
             this.btnFormMultipleHexahedrons1.Location = new System.Drawing.Point(374, 161);
             this.btnFormMultipleHexahedrons1.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormMultipleHexahedrons1.Name = "btnFormMultipleHexahedrons1";
-            this.btnFormMultipleHexahedrons1.Size = new System.Drawing.Size(353, 29);
+            this.btnFormMultipleHexahedrons1.Size = new System.Drawing.Size(346, 29);
             this.btnFormMultipleHexahedrons1.TabIndex = 4;
             this.btnFormMultipleHexahedrons1.Text = "FormMultipleHexahedrons1-DrawElements";
             this.btnFormMultipleHexahedrons1.UseVisualStyleBackColor = true;
@@ -329,7 +331,7 @@
             this.btnFormMultipleHexahedrons2.Location = new System.Drawing.Point(374, 198);
             this.btnFormMultipleHexahedrons2.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormMultipleHexahedrons2.Name = "btnFormMultipleHexahedrons2";
-            this.btnFormMultipleHexahedrons2.Size = new System.Drawing.Size(353, 29);
+            this.btnFormMultipleHexahedrons2.Size = new System.Drawing.Size(346, 29);
             this.btnFormMultipleHexahedrons2.TabIndex = 4;
             this.btnFormMultipleHexahedrons2.Text = "FormMultipleHexahedrons2-MultiDrawArrays";
             this.btnFormMultipleHexahedrons2.UseVisualStyleBackColor = true;
@@ -340,7 +342,7 @@
             this.btnFormLegacyTexture3D2.Location = new System.Drawing.Point(374, 235);
             this.btnFormLegacyTexture3D2.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormLegacyTexture3D2.Name = "btnFormLegacyTexture3D2";
-            this.btnFormLegacyTexture3D2.Size = new System.Drawing.Size(353, 29);
+            this.btnFormLegacyTexture3D2.Size = new System.Drawing.Size(346, 29);
             this.btnFormLegacyTexture3D2.TabIndex = 4;
             this.btnFormLegacyTexture3D2.Text = "FormLegacyTexture3D-2";
             this.btnFormLegacyTexture3D2.UseVisualStyleBackColor = true;
@@ -351,28 +353,50 @@
             this.btnFormVolumeRendering01.Location = new System.Drawing.Point(374, 272);
             this.btnFormVolumeRendering01.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormVolumeRendering01.Name = "btnFormVolumeRendering01";
-            this.btnFormVolumeRendering01.Size = new System.Drawing.Size(353, 29);
+            this.btnFormVolumeRendering01.Size = new System.Drawing.Size(346, 29);
             this.btnFormVolumeRendering01.TabIndex = 4;
-            this.btnFormVolumeRendering01.Text = "FormVolumeRendering01";
+            this.btnFormVolumeRendering01.Text = "FormVolumeRendering00-legacy opengl";
             this.btnFormVolumeRendering01.UseVisualStyleBackColor = true;
             this.btnFormVolumeRendering01.Click += new System.EventHandler(this.btnFormVolumeRendering01_Click);
             // 
-            // btnFormTexture3D
+            // btnFormVolumeRendering_Hexahedron
             // 
-            this.btnFormTexture3D.Location = new System.Drawing.Point(374, 309);
-            this.btnFormTexture3D.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFormTexture3D.Name = "btnFormTexture3D";
-            this.btnFormTexture3D.Size = new System.Drawing.Size(353, 29);
-            this.btnFormTexture3D.TabIndex = 4;
-            this.btnFormTexture3D.Text = "FormTexture3D";
-            this.btnFormTexture3D.UseVisualStyleBackColor = true;
-            this.btnFormTexture3D.Click += new System.EventHandler(this.btnFormTexture3D_Click);
+            this.btnFormVolumeRendering_Hexahedron.Location = new System.Drawing.Point(374, 383);
+            this.btnFormVolumeRendering_Hexahedron.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormVolumeRendering_Hexahedron.Name = "btnFormVolumeRendering_Hexahedron";
+            this.btnFormVolumeRendering_Hexahedron.Size = new System.Drawing.Size(346, 29);
+            this.btnFormVolumeRendering_Hexahedron.TabIndex = 4;
+            this.btnFormVolumeRendering_Hexahedron.Text = "FormVolumeRendering03-hexahedron";
+            this.btnFormVolumeRendering_Hexahedron.UseVisualStyleBackColor = true;
+            this.btnFormVolumeRendering_Hexahedron.Click += new System.EventHandler(this.btnFormVolumeRendering_Hexahedron_Click);
+            // 
+            // btnVR01_modernOpenGL_Quads
+            // 
+            this.btnVR01_modernOpenGL_Quads.Location = new System.Drawing.Point(374, 309);
+            this.btnVR01_modernOpenGL_Quads.Margin = new System.Windows.Forms.Padding(4);
+            this.btnVR01_modernOpenGL_Quads.Name = "btnVR01_modernOpenGL_Quads";
+            this.btnVR01_modernOpenGL_Quads.Size = new System.Drawing.Size(346, 29);
+            this.btnVR01_modernOpenGL_Quads.TabIndex = 4;
+            this.btnVR01_modernOpenGL_Quads.Text = "FormVolumeRendering01-quads";
+            this.btnVR01_modernOpenGL_Quads.UseVisualStyleBackColor = true;
+            this.btnVR01_modernOpenGL_Quads.Click += new System.EventHandler(this.btnVR01_modernOpenGL_Quads_Click);
+            // 
+            // btnVR02_modernOpenGL_Points
+            // 
+            this.btnVR02_modernOpenGL_Points.Location = new System.Drawing.Point(374, 346);
+            this.btnVR02_modernOpenGL_Points.Margin = new System.Windows.Forms.Padding(4);
+            this.btnVR02_modernOpenGL_Points.Name = "btnVR02_modernOpenGL_Points";
+            this.btnVR02_modernOpenGL_Points.Size = new System.Drawing.Size(346, 29);
+            this.btnVR02_modernOpenGL_Points.TabIndex = 4;
+            this.btnVR02_modernOpenGL_Points.Text = "FormVolumeRendering02-points";
+            this.btnVR02_modernOpenGL_Points.UseVisualStyleBackColor = true;
+            this.btnVR02_modernOpenGL_Points.Click += new System.EventHandler(this.btnVR02_modernOpenGL_Points_Click);
             // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(749, 720);
+            this.ClientSize = new System.Drawing.Size(747, 720);
             this.Controls.Add(this.btnFormWholeFontTextureElement);
             this.Controls.Add(this.btnTexImage2D);
             this.Controls.Add(this.btnCylinderElement);
@@ -387,7 +411,9 @@
             this.Controls.Add(this.btnFormTransformFeedback);
             this.Controls.Add(this.btnFormScientificVisual3DControl);
             this.Controls.Add(this.btnFormColorCodedPicking);
-            this.Controls.Add(this.btnFormTexture3D);
+            this.Controls.Add(this.btnFormVolumeRendering_Hexahedron);
+            this.Controls.Add(this.btnVR02_modernOpenGL_Points);
+            this.Controls.Add(this.btnVR01_modernOpenGL_Quads);
             this.Controls.Add(this.btnFormVolumeRendering01);
             this.Controls.Add(this.btnFormLegacyTexture3D2);
             this.Controls.Add(this.btnFormLegacyTexture3D);
@@ -438,6 +464,8 @@
         private System.Windows.Forms.Button btnFormMultipleHexahedrons2;
         private System.Windows.Forms.Button btnFormLegacyTexture3D2;
         private System.Windows.Forms.Button btnFormVolumeRendering01;
-        private System.Windows.Forms.Button btnFormTexture3D;
+        private System.Windows.Forms.Button btnFormVolumeRendering_Hexahedron;
+        private System.Windows.Forms.Button btnVR01_modernOpenGL_Quads;
+        private System.Windows.Forms.Button btnVR02_modernOpenGL_Points;
     }
 }

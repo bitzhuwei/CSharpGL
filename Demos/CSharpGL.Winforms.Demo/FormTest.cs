@@ -164,14 +164,24 @@ namespace CSharpGL.Winforms.Demo
 
         private void btnFormVolumeRendering01_Click(object sender, EventArgs e)
         {
+            (new FormVolumeRendering00()).Show();
+        }
+
+
+        private void btnVR01_modernOpenGL_Quads_Click(object sender, EventArgs e)
+        {
             (new FormVolumeRendering01()).Show();
         }
 
-        private void btnFormTexture3D_Click(object sender, EventArgs e)
+        private void btnVR02_modernOpenGL_Points_Click(object sender, EventArgs e)
         {
-            (new FormTexture3D()).Show();
+            (new FormVolumeRendering02()).Show();
         }
 
+        private void btnFormVolumeRendering_Hexahedron_Click(object sender, EventArgs e)
+        {
+            (new FormVolumeRendering03()).Show();
+        }
 
 
     }
