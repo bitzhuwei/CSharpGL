@@ -167,5 +167,11 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             return this.shaderProgram;
         }
 
+        protected override void CleanUnmanagedRes()
+        {
+            this.vao.Dispose();
+
+            base.CleanUnmanagedRes();
+        }
     }
 }

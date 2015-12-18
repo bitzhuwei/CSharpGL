@@ -54,11 +54,12 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             //base.AfterRendering += IMVPHelper.Getelement_AfterRendering();
         }
 
-        const int zFrameCount = 109;
-        const int xFrameCount = 256;
-        const int yFrameCount = 256;
+        const int downSizing = 3;
+        const int zFrameCount = 109 / downSizing;
+        const int xFrameCount = 256 / downSizing;
+        const int yFrameCount = 256 / downSizing;
 
-        const float hexahedronHalfLength = factor * 1.0f / 255.0f;
+        const float hexahedronHalfLength = factor * 3.0f / 255.0f;
         const float factor = 256;
 
         const float xLength = 1;
@@ -79,8 +80,8 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
                     {
                         for (int k = 0; k < zFrameCount; k++)
                         {
-                            var x = ((float)i / (float)xFrameCount - 0.5f)*factor;
-                            var y = ((float)j / (float)yFrameCount - 0.5f)*factor;
+                            var x = ((float)i / (float)xFrameCount - 0.5f) * factor;
+                            var y = ((float)j / (float)yFrameCount - 0.5f) * factor;
                             var z = (((float)k / (float)zFrameCount - 0.5f) * 109.0f / 256.0f) * factor;
                             var hexahedron = new HexahedronPosition();
                             hexahedron.v0 = new vec3(x + hexahedronHalfLength, y + hexahedronHalfLength, z + hexahedronHalfLength);
@@ -218,5 +219,11 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             return this.shaderProgram;
         }
 
+        protected override void CleanUnmanagedRes()
+        {
+            this.vao.Dispose();
+
+            base.CleanUnmanagedRes();
+        }
     }
 }

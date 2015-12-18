@@ -51,6 +51,13 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            this.element.Dispose();
+
+            base.OnClosing(e);
+        }
+
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
             if (this.camera != null)
