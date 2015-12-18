@@ -183,6 +183,11 @@ namespace CSharpGL.Winforms.Demo
             (new FormVolumeRendering03()).Show();
         }
 
+        private void btnFormVolumeRendering04_Click(object sender, EventArgs e)
+        {
+            (new FormVolumeRendering04()).Show();
+        }
+
 
     }
 }

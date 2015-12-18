@@ -130,6 +130,12 @@
     <Compile Include="FormVolumeRendering01.Designer.cs">
       <DependentUpon>FormVolumeRendering01.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormVolumeRendering04.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVolumeRendering04.Designer.cs">
+      <DependentUpon>FormVolumeRendering04.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormVolumeRendering03.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormVolumeRendering01.resx">
       <DependentUpon>FormVolumeRendering01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVolumeRendering04.resx">
+      <DependentUpon>FormVolumeRendering04.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVolumeRendering03.resx">
       <DependentUpon>FormVolumeRendering03.cs</DependentUpon>

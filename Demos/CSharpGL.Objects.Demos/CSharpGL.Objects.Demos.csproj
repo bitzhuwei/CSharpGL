@@ -61,13 +61,18 @@
     <Compile Include="UIs\SimpleUIColorIndicatorBar.cs" />
     <Compile Include="UIs\SimpleUICube.cs" />
     <Compile Include="UIs\SimpleUIRect.cs" />
+    <Compile Include="VolumeRendering\DemoVolumeRendering04.cs" />
     <Compile Include="VolumeRendering\DemoVolumeRendering03.cs" />
     <Compile Include="VolumeRendering\DemoVolumeRendering02.cs" />
     <Compile Include="VolumeRendering\HexahedronIndex.cs" />
     <Compile Include="VolumeRendering\HexahedronUV.cs" />
     <Compile Include="VolumeRendering\HexahedronPosition.cs" />
+    <Compile Include="VolumeRendering\QuadIndex.cs" />
     <Compile Include="VolumeRendering\QuadUV.cs" />
     <Compile Include="VolumeRendering\QuadPosition.cs" />
+    <Compile Include="VolumeRendering\VR04IndexBuffer.cs" />
+    <Compile Include="VolumeRendering\VR04PositionBuffer.cs" />
+    <Compile Include="VolumeRendering\VR04UVBuffer.cs" />
     <Compile Include="VolumeRendering\VR03IndexBuffer.cs" />
     <Compile Include="VolumeRendering\VR03PositionBuffer.cs" />
     <Compile Include="VolumeRendering\VR03UVBuffer.cs" />
@@ -210,6 +215,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="VolumeRendering\DemoVolumeRendering03.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VolumeRendering\DemoVolumeRendering04.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VolumeRendering\DemoVolumeRendering04.vert" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
