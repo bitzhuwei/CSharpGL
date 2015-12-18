@@ -171,7 +171,7 @@ namespace CSharpGL.Objects.SceneElements
                     this.planColorBufferRenderer = colorBuffer.GetRenderer();
                 }
 
-                using (var indexBuffer = new ZeroIndexBuffer(DrawMode.LineLoop, planVertexCount))
+                using (var indexBuffer = new ZeroIndexBuffer(DrawMode.LineLoop, 0, planVertexCount))
                 {
                     indexBuffer.Alloc(planVertexCount);//这句话实际上什么都没有做。
                     this.planIndexBufferRenderer = indexBuffer.GetRenderer();

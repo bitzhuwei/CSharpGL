@@ -13,13 +13,13 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
     /// <summary>
     /// 用多个Points进行VR渲染。
     /// </summary>
-    public class DemoVolumeRendering02 : SceneElementBase, IMVP
+    public class DemoVolumeRendering05 : SceneElementBase, IMVP
     {
         VertexArrayObject vao;
 
         BufferRenderer positionBufferRenderer;
         BufferRenderer uvBufferRenderer;
-        BufferRenderer indexBufferRenderer;
+        ZeroIndexBufferRenderer indexBufferRenderer;
 
         CRawDataProcessor textureProcessor = new CRawDataProcessor();
 
@@ -33,8 +33,8 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering02.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering02.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering05.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering05.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -61,6 +61,20 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
         const float xLength = 1;
         const float yLength = 1;
         public float alphaThreshold = 0.05f;
+        public void SetStartIndex(int value)
+        {
+            if (this.indexBufferRenderer == null) { return; }
+
+            this.indexBufferRenderer.FirstVertex = value;           
+        }
+
+        public void SetVertexCount(int value)
+        {
+            if (this.indexBufferRenderer == null) { return; }
+
+            this.indexBufferRenderer.VertexCount = value;
+        }
+
 
         private unsafe void InitVertexBuffers()
         {
@@ -112,7 +126,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             {
                 var indexBuffer = new ZeroIndexBuffer(DrawMode.Points, 0, xFrameCount * yFrameCount * zFrameCount);
                 indexBuffer.Alloc(xFrameCount * yFrameCount * zFrameCount);// this actually does nothing.
-                this.indexBufferRenderer = indexBuffer.GetRenderer();
+                this.indexBufferRenderer = indexBuffer.GetRenderer() as ZeroIndexBufferRenderer;
                 indexBuffer.Dispose();
             }
             this.vao = new VertexArrayObject(this.positionBufferRenderer, this.uvBufferRenderer, this.indexBufferRenderer);

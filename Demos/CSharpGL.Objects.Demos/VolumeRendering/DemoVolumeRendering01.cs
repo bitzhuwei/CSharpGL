@@ -95,7 +95,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
                 uvBuffer.Dispose();
             }
             {
-                var indexBuffer = new ZeroIndexBuffer(DrawMode.Quads, zFrameCount * 4);
+                var indexBuffer = new ZeroIndexBuffer(DrawMode.Quads, 0, zFrameCount * 4);
                 indexBuffer.Alloc(zFrameCount);// this actually does nothing.
                 this.indexBufferRenderer = indexBuffer.GetRenderer();
                 indexBuffer.Dispose();
