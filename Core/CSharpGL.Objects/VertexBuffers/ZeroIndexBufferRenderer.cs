@@ -37,7 +37,7 @@ namespace CSharpGL.Objects.VertexBuffers
 
         public override void Render(RenderEventArgs e, Shaders.ShaderProgram shaderProgram)
         {
-            GL.DrawArrays(this.Mode, 0, this.VertexCount);
+            GL.DrawArrays(this.Mode, this.FirstVertex, this.VertexCount);
         }
     }
 }

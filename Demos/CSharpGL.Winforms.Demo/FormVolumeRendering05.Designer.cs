@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Winforms.Demo
 {
-    partial class FormVolumeRendering01
+    partial class FormVolumeRendering05
     {
         /// <summary>
         /// Required designer variable.
@@ -37,9 +37,17 @@
             this.cmbSFactor = new System.Windows.Forms.ComboBox();
             this.cmbDFactor = new System.Windows.Forms.ComboBox();
             this.chkBlend = new System.Windows.Forms.CheckBox();
+            this.trackFirstVertex = new System.Windows.Forms.TrackBar();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblFirstVertex = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.trackVertexCount = new System.Windows.Forms.TrackBar();
+            this.lblVertexCount = new System.Windows.Forms.Label();
             this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackAlpha)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackFirstVertex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackVertexCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,7 +106,7 @@
             // cmbSFactor
             // 
             this.cmbSFactor.FormattingEnabled = true;
-            this.cmbSFactor.Location = new System.Drawing.Point(91, 74);
+            this.cmbSFactor.Location = new System.Drawing.Point(99, 75);
             this.cmbSFactor.Name = "cmbSFactor";
             this.cmbSFactor.Size = new System.Drawing.Size(248, 23);
             this.cmbSFactor.TabIndex = 14;
@@ -107,7 +115,7 @@
             // cmbDFactor
             // 
             this.cmbDFactor.FormattingEnabled = true;
-            this.cmbDFactor.Location = new System.Drawing.Point(401, 73);
+            this.cmbDFactor.Location = new System.Drawing.Point(409, 74);
             this.cmbDFactor.Name = "cmbDFactor";
             this.cmbDFactor.Size = new System.Drawing.Size(248, 23);
             this.cmbDFactor.TabIndex = 14;
@@ -118,7 +126,7 @@
             this.chkBlend.AutoSize = true;
             this.chkBlend.Checked = true;
             this.chkBlend.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBlend.Location = new System.Drawing.Point(10, 77);
+            this.chkBlend.Location = new System.Drawing.Point(18, 78);
             this.chkBlend.Name = "chkBlend";
             this.chkBlend.Size = new System.Drawing.Size(69, 19);
             this.chkBlend.TabIndex = 15;
@@ -126,20 +134,81 @@
             this.chkBlend.UseVisualStyleBackColor = true;
             this.chkBlend.CheckedChanged += new System.EventHandler(this.chkBlend_CheckedChanged);
             // 
+            // trackFirstVertex
+            // 
+            this.trackFirstVertex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackFirstVertex.Location = new System.Drawing.Point(106, 104);
+            this.trackFirstVertex.Maximum = 1000;
+            this.trackFirstVertex.Name = "trackFirstVertex";
+            this.trackFirstVertex.Size = new System.Drawing.Size(533, 56);
+            this.trackFirstVertex.TabIndex = 7;
+            this.trackFirstVertex.Scroll += new System.EventHandler(this.trackFirstVertex_Scroll);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 115);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 15);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "渲染起点：";
+            // 
+            // lblFirstVertex
+            // 
+            this.lblFirstVertex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFirstVertex.AutoSize = true;
+            this.lblFirstVertex.Location = new System.Drawing.Point(645, 115);
+            this.lblFirstVertex.Name = "lblFirstVertex";
+            this.lblFirstVertex.Size = new System.Drawing.Size(15, 15);
+            this.lblFirstVertex.TabIndex = 9;
+            this.lblFirstVertex.Text = "0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(18, 167);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(82, 15);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "渲染点数：";
+            // 
+            // trackVertexCount
+            // 
+            this.trackVertexCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackVertexCount.Location = new System.Drawing.Point(106, 166);
+            this.trackVertexCount.Maximum = 1000;
+            this.trackVertexCount.Name = "trackVertexCount";
+            this.trackVertexCount.Size = new System.Drawing.Size(533, 56);
+            this.trackVertexCount.TabIndex = 7;
+            this.trackVertexCount.Value = 1000;
+            this.trackVertexCount.Scroll += new System.EventHandler(this.trackVertexCount_Scroll);
+            // 
+            // lblVertexCount
+            // 
+            this.lblVertexCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblVertexCount.AutoSize = true;
+            this.lblVertexCount.Location = new System.Drawing.Point(645, 167);
+            this.lblVertexCount.Name = "lblVertexCount";
+            this.lblVertexCount.Size = new System.Drawing.Size(63, 15);
+            this.lblVertexCount.TabIndex = 9;
+            this.lblVertexCount.Text = "7143424";
+            // 
             // glCanvas1
             // 
             this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.glCanvas1.Location = new System.Drawing.Point(13, 104);
+            this.glCanvas1.Location = new System.Drawing.Point(13, 229);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(689, 438);
+            this.glCanvas1.Size = new System.Drawing.Size(689, 313);
             this.glCanvas1.TabIndex = 0;
             // 
-            // FormVolumeRendering01
+            // FormVolumeRendering05
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -147,17 +216,25 @@
             this.Controls.Add(this.chkBlend);
             this.Controls.Add(this.cmbDFactor);
             this.Controls.Add(this.cmbSFactor);
+            this.Controls.Add(this.lblVertexCount);
+            this.Controls.Add(this.lblFirstVertex);
             this.Controls.Add(this.lblAlphaThreshold);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.trackVertexCount);
+            this.Controls.Add(this.trackFirstVertex);
             this.Controls.Add(this.trackAlpha);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "FormVolumeRendering01";
-            this.Text = "FormVolumeRendering01-3d texture(quads) in modern opengl";
+            this.Name = "FormVolumeRendering05";
+            this.Text = "FormVolumeRendering05-3d texture(points) in modern opengl";
             this.Load += new System.EventHandler(this.FormSatelliteRotation_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackAlpha)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackFirstVertex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackVertexCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -176,5 +253,11 @@
         private System.Windows.Forms.ComboBox cmbSFactor;
         private System.Windows.Forms.ComboBox cmbDFactor;
         private System.Windows.Forms.CheckBox chkBlend;
+        private System.Windows.Forms.TrackBar trackFirstVertex;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblFirstVertex;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TrackBar trackVertexCount;
+        private System.Windows.Forms.Label lblVertexCount;
     }
 }

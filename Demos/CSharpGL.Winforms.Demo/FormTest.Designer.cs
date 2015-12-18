@@ -60,6 +60,7 @@
             this.btnVR01_modernOpenGL_Quads = new System.Windows.Forms.Button();
             this.btnVR02_modernOpenGL_Points = new System.Windows.Forms.Button();
             this.btnFormVolumeRendering04 = new System.Windows.Forms.Button();
+            this.btnFormVolumeRendering05 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -404,6 +405,17 @@
             this.btnFormVolumeRendering04.UseVisualStyleBackColor = true;
             this.btnFormVolumeRendering04.Click += new System.EventHandler(this.btnFormVolumeRendering04_Click);
             // 
+            // btnFormVolumeRendering05
+            // 
+            this.btnFormVolumeRendering05.Location = new System.Drawing.Point(374, 457);
+            this.btnFormVolumeRendering05.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormVolumeRendering05.Name = "btnFormVolumeRendering05";
+            this.btnFormVolumeRendering05.Size = new System.Drawing.Size(346, 29);
+            this.btnFormVolumeRendering05.TabIndex = 4;
+            this.btnFormVolumeRendering05.Text = "FormVolumeRendering05-how-many-points";
+            this.btnFormVolumeRendering05.UseVisualStyleBackColor = true;
+            this.btnFormVolumeRendering05.Click += new System.EventHandler(this.btnFormVolumeRendering05_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -423,6 +435,7 @@
             this.Controls.Add(this.btnFormTransformFeedback);
             this.Controls.Add(this.btnFormScientificVisual3DControl);
             this.Controls.Add(this.btnFormColorCodedPicking);
+            this.Controls.Add(this.btnFormVolumeRendering05);
             this.Controls.Add(this.btnFormVolumeRendering04);
             this.Controls.Add(this.btnFormVolumeRendering_Hexahedron);
             this.Controls.Add(this.btnVR02_modernOpenGL_Points);
@@ -481,5 +494,6 @@
         private System.Windows.Forms.Button btnVR01_modernOpenGL_Quads;
         private System.Windows.Forms.Button btnVR02_modernOpenGL_Points;
         private System.Windows.Forms.Button btnFormVolumeRendering04;
+        private System.Windows.Forms.Button btnFormVolumeRendering05;
     }
 }

@@ -118,6 +118,12 @@
     <Compile Include="FormPointSpriteStringElement.Designer.cs">
       <DependentUpon>FormPointSpriteStringElement.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormVolumeRendering05.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVolumeRendering05.Designer.cs">
+      <DependentUpon>FormVolumeRendering05.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormVolumeRendering02.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMapBuffer.resx">
       <DependentUpon>FormMapBuffer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVolumeRendering05.resx">
+      <DependentUpon>FormVolumeRendering05.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVolumeRendering02.resx">
       <DependentUpon>FormVolumeRendering02.cs</DependentUpon>

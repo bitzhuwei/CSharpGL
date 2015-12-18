@@ -11,13 +11,13 @@ using CSharpGL.Enumerations;
 
 namespace CSharpGL.Winforms.Demo
 {
-    public partial class FormVolumeRendering03 : Form
+    public partial class FormVolumeRendering05 : Form
     {
         SatelliteRotator rotator;
         Camera camera;
-        DemoVolumeRendering03 element;
+        DemoVolumeRendering05 element;
 
-        public FormVolumeRendering03()
+        public FormVolumeRendering05()
         {
             InitializeComponent();
 
@@ -28,7 +28,7 @@ namespace CSharpGL.Winforms.Demo
             //else
             {
                 this.camera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
-                //CameraDictionary.I1000nstance.Add(this.GetType().Name, this.camera);
+                //CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
             }
 
             this.camera.Position = new vec3(2, 2, 2);
@@ -36,7 +36,7 @@ namespace CSharpGL.Winforms.Demo
             rotator = new SatelliteRotator(this.camera);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
-            element = new DemoVolumeRendering03();
+            element = new DemoVolumeRendering05();
             element.Initialize();
 
             element.BeforeRendering += element_BeforeRendering;
@@ -189,6 +189,21 @@ namespace CSharpGL.Winforms.Demo
         private void chkBlend_CheckedChanged(object sender, EventArgs e)
         {
             this.element.blend = this.chkBlend.Checked;
+        }
+
+        const int totalPoints = 256 * 256 * 109;// = 7143424
+        private void trackFirstVertex_Scroll(object sender, EventArgs e)
+        {
+            var value = this.trackFirstVertex.Value * (totalPoints / this.trackFirstVertex.Maximum);
+            this.lblFirstVertex.Text = value.ToString();
+            this.element.SetStartIndex(value);
+        }
+
+        private void trackVertexCount_Scroll(object sender, EventArgs e)
+        {
+            var value = this.trackVertexCount.Value * (totalPoints / this.trackVertexCount.Maximum);
+            this.lblVertexCount.Text = value.ToString();
+            this.element.SetVertexCount(value);
         }
 
     }

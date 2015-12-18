@@ -188,6 +188,11 @@ namespace CSharpGL.Winforms.Demo
             (new FormVolumeRendering04()).Show();
         }
 
+        private void btnFormVolumeRendering05_Click(object sender, EventArgs e)
+        {
+            (new FormVolumeRendering05()).Show();
+        }
+
 
     }
 }
