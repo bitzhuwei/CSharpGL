@@ -58,19 +58,10 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
-        void elementReversed_AfterRendering(object sender, RenderEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        void elementReversed_BeforeRendering(object sender, RenderEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             this.element.Dispose();
+            this.elementReversed.Dispose();
 
             base.OnClosing(e);
         }

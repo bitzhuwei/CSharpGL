@@ -15,7 +15,7 @@ namespace CSharpGL.Objects.SceneElements
     /// <para>充当此类库里的示例元素</para>
     /// <para>此类型使用封装了的VAO和VBO。我认为是可以提高开发效率的，是个好的设计。</para>
     /// </summary>
-    public class AxisElement : SceneElementBase, IMVP, IDisposable
+    public class AxisElement : SceneElementBase, IMVP
     {
 
         VertexArrayObject[] axisVAO;
@@ -222,12 +222,18 @@ namespace CSharpGL.Objects.SceneElements
 
         protected override void CleanUnmanagedRes()
         {
-            foreach (var item in this.axisVAO)
+            if (this.axisVAO != null)
             {
-                item.Dispose();
+                foreach (var item in this.axisVAO)
+                {
+                    item.Dispose();
+                }
             }
 
-            this.planVAO.Dispose();
+            if (this.planVAO != null)
+            {
+                this.planVAO.Dispose();
+            }
 
             base.CleanUnmanagedRes();
         }

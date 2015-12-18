@@ -115,6 +115,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
                 this.indexBufferRenderer = indexBuffer.GetRenderer();
                 indexBuffer.Dispose();
             }
+            this.vao = new VertexArrayObject(this.positionBufferRenderer, this.uvBufferRenderer, this.indexBufferRenderer);
         }
 
         private void InitTexture()
@@ -124,9 +125,8 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
         protected override void DoRender(RenderEventArgs e)
         {
-            if (this.vao == null)
+            if (this.vao.ID == 0)
             {
-                this.vao = new VertexArrayObject(this.positionBufferRenderer, this.uvBufferRenderer, this.indexBufferRenderer);
                 this.vao.Create(e, this.shaderProgram);
             }
 
