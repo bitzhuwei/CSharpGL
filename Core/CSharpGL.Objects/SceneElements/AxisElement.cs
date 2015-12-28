@@ -207,6 +207,9 @@ namespace CSharpGL.Objects.SceneElements
                 }
             }
 
+            // 绑定shader
+            this.shaderProgram.Bind();
+
             // 画坐标轴
             for (int i = 0; i < 3; i++)
             {
@@ -216,6 +219,9 @@ namespace CSharpGL.Objects.SceneElements
             {
                 this.planVAO.Render(e, this.shaderProgram);
             }
+
+            // 解绑shader
+            this.shaderProgram.Unbind();
         }
 
 
