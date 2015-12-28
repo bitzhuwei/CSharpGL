@@ -10,7 +10,8 @@ namespace CSharpGL.Objects.VertexBuffers
     /// <summary>
     /// 顶点缓存（VBO）
     /// </summary>
-    public abstract class VertexBuffer : IDisposable
+    /// <typeparam name="T">此buffer存储的是哪种struct的数据？</typeparam>
+    public abstract class VertexBuffer<T> : IDisposable where T : struct
     {
         private UnmanagedArrayBase array = null;
 
@@ -73,8 +74,10 @@ namespace CSharpGL.Objects.VertexBuffers
         /// </summary>
         /// <param name="elementCount">数组元素的数目。</param>
         /// <returns></returns>
-        protected abstract UnmanagedArrayBase CreateElements(int elementCount);
-
+        protected virtual UnmanagedArrayBase CreateElements(int elementCount)
+        {
+            return new UnmanagedArray<T>(elementCount);
+        }
 
         /// <summary>
         /// 申请指定长度的非托管数组。
@@ -110,11 +113,11 @@ namespace CSharpGL.Objects.VertexBuffers
                 }
 
                 // Dispose unmanaged resources.
-
-                if (this.array != null)
+                UnmanagedArrayBase array = this.array;
+                this.array = null;
+                if (array != null)
                 {
-                    this.array.Dispose();
-                    this.array = null;
+                    array.Dispose();
                 }
             }
 

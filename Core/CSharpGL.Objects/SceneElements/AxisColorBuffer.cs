@@ -8,16 +8,11 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.SceneElements
 {
-    class AxisColorBuffer : PropertyBuffer
+    class AxisColorBuffer : PropertyBuffer<vec3>
     {
         public AxisColorBuffer(string varNameInVertexShader, BufferUsage usage)
             : base(varNameInVertexShader, 3, GL.GL_FLOAT, usage)
         { }
-
-        protected override UnmanagedArrayBase CreateElements(int elementCount)
-        {
-            return new UnmanagedArray<vec3>(elementCount);
-        }
 
     }
 }

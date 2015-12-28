@@ -10,7 +10,8 @@ namespace CSharpGL.Objects.VertexBuffers
     /// 顶点的属性数组。描述顶点的位置或颜色或UV等各种属性。
     /// <para>每个<see cref="PropertyBuffer"/>仅描述其中一个属性。</para>
     /// </summary>
-    public abstract class PropertyBuffer : VertexBuffer
+    /// <typeparam name="T">此buffer存储的是哪种struct的数据？</typeparam>
+    public abstract class PropertyBuffer<T> : VertexBuffer<T> where T : struct
     {
 
         /// <summary>

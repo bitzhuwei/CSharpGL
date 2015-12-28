@@ -7,13 +7,9 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Demos.VolumeRendering
 {
-    class VR01UVBuffer : PropertyBuffer
+    class VR01UVBuffer : PropertyBuffer<QuadUV>
     {
         public VR01UVBuffer(string varNameInVertexShader) : base(varNameInVertexShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw) { }
 
-        protected override UnmanagedArrayBase CreateElements(int elementCount)
-        {
-            return new UnmanagedArray<QuadUV>(elementCount);
-        }
     }
 }

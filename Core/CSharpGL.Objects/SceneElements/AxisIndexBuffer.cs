@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.SceneElements
 {
-    public class AxisIndexBuffer : IndexBuffer
+    public class AxisIndexBuffer : IndexBuffer<byte>
     {
         public AxisIndexBuffer()
             : base(DrawMode.QuadStrip, IndexElementType.UnsignedByte, BufferUsage.StaticDraw)

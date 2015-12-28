@@ -9,7 +9,8 @@ namespace CSharpGL.Objects.VertexBuffers
     /// <summary>
     /// 索引buffer。索引指定了<see cref="PropertyBuffer"/>里各个顶点的渲染顺序。
     /// </summary>
-    public class IndexBuffer : IndexBufferBase
+    /// <typeparam name="T">此buffer存储的是哪种struct的数据？</typeparam>
+    public class IndexBuffer<T> : IndexBufferBase<T> where T : struct
     {
         /// <summary>
         /// 用于存储索引的VBO。
@@ -57,26 +58,26 @@ namespace CSharpGL.Objects.VertexBuffers
         /// </summary>
         public IndexElementType Type { get; private set; }
 
-        protected override UnmanagedArrayBase CreateElements(int elementCount)
-        {
-            UnmanagedArrayBase result = null;
-            switch (this.Type)
-            {
-                case IndexElementType.UnsignedByte:
-                    result = new UnmanagedArray<byte>(elementCount);
-                    break;
-                case IndexElementType.UnsignedShort:
-                    result = new UnmanagedArray<ushort>(elementCount);
-                    break;
-                case IndexElementType.UnsignedInt:
-                    result = new UnmanagedArray<uint>(elementCount);
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
+        //protected override UnmanagedArrayBase CreateElements(int elementCount)
+        //{
+        //    UnmanagedArrayBase result = null;
+        //    switch (this.Type)
+        //    {
+        //        case IndexElementType.UnsignedByte:
+        //            result = new UnmanagedArray<byte>(elementCount);
+        //            break;
+        //        case IndexElementType.UnsignedShort:
+        //            result = new UnmanagedArray<ushort>(elementCount);
+        //            break;
+        //        case IndexElementType.UnsignedInt:
+        //            result = new UnmanagedArray<uint>(elementCount);
+        //            break;
+        //        default:
+        //            throw new NotImplementedException();
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
         protected override BufferRenderer CreateRenderer()
         {

@@ -8,13 +8,9 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Demos.VolumeRendering
 {
-    class VR02PositionBuffer:PropertyBuffer
+    class VR02PositionBuffer : PropertyBuffer<vec3>
     {
         public VR02PositionBuffer(string varNameInVertexShader) : base(varNameInVertexShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw) { }
 
-        protected override UnmanagedArrayBase CreateElements(int elementCount)
-        {
-            return new UnmanagedArray<vec3>(elementCount);
-        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{AFEBDC89-3258-4DF5-9231-D09952C23613}"
 EndProject
@@ -12,6 +12,19 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Functions", "Functions", "{4536AD65-96CD-4BA7-9D4F-17C650C38F29}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{05F33CBB-E502-4E48-9675-7415C6F675EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{2F6498B7-1671-444D-A45A-68DF5FD7247B}"
+	ProjectSection(SolutionItems) = preProject
+		Assets\CSharpGL-banner.png = Assets\CSharpGL-banner.png
+		Assets\CSharpGL.ico = Assets\CSharpGL.ico
+		Assets\CSharpGL.png = Assets\CSharpGL.png
+		Assets\HelloCSharpGL.png = Assets\HelloCSharpGL.png
+		Assets\Preview.png = Assets\Preview.png
+		Assets\Preview2.png = Assets\Preview2.png
+		Assets\System.Numerics.Vectors.dll = Assets\System.Numerics.Vectors.dll
+		Assets\System.Numerics.Vectors.pdb = Assets\System.Numerics.Vectors.pdb
+		Assets\System.Numerics.Vectors.xml = Assets\System.Numerics.Vectors.xml
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Core\Utilities\Utilities.csproj", "{F1B5534A-134C-4FA6-B172-A2F20D8F96ED}"
 EndProject
@@ -52,19 +65,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.ColorCodedPicking", "Functions\CSharpGL.ColorCodedPicking\CSharpGL.ColorCodedPicking.csproj", "{04255068-DA28-4CC0-AF34-3E5AF828AB03}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL4Vsix", "Tools\CSharpGL4Vsix\CSharpGL4Vsix.csproj", "{DCE01A2B-BFA9-4D57-85AD-6A59A3212B92}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{2F6498B7-1671-444D-A45A-68DF5FD7247B}"
-	ProjectSection(SolutionItems) = preProject
-		Assets\CSharpGL-banner.png = Assets\CSharpGL-banner.png
-		Assets\CSharpGL.ico = Assets\CSharpGL.ico
-		Assets\CSharpGL.png = Assets\CSharpGL.png
-		Assets\HelloCSharpGL.png = Assets\HelloCSharpGL.png
-		Assets\Preview.png = Assets\Preview.png
-		Assets\Preview2.png = Assets\Preview2.png
-		Assets\System.Numerics.Vectors.dll = Assets\System.Numerics.Vectors.dll
-		Assets\System.Numerics.Vectors.pdb = Assets\System.Numerics.Vectors.pdb
-		Assets\System.Numerics.Vectors.xml = Assets\System.Numerics.Vectors.xml
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL._3DSFiles", "Functions\CSharpGL._3DSFiles\CSharpGL._3DSFiles.csproj", "{2C4FC122-BD74-4F1F-BCED-D44CF6CA7FA1}"
 EndProject

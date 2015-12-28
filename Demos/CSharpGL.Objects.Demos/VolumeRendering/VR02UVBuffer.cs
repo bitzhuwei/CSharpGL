@@ -8,13 +8,9 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Demos.VolumeRendering
 {
-    class VR02UVBuffer : PropertyBuffer
+    class VR02UVBuffer : PropertyBuffer<vec3>
     {
         public VR02UVBuffer(string varNameInVertexShader) : base(varNameInVertexShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw) { }
 
-        protected override UnmanagedArrayBase CreateElements(int elementCount)
-        {
-            return new UnmanagedArray<vec3>(elementCount);
-        }
     }
 }
