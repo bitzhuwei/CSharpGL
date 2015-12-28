@@ -127,7 +127,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.rotator.mouseDownFlag)
+            if (this.rotator.MouseDownFlag)
             {
                 this.rotator.MouseMove(e.X, e.Y);
             }

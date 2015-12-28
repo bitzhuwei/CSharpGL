@@ -89,7 +89,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (satelliteRoration.mouseDownFlag)
+            if (satelliteRoration.MouseDownFlag)
             {
                 satelliteRoration.MouseMove(e.X, e.Y);
             }

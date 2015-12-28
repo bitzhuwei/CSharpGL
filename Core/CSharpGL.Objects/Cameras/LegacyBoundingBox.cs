@@ -28,6 +28,9 @@ namespace CSharpGL.Objects.Cameras
         /// </summary>
         public GLColor BoxColor { get; set; }
 
+        /// <summary>
+        /// Specify a cuboid that marks a model's edges.
+        /// </summary>
         public LegacyBoundingBox()
         {
             BoxColor = new GLColor(1, 1, 1, 1);// white color

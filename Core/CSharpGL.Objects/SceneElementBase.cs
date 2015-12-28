@@ -80,7 +80,7 @@ namespace CSharpGL.Objects
         /// <summary>
         /// 执行渲染操作
         /// </summary>
-        /// <param name="renderMode"></param>
+        /// <param name="e"></param>
         protected abstract void DoRender(RenderEventArgs e);
 
         /// <summary>

@@ -1,5 +1,4 @@
 ﻿using CSharpGL.Texts.FreeTypes;
-using CSharpGL.Texts.FreeTypes;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

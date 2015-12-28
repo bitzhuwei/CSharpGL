@@ -125,7 +125,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.rotator.mouseDownFlag && e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (this.rotator.MouseDownFlag && e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 this.rotator.MouseMove(e.X, e.Y);
 

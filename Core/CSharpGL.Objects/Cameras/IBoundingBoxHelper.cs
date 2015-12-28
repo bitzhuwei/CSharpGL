@@ -6,6 +6,9 @@ using System.Text;
 
 namespace CSharpGL.Objects.Cameras
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class IBoundingBoxHelper
     {
         /// <summary>

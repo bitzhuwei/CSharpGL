@@ -193,7 +193,7 @@ namespace SharpFont
         /// <summary>
         /// Returns a value indicating whether this instance is equal to the specified object.
         /// </summary>
-        /// <param name="obj">The object to compare.</param>
+        /// <param name="other">The object to compare.</param>
         /// <returns><c>true</c> if this instance equals <paramref name="other"/>; otherwise, <c>false</c>.</returns>
         //public bool Equals (CodePoint other) => value.Equals(other.value);
         public bool Equals(CodePoint other)

@@ -69,13 +69,13 @@ namespace CSharpGL.Texts
         /// <summary>
         /// Internal variable which checks if Dispose has already been called
         /// </summary>
-        protected Boolean disposed;
+        Boolean disposed;
 
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources
         /// </summary>
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected void Dispose(Boolean disposing)
+        void Dispose(Boolean disposing)
         {
             if (disposed)
             {

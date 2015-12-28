@@ -94,7 +94,7 @@ namespace CSharpGL.Winforms.Demo
 
         void scientificVisual3DControl1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.rotator.mouseDownFlag && e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (this.rotator.MouseDownFlag && e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 this.rotator.MouseMove(e.X, e.Y);
             }

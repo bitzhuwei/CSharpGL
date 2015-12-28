@@ -38,7 +38,7 @@ namespace CSharpGL.Objects.Cameras
         /// <param name="height">OpenGL窗口的高度</param>
         public Camera(CameraType cameraType, double width, double height)
         {
-            this.lastHeight = width;
+            this.lastWidth = width;
             this.lastHeight = height;
 
             IPerspectiveCamera perspectiveCamera = this;
@@ -63,6 +63,11 @@ namespace CSharpGL.Objects.Cameras
             this.CameraType = cameraType;
         }
 
+        /// <summary>
+        /// opengl控件的大小改变时调整camera
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         public void Resize(double width, double height)
         {
             double aspectRatio = width / height;

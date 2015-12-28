@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Cameras
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class MouseWheelHelper
     {
         /// <summary>

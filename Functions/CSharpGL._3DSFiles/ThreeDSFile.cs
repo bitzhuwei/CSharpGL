@@ -310,6 +310,7 @@ namespace CSharpGL._3DSFiles
                         {
                             // couldn't find the file
                             Console.WriteLine("	ERROR: could not load file '{0}'", base_dir + name);
+                            Console.WriteLine(e);
                             break;
                         }
 

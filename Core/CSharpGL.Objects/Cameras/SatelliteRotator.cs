@@ -13,7 +13,20 @@ namespace CSharpGL.Objects.Cameras
     {
         private Point downPosition = new Point();
         private Size bound = new Size();
-        public bool mouseDownFlag = false;
+
+        private bool mouseDownFlag = false;
+        /// <summary>
+        /// 标识鼠标是否按下
+        /// </summary>
+        public bool MouseDownFlag
+        {
+            get { return mouseDownFlag; }
+            private set
+            {
+                this.mouseDownFlag = value;
+            }
+        }
+
         private float horizontalRotationFactor = 4;
         private float verticalRotationFactor = 4;
         private vec3 up;
@@ -30,7 +43,10 @@ namespace CSharpGL.Objects.Cameras
             this.Camera = camera;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("back:{0}|{3:0.00},up:{1}|{4:0.00},right:{2}|{5:0.00}",
@@ -41,16 +57,27 @@ namespace CSharpGL.Objects.Cameras
 
         private ICamera originalCamera;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ICamera Camera { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public void MouseUp(int x, int y)
         {
-            this.mouseDownFlag = false;
+            this.MouseDownFlag = false;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public void MouseMove(int x, int y)
         {
-            if (this.mouseDownFlag)
+            if (this.MouseDownFlag)
             {
                 IViewCamera camera = this.Camera;
                 if (camera == null) { return; }
@@ -97,18 +124,26 @@ namespace CSharpGL.Objects.Cameras
                 this.downPosition.Y = y;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         public void SetBounds(int width, int height)
         {
             this.bound.Width = width;
             this.bound.Height = height;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public void MouseDown(int x, int y)
         {
             this.downPosition.X = x;
             this.downPosition.Y = y;
-            this.mouseDownFlag = true;
+            this.MouseDownFlag = true;
             PrepareCamera();
         }
 
@@ -134,7 +169,9 @@ namespace CSharpGL.Objects.Cameras
                 this.originalCamera.UpVector = camera.UpVector;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void Reset()
         {
             IViewCamera camera = this.Camera;

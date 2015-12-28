@@ -11,7 +11,7 @@ namespace CSharpGL.Objects.SceneElements
     /// <summary>
     /// 用一个纹理绘制所有指定范围内的可见字符（具有指定的高度和字体）
     /// </summary>
-    public class FontElement : SceneElementBase, IMVP, IDisposable
+    public class FontElement : SceneElementBase, IMVP
     {
 
         public bool blend = true;
@@ -220,55 +220,12 @@ namespace CSharpGL.Objects.SceneElements
 
         }
 
-
-        ~FontElement()
+        protected override void CleanUnmanagedRes()
         {
-            this.Dispose();
-        }
-
-        #region IDisposable Members
-
-        /// <summary>
-        /// Internal variable which checks if Dispose has already been called
-        /// </summary>
-        protected Boolean disposed;
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected void Dispose(Boolean disposing)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-                //Managed cleanup code here, while managed refs still valid
-            }
-            //Unmanaged cleanup code here
             this.ttfTexture.Dispose();
 
-            disposed = true;
+            base.CleanUnmanagedRes();
         }
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            // Call the private Dispose(bool) helper and indicate
-            // that we are explicitly disposing
-            this.Dispose(true);
-
-            // Tell the garbage collector that the object doesn't require any
-            // cleanup when collected since Dispose was called explicitly.
-            GC.SuppressFinalize(this);
-        }
-
-        #endregion
 
 
         void IMVP.SetShaderProgram(mat4 mvp)

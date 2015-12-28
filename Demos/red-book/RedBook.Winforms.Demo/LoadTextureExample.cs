@@ -11,7 +11,7 @@ using System.Text;
 
 namespace RedBook.Winforms.Demo
 {
-    class LoadTextureExample : SceneElementBase, IDisposable
+    class LoadTextureExample : SceneElementBase
     {
         const string quad_shader_vs =
    @"#version 330 core
@@ -57,53 +57,12 @@ void main(void)
         // Object to render
         VBObject vboObject = new VBObject();
 
-
-        #region IDisposable Members
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
+        protected override void CleanManagedRes()
         {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        } // end sub
+            this.vboObject.Dispose();
 
-        /// <summary>
-        /// Destruct instance of the class.
-        /// </summary>
-        ~LoadTextureExample()
-        {
-            this.Dispose(false);
+            base.CleanManagedRes();
         }
-
-        /// <summary>
-        /// Backing field to track whether Dispose has been called.
-        /// </summary>
-        private bool disposedValue = false;
-
-        /// <summary>
-        /// Dispose managed and unmanaged resources of this instance.
-        /// </summary>
-        /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
-        protected virtual void Dispose(bool disposing)
-        {
-
-            if (this.disposedValue == false)
-            {
-                if (disposing)
-                {
-                    // TODO: Dispose managed resources.
-                    this.vboObject.Dispose();
-                } // end if
-
-                // TODO: Dispose unmanaged resources.
-            } // end if
-
-            this.disposedValue = true;
-        } // end sub
-
-        #endregion
 
         protected override void DoInitialize()
         {
