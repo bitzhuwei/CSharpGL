@@ -10,7 +10,7 @@ namespace CSharpGL.Objects.VertexBuffers
     /// <summary>
     /// 没有显式的索引。等价于索引数组的值为[0,1,2,2,3,4,5,6,7,8,9...]
     /// </summary>
-    public class ZeroIndexBuffer : IndexBufferBase<byte>
+    public sealed class ZeroIndexBuffer : IndexBufferBase<byte>
     {
         /// <summary>
         /// 没有显式的索引。等价于索引数组的值为[0,1,2,2,3,4,5,6,7,8,9...]
