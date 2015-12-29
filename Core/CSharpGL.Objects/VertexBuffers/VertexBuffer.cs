@@ -149,7 +149,7 @@ namespace CSharpGL.Objects.VertexBuffers
                 }
 
                 // Dispose unmanaged resources.
-                UnmanagedArrayBase array = this.array;
+                UnmanagedArray<T> array = this.array;
                 this.array = null;
                 if (array != null)
                 {
