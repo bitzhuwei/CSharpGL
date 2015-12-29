@@ -54,6 +54,9 @@ namespace CSharpGL.Objects.VertexBuffers
         /// <param name="shaderProgram"></param>
         public void Create(RenderEventArgs e, Shaders.ShaderProgram shaderProgram)
         {
+            if (this.ID != 0)
+            { throw new Exception(string.Format("ID[{0}] is already generated!", this.ID)); }
+
             uint[] buffers = new uint[1];
             GL.GenVertexArrays(1, buffers);
 

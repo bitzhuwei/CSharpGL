@@ -166,6 +166,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             {
                 GL.Enable(GL.GL_BLEND);
                 GL.BlendFunc(sFactor, dFactor);
+                GL.DepthMask((byte)GL.GL_FALSE);
             }
 
             uint textureID = this.textureProcessor.GetTexture3D();
@@ -188,6 +189,10 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
             GL.Disable(GL.GL_BLEND);
             GL.Disable(GL.GL_ALPHA_TEST);
+            if(blend)
+            {
+                GL.DepthMask((byte)GL.GL_TRUE);
+            }
         }
 
 
