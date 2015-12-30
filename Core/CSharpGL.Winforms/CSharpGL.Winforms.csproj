@@ -79,13 +79,13 @@
       <Project>{292f0a6f-6d7e-42fe-8b5c-3fba11fc9b49}</Project>
       <Name>CSharpGL.UIs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GLM\GLM.csproj">
-      <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
-      <Name>GLM</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CSharpGL.Objects\CSharpGL.Objects.csproj">
       <Project>{b340c561-2e18-42af-a52d-e6d9f924293e}</Project>
       <Name>CSharpGL.Objects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GLM\GLM.csproj">
+      <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
+      <Name>GLM</Name>
     </ProjectReference>
     <ProjectReference Include="..\CSharpGL\CSharpGL.csproj">
       <Project>{0d6e73c8-27b8-4614-9861-f4f22808ea7c}</Project>
