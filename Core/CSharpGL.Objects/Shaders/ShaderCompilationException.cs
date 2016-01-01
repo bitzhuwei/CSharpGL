@@ -28,8 +28,15 @@ namespace CSharpGL.Objects.Shaders
         protected ShaderCompilationException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context)
-            : base(info, context) { }
+            : base(info, context)
+        { }
 
         public string CompilerOutput { get { return compilerOutput; } }
+
+        public override string ToString()
+        {
+            //return base.ToString();
+            return string.Format("{0}{1}{2}", base.ToString(), Environment.NewLine, compilerOutput);
+        }
     }
 }
