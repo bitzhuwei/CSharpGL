@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
+  <Class Name="CSharpGL.ColorCodedPicking.PickedGeometryBase" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AwAAAAAAAAAAAAAEAAAAIAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>PickedGeometryBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CSharpGL.ColorCodedPicking.GeometryTypesHelper">
+    <Position X="4.25" Y="2.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>GeometryTypesHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.ColorCodedPicking.IColorCodedPickingHelper">
+    <Position X="4" Y="4.25" Width="7.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAgAAAAAAAAAABBAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IColorCodedPickingHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CSharpGL.ColorCodedPicking.IPickedGeometry">
+    <Position X="0.5" Y="0.5" Width="3.25" />
+    <AssociationLine Name="GeometryType" Type="CSharpGL.ColorCodedPicking.GeometryTypes" FixedToPoint="true">
+      <Path>
+        <Point X="2.75" Y="1.789" />
+        <Point X="2.75" Y="2.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.07" Y="0.464" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AwAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>IPickedGeometry.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="From" />
+      <Property Name="GeometryType" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="CSharpGL.ColorCodedPicking.IColorCodedPicking">
+    <Position X="0.5" Y="4.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAABAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>IColorCodedPicking.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="CSharpGL.ColorCodedPicking.GeometryTypes">
+    <Position X="2.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAABAAAAAAAAAAAAAAAAAAAAAAEBACA=</HashCode>
+      <FileName>GeometryTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>
