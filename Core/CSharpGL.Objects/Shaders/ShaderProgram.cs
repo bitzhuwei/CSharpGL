@@ -45,7 +45,10 @@ namespace CSharpGL.Objects.Shaders
             //  going to throw an exception.
             if (GetLinkStatus() == false)
             {
-                throw new ShaderCompilationException(string.Format("Failed to link shader program with ID {0}.", ShaderProgramObject), GetInfoLog());
+                string log = this.GetInfoLog();
+                throw new ShaderCompilationException(
+                    string.Format("Failed to link shader program with ID {0}.", ShaderProgramObject), 
+                    log);
             }
             if (vertexShader.GetCompileStatus() == false)
             {
