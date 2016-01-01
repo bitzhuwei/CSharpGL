@@ -185,7 +185,7 @@ void main(void)
             // Now create a simple program to visualize the result
             basicShaderProgram = new ShaderProgram();
             basicShaderProgram.Create(basicVertexShader, basicFragmentShader, null);
-            basicShaderProgram.AssertValid();
+
             base_model_matrix_pos = GL.GetUniformLocation(basicShaderProgram.ShaderProgramObject, "model_matrix");
             base_projection_matrix_pos = GL.GetUniformLocation(basicShaderProgram.ShaderProgramObject, "projection_matrix");
 

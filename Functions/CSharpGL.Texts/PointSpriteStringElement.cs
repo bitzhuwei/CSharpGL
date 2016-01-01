@@ -280,8 +280,9 @@ namespace CSharpGL.Objects.SceneElements
             var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"PointSpriteStringElement.frag");
             var shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
+
             this.attributeIndexPosition = shaderProgram.GetAttributeLocation("in_Position");
-            shaderProgram.AssertValid();
+
             this.shaderProgram = shaderProgram;
         }
 

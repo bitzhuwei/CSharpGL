@@ -225,8 +225,6 @@ namespace CSharpGL.Objects.Demos
             this.in_ColorLocation = shaderProgram.GetAttributeLocation(strin_Color);
             this.renderWireframeLocation = shaderProgram.GetUniformLocation("renderWirframe");
 
-            shaderProgram.AssertValid();
-
             return shaderProgram;
         }
 

@@ -221,7 +221,6 @@ namespace CSharpGL.Winforms.Demo
 
                 feedbackProgram = new ShaderProgram();
                 feedbackProgram.Create(vertexShaderSource, fragmentShaderSource, null);
-                feedbackProgram.AssertValid();
             }
             {
                 var index = GL.GetUniformBlockIndex(transformProgram.ShaderProgramObject, "transform");

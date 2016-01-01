@@ -47,14 +47,29 @@ namespace CSharpGL.Objects.Shaders
             {
                 throw new ShaderCompilationException(string.Format("Failed to link shader program with ID {0}.", ShaderProgramObject), GetInfoLog());
             }
-        }
+            if (vertexShader.GetCompileStatus() == false)
+            {
+                string log = vertexShader.GetInfoLog();
+                throw new Exception(log);
+            }
+            if (fragmentShader.GetCompileStatus() == false)
+            {
+                string log = fragmentShader.GetInfoLog();
+                throw new Exception(log);
+            }
 
-        public void Delete()
-        {
             GL.DetachShader(ShaderProgramObject, vertexShader.ShaderObject);
             GL.DetachShader(ShaderProgramObject, fragmentShader.ShaderObject);
             vertexShader.Delete();
             fragmentShader.Delete();
+        }
+
+        public void Delete()
+        {
+            //GL.DetachShader(ShaderProgramObject, vertexShader.ShaderObject);
+            //GL.DetachShader(ShaderProgramObject, fragmentShader.ShaderObject);
+            //vertexShader.Delete();
+            //fragmentShader.Delete();
             GL.DeleteProgram(ShaderProgramObject);
             ShaderProgramObject = 0;
         }
@@ -110,25 +125,6 @@ namespace CSharpGL.Objects.Shaders
 
             string log = il.ToString();
             return log;
-        }
-
-        public void AssertValid()
-        {
-            if (vertexShader.GetCompileStatus() == false)
-            {
-                string log = vertexShader.GetInfoLog();
-                throw new Exception(log);
-            }
-            if (fragmentShader.GetCompileStatus() == false)
-            {
-                string log = fragmentShader.GetInfoLog();
-                throw new Exception(log);
-            }
-            if (GetLinkStatus() == false)
-            {
-                string log = GetInfoLog();
-                throw new Exception(log);
-            }
         }
 
         /// <summary>

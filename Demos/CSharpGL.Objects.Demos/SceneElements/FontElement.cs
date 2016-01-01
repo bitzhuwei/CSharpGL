@@ -206,8 +206,6 @@ namespace CSharpGL.Objects.SceneElements
             var shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-            shaderProgram.AssertValid();
-
             this.shaderProgram = shaderProgram;
         }
 

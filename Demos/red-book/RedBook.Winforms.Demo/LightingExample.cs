@@ -129,7 +129,6 @@ void main(void)
             // Now create a simple program to visualize the result
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(render_vs, render_fs, null);
-            shaderProgram.AssertValid();
 
             //mv_mat_loc = GL.GetUniformLocation(shaderProgram.ShaderProgramObject, "model_matrix");
             //prj_mat_loc = GL.GetUniformLocation(shaderProgram.ShaderProgramObject, "proj_matrix");

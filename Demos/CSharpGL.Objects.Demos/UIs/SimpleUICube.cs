@@ -152,8 +152,6 @@ namespace CSharpGL.Objects.Demos.UIs
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-            shaderProgram.AssertValid();
-
             return shaderProgram;
         }
 

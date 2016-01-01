@@ -126,8 +126,6 @@ namespace CSharpGL.Winforms.Demo
             var shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-            shaderProgram.AssertValid();
-
             this.shaderProgram = shaderProgram;
         }
 

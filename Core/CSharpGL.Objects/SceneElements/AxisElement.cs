@@ -80,7 +80,6 @@ namespace CSharpGL.Objects.SceneElements
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-            shaderProgram.AssertValid();
         }
 
         protected unsafe void InitializeVAO()

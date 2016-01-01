@@ -58,7 +58,6 @@ namespace CSharpGL.Objects.SceneElements
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-            shaderProgram.AssertValid();
         }
 
         protected void InitializeVAO(out uint[] vao, out DrawMode primitiveMode, out int vertexCount)

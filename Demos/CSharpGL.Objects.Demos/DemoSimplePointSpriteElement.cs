@@ -75,7 +75,6 @@ namespace CSharpGL.Objects.Demos
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-            shaderProgram.AssertValid();
         }
 
         static Random random = new Random();

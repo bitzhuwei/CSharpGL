@@ -17,8 +17,6 @@ namespace CSharpGL.ColorCodedPicking
             var shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-            shaderProgram.AssertValid();
-
             return shaderProgram;
         }
 

@@ -168,8 +168,6 @@ namespace CSharpGL.Objects.Demos.UIs
             in_PositionLocation = shaderProgram.GetAttributeLocation(strin_Position);
             in_ColorLocation = shaderProgram.GetAttributeLocation(strin_Color);
 
-            shaderProgram.AssertValid();
-
             return shaderProgram;
         }
 

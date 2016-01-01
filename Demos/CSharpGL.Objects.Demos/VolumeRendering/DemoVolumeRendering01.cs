@@ -39,7 +39,6 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
-            shaderProgram.AssertValid();
         }
 
         protected override void DoInitialize()
