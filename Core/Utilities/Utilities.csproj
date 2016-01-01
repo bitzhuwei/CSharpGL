@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="ArrayHelper.cs" />
     <Compile Include="ByteArrayHelper.cs" />
+    <Compile Include="CurrentOS.cs" />
     <Compile Include="DumpTreeToText.cs" />
     <Compile Include="FloatHelper.cs" />
     <Compile Include="ITreeNode.cs" />
