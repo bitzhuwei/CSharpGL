@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -39,15 +38,33 @@ namespace CSharpGL
             Delegate del = null;
             if (!extensionFunctions.TryGetValue(name, out del))
             {
-                // check https://www.opengl.org/wiki/Load_OpenGL_Functions
-                IntPtr proc = Win32.wglGetProcAddress(name);
-                int pointer = proc.ToInt32();
-                if (-1 <= pointer && pointer <= 3)
+                IntPtr proc = IntPtr.Zero;
+                if (CurrentOS.IsWindows)
                 {
-                    proc = Win32.GetProcAddress(name);
-                    pointer = proc.ToInt32();
+                    // check https://www.opengl.org/wiki/Load_OpenGL_Functions
+                    proc = Win32.wglGetProcAddress(name);
+                    int pointer = proc.ToInt32();
                     if (-1 <= pointer && pointer <= 3)
-                    { throw new Exception("Extension function " + name + " not supported"); }
+                    {
+                        proc = Win32.GetProcAddress(name);
+                        pointer = proc.ToInt32();
+                        if (-1 <= pointer && pointer <= 3)
+                        {
+                            throw new Exception("Extension function " + name + " not supported");
+                        }
+                    }
+                }
+                else if (CurrentOS.IsLinux)
+                {
+                    proc = glxGetProcAddress(name);
+                    if (proc == IntPtr.Zero)
+                    {
+                        throw new Exception("Extension function " + name + " not supported");
+                    }
+                }
+                else
+                {
+                    throw new NotImplementedException("Unsupported OS.");
                 }
 
                 //  Get the delegate for the function pointer.
@@ -69,5 +86,8 @@ namespace CSharpGL
         const string obsoleteGluDll = "suggest that not to use Glu Dll any more.";
 
         const bool error = false;
+
+        [DllImport("libGL.so", EntryPoint = "glXGetProcAddress")]
+        internal static extern IntPtr glxGetProcAddress(string s);
     }
 }
