@@ -34,15 +34,11 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayHelper.cs" />
     <Compile Include="ByteArrayHelper.cs" />
+    <Compile Include="CurrentOS.cs" />
     <Compile Include="DumpTreeToText.cs" />
     <Compile Include="FloatHelper.cs" />
     <Compile Include="ITreeNode.cs" />

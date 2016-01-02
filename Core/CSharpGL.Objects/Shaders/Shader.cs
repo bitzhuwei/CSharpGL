@@ -28,7 +28,7 @@ namespace CSharpGL.Objects.Shaders
             if (GetCompileStatus() == false)
             {
                 string log = GetInfoLog();
-                throw new ShaderCompilationException(string.Format("Failed to compile shader with ID {0}.", ShaderObject), log);
+                throw new ShaderCompilationException(string.Format("Failed to compile shader with ID {0}. Log: {1}", ShaderObject, log), log);
             }
         }
 
