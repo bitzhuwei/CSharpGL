@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.SceneElements
 {
+    /// <summary>
+    /// 一个立方体的模型。
+    /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000061.jpg
+    /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000062.jpg
+    /// </summary>
     public static class CubeModel
     {
         static vec3[] vertexes = new vec3[] 
