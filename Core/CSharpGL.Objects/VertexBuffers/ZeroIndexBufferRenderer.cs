@@ -31,7 +31,7 @@ namespace CSharpGL.Objects.VertexBuffers
         public int FirstVertex { get; set; }
 
         /// <summary>
-        /// 数组中有多少个顶点。
+        /// 要渲染多少个顶点。
         /// </summary>
         public int VertexCount { get; set; }
 
