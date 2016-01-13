@@ -17,9 +17,15 @@ namespace FormShaderDesigner1594Demos
             InitializeComponent();
         }
 
+        private void btnBrick_Click(object sender, EventArgs e)
+        {
+            (new FormBrick()).Show();
+        }
+
         private void btnXRay_Click(object sender, EventArgs e)
         {
             (new FormXRay()).Show();
         }
+
     }
 }

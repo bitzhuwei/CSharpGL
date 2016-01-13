@@ -47,9 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CubeModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="FormDemosPanel.cs">
       <SubType>Form</SubType>
     </Compile>

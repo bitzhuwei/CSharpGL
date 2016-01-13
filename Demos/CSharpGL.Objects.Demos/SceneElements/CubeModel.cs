@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FormShaderDesigner1594Demos
+namespace CSharpGL.Objects.SceneElements
 {
     public static class CubeModel
     {
@@ -18,12 +18,12 @@ namespace FormShaderDesigner1594Demos
 
         public static readonly CubePosition position = new CubePosition()
         {
-            faceX = new SqurePosition() { position0 = vertexes[1], position1 = vertexes[2], position2 = vertexes[5], position3 = vertexes[6], },
-            faceNX = new SqurePosition() { position0 = vertexes[0], position1 = vertexes[3], position2 = vertexes[4], position3 = vertexes[7], },
-            faceY = new SqurePosition() { position0 = vertexes[0], position1 = vertexes[1], position2 = vertexes[3], position3 = vertexes[2], },
-            faceNY = new SqurePosition() { position0 = vertexes[4], position1 = vertexes[5], position2 = vertexes[7], position3 = vertexes[6], },
-            faceZ = new SqurePosition() { position0 = vertexes[0], position1 = vertexes[1], position2 = vertexes[4], position3 = vertexes[5], },
-            faceNZ = new SqurePosition() { position0 = vertexes[3], position1 = vertexes[2], position2 = vertexes[7], position3 = vertexes[6], },
+            faceX = new SqurePosition() { position0 = vertexes[1], position1 = vertexes[2], position2 = vertexes[6], position3 = vertexes[5], },
+            faceNX = new SqurePosition() { position0 = vertexes[0], position1 = vertexes[3], position2 = vertexes[7], position3 = vertexes[4], },
+            faceY = new SqurePosition() { position0 = vertexes[0], position1 = vertexes[1], position2 = vertexes[2], position3 = vertexes[3], },
+            faceNY = new SqurePosition() { position0 = vertexes[4], position1 = vertexes[5], position2 = vertexes[6], position3 = vertexes[7], },
+            faceZ = new SqurePosition() { position0 = vertexes[0], position1 = vertexes[1], position2 = vertexes[5], position3 = vertexes[4], },
+            faceNZ = new SqurePosition() { position0 = vertexes[3], position1 = vertexes[2], position2 = vertexes[6], position3 = vertexes[7], },
         };
 
         public static readonly CubeNormal normal = new CubeNormal()
