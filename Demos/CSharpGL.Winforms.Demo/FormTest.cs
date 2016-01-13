@@ -193,6 +193,11 @@ namespace CSharpGL.Winforms.Demo
             (new FormVolumeRendering05()).Show();
         }
 
+        private void btnFromShaderDesigner1594_Click(object sender, EventArgs e)
+        {
+            (new FormShaderDesigner1594Demos.FormDemosPanel()).Show();
+        }
+
 
     }
 }

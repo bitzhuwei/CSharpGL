@@ -441,6 +441,10 @@
       <Project>{6338ec8c-0f61-4ab2-99f8-b262d9adfda3}</Project>
       <Name>CSharpGL.Objects.Demos</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FromShaderDesigner1.5.9.4\FormShaderDesigner1594Demos\FormShaderDesigner1594Demos.csproj">
+      <Project>{d880fafd-3ac2-47cb-ab53-2c42388731c3}</Project>
+      <Name>FormShaderDesigner1594Demos</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="CSharpGL.ico" />

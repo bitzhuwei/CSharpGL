@@ -61,6 +61,7 @@
             this.btnVR02_modernOpenGL_Points = new System.Windows.Forms.Button();
             this.btnFormVolumeRendering04 = new System.Windows.Forms.Button();
             this.btnFormVolumeRendering05 = new System.Windows.Forms.Button();
+            this.btnFromShaderDesigner1594 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -416,6 +417,17 @@
             this.btnFormVolumeRendering05.UseVisualStyleBackColor = true;
             this.btnFormVolumeRendering05.Click += new System.EventHandler(this.btnFormVolumeRendering05_Click);
             // 
+            // btnFromShaderDesigner1594
+            // 
+            this.btnFromShaderDesigner1594.Location = new System.Drawing.Point(374, 494);
+            this.btnFromShaderDesigner1594.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFromShaderDesigner1594.Name = "btnFromShaderDesigner1594";
+            this.btnFromShaderDesigner1594.Size = new System.Drawing.Size(346, 29);
+            this.btnFromShaderDesigner1594.TabIndex = 4;
+            this.btnFromShaderDesigner1594.Text = "FromShaderDesigner1.5.9.4";
+            this.btnFromShaderDesigner1594.UseVisualStyleBackColor = true;
+            this.btnFromShaderDesigner1594.Click += new System.EventHandler(this.btnFromShaderDesigner1594_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -435,6 +447,7 @@
             this.Controls.Add(this.btnFormTransformFeedback);
             this.Controls.Add(this.btnFormScientificVisual3DControl);
             this.Controls.Add(this.btnFormColorCodedPicking);
+            this.Controls.Add(this.btnFromShaderDesigner1594);
             this.Controls.Add(this.btnFormVolumeRendering05);
             this.Controls.Add(this.btnFormVolumeRendering04);
             this.Controls.Add(this.btnFormVolumeRendering_Hexahedron);
@@ -495,5 +508,6 @@
         private System.Windows.Forms.Button btnVR02_modernOpenGL_Points;
         private System.Windows.Forms.Button btnFormVolumeRendering04;
         private System.Windows.Forms.Button btnFormVolumeRendering05;
+        private System.Windows.Forms.Button btnFromShaderDesigner1594;
     }
 }
