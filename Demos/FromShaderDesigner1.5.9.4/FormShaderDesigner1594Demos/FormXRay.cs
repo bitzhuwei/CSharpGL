@@ -24,12 +24,8 @@ namespace FormShaderDesigner1594Demos
     public partial class FormXRay : Form
     {
         SimpleUIAxis uiLeftBottomAxis;
-        SimpleUIAxis uiLeftTopAxis;
-        SimpleUIAxis uiRightBottomAxis;
-        SimpleUIAxis uiRightTopAxis;
 
         AxisElement axisElement;
-        AxisElement2 axisElement2;
 
         Camera camera;
 
@@ -57,27 +53,13 @@ namespace FormShaderDesigner1594Demos
             IUILayoutParam param;
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
             uiLeftBottomAxis = new SimpleUIAxis(param);
-            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
-            uiLeftTopAxis = new SimpleUIAxis(param);
-            param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
-            uiRightBottomAxis = new SimpleUIAxis(param);
-            param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Top, padding, size);
-            uiRightTopAxis = new SimpleUIAxis(param);
 
             uiLeftBottomAxis.Initialize();
-            uiLeftTopAxis.Initialize();
-            uiRightBottomAxis.Initialize();
-            uiRightTopAxis.Initialize();
 
             axisElement = new AxisElement();
             axisElement.Initialize();
             axisElement.BeforeRendering += axisElement_BeforeRendering;
             axisElement.AfterRendering += axisElement_AfterRendering;
-
-            axisElement2 = new AxisElement2();
-            axisElement2.Initialize();
-            axisElement2.BeforeRendering += axisElement2_BeforeRendering;
-            axisElement2.AfterRendering += axisElement2_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -132,32 +114,6 @@ namespace FormShaderDesigner1594Demos
             element.SetShaderProgram(mvp);
         }
 
-        void axisElement2_AfterRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
-        {
-            AxisElement2 element = sender as AxisElement2;
-
-            element.shaderProgram.Unbind();
-        }
-
-        void axisElement2_BeforeRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
-        {
-            AxisElement2 element = sender as AxisElement2;
-
-            mat4 projectionMatrix = camera.GetProjectionMat4();
-            projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
-
-            mat4 viewMatrix = camera.GetViewMat4();
-
-            mat4 modelMatrix = mat4.identity();
-
-            ShaderProgram shaderProgram = element.shaderProgram;
-
-            shaderProgram.Bind();
-
-            shaderProgram.SetUniformMatrix4(AxisElement2.strprojectionMatrix, projectionMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(AxisElement2.strviewMatrix, viewMatrix.to_array());
-            shaderProgram.SetUniformMatrix4(AxisElement2.strmodelMatrix, modelMatrix.to_array());
-        }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -179,20 +135,8 @@ namespace FormShaderDesigner1594Demos
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
 
-            if (this.renderState == 2 || this.renderState == 4)
-            {
-                axisElement.Render(arg);
-            }
-
-            if (this.renderState == 3 || this.renderState == 4)
-            {
-                axisElement2.Render(arg);
-            }
-
+            axisElement.Render(arg);
             uiLeftBottomAxis.Render(arg);
-            uiLeftTopAxis.Render(arg);
-            uiRightBottomAxis.Render(arg);
-            uiRightTopAxis.Render(arg);
 
         }
 
@@ -232,15 +176,11 @@ namespace FormShaderDesigner1594Demos
             builder.Append(string.Format(" target:{0}", this.camera.Target));
             builder.Append(string.Format(" up:{0}", this.camera.UpVector));
             builder.Append(string.Format(" camera type: {0}", this.camera.CameraType));
-            builder.Append(string.Format(" rendering: {0}, {1}",
-                this.renderState == 2 || this.renderState == 4,
-                this.renderState == 3 || this.renderState == 4));
 
         }
 
         float translateX = 0, translateY = 0, translateZ = 0;
         const float interval = 0.1f;
-        private int renderState = 4;
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -257,22 +197,6 @@ namespace FormShaderDesigner1594Demos
                     default:
                         throw new NotImplementedException();
                 }
-            }
-            else if (e.KeyChar == '1')
-            {
-                this.renderState = 1;
-            }
-            else if (e.KeyChar == '2')
-            {
-                this.renderState = 2;
-            }
-            else if (e.KeyChar == '3')
-            {
-                this.renderState = 3;
-            }
-            else if (e.KeyChar == '4')
-            {
-                this.renderState = 4;
             }
             else if (e.KeyChar == 'w')
             {
