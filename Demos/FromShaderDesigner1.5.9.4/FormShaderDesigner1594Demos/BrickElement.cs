@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace FormShaderDesigner1594Demos
 {
-    class XRayElement : SceneElementBase, IMVP
+    class BrickElement : SceneElementBase, IMVP
     {
 
-        public XRayElement(string textureFile)
+        public BrickElement(string textureFile)
         {
             this.textureFile = textureFile;
         }
