@@ -62,7 +62,8 @@
             this.btnFormVolumeRendering04 = new System.Windows.Forms.Button();
             this.btnFormVolumeRendering05 = new System.Windows.Forms.Button();
             this.btnFromShaderDesigner1594 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnFormCube = new System.Windows.Forms.Button();
+            this.btnFormSphere = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -429,16 +430,27 @@
             this.btnFromShaderDesigner1594.UseVisualStyleBackColor = true;
             this.btnFromShaderDesigner1594.Click += new System.EventHandler(this.btnFromShaderDesigner1594_Click);
             // 
-            // button1
+            // btnFormCube
             // 
-            this.button1.Location = new System.Drawing.Point(374, 531);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(346, 29);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "FormCube";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnFormCube.Location = new System.Drawing.Point(374, 531);
+            this.btnFormCube.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormCube.Name = "btnFormCube";
+            this.btnFormCube.Size = new System.Drawing.Size(346, 29);
+            this.btnFormCube.TabIndex = 4;
+            this.btnFormCube.Text = "FormCube";
+            this.btnFormCube.UseVisualStyleBackColor = true;
+            this.btnFormCube.Click += new System.EventHandler(this.btnFormCube_Click);
+            // 
+            // btnFormSphere
+            // 
+            this.btnFormSphere.Location = new System.Drawing.Point(374, 568);
+            this.btnFormSphere.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormSphere.Name = "btnFormSphere";
+            this.btnFormSphere.Size = new System.Drawing.Size(346, 29);
+            this.btnFormSphere.TabIndex = 4;
+            this.btnFormSphere.Text = "FormSphere";
+            this.btnFormSphere.UseVisualStyleBackColor = true;
+            this.btnFormSphere.Click += new System.EventHandler(this.btnFormSphere_Click);
             // 
             // FormTest
             // 
@@ -459,7 +471,8 @@
             this.Controls.Add(this.btnFormTransformFeedback);
             this.Controls.Add(this.btnFormScientificVisual3DControl);
             this.Controls.Add(this.btnFormColorCodedPicking);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnFormSphere);
+            this.Controls.Add(this.btnFormCube);
             this.Controls.Add(this.btnFromShaderDesigner1594);
             this.Controls.Add(this.btnFormVolumeRendering05);
             this.Controls.Add(this.btnFormVolumeRendering04);
@@ -522,6 +535,7 @@
         private System.Windows.Forms.Button btnFormVolumeRendering04;
         private System.Windows.Forms.Button btnFormVolumeRendering05;
         private System.Windows.Forms.Button btnFromShaderDesigner1594;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnFormCube;
+        private System.Windows.Forms.Button btnFormSphere;
     }
 }
