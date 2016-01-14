@@ -121,7 +121,10 @@ namespace CSharpGL.Objects.SceneElements
             // 绑定shader
             this.shaderProgram.Bind();
 
+            GL.Enable(GL.GL_PRIMITIVE_RESTART);
+            GL.PrimitiveRestartIndex(uint.MaxValue);
             this.vertexArrayObject.Render(e, this.shaderProgram);
+            GL.Disable(GL.GL_PRIMITIVE_RESTART);
 
             // 解绑shader
             this.shaderProgram.Unbind();
