@@ -41,7 +41,7 @@ namespace CSharpGL.Objects.SceneElements
             // 北半球
             for (int i = 0; i < halfLatitudeCount; i++)
             {
-                double theta = Math.PI / 2 * (halfLatitudeCount - i);
+                double theta = (halfLatitudeCount - i) * Math.PI / 2 / halfLatitudeCount;
                 double y = radius * Math.Sin(theta);
                 for (int j = 0; j < longitudeCount + 1; j++)
                 {

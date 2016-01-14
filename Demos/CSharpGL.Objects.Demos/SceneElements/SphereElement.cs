@@ -48,7 +48,7 @@ namespace CSharpGL.Objects.SceneElements
 
         protected unsafe void InitializeVAO()
         {
-            SphereModel SphereElement = SphereModel.GetModel(1, 10, 10);
+            SphereModel SphereElement = SphereModel.GetModel(1, 10, 80);
 
             //  Create a vertex buffer for the vertex data.
             using (var positionBuffer = new SphereElementPositionBuffer(strin_Position))
