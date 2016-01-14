@@ -22,6 +22,8 @@ namespace CSharpGL.Objects.VertexBuffers
         /// <param name="propertyBuffers">给出此VAO要管理的所有VBO。</param>
         public VertexArrayObject(params BufferRenderer[] propertyBuffers)
         {
+            bool indexBufferExists = false;
+
             this.bufferRenderers = propertyBuffers;
             foreach (var item in propertyBuffers)
             {
@@ -35,8 +37,14 @@ namespace CSharpGL.Objects.VertexBuffers
                     else
                     {
                         indexBufferRenderer = renderer;
+                        indexBufferExists = true;
                     }
                 }
+            }
+
+            if(!indexBufferExists)
+            {
+                throw new Exception("No index buffer renderer exists!");
             }
         }
 

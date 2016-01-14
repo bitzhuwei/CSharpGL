@@ -12,16 +12,16 @@ using CSharpGL.Objects.VertexBuffers;
 namespace CSharpGL.Objects.SceneElements
 {
     /// <summary>
-    /// 立方体
+    /// 球体
     /// </summary>
-    public class CubeElement : SceneElementBase
+    public class SphereElement : SceneElementBase
     {
 
         VertexArrayObject vertexArrayObject;
         BufferRenderer positionBufferRenderer;
         BufferRenderer colorBufferRenderer;
         BufferRenderer normalBufferRenderer;
-        ZeroIndexBufferRenderer indexBufferRenderer;
+        IndexBufferRenderer indexBufferRenderer;
 
         /// <summary>
         /// shader program
@@ -38,8 +38,8 @@ namespace CSharpGL.Objects.SceneElements
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.CubeElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.CubeElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.SphereElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.SphereElement.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -48,42 +48,56 @@ namespace CSharpGL.Objects.SceneElements
 
         protected unsafe void InitializeVAO()
         {
+            SphereModel sphere = SphereModel.GetSphere(1, 3, 10);
 
             //  Create a vertex buffer for the vertex data.
-            using (var positionBuffer = new CubePositionBuffer(strin_Position))
+            using (var positionBuffer = new SpherePositionBuffer(strin_Position))
             {
-                positionBuffer.Alloc(1);
-                CubePosition* positionArray = (CubePosition*)positionBuffer.FirstElement();
-                positionArray[0] = CubeModel.position;
+                positionBuffer.Alloc(sphere.positions.Length);
+                vec3* positionArray = (vec3*)positionBuffer.FirstElement();
+                for (int i = 0; i < sphere.positions.Length; i++)
+                {
+                    positionArray[i] = sphere.positions[i];
+                }
 
                 this.positionBufferRenderer = positionBuffer.GetRenderer();
             }
 
             //  Now do the same for the colour data.
-            using (var colorBuffer = new CubeColorBuffer(strin_Color))
+            using (var colorBuffer = new SphereColorBuffer(strin_Color))
             {
-                colorBuffer.Alloc(1);
-                CubeColor* colorArray = (CubeColor*)colorBuffer.FirstElement();
-                colorArray[0] = CubeModel.color;
-                //colorArray[0] = CubeModel.GetRandomColor();
+                colorBuffer.Alloc(sphere.colors.Length);
+                vec3* colorArray = (vec3*)colorBuffer.FirstElement();
+                for (int i = 0; i < sphere.colors.Length; i++)
+                {
+                    colorArray[i] = sphere.colors[i];
+                }
 
                 this.colorBufferRenderer = colorBuffer.GetRenderer();
             }
 
-            using (var normalBuffer = new CubeNormalBuffer(strin_Normal))
+            using (var normalBuffer = new SphereNormalBuffer(strin_Normal))
             {
-                normalBuffer.Alloc(1);
-                CubeNormal* normalArray = (CubeNormal*)normalBuffer.FirstElement();
-                normalArray[0] = CubeModel.normal;
+                normalBuffer.Alloc(sphere.normals.Length);
+                vec3* normalArray = (vec3*)normalBuffer.FirstElement();
+                for (int i = 0; i < sphere.normals.Length; i++)
+                {
+                    normalArray[i] = sphere.normals[i];
+                }
 
                 this.normalBufferRenderer = normalBuffer.GetRenderer();
             }
 
-            using (var indexBuffer = new ZeroIndexBuffer(DrawMode.Quads, 0, 4 * 6))
+            using (var indexBuffer = new IndexBuffer<uint>(DrawMode.QuadStrip, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
             {
-                indexBuffer.Alloc(0);
+                indexBuffer.Alloc(sphere.indexes.Length);
+                uint* indexArray = (uint*)indexBuffer.FirstElement();
+                for (int i = 0; i < sphere.indexes.Length; i++)
+                {
+                    indexArray[i] = sphere.indexes[i];
+                }
 
-                this.indexBufferRenderer = indexBuffer.GetRenderer() as ZeroIndexBufferRenderer;
+                this.indexBufferRenderer = indexBuffer.GetRenderer() as IndexBufferRenderer;
             }
         }
 
@@ -141,39 +155,39 @@ namespace CSharpGL.Objects.SceneElements
 
         public void DecreaseVertexCount()
         {
-            if (this.indexBufferRenderer.VertexCount > 0)
-                this.indexBufferRenderer.VertexCount -= 4;
+            if (this.indexBufferRenderer.ElementCount > 0)
+                this.indexBufferRenderer.ElementCount--;
         }
 
         public void IncreaseVertexCount()
         {
-            if (this.indexBufferRenderer.VertexCount < 4 * 6)
-                this.indexBufferRenderer.VertexCount += 4;
+            if (this.indexBufferRenderer.ElementCount < 4 * 6)
+                this.indexBufferRenderer.ElementCount++;
         }
 
     }
 
-    class CubePositionBuffer : PropertyBuffer<CubePosition>
+    class SpherePositionBuffer : PropertyBuffer<vec3>
     {
-        public CubePositionBuffer(string varNameInShader)
+        public SpherePositionBuffer(string varNameInShader)
             : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
         {
 
         }
     }
 
-    class CubeColorBuffer : PropertyBuffer<CubeColor>
+    class SphereColorBuffer : PropertyBuffer<vec3>
     {
-        public CubeColorBuffer(string varNameInShader)
+        public SphereColorBuffer(string varNameInShader)
             : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
         {
 
         }
     }
 
-    class CubeNormalBuffer : PropertyBuffer<CubeNormal>
+    class SphereNormalBuffer : PropertyBuffer<vec3>
     {
-        public CubeNormalBuffer(string varNameInShader)
+        public SphereNormalBuffer(string varNameInShader)
             : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
         {
 

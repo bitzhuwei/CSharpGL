@@ -33,6 +33,7 @@ namespace CSharpGL.Winforms.Demo
         //SimpleUIRect uiRightTopRect;
 
         CubeElement cubeElement;
+        PyramidElement lightElement;
 
         Camera camera;
 
@@ -91,6 +92,11 @@ namespace CSharpGL.Winforms.Demo
             cubeElement.BeforeRendering += cubeElement_BeforeRendering;
             cubeElement.AfterRendering += cubeElement_AfterRendering;
 
+            lightElement = new PyramidElement();
+            lightElement.Initialize();
+            lightElement.BeforeRendering += lightElement_BeforeRendering;
+            lightElement.AfterRendering += lightElement_AfterRendering;
+
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
@@ -100,26 +106,15 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
-        //void SimpleUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
-        //{
-        //    IMVP element = sender as IMVP;
-        //    element.UnbindShaderProgram();
-        //}
+        void lightElement_AfterRendering(object sender, RenderEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
-        //void SimpleUIRect_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        //{
-        //    mat4 projectionMatrix, viewMatrix, modelMatrix;
-
-        //    {
-        //        IUILayout element = sender as IUILayout;
-        //        element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
-        //    }
-
-        //    {
-        //        IMVP element = sender as IMVP;
-        //        element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
-        //    }
-        //}
+        void lightElement_BeforeRendering(object sender, RenderEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
         void cubeElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {

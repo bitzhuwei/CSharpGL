@@ -27,9 +27,9 @@ namespace CSharpGL.Objects.VertexBuffers
         }
 
         /// <summary>
-        /// 索引数组中有多少个元素。
+        /// 要渲染多少个索引。
         /// </summary>
-        public int ElementCount { get; private set; }
+        public int ElementCount { get; set; }
 
         /// <summary>
         /// type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
