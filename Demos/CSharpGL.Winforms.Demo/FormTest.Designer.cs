@@ -64,6 +64,7 @@
             this.btnFromShaderDesigner1594 = new System.Windows.Forms.Button();
             this.btnFormCube = new System.Windows.Forms.Button();
             this.btnFormSphere = new System.Windows.Forms.Button();
+            this.btnFormIceCream = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -443,7 +444,7 @@
             // 
             // btnFormSphere
             // 
-            this.btnFormSphere.Location = new System.Drawing.Point(374, 568);
+            this.btnFormSphere.Location = new System.Drawing.Point(374, 605);
             this.btnFormSphere.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormSphere.Name = "btnFormSphere";
             this.btnFormSphere.Size = new System.Drawing.Size(346, 29);
@@ -451,6 +452,17 @@
             this.btnFormSphere.Text = "FormSphere";
             this.btnFormSphere.UseVisualStyleBackColor = true;
             this.btnFormSphere.Click += new System.EventHandler(this.btnFormSphere_Click);
+            // 
+            // btnFormIceCream
+            // 
+            this.btnFormIceCream.Location = new System.Drawing.Point(374, 568);
+            this.btnFormIceCream.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormIceCream.Name = "btnFormIceCream";
+            this.btnFormIceCream.Size = new System.Drawing.Size(346, 29);
+            this.btnFormIceCream.TabIndex = 4;
+            this.btnFormIceCream.Text = "FormIceCream";
+            this.btnFormIceCream.UseVisualStyleBackColor = true;
+            this.btnFormIceCream.Click += new System.EventHandler(this.btnFormIceCream_Click);
             // 
             // FormTest
             // 
@@ -471,6 +483,7 @@
             this.Controls.Add(this.btnFormTransformFeedback);
             this.Controls.Add(this.btnFormScientificVisual3DControl);
             this.Controls.Add(this.btnFormColorCodedPicking);
+            this.Controls.Add(this.btnFormIceCream);
             this.Controls.Add(this.btnFormSphere);
             this.Controls.Add(this.btnFormCube);
             this.Controls.Add(this.btnFromShaderDesigner1594);
@@ -537,5 +550,6 @@
         private System.Windows.Forms.Button btnFromShaderDesigner1594;
         private System.Windows.Forms.Button btnFormCube;
         private System.Windows.Forms.Button btnFormSphere;
+        private System.Windows.Forms.Button btnFormIceCream;
     }
 }

@@ -52,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CameraDictionary.cs" />
+    <Compile Include="FormIceCream.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIceCream.Designer.cs">
+      <DependentUpon>FormIceCream.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSphere.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,6 +283,9 @@
       <DependentUpon>ScientificVisual3DControl.cs</DependentUpon>
     </Compile>
     <Compile Include="TestProjectionFunctions.cs" />
+    <EmbeddedResource Include="FormIceCream.resx">
+      <DependentUpon>FormIceCream.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSphere.resx">
       <DependentUpon>FormSphere.cs</DependentUpon>
     </EmbeddedResource>

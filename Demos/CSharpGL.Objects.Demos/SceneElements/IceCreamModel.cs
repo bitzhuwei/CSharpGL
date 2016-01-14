@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 namespace CSharpGL.Objects.SceneElements
 {
     /// <summary>
-    /// 一个球体的模型。
+    /// 一个类似冰激凌形状的模型。偶然得之。
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_sphere.jpg
+    /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000064.jpg
+    /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000065.jpg
     /// </summary>
-    public class SphereModel
+    public class IceCreamModel
     {
         public vec3[] positions;
         public vec3[] normals;
@@ -25,9 +27,9 @@ namespace CSharpGL.Objects.SceneElements
             return new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
         }
 
-        public static SphereModel GetModel(float radius = 1.0f, int halfLatitudeCount = 2, int longitudeCount = 4)
+        public static IceCreamModel GetModel(float radius = 1.0f, int halfLatitudeCount = 2, int longitudeCount = 4)
         {
-            SphereModel sphere = new SphereModel();
+            IceCreamModel sphere = new IceCreamModel();
             int vertexCount = (halfLatitudeCount * 2 + 1) * (longitudeCount + 1);
             sphere.positions = new vec3[vertexCount];
             sphere.normals = new vec3[vertexCount];

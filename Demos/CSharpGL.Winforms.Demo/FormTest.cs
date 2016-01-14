@@ -203,6 +203,11 @@ namespace CSharpGL.Winforms.Demo
             (new FormCube()).Show();
         }
 
+        private void btnFormIceCream_Click(object sender, EventArgs e)
+        {
+            (new FormIceCream()).Show();
+        }
+
         private void btnFormSphere_Click(object sender, EventArgs e)
         {
             (new FormSphere()).Show();

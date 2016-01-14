@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Winforms.Demo
 {
-    partial class FormSphere
+    partial class FormIceCream
     {
         /// <summary>
         /// Required designer variable.
@@ -57,15 +57,15 @@
             this.glCanvas1.TabIndex = 7;
             this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress_1);
             // 
-            // FormSphere
+            // FormIceCream
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 453);
             this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "FormSphere";
-            this.Text = "FormSphere";
+            this.Name = "FormIceCream";
+            this.Text = "FormIceCream";
             this.Load += new System.EventHandler(this.FormTranslateOnScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
