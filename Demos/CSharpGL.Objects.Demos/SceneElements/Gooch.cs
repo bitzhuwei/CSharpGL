@@ -12,15 +12,12 @@ using CSharpGL.Objects.Models;
 
 namespace CSharpGL.Objects.SceneElements
 {
-    /// <summary>
-    /// 类似冰激凌形状的物体
-    /// </summary>
-    public class IceCreamElement : SceneElementBase
+    public class Gooch : SceneElementBase
     {
 
         VertexArrayObject vertexArrayObject;
         BufferRenderer positionBufferRenderer;
-        BufferRenderer colorBufferRenderer;
+        //BufferRenderer colorBufferRenderer;
         BufferRenderer normalBufferRenderer;
         IndexBufferRenderer indexBufferRenderer;
 
@@ -30,18 +27,72 @@ namespace CSharpGL.Objects.SceneElements
         private ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_Normal = "in_Normal";
-        const string strin_Color = "in_Color";
+        //const string strin_Color = "in_Color";
         const string strmodelMatrix = "modelMatrix";
         const string strviewMatrix = "viewMatrix";
         const string strprojectionMatrix = "projectionMatrix";
+
         const string strlightPosition = "lightPosition";
-        public vec3 lightPosition = new vec3(0, 0, 0);
+        private vec3 lightPosition = new vec3(0.0f, 10.0f, 4.0f);
+
+        public vec3 LightPosition
+        {
+            get { return lightPosition; }
+            set { lightPosition = value; }
+        }
+
+        const string strSurfaceColor = "SurfaceColor";
+        private vec3 surfaceColor = new vec3(0.75f, 0.75f, 0.75f);
+
+        public vec3 SurfaceColor
+        {
+            get { return surfaceColor; }
+            set { surfaceColor = value; }
+        }
+
+        const string strWarmColor = "WarmColor";
+        private vec3 warmColor = new vec3(0.6f, 0.6f, 0.0f);
+
+        public vec3 WarmColor
+        {
+            get { return warmColor; }
+            set { warmColor = value; }
+        }
+
+        const string strCoolColor = "CoolColor";
+
+        private vec3 coolColor = new vec3(0.0f, 0.0f, 0.6f);
+
+        public vec3 CoolColor
+        {
+            get { return coolColor; }
+            set { coolColor = value; }
+        }
+
+        const string strDiffuseWarm = "DiffuseWarm";
+        private float diffuseWarm = 0.45f;
+
+        public float DiffuseWarm
+        {
+            get { return diffuseWarm; }
+            set { diffuseWarm = value; }
+        }
+
+        const string strDiffuseCool = "DiffuseCool";
+        private float diffuseCool = 0.45f;
+
+        public float DiffuseCool
+        {
+            get { return diffuseCool; }
+            set { diffuseCool = value; }
+        }
+
         private int indexCount;
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.IceCreamElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.IceCreamElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.Gooch.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.Gooch.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -53,7 +104,7 @@ namespace CSharpGL.Objects.SceneElements
             IModel model = IceCreamModel.GetModel(1, 10, 10);
 
             this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);
-            this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
+            //this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
             this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
             this.indexBufferRenderer = model.GetIndexes() as IndexBufferRenderer;
             this.indexCount = this.indexBufferRenderer.ElementCount;
@@ -70,7 +121,11 @@ namespace CSharpGL.Objects.SceneElements
         {
             if (this.vertexArrayObject == null)
             {
-                var vao = new VertexArrayObject(this.positionBufferRenderer, colorBufferRenderer, this.normalBufferRenderer, this.indexBufferRenderer);
+                var vao = new VertexArrayObject(
+                    this.positionBufferRenderer, 
+                    //colorBufferRenderer, 
+                    this.normalBufferRenderer,
+                    this.indexBufferRenderer);
                 vao.Create(e, this.shaderProgram);
 
                 this.vertexArrayObject = vao;
@@ -100,13 +155,19 @@ namespace CSharpGL.Objects.SceneElements
             base.CleanUnmanagedRes();
         }
 
-        public void SetMatrix(mat4 projectionMatrix, mat4 viewMatrix, mat4 modelMatrix)
+        public void SetUniforms(mat4 projectionMatrix, mat4 viewMatrix, mat4 modelMatrix)
         {
             this.shaderProgram.Bind();
             this.shaderProgram.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
             this.shaderProgram.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
             this.shaderProgram.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
             this.shaderProgram.SetUniform(strlightPosition, this.lightPosition.x, this.lightPosition.y, this.lightPosition.z);
+            this.shaderProgram.SetUniform(strSurfaceColor, this.surfaceColor.x, this.surfaceColor.y, this.surfaceColor.z);
+            this.shaderProgram.SetUniform(strWarmColor, this.warmColor.x, this.warmColor.y, this.warmColor.z);
+            this.shaderProgram.SetUniform(strCoolColor, this.coolColor.x, this.coolColor.y, this.coolColor.z);
+            this.shaderProgram.SetUniform(strDiffuseWarm, this.diffuseWarm);
+            this.shaderProgram.SetUniform(strDiffuseCool, this.diffuseCool);
+
         }
 
         public void ResetShaderProgram()

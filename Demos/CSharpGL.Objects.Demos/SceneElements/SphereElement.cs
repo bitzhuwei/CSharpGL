@@ -92,7 +92,7 @@ namespace CSharpGL.Objects.SceneElements
         {
             if (this.vertexArrayObject == null)
             {
-                var vao = new VertexArrayObject(this.positionBufferRenderer, colorBufferRenderer, this.indexBufferRenderer);
+                var vao = new VertexArrayObject(this.positionBufferRenderer, colorBufferRenderer, this.normalBufferRenderer, this.indexBufferRenderer);
                 vao.Create(e, this.shaderProgram);
 
                 this.vertexArrayObject = vao;

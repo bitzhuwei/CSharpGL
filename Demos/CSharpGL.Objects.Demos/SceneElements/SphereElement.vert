@@ -23,7 +23,7 @@ void main(void)
 	vec3 viewVec    = normalize(-vec3(ecPosition));
 	float diffuse = dot(lightVec, vec3(tnorm));
 	//if (diffuse < 0.0) 
-	{ diffuse = -diffuse; }
+	//{ diffuse = -diffuse; }
     //float diffuse   = max(dot(lightVec, vec3(tnorm)), 0.0);
     float spec      = 0.0;
 
@@ -35,9 +35,9 @@ void main(void)
 
     //float LightIntensity  = diffuse + spec;
     float LightIntensity  = DiffuseContribution * diffuse + SpecularContribution * spec;
-	//if (LightIntensity <= 0.5)
+	if (LightIntensity <= 0.1)
 	{
-	    //LightIntensity = 0.5;
+	    LightIntensity = 0.1;
 	}
 
 	//pass_Color = vec4(in_Color * 1.0, 1.0);
