@@ -1,4 +1,5 @@
-﻿using CSharpGL.Objects.VertexBuffers;
+﻿using CSharpGL;
+using CSharpGL.Objects.VertexBuffers;
 using GLM;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Models
+namespace FormShaderDesigner1594Demos.Models
 {
     /// <summary>
     /// 一个类似冰激凌形状的模型。偶然得之。
@@ -122,7 +123,7 @@ namespace CSharpGL.Objects.Models
             return sphere;
         }
 
-        VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
         {
             using (var positionBuffer = new IceCreamModelPositionBuffer(varNameInShader))
             {
@@ -141,7 +142,7 @@ namespace CSharpGL.Objects.Models
 
         }
 
-        VertexBuffers.BufferRenderer IModel.GetColorBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetColorBufferRenderer(string varNameInShader)
         {
             using (var colorBuffer = new IceCreamModelColorBuffer(varNameInShader))
             {
@@ -160,7 +161,7 @@ namespace CSharpGL.Objects.Models
 
         }
 
-        VertexBuffers.BufferRenderer IModel.GetNormalBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetNormalBufferRenderer(string varNameInShader)
         {
             using (var normalBuffer = new IceCreamModelNormalBuffer(varNameInShader))
             {
@@ -179,7 +180,7 @@ namespace CSharpGL.Objects.Models
 
         }
 
-        VertexBuffers.BufferRenderer IModel.GetIndexes()
+        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetIndexes()
         {
             using (var indexBuffer = new IndexBuffer<uint>(DrawMode.QuadStrip, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
             {

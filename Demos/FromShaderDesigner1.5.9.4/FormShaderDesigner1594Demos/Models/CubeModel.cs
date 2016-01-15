@@ -1,4 +1,5 @@
-﻿using CSharpGL.Objects.VertexBuffers;
+﻿using CSharpGL;
+using CSharpGL.Objects.VertexBuffers;
 using GLM;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Models
+namespace FormShaderDesigner1594Demos.Models
 {
     /// <summary>
     /// 一个立方体的模型。
@@ -71,7 +72,7 @@ namespace CSharpGL.Objects.Models
             return new CubeModel();
         }
 
-        VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
         {
             using (var positionBuffer = new CubePositionBuffer(varNameInShader))
             {
@@ -87,7 +88,7 @@ namespace CSharpGL.Objects.Models
 
         }
 
-        VertexBuffers.BufferRenderer IModel.GetColorBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetColorBufferRenderer(string varNameInShader)
         {
             using (var colorBuffer = new CubeColorBuffer(varNameInShader))
             {
@@ -104,7 +105,7 @@ namespace CSharpGL.Objects.Models
 
         }
 
-        VertexBuffers.BufferRenderer IModel.GetNormalBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetNormalBufferRenderer(string varNameInShader)
         {
             using (var normalBuffer = new CubeNormalBuffer(varNameInShader))
             {
@@ -120,7 +121,7 @@ namespace CSharpGL.Objects.Models
 
         }
 
-        VertexBuffers.BufferRenderer IModel.GetIndexes()
+        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetIndexes()
         {
             using (var indexBuffer = new ZeroIndexBuffer(DrawMode.Quads, 0, 4 * 6))
             {

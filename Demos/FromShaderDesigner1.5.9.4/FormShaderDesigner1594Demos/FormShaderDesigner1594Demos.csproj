@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="readme.txt" />
     <Compile Include="FormDemosPanel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +79,10 @@
     <Compile Include="FormSimpleUIAxis.Designer.cs">
       <DependentUpon>FormSimpleUIAxis.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CubeModel.cs" />
+    <Compile Include="Models\IceCreamModel.cs" />
+    <Compile Include="Models\IModel.cs" />
+    <Compile Include="Models\SphereModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="BrickElement.frag" />
     <None Include="BrickElement.vert" />

@@ -8,9 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CSharpGL.Objects.VertexBuffers;
-using CSharpGL.Objects.Models;
+using FormShaderDesigner1594Demos.Models;
+using CSharpGL;
 
-namespace CSharpGL.Objects.SceneElements
+namespace FormShaderDesigner1594Demos.SceneElements
 {
     public class GoochElement : SceneElementBase
     {

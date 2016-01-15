@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using CSharpGL.Objects.VertexBuffers;
 using CSharpGL.Objects.Models;
 
-namespace CSharpGL.Objects.SceneElements
+namespace FormShaderDesigner1594Demos.SceneElements
 {
     /// <summary>
     /// 类似冰激凌形状的物体

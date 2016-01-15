@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Models
+namespace FormShaderDesigner1594Demos.Models
 {
     public interface IModel
     {
