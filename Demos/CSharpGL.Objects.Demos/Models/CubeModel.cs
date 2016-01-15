@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.SceneElements
+namespace CSharpGL.Objects.Models
 {
     /// <summary>
     /// 一个立方体的模型。

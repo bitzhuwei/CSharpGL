@@ -55,14 +55,14 @@
     <Compile Include="SceneElements\IceCreamElement.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SceneElements\IceCreamModel.cs">
+    <Compile Include="Models\IceCreamModel.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SceneElements\PointLightElement.cs" />
     <Compile Include="SceneElements\SphereElement.cs" />
-    <Compile Include="SceneElements\SphereModel.cs" />
+    <Compile Include="Models\SphereModel.cs" />
     <Compile Include="SceneElements\CubeElement.cs" />
-    <Compile Include="SceneElements\CubeModel.cs" />
+    <Compile Include="Models\CubeModel.cs" />
     <Compile Include="SceneElements\CylinderElement.cs" />
     <Compile Include="SceneElements\FontElement.cs" />
     <Compile Include="SceneElements\PyramidElement.cs" />

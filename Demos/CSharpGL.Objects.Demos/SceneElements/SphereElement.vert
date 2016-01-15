@@ -22,7 +22,8 @@ void main(void)
 	vec3 reflectVec = lightVec + (lightVec * tnorm) * vec3(tnorm) + vec3(tnorm);//reflect(-lightVec, tnorm);
 	vec3 viewVec    = normalize(-vec3(ecPosition));
 	float diffuse = dot(lightVec, vec3(tnorm));
-	if (diffuse < 0.0) { diffuse = -diffuse; }
+	//if (diffuse < 0.0) 
+	{ diffuse = -diffuse; }
     //float diffuse   = max(dot(lightVec, vec3(tnorm)), 0.0);
     float spec      = 0.0;
 

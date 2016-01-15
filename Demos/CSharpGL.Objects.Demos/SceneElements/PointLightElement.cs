@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CSharpGL.Objects.VertexBuffers;
+using CSharpGL.Objects.Models;
 
 namespace CSharpGL.Objects.SceneElements
 {
