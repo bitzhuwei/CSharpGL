@@ -36,6 +36,7 @@ namespace CSharpGL.Objects.SceneElements
         const string strprojectionMatrix = "projectionMatrix";
         const string strlightPosition = "lightPosition";
         public vec3 lightPosition = new vec3(0, 0, 0);
+        private int indexCount;
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
@@ -49,57 +50,13 @@ namespace CSharpGL.Objects.SceneElements
 
         protected unsafe void InitializeVAO()
         {
-            IceCreamModel IceCreamElement = IceCreamModel.GetModel(1, 10, 10);
+            IModel model = IceCreamModel.GetModel(1, 10, 10);
 
-            //  Create a vertex buffer for the vertex data.
-            using (var positionBuffer = new IceCreamElementPositionBuffer(strin_Position))
-            {
-                positionBuffer.Alloc(IceCreamElement.positions.Length);
-                vec3* positionArray = (vec3*)positionBuffer.FirstElement();
-                for (int i = 0; i < IceCreamElement.positions.Length; i++)
-                {
-                    positionArray[i] = IceCreamElement.positions[i];
-                }
-
-                this.positionBufferRenderer = positionBuffer.GetRenderer();
-            }
-
-            //  Now do the same for the colour data.
-            using (var colorBuffer = new IceCreamElementColorBuffer(strin_Color))
-            {
-                colorBuffer.Alloc(IceCreamElement.colors.Length);
-                vec3* colorArray = (vec3*)colorBuffer.FirstElement();
-                for (int i = 0; i < IceCreamElement.colors.Length; i++)
-                {
-                    colorArray[i] = IceCreamElement.colors[i];
-                }
-
-                this.colorBufferRenderer = colorBuffer.GetRenderer();
-            }
-
-            using (var normalBuffer = new IceCreamElementNormalBuffer(strin_Normal))
-            {
-                normalBuffer.Alloc(IceCreamElement.normals.Length);
-                vec3* normalArray = (vec3*)normalBuffer.FirstElement();
-                for (int i = 0; i < IceCreamElement.normals.Length; i++)
-                {
-                    normalArray[i] = IceCreamElement.normals[i];
-                }
-
-                this.normalBufferRenderer = normalBuffer.GetRenderer();
-            }
-
-            using (var indexBuffer = new IndexBuffer<uint>(DrawMode.QuadStrip, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
-            {
-                indexBuffer.Alloc(IceCreamElement.indexes.Length);
-                uint* indexArray = (uint*)indexBuffer.FirstElement();
-                for (int i = 0; i < IceCreamElement.indexes.Length; i++)
-                {
-                    indexArray[i] = IceCreamElement.indexes[i];
-                }
-
-                this.indexBufferRenderer = indexBuffer.GetRenderer() as IndexBufferRenderer;
-            }
+            this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);
+            this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
+            this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
+            this.indexBufferRenderer = model.GetIndexes() as IndexBufferRenderer;
+            this.indexCount = this.indexBufferRenderer.ElementCount;
         }
 
         protected override void DoInitialize()
@@ -165,36 +122,10 @@ namespace CSharpGL.Objects.SceneElements
 
         public void IncreaseVertexCount()
         {
-            if (this.indexBufferRenderer.ElementCount < 4 * 6)
+            if (this.indexBufferRenderer.ElementCount < this.indexCount)
                 this.indexBufferRenderer.ElementCount++;
         }
 
     }
 
-    class IceCreamElementPositionBuffer : PropertyBuffer<vec3>
-    {
-        public IceCreamElementPositionBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
-
-    class IceCreamElementColorBuffer : PropertyBuffer<vec3>
-    {
-        public IceCreamElementColorBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
-
-    class IceCreamElementNormalBuffer : PropertyBuffer<vec3>
-    {
-        public IceCreamElementNormalBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
 }

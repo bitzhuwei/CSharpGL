@@ -36,6 +36,7 @@ namespace CSharpGL.Objects.SceneElements
         const string strprojectionMatrix = "projectionMatrix";
         const string strlightPosition = "lightPosition";
         public vec3 lightPosition = new vec3(0, 0, 0);
+        private int vertexCount;
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
@@ -49,43 +50,14 @@ namespace CSharpGL.Objects.SceneElements
 
         protected unsafe void InitializeVAO()
         {
+            IModel model = CubeModel.GetModel();
 
-            //  Create a vertex buffer for the vertex data.
-            using (var positionBuffer = new CubePositionBuffer(strin_Position))
-            {
-                positionBuffer.Alloc(1);
-                CubePosition* positionArray = (CubePosition*)positionBuffer.FirstElement();
-                positionArray[0] = CubeModel.position;
+            this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);
+            this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
+            this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
+            this.indexBufferRenderer = model.GetIndexes() as ZeroIndexBufferRenderer;
 
-                this.positionBufferRenderer = positionBuffer.GetRenderer();
-            }
-
-            //  Now do the same for the colour data.
-            using (var colorBuffer = new CubeColorBuffer(strin_Color))
-            {
-                colorBuffer.Alloc(1);
-                CubeColor* colorArray = (CubeColor*)colorBuffer.FirstElement();
-                colorArray[0] = CubeModel.color;
-                //colorArray[0] = CubeModel.GetRandomColor();
-
-                this.colorBufferRenderer = colorBuffer.GetRenderer();
-            }
-
-            using (var normalBuffer = new CubeNormalBuffer(strin_Normal))
-            {
-                normalBuffer.Alloc(1);
-                CubeNormal* normalArray = (CubeNormal*)normalBuffer.FirstElement();
-                normalArray[0] = CubeModel.normal;
-
-                this.normalBufferRenderer = normalBuffer.GetRenderer();
-            }
-
-            using (var indexBuffer = new ZeroIndexBuffer(DrawMode.Quads, 0, 4 * 6))
-            {
-                indexBuffer.Alloc(0);
-
-                this.indexBufferRenderer = indexBuffer.GetRenderer() as ZeroIndexBufferRenderer;
-            }
+            this.vertexCount = this.indexBufferRenderer.VertexCount;
         }
 
         protected override void DoInitialize()
@@ -148,36 +120,10 @@ namespace CSharpGL.Objects.SceneElements
 
         public void IncreaseVertexCount()
         {
-            if (this.indexBufferRenderer.VertexCount < 4 * 6)
+            if (this.indexBufferRenderer.VertexCount < this.vertexCount)
                 this.indexBufferRenderer.VertexCount += 4;
         }
 
     }
 
-    class CubePositionBuffer : PropertyBuffer<CubePosition>
-    {
-        public CubePositionBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
-
-    class CubeColorBuffer : PropertyBuffer<CubeColor>
-    {
-        public CubeColorBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
-
-    class CubeNormalBuffer : PropertyBuffer<CubeNormal>
-    {
-        public CubeNormalBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
 }

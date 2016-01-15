@@ -1,4 +1,5 @@
-﻿using GLM;
+﻿using CSharpGL.Objects.VertexBuffers;
+using GLM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace CSharpGL.Objects.Demos.Models
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000061.jpg
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000062.jpg
     /// </summary>
-    public static class CubeModel
+    public class CubeModel : IModel
     {
         static vec3[] vertexes = new vec3[] 
         { 
@@ -21,7 +22,7 @@ namespace CSharpGL.Objects.Demos.Models
             new vec3(-1, -1, 1), new vec3(1, -1, 1), new vec3(1, -1, -1), new vec3(-1, -1, -1), 
         };
 
-        public static readonly CubePosition position = new CubePosition()
+        static readonly CubePosition position = new CubePosition()
         {
             faceX = new SqurePosition() { position0 = vertexes[1], position1 = vertexes[2], position2 = vertexes[6], position3 = vertexes[5], },
             faceNX = new SqurePosition() { position0 = vertexes[0], position1 = vertexes[3], position2 = vertexes[7], position3 = vertexes[4], },
@@ -31,7 +32,7 @@ namespace CSharpGL.Objects.Demos.Models
             faceNZ = new SqurePosition() { position0 = vertexes[3], position1 = vertexes[2], position2 = vertexes[6], position3 = vertexes[7], },
         };
 
-        public static readonly CubeNormal normal = new CubeNormal()
+        static readonly CubeNormal normal = new CubeNormal()
         {
             faceX = new SqureNormal(new vec3(1, 0, 0)),
             faceNX = new SqureNormal(new vec3(-1, 0, 0)),
@@ -41,7 +42,7 @@ namespace CSharpGL.Objects.Demos.Models
             faceNZ = new SqureNormal(new vec3(0, 0, -1)),
         };
 
-        public static readonly CubeColor color = new CubeColor()
+        static readonly CubeColor color = new CubeColor()
         {
             faceX = new SqureColor(new vec3(0, 0, 1)),
             faceNX = new SqureColor(new vec3(0, 1, 0)),
@@ -51,18 +52,109 @@ namespace CSharpGL.Objects.Demos.Models
             faceNZ = new SqureColor(new vec3(1, 1, 0)),
         };
 
-        public static CubeColor GetRandomColor()
+        static CubeColor GetRandomColor()
         {
             Random random = new Random();
             CubeColor result = new CubeColor();
-            result.faceX  = new SqureColor(new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
+            result.faceX = new SqureColor(new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
             result.faceNX = new SqureColor(new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
-            result.faceY  = new SqureColor(new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
+            result.faceY = new SqureColor(new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
             result.faceNY = new SqureColor(new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
-            result.faceZ  = new SqureColor(new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
+            result.faceZ = new SqureColor(new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
             result.faceNZ = new SqureColor(new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
 
             return result;
+        }
+
+        public static IModel GetModel()
+        {
+            return new CubeModel();
+        }
+
+        VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
+        {
+            using (var positionBuffer = new CubePositionBuffer(varNameInShader))
+            {
+                positionBuffer.Alloc(1);
+                unsafe
+                {
+                    CubePosition* positionArray = (CubePosition*)positionBuffer.FirstElement();
+                    positionArray[0] = CubeModel.position;
+                }
+
+                return positionBuffer.GetRenderer();
+            }
+
+        }
+
+        VertexBuffers.BufferRenderer IModel.GetColorBufferRenderer(string varNameInShader)
+        {
+            using (var colorBuffer = new CubeColorBuffer(varNameInShader))
+            {
+                colorBuffer.Alloc(1);
+                unsafe
+                {
+                    CubeColor* colorArray = (CubeColor*)colorBuffer.FirstElement();
+                    colorArray[0] = CubeModel.color;
+                    //colorArray[0] = CubeModel.GetRandomColor();
+                }
+
+                return colorBuffer.GetRenderer();
+            }
+
+        }
+
+        VertexBuffers.BufferRenderer IModel.GetNormalBufferRenderer(string varNameInShader)
+        {
+            using (var normalBuffer = new CubeNormalBuffer(varNameInShader))
+            {
+                normalBuffer.Alloc(1);
+                unsafe
+                {
+                    CubeNormal* normalArray = (CubeNormal*)normalBuffer.FirstElement();
+                    normalArray[0] = CubeModel.normal;
+                }
+
+                return normalBuffer.GetRenderer();
+            }
+
+        }
+
+        VertexBuffers.BufferRenderer IModel.GetIndexes()
+        {
+            using (var indexBuffer = new ZeroIndexBuffer(DrawMode.Quads, 0, 4 * 6))
+            {
+                //indexBuffer.Alloc(0);
+
+                return indexBuffer.GetRenderer() as ZeroIndexBufferRenderer;
+            }
+        }
+    }
+
+    class CubePositionBuffer : PropertyBuffer<CubePosition>
+    {
+        public CubePositionBuffer(string varNameInShader)
+            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+        {
+
+        }
+    }
+
+    class CubeColorBuffer : PropertyBuffer<CubeColor>
+    {
+        public CubeColorBuffer(string varNameInShader)
+            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+        {
+
+        }
+    }
+
+    class CubeNormalBuffer : PropertyBuffer<CubeNormal>
+    {
+        public CubeNormalBuffer(string varNameInShader)
+            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+        {
+
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using GLM;
+﻿using CSharpGL.Objects.VertexBuffers;
+using GLM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +11,15 @@ namespace CSharpGL.Objects.Demos.Models
 {
     /// <summary>
     /// 一个类似冰激凌形状的模型。偶然得之。
-    /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_sphere.jpg
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000064.jpg
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000065.jpg
     /// </summary>
-    public class IceCreamModel
+    public class IceCreamModel : IModel
     {
-        public vec3[] positions;
-        public vec3[] normals;
-        public vec3[] colors;
-        public uint[] indexes;
+        vec3[] positions;
+        vec3[] normals;
+        vec3[] colors;
+        uint[] indexes;
 
         static Random random = new Random();
         static vec3 RandomVec3()
@@ -27,7 +27,9 @@ namespace CSharpGL.Objects.Demos.Models
             return new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
         }
 
-        public static IceCreamModel GetModel(float radius = 1.0f, int halfLatitudeCount = 2, int longitudeCount = 4)
+        private IceCreamModel() { }
+
+        public static IModel GetModel(float radius = 1.0f, int halfLatitudeCount = 2, int longitudeCount = 4)
         {
             IceCreamModel sphere = new IceCreamModel();
             int vertexCount = (halfLatitudeCount * 2 + 1) * (longitudeCount + 1);
@@ -119,6 +121,107 @@ namespace CSharpGL.Objects.Demos.Models
 
             return sphere;
         }
+
+        VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
+        {
+            using (var positionBuffer = new IceCreamModelPositionBuffer(varNameInShader))
+            {
+                positionBuffer.Alloc(positions.Length);
+                unsafe
+                {
+                    vec3* array = (vec3*)positionBuffer.FirstElement();
+                    for (int i = 0; i < positions.Length; i++)
+                    {
+                        array[i] = positions[i];
+                    }
+                }
+
+                return positionBuffer.GetRenderer();
+            }
+
+        }
+
+        VertexBuffers.BufferRenderer IModel.GetColorBufferRenderer(string varNameInShader)
+        {
+            using (var colorBuffer = new IceCreamModelColorBuffer(varNameInShader))
+            {
+                colorBuffer.Alloc(colors.Length);
+                unsafe
+                {
+                    vec3* array = (vec3*)colorBuffer.FirstElement();
+                    for (int i = 0; i < colors.Length; i++)
+                    {
+                        array[i] = colors[i];
+                    }
+                }
+
+                return colorBuffer.GetRenderer();
+            }
+
+        }
+
+        VertexBuffers.BufferRenderer IModel.GetNormalBufferRenderer(string varNameInShader)
+        {
+            using (var normalBuffer = new IceCreamModelNormalBuffer(varNameInShader))
+            {
+                normalBuffer.Alloc(normals.Length);
+                unsafe
+                {
+                    vec3* array = (vec3*)normalBuffer.FirstElement();
+                    for (int i = 0; i < normals.Length; i++)
+                    {
+                        array[i] = normals[i];
+                    }
+                }
+
+                return normalBuffer.GetRenderer();
+            }
+
+        }
+
+        VertexBuffers.BufferRenderer IModel.GetIndexes()
+        {
+            using (var indexBuffer = new IndexBuffer<uint>(DrawMode.QuadStrip, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
+            {
+                indexBuffer.Alloc(indexes.Length);
+                unsafe
+                {
+                    uint* array = (uint*)indexBuffer.FirstElement();
+                    for (int i = 0; i < indexes.Length; i++)
+                    {
+                        array[i] = indexes[i];
+                    }
+                }
+
+                return indexBuffer.GetRenderer();
+            }
+        }
     }
 
+    class IceCreamModelPositionBuffer : PropertyBuffer<vec3>
+    {
+        public IceCreamModelPositionBuffer(string varNameInShader)
+            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+        {
+
+        }
+    }
+
+    class IceCreamModelColorBuffer : PropertyBuffer<vec3>
+    {
+        public IceCreamModelColorBuffer(string varNameInShader)
+            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+        {
+
+        }
+    }
+
+    class IceCreamModelNormalBuffer : PropertyBuffer<vec3>
+    {
+        public IceCreamModelNormalBuffer(string varNameInShader)
+            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+        {
+
+        }
+    }
 }
