@@ -31,10 +31,6 @@ namespace CSharpGL.Objects.SceneElements
         const string strin_Color = "in_Color";
         const string strMVP = "MVP";
 
-        private float radius;
-        private float axisLength;
-        private int faceCount;
-        private vec3 planColor;
         private int elementCount;
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
