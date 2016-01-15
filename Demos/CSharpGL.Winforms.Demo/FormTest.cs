@@ -213,6 +213,11 @@ namespace CSharpGL.Winforms.Demo
             (new FormSphere()).Show();
         }
 
+        private void btnFormGooch_Click(object sender, EventArgs e)
+        {
+            (new FormGooch()).Show();
+        }
+
 
     }
 }

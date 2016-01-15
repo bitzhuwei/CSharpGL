@@ -58,6 +58,12 @@
     <Compile Include="FormIceCream.Designer.cs">
       <DependentUpon>FormIceCream.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormGooch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGooch.Designer.cs">
+      <DependentUpon>FormGooch.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSphere.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,6 +291,9 @@
     <Compile Include="TestProjectionFunctions.cs" />
     <EmbeddedResource Include="FormIceCream.resx">
       <DependentUpon>FormIceCream.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGooch.resx">
+      <DependentUpon>FormGooch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSphere.resx">
       <DependentUpon>FormSphere.cs</DependentUpon>

@@ -12,7 +12,7 @@ using CSharpGL.Objects.Models;
 
 namespace CSharpGL.Objects.SceneElements
 {
-    public class Gooch : SceneElementBase
+    public class GoochElement : SceneElementBase
     {
 
         VertexArrayObject vertexArrayObject;
@@ -87,12 +87,20 @@ namespace CSharpGL.Objects.SceneElements
             set { diffuseCool = value; }
         }
 
+        private PolygonModes polygonMode = PolygonModes.Filled;
+
+        public PolygonModes PolygonMode
+        {
+            get { return polygonMode; }
+            set { polygonMode = value; }
+        }
+
         private int indexCount;
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.Gooch.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.Gooch.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.GoochElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.GoochElement.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -134,9 +142,14 @@ namespace CSharpGL.Objects.SceneElements
             // 绑定shader
             this.shaderProgram.Bind();
 
+            int[] originalPolygonMode = new int[1];
+            GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
+
             GL.Enable(GL.GL_PRIMITIVE_RESTART);
             GL.PrimitiveRestartIndex(uint.MaxValue);
+            GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);
             this.vertexArrayObject.Render(e, this.shaderProgram);
+            GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
             GL.Disable(GL.GL_PRIMITIVE_RESTART);
 
             // 解绑shader
@@ -186,6 +199,7 @@ namespace CSharpGL.Objects.SceneElements
             if (this.indexBufferRenderer.ElementCount < this.indexCount)
                 this.indexBufferRenderer.ElementCount++;
         }
+
 
     }
 

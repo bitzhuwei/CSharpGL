@@ -65,6 +65,7 @@
             this.btnFormCube = new System.Windows.Forms.Button();
             this.btnFormSphere = new System.Windows.Forms.Button();
             this.btnFormIceCream = new System.Windows.Forms.Button();
+            this.btnFormGooch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -464,6 +465,17 @@
             this.btnFormIceCream.UseVisualStyleBackColor = true;
             this.btnFormIceCream.Click += new System.EventHandler(this.btnFormIceCream_Click);
             // 
+            // btnFormGooch
+            // 
+            this.btnFormGooch.Location = new System.Drawing.Point(374, 642);
+            this.btnFormGooch.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormGooch.Name = "btnFormGooch";
+            this.btnFormGooch.Size = new System.Drawing.Size(346, 29);
+            this.btnFormGooch.TabIndex = 4;
+            this.btnFormGooch.Text = "FormGooch";
+            this.btnFormGooch.UseVisualStyleBackColor = true;
+            this.btnFormGooch.Click += new System.EventHandler(this.btnFormGooch_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -484,6 +496,7 @@
             this.Controls.Add(this.btnFormScientificVisual3DControl);
             this.Controls.Add(this.btnFormColorCodedPicking);
             this.Controls.Add(this.btnFormIceCream);
+            this.Controls.Add(this.btnFormGooch);
             this.Controls.Add(this.btnFormSphere);
             this.Controls.Add(this.btnFormCube);
             this.Controls.Add(this.btnFromShaderDesigner1594);
@@ -551,5 +564,6 @@
         private System.Windows.Forms.Button btnFormCube;
         private System.Windows.Forms.Button btnFormSphere;
         private System.Windows.Forms.Button btnFormIceCream;
+        private System.Windows.Forms.Button btnFormGooch;
     }
 }

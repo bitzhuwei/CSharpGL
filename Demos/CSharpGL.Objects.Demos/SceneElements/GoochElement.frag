@@ -8,6 +8,8 @@
 // See 3Dlabs-License.txt for license information
 //
 
+#version 150 core
+
 uniform vec3  SurfaceColor; // (0.75, 0.75, 0.75)
 uniform vec3  WarmColor;    // (0.6, 0.6, 0.0)
 uniform vec3  CoolColor;    // (0.0, 0.0, 0.6)
