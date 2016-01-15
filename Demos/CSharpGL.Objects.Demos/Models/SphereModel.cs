@@ -1,4 +1,5 @@
-﻿using GLM;
+﻿using CSharpGL.Objects.VertexBuffers;
+using GLM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,13 +7,13 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Models
+namespace CSharpGL.Objects.Demos.Models
 {
     /// <summary>
     /// 一个球体的模型。
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_sphere.jpg
     /// </summary>
-    public class SphereModel
+    public class SphereModel : IModel
     {
         public vec3[] positions;
         public vec3[] normals;
@@ -135,6 +136,104 @@ namespace CSharpGL.Objects.Models
             return sphere;
         }
 
+
+        VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
+        {
+            using (var buffer = new SphereModelPositionBuffer(varNameInShader))
+            {
+                buffer.Alloc(positions.Length);
+                unsafe
+                {
+                    vec3* array = (vec3*)buffer.FirstElement();
+                    for (int i = 0; i < positions.Length; i++)
+                    {
+                        array[i] = positions[i];
+                    }
+                }
+
+                return buffer.GetRenderer();
+            }
+        }
+
+        VertexBuffers.BufferRenderer IModel.GetColorBufferRenderer(string varNameInShader)
+        {
+            using (var buffer = new SphereModelColorBuffer(varNameInShader))
+            {
+                buffer.Alloc(colors.Length);
+                unsafe
+                {
+                    vec3* array = (vec3*)buffer.FirstElement();
+                    for (int i = 0; i < colors.Length; i++)
+                    {
+                        array[i] = colors[i];
+                    }
+                }
+
+                return buffer.GetRenderer();
+            }
+        }
+
+        VertexBuffers.BufferRenderer IModel.GetNormalBufferRenderer(string varNameInShader)
+        {
+            using (var buffer = new SphereModelNormalBuffer(varNameInShader))
+            {
+                buffer.Alloc(normals.Length);
+                unsafe
+                {
+                    vec3* array = (vec3*)buffer.FirstElement();
+                    for (int i = 0; i < normals.Length; i++)
+                    {
+                        array[i] = normals[i];
+                    }
+                }
+
+                return buffer.GetRenderer();
+            }
+        }
+
+        VertexBuffers.BufferRenderer IModel.GetIndexes()
+        {
+            using (var indexBuffer = new IndexBuffer<uint>(DrawMode.QuadStrip, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
+            {
+                indexBuffer.Alloc(indexes.Length);
+                unsafe
+                {
+                    uint* indexArray = (uint*)indexBuffer.FirstElement();
+                    for (int i = 0; i < indexes.Length; i++)
+                    {
+                        indexArray[i] = indexes[i];
+                    }
+                }
+
+                return indexBuffer.GetRenderer();
+            }
+        }
     }
 
+    class SphereModelPositionBuffer : PropertyBuffer<vec3>
+    {
+        public SphereModelPositionBuffer(string varNameInShader)
+            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+        {
+
+        }
+    }
+
+    class SphereModelColorBuffer : PropertyBuffer<vec3>
+    {
+        public SphereModelColorBuffer(string varNameInShader)
+            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+        {
+
+        }
+    }
+
+    class SphereModelNormalBuffer : PropertyBuffer<vec3>
+    {
+        public SphereModelNormalBuffer(string varNameInShader)
+            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+        {
+
+        }
+    }
 }

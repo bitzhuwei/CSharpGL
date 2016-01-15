@@ -8,35 +8,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CSharpGL.Objects.VertexBuffers;
-using CSharpGL.Objects.Models;
+using CSharpGL.Objects.Demos.Models;
 
 namespace CSharpGL.Objects.SceneElements
 {
     /// <summary>
     /// 类似冰激凌形状的物体
     /// </summary>
-    public class SphereElement : SceneElementBase, IMVP
+    public class SphereElement : SceneElementBase
     {
+        private ShaderProgram shaderProgram;
+
 
         VertexArrayObject vertexArrayObject;
+
         BufferRenderer positionBufferRenderer;
+        const string strin_Position = "in_Position";
+
         BufferRenderer colorBufferRenderer;
+        const string strin_Color = "in_Color";
+
         BufferRenderer normalBufferRenderer;
+        const string strin_Normal = "in_Normal";
+
         IndexBufferRenderer indexBufferRenderer;
 
-        /// <summary>
-        /// shader program
-        /// </summary>
-        private ShaderProgram shaderProgram;
-        const string strin_Position = "in_Position";
-        const string strin_Normal = "in_Normal";
-        const string strin_Color = "in_Color";
+
         const string strmodelMatrix = "modelMatrix";
+
         const string strviewMatrix = "viewMatrix";
+
         const string strprojectionMatrix = "projectionMatrix";
-        const string strlightPosition = "lightPosition";
+
         public vec3 lightPosition = new vec3(0, 0, 0);
-        private int indexCount;
+        const string strlightPosition = "lightPosition";
+
+        private int elementCount;
+
         public PolygonModes polygonMode = PolygonModes.Filled;
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
@@ -51,58 +59,14 @@ namespace CSharpGL.Objects.SceneElements
 
         protected unsafe void InitializeVAO()
         {
-            SphereModel SphereElement = SphereModel.GetModel(1, 10, 40);
+            IModel model = SphereModel.GetModel(1, 10, 40);
 
-            //  Create a vertex buffer for the vertex data.
-            using (var positionBuffer = new SphereElementPositionBuffer(strin_Position))
-            {
-                positionBuffer.Alloc(SphereElement.positions.Length);
-                vec3* positionArray = (vec3*)positionBuffer.FirstElement();
-                for (int i = 0; i < SphereElement.positions.Length; i++)
-                {
-                    positionArray[i] = SphereElement.positions[i];
-                }
+            this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);
+            this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
+            this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
+            this.indexBufferRenderer = model.GetIndexes() as IndexBufferRenderer;
 
-                this.positionBufferRenderer = positionBuffer.GetRenderer();
-            }
-
-            //  Now do the same for the colour data.
-            using (var colorBuffer = new SphereElementColorBuffer(strin_Color))
-            {
-                colorBuffer.Alloc(SphereElement.colors.Length);
-                vec3* colorArray = (vec3*)colorBuffer.FirstElement();
-                for (int i = 0; i < SphereElement.colors.Length; i++)
-                {
-                    colorArray[i] = SphereElement.colors[i];
-                }
-
-                this.colorBufferRenderer = colorBuffer.GetRenderer();
-            }
-
-            using (var normalBuffer = new SphereElementNormalBuffer(strin_Normal))
-            {
-                normalBuffer.Alloc(SphereElement.normals.Length);
-                vec3* normalArray = (vec3*)normalBuffer.FirstElement();
-                for (int i = 0; i < SphereElement.normals.Length; i++)
-                {
-                    normalArray[i] = SphereElement.normals[i];
-                }
-
-                this.normalBufferRenderer = normalBuffer.GetRenderer();
-            }
-
-            using (var indexBuffer = new IndexBuffer<uint>(DrawMode.QuadStrip, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
-            {
-                indexBuffer.Alloc(SphereElement.indexes.Length);
-                uint* indexArray = (uint*)indexBuffer.FirstElement();
-                for (int i = 0; i < SphereElement.indexes.Length; i++)
-                {
-                    indexArray[i] = SphereElement.indexes[i];
-                }
-
-                this.indexBufferRenderer = indexBuffer.GetRenderer() as IndexBufferRenderer;
-            }
-            this.indexCount = SphereElement.indexes.Length;
+            this.elementCount = this.indexBufferRenderer.ElementCount;
         }
 
         protected override void DoInitialize()
@@ -173,54 +137,10 @@ namespace CSharpGL.Objects.SceneElements
 
         public void IncreaseVertexCount()
         {
-            if (this.indexBufferRenderer.ElementCount < this.indexCount)
+            if (this.indexBufferRenderer.ElementCount < this.elementCount)
                 this.indexBufferRenderer.ElementCount++;
         }
 
-
-
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
-            IMVPHelper.SetMVP(this, mvp);
-        }
-
-
-        void IMVP.ResetShaderProgram()
-        {
-            IMVPHelper.ResetMVP(this);
-        }
-
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return this.shaderProgram;
-        }
     }
 
-    class SphereElementPositionBuffer : PropertyBuffer<vec3>
-    {
-        public SphereElementPositionBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
-
-    class SphereElementColorBuffer : PropertyBuffer<vec3>
-    {
-        public SphereElementColorBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
-
-    class SphereElementNormalBuffer : PropertyBuffer<vec3>
-    {
-        public SphereElementNormalBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
 }

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Models
+namespace CSharpGL.Objects.Demos.Models
 {
     /// <summary>
     /// 一个类似冰激凌形状的模型。偶然得之。
