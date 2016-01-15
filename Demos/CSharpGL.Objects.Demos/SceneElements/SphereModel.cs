@@ -25,8 +25,21 @@ namespace CSharpGL.Objects.SceneElements
             return new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
         }
 
-        public static SphereModel GetModel(float radius = 1.0f, int halfLatitudeCount = 2, int longitudeCount = 4)
+        private SphereModel() { }
+
+        static readonly Func<int, int, vec3> defaultColorGenerator = new Func<int, int, vec3>(DefaultColorGenerator);
+
+        private static vec3 DefaultColorGenerator(int latitude, int longitude)
         {
+            return RandomVec3();
+        }
+
+        public static SphereModel GetModel(float radius = 1.0f, int halfLatitudeCount = 10, int longitudeCount = 40, Func<int, int, vec3> colorGenerator = null)
+        {
+            if (radius <= 0.0f || halfLatitudeCount < 1 || longitudeCount < 1) { throw new Exception(); }
+
+            if (colorGenerator == null) { colorGenerator = defaultColorGenerator; }
+
             SphereModel sphere = new SphereModel();
             int vertexCount = (halfLatitudeCount * 2 + 1) * (longitudeCount + 1);
             sphere.positions = new vec3[vertexCount];
@@ -54,7 +67,7 @@ namespace CSharpGL.Objects.SceneElements
                     position.Normalize();
                     sphere.normals[index] = position;
 
-                    sphere.colors[index] = RandomVec3();
+                    sphere.colors[index] = colorGenerator(i, j);
 
                     index++;
                 }
@@ -75,7 +88,7 @@ namespace CSharpGL.Objects.SceneElements
                     position.Normalize();
                     sphere.normals[index] = position;
 
-                    sphere.colors[index] = RandomVec3();
+                    sphere.colors[index] = colorGenerator(-1, j);
 
                     index++;
                 }
@@ -97,7 +110,7 @@ namespace CSharpGL.Objects.SceneElements
                     position.Normalize();
                     sphere.normals[index] = position;
 
-                    sphere.colors[index] = RandomVec3();
+                    sphere.colors[index] = colorGenerator(i, j);
 
                     index++;
                 }
@@ -117,6 +130,7 @@ namespace CSharpGL.Objects.SceneElements
 
             return sphere;
         }
+
     }
 
 }
