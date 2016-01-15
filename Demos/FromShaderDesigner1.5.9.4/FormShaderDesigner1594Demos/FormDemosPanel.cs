@@ -16,6 +16,10 @@ namespace FormShaderDesigner1594Demos
         {
             InitializeComponent();
         }
+        private void btnGooch_Click(object sender, EventArgs e)
+        {
+            (new FormGooch()).Show();
+        }
 
         private void btnBrick_Click(object sender, EventArgs e)
         {
@@ -26,6 +30,7 @@ namespace FormShaderDesigner1594Demos
         {
             (new FormXRay()).Show();
         }
+
 
     }
 }

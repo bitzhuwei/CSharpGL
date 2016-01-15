@@ -96,6 +96,12 @@ namespace CSharpGL.Objects.SceneElements
         }
 
         private int indexCount;
+        private IModel model;
+
+        public GoochElement(IModel model)
+        {
+            this.model = model;
+        }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
@@ -107,9 +113,10 @@ namespace CSharpGL.Objects.SceneElements
 
         }
 
-        protected unsafe void InitializeVAO()
+        protected void InitializeVAO()
         {
-            IModel model = IceCreamModel.GetModel(1, 10, 10);
+            //IModel model = IceCreamModel.GetModel(1, 10, 10);
+            IModel model = this.model;
 
             this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);
             //this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);

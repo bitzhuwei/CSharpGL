@@ -62,10 +62,6 @@
             this.btnFormVolumeRendering04 = new System.Windows.Forms.Button();
             this.btnFormVolumeRendering05 = new System.Windows.Forms.Button();
             this.btnFromShaderDesigner1594 = new System.Windows.Forms.Button();
-            this.btnFormCube = new System.Windows.Forms.Button();
-            this.btnFormSphere = new System.Windows.Forms.Button();
-            this.btnFormIceCream = new System.Windows.Forms.Button();
-            this.btnFormGooch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -432,50 +428,6 @@
             this.btnFromShaderDesigner1594.UseVisualStyleBackColor = true;
             this.btnFromShaderDesigner1594.Click += new System.EventHandler(this.btnFromShaderDesigner1594_Click);
             // 
-            // btnFormCube
-            // 
-            this.btnFormCube.Location = new System.Drawing.Point(374, 531);
-            this.btnFormCube.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFormCube.Name = "btnFormCube";
-            this.btnFormCube.Size = new System.Drawing.Size(346, 29);
-            this.btnFormCube.TabIndex = 4;
-            this.btnFormCube.Text = "FormCube";
-            this.btnFormCube.UseVisualStyleBackColor = true;
-            this.btnFormCube.Click += new System.EventHandler(this.btnFormCube_Click);
-            // 
-            // btnFormSphere
-            // 
-            this.btnFormSphere.Location = new System.Drawing.Point(374, 605);
-            this.btnFormSphere.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFormSphere.Name = "btnFormSphere";
-            this.btnFormSphere.Size = new System.Drawing.Size(346, 29);
-            this.btnFormSphere.TabIndex = 4;
-            this.btnFormSphere.Text = "FormSphere";
-            this.btnFormSphere.UseVisualStyleBackColor = true;
-            this.btnFormSphere.Click += new System.EventHandler(this.btnFormSphere_Click);
-            // 
-            // btnFormIceCream
-            // 
-            this.btnFormIceCream.Location = new System.Drawing.Point(374, 568);
-            this.btnFormIceCream.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFormIceCream.Name = "btnFormIceCream";
-            this.btnFormIceCream.Size = new System.Drawing.Size(346, 29);
-            this.btnFormIceCream.TabIndex = 4;
-            this.btnFormIceCream.Text = "FormIceCream";
-            this.btnFormIceCream.UseVisualStyleBackColor = true;
-            this.btnFormIceCream.Click += new System.EventHandler(this.btnFormIceCream_Click);
-            // 
-            // btnFormGooch
-            // 
-            this.btnFormGooch.Location = new System.Drawing.Point(374, 642);
-            this.btnFormGooch.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFormGooch.Name = "btnFormGooch";
-            this.btnFormGooch.Size = new System.Drawing.Size(346, 29);
-            this.btnFormGooch.TabIndex = 4;
-            this.btnFormGooch.Text = "FormGooch";
-            this.btnFormGooch.UseVisualStyleBackColor = true;
-            this.btnFormGooch.Click += new System.EventHandler(this.btnFormGooch_Click);
-            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -495,10 +447,6 @@
             this.Controls.Add(this.btnFormTransformFeedback);
             this.Controls.Add(this.btnFormScientificVisual3DControl);
             this.Controls.Add(this.btnFormColorCodedPicking);
-            this.Controls.Add(this.btnFormIceCream);
-            this.Controls.Add(this.btnFormGooch);
-            this.Controls.Add(this.btnFormSphere);
-            this.Controls.Add(this.btnFormCube);
             this.Controls.Add(this.btnFromShaderDesigner1594);
             this.Controls.Add(this.btnFormVolumeRendering05);
             this.Controls.Add(this.btnFormVolumeRendering04);
@@ -561,9 +509,5 @@
         private System.Windows.Forms.Button btnFormVolumeRendering04;
         private System.Windows.Forms.Button btnFormVolumeRendering05;
         private System.Windows.Forms.Button btnFromShaderDesigner1594;
-        private System.Windows.Forms.Button btnFormCube;
-        private System.Windows.Forms.Button btnFormSphere;
-        private System.Windows.Forms.Button btnFormIceCream;
-        private System.Windows.Forms.Button btnFormGooch;
     }
 }

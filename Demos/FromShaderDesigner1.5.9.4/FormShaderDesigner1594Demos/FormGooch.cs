@@ -14,8 +14,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CSharpGL.Objects.Models;
+using CSharpGL;
 
-namespace CSharpGL.Winforms.Demo
+namespace FormShaderDesigner1594Demos
 {
     /// <summary>
     /// 本例演示了SimpleUIAxis、SimpleUIRect的用法，也证明了CSharpGL.Maths库里的mat4的mvp相乘的结果与glgl里的结果相同。
@@ -87,7 +89,8 @@ namespace CSharpGL.Winforms.Demo
             //uiRightBottomRect.Initialize();
             //uiRightTopRect.Initialize();
 
-            sphereElement = new GoochElement();
+            IModel model = IceCreamModel.GetModel(1, 10, 10);
+            sphereElement = new GoochElement(model);
             sphereElement.Initialize();
             sphereElement.BeforeRendering += sphereElement_BeforeRendering;
             sphereElement.AfterRendering += sphereElement_AfterRendering;
@@ -130,7 +133,7 @@ namespace CSharpGL.Winforms.Demo
             element.SetShaderProgram(mvp);
         }
 
-        void sphereElement_AfterRendering(object sender, Objects.RenderEventArgs e)
+        void sphereElement_AfterRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
         {
             //IMVP element = sender as IMVP;
 
@@ -138,7 +141,7 @@ namespace CSharpGL.Winforms.Demo
             this.sphereElement.ResetShaderProgram();
         }
 
-        void sphereElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        void sphereElement_BeforeRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
         {
             mat4 projectionMatrix = camera.GetProjectionMat4();
             //projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//

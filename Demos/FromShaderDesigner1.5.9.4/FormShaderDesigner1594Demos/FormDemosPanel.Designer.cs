@@ -30,11 +30,12 @@
         {
             this.btnXRay = new System.Windows.Forms.Button();
             this.btnBrick = new System.Windows.Forms.Button();
+            this.btnGooch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnXRay
             // 
-            this.btnXRay.Location = new System.Drawing.Point(12, 57);
+            this.btnXRay.Location = new System.Drawing.Point(12, 102);
             this.btnXRay.Name = "btnXRay";
             this.btnXRay.Size = new System.Drawing.Size(283, 39);
             this.btnXRay.TabIndex = 0;
@@ -44,7 +45,7 @@
             // 
             // btnBrick
             // 
-            this.btnBrick.Location = new System.Drawing.Point(12, 12);
+            this.btnBrick.Location = new System.Drawing.Point(12, 57);
             this.btnBrick.Name = "btnBrick";
             this.btnBrick.Size = new System.Drawing.Size(283, 39);
             this.btnBrick.TabIndex = 0;
@@ -52,11 +53,22 @@
             this.btnBrick.UseVisualStyleBackColor = true;
             this.btnBrick.Click += new System.EventHandler(this.btnBrick_Click);
             // 
+            // btnGooch
+            // 
+            this.btnGooch.Location = new System.Drawing.Point(12, 12);
+            this.btnGooch.Name = "btnGooch";
+            this.btnGooch.Size = new System.Drawing.Size(283, 39);
+            this.btnGooch.TabIndex = 0;
+            this.btnGooch.Text = "Gooch";
+            this.btnGooch.UseVisualStyleBackColor = true;
+            this.btnGooch.Click += new System.EventHandler(this.btnGooch_Click);
+            // 
             // FormDemosPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(522, 401);
+            this.Controls.Add(this.btnGooch);
             this.Controls.Add(this.btnBrick);
             this.Controls.Add(this.btnXRay);
             this.Name = "FormDemosPanel";
@@ -69,5 +81,6 @@
 
         private System.Windows.Forms.Button btnXRay;
         private System.Windows.Forms.Button btnBrick;
+        private System.Windows.Forms.Button btnGooch;
     }
 }

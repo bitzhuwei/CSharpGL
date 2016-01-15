@@ -15,70 +15,48 @@ namespace CSharpGL.Objects.SceneElements
     /// <summary>
     /// 类似冰激凌形状的物体
     /// </summary>
-    public class SphereElement : SceneElementBase
+    public class IceCreamElement : SceneElementBase
     {
-        private ShaderProgram shaderProgram;
-
 
         VertexArrayObject vertexArrayObject;
-
         BufferRenderer positionBufferRenderer;
-        const string strin_Position = "in_Position";
-
         BufferRenderer colorBufferRenderer;
-        const string strin_Color = "in_Color";
-
         BufferRenderer normalBufferRenderer;
-        const string strin_Normal = "in_Normal";
-
         IndexBufferRenderer indexBufferRenderer;
 
-
+        /// <summary>
+        /// shader program
+        /// </summary>
+        private ShaderProgram shaderProgram;
+        const string strin_Position = "in_Position";
+        const string strin_Normal = "in_Normal";
+        const string strin_Color = "in_Color";
         const string strmodelMatrix = "modelMatrix";
-
         const string strviewMatrix = "viewMatrix";
-
         const string strprojectionMatrix = "projectionMatrix";
-
-        private vec3 lightPosition = new vec3(0, 0, 0);
-
-        public vec3 LightPosition
-        {
-            get { return lightPosition; }
-            set { lightPosition = value; }
-        }
         const string strlightPosition = "lightPosition";
-
-        private int elementCount;
-
-        private PolygonModes polygonMode = PolygonModes.Filled;
-
-        public PolygonModes PolygonMode
-        {
-            get { return polygonMode; }
-            set { polygonMode = value; }
-        }
+        public vec3 lightPosition = new vec3(0, 0, 0);
+        private int indexCount;
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.SphereElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.SphereElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.IceCreamElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.IceCreamElement.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
 
         }
 
-        protected unsafe void InitializeVAO()
+        protected void InitializeVAO()
         {
-            IModel model = SphereModel.GetModel(1, 10, 40);
+            IModel model = IceCreamModel.GetModel(1, 10, 10);
 
             this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);
             this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
             this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
             this.indexBufferRenderer = model.GetIndexes() as IndexBufferRenderer;
-
-            this.elementCount = this.indexBufferRenderer.ElementCount;
+            this.indexCount = this.indexBufferRenderer.ElementCount;
         }
 
         protected override void DoInitialize()
@@ -101,14 +79,9 @@ namespace CSharpGL.Objects.SceneElements
             // 绑定shader
             this.shaderProgram.Bind();
 
-            int[] originalPolygonMode = new int[1];
-            GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
-
             GL.Enable(GL.GL_PRIMITIVE_RESTART);
             GL.PrimitiveRestartIndex(uint.MaxValue);
-            GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);
             this.vertexArrayObject.Render(e, this.shaderProgram);
-            GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
             GL.Disable(GL.GL_PRIMITIVE_RESTART);
 
             // 解绑shader
@@ -149,7 +122,7 @@ namespace CSharpGL.Objects.SceneElements
 
         public void IncreaseVertexCount()
         {
-            if (this.indexBufferRenderer.ElementCount < this.elementCount)
+            if (this.indexBufferRenderer.ElementCount < this.indexCount)
                 this.indexBufferRenderer.ElementCount++;
         }
 

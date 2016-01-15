@@ -1,4 +1,5 @@
-﻿namespace CSharpGL.Winforms.Demo
+﻿using CSharpGL.Winforms;
+namespace FormShaderDesigner1594Demos
 {
     partial class FormGooch
     {

@@ -48,7 +48,7 @@ namespace CSharpGL.Objects.SceneElements
 
         }
 
-        protected unsafe void InitializeVAO()
+        protected void InitializeVAO()
         {
             IModel model = CubeModel.GetModel();
 
