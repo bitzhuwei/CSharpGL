@@ -49,21 +49,15 @@
     <Compile Include="DemoLegacyTexture3DCubeElement.cs" />
     <Compile Include="DemoMapBuffer.cs" />
     <Compile Include="DemoTexImage2D.cs" />
-    <Compile Include="Models\IModel.cs" />
     <Compile Include="PickedGeometryIndexed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DemoSimplePointSpriteElement.cs" />
     <Compile Include="SceneElements\IceCreamElement.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\IceCreamModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="SceneElements\PointLightElement.cs" />
     <Compile Include="SceneElements\SphereElement.cs" />
-    <Compile Include="Models\SphereModel.cs" />
     <Compile Include="SceneElements\CubeElement.cs" />
-    <Compile Include="Models\CubeModel.cs" />
     <Compile Include="SceneElements\CylinderElement.cs" />
     <Compile Include="SceneElements\FontElement.cs" />
     <Compile Include="SceneElements\PyramidElement.cs" />

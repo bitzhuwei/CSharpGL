@@ -153,7 +153,7 @@ namespace CSharpGL.Winforms.Demo
 
             //element.SetShaderProgram(mvp);
             this.sphereElement.SetMatrix(projectionMatrix, viewMatrix, modelMatrix);
-            this.sphereElement.lightPosition = new vec3(translateX, translateY, translateZ);
+            this.sphereElement.LightPosition = new vec3(translateX, translateY, translateZ);
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
@@ -291,20 +291,20 @@ namespace CSharpGL.Winforms.Demo
                 this.translateX = 0;
                 this.translateY = 0;
                 this.translateZ = 0;
-                this.sphereElement.lightPosition = new vec3();
+                this.sphereElement.LightPosition = new vec3();
             }
             else if (e.KeyChar == 'p')
             {
-                switch (this.sphereElement.polygonMode)
+                switch (this.sphereElement.PolygonMode)
                 {
                     case PolygonModes.Points:
-                        this.sphereElement.polygonMode = PolygonModes.Lines;
+                        this.sphereElement.PolygonMode = PolygonModes.Lines;
                         break;
                     case PolygonModes.Lines:
-                        this.sphereElement.polygonMode = PolygonModes.Filled;
+                        this.sphereElement.PolygonMode = PolygonModes.Filled;
                         break;
                     case PolygonModes.Filled:
-                        this.sphereElement.polygonMode = PolygonModes.Points;
+                        this.sphereElement.PolygonMode = PolygonModes.Points;
                         break;
                     default:
                         throw new NotImplementedException();

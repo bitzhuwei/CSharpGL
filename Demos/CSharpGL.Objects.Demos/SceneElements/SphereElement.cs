@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CSharpGL.Objects.VertexBuffers;
-using CSharpGL.Objects.Demos.Models;
+using CSharpGL.Objects.Models;
 
 namespace CSharpGL.Objects.SceneElements
 {
@@ -40,12 +40,24 @@ namespace CSharpGL.Objects.SceneElements
 
         const string strprojectionMatrix = "projectionMatrix";
 
-        public vec3 lightPosition = new vec3(0, 0, 0);
+        private vec3 lightPosition = new vec3(0, 0, 0);
+
+        public vec3 LightPosition
+        {
+            get { return lightPosition; }
+            set { lightPosition = value; }
+        }
         const string strlightPosition = "lightPosition";
 
         private int elementCount;
 
-        public PolygonModes polygonMode = PolygonModes.Filled;
+        private PolygonModes polygonMode = PolygonModes.Filled;
+
+        public PolygonModes PolygonMode
+        {
+            get { return polygonMode; }
+            set { polygonMode = value; }
+        }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {

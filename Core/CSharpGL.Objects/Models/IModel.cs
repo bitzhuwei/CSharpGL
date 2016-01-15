@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Demos.Models
+namespace CSharpGL.Objects.Models
 {
     public interface IModel
     {

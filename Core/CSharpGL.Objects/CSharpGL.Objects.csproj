@@ -54,6 +54,10 @@
     <Compile Include="IMVP.cs" />
     <Compile Include="IMVPHelper.cs" />
     <Compile Include="IRenderable.cs" />
+    <Compile Include="Models\CubeModel.cs" />
+    <Compile Include="Models\IceCreamModel.cs" />
+    <Compile Include="Models\IModel.cs" />
+    <Compile Include="Models\SphereModel.cs" />
     <Compile Include="RenderEventArgs.cs" />
     <Compile Include="SceneElements\AxisElement.cs" />
     <Compile Include="Cameras\Camera2Matrix.cs" />
