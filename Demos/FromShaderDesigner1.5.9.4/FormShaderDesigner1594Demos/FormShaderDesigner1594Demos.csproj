@@ -83,24 +83,12 @@
     <EmbeddedResource Include="FormGooch.resx">
       <DependentUpon>FormGooch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SceneElements\CubeElement.frag" />
-    <EmbeddedResource Include="SceneElements\CubeElement.vert" />
     <EmbeddedResource Include="SceneElements\GoochElement.frag" />
     <EmbeddedResource Include="SceneElements\GoochElement.vert" />
-    <EmbeddedResource Include="SceneElements\IceCreamElement.frag" />
-    <EmbeddedResource Include="SceneElements\IceCreamElement.vert" />
-    <EmbeddedResource Include="SceneElements\PointLightElement.frag" />
-    <EmbeddedResource Include="SceneElements\PointLightElement.vert" />
-    <EmbeddedResource Include="SceneElements\SphereElement.frag" />
-    <EmbeddedResource Include="SceneElements\SphereElement.vert" />
     <None Include="XRayElement.vert" />
     <None Include="XRayElement.frag" />
     <Compile Include="BrickElement.cs" />
-    <Compile Include="SceneElements\CubeElement.cs" />
     <Compile Include="SceneElements\GoochElement.cs" />
-    <Compile Include="SceneElements\IceCreamElement.cs" />
-    <Compile Include="SceneElements\PointLightElement.cs" />
-    <Compile Include="SceneElements\SphereElement.cs" />
     <Compile Include="XRayElement.cs" />
     <EmbeddedResource Include="FormDemosPanel.resx">
       <DependentUpon>FormDemosPanel.cs</DependentUpon>
