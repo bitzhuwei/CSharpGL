@@ -12,15 +12,14 @@ using CSharpGL.Objects.VertexBuffers;
 namespace CSharpGL.Objects.SceneElements
 {
     /// <summary>
-    /// 类似冰激凌形状的物体
+    /// 用一个球体代表点光源的位置
     /// </summary>
-    public class SphereElement : SceneElementBase, IMVP
+    public class PointLightElement : SceneElementBase, IMVP
     {
 
-        VertexArrayObject vertexArrayObject;
+        VertexArrayObject planVAO;
         BufferRenderer positionBufferRenderer;
         BufferRenderer colorBufferRenderer;
-        BufferRenderer normalBufferRenderer;
         IndexBufferRenderer indexBufferRenderer;
 
         /// <summary>
@@ -28,20 +27,19 @@ namespace CSharpGL.Objects.SceneElements
         /// </summary>
         private ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
-        const string strin_Normal = "in_Normal";
         const string strin_Color = "in_Color";
-        const string strmodelMatrix = "modelMatrix";
-        const string strviewMatrix = "viewMatrix";
-        const string strprojectionMatrix = "projectionMatrix";
-        const string strlightPosition = "lightPosition";
-        public vec3 lightPosition = new vec3(0, 0, 0);
+        const string strMVP = "MVP";
+
+        private float radius;
+        private float axisLength;
+        private int faceCount;
+        private vec3 planColor;
         private int indexCount;
-        public PolygonModes polygonMode = PolygonModes.Filled;
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.SphereElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.SphereElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.PointLightElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.PointLightElement.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -53,7 +51,7 @@ namespace CSharpGL.Objects.SceneElements
             SphereModel SphereElement = SphereModel.GetModel(1, 10, 40);
 
             //  Create a vertex buffer for the vertex data.
-            using (var positionBuffer = new SphereElementPositionBuffer(strin_Position))
+            using (var positionBuffer = new PointLightElementPositionBuffer(strin_Position))
             {
                 positionBuffer.Alloc(SphereElement.positions.Length);
                 vec3* positionArray = (vec3*)positionBuffer.FirstElement();
@@ -66,7 +64,7 @@ namespace CSharpGL.Objects.SceneElements
             }
 
             //  Now do the same for the colour data.
-            using (var colorBuffer = new SphereElementColorBuffer(strin_Color))
+            using (var colorBuffer = new PointLightElementColorBuffer(strin_Color))
             {
                 colorBuffer.Alloc(SphereElement.colors.Length);
                 vec3* colorArray = (vec3*)colorBuffer.FirstElement();
@@ -76,18 +74,6 @@ namespace CSharpGL.Objects.SceneElements
                 }
 
                 this.colorBufferRenderer = colorBuffer.GetRenderer();
-            }
-
-            using (var normalBuffer = new SphereElementNormalBuffer(strin_Normal))
-            {
-                normalBuffer.Alloc(SphereElement.normals.Length);
-                vec3* normalArray = (vec3*)normalBuffer.FirstElement();
-                for (int i = 0; i < SphereElement.normals.Length; i++)
-                {
-                    normalArray[i] = SphereElement.normals[i];
-                }
-
-                this.normalBufferRenderer = normalBuffer.GetRenderer();
             }
 
             using (var indexBuffer = new IndexBuffer<uint>(DrawMode.QuadStrip, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
@@ -113,26 +99,18 @@ namespace CSharpGL.Objects.SceneElements
 
         protected override void DoRender(RenderEventArgs e)
         {
-            if (this.vertexArrayObject == null)
+            if (this.planVAO == null)
             {
                 var vao = new VertexArrayObject(this.positionBufferRenderer, colorBufferRenderer, this.indexBufferRenderer);
                 vao.Create(e, this.shaderProgram);
 
-                this.vertexArrayObject = vao;
+                this.planVAO = vao;
             }
 
             // 绑定shader
             this.shaderProgram.Bind();
 
-            int[] originalPolygonMode = new int[1];
-            GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
-
-            GL.Enable(GL.GL_PRIMITIVE_RESTART);
-            GL.PrimitiveRestartIndex(uint.MaxValue);
-            GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);
-            this.vertexArrayObject.Render(e, this.shaderProgram);
-            GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
-            GL.Disable(GL.GL_PRIMITIVE_RESTART);
+            this.planVAO.Render(e, this.shaderProgram);
 
             // 解绑shader
             this.shaderProgram.Unbind();
@@ -142,41 +120,13 @@ namespace CSharpGL.Objects.SceneElements
 
         protected override void CleanUnmanagedRes()
         {
-            if (this.vertexArrayObject != null)
+            if (this.planVAO != null)
             {
-                this.vertexArrayObject.Dispose();
+                this.planVAO.Dispose();
             }
 
             base.CleanUnmanagedRes();
         }
-
-        public void SetMatrix(mat4 projectionMatrix, mat4 viewMatrix, mat4 modelMatrix)
-        {
-            this.shaderProgram.Bind();
-            this.shaderProgram.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
-            this.shaderProgram.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
-            this.shaderProgram.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
-            this.shaderProgram.SetUniform(strlightPosition, this.lightPosition.x, this.lightPosition.y, this.lightPosition.z);
-        }
-
-        public void ResetShaderProgram()
-        {
-            this.shaderProgram.Unbind();
-        }
-
-        public void DecreaseVertexCount()
-        {
-            if (this.indexBufferRenderer.ElementCount > 0)
-                this.indexBufferRenderer.ElementCount--;
-        }
-
-        public void IncreaseVertexCount()
-        {
-            if (this.indexBufferRenderer.ElementCount < this.indexCount)
-                this.indexBufferRenderer.ElementCount++;
-        }
-
-
 
         void IMVP.SetShaderProgram(mat4 mvp)
         {
@@ -189,34 +139,33 @@ namespace CSharpGL.Objects.SceneElements
             IMVPHelper.ResetMVP(this);
         }
 
-
         ShaderProgram IMVP.GetShaderProgram()
         {
             return this.shaderProgram;
         }
     }
 
-    class SphereElementPositionBuffer : PropertyBuffer<vec3>
+    class PointLightElementPositionBuffer : PropertyBuffer<vec3>
     {
-        public SphereElementPositionBuffer(string varNameInShader)
+        public PointLightElementPositionBuffer(string varNameInShader)
             : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
         {
 
         }
     }
 
-    class SphereElementColorBuffer : PropertyBuffer<vec3>
+    class PointLightElementColorBuffer : PropertyBuffer<vec3>
     {
-        public SphereElementColorBuffer(string varNameInShader)
+        public PointLightElementColorBuffer(string varNameInShader)
             : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
         {
 
         }
     }
 
-    class SphereElementNormalBuffer : PropertyBuffer<vec3>
+    class PointLightElementNormalBuffer : PropertyBuffer<vec3>
     {
-        public SphereElementNormalBuffer(string varNameInShader)
+        public PointLightElementNormalBuffer(string varNameInShader)
             : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
         {
 

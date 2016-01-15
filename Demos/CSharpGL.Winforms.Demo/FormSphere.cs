@@ -33,7 +33,7 @@ namespace CSharpGL.Winforms.Demo
         //SimpleUIRect uiRightTopRect;
 
         SphereElement sphereElement;
-        PyramidElement lightElement;
+        PointLightElement lightElement;
 
         Camera camera;
 
@@ -92,10 +92,10 @@ namespace CSharpGL.Winforms.Demo
             sphereElement.BeforeRendering += sphereElement_BeforeRendering;
             sphereElement.AfterRendering += sphereElement_AfterRendering;
 
-            lightElement = new PyramidElement();
+            lightElement = new PointLightElement();
             lightElement.Initialize();
-            lightElement.BeforeRendering += lightElement_BeforeRendering;
-            lightElement.AfterRendering += lightElement_AfterRendering;
+            lightElement.BeforeRendering += pointLightElement_BeforeRendering;
+            lightElement.AfterRendering += pointLightElement_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -106,14 +106,14 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
-        void lightElement_AfterRendering(object sender, RenderEventArgs e)
+        void pointLightElement_AfterRendering(object sender, RenderEventArgs e)
         {
             IMVP element = sender as IMVP;
 
             element.ResetShaderProgram();
         }
 
-        void lightElement_BeforeRendering(object sender, RenderEventArgs e)
+        void pointLightElement_BeforeRendering(object sender, RenderEventArgs e)
         {
             mat4 projectionMatrix = camera.GetProjectionMat4();
             projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//

@@ -58,6 +58,7 @@
     <Compile Include="SceneElements\IceCreamModel.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SceneElements\PointLightElement.cs" />
     <Compile Include="SceneElements\SphereElement.cs" />
     <Compile Include="SceneElements\SphereModel.cs" />
     <Compile Include="SceneElements\CubeElement.cs" />
@@ -252,6 +253,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SceneElements\SphereElement.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SceneElements\PointLightElement.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SceneElements\PointLightElement.vert" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
