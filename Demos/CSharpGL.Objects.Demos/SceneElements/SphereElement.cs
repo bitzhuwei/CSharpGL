@@ -35,6 +35,8 @@ namespace CSharpGL.Objects.SceneElements
         const string strprojectionMatrix = "projectionMatrix";
         const string strlightPosition = "lightPosition";
         public vec3 lightPosition = new vec3(0, 0, 0);
+        private int indexCount;
+        public PolygonModes polygonMode = PolygonModes.Filled;
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
@@ -99,6 +101,7 @@ namespace CSharpGL.Objects.SceneElements
 
                 this.indexBufferRenderer = indexBuffer.GetRenderer() as IndexBufferRenderer;
             }
+            this.indexCount = SphereElement.indexes.Length;
         }
 
         protected override void DoInitialize()
@@ -121,9 +124,14 @@ namespace CSharpGL.Objects.SceneElements
             // 绑定shader
             this.shaderProgram.Bind();
 
+            int[] originalPolygonMode = new int[1];
+            GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
+
             GL.Enable(GL.GL_PRIMITIVE_RESTART);
             GL.PrimitiveRestartIndex(uint.MaxValue);
+            GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);
             this.vertexArrayObject.Render(e, this.shaderProgram);
+            GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
             GL.Disable(GL.GL_PRIMITIVE_RESTART);
 
             // 解绑shader
@@ -164,7 +172,7 @@ namespace CSharpGL.Objects.SceneElements
 
         public void IncreaseVertexCount()
         {
-            if (this.indexBufferRenderer.ElementCount < 4 * 6)
+            if (this.indexBufferRenderer.ElementCount < this.indexCount)
                 this.indexBufferRenderer.ElementCount++;
         }
 

@@ -36,12 +36,12 @@ namespace CSharpGL.Objects.SceneElements
 
         public static SphereModel GetModel(float radius = 1.0f, int halfLatitudeCount = 10, int longitudeCount = 40, Func<int, int, vec3> colorGenerator = null)
         {
-            if (radius <= 0.0f || halfLatitudeCount < 1 || longitudeCount < 1) { throw new Exception(); }
+            if (radius <= 0.0f || halfLatitudeCount < 1 || longitudeCount < 2) { throw new Exception(); }
 
             if (colorGenerator == null) { colorGenerator = defaultColorGenerator; }
 
             SphereModel sphere = new SphereModel();
-            int vertexCount = (halfLatitudeCount * 2 + 1) * (longitudeCount + 1);
+            int vertexCount = (halfLatitudeCount * 2 + 1) * ((longitudeCount) + 1);
             sphere.positions = new vec3[vertexCount];
             sphere.normals = new vec3[vertexCount];
             sphere.colors = new vec3[vertexCount];
@@ -58,8 +58,8 @@ namespace CSharpGL.Objects.SceneElements
                 double y = radius * Math.Sin(theta);
                 for (int j = 0; j < longitudeCount + 1; j++)
                 {
-                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 4 / longitudeCount);
-                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 4 / longitudeCount);
+                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 2 / longitudeCount);
+                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 2 / longitudeCount);
 
                     vec3 position = new vec3((float)x, (float)y, (float)z);
                     sphere.positions[index] = position;
@@ -79,8 +79,8 @@ namespace CSharpGL.Objects.SceneElements
                 double y = 0;
                 for (int j = 0; j < longitudeCount + 1; j++)
                 {
-                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 4 / longitudeCount);
-                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 4 / longitudeCount);
+                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 2 / longitudeCount);
+                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 2 / longitudeCount);
 
                     vec3 position = new vec3((float)x, (float)y, (float)z);
                     sphere.positions[index] = position;
@@ -101,8 +101,8 @@ namespace CSharpGL.Objects.SceneElements
                 double y = -radius * Math.Sin(theta);
                 for (int j = 0; j < longitudeCount + 1; j++)
                 {
-                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 4 / longitudeCount);
-                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 4 / longitudeCount);
+                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 2 / longitudeCount);
+                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 2 / longitudeCount);
 
                     vec3 position = new vec3((float)x, (float)y, (float)z);
                     sphere.positions[index] = position;
@@ -120,7 +120,7 @@ namespace CSharpGL.Objects.SceneElements
             index = 0;
             for (int i = 0; i < halfLatitudeCount * 2; i++)
             {
-                for (int j = 0; j < longitudeCount + 1; j++)
+                for (int j = 0; j < (longitudeCount + 1); j++)
                 {
                     sphere.indexes[index++] = (uint)((longitudeCount + 1) * i + j);
                     sphere.indexes[index++] = (uint)((longitudeCount + 1) * (i + 1) + j);

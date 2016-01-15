@@ -55,7 +55,6 @@
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(786, 353);
             this.glCanvas1.TabIndex = 7;
-            this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress_1);
             // 
             // FormSphere
             // 

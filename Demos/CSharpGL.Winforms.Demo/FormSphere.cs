@@ -149,8 +149,12 @@ namespace CSharpGL.Winforms.Demo
 
         private void FormTranslateOnScreen_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(string.Format("{0}",
-                "Use 'c' to switch camera types between perspective and ortho"));
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("Use 'c' to switch camera types between perspective and ortho");
+            builder.AppendLine("Use 'wsadqe' to translate light's position");
+            builder.AppendLine("Use 'jk' to decrease/increase rendering element count");
+            builder.AppendLine("Use 'p' to switch sphere's polygon mode");
+            MessageBox.Show(builder.ToString());
         }
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -211,16 +215,12 @@ namespace CSharpGL.Winforms.Demo
             builder.Append(string.Format(" target:{0}", this.camera.Target));
             builder.Append(string.Format(" up:{0}", this.camera.UpVector));
             builder.Append(string.Format(" camera type: {0}", this.camera.CameraType));
-            builder.Append(string.Format(" rendering: {0}, {1}",
-                this.renderState == 2 || this.renderState == 4,
-                this.renderState == 3 || this.renderState == 4));
 
             this.txtInfo.Text = builder.ToString();
         }
 
         float translateX = 0, translateY = 0, translateZ = 0;
         const float interval = 0.1f;
-        private int renderState = 4;
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -237,22 +237,6 @@ namespace CSharpGL.Winforms.Demo
                     default:
                         throw new NotImplementedException();
                 }
-            }
-            else if (e.KeyChar == '1')
-            {
-                this.renderState = 1;
-            }
-            else if (e.KeyChar == '2')
-            {
-                this.renderState = 2;
-            }
-            else if (e.KeyChar == '3')
-            {
-                this.renderState = 3;
-            }
-            else if (e.KeyChar == '4')
-            {
-                this.renderState = 4;
             }
             else if (e.KeyChar == 'w')
             {
@@ -278,18 +262,32 @@ namespace CSharpGL.Winforms.Demo
             {
                 translateZ += interval;
             }
-        }
-
-        private void glCanvas1_KeyPress_1(object sender, KeyPressEventArgs e)
-        {
-            if(e.KeyChar=='j')
+            else if (e.KeyChar == 'j')
             {
                 this.sphereElement.DecreaseVertexCount();
             }
-            else if(e.KeyChar=='k')
+            else if (e.KeyChar == 'k')
             {
                 this.sphereElement.IncreaseVertexCount();
             }
+            else if (e.KeyChar == 'p')
+            {
+                switch (this.sphereElement.polygonMode)
+                {
+                    case PolygonModes.Points:
+                        this.sphereElement.polygonMode = PolygonModes.Lines;
+                        break;
+                    case PolygonModes.Lines:
+                        this.sphereElement.polygonMode = PolygonModes.Filled;
+                        break;
+                    case PolygonModes.Filled:
+                        this.sphereElement.polygonMode = PolygonModes.Points;
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
         }
+
     }
 }
