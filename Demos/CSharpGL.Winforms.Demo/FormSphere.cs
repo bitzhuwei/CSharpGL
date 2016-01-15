@@ -89,8 +89,8 @@ namespace CSharpGL.Winforms.Demo
 
             sphereElement = new SphereElement();
             sphereElement.Initialize();
-            sphereElement.BeforeRendering += cubeElement_BeforeRendering;
-            sphereElement.AfterRendering += cubeElement_AfterRendering;
+            sphereElement.BeforeRendering += sphereElement_BeforeRendering;
+            sphereElement.AfterRendering += sphereElement_AfterRendering;
 
             lightElement = new PyramidElement();
             lightElement.Initialize();
@@ -108,15 +108,29 @@ namespace CSharpGL.Winforms.Demo
 
         void lightElement_AfterRendering(object sender, RenderEventArgs e)
         {
-            throw new NotImplementedException();
+            IMVP element = sender as IMVP;
+
+            element.ResetShaderProgram();
         }
 
         void lightElement_BeforeRendering(object sender, RenderEventArgs e)
         {
-            throw new NotImplementedException();
+            mat4 projectionMatrix = camera.GetProjectionMat4();
+            projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
+            //projectionMatrix = glm.scale(projectionMatrix, new vec3(0.1f, 0.1f, 0.1f));
+
+            mat4 viewMatrix = camera.GetViewMat4();
+
+            mat4 modelMatrix = glm.scale(mat4.identity(), new vec3(0.1f, 0.1f, 0.1f));
+
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+
+            IMVP element = sender as IMVP;
+
+            element.SetShaderProgram(mvp);
         }
 
-        void cubeElement_AfterRendering(object sender, Objects.RenderEventArgs e)
+        void sphereElement_AfterRendering(object sender, Objects.RenderEventArgs e)
         {
             //IMVP element = sender as IMVP;
 
@@ -124,10 +138,10 @@ namespace CSharpGL.Winforms.Demo
             this.sphereElement.ResetShaderProgram();
         }
 
-        void cubeElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
+        void sphereElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
         {
             mat4 projectionMatrix = camera.GetProjectionMat4();
-            projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
+            //projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
 
             mat4 viewMatrix = camera.GetViewMat4();
 
@@ -139,7 +153,7 @@ namespace CSharpGL.Winforms.Demo
 
             //element.SetShaderProgram(mvp);
             this.sphereElement.SetMatrix(projectionMatrix, viewMatrix, modelMatrix);
-
+            this.sphereElement.lightPosition = new vec3(translateX, translateY, translateZ);
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
@@ -152,6 +166,7 @@ namespace CSharpGL.Winforms.Demo
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("Use 'c' to switch camera types between perspective and ortho");
             builder.AppendLine("Use 'wsadqe' to translate light's position");
+            builder.AppendLine("Use 'r' to reset lignt's position");
             builder.AppendLine("Use 'jk' to decrease/increase rendering element count");
             builder.AppendLine("Use 'p' to switch sphere's polygon mode");
             MessageBox.Show(builder.ToString());
@@ -167,6 +182,7 @@ namespace CSharpGL.Winforms.Demo
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
 
             sphereElement.Render(arg);
+            lightElement.Render(arg);
 
             uiLeftBottomAxis.Render(arg);
             //uiLeftTopAxis.Render(arg);
@@ -269,6 +285,13 @@ namespace CSharpGL.Winforms.Demo
             else if (e.KeyChar == 'k')
             {
                 this.sphereElement.IncreaseVertexCount();
+            }
+            else if (e.KeyChar == 'r')
+            {
+                this.translateX = 0;
+                this.translateY = 0;
+                this.translateZ = 0;
+                this.sphereElement.lightPosition = new vec3();
             }
             else if (e.KeyChar == 'p')
             {
