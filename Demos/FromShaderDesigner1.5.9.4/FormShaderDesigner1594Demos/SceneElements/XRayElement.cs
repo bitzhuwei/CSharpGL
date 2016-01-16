@@ -125,7 +125,10 @@ namespace FormShaderDesigner1594Demos.SceneElements
             GL.Enable(GL.GL_PRIMITIVE_RESTART);
             GL.PrimitiveRestartIndex(uint.MaxValue);
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);
+            GL.Enable(GL.GL_BLEND);
+            GL.BlendFunc(CSharpGL.Enumerations.BlendingSourceFactor.SourceAlpha, CSharpGL.Enumerations.BlendingDestinationFactor.OneMinusSourceAlpha);
             this.vertexArrayObject.Render(e, this.shaderProgram);
+            GL.Disable(GL.GL_BLEND);
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
             GL.Disable(GL.GL_PRIMITIVE_RESTART);
 

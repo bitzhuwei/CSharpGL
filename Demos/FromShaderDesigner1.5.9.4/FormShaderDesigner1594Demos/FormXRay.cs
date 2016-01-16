@@ -90,8 +90,9 @@ namespace FormShaderDesigner1594Demos
             //uiRightBottomRect.Initialize();
             //uiRightTopRect.Initialize();
 
-            //IModel model = IceCreamModel.GetModel(1, 10, 10);
-            IModel model = CubeModel.GetModel();
+            //IModel model = SphereModel.GetModel(2);
+            IModel model = IceCreamModel.GetModel(2, 10, 10);
+            //IModel model = CubeModel.GetModel();
             element = new XRayElement(model);
             element.Initialize();
             element.BeforeRendering += sphereElement_BeforeRendering;

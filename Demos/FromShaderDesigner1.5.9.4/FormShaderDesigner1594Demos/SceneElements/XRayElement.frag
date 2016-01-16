@@ -16,7 +16,7 @@ void main()
     float opac = dot(normalize(-N), normalize(-I));
     opac = abs(opac);
     opac = pow(opac, edgefalloff);
-    //opac = 1.0 - opac;
+    opac = 1.0 - opac;
     
     //gl_FragColor =  opac * Cs;
     //gl_FragColor.a = opac;
