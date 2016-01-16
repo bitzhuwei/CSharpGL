@@ -35,12 +35,10 @@
             this.btnFragmentShader = new System.Windows.Forms.Button();
             this.btnCompile = new System.Windows.Forms.Button();
             this.openShaderFile = new System.Windows.Forms.OpenFileDialog();
-            this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -123,23 +121,11 @@
             // 
             this.openShaderFile.Title = "open shader file";
             // 
-            // glCanvas1
-            // 
-            this.glCanvas1.Location = new System.Drawing.Point(12, 489);
-            this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.glCanvas1.Name = "glCanvas1";
-            this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
-            this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(200, 22);
-            this.glCanvas1.TabIndex = 1;
-            this.glCanvas1.Visible = false;
-            // 
             // FormShaderLab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(826, 523);
-            this.Controls.Add(this.glCanvas1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.btnCompile);
             this.Name = "FormShaderLab";
@@ -150,7 +136,6 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -164,6 +149,5 @@
         private System.Windows.Forms.Button btnFragmentShader;
         private System.Windows.Forms.Button btnCompile;
         private System.Windows.Forms.OpenFileDialog openShaderFile;
-        private CSharpGL.Winforms.GLCanvas glCanvas1;
     }
 }
