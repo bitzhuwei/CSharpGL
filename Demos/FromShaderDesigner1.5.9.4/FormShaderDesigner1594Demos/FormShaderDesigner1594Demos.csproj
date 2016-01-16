@@ -48,6 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModelFactories\IceCreamFactory.cs" />
+    <Compile Include="ModelFactories\SphereFactory.cs" />
+    <Compile Include="ModelFactories\CubeFactory.cs" />
+    <Compile Include="ModelFactories\ModelFactory.cs" />
     <Compile Include="SceneElements\XRayElement.cs">
       <SubType>Code</SubType>
     </Compile>

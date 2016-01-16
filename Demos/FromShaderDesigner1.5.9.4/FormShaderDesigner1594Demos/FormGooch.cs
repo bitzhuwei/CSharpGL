@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using CSharpGL;
 using FormShaderDesigner1594Demos.Models;
 using FormShaderDesigner1594Demos.SceneElements;
+using FormShaderDesigner1594Demos.ModelFactories;
 
 namespace FormShaderDesigner1594Demos
 {
@@ -90,12 +91,12 @@ namespace FormShaderDesigner1594Demos
             //uiRightBottomRect.Initialize();
             //uiRightTopRect.Initialize();
 
-            //IModel model = IceCreamModel.GetModel(1, 10, 10);
-            IModel model = CubeModel.GetModel();
-            element = new GoochElement(model);
-            element.Initialize();
-            element.BeforeRendering += element_BeforeRendering;
-            element.AfterRendering += element_AfterRendering;
+            //IModel model = CubeModel.GetModel(1);
+            //element = new GoochElement(model);
+            //element.Initialize();
+            //element.BeforeRendering += element_BeforeRendering;
+            //element.AfterRendering += element_AfterRendering;
+            CreateElement();
 
             //lightElement = new PointLightElement();
             //lightElement.Initialize();
@@ -109,6 +110,13 @@ namespace FormShaderDesigner1594Demos
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.Resize += glCanvas1_Resize;
+
+            Application.Idle += Application_Idle;
+        }
+
+        void Application_Idle(object sender, EventArgs e)
+        {
+            PrintCameraInfo();
         }
 
         void pointLightElement_AfterRendering(object sender, RenderEventArgs e)
@@ -175,6 +183,8 @@ namespace FormShaderDesigner1594Demos
             builder.AppendLine("Use 'jk' to decrease/increase rendering element count");
             builder.AppendLine("Use 'p' to switch sphere's polygon mode");
             builder.AppendLine("Use 'm' to switch model");
+            builder.AppendLine("Use '-' to decrease model size");
+            builder.AppendLine("Use '+' to increase model size");
             MessageBox.Show(builder.ToString());
         }
 
@@ -187,6 +197,11 @@ namespace FormShaderDesigner1594Demos
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
 
+            if (this.newElement != null)
+            {
+                this.element = this.newElement;
+                this.newElement = null;
+            }
             element.Render(arg);
             //lightElement.Render(arg);
 
@@ -233,12 +248,12 @@ namespace FormShaderDesigner1594Demos
         {
             StringBuilder builder = new StringBuilder();
             builder.Append(string.Format("camera:"));
-            builder.Append(string.Format(" position:{0}", this.camera.Position));
-            builder.Append(string.Format(" target:{0}", this.camera.Target));
-            builder.Append(string.Format(" up:{0}", this.camera.UpVector));
-            builder.Append(string.Format(" camera type: {0}", this.camera.CameraType));
-
-            this.txtInfo.Text = builder.ToString();
+            builder.Append(string.Format(" position:{0},", this.camera.Position));
+            builder.Append(string.Format(" target:{0},", this.camera.Target));
+            builder.Append(string.Format(" up:{0},", this.camera.UpVector));
+            builder.Append(string.Format(" camera type: {0},", this.camera.CameraType));
+            builder.Append(string.Format(" model size: {0}", this.radius));
+            this.textBox1.Text = builder.ToString();
         }
 
         float translateX = 0, translateY = 0, translateZ = 0;
@@ -319,17 +334,38 @@ namespace FormShaderDesigner1594Demos
             else if (e.KeyChar == 'm')
             {
                 currentModelIndex++;
-                if (currentModelIndex >= models.Length) { currentModelIndex = 0; }
+                if (currentModelIndex >= factories.Length) { currentModelIndex = 0; }
 
-                var element = new GoochElement(models[currentModelIndex]);
-                element.Initialize();
-                element.BeforeRendering += element_BeforeRendering;
-                element.AfterRendering += element_AfterRendering;
-                this.element = element;
+                CreateElement();
+            }
+            else if (e.KeyChar == '-')
+            {
+                this.radius -= 0.1f;
+                if (this.radius <= 0) { this.radius = 0.1f; }
+
+                CreateElement();
+            }
+            else if (e.KeyChar == '+')
+            {
+                this.radius += 0.1f;
+
+                CreateElement();
             }
         }
 
-        int currentModelIndex = 0;
-        static readonly IModel[] models = new IModel[] { CubeModel.GetModel(), IceCreamModel.GetModel(), SphereModel.GetModel(), };
+        private void CreateElement()
+        {
+            var element = new GoochElement(factories[currentModelIndex].Create(this.radius));
+            element.Initialize();
+            element.BeforeRendering += element_BeforeRendering;
+            element.AfterRendering += element_AfterRendering;
+            this.newElement = element;
+        }
+
+        int currentModelIndex = 1;
+        //static readonly IModel[] models = new IModel[] { CubeModel.GetModel(), IceCreamModel.GetModel(), SphereModel.GetModel(), };
+        static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), };
+        private float radius = 2;
+        private GoochElement newElement;
     }
 }

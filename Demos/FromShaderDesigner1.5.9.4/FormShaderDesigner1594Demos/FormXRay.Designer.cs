@@ -30,6 +30,7 @@ namespace FormShaderDesigner1594Demos
         private void InitializeComponent()
         {
             this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -38,30 +39,43 @@ namespace FormShaderDesigner1594Demos
             this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.glCanvas1.Location = new System.Drawing.Point(13, 13);
+            this.glCanvas1.Location = new System.Drawing.Point(13, 89);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(786, 476);
+            this.glCanvas1.Size = new System.Drawing.Size(786, 400);
             this.glCanvas1.TabIndex = 7;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(13, 12);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(786, 70);
+            this.textBox1.TabIndex = 8;
             // 
             // FormXRay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 502);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.glCanvas1);
             this.Name = "FormXRay";
             this.Text = "FormXRay";
             this.Load += new System.EventHandler(this.FormTranslateOnScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private CSharpGL.Winforms.GLCanvas glCanvas1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

@@ -17,23 +17,23 @@ namespace FormShaderDesigner1594Demos.Models
     /// </summary>
     public class CubeModel : IModel
     {
-        static vec3[] vertexes = new vec3[] 
+        static vec3[] eightVertexes = new vec3[] 
         { 
             new vec3(-1, 1, 1), new vec3(1, 1, 1), new vec3(1, 1, -1), new vec3(-1, 1, -1),
             new vec3(-1, -1, 1), new vec3(1, -1, 1), new vec3(1, -1, -1), new vec3(-1, -1, -1), 
         };
 
-        static readonly CubePosition position = new CubePosition()
+        static readonly CubePosition identityPosition = new CubePosition()
         {
-            faceX = new SqurePosition() { position0 = vertexes[1], position1 = vertexes[2], position2 = vertexes[6], position3 = vertexes[5], },
-            faceNX = new SqurePosition() { position0 = vertexes[0], position1 = vertexes[3], position2 = vertexes[7], position3 = vertexes[4], },
-            faceY = new SqurePosition() { position0 = vertexes[0], position1 = vertexes[1], position2 = vertexes[2], position3 = vertexes[3], },
-            faceNY = new SqurePosition() { position0 = vertexes[4], position1 = vertexes[5], position2 = vertexes[6], position3 = vertexes[7], },
-            faceZ = new SqurePosition() { position0 = vertexes[0], position1 = vertexes[1], position2 = vertexes[5], position3 = vertexes[4], },
-            faceNZ = new SqurePosition() { position0 = vertexes[3], position1 = vertexes[2], position2 = vertexes[6], position3 = vertexes[7], },
+            faceX = new SqurePosition() { position0 = eightVertexes[1], position1 = eightVertexes[2], position2 = eightVertexes[6], position3 = eightVertexes[5], },
+            faceNX = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[3], position2 = eightVertexes[7], position3 = eightVertexes[4], },
+            faceY = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[1], position2 = eightVertexes[2], position3 = eightVertexes[3], },
+            faceNY = new SqurePosition() { position0 = eightVertexes[4], position1 = eightVertexes[5], position2 = eightVertexes[6], position3 = eightVertexes[7], },
+            faceZ = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[1], position2 = eightVertexes[5], position3 = eightVertexes[4], },
+            faceNZ = new SqurePosition() { position0 = eightVertexes[3], position1 = eightVertexes[2], position2 = eightVertexes[6], position3 = eightVertexes[7], },
         };
 
-        static readonly CubeNormal normal = new CubeNormal()
+        static readonly CubeNormal identityNormal = new CubeNormal()
         {
             faceX = new SqureNormal(new vec3(1, 0, 0)),
             faceNX = new SqureNormal(new vec3(-1, 0, 0)),
@@ -43,7 +43,7 @@ namespace FormShaderDesigner1594Demos.Models
             faceNZ = new SqureNormal(new vec3(0, 0, -1)),
         };
 
-        static readonly CubeColor color = new CubeColor()
+        static readonly CubeColor identityColor = new CubeColor()
         {
             faceX = new SqureColor(new vec3(0, 0, 1)),
             faceNX = new SqureColor(new vec3(0, 1, 0)),
@@ -67,9 +67,44 @@ namespace FormShaderDesigner1594Demos.Models
             return result;
         }
 
-        public static IModel GetModel()
+        CubePosition position;
+        CubeNormal normal;
+        CubeColor color;
+
+        public static IModel GetModel(float radius)
         {
-            return new CubeModel();
+            return new CubeModel(radius);
+        }
+
+        private CubeModel(float radius)
+        {
+            this.position = identityPosition;
+            this.position.faceX.position0 *= radius;
+            this.position.faceX.position1 *= radius;
+            this.position.faceX.position2 *= radius;
+            this.position.faceX.position3 *= radius;
+            this.position.faceNX.position0 *= radius;
+            this.position.faceNX.position1 *= radius;
+            this.position.faceNX.position2 *= radius;
+            this.position.faceNX.position3 *= radius;
+            this.position.faceY.position0 *= radius;
+            this.position.faceY.position1 *= radius;
+            this.position.faceY.position2 *= radius;
+            this.position.faceY.position3 *= radius;
+            this.position.faceNY.position0 *= radius;
+            this.position.faceNY.position1 *= radius;
+            this.position.faceNY.position2 *= radius;
+            this.position.faceNY.position3 *= radius;
+            this.position.faceZ.position0 *= radius;
+            this.position.faceZ.position1 *= radius;
+            this.position.faceZ.position2 *= radius;
+            this.position.faceZ.position3 *= radius;
+            this.position.faceNZ.position0 *= radius;
+            this.position.faceNZ.position1 *= radius;
+            this.position.faceNZ.position2 *= radius;
+            this.position.faceNZ.position3 *= radius;
+            this.color = identityColor;
+            this.normal = identityNormal;
         }
 
         CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
@@ -80,7 +115,7 @@ namespace FormShaderDesigner1594Demos.Models
                 unsafe
                 {
                     CubePosition* positionArray = (CubePosition*)positionBuffer.FirstElement();
-                    positionArray[0] = CubeModel.position;
+                    positionArray[0] = CubeModel.identityPosition;
                 }
 
                 return positionBuffer.GetRenderer();
@@ -96,7 +131,7 @@ namespace FormShaderDesigner1594Demos.Models
                 unsafe
                 {
                     CubeColor* colorArray = (CubeColor*)colorBuffer.FirstElement();
-                    colorArray[0] = CubeModel.color;
+                    colorArray[0] = CubeModel.identityColor;
                     //colorArray[0] = CubeModel.GetRandomColor();
                 }
 
@@ -113,7 +148,7 @@ namespace FormShaderDesigner1594Demos.Models
                 unsafe
                 {
                     CubeNormal* normalArray = (CubeNormal*)normalBuffer.FirstElement();
-                    normalArray[0] = CubeModel.normal;
+                    normalArray[0] = CubeModel.identityNormal;
                 }
 
                 return normalBuffer.GetRenderer();
