@@ -65,7 +65,7 @@ namespace FormShaderDesigner1594Demos
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.glCanvas1);
             this.Name = "FormGooch";
-            this.Text = "FormSphere";
+            this.Text = "FormGooch";
             this.Load += new System.EventHandler(this.FormTranslateOnScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
