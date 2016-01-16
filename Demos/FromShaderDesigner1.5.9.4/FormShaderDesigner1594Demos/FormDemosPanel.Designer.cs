@@ -35,7 +35,7 @@
             // 
             // btnXRay
             // 
-            this.btnXRay.Location = new System.Drawing.Point(12, 102);
+            this.btnXRay.Location = new System.Drawing.Point(12, 57);
             this.btnXRay.Name = "btnXRay";
             this.btnXRay.Size = new System.Drawing.Size(283, 39);
             this.btnXRay.TabIndex = 0;
@@ -45,12 +45,13 @@
             // 
             // btnBrick
             // 
-            this.btnBrick.Location = new System.Drawing.Point(12, 57);
+            this.btnBrick.Location = new System.Drawing.Point(12, 102);
             this.btnBrick.Name = "btnBrick";
             this.btnBrick.Size = new System.Drawing.Size(283, 39);
             this.btnBrick.TabIndex = 0;
             this.btnBrick.Text = "brick";
             this.btnBrick.UseVisualStyleBackColor = true;
+            this.btnBrick.Visible = false;
             this.btnBrick.Click += new System.EventHandler(this.btnBrick_Click);
             // 
             // btnGooch

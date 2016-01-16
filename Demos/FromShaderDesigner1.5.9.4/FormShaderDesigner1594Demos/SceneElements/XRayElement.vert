@@ -3,16 +3,9 @@ varying vec3 N;
 varying vec3 I;
 varying vec4 Cs;
 
-in vec3 in_Position;
-in vec3 
-
-uniform mat4 modelMat;
-uniform mat4 viewMat;
-uniform mat4 projectionMat;
-
 void main()
 {
-	vec4 P = viewMat * modelMat * in_Position;
+	vec4 P = gl_ModelViewMatrix * gl_Vertex;
 	
 	I  = P.xyz - vec3 (0);
 	
