@@ -90,11 +90,12 @@ namespace FormShaderDesigner1594Demos
             //uiRightBottomRect.Initialize();
             //uiRightTopRect.Initialize();
 
-            IModel model = IceCreamModel.GetModel(1, 10, 10);
+            //IModel model = IceCreamModel.GetModel(1, 10, 10);
+            IModel model = CubeModel.GetModel();
             element = new GoochElement(model);
             element.Initialize();
-            element.BeforeRendering += sphereElement_BeforeRendering;
-            element.AfterRendering += sphereElement_AfterRendering;
+            element.BeforeRendering += element_BeforeRendering;
+            element.AfterRendering += element_AfterRendering;
 
             //lightElement = new PointLightElement();
             //lightElement.Initialize();
@@ -134,7 +135,7 @@ namespace FormShaderDesigner1594Demos
             element.SetShaderProgram(mvp);
         }
 
-        void sphereElement_AfterRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
+        void element_AfterRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
         {
             //IMVP element = sender as IMVP;
 
@@ -142,7 +143,7 @@ namespace FormShaderDesigner1594Demos
             this.element.ResetShaderProgram();
         }
 
-        void sphereElement_BeforeRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
+        void element_BeforeRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
         {
             mat4 projectionMatrix = camera.GetProjectionMat4();
             //projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
@@ -173,6 +174,7 @@ namespace FormShaderDesigner1594Demos
             builder.AppendLine("Use 'r' to reset lignt's position");
             builder.AppendLine("Use 'jk' to decrease/increase rendering element count");
             builder.AppendLine("Use 'p' to switch sphere's polygon mode");
+            builder.AppendLine("Use 'm' to switch model");
             MessageBox.Show(builder.ToString());
         }
 
@@ -314,7 +316,20 @@ namespace FormShaderDesigner1594Demos
                         throw new NotImplementedException();
                 }
             }
+            else if (e.KeyChar == 'm')
+            {
+                currentModelIndex++;
+                if (currentModelIndex >= models.Length) { currentModelIndex = 0; }
+
+                var element = new GoochElement(models[currentModelIndex]);
+                element.Initialize();
+                element.BeforeRendering += element_BeforeRendering;
+                element.AfterRendering += element_AfterRendering;
+                this.element = element;
+            }
         }
 
+        int currentModelIndex = 0;
+        static readonly IModel[] models = new IModel[] { CubeModel.GetModel(), IceCreamModel.GetModel(), SphereModel.GetModel(), };
     }
 }

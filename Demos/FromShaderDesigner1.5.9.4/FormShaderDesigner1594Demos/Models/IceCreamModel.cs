@@ -30,7 +30,7 @@ namespace FormShaderDesigner1594Demos.Models
 
         private IceCreamModel() { }
 
-        public static IModel GetModel(float radius = 1.0f, int halfLatitudeCount = 2, int longitudeCount = 4)
+        public static IModel GetModel(float radius = 1.0f, int halfLatitudeCount = 10, int longitudeCount = 10)
         {
             IceCreamModel sphere = new IceCreamModel();
             int vertexCount = (halfLatitudeCount * 2 + 1) * (longitudeCount + 1);
