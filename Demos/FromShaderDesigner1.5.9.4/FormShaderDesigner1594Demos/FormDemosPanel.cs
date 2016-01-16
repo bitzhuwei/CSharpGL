@@ -17,12 +17,6 @@ namespace FormShaderDesigner1594Demos
             InitializeComponent();
         }
 
-        private void btnBrick_Click(object sender, EventArgs e)
-        {
-            (new FormBrick()).Show();
-        }
-
-
         private void btnGooch_Click(object sender, EventArgs e)
         {
             (new FormGooch()).Show();

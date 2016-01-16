@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btnXRay = new System.Windows.Forms.Button();
-            this.btnBrick = new System.Windows.Forms.Button();
             this.btnGooch = new System.Windows.Forms.Button();
             this.btnToon = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -43,17 +42,6 @@
             this.btnXRay.Text = "xray";
             this.btnXRay.UseVisualStyleBackColor = true;
             this.btnXRay.Click += new System.EventHandler(this.btnXRay_Click);
-            // 
-            // btnBrick
-            // 
-            this.btnBrick.Location = new System.Drawing.Point(12, 199);
-            this.btnBrick.Name = "btnBrick";
-            this.btnBrick.Size = new System.Drawing.Size(283, 39);
-            this.btnBrick.TabIndex = 0;
-            this.btnBrick.Text = "brick";
-            this.btnBrick.UseVisualStyleBackColor = true;
-            this.btnBrick.Visible = false;
-            this.btnBrick.Click += new System.EventHandler(this.btnBrick_Click);
             // 
             // btnGooch
             // 
@@ -81,7 +69,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(522, 401);
             this.Controls.Add(this.btnGooch);
-            this.Controls.Add(this.btnBrick);
             this.Controls.Add(this.btnToon);
             this.Controls.Add(this.btnXRay);
             this.Name = "FormDemosPanel";
@@ -93,7 +80,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnXRay;
-        private System.Windows.Forms.Button btnBrick;
         private System.Windows.Forms.Button btnGooch;
         private System.Windows.Forms.Button btnToon;
     }

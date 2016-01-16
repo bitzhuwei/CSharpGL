@@ -69,12 +69,6 @@
     <Compile Include="FormDemosPanel.Designer.cs">
       <DependentUpon>FormDemosPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormBrick.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormBrick.Designer.cs">
-      <DependentUpon>FormBrick.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormGooch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,19 +81,11 @@
     <Compile Include="FormXRay.Designer.cs">
       <DependentUpon>FormXRay.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSimpleUIAxis.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormSimpleUIAxis.Designer.cs">
-      <DependentUpon>FormSimpleUIAxis.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\CubeModel.cs" />
     <Compile Include="Models\IceCreamModel.cs" />
     <Compile Include="Models\IModel.cs" />
     <Compile Include="Models\SphereModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="BrickElement.frag" />
-    <None Include="BrickElement.vert" />
     <EmbeddedResource Include="FormGooch.resx">
       <DependentUpon>FormGooch.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,19 +96,12 @@
     <EmbeddedResource Include="SceneElements\GoochElement.vert" />
     <EmbeddedResource Include="SceneElements\XRayElement.vert" />
     <EmbeddedResource Include="SceneElements\XRayElement.frag" />
-    <Compile Include="BrickElement.cs" />
     <Compile Include="SceneElements\GoochElement.cs" />
     <EmbeddedResource Include="FormDemosPanel.resx">
       <DependentUpon>FormDemosPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormBrick.resx">
-      <DependentUpon>FormBrick.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormXRay.resx">
       <DependentUpon>FormXRay.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormSimpleUIAxis.resx">
-      <DependentUpon>FormSimpleUIAxis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
