@@ -1,7 +1,7 @@
 ﻿// vertex to fragment shader io
-varying vec3 N;
-varying vec3 I;
-varying vec4 Cs;
+in vec3 N;
+in vec3 I;
+in vec4 Cs;
 
 // globals
 uniform float edgefalloff;

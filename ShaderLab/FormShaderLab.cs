@@ -16,6 +16,8 @@ namespace ShaderLab
     public partial class FormShaderLab : Form
     {
         private FBORenderContext renderContext;
+        private string vertexShaderFilename;
+        private string fragmentShaderFilename;
         public FormShaderLab()
         {
             InitializeComponent();
@@ -40,7 +42,12 @@ namespace ShaderLab
         {
             if (this.openShaderFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                this.txtVertexShader.TextChanged -= txtVertexShader_TextChanged;
                 this.txtVertexShader.Text = File.ReadAllText(this.openShaderFile.FileName);
+                this.vertexShaderFilename = this.openShaderFile.FileName;
+                //this.vertexShaderFileWatcher.Path = (new FileInfo(this.openShaderFile.FileName)).DirectoryName;
+                this.txtVertexShader.TextChanged += txtVertexShader_TextChanged;
+                this.btnSaveVertexShader.Enabled = false;
             }
         }
 
@@ -48,7 +55,12 @@ namespace ShaderLab
         {
             if (this.openShaderFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                this.txtFragmentShader.TextChanged -= txtFragmentShader_TextChanged;
                 this.txtFragmentShader.Text = File.ReadAllText(this.openShaderFile.FileName);
+                this.fragmentShaderFilename = this.openShaderFile.FileName;
+                //this.fragmentShaderFileWatcher.Path = (new FileInfo(this.openShaderFile.FileName)).DirectoryName;
+                this.txtFragmentShader.TextChanged += txtFragmentShader_TextChanged;
+                this.btnSaveFragmentShader.Enabled = false;
             }
         }
 
@@ -69,5 +81,55 @@ namespace ShaderLab
                 (new FormTextMsg(ex.Message, "Shader Compile Error")).Show();
             }
         }
+
+        private void btnSaveVertexShader_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(this.vertexShaderFilename, this.txtVertexShader.Text);
+            this.btnSaveVertexShader.Enabled = false;
+        }
+
+        private void btnSaveFragmentShader_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(this.fragmentShaderFilename, this.txtFragmentShader.Text);
+            this.btnSaveFragmentShader.Enabled = false;
+        }
+
+        private void txtVertexShader_TextChanged(object sender, EventArgs e)
+        {
+            this.btnSaveVertexShader.Enabled = true;
+        }
+
+        private void txtFragmentShader_TextChanged(object sender, EventArgs e)
+        {
+            this.btnSaveFragmentShader.Enabled = true;
+        }
+
+        //private void vertexShaderFileWatcher_Changed(object sender, FileSystemEventArgs e)
+        //{
+        //    if (e.FullPath == this.vertexShaderFilename)
+        //    {
+        //        using (FileStream fs = new FileStream(e.FullPath, FileMode.Open, FileAccess.Read))
+        //        {
+        //            using (var sr = new StreamReader(fs))
+        //            {
+        //                this.txtVertexShader.Text = sr.ReadToEnd();
+        //            }
+        //        }
+        //    }
+        //}
+
+        //private void fragmentShaderFileWatcher_Changed(object sender, FileSystemEventArgs e)
+        //{
+        //    if (e.FullPath == this.fragmentShaderFilename)
+        //    {
+        //        using (FileStream fs = new FileStream(e.FullPath, FileMode.Open, FileAccess.Read))
+        //        {
+        //            using (var sr = new StreamReader(fs))
+        //            {
+        //                this.txtFragmentShader.Text = sr.ReadToEnd();
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

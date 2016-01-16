@@ -30,8 +30,10 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.txtVertexShader = new System.Windows.Forms.TextBox();
+            this.btnSaveVertexShader = new System.Windows.Forms.Button();
             this.btnOpenVertexShader = new System.Windows.Forms.Button();
             this.txtFragmentShader = new System.Windows.Forms.TextBox();
+            this.btnSaveFragmentShader = new System.Windows.Forms.Button();
             this.btnFragmentShader = new System.Windows.Forms.Button();
             this.btnCompile = new System.Windows.Forms.Button();
             this.openShaderFile = new System.Windows.Forms.OpenFileDialog();
@@ -52,11 +54,13 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.txtVertexShader);
+            this.splitContainer1.Panel1.Controls.Add(this.btnSaveVertexShader);
             this.splitContainer1.Panel1.Controls.Add(this.btnOpenVertexShader);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.txtFragmentShader);
+            this.splitContainer1.Panel2.Controls.Add(this.btnSaveFragmentShader);
             this.splitContainer1.Panel2.Controls.Add(this.btnFragmentShader);
             this.splitContainer1.Size = new System.Drawing.Size(802, 470);
             this.splitContainer1.SplitterDistance = 370;
@@ -73,6 +77,17 @@
             this.txtVertexShader.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtVertexShader.Size = new System.Drawing.Size(355, 414);
             this.txtVertexShader.TabIndex = 1;
+            // 
+            // btnSaveVertexShader
+            // 
+            this.btnSaveVertexShader.Enabled = false;
+            this.btnSaveVertexShader.Location = new System.Drawing.Point(192, 12);
+            this.btnSaveVertexShader.Name = "btnSaveVertexShader";
+            this.btnSaveVertexShader.Size = new System.Drawing.Size(127, 23);
+            this.btnSaveVertexShader.TabIndex = 0;
+            this.btnSaveVertexShader.Text = "save";
+            this.btnSaveVertexShader.UseVisualStyleBackColor = true;
+            this.btnSaveVertexShader.Click += new System.EventHandler(this.btnSaveVertexShader_Click);
             // 
             // btnOpenVertexShader
             // 
@@ -95,6 +110,17 @@
             this.txtFragmentShader.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtFragmentShader.Size = new System.Drawing.Size(413, 414);
             this.txtFragmentShader.TabIndex = 1;
+            // 
+            // btnSaveFragmentShader
+            // 
+            this.btnSaveFragmentShader.Enabled = false;
+            this.btnSaveFragmentShader.Location = new System.Drawing.Point(183, 12);
+            this.btnSaveFragmentShader.Name = "btnSaveFragmentShader";
+            this.btnSaveFragmentShader.Size = new System.Drawing.Size(127, 23);
+            this.btnSaveFragmentShader.TabIndex = 0;
+            this.btnSaveFragmentShader.Text = "save";
+            this.btnSaveFragmentShader.UseVisualStyleBackColor = true;
+            this.btnSaveFragmentShader.Click += new System.EventHandler(this.btnSaveFragmentShader_Click);
             // 
             // btnFragmentShader
             // 
@@ -149,5 +175,7 @@
         private System.Windows.Forms.Button btnFragmentShader;
         private System.Windows.Forms.Button btnCompile;
         private System.Windows.Forms.OpenFileDialog openShaderFile;
+        private System.Windows.Forms.Button btnSaveVertexShader;
+        private System.Windows.Forms.Button btnSaveFragmentShader;
     }
 }
