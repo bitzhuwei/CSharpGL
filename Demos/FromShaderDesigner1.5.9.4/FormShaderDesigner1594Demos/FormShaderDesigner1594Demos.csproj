@@ -48,10 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormToon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormToon.Designer.cs">
+      <DependentUpon>FormToon.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelFactories\IceCreamFactory.cs" />
     <Compile Include="ModelFactories\SphereFactory.cs" />
     <Compile Include="ModelFactories\CubeFactory.cs" />
     <Compile Include="ModelFactories\ModelFactory.cs" />
+    <Compile Include="SceneElements\ToonElement.cs" />
     <Compile Include="SceneElements\XRayElement.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -96,6 +103,9 @@
     <EmbeddedResource Include="FormGooch.resx">
       <DependentUpon>FormGooch.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormToon.resx">
+      <DependentUpon>FormToon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SceneElements\GoochElement.frag" />
     <EmbeddedResource Include="SceneElements\GoochElement.vert" />
     <EmbeddedResource Include="SceneElements\XRayElement.vert" />
@@ -132,6 +142,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="SceneElements\ToonElement.frag" />
+    <EmbeddedResource Include="SceneElements\ToonElement.vert" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

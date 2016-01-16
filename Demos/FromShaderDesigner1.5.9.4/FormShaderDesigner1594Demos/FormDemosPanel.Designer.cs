@@ -31,6 +31,7 @@
             this.btnXRay = new System.Windows.Forms.Button();
             this.btnBrick = new System.Windows.Forms.Button();
             this.btnGooch = new System.Windows.Forms.Button();
+            this.btnToon = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnXRay
@@ -45,7 +46,7 @@
             // 
             // btnBrick
             // 
-            this.btnBrick.Location = new System.Drawing.Point(12, 102);
+            this.btnBrick.Location = new System.Drawing.Point(12, 199);
             this.btnBrick.Name = "btnBrick";
             this.btnBrick.Size = new System.Drawing.Size(283, 39);
             this.btnBrick.TabIndex = 0;
@@ -64,6 +65,16 @@
             this.btnGooch.UseVisualStyleBackColor = true;
             this.btnGooch.Click += new System.EventHandler(this.btnGooch_Click);
             // 
+            // btnToon
+            // 
+            this.btnToon.Location = new System.Drawing.Point(12, 102);
+            this.btnToon.Name = "btnToon";
+            this.btnToon.Size = new System.Drawing.Size(283, 39);
+            this.btnToon.TabIndex = 0;
+            this.btnToon.Text = "Toon";
+            this.btnToon.UseVisualStyleBackColor = true;
+            this.btnToon.Click += new System.EventHandler(this.btnToon_Click);
+            // 
             // FormDemosPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -71,6 +82,7 @@
             this.ClientSize = new System.Drawing.Size(522, 401);
             this.Controls.Add(this.btnGooch);
             this.Controls.Add(this.btnBrick);
+            this.Controls.Add(this.btnToon);
             this.Controls.Add(this.btnXRay);
             this.Name = "FormDemosPanel";
             this.Text = "FormDemosPanel";
@@ -83,5 +95,6 @@
         private System.Windows.Forms.Button btnXRay;
         private System.Windows.Forms.Button btnBrick;
         private System.Windows.Forms.Button btnGooch;
+        private System.Windows.Forms.Button btnToon;
     }
 }
