@@ -30,7 +30,7 @@ namespace FormShaderDesigner1594Demos.SceneElements
         const string strin_Normal = "in_Normal";
         BufferRenderer normalBufferRenderer;
 
-        IndexBufferRenderer indexBufferRenderer;
+        BufferRenderer indexBufferRenderer;
 
         #endregion
 
@@ -80,8 +80,13 @@ namespace FormShaderDesigner1594Demos.SceneElements
             this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);
             this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
             this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
-            this.indexBufferRenderer = model.GetIndexes() as IndexBufferRenderer;
-            this.indexCount = this.indexBufferRenderer.ElementCount;
+            this.indexBufferRenderer = model.GetIndexes();
+
+            IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+            if (renderer != null)
+            {
+                this.indexCount = renderer.ElementCount;
+            }
         }
 
         protected override void DoInitialize()
@@ -97,7 +102,7 @@ namespace FormShaderDesigner1594Demos.SceneElements
             {
                 var vao = new VertexArrayObject(
                     this.positionBufferRenderer,
-                    this.colorBufferRenderer, 
+                    this.colorBufferRenderer,
                     this.normalBufferRenderer,
                     this.indexBufferRenderer);
                 vao.Create(e, this.shaderProgram);
@@ -142,14 +147,22 @@ namespace FormShaderDesigner1594Demos.SceneElements
 
         public void DecreaseVertexCount()
         {
-            if (this.indexBufferRenderer.ElementCount > 0)
-                this.indexBufferRenderer.ElementCount--;
+            IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+            if (renderer != null)
+            {
+                if (renderer.ElementCount > 0)
+                    renderer.ElementCount--;
+            }
         }
 
         public void IncreaseVertexCount()
         {
-            if (this.indexBufferRenderer.ElementCount < this.indexCount)
-                this.indexBufferRenderer.ElementCount++;
+            IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+            if (renderer != null)
+            {
+                if (renderer.ElementCount < this.indexCount)
+                    renderer.ElementCount++;
+            }
         }
 
 

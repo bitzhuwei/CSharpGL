@@ -11,7 +11,7 @@ uniform mat4 projectionMatrix;
 
 out vec3 N;
 out vec3 I;
-out vec4 Cs;
+out vec3 Cs;
 
 void main()
 {
@@ -21,7 +21,7 @@ void main()
 	
 	N  = vec3(viewMatrix * modelMatrix * vec4(in_Normal, 1.0));
 	
-	Cs = vec4(in_Color, 1.0);
+	Cs = in_Color;
 	
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0);	
 } 

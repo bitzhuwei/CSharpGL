@@ -1,7 +1,11 @@
 ﻿// vertex to fragment shader io
+#version 150 core
+
 in vec3 N;
 in vec3 I;
-in vec4 Cs;
+in vec3 Cs;
+
+out vec4 color;
 
 // globals
 uniform float edgefalloff;
@@ -14,6 +18,7 @@ void main()
     opac = 1.0-pow(opac, edgefalloff);
     //opac = 1.0 - opac;
     
-    gl_FragColor =  opac * Cs;
-    gl_FragColor.a = opac;
+    //gl_FragColor =  opac * Cs;
+    //gl_FragColor.a = opac;
+	color = vec4(opac * Cs, opac);
 }
