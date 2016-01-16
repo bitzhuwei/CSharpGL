@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSharpGL.Winforms">
+      <HintPath>..\Core\CSharpGL.Winforms\obj\Debug\CSharpGL.Winforms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,10 +54,19 @@
     <Compile Include="FormShaderLab.Designer.cs">
       <DependentUpon>FormShaderLab.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTextMsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTextMsg.Designer.cs">
+      <DependentUpon>FormTextMsg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormShaderLab.resx">
       <DependentUpon>FormShaderLab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTextMsg.resx">
+      <DependentUpon>FormTextMsg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -77,6 +89,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\CSharpGL.Objects\CSharpGL.Objects.csproj">
+      <Project>{b340c561-2e18-42af-a52d-e6d9f924293e}</Project>
+      <Name>CSharpGL.Objects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\CSharpGL\CSharpGL.csproj">
+      <Project>{0d6e73c8-27b8-4614-9861-f4f22808ea7c}</Project>
+      <Name>CSharpGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\GLM\GLM.csproj">
+      <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
+      <Name>GLM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Utilities\Utilities.csproj">
+      <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
