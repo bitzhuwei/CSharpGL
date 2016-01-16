@@ -94,8 +94,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SceneElements\GoochElement.frag" />
     <EmbeddedResource Include="SceneElements\GoochElement.vert" />
-    <None Include="SceneElements\XRayElement.vert" />
-    <None Include="SceneElements\XRayElement.frag" />
+    <EmbeddedResource Include="SceneElements\XRayElement.vert" />
+    <EmbeddedResource Include="SceneElements\XRayElement.frag" />
     <Compile Include="BrickElement.cs" />
     <Compile Include="SceneElements\GoochElement.cs" />
     <EmbeddedResource Include="FormDemosPanel.resx">

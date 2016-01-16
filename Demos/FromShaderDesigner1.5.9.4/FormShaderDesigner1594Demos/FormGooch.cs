@@ -35,7 +35,7 @@ namespace FormShaderDesigner1594Demos
         //SimpleUIRect uiRightBottomRect;
         //SimpleUIRect uiRightTopRect;
 
-        GoochElement sphereElement;
+        GoochElement element;
         //PointLightElement lightElement;
 
         Camera camera;
@@ -91,10 +91,10 @@ namespace FormShaderDesigner1594Demos
             //uiRightTopRect.Initialize();
 
             IModel model = IceCreamModel.GetModel(1, 10, 10);
-            sphereElement = new GoochElement(model);
-            sphereElement.Initialize();
-            sphereElement.BeforeRendering += sphereElement_BeforeRendering;
-            sphereElement.AfterRendering += sphereElement_AfterRendering;
+            element = new GoochElement(model);
+            element.Initialize();
+            element.BeforeRendering += sphereElement_BeforeRendering;
+            element.AfterRendering += sphereElement_AfterRendering;
 
             //lightElement = new PointLightElement();
             //lightElement.Initialize();
@@ -139,7 +139,7 @@ namespace FormShaderDesigner1594Demos
             //IMVP element = sender as IMVP;
 
             //element.ResetShaderProgram();
-            this.sphereElement.ResetShaderProgram();
+            this.element.ResetShaderProgram();
         }
 
         void sphereElement_BeforeRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
@@ -157,7 +157,7 @@ namespace FormShaderDesigner1594Demos
 
             //element.SetShaderProgram(mvp);
             //this.sphereElement.LightPosition = new vec3(translateX, translateY, translateZ);
-            this.sphereElement.SetUniforms(projectionMatrix, viewMatrix, modelMatrix);
+            this.element.SetUniforms(projectionMatrix, viewMatrix, modelMatrix);
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
@@ -185,7 +185,7 @@ namespace FormShaderDesigner1594Demos
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
 
-            sphereElement.Render(arg);
+            element.Render(arg);
             //lightElement.Render(arg);
 
             uiLeftBottomAxis.Render(arg);
@@ -284,31 +284,31 @@ namespace FormShaderDesigner1594Demos
             }
             else if (e.KeyChar == 'j')
             {
-                this.sphereElement.DecreaseVertexCount();
+                this.element.DecreaseVertexCount();
             }
             else if (e.KeyChar == 'k')
             {
-                this.sphereElement.IncreaseVertexCount();
+                this.element.IncreaseVertexCount();
             }
             else if (e.KeyChar == 'r')
             {
                 this.translateX = 0;
                 this.translateY = 0;
                 this.translateZ = 0;
-                this.sphereElement.LightPosition = new vec3();
+                this.element.LightPosition = new vec3();
             }
             else if (e.KeyChar == 'p')
             {
-                switch (this.sphereElement.PolygonMode)
+                switch (this.element.PolygonMode)
                 {
                     case PolygonModes.Points:
-                        this.sphereElement.PolygonMode = PolygonModes.Lines;
+                        this.element.PolygonMode = PolygonModes.Lines;
                         break;
                     case PolygonModes.Lines:
-                        this.sphereElement.PolygonMode = PolygonModes.Filled;
+                        this.element.PolygonMode = PolygonModes.Filled;
                         break;
                     case PolygonModes.Filled:
-                        this.sphereElement.PolygonMode = PolygonModes.Points;
+                        this.element.PolygonMode = PolygonModes.Points;
                         break;
                     default:
                         throw new NotImplementedException();

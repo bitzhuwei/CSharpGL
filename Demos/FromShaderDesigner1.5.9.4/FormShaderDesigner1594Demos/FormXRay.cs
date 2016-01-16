@@ -15,6 +15,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSharpGL;
+using FormShaderDesigner1594Demos.Models;
+using FormShaderDesigner1594Demos.SceneElements;
 
 namespace FormShaderDesigner1594Demos
 {
@@ -24,8 +26,17 @@ namespace FormShaderDesigner1594Demos
     public partial class FormXRay : Form
     {
         SimpleUIAxis uiLeftBottomAxis;
+        //SimpleUIAxis uiLeftTopAxis;
+        //SimpleUIAxis uiRightBottomAxis;
+        //SimpleUIAxis uiRightTopAxis;
 
-        AxisElement axisElement;
+        //SimpleUIRect uiLeftBottomRect;
+        //SimpleUIRect uiLeftTopRect;
+        //SimpleUIRect uiRightBottomRect;
+        //SimpleUIRect uiRightTopRect;
+
+        XRayElement element;
+        //PointLightElement lightElement;
 
         Camera camera;
 
@@ -53,13 +64,42 @@ namespace FormShaderDesigner1594Demos
             IUILayoutParam param;
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
             uiLeftBottomAxis = new SimpleUIAxis(param);
+            //param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
+            //uiLeftTopAxis = new SimpleUIAxis(param);
+            //param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
+            //uiRightBottomAxis = new SimpleUIAxis(param);
+            //param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Top, padding, size);
+            //uiRightTopAxis = new SimpleUIAxis(param);
 
             uiLeftBottomAxis.Initialize();
+            //uiLeftTopAxis.Initialize();
+            //uiRightBottomAxis.Initialize();
+            //uiRightTopAxis.Initialize();
 
-            axisElement = new AxisElement();
-            axisElement.Initialize();
-            axisElement.BeforeRendering += axisElement_BeforeRendering;
-            axisElement.AfterRendering += axisElement_AfterRendering;
+            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
+            //uiLeftBottomRect = new SimpleUIRect(param);
+            //param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
+            //uiLeftTopRect = new SimpleUIRect(param);
+            //param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
+            //uiRightBottomRect = new SimpleUIRect(param);
+            //param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Top, padding, size);
+            //uiRightTopRect = new SimpleUIRect(param);
+
+            //uiLeftBottomRect.Initialize();
+            //uiLeftTopRect.Initialize();
+            //uiRightBottomRect.Initialize();
+            //uiRightTopRect.Initialize();
+
+            IModel model = IceCreamModel.GetModel(1, 10, 10);
+            element = new XRayElement(model);
+            element.Initialize();
+            element.BeforeRendering += sphereElement_BeforeRendering;
+            element.AfterRendering += sphereElement_AfterRendering;
+
+            //lightElement = new PointLightElement();
+            //lightElement.Initialize();
+            //lightElement.BeforeRendering += pointLightElement_BeforeRendering;
+            //lightElement.AfterRendering += pointLightElement_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -70,42 +110,22 @@ namespace FormShaderDesigner1594Demos
             this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
-        //void SimpleUIRect_AfterRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
-        //{
-        //    IMVP element = sender as IMVP;
-        //    element.UnbindShaderProgram();
-        //}
-
-        //void SimpleUIRect_BeforeRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
-        //{
-        //    mat4 projectionMatrix, viewMatrix, modelMatrix;
-
-        //    {
-        //        IUILayout element = sender as IUILayout;
-        //        element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
-        //    }
-
-        //    {
-        //        IMVP element = sender as IMVP;
-        //        element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
-        //    }
-        //}
-
-        void axisElement_AfterRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
+        void pointLightElement_AfterRendering(object sender, RenderEventArgs e)
         {
             IMVP element = sender as IMVP;
 
             element.ResetShaderProgram();
         }
 
-        void axisElement_BeforeRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
+        void pointLightElement_BeforeRendering(object sender, RenderEventArgs e)
         {
             mat4 projectionMatrix = camera.GetProjectionMat4();
             projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
+            //projectionMatrix = glm.scale(projectionMatrix, new vec3(0.1f, 0.1f, 0.1f));
 
             mat4 viewMatrix = camera.GetViewMat4();
 
-            mat4 modelMatrix = mat4.identity();
+            mat4 modelMatrix = glm.scale(mat4.identity(), new vec3(0.1f, 0.1f, 0.1f));
 
             mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
@@ -114,6 +134,26 @@ namespace FormShaderDesigner1594Demos
             element.SetShaderProgram(mvp);
         }
 
+        void sphereElement_AfterRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
+        {
+            //IMVP element = sender as IMVP;
+
+            //element.ResetShaderProgram();
+        }
+
+        void sphereElement_BeforeRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
+        {
+            mat4 projectionMatrix = camera.GetProjectionMat4();
+            //projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
+
+            mat4 viewMatrix = camera.GetViewMat4();
+
+            mat4 modelMatrix = mat4.identity();
+
+            this.element.projectionMatrix = projectionMatrix;
+            this.element.viewMatrix = viewMatrix;
+            this.element.modelMatrix = modelMatrix;
+        }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -122,8 +162,13 @@ namespace FormShaderDesigner1594Demos
 
         private void FormTranslateOnScreen_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(string.Format("{0}",
-                "Use 'c' to switch camera types between perspective and ortho"));
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("Use 'c' to switch camera types between perspective and ortho");
+            builder.AppendLine("Use 'wsadqe' to translate light's position");
+            builder.AppendLine("Use 'r' to reset lignt's position");
+            builder.AppendLine("Use 'jk' to decrease/increase rendering element count");
+            builder.AppendLine("Use 'p' to switch sphere's polygon mode");
+            MessageBox.Show(builder.ToString());
         }
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -135,9 +180,18 @@ namespace FormShaderDesigner1594Demos
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
 
-            axisElement.Render(arg);
-            uiLeftBottomAxis.Render(arg);
+            element.Render(arg);
+            //lightElement.Render(arg);
 
+            uiLeftBottomAxis.Render(arg);
+            //uiLeftTopAxis.Render(arg);
+            //uiRightBottomAxis.Render(arg);
+            //uiRightTopAxis.Render(arg);
+
+            //uiLeftBottomRect.Render(arg);
+            //uiLeftTopRect.Render(arg);
+            //uiRightBottomRect.Render(arg);
+            //uiRightTopRect.Render(arg);
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
@@ -221,6 +275,31 @@ namespace FormShaderDesigner1594Demos
             else if (e.KeyChar == 'e')
             {
                 translateZ += interval;
+            }
+            else if (e.KeyChar == 'j')
+            {
+                this.element.DecreaseVertexCount();
+            }
+            else if (e.KeyChar == 'k')
+            {
+                this.element.IncreaseVertexCount();
+            }
+            else if (e.KeyChar == 'p')
+            {
+                switch (this.element.polygonMode)
+                {
+                    case PolygonModes.Points:
+                        this.element.polygonMode = PolygonModes.Lines;
+                        break;
+                    case PolygonModes.Lines:
+                        this.element.polygonMode = PolygonModes.Filled;
+                        break;
+                    case PolygonModes.Filled:
+                        this.element.polygonMode = PolygonModes.Points;
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
             }
         }
     }

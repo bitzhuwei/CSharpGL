@@ -15,88 +15,47 @@ namespace FormShaderDesigner1594Demos.SceneElements
 {
     public class XRayElement : SceneElementBase
     {
+        ShaderProgram shaderProgram;
+
+        #region VAO/VBO renderers
 
         VertexArrayObject vertexArrayObject;
+
+        const string strin_Position = "in_Position";
         BufferRenderer positionBufferRenderer;
-        //BufferRenderer colorBufferRenderer;
+
+        const string strin_Color = "in_Color";
+        BufferRenderer colorBufferRenderer;
+
+        const string strin_Normal = "in_Normal";
         BufferRenderer normalBufferRenderer;
+
         IndexBufferRenderer indexBufferRenderer;
 
-        /// <summary>
-        /// shader program
-        /// </summary>
-        private ShaderProgram shaderProgram;
-        const string strin_Position = "in_Position";
-        const string strin_Normal = "in_Normal";
-        //const string strin_Color = "in_Color";
+        #endregion
+
+        #region uniforms
+
+
         const string strmodelMatrix = "modelMatrix";
+        public mat4 modelMatrix;
+
         const string strviewMatrix = "viewMatrix";
+        public mat4 viewMatrix;
+
         const string strprojectionMatrix = "projectionMatrix";
+        public mat4 projectionMatrix;
 
-        const string strlightPosition = "lightPosition";
-        private vec3 lightPosition = new vec3(0.0f, 10.0f, 4.0f);
+        const string strEdgeFallOff = "edgefalloff";
+        public float edgeFallOff = 1.0f;
 
-        public vec3 LightPosition
-        {
-            get { return lightPosition; }
-            set { lightPosition = value; }
-        }
+        #endregion
 
-        const string strSurfaceColor = "SurfaceColor";
-        private vec3 surfaceColor = new vec3(0.75f, 0.75f, 0.75f);
 
-        public vec3 SurfaceColor
-        {
-            get { return surfaceColor; }
-            set { surfaceColor = value; }
-        }
-
-        const string strWarmColor = "WarmColor";
-        private vec3 warmColor = new vec3(0.6f, 0.6f, 0.0f);
-
-        public vec3 WarmColor
-        {
-            get { return warmColor; }
-            set { warmColor = value; }
-        }
-
-        const string strCoolColor = "CoolColor";
-
-        private vec3 coolColor = new vec3(0.0f, 0.0f, 0.6f);
-
-        public vec3 CoolColor
-        {
-            get { return coolColor; }
-            set { coolColor = value; }
-        }
-
-        const string strDiffuseWarm = "DiffuseWarm";
-        private float diffuseWarm = 0.45f;
-
-        public float DiffuseWarm
-        {
-            get { return diffuseWarm; }
-            set { diffuseWarm = value; }
-        }
-
-        const string strDiffuseCool = "DiffuseCool";
-        private float diffuseCool = 0.45f;
-
-        public float DiffuseCool
-        {
-            get { return diffuseCool; }
-            set { diffuseCool = value; }
-        }
-
-        private PolygonModes polygonMode = PolygonModes.Filled;
-
-        public PolygonModes PolygonMode
-        {
-            get { return polygonMode; }
-            set { polygonMode = value; }
-        }
+        public PolygonModes polygonMode = PolygonModes.Filled;
 
         private int indexCount;
+
         private IModel model;
 
         public XRayElement(IModel model)
@@ -116,11 +75,10 @@ namespace FormShaderDesigner1594Demos.SceneElements
 
         protected void InitializeVAO()
         {
-            //IModel model = IceCreamModel.GetModel(1, 10, 10);
             IModel model = this.model;
 
             this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);
-            //this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
+            this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
             this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
             this.indexBufferRenderer = model.GetIndexes() as IndexBufferRenderer;
             this.indexCount = this.indexBufferRenderer.ElementCount;
@@ -139,7 +97,7 @@ namespace FormShaderDesigner1594Demos.SceneElements
             {
                 var vao = new VertexArrayObject(
                     this.positionBufferRenderer,
-                    //colorBufferRenderer, 
+                    this.colorBufferRenderer, 
                     this.normalBufferRenderer,
                     this.indexBufferRenderer);
                 vao.Create(e, this.shaderProgram);
@@ -147,8 +105,14 @@ namespace FormShaderDesigner1594Demos.SceneElements
                 this.vertexArrayObject = vao;
             }
 
+            ShaderProgram program = this.shaderProgram;
             // 绑定shader
-            this.shaderProgram.Bind();
+            program.Bind();
+
+            program.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
+            program.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
+            program.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
+            program.SetUniform(strEdgeFallOff, this.edgeFallOff);
 
             int[] originalPolygonMode = new int[1];
             GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
@@ -161,7 +125,7 @@ namespace FormShaderDesigner1594Demos.SceneElements
             GL.Disable(GL.GL_PRIMITIVE_RESTART);
 
             // 解绑shader
-            this.shaderProgram.Unbind();
+            program.Unbind();
         }
 
 
@@ -174,26 +138,6 @@ namespace FormShaderDesigner1594Demos.SceneElements
             }
 
             base.CleanUnmanagedRes();
-        }
-
-        public void SetUniforms(mat4 projectionMatrix, mat4 viewMatrix, mat4 modelMatrix)
-        {
-            this.shaderProgram.Bind();
-            this.shaderProgram.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
-            this.shaderProgram.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
-            this.shaderProgram.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
-            this.shaderProgram.SetUniform(strlightPosition, this.lightPosition.x, this.lightPosition.y, this.lightPosition.z);
-            this.shaderProgram.SetUniform(strSurfaceColor, this.surfaceColor.x, this.surfaceColor.y, this.surfaceColor.z);
-            this.shaderProgram.SetUniform(strWarmColor, this.warmColor.x, this.warmColor.y, this.warmColor.z);
-            this.shaderProgram.SetUniform(strCoolColor, this.coolColor.x, this.coolColor.y, this.coolColor.z);
-            this.shaderProgram.SetUniform(strDiffuseWarm, this.diffuseWarm);
-            this.shaderProgram.SetUniform(strDiffuseCool, this.diffuseCool);
-
-        }
-
-        public void ResetShaderProgram()
-        {
-            this.shaderProgram.Unbind();
         }
 
         public void DecreaseVertexCount()
