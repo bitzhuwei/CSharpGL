@@ -39,8 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ObjModel.cs" />
+    <Compile Include="ObjFile.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="ObjModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

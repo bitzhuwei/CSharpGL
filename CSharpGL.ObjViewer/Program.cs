@@ -25,7 +25,7 @@ namespace CSharpGL.ObjViewer
 
         static void Test()
         {
-            var model = ObjModel.Load("teapot_0.obj");
+            var model = ObjFile.Load("teapot_0.obj");
         }
     }
 }
