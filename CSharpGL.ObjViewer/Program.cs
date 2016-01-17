@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpGL.OBJParser;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,9 +15,17 @@ namespace CSharpGL.ObjViewer
         [STAThread]
         static void Main()
         {
+            Test();
+            return;
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+        }
+
+        static void Test()
+        {
+            var model = ObjModel.Load("teapot_0.obj");
         }
     }
 }

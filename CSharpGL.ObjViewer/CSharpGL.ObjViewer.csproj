@@ -80,6 +80,12 @@
   <ItemGroup>
     <Content Include="readme.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSharpGL.OBJParser\CSharpGL.OBJParser.csproj">
+      <Project>{c58cb2c1-459c-497e-bdae-3dbe3964dad8}</Project>
+      <Name>CSharpGL.OBJParser</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
