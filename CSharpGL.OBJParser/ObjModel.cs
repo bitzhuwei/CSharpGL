@@ -9,33 +9,15 @@ namespace CSharpGL.OBJParser
 {
     public class ObjModel
     {
-        List<vec3> positionList = new List<vec3>();
+        public List<vec3> positionList = new List<vec3>();
 
-        public List<vec3> PositionList
-        {
-            get { return positionList; }
-            set { positionList = value; }
-        }
-        List<vec2> uvList = new List<vec2>();
+        public List<vec2> uvList = new List<vec2>();
 
-        public List<vec2> UVList
-        {
-            get { return uvList; }
-            set { uvList = value; }
-        }
-        List<vec3> normalList = new List<vec3>();
+        public List<vec3> normalList = new List<vec3>();
 
-        public List<vec3> NormalList
-        {
-            get { return normalList; }
-            set { normalList = value; }
-        }
-        List<Triangle> triangleList = new List<Triangle>();
+        public List<Tuple<int, int, int>> faceList = new List<Tuple<int, int, int>>();
 
-        public List<Triangle> TriangleList
-        {
-            get { return triangleList; }
-            set { triangleList = value; }
-        }
+        internal List<Triangle> innerFaceList = new List<Triangle>();
+
     }
 }
