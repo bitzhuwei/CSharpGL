@@ -15,7 +15,7 @@ namespace CSharpGL.OBJParser
         public List<ObjModel> Models
         {
             get { return models; }
-            set { models = value; }
+            //set { models = value; }
         }
 
         public static ObjFile Load(string filename)
@@ -46,8 +46,15 @@ namespace CSharpGL.OBJParser
         {
             ObjModel result = new ObjModel();
             result.positionList = model.positionList;
+
             result.normalList.AddRange(model.normalList);
-            result.uvList = model.uvList;
+
+            bool hasUV = model.uvList.Count > 0;
+            if (hasUV)
+            {
+                result.uvList.AddRange(model.uvList);
+            }
+
             for (int i = 0; i < model.innerFaceList.Count; i++)
             {
                 var face = model.innerFaceList[i];
@@ -56,6 +63,13 @@ namespace CSharpGL.OBJParser
                 result.normalList[face.vertex0.position] = model.normalList[face.vertex0.normal];
                 result.normalList[face.vertex1.position] = model.normalList[face.vertex1.normal];
                 result.normalList[face.vertex2.position] = model.normalList[face.vertex2.normal];
+
+                if (hasUV)
+                {
+                    result.uvList[face.vertex0.position] = model.uvList[face.vertex0.normal];
+                    result.uvList[face.vertex1.position] = model.uvList[face.vertex1.normal];
+                    result.uvList[face.vertex2.position] = model.uvList[face.vertex2.normal];
+                }
             }
 
             return result;
@@ -107,7 +121,7 @@ namespace CSharpGL.OBJParser
             {
                 model.innerFaceList[i].vertex0.normal = model.innerFaceList[i].vertex0.position;
                 model.innerFaceList[i].vertex1.normal = model.innerFaceList[i].vertex1.position;
-                model.innerFaceList[i].vertex2.normal = model.innerFaceList[i].vertex2.position; 
+                model.innerFaceList[i].vertex2.normal = model.innerFaceList[i].vertex2.position;
             }
         }
 
