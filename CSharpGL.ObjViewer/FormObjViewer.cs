@@ -130,7 +130,7 @@ namespace CSharpGL.ObjViewer
         }
         private void 打开OToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(this.openFileDialog1.ShowDialog()== System.Windows.Forms.DialogResult.OK)
+            if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 this.elements.Clear();
 
@@ -142,6 +142,16 @@ namespace CSharpGL.ObjViewer
                     element.BeforeRendering += element_BeforeRendering;
                     element.AfterRendering += element_AfterRendering;
                     elements.Add(element);
+                }
+
+                if (file.Models.Count == 1)
+                {
+                    var model = file.Models[0];
+                    this.lblInfo.Text = string.Format("{0} vertexes, {1} faces", model.positionList.Count, model.faceList.Count);
+                }
+                else
+                {
+                    this.lblInfo.Text = string.Format("{0} objects", file.Models.Count);
                 }
             }
 
@@ -160,6 +170,11 @@ namespace CSharpGL.ObjViewer
             {
                 item.Render(args);
             }
+        }
+
+        private void 退出XToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
