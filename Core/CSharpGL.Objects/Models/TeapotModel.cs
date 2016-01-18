@@ -1,6 +1,4 @@
-﻿using CSharpGL.Objects.Models;
-using CSharpGL.Objects.VertexBuffers;
-using CSharpGL.OBJParser;
+﻿using CSharpGL.Objects.VertexBuffers;
 using GLM;
 using System;
 using System.Collections.Generic;
@@ -8,28 +6,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.ObjViewer
+namespace CSharpGL.Objects.Models
 {
-    class ObjModelAdpater : IModel
+    public class TeapotModel : IModel
     {
-        private ObjModel model;
-        public ObjModelAdpater(ObjModel model)
-        {
-            this.model = model;
-        }
+        internal List<vec3> positions = new List<vec3>();
+        internal List<vec3> normals = new List<vec3>();
+        internal List<Tuple<ushort, ushort, ushort>> faces = new List<Tuple<ushort, ushort, ushort>>();
 
+        internal TeapotModel() { }
 
         CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
         {
             using (var buffer = new ObjModelPositionBuffer(varNameInShader))
             {
-                buffer.Alloc(model.positionList.Count);
+                buffer.Alloc(positions.Count);
                 unsafe
                 {
                     vec3* array = (vec3*)buffer.FirstElement();
-                    for (int i = 0; i < model.positionList.Count; i++)
+                    for (int i = 0; i < positions.Count; i++)
                     {
-                        array[i] = model.positionList[i];
+                        array[i] = positions[i];
                     }
                 }
 
@@ -40,36 +37,33 @@ namespace CSharpGL.ObjViewer
 
         CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetColorBufferRenderer(string varNameInShader)
         {
-            if (model.uvList.Count == 0) { return null; }
-
             using (var buffer = new ObjModelColorBuffer(varNameInShader))
             {
-                buffer.Alloc(model.uvList.Count);
+                buffer.Alloc(normals.Count);
                 unsafe
                 {
-                    vec2* array = (vec2*)buffer.FirstElement();
-                    for (int i = 0; i < model.uvList.Count; i++)
+                    vec3* array = (vec3*)buffer.FirstElement();
+                    for (int i = 0; i < normals.Count; i++)
                     {
-                        array[i] = model.uvList[i];
+                        array[i] = normals[i];
                     }
                 }
 
                 return buffer.GetRenderer();
             }
-
         }
 
         CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetNormalBufferRenderer(string varNameInShader)
         {
             using (var buffer = new ObjModelNormalBuffer(varNameInShader))
             {
-                buffer.Alloc(model.normalList.Count);
+                buffer.Alloc(normals.Count);
                 unsafe
                 {
                     vec3* array = (vec3*)buffer.FirstElement();
-                    for (int i = 0; i < model.normalList.Count; i++)
+                    for (int i = 0; i < normals.Count; i++)
                     {
-                        array[i] = model.normalList[i];
+                        array[i] = normals[i];
                     }
                 }
 
@@ -80,22 +74,39 @@ namespace CSharpGL.ObjViewer
 
         CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetIndexes()
         {
-            using (var buffer = new IndexBuffer<uint>(DrawMode.Triangles, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
+            using (var buffer = new ObjModelIndexBuffer())
             {
-                buffer.Alloc(model.faceList.Count * 3);
+                buffer.Alloc(faces.Count * 3);
                 unsafe
                 {
                     uint* array = (uint*)buffer.FirstElement();
-                    for (int i = 0; i < model.faceList.Count; i++)
+                    for (int i = 0; i < faces.Count; i++)
                     {
-                        array[i * 3 + 0] = (uint)(model.faceList[i].Item1 - 1);
-                        array[i * 3 + 1] = (uint)(model.faceList[i].Item2 - 1);
-                        array[i * 3 + 2] = (uint)(model.faceList[i].Item3 - 1);
+                        //TODO: 用ushort类型的IndexBuffer就会引发系统错误，为什么？
+                        //array[i * 3 + 0] = (ushort)(faces[i].Item1 - 1);
+                        //array[i * 3 + 1] = (ushort)(faces[i].Item2 - 1);
+                        //array[i * 3 + 2] = (ushort)(faces[i].Item3 - 1);
+
+                        array[i * 3 + 0] = (uint)(faces[i].Item1 - 1);
+                        array[i * 3 + 1] = (uint)(faces[i].Item2 - 1);
+                        array[i * 3 + 2] = (uint)(faces[i].Item3 - 1);
                     }
                 }
 
                 return buffer.GetRenderer();
             }
+        }
+
+        public static IModel GetModel(float radius)
+        {
+            TeapotModel model = TeapotLoader.GetModel();
+
+            for (int i = 0; i < model.positions.Count; i++)
+            {
+                model.positions[i] *= radius;
+            }
+
+            return model;
         }
     }
 
@@ -109,10 +120,10 @@ namespace CSharpGL.ObjViewer
         }
     }
 
-    class ObjModelColorBuffer : PropertyBuffer<vec2>
+    class ObjModelColorBuffer : PropertyBuffer<vec3>
     {
         public ObjModelColorBuffer(string varNameInShader)
-            : base(varNameInShader, 2, GL.GL_FLOAT, BufferUsage.StaticDraw)
+            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
         {
 
         }
@@ -126,4 +137,15 @@ namespace CSharpGL.ObjViewer
 
         }
     }
+
+    class ObjModelIndexBuffer : IndexBuffer<uint>
+    {
+        public ObjModelIndexBuffer()
+            : base(DrawMode.Triangles, IndexElementType.UnsignedInt, BufferUsage.StaticDraw)
+        {
+
+        }
+    }
+
+
 }

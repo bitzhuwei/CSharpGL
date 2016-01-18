@@ -27,17 +27,8 @@ namespace FormShaderDesigner1594Demos
     public partial class FormGooch : Form
     {
         SimpleUIAxis uiLeftBottomAxis;
-        //SimpleUIAxis uiLeftTopAxis;
-        //SimpleUIAxis uiRightBottomAxis;
-        //SimpleUIAxis uiRightTopAxis;
-
-        //SimpleUIRect uiLeftBottomRect;
-        //SimpleUIRect uiLeftTopRect;
-        //SimpleUIRect uiRightBottomRect;
-        //SimpleUIRect uiRightTopRect;
 
         GoochElement element;
-        //PointLightElement lightElement;
 
         Camera camera;
 
@@ -47,61 +38,18 @@ namespace FormShaderDesigner1594Demos
         {
             InitializeComponent();
 
-            //if (CameraDictionary.Instance.ContainsKey(this.GetType().Name))
-            //{
-            //    this.camera = CameraDictionary.Instance[this.GetType().Name];
-            //}
-            //else
-            {
-                this.camera = new Camera(CameraType.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
-                //CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
-            }
+            this.camera = new Camera(CameraType.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
 
             satelliteRoration = new SatelliteRotator(camera);
 
             Padding padding = new System.Windows.Forms.Padding(40, 40, 40, 40);
             Size size = new Size(100, 100);
-            //Size size = new Size(5, 5);
             IUILayoutParam param;
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
             uiLeftBottomAxis = new SimpleUIAxis(param);
-            //param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
-            //uiLeftTopAxis = new SimpleUIAxis(param);
-            //param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
-            //uiRightBottomAxis = new SimpleUIAxis(param);
-            //param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Top, padding, size);
-            //uiRightTopAxis = new SimpleUIAxis(param);
-
             uiLeftBottomAxis.Initialize();
-            //uiLeftTopAxis.Initialize();
-            //uiRightBottomAxis.Initialize();
-            //uiRightTopAxis.Initialize();
 
-            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
-            //uiLeftBottomRect = new SimpleUIRect(param);
-            //param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
-            //uiLeftTopRect = new SimpleUIRect(param);
-            //param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
-            //uiRightBottomRect = new SimpleUIRect(param);
-            //param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Top, padding, size);
-            //uiRightTopRect = new SimpleUIRect(param);
-
-            //uiLeftBottomRect.Initialize();
-            //uiLeftTopRect.Initialize();
-            //uiRightBottomRect.Initialize();
-            //uiRightTopRect.Initialize();
-
-            //IModel model = CubeModel.GetModel(1);
-            //element = new GoochElement(model);
-            //element.Initialize();
-            //element.BeforeRendering += element_BeforeRendering;
-            //element.AfterRendering += element_AfterRendering;
             CreateElement();
-
-            //lightElement = new PointLightElement();
-            //lightElement.Initialize();
-            //lightElement.BeforeRendering += pointLightElement_BeforeRendering;
-            //lightElement.AfterRendering += pointLightElement_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -130,7 +78,6 @@ namespace FormShaderDesigner1594Demos
         {
             mat4 projectionMatrix = camera.GetProjectionMat4();
             projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
-            //projectionMatrix = glm.scale(projectionMatrix, new vec3(0.1f, 0.1f, 0.1f));
 
             mat4 viewMatrix = camera.GetViewMat4();
 
@@ -145,27 +92,17 @@ namespace FormShaderDesigner1594Demos
 
         void element_AfterRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
         {
-            //IMVP element = sender as IMVP;
-
-            //element.ResetShaderProgram();
             this.element.ResetShaderProgram();
         }
 
         void element_BeforeRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
         {
             mat4 projectionMatrix = camera.GetProjectionMat4();
-            //projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
 
             mat4 viewMatrix = camera.GetViewMat4();
 
             mat4 modelMatrix = mat4.identity();
 
-            //mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-            //IMVP element = sender as IMVP;
-
-            //element.SetShaderProgram(mvp);
-            //this.sphereElement.LightPosition = new vec3(translateX, translateY, translateZ);
             this.element.SetUniforms(projectionMatrix, viewMatrix, modelMatrix);
         }
 
@@ -203,17 +140,8 @@ namespace FormShaderDesigner1594Demos
                 this.newElement = null;
             }
             element.Render(arg);
-            //lightElement.Render(arg);
 
             uiLeftBottomAxis.Render(arg);
-            //uiLeftTopAxis.Render(arg);
-            //uiRightBottomAxis.Render(arg);
-            //uiRightTopAxis.Render(arg);
-
-            //uiLeftBottomRect.Render(arg);
-            //uiLeftTopRect.Render(arg);
-            //uiRightBottomRect.Render(arg);
-            //uiRightTopRect.Render(arg);
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
@@ -363,8 +291,7 @@ namespace FormShaderDesigner1594Demos
         }
 
         int currentModelIndex = 1;
-        //static readonly IModel[] models = new IModel[] { CubeModel.GetModel(), IceCreamModel.GetModel(), SphereModel.GetModel(), };
-        static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), };
+        static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
         private float radius = 2;
         private GoochElement newElement;
     }

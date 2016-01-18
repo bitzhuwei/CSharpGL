@@ -54,6 +54,7 @@
     <Compile Include="IMVP.cs" />
     <Compile Include="IMVPHelper.cs" />
     <Compile Include="IRenderable.cs" />
+    <Compile Include="ModelFactories\TeapotFactory.cs" />
     <Compile Include="ModelFactories\CubeFactory.cs" />
     <Compile Include="ModelFactories\IceCreamFactory.cs" />
     <Compile Include="ModelFactories\ModelFactory.cs" />
@@ -61,7 +62,9 @@
     <Compile Include="Models\CubeModel.cs" />
     <Compile Include="Models\IceCreamModel.cs" />
     <Compile Include="Models\IModel.cs" />
+    <Compile Include="Models\TeapotLoader.cs" />
     <Compile Include="Models\SphereModel.cs" />
+    <Compile Include="Models\TeapotModel.cs" />
     <Compile Include="RenderEventArgs.cs" />
     <Compile Include="SceneElements\AxisElement.cs" />
     <Compile Include="Cameras\Camera2Matrix.cs" />
@@ -137,6 +140,9 @@
   <ItemGroup>
     <EmbeddedResource Include="SceneElements\AxisElement.frag" />
     <EmbeddedResource Include="SceneElements\AxisElement.vert" />
+    <EmbeddedResource Include="Models\TeapotModel.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="VertexBuffers\BufferRenderers.cd" />
     <None Include="VertexBuffers\VertexBuffers.cd" />
   </ItemGroup>
