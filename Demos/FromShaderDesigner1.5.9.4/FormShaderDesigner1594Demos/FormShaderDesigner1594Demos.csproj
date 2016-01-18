@@ -48,12 +48,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormPolkadot3d.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPolkadot3d.Designer.cs">
+      <DependentUpon>FormPolkadot3d.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormToon.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormToon.Designer.cs">
       <DependentUpon>FormToon.cs</DependentUpon>
     </Compile>
+    <Compile Include="SceneElements\Polkadot3dElement.cs" />
     <Compile Include="SceneElements\ToonElement.cs" />
     <Compile Include="SceneElements\XRayElement.cs">
       <SubType>Code</SubType>
@@ -78,6 +85,9 @@
       <DependentUpon>FormXRay.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormPolkadot3d.resx">
+      <DependentUpon>FormPolkadot3d.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormGooch.resx">
       <DependentUpon>FormGooch.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,6 +125,8 @@
     </Compile>
     <EmbeddedResource Include="SceneElements\ToonElement.frag" />
     <EmbeddedResource Include="SceneElements\ToonElement.vert" />
+    <EmbeddedResource Include="SceneElements\Polkadot3dElement.frag" />
+    <EmbeddedResource Include="SceneElements\Polkadot3dElement.vert" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

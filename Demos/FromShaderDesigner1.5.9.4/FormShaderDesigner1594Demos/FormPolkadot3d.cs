@@ -24,17 +24,17 @@ namespace FormShaderDesigner1594Demos
     /// <summary>
     /// 本例演示了SimpleUIAxis、SimpleUIRect的用法，也证明了CSharpGL.Maths库里的mat4的mvp相乘的结果与glgl里的结果相同。
     /// </summary>
-    public partial class FormGooch : Form
+    public partial class FormPolkadot3d : Form
     {
         SimpleUIAxis uiLeftBottomAxis;
 
-        GoochElement element;
+        Polkadot3dElement element;
 
         Camera camera;
 
         SatelliteRotator satelliteRoration;
 
-        public FormGooch()
+        public FormPolkadot3d()
         {
             InitializeComponent();
 
@@ -92,7 +92,6 @@ namespace FormShaderDesigner1594Demos
 
         void element_AfterRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
         {
-            this.element.ResetShaderProgram();
         }
 
         void element_BeforeRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
@@ -103,7 +102,9 @@ namespace FormShaderDesigner1594Demos
 
             mat4 modelMatrix = mat4.identity();
 
-            this.element.SetUniforms(projectionMatrix, viewMatrix, modelMatrix);
+            this.element.projectionMatrix = projectionMatrix;
+            this.element.viewMatrix = viewMatrix;
+            this.element.modelMatrix = modelMatrix;
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
@@ -240,7 +241,7 @@ namespace FormShaderDesigner1594Demos
                 this.translateX = 0;
                 this.translateY = 0;
                 this.translateZ = 0;
-                this.element.lightPosition = new vec3();
+                this.element.LightPosition = new vec3();
             }
             else if (e.KeyChar == 'p')
             {
@@ -283,7 +284,7 @@ namespace FormShaderDesigner1594Demos
 
         private void CreateElement()
         {
-            var element = new GoochElement(factories[currentModelIndex].Create(this.radius));
+            var element = new Polkadot3dElement(factories[currentModelIndex].Create(this.radius));
             element.Initialize();
             element.BeforeRendering += element_BeforeRendering;
             element.AfterRendering += element_AfterRendering;
@@ -293,6 +294,6 @@ namespace FormShaderDesigner1594Demos
         int currentModelIndex = 1;
         static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
         private float radius = 2;
-        private GoochElement newElement;
+        private Polkadot3dElement newElement;
     }
 }

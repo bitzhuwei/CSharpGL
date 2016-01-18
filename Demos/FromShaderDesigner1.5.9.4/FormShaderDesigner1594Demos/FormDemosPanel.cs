@@ -32,5 +32,10 @@ namespace FormShaderDesigner1594Demos
             (new FormToon()).Show();
         }
 
+        private void btnPolkadot3d_Click(object sender, EventArgs e)
+        {
+            (new FormPolkadot3d()).Show();
+        }
+
     }
 }

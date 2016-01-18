@@ -1,71 +1,85 @@
-﻿using GLM;
+﻿using CSharpGL;
 using CSharpGL.Objects;
-using CSharpGL.Objects.Cameras;
+using CSharpGL.Objects.Models;
 using CSharpGL.Objects.Shaders;
+using CSharpGL.Objects.VertexBuffers;
+using GLM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CSharpGL.Objects.VertexBuffers;
-using CSharpGL.Objects.Models;
-using CSharpGL;
 
 namespace FormShaderDesigner1594Demos.SceneElements
 {
-    public class GoochElement : SceneElementBase
+    class Polkadot3dElement : SceneElementBase
     {
+        ShaderProgram shaderProgram;
+
+        #region VAO/VBO renderers
 
         VertexArrayObject vertexArrayObject;
+
+        const string strin_Position = "in_Position";
         BufferRenderer positionBufferRenderer;
+
+        //const string strin_Color = "in_Color";
         //BufferRenderer colorBufferRenderer;
+
+        const string strin_Normal = "in_Normal";
         BufferRenderer normalBufferRenderer;
+
         BufferRenderer indexBufferRenderer;
 
-        /// <summary>
-        /// shader program
-        /// </summary>
-        private ShaderProgram shaderProgram;
-        const string strin_Position = "in_Position";
-        const string strin_Normal = "in_Normal";
-        //const string strin_Color = "in_Color";
+        #endregion
+
+        #region uniforms
+
         const string strmodelMatrix = "modelMatrix";
+        public mat4 modelMatrix;
+
         const string strviewMatrix = "viewMatrix";
+        public mat4 viewMatrix;
+
         const string strprojectionMatrix = "projectionMatrix";
+        public mat4 projectionMatrix;
 
-        const string strlightPosition = "lightPosition";
-        public vec3 lightPosition = new vec3(0.0f, 10.0f, 4.0f);
+        const string strSpecularContribution = "SpecularContribution";
+        public float SpecularContribution = 0.36f;
 
-        const string strSurfaceColor = "SurfaceColor";
-        public vec3 surfaceColor = new vec3(0.75f, 0.75f, 0.75f);
+        const string strLightPosition = "LightPosition";
+        public vec3 LightPosition = new vec3(0, 4, 5);
 
-        const string strWarmColor = "WarmColor";
-        public vec3 warmColor = new vec3(0.6f, 0.6f, 0.0f);
+        const string strSpacing = "Spacing";
+        public vec3 Spacing = new vec3(0.314f, 0.36f, 0.261f);
 
-        const string strCoolColor = "CoolColor";
+        const string strDotSize = "DotSize";
+        public float DotSize = 0.123f;
 
-        public vec3 coolColor = new vec3(0.0f, 0.0f, 0.6f);
+        const string strModelColor = "ModelColor";
+        public vec3 ModelColor = new vec3(0.75f, 0.2f, 0.1f);
 
-        const string strDiffuseWarm = "DiffuseWarm";
-        public float diffuseWarm = 0.45f;
+        const string strPolkaDotColor = "PolkaDotColor";
+        public vec3 PolkaDotColor = new vec3(1, 1, 1);
 
-        const string strDiffuseCool = "DiffuseCool";
-        public float diffuseCool = 0.45f;
+        #endregion
+
 
         public PolygonModes polygonMode = PolygonModes.Filled;
 
         private int indexCount;
+
         private IModel model;
 
-        public GoochElement(IModel model)
+        public Polkadot3dElement(IModel model)
         {
             this.model = model;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.GoochElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.GoochElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.Polkadot3dElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.Polkadot3dElement.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -74,13 +88,13 @@ namespace FormShaderDesigner1594Demos.SceneElements
 
         protected void InitializeVAO()
         {
-            //IModel model = IceCreamModel.GetModel(1, 10, 10);
             IModel model = this.model;
 
             this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);
             //this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
             this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
             this.indexBufferRenderer = model.GetIndexes();
+
             IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
             if (renderer != null)
             {
@@ -100,8 +114,8 @@ namespace FormShaderDesigner1594Demos.SceneElements
             if (this.vertexArrayObject == null)
             {
                 var vao = new VertexArrayObject(
-                    this.positionBufferRenderer, 
-                    //colorBufferRenderer, 
+                    this.positionBufferRenderer,
+                    //this.colorBufferRenderer,
                     this.normalBufferRenderer,
                     this.indexBufferRenderer);
                 vao.Create(e, this.shaderProgram);
@@ -109,8 +123,19 @@ namespace FormShaderDesigner1594Demos.SceneElements
                 this.vertexArrayObject = vao;
             }
 
+            ShaderProgram program = this.shaderProgram;
             // 绑定shader
-            this.shaderProgram.Bind();
+            program.Bind();
+
+            program.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
+            program.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
+            program.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
+            program.SetUniform(strSpecularContribution, SpecularContribution);
+            program.SetUniform(strLightPosition, LightPosition.x, LightPosition.y, LightPosition.z);
+            program.SetUniform(strSpacing, Spacing.x, Spacing.y, Spacing.z);
+            program.SetUniform(strDotSize, DotSize);
+            program.SetUniform(strModelColor, ModelColor.x, ModelColor.y, ModelColor.z);
+            program.SetUniform(strPolkaDotColor, PolkaDotColor.x, PolkaDotColor.y, PolkaDotColor.z);
 
             int[] originalPolygonMode = new int[1];
             GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
@@ -118,12 +143,15 @@ namespace FormShaderDesigner1594Demos.SceneElements
             GL.Enable(GL.GL_PRIMITIVE_RESTART);
             GL.PrimitiveRestartIndex(uint.MaxValue);
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);
+            GL.Enable(GL.GL_BLEND);
+            GL.BlendFunc(CSharpGL.Enumerations.BlendingSourceFactor.SourceAlpha, CSharpGL.Enumerations.BlendingDestinationFactor.OneMinusSourceAlpha);
             this.vertexArrayObject.Render(e, this.shaderProgram);
+            GL.Disable(GL.GL_BLEND);
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
             GL.Disable(GL.GL_PRIMITIVE_RESTART);
 
             // 解绑shader
-            this.shaderProgram.Unbind();
+            program.Unbind();
         }
 
 
@@ -138,26 +166,6 @@ namespace FormShaderDesigner1594Demos.SceneElements
             base.CleanUnmanagedRes();
         }
 
-        public void SetUniforms(mat4 projectionMatrix, mat4 viewMatrix, mat4 modelMatrix)
-        {
-            this.shaderProgram.Bind();
-            this.shaderProgram.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
-            this.shaderProgram.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
-            this.shaderProgram.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
-            this.shaderProgram.SetUniform(strlightPosition, this.lightPosition.x, this.lightPosition.y, this.lightPosition.z);
-            this.shaderProgram.SetUniform(strSurfaceColor, this.surfaceColor.x, this.surfaceColor.y, this.surfaceColor.z);
-            this.shaderProgram.SetUniform(strWarmColor, this.warmColor.x, this.warmColor.y, this.warmColor.z);
-            this.shaderProgram.SetUniform(strCoolColor, this.coolColor.x, this.coolColor.y, this.coolColor.z);
-            this.shaderProgram.SetUniform(strDiffuseWarm, this.diffuseWarm);
-            this.shaderProgram.SetUniform(strDiffuseCool, this.diffuseCool);
-
-        }
-
-        public void ResetShaderProgram()
-        {
-            this.shaderProgram.Unbind();
-        }
-
         public void DecreaseVertexCount()
         {
             IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
@@ -166,7 +174,6 @@ namespace FormShaderDesigner1594Demos.SceneElements
                 if (renderer.ElementCount > 0)
                     renderer.ElementCount--;
             }
-            
         }
 
         public void IncreaseVertexCount()
@@ -177,10 +184,6 @@ namespace FormShaderDesigner1594Demos.SceneElements
                 if (renderer.ElementCount < this.indexCount)
                     renderer.ElementCount++;
             }
-            
         }
-
-
     }
-
 }
