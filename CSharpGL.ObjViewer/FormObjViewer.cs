@@ -72,7 +72,7 @@ namespace CSharpGL.ObjViewer
 
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
-            this.camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
+            //this.camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
             ////  Set the projection matrix.
             //GL.MatrixMode(GL.GL_PROJECTION);
 
