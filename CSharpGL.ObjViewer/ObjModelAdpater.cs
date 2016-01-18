@@ -100,7 +100,7 @@ namespace CSharpGL.ObjViewer
     }
 
 
-    class ObjModelPositionBuffer : PropertyBuffer<CubePosition>
+    class ObjModelPositionBuffer : PropertyBuffer<vec3>
     {
         public ObjModelPositionBuffer(string varNameInShader)
             : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
@@ -109,7 +109,7 @@ namespace CSharpGL.ObjViewer
         }
     }
 
-    class ObjModelColorBuffer : PropertyBuffer<CubeColor>
+    class ObjModelColorBuffer : PropertyBuffer<vec2>
     {
         public ObjModelColorBuffer(string varNameInShader)
             : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
@@ -118,7 +118,7 @@ namespace CSharpGL.ObjViewer
         }
     }
 
-    class ObjModelNormalBuffer : PropertyBuffer<CubeNormal>
+    class ObjModelNormalBuffer : PropertyBuffer<vec3>
     {
         public ObjModelNormalBuffer(string varNameInShader)
             : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)

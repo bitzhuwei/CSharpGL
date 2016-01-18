@@ -124,10 +124,6 @@ namespace CSharpGL.OBJParser
                         sum = sum + faceNormals[i];
                         shared++;
                     }
-                    //if (face.vertex0.position == i || face.vertex1.position == i || face.vertex2.position == i)
-                    //{
-                    //    Console.WriteLine();
-                    //}
                 }
                 if (shared > 0)
                 {
@@ -137,13 +133,6 @@ namespace CSharpGL.OBJParser
                 model.normalList[i] = sum;
             }
 
-            //model.innerFaceList.Clear();
-            //for (int i = 0; i < model.innerFaceList.Count; i++)
-            //{
-            //    model.innerFaceList[i].vertex0.normal = model.innerFaceList[i].vertex0.position;
-            //    model.innerFaceList[i].vertex1.normal = model.innerFaceList[i].vertex1.position;
-            //    model.innerFaceList[i].vertex2.normal = model.innerFaceList[i].vertex2.position;
-            //}
         }
 
         private static void LoadModels(string filename, ObjFile file)
@@ -236,16 +225,15 @@ namespace CSharpGL.OBJParser
 
         static readonly char[] separator = new char[] { ' ' };
         static readonly char[] separator1 = new char[] { '/' };
-        //static readonly char[] separator2 = new char[] { '//' };
     }
 
-    public class VertexInfo
+    class VertexInfo
     {
         public int position;
         public int normal;
         public int uv;
     }
-    public class Triangle
+    class Triangle
     {
         public VertexInfo vertex0;
         public VertexInfo vertex1;

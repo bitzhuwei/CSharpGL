@@ -40,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ObjFile.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="ObjModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
