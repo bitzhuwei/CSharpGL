@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FormShaderDesigner1594Demos.Models
+namespace CSharpGL.Objects.Models
 {
     /// <summary>
     /// 一个立方体的模型。

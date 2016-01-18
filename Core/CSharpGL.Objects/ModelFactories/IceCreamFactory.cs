@@ -1,17 +1,17 @@
-﻿using FormShaderDesigner1594Demos.Models;
+﻿using CSharpGL.Objects.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FormShaderDesigner1594Demos.ModelFactories
+namespace CSharpGL.Objects.ModelFactories
 {
-    class CubeFactory : ModelFactory
+    public class IceCreamFactory : ModelFactory
     {
         public override IModel Create(float radius)
         {
-            return CubeModel.GetModel(radius);
+            return IceCreamModel.GetModel(radius);
         }
     }
 }

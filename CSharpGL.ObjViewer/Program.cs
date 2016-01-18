@@ -15,12 +15,13 @@ namespace CSharpGL.ObjViewer
         [STAThread]
         static void Main()
         {
-            Test();
-            return;
+            //Test();
+            //return;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.Run(new FormCylinderElement());
+            Application.Run(new FormObjViewer());
         }
 
         static void Test()

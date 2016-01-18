@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CSharpGL.Objects.VertexBuffers;
-using FormShaderDesigner1594Demos.Models;
+using CSharpGL.Objects.Models;
 using CSharpGL;
 
 namespace FormShaderDesigner1594Demos.SceneElements

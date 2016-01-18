@@ -1,19 +1,18 @@
-﻿using GLM;
-using CSharpGL.Objects;
-using CSharpGL.Objects.Cameras;
+﻿using CSharpGL.Objects;
+using CSharpGL.Objects.Models;
 using CSharpGL.Objects.Shaders;
+using CSharpGL.Objects.VertexBuffers;
+using CSharpGL.OBJParser;
+using GLM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CSharpGL.Objects.VertexBuffers;
-using CSharpGL;
-using CSharpGL.Objects.Models;
 
-namespace FormShaderDesigner1594Demos.SceneElements
+namespace CSharpGL.ObjViewer
 {
-    public class XRayElement : SceneElementBase
+    class ObjModelElement : SceneElementBase
     {
         ShaderProgram shaderProgram;
 
@@ -24,8 +23,8 @@ namespace FormShaderDesigner1594Demos.SceneElements
         const string strin_Position = "in_Position";
         BufferRenderer positionBufferRenderer;
 
-        const string strin_Color = "in_Color";
-        BufferRenderer colorBufferRenderer;
+        //const string strin_Color = "in_Color";
+        //BufferRenderer colorBufferRenderer;
 
         const string strin_Normal = "in_Normal";
         BufferRenderer normalBufferRenderer;
@@ -46,9 +45,6 @@ namespace FormShaderDesigner1594Demos.SceneElements
         const string strprojectionMatrix = "projectionMatrix";
         public mat4 projectionMatrix;
 
-        const string strEdgeFallOff = "edgefalloff";
-        public float edgeFallOff = 1.0f;
-
         #endregion
 
 
@@ -56,17 +52,17 @@ namespace FormShaderDesigner1594Demos.SceneElements
 
         private int indexCount;
 
-        private IModel model;
+        private ObjModelAdpater objModelAdapter;
 
-        public XRayElement(IModel model)
+        public ObjModelElement(ObjModel objModel)
         {
-            this.model = model;
+            this.objModelAdapter = new ObjModelAdpater(objModel);
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.XRayElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.XRayElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"ObjModelElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"ObjModelElement.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -75,10 +71,10 @@ namespace FormShaderDesigner1594Demos.SceneElements
 
         protected void InitializeVAO()
         {
-            IModel model = this.model;
+            IModel model = this.objModelAdapter;
 
             this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);
-            this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
+            //this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
             this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
             this.indexBufferRenderer = model.GetIndexes();
 
@@ -102,7 +98,7 @@ namespace FormShaderDesigner1594Demos.SceneElements
             {
                 var vao = new VertexArrayObject(
                     this.positionBufferRenderer,
-                    this.colorBufferRenderer,
+                    //this.colorBufferRenderer,
                     this.normalBufferRenderer,
                     this.indexBufferRenderer);
                 vao.Create(e, this.shaderProgram);
@@ -117,20 +113,13 @@ namespace FormShaderDesigner1594Demos.SceneElements
             program.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
             program.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
             program.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
-            program.SetUniform(strEdgeFallOff, this.edgeFallOff);
 
             int[] originalPolygonMode = new int[1];
             GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
 
-            GL.Enable(GL.GL_PRIMITIVE_RESTART);
-            GL.PrimitiveRestartIndex(uint.MaxValue);
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);
-            GL.Enable(GL.GL_BLEND);
-            GL.BlendFunc(CSharpGL.Enumerations.BlendingSourceFactor.SourceAlpha, CSharpGL.Enumerations.BlendingDestinationFactor.OneMinusSourceAlpha);
             this.vertexArrayObject.Render(e, this.shaderProgram);
-            GL.Disable(GL.GL_BLEND);
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
-            GL.Disable(GL.GL_PRIMITIVE_RESTART);
 
             // 解绑shader
             program.Unbind();
@@ -170,5 +159,4 @@ namespace FormShaderDesigner1594Demos.SceneElements
 
 
     }
-
 }

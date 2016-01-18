@@ -8,13 +8,14 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FormShaderDesigner1594Demos.Models
+namespace CSharpGL.Objects.Models
 {
     /// <summary>
-    /// 一个球体的模型。
-    /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_sphere.jpg
+    /// 一个类似冰激凌形状的模型。偶然得之。
+    /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000064.jpg
+    /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000065.jpg
     /// </summary>
-    public class SphereModel : IModel
+    public class IceCreamModel : IModel
     {
         vec3[] positions;
         vec3[] normals;
@@ -27,23 +28,12 @@ namespace FormShaderDesigner1594Demos.Models
             return new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
         }
 
-        private SphereModel() { }
+        private IceCreamModel() { }
 
-        static readonly Func<int, int, vec3> defaultColorGenerator = new Func<int, int, vec3>(DefaultColorGenerator);
-
-        private static vec3 DefaultColorGenerator(int latitude, int longitude)
+        public static IModel GetModel(float radius = 1.0f, int halfLatitudeCount = 10, int longitudeCount = 10)
         {
-            return RandomVec3();
-        }
-
-        public static IModel GetModel(float radius = 1.0f, int halfLatitudeCount = 10, int longitudeCount = 40, Func<int, int, vec3> colorGenerator = null)
-        {
-            if (radius <= 0.0f || halfLatitudeCount < 1 || longitudeCount < 2) { throw new Exception(); }
-
-            if (colorGenerator == null) { colorGenerator = defaultColorGenerator; }
-
-            SphereModel sphere = new SphereModel();
-            int vertexCount = (halfLatitudeCount * 2 + 1) * (longitudeCount);
+            IceCreamModel sphere = new IceCreamModel();
+            int vertexCount = (halfLatitudeCount * 2 + 1) * (longitudeCount + 1);
             sphere.positions = new vec3[vertexCount];
             sphere.normals = new vec3[vertexCount];
             sphere.colors = new vec3[vertexCount];
@@ -56,12 +46,12 @@ namespace FormShaderDesigner1594Demos.Models
             // 北半球
             for (int i = 0; i < halfLatitudeCount; i++)
             {
-                double theta = (halfLatitudeCount - i) * Math.PI / 2 / halfLatitudeCount;
+                double theta = Math.PI / 2 * (halfLatitudeCount - i);
                 double y = radius * Math.Sin(theta);
-                for (int j = 0; j < longitudeCount; j++)
+                for (int j = 0; j < longitudeCount + 1; j++)
                 {
-                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 2 / longitudeCount);
-                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 2 / longitudeCount);
+                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 4 / longitudeCount);
+                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 4 / longitudeCount);
 
                     vec3 position = new vec3((float)x, (float)y, (float)z);
                     sphere.positions[index] = position;
@@ -69,7 +59,7 @@ namespace FormShaderDesigner1594Demos.Models
                     position.Normalize();
                     sphere.normals[index] = position;
 
-                    sphere.colors[index] = colorGenerator(i, j);
+                    sphere.colors[index] = RandomVec3();
 
                     index++;
                 }
@@ -79,10 +69,10 @@ namespace FormShaderDesigner1594Demos.Models
             {
                 double theta = 0;
                 double y = 0;
-                for (int j = 0; j < longitudeCount; j++)
+                for (int j = 0; j < longitudeCount + 1; j++)
                 {
-                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 2 / longitudeCount);
-                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 2 / longitudeCount);
+                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 4 / longitudeCount);
+                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 4 / longitudeCount);
 
                     vec3 position = new vec3((float)x, (float)y, (float)z);
                     sphere.positions[index] = position;
@@ -90,7 +80,7 @@ namespace FormShaderDesigner1594Demos.Models
                     position.Normalize();
                     sphere.normals[index] = position;
 
-                    sphere.colors[index] = colorGenerator(-1, j);
+                    sphere.colors[index] = RandomVec3();
 
                     index++;
                 }
@@ -101,10 +91,10 @@ namespace FormShaderDesigner1594Demos.Models
             {
                 double theta = (i + 1) * Math.PI / 2 / halfLatitudeCount;
                 double y = -radius * Math.Sin(theta);
-                for (int j = 0; j < longitudeCount; j++)
+                for (int j = 0; j < longitudeCount + 1; j++)
                 {
-                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 2 / longitudeCount);
-                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 2 / longitudeCount);
+                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 4 / longitudeCount);
+                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 4 / longitudeCount);
 
                     vec3 position = new vec3((float)x, (float)y, (float)z);
                     sphere.positions[index] = position;
@@ -112,7 +102,7 @@ namespace FormShaderDesigner1594Demos.Models
                     position.Normalize();
                     sphere.normals[index] = position;
 
-                    sphere.colors[index] = colorGenerator(i, j);
+                    sphere.colors[index] = RandomVec3();
 
                     index++;
                 }
@@ -122,14 +112,10 @@ namespace FormShaderDesigner1594Demos.Models
             index = 0;
             for (int i = 0; i < halfLatitudeCount * 2; i++)
             {
-                for (int j = 0; j < (longitudeCount); j++)
+                for (int j = 0; j < longitudeCount + 1; j++)
                 {
-                    sphere.indexes[index++] = (uint)((longitudeCount) * (i + 0) + j);
-                    sphere.indexes[index++] = (uint)((longitudeCount) * (i + 1) + j);
-                }
-                {
-                    sphere.indexes[index++] = (uint)((longitudeCount) * (i + 0) + 0);
-                    sphere.indexes[index++] = (uint)((longitudeCount) * (i + 1) + 0);
+                    sphere.indexes[index++] = (uint)((longitudeCount + 1) * i + j);
+                    sphere.indexes[index++] = (uint)((longitudeCount + 1) * (i + 1) + j);
                 }
                 sphere.indexes[index++] = uint.MaxValue;
             }
@@ -137,59 +123,61 @@ namespace FormShaderDesigner1594Demos.Models
             return sphere;
         }
 
-
         CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
         {
-            using (var buffer = new SphereModelPositionBuffer(varNameInShader))
+            using (var positionBuffer = new IceCreamModelPositionBuffer(varNameInShader))
             {
-                buffer.Alloc(positions.Length);
+                positionBuffer.Alloc(positions.Length);
                 unsafe
                 {
-                    vec3* array = (vec3*)buffer.FirstElement();
+                    vec3* array = (vec3*)positionBuffer.FirstElement();
                     for (int i = 0; i < positions.Length; i++)
                     {
                         array[i] = positions[i];
                     }
                 }
 
-                return buffer.GetRenderer();
+                return positionBuffer.GetRenderer();
             }
+
         }
 
         CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetColorBufferRenderer(string varNameInShader)
         {
-            using (var buffer = new SphereModelColorBuffer(varNameInShader))
+            using (var colorBuffer = new IceCreamModelColorBuffer(varNameInShader))
             {
-                buffer.Alloc(colors.Length);
+                colorBuffer.Alloc(colors.Length);
                 unsafe
                 {
-                    vec3* array = (vec3*)buffer.FirstElement();
+                    vec3* array = (vec3*)colorBuffer.FirstElement();
                     for (int i = 0; i < colors.Length; i++)
                     {
                         array[i] = colors[i];
                     }
                 }
 
-                return buffer.GetRenderer();
+                return colorBuffer.GetRenderer();
             }
+
         }
 
         CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetNormalBufferRenderer(string varNameInShader)
         {
-            using (var buffer = new SphereModelNormalBuffer(varNameInShader))
+            using (var normalBuffer = new IceCreamModelNormalBuffer(varNameInShader))
             {
-                buffer.Alloc(normals.Length);
+                normalBuffer.Alloc(normals.Length);
                 unsafe
                 {
-                    vec3* array = (vec3*)buffer.FirstElement();
+                    vec3* array = (vec3*)normalBuffer.FirstElement();
                     for (int i = 0; i < normals.Length; i++)
                     {
                         array[i] = normals[i];
                     }
                 }
 
-                return buffer.GetRenderer();
+                return normalBuffer.GetRenderer();
             }
+
         }
 
         CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetIndexes()
@@ -199,10 +187,10 @@ namespace FormShaderDesigner1594Demos.Models
                 indexBuffer.Alloc(indexes.Length);
                 unsafe
                 {
-                    uint* indexArray = (uint*)indexBuffer.FirstElement();
+                    uint* array = (uint*)indexBuffer.FirstElement();
                     for (int i = 0; i < indexes.Length; i++)
                     {
-                        indexArray[i] = indexes[i];
+                        array[i] = indexes[i];
                     }
                 }
 
@@ -211,27 +199,27 @@ namespace FormShaderDesigner1594Demos.Models
         }
     }
 
-    class SphereModelPositionBuffer : PropertyBuffer<vec3>
+    class IceCreamModelPositionBuffer : PropertyBuffer<vec3>
     {
-        public SphereModelPositionBuffer(string varNameInShader)
+        public IceCreamModelPositionBuffer(string varNameInShader)
             : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
         {
 
         }
     }
 
-    class SphereModelColorBuffer : PropertyBuffer<vec3>
+    class IceCreamModelColorBuffer : PropertyBuffer<vec3>
     {
-        public SphereModelColorBuffer(string varNameInShader)
+        public IceCreamModelColorBuffer(string varNameInShader)
             : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
         {
 
         }
     }
 
-    class SphereModelNormalBuffer : PropertyBuffer<vec3>
+    class IceCreamModelNormalBuffer : PropertyBuffer<vec3>
     {
-        public SphereModelNormalBuffer(string varNameInShader)
+        public IceCreamModelNormalBuffer(string varNameInShader)
             : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
         {
 

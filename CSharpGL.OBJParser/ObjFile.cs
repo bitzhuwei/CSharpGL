@@ -60,17 +60,28 @@ namespace CSharpGL.OBJParser
                 var face = model.innerFaceList[i];
                 var tuple = new Tuple<int, int, int>(face.vertex0.position, face.vertex1.position, face.vertex2.position);
                 result.faceList.Add(tuple);
-                result.normalList[face.vertex0.position] = model.normalList[face.vertex0.normal];
-                result.normalList[face.vertex1.position] = model.normalList[face.vertex1.normal];
-                result.normalList[face.vertex2.position] = model.normalList[face.vertex2.normal];
+                if (face.vertex0.normal > 0)
+                    result.normalList[face.vertex0.position - 1] = model.normalList[face.vertex0.normal - 1];
+                if (face.vertex1.normal > 0)
+                    result.normalList[face.vertex1.position - 1] = model.normalList[face.vertex1.normal - 1];
+                if (face.vertex2.normal > 0)
+                    result.normalList[face.vertex2.position - 1] = model.normalList[face.vertex2.normal - 1];
 
                 if (hasUV)
                 {
-                    result.uvList[face.vertex0.position] = model.uvList[face.vertex0.normal];
-                    result.uvList[face.vertex1.position] = model.uvList[face.vertex1.normal];
-                    result.uvList[face.vertex2.position] = model.uvList[face.vertex2.normal];
+                    if (face.vertex0.uv > 0)
+                        result.uvList[face.vertex0.position - 1] = model.uvList[face.vertex0.uv - 1];
+                    if (face.vertex1.uv > 0)
+                        result.uvList[face.vertex1.position - 1] = model.uvList[face.vertex1.uv - 1];
+                    if (face.vertex2.uv > 0)
+                        result.uvList[face.vertex2.position - 1] = model.uvList[face.vertex2.uv - 1];
                 }
+
+                result.faceList.Add(new Tuple<int, int, int>(face.vertex0.position, face.vertex1.position, face.vertex2.position));
+                //result.faceList[i] = new Tuple<int, int, int>(face.vertex0.position, face.vertex1.position, face.vertex2.position);
             }
+
+            //model.innerFaceList.Clear();
 
             return result;
         }
@@ -88,12 +99,14 @@ namespace CSharpGL.OBJParser
             if (model.normalList.Count > 0) { return; }
 
             var faceNormals = new vec3[model.innerFaceList.Count];
+            model.normalList.AddRange(new vec3[model.positionList.Count]);
+
             for (int i = 0; i < model.innerFaceList.Count; i++)
             {
                 var face = model.innerFaceList[i];
-                vec3 vertex0 = model.positionList[face.vertex0.position];
-                vec3 vertex1 = model.positionList[face.vertex1.position];
-                vec3 vertex2 = model.positionList[face.vertex2.position];
+                vec3 vertex0 = model.positionList[face.vertex0.position - 1];
+                vec3 vertex1 = model.positionList[face.vertex1.position - 1];
+                vec3 vertex2 = model.positionList[face.vertex2.position - 1];
                 vec3 v1 = vertex0 - vertex2;
                 vec3 v2 = vertex2 - vertex1;
                 faceNormals[i] = v1.cross(v2);
@@ -105,24 +118,32 @@ namespace CSharpGL.OBJParser
                 int shared = 0;
                 for (int j = 0; j < model.innerFaceList.Count; j++)
                 {
-                    var face = model.innerFaceList[i];
-                    if (face.vertex0.position == i || face.vertex1.position == i || face.vertex2.position == i)
+                    var face = model.innerFaceList[j];
+                    if (face.vertex0.position - 1 == i || face.vertex1.position - 1 == i || face.vertex2.position - 1 == i)
                     {
                         sum = sum + faceNormals[i];
                         shared++;
                     }
+                    //if (face.vertex0.position == i || face.vertex1.position == i || face.vertex2.position == i)
+                    //{
+                    //    Console.WriteLine();
+                    //}
                 }
-                sum = sum / shared;
-                sum.Normalize();
+                if (shared > 0)
+                {
+                    sum = sum / shared;
+                    sum.Normalize();
+                }
                 model.normalList[i] = sum;
             }
 
-            for (int i = 0; i < model.innerFaceList.Count; i++)
-            {
-                model.innerFaceList[i].vertex0.normal = model.innerFaceList[i].vertex0.position;
-                model.innerFaceList[i].vertex1.normal = model.innerFaceList[i].vertex1.position;
-                model.innerFaceList[i].vertex2.normal = model.innerFaceList[i].vertex2.position;
-            }
+            //model.innerFaceList.Clear();
+            //for (int i = 0; i < model.innerFaceList.Count; i++)
+            //{
+            //    model.innerFaceList[i].vertex0.normal = model.innerFaceList[i].vertex0.position;
+            //    model.innerFaceList[i].vertex1.normal = model.innerFaceList[i].vertex1.position;
+            //    model.innerFaceList[i].vertex2.normal = model.innerFaceList[i].vertex2.position;
+            //}
         }
 
         private static void LoadModels(string filename, ObjFile file)

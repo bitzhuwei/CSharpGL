@@ -54,10 +54,6 @@
     <Compile Include="FormToon.Designer.cs">
       <DependentUpon>FormToon.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelFactories\IceCreamFactory.cs" />
-    <Compile Include="ModelFactories\SphereFactory.cs" />
-    <Compile Include="ModelFactories\CubeFactory.cs" />
-    <Compile Include="ModelFactories\ModelFactory.cs" />
     <Compile Include="SceneElements\ToonElement.cs" />
     <Compile Include="SceneElements\XRayElement.cs">
       <SubType>Code</SubType>
@@ -81,10 +77,6 @@
     <Compile Include="FormXRay.Designer.cs">
       <DependentUpon>FormXRay.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\CubeModel.cs" />
-    <Compile Include="Models\IceCreamModel.cs" />
-    <Compile Include="Models\IModel.cs" />
-    <Compile Include="Models\SphereModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormGooch.resx">
       <DependentUpon>FormGooch.cs</DependentUpon>

@@ -1,13 +1,13 @@
-﻿using FormShaderDesigner1594Demos.Models;
+﻿using CSharpGL.Objects.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FormShaderDesigner1594Demos.ModelFactories
+namespace CSharpGL.Objects.ModelFactories
 {
-    abstract class ModelFactory
+    public abstract class ModelFactory
     {
         public abstract IModel Create(float radius);
     }

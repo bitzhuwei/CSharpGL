@@ -15,9 +15,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSharpGL;
-using FormShaderDesigner1594Demos.Models;
+using CSharpGL.Objects.Models;
+using CSharpGL.Objects.ModelFactories;
 using FormShaderDesigner1594Demos.SceneElements;
-using FormShaderDesigner1594Demos.ModelFactories;
 
 namespace FormShaderDesigner1594Demos
 {
