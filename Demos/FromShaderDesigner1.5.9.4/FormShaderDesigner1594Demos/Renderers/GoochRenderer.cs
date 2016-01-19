@@ -13,14 +13,13 @@ using CSharpGL;
 
 namespace FormShaderDesigner1594Demos.Renderers
 {
-    public class GoochRenderer : SceneElementBase
+    public class GoochRenderer : RendererBase
     {
 
         VertexArrayObject vertexArrayObject;
         BufferRenderer positionBufferRenderer;
         //BufferRenderer colorBufferRenderer;
         BufferRenderer normalBufferRenderer;
-        BufferRenderer indexBufferRenderer;
 
         /// <summary>
         /// shader program
@@ -29,9 +28,6 @@ namespace FormShaderDesigner1594Demos.Renderers
         const string strin_Position = "in_Position";
         const string strin_Normal = "in_Normal";
         //const string strin_Color = "in_Color";
-        const string strmodelMatrix = "modelMatrix";
-        const string strviewMatrix = "viewMatrix";
-        const string strprojectionMatrix = "projectionMatrix";
 
         const string strlightPosition = "lightPosition";
         public vec3 lightPosition = new vec3(0.0f, 10.0f, 4.0f);
@@ -52,9 +48,6 @@ namespace FormShaderDesigner1594Demos.Renderers
         const string strDiffuseCool = "DiffuseCool";
         public float diffuseCool = 0.45f;
 
-        public PolygonModes polygonMode = PolygonModes.Filled;
-
-        private int indexCount;
         private IModel model;
 
         public GoochRenderer(IModel model)
@@ -64,8 +57,8 @@ namespace FormShaderDesigner1594Demos.Renderers
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderer.GoochRenderer.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderer.GoochRenderer.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.GoochRenderer.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.GoochRenderer.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -111,6 +104,15 @@ namespace FormShaderDesigner1594Demos.Renderers
 
             // 绑定shader
             this.shaderProgram.Bind();
+            this.shaderProgram.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
+            this.shaderProgram.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
+            this.shaderProgram.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
+            this.shaderProgram.SetUniform(strlightPosition, this.lightPosition.x, this.lightPosition.y, this.lightPosition.z);
+            this.shaderProgram.SetUniform(strSurfaceColor, this.surfaceColor.x, this.surfaceColor.y, this.surfaceColor.z);
+            this.shaderProgram.SetUniform(strWarmColor, this.warmColor.x, this.warmColor.y, this.warmColor.z);
+            this.shaderProgram.SetUniform(strCoolColor, this.coolColor.x, this.coolColor.y, this.coolColor.z);
+            this.shaderProgram.SetUniform(strDiffuseWarm, this.diffuseWarm);
+            this.shaderProgram.SetUniform(strDiffuseCool, this.diffuseCool);
 
             int[] originalPolygonMode = new int[1];
             GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
@@ -126,8 +128,6 @@ namespace FormShaderDesigner1594Demos.Renderers
             this.shaderProgram.Unbind();
         }
 
-
-
         protected override void CleanUnmanagedRes()
         {
             if (this.vertexArrayObject != null)
@@ -136,26 +136,6 @@ namespace FormShaderDesigner1594Demos.Renderers
             }
 
             base.CleanUnmanagedRes();
-        }
-
-        public void SetUniforms(mat4 projectionMatrix, mat4 viewMatrix, mat4 modelMatrix)
-        {
-            this.shaderProgram.Bind();
-            this.shaderProgram.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
-            this.shaderProgram.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
-            this.shaderProgram.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
-            this.shaderProgram.SetUniform(strlightPosition, this.lightPosition.x, this.lightPosition.y, this.lightPosition.z);
-            this.shaderProgram.SetUniform(strSurfaceColor, this.surfaceColor.x, this.surfaceColor.y, this.surfaceColor.z);
-            this.shaderProgram.SetUniform(strWarmColor, this.warmColor.x, this.warmColor.y, this.warmColor.z);
-            this.shaderProgram.SetUniform(strCoolColor, this.coolColor.x, this.coolColor.y, this.coolColor.z);
-            this.shaderProgram.SetUniform(strDiffuseWarm, this.diffuseWarm);
-            this.shaderProgram.SetUniform(strDiffuseCool, this.diffuseCool);
-
-        }
-
-        public void ResetShaderProgram()
-        {
-            this.shaderProgram.Unbind();
         }
 
         public void DecreaseVertexCount()

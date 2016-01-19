@@ -37,5 +37,10 @@ namespace FormShaderDesigner1594Demos
             (new FormPolkadot3d()).Show();
         }
 
+        private void btnAllInOne_Click(object sender, EventArgs e)
+        {
+            (new FormRenderers()).Show();
+        }
+
     }
 }

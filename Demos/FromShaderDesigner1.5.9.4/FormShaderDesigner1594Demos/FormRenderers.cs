@@ -16,29 +16,31 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSharpGL;
 using CSharpGL.Objects.Models;
+using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.ModelFactories;
 using FormShaderDesigner1594Demos.Renderers;
+using FormShaderDesigner1594Demos.RendererFactories;
 
 namespace FormShaderDesigner1594Demos
 {
     /// <summary>
     /// 本例演示了SimpleUIAxis、SimpleUIRect的用法，也证明了CSharpGL.Maths库里的mat4的mvp相乘的结果与glgl里的结果相同。
     /// </summary>
-    public partial class FormXRay : Form
+    public partial class FormRenderers : Form
     {
         SimpleUIAxis uiLeftBottomAxis;
 
-        XRayRenderer element;
+        RendererBase element;
 
         Camera camera;
 
         SatelliteRotator satelliteRoration;
 
-        public FormXRay()
+        public FormRenderers()
         {
             InitializeComponent();
 
-                this.camera = new Camera(CameraType.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
+            this.camera = new Camera(CameraType.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
 
             satelliteRoration = new SatelliteRotator(camera);
 
@@ -50,7 +52,6 @@ namespace FormShaderDesigner1594Demos
 
             uiLeftBottomAxis.Initialize();
 
-            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
             CreateElement();
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
@@ -124,12 +125,13 @@ namespace FormShaderDesigner1594Demos
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("Use 'c' to switch camera types between perspective and ortho");
             builder.AppendLine("Use 'wsadqe' to translate light's position");
-            builder.AppendLine("Use 'r' to reset lignt's position");
             builder.AppendLine("Use 'jk' to decrease/increase rendering element count");
             builder.AppendLine("Use 'p' to switch sphere's polygon mode");
             builder.AppendLine("Use 'm' to switch model");
+            builder.AppendLine("Use 'r' to reset model size");
             builder.AppendLine("Use '-' to decrease model size");
             builder.AppendLine("Use '+' to increase model size");
+            builder.AppendLine("Use '0' to reset model size");
             MessageBox.Show(builder.ToString());
         }
 
@@ -264,7 +266,14 @@ namespace FormShaderDesigner1594Demos
             else if (e.KeyChar == 'm')
             {
                 currentModelIndex++;
-                if (currentModelIndex >= factories.Length) { currentModelIndex = 0; }
+                if (currentModelIndex >= modelFactories.Length) { currentModelIndex = 0; }
+
+                CreateElement();
+            }
+            else if (e.KeyChar == 'r')
+            {
+                currentRendererIndex++;
+                if (currentRendererIndex >= rendererFactories.Length) { currentRendererIndex = 0; }
 
                 CreateElement();
             }
@@ -281,20 +290,36 @@ namespace FormShaderDesigner1594Demos
 
                 CreateElement();
             }
+            else if (e.KeyChar == '0')
+            {
+                this.radius = 2;
+
+                CreateElement();
+            }
         }
 
         private void CreateElement()
         {
-            var element = new XRayRenderer(factories[currentModelIndex].Create(this.radius));
+            IModel model = modelFactories[currentModelIndex].Create(this.radius);
+            RendererBase element = rendererFactories[currentRendererIndex].GetRenderer(model);
             element.Initialize();
             element.BeforeRendering += element_BeforeRendering;
             element.AfterRendering += element_AfterRendering;
             this.newElement = element;
+
+            StringBuilder builder = new StringBuilder();
+            builder.Append(string.Format("{0}", model.GetType().Name));
+            builder.Append(" - ");
+            builder.Append(string.Format("{0}", element.GetType().Name));
+            builder.Append(string.Format(" - radius: {0}", radius));
+            this.Text = builder.ToString();
         }
 
+        float radius = 2;
         int currentModelIndex = 1;
-        static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
-        private float radius = 2;
-        private XRayRenderer newElement;
+        int currentRendererIndex = 0;
+        static readonly ModelFactory[] modelFactories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
+        static readonly RendererFactory[] rendererFactories = new RendererFactory[] { new GoochFactory(), new Polkadot3dFactory(), new XRayFactory(), };
+        private RendererBase newElement;
     }
 }

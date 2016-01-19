@@ -13,7 +13,7 @@ using CSharpGL.Objects.Models;
 
 namespace FormShaderDesigner1594Demos.Renderers
 {
-    public class XRayRenderer : SceneElementBase
+    public class XRayRenderer : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -30,31 +30,14 @@ namespace FormShaderDesigner1594Demos.Renderers
         const string strin_Normal = "in_Normal";
         BufferRenderer normalBufferRenderer;
 
-        BufferRenderer indexBufferRenderer;
-
         #endregion
 
         #region uniforms
-
-
-        const string strmodelMatrix = "modelMatrix";
-        public mat4 modelMatrix;
-
-        const string strviewMatrix = "viewMatrix";
-        public mat4 viewMatrix;
-
-        const string strprojectionMatrix = "projectionMatrix";
-        public mat4 projectionMatrix;
 
         const string strEdgeFallOff = "edgefalloff";
         public float edgeFallOff = 1.0f;
 
         #endregion
-
-
-        public PolygonModes polygonMode = PolygonModes.Filled;
-
-        private int indexCount;
 
         private IModel model;
 
@@ -65,8 +48,8 @@ namespace FormShaderDesigner1594Demos.Renderers
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderer.XRayRenderer.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderer.XRayRenderer.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.XRayRenderer.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.XRayRenderer.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -82,10 +65,19 @@ namespace FormShaderDesigner1594Demos.Renderers
             this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
             this.indexBufferRenderer = model.GetIndexes();
 
-            IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
-            if (renderer != null)
             {
-                this.indexCount = renderer.ElementCount;
+                IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+                if (renderer != null)
+                {
+                    this.indexCount = renderer.ElementCount;
+                }
+            }
+            {
+                ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;
+                if (renderer != null)
+                {
+                    this.indexCount = renderer.VertexCount;
+                }
             }
         }
 
@@ -136,8 +128,6 @@ namespace FormShaderDesigner1594Demos.Renderers
             program.Unbind();
         }
 
-
-
         protected override void CleanUnmanagedRes()
         {
             if (this.vertexArrayObject != null)
@@ -147,27 +137,6 @@ namespace FormShaderDesigner1594Demos.Renderers
 
             base.CleanUnmanagedRes();
         }
-
-        public void DecreaseVertexCount()
-        {
-            IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
-            if (renderer != null)
-            {
-                if (renderer.ElementCount > 0)
-                    renderer.ElementCount--;
-            }
-        }
-
-        public void IncreaseVertexCount()
-        {
-            IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
-            if (renderer != null)
-            {
-                if (renderer.ElementCount < this.indexCount)
-                    renderer.ElementCount++;
-            }
-        }
-
 
     }
 

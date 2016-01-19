@@ -32,6 +32,7 @@
             this.btnGooch = new System.Windows.Forms.Button();
             this.btnToon = new System.Windows.Forms.Button();
             this.btnPolkadot3d = new System.Windows.Forms.Button();
+            this.btnAllInOne = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnXRay
@@ -74,12 +75,23 @@
             this.btnPolkadot3d.UseVisualStyleBackColor = true;
             this.btnPolkadot3d.Click += new System.EventHandler(this.btnPolkadot3d_Click);
             // 
+            // btnAllInOne
+            // 
+            this.btnAllInOne.Location = new System.Drawing.Point(301, 12);
+            this.btnAllInOne.Name = "btnAllInOne";
+            this.btnAllInOne.Size = new System.Drawing.Size(209, 39);
+            this.btnAllInOne.TabIndex = 0;
+            this.btnAllInOne.Text = "All-in-One";
+            this.btnAllInOne.UseVisualStyleBackColor = true;
+            this.btnAllInOne.Click += new System.EventHandler(this.btnAllInOne_Click);
+            // 
             // FormDemosPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(522, 401);
             this.Controls.Add(this.btnGooch);
+            this.Controls.Add(this.btnAllInOne);
             this.Controls.Add(this.btnPolkadot3d);
             this.Controls.Add(this.btnToon);
             this.Controls.Add(this.btnXRay);
@@ -95,5 +107,6 @@
         private System.Windows.Forms.Button btnGooch;
         private System.Windows.Forms.Button btnToon;
         private System.Windows.Forms.Button btnPolkadot3d;
+        private System.Windows.Forms.Button btnAllInOne;
     }
 }

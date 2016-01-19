@@ -92,7 +92,6 @@ namespace FormShaderDesigner1594Demos
 
         void element_AfterRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
         {
-            this.element.ResetShaderProgram();
         }
 
         void element_BeforeRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
@@ -103,7 +102,9 @@ namespace FormShaderDesigner1594Demos
 
             mat4 modelMatrix = mat4.identity();
 
-            this.element.SetUniforms(projectionMatrix, viewMatrix, modelMatrix);
+            this.element.projectionMatrix = projectionMatrix;
+            this.element.viewMatrix = viewMatrix;
+            this.element.modelMatrix = modelMatrix;
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

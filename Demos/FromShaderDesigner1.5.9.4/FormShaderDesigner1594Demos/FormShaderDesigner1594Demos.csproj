@@ -60,6 +60,17 @@
     <Compile Include="FormToon.Designer.cs">
       <DependentUpon>FormToon.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRenderers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRenderers.Designer.cs">
+      <DependentUpon>FormRenderers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RendererFactories\XRayFactory.cs" />
+    <Compile Include="RendererFactories\Polkadot3dFactory.cs" />
+    <Compile Include="RendererFactories\RendererFactory.cs" />
+    <Compile Include="RendererFactories\GoochFactory.cs" />
+    <Compile Include="Renderers\RendererBase.cs" />
     <Compile Include="Renderers\GoochRenderer.cs" />
     <Compile Include="Renderers\Polkadot3dRenderer.cs" />
     <Compile Include="Renderers\ToonRenderer.cs" />
@@ -95,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDemosPanel.resx">
       <DependentUpon>FormDemosPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRenderers.resx">
+      <DependentUpon>FormRenderers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormXRay.resx">
       <DependentUpon>FormXRay.cs</DependentUpon>

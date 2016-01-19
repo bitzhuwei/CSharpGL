@@ -13,7 +13,7 @@ using CSharpGL;
 
 namespace FormShaderDesigner1594Demos.Renderers
 {
-    public class ToonRenderer : SceneElementBase
+    public class ToonRenderer : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -30,20 +30,9 @@ namespace FormShaderDesigner1594Demos.Renderers
         const string strin_Normal = "in_Normal";
         BufferRenderer normalBufferRenderer;
 
-        BufferRenderer indexBufferRenderer;
-
         #endregion
 
         #region uniforms
-
-        const string strmodelMatrix = "modelMatrix";
-        public mat4 modelMatrix;
-
-        const string strviewMatrix = "viewMatrix";
-        public mat4 viewMatrix;
-
-        const string strprojectionMatrix = "projectionMatrix";
-        public mat4 projectionMatrix;
 
         const string strDiffuseColor = "DiffuseColor";
         public vec3 DiffuseColor = new vec3(0, 0.25f, 1);
@@ -59,11 +48,6 @@ namespace FormShaderDesigner1594Demos.Renderers
 
         #endregion
 
-
-        public PolygonModes polygonMode = PolygonModes.Filled;
-
-        private int indexCount;
-
         private IModel model;
 
         public ToonRenderer(IModel model)
@@ -73,8 +57,8 @@ namespace FormShaderDesigner1594Demos.Renderers
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderer.ToonRenderer.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderer.ToonRenderer.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.ToonRenderer.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.ToonRenderer.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -147,8 +131,6 @@ namespace FormShaderDesigner1594Demos.Renderers
             program.Unbind();
         }
 
-
-
         protected override void CleanUnmanagedRes()
         {
             if (this.vertexArrayObject != null)
@@ -158,27 +140,6 @@ namespace FormShaderDesigner1594Demos.Renderers
 
             base.CleanUnmanagedRes();
         }
-
-        public void DecreaseVertexCount()
-        {
-            IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
-            if (renderer != null)
-            {
-                if (renderer.ElementCount > 0)
-                    renderer.ElementCount--;
-            }
-        }
-
-        public void IncreaseVertexCount()
-        {
-            IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
-            if (renderer != null)
-            {
-                if (renderer.ElementCount < this.indexCount)
-                    renderer.ElementCount++;
-            }
-        }
-
 
     }
 
