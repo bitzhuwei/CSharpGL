@@ -11,9 +11,9 @@ using CSharpGL.Objects.VertexBuffers;
 using CSharpGL;
 using CSharpGL.Objects.Models;
 
-namespace FormShaderDesigner1594Demos.SceneElements
+namespace FormShaderDesigner1594Demos.Renderers
 {
-    public class XRayElement : SceneElementBase
+    public class XRayRenderer : SceneElementBase
     {
         ShaderProgram shaderProgram;
 
@@ -58,15 +58,15 @@ namespace FormShaderDesigner1594Demos.SceneElements
 
         private IModel model;
 
-        public XRayElement(IModel model)
+        public XRayRenderer(IModel model)
         {
             this.model = model;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.XRayElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.XRayElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderer.XRayRenderer.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderer.XRayRenderer.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);

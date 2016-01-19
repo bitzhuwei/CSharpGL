@@ -17,7 +17,7 @@ using System.Windows.Forms;
 using CSharpGL;
 using CSharpGL.Objects.Models;
 using CSharpGL.Objects.ModelFactories;
-using FormShaderDesigner1594Demos.SceneElements;
+using FormShaderDesigner1594Demos.Renderers;
 
 namespace FormShaderDesigner1594Demos
 {
@@ -28,7 +28,7 @@ namespace FormShaderDesigner1594Demos
     {
         SimpleUIAxis uiLeftBottomAxis;
 
-        Polkadot3dElement element;
+        Polkadot3dRenderer element;
 
         Camera camera;
 
@@ -284,7 +284,7 @@ namespace FormShaderDesigner1594Demos
 
         private void CreateElement()
         {
-            var element = new Polkadot3dElement(factories[currentModelIndex].Create(this.radius));
+            var element = new Polkadot3dRenderer(factories[currentModelIndex].Create(this.radius));
             element.Initialize();
             element.BeforeRendering += element_BeforeRendering;
             element.AfterRendering += element_AfterRendering;
@@ -294,6 +294,6 @@ namespace FormShaderDesigner1594Demos
         int currentModelIndex = 1;
         static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
         private float radius = 2;
-        private Polkadot3dElement newElement;
+        private Polkadot3dRenderer newElement;
     }
 }

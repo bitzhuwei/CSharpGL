@@ -60,11 +60,10 @@
     <Compile Include="FormToon.Designer.cs">
       <DependentUpon>FormToon.cs</DependentUpon>
     </Compile>
-    <Compile Include="SceneElements\Polkadot3dElement.cs" />
-    <Compile Include="SceneElements\ToonElement.cs" />
-    <Compile Include="SceneElements\XRayElement.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Renderers\GoochRenderer.cs" />
+    <Compile Include="Renderers\Polkadot3dRenderer.cs" />
+    <Compile Include="Renderers\ToonRenderer.cs" />
+    <Compile Include="Renderers\XRayRenderer.cs" />
     <Content Include="readme.txt" />
     <Compile Include="FormDemosPanel.cs">
       <SubType>Form</SubType>
@@ -94,11 +93,6 @@
     <EmbeddedResource Include="FormToon.resx">
       <DependentUpon>FormToon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SceneElements\GoochElement.frag" />
-    <EmbeddedResource Include="SceneElements\GoochElement.vert" />
-    <EmbeddedResource Include="SceneElements\XRayElement.vert" />
-    <EmbeddedResource Include="SceneElements\XRayElement.frag" />
-    <Compile Include="SceneElements\GoochElement.cs" />
     <EmbeddedResource Include="FormDemosPanel.resx">
       <DependentUpon>FormDemosPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,10 +117,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="SceneElements\ToonElement.frag" />
-    <EmbeddedResource Include="SceneElements\ToonElement.vert" />
-    <EmbeddedResource Include="SceneElements\Polkadot3dElement.frag" />
-    <EmbeddedResource Include="SceneElements\Polkadot3dElement.vert" />
+    <EmbeddedResource Include="Renderers\GoochRenderer.frag" />
+    <EmbeddedResource Include="Renderers\GoochRenderer.vert" />
+    <EmbeddedResource Include="Renderers\Polkadot3dRenderer.frag" />
+    <EmbeddedResource Include="Renderers\Polkadot3dRenderer.vert" />
+    <EmbeddedResource Include="Renderers\ToonRenderer.frag" />
+    <EmbeddedResource Include="Renderers\ToonRenderer.vert" />
+    <EmbeddedResource Include="Renderers\XRayRenderer.frag" />
+    <EmbeddedResource Include="Renderers\XRayRenderer.vert" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -157,6 +155,7 @@
       <Name>CSharpGL.UIs</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

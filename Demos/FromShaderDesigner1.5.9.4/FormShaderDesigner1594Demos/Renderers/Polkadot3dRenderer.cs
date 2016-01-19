@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FormShaderDesigner1594Demos.SceneElements
+namespace FormShaderDesigner1594Demos.Renderers
 {
-    class Polkadot3dElement : SceneElementBase
+    class Polkadot3dRenderer : SceneElementBase
     {
         ShaderProgram shaderProgram;
 
@@ -71,15 +71,15 @@ namespace FormShaderDesigner1594Demos.SceneElements
 
         private IModel model;
 
-        public Polkadot3dElement(IModel model)
+        public Polkadot3dRenderer(IModel model)
         {
             this.model = model;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.Polkadot3dElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.Polkadot3dElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderer.Polkadot3dRenderer.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderer.Polkadot3dRenderer.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);

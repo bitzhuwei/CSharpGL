@@ -18,7 +18,7 @@ using CSharpGL;
 using CSharpGL.Objects.Models;
 using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.ModelFactories;
-using FormShaderDesigner1594Demos.SceneElements;
+using FormShaderDesigner1594Demos.Renderers;
 
 namespace FormShaderDesigner1594Demos
 {
@@ -37,7 +37,7 @@ namespace FormShaderDesigner1594Demos
         //SimpleUIRect uiRightBottomRect;
         //SimpleUIRect uiRightTopRect;
 
-        ToonElement element;
+        ToonRenderer element;
         //PointLightElement lightElement;
 
         Camera camera;
@@ -48,63 +48,19 @@ namespace FormShaderDesigner1594Demos
         {
             InitializeComponent();
 
-            //if (CameraDictionary.Instance.ContainsKey(this.GetType().Name))
-            //{
-            //    this.camera = CameraDictionary.Instance[this.GetType().Name];
-            //}
-            //else
-            {
                 this.camera = new Camera(CameraType.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
-                //CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
-            }
 
             satelliteRoration = new SatelliteRotator(camera);
 
             Padding padding = new System.Windows.Forms.Padding(40, 40, 40, 40);
             Size size = new Size(100, 100);
-            //Size size = new Size(5, 5);
             IUILayoutParam param;
             param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
             uiLeftBottomAxis = new SimpleUIAxis(param);
-            //param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
-            //uiLeftTopAxis = new SimpleUIAxis(param);
-            //param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
-            //uiRightBottomAxis = new SimpleUIAxis(param);
-            //param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Top, padding, size);
-            //uiRightTopAxis = new SimpleUIAxis(param);
 
             uiLeftBottomAxis.Initialize();
-            //uiLeftTopAxis.Initialize();
-            //uiRightBottomAxis.Initialize();
-            //uiRightTopAxis.Initialize();
 
-            param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, padding, size);
-            //uiLeftBottomRect = new SimpleUIRect(param);
-            //param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Top, padding, size);
-            //uiLeftTopRect = new SimpleUIRect(param);
-            //param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, padding, size);
-            //uiRightBottomRect = new SimpleUIRect(param);
-            //param = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Top, padding, size);
-            //uiRightTopRect = new SimpleUIRect(param);
-
-            //uiLeftBottomRect.Initialize();
-            //uiLeftTopRect.Initialize();
-            //uiRightBottomRect.Initialize();
-            //uiRightTopRect.Initialize();
-
-            ////IModel model = SphereModel.GetModel(2);
-            //IModel model = IceCreamModel.GetModel(2, 10, 10);
-            ////IModel model = CubeModel.GetModel();
-            //element = new XRayElement(model);
-            //element.Initialize();
-            //element.BeforeRendering += element_BeforeRendering;
-            //element.AfterRendering += element_AfterRendering;
             CreateElement();
-
-            //lightElement = new PointLightElement();
-            //lightElement.Initialize();
-            //lightElement.BeforeRendering += pointLightElement_BeforeRendering;
-            //lightElement.AfterRendering += pointLightElement_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -202,17 +158,8 @@ namespace FormShaderDesigner1594Demos
             }
 
             element.Render(arg);
-            //lightElement.Render(arg);
 
             uiLeftBottomAxis.Render(arg);
-            //uiLeftTopAxis.Render(arg);
-            //uiRightBottomAxis.Render(arg);
-            //uiRightTopAxis.Render(arg);
-
-            //uiLeftBottomRect.Render(arg);
-            //uiLeftTopRect.Render(arg);
-            //uiRightBottomRect.Render(arg);
-            //uiRightTopRect.Render(arg);
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
@@ -347,7 +294,7 @@ namespace FormShaderDesigner1594Demos
 
         private void CreateElement()
         {
-            var element = new ToonElement(factories[currentModelIndex].Create(this.radius));
+            var element = new ToonRenderer(factories[currentModelIndex].Create(this.radius));
             element.Initialize();
             element.BeforeRendering += element_BeforeRendering;
             element.AfterRendering += element_AfterRendering;
@@ -358,6 +305,6 @@ namespace FormShaderDesigner1594Demos
         //static readonly IModel[] models = new IModel[] { CubeModel.GetModel(), IceCreamModel.GetModel(), SphereModel.GetModel(), };
         static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
         private float radius = 2;
-        private ToonElement newElement;
+        private ToonRenderer newElement;
     }
 }
