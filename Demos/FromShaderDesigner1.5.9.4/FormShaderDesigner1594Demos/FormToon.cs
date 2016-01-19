@@ -48,7 +48,7 @@ namespace FormShaderDesigner1594Demos
         {
             InitializeComponent();
 
-                this.camera = new Camera(CameraType.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
+            this.camera = new Camera(CameraType.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
 
             satelliteRoration = new SatelliteRotator(camera);
 
@@ -76,51 +76,6 @@ namespace FormShaderDesigner1594Demos
         void Application_Idle(object sender, EventArgs e)
         {
             PrintCameraInfo();
-        }
-
-        void pointLightElement_AfterRendering(object sender, RenderEventArgs e)
-        {
-            IMVP element = sender as IMVP;
-
-            element.ResetShaderProgram();
-        }
-
-        void pointLightElement_BeforeRendering(object sender, RenderEventArgs e)
-        {
-            mat4 projectionMatrix = camera.GetProjectionMat4();
-            projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
-            //projectionMatrix = glm.scale(projectionMatrix, new vec3(0.1f, 0.1f, 0.1f));
-
-            mat4 viewMatrix = camera.GetViewMat4();
-
-            mat4 modelMatrix = glm.scale(mat4.identity(), new vec3(0.1f, 0.1f, 0.1f));
-
-            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-            IMVP element = sender as IMVP;
-
-            element.SetShaderProgram(mvp);
-        }
-
-        void element_AfterRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
-        {
-            //IMVP element = sender as IMVP;
-
-            //element.ResetShaderProgram();
-        }
-
-        void element_BeforeRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
-        {
-            mat4 projectionMatrix = camera.GetProjectionMat4();
-            //projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
-
-            mat4 viewMatrix = camera.GetViewMat4();
-
-            mat4 modelMatrix = mat4.identity();
-
-            this.element.projectionMatrix = projectionMatrix;
-            this.element.viewMatrix = viewMatrix;
-            this.element.modelMatrix = modelMatrix;
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
@@ -156,8 +111,19 @@ namespace FormShaderDesigner1594Demos
                 this.element = this.newElement;
                 this.newElement = null;
             }
+            {
+                mat4 projectionMatrix = camera.GetProjectionMat4();
+                //projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
 
-            element.Render(arg);
+                mat4 viewMatrix = camera.GetViewMat4();
+
+                mat4 modelMatrix = mat4.identity();
+
+                this.element.projectionMatrix = projectionMatrix;
+                this.element.viewMatrix = viewMatrix;
+                this.element.modelMatrix = modelMatrix;
+            }
+            this.element.Render(arg);
 
             uiLeftBottomAxis.Render(arg);
         }
@@ -296,8 +262,6 @@ namespace FormShaderDesigner1594Demos
         {
             var element = new ToonRenderer(factories[currentModelIndex].Create(this.radius));
             element.Initialize();
-            element.BeforeRendering += element_BeforeRendering;
-            element.AfterRendering += element_AfterRendering;
             this.newElement = element;
         }
 

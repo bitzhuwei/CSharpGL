@@ -43,8 +43,6 @@ namespace CSharpGL.Objects.Demos.UIs
 
         protected override void DoInitialize()
         {
-            this.BeforeRendering += legacyUIRect_BeforeRendering;
-            this.AfterRendering += legacyUIRect_AfterRendering;
         }
 
         void legacyUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
@@ -94,6 +92,7 @@ namespace CSharpGL.Objects.Demos.UIs
 
         protected override void DoRender(RenderEventArgs e)
         {
+            legacyUIRect_BeforeRendering(this, e);
             //PushObjectSpace();
 
             GL.Begin(PrimitiveModes.LineLoop);
@@ -109,6 +108,7 @@ namespace CSharpGL.Objects.Demos.UIs
             GL.End();
 
             //PopObjectSpace();
+            legacyUIRect_AfterRendering(this, e);
         }
 
         public IUILayoutParam Param { get; set; }

@@ -60,8 +60,6 @@ namespace CSharpGL.Winforms.Demo
 
             pyramidElement = new PyramidElement();
             pyramidElement.Initialize();
-            pyramidElement.BeforeRendering += pyramidElement_BeforeRendering;
-            pyramidElement.AfterRendering += pyramidElement_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -72,28 +70,7 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
-        void pyramidElement_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            IMVP element = sender as IMVP;
 
-            element.ResetShaderProgram();
-        }
-
-        void pyramidElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            mat4 projectionMatrix = camera.GetProjectionMat4();
-            projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
-
-            mat4 viewMatrix = camera.GetViewMat4();
-
-            mat4 modelMatrix = mat4.identity();
-
-            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-            IMVP element = sender as IMVP;
-
-            element.SetShaderProgram(mvp);
-        }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
@@ -108,29 +85,6 @@ namespace CSharpGL.Winforms.Demo
             this.camera.MouseWheel(e.Delta);
         }
 
-        void textElement_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            IMVP element = sender as IMVP;
-
-            element.ResetShaderProgram();
-        }
-
-        void textElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            mat4 projectionMatrix = camera.GetProjectionMat4();
-            projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
-
-            mat4 viewMatrix = camera.GetViewMat4();
-
-            mat4 modelMatrix = mat4.identity();
-
-            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-            IMVP element = sender as IMVP;
-
-            element.SetShaderProgram(mvp);
-        }
-
         Random random = new Random();
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -139,8 +93,47 @@ namespace CSharpGL.Winforms.Demo
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+            {
+                mat4 projectionMatrix = camera.GetProjectionMat4();
+                projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
+
+                mat4 viewMatrix = camera.GetViewMat4();
+
+                mat4 modelMatrix = mat4.identity();
+
+                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+
+                IMVP element = pyramidElement as IMVP;
+
+                element.SetShaderProgram(mvp);
+            }
             pyramidElement.Render(arg);
+            {
+                IMVP element = pyramidElement as IMVP;
+
+                element.ResetShaderProgram();
+            }
+
+            {
+                mat4 projectionMatrix = camera.GetProjectionMat4();
+                projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
+
+                mat4 viewMatrix = camera.GetViewMat4();
+
+                mat4 modelMatrix = mat4.identity();
+
+                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+
+                IMVP element = textElement as IMVP;
+
+                element.SetShaderProgram(mvp);
+            }
             textElement.Render(arg);
+            {
+                IMVP element = textElement as IMVP;
+
+                element.ResetShaderProgram();
+            }
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
@@ -223,11 +216,9 @@ namespace CSharpGL.Winforms.Demo
             int maxRowWidth = (int)this.numMaxRowWidth.Value;
             //if (this.textElement == null)
             {
-                var textElement = new PointSpriteStringElement(text, new vec3(0, 1, 0), color, fontSize, maxRowWidth, 
+                var textElement = new PointSpriteStringElement(text, new vec3(0, 1, 0), color, fontSize, maxRowWidth,
                     null);
                 textElement.Initialize();
-                textElement.BeforeRendering += textElement_BeforeRendering;
-                textElement.AfterRendering += textElement_AfterRendering;
 
                 this.textElement = textElement;
             }

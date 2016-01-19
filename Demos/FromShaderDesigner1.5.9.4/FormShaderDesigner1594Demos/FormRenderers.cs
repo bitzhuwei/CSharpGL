@@ -70,51 +70,6 @@ namespace FormShaderDesigner1594Demos
             PrintCameraInfo();
         }
 
-        void pointLightElement_AfterRendering(object sender, RenderEventArgs e)
-        {
-            IMVP element = sender as IMVP;
-
-            element.ResetShaderProgram();
-        }
-
-        void pointLightElement_BeforeRendering(object sender, RenderEventArgs e)
-        {
-            mat4 projectionMatrix = camera.GetProjectionMat4();
-            projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
-            //projectionMatrix = glm.scale(projectionMatrix, new vec3(0.1f, 0.1f, 0.1f));
-
-            mat4 viewMatrix = camera.GetViewMat4();
-
-            mat4 modelMatrix = glm.scale(mat4.identity(), new vec3(0.1f, 0.1f, 0.1f));
-
-            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-            IMVP element = sender as IMVP;
-
-            element.SetShaderProgram(mvp);
-        }
-
-        void element_AfterRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
-        {
-            //IMVP element = sender as IMVP;
-
-            //element.ResetShaderProgram();
-        }
-
-        void element_BeforeRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
-        {
-            mat4 projectionMatrix = camera.GetProjectionMat4();
-            //projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
-
-            mat4 viewMatrix = camera.GetViewMat4();
-
-            mat4 modelMatrix = mat4.identity();
-
-            this.element.projectionMatrix = projectionMatrix;
-            this.element.viewMatrix = viewMatrix;
-            this.element.modelMatrix = modelMatrix;
-        }
-
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
@@ -149,7 +104,18 @@ namespace FormShaderDesigner1594Demos
                 this.element = this.newElement;
                 this.newElement = null;
             }
+              {
+            mat4 projectionMatrix = camera.GetProjectionMat4();
+            //projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
 
+            mat4 viewMatrix = camera.GetViewMat4();
+
+            mat4 modelMatrix = mat4.identity();
+
+            this.element.projectionMatrix = projectionMatrix;
+            this.element.viewMatrix = viewMatrix;
+            this.element.modelMatrix = modelMatrix;
+        }
             element.Render(arg);
 
             uiLeftBottomAxis.Render(arg);
@@ -303,8 +269,6 @@ namespace FormShaderDesigner1594Demos
             IModel model = modelFactories[currentModelIndex].Create(this.radius);
             RendererBase element = rendererFactories[currentRendererIndex].GetRenderer(model);
             element.Initialize();
-            element.BeforeRendering += element_BeforeRendering;
-            element.AfterRendering += element_AfterRendering;
             this.newElement = element;
 
             StringBuilder builder = new StringBuilder();

@@ -130,9 +130,6 @@ namespace CSharpGL.Objects.Demos
             InitializeShader(out shaderProgram);
 
             InitializeVAO();
-
-            base.BeforeRendering += SimplePointSpriteElement_BeforeRendering;
-            base.AfterRendering += SimplePointSpriteElement_AfterRendering;
         }
 
         void SimplePointSpriteElement_AfterRendering(object sender, RenderEventArgs e)
@@ -243,11 +240,15 @@ namespace CSharpGL.Objects.Demos
 
         protected override void DoRender(RenderEventArgs e)
         {
+            SimplePointSpriteElement_BeforeRendering(this, e);
+
             GL.BindVertexArray(vao[0]);
 
             GL.DrawArrays(primitiveMode, 0, this.vertexCount);
 
             GL.BindVertexArray(0);
+
+            SimplePointSpriteElement_AfterRendering(this, e);
         }
 
         protected override void CleanUnmanagedRes()

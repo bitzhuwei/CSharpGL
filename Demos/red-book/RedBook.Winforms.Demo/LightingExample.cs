@@ -137,9 +137,6 @@ void main(void)
             //col_spec_loc = GL.GetUniformLocation(shaderProgram.ShaderProgramObject, "color_specular");
 
             vboObject.LoadFromVBM(@"media\unit_torus.vbm", 0, 1, 2);
-
-            base.BeforeRendering += LightingExample_BeforeRendering;
-            base.AfterRendering += LightingExample_AfterRendering;
         }
 
         void LightingExample_AfterRendering(object sender, RenderEventArgs e)
@@ -159,7 +156,9 @@ void main(void)
 
         protected override void DoRender(RenderEventArgs e)
         {
+            LightingExample_BeforeRendering(this, e);
             vboObject.Render();
+            LightingExample_AfterRendering(this, e);
         }
 
     }

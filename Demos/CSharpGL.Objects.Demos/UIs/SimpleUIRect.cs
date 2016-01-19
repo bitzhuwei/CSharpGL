@@ -71,8 +71,6 @@ namespace CSharpGL.Objects.Demos.UIs
 
             InitVAO();
 
-            base.BeforeRendering += this.GetSimpleUI_BeforeRendering();
-            base.AfterRendering += this.GetSimpleUI_AfterRendering();
         }
 
         private void InitVAO()
@@ -143,11 +141,27 @@ namespace CSharpGL.Objects.Demos.UIs
 
         protected override void DoRender(RenderEventArgs e)
         {
+            {
+                mat4 projectionMatrix, viewMatrix, modelMatrix;
+                {
+                    IUILayout element = this as IUILayout;
+                    element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, e.Camera);
+                }
+
+                {
+                    IMVP element = this as IMVP;
+                    element.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
+                }
+            }
             GL.BindVertexArray(vao[0]);
 
             GL.DrawArrays(this.axisPrimitiveMode, 0, this.axisVertexCount);
 
             GL.BindVertexArray(0);
+            {
+                IMVP element = this as IMVP;
+                element.ResetShaderProgram();
+            }
         }
 
         public IUILayoutParam Param { get; set; }

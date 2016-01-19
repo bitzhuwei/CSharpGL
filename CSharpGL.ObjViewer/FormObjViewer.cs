@@ -139,8 +139,6 @@ namespace CSharpGL.ObjViewer
                 {
                     ObjModelElement element = new ObjModelElement(item);
                     element.Initialize();
-                    element.BeforeRendering += element_BeforeRendering;
-                    element.AfterRendering += element_AfterRendering;
                     elements.Add(element);
                 }
 
@@ -162,12 +160,16 @@ namespace CSharpGL.ObjViewer
             //  Clear the color and depth buffer.
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            //GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
-
             RenderEventArgs args = new RenderEventArgs(RenderModes.Render, this.camera);
+            mat4 projectionMatrix = camera.GetProjectionMat4();
+            mat4 viewMatrix = camera.GetViewMat4();
+            mat4 modelMatrix = mat4.identity();
 
             foreach (var item in this.elements)
             {
+                item.projectionMatrix = projectionMatrix;
+                item.viewMatrix = viewMatrix;
+                item.modelMatrix = modelMatrix;
                 item.Render(args);
             }
         }

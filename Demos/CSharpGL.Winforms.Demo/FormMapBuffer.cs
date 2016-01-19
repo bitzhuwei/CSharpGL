@@ -45,8 +45,6 @@ namespace CSharpGL.Winforms.Demo
 
             element = new DemoMapBuffer(size);
             element.Initialize();
-            element.BeforeRendering += element_BeforeRendering;
-            element.AfterRendering += element_AfterRendering;
 
             Padding uiPadding = new System.Windows.Forms.Padding(10, 10, 10, 10);
             Size uiSize = new System.Drawing.Size(50, 50);
@@ -110,7 +108,9 @@ namespace CSharpGL.Winforms.Demo
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+            element_BeforeRendering(this.element, arg);
             element.Render(arg);
+            element_AfterRendering(this.element, arg);
             uiAxis.Render(arg);
         }
 

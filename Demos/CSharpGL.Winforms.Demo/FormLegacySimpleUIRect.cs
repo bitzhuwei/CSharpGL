@@ -49,33 +49,11 @@ namespace CSharpGL.Winforms.Demo
 
             axisElement = new AxisElement();
             axisElement.Initialize();
-            axisElement.BeforeRendering += axisElement_BeforeRendering;
-            axisElement.AfterRendering += axisElement_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
         }
 
-        void axisElement_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            IMVP element = sender as IMVP;
 
-            element.ResetShaderProgram();
-        }
-
-        void axisElement_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            mat4 projectionMatrix = camera.GetProjectionMat4();
-
-            mat4 viewMatrix = camera.GetViewMat4();
-
-            mat4 modelMatrix = mat4.identity();
-
-            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-            IMVP element = sender as IMVP;
-
-            element.SetShaderProgram(mvp);
-        }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -100,8 +78,25 @@ namespace CSharpGL.Winforms.Demo
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
-            axisElement.Render(arg);
+            {
+                mat4 projectionMatrix = camera.GetProjectionMat4();
 
+                mat4 viewMatrix = camera.GetViewMat4();
+
+                mat4 modelMatrix = mat4.identity();
+
+                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+
+                IMVP element = axisElement as IMVP;
+
+                element.SetShaderProgram(mvp);
+            }
+            axisElement.Render(arg);
+            {
+                IMVP element = axisElement as IMVP;
+
+                element.ResetShaderProgram();
+            }
             var uiArg = new RenderEventArgs(RenderModes.Render, null);
             uiRectElement.Render(uiArg);
         }

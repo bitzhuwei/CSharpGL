@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CSharpGL.Objects.Cameras;
 
 namespace CSharpGL.Objects.Demos
 {
@@ -71,10 +72,6 @@ namespace CSharpGL.Objects.Demos
 
             InitVAO();
 
-            this.BeforeRendering += DemoColorCodedPickingElement_BeforeRendering;
-            this.BeforeRendering += this.GetIMVPElement_BeforeRendering();
-            this.AfterRendering += DemoColorCodedPickingElement_AfterRendering;
-            this.AfterRendering += this.GetIMVPElement_AfterRendering();
         }
 
         void DemoColorCodedPickingElement_AfterRendering(object sender, RenderEventArgs e)
@@ -215,6 +212,32 @@ namespace CSharpGL.Objects.Demos
 
         protected override void DoRender(RenderEventArgs e)
         {
+            {
+                // 三维场景中所有的元素都应在Camera的照耀下现形，没有Camera就不知道元素该放哪儿。
+                // UI元素不在三维场景中，所以其Camera可以是null。
+                if (e.Camera == null)
+                {
+                    throw new ArgumentNullException();
+                    //const float distance = 0.7f;
+                    //viewMatrix = glm.lookAt(new vec3(-distance, distance, -distance), new vec3(0, 0, 0), new vec3(0, -1, 0));
+
+                    //int[] viewport = new int[4];
+                    //GL.GetInteger(GetTarget.Viewport, viewport);
+                    //projectionMatrix = glm.perspective(60.0f, (float)viewport[2] / (float)viewport[3], 0.01f, 100.0f);
+                }
+
+                mat4 projectionMatrix, viewMatrix, modelMatrix;
+                viewMatrix = ((IViewCamera)e.Camera).GetViewMat4();
+                projectionMatrix = e.Camera.GetProjectionMat4();
+                modelMatrix = mat4.identity();
+
+                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+
+                IMVP element = this as IMVP;
+                element.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
+            }
+            DemoColorCodedPickingElement_BeforeRendering(this, e);
+
             GL.Enable(GL.GL_PRIMITIVE_RESTART);
             GL.PrimitiveRestartIndex(uint.MaxValue);
 
@@ -229,6 +252,13 @@ namespace CSharpGL.Objects.Demos
             GL.BindVertexArray(0);
 
             GL.Disable(GL.GL_PRIMITIVE_RESTART);
+
+            DemoColorCodedPickingElement_AfterRendering(this, e);
+            {
+                IMVP element = this as IMVP;
+                element.ResetShaderProgram();
+            }
+
         }
 
 

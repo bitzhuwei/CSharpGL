@@ -68,13 +68,8 @@ namespace CSharpGL.Winforms.Demo
             leftUIAxis.Initialize();
             rightUIAxis.Initialize();
 
-            legacyUIRect.BeforeRendering += legacyUIRect_BeforeRendering;
-            legacyUIRect.AfterRendering += legacyUIRect_AfterRendering;
-
             element = new DemoLegacyGLTexture3D();
             element.Initialize();
-            element.BeforeRendering += element_BeforeRendering;
-            element.AfterRendering += element_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -189,11 +184,15 @@ namespace CSharpGL.Winforms.Demo
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+            legacyUIRect_BeforeRendering(this.legacyUIRect, arg);
             legacyUIRect.Render(arg);
+            legacyUIRect_AfterRendering(this.legacyUIRect, arg);
             modernUIRect.Render(arg);
             leftUIAxis.Render(arg);
             rightUIAxis.Render(arg);
+            element_BeforeRendering(this.element, arg);
             element.Render(arg);
+            element_AfterRendering(this.element, arg);
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)

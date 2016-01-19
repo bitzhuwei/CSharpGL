@@ -10,7 +10,7 @@ namespace CSharpGL.Objects
     /// <summary>
     /// 用OpenGL初始化和渲染一个元素。
     /// 只做初始化和渲染这两件事。
-    /// 渲染前后有事件event可以配置。
+    /// 一个<see cref="SceneElementBase"/>对应一个(vertex shader+fragment shader)的shader program。
     /// </summary>
     public abstract class SceneElementBase : IRenderable, IDisposable
     {
@@ -62,19 +62,7 @@ namespace CSharpGL.Objects
         {
             if (!initialized) { Initialize(); }
 
-            EventHandler<RenderEventArgs> beforeRendering = this.BeforeRendering;
-            if (beforeRendering != null)
-            {
-                beforeRendering(this, e);
-            }
-
             DoRender(e);
-
-            EventHandler<RenderEventArgs> afterRendering = this.AfterRendering;
-            if (afterRendering != null)
-            {
-                afterRendering(this, e);
-            }
         }
 
         /// <summary>
@@ -82,17 +70,6 @@ namespace CSharpGL.Objects
         /// </summary>
         /// <param name="e"></param>
         protected abstract void DoRender(RenderEventArgs e);
-
-        /// <summary>
-        /// 在渲染前进行某些准备（更新camera矩阵信息等）
-        /// </summary>
-        public event EventHandler<RenderEventArgs> BeforeRendering;
-
-        /// <summary>
-        /// 在渲染后进行某些善后（恢复OpenGL状态等）
-        /// </summary>
-        public event EventHandler<RenderEventArgs> AfterRendering;
-
 
 
         #region IDisposable Members
@@ -145,10 +122,6 @@ namespace CSharpGL.Objects
 
         protected virtual void CleanUnmanagedRes()
         {
-            // do something like this if needed before opengl context is destroyed.
-            //var buffers = new uint[] { this.vertexsBufferObject, this.colorsBufferObject, this.visiblesBufferObject };
-            //GL.DeleteBuffers(buffers.Length, buffers);
-            //GL.DeleteVertexArrays(1, new uint[] { this.vertexArrayObject });
         }
 
         protected virtual void CleanManagedRes()

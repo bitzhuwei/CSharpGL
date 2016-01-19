@@ -58,13 +58,28 @@ namespace CSharpGL.Objects.Demos.UIs
         {
             this.axisElement.Initialize();
 
-            this.BeforeRendering += this.GetSimpleUI_BeforeRendering();
-            this.AfterRendering += this.GetSimpleUI_AfterRendering();
         }
 
         protected override void DoRender(RenderEventArgs e)
         {
+            {
+                mat4 projectionMatrix, viewMatrix, modelMatrix;
+                {
+                    IUILayout element = this as IUILayout;
+                    element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, e.Camera);
+                }
+
+                {
+                    IMVP element = this as IMVP;
+                    element.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
+                }
+            }
             this.axisElement.Render(e);
+            {
+                IMVP element = this as IMVP;
+                element.ResetShaderProgram();
+            }
+
         }
 
         void IMVP.SetShaderProgram(mat4 mvp)

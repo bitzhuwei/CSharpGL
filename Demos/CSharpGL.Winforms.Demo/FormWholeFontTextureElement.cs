@@ -27,24 +27,13 @@ namespace CSharpGL.Winforms.Demo
         {
             InitializeComponent();
 
-            //if (CameraDictionary.Instance.ContainsKey(this.GetType().Name))
-            //{
-            //    this.camera = CameraDictionary.Instance[this.GetType().Name];
-            //}
-            //else
-            {
-                this.camera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
-                //CameraDictionary.Instance.Add(this.GetType().Name, this.camera);
-            }
+            this.camera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
 
             rotator = new SatelliteRotator(this.camera);
             this.Load += FormWholeFontTextureElement_Load;
 
             element = new WholeFontTextureElement("FormWholeFontTextureElement.png", "FormWholeFontTextureElement.xml");
             element.Initialize();
-
-            element.BeforeRendering += element_BeforeRendering;
-            element.AfterRendering += element_AfterRendering;
 
             IUILayoutParam param = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom,
                 new Padding(10, 10, 10, 10), new Size(40, 40));
@@ -73,48 +62,22 @@ namespace CSharpGL.Winforms.Demo
             this.camera.MouseWheel(e.Delta);
         }
 
-        void element_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            IMVP iMVP = element as IMVP;
-            iMVP.ResetShaderProgram();
-
-            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
-
-            if (element.blend)
-            {
-                GL.Disable(GL.GL_BLEND);
-            }
-        }
-        void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            CSharpGL.Objects.Texture2D texture = element.texture;
-            texture.Bind();
-
-            if (element.blend)
-            {
-                GL.Enable(GL.GL_BLEND);
-                GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-            }
-
-            mat4 modelMatrix = mat4.identity();
-            mat4 viewMatrix = this.camera.GetViewMat4();
-            mat4 projectionMatrix = this.camera.GetProjectionMat4();
-
-            ShaderProgram shaderProgram = element.shaderProgram;
-            shaderProgram.Bind();
-            shaderProgram.SetUniform(WholeFontTextureElement.strtex, texture.Name);
-            shaderProgram.SetUniform(WholeFontTextureElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
-
-            IMVP iMVP = element as IMVP;
-            iMVP.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
-        }
-
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+
+            {
+                mat4 modelMatrix = mat4.identity();
+                mat4 viewMatrix = this.camera.GetViewMat4();
+                mat4 projectionMatrix = this.camera.GetProjectionMat4();
+                element.projectionMatrix = projectionMatrix;
+                element.viewMatrix = viewMatrix;
+                element.modelMatrix = modelMatrix;
+            }
+
             element.Render(arg);
             uiAxis.Render(arg);
         }

@@ -12,8 +12,12 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Winforms.Demo
 {
-    class WholeFontTextureElement : SceneElementBase, IMVP
+    class WholeFontTextureElement : SceneElementBase
     {
+        public mat4 modelMatrix;
+        public mat4 viewMatrix;
+        public mat4 projectionMatrix;
+
         internal bool blend = true;
 
         //public uint[] texture = new uint[1];
@@ -131,9 +135,33 @@ namespace CSharpGL.Winforms.Demo
 
         protected override void DoRender(RenderEventArgs e)
         {
+            CSharpGL.Objects.Texture2D texture = this.texture;
+            texture.Bind();
+
+            if (this.blend)
+            {
+                GL.Enable(GL.GL_BLEND);
+                GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+            }
+
+            ShaderProgram shaderProgram = this.shaderProgram;
+            shaderProgram.Bind();
+            shaderProgram.SetUniform(WholeFontTextureElement.strtex, texture.Name);
+            shaderProgram.SetUniform(WholeFontTextureElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
+            shaderProgram.SetUniformMatrix4("MVP", (projectionMatrix * viewMatrix * modelMatrix).to_array());
+
             GL.BindVertexArray(vao[0]);
             GL.DrawArrays(this.mode, 0, this.vertexCount);
             GL.BindVertexArray(0);
+
+            shaderProgram.Unbind();
+
+            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+
+            if (this.blend)
+            {
+                GL.Disable(GL.GL_BLEND);
+            }
         }
 
         protected override void CleanUnmanagedRes()
@@ -143,19 +171,5 @@ namespace CSharpGL.Winforms.Demo
             base.CleanUnmanagedRes();
         }
 
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
-            IMVPHelper.SetMVP(this, mvp);
-        }
-
-        void IMVP.ResetShaderProgram()
-        {
-            IMVPHelper.ResetMVP(this);
-        }
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return this.shaderProgram;
-        }
     }
 }

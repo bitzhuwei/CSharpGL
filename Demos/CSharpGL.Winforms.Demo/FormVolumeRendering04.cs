@@ -41,13 +41,8 @@ namespace CSharpGL.Winforms.Demo
             element = new DemoVolumeRendering04(false);
             element.Initialize();
 
-            element.BeforeRendering += element_BeforeRendering;
-            element.AfterRendering += element_AfterRendering;
-
             elementReversed = new DemoVolumeRendering04(true);
             elementReversed.Initialize();
-            elementReversed.BeforeRendering += element_BeforeRendering;
-            elementReversed.AfterRendering += element_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -111,18 +106,30 @@ namespace CSharpGL.Winforms.Demo
             switch (this.renderOrder)
             {
                 case RenderOrder.Increase:
+                    element_BeforeRendering(this.element, arg);
                     element.Render(arg);
+                    element_AfterRendering(this.element, arg);
                     break;
                 case RenderOrder.Decrease:
+                    element_BeforeRendering(this.elementReversed, arg);
                     elementReversed.Render(arg);
+                    element_AfterRendering(this.elementReversed, arg);
                     break;
                 case RenderOrder.IncreaseThenDecrease:
+                    element_BeforeRendering(this.element, arg);
                     element.Render(arg);
+                    element_AfterRendering(this.element, arg);
+                    element_BeforeRendering(this.elementReversed, arg);
                     elementReversed.Render(arg);
+                    element_AfterRendering(this.elementReversed, arg);
                     break;
                 case RenderOrder.DecreaseThenIncrease:
+                    element_BeforeRendering(this.elementReversed, arg);
                     elementReversed.Render(arg);
+                    element_AfterRendering(this.elementReversed, arg);
+                    element_BeforeRendering(this.element, arg);
                     element.Render(arg);
+                    element_AfterRendering(this.element, arg);
                     break;
                 default:
                     throw new NotImplementedException();

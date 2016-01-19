@@ -83,8 +83,6 @@ namespace CSharpGL.Winforms.Demo
 
             axisElement = new AxisElement();
             axisElement.Initialize();
-            axisElement.BeforeRendering += axisElement_BeforeRendering;
-            axisElement.AfterRendering += axisElement_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -137,7 +135,9 @@ namespace CSharpGL.Winforms.Demo
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+            axisElement_BeforeRendering(this.axisElement, arg);
             axisElement.Render(arg);
+            axisElement_AfterRendering(this.axisElement, arg);
 
             var uiArg = new RenderEventArgs(RenderModes.Render, null);
             if (this.renderSign % 2 == 0)

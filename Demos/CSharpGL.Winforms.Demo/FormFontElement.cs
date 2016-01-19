@@ -62,11 +62,8 @@ namespace CSharpGL.Winforms.Demo
             //element.SetText("一龟");
             element.SetText("The quick brown fox jumps over the lazy dog!");
 
-            element.BeforeRendering += element_BeforeRendering;
-            element.AfterRendering += element_AfterRendering;
-
             uiAxisElement = new SimpleUIAxis(
-                new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, 
+                new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(0, 0, 0, 0), new System.Drawing.Size(100, 100)));
             uiAxisElement.Initialize();
 
@@ -87,46 +84,6 @@ namespace CSharpGL.Winforms.Demo
             }
         }
 
-        void element_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            IMVP iMVP = sender as IMVP;
-            iMVP.ResetShaderProgram();
-
-            var element = sender as FontElement;
-            if (element.blend)
-            {
-                GL.Disable(GL.GL_BLEND);
-            }
-
-            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
-        }
-
-        void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            var element = sender as FontElement;
-            Texture2D texture = element.texture;
-            texture.Bind();
-
-            if (element.blend)
-            {
-                GL.Enable(GL.GL_BLEND);
-                GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-            }
-
-            ShaderProgram shaderProgram = element.shaderProgram;
-
-            shaderProgram.Bind();
-
-            shaderProgram.SetUniform(FontElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
-            shaderProgram.SetUniform(FontElement.strtex, texture.Name);
-
-            mat4 projectionMatrix = this.camera.GetProjectionMat4();
-            mat4 viewMatrix = this.camera.GetViewMat4();
-            mat4 modelMatrix = mat4.identity();
-            IMVP iMVP = sender as IMVP;
-            iMVP.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
-        }
-
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
@@ -140,7 +97,45 @@ namespace CSharpGL.Winforms.Demo
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
-            element.Render(arg);
+            {
+                var element = sender as FontElement;
+                Texture2D texture = element.texture;
+                texture.Bind();
+
+                if (element.blend)
+                {
+                    GL.Enable(GL.GL_BLEND);
+                    GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+                }
+
+                ShaderProgram shaderProgram = element.shaderProgram;
+
+                shaderProgram.Bind();
+
+                shaderProgram.SetUniform(FontElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
+                shaderProgram.SetUniform(FontElement.strtex, texture.Name);
+
+                mat4 projectionMatrix = this.camera.GetProjectionMat4();
+                mat4 viewMatrix = this.camera.GetViewMat4();
+                mat4 modelMatrix = mat4.identity();
+                IMVP iMVP = sender as IMVP;
+                iMVP.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
+            }
+            {
+                element.Render(arg);
+            }
+            {
+                IMVP iMVP = sender as IMVP;
+                iMVP.ResetShaderProgram();
+
+                var element = sender as FontElement;
+                if (element.blend)
+                {
+                    GL.Disable(GL.GL_BLEND);
+                }
+
+                GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+            }
             uiAxisElement.Render(arg);
         }
 

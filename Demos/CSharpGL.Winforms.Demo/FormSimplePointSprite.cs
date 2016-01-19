@@ -67,8 +67,6 @@ namespace CSharpGL.Winforms.Demo
 
             pointSpriteElement = new DemoSimplePointSpriteElement(fontSize, foreshortening, type);
             pointSpriteElement.Initialize();
-            pointSpriteElement.BeforeRendering += pointSpriteElement_BeforeRendering;
-            pointSpriteElement.AfterRendering += pointSpriteElement_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -120,7 +118,9 @@ namespace CSharpGL.Winforms.Demo
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+            pointSpriteElement_BeforeRendering(this.pointSpriteElement, arg);
             pointSpriteElement.Render(arg);
+            pointSpriteElement_AfterRendering(this.pointSpriteElement, arg);
 
             uiLeftBottomAxis.Render(arg);
             uiLeftTopAxis.Render(arg);

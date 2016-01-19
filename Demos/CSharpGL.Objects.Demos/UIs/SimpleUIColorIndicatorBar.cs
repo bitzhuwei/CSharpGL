@@ -67,9 +67,6 @@ namespace CSharpGL.Objects.Demos.UIs
             this.shaderProgram = InitializeShader();
 
             InitVAO();
-
-            this.BeforeRendering += this.GetSimpleUI_BeforeRendering();
-            this.AfterRendering += this.GetSimpleUI_AfterRendering();
         }
 
         private void InitVAO()
@@ -173,6 +170,18 @@ namespace CSharpGL.Objects.Demos.UIs
 
         protected override void DoRender(RenderEventArgs e)
         {
+            {
+                mat4 projectionMatrix, viewMatrix, modelMatrix;
+                {
+                    IUILayout element = this as IUILayout;
+                    element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, e.Camera);
+                }
+
+                {
+                    IMVP element = this as IMVP;
+                    element.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
+                }
+            }
             // 记录当前多边形状态
             int[] polygonMode = new int[2];
             GL.GetInteger(GetTarget.PolygonMode, polygonMode);
@@ -199,6 +208,10 @@ namespace CSharpGL.Objects.Demos.UIs
             // 恢复多边形状态
             GL.PolygonMode(PolygonModeFaces.Front, (PolygonModes)polygonMode[0]);
             GL.PolygonMode(PolygonModeFaces.Back, (PolygonModes)polygonMode[1]);
+            {
+                IMVP element = this as IMVP;
+                element.ResetShaderProgram();
+            }
         }
 
         public IUILayoutParam Param { get; set; }

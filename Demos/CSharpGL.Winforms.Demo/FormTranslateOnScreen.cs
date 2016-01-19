@@ -13,7 +13,7 @@ namespace CSharpGL.Winforms.Demo
     {
         float translateX = 0, translateY = 0, translateZ = 0;
 
-        AxisElement element;
+        AxisElement axisElement;
 
         Camera camera;
 
@@ -40,11 +40,8 @@ namespace CSharpGL.Winforms.Demo
             //var radius = 0.1f;
             //var height = 10f;
             //element = new AxisElement(planColor, radius, height, faceCount);
-            element = new AxisElement();
-            element.Initialize();
-
-            element.BeforeRendering += element_BeforeRendering;
-            element.AfterRendering += element_AfterRendering;
+            axisElement = new AxisElement();
+            axisElement.Initialize();
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -55,28 +52,6 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
-        void element_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            IMVP element = sender as IMVP;
-
-            element.ResetShaderProgram();
-        }
-
-        void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            mat4 projectionMatrix = camera.GetProjectionMat4();
-            projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
-
-            mat4 viewMatrix = camera.GetViewMat4();
-
-            mat4 modelMatrix = mat4.identity();
-
-            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-            IMVP element = sender as IMVP;
-
-            element.SetShaderProgram(mvp);
-        }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -103,7 +78,26 @@ namespace CSharpGL.Winforms.Demo
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
-            element.Render(arg);
+            {
+                mat4 projectionMatrix = camera.GetProjectionMat4();
+                projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
+
+                mat4 viewMatrix = camera.GetViewMat4();
+
+                mat4 modelMatrix = mat4.identity();
+
+                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+
+                IMVP element = axisElement as IMVP;
+
+                element.SetShaderProgram(mvp);
+            }
+            axisElement.Render(arg);
+            {
+                IMVP element = axisElement as IMVP;
+
+                element.ResetShaderProgram();
+            }
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)

@@ -59,13 +59,8 @@ namespace CSharpGL.Winforms.Demo
             legacyLeftBottomRect.Initialize();
             uiLeftBottomAxis.Initialize();
 
-            legacyLeftBottomRect.BeforeRendering += legacyUIRect_BeforeRendering;
-            legacyLeftBottomRect.AfterRendering += legacyUIRect_AfterRendering;
-
             axisElement = new AxisElement();
             axisElement.Initialize();
-            axisElement.BeforeRendering += axisElement_BeforeRendering;
-            axisElement.AfterRendering += axisElement_AfterRendering;
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -159,14 +154,18 @@ namespace CSharpGL.Winforms.Demo
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+            axisElement_BeforeRendering(this.axisElement, arg);
             axisElement.Render(arg);
+            axisElement_AfterRendering(this.axisElement, arg);
 
             uiLeftBottomRect.Render(arg);
             //uiLeftTopRect.Render(arg);
             //uiRightBottomRect.Render(arg);
             //uiRightTopRect.Render(arg);
 
+            legacyUIRect_BeforeRendering(this.legacyLeftBottomRect, arg);
             legacyLeftBottomRect.Render(arg);
+            legacyUIRect_AfterRendering(this.legacyLeftBottomRect, arg);
             //legacyLeftTopRect.Render(arg);
             //legacyRightBottomRect.Render(arg);
             //legacyRightTopRect.Render(arg);

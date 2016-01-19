@@ -93,27 +93,6 @@ namespace FormShaderDesigner1594Demos
             element.SetShaderProgram(mvp);
         }
 
-        void element_AfterRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
-        {
-            //IMVP element = sender as IMVP;
-
-            //element.ResetShaderProgram();
-        }
-
-        void element_BeforeRendering(object sender, CSharpGL.Objects.RenderEventArgs e)
-        {
-            mat4 projectionMatrix = camera.GetProjectionMat4();
-            //projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
-
-            mat4 viewMatrix = camera.GetViewMat4();
-
-            mat4 modelMatrix = mat4.identity();
-
-            this.element.projectionMatrix = projectionMatrix;
-            this.element.viewMatrix = viewMatrix;
-            this.element.modelMatrix = modelMatrix;
-        }
-
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
@@ -137,7 +116,7 @@ namespace FormShaderDesigner1594Demos
         {
             PrintCameraInfo();
 
-            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+            //GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
@@ -148,7 +127,20 @@ namespace FormShaderDesigner1594Demos
                 this.newElement = null;
             }
 
-            element.Render(arg);
+            {
+                mat4 projectionMatrix = camera.GetProjectionMat4();
+                //projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
+
+                mat4 viewMatrix = camera.GetViewMat4();
+
+                mat4 modelMatrix = mat4.identity();
+
+                this.element.projectionMatrix = projectionMatrix;
+                this.element.viewMatrix = viewMatrix;
+                this.element.modelMatrix = modelMatrix;
+            }
+
+            this.element.Render(arg);
 
             uiLeftBottomAxis.Render(arg);
         }
@@ -287,8 +279,6 @@ namespace FormShaderDesigner1594Demos
         {
             var element = new XRayRenderer(factories[currentModelIndex].Create(this.radius));
             element.Initialize();
-            element.BeforeRendering += element_BeforeRendering;
-            element.AfterRendering += element_AfterRendering;
             this.newElement = element;
         }
 

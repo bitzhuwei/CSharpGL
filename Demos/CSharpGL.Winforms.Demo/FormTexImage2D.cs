@@ -37,9 +37,6 @@ namespace CSharpGL.Winforms.Demo
             element = new DemoTexImage2D("DemoTexImage2D.bmp");
             element.Initialize();
 
-            element.BeforeRendering += element_BeforeRendering;
-            element.AfterRendering += element_AfterRendering;
-
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
@@ -90,7 +87,9 @@ namespace CSharpGL.Winforms.Demo
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+            element_BeforeRendering(this.element, arg);
             element.Render(arg);
+            element_AfterRendering(this.element, arg);
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
@@ -163,8 +162,6 @@ namespace CSharpGL.Winforms.Demo
         {
             var element = new DemoTexImage2D(this.txtTextureFile.Text);
             element.Initialize();
-            element.BeforeRendering += element_BeforeRendering;
-            element.AfterRendering += element_AfterRendering;
 
             this.element = element;
         }
