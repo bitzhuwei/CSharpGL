@@ -50,12 +50,6 @@
     <Compile Include="Form3DSViewer4LegacyOpenGL.Designer.cs">
       <DependentUpon>Form3DSViewer4LegacyOpenGL.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3DSViewer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form3DSViewer.Designer.cs">
-      <DependentUpon>Form3DSViewer.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormChunkTreeViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,9 +66,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form3DSViewer4LegacyOpenGL.resx">
       <DependentUpon>Form3DSViewer4LegacyOpenGL.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form3DSViewer.resx">
-      <DependentUpon>Form3DSViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormChunkTreeViewer.resx">
       <DependentUpon>FormChunkTreeViewer.cs</DependentUpon>
@@ -105,6 +96,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="spaceship.3DS">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tank_Player.dtm.3ds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -140,10 +134,6 @@
     <ProjectReference Include="..\..\Functions\CSharpGL.FileParser._3DSParser\CSharpGL.FileParser._3DSParser.csproj">
       <Project>{d2b3c9b4-7e9d-46a8-a119-7743e56253b3}</Project>
       <Name>CSharpGL.FileParser._3DSParser</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Functions\CSharpGL._3DSFiles\CSharpGL._3DSFiles.csproj">
-      <Project>{2c4fc122-bd74-4f1f-bced-d44cf6ca7fa1}</Project>
-      <Name>CSharpGL._3DSFiles</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

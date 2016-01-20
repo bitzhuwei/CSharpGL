@@ -135,6 +135,46 @@ namespace CSharpGL.FileParser._3DSParser.ToLegacyOpenGL
                     drawn = true;
                 }
             }
+            if (this.usingMaterialIndexesList.Count == 0)
+            {
+                GL.Begin(GL.GL_TRIANGLES);
+                foreach (var tri in this.TriangleIndexes)
+                {
+                    // Vertex 1
+                    if (normalized)
+                    {
+                        var normal = this.normals[tri.vertex1];
+                        GL.Normal3d(normal.X, normal.Y, normal.Z);
+                    }
+                    {
+                        var vertex = this.Vertexes[tri.vertex1];
+                        GL.Vertex3d(vertex.X, vertex.Y, vertex.Z);
+                    }
+
+                    // Vertex 2
+                    if (normalized)
+                    {
+                        var normal = this.normals[tri.vertex2];
+                        GL.Normal3d(normal.X, normal.Y, normal.Z);
+                    }
+                    {
+                        var vertex = this.Vertexes[tri.vertex2];
+                        GL.Vertex3d(vertex.X, vertex.Y, vertex.Z);
+                    }
+
+                    // Vertex 3
+                    if (normalized)
+                    {
+                        var normal = this.normals[tri.vertex3];
+                        GL.Normal3d(normal.X, normal.Y, normal.Z);
+                    }
+                    {
+                        var vertex = this.Vertexes[tri.vertex3];
+                        GL.Vertex3d(vertex.X, vertex.Y, vertex.Z);
+                    }
+                }
+                GL.End();
+            }
 
             //Console.WriteLine ( GL.GetError () );
         }

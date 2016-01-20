@@ -249,7 +249,38 @@ namespace CSharpGL._3DSViewer
 
                             graphics.Dispose();
                         }
+                    }
+                    if (entity.usingMaterialIndexesList.Count == 0)
+                    {
+                        using (var uvMap = new Bitmap(uvMapLength, uvMapLength))
+                        {
+                            var graphics = Graphics.FromImage(uvMap);
 
+                            if (entity.TexCoords != null && entity.TriangleIndexes != null)
+                            {
+                                foreach (var tri in entity.TriangleIndexes)
+                                {
+                                    var uv1 = entity.TexCoords[tri.vertex1];
+                                    var uv2 = entity.TexCoords[tri.vertex2];
+                                    var uv3 = entity.TexCoords[tri.vertex3];
+                                    var p1 = new Point((int)(uv1.U * uvMapLength), (int)(uv1.V * uvMapLength));
+                                    var p2 = new Point((int)(uv2.U * uvMapLength), (int)(uv2.V * uvMapLength));
+                                    var p3 = new Point((int)(uv3.U * uvMapLength), (int)(uv3.V * uvMapLength));
+                                    graphics.DrawLine(pens[penIndex], p1, p2);
+                                    graphics.DrawLine(pens[penIndex], p2, p3);
+                                    graphics.DrawLine(pens[penIndex], p3, p1);
+                                    penIndex = (penIndex + 1 == pens.Length) ? 0 : penIndex + 1;
+                                }
+                            }
+                            else
+                            {
+                                graphics.FillRectangle(new SolidBrush(Color.Gray), 0, 0, uvMapLength, uvMapLength);
+                            }
+                            uvMap.Save(Path.Combine(file.DirectoryName,
+                                string.Format("{0}-{1}-{2}.bmp", file.Name, uvMapCount++, "noMaterial")));
+
+                            graphics.Dispose();
+                        }
                     }
                 }
 
