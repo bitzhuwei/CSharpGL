@@ -1,5 +1,4 @@
-﻿using CSharpGL._3DSFiles;
-using CSharpGL.FileParser._3DSParser;
+﻿using CSharpGL.FileParser._3DSParser;
 using CSharpGL.FileParser._3DSParser.ToLegacyOpenGL;
 using CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.ChunkDumpers;
 using CSharpGL.Objects;
@@ -30,6 +29,7 @@ namespace CSharpGL._3DSViewer
         //private Texture2D texture;
 
         ThreeDSModel4LegacyOpenGL model = null;
+        private bool textureAdded;
 
         public Form3DSViewer4LegacyOpenGL()
         {

@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form3DSViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3DSViewer.Designer.cs">
+      <DependentUpon>Form3DSViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form3DSViewer4LegacyOpenGL.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form3DSViewer.resx">
+      <DependentUpon>Form3DSViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form3DSViewer4LegacyOpenGL.resx">
       <DependentUpon>Form3DSViewer4LegacyOpenGL.cs</DependentUpon>
     </EmbeddedResource>
@@ -135,6 +144,10 @@
       <Project>{d2b3c9b4-7e9d-46a8-a119-7743e56253b3}</Project>
       <Name>CSharpGL.FileParser._3DSParser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Functions\CSharpGL._3DSFiles\CSharpGL._3DSFiles.csproj">
+      <Project>{2c4fc122-bd74-4f1f-bced-d44cf6ca7fa1}</Project>
+      <Name>CSharpGL._3DSFiles</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="books1.bmp">
@@ -142,6 +155,9 @@
     </Content>
     <Content Include="readme.txt" />
     <Content Include="spaceshiptexture.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tank_Player.dtm.JPG">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
