@@ -95,7 +95,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderContexts\RenderContext.cs" />
     <Compile Include="RenderContexts\VersionAttribute.cs" />
-    <Compile Include="RenderModes.cs" />
     <Compile Include="Shaders\ShaderProgram.cs" />
     <Compile Include="Texture2D.cs" />
     <Compile Include="SceneElementBase.cs" />

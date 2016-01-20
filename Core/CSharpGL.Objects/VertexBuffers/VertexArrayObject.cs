@@ -57,6 +57,7 @@ namespace CSharpGL.Objects.VertexBuffers
 
         /// <summary>
         /// 在OpenGL中创建VAO。
+        /// 创建的过程就是执行一次渲染的过程。
         /// </summary>
         /// <param name="e"></param>
         /// <param name="shaderProgram"></param>
@@ -88,6 +89,11 @@ namespace CSharpGL.Objects.VertexBuffers
             GL.BindVertexArray(0);
         }
 
+        /// <summary>
+        /// 执行一次渲染的过程。
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="shaderProgram"></param>
         public void Render(RenderEventArgs e, Shaders.ShaderProgram shaderProgram)
         {
             this.Bind();

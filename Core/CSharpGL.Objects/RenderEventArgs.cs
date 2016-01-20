@@ -36,4 +36,11 @@ namespace CSharpGL.Objects
         public RenderModes RenderMode { get; private set; }
 
     }
+
+    public enum RenderModes
+    {
+        Render,
+        HitTest,
+        DesignMode,
+    }
 }

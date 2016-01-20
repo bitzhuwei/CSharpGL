@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects
+namespace SharpFont
 {
-    public enum RenderModes
+    [Flags]
+    enum TouchState
     {
-        Render,
-        HitTest,
-        DesignMode,
+        None = 0,
+        X = 0x1,
+        Y = 0x2,
+        Both = X | Y
     }
 }
