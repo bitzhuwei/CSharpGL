@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
     /// <summary>
     /// 用多个Quad进行VR渲染。并且可选择渲染顺序。
     /// </summary>
-    public class DemoVolumeRendering04 : SceneElementBase, IMVP
+    public class DemoVolumeRendering04 : SceneElementBase
     {
         VertexArrayObject vao;
 
@@ -29,7 +29,8 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_uv = "in_uv";
-        public const string strMVP = "MVP";
+        const string strMVP = "MVP";
+        public mat4 mvp;
 
         /// <summary>
         /// 用多个Quad进行VR渲染。并且可选择渲染顺序。
@@ -157,21 +158,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
         protected override void DoRender(RenderEventArgs e)
         {
-            if (this.vao.ID == 0)
-            {
-                this.vao.Create(e, this.shaderProgram);
-            }
 
-            this.vao.Render(e, this.shaderProgram);
-        }
-
-        public BlendingSourceFactor sFactor = BlendingSourceFactor.SourceAlpha;
-        public BlendingDestinationFactor dFactor = BlendingDestinationFactor.OneMinusSourceAlpha;
-        public bool blend = true;
-        private bool reverSide;
-
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
             //this.tex.Bind();
             GL.CullFace(GL.GL_FRONT_AND_BACK);
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Filled);
@@ -191,28 +178,32 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
             this.shaderProgram.Bind();
             this.shaderProgram.SetUniform("tex", textureID);
+            this.shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
 
-            IMVPHelper.SetMVP(this, mvp);
-        }
-
-
-        void IMVP.ResetShaderProgram()
-        {
-            IMVPHelper.ResetMVP(this);
+            if (this.vao.ID == 0)
+            {
+                this.vao.Create(e, this.shaderProgram);
+            }
+            else
+            {
+                this.vao.Render(e, this.shaderProgram);
+            }
 
             //this.tex.Unbind();
             this.shaderProgram.Unbind();
             GL.BindTexture(GL.GL_TEXTURE_3D, 0);
 
-            GL.Disable(GL.GL_BLEND);
+            if (blend)
+            {
+                GL.Disable(GL.GL_BLEND);
+            }
             GL.Disable(GL.GL_ALPHA_TEST);
         }
 
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return this.shaderProgram;
-        }
+        public BlendingSourceFactor sFactor = BlendingSourceFactor.SourceAlpha;
+        public BlendingDestinationFactor dFactor = BlendingDestinationFactor.OneMinusSourceAlpha;
+        public bool blend = true;
+        private bool reverSide;
 
         protected override void CleanUnmanagedRes()
         {

@@ -69,30 +69,6 @@ namespace FormShaderDesigner1594Demos
             PrintCameraInfo();
         }
 
-        void pointLightElement_AfterRendering(object sender, RenderEventArgs e)
-        {
-            IMVP element = sender as IMVP;
-
-            element.ResetShaderProgram();
-        }
-
-        void pointLightElement_BeforeRendering(object sender, RenderEventArgs e)
-        {
-            mat4 projectionMatrix = camera.GetProjectionMat4();
-            projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
-            //projectionMatrix = glm.scale(projectionMatrix, new vec3(0.1f, 0.1f, 0.1f));
-
-            mat4 viewMatrix = camera.GetViewMat4();
-
-            mat4 modelMatrix = glm.scale(mat4.identity(), new vec3(0.1f, 0.1f, 0.1f));
-
-            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-            IMVP element = sender as IMVP;
-
-            element.SetShaderProgram(mvp);
-        }
-
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);

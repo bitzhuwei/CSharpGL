@@ -15,7 +15,7 @@ namespace CSharpGL.Objects.SceneElements
     /// <para>充当此类库里的示例元素</para>
     /// <para>此类型使用封装了的VAO和VBO。我认为是可以提高开发效率的，是个好的设计。</para>
     /// </summary>
-    public class AxisElement : SceneElementBase, IMVP
+    public class AxisElement : SceneElementBase
     {
 
         VertexArrayObject[] axisVAO;
@@ -35,6 +35,7 @@ namespace CSharpGL.Objects.SceneElements
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
         const string strMVP = "MVP";
+        public mat4 mvp;
 
         private float radius;
         private float axisLength;
@@ -187,6 +188,10 @@ namespace CSharpGL.Objects.SceneElements
 
         protected override void DoRender(RenderEventArgs e)
         {
+            // 绑定shader
+            this.shaderProgram.Bind();
+            this.shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+
             if (this.axisVAO == null)
             {
                 this.axisVAO = new VertexArrayObject[3];
@@ -205,18 +210,17 @@ namespace CSharpGL.Objects.SceneElements
                     this.planVAO = vao;
                 }
             }
-
-            // 绑定shader
-            this.shaderProgram.Bind();
-
-            // 画坐标轴
-            for (int i = 0; i < 3; i++)
+            else
             {
-                this.axisVAO[i].Render(e, this.shaderProgram);
-            }
-            // 画平面
-            {
-                this.planVAO.Render(e, this.shaderProgram);
+                // 画坐标轴
+                for (int i = 0; i < 3; i++)
+                {
+                    this.axisVAO[i].Render(e, this.shaderProgram);
+                }
+                // 画平面
+                {
+                    this.planVAO.Render(e, this.shaderProgram);
+                }
             }
 
             // 解绑shader
@@ -243,20 +247,5 @@ namespace CSharpGL.Objects.SceneElements
             base.CleanUnmanagedRes();
         }
 
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
-            IMVPHelper.SetMVP(this, mvp);
-        }
-
-
-        void IMVP.ResetShaderProgram()
-        {
-            IMVPHelper.ResetMVP(this);
-        }
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return this.shaderProgram;
-        }
     }
 }

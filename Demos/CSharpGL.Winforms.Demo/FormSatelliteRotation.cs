@@ -18,6 +18,8 @@ namespace CSharpGL.Winforms.Demo
         {
             InitializeComponent();
 
+            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+
             //if (CameraDictionary.Instance.ContainsKey(this.GetType().Name))
             //{
             //    this.camera = CameraDictionary.Instance[this.GetType().Name];
@@ -58,31 +60,17 @@ namespace CSharpGL.Winforms.Demo
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+            mat4 projectionMatrix = camera.GetProjectionMat4();
+            mat4 viewMatrix = camera.GetViewMat4();
+            mat4 modelMatrix = mat4.identity();
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+
+            element.mvp = mvp;
+
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-
+            
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
-            {
-                mat4 projectionMatrix = camera.GetProjectionMat4();
-
-                mat4 viewMatrix = camera.GetViewMat4();
-
-                mat4 modelMatrix = mat4.identity();
-
-                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-                IMVP imvp = element as IMVP;
-
-                imvp.SetShaderProgram(mvp);
-            }
-            {
-                element.Render(arg);
-            }
-            {
-                IMVP imvp = element as IMVP;
-
-                imvp.ResetShaderProgram();
-            }
+            element.Render(arg);
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)

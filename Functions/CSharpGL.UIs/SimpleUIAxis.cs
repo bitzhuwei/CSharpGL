@@ -14,7 +14,7 @@ namespace CSharpGL.Objects.Demos.UIs
     /// <summary>
     /// 用一个<see cref="AxisElement"/>绘制一个固定在窗口某处的坐标系。
     /// </summary>
-    public class SimpleUIAxis : SceneElementBase, IUILayout, IMVP, IDisposable
+    public class SimpleUIAxis : SceneElementBase, IUILayout, IDisposable
     {
         public AxisElement axisElement;
 
@@ -62,42 +62,16 @@ namespace CSharpGL.Objects.Demos.UIs
 
         protected override void DoRender(RenderEventArgs e)
         {
+            mat4 projectionMatrix, viewMatrix, modelMatrix;
             {
-                mat4 projectionMatrix, viewMatrix, modelMatrix;
-                {
-                    IUILayout element = this as IUILayout;
-                    element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, e.Camera);
-                }
-
-                {
-                    IMVP element = this as IMVP;
-                    element.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
-                }
+                IUILayout element = this as IUILayout;
+                element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, e.Camera);
             }
+            this.axisElement.mvp = projectionMatrix * viewMatrix * modelMatrix;
+
             this.axisElement.Render(e);
-            {
-                IMVP element = this as IMVP;
-                element.ResetShaderProgram();
-            }
 
         }
 
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
-            IMVP element = this.axisElement as IMVP;
-            element.SetShaderProgram(mvp);
-        }
-
-
-        void IMVP.ResetShaderProgram()
-        {
-            IMVP element = this.axisElement as IMVP;
-            element.ResetShaderProgram();
-        }
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return ((IMVP)this.axisElement).GetShaderProgram();
-        }
     }
 }

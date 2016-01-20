@@ -23,9 +23,12 @@ namespace CSharpGL.Objects.SceneElements
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
-        public const string strprojectionMatrix = "projectionMatrix";
-        public const string strviewMatrix = "viewMatrix";
-        public const string strmodelMatrix = "modelMatrix";
+        const string strprojectionMatrix = "projectionMatrix";
+        public mat4 projectionMatrix;
+        const string strviewMatrix = "viewMatrix";
+        public mat4 viewMatrix;
+        const string strmodelMatrix = "modelMatrix";
+        public mat4 modelMatrix;
 
         /// <summary>
         /// VAO
@@ -224,6 +227,12 @@ namespace CSharpGL.Objects.SceneElements
 
         protected override void DoRender(RenderEventArgs e)
         {
+            shaderProgram.Bind();
+
+            shaderProgram.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
+            shaderProgram.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
+
             // 画坐标轴
             for (int i = 0; i < 3; i++)
             {
@@ -243,6 +252,8 @@ namespace CSharpGL.Objects.SceneElements
 
                 GL.BindVertexArray(0);
             }
+
+            shaderProgram.Unbind();
         }
 
 

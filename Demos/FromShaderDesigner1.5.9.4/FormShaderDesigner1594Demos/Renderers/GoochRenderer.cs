@@ -90,17 +90,6 @@ namespace FormShaderDesigner1594Demos.Renderers
 
         protected override void DoRender(RenderEventArgs e)
         {
-            if (this.vertexArrayObject == null)
-            {
-                var vao = new VertexArrayObject(
-                    this.positionBufferRenderer, 
-                    //colorBufferRenderer, 
-                    this.normalBufferRenderer,
-                    this.indexBufferRenderer);
-                vao.Create(e, this.shaderProgram);
-
-                this.vertexArrayObject = vao;
-            }
 
             // 绑定shader
             this.shaderProgram.Bind();
@@ -120,7 +109,21 @@ namespace FormShaderDesigner1594Demos.Renderers
             GL.Enable(GL.GL_PRIMITIVE_RESTART);
             GL.PrimitiveRestartIndex(uint.MaxValue);
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);
-            this.vertexArrayObject.Render(e, this.shaderProgram);
+            if (this.vertexArrayObject == null)
+            {
+                var vao = new VertexArrayObject(
+                    this.positionBufferRenderer,
+                    //colorBufferRenderer, 
+                    this.normalBufferRenderer,
+                    this.indexBufferRenderer);
+                vao.Create(e, this.shaderProgram);
+
+                this.vertexArrayObject = vao;
+            }
+            else
+            {
+                this.vertexArrayObject.Render(e, this.shaderProgram);
+            }
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
             GL.Disable(GL.GL_PRIMITIVE_RESTART);
 

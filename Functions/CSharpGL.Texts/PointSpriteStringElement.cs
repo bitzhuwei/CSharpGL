@@ -15,7 +15,7 @@ namespace CSharpGL.Objects.SceneElements
     /// 用shader+VAO+组装的texture显示一个指定的字符串
     /// <para>代表一个三维空间内的内容不可变的字符串</para>
     /// </summary>
-    public class PointSpriteStringElement : SceneElementBase, IMVP
+    public class PointSpriteStringElement : SceneElementBase
     {
         /// <summary>
         /// 如果一行字符串太长，会在达到此值时开启下一行。
@@ -286,8 +286,39 @@ namespace CSharpGL.Objects.SceneElements
             this.shaderProgram = shaderProgram;
         }
 
+        public mat4 mvp;
+
         protected override void DoRender(RenderEventArgs e)
         {
+            {
+                GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
+                GL.Enable(GL.GL_POINT_SPRITE_ARB);
+                //GL.TexEnv(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);//TODO: test TexEnvi()
+                GL.TexEnvf(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);
+                GL.Enable(GL.GL_POINT_SMOOTH);
+                GL.Hint(GL.GL_POINT_SMOOTH_HINT, GL.GL_NICEST);
+                GL.Enable(GL.GL_BLEND);
+                GL.BlendEquation(GL.GL_FUNC_ADD_EXT);
+                GL.BlendFuncSeparate(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
+
+                GL.BindTexture(GL.GL_TEXTURE_2D, this.texture[0]);
+
+                shaderProgram.Bind();
+                shaderProgram.SetUniformMatrix4("MVP", mvp.to_array());
+
+                //int[] poinSizes = new int[2];
+                //GL.GetInteger(GetTarget.PointSizeRange, poinSizes);
+                //if (this.textureWidth > poinSizes[1])
+                //{
+                //    GL.PointParameter(GL.GL_POINT_SIZE_MAX_ARB, this.textureWidth);
+                //    GL.GetInteger(GetTarget.PointSizeRange, poinSizes);
+                //    Console.WriteLine("asf");
+                //}
+                shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.textureWidth + 0.0f);
+                shaderProgram.SetUniform(PointSpriteStringElement.strtex, this.texture[0]);
+                shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, this.textColor.x, this.textColor.y, this.textColor.z);
+            }
+
             // 用VAO+EBO进行渲染。
             //  Bind the out vertex array.
             GL.BindVertexArray(vao[0]);
@@ -296,6 +327,17 @@ namespace CSharpGL.Objects.SceneElements
 
             //  Unbind our vertex array and shader.
             GL.BindVertexArray(0);
+
+            {
+                shaderProgram.Unbind();
+
+                GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+
+                GL.Disable(GL.GL_BLEND);
+                GL.Disable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
+                GL.Disable(GL.GL_POINT_SPRITE_ARB);
+                GL.Disable(GL.GL_POINT_SMOOTH);
+            }
         }
 
 
@@ -310,53 +352,6 @@ namespace CSharpGL.Objects.SceneElements
             base.CleanUnmanagedRes();
         }
 
-
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
-            GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
-            GL.Enable(GL.GL_POINT_SPRITE_ARB);
-            //GL.TexEnv(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);//TODO: test TexEnvi()
-            GL.TexEnvf(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);
-            GL.Enable(GL.GL_POINT_SMOOTH);
-            GL.Hint(GL.GL_POINT_SMOOTH_HINT, GL.GL_NICEST);
-            GL.Enable(GL.GL_BLEND);
-            GL.BlendEquation(GL.GL_FUNC_ADD_EXT);
-            GL.BlendFuncSeparate(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
-
-            GL.BindTexture(GL.GL_TEXTURE_2D, this.texture[0]);
-
-            IMVPHelper.SetMVP(this, mvp);
-
-            //int[] poinSizes = new int[2];
-            //GL.GetInteger(GetTarget.PointSizeRange, poinSizes);
-            //if (this.textureWidth > poinSizes[1])
-            //{
-            //    GL.PointParameter(GL.GL_POINT_SIZE_MAX_ARB, this.textureWidth);
-            //    GL.GetInteger(GetTarget.PointSizeRange, poinSizes);
-            //    Console.WriteLine("asf");
-            //}
-            shaderProgram.SetUniform(PointSpriteStringElement.strpointSize, this.textureWidth + 0.0f);
-            shaderProgram.SetUniform(PointSpriteStringElement.strtex, this.texture[0]);
-            shaderProgram.SetUniform(PointSpriteStringElement.strtextColor, this.textColor.x, this.textColor.y, this.textColor.z);
-        }
-
-
-        void IMVP.ResetShaderProgram()
-        {
-            IMVPHelper.ResetMVP(this);
-
-            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
-
-            GL.Disable(GL.GL_BLEND);
-            GL.Disable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
-            GL.Disable(GL.GL_POINT_SPRITE_ARB);
-            GL.Disable(GL.GL_POINT_SMOOTH);
-        }
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return this.shaderProgram;
-        }
     }
 
 }

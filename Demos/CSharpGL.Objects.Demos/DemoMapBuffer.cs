@@ -12,7 +12,7 @@ namespace CSharpGL.Objects.Demos
     /// <summary>
     /// 演示如何使用<see cref="IColorCodedPicking"/>进行拾取。
     /// </summary>
-    public class DemoMapBuffer : SceneElementBase, IMVP
+    public class DemoMapBuffer : SceneElementBase
     {
         const float unitSpace = 6f;
         private static readonly vec3[] unitCubePos;
@@ -54,6 +54,8 @@ namespace CSharpGL.Objects.Demos
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
         const string strMVP = "MVP";
+        public mat4 mvp;
+
         private uint[] vao = new uint[1];
         private uint[] colorBuffer = new uint[1];
         private int size;
@@ -185,6 +187,9 @@ namespace CSharpGL.Objects.Demos
 
         protected override void DoRender(RenderEventArgs e)
         {
+            this.shaderProgram.Bind();
+            this.shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+
             GL.Enable(GL.GL_PRIMITIVE_RESTART);
             GL.PrimitiveRestartIndex(uint.MaxValue);
 
@@ -198,22 +203,8 @@ namespace CSharpGL.Objects.Demos
             GL.BindVertexArray(0);
 
             GL.Disable(GL.GL_PRIMITIVE_RESTART);
-        }
 
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
-            IMVPHelper.SetMVP(this, mvp);
-        }
-
-
-        void IMVP.ResetShaderProgram()
-        {
-            IMVPHelper.ResetMVP(this);
-        }
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return this.shaderProgram;
+            this.shaderProgram.Unbind();
         }
 
         Random random = new Random();

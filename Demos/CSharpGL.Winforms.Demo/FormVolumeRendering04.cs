@@ -74,62 +74,41 @@ namespace CSharpGL.Winforms.Demo
             this.camera.MouseWheel(e.Delta);
         }
 
-        void element_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            IMVP element = sender as IMVP;
-
-            element.ResetShaderProgram();
-        }
-
-        void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            mat4 projectionMatrix = camera.GetProjectionMat4();
-
-            mat4 viewMatrix = camera.GetViewMat4();
-
-            mat4 modelMatrix = mat4.identity();
-
-            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-            IMVP element = sender as IMVP;
-
-            element.SetShaderProgram(mvp);
-        }
-
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+            mat4 projectionMatrix = camera.GetProjectionMat4();
+            mat4 viewMatrix = camera.GetViewMat4();
+            mat4 modelMatrix = mat4.identity();
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
             switch (this.renderOrder)
             {
                 case RenderOrder.Increase:
-                    element_BeforeRendering(this.element, arg);
+                    element.mvp = mvp;
+
                     element.Render(arg);
-                    element_AfterRendering(this.element, arg);
                     break;
                 case RenderOrder.Decrease:
-                    element_BeforeRendering(this.elementReversed, arg);
+                    elementReversed.mvp = mvp;
+
                     elementReversed.Render(arg);
-                    element_AfterRendering(this.elementReversed, arg);
                     break;
                 case RenderOrder.IncreaseThenDecrease:
-                    element_BeforeRendering(this.element, arg);
+                    element.mvp = mvp;
+                    elementReversed.mvp = mvp;
+
                     element.Render(arg);
-                    element_AfterRendering(this.element, arg);
-                    element_BeforeRendering(this.elementReversed, arg);
                     elementReversed.Render(arg);
-                    element_AfterRendering(this.elementReversed, arg);
                     break;
                 case RenderOrder.DecreaseThenIncrease:
-                    element_BeforeRendering(this.elementReversed, arg);
+                    elementReversed.mvp = mvp;
+                    element.mvp = mvp;
+
                     elementReversed.Render(arg);
-                    element_AfterRendering(this.elementReversed, arg);
-                    element_BeforeRendering(this.element, arg);
                     element.Render(arg);
-                    element_AfterRendering(this.element, arg);
                     break;
                 default:
                     throw new NotImplementedException();

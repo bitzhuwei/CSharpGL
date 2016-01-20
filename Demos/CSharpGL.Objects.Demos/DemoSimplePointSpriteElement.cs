@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.Demos
     /// <summary>
     /// 这是一个使用point sprite进行渲染的简单的例子。
     /// </summary>
-    public class DemoSimplePointSpriteElement : SceneElementBase,IMVP, IDisposable
+    public class DemoSimplePointSpriteElement : SceneElementBase
     {
 
         /// <summary>
@@ -31,9 +31,11 @@ namespace CSharpGL.Objects.Demos
         /// <summary>
         /// shader program
         /// </summary>
-        public ShaderProgram shaderProgram;
+        ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
-        public const string strMVP = "MVP";
+        const string strMVP = "MVP";
+        public mat4 mvp;
+
         public const string strtex = "tex";
         public const string strpointSize = "pointSize";
         public const string strforeshortening = "foreshortening";
@@ -132,38 +134,6 @@ namespace CSharpGL.Objects.Demos
             InitializeVAO();
         }
 
-        void SimplePointSpriteElement_AfterRendering(object sender, RenderEventArgs e)
-        {
-            this.shaderProgram.Unbind();
-
-            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
-
-            GL.Disable(GL.GL_BLEND);
-            GL.Disable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
-            GL.Disable(GL.GL_POINT_SPRITE_ARB);
-            GL.Disable(GL.GL_POINT_SMOOTH);
-        }
-
-        void SimplePointSpriteElement_BeforeRendering(object sender, RenderEventArgs e)
-        {
-            GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
-            GL.Enable(GL.GL_POINT_SPRITE_ARB);
-            //GL.TexEnv(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);//TODO: test TexEnvi()
-            GL.TexEnvf(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);
-            //GL.Enable(GL.GL_POINT_SMOOTH);
-            //GL.Hint(GL.GL_POINT_SMOOTH_HINT, GL.GL_NICEST);
-            GL.Enable(GL.GL_BLEND);
-            GL.BlendEquation(GL.GL_FUNC_ADD_EXT);
-            GL.BlendFuncSeparate(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
-
-            GL.BindTexture(GL.GL_TEXTURE_2D, this.texture[0]);
-
-            this.shaderProgram.Bind();
-            shaderProgram.SetUniform(strtex, this.texture[0]);
-            shaderProgram.SetUniform(strpointSize, this.PointSize);
-            shaderProgram.SetUniform(strforeshortening, (this.Foreshortening ? 1.0f : 0.0f));
-        }
-
         private void InitTexture()
         {
             System.Drawing.Bitmap contentBitmap = ManifestResourceLoader.LoadBitmap("DemoSimplePointSpriteElement.png");
@@ -240,7 +210,23 @@ namespace CSharpGL.Objects.Demos
 
         protected override void DoRender(RenderEventArgs e)
         {
-            SimplePointSpriteElement_BeforeRendering(this, e);
+            GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
+            GL.Enable(GL.GL_POINT_SPRITE_ARB);
+            //GL.TexEnv(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);//TODO: test TexEnvi()
+            GL.TexEnvf(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);
+            //GL.Enable(GL.GL_POINT_SMOOTH);
+            //GL.Hint(GL.GL_POINT_SMOOTH_HINT, GL.GL_NICEST);
+            GL.Enable(GL.GL_BLEND);
+            GL.BlendEquation(GL.GL_FUNC_ADD_EXT);
+            GL.BlendFuncSeparate(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
+
+            GL.BindTexture(GL.GL_TEXTURE_2D, this.texture[0]);
+
+            this.shaderProgram.Bind();
+            shaderProgram.SetUniform(strtex, this.texture[0]);
+            shaderProgram.SetUniform(strpointSize, this.PointSize);
+            shaderProgram.SetUniform(strforeshortening, (this.Foreshortening ? 1.0f : 0.0f));
+            shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
 
             GL.BindVertexArray(vao[0]);
 
@@ -248,7 +234,14 @@ namespace CSharpGL.Objects.Demos
 
             GL.BindVertexArray(0);
 
-            SimplePointSpriteElement_AfterRendering(this, e);
+            this.shaderProgram.Unbind();
+
+            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+
+            GL.Disable(GL.GL_BLEND);
+            GL.Disable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
+            GL.Disable(GL.GL_POINT_SPRITE_ARB);
+            GL.Disable(GL.GL_POINT_SMOOTH);
         }
 
         protected override void CleanUnmanagedRes()
@@ -267,20 +260,6 @@ namespace CSharpGL.Objects.Demos
 
         public bool Foreshortening { get; set; }
 
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
-            IMVPHelper.SetMVP(this, mvp);
-        }
-
-        void IMVP.ResetShaderProgram()
-        {
-            IMVPHelper.ResetMVP(this);
-        }
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return this.shaderProgram;
-        }
     }
 
     public enum FragShaderType

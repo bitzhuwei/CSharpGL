@@ -139,61 +139,30 @@ namespace CSharpGL.Winforms.Demo
         {
             PrintCameraInfo();
 
-            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+            //GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+            mat4 projectionMatrix = camera.GetProjectionMat4();
+            projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
+            mat4 viewMatrix = camera.GetViewMat4();
+            mat4 modelMatrix = mat4.identity();
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
             if (this.renderState == 2 || this.renderState == 4)
             {
-                {
-                    mat4 projectionMatrix = camera.GetProjectionMat4();
-                    projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
+                axisElement.mvp = mvp;
 
-                    mat4 viewMatrix = camera.GetViewMat4();
-
-                    mat4 modelMatrix = mat4.identity();
-
-                    mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-                    IMVP element = axisElement as IMVP;
-
-                    element.SetShaderProgram(mvp);
-                }
                 axisElement.Render(arg);
-                {
-                    IMVP element = axisElement as IMVP;
-
-                    element.ResetShaderProgram();
-                }
             }
 
             if (this.renderState == 3 || this.renderState == 4)
             {
-                {
-                    AxisElement2 element = sender as AxisElement2;
+                axisElement2.projectionMatrix = projectionMatrix;
+                axisElement2.viewMatrix = viewMatrix;
+                axisElement2.modelMatrix = modelMatrix;
 
-                    mat4 projectionMatrix = camera.GetProjectionMat4();
-                    projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
-
-                    mat4 viewMatrix = camera.GetViewMat4();
-
-                    mat4 modelMatrix = mat4.identity();
-
-                    ShaderProgram shaderProgram = element.shaderProgram;
-
-                    shaderProgram.Bind();
-
-                    shaderProgram.SetUniformMatrix4(AxisElement2.strprojectionMatrix, projectionMatrix.to_array());
-                    shaderProgram.SetUniformMatrix4(AxisElement2.strviewMatrix, viewMatrix.to_array());
-                    shaderProgram.SetUniformMatrix4(AxisElement2.strmodelMatrix, modelMatrix.to_array());
-                }
                 axisElement2.Render(arg);
-                {
-                    AxisElement2 element = axisElement2 as AxisElement2;
-
-                    element.shaderProgram.Unbind();
-                }
             }
 
             uiLeftBottomAxis.Render(arg);

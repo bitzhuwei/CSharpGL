@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
     /// <summary>
     /// 用多个Points进行VR渲染。
     /// </summary>
-    public class DemoVolumeRendering05 : SceneElementBase, IMVP
+    public class DemoVolumeRendering05 : SceneElementBase
     {
         VertexArrayObject vao;
 
@@ -29,7 +29,8 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_uv = "in_uv";
-        public const string strMVP = "MVP";
+        const string strMVP = "MVP";
+        public mat4 mvp;
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
@@ -64,7 +65,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
         {
             if (this.indexBufferRenderer == null) { return; }
 
-            this.indexBufferRenderer.FirstVertex = value;           
+            this.indexBufferRenderer.FirstVertex = value;
         }
 
         public void SetVertexCount(int value)
@@ -138,21 +139,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
         protected override void DoRender(RenderEventArgs e)
         {
-            if (this.vao.ID == 0)
-            {
-                this.vao.Create(e, this.shaderProgram);
-            }
 
-            this.vao.Render(e, this.shaderProgram);
-
-        }
-
-        public BlendingSourceFactor sFactor = BlendingSourceFactor.SourceAlpha;
-        public BlendingDestinationFactor dFactor = BlendingDestinationFactor.OneMinusSourceAlpha;
-        public bool blend = true;
-
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
             //this.tex.Bind();
             GL.CullFace(GL.GL_FRONT_AND_BACK);
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Filled);
@@ -173,14 +160,16 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
             this.shaderProgram.Bind();
             this.shaderProgram.SetUniform("tex", textureID);
+            this.shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
 
-            IMVPHelper.SetMVP(this, mvp);
-        }
-
-
-        void IMVP.ResetShaderProgram()
-        {
-            IMVPHelper.ResetMVP(this);
+            if (this.vao.ID == 0)
+            {
+                this.vao.Create(e, this.shaderProgram);
+            }
+            else
+            {
+                this.vao.Render(e, this.shaderProgram);
+            }
 
             //this.tex.Unbind();
             this.shaderProgram.Unbind();
@@ -188,17 +177,15 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
             GL.Disable(GL.GL_BLEND);
             GL.Disable(GL.GL_ALPHA_TEST);
-            if(blend)
+            if (blend)
             {
                 GL.DepthMask((byte)GL.GL_TRUE);
             }
         }
 
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return this.shaderProgram;
-        }
+        public BlendingSourceFactor sFactor = BlendingSourceFactor.SourceAlpha;
+        public BlendingDestinationFactor dFactor = BlendingDestinationFactor.OneMinusSourceAlpha;
+        public bool blend = true;
 
         protected override void CleanUnmanagedRes()
         {

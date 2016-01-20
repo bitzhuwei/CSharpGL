@@ -51,8 +51,6 @@
     <Compile Include="Cameras\IBoundingBoxHelper.cs" />
     <Compile Include="Cameras\ICameraRotator.cs" />
     <Compile Include="Cameras\MouseWheelHelper.cs" />
-    <Compile Include="IMVP.cs" />
-    <Compile Include="IMVPHelper.cs" />
     <Compile Include="IRenderable.cs" />
     <Compile Include="ModelFactories\TeapotFactory.cs" />
     <Compile Include="ModelFactories\CubeFactory.cs" />

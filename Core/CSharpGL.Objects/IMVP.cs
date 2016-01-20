@@ -11,6 +11,7 @@ namespace CSharpGL.Objects
     /// <summary>
     /// 通过此接口设置元素的MVP矩阵
     /// </summary>
+    [Obsolete("这个设计的不好！", "error")]    
     public interface IMVP
     {
         /// <summary>

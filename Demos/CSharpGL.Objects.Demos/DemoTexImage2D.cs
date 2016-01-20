@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Demos
 {
-    public class DemoTexImage2D : SceneElementBase, IMVP
+    public class DemoTexImage2D : SceneElementBase
     {
 
         public DemoTexImage2D(string textureFile)
@@ -24,7 +24,8 @@ namespace CSharpGL.Objects.Demos
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_uv = "in_uv";
-        public const string strMVP = "MVP";
+        const string strMVP = "MVP";
+        public mat4 mvp;
 
         /// <summary>
         /// VAO
@@ -179,36 +180,22 @@ namespace CSharpGL.Objects.Demos
             this.tex = new Texture2D();
             System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(this.textureFile);
             this.tex.Initialize(bmp);
-       }
+        }
 
         protected override void DoRender(RenderEventArgs e)
         {
+            this.tex.Bind();
+            this.shaderProgram.Bind();
+            this.shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+
             GL.BindVertexArray(vao[0]);
 
             GL.DrawArrays(primitiveMode, 0, vertexCount);
 
             GL.BindVertexArray(0);
+
+            this.shaderProgram.Unbind();
         }
 
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
-            this.tex.Bind();
-
-            IMVPHelper.SetMVP(this, mvp);
-        }
-
-
-        void IMVP.ResetShaderProgram()
-        {
-            IMVPHelper.ResetMVP(this);
-
-            this.tex.Unbind();
-        }
-
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return this.shaderProgram;
-        }
     }
 }

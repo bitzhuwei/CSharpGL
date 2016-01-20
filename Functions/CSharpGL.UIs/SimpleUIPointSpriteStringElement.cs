@@ -17,7 +17,7 @@ namespace CSharpGL.UIs
     /// 用shader+VAO+组装的texture显示一个指定的字符串
     /// <para>代表一个三维空间内的内容不可变的字符串</para>
     /// </summary>
-    public class SimpleUIPointSpriteStringElement : SceneElementBase, IMVP, IUILayout
+    public class SimpleUIPointSpriteStringElement : SceneElementBase, IUILayout
     {
         PointSpriteStringElement element;
 
@@ -42,19 +42,9 @@ namespace CSharpGL.UIs
                 element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, e.Camera);
             }
 
-            {
-                IMVP element = this as IMVP;
-                element.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
-            }
+            this.element.mvp = projectionMatrix * viewMatrix * modelMatrix;
 
             this.element.Render(e);
-
-            this.GetSimpleUI_AfterRendering();
-        }
-
-        ~SimpleUIPointSpriteStringElement()
-        {
-            this.Dispose();
         }
 
         protected override void CleanManagedRes()
@@ -62,23 +52,6 @@ namespace CSharpGL.UIs
             this.element.Dispose();
 
             base.CleanManagedRes();
-        }
-
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
-            IMVP element = this.element as IMVP;
-            element.SetShaderProgram(mvp);
-        }
-
-        void IMVP.ResetShaderProgram()
-        {
-            IMVP element = this.element as IMVP;
-            element.ResetShaderProgram();
-        }
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return ((IMVP)this.element).GetShaderProgram();
         }
 
         IUILayoutParam IUILayout.Param { get; set; }

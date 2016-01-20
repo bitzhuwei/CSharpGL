@@ -8,6 +8,7 @@ using CSharpGL.UIs;
 using System;
 using System.Text;
 using System.Windows.Forms;
+using CSharpGL.Objects.Demos;
 
 namespace CSharpGL.Winforms.Demo
 {
@@ -55,7 +56,6 @@ namespace CSharpGL.Winforms.Demo
             //element = new ModernSingleTextureFont("simsun.ttf", 48, '祝', '神');//char.MinValue, char.MaxValue);
             //element = new FontElement("simsun.ttf", 48, '一', '龟');//包含了几乎所有汉字字符
             element = new FontElement("simsun.ttf", 48, (char)0, '~');
-
             element.Initialize();
 
             //element.SetText("祝神");
@@ -93,49 +93,17 @@ namespace CSharpGL.Winforms.Demo
         {
             PrintCameraInfo();
 
-            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
-            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+            mat4 projectionMatrix = this.camera.GetProjectionMat4();
+            mat4 viewMatrix = this.camera.GetViewMat4();
+            mat4 modelMatrix = mat4.identity();
+
+            element.mvp = projectionMatrix * viewMatrix * modelMatrix;
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
-            {
-                var element = sender as FontElement;
-                Texture2D texture = element.texture;
-                texture.Bind();
 
-                if (element.blend)
-                {
-                    GL.Enable(GL.GL_BLEND);
-                    GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-                }
+            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-                ShaderProgram shaderProgram = element.shaderProgram;
-
-                shaderProgram.Bind();
-
-                shaderProgram.SetUniform(FontElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
-                shaderProgram.SetUniform(FontElement.strtex, texture.Name);
-
-                mat4 projectionMatrix = this.camera.GetProjectionMat4();
-                mat4 viewMatrix = this.camera.GetViewMat4();
-                mat4 modelMatrix = mat4.identity();
-                IMVP iMVP = sender as IMVP;
-                iMVP.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
-            }
-            {
-                element.Render(arg);
-            }
-            {
-                IMVP iMVP = sender as IMVP;
-                iMVP.ResetShaderProgram();
-
-                var element = sender as FontElement;
-                if (element.blend)
-                {
-                    GL.Disable(GL.GL_BLEND);
-                }
-
-                GL.BindTexture(GL.GL_TEXTURE_2D, 0);
-            }
+            element.Render(arg);
             uiAxisElement.Render(arg);
         }
 
@@ -194,7 +162,6 @@ namespace CSharpGL.Winforms.Demo
                     camera.CameraType = CameraType.Perspecitive;
                 }
             }
-
         }
 
         protected override void OnHandleDestroyed(EventArgs e)

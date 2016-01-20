@@ -11,7 +11,7 @@ namespace CSharpGL.Objects.SceneElements
     /// <summary>
     /// 用一个纹理绘制所有指定范围内的可见字符（具有指定的高度和字体）
     /// </summary>
-    public class FontElement : SceneElementBase, IMVP
+    public class FontElement : SceneElementBase
     {
 
         public bool blend = true;
@@ -25,6 +25,9 @@ namespace CSharpGL.Objects.SceneElements
         const string strin_TexCoord = "in_TexCoord";
         public const string strtex = "tex";
         public const string strcolor = "color";
+
+        const string strMVP = "MVP";
+        public mat4 mvp;
 
         private DrawMode mode;
         private uint[] vao = new uint[1];
@@ -211,11 +214,34 @@ namespace CSharpGL.Objects.SceneElements
 
         protected override void DoRender(RenderEventArgs e)
         {
+            texture.Bind();
+
+            if (blend)
+            {
+                GL.Enable(GL.GL_BLEND);
+                GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+            }
+
+            shaderProgram.Bind();
+
+            shaderProgram.SetUniform(FontElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
+            shaderProgram.SetUniform(FontElement.strtex, texture.Name);
+
+
+            this.shaderProgram.Bind();
+            this.shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
 
             GL.BindVertexArray(vao[0]);
             GL.DrawArrays(this.mode, 0, this.vertexCount);
             GL.BindVertexArray(0);
 
+            this.shaderProgram.Unbind();
+            if (blend)
+            {
+                GL.Disable(GL.GL_BLEND);
+            }
+
+            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
         }
 
         protected override void CleanUnmanagedRes()
@@ -225,21 +251,6 @@ namespace CSharpGL.Objects.SceneElements
             base.CleanUnmanagedRes();
         }
 
-
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
-            IMVPHelper.SetMVP(this, mvp);
-        }
-
-        void IMVP.ResetShaderProgram()
-        {
-            IMVPHelper.ResetMVP(this);
-        }
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return this.shaderProgram;
-        }
     }
 
 }

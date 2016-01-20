@@ -94,17 +94,7 @@ namespace CSharpGL.ObjViewer
 
         protected override void DoRender(RenderEventArgs e)
         {
-            if (this.vertexArrayObject == null)
-            {
-                var vao = new VertexArrayObject(
-                    this.positionBufferRenderer,
-                    //this.colorBufferRenderer,
-                    this.normalBufferRenderer,
-                    this.indexBufferRenderer);
-                vao.Create(e, this.shaderProgram);
-
-                this.vertexArrayObject = vao;
-            }
+            
 
             ShaderProgram program = this.shaderProgram;
             // 绑定shader
@@ -118,7 +108,21 @@ namespace CSharpGL.ObjViewer
             GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
 
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);
-            this.vertexArrayObject.Render(e, this.shaderProgram);
+            if (this.vertexArrayObject == null)
+            {
+                var vao = new VertexArrayObject(
+                    this.positionBufferRenderer,
+                    //this.colorBufferRenderer,
+                    this.normalBufferRenderer,
+                    this.indexBufferRenderer);
+                vao.Create(e, this.shaderProgram);
+
+                this.vertexArrayObject = vao;
+            }
+            else
+            {
+                this.vertexArrayObject.Render(e, this.shaderProgram);
+            }
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
 
             // 解绑shader

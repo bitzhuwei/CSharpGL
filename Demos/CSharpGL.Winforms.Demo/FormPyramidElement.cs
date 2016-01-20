@@ -29,34 +29,21 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
+            rotation += 3.0f;
+            mat4 modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
+            const float distance = 0.7f;
+            viewMatrix = glm.lookAt(new vec3(-distance, distance, -distance), new vec3(0, 0, 0), new vec3(0, -1, 0));
+            int[] viewport = new int[4];
+            GL.GetInteger(GetTarget.Viewport, viewport);
+            projectionMatrix = glm.perspective(60.0f, (float)viewport[2] / (float)viewport[3], 0.01f, 100.0f);
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+
+            pyramidElement.mvp = mvp;
+
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, null);
-            {
-                rotation += 3.0f;
-                mat4 modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
-
-                const float distance = 0.7f;
-                viewMatrix = glm.lookAt(new vec3(-distance, distance, -distance), new vec3(0, 0, 0), new vec3(0, -1, 0));
-
-                int[] viewport = new int[4];
-                GL.GetInteger(GetTarget.Viewport, viewport);
-                projectionMatrix = glm.perspective(60.0f, (float)viewport[2] / (float)viewport[3], 0.01f, 100.0f);
-
-                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-                IMVP imvp = pyramidElement as IMVP;
-
-                imvp.SetShaderProgram(mvp);
-            }
-
             pyramidElement.Render(arg);
-
-            {
-                IMVP imvp = pyramidElement as IMVP;
-
-                imvp.ResetShaderProgram();
-            }
         }
 
         protected override void OnHandleDestroyed(System.EventArgs e)

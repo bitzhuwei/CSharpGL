@@ -66,30 +66,19 @@ namespace CSharpGL.Winforms.Demo
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+            rotation += 3.0f;
+            modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
+            viewMatrix = this.camera.GetViewMat4();
+            projectionMatrix = this.camera.GetProjectionMat4();
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+
+            element.mvp = mvp;
+
+            //GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
-            {
-                rotation += 3.0f;
-                modelMatrix = glm.rotate(rotation, new vec3(0, 1, 0));
-                viewMatrix = this.camera.GetViewMat4();
-                projectionMatrix = this.camera.GetProjectionMat4();
-
-                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-                IMVP imvp = element as IMVP;
-
-                imvp.SetShaderProgram(mvp);
-            }
-            {
-                element.Render(arg);
-            }
-            {
-                IMVP imvp = element as IMVP;
-
-                imvp.ResetShaderProgram();
-            }
+            element.Render(arg);
         }
 
         private void FormScientificCamera_Load(object sender, EventArgs e)

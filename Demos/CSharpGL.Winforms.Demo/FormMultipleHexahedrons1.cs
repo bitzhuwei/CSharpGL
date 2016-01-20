@@ -82,34 +82,18 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.Invalidate();
         }
 
-        void element_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-            IMVP element = sender as IMVP;
-
-            element.ResetShaderProgram();
-        }
-
-        void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            mat4 projectionMatrix = camera.GetProjectionMat4();
-
-            mat4 viewMatrix = camera.GetViewMat4();
-
-            mat4 modelMatrix = mat4.identity();
-
-            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-            IMVP element = sender as IMVP;
-
-            element.SetShaderProgram(mvp);
-        }
-
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+            var arg = new RenderEventArgs(RenderModes.Render, this.camera);
+            mat4 projectionMatrix = camera.GetProjectionMat4();
+            mat4 viewMatrix = camera.GetViewMat4();
+            mat4 modelMatrix = mat4.identity();
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+
+            element.mvp = mvp;
+
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            var arg = new RenderEventArgs(RenderModes.Render, this.camera);
             element.Render(arg);
             uiAxis.Render(arg);
         }

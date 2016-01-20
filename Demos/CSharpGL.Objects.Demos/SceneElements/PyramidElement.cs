@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.SceneElements
 {
-    public class PyramidElement : SceneElementBase, IMVP
+    public class PyramidElement : SceneElementBase
     {
 
         /// <summary>
@@ -18,7 +18,8 @@ namespace CSharpGL.Objects.SceneElements
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
-        public const string strMVP = "MVP";
+        const string strMVP = "MVP";
+        public mat4 mvp;
 
         /// <summary>
         /// VAO
@@ -154,28 +155,16 @@ namespace CSharpGL.Objects.SceneElements
 
         protected override void DoRender(RenderEventArgs e)
         {
+            this.shaderProgram.Bind();
+            this.shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+
             GL.BindVertexArray(vao[0]);
 
             GL.DrawArrays(primitiveMode, 0, vertexCount);
 
             GL.BindVertexArray(0);
-        }
 
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
-            IMVPHelper.SetMVP(this, mvp);
-        }
-
-
-        void IMVP.ResetShaderProgram()
-        {
-            IMVPHelper.ResetMVP(this);
-        }
-
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return this.shaderProgram;
+            this.shaderProgram.Unbind();
         }
 
         protected override void CleanUnmanagedRes()

@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.Demos
     /// <summary>
     /// 用GL.DrawElements()的方式绘制多个六面体。
     /// </summary>
-    public class DemoHexahedron1Element : SceneElementBase, IMVP
+    public class DemoHexahedron1Element : SceneElementBase
     {
         const float unitSpace = 6f;
         private static readonly vec3[] unitCubePos;
@@ -56,6 +56,8 @@ namespace CSharpGL.Objects.Demos
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
         const string strMVP = "MVP";
+        public mat4 mvp;
+
         private uint[] vao;
         private int size;
 
@@ -73,21 +75,9 @@ namespace CSharpGL.Objects.Demos
 
         }
 
-        void DemoColorCodedPickingElement_AfterRendering(object sender, RenderEventArgs e)
-        {
-        }
-
         void DemoColorCodedPickingElement_BeforeRendering(object sender, RenderEventArgs e)
         {
-            if (e.RenderMode == RenderModes.HitTest)
-            {
-                this.currentShaderProgram = this.pickingShaderProgram;
 
-            }
-            else
-            {
-                this.currentShaderProgram = this.shaderProgram;
-            }
         }
         uint positionBuffer, colorBuffer, indexBuffer;
 
@@ -245,33 +235,30 @@ namespace CSharpGL.Objects.Demos
 
         protected override void DoRender(RenderEventArgs e)
         {
-
+            if (e.RenderMode == RenderModes.HitTest)
             {
-                // 三维场景中所有的元素都应在Camera的照耀下现形，没有Camera就不知道元素该放哪儿。
-                // UI元素不在三维场景中，所以其Camera可以是null。
-                if (e.Camera == null)
-                {
-                    throw new ArgumentNullException();
-                    //const float distance = 0.7f;
-                    //viewMatrix = glm.lookAt(new vec3(-distance, distance, -distance), new vec3(0, 0, 0), new vec3(0, -1, 0));
+                this.currentShaderProgram = this.pickingShaderProgram;
 
-                    //int[] viewport = new int[4];
-                    //GL.GetInteger(GetTarget.Viewport, viewport);
-                    //projectionMatrix = glm.perspective(60.0f, (float)viewport[2] / (float)viewport[3], 0.01f, 100.0f);
-                }
-
-                mat4 projectionMatrix, viewMatrix;
-
-                viewMatrix = ((IViewCamera)e.Camera).GetViewMat4();
-                projectionMatrix = e.Camera.GetProjectionMat4();
-                mat4 modelMatrix = mat4.identity();
-
-                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-                IMVP element = this as IMVP;
-                element.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
             }
-            DemoColorCodedPickingElement_BeforeRendering(this, e);
+            else
+            {
+                this.currentShaderProgram = this.shaderProgram;
+            }
+            {
+                ShaderProgram shaderProgram = this.currentShaderProgram;
+
+                shaderProgram.Bind();
+                if (shaderProgram == this.pickingShaderProgram)
+                {
+                    shaderProgram.SetUniform("pickingBaseID", ((IColorCodedPicking)this).PickingBaseID);
+                    shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+                }
+                else
+                {
+                    shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+                }
+            }
+
 
             GL.Enable(GL.GL_PRIMITIVE_RESTART);
             GL.PrimitiveRestartIndex(uint.MaxValue);
@@ -319,43 +306,9 @@ namespace CSharpGL.Objects.Demos
 
             GL.Disable(GL.GL_PRIMITIVE_RESTART);
 
-            DemoColorCodedPickingElement_AfterRendering(this, e);
-            {
-                IMVP element = this as IMVP;
-                element.ResetShaderProgram();
-            }
-
+            this.currentShaderProgram.Unbind();
 
         }
 
-
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
-            ShaderProgram shaderProgram = this.currentShaderProgram;
-
-            shaderProgram.Bind();
-            if (shaderProgram == this.pickingShaderProgram)
-            {
-                shaderProgram.SetUniform("pickingBaseID", ((IColorCodedPicking)this).PickingBaseID);
-                shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
-            }
-            else
-            {
-                shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
-            }
-        }
-
-
-        void IMVP.ResetShaderProgram()
-        {
-            ShaderProgram shaderProgram = this.currentShaderProgram;
-
-            shaderProgram.Unbind();
-        }
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return this.currentShaderProgram;
-        }
     }
 }

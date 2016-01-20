@@ -47,7 +47,6 @@
     <Compile Include="IUILayoutArgs.cs" />
     <Compile Include="IUILayoutHelper.cs" />
     <Compile Include="IUILayoutParam.cs" />
-    <Compile Include="IUILayoutRenderingHelper.cs" />
     <Compile Include="SimpleUIAxis.cs" />
     <Compile Include="SimpleUIPointSpriteStringElement.cs" />
   </ItemGroup>

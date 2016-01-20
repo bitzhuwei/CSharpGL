@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.SceneElements
     /// <summary>
     /// 圆柱体
     /// </summary>
-    public class CylinderElement : SceneElementBase, IMVP
+    public class CylinderElement : SceneElementBase
     {
 
         /// <summary>
@@ -22,7 +22,8 @@ namespace CSharpGL.Objects.SceneElements
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
-        public const string strMVP = "MVP";
+        const string strMVP = "MVP";
+        public mat4 mvp;
 
         /// <summary>
         /// VAO
@@ -146,28 +147,18 @@ namespace CSharpGL.Objects.SceneElements
 
         protected override void DoRender(RenderEventArgs e)
         {
+            this.shaderProgram.Bind();
+            this.shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+
             GL.BindVertexArray(vao[0]);
 
             //GL.DrawArrays(primitiveMode, 0, vertexCount);
             GL.DrawElements(primitiveMode, faceCount * 2 + 2, GL.GL_UNSIGNED_INT, IntPtr.Zero);
 
             GL.BindVertexArray(0);
+
+            this.shaderProgram.Unbind();
         }
 
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
-            IMVPHelper.SetMVP(this, mvp);
-        }
-
-
-        void IMVP.ResetShaderProgram()
-        {
-            IMVPHelper.ResetMVP(this);
-        }
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return this.shaderProgram;
-        }
     }
 }

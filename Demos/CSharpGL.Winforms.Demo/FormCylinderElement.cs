@@ -65,31 +65,16 @@ namespace CSharpGL.Winforms.Demo
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            //  Clear the color and depth buffer.
-            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
-            {
-                mat4 projectionMatrix = camera.GetProjectionMat4();
+            mat4 projectionMatrix = camera.GetProjectionMat4();
+            mat4 viewMatrix = camera.GetViewMat4();
+            mat4 modelMatrix = mat4.identity();
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
-                mat4 viewMatrix = camera.GetViewMat4();
+            cylinderElement.mvp = mvp;
 
-                mat4 modelMatrix = mat4.identity();
-
-                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-                IMVP element = cylinderElement as IMVP;
-
-                element.SetShaderProgram(mvp);
-            }
-            {
-                cylinderElement.Render(arg);
-            }
-            {
-                IMVP element = cylinderElement as IMVP;
-
-                element.ResetShaderProgram();
-            }
+            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+            cylinderElement.Render(arg);
             ////  Load the identity matrix.
             //GL.LoadIdentity();
 

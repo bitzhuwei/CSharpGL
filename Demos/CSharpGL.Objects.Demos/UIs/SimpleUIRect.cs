@@ -16,7 +16,7 @@ namespace CSharpGL.Objects.Demos.UIs
     /// Draw a rectangle on OpenGL control like a <see cref="Windows.Forms.Control"/> drawn on a <see cref="windows.Forms.Form"/>.
     /// Set its properties(Anchor, Margin, Size, etc) to adjust its behaviour.
     /// </summary>
-    public class SimpleUIRect : SceneElementBase, IUILayout, IMVP//, IRenderable, IHasObjectSpace
+    public class SimpleUIRect : SceneElementBase, IUILayout
     {
         /// <summary>
         /// shader program
@@ -24,7 +24,8 @@ namespace CSharpGL.Objects.Demos.UIs
         public ShaderProgram shaderProgram;
         const string strin_Position = "in_Position";
         const string strin_Color = "in_Color";
-        public const string strMVP = "MVP";
+        const string strMVP = "MVP";
+        public mat4 mvp;
 
         /// <summary>
         /// VAO
@@ -141,46 +142,25 @@ namespace CSharpGL.Objects.Demos.UIs
 
         protected override void DoRender(RenderEventArgs e)
         {
+            mat4 projectionMatrix, viewMatrix, modelMatrix;
             {
-                mat4 projectionMatrix, viewMatrix, modelMatrix;
-                {
-                    IUILayout element = this as IUILayout;
-                    element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, e.Camera);
-                }
-
-                {
-                    IMVP element = this as IMVP;
-                    element.SetShaderProgram(projectionMatrix * viewMatrix * modelMatrix);
-                }
+                IUILayout element = this as IUILayout;
+                element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, e.Camera);
             }
+
+            this.mvp = projectionMatrix * viewMatrix * modelMatrix;
+            this.shaderProgram.Bind();
+            this.shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+
             GL.BindVertexArray(vao[0]);
 
             GL.DrawArrays(this.axisPrimitiveMode, 0, this.axisVertexCount);
 
             GL.BindVertexArray(0);
-            {
-                IMVP element = this as IMVP;
-                element.ResetShaderProgram();
-            }
+            this.shaderProgram.Unbind();
         }
 
         public IUILayoutParam Param { get; set; }
 
-
-        void IMVP.SetShaderProgram(mat4 mvp)
-        {
-            IMVPHelper.SetMVP(this, mvp);
-        }
-
-
-        void IMVP.ResetShaderProgram()
-        {
-            IMVPHelper.ResetMVP(this);
-        }
-
-        ShaderProgram IMVP.GetShaderProgram()
-        {
-            return this.shaderProgram;
-        }
     }
 }
