@@ -47,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SomeRenderer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SomeRenderer.tt</DependentUpon>
+    </Compile>
     <Content Include="readme.txt" />
     <Compile Include="FormShaderLab.cs">
       <SubType>Form</SubType>
@@ -62,6 +67,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="SomeRenderer.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SomeRenderer.cs</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="FormShaderLab.resx">
       <DependentUpon>FormShaderLab.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +116,9 @@
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
