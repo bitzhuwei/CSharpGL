@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace ShaderLab
 {
-    public class SomeRenderer : SceneElementBase
+    public class SomeRenderer : RendererBase
     {
         ShaderProgram shaderProgram;
 

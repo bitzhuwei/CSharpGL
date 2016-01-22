@@ -10,7 +10,7 @@ using CSharpGL.UIs;
 
 namespace CSharpGL.Objects.Demos.UIs
 {
-    public class SimpleUIColorIndicator : SceneElementBase//, IMVP,IUILayout
+    public class SimpleUIColorIndicator : RendererBase//, IMVP,IUILayout
     {
         private SimpleUIColorIndicatorBar bar;
         private SimpleUIPointSpriteStringElement[] numbers;

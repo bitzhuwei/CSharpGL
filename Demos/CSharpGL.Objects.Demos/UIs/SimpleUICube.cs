@@ -14,7 +14,7 @@ namespace CSharpGL.Objects.Demos.UIs
     /// Draw a cube on OpenGL control like a <see cref="Windows.Forms.Control"/> drawn on a <see cref="windows.Forms.Form"/>.
     /// Set its properties(Anchor, Margin, Size, etc) to adjust its behaviour.
     /// </summary>
-    public class SimpleUICube : SceneElementBase, IUILayout
+    public class SimpleUICube : RendererBase, IUILayout
     {
         /// <summary>
         /// shader program

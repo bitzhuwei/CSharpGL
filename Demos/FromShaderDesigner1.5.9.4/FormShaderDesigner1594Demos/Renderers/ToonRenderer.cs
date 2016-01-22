@@ -13,7 +13,7 @@ using CSharpGL;
 
 namespace FormShaderDesigner1594Demos.Renderers
 {
-    public class ToonRenderer : RendererBase
+    public class ToonRenderer : ShaderDesignerRendererBase
     {
         ShaderProgram shaderProgram;
 

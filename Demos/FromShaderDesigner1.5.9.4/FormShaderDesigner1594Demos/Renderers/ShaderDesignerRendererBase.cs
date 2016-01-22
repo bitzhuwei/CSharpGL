@@ -13,7 +13,7 @@ using CSharpGL;
 
 namespace FormShaderDesigner1594Demos.Renderers
 {
-    public abstract class RendererBase : SceneElementBase
+    public abstract class ShaderDesignerRendererBase : CSharpGL.Objects.RendererBase
     {
         protected BufferRenderer indexBufferRenderer;
         protected int indexCount;

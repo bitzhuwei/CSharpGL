@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Demos
 {
-    public class DemoLegacyGLTexture3D : SceneElementBase
+    public class DemoLegacyGLTexture3D : RendererBase
     {
         struct Texture3DElement
         {

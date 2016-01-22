@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FormShaderDesigner1594Demos.Renderers
 {
-    class Polkadot3dRenderer : RendererBase
+    class Polkadot3dRenderer : ShaderDesignerRendererBase
     {
         ShaderProgram shaderProgram;
 

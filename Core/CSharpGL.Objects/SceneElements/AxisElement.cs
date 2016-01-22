@@ -10,12 +10,13 @@ using CSharpGL.Objects.VertexBuffers;
 
 namespace CSharpGL.Objects.SceneElements
 {
+    //TODO: 如果有兴趣，可以改用1个VBO来存储整个Axis的内容，甚至画一个更好看的Axis。
     /// <summary>
     /// 绘制三维坐标轴
     /// <para>充当此类库里的示例元素</para>
     /// <para>此类型使用封装了的VAO和VBO。我认为是可以提高开发效率的，是个好的设计。</para>
     /// </summary>
-    public class AxisElement : SceneElementBase
+    public class AxisElement : RendererBase
     {
 
         VertexArrayObject[] axisVAO;

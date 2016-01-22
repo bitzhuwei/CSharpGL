@@ -30,7 +30,7 @@ namespace FormShaderDesigner1594Demos
     {
         SimpleUIAxis uiLeftBottomAxis;
 
-        RendererBase element;
+        ShaderDesignerRendererBase element;
 
         Camera camera;
 
@@ -99,25 +99,16 @@ namespace FormShaderDesigner1594Demos
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
 
-            if (this.newElement != null)
-            {
-                this.element = this.newElement;
-                this.newElement = null;
-            }
-              {
             mat4 projectionMatrix = camera.GetProjectionMat4();
-            //projectionMatrix = glm.translate(projectionMatrix, new vec3(translateX, translateY, translateZ));//
-
             mat4 viewMatrix = camera.GetViewMat4();
-
             mat4 modelMatrix = mat4.identity();
 
-            this.element.projectionMatrix = projectionMatrix;
-            this.element.viewMatrix = viewMatrix;
-            this.element.modelMatrix = modelMatrix;
-        }
-            element.Render(arg);
+            ShaderDesignerRendererBase element = this.element;
+            element.projectionMatrix = projectionMatrix;
+            element.viewMatrix = viewMatrix;
+            element.modelMatrix = modelMatrix;
 
+            element.Render(arg);
             uiLeftBottomAxis.Render(arg);
         }
 
@@ -267,9 +258,9 @@ namespace FormShaderDesigner1594Demos
         private void CreateElement()
         {
             IModel model = modelFactories[currentModelIndex].Create(this.radius);
-            RendererBase element = rendererFactories[currentRendererIndex].GetRenderer(model);
+            ShaderDesignerRendererBase element = rendererFactories[currentRendererIndex].GetRenderer(model);
             element.Initialize();
-            this.newElement = element;
+            this.element = element;
 
             StringBuilder builder = new StringBuilder();
             builder.Append(string.Format("{0}", model.GetType().Name));
@@ -284,6 +275,5 @@ namespace FormShaderDesigner1594Demos
         int currentRendererIndex = 0;
         static readonly ModelFactory[] modelFactories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
         static readonly RendererFactory[] rendererFactories = new RendererFactory[] { new GoochFactory(), new Polkadot3dFactory(), new XRayFactory(), };
-        private RendererBase newElement;
     }
 }

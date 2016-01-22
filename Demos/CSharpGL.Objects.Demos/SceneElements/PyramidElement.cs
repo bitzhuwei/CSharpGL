@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.SceneElements
 {
-    public class PyramidElement : SceneElementBase
+    public class PyramidElement : RendererBase
     {
 
         /// <summary>

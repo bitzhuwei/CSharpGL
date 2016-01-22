@@ -13,7 +13,7 @@ using CSharpGL.Objects.Models;
 
 namespace FormShaderDesigner1594Demos.Renderers
 {
-    public class XRayRenderer : RendererBase
+    public class XRayRenderer : ShaderDesignerRendererBase
     {
         ShaderProgram shaderProgram;
 

@@ -14,7 +14,7 @@ using RedBook.Common.FurExample;
 
 namespace RedBook.Winforms.Demo
 {
-    public class InstancedRenderingExample : SceneElementBase, IDisposable
+    public class InstancedRenderingExample : RendererBase, IDisposable
     {
 
         const int INSTANCE_COUNT = 100;

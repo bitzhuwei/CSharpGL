@@ -70,7 +70,7 @@
     <Compile Include="RendererFactories\Polkadot3dFactory.cs" />
     <Compile Include="RendererFactories\RendererFactory.cs" />
     <Compile Include="RendererFactories\GoochFactory.cs" />
-    <Compile Include="Renderers\RendererBase.cs" />
+    <Compile Include="Renderers\ShaderDesignerRendererBase.cs" />
     <Compile Include="Renderers\GoochRenderer.cs" />
     <Compile Include="Renderers\Polkadot3dRenderer.cs" />
     <Compile Include="Renderers\ToonRenderer.cs" />

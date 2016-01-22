@@ -15,7 +15,7 @@ namespace CSharpGL.Objects.SceneElements
     /// 用shader+VAO+组装的texture显示一个指定的字符串
     /// <para>代表一个三维空间内的内容不可变的字符串</para>
     /// </summary>
-    public class PointSpriteStringElement : SceneElementBase
+    public class PointSpriteStringElement : RendererBase
     {
         /// <summary>
         /// 如果一行字符串太长，会在达到此值时开启下一行。

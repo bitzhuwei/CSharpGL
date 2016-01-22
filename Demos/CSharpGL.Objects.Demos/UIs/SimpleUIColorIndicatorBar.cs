@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Objects.Demos.UIs
 {
-    public class SimpleUIColorIndicatorBar : SceneElementBase, IUILayout
+    public class SimpleUIColorIndicatorBar : RendererBase, IUILayout
     {
         /// <summary>
         /// shader program

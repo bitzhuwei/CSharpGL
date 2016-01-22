@@ -14,7 +14,7 @@ namespace CSharpGL.Objects.Demos.UIs
     /// <summary>
     /// 用一个<see cref="AxisElement"/>绘制一个固定在窗口某处的坐标系。
     /// </summary>
-    public class SimpleUIAxis : SceneElementBase, IUILayout, IDisposable
+    public class SimpleUIAxis : RendererBase, IUILayout, IDisposable
     {
         public AxisElement axisElement;
 

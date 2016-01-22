@@ -15,7 +15,7 @@ namespace CSharpGL.Objects.Demos.UIs
     /// Draw a rectangle on OpenGL control like a <see cref="Windows.Forms.Control"/> drawn on a <see cref="windows.Forms.Form"/>.
     /// Set its properties(Anchor, Margin, Size, etc) to adjust its behaviour.
     /// </summary>
-    public class LegacySimpleUIRect : SceneElementBase, IUILayout//, IRenderable, IHasObjectSpace
+    public class LegacySimpleUIRect : RendererBase, IUILayout//, IRenderable, IHasObjectSpace
     {
         /// <summary>
         /// 

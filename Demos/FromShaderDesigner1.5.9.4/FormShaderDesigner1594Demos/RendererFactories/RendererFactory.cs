@@ -11,6 +11,6 @@ namespace FormShaderDesigner1594Demos.RendererFactories
 {
     abstract class RendererFactory 
     {
-        public abstract RendererBase GetRenderer(IModel model);
+        public abstract ShaderDesignerRendererBase GetRenderer(IModel model);
     }
 }

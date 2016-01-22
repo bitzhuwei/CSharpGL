@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.Demos
     /// <summary>
     /// 这是一个使用point sprite进行渲染的简单的例子。
     /// </summary>
-    public class DemoSimplePointSpriteElement : SceneElementBase
+    public class DemoSimplePointSpriteElement : RendererBase
     {
 
         /// <summary>

@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.SceneElements
     /// <summary>
     /// 圆柱体
     /// </summary>
-    public class CylinderElement : SceneElementBase
+    public class CylinderElement : RendererBase
     {
 
         /// <summary>

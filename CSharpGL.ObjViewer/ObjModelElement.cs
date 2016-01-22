@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.ObjViewer
 {
-    class ObjModelElement : SceneElementBase
+    class ObjModelElement : RendererBase
     {
         ShaderProgram shaderProgram;
 

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Winforms.Demo
 {
-    class WholeFontTextureElement : SceneElementBase
+    class WholeFontTextureElement : RendererBase
     {
         public mat4 modelMatrix;
         public mat4 viewMatrix;

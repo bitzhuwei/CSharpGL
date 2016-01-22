@@ -63,7 +63,6 @@
     <Compile Include="Models\TeapotLoader.cs" />
     <Compile Include="Models\SphereModel.cs" />
     <Compile Include="Models\TeapotModel.cs" />
-    <Compile Include="RenderEventArgs.cs" />
     <Compile Include="SceneElements\AxisElement.cs" />
     <Compile Include="Cameras\Camera2Matrix.cs" />
     <Compile Include="Cameras\CameraHelper.cs">
@@ -97,7 +96,7 @@
     <Compile Include="RenderContexts\VersionAttribute.cs" />
     <Compile Include="Shaders\ShaderProgram.cs" />
     <Compile Include="Texture2D.cs" />
-    <Compile Include="SceneElementBase.cs" />
+    <Compile Include="RendererBase.cs" />
     <Compile Include="VertexBuffers\BufferRenderer.cs" />
     <Compile Include="VertexBuffers\IndexBuffer.cs" />
     <Compile Include="VertexBuffers\IndexBufferBase.cs" />

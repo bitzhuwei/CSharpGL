@@ -11,7 +11,7 @@ using RedBook.Common;
 
 namespace RedBook.Winforms.Demo
 {
-    class TeapotExample : SceneElementBase
+    class TeapotExample : RendererBase
     {
         /// <summary>
         /// Projection matrix

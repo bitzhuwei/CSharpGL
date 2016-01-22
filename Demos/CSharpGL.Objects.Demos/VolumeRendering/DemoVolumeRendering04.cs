@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
     /// <summary>
     /// 用多个Quad进行VR渲染。并且可选择渲染顺序。
     /// </summary>
-    public class DemoVolumeRendering04 : SceneElementBase
+    public class DemoVolumeRendering04 : RendererBase
     {
         VertexArrayObject vao;
 

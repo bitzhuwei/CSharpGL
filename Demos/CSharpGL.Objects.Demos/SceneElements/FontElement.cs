@@ -11,7 +11,7 @@ namespace CSharpGL.Objects.SceneElements
     /// <summary>
     /// 用一个纹理绘制所有指定范围内的可见字符（具有指定的高度和字体）
     /// </summary>
-    public class FontElement : SceneElementBase
+    public class FontElement : RendererBase
     {
 
         public bool blend = true;

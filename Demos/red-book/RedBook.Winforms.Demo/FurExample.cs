@@ -9,7 +9,7 @@ using System;
 
 namespace RedBook.Winforms.Demo
 {
-    class FurExample : SceneElementBase
+    class FurExample : RendererBase
     {
         // Member variables
         uint fur_prog;

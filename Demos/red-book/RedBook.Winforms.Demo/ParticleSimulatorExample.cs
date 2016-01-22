@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 
 namespace RedBook.Winforms.Demo
 {
-    class ParticleSimulatorExample : SceneElementBase, IDisposable
+    class ParticleSimulatorExample : RendererBase, IDisposable
     {
         const int PARTICLE_GROUP_SIZE = 128;
         const int PARTICLE_GROUP_COUNT = 8000;

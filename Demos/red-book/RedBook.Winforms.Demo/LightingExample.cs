@@ -9,7 +9,7 @@ using System;
 
 namespace RedBook.Winforms.Demo
 {
-    class LightingExample : SceneElementBase
+    class LightingExample : RendererBase
     {
 
         static string render_vs =

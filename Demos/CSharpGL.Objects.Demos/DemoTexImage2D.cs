@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Demos
 {
-    public class DemoTexImage2D : SceneElementBase
+    public class DemoTexImage2D : RendererBase
     {
 
         public DemoTexImage2D(string textureFile)

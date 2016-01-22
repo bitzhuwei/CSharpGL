@@ -10,9 +10,9 @@ namespace CSharpGL.Objects
     /// <summary>
     /// 用OpenGL初始化和渲染一个元素。
     /// 只做初始化和渲染这两件事。
-    /// 一个<see cref="SceneElementBase"/>对应一个(vertex shader+fragment shader)的shader program。
+    /// 一个<see cref="RendererBase"/>对象对应一个(vertex shader+fragment shader)的shader program。
     /// </summary>
-    public abstract class SceneElementBase : IRenderable, IDisposable
+    public abstract class RendererBase : IRenderable, IDisposable
     {
         /// <summary>
         /// 为便于调试而设置的ID值，没有应用意义。
@@ -29,7 +29,7 @@ namespace CSharpGL.Objects
         /// <summary>
         /// 用OPENGL渲染一个元素。
         /// </summary>
-        public SceneElementBase()
+        public RendererBase()
         {
             this.ID = idCounter++;
         }
@@ -86,7 +86,7 @@ namespace CSharpGL.Objects
         /// <summary>
         /// Destruct instance of the class.
         /// </summary>
-        ~SceneElementBase()
+        ~RendererBase()
         {
             this.Dispose(false);
         }
@@ -100,7 +100,7 @@ namespace CSharpGL.Objects
         /// Dispose managed and unmanaged resources of this instance.
         /// </summary>
         /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
-        protected void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
 
             if (this.disposedValue == false)

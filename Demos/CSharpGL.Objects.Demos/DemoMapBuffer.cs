@@ -12,7 +12,7 @@ namespace CSharpGL.Objects.Demos
     /// <summary>
     /// 演示如何使用<see cref="IColorCodedPicking"/>进行拾取。
     /// </summary>
-    public class DemoMapBuffer : SceneElementBase
+    public class DemoMapBuffer : RendererBase
     {
         const float unitSpace = 6f;
         private static readonly vec3[] unitCubePos;

@@ -10,7 +10,7 @@ using System;
 
 namespace RedBook.Winforms.Demo
 {
-    class CubeMapExample : SceneElementBase
+    class CubeMapExample : RendererBase
     {
         static string skybox_shader_vs =
             @"#version 330 core

@@ -10,7 +10,7 @@ namespace FormShaderDesigner1594Demos.RendererFactories
 {
     class XRayFactory : RendererFactory
     {
-        public override RendererBase GetRenderer(IModel model)
+        public override ShaderDesignerRendererBase GetRenderer(IModel model)
         {
             return new XRayRenderer(model);
         }

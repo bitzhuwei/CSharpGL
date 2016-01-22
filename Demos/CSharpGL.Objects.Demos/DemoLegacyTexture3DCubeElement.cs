@@ -10,7 +10,7 @@ namespace CSharpGL.Objects.Demos
     /// <summary>
     /// 演示Texture3D的用法和效果。
     /// </summary>
-    public class DemoLegacyTexture3DCubeElement : SceneElementBase
+    public class DemoLegacyTexture3DCubeElement : RendererBase
     {
         private uint[] textureName = new uint[1];
         public float positiveX, negativeX;

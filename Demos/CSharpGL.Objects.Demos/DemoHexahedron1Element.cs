@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.Demos
     /// <summary>
     /// 用GL.DrawElements()的方式绘制多个六面体。
     /// </summary>
-    public class DemoHexahedron1Element : SceneElementBase
+    public class DemoHexahedron1Element : RendererBase
     {
         const float unitSpace = 6f;
         private static readonly vec3[] unitCubePos;

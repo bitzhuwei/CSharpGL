@@ -10,7 +10,7 @@ namespace FormShaderDesigner1594Demos.RendererFactories
 {
     class Polkadot3dFactory : RendererFactory
     {
-        public override RendererBase GetRenderer(IModel model)
+        public override ShaderDesignerRendererBase GetRenderer(IModel model)
         {
             return new Polkadot3dRenderer(model);
         }

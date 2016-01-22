@@ -37,12 +37,12 @@ namespace CSharpGL.Winforms.Demo
             set { clearColor = value; }
         }
 
-        private List<SceneElementBase> elementList = new List<SceneElementBase>();
+        private List<RendererBase> elementList = new List<RendererBase>();
 
         /// <summary>
         /// 获取此控件内的元素列表。
         /// </summary>
-        public List<SceneElementBase> ElementList
+        public List<RendererBase> ElementList
         {
             get { return elementList; }
         }

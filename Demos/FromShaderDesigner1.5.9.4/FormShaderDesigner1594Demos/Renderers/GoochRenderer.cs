@@ -13,7 +13,7 @@ using CSharpGL;
 
 namespace FormShaderDesigner1594Demos.Renderers
 {
-    public class GoochRenderer : RendererBase
+    public class GoochRenderer : ShaderDesignerRendererBase
     {
 
         VertexArrayObject vertexArrayObject;

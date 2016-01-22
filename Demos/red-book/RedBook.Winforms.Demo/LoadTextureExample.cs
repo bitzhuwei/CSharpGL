@@ -11,7 +11,7 @@ using System.Text;
 
 namespace RedBook.Winforms.Demo
 {
-    class LoadTextureExample : SceneElementBase
+    class LoadTextureExample : RendererBase
     {
         const string quad_shader_vs =
    @"#version 330 core
