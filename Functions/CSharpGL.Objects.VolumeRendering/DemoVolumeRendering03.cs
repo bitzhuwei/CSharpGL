@@ -8,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Demos.VolumeRendering
+namespace CSharpGL.Objects.VolumeRendering
 {
     /// <summary>
-    /// 用多个Points进行VR渲染。
+    /// 用多个六面体进行VR渲染。
     /// </summary>
-    public class DemoVolumeRendering02 : RendererBase
+    public class DemoVolumeRendering03 : RendererBase
     {
         VertexArrayObject vao;
 
@@ -34,8 +34,8 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering02.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering02.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoVolumeRendering03.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoVolumeRendering03.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -54,20 +54,25 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             //base.AfterRendering += IMVPHelper.Getelement_AfterRendering();
         }
 
-        const int zFrameCount = 109;
-        const int xFrameCount = 256;
-        const int yFrameCount = 256;
+        const int downSizing = 3;
+        const int zFrameCount = 109 / downSizing;
+        const int xFrameCount = 256 / downSizing;
+        const int yFrameCount = 256 / downSizing;
+
+        const float hexahedronHalfLength = factor * 3.0f / 255.0f;
+        const float factor = 256;
 
         const float xLength = 1;
         const float yLength = 1;
-        public float alphaThreshold = 0.05f;
 
+        public float alphaThreshold = 0.05f;
         private unsafe void InitVertexBuffers()
         {
+            // http://images.cnblogs.com/cnblogs_com/bitzhuwei/482613/o_Cube-small.jpg
             {
-                VR02PositionBuffer positionBuffer = new VR02PositionBuffer(strin_Position);
+                VR03PositionBuffer positionBuffer = new VR03PositionBuffer(strin_Position);
                 positionBuffer.Alloc(xFrameCount * yFrameCount * zFrameCount);
-                vec3* array = (vec3*)positionBuffer.FirstElement();
+                HexahedronPosition* array = (HexahedronPosition*)positionBuffer.FirstElement();
                 int index = 0;
                 for (int i = 0; i < xFrameCount; i++)
                 {
@@ -75,11 +80,19 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
                     {
                         for (int k = 0; k < zFrameCount; k++)
                         {
-                            array[index++] = new vec3(
-                                (float)i / (float)xFrameCount - 0.5f,
-                                (float)j / (float)yFrameCount - 0.5f,
-                                ((float)k / (float)zFrameCount - 0.5f) * 109.0f / 256.0f
-                                );
+                            var x = ((float)i / (float)xFrameCount - 0.5f) * factor;
+                            var y = ((float)j / (float)yFrameCount - 0.5f) * factor;
+                            var z = (((float)k / (float)zFrameCount - 0.5f) * 109.0f / 256.0f) * factor;
+                            var hexahedron = new HexahedronPosition();
+                            hexahedron.v0 = new vec3(x + hexahedronHalfLength, y + hexahedronHalfLength, z + hexahedronHalfLength);
+                            hexahedron.v1 = new vec3(x - hexahedronHalfLength, y + hexahedronHalfLength, z + hexahedronHalfLength);
+                            hexahedron.v2 = new vec3(x + hexahedronHalfLength, y - hexahedronHalfLength, z + hexahedronHalfLength);
+                            hexahedron.v3 = new vec3(x - hexahedronHalfLength, y - hexahedronHalfLength, z + hexahedronHalfLength);
+                            hexahedron.v4 = new vec3(x + hexahedronHalfLength, y + hexahedronHalfLength, z - hexahedronHalfLength);
+                            hexahedron.v5 = new vec3(x - hexahedronHalfLength, y + hexahedronHalfLength, z - hexahedronHalfLength);
+                            hexahedron.v6 = new vec3(x + hexahedronHalfLength, y - hexahedronHalfLength, z - hexahedronHalfLength);
+                            hexahedron.v7 = new vec3(x - hexahedronHalfLength, y - hexahedronHalfLength, z - hexahedronHalfLength);
+                            array[index++] = hexahedron;
                         }
                     }
                 }
@@ -88,9 +101,9 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             }
 
             {
-                VR02UVBuffer uvBuffer = new VR02UVBuffer(strin_uv);
+                VR03UVBuffer uvBuffer = new VR03UVBuffer(strin_uv);
                 uvBuffer.Alloc(xFrameCount * yFrameCount * zFrameCount);
-                vec3* array = (vec3*)uvBuffer.FirstElement();
+                HexahedronUV* array = (HexahedronUV*)uvBuffer.FirstElement();
                 int index = 0;
                 for (int i = 0; i < xFrameCount; i++)
                 {
@@ -98,11 +111,20 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
                     {
                         for (int k = 0; k < zFrameCount; k++)
                         {
-                            array[index++] = new vec3(
-                                (float)i / (float)xFrameCount,
-                                (float)j / (float)yFrameCount,
-                                (float)k / (float)zFrameCount
-                                );
+                            var x = (float)i / (float)xFrameCount;
+                            var y = (float)j / (float)yFrameCount;
+                            var z = (float)k / (float)zFrameCount;
+                            var color = new vec3(x, y, z);
+                            var uv = new HexahedronUV();
+                            uv.v0 = color;
+                            uv.v1 = color;
+                            uv.v2 = color;
+                            uv.v3 = color;
+                            uv.v4 = color;
+                            uv.v5 = color;
+                            uv.v6 = color;
+                            uv.v7 = color;
+                            array[index++] = uv;
                         }
                     }
                 }
@@ -110,11 +132,25 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
                 uvBuffer.Dispose();
             }
             {
-                var indexBuffer = new ZeroIndexBuffer(DrawMode.Points, 0, xFrameCount * yFrameCount * zFrameCount);
-                indexBuffer.Alloc(xFrameCount * yFrameCount * zFrameCount);// this actually does nothing.
+                var indexBuffer = new VR03IndexBuffer();
+                indexBuffer.Alloc(xFrameCount * yFrameCount * zFrameCount);
+                HexahedronIndex* array = (HexahedronIndex*)indexBuffer.FirstElement();
+                int index = 0;
+                for (int i = 0; i < xFrameCount; i++)
+                {
+                    for (int j = 0; j < yFrameCount; j++)
+                    {
+                        for (int k = 0; k < zFrameCount; k++)
+                        {
+                            uint centerIndex = (uint)((i * yFrameCount * zFrameCount + j * zFrameCount + k) * 8);
+                            array[index++] = new HexahedronIndex(centerIndex);
+                        }
+                    }
+                }
                 this.indexBufferRenderer = indexBuffer.GetRenderer();
                 indexBuffer.Dispose();
             }
+
             this.vao = new VertexArrayObject(this.positionBufferRenderer, this.uvBufferRenderer, this.indexBufferRenderer);
         }
 
@@ -125,9 +161,9 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
         protected override void DoRender(RenderEventArgs e)
         {
-            
-            GL.CullFace(GL.GL_FRONT_AND_BACK);
-            GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Filled);
+            //this.tex.Bind();
+            //GL.CullFace(GL.GL_FRONT_AND_BACK);
+            //GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Filled);
 
             GL.Enable(GL.GL_ALPHA_TEST);
             GL.AlphaFunc(GL.GL_GREATER, alphaThreshold);
@@ -145,6 +181,9 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             this.shaderProgram.Bind();
             this.shaderProgram.SetUniform("tex", textureID);
             this.shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+
+            GL.Enable(GL.GL_PRIMITIVE_RESTART);
+            GL.PrimitiveRestartIndex(uint.MaxValue);
             if (this.vao.ID == 0)
             {
                 this.vao.Create(e, this.shaderProgram);
@@ -153,7 +192,9 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             {
                 this.vao.Render(e, this.shaderProgram);
             }
+            GL.Disable(GL.GL_PRIMITIVE_RESTART);
 
+            //this.tex.Unbind();
             this.shaderProgram.Unbind();
             GL.BindTexture(GL.GL_TEXTURE_3D, 0);
 

@@ -8,18 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Demos.VolumeRendering
+namespace CSharpGL.Objects.VolumeRendering
 {
     /// <summary>
     /// 用多个Points进行VR渲染。
     /// </summary>
-    public class DemoVolumeRendering05 : RendererBase
+    public class DemoVolumeRendering02 : RendererBase
     {
         VertexArrayObject vao;
 
         BufferRenderer positionBufferRenderer;
         BufferRenderer uvBufferRenderer;
-        ZeroIndexBufferRenderer indexBufferRenderer;
+        BufferRenderer indexBufferRenderer;
 
         CRawDataProcessor textureProcessor = new CRawDataProcessor();
 
@@ -34,8 +34,8 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering05.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering05.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoVolumeRendering02.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoVolumeRendering02.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -61,20 +61,6 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
         const float xLength = 1;
         const float yLength = 1;
         public float alphaThreshold = 0.05f;
-        public void SetStartIndex(int value)
-        {
-            if (this.indexBufferRenderer == null) { return; }
-
-            this.indexBufferRenderer.FirstVertex = value;
-        }
-
-        public void SetVertexCount(int value)
-        {
-            if (this.indexBufferRenderer == null) { return; }
-
-            this.indexBufferRenderer.VertexCount = value;
-        }
-
 
         private unsafe void InitVertexBuffers()
         {
@@ -126,7 +112,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             {
                 var indexBuffer = new ZeroIndexBuffer(DrawMode.Points, 0, xFrameCount * yFrameCount * zFrameCount);
                 indexBuffer.Alloc(xFrameCount * yFrameCount * zFrameCount);// this actually does nothing.
-                this.indexBufferRenderer = indexBuffer.GetRenderer() as ZeroIndexBufferRenderer;
+                this.indexBufferRenderer = indexBuffer.GetRenderer();
                 indexBuffer.Dispose();
             }
             this.vao = new VertexArrayObject(this.positionBufferRenderer, this.uvBufferRenderer, this.indexBufferRenderer);
@@ -139,8 +125,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
         protected override void DoRender(RenderEventArgs e)
         {
-
-            //this.tex.Bind();
+            
             GL.CullFace(GL.GL_FRONT_AND_BACK);
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Filled);
 
@@ -152,7 +137,6 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             {
                 GL.Enable(GL.GL_BLEND);
                 GL.BlendFunc(sFactor, dFactor);
-                GL.DepthMask((byte)GL.GL_FALSE);
             }
 
             uint textureID = this.textureProcessor.GetTexture3D();
@@ -161,7 +145,6 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             this.shaderProgram.Bind();
             this.shaderProgram.SetUniform("tex", textureID);
             this.shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
-
             if (this.vao.ID == 0)
             {
                 this.vao.Create(e, this.shaderProgram);
@@ -171,16 +154,14 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
                 this.vao.Render(e, this.shaderProgram);
             }
 
-            //this.tex.Unbind();
             this.shaderProgram.Unbind();
             GL.BindTexture(GL.GL_TEXTURE_3D, 0);
 
-            GL.Disable(GL.GL_BLEND);
-            GL.Disable(GL.GL_ALPHA_TEST);
             if (blend)
             {
-                GL.DepthMask((byte)GL.GL_TRUE);
+                GL.Disable(GL.GL_BLEND);
             }
+            GL.Disable(GL.GL_ALPHA_TEST);
         }
 
         public BlendingSourceFactor sFactor = BlendingSourceFactor.SourceAlpha;

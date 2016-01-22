@@ -1,6 +1,6 @@
 ﻿using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
-using CSharpGL.Objects.Demos.VolumeRendering;
+using CSharpGL.Objects.VolumeRendering;
 using GLM;
 using System;
 using System.Collections.Generic;

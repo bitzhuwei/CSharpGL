@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Demos.VolumeRendering
+namespace CSharpGL.Objects.VolumeRendering
 {
     class VR03PositionBuffer : PropertyBuffer<HexahedronPosition>
     {

@@ -6,7 +6,7 @@ using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
 using System;
 using System.Windows.Forms;
-using CSharpGL.Objects.Demos.VolumeRendering;
+using CSharpGL.Objects.VolumeRendering;
 using CSharpGL.Enumerations;
 
 namespace CSharpGL.Winforms.Demo

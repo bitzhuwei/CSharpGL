@@ -8,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Demos.VolumeRendering
+namespace CSharpGL.Objects.VolumeRendering
 {
     /// <summary>
-    /// 用多个Quad进行VR渲染。
+    /// 用多个Quad进行VR渲染。并且可选择渲染顺序。
     /// </summary>
-    public class DemoVolumeRendering01 : RendererBase
+    public class DemoVolumeRendering04 : RendererBase
     {
         VertexArrayObject vao;
 
@@ -32,10 +32,19 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
         const string strMVP = "MVP";
         public mat4 mvp;
 
+        /// <summary>
+        /// 用多个Quad进行VR渲染。并且可选择渲染顺序。
+        /// </summary>
+        /// <param name="reverseSide">是否为逆序渲染？</param>
+        public DemoVolumeRendering04(bool reverseSide)
+        {
+            this.reverSide = reverseSide;
+        }
+
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering01.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"VolumeRendering.DemoVolumeRendering01.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoVolumeRendering04.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoVolumeRendering04.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -62,7 +71,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
         private unsafe void InitVertexBuffers()
         {
             {
-                VR01PositionBuffer positionBuffer = new VR01PositionBuffer(strin_Position);
+                VR04PositionBuffer positionBuffer = new VR04PositionBuffer(strin_Position);
                 positionBuffer.Alloc(zFrameCount);
                 QuadPosition* array = (QuadPosition*)positionBuffer.FirstElement();
                 for (int i = 0; i < zFrameCount; i++)
@@ -79,7 +88,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             }
 
             {
-                VR01UVBuffer uvBuffer = new VR01UVBuffer(strin_uv);
+                VR04UVBuffer uvBuffer = new VR04UVBuffer(strin_uv);
                 uvBuffer.Alloc(zFrameCount);
                 QuadUV* array = (QuadUV*)uvBuffer.FirstElement();
                 for (int i = 0; i < zFrameCount; i++)
@@ -95,11 +104,50 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
                 uvBuffer.Dispose();
             }
             {
-                var indexBuffer = new ZeroIndexBuffer(DrawMode.Quads, 0, zFrameCount * 4);
-                indexBuffer.Alloc(zFrameCount);// this actually does nothing.
+                var indexBuffer = new VR04IndexBuffer();
+                indexBuffer.Alloc(zFrameCount);
+                QuadIndex* array = (QuadIndex*)indexBuffer.FirstElement();
+                for (uint i = 0; i < zFrameCount; i++)
+                {
+                    if (this.reverSide)
+                        array[i] = new QuadIndex((zFrameCount - i - 1) * 4 + 0,
+                            (zFrameCount - i - 1) * 4 + 1,
+                            (zFrameCount - i - 1) * 4 + 2,
+                            (zFrameCount - i - 1) * 4 + 3
+                            );
+                    else
+                    {
+                        array[i] = new QuadIndex(i * 4 + 0, i * 4 + 1, i * 4 + 2, i * 4 + 3);
+                    }
+                }
                 this.indexBufferRenderer = indexBuffer.GetRenderer();
                 indexBuffer.Dispose();
             }
+
+            //if (!this.reverSide)
+            //{
+            //    var indexBuffer = new ZeroIndexBuffer(DrawMode.Quads, zFrameCount * 4);
+            //    indexBuffer.Alloc(zFrameCount);// this actually does nothing.
+            //    this.indexBufferRenderer = indexBuffer.GetRenderer();
+            //    indexBuffer.Dispose();
+            //}
+            //else
+            //{
+            //    var indexBuffer = new VR04IndexBuffer();
+            //    indexBuffer.Alloc(zFrameCount);
+            //    QuadIndex* array = (QuadIndex*)indexBuffer.FirstElement();
+            //    for (uint i = 0; i < zFrameCount; i++)
+            //    {
+            //        //array[i] = new QuadIndex(i * 4 + 0, i * 4 + 1, i * 4 + 2, i * 4 + 3);
+            //        array[i] = new QuadIndex((zFrameCount - i - 1) * 4 + 0,
+            //            (zFrameCount - i - 1) * 4 + 1,
+            //            (zFrameCount - i - 1) * 4 + 2,
+            //            (zFrameCount - i - 1) * 4 + 3
+            //            );
+            //    }
+            //    this.indexBufferRenderer = indexBuffer.GetRenderer();
+            //    indexBuffer.Dispose();
+            //}
             this.vao = new VertexArrayObject(this.positionBufferRenderer, this.uvBufferRenderer, this.indexBufferRenderer);
         }
 
@@ -110,7 +158,8 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
 
         protected override void DoRender(RenderEventArgs e)
         {
-            
+
+            //this.tex.Bind();
             GL.CullFace(GL.GL_FRONT_AND_BACK);
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Filled);
 
@@ -130,6 +179,7 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
             this.shaderProgram.Bind();
             this.shaderProgram.SetUniform("tex", textureID);
             this.shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+
             if (this.vao.ID == 0)
             {
                 this.vao.Create(e, this.shaderProgram);
@@ -139,19 +189,21 @@ namespace CSharpGL.Objects.Demos.VolumeRendering
                 this.vao.Render(e, this.shaderProgram);
             }
 
+            //this.tex.Unbind();
             this.shaderProgram.Unbind();
             GL.BindTexture(GL.GL_TEXTURE_3D, 0);
 
             if (blend)
             {
                 GL.Disable(GL.GL_BLEND);
-                GL.Disable(GL.GL_ALPHA_TEST);
             }
+            GL.Disable(GL.GL_ALPHA_TEST);
         }
 
         public BlendingSourceFactor sFactor = BlendingSourceFactor.SourceAlpha;
         public BlendingDestinationFactor dFactor = BlendingDestinationFactor.OneMinusSourceAlpha;
         public bool blend = true;
+        private bool reverSide;
 
         protected override void CleanUnmanagedRes()
         {

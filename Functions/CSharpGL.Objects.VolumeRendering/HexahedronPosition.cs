@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.Demos.VolumeRendering
+namespace CSharpGL.Objects.VolumeRendering
 {
     [StructLayout(LayoutKind.Sequential)]
-    struct HexahedronUV
+    struct HexahedronPosition
     {
         public vec3 v0;
         public vec3 v1;

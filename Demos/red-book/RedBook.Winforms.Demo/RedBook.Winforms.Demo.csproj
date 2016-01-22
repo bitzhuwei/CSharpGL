@@ -183,7 +183,7 @@
       <Project>{febc2c4a-e846-44e7-99c1-ecf2816abf40}</Project>
       <Name>CSharpGL.Texts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\CSharpGL.Winforms\CSharpGL.Winforms.csproj">
+    <ProjectReference Include="..\..\..\Functions\CSharpGL.Winforms\CSharpGL.Winforms.csproj">
       <Project>{63ef1f63-9251-4e20-bce3-843c7f4d482b}</Project>
       <Name>CSharpGL.Winforms</Name>
     </ProjectReference>
