@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects
 {
+    //TODO:熟悉texture之后整理一套texture的类型，简化对texture的使用。
     /// <summary>
     /// 一个二维纹理
     /// </summary>

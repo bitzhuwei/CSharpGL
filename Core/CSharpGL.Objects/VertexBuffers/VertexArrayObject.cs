@@ -13,7 +13,7 @@ namespace CSharpGL.Objects.VertexBuffers
     public class VertexArrayObject : IDisposable
     {
         BufferRenderer[] bufferRenderers;
-        IndexBufferBaseRenderer indexBufferRenderer;
+        IndexBufferRendererBase indexBufferRenderer;
 
         /// <summary>
         /// 一个vertex array object。（即VAO）
@@ -27,7 +27,7 @@ namespace CSharpGL.Objects.VertexBuffers
             this.bufferRenderers = propertyBuffers;
             foreach (var item in propertyBuffers)
             {
-                var renderer = item as IndexBufferBaseRenderer;
+                var renderer = item as IndexBufferRendererBase;
                 if (renderer != null)
                 {
                     if (this.indexBufferRenderer != null)
@@ -130,11 +130,13 @@ namespace CSharpGL.Objects.VertexBuffers
                 }
 
                 // Dispose unmanaged resources.
+                this.indexBufferRenderer.Dispose();
                 foreach (var item in this.bufferRenderers)
                 {
                     item.Dispose();
                 }
                 GL.DeleteVertexArrays(1, new uint[] { this.ID });
+                this.ID = 0;
             }
 
             this.disposedValue = true;

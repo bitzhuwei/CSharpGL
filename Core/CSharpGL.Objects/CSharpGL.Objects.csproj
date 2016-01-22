@@ -100,7 +100,7 @@
     <Compile Include="VertexBuffers\BufferRenderer.cs" />
     <Compile Include="VertexBuffers\IndexBuffer.cs" />
     <Compile Include="VertexBuffers\IndexBufferBase.cs" />
-    <Compile Include="VertexBuffers\IndexBufferBaseRenderer.cs" />
+    <Compile Include="VertexBuffers\IndexBufferRendererBase.cs" />
     <Compile Include="VertexBuffers\PropertyBufferRenderer.cs" />
     <Compile Include="VertexBuffers\VertexArrayObject.cs" />
     <Compile Include="VertexBuffers\IndexBufferRenderer.cs" />
@@ -132,7 +132,9 @@
     <EmbeddedResource Include="SceneElements\AxisElement2.vert" />
     <EmbeddedResource Include="SceneElements\AxisElement2.frag" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Textures\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SceneElements\AxisElement.frag" />
     <EmbeddedResource Include="SceneElements\AxisElement.vert" />

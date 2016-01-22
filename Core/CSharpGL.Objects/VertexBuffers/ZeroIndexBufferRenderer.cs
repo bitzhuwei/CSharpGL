@@ -9,7 +9,7 @@ namespace CSharpGL.Objects.VertexBuffers
     /// <summary>
     /// 没有显式索引时的渲染方法。
     /// </summary>
-    public class ZeroIndexBufferRenderer : IndexBufferBaseRenderer
+    public class ZeroIndexBufferRenderer : IndexBufferRendererBase
     {
         /// <summary>
         /// 没有显式索引时的渲染方法。

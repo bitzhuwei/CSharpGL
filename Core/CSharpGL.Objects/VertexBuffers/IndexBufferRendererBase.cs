@@ -9,7 +9,7 @@ namespace CSharpGL.Objects.VertexBuffers
     /// <summary>
     /// 索引buffer渲染器的基类。
     /// </summary>
-    public abstract class IndexBufferBaseRenderer : BufferRenderer
+    public abstract class IndexBufferRendererBase : BufferRenderer
     {
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace CSharpGL.Objects.VertexBuffers
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="bufferID"></param>
-        internal IndexBufferBaseRenderer(DrawMode mode, uint bufferID)
+        internal IndexBufferRendererBase(DrawMode mode, uint bufferID)
             : base(bufferID)
         {
             this.Mode = mode;

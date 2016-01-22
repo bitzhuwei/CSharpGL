@@ -9,7 +9,7 @@ namespace CSharpGL.Objects.VertexBuffers
     /// <summary>
     /// 用GL.DrawElements()执行一个索引buffer的渲染操作。
     /// </summary>
-    public class IndexBufferRenderer : IndexBufferBaseRenderer
+    public class IndexBufferRenderer : IndexBufferRendererBase
     {
         /// <summary>
         /// 用GL.DrawElements()执行一个索引buffer的渲染操作。
