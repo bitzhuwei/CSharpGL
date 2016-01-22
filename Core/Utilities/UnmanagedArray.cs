@@ -22,6 +22,10 @@ namespace System
         /// <para>仅为调试之用，无应用意义。</para>
         /// </summary>
         private static int thisTypeAllocatedCount = 0;
+        /// <summary>
+        /// 此类型（即参数为T）一共释放了多少个对象？
+        /// <para>仅为调试之用，无应用意义。</para>
+        /// </summary>
         private static int thisTypeDisposedCount = 0;
 
         /// <summary>
@@ -31,7 +35,7 @@ namespace System
         public UnmanagedArray(int count)
             : base(count, Marshal.SizeOf(typeof(T)))
         {
-            thisTypeAllocatedCount++;
+            UnmanagedArray<T>.thisTypeAllocatedCount++;
         }
 
         /// <summary>
@@ -64,16 +68,11 @@ namespace System
             }
         }
 
-        protected override void Dispose(bool disposing)
+        protected override void CleanUnmanagedRes()
         {
-            if (base.disposedValue == false)
-            {
-                thisTypeDisposedCount++;
+            UnmanagedArray<T>.thisTypeDisposedCount++;
 
-                base.Dispose(disposing);
-            }
-
-            base.disposedValue = true;
+            base.CleanUnmanagedRes();
         }
         ///// <summary>
         ///// 按索引顺序依次获取各个元素。
@@ -94,13 +93,13 @@ namespace System
     public abstract class UnmanagedArrayBase : IDisposable
     {
         /// <summary>
-        /// 一共申请了多少个对象？
+        /// 一共申请了多少个<see cref="UnmanagedArrayBase"/>对象？
         /// <para>仅为调试之用，无应用意义。</para>
         /// </summary>
         public static int allocatedCount = 0;
 
         /// <summary>
-        /// 一共释放了多少个对象？
+        /// 一共释放了多少个<see cref="UnmanagedArrayBase"/>对象？
         /// <para>仅为调试之用，无应用意义。</para>
         /// </summary>
         public static int disposedCount = 0;
@@ -142,7 +141,7 @@ namespace System
             int memSize = elementCount * elementSize;
             this.Header = Marshal.AllocHGlobal(memSize);
 
-            allocatedCount++;
+            UnmanagedArrayBase.allocatedCount++;
         }
 
         #region IDisposable Members
@@ -173,33 +172,38 @@ namespace System
         /// Dispose managed and unmanaged resources of this instance.
         /// </summary>
         /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
-        protected virtual void Dispose(bool disposing)
+        /// <summary>
+        /// Dispose managed and unmanaged resources of this instance.
+        /// </summary>
+        /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
+        private void Dispose(bool disposing)
         {
-
             if (this.disposedValue == false)
             {
                 if (disposing)
                 {
-                    // TODO: Dispose managed resources.
+                    // Dispose managed resources.
+                    CleanManagedRes();
                 } // end if
 
-                // TODO: Dispose unmanaged resources.
-                IntPtr ptr = this.Header;
+                // Dispose unmanaged resources.
+                CleanUnmanagedRes();
 
-                if (ptr != IntPtr.Zero)
-                {
-                    this.Length = 0;
-                    this.Header = IntPtr.Zero;
-                    Marshal.FreeHGlobal(ptr);
-                }
-
-                disposedCount++;
+                UnmanagedArrayBase.disposedCount++;
             } // end if
 
             this.disposedValue = true;
         } // end sub
 
         #endregion
+
+        protected virtual void CleanUnmanagedRes()
+        {
+        }
+
+        protected virtual void CleanManagedRes()
+        {
+        }
 
         public override string ToString()
         {

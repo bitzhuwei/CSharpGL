@@ -66,10 +66,16 @@
     <Compile Include="FormRenderers.Designer.cs">
       <DependentUpon>FormRenderers.cs</DependentUpon>
     </Compile>
+    <Compile Include="RendererFactories\CloudRendererFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="RendererFactories\XRayFactory.cs" />
     <Compile Include="RendererFactories\Polkadot3dFactory.cs" />
     <Compile Include="RendererFactories\RendererFactory.cs" />
     <Compile Include="RendererFactories\GoochFactory.cs" />
+    <Compile Include="Renderers\CloudRenderer.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Renderers\ShaderDesignerRendererBase.cs" />
     <Compile Include="Renderers\GoochRenderer.cs" />
     <Compile Include="Renderers\Polkadot3dRenderer.cs" />
@@ -139,6 +145,8 @@
     <EmbeddedResource Include="Renderers\ToonRenderer.vert" />
     <EmbeddedResource Include="Renderers\XRayRenderer.frag" />
     <EmbeddedResource Include="Renderers\XRayRenderer.vert" />
+    <None Include="Renderers\Cloud.vert" />
+    <EmbeddedResource Include="Renderers\Cloud.frag" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
