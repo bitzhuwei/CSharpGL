@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace ShaderLab
 {
-    public class SomeRenderer : RendererBase
+    class RendererTemplate : SceneElementBase
     {
         ShaderProgram shaderProgram;
 
@@ -53,18 +53,19 @@ namespace ShaderLab
 
         private IModel model;
 
-        public SomeRenderer(IModel model)
+        public RendererTemplate(IModel model)
         {
             this.model = model;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Some.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Some.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"ObjModelElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"ObjModelElement.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
+
         }
 
         protected void InitializeVAO()

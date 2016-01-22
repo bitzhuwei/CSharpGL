@@ -76,15 +76,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL4Vsix2013", "Tools\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL4Vsix2015", "Tools\CSharpGL4Vsix2015\CSharpGL4Vsix2015.csproj", "{F733B1EB-3D54-44C0-B765-5CF34DD91D56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShaderLab", "ShaderLab\ShaderLab.csproj", "{DADE069E-13EC-4074-9800-9019735DF1E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShaderLab", "Tools\ShaderLab\ShaderLab.csproj", "{DADE069E-13EC-4074-9800-9019735DF1E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FromShaderDesigner1.5.9.4", "FromShaderDesigner1.5.9.4", "{70A460D7-90C0-48A2-AC48-44EF9292BBFB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormShaderDesigner1594Demos", "Demos\FromShaderDesigner1.5.9.4\FormShaderDesigner1594Demos\FormShaderDesigner1594Demos.csproj", "{D880FAFD-3AC2-47CB-AB53-2C42388731C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.OBJParser", "CSharpGL.OBJParser\CSharpGL.OBJParser.csproj", "{C58CB2C1-459C-497E-BDAE-3DBE3964DAD8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.OBJParser", "Tools\CSharpGL.OBJParser\CSharpGL.OBJParser.csproj", "{C58CB2C1-459C-497E-BDAE-3DBE3964DAD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.ObjViewer", "CSharpGL.ObjViewer\CSharpGL.ObjViewer.csproj", "{17D90148-1C3D-4D51-A8A7-D7A993AD8E1F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.ObjViewer", "Tools\CSharpGL.ObjViewer\CSharpGL.ObjViewer.csproj", "{17D90148-1C3D-4D51-A8A7-D7A993AD8E1F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL._3DSFiles", "Functions\CSharpGL._3DSFiles\CSharpGL._3DSFiles.csproj", "{2C4FC122-BD74-4F1F-BCED-D44CF6CA7FA1}"
 EndProject

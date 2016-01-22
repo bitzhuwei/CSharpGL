@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{17D90148-1C3D-4D51-A8A7-D7A993AD8E1F}</ProjectGuid>
+    <ProjectGuid>{DADE069E-13EC-4074-9800-9019735DF1E3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharpGL.ObjViewer</RootNamespace>
-    <AssemblyName>CSharpGL.ObjViewer</AssemblyName>
+    <RootNamespace>ShaderLab</RootNamespace>
+    <AssemblyName>ShaderLab</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -21,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSharpGL.Winforms">
+      <HintPath>..\Core\CSharpGL.Winforms\obj\Debug\CSharpGL.Winforms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,21 +47,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ObjModelElement.frag" />
-    <EmbeddedResource Include="ObjModelElement.vert" />
-    <Compile Include="FormObjViewer.cs">
+    <Compile Include="SomeRenderer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SomeRenderer.tt</DependentUpon>
+    </Compile>
+    <Content Include="readme.txt" />
+    <Compile Include="FormShaderLab.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormObjViewer.Designer.cs">
-      <DependentUpon>FormObjViewer.cs</DependentUpon>
+    <Compile Include="FormShaderLab.Designer.cs">
+      <DependentUpon>FormShaderLab.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObjModelElement.cs" />
-    <Compile Include="ObjModelAdpater.cs" />
-    <Compile Include="ObjModelPositionBuffer.cs" />
+    <Compile Include="FormTextMsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTextMsg.Designer.cs">
+      <DependentUpon>FormTextMsg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormObjViewer.resx">
-      <DependentUpon>FormObjViewer.cs</DependentUpon>
+    <Content Include="SomeRenderer.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SomeRenderer.cs</LastGenOutput>
+    </Content>
+    <EmbeddedResource Include="FormShaderLab.resx">
+      <DependentUpon>FormShaderLab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTextMsg.resx">
+      <DependentUpon>FormTextMsg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -79,45 +95,30 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="teapot_0.obj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core\CSharpGL.Objects\CSharpGL.Objects.csproj">
+    <ProjectReference Include="..\..\Core\CSharpGL.Objects\CSharpGL.Objects.csproj">
       <Project>{b340c561-2e18-42af-a52d-e6d9f924293e}</Project>
       <Name>CSharpGL.Objects</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Functions\CSharpGL.Winforms\CSharpGL.Winforms.csproj">
-      <Project>{63ef1f63-9251-4e20-bce3-843c7f4d482b}</Project>
-      <Name>CSharpGL.Winforms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core\CSharpGL\CSharpGL.csproj">
+    <ProjectReference Include="..\..\Core\CSharpGL\CSharpGL.csproj">
       <Project>{0d6e73c8-27b8-4614-9861-f4f22808ea7c}</Project>
       <Name>CSharpGL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\GLM\GLM.csproj">
+    <ProjectReference Include="..\..\Core\GLM\GLM.csproj">
       <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
       <Name>GLM</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\Utilities\Utilities.csproj">
+    <ProjectReference Include="..\..\Core\Utilities\Utilities.csproj">
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CSharpGL.OBJParser\CSharpGL.OBJParser.csproj">
-      <Project>{c58cb2c1-459c-497e-bdae-3dbe3964dad8}</Project>
-      <Name>CSharpGL.OBJParser</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Demos\CSharpGL.Objects.Demos\CSharpGL.Objects.Demos.csproj">
-      <Project>{6338ec8c-0f61-4ab2-99f8-b262d9adfda3}</Project>
-      <Name>CSharpGL.Objects.Demos</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
