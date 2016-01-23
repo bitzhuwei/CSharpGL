@@ -145,7 +145,7 @@
     <EmbeddedResource Include="Renderers\ToonRenderer.vert" />
     <EmbeddedResource Include="Renderers\XRayRenderer.frag" />
     <EmbeddedResource Include="Renderers\XRayRenderer.vert" />
-    <None Include="Renderers\Cloud.vert" />
+    <EmbeddedResource Include="Renderers\Cloud.vert" />
     <EmbeddedResource Include="Renderers\Cloud.frag" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +155,10 @@
     <ProjectReference Include="..\..\..\Core\CSharpGL.Objects\CSharpGL.Objects.csproj">
       <Project>{b340c561-2e18-42af-a52d-e6d9f924293e}</Project>
       <Name>CSharpGL.Objects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Functions\CSharpGL.Objects.VolumeRendering\CSharpGL.Objects.VolumeRendering.csproj">
+      <Project>{e97977fd-ee85-47c5-810e-a0cba258faae}</Project>
+      <Name>CSharpGL.Objects.VolumeRendering</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Functions\CSharpGL.Winforms\CSharpGL.Winforms.csproj">
       <Project>{63ef1f63-9251-4e20-bce3-843c7f4d482b}</Project>

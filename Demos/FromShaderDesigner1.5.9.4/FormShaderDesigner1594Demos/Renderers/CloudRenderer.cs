@@ -3,6 +3,7 @@ using CSharpGL.Objects;
 using CSharpGL.Objects.Models;
 using CSharpGL.Objects.Shaders;
 using CSharpGL.Objects.VertexBuffers;
+using CSharpGL.Objects.VolumeRendering;
 using GLM;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace FormShaderDesigner1594Demos.Renderers
         public float Scale = 0.759f;
 
         const string strTimeFromInit = "TIME_FROM_INIT";
-        public int TIME_FROM_INIT;
+        public float TIME_FROM_INIT;
 
         const string strNoise = "Noise";
         private uint NoiseTextureID;
@@ -57,6 +58,7 @@ namespace FormShaderDesigner1594Demos.Renderers
 
 
         private IModel model;
+        private static CRawDataProcessor texture3D;
 
         public CloudRenderer(IModel model)
         {
@@ -65,8 +67,8 @@ namespace FormShaderDesigner1594Demos.Renderers
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Cloud.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Cloud.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.Cloud.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.Cloud.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -108,11 +110,19 @@ namespace FormShaderDesigner1594Demos.Renderers
 
         private void InitNoiseTexture()
         {
-            throw new NotImplementedException();
+            if (texture3D == null)
+            {
+                texture3D = new CRawDataProcessor();
+                texture3D.ReadFile("head256x256x109", 256, 256, 109);
+            }
+
+            this.NoiseTextureID = texture3D.GetTexture3D();
         }
 
         protected override void DoRender(RenderEventArgs e)
         {
+            GL.BindTexture(GL.GL_TEXTURE_3D, this.NoiseTextureID);
+
             ShaderProgram program = this.shaderProgram;
             // 绑定shader
             program.Bind();
@@ -120,6 +130,13 @@ namespace FormShaderDesigner1594Demos.Renderers
             program.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
             program.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
             program.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
+            program.SetUniform(strLightPos, LightPos.x, LightPos.y, LightPos.z);
+            program.SetUniform(strScale, this.Scale);
+            program.SetUniform(strTimeFromInit, this.TIME_FROM_INIT);
+            this.TIME_FROM_INIT += 0.0001f;
+            program.SetUniform(strNoise, this.NoiseTextureID);
+            program.SetUniform(strSkyColor, this.SkyColor.x, SkyColor.y, SkyColor.z);
+            program.SetUniform(strCloudColor, CloudColor.x, CloudColor.y, CloudColor.z);
 
             int[] originalPolygonMode = new int[1];
             GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
@@ -146,6 +163,9 @@ namespace FormShaderDesigner1594Demos.Renderers
 
             // 解绑shader
             program.Unbind();
+
+            GL.BindTexture(GL.GL_TEXTURE_3D, 0);
+
         }
 
 

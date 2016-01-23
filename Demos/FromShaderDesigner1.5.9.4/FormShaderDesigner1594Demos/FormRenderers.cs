@@ -31,6 +31,7 @@ namespace FormShaderDesigner1594Demos
         SimpleUIAxis uiLeftBottomAxis;
 
         ShaderDesignerRendererBase element;
+        ShaderDesignerRendererBase newElement;
 
         Camera camera;
 
@@ -103,6 +104,15 @@ namespace FormShaderDesigner1594Demos
             mat4 viewMatrix = camera.GetViewMat4();
             mat4 modelMatrix = mat4.identity();
 
+            if (this.newElement != null)
+            {
+                if (this.element != null)
+                {
+                    this.element.Dispose();
+                }
+                this.element = this.newElement;
+                this.newElement = null;
+            }
             ShaderDesignerRendererBase element = this.element;
             element.projectionMatrix = projectionMatrix;
             element.viewMatrix = viewMatrix;
@@ -260,7 +270,7 @@ namespace FormShaderDesigner1594Demos
             IModel model = modelFactories[currentModelIndex].Create(this.radius);
             ShaderDesignerRendererBase element = rendererFactories[currentRendererIndex].GetRenderer(model);
             element.Initialize();
-            this.element = element;
+            this.newElement = element;
 
             StringBuilder builder = new StringBuilder();
             builder.Append(string.Format("{0}", model.GetType().Name));
@@ -273,7 +283,19 @@ namespace FormShaderDesigner1594Demos
         float radius = 2;
         int currentModelIndex = 1;
         int currentRendererIndex = 0;
-        static readonly ModelFactory[] modelFactories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
-        static readonly RendererFactory[] rendererFactories = new RendererFactory[] { new GoochFactory(), new Polkadot3dFactory(), new XRayFactory(), };
+        static readonly ModelFactory[] modelFactories = new ModelFactory[] 
+        { 
+            new CubeFactory(), 
+            new IceCreamFactory(), 
+            new SphereFactory(), 
+            new TeapotFactory(), 
+        };
+        static readonly RendererFactory[] rendererFactories = new RendererFactory[] 
+        { 
+            new GoochFactory(),
+            new Polkadot3dFactory(), 
+            new XRayFactory(), 
+            new CloudRendererFactory(), 
+        };
     }
 }

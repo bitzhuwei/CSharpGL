@@ -20,6 +20,8 @@ in float NdotL;
 in vec3  ReflectVec;
 in vec3  ViewVec;
 
+out vec4 outputColor;
+
 void main (void)
 {
     vec3 kcool    = min(CoolColor + DiffuseCool * SurfaceColor, 1.0);
@@ -32,5 +34,5 @@ void main (void)
     float spec    = max(dot(nreflect, nview), 0.0);
     spec          = pow(spec, 32.0);
 
-    gl_FragColor = vec4 (min(kfinal + spec, 1.0), 1.0);
+    outputColor = vec4 (min(kfinal + spec, 1.0), 1.0);
 }

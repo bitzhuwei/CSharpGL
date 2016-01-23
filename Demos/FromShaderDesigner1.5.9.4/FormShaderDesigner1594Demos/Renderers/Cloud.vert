@@ -26,10 +26,10 @@ uniform float Scale;
 void main(void)
 {
    // gl_TexCoord[0] = gl_MultiTexCoord0;
-    gl_Position     = ftransform();
-    vec4 ECposition = gl_ModelViewMatrix * gl_Vertex;
-    MCposition      = vec3 (gl_Vertex) * Scale;
-    vec3 tnorm      = normalize(vec3 (gl_NormalMatrix * gl_Normal));
+    gl_Position     = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0);
+    vec4 ECposition = viewMatrix * modelMatrix * vec4(in_Position, 1.0);
+    MCposition      = in_Position * Scale;
+    vec3 tnorm      = normalize(vec3(viewMatrix * modelMatrix * vec4(in_Normal, 1.0)));
     LightIntensity  = dot(normalize(LightPos - vec3 (ECposition)), tnorm) * 1.5;
 
 }
