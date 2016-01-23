@@ -10,10 +10,15 @@ namespace CSharpGL.Objects.VertexBuffers
     /// 一个vertex array object。（即VAO）
     /// <para>VAO是用来管理VBO的。可以进一步减少DrawCall。</para>
     /// </summary>
-    public class VertexArrayObject : IDisposable
+    public sealed class VertexArrayObject : IDisposable
     {
-        BufferRenderer[] bufferRenderers;
-        IndexBufferRendererBase indexBufferRenderer;
+        private BufferRenderer[] bufferRenderers;
+        private IndexBufferRendererBase indexBufferRenderer;
+
+        /// <summary>
+        /// 此VAO的ID，由OpenGL给出。
+        /// </summary>
+        public uint ID { get; private set; }
 
         /// <summary>
         /// 一个vertex array object。（即VAO）
@@ -42,18 +47,11 @@ namespace CSharpGL.Objects.VertexBuffers
                 }
             }
 
-            if(!indexBufferExists)
+            if (!indexBufferExists)
             {
                 throw new Exception("No index buffer renderer exists!");
             }
         }
-
-        private bool disposedValue;
-
-        /// <summary>
-        /// 此VAO的ID，由OpenGL给出。
-        /// </summary>
-        public uint ID { get; private set; }
 
         /// <summary>
         /// 在OpenGL中创建VAO。
@@ -106,7 +104,6 @@ namespace CSharpGL.Objects.VertexBuffers
             return string.Format("VAO ID: {0}", this.ID);
         }
 
-
         public void Dispose()
         {
             this.Dispose(true);
@@ -118,9 +115,10 @@ namespace CSharpGL.Objects.VertexBuffers
             this.Dispose(false);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
+        private bool disposedValue;
 
+        private void Dispose(bool disposing)
+        {
             if (this.disposedValue == false)
             {
                 if (disposing)
@@ -130,13 +128,16 @@ namespace CSharpGL.Objects.VertexBuffers
                 }
 
                 // Dispose unmanaged resources.
-                this.indexBufferRenderer.Dispose();
+                uint[] arrays = new uint[] { this.ID };
+                this.ID = 0;
+                GL.DeleteVertexArrays(1, new uint[] { this.ID });
                 foreach (var item in this.bufferRenderers)
                 {
                     item.Dispose();
                 }
-                GL.DeleteVertexArrays(1, new uint[] { this.ID });
-                this.ID = 0;
+                this.indexBufferRenderer.Dispose();
+                this.bufferRenderers = null;
+                this.indexBufferRenderer = null;
             }
 
             this.disposedValue = true;

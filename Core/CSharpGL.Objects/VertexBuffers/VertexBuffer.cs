@@ -137,9 +137,8 @@ namespace CSharpGL.Objects.VertexBuffers
 
         private bool disposedValue = false;
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
-
             if (this.disposedValue == false)
             {
                 if (disposing)

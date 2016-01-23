@@ -45,22 +45,30 @@ namespace CSharpGL.Objects.VertexBuffers
             this.Dispose(false);
         }
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
-
             if (this.disposedValue == false)
             {
                 if (disposing)
                 {
                     // Dispose managed resources.
-
+                    DisposeManagedResources();
                 }
 
                 // Dispose unmanaged resources.
-                GL.DeleteBuffers(1, new uint[] { this.BufferID });
+                DIsposeUnmanagedResources();
             }
 
             this.disposedValue = true;
+        }
+
+        protected virtual void DIsposeUnmanagedResources()
+        {
+            GL.DeleteBuffers(1, new uint[] { this.BufferID });
+        }
+
+        protected virtual void DisposeManagedResources()
+        {
         }
     }
 }
