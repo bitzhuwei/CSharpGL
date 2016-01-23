@@ -16,7 +16,10 @@ using System.Windows.Forms;
 
 namespace ShaderLab
 {
-    public class <#= ClassName #> : SceneElementBase
+	/// <summary>
+	/// 一个<see cref="<#= ClassName #>"/>对应一个(vertex shader+fragment shader+..)组成的shader program。
+	/// </summary>
+    public class <#= ClassName #> : RendererBase
     {
         ShaderProgram shaderProgram;
 
