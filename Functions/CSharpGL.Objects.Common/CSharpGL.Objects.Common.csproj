@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{292F0A6F-6D7E-42FE-8B5C-3FBA11FC9B49}</ProjectGuid>
+    <ProjectGuid>{388D3F0C-08B3-47DC-86A8-CC5CC87B5819}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharpGL.UIs</RootNamespace>
-    <AssemblyName>CSharpGL.UIs</AssemblyName>
+    <RootNamespace>CSharpGL.Objects.Common</RootNamespace>
+    <AssemblyName>CSharpGL.Objects.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,8 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,26 +40,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="AxisElement.cs" />
+    <Content Include="readme.txt" />
+    <Compile Include="AxisElement2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IUILayout.cs" />
-    <Compile Include="IUILayoutArgs.cs" />
-    <Compile Include="IUILayoutHelper.cs" />
-    <Compile Include="IUILayoutParam.cs" />
-    <Compile Include="SimpleUIAxis.cs" />
-    <Compile Include="SimpleUIPointSpriteStringElement.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SimpleUIPointSpriteStringElement.frag" />
+    <EmbeddedResource Include="AxisElement.frag" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SimpleUIPointSpriteStringElement.vert" />
+    <EmbeddedResource Include="AxisElement.vert" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\GLM\GLM.csproj">
-      <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
-      <Name>GLM</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="AxisElement2.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AxisElement2.vert" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\Core\CSharpGL.Objects\CSharpGL.Objects.csproj">
       <Project>{b340c561-2e18-42af-a52d-e6d9f924293e}</Project>
       <Name>CSharpGL.Objects</Name>
@@ -69,21 +66,14 @@
       <Project>{0d6e73c8-27b8-4614-9861-f4f22808ea7c}</Project>
       <Name>CSharpGL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Core\GLM\GLM.csproj">
+      <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
+      <Name>GLM</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\Utilities\Utilities.csproj">
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CSharpGL.Objects.Common\CSharpGL.Objects.Common.csproj">
-      <Project>{388d3f0c-08b3-47dc-86a8-cc5cc87b5819}</Project>
-      <Name>CSharpGL.Objects.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CSharpGL.Texts\CSharpGL.Texts.csproj">
-      <Project>{febc2c4a-e846-44e7-99c1-ecf2816abf40}</Project>
-      <Name>CSharpGL.Texts</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

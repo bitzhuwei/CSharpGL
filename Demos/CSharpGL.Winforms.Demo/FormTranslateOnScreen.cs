@@ -6,6 +6,7 @@ using CSharpGL.Objects.Shaders;
 using System;
 using System.Text;
 using System.Windows.Forms;
+using CSharpGL.Objects.Common;
 
 namespace CSharpGL.Winforms.Demo
 {

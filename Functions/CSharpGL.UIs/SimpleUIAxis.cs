@@ -1,5 +1,5 @@
 ﻿using GLM;
-using CSharpGL.Objects.SceneElements;
+using CSharpGL.Objects.Common;
 using CSharpGL.Objects.Shaders;
 using CSharpGL.UIs;
 using System;

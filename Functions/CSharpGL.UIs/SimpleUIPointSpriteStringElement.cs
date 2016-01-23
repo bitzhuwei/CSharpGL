@@ -1,6 +1,6 @@
 ﻿using GLM;
 using CSharpGL.Objects;
-using CSharpGL.Objects.SceneElements;
+using CSharpGL.Objects.Common;
 using CSharpGL.Objects.Shaders;
 using CSharpGL.Texts;
 using System;
@@ -10,6 +10,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CSharpGL.Objects.SceneElements;
 
 namespace CSharpGL.UIs
 {

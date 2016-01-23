@@ -2,7 +2,6 @@
 using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Demos.UIs;
-using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
 using CSharpGL.UIs;
 using System;
@@ -16,7 +15,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSharpGL;
 using CSharpGL.Objects.Models;
-using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.ModelFactories;
 using FormShaderDesigner1594Demos.Renderers;
 using FormShaderDesigner1594Demos.RendererFactories;

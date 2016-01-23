@@ -63,7 +63,6 @@
     <Compile Include="Models\TeapotLoader.cs" />
     <Compile Include="Models\SphereModel.cs" />
     <Compile Include="Models\TeapotModel.cs" />
-    <Compile Include="SceneElements\AxisElement.cs" />
     <Compile Include="Cameras\Camera2Matrix.cs" />
     <Compile Include="Cameras\CameraHelper.cs">
       <SubType>Code</SubType>
@@ -79,12 +78,6 @@
     <Compile Include="Cameras\Camera.cs" />
     <Compile Include="Cameras\ViewTypes.cs" />
     <Compile Include="GLColor.cs" />
-    <Compile Include="SceneElements\AxisElement2.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="SceneElements\AxisColorBuffer.cs" />
-    <Compile Include="SceneElements\AxisIndexBuffer.cs" />
-    <Compile Include="SceneElements\AxisPositionBuffer.cs" />
     <Compile Include="Shaders\ShaderCompilationException.cs" />
     <Compile Include="Shaders\Shader.cs" />
     <Compile Include="RenderContexts\DIBSection.cs" />
@@ -129,15 +122,9 @@
     <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SceneElements\AxisElement2.vert" />
-    <EmbeddedResource Include="SceneElements\AxisElement2.frag" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Textures\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SceneElements\AxisElement.frag" />
-    <EmbeddedResource Include="SceneElements\AxisElement.vert" />
     <EmbeddedResource Include="Models\TeapotModel.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>

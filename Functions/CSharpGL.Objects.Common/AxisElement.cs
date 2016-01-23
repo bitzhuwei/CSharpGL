@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CSharpGL.Objects.VertexBuffers;
 
-namespace CSharpGL.Objects.SceneElements
+namespace CSharpGL.Objects.Common
 {
     //TODO: 如果有兴趣，可以改用1个VBO来存储整个Axis的内容，甚至画一个更好看的Axis。
     /// <summary>
@@ -76,8 +76,8 @@ namespace CSharpGL.Objects.SceneElements
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.AxisElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.AxisElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"AxisElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"AxisElement.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -248,5 +248,28 @@ namespace CSharpGL.Objects.SceneElements
             base.CleanUnmanagedRes();
         }
 
+    }
+
+    class AxisPositionBuffer : PropertyBuffer<vec3>
+    {
+        public AxisPositionBuffer(string varNameInVertexShader, BufferUsage usage)
+            : base(varNameInVertexShader, 3, GL.GL_FLOAT, usage)
+        { }
+
+    }
+
+    class AxisColorBuffer : PropertyBuffer<vec3>
+    {
+        public AxisColorBuffer(string varNameInVertexShader, BufferUsage usage)
+            : base(varNameInVertexShader, 3, GL.GL_FLOAT, usage)
+        { }
+
+    }
+
+    public class AxisIndexBuffer : IndexBuffer<byte>
+    {
+        public AxisIndexBuffer()
+            : base(DrawMode.QuadStrip, IndexElementType.UnsignedByte, BufferUsage.StaticDraw)
+        { }
     }
 }

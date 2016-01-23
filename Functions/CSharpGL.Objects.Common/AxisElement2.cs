@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Objects.SceneElements
+namespace CSharpGL.Objects.Common
 {
     //TODO: 如果有兴趣，可以改用1个VBO来存储整个Axis的内容，甚至画一个更好看的Axis。
     /// <summary>
@@ -83,8 +83,8 @@ namespace CSharpGL.Objects.SceneElements
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.AxisElement2.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"SceneElements.AxisElement2.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"AxisElement2.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"AxisElement2.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);

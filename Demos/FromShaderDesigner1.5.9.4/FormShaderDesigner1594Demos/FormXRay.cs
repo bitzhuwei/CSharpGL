@@ -2,7 +2,6 @@
 using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Demos.UIs;
-using CSharpGL.Objects.SceneElements;
 using CSharpGL.Objects.Shaders;
 using CSharpGL.UIs;
 using System;

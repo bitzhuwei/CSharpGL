@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CSharpGL.Objects.Common;
 
 namespace CSharpGL.Winforms.Demo
 {
