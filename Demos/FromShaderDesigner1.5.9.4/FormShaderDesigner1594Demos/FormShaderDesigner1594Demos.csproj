@@ -137,14 +137,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Renderers\GoochRenderer.frag" />
-    <EmbeddedResource Include="Renderers\GoochRenderer.vert" />
-    <EmbeddedResource Include="Renderers\Polkadot3dRenderer.frag" />
-    <EmbeddedResource Include="Renderers\Polkadot3dRenderer.vert" />
-    <EmbeddedResource Include="Renderers\ToonRenderer.frag" />
-    <EmbeddedResource Include="Renderers\ToonRenderer.vert" />
-    <EmbeddedResource Include="Renderers\XRayRenderer.frag" />
-    <EmbeddedResource Include="Renderers\XRayRenderer.vert" />
+    <EmbeddedResource Include="Renderers\Gooch.frag" />
+    <EmbeddedResource Include="Renderers\Gooch.vert" />
+    <EmbeddedResource Include="Renderers\Polkadot3d.frag" />
+    <EmbeddedResource Include="Renderers\Polkadot3d.vert" />
+    <EmbeddedResource Include="Renderers\Toon.frag" />
+    <EmbeddedResource Include="Renderers\Toon.vert" />
+    <EmbeddedResource Include="Renderers\XRay.frag" />
+    <EmbeddedResource Include="Renderers\XRay.vert" />
     <EmbeddedResource Include="Renderers\Cloud.vert" />
     <EmbeddedResource Include="Renderers\Cloud.frag" />
   </ItemGroup>

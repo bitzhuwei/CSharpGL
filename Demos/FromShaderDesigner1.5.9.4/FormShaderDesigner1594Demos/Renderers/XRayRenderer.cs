@@ -48,8 +48,8 @@ namespace FormShaderDesigner1594Demos.Renderers
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.XRayRenderer.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.XRayRenderer.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.XRay.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.XRay.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);

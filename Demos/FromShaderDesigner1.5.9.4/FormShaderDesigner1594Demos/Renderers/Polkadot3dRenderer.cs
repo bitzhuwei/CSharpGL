@@ -62,8 +62,8 @@ namespace FormShaderDesigner1594Demos.Renderers
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.Polkadot3dRenderer.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.Polkadot3dRenderer.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.Polkadot3d.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Renderers.Polkadot3d.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
