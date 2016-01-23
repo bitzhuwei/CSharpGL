@@ -62,6 +62,7 @@
             this.btnFormVolumeRendering04 = new System.Windows.Forms.Button();
             this.btnFormVolumeRendering05 = new System.Windows.Forms.Button();
             this.btnFromShaderDesigner1594 = new System.Windows.Forms.Button();
+            this.btnFormDoubleTexture = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -428,6 +429,17 @@
             this.btnFromShaderDesigner1594.UseVisualStyleBackColor = true;
             this.btnFromShaderDesigner1594.Click += new System.EventHandler(this.btnFromShaderDesigner1594_Click);
             // 
+            // btnFormDoubleTexture
+            // 
+            this.btnFormDoubleTexture.Location = new System.Drawing.Point(374, 531);
+            this.btnFormDoubleTexture.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormDoubleTexture.Name = "btnFormDoubleTexture";
+            this.btnFormDoubleTexture.Size = new System.Drawing.Size(346, 29);
+            this.btnFormDoubleTexture.TabIndex = 4;
+            this.btnFormDoubleTexture.Text = "FormDoubleTexture";
+            this.btnFormDoubleTexture.UseVisualStyleBackColor = true;
+            this.btnFormDoubleTexture.Click += new System.EventHandler(this.btnFormDoubleTexture_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -447,6 +459,7 @@
             this.Controls.Add(this.btnFormTransformFeedback);
             this.Controls.Add(this.btnFormScientificVisual3DControl);
             this.Controls.Add(this.btnFormColorCodedPicking);
+            this.Controls.Add(this.btnFormDoubleTexture);
             this.Controls.Add(this.btnFromShaderDesigner1594);
             this.Controls.Add(this.btnFormVolumeRendering05);
             this.Controls.Add(this.btnFormVolumeRendering04);
@@ -509,5 +522,6 @@
         private System.Windows.Forms.Button btnFormVolumeRendering04;
         private System.Windows.Forms.Button btnFormVolumeRendering05;
         private System.Windows.Forms.Button btnFromShaderDesigner1594;
+        private System.Windows.Forms.Button btnFormDoubleTexture;
     }
 }

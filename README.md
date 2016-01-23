@@ -126,3 +126,8 @@
 <p>我计划针对所有实现了的功能、机制逐个写一篇随笔。本篇算是开篇。</p>
 <h1>总结</h1>
 <p>学OpenGL有2年了，从NEHE到SharpGL，从《3D Math Primer for Graphics and Game Development》到《OpenGL Programming Guide》，算是对OpenGL有了初级的认识。最近我纠集整理了SharpGL，GLM，SharpFont等开源库，想做一个更好用的纯C#版OpenGL。欢迎对OpenGL有兴趣的同学加入（<a href="https://github.com/bitzhuwei/CSharpGL" target="_blank">https://github.com/bitzhuwei/CSharpGL</a>）</p>
+<h1>项目简介</h1>
+<p>CSharpGL [OpenGL的API，枚举类型，重载函数]</p>
+<p>CSharpGL.Objects [OpenGL中隐含的对象]</p>
+<p>GLM [向量，矩阵]</p>
+<p>Utilities [非托管数组，杂项]</p>

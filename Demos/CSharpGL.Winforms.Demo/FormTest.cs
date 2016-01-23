@@ -198,6 +198,11 @@ namespace CSharpGL.Winforms.Demo
             (new FormShaderDesigner1594Demos.FormDemosPanel()).Show();
         }
 
+        private void btnFormDoubleTexture_Click(object sender, EventArgs e)
+        {
+            (new FormDoubleTexture()).Show();
+        }
+
 
 
     }
