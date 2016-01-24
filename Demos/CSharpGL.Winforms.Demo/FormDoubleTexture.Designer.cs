@@ -188,7 +188,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.glCanvas1);
             this.Name = "FormDoubleTexture";
-            this.Text = "FormTexImage2D";
+            this.Text = "FormDoubleTexture";
             this.Load += new System.EventHandler(this.FormSatelliteRotation_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
