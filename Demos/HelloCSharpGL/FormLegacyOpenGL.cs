@@ -1,4 +1,5 @@
 ﻿using CSharpGL;
+using GLM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +15,14 @@ namespace HelloCSharpGL
 {
     public partial class FormLegacyOpenGL : Form
     {
+        private double rotation;
+        private PyramidModel model;
+
         public FormLegacyOpenGL()
         {
             InitializeComponent();
+
+            this.model = new PyramidModel();
         }
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -39,37 +45,19 @@ namespace HelloCSharpGL
 
             //  Draw a coloured pyramid.
             GL.Begin(GL.GL_TRIANGLES);
-            GL.Color(1.0f, 0.0f, 0.0f);
-            GL.Vertex(0.0f, 1.0f, 0.0f);
-            GL.Color(0.0f, 1.0f, 0.0f);
-            GL.Vertex(-1.0f, -1.0f, 1.0f);
-            GL.Color(0.0f, 0.0f, 1.0f);
-            GL.Vertex(1.0f, -1.0f, 1.0f);
-            GL.Color(1.0f, 0.0f, 0.0f);
-            GL.Vertex(0.0f, 1.0f, 0.0f);
-            GL.Color(0.0f, 0.0f, 1.0f);
-            GL.Vertex(1.0f, -1.0f, 1.0f);
-            GL.Color(0.0f, 1.0f, 0.0f);
-            GL.Vertex(1.0f, -1.0f, -1.0f);
-            GL.Color(1.0f, 0.0f, 0.0f);
-            GL.Vertex(0.0f, 1.0f, 0.0f);
-            GL.Color(0.0f, 1.0f, 0.0f);
-            GL.Vertex(1.0f, -1.0f, -1.0f);
-            GL.Color(0.0f, 0.0f, 1.0f);
-            GL.Vertex(-1.0f, -1.0f, -1.0f);
-            GL.Color(1.0f, 0.0f, 0.0f);
-            GL.Vertex(0.0f, 1.0f, 0.0f);
-            GL.Color(0.0f, 0.0f, 1.0f);
-            GL.Vertex(-1.0f, -1.0f, -1.0f);
-            GL.Color(0.0f, 1.0f, 0.0f);
-            GL.Vertex(-1.0f, -1.0f, 1.0f);
+            for (int i = 0; i < this.model.positions.Length; i++)
+            {
+                vec3 color = this.model.colors[i];
+                GL.Color(color.x, color.y, color.z);
+                vec3 position = this.model.positions[i];
+                GL.Vertex(position.x, position.y, position.z);
+            }
             GL.End();
 
             rotation += 3.0f;
         }
 
-        private double rotation;
-
+        
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
             ResizeGL(glCanvas1.Width, glCanvas1.Height);
