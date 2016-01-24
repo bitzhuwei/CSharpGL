@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -64,6 +65,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PyramidModelAdapter.cs" />
+    <Compile Include="PyramidModel.cs" />
     <Content Include="dlls\CSharpGL.dll" />
     <Content Include="dlls\CSharpGL.Objects.dll" />
     <Content Include="dlls\CSharpGL.Objects.pdb" />
@@ -89,7 +92,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PyramidDemo.cs" />
+    <Compile Include="PyramidRenderer.cs" />
     <EmbeddedResource Include="FormLegacyOpenGL.resx">
       <DependentUpon>FormLegacyOpenGL.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,12 +117,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="PyramidDemo.frag">
+    <EmbeddedResource Include="Pyramid.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="PyramidDemo.vert">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pyramid.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

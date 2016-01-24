@@ -125,9 +125,7 @@
     <Folder Include="Textures\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Models\TeapotModel.obj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Models\TeapotModel.obj" />
     <None Include="VertexBuffers\BufferRenderers.cd" />
     <None Include="VertexBuffers\VertexBuffers.cd" />
   </ItemGroup>

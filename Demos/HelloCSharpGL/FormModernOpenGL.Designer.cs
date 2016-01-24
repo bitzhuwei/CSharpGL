@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,15 +44,20 @@
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(561, 354);
+            this.glCanvas1.Size = new System.Drawing.Size(569, 377);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.OpenGLDraw += new System.EventHandler<System.Windows.Forms.PaintEventArgs>(this.glCanvas1_OpenGLDraw);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FormModernOpenGL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 380);
+            this.ClientSize = new System.Drawing.Size(595, 403);
             this.Controls.Add(this.glCanvas1);
             this.Name = "FormModernOpenGL";
             this.Text = "FormModernOpenGL";
@@ -63,5 +70,6 @@
         #endregion
 
         private CSharpGL.Winforms.GLCanvas glCanvas1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
