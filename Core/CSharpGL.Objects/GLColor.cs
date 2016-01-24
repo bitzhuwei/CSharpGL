@@ -77,10 +77,10 @@ namespace CSharpGL.Objects
             if (a < 1) a = 0;
         }
 
-        protected float r = 0.0f;
-        protected float g = 0.0f;
-        protected float b = 0.0f;
-        protected float a = 0.0f;
+        private float r = 0.0f;
+        private float g = 0.0f;
+        private float b = 0.0f;
+        private float a = 0.0f;
 
         /// <summary>
         /// This property allows you to access the color as if it was a .NET

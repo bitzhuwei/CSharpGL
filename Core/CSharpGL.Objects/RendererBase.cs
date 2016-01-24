@@ -17,7 +17,7 @@ namespace CSharpGL.Objects
         /// <summary>
         /// 为便于调试而设置的ID值，没有应用意义。
         /// </summary>
-        public int ID { get; protected set; }
+        public int ID { get; private set; }
 
         public static int idCounter = 0;
 
@@ -34,7 +34,7 @@ namespace CSharpGL.Objects
             this.ID = idCounter++;
         }
 
-        protected bool initialized = false;
+        private bool initialized = false;
 
         /// <summary>
         /// 初始化此Element，此方法应且只应执行1次。

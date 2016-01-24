@@ -32,7 +32,7 @@ namespace CSharpGL.Objects.VolumeRendering
         const string strMVP = "MVP";
         public mat4 mvp;
 
-        protected void InitializeShader(out ShaderProgram shaderProgram)
+        void InitializeShader(out ShaderProgram shaderProgram)
         {
             var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoVolumeRendering05.vert");
             var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoVolumeRendering05.frag");

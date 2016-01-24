@@ -32,7 +32,7 @@ namespace CSharpGL.Objects.VolumeRendering
         const string strMVP = "MVP";
         public mat4 mvp;
 
-        protected void InitializeShader(out ShaderProgram shaderProgram)
+        void InitializeShader(out ShaderProgram shaderProgram)
         {
             var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoVolumeRendering02.vert");
             var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoVolumeRendering02.frag");
@@ -125,7 +125,7 @@ namespace CSharpGL.Objects.VolumeRendering
 
         protected override void DoRender(RenderEventArgs e)
         {
-            
+
             GL.CullFace(GL.GL_FRONT_AND_BACK);
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, PolygonModes.Filled);
 

@@ -34,17 +34,17 @@ namespace CSharpGL.Objects.Common
         /// <summary>
         /// VAO
         /// </summary>
-        protected uint[] vao;
+        uint[] vao;
 
         /// <summary>
         /// 图元类型
         /// </summary>
-        protected DrawMode axisPrimitiveMode;
+        DrawMode axisPrimitiveMode;
 
         /// <summary>
         /// 顶点数
         /// </summary>
-        protected int axisVertexCount;
+        int axisVertexCount;
 
         private float radius;
         private float axisLength;

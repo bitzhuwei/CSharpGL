@@ -74,7 +74,7 @@ namespace CSharpGL.Objects.Common
             this.planColor = planColor;
         }
 
-        protected void InitializeShader(out ShaderProgram shaderProgram)
+        void InitializeShader(out ShaderProgram shaderProgram)
         {
             var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"AxisElement.vert");
             var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"AxisElement.frag");
@@ -84,7 +84,7 @@ namespace CSharpGL.Objects.Common
 
         }
 
-        protected unsafe void InitializeVAO()
+        unsafe void InitializeVAO()
         {
 
             vec3[] colors = new vec3[] { new vec3(1, 0, 0), new vec3(0, 1, 0), new vec3(0, 0, 1) };

@@ -166,7 +166,7 @@ namespace System
         /// <summary>
         /// Backing field to track whether Dispose has been called.
         /// </summary>
-        protected bool disposedValue = false;
+        private bool disposedValue = false;
 
         /// <summary>
         /// Dispose managed and unmanaged resources of this instance.

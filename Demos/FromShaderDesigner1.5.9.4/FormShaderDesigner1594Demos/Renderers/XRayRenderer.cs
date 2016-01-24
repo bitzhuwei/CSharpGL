@@ -56,7 +56,7 @@ namespace FormShaderDesigner1594Demos.Renderers
 
         }
 
-        protected void InitializeVAO()
+        void InitializeVAO()
         {
             IModel model = this.model;
 
@@ -90,7 +90,7 @@ namespace FormShaderDesigner1594Demos.Renderers
 
         protected override void DoRender(RenderEventArgs e)
         {
-            
+
             ShaderProgram program = this.shaderProgram;
             // 绑定shader
             program.Bind();

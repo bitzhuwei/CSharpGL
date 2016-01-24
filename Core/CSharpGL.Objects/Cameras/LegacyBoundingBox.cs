@@ -45,7 +45,7 @@ namespace CSharpGL.Objects.Cameras
         public vec3 MaxPosition
         {
             get { return maxPosition; }
-            protected set { maxPosition = value; }
+            private set { maxPosition = value; }
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace CSharpGL.Objects.Cameras
         public vec3 MinPosition
         {
             get { return minPosition; }
-            protected set { minPosition = value; }
+            private set { minPosition = value; }
         }
 
         /// <summary>

@@ -64,6 +64,6 @@ namespace CSharpGL.Objects.Shaders
         /// <summary>
         /// Gets the shader object.
         /// </summary>
-        public uint ShaderObject { get; protected set; }
+        public uint ShaderObject { get; private set; }
     }
 }
