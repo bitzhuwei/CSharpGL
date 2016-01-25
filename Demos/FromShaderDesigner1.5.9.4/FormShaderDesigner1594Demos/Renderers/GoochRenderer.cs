@@ -131,38 +131,14 @@ namespace FormShaderDesigner1594Demos.Renderers
             this.shaderProgram.Unbind();
         }
 
-        protected override void CleanUnmanagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             if (this.vertexArrayObject != null)
             {
                 this.vertexArrayObject.Dispose();
             }
 
-            base.CleanUnmanagedRes();
         }
-
-        public void DecreaseVertexCount()
-        {
-            IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
-            if (renderer != null)
-            {
-                if (renderer.ElementCount > 0)
-                    renderer.ElementCount--;
-            }
-            
-        }
-
-        public void IncreaseVertexCount()
-        {
-            IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
-            if (renderer != null)
-            {
-                if (renderer.ElementCount < this.indexCount)
-                    renderer.ElementCount++;
-            }
-            
-        }
-
 
     }
 

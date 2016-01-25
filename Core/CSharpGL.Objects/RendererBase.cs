@@ -108,11 +108,11 @@ namespace CSharpGL.Objects
                 if (disposing)
                 {
                     // Dispose managed resources.
-                    CleanManagedRes();
+                    DisposeManagedResources();
                 } // end if
 
                 // Dispose unmanaged resources.
-                CleanUnmanagedRes();
+                DisposeUnmanagedResources();
             } // end if
 
             this.disposedValue = true;
@@ -120,13 +120,10 @@ namespace CSharpGL.Objects
 
         #endregion
 
-        protected virtual void CleanUnmanagedRes()
-        {
-        }
+        protected virtual void DisposeManagedResources() { }
 
-        protected virtual void CleanManagedRes()
-        {
-        }
+        protected abstract void DisposeUnmanagedResources();
+
     }
 
 }

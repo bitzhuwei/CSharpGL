@@ -164,7 +164,7 @@ namespace CSharpGL.Objects.SceneElements
             this.shaderProgram.Unbind();
         }
 
-        protected override void CleanUnmanagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             try
             {

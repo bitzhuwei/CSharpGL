@@ -143,16 +143,16 @@ namespace ShaderLab
             program.Unbind();
         }
 
+		protected override void DisposeManagedResources()
+        {
+        }
 
-
-        protected override void CleanUnmanagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             if (this.vertexArrayObject != null)
             {
                 this.vertexArrayObject.Dispose();
             }
-
-            base.CleanUnmanagedRes();
         }
 
         public void DecreaseVertexCount()

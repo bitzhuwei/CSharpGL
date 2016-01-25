@@ -66,5 +66,14 @@ namespace CSharpGL.Objects.Demos.UIs
         }
 
         public IUILayoutParam Param { get; set; }
+
+        protected override void DisposeUnmanagedResources()
+        {
+            this.bar.Dispose();
+            for (int i = 0; i < this.numbers.Length; i++)
+            {
+                this.numbers[i].Dispose();
+            }
+        }
     }
 }

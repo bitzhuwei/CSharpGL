@@ -170,14 +170,13 @@ namespace FormShaderDesigner1594Demos.Renderers
 
 
 
-        protected override void CleanUnmanagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             if (this.vertexArrayObject != null)
             {
                 this.vertexArrayObject.Dispose();
             }
 
-            base.CleanUnmanagedRes();
         }
 
     }

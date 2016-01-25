@@ -91,9 +91,6 @@ namespace RedBook.Winforms.Demo
             GL.UniformMatrix4(GL.GetUniformLocation(shaderProgramObject, "MV"), 1, true, modelview.to_array());
 
             GL.PatchParameter(PatchParameterName.PatchVertices, TeapotExampleHelper.NumTeapotVerticesPerPatch);
-
-
-
         }
 
         protected override void DoRender(RenderEventArgs e)
@@ -109,6 +106,14 @@ namespace RedBook.Winforms.Demo
             GL.DrawElements(DrawMode.Patches, TeapotExampleHelper.NumTeapotVertices, GL.GL_UNSIGNED_INT, new IntPtr(0));
 
             GL.UseProgram(0);
+        }
+
+        protected override void DisposeManagedResources()
+        {
+        }
+
+        protected override void DisposeUnmanagedResources()
+        {
         }
     }
 }

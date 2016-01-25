@@ -341,7 +341,7 @@ namespace CSharpGL.Objects.SceneElements
         }
 
 
-        protected override void CleanUnmanagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             IntPtr ptr = Win32.wglGetCurrentContext();
             if (ptr != IntPtr.Zero)
@@ -349,7 +349,6 @@ namespace CSharpGL.Objects.SceneElements
                 GL.DeleteTextures(this.texture.Length, this.texture);
             }
 
-            base.CleanUnmanagedRes();
         }
 
     }

@@ -14,7 +14,7 @@ using RedBook.Common.FurExample;
 
 namespace RedBook.Winforms.Demo
 {
-    public class InstancedRenderingExample : RendererBase, IDisposable
+    public class InstancedRenderingExample : RendererBase
     {
 
         const int INSTANCE_COUNT = 100;
@@ -94,13 +94,6 @@ void main(void)
         // Object to render
         VBObject vboObject = new VBObject();
 
-
-        protected override void CleanManagedRes()
-        {
-            this.vboObject.Dispose();
-
-            base.CleanManagedRes();
-        }
 
         protected override void DoInitialize()
         {
@@ -248,6 +241,15 @@ void main(void)
 
         }
 
+        protected override void DisposeManagedResources()
+        {
+        }
+
+        protected override void DisposeUnmanagedResources()
+        {
+            this.vboObject.Dispose();
+            GL.DeleteProgram(this.render_prog);
+        }
     }
 }
 

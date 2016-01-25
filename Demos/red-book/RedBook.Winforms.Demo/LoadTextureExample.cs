@@ -57,12 +57,6 @@ void main(void)
         // Object to render
         VBObject vboObject = new VBObject();
 
-        protected override void CleanManagedRes()
-        {
-            this.vboObject.Dispose();
-
-            base.CleanManagedRes();
-        }
 
         protected override void DoInitialize()
         {
@@ -131,5 +125,13 @@ void main(void)
             GL.DrawArrays(GL.GL_TRIANGLE_FAN, 0, 4);
         }
 
+        protected override void DisposeManagedResources()
+        {
+        }
+
+        protected override void DisposeUnmanagedResources()
+        {
+            this.vboObject.Dispose();
+        }
     }
 }

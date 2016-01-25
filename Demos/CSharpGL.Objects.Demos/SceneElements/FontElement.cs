@@ -244,11 +244,9 @@ namespace CSharpGL.Objects.SceneElements
 
         }
 
-        protected override void CleanUnmanagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             this.ttfTexture.Dispose();
-
-            base.CleanUnmanagedRes();
         }
 
     }

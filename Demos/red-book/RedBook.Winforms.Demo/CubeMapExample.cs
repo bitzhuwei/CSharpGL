@@ -97,13 +97,6 @@ void main(void)
         // Object to render
         VBObject vboObject = new VBObject();
 
-        protected override void CleanManagedRes()
-        {
-            this.vboObject.Dispose();
-
-            base.CleanManagedRes();
-        }
-
         protected override void DoInitialize()
         {
             skybox_prog = GL.CreateProgram();
@@ -247,5 +240,10 @@ void main(void)
             }
         }
 
+
+        protected override void DisposeUnmanagedResources()
+        {
+            this.vboObject.Dispose();
+        }
     }
 }

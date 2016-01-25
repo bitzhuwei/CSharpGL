@@ -15,7 +15,7 @@ namespace CSharpGL.Objects.Common
     /// <para>充当此类库里的示例元素</para>
     /// <para>此类型保留着最原始的调用OpenGL的形式，方便以后温习思考。</para>
     /// </summary>
-    public class AxisElement2 : RendererBase, IDisposable
+    public class AxisElement2 : RendererBase
     {
 
         /// <summary>
@@ -258,15 +258,13 @@ namespace CSharpGL.Objects.Common
         }
 
 
-        protected override void CleanUnmanagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             if (vao != null)
             {
                 GL.DeleteVertexArrays(vao.Length, vao);
                 vao = null;
             }
-
-            base.CleanUnmanagedRes();
         }
         private DrawMode planPrimitveMode;
         private vec3 planColor;

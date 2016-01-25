@@ -177,7 +177,7 @@ namespace CSharpGL.Objects.Demos
 
 
 
-        protected override void CleanUnmanagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             if (this.vertexArrayObject != null)
             {
@@ -188,7 +188,6 @@ namespace CSharpGL.Objects.Demos
             this.texture2.Dispose();
             this.texture2 = null;
 
-            base.CleanUnmanagedRes();
         }
 
         public void DecreaseVertexCount()

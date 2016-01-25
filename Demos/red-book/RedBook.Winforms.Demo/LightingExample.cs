@@ -139,21 +139,6 @@ void main(void)
             vboObject.LoadFromVBM(@"media\unit_torus.vbm", 0, 1, 2);
         }
 
-        void LightingExample_AfterRendering(object sender, RenderEventArgs e)
-        {
-            this.shaderProgram.Unbind();
-        }
-
-        void LightingExample_BeforeRendering(object sender, RenderEventArgs e)
-        {
-            mat4 mv_matrix = e.Camera.GetViewMat4();
-            mat4 prj_matrix = e.Camera.GetProjectionMat4();
-
-            shaderProgram.Bind();
-            shaderProgram.SetUniformMatrix4("proj_matrix", prj_matrix.to_array());
-            shaderProgram.SetUniformMatrix4("model_matrix", mv_matrix.to_array());
-        }
-
         protected override void DoRender(RenderEventArgs e)
         {
             mat4 mv_matrix = e.Camera.GetViewMat4();
@@ -168,5 +153,15 @@ void main(void)
             this.shaderProgram.Unbind();
         }
 
+
+        protected override void DisposeManagedResources()
+        {
+        }
+
+        protected override void DisposeUnmanagedResources()
+        {
+            this.vboObject.Dispose();
+            this.shaderProgram.Delete();
+        }
     }
 }

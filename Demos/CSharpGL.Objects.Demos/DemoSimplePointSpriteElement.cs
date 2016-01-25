@@ -244,14 +244,13 @@ namespace CSharpGL.Objects.Demos
             GL.Disable(GL.GL_POINT_SMOOTH);
         }
 
-        protected override void CleanUnmanagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             if (vao != null)
             {
                 GL.DeleteVertexArrays(vao.Length, vao);
                 vao = null;
             }
-            base.CleanUnmanagedRes();
         }
 
         private FragShaderType fragShaderType;

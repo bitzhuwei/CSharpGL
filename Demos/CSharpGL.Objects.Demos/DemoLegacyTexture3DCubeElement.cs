@@ -124,5 +124,9 @@ namespace CSharpGL.Objects.Demos
 
             GL.BindTexture(GL.GL_TEXTURE_3D, 0);
         }
+
+        protected override void DisposeUnmanagedResources()
+        {
+        }
     }
 }

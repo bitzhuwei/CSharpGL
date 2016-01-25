@@ -203,11 +203,9 @@ namespace CSharpGL.Objects.VolumeRendering
         public bool blend = true;
         private bool reverSide;
 
-        protected override void CleanUnmanagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             this.vao.Dispose();
-
-            base.CleanUnmanagedRes();
         }
     }
 }

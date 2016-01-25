@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 
 namespace RedBook.Winforms.Demo
 {
-    class ParticleSimulatorExample : RendererBase, IDisposable
+    class ParticleSimulatorExample : RendererBase
     {
         const int PARTICLE_GROUP_SIZE = 128;
         const int PARTICLE_GROUP_COUNT = 8000;
@@ -118,55 +118,12 @@ void main(void)
             GL.Viewport(0, 0, width, height);
         }
 
-
-        #region IDisposable Members
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
+        protected override void DisposeUnmanagedResources()
         {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        } // end sub
-
-        /// <summary>
-        /// Destruct instance of the class.
-        /// </summary>
-        ~ParticleSimulatorExample()
-        {
-            this.Dispose(false);
+            GL.DeleteProgram(this.compute_prog);
+            GL.DeleteProgram(this.render_prog);
+            GL.DeleteVertexArrays(1, this.render_vao);
         }
-
-        /// <summary>
-        /// Backing field to track whether Dispose has been called.
-        /// </summary>
-        private bool disposedValue = false;
-
-        /// <summary>
-        /// Dispose managed and unmanaged resources of this instance.
-        /// </summary>
-        /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
-        protected virtual void Dispose(bool disposing)
-        {
-
-            if (this.disposedValue == false)
-            {
-                if (disposing)
-                {
-                    // TODO: Dispose managed resources.
-                    GL.DeleteProgram(this.compute_prog);
-                    GL.DeleteProgram(this.render_prog);
-                    GL.DeleteVertexArrays(1, this.render_vao);
-                } // end if
-
-                // TODO: Dispose unmanaged resources.
-            } // end if
-
-            this.disposedValue = true;
-        } // end sub
-
-        #endregion
 
         static Random random = new Random();
 
@@ -329,5 +286,9 @@ void main(void)
             last_ticks = current_ticks;
         }
 
+
+        protected override void DisposeManagedResources()
+        {
+        }
     }
 }

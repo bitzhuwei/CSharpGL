@@ -48,13 +48,11 @@ namespace CSharpGL.UIs
             this.element.Render(e);
         }
 
-        protected override void CleanManagedRes()
+        IUILayoutParam IUILayout.Param { get; set; }
+
+        protected override void DisposeUnmanagedResources()
         {
             this.element.Dispose();
-
-            base.CleanManagedRes();
         }
-
-        IUILayoutParam IUILayout.Param { get; set; }
     }
 }

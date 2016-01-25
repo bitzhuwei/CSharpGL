@@ -310,5 +310,11 @@ namespace CSharpGL.Objects.Demos
 
         }
 
+
+        protected override void DisposeUnmanagedResources()
+        {
+            GL.DeleteVertexArrays(vao.Length, vao);
+            this.shaderProgram.Delete();
+        }
     }
 }

@@ -275,5 +275,11 @@ namespace CSharpGL.Objects.Demos
             return pickedGeometry;
         }
 
+
+        protected override void DisposeUnmanagedResources()
+        {
+            GL.DeleteVertexArrays(vao.Length, vao);
+            this.shaderProgram.Delete();
+        }
     }
 }

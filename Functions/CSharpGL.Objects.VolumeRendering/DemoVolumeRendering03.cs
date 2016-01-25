@@ -207,11 +207,9 @@ namespace CSharpGL.Objects.VolumeRendering
         public BlendingDestinationFactor dFactor = BlendingDestinationFactor.OneMinusSourceAlpha;
         public bool blend = true;
 
-        protected override void CleanUnmanagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             this.vao.Dispose();
-
-            base.CleanUnmanagedRes();
         }
     }
 }

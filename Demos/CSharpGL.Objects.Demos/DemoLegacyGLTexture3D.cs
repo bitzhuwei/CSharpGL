@@ -87,5 +87,9 @@ namespace CSharpGL.Objects.Demos
             GL.TexCoord(1.0, 0.0, 0.0); GL.Vertex(2.25, -1.0, 0.0);
             GL.End();
         }
+
+        protected override void DisposeUnmanagedResources()
+        {
+        }
     }
 }

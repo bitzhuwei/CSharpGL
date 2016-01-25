@@ -112,5 +112,9 @@ namespace CSharpGL.Objects.Demos.UIs
         }
 
         public IUILayoutParam Param { get; set; }
+
+        protected override void DisposeUnmanagedResources()
+        {
+        }
     }
 }

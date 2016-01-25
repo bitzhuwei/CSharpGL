@@ -14,7 +14,7 @@ namespace CSharpGL.Objects.Demos.UIs
     /// <summary>
     /// 用一个<see cref="AxisElement"/>绘制一个固定在窗口某处的坐标系。
     /// </summary>
-    public class SimpleUIAxis : RendererBase, IUILayout, IDisposable
+    public class SimpleUIAxis : RendererBase, IUILayout
     {
         public AxisElement axisElement;
 
@@ -41,11 +41,9 @@ namespace CSharpGL.Objects.Demos.UIs
             layout.Param = param;
         }
 
-        protected override void CleanUnmanagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             this.axisElement.Dispose();
-
-            base.CleanUnmanagedRes();
         }
 
         #region IUILayout

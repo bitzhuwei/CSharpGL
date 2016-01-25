@@ -171,13 +171,12 @@ void main(void)
         VBObject vboObject = new VBObject();
 
 
-        protected override void CleanManagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             basicShaderProgram.Unbind();
             basicShaderProgram.Delete();
             this.vboObject.Dispose();
 
-            base.CleanManagedRes();
         }
 
         protected override void DoInitialize()
@@ -275,5 +274,9 @@ void main(void)
             GL.UseProgram(0);
         }
 
+
+        protected override void DisposeManagedResources()
+        {
+        }
     }
 }

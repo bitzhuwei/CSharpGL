@@ -230,7 +230,7 @@ namespace CSharpGL.Objects.Common
 
 
 
-        protected override void CleanUnmanagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             if (this.axisVAO != null)
             {
@@ -245,7 +245,6 @@ namespace CSharpGL.Objects.Common
                 this.planVAO.Dispose();
             }
 
-            base.CleanUnmanagedRes();
         }
 
     }
