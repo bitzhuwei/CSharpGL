@@ -139,10 +139,6 @@ namespace ShaderLab
             program.Unbind();
         }
 
-		protected override void DisposeManagedResources()
-        {
-        }
-
         protected override void DisposeUnmanagedResources()
         {
             if (this.vertexArrayObject != null)
@@ -158,7 +154,10 @@ namespace ShaderLab
                 if (renderer != null)
                 {
                     if (renderer.ElementCount > 0)
-                        renderer.ElementCount--;
+                    {
+						renderer.ElementCount--;
+					}
+					return;
                 }
             }
             {
@@ -166,7 +165,10 @@ namespace ShaderLab
                 if (renderer != null)
                 {
                     if (renderer.VertexCount > 0)
-                        renderer.VertexCount--;
+                    {
+						renderer.VertexCount--;
+					}
+					return;
                 }
             }
         }
@@ -178,7 +180,10 @@ namespace ShaderLab
                 if (renderer != null)
                 {
                     if (renderer.ElementCount < this.elementCount)
-                        renderer.ElementCount++;
+                    {
+						renderer.ElementCount++;
+					}
+					return;
                 }
             }
             {
@@ -186,7 +191,10 @@ namespace ShaderLab
                 if (renderer != null)
                 {
                     if (renderer.VertexCount < this.elementCount)
-                        renderer.VertexCount++;
+					{
+						renderer.VertexCount++;
+					}
+					return;
                 }
             }
         }
