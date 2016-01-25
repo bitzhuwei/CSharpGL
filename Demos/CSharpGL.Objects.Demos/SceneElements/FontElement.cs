@@ -214,8 +214,6 @@ namespace CSharpGL.Objects.SceneElements
 
         protected override void DoRender(RenderEventArgs e)
         {
-            texture.Bind();
-
             if (blend)
             {
                 GL.Enable(GL.GL_BLEND);
@@ -225,8 +223,10 @@ namespace CSharpGL.Objects.SceneElements
             shaderProgram.Bind();
 
             shaderProgram.SetUniform(FontElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
-            shaderProgram.SetUniform(FontElement.strtex, texture.Name);
-
+            GL.ActiveTexture(GL.GL_TEXTURE0);
+            GL.Enable(GL.GL_TEXTURE_2D);
+            texture.Bind();
+            shaderProgram.SetUniform(strtex, 0);
 
             this.shaderProgram.Bind();
             this.shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
@@ -235,13 +235,13 @@ namespace CSharpGL.Objects.SceneElements
             GL.DrawArrays(this.mode, 0, this.vertexCount);
             GL.BindVertexArray(0);
 
+            texture.Unbind();
             this.shaderProgram.Unbind();
             if (blend)
             {
                 GL.Disable(GL.GL_BLEND);
             }
 
-            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
         }
 
         protected override void CleanUnmanagedRes()

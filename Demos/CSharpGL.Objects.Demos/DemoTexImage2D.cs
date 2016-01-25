@@ -16,6 +16,7 @@ namespace CSharpGL.Objects.Demos
             this.textureFile = textureFile;
         }
 
+        const string strtex = "tex";
         Texture2D tex = new Texture2D();
 
         /// <summary>
@@ -182,16 +183,19 @@ namespace CSharpGL.Objects.Demos
 
         protected override void DoRender(RenderEventArgs e)
         {
-            this.tex.Bind();
             this.shaderProgram.Bind();
             this.shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
-
+            GL.ActiveTexture(GL.GL_TEXTURE0);
+            GL.Enable(GL.GL_TEXTURE_2D);
+            this.tex.Bind();
+            this.shaderProgram.SetUniform(strtex, 0);//texture1.Name);
             GL.BindVertexArray(vao[0]);
 
             GL.DrawArrays(primitiveMode, 0, vertexCount);
 
             GL.BindVertexArray(0);
 
+            this.tex.Unbind();
             this.shaderProgram.Unbind();
         }
 

@@ -146,7 +146,10 @@ namespace CSharpGL.Winforms.Demo
 
             ShaderProgram shaderProgram = this.shaderProgram;
             shaderProgram.Bind();
-            shaderProgram.SetUniform(WholeFontTextureElement.strtex, texture.Name);
+            GL.ActiveTexture(GL.GL_TEXTURE0);
+            GL.Enable(GL.GL_TEXTURE_2D);
+            texture.Bind();
+            shaderProgram.SetUniform(strtex, 0);
             shaderProgram.SetUniform(WholeFontTextureElement.strcolor, 1.0f, 1.0f, 1.0f, 1.0f);
             shaderProgram.SetUniformMatrix4("MVP", (projectionMatrix * viewMatrix * modelMatrix).to_array());
 
@@ -154,6 +157,7 @@ namespace CSharpGL.Winforms.Demo
             GL.DrawArrays(this.mode, 0, this.vertexCount);
             GL.BindVertexArray(0);
 
+            texture.Unbind();
             shaderProgram.Unbind();
 
             GL.BindTexture(GL.GL_TEXTURE_2D, 0);

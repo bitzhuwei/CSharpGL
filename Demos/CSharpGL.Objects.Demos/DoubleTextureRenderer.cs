@@ -125,8 +125,6 @@ namespace CSharpGL.Objects.Demos
 
         protected override void DoRender(RenderEventArgs e)
         {
-            
-            
             ShaderProgram program = this.shaderProgram;
             // 绑定shader
             program.Bind();
@@ -135,15 +133,15 @@ namespace CSharpGL.Objects.Demos
             program.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
             program.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
 
-            program.SetUniform(strtexture1, 0);//texture1.Name);
             GL.ActiveTexture(GL.GL_TEXTURE0);
             GL.Enable(GL.GL_TEXTURE_2D);
-            texture1.Bind();
-            
-            program.SetUniform(strtexture2, 1);//texture2.Name);
+            texture1.Bind(); 
+            program.SetUniform(strtexture1, 0);//texture1.Name);
+
             GL.ActiveTexture(GL.GL_TEXTURE1);
             GL.Enable(GL.GL_TEXTURE_2D);
-            texture2.Bind();
+            texture2.Bind();          
+            program.SetUniform(strtexture2, 1);//texture2.Name);
             
             program.SetUniform(strpercent, percent);
 
