@@ -23,7 +23,7 @@ namespace CSharpGL.Objects
 
         public override string ToString()
         {
-            return string.Format("element: {0}，{1}", this.ID, this.GetType());
+            return string.Format("element: {0}, {1}", this.ID, this.GetType().Name);
         }
 
         /// <summary>
@@ -120,8 +120,15 @@ namespace CSharpGL.Objects
 
         #endregion
 
+        /// <summary>
+        /// 释放.net托管资源。
+        /// </summary>
         protected virtual void DisposeManagedResources() { }
 
+        /// <summary>
+        /// 释放.net非托管资源，例如释放OpenGL相关的资源。
+        /// 此类型用于OpenGL渲染，因此必有要释放的OpenGL资源。因此设置为abstract。
+        /// </summary>
         protected abstract void DisposeUnmanagedResources();
 
     }
