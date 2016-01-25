@@ -171,8 +171,6 @@ namespace CSharpGL.Objects.Demos
 
             InitializeVAO(out vao, out primitiveMode, out vertexCount);
 
-            //base.BeforeRendering += IMVPHelper.Getelement_BeforeRendering();
-            //base.AfterRendering += IMVPHelper.Getelement_AfterRendering();
         }
 
         private void InitializeTexture2D()

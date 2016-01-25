@@ -156,9 +156,16 @@ void main(void)
 
         protected override void DoRender(RenderEventArgs e)
         {
-            LightingExample_BeforeRendering(this, e);
+            mat4 mv_matrix = e.Camera.GetViewMat4();
+            mat4 prj_matrix = e.Camera.GetProjectionMat4();
+
+            shaderProgram.Bind();
+            shaderProgram.SetUniformMatrix4("proj_matrix", prj_matrix.to_array());
+            shaderProgram.SetUniformMatrix4("model_matrix", mv_matrix.to_array());
+
             vboObject.Render();
-            LightingExample_AfterRendering(this, e);
+
+            this.shaderProgram.Unbind();
         }
 
     }

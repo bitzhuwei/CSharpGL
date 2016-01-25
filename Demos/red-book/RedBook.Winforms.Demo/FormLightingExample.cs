@@ -43,9 +43,6 @@ namespace RedBook.Winforms.Demo
             element = new LightingExample();
             element.Initialize();
 
-            //element.BeforeRendering += element_BeforeRendering;
-            //element.AfterRendering += element_AfterRendering;
-
             IUILayoutParam param = new IUILayoutParam(
                 AnchorStyles.Left | AnchorStyles.Bottom,
                 new Padding(10, 10, 10, 10), new Size(50, 50));

@@ -103,28 +103,6 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
-        //void SimpleUIRect_AfterRendering(object sender, Objects.RenderEventArgs e)
-        //{
-        //    IMVP element = sender as IMVP;
-        //    element.UnbindShaderProgram();
-        //}
-
-        //void SimpleUIRect_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        //{
-        //    mat4 projectionMatrix, viewMatrix, modelMatrix;
-
-        //    {
-        //        IUILayout element = sender as IUILayout;
-        //        element.GetMatrix(out projectionMatrix, out viewMatrix, out modelMatrix, this.camera);
-        //    }
-
-        //    {
-        //        IMVP element = sender as IMVP;
-        //        element.UpdateMVP(projectionMatrix * viewMatrix * modelMatrix);
-        //    }
-        //}
-
-
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);

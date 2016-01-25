@@ -227,23 +227,10 @@ void main(void)
 
         }
 
-        void LightingExample_AfterRendering(object sender, RenderEventArgs e)
-        {
-            //this.basicShaderProgram.Unbind();
-            GL.UseProgram(0);
-        }
-
-        void LightingExample_BeforeRendering(object sender, RenderEventArgs e)
-        {
-            
-        }
-
         public float translateX = 0;
         public float translateY = -81;
         protected override void DoRender(RenderEventArgs e)
         {
-            LightingExample_BeforeRendering(this, e);
-
             mat4 mv_matrix = e.Camera.GetViewMat4();
             mat4 prj_matrix = e.Camera.GetProjectionMat4();
             prj_matrix = glm.translate(prj_matrix, new vec3(translateX, translateY, 0));
@@ -285,7 +272,7 @@ void main(void)
             GL.DepthMask((byte)GL.GL_TRUE);
             GL.Disable(GL.GL_BLEND);
 
-            LightingExample_AfterRendering(this, e);
+            GL.UseProgram(0);
         }
 
     }

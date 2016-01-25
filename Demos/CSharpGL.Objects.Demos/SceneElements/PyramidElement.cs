@@ -146,11 +146,8 @@ namespace CSharpGL.Objects.SceneElements
         {
             InitializeShader(out shaderProgram);
 
-            //InitializeVAO(out vao, out primitiveMode, out vertexCount);
             InitializeVAO();
 
-            //base.BeforeRendering += IMVPHelper.Getelement_BeforeRendering();
-            //base.AfterRendering += IMVPHelper.Getelement_AfterRendering();
         }
 
         protected override void DoRender(RenderEventArgs e)

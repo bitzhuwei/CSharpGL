@@ -50,8 +50,6 @@ namespace CSharpGL.Objects.VolumeRendering
 
             InitVertexBuffers();
 
-            //base.BeforeRendering += IMVPHelper.Getelement_BeforeRendering();
-            //base.AfterRendering += IMVPHelper.Getelement_AfterRendering();
         }
 
         const int zFrameCount = 109;

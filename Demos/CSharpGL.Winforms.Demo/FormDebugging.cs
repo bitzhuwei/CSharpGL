@@ -94,7 +94,7 @@ namespace CSharpGL.Winforms.Demo
             GL.LoadIdentity();
             GL.Ortho(args.left, args.right, args.bottom, args.top, element.Param.zNear, element.Param.zFar);
 
-            IViewCamera camera = this.camera;
+            IViewCamera camera = e.Camera;
             if (camera == null)
             {
                 GL.gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);

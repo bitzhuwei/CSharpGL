@@ -75,15 +75,6 @@ namespace CSharpGL.Objects.Demos
 
         }
 
-        void DemoColorCodedPickingElement_AfterRendering(object sender, RenderEventArgs e)
-        {
-        }
-
-        void DemoColorCodedPickingElement_BeforeRendering(object sender, RenderEventArgs e)
-        {
-            
-        }
-
         private void InitVAO()
         {
             int size = this.size;

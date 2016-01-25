@@ -55,9 +55,6 @@ namespace CSharpGL.Winforms.Demo
             //textElement = new PointSpriteFontElement("QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm", new vec3(0, 0, 0));
             //textElement.Initialize();
 
-            //textElement.BeforeRendering += textElement_BeforeRendering;
-            //textElement.AfterRendering += textElement_AfterRendering;
-
             pyramidElement = new PyramidElement();
             pyramidElement.Initialize();
 

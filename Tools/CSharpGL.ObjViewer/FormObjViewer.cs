@@ -35,26 +35,6 @@ namespace CSharpGL.ObjViewer
             this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
-        void element_AfterRendering(object sender, Objects.RenderEventArgs e)
-        {
-        }
-
-        void element_BeforeRendering(object sender, Objects.RenderEventArgs e)
-        {
-            mat4 projectionMatrix = camera.GetProjectionMat4();
-
-            mat4 viewMatrix = camera.GetViewMat4();
-
-            mat4 modelMatrix = mat4.identity();
-
-            //mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
-
-            ObjModelElement element = sender as ObjModelElement;
-            element.projectionMatrix = projectionMatrix;
-            element.viewMatrix = viewMatrix;
-            element.modelMatrix = modelMatrix;
-        }
-
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
