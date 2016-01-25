@@ -21,9 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{2F6498
 		Assets\HelloCSharpGL.png = Assets\HelloCSharpGL.png
 		Assets\Preview.png = Assets\Preview.png
 		Assets\Preview2.png = Assets\Preview2.png
-		Assets\System.Numerics.Vectors.dll = Assets\System.Numerics.Vectors.dll
-		Assets\System.Numerics.Vectors.pdb = Assets\System.Numerics.Vectors.pdb
-		Assets\System.Numerics.Vectors.xml = Assets\System.Numerics.Vectors.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Core\Utilities\Utilities.csproj", "{F1B5534A-134C-4FA6-B172-A2F20D8F96ED}"
