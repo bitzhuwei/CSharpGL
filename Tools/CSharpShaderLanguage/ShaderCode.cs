@@ -11,6 +11,9 @@ namespace CSharpShaderLanguage
     /// </summary>
     public abstract class ShaderCode
     {
+
+        public abstract void main();
+
         #region build-in variables
 
         #endregion
@@ -18,6 +21,12 @@ namespace CSharpShaderLanguage
         #region build-in functions
 
         protected vec4 vec4(vec3 in_Position, double p)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        protected vec4 texture(sampler2D texture1, vec2 pass_UV)
         {
             throw new NotImplementedException();
         }

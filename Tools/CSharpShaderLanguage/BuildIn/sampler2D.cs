@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpShaderLanguage
 {
-    class sampler2D
+    public class sampler2D
     {
     }
 }

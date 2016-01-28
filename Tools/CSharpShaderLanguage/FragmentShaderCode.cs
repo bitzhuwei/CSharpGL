@@ -26,7 +26,7 @@ void main(void)
 
      */
 
-    class IlluminationFrag : FragmenthaderCode
+    class IlluminationFrag : FragmentShaderCode
     {
         [In]
         vec2 pass_UV;
@@ -39,7 +39,7 @@ void main(void)
         sampler2D texture2;
         [Uniform]
         float percent;
-        void main()
+        public override void main()
         {
             vec4 color = texture(texture1, pass_UV) * percent + texture(texture2, pass_UV) * (1.0f - percent);
             out_Color = color;
@@ -55,7 +55,7 @@ void main(void)
     /// <summary>
     /// fragment shader共有的内容。
     /// </summary>
-    class FragmenthaderCode : ShaderCode
+    public abstract class FragmentShaderCode : ShaderCode
     {
 
 

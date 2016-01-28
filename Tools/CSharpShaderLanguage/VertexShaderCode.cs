@@ -43,7 +43,7 @@ void main(void)
         [Uniform]
         mat4 modelMatrix;
 
-        void main()
+        public override void main()
         {
             gl_Position = vec4(in_Position, 1.0);//projectionMatrix*viewMatrix*modelMatrix*new vec4()
             pass_UV = in_UV;
@@ -54,7 +54,7 @@ void main(void)
     /// <summary>
     /// vertex shader共有的内容。
     /// </summary>
-    class VertexShaderCode : ShaderCode
+    public abstract class VertexShaderCode : ShaderCode
     {
         protected vec4 gl_Position;
 
