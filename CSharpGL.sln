@@ -89,6 +89,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Objects.VolumeRend
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Objects.Common", "Functions\CSharpGL.Objects.Common\CSharpGL.Objects.Common.csproj", "{388D3F0C-08B3-47DC-86A8-CC5CC87B5819}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpShaderLanguage", "Tools\CSharpShaderLanguage\CSharpShaderLanguage.csproj", "{423CEB01-876B-4838-9F68-575669E95362}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpShaderLanguage.Convertor", "Tools\CSharpShaderLanguage.Convertor\CSharpShaderLanguage.Convertor.csproj", "{7D3ACB2C-6A3F-4BC9-9A0C-29B5A42B183E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpShaderLanguage.ConsoleTest", "Tools\CSharpShaderLanguage.ConsoleTest\CSharpShaderLanguage.ConsoleTest.csproj", "{24942AFB-4150-450F-AD04-10CB90E9D871}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -223,6 +229,18 @@ Global
 		{388D3F0C-08B3-47DC-86A8-CC5CC87B5819}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{388D3F0C-08B3-47DC-86A8-CC5CC87B5819}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{388D3F0C-08B3-47DC-86A8-CC5CC87B5819}.Release|Any CPU.Build.0 = Release|Any CPU
+		{423CEB01-876B-4838-9F68-575669E95362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{423CEB01-876B-4838-9F68-575669E95362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{423CEB01-876B-4838-9F68-575669E95362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{423CEB01-876B-4838-9F68-575669E95362}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D3ACB2C-6A3F-4BC9-9A0C-29B5A42B183E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D3ACB2C-6A3F-4BC9-9A0C-29B5A42B183E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D3ACB2C-6A3F-4BC9-9A0C-29B5A42B183E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D3ACB2C-6A3F-4BC9-9A0C-29B5A42B183E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24942AFB-4150-450F-AD04-10CB90E9D871}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24942AFB-4150-450F-AD04-10CB90E9D871}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24942AFB-4150-450F-AD04-10CB90E9D871}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24942AFB-4150-450F-AD04-10CB90E9D871}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -262,5 +280,8 @@ Global
 		{2C4FC122-BD74-4F1F-BCED-D44CF6CA7FA1} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 		{E97977FD-EE85-47C5-810E-A0CBA258FAAE} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 		{388D3F0C-08B3-47DC-86A8-CC5CC87B5819} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
+		{423CEB01-876B-4838-9F68-575669E95362} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
+		{7D3ACB2C-6A3F-4BC9-9A0C-29B5A42B183E} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
+		{24942AFB-4150-450F-AD04-10CB90E9D871} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
 	EndGlobalSection
 EndGlobal
