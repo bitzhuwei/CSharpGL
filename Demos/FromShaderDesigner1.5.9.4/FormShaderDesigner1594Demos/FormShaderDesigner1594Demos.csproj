@@ -76,8 +76,8 @@
     <Compile Include="Renderers\CloudRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Renderers\CloudVert.cs" />
-    <Compile Include="Renderers\CoundFrag.cs" />
+    <None Include="Renderers\CloudVert.cs" />
+    <None Include="Renderers\CoundFrag.cs" />
     <Compile Include="Renderers\sampler3D.cs" />
     <Compile Include="Renderers\ShaderDesignerRendererBase.cs" />
     <Compile Include="Renderers\GoochRenderer.cs" />

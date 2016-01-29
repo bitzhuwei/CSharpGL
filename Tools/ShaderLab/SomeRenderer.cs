@@ -12,6 +12,57 @@ using System.Windows.Forms;
 
 namespace ShaderLab
 {
+    namespace Shader
+    {
+        using CSharpShaderLanguage;
+		/// <summary>
+		/// 一个<see cref="SomeRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+		/// 这就是C#Shader形式的vertex shader。
+		/// </summary>
+        class SomeVert : VertexShaderCode
+        {
+            [In]
+            vec3 in_Position;
+            [In]
+            vec3 in_Color;
+
+            [Out]
+            vec4 pass_Color;
+
+            [Uniform]
+            mat4 modelMatrix;
+            [Uniform]
+            mat4 viewMatrix;
+            [Uniform]
+            mat4 projectionMatrix;
+
+            public override void main()
+            {
+                gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0);
+
+                pass_Color = vec4(in_Color, 1.0);
+            }
+        }
+
+		/// <summary>
+		/// 一个<see cref="SomeRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+		/// 这就是C#Shader形式的fragment shader。
+		/// </summary>
+        class SomeFrag : FragmentShaderCode
+        {
+            [In]
+            vec4 pass_Color;
+
+            [Out]
+            vec4 out_Color;
+
+            public override void main()
+            {
+                out_Color = pass_Color;
+            }
+        }
+    }
+
 	/// <summary>
 	/// 一个<see cref="SomeRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
 	/// </summary>
