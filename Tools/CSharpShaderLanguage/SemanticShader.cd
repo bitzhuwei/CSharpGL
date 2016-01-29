@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="CSharpShaderLanguage.FieldTemplate">
+    <Position X="16.25" Y="0.5" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAgAAAAAEAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>FieldTemplate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpShaderLanguage.SemanticFragmentShader">
+    <Position X="8.5" Y="4.5" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SemanticFragmentShader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpShaderLanguage.SemanticShader">
+    <Position X="11.5" Y="0.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AACgAAAAIAAEAAABAgIAAgAAEAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>SemanticShader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpShaderLanguage.SemanticVertexShader">
+    <Position X="14" Y="4.5" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SemanticVertexShader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="CSharpShaderLanguage.FieldQualifier">
+    <Position X="19.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiA=</HashCode>
+      <FileName>FieldTemplate.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

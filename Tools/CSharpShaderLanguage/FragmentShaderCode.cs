@@ -27,7 +27,7 @@ void main(void)
     /// <summary>
     /// 这是一个用CSSL写的fragment shader的例子。
     /// </summary>
-    class IlluminationFrag : FragmentShaderCode
+    class DemoFrag : FragmentShaderCode
     {
         [In]
         vec2 pass_UV;

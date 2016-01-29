@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="CSharpShaderLanguage.DemoFrag">
+    <Position X="4.75" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAICAAgAAAEAAAAAAAAAAAAAAAAAAIAAAAAAAAAAQ=</HashCode>
+      <FileName>FragmentShaderCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpShaderLanguage.FragmentShaderCode">
+    <Position X="4.25" Y="3.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAgQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FragmentShaderCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpShaderLanguage.ShaderCode">
+    <Position X="2" Y="0.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAgQAAAABAAgAAAAAAAAAAAAQ=</HashCode>
+      <FileName>ShaderCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpShaderLanguage.DemoVert">
+    <Position X="1" Y="6.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAgCAAAAAAAAQAAgAAAQAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>VertexShaderCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpShaderLanguage.VertexShaderCode">
+    <Position X="0.5" Y="3.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgQAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>VertexShaderCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
