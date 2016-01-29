@@ -20,8 +20,6 @@ void main(void)
 {
 	vec4 color = texture(texture1, pass_UV) * percent + texture(texture2, pass_UV) * (1.0 - percent);
 	out_Color = color;
-	//out_Color = texture(texture2, pass_UV);
-	//out_Color = texture(texture1, pass_UV);
 }
 
      */
@@ -45,11 +43,6 @@ void main(void)
             out_Color = color;
         }
 
-        private vec4 texture(sampler2D texture1, vec2 pass_UV)
-        {
-            throw new NotImplementedException();
-        }
-
     }
 
     /// <summary>
@@ -57,7 +50,10 @@ void main(void)
     /// </summary>
     public abstract class FragmentShaderCode : ShaderCode
     {
-
+        /// <summary>
+        /// 代表GLSL里的discard;语句。
+        /// </summary>
+        protected void discard() { }
 
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.CSharp;
+using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,6 +8,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,33 +18,33 @@ namespace CSharpShaderLanguage.Convertor
 {
     public partial class FormMain : Form
     {
-        string[] selectedTTFFiles;
+        string[] selectedCSharpShaderFiles;
 
         public FormMain()
         {
             InitializeComponent();
         }
 
-        private void btnBrowseCSharpShaderFile_Click(object sender, EventArgs e)
+        private void btnBrowseCSharpShaderFiles_Click(object sender, EventArgs e)
         {
-            if (openTTFFileDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openCSharpShaderFilesDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                this.selectedTTFFiles = openTTFFileDlg.FileNames;
+                this.selectedCSharpShaderFiles = openCSharpShaderFilesDlg.FileNames;
                 StringBuilder builder = new StringBuilder();
-                foreach (var item in openTTFFileDlg.FileNames)
+                foreach (var item in openCSharpShaderFilesDlg.FileNames)
                 {
                     builder.Append("\"");
                     builder.Append(item);
                     builder.Append("\" ");
                 }
 
-                this.txtTTFFullname.Text = builder.ToString();
+                this.txtCSharpShaderFiles.Text = builder.ToString();
             }
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(this.txtTTFFullname.Text) || this.selectedTTFFiles == null)
+            if (string.IsNullOrEmpty(this.txtCSharpShaderFiles.Text) || this.selectedCSharpShaderFiles == null)
             {
                 string message = string.Format("{0}", "Please select a C#Shader file first!");
                 MessageBox.Show(message);
@@ -50,7 +53,8 @@ namespace CSharpShaderLanguage.Convertor
 
             WorkingSwitch(true);
 
-            this.bgWorker.RunWorkerAsync();
+            WorkerData data = new WorkerData(this.selectedCSharpShaderFiles);
+            this.bgWorker.RunWorkerAsync(data);
         }
 
         void WorkingSwitch(bool working)
@@ -59,7 +63,7 @@ namespace CSharpShaderLanguage.Convertor
             bool ended = !working;
 
             this.btnStart.Enabled = ended;
-            this.btnBrowseCSharpShaderFile.Enabled = ended;
+            this.btnBrowseCSharpShaderFiles.Enabled = ended;
 
             this.pgbProgress.Visible = starting;
             this.pgbSingleFileProgress.Visible = starting;
@@ -75,6 +79,93 @@ namespace CSharpShaderLanguage.Convertor
 
         private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            WorkerData data = e.Argument as WorkerData;
+            int fileCount = data.csharpShaderFiles.Length;
+            int fileIndex = 1;
+            const int magicNumber = 100;
+
+            WorkerResult result = new WorkerResult(null, data);
+            e.Result = result;
+
+            StringBuilder builder = new StringBuilder();
+
+            foreach (var fullname in this.selectedCSharpShaderFiles)
+            {
+                builder.Append(fileIndex); builder.Append("/"); builder.Append(fileCount);
+                builder.Append(": "); builder.AppendLine(fullname);
+
+                FileInfo fileInfo = new FileInfo(fullname);
+                string filename = fileInfo.Name;
+
+                try
+                {
+                    CSharpCodeProvider objCSharpCodePrivoder = new CSharpCodeProvider();
+
+                    CompilerParameters objCompilerParameters = new CompilerParameters();
+                    objCompilerParameters.ReferencedAssemblies.Add("System.dll");
+                    objCompilerParameters.ReferencedAssemblies.Add("CSharpShaderLanguage.dll");
+                    objCompilerParameters.GenerateExecutable = false;
+                    objCompilerParameters.GenerateInMemory = true;
+                    //objCompilerParameters.IncludeDebugInformation = true;
+                    //objCompilerParameters.OutputAssembly = "tmptmptmp.dll";
+                    CompilerResults cr = objCSharpCodePrivoder.CompileAssemblyFromFile(
+                        objCompilerParameters, fullname);
+
+                    if (cr.Errors.HasErrors)
+                    {
+                        builder.AppendLine(string.Format("编译错误：{0}", fullname));
+                        foreach (CompilerError err in cr.Errors)
+                        {
+                            Console.WriteLine(err.ErrorText);
+                            builder.AppendLine(err.ErrorText);
+                        }
+                    }
+                    else
+                    {
+                        List<ShaderTemplate> shaderTemplateList = new List<ShaderTemplate>();
+                        Assembly assembly = cr.CompiledAssembly;
+                        Type[] types = assembly.GetTypes();
+                        foreach (var type in types)
+                        {
+                            if (type.IsSubclassOf(typeof(VertexShaderCode))
+                                || type.IsSubclassOf(typeof(FragmentShaderCode)))
+                            {
+                                ShaderTemplate template = new ShaderTemplate(type, fullname);
+                                shaderTemplateList.Add(template);
+                            }
+                        }
+                        foreach (var item in shaderTemplateList)
+                        {
+                            item.Dump2File();
+                        }
+                    }
+                    //if (data.generateGlyphList)
+                    //{
+                    //    FontTexturePNGPrinter printer = new FontTexturePNGPrinter(ttfTexture);
+                    //    foreach (var progress in printer.Print(fontFullname, data.maxTexturWidth))
+                    //    {
+                    //        bgWorker.ReportProgress(fileIndex * magicNumber / fileCount, progress);
+                    //    }
+                    //}
+                }
+                catch (Exception ex)
+                {
+                    string message = string.Format("{0}", ex);
+                    builder.AppendLine(message);
+                    result.builder = builder;
+                }
+
+                if (result.builder != builder) { builder.AppendLine("sucessfully done!"); }
+                builder.AppendLine();
+
+                SingleFileProgress thisFileDone = new SingleFileProgress()
+                {
+                    filename = filename,
+                    progress = magicNumber,
+                    message = string.Format("All is done for {0}", fileInfo.Name),
+                };
+                bgWorker.ReportProgress(fileIndex++ * magicNumber / fileCount, thisFileDone);
+            }
         }
 
         private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -85,7 +176,7 @@ namespace CSharpShaderLanguage.Convertor
                 if (value < pgbProgress.Minimum) value = pgbProgress.Minimum;
                 if (value > pgbProgress.Maximum) value = pgbProgress.Maximum;
                 pgbProgress.Value = value;
-                this.lblTotal.Text = string.Format("Working on: {0}", progress.fontName);
+                this.lblTotal.Text = string.Format("Working on: {0}", progress.filename);
             }
             {
                 var value = progress.progress;
@@ -100,7 +191,7 @@ namespace CSharpShaderLanguage.Convertor
         private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             WorkerResult result = e.Result as WorkerResult;
-            FileInfo file = new FileInfo(result.data.selectedTTFFiles[0]);
+            FileInfo file = new FileInfo(result.data.csharpShaderFiles[0]);
 
             string directory = file.DirectoryName;
             if (result.builder != null)

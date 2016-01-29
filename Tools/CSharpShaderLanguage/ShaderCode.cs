@@ -11,7 +11,9 @@ namespace CSharpShaderLanguage
     /// </summary>
     public abstract class ShaderCode
     {
-
+        /// <summary>
+        /// 每个shader都必须实现自己的main函数。
+        /// </summary>
         public abstract void main();
 
         #region build-in variables

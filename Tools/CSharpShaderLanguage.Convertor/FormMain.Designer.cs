@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.openTTFFileDlg = new System.Windows.Forms.OpenFileDialog();
-            this.btnBrowseCSharpShaderFile = new System.Windows.Forms.Button();
-            this.txtTTFFullname = new System.Windows.Forms.TextBox();
+            this.openCSharpShaderFilesDlg = new System.Windows.Forms.OpenFileDialog();
+            this.btnBrowseCSharpShaderFiles = new System.Windows.Forms.Button();
+            this.txtCSharpShaderFiles = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.pgbProgress = new System.Windows.Forms.ProgressBar();
@@ -41,33 +41,33 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // openTTFFileDlg
+            // openCSharpShaderFilesDlg
             // 
-            this.openTTFFileDlg.Filter = "(字体文件 *.ttf;*.ttc)|*.ttf;*.ttc|(字体文件 *.*)|*.*";
-            this.openTTFFileDlg.Multiselect = true;
+            this.openCSharpShaderFilesDlg.Filter = "*.cs|*.cs";
+            this.openCSharpShaderFilesDlg.Multiselect = true;
             // 
-            // btnBrowseCSharpShaderFile
+            // btnBrowseCSharpShaderFiles
             // 
-            this.btnBrowseCSharpShaderFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseCSharpShaderFile.Location = new System.Drawing.Point(1019, 12);
-            this.btnBrowseCSharpShaderFile.Margin = new System.Windows.Forms.Padding(4);
-            this.btnBrowseCSharpShaderFile.Name = "btnBrowseCSharpShaderFile";
-            this.btnBrowseCSharpShaderFile.Size = new System.Drawing.Size(100, 29);
-            this.btnBrowseCSharpShaderFile.TabIndex = 0;
-            this.btnBrowseCSharpShaderFile.Text = "Browse...";
-            this.btnBrowseCSharpShaderFile.UseVisualStyleBackColor = true;
-            this.btnBrowseCSharpShaderFile.Click += new System.EventHandler(this.btnBrowseCSharpShaderFile_Click);
+            this.btnBrowseCSharpShaderFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowseCSharpShaderFiles.Location = new System.Drawing.Point(1019, 12);
+            this.btnBrowseCSharpShaderFiles.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBrowseCSharpShaderFiles.Name = "btnBrowseCSharpShaderFiles";
+            this.btnBrowseCSharpShaderFiles.Size = new System.Drawing.Size(100, 29);
+            this.btnBrowseCSharpShaderFiles.TabIndex = 0;
+            this.btnBrowseCSharpShaderFiles.Text = "Browse...";
+            this.btnBrowseCSharpShaderFiles.UseVisualStyleBackColor = true;
+            this.btnBrowseCSharpShaderFiles.Click += new System.EventHandler(this.btnBrowseCSharpShaderFiles_Click);
             // 
-            // txtTTFFullname
+            // txtCSharpShaderFiles
             // 
-            this.txtTTFFullname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtCSharpShaderFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTTFFullname.Location = new System.Drawing.Point(143, 15);
-            this.txtTTFFullname.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTTFFullname.Name = "txtTTFFullname";
-            this.txtTTFFullname.ReadOnly = true;
-            this.txtTTFFullname.Size = new System.Drawing.Size(867, 25);
-            this.txtTTFFullname.TabIndex = 1;
+            this.txtCSharpShaderFiles.Location = new System.Drawing.Point(143, 15);
+            this.txtCSharpShaderFiles.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCSharpShaderFiles.Name = "txtCSharpShaderFiles";
+            this.txtCSharpShaderFiles.ReadOnly = true;
+            this.txtCSharpShaderFiles.Size = new System.Drawing.Size(867, 25);
+            this.txtCSharpShaderFiles.TabIndex = 1;
             // 
             // label1
             // 
@@ -154,8 +154,8 @@
             this.Controls.Add(this.lblSingleFileProgress);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.txtTTFFullname);
-            this.Controls.Add(this.btnBrowseCSharpShaderFile);
+            this.Controls.Add(this.txtCSharpShaderFiles);
+            this.Controls.Add(this.btnBrowseCSharpShaderFiles);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(853, 207);
@@ -170,9 +170,9 @@
 
         #endregion
 
-        private System.Windows.Forms.OpenFileDialog openTTFFileDlg;
-        private System.Windows.Forms.Button btnBrowseCSharpShaderFile;
-        private System.Windows.Forms.TextBox txtTTFFullname;
+        private System.Windows.Forms.OpenFileDialog openCSharpShaderFilesDlg;
+        private System.Windows.Forms.Button btnBrowseCSharpShaderFiles;
+        private System.Windows.Forms.TextBox txtCSharpShaderFiles;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.ProgressBar pgbProgress;

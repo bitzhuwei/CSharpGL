@@ -7,25 +7,16 @@ namespace CSharpShaderLanguage.Convertor
 {
     class WorkerData
     {
-        public int fontHeight;
-        public int maxTexturWidth;
-        public char firstChar;
-        public char lastChar;
-        public string[] selectedTTFFiles;
-        public bool generateGlyphList;
-        public bool drawBBox;
+        internal string[] csharpShaderFiles;
 
-        public WorkerData(int fontHeight, int maxTexturWidth,
-            char firstChar, char lastChar, string[] selectedTTFFiles,
-            bool generateGlyphList, bool drawHeightLine)
+        public WorkerData(params string[] csharpShaderFiles)
         {
-            this.fontHeight = fontHeight;
-            this.maxTexturWidth = maxTexturWidth;
-            this.firstChar = firstChar;
-            this.lastChar = lastChar;
-            this.selectedTTFFiles = selectedTTFFiles;
-            this.generateGlyphList = generateGlyphList;
-            this.drawBBox = drawHeightLine;
+            this.csharpShaderFiles = csharpShaderFiles;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} files.", csharpShaderFiles == null ? 0 : csharpShaderFiles.Length);
         }
     }
 }
