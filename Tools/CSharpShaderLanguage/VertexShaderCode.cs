@@ -27,6 +27,9 @@ void main(void)
 
      */
 
+    /// <summary>
+    /// 这是一个用CSSL写的vertex shader的例子。
+    /// </summary>
     class IlluminationVert : VertexShaderCode
     {
         [In]

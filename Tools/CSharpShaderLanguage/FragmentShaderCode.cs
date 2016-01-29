@@ -24,6 +24,9 @@ void main(void)
 
      */
 
+    /// <summary>
+    /// 这是一个用CSSL写的fragment shader的例子。
+    /// </summary>
     class IlluminationFrag : FragmentShaderCode
     {
         [In]
