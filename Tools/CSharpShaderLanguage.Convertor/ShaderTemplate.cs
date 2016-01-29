@@ -21,7 +21,6 @@ namespace CSharpShaderLanguage.Convertor
 
         public ShaderTemplate(Type type, string fullname)
         {
-            // TODO: Complete member initialization
             this.targetType = type;
             this.fullname = fullname;
         }

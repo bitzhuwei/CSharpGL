@@ -53,8 +53,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SingleFileProgress.cs" />
     <Compile Include="ShaderTemplate.cs" />
+    <Compile Include="SingleFileProgress.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="WorkerData.cs" />
     <Compile Include="WorkerResult.cs" />
     <EmbeddedResource Include="FormMain.resx">
@@ -89,9 +91,7 @@
       <Name>CSharpShaderLanguage</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CSSL2GLSL\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="readme.txt" />
   </ItemGroup>
