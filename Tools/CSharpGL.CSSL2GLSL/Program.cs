@@ -24,13 +24,22 @@ namespace CSharpGL.CSSL2GLSL
 
                 try
                 {
-                    string directoryName = Environment.CurrentDirectory;
+                    string directoryName = string.Empty;
+                    if (args.Length > 0)
+                    {
+                        directoryName = args[0];
+                    }
+                    else
+                    {
+                        directoryName = Environment.CurrentDirectory;
+                    }
                     string[] files = System.IO.Directory.GetFiles(directoryName, "*.cs",
                         System.IO.SearchOption.AllDirectories);
                     foreach (var fullname in files)
                     {
-                        Console.WriteLine("Translating {0}", fullname);
+                        Console.WriteLine("--> Translating {0}", fullname);
                         TranslateCSharpShaderLanguage2GLSL(fullname);
+                        Console.WriteLine();
                     }
 
                     Console.WriteLine("Translation all done!");

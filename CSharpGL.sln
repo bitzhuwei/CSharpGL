@@ -23,6 +23,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{2F6498
 		Assets\Preview2.png = Assets\Preview2.png
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpShaderLanguage", "Tools\CSharpShaderLanguage\CSharpShaderLanguage.csproj", "{423CEB01-876B-4838-9F68-575669E95362}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpShaderLanguage.Convertor", "Tools\CSharpShaderLanguage.Convertor\CSharpShaderLanguage.Convertor.csproj", "{7D3ACB2C-6A3F-4BC9-9A0C-29B5A42B183E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.CSSL2GLSL", "Tools\CSharpGL.CSSL2GLSL\CSharpGL.CSSL2GLSL.csproj", "{717F1781-F1FC-4C22-BFA9-941E19558640}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Core\Utilities\Utilities.csproj", "{F1B5534A-134C-4FA6-B172-A2F20D8F96ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLM", "Core\GLM\GLM.csproj", "{425B5714-8C57-48E4-A88A-3CCE10096F7B}"
@@ -88,12 +94,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Objects.VolumeRendering", "Functions\CSharpGL.Objects.VolumeRendering\CSharpGL.Objects.VolumeRendering.csproj", "{E97977FD-EE85-47C5-810E-A0CBA258FAAE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Objects.Common", "Functions\CSharpGL.Objects.Common\CSharpGL.Objects.Common.csproj", "{388D3F0C-08B3-47DC-86A8-CC5CC87B5819}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpShaderLanguage", "Tools\CSharpShaderLanguage\CSharpShaderLanguage.csproj", "{423CEB01-876B-4838-9F68-575669E95362}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpShaderLanguage.Convertor", "Tools\CSharpShaderLanguage.Convertor\CSharpShaderLanguage.Convertor.csproj", "{7D3ACB2C-6A3F-4BC9-9A0C-29B5A42B183E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.CSSL2GLSL", "Tools\CSharpGL.CSSL2GLSL\CSharpGL.CSSL2GLSL.csproj", "{717F1781-F1FC-4C22-BFA9-941E19558640}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
