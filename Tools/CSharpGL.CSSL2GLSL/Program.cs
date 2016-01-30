@@ -111,8 +111,8 @@ namespace CSharpGL.CSSL2GLSL
             string logName = string.Format("CSSL2GLSLDump{0}.log", time);
             string logFullname = Path.Combine(Environment.CurrentDirectory, logName);
             File.WriteAllText(logFullname, builder.ToString());
-            Process.Start("explorer", "/select," + logFullname);
             Process.Start("explorer", logFullname);
+            Process.Start("explorer", "/select," + logFullname);
         }
 
         private static TranslationInfo TranslateCSharpShaderLanguage2GLSL(string fullname)
