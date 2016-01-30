@@ -61,7 +61,7 @@ namespace CSharpGL.CSSL2GLSL
             this.mainFunction = SearchMainFunction(this.fullname);
         }
 
-        public void Dump2File()
+        public bool Dump2File()
         {
             this.Parse();
 
@@ -74,11 +74,17 @@ namespace CSharpGL.CSSL2GLSL
                 if (File.ReadAllText(targetFullname) != shaderCode)
                 {
                     File.WriteAllText(targetFullname, shaderCode);
+                    return true;
+                }
+                else
+                {
+                    return false;
                 }
             }
             else
             {
                 File.WriteAllText(targetFullname, shaderCode);
+                return true;
             }
         }
 

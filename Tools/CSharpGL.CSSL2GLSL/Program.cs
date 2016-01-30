@@ -15,11 +15,16 @@ namespace CSharpGL.CSSL2GLSL
 {
     class Program
     {
+        class SemanticShaderInfo
+        {
+            public SemanticShader shader;
+            public bool codeUpdated;
+        }
         class TranslationInfo
         {
             public string fullname;
             public CompilerErrorCollection errors;
-            public List<SemanticShader> semanticShaderList = new List<SemanticShader>();
+            public List<SemanticShaderInfo> semanticShaderList = new List<SemanticShaderInfo>();
 
             public int GetCompiledShaderCount()
             {
@@ -53,7 +58,9 @@ namespace CSharpGL.CSSL2GLSL
                     foreach (var item in semanticShaderList)
                     {
                         PrintPreEmptySpace(builder, preEmptySpace + 4);
-                        builder.AppendFormat("Dump [{0}] to [{1}] OK!", item.ShaderCode.GetType().Name, item.ShaderCode.GetShaderFilename()); builder.AppendLine();
+                        builder.AppendFormat("{0} [{1}] to [{2}] OK!",
+                            item.codeUpdated ? "Dump" : "Not need to dump",
+                            item.shader.ShaderCode.GetType().Name, item.shader.ShaderCode.GetShaderFilename()); builder.AppendLine();
                     }
                 }
             }
@@ -123,7 +130,7 @@ namespace CSharpGL.CSSL2GLSL
             CSharpCodeProvider objCSharpCodePrivoder = new CSharpCodeProvider();
 
             CompilerParameters objCompilerParameters = new CompilerParameters();
-            objCompilerParameters.ReferencedAssemblies.Add("System.dll");
+            //objCompilerParameters.ReferencedAssemblies.Add("System.dll");
             objCompilerParameters.ReferencedAssemblies.Add("CSharpShaderLanguage.dll");
             objCompilerParameters.GenerateExecutable = false;
             objCompilerParameters.GenerateInMemory = true;
@@ -157,8 +164,10 @@ namespace CSharpGL.CSSL2GLSL
 
                 foreach (var item in semanticShaderList)
                 {
-                    item.Dump2File();
-                    translationInfo.semanticShaderList.Add(item);
+                    SemanticShaderInfo info = new SemanticShaderInfo();
+                    info.codeUpdated = item.Dump2File();
+                    info.shader = item;
+                    translationInfo.semanticShaderList.Add(info);
                 }
 
             }
