@@ -43,6 +43,8 @@
     <Compile Include="AxisElement.cs" />
     <Content Include="readme.txt" />
     <Compile Include="AxisElement2.cs" />
+    <Compile Include="AxisElementFrag.cs" />
+    <Compile Include="AxisElementVert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -74,8 +76,15 @@
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Tools\CSharpShaderLanguage\CSharpShaderLanguage.csproj">
+      <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
+      <Name>CSharpShaderLanguage</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)Tools\CSharpGL.CSSL2GLSL\bin\Debug\CSharpGL.CSSL2GLSL.exe $(ProjectDir)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

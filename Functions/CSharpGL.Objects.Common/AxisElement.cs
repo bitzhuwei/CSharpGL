@@ -10,6 +10,7 @@ using CSharpGL.Objects.VertexBuffers;
 
 namespace CSharpGL.Objects.Common
 {
+
     //TODO: 如果有兴趣，可以改用1个VBO来存储整个Axis的内容，甚至画一个更好看的Axis。
     /// <summary>
     /// 绘制三维坐标轴
