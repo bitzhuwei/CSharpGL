@@ -45,7 +45,7 @@ namespace CSharpGL.CSSL2GLSL
                         Console.WriteLine();
                     }
 
-                    Console.WriteLine("Translation all done2!");
+                    Console.WriteLine("Translation all done!");
                 }
                 catch (Exception e)
                 {
