@@ -1,6 +1,6 @@
 ﻿﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
-<# string ShaderName = "Some"; #>
+<# string ShaderName = "AxisElement"; #>
 <# string ClassName = ShaderName + "Renderer"; #>
 <# string VertexShaderName = ShaderName + "Vert"; #>
 <# string FragmentShaderName = ShaderName + "Frag"; #>
@@ -21,6 +21,7 @@ namespace ShaderLab
     namespace Shader
     {
         using CSharpShaderLanguage;
+
 		/// <summary>
 		/// 一个<see cref="<#= ClassName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
 		/// 这就是C#Shader形式的vertex shader。
@@ -49,6 +50,11 @@ namespace ShaderLab
                 pass_Color = vec4(in_Color, 1.0);
             }
         }
+	}
+
+	namespace Shader
+    {
+        using CSharpShaderLanguage;
 
 		/// <summary>
 		/// 一个<see cref="<#= ClassName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
@@ -68,6 +74,7 @@ namespace ShaderLab
             }
         }
     }
+
 
 	/// <summary>
 	/// 一个<see cref="<#= ClassName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。

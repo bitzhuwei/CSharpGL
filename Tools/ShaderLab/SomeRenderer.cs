@@ -21,11 +21,12 @@ namespace ShaderLab
     namespace Shader
     {
         using CSharpShaderLanguage;
+
 		/// <summary>
-		/// 一个<see cref="SomeRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+		/// 一个<see cref="AxisElementRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
 		/// 这就是C#Shader形式的vertex shader。
 		/// </summary>
-        class SomeVert : VertexShaderCode
+        class AxisElementVert : VertexShaderCode
         {
             [In]
             vec3 in_Position;
@@ -49,12 +50,17 @@ namespace ShaderLab
                 pass_Color = vec4(in_Color, 1.0);
             }
         }
+	}
+
+	namespace Shader
+    {
+        using CSharpShaderLanguage;
 
 		/// <summary>
-		/// 一个<see cref="SomeRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+		/// 一个<see cref="AxisElementRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
 		/// 这就是C#Shader形式的fragment shader。
 		/// </summary>
-        class SomeFrag : FragmentShaderCode
+        class AxisElementFrag : FragmentShaderCode
         {
             [In]
             vec4 pass_Color;
@@ -69,10 +75,11 @@ namespace ShaderLab
         }
     }
 
+
 	/// <summary>
-	/// 一个<see cref="SomeRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+	/// 一个<see cref="AxisElementRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
 	/// </summary>
-    public class SomeRenderer : RendererBase
+    public class AxisElementRenderer : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -113,15 +120,15 @@ namespace ShaderLab
 
         private IModel model;
 
-        public SomeRenderer(IModel model)
+        public AxisElementRenderer(IModel model)
         {
             this.model = model;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Some.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Some.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"AxisElement.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"AxisElement.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
