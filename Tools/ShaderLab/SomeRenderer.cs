@@ -18,6 +18,7 @@ using System.Windows.Forms;
 
 namespace ShaderLab
 {
+#if DEBUG
     namespace Shader
     {
         using CSharpShaderLanguage;
@@ -51,7 +52,9 @@ namespace ShaderLab
             }
         }
 	}
+#endif
 
+#if DEBUG
 	namespace Shader
     {
         using CSharpShaderLanguage;
@@ -74,7 +77,7 @@ namespace ShaderLab
             }
         }
     }
-
+#endif
 
 	/// <summary>
 	/// 一个<see cref="AxisElementRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
