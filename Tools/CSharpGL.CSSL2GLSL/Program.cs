@@ -3,6 +3,7 @@ using Microsoft.CSharp;
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -18,7 +19,8 @@ namespace CSharpGL.CSSL2GLSL
         {
             string time = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
             var originalOutput = Console.Out;
-            using (TextWriter writer = File.CreateText(string.Format("CSSL2GLSLDump{0}.log", time)))
+            string logName = string.Format("CSSL2GLSLDump{0}.log", time);
+            using (TextWriter writer = File.CreateText(logName))
             {
                 Console.SetOut(writer);
 
@@ -43,7 +45,7 @@ namespace CSharpGL.CSSL2GLSL
                         Console.WriteLine();
                     }
 
-                    Console.WriteLine("Translation all done!");
+                    Console.WriteLine("Translation all done2!");
                 }
                 catch (Exception e)
                 {
@@ -52,6 +54,9 @@ namespace CSharpGL.CSSL2GLSL
             }
             Console.SetOut(originalOutput);
             Console.WriteLine("All done!");
+
+            string logFullname = Path.Combine(Environment.CurrentDirectory, logName);
+            Process.Start("explorer", "/select," + logFullname);
         }
 
         private static void TranslateCSharpShaderLanguage2GLSL(string fullname)
