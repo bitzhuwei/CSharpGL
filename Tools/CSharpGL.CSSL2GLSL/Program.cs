@@ -15,56 +15,109 @@ namespace CSharpGL.CSSL2GLSL
 {
     class Program
     {
-        static void Main(string[] args)
+        class TranslationInfo
         {
-            string time = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-            var originalOutput = Console.Out;
-            string logName = string.Format("CSSL2GLSLDump{0}.log", time);
-            using (TextWriter writer = File.CreateText(logName))
+            public string fullname;
+            public CompilerErrorCollection errors;
+            public List<SemanticShader> semanticShaderList = new List<SemanticShader>();
+
+            public int GetCompiledShaderCount()
             {
-                Console.SetOut(writer);
-
-                try
+                if (errors != null)
                 {
-                    string directoryName = string.Empty;
-                    if (args.Length > 0)
-                    {
-                        directoryName = args[0];
-                    }
-                    else
-                    {
-                        directoryName = Environment.CurrentDirectory;
-                    }
-                    Console.WriteLine("Directory: {0}", directoryName);
-                    string[] files = System.IO.Directory.GetFiles(directoryName, "*.cs",
-                        System.IO.SearchOption.AllDirectories);
-                    int compiledShaderCount = 0;
-                    foreach (var fullname in files)
-                    {
-                        Console.WriteLine("--> Translating {0}", fullname);
-                        compiledShaderCount += TranslateCSharpShaderLanguage2GLSL(fullname);
-                        Console.WriteLine();
-                    }
-
-                    Console.WriteLine("Translation all done!");
-                    Console.WriteLine("Compiled {0} CSSL shaders!", compiledShaderCount);
+                    return 0;
                 }
-                catch (Exception e)
+                else
                 {
-                    Console.WriteLine(e);
+                    return this.semanticShaderList.Count;
                 }
             }
-            Console.SetOut(originalOutput);
-            Console.WriteLine("All done!");
+            public void Append(StringBuilder builder, int preEmptySpace)
+            {
+                PrintPreEmptySpace(builder, preEmptySpace);
+                builder.AppendFormat("--> Translating {0}", fullname); builder.AppendLine();
+                if (errors != null)
+                {
+                    PrintPreEmptySpace(builder, preEmptySpace);
+                    builder.AppendFormat(string.Format("Compiling Errors:")); builder.AppendLine();
+                    foreach (CompilerError err in errors)
+                    {
+                        PrintPreEmptySpace(builder, preEmptySpace + 4);
+                        builder.AppendFormat("Error: "); builder.AppendFormat(err.ErrorText); builder.AppendLine();
+                    }
+                }
+                else
+                {
+                    PrintPreEmptySpace(builder, preEmptySpace);
+                    builder.AppendFormat("{0} CSSL shaders:", this.semanticShaderList.Count); builder.AppendLine();
+                    foreach (var item in semanticShaderList)
+                    {
+                        builder.AppendFormat("Dump {0} OK!", item.ShaderCode.GetType().Name); builder.AppendLine();
+                    }
+                }
+            }
 
+            private static void PrintPreEmptySpace(StringBuilder builder, int preEmptySpace)
+            {
+                for (int i = 0; i < preEmptySpace; i++)
+                {
+                    builder.Append(" ");
+                }
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            StringBuilder builder = new StringBuilder();
+
+            try
+            {
+                string directoryName = string.Empty;
+                if (args.Length > 0)
+                {
+                    directoryName = args[0];
+                }
+                else
+                {
+                    directoryName = Environment.CurrentDirectory;
+                }
+                string[] files = System.IO.Directory.GetFiles(directoryName, "*.cs",
+                    System.IO.SearchOption.AllDirectories);
+                List<TranslationInfo> translationInfoList = new List<TranslationInfo>();
+                foreach (var fullname in files)
+                {
+                    TranslationInfo translationInfo = TranslateCSharpShaderLanguage2GLSL(fullname);
+                    translationInfoList.Add(translationInfo);
+                }
+
+                builder.AppendFormat("Directory: {0}", directoryName); builder.AppendLine();
+                var CSSLCount = (from item in translationInfoList
+                                 select item.GetCompiledShaderCount()).Sum();
+                builder.AppendFormat("Found {0} CSSL shaders.", CSSLCount); builder.AppendLine();
+                foreach (var item in translationInfoList)
+                {
+                    item.Append(builder, 4);
+                }
+                builder.AppendFormat("Translation all done!"); builder.AppendLine();
+            }
+            catch (Exception e)
+            {
+                builder.AppendFormat("*********************Translation break off!*********************"); builder.AppendLine();
+                builder.AppendFormat("Exception for CSSL2GLSL:"); builder.AppendLine();
+                Console.WriteLine(e);
+            }
+
+            string time = DateTime.Now.ToString("yyyyMMdd-HHmmss");
+            string logName = string.Format("CSSL2GLSLDump{0}.log", time);
             string logFullname = Path.Combine(Environment.CurrentDirectory, logName);
+            File.WriteAllText(logFullname, builder.ToString());
             Process.Start("explorer", "/select," + logFullname);
             Process.Start("explorer", logFullname);
         }
 
-        private static int TranslateCSharpShaderLanguage2GLSL(string fullname)
+        private static TranslationInfo TranslateCSharpShaderLanguage2GLSL(string fullname)
         {
-            int result = 0;
+            TranslationInfo translationInfo = new TranslationInfo() { fullname = fullname, };
 
             CSharpCodeProvider objCSharpCodePrivoder = new CSharpCodeProvider();
 
@@ -79,12 +132,7 @@ namespace CSharpGL.CSSL2GLSL
 
             if (cr.Errors.HasErrors)
             {
-                Console.WriteLine(string.Format("    Compiling Error：{0}", fullname));
-                foreach (CompilerError err in cr.Errors)
-                {
-                    Console.Write("        Error: ");
-                    Console.WriteLine(err.ErrorText);
-                }
+                translationInfo.errors = cr.Errors;
             }
             else
             {
@@ -109,13 +157,12 @@ namespace CSharpGL.CSSL2GLSL
                 foreach (var item in semanticShaderList)
                 {
                     item.Dump2File();
-                    Console.WriteLine("Dump {0} OK!", item.ShaderCode.GetType().Name);
-                    result++;
+                    translationInfo.semanticShaderList.Add(item);
                 }
 
             }
 
-            return result;
+            return translationInfo;
         }
     }
 }
