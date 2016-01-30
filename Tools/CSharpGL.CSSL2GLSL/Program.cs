@@ -38,14 +38,16 @@ namespace CSharpGL.CSSL2GLSL
                     Console.WriteLine("Directory: {0}", directoryName);
                     string[] files = System.IO.Directory.GetFiles(directoryName, "*.cs",
                         System.IO.SearchOption.AllDirectories);
+                    int compiledShaderCount = 0;
                     foreach (var fullname in files)
                     {
                         Console.WriteLine("--> Translating {0}", fullname);
-                        TranslateCSharpShaderLanguage2GLSL(fullname);
+                        compiledShaderCount += TranslateCSharpShaderLanguage2GLSL(fullname);
                         Console.WriteLine();
                     }
 
                     Console.WriteLine("Translation all done!");
+                    Console.WriteLine("Compiled {0} CSSL shaders!", compiledShaderCount);
                 }
                 catch (Exception e)
                 {
@@ -57,10 +59,13 @@ namespace CSharpGL.CSSL2GLSL
 
             string logFullname = Path.Combine(Environment.CurrentDirectory, logName);
             Process.Start("explorer", "/select," + logFullname);
+            Process.Start("explorer", logFullname);
         }
 
-        private static void TranslateCSharpShaderLanguage2GLSL(string fullname)
+        private static int TranslateCSharpShaderLanguage2GLSL(string fullname)
         {
+            int result = 0;
+
             CSharpCodeProvider objCSharpCodePrivoder = new CSharpCodeProvider();
 
             CompilerParameters objCompilerParameters = new CompilerParameters();
@@ -74,10 +79,10 @@ namespace CSharpGL.CSSL2GLSL
 
             if (cr.Errors.HasErrors)
             {
-                Console.WriteLine(string.Format("Compiling Error：{0}", fullname));
+                Console.WriteLine(string.Format("    Compiling Error：{0}", fullname));
                 foreach (CompilerError err in cr.Errors)
                 {
-                    Console.Write("Error: ");
+                    Console.Write("        Error: ");
                     Console.WriteLine(err.ErrorText);
                 }
             }
@@ -105,8 +110,12 @@ namespace CSharpGL.CSSL2GLSL
                 {
                     item.Dump2File();
                     Console.WriteLine("Dump {0} OK!", item.ShaderCode.GetType().Name);
+                    result++;
                 }
+
             }
+
+            return result;
         }
     }
 }
