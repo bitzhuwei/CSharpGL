@@ -11,7 +11,7 @@ namespace CSharpGL.CSSL2GLSL
     public sealed class SemanticVertexShader : SemanticShader
     {
 
-        public SemanticVertexShader(ShaderCode shaderCode, string fullname)
+        public SemanticVertexShader(CSShaderCode shaderCode, string fullname)
             : base(shaderCode, fullname)
         {
         }

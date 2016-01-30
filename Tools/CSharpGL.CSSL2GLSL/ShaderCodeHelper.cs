@@ -9,13 +9,13 @@ namespace CSharpGL.CSSL2GLSL
 {
     public static class ShaderCodeHelper
     {
-        public static SemanticShader Dump(this ShaderCode shaderCode, string fullname)
+        public static SemanticShader Dump(this CSShaderCode shaderCode, string fullname)
         {
-            if (shaderCode.GetType().IsSubclassOf(typeof(VertexShaderCode)))
+            if (shaderCode.GetType().IsSubclassOf(typeof(VertexCSShaderCode)))
             {
                 return new SemanticVertexShader(shaderCode, fullname);
             }
-            else if (shaderCode.GetType().IsSubclassOf(typeof(FragmentShaderCode)))
+            else if (shaderCode.GetType().IsSubclassOf(typeof(FragmentCSShaderCode)))
             {
                 return new SemanticFragmentShader(shaderCode, fullname);
             }
@@ -30,16 +30,16 @@ namespace CSharpGL.CSSL2GLSL
         ///// </summary>
         //public abstract string ExtensionName { get; }
 
-        public static string GetShaderFilename(this ShaderCode shaderCode)
+        public static string GetShaderFilename(this CSShaderCode shaderCode)
         {
             Type type = shaderCode.GetType();
 
             string extensionName = string.Empty;
-            if (type.IsSubclassOf(typeof(VertexShaderCode)))
+            if (type.IsSubclassOf(typeof(VertexCSShaderCode)))
             {
                 extensionName = "vert";
             }
-            else if (type.IsSubclassOf(typeof(FragmentShaderCode)))
+            else if (type.IsSubclassOf(typeof(FragmentCSShaderCode)))
             {
                 extensionName = "frag";
             }

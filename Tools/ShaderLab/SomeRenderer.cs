@@ -27,7 +27,7 @@ namespace ShaderLab
 		/// 一个<see cref="AxisElementRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
 		/// 这就是C#Shader形式的vertex shader。
 		/// </summary>
-        class AxisElementVert : VertexShaderCode
+        class AxisElementVert : VertexCSShaderCode
         {
             [In]
             vec3 in_Position;
@@ -63,7 +63,7 @@ namespace ShaderLab
 		/// 一个<see cref="AxisElementRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
 		/// 这就是C#Shader形式的fragment shader。
 		/// </summary>
-        class AxisElementFrag : FragmentShaderCode
+        class AxisElementFrag : FragmentCSShaderCode
         {
             [In]
             vec4 pass_Color;

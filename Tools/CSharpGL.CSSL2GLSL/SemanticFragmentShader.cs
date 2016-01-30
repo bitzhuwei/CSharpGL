@@ -11,7 +11,7 @@ namespace CSharpGL.CSSL2GLSL
     public sealed class SemanticFragmentShader : SemanticShader
     {
 
-        public SemanticFragmentShader(ShaderCode shaderCode, string fullname)
+        public SemanticFragmentShader(CSShaderCode shaderCode, string fullname)
             : base(shaderCode, fullname)
         {
         }
@@ -73,7 +73,7 @@ namespace CSharpGL.CSSL2GLSL
                 string line = Regex.Replace(parts[parts.Length - 1], "\t", "    ");
                 preEmptyCount = Regex.Match(line, @" *").Length;
             }
-            bool isFragmentShader = this.ShaderCode.GetType().IsSubclassOf(typeof(FragmentShaderCode));
+            bool isFragmentShader = this.ShaderCode.GetType().IsSubclassOf(typeof(FragmentCSShaderCode));
             foreach (var item in parts)
             {
                 string line = Regex.Replace(item, "\t", "    ");

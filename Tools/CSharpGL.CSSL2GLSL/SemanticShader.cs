@@ -18,9 +18,9 @@ namespace CSharpGL.CSSL2GLSL
         ///// 继承自<see cref="ShaderCode"/>的具体类型。
         ///// </summary>
         //protected Type shaderCodeType;
-        private ShaderCode shaderCode;
+        private CSShaderCode shaderCode;
 
-        public ShaderCode ShaderCode
+        public CSShaderCode ShaderCode
         {
             get { return shaderCode; }
             protected set { shaderCode = value; }
@@ -28,7 +28,7 @@ namespace CSharpGL.CSSL2GLSL
         protected string fullname;
         protected string mainFunction;
 
-        public SemanticShader(ShaderCode shaderCode, string fullname)
+        public SemanticShader(CSShaderCode shaderCode, string fullname)
         {
             this.shaderCode = shaderCode;
             this.fullname = fullname;

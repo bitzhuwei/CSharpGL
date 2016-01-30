@@ -4,8 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderLab.CSharpSL
+namespace CSharpShaderLanguage
 {
+
+    /// <summary>
+    /// vertex shader共有的内容。
+    /// 想写一个vertex shader，就继承此类型吧。
+    /// </summary>
+    public abstract class VertexCSShaderCode : CSShaderCode
+    {
+
+        protected vec4 gl_Position;
+
+    }
+
     /*
      
      #version 150 core
@@ -26,11 +38,11 @@ void main(void)
 }
 
      */
-    abstract class VertexShader
-    {
-    }
 
-    class IlluminationVert : VertexShader
+    /// <summary>
+    /// 这是一个用CSSL写的vertex shader的例子。
+    /// </summary>
+    class DemoVert : VertexCSShaderCode
     {
         [In]
         vec3 in_Position;
@@ -46,15 +58,12 @@ void main(void)
         [Uniform]
         mat4 modelMatrix;
 
-        void main()
+        public override void main()
         {
-            //gl_Position=projectionMatrix*viewMatrix*modelMatrix*new vec4()
+            gl_Position = vec4(in_Position, 1.0f);//projectionMatrix*viewMatrix*modelMatrix*new vec4()
+            pass_UV = in_UV;
         }
+
     }
 
-   
-    class VertexShaderCodeBase
-    {
-        protected vec4 gl_Position;
-    }
 }

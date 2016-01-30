@@ -223,9 +223,9 @@ namespace CSharpGL.CSSL2GLSL
                 Type[] types = assembly.GetTypes();
                 foreach (var type in types)
                 {
-                    if (type.IsSubclassOf(typeof(ShaderCode)))
+                    if (type.IsSubclassOf(typeof(CSShaderCode)))
                     {
-                        ShaderCode shaderCode = Activator.CreateInstance(type) as ShaderCode;
+                        CSShaderCode shaderCode = Activator.CreateInstance(type) as CSShaderCode;
                         SemanticShader semanticShader = shaderCode.Dump(fullname);
                         semanticShaderList.Add(semanticShader);
                     }

@@ -9,12 +9,13 @@ namespace CSharpShaderLanguage
     /// <summary>
     /// 所有CSSL都共有的内容。
     /// </summary>
-    public abstract partial class ShaderCode
+    public abstract partial class CSShaderCode
     {
 
-        #region build-in variables
-
-        #endregion
+        /// <summary>
+        /// 每个shader都必须实现自己的main函数。
+        /// </summary>
+        public abstract void main();
 
     }
 }

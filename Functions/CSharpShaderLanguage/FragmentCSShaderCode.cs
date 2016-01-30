@@ -11,7 +11,7 @@ namespace CSharpShaderLanguage
     /// fragment shader共有的内容。
     /// 想写一个fragment shader，就继承此类型吧。
     /// </summary>
-    public abstract class FragmentShaderCode : ShaderCode
+    public abstract class FragmentCSShaderCode : CSShaderCode
     {
 
         //TODO:在CSharpShaderLanguage.Convertor项目中没有区分vertex shader和fragment shader的Dump动作。目前是认为没有下面这个discard();方法的。注意注意！以后要改啊！
@@ -43,7 +43,7 @@ void main(void)
     /// <summary>
     /// 这是一个用CSSL写的fragment shader的例子。
     /// </summary>
-    class DemoFrag : FragmentShaderCode
+    class DemoFrag : FragmentCSShaderCode
     {
         [In]
         vec2 pass_UV;
