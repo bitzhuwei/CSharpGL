@@ -27,7 +27,7 @@ namespace CSharpShaderLanguage
         /// This matrix is the identity matrix scaled by <paramref name="scale"/>.
         /// </summary>
         /// <param name="scale">The scale.</param>
-        public mat3(float scale)
+        public mat3(double scale)
         {
             this.col0 = new vec3(scale, 0, 0);
             this.col1 = new vec3(0, scale, 0);
@@ -112,7 +112,7 @@ namespace CSharpShaderLanguage
         /// <returns>
         /// The element at <paramref name="column"/> and <paramref name="row"/>.
         /// </returns>
-        public float this[int column, int row]
+        public double this[int column, int row]
         {
             get
             {
@@ -142,9 +142,9 @@ namespace CSharpShaderLanguage
         /// Returns the matrix as a flat array of elements, column major.
         /// </summary>
         /// <returns></returns>
-        public float[] to_array()
+        public double[] to_array()
         {
-            float[] result = new float[9];
+            double[] result = new double[9];
             result[0 + 0] = col0.x; result[0 + 1] = col0.y; result[0 + 2] = col0.z;
             result[3 + 0] = col1.x; result[3 + 1] = col1.y; result[3 + 2] = col1.z;
             result[6 + 0] = col2.x; result[6 + 1] = col2.y; result[6 + 2] = col2.z;
@@ -212,7 +212,7 @@ namespace CSharpShaderLanguage
             return result;
         }
 
-        public static mat3 operator *(mat3 lhs, float s)
+        public static mat3 operator *(mat3 lhs, double s)
         {
             return new mat3(new[]
             {

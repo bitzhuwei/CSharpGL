@@ -6,6 +6,18 @@ using System.Threading.Tasks;
 
 namespace CSharpShaderLanguage
 {
+
+    /// <summary>
+    /// vertex shader共有的内容。
+    /// 想写一个vertex shader，就继承此类型吧。
+    /// </summary>
+    public abstract class VertexShaderCode : ShaderCode
+    {
+
+        protected vec4 gl_Position;
+
+    }
+
     /*
      
      #version 150 core
@@ -54,23 +66,4 @@ void main(void)
 
     }
 
-    /// <summary>
-    /// vertex shader共有的内容。
-    /// 想写一个vertex shader，就继承此类型吧。
-    /// </summary>
-    public abstract class VertexShaderCode : ShaderCode
-    {
-        //public override sealed string ExtensionName
-        //{
-        //    get { return "vert"; }
-        //}
-
-        //public override SemanticShader Dump(string fullname)
-        //{
-        //    return new SemanticVertexShader(this, fullname);
-        //}
-
-        protected vec4 gl_Position;
-
-    }
 }

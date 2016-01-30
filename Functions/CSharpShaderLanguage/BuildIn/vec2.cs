@@ -8,10 +8,10 @@ namespace CSharpShaderLanguage
     /// </summary>
     public struct vec2
     {
-        public float x;
-        public float y;
+        public double x;
+        public double y;
 
-        public float this[int index]
+        public double this[int index]
         {
             get
             {
@@ -27,12 +27,12 @@ namespace CSharpShaderLanguage
             }
         }
 
-        public vec2(float s)
+        public vec2(double s)
         {
             x = y = s;
         }
 
-        public vec2(float x, float y)
+        public vec2(double x, double y)
         {
             this.x = x;
             this.y = y;
@@ -55,7 +55,7 @@ namespace CSharpShaderLanguage
             return new vec2(lhs.x + rhs.x, lhs.y + rhs.y);
         }
 
-        public static vec2 operator +(vec2 lhs, float rhs)
+        public static vec2 operator +(vec2 lhs, double rhs)
         {
             return new vec2(lhs.x + rhs, lhs.y + rhs);
         }
@@ -65,17 +65,17 @@ namespace CSharpShaderLanguage
             return new vec2(lhs.x - rhs.x, lhs.y - rhs.y);
         }
 
-        public static vec2 operator -(vec2 lhs, float rhs)
+        public static vec2 operator -(vec2 lhs, double rhs)
         {
             return new vec2(lhs.x - rhs, lhs.y - rhs);
         }
 
-        public static vec2 operator *(vec2 self, float s)
+        public static vec2 operator *(vec2 self, double s)
         {
             return new vec2(self.x * s, self.y * s);
         }
 
-        public static vec2 operator *(float lhs, vec2 rhs)
+        public static vec2 operator *(double lhs, vec2 rhs)
         {
             return new vec2(rhs.x * lhs, rhs.y * lhs);
         }
@@ -85,25 +85,25 @@ namespace CSharpShaderLanguage
             return new vec2(rhs.x * lhs.x, rhs.y * lhs.y);
         }
 
-        public static vec2 operator /(vec2 lhs, float rhs)
+        public static vec2 operator /(vec2 lhs, double rhs)
         {
             return new vec2(lhs.x / rhs, lhs.y / rhs);
         }
 
-        public float dot(vec2 rhs)
+        public double dot(vec2 rhs)
         {
             var result = this.x * rhs.x + this.y * rhs.y;
             return result;
         }
 
-        public float Magnitude()
+        public double Magnitude()
         {
             double result = Math.Sqrt(this.x * this.x + this.y * this.y);
 
-            return (float)result;
+            return (double)result;
 
         }
-        public float[] to_array()
+        public double[] to_array()
         {
             return new[] { x, y };
         }
@@ -115,7 +115,7 @@ namespace CSharpShaderLanguage
         /// <returns></returns>
         public void Normalize()
         {
-            var frt = (float)Math.Sqrt(this.x * this.x + this.y * this.y);
+            var frt = (double)Math.Sqrt(this.x * this.x + this.y * this.y);
 
             this.x = x / frt;
             this.y = y / frt;

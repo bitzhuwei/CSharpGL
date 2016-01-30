@@ -43,14 +43,14 @@
     <Compile Include="BuildIn\mat2.cs" />
     <Compile Include="BuildIn\mat3.cs" />
     <Compile Include="BuildIn\mat4.cs" />
-    <Compile Include="BuildIn\sampler3D.cs" />
+    <Compile Include="NotNeedToImplementException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BuildIn\Qualifiers.cs" />
-    <Compile Include="BuildIn\sampler2D.cs" />
     <Compile Include="FragmentShaderCode.cs" />
     <Compile Include="BuildIn\vec2.cs" />
     <Compile Include="BuildIn\vec3.cs" />
     <Compile Include="BuildIn\vec4.cs" />
+    <Compile Include="BuildIn\sampler.cs" />
     <Compile Include="ShaderCode.cs">
       <SubType>Code</SubType>
     </Compile>

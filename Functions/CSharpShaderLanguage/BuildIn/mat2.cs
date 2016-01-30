@@ -27,7 +27,7 @@ namespace CSharpShaderLanguage
         /// This matrix is the identity matrix scaled by <paramref name="scale"/>.
         /// </summary>
         /// <param name="scale">The scale.</param>
-        public mat2(float scale)
+        public mat2(double scale)
         {
             this.col0 = new vec2(scale, 0);
             this.col1 = new vec2(0, scale);
@@ -50,7 +50,7 @@ namespace CSharpShaderLanguage
             this.col1 = b;
         }
 
-        public mat2(float a, float b, float c, float d)
+        public mat2(double a, double b, double c, double d)
         {
             this.col0 = new vec2(a, b);
             this.col1 = new vec2(c, d);
@@ -112,7 +112,7 @@ namespace CSharpShaderLanguage
         /// <returns>
         /// The element at <paramref name="column"/> and <paramref name="row"/>.
         /// </returns>
-        public float this[int column, int row]
+        public double this[int column, int row]
         {
             get
             {
@@ -140,9 +140,9 @@ namespace CSharpShaderLanguage
         /// Returns the matrix as a flat array of elements, column major.
         /// </summary>
         /// <returns></returns>
-        public float[] to_array()
+        public double[] to_array()
         {
-            float[] result = new float[4];
+            double[] result = new double[4];
             result[0 + 0] = col0.x; result[0 + 1] = col0.y;
             result[2 + 0] = col1.x; result[2 + 1] = col1.y;
 
@@ -189,7 +189,7 @@ namespace CSharpShaderLanguage
             return result;
         }
 
-        public static mat2 operator *(mat2 lhs, float s)
+        public static mat2 operator *(mat2 lhs, double s)
         {
             return new mat2(new[]
             {

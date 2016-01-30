@@ -9,12 +9,12 @@ namespace CSharpShaderLanguage
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]
     public struct vec4
     {
-        public float x;
-        public float y;
-        public float z;
-        public float w;
+        public double x;
+        public double y;
+        public double z;
+        public double w;
 
-        public float this[int index]
+        public double this[int index]
         {
             get
             {
@@ -34,12 +34,12 @@ namespace CSharpShaderLanguage
             }
         }
 
-        public vec4(float s)
+        public vec4(double s)
         {
             x = y = z = w = s;
         }
 
-        public vec4(float x, float y, float z, float w)
+        public vec4(double x, double y, double z, double w)
         {
             this.x = x;
             this.y = y;
@@ -55,7 +55,7 @@ namespace CSharpShaderLanguage
             this.w = v.w;
         }
 
-        public vec4(vec3 xyz, float w)
+        public vec4(vec3 xyz, double w)
         {
             this.x = xyz.x;
             this.y = xyz.y;
@@ -68,12 +68,12 @@ namespace CSharpShaderLanguage
             return new vec4(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z, lhs.w + rhs.w);
         }
 
-        //public static vec4 operator +(vec4 lhs, float rhs)
+        //public static vec4 operator +(vec4 lhs, double rhs)
         //{
         //    return new vec4(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs, lhs.w + rhs);
         //}
 
-        //public static vec4 operator -(vec4 lhs, float rhs)
+        //public static vec4 operator -(vec4 lhs, double rhs)
         //{
         //    return new vec4(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs, lhs.w - rhs);
         //}
@@ -83,12 +83,12 @@ namespace CSharpShaderLanguage
             return new vec4(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z, lhs.w - rhs.w);
         }
 
-        public static vec4 operator *(vec4 self, float s)
+        public static vec4 operator *(vec4 self, double s)
         {
             return new vec4(self.x * s, self.y * s, self.z * s, self.w * s);
         }
 
-        public static vec4 operator *(float lhs, vec4 rhs)
+        public static vec4 operator *(double lhs, vec4 rhs)
         {
             return new vec4(rhs.x * lhs, rhs.y * lhs, rhs.z * lhs, rhs.w * lhs);
         }
@@ -98,25 +98,25 @@ namespace CSharpShaderLanguage
             return new vec4(rhs.x * lhs.x, rhs.y * lhs.y, rhs.z * lhs.z, rhs.w * lhs.w);
         }
 
-        public static vec4 operator /(vec4 lhs, float rhs)
+        public static vec4 operator /(vec4 lhs, double rhs)
         {
             return new vec4(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs, lhs.w / rhs);
         }
 
-        public float dot(vec4 rhs)
+        public double dot(vec4 rhs)
         {
             var result = this.x * rhs.x + this.y * rhs.y + this.z * rhs.z + this.w * rhs.w;
             return result;
         }
 
-        public float Magnitude()
+        public double Magnitude()
         {
             double result = Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w);
 
-            return (float)result;
+            return (double)result;
         }
 
-        public float[] to_array()
+        public double[] to_array()
         {
             return new[] { x, y, z, w };
         }
@@ -128,7 +128,7 @@ namespace CSharpShaderLanguage
         /// <returns></returns>
         public void Normalize()
         {
-            var frt = (float)Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+            var frt = (double)Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
 
             this.x = x / frt;
             this.y = y / frt;
