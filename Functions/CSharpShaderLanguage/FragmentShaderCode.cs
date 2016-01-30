@@ -58,7 +58,7 @@ void main(void)
         float percent;
         public override void main()
         {
-            vec4 color = texture(texture1, pass_UV) * percent + texture(texture2, pass_UV) * (1.0 - percent);
+            vec4 color = texture(texture1, pass_UV) * percent + texture(texture2, pass_UV) * (1.0f - percent);
             out_Color = color;
         }
 
