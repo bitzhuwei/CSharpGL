@@ -44,7 +44,6 @@
     <Compile Include="BuildIn\mat3.cs" />
     <Compile Include="BuildIn\mat4.cs" />
     <Compile Include="BuildIn\sampler3D.cs" />
-    <Compile Include="FieldTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BuildIn\Qualifiers.cs" />
     <Compile Include="BuildIn\sampler2D.cs" />
@@ -52,13 +51,6 @@
     <Compile Include="BuildIn\vec2.cs" />
     <Compile Include="BuildIn\vec3.cs" />
     <Compile Include="BuildIn\vec4.cs" />
-    <Compile Include="SemanticFragmentShader.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="SemanticShader.cs" />
-    <Compile Include="SemanticVertexShader.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="ShaderCode.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -69,7 +61,6 @@
     <Compile Include="VertexShaderCode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SemanticShader.cd" />
     <None Include="ShaderCode.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

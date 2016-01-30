@@ -60,15 +60,15 @@ void main(void)
     /// </summary>
     public abstract class VertexShaderCode : ShaderCode
     {
-        public override sealed string ExtensionName
-        {
-            get { return "vert"; }
-        }
+        //public override sealed string ExtensionName
+        //{
+        //    get { return "vert"; }
+        //}
 
-        public override SemanticShader Dump(string fullname)
-        {
-            return new SemanticVertexShader(this, fullname);
-        }
+        //public override SemanticShader Dump(string fullname)
+        //{
+        //    return new SemanticVertexShader(this, fullname);
+        //}
 
         protected vec4 gl_Position;
 

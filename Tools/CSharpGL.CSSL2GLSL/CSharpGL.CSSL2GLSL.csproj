@@ -41,13 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FieldTemplate.cs" />
     <Compile Include="Program.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SemanticFragmentShader.cs" />
+    <Compile Include="SemanticShader.cs" />
+    <Compile Include="SemanticVertexShader.cs" />
+    <Compile Include="ShaderCodeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="SemanticShader.cd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="readme.txt" />

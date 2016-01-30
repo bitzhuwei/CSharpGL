@@ -17,32 +17,32 @@ namespace CSharpShaderLanguage
         ///// </summary>
         //public string Filename { get; set; }
 
-        /// <summary>
-        /// 此类型的shader保存到GLSL文件时的扩展名。（不包含'.'）
-        /// </summary>
-        public abstract string ExtensionName { get; }
+        ///// <summary>
+        ///// 此类型的shader保存到GLSL文件时的扩展名。（不包含'.'）
+        ///// </summary>
+        //public abstract string ExtensionName { get; }
 
-        public string GetShaderFilename()
-        {
-            string name = this.GetType().Name;
-            if (name.ToLower().EndsWith(this.ExtensionName.ToLower()))
-            {
-                name = name.Substring(0, name.Length - this.ExtensionName.Length) + "." + ExtensionName;
-            }
-            else
-            {
-                name = name + "." + ExtensionName;
-            }
+        //public string GetShaderFilename()
+        //{
+        //    string name = this.GetType().Name;
+        //    if (name.ToLower().EndsWith(this.ExtensionName.ToLower()))
+        //    {
+        //        name = name.Substring(0, name.Length - this.ExtensionName.Length) + "." + ExtensionName;
+        //    }
+        //    else
+        //    {
+        //        name = name + "." + ExtensionName;
+        //    }
 
-            return name;
-        }
+        //    return name;
+        //}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="fullname">此shader代码所在的文件名。</param>
-        /// <returns></returns>
-        public abstract SemanticShader Dump(string fullname);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="fullname">此shader代码所在的文件名。</param>
+        ///// <returns></returns>
+        //public abstract SemanticShader Dump(string fullname);
 
         /// <summary>
         /// 每个shader都必须实现自己的main函数。

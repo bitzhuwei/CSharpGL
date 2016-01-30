@@ -1,16 +1,17 @@
-﻿using System;
+﻿using CSharpShaderLanguage;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace CSharpShaderLanguage
+namespace CSharpGL.CSSL2GLSL
 {
-    public sealed class SemanticFragmentShader : SemanticShader
+    public sealed class SemanticVertexShader : SemanticShader
     {
 
-        public SemanticFragmentShader(ShaderCode shaderCode, string fullname)
+        public SemanticVertexShader(ShaderCode shaderCode, string fullname)
             : base(shaderCode, fullname)
         {
         }
@@ -72,7 +73,6 @@ namespace CSharpShaderLanguage
                 string line = Regex.Replace(parts[parts.Length - 1], "\t", "    ");
                 preEmptyCount = Regex.Match(line, @" *").Length;
             }
-            bool isFragmentShader = this.ShaderCode.GetType().IsSubclassOf(typeof(FragmentShaderCode));
             foreach (var item in parts)
             {
                 string line = Regex.Replace(item, "\t", "    ");
@@ -80,10 +80,6 @@ namespace CSharpShaderLanguage
                 if (Regex.Match(line, @"[\t ]*").Length >= preEmptyCount)
                 {
                     line = line.Substring(preEmptyCount);
-                }
-                if (isFragmentShader)
-                {
-                    line = Regex.Replace(line, @"discard\s*\(\s*\)\s*;", "discard;");
                 }
                 mainBuilder.AppendLine(line);
             }

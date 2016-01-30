@@ -54,15 +54,15 @@ void main(void)
     /// </summary>
     public abstract class FragmentShaderCode : ShaderCode
     {
-        public override sealed string ExtensionName
-        {
-            get { return "frag"; }
-        }
+        //public override sealed string ExtensionName
+        //{
+        //    get { return "frag"; }
+        //}
 
-        public override SemanticShader Dump(string fullname)
-        {
-            return new SemanticFragmentShader(this, fullname);
-        }
+        //public override SemanticShader Dump(string fullname)
+        //{
+        //    return new SemanticFragmentShader(this, fullname);
+        //}
 
         //TODO:在CSharpShaderLanguage.Convertor项目中没有区分vertex shader和fragment shader的Dump动作。目前是认为没有下面这个discard();方法的。注意注意！以后要改啊！
         /// <summary>

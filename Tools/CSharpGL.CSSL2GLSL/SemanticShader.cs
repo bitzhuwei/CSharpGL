@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpShaderLanguage;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace CSharpShaderLanguage
+namespace CSharpGL.CSSL2GLSL
 {
     public abstract class SemanticShader
     {

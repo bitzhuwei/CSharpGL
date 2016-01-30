@@ -52,7 +52,8 @@ namespace CSharpGL.CSSL2GLSL
                     builder.AppendFormat("{0} CSSL shaders:", this.semanticShaderList.Count); builder.AppendLine();
                     foreach (var item in semanticShaderList)
                     {
-                        builder.AppendFormat("Dump {0} OK!", item.ShaderCode.GetType().Name); builder.AppendLine();
+                        PrintPreEmptySpace(builder, preEmptySpace + 4);
+                        builder.AppendFormat("Dump [{0}] to [{1}] OK!", item.ShaderCode.GetType().Name, item.ShaderCode.GetShaderFilename()); builder.AppendLine();
                     }
                 }
             }
@@ -104,7 +105,7 @@ namespace CSharpGL.CSSL2GLSL
             {
                 builder.AppendFormat("*********************Translation break off!*********************"); builder.AppendLine();
                 builder.AppendFormat("Exception for CSSL2GLSL:"); builder.AppendLine();
-                Console.WriteLine(e);
+                builder.AppendFormat(e.ToString()); builder.AppendLine();
             }
 
             string time = DateTime.Now.ToString("yyyyMMdd-HHmmss");
