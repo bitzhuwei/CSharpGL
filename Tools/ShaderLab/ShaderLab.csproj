@@ -116,7 +116,7 @@
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CSharpShaderLanguage\CSharpShaderLanguage.csproj">
+    <ProjectReference Include="..\..\Functions\CSharpShaderLanguage\CSharpShaderLanguage.csproj">
       <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
       <Name>CSharpShaderLanguage</Name>
     </ProjectReference>

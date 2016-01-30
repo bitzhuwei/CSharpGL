@@ -53,7 +53,7 @@
     <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSharpShaderLanguage\CSharpShaderLanguage.csproj">
+    <ProjectReference Include="..\..\Functions\CSharpShaderLanguage\CSharpShaderLanguage.csproj">
       <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
       <Name>CSharpShaderLanguage</Name>
     </ProjectReference>
