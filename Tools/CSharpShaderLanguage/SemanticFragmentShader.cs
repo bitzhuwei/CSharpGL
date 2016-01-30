@@ -19,7 +19,7 @@ namespace CSharpShaderLanguage
         {
             string content = File.ReadAllText(fullname);
             // class XxxVertexShader : VertexShaderCode
-            Match match = Regex.Match(content, @"class\s+" + this.shaderCode.GetType().Name + @"\s*:");
+            Match match = Regex.Match(content, @"class\s+" + this.ShaderCode.GetType().Name + @"\s*:");
             int classStart = match.Index + match.Length;
             // public override void main() { ... }
             match = Regex.Match(content.Substring(classStart),
@@ -72,7 +72,7 @@ namespace CSharpShaderLanguage
                 string line = Regex.Replace(parts[parts.Length - 1], "\t", "    ");
                 preEmptyCount = Regex.Match(line, @" *").Length;
             }
-            bool isFragmentShader = this.shaderCode.GetType().IsSubclassOf(typeof(FragmentShaderCode));
+            bool isFragmentShader = this.ShaderCode.GetType().IsSubclassOf(typeof(FragmentShaderCode));
             foreach (var item in parts)
             {
                 string line = Regex.Replace(item, "\t", "    ");

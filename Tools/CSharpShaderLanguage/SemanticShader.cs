@@ -17,7 +17,13 @@ namespace CSharpShaderLanguage
         ///// 继承自<see cref="ShaderCode"/>的具体类型。
         ///// </summary>
         //protected Type shaderCodeType;
-        protected ShaderCode shaderCode;
+        private ShaderCode shaderCode;
+
+        public ShaderCode ShaderCode
+        {
+            get { return shaderCode; }
+            protected set { shaderCode = value; }
+        }
         protected string fullname;
         protected string mainFunction;
 
@@ -60,13 +66,25 @@ namespace CSharpShaderLanguage
 
             string shaderCode = DumpShaderCode();
 
-            File.WriteAllText(this.shaderCode.GetShaderFilename(), shaderCode);
+            string targetFullname = Path.Combine(
+                (new FileInfo(fullname)).DirectoryName, this.shaderCode.GetShaderFilename());
+            if (File.Exists(targetFullname))
+            {
+                if (File.ReadAllText(targetFullname) != shaderCode)
+                {
+                    File.WriteAllText(targetFullname, shaderCode);
+                }
+            }
+            else
+            {
+                File.WriteAllText(targetFullname, shaderCode);
+            }
         }
 
         private string DumpShaderCode()
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine("#version core 150");
+            builder.AppendLine("#version 150 core");
             builder.AppendLine();
 
             foreach (var item in this.fields)

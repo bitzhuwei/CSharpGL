@@ -33,6 +33,7 @@ namespace CSharpGL.CSSL2GLSL
                     {
                         directoryName = Environment.CurrentDirectory;
                     }
+                    Console.WriteLine("Directory: {0}", directoryName);
                     string[] files = System.IO.Directory.GetFiles(directoryName, "*.cs",
                         System.IO.SearchOption.AllDirectories);
                     foreach (var fullname in files)
@@ -62,8 +63,7 @@ namespace CSharpGL.CSSL2GLSL
             objCompilerParameters.ReferencedAssemblies.Add("CSharpShaderLanguage.dll");
             objCompilerParameters.GenerateExecutable = false;
             objCompilerParameters.GenerateInMemory = true;
-            //objCompilerParameters.IncludeDebugInformation = true;
-            //objCompilerParameters.OutputAssembly = "tmptmptmp.dll";
+            objCompilerParameters.IncludeDebugInformation = true;
             CompilerResults cr = objCSharpCodePrivoder.CompileAssemblyFromFile(
                 objCompilerParameters, fullname);
 
@@ -99,6 +99,7 @@ namespace CSharpGL.CSSL2GLSL
                 foreach (var item in semanticShaderList)
                 {
                     item.Dump2File();
+                    Console.WriteLine("Dump {0} OK!", item.ShaderCode.GetType().Name);
                 }
             }
         }

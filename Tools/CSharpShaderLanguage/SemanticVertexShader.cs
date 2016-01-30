@@ -19,7 +19,7 @@ namespace CSharpShaderLanguage
         {
             string content = File.ReadAllText(fullname);
             // class XxxVertexShader : VertexShaderCode
-            Match match = Regex.Match(content, @"class\s+" + this.shaderCode.GetType().Name + @"\s*:");
+            Match match = Regex.Match(content, @"class\s+" + this.ShaderCode.GetType().Name + @"\s*:");
             int classStart = match.Index + match.Length;
             // public override void main() { ... }
             match = Regex.Match(content.Substring(classStart),
