@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.CSSL2GLSL
 {
-    static class ShaderCodeHelper
+    public static class ShaderCodeHelper
     {
         public static SemanticShader Dump(this ShaderCode shaderCode, string fullname)
         {

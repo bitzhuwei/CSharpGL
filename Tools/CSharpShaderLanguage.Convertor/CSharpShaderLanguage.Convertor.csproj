@@ -50,7 +50,6 @@
     <None Include="DemoVert.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Compile Include="FieldTemplate.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,7 +58,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShaderTemplate.cs" />
     <Compile Include="SingleFileProgress.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -95,6 +93,10 @@
     <ProjectReference Include="..\..\Functions\CSharpShaderLanguage\CSharpShaderLanguage.csproj">
       <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
       <Name>CSharpShaderLanguage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CSharpGL.CSSL2GLSL\CSharpGL.CSSL2GLSL.csproj">
+      <Project>{717f1781-f1fc-4c22-bfa9-941e19558640}</Project>
+      <Name>CSharpGL.CSSL2GLSL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

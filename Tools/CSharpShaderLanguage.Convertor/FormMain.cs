@@ -1,4 +1,5 @@
-﻿using Microsoft.CSharp;
+﻿using CSharpGL.CSSL2GLSL;
+using Microsoft.CSharp;
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
@@ -102,12 +103,10 @@ namespace CSharpShaderLanguage.Convertor
                     CSharpCodeProvider objCSharpCodePrivoder = new CSharpCodeProvider();
 
                     CompilerParameters objCompilerParameters = new CompilerParameters();
-                    objCompilerParameters.ReferencedAssemblies.Add("System.dll");
                     objCompilerParameters.ReferencedAssemblies.Add("CSharpShaderLanguage.dll");
                     objCompilerParameters.GenerateExecutable = false;
                     objCompilerParameters.GenerateInMemory = true;
-                    //objCompilerParameters.IncludeDebugInformation = true;
-                    //objCompilerParameters.OutputAssembly = "tmptmptmp.dll";
+                    objCompilerParameters.IncludeDebugInformation = true;
                     CompilerResults cr = objCSharpCodePrivoder.CompileAssemblyFromFile(
                         objCompilerParameters, fullname);
 
@@ -122,31 +121,30 @@ namespace CSharpShaderLanguage.Convertor
                     }
                     else
                     {
-                        List<ShaderTemplate> shaderTemplateList = new List<ShaderTemplate>();
+                        List<SemanticShader> semanticShaderList = new List<SemanticShader>();
                         Assembly assembly = cr.CompiledAssembly;
                         Type[] types = assembly.GetTypes();
                         foreach (var type in types)
                         {
-                            if (type.IsSubclassOf(typeof(VertexShaderCode))
-                                || type.IsSubclassOf(typeof(FragmentShaderCode)))
+                            if (type.IsSubclassOf(typeof(ShaderCode)))
                             {
-                                ShaderTemplate template = new ShaderTemplate(type, fullname);
-                                shaderTemplateList.Add(template);
+                                ShaderCode shaderCode = Activator.CreateInstance(type) as ShaderCode;
+                                SemanticShader semanticShader = shaderCode.Dump(fullname);
+                                semanticShaderList.Add(semanticShader);
                             }
                         }
-                        foreach (var item in shaderTemplateList)
+
+                        //var semanticShaderList =
+                        //    from type in cr.CompiledAssembly.GetTypes()
+                        //    where type.IsSubclassOf(typeof(ShaderCode))
+                        //    select (Activator.CreateInstance(type) as ShaderCode).Dump(fullname);
+
+                        foreach (var item in semanticShaderList)
                         {
                             item.Dump2File();
                         }
+
                     }
-                    //if (data.generateGlyphList)
-                    //{
-                    //    FontTexturePNGPrinter printer = new FontTexturePNGPrinter(ttfTexture);
-                    //    foreach (var progress in printer.Print(fontFullname, data.maxTexturWidth))
-                    //    {
-                    //        bgWorker.ReportProgress(fileIndex * magicNumber / fileCount, progress);
-                    //    }
-                    //}
                 }
                 catch (Exception ex)
                 {
@@ -167,6 +165,97 @@ namespace CSharpShaderLanguage.Convertor
                 bgWorker.ReportProgress(fileIndex++ * magicNumber / fileCount, thisFileDone);
             }
         }
+
+        //private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
+        //{
+        //    WorkerData data = e.Argument as WorkerData;
+        //    int fileCount = data.csharpShaderFiles.Length;
+        //    int fileIndex = 1;
+        //    const int magicNumber = 100;
+
+        //    WorkerResult result = new WorkerResult(null, data);
+        //    e.Result = result;
+
+        //    StringBuilder builder = new StringBuilder();
+
+        //    foreach (var fullname in this.selectedCSharpShaderFiles)
+        //    {
+        //        builder.Append(fileIndex); builder.Append("/"); builder.Append(fileCount);
+        //        builder.Append(": "); builder.AppendLine(fullname);
+
+        //        FileInfo fileInfo = new FileInfo(fullname);
+        //        string filename = fileInfo.Name;
+
+        //        try
+        //        {
+        //            CSharpCodeProvider objCSharpCodePrivoder = new CSharpCodeProvider();
+
+        //            CompilerParameters objCompilerParameters = new CompilerParameters();
+        //            objCompilerParameters.ReferencedAssemblies.Add("System.dll");
+        //            objCompilerParameters.ReferencedAssemblies.Add("CSharpShaderLanguage.dll");
+        //            objCompilerParameters.GenerateExecutable = false;
+        //            objCompilerParameters.GenerateInMemory = true;
+        //            //objCompilerParameters.IncludeDebugInformation = true;
+        //            //objCompilerParameters.OutputAssembly = "tmptmptmp.dll";
+        //            CompilerResults cr = objCSharpCodePrivoder.CompileAssemblyFromFile(
+        //                objCompilerParameters, fullname);
+
+        //            if (cr.Errors.HasErrors)
+        //            {
+        //                builder.AppendLine(string.Format("编译错误：{0}", fullname));
+        //                foreach (CompilerError err in cr.Errors)
+        //                {
+        //                    Console.WriteLine(err.ErrorText);
+        //                    builder.AppendLine(err.ErrorText);
+        //                }
+        //            }
+        //            else
+        //            {
+        //                List<ShaderTemplate> shaderTemplateList = new List<ShaderTemplate>();
+        //                Assembly assembly = cr.CompiledAssembly;
+        //                Type[] types = assembly.GetTypes();
+        //                foreach (var type in types)
+        //                {
+        //                    if (type.IsSubclassOf(typeof(VertexShaderCode))
+        //                        || type.IsSubclassOf(typeof(FragmentShaderCode)))
+        //                    {
+        //                        ShaderTemplate template = new ShaderTemplate(type, fullname);
+        //                        shaderTemplateList.Add(template);
+        //                    }
+        //                }
+        //                foreach (var item in shaderTemplateList)
+        //                {
+        //                    item.Dump2File();
+        //                }
+        //            }
+        //            //if (data.generateGlyphList)
+        //            //{
+        //            //    FontTexturePNGPrinter printer = new FontTexturePNGPrinter(ttfTexture);
+        //            //    foreach (var progress in printer.Print(fontFullname, data.maxTexturWidth))
+        //            //    {
+        //            //        bgWorker.ReportProgress(fileIndex * magicNumber / fileCount, progress);
+        //            //    }
+        //            //}
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            string message = string.Format("{0}", ex);
+        //            builder.AppendLine(message);
+        //            result.builder = builder;
+        //        }
+
+        //        if (result.builder != builder) { builder.AppendLine("sucessfully done!"); }
+        //        builder.AppendLine();
+
+        //        SingleFileProgress thisFileDone = new SingleFileProgress()
+        //        {
+        //            filename = filename,
+        //            progress = magicNumber,
+        //            message = string.Format("All is done for {0}", fileInfo.Name),
+        //        };
+        //        bgWorker.ReportProgress(fileIndex++ * magicNumber / fileCount, thisFileDone);
+        //    }
+        //}
 
         private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
