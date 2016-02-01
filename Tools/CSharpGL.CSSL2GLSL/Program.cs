@@ -183,11 +183,12 @@ namespace CSharpGL.CSSL2GLSL
                 //}
 
                 // 下面是Linq的写法。
-                var result = from item in
+                var result = from semanticShader in
                                  (from type in cr.CompiledAssembly.GetTypes()
                                   where type.IsSubclassOf(typeof(CSShaderCode))
                                   select (Activator.CreateInstance(type) as CSShaderCode).Dump(fullname))
-                             select new SemanticShaderInfo() { codeUpdated = item.Dump2File(), shader = item };
+                             select new SemanticShaderInfo() 
+                             { codeUpdated = semanticShader.Dump2File(), shader = semanticShader };
 
                 translationInfo.semanticShaderList = result.ToList();
             }
