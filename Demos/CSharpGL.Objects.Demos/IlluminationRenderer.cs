@@ -1,66 +1,10 @@
-﻿﻿<#@ template debug="false" hostspecific="false" language="C#" #>
-<#@ output extension=".cs" #>
-<# string ShaderName = "DemoShader"; #>
-<# string ClassName = ShaderName + "Renderer"; #>
-<# string VertexShaderName = ShaderName + "Vert"; #>
-<# string FragmentShaderName = ShaderName + "Frag"; #>
-#if DEBUG
-namespace CSharpShaders
-{
-	// 注意：请把CSharp Shader代码放到单独的文件，并且不要加任何其他的using ...;
-    using CSharpShadingLanguage;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-    /// <summary>
-    /// 一个<see cref="<#= VertexShaderName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
-    /// 这就是C#Shader形式的vertex shader。
-    /// </summary>
-    class <#= VertexShaderName #> : VertexCSShaderCode
-    {
-        [In]
-        vec3 in_Position;
-        [In]
-        vec3 in_Color;
-
-        [Out]
-        vec4 pass_Color;
-
-        [Uniform]
-        mat4 modelMatrix;
-        [Uniform]
-        mat4 viewMatrix;
-        [Uniform]
-        mat4 projectionMatrix;
-
-        public override void main()
-        {
-            gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);
-
-            pass_Color = vec4(in_Color, 1.0f);
-        }
-    }
-
-    /// <summary>
-    /// 一个<see cref="<#= FragmentShaderName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
-    /// 这就是C#Shader形式的fragment shader。
-    /// </summary>
-    class <#= FragmentShaderName #> : FragmentCSShaderCode
-    {
-        [In]
-        vec4 pass_Color;
-
-        [Out]
-        vec4 out_Color;
-
-        public override void main()
-        {
-            out_Color = pass_Color;
-        }
-    }
-}
-#endif
-
-// 注意：请把ShaderRenderer代码放到单独的文件，并且不要加任何其他的using ...;
-namespace ShaderLab
+namespace CSharpGL.Objects.Demos
 {
     using CSharpGL;
     using CSharpGL.Objects;
@@ -68,15 +12,10 @@ namespace ShaderLab
     using CSharpGL.Objects.Shaders;
     using CSharpGL.Objects.VertexBuffers;
     using GLM;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Windows.Forms;
     /// <summary>
-    /// 一个<see cref="<#= ClassName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="IlluminationRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// </summary>
-    public class <#= ClassName #> : RendererBase
+    public class IlluminationRenderer : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -117,15 +56,15 @@ namespace ShaderLab
 
         private IModel model;
 
-        public <#= ClassName #>(IModel model)
+        public IlluminationRenderer(IModel model)
         {
             this.model = model;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoShader.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoShader.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"Illumination.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"Illumination.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -260,4 +199,6 @@ namespace ShaderLab
             }
         }
     }
+
+    
 }

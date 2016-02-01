@@ -1,0 +1,131 @@
+﻿<#@ assembly name="System.Core"#>
+<#@ assembly name="EnvDTE"#>
+<#@ import namespace="System.Collections.Generic"#>
+<#@ import namespace="System.IO"#>
+<#@ import namespace="System.Text"#>
+<#@ import namespace="Microsoft.VisualStudio.TextTemplating"#>
+
+<#+
+
+// T4 Template Block manager for handling multiple file outputs more easily.
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+// This source code is made available under the terms of the Microsoft Public License (MS-PL)
+
+// Manager class records the various blocks so it can split them up
+class Manager
+{
+    public struct Block {
+        public String Name;
+        public int Start, Length;
+    }
+
+    public List<Block> blocks = new List<Block>();
+    public Block currentBlock;
+    public Block footerBlock = new Block();
+    public Block headerBlock = new Block();
+    public ITextTemplatingEngineHost host;
+    public ManagementStrategy strategy;
+    public StringBuilder template;
+    public String OutputPath { get; set; }
+
+    public Manager(ITextTemplatingEngineHost host, StringBuilder template, bool commonHeader) {
+        this.host = host;
+        this.template = template;
+        OutputPath = String.Empty;
+        strategy = ManagementStrategy.Create(host);
+    }
+
+    public void StartBlock(String name) {
+        currentBlock = new Block { Name = name, Start = template.Length };
+    }
+
+    public void StartFooter() {
+        footerBlock.Start = template.Length;
+    }
+
+    public void EndFooter() {
+        footerBlock.Length = template.Length - footerBlock.Start;
+    }
+
+    public void StartHeader() {
+        headerBlock.Start = template.Length;
+    }
+
+    public void EndHeader() {
+        headerBlock.Length = template.Length - headerBlock.Start;
+    }    
+
+    public void EndBlock() {
+        currentBlock.Length = template.Length - currentBlock.Start;
+        blocks.Add(currentBlock);
+    }
+
+    public void Process(bool split) {
+        String header = template.ToString(headerBlock.Start, headerBlock.Length);
+        String footer = template.ToString(footerBlock.Start, footerBlock.Length);
+        blocks.Reverse();
+        foreach(Block block in blocks) {
+            String fileName = Path.Combine(OutputPath, block.Name);
+            if (split) {
+                String content = header + template.ToString(block.Start, block.Length) + footer;
+                strategy.CreateFile(fileName, content);
+                template.Remove(block.Start, block.Length);
+            } else {
+                strategy.DeleteFile(fileName);
+            }
+        }
+    }
+}
+
+class ManagementStrategy
+{
+    internal static ManagementStrategy Create(ITextTemplatingEngineHost host) {
+        return (host is IServiceProvider) ? new VSManagementStrategy(host) : new ManagementStrategy(host);
+    }
+
+    internal ManagementStrategy(ITextTemplatingEngineHost host) { }
+
+    internal virtual void CreateFile(String fileName, String content) {
+        File.WriteAllText(fileName, content);
+    }
+
+    internal virtual void DeleteFile(String fileName) {
+        if (File.Exists(fileName))
+            File.Delete(fileName);
+    }
+}
+
+class VSManagementStrategy : ManagementStrategy
+{
+    private EnvDTE.ProjectItem templateProjectItem;
+
+    internal VSManagementStrategy(ITextTemplatingEngineHost host) : base(host) {
+        IServiceProvider hostServiceProvider = (IServiceProvider)host;
+        if (hostServiceProvider == null)
+            throw new ArgumentNullException("Could not obtain hostServiceProvider");
+
+        EnvDTE.DTE dte = (EnvDTE.DTE)hostServiceProvider.GetService(typeof(EnvDTE.DTE));
+        if (dte == null)
+            throw new ArgumentNullException("Could not obtain DTE from host");
+
+        templateProjectItem = dte.Solution.FindProjectItem(host.TemplateFile);
+    }
+
+    internal override void CreateFile(String fileName, String content) {
+        base.CreateFile(fileName, content);
+        ((EventHandler)delegate { templateProjectItem.ProjectItems.AddFromFile(fileName); }).BeginInvoke(null, null, null, null);
+    }
+
+    internal override void DeleteFile(String fileName) {
+        ((EventHandler)delegate { FindAndDeleteFile(fileName); }).BeginInvoke(null, null, null, null);
+    }
+
+    private void FindAndDeleteFile(String fileName) {
+        foreach(EnvDTE.ProjectItem projectItem in templateProjectItem.ProjectItems) {
+            if (projectItem.get_FileNames(0) == fileName) {
+                projectItem.Delete();
+                return;
+            }
+        }
+    }
+}#>

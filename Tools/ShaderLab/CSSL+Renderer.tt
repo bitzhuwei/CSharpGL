@@ -1,20 +1,29 @@
-﻿
-
-
-
-
-
-#if DEBUG
+﻿﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ include file=".\Dump2MultipleFiles.ttinclude" #>
+<# string ShaderName = "DemoShader"; #>
+<# string ClassName = ShaderName + "Renderer"; #>
+<# string VertexShaderName = ShaderName + "Vert"; #>
+<# string FragmentShaderName = ShaderName + "Frag"; #>
+/*
+本文件无用。
+*/
+<# var manager = new Manager(Host, GenerationEnvironment, true) { OutputPath = Path.GetDirectoryName(Host.TemplateFile)}; #>
+<#
+    manager.StartBlock(ShaderName + ".cs");
+#>
 namespace CSharpShaders
 {
+#if DEBUG
+
 	// 注意：请把CSharp Shader代码放到单独的文件，并且不要加任何其他的using ...;
     using CSharpShadingLanguage;
 
     /// <summary>
-    /// 一个<see cref="DemoShaderVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="<#= VertexShaderName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的vertex shader。
     /// </summary>
-    class DemoShaderVert : VertexCSShaderCode
+    class <#= VertexShaderName #> : VertexCSShaderCode
     {
         [In]
         vec3 in_Position;
@@ -40,10 +49,10 @@ namespace CSharpShaders
     }
 
     /// <summary>
-    /// 一个<see cref="DemoShaderFrag"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="<#= FragmentShaderName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的fragment shader。
     /// </summary>
-    class DemoShaderFrag : FragmentCSShaderCode
+    class <#= FragmentShaderName #> : FragmentCSShaderCode
     {
         [In]
         vec4 pass_Color;
@@ -56,10 +65,15 @@ namespace CSharpShaders
             out_Color = pass_Color;
         }
     }
-}
-#endif
 
-// 注意：请把ShaderRenderer代码放到单独的文件，并且不要加任何其他的using ...;
+#endif
+}
+<#
+    manager.EndBlock();
+#>
+<#
+    manager.StartBlock(ClassName + ".cs");
+#>
 namespace ShaderLab
 {
     using CSharpGL;
@@ -74,9 +88,9 @@ namespace ShaderLab
     using System.Threading.Tasks;
     using System.Windows.Forms;
     /// <summary>
-    /// 一个<see cref="DemoShaderRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="<#= ClassName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// </summary>
-    public class DemoShaderRenderer : RendererBase
+    public class <#= ClassName #> : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -117,7 +131,7 @@ namespace ShaderLab
 
         private IModel model;
 
-        public DemoShaderRenderer(IModel model)
+        public <#= ClassName #>(IModel model)
         {
             this.model = model;
         }
@@ -261,3 +275,9 @@ namespace ShaderLab
         }
     }
 }
+
+<#
+    manager.EndBlock();
+
+    manager.Process(true);
+#>

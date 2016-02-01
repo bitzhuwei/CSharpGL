@@ -47,12 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SomeRenderer.cs">
+    <Content Include="CSSL+Renderer.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CSSL+Renderer.cs</LastGenOutput>
+    </Content>
+    <Content Include="readme.txt" />
+    <Compile Include="CSSL+Renderer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SomeRenderer.tt</DependentUpon>
+      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
     </Compile>
-    <Content Include="readme.txt" />
+    <Compile Include="DemoShader.cs">
+      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DemoShaderRenderer.cs">
+      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
+    </Compile>
     <Compile Include="FormShaderLab.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,10 +77,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="SomeRenderer.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SomeRenderer.cs</LastGenOutput>
-    </Content>
     <EmbeddedResource Include="FormShaderLab.resx">
       <DependentUpon>FormShaderLab.cs</DependentUpon>
     </EmbeddedResource>
@@ -95,6 +101,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Dump2MultipleFiles.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

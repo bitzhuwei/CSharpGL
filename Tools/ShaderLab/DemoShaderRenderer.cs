@@ -1,18 +1,20 @@
-﻿using CSharpGL;
-using CSharpGL.Objects;
-using CSharpGL.Objects.Models;
-using CSharpGL.Objects.Shaders;
-using CSharpGL.Objects.VertexBuffers;
-using GLM;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 namespace ShaderLab
 {
-    class RendererTemplate : SceneElementBase
+    using CSharpGL;
+    using CSharpGL.Objects;
+    using CSharpGL.Objects.Models;
+    using CSharpGL.Objects.Shaders;
+    using CSharpGL.Objects.VertexBuffers;
+    using GLM;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    /// <summary>
+    /// 一个<see cref="DemoShaderRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// </summary>
+    public class DemoShaderRenderer : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -53,19 +55,18 @@ namespace ShaderLab
 
         private IModel model;
 
-        public RendererTemplate(IModel model)
+        public DemoShaderRenderer(IModel model)
         {
             this.model = model;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"ObjModelElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"ObjModelElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoShader.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoShader.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
-
         }
 
         protected void InitializeVAO()
@@ -137,16 +138,12 @@ namespace ShaderLab
             program.Unbind();
         }
 
-
-
-        protected override void CleanUnmanagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             if (this.vertexArrayObject != null)
             {
                 this.vertexArrayObject.Dispose();
             }
-
-            base.CleanUnmanagedRes();
         }
 
         public void DecreaseVertexCount()
@@ -156,7 +153,10 @@ namespace ShaderLab
                 if (renderer != null)
                 {
                     if (renderer.ElementCount > 0)
+                    {
                         renderer.ElementCount--;
+                    }
+                    return;
                 }
             }
             {
@@ -164,7 +164,10 @@ namespace ShaderLab
                 if (renderer != null)
                 {
                     if (renderer.VertexCount > 0)
+                    {
                         renderer.VertexCount--;
+                    }
+                    return;
                 }
             }
         }
@@ -176,7 +179,10 @@ namespace ShaderLab
                 if (renderer != null)
                 {
                     if (renderer.ElementCount < this.elementCount)
+                    {
                         renderer.ElementCount++;
+                    }
+                    return;
                 }
             }
             {
@@ -184,9 +190,13 @@ namespace ShaderLab
                 if (renderer != null)
                 {
                     if (renderer.VertexCount < this.elementCount)
+                    {
                         renderer.VertexCount++;
+                    }
+                    return;
                 }
             }
         }
     }
 }
+
