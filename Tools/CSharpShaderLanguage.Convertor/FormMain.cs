@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSharpShaderLanguage.Convertor
+namespace CSharpShadingLanguage.Convertor
 {
     public partial class FormMain : Form
     {

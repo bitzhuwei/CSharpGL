@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpShaderLanguage.NeverUsed
+namespace CSharpShadingLanguage.NeverUsed
 {
 #if DEBUG
     /// <summary>

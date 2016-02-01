@@ -59,9 +59,9 @@
     <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Functions\CSharpShaderLanguage\CSharpShaderLanguage.csproj">
+    <ProjectReference Include="..\..\Functions\CSharpShaderLanguage\CSharpShadingLanguage.csproj">
       <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
-      <Name>CSharpShaderLanguage</Name>
+      <Name>CSharpShadingLanguage</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

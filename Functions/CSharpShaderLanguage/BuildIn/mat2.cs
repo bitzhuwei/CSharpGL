@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace CSharpShaderLanguage
+namespace CSharpShadingLanguage
 {
     /// <summary>
     /// Represents a 2x2 matrix.

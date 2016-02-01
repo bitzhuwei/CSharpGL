@@ -1,4 +1,4 @@
-﻿namespace CSharpShaderLanguage.Convertor
+﻿namespace CSharpShadingLanguage.Convertor
 {
     partial class FormMain
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpShaderLanguage.ConsoleTest
+namespace CSharpShadingLanguage.ConsoleTest
 {
     class DemoVert : VertexShaderCode
     {

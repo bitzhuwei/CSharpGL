@@ -90,9 +90,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Functions\CSharpShaderLanguage\CSharpShaderLanguage.csproj">
+    <ProjectReference Include="..\..\Functions\CSharpShaderLanguage\CSharpShadingLanguage.csproj">
       <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
-      <Name>CSharpShaderLanguage</Name>
+      <Name>CSharpShadingLanguage</Name>
     </ProjectReference>
     <ProjectReference Include="..\CSharpGL.CSSL2GLSL\CSharpGL.CSSL2GLSL.csproj">
       <Project>{717f1781-f1fc-4c22-bfa9-941e19558640}</Project>

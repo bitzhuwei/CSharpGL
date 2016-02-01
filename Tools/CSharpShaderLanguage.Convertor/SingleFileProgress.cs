@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpShaderLanguage.Convertor
+namespace CSharpShadingLanguage.Convertor
 {
 
     class SingleFileProgress

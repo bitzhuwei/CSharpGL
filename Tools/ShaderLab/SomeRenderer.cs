@@ -4,16 +4,11 @@
 
 
 
-
-
-
-
-
-
 #if DEBUG
-namespace Shader
+namespace CSharpShaders
 {
-    using CSharpShaderLanguage;
+	// 注意：请把CSharp Shader代码放到单独的文件，并且不要加任何其他的using ...;
+    using CSharpShadingLanguage;
 
     /// <summary>
     /// 一个<see cref="DemoShaderVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
@@ -43,13 +38,6 @@ namespace Shader
             pass_Color = vec4(in_Color, 1.0f);
         }
     }
-}
-#endif
-
-#if DEBUG
-namespace Shader
-{
-    using CSharpShaderLanguage;
 
     /// <summary>
     /// 一个<see cref="DemoShaderFrag"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
@@ -71,6 +59,7 @@ namespace Shader
 }
 #endif
 
+// 注意：请把ShaderRenderer代码放到单独的文件，并且不要加任何其他的using ...;
 namespace ShaderLab
 {
     using CSharpGL;

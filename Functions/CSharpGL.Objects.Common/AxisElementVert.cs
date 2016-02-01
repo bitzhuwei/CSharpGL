@@ -1,8 +1,8 @@
 ﻿namespace CSharpGL.Objects.Common
 {
-    namespace Shader
+    namespace CSharpShaders
     {
-        using CSharpShaderLanguage;
+        using CSharpShadingLanguage;
 
         /// <summary>
         /// 一个<see cref="AxisElementRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CSharpShaderLanguage.Convertor.Properties
+namespace CSharpShadingLanguage.Convertor.Properties
 {
 
 

@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace CSharpShaderLanguage
+namespace CSharpShadingLanguage
 {
     /// <summary>
     /// Represents a four dimensional vector.
