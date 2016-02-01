@@ -24,7 +24,19 @@ namespace CSharpGL.CSSL2GLSL
         {
             public string fullname;
             public CompilerErrorCollection errors;
-            public List<SemanticShaderInfo> semanticShaderList = new List<SemanticShaderInfo>();
+            public IList<SemanticShaderInfo> semanticShaderList = new List<SemanticShaderInfo>();
+
+            public int GetUpdatedShaderCount()
+            {
+                if (errors != null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return (from item in this.semanticShaderList where item.codeUpdated select item).Count();
+                }
+            }
 
             public int GetCompiledShaderCount()
             {
@@ -76,9 +88,8 @@ namespace CSharpGL.CSSL2GLSL
 
         static void Main(string[] args)
         {
-            //PrintComponents();
-            //return;
             StringBuilder builder = new StringBuilder();
+            string logFullname = string.Empty;
 
             try
             {
@@ -101,14 +112,21 @@ namespace CSharpGL.CSSL2GLSL
                 }
 
                 builder.AppendFormat("Directory: {0}", directoryName); builder.AppendLine();
-                var CSSLCount = (from item in translationInfoList
-                                 select item.GetCompiledShaderCount()).Sum();
-                builder.AppendFormat("Found {0} CSSL shaders.", CSSLCount); builder.AppendLine();
+                var foundCSSLCount = (from item in translationInfoList select item.GetCompiledShaderCount()).Sum();
+                var updatedCSSLCount = (from item in translationInfoList select item.GetUpdatedShaderCount()).Sum();
+                builder.AppendFormat("Found {0} CSSL shaders, and {0} of them are updated as needed.",
+                    foundCSSLCount, updatedCSSLCount);
+                builder.AppendLine();
                 foreach (var item in translationInfoList)
                 {
                     item.Append(builder, 4);
                 }
                 builder.AppendFormat("Translation all done!"); builder.AppendLine();
+
+                string time = DateTime.Now.ToString("yyyyMMdd-HHmmss");
+                string logName = string.Format("CSSL2GLSLDump{0}.log", time);
+                logFullname = Path.Combine(Environment.CurrentDirectory, logName);
+
             }
             catch (Exception e)
             {
@@ -117,85 +135,11 @@ namespace CSharpGL.CSSL2GLSL
                 builder.AppendFormat(e.ToString()); builder.AppendLine();
             }
 
-            string time = DateTime.Now.ToString("yyyyMMdd-HHmmss");
-            string logName = string.Format("CSSL2GLSLDump{0}.log", time);
-            string logFullname = Path.Combine(Environment.CurrentDirectory, logName);
             File.WriteAllText(logFullname, builder.ToString());
             Process.Start("explorer", logFullname);
             Process.Start("explorer", "/select," + logFullname);
         }
 
-        /// <summary>
-        /// 给出vec2 vec3 vec4内部所有可能的组合形式。运行一下看结果就明白了，不用啃这个代码。
-        /// </summary>
-        private static void PrintComponents()
-        {
-            List<char[]> list = new List<char[]>();
-            list.Add(new char[] { 'x', 'y', 'z', 'w' });
-            list.Add(new char[] { 'r', 'g', 'b', 'a' });
-            list.Add(new char[] { 's', 't', 'p', 'q' });
-            for (int vLength = 2; vLength < 5; vLength++)
-            {
-                StringBuilder builder = new StringBuilder();
-
-                foreach (var components in list)
-                {
-                    for (int i = 0; i < vLength; i++)
-                    {
-                        builder.AppendFormat("public float {0} {{ get {{ return 0.0f; }} }}", components[i], vLength);
-                        builder.AppendLine();
-                    }
-                    builder.AppendLine();
-
-                    for (int i = 0; i < vLength; i++)
-                    {
-                        for (int j = 0; j < vLength; j++)
-                        {
-                            builder.AppendFormat("public vec2 {0}{1} {{ get {{ return default(vec2); }} }}", components[i], components[j], vLength);
-                            builder.AppendLine();
-                        }
-                    }
-                    builder.AppendLine();
-
-                    if (vLength < 3) { continue; }
-
-                    for (int i = 0; i < vLength; i++)
-                    {
-                        for (int j = 0; j < vLength; j++)
-                        {
-                            for (int k = 0; k < vLength; k++)
-                            {
-                                builder.AppendFormat("public vec3 {0}{1}{2} {{ get {{ return default(vec3); }} }}", components[i], components[j], components[k], vLength);
-                                builder.AppendLine();
-                            }
-                        }
-                    }
-                    builder.AppendLine();
-
-                    if (vLength < 4) { continue; }
-
-                    for (int i = 0; i < vLength; i++)
-                    {
-                        for (int j = 0; j < vLength; j++)
-                        {
-                            for (int k = 0; k < vLength; k++)
-                            {
-                                for (int m = 0; m < vLength; m++)
-                                {
-                                    builder.AppendFormat("public vec4 {0}{1}{2}{3} {{ get {{ return default(vec4); }} }}", components[i], components[j], components[k], components[m], vLength);
-                                    builder.AppendLine();
-                                }
-                            }
-                        }
-                    }
-
-                }
-
-                builder.AppendLine();
-
-                File.WriteAllText("vec" + vLength + ".txt", builder.ToString());
-            }
-        }
 
         private static TranslationInfo TranslateCSharpShaderLanguage2GLSL(string fullname)
         {
@@ -204,7 +148,6 @@ namespace CSharpGL.CSSL2GLSL
             CSharpCodeProvider objCSharpCodePrivoder = new CSharpCodeProvider();
 
             CompilerParameters objCompilerParameters = new CompilerParameters();
-            //objCompilerParameters.ReferencedAssemblies.Add("System.dll");
             objCompilerParameters.ReferencedAssemblies.Add("CSharpShaderLanguage.dll");
             objCompilerParameters.GenerateExecutable = false;
             objCompilerParameters.GenerateInMemory = true;
@@ -218,32 +161,35 @@ namespace CSharpGL.CSSL2GLSL
             }
             else
             {
-                List<SemanticShader> semanticShaderList = new List<SemanticShader>();
-                Assembly assembly = cr.CompiledAssembly;
-                Type[] types = assembly.GetTypes();
-                foreach (var type in types)
-                {
-                    if (type.IsSubclassOf(typeof(CSShaderCode)))
-                    {
-                        CSShaderCode shaderCode = Activator.CreateInstance(type) as CSShaderCode;
-                        SemanticShader semanticShader = shaderCode.Dump(fullname);
-                        semanticShaderList.Add(semanticShader);
-                    }
-                }
+                //List<SemanticShader> semanticShaderList = new List<SemanticShader>();
+                //Assembly assembly = cr.CompiledAssembly;
+                //Type[] types = assembly.GetTypes();
+                //foreach (var type in types)
+                //{
+                //    if (type.IsSubclassOf(typeof(CSShaderCode)))
+                //    {
+                //        CSShaderCode shaderCode = Activator.CreateInstance(type) as CSShaderCode;
+                //        SemanticShader semanticShader = shaderCode.Dump(fullname);
+                //        semanticShaderList.Add(semanticShader);
+                //    }
+                //}
 
-                //var semanticShaderList =
-                //    from type in cr.CompiledAssembly.GetTypes()
-                //    where type.IsSubclassOf(typeof(ShaderCode))
-                //    select (Activator.CreateInstance(type) as ShaderCode).Dump(fullname);
+                //foreach (var item in semanticShaderList)
+                //{
+                //    SemanticShaderInfo info = new SemanticShaderInfo();
+                //    info.codeUpdated = item.Dump2File();
+                //    info.shader = item;
+                //    translationInfo.semanticShaderList.Add(info);
+                //}
 
-                foreach (var item in semanticShaderList)
-                {
-                    SemanticShaderInfo info = new SemanticShaderInfo();
-                    info.codeUpdated = item.Dump2File();
-                    info.shader = item;
-                    translationInfo.semanticShaderList.Add(info);
-                }
+                // 下面是Linq的写法。
+                var result = from item in
+                                 (from type in cr.CompiledAssembly.GetTypes()
+                                  where type.IsSubclassOf(typeof(CSShaderCode))
+                                  select (Activator.CreateInstance(type) as CSShaderCode).Dump(fullname))
+                             select new SemanticShaderInfo() { codeUpdated = item.Dump2File(), shader = item };
 
+                translationInfo.semanticShaderList = result.ToList();
             }
 
             return translationInfo;

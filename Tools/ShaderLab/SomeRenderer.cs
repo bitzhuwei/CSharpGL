@@ -4,85 +4,90 @@
 
 
 
-using CSharpGL;
-using CSharpGL.Objects;
-using CSharpGL.Objects.Models;
-using CSharpGL.Objects.Shaders;
-using CSharpGL.Objects.VertexBuffers;
-using GLM;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
+
+
+
+
+
+#if DEBUG
+namespace Shader
+{
+    using CSharpShaderLanguage;
+
+    /// <summary>
+    /// 一个<see cref="DemoShaderVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 这就是C#Shader形式的vertex shader。
+    /// </summary>
+    class DemoShaderVert : VertexCSShaderCode
+    {
+        [In]
+        vec3 in_Position;
+        [In]
+        vec3 in_Color;
+
+        [Out]
+        vec4 pass_Color;
+
+        [Uniform]
+        mat4 modelMatrix;
+        [Uniform]
+        mat4 viewMatrix;
+        [Uniform]
+        mat4 projectionMatrix;
+
+        public override void main()
+        {
+            gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);
+
+            pass_Color = vec4(in_Color, 1.0f);
+        }
+    }
+}
+#endif
+
+#if DEBUG
+namespace Shader
+{
+    using CSharpShaderLanguage;
+
+    /// <summary>
+    /// 一个<see cref="DemoShaderFrag"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 这就是C#Shader形式的fragment shader。
+    /// </summary>
+    class DemoShaderFrag : FragmentCSShaderCode
+    {
+        [In]
+        vec4 pass_Color;
+
+        [Out]
+        vec4 out_Color;
+
+        public override void main()
+        {
+            out_Color = pass_Color;
+        }
+    }
+}
+#endif
 
 namespace ShaderLab
 {
-#if DEBUG
-    namespace Shader
-    {
-        using CSharpShaderLanguage;
-
-		/// <summary>
-		/// 一个<see cref="AxisElementRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
-		/// 这就是C#Shader形式的vertex shader。
-		/// </summary>
-        class AxisElementVert : VertexCSShaderCode
-        {
-            [In]
-            vec3 in_Position;
-            [In]
-            vec3 in_Color;
-
-            [Out]
-            vec4 pass_Color;
-
-            [Uniform]
-            mat4 modelMatrix;
-            [Uniform]
-            mat4 viewMatrix;
-            [Uniform]
-            mat4 projectionMatrix;
-
-            public override void main()
-            {
-                gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);
-
-                pass_Color = vec4(in_Color, 1.0f);
-            }
-        }
-	}
-#endif
-
-#if DEBUG
-	namespace Shader
-    {
-        using CSharpShaderLanguage;
-
-		/// <summary>
-		/// 一个<see cref="AxisElementRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
-		/// 这就是C#Shader形式的fragment shader。
-		/// </summary>
-        class AxisElementFrag : FragmentCSShaderCode
-        {
-            [In]
-            vec4 pass_Color;
-
-            [Out]
-            vec4 out_Color;
-
-            public override void main()
-            {
-                out_Color = pass_Color;
-            }
-        }
-    }
-#endif
-
-	/// <summary>
-	/// 一个<see cref="AxisElementRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
-	/// </summary>
-    public class AxisElementRenderer : RendererBase
+    using CSharpGL;
+    using CSharpGL.Objects;
+    using CSharpGL.Objects.Models;
+    using CSharpGL.Objects.Shaders;
+    using CSharpGL.Objects.VertexBuffers;
+    using GLM;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    /// <summary>
+    /// 一个<see cref="DemoShaderRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// </summary>
+    public class DemoShaderRenderer : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -123,15 +128,15 @@ namespace ShaderLab
 
         private IModel model;
 
-        public AxisElementRenderer(IModel model)
+        public DemoShaderRenderer(IModel model)
         {
             this.model = model;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"AxisElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"AxisElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoShader.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoShader.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -222,9 +227,9 @@ namespace ShaderLab
                 {
                     if (renderer.ElementCount > 0)
                     {
-						renderer.ElementCount--;
-					}
-					return;
+                        renderer.ElementCount--;
+                    }
+                    return;
                 }
             }
             {
@@ -233,9 +238,9 @@ namespace ShaderLab
                 {
                     if (renderer.VertexCount > 0)
                     {
-						renderer.VertexCount--;
-					}
-					return;
+                        renderer.VertexCount--;
+                    }
+                    return;
                 }
             }
         }
@@ -248,9 +253,9 @@ namespace ShaderLab
                 {
                     if (renderer.ElementCount < this.elementCount)
                     {
-						renderer.ElementCount++;
-					}
-					return;
+                        renderer.ElementCount++;
+                    }
+                    return;
                 }
             }
             {
@@ -258,10 +263,10 @@ namespace ShaderLab
                 if (renderer != null)
                 {
                     if (renderer.VertexCount < this.elementCount)
-					{
-						renderer.VertexCount++;
-					}
-					return;
+                    {
+                        renderer.VertexCount++;
+                    }
+                    return;
                 }
             }
         }
