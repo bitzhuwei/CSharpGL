@@ -1,12 +1,13 @@
 ﻿﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ output extension=".cs" #>
 <#@ include file=".\Dump2MultipleFiles.ttinclude" #>
-<# string ShaderName = "DemoShader"; #>
+<# string ShaderName = "SomeShader"; #>
 <# string ClassName = ShaderName + "Renderer"; #>
 <# string VertexShaderName = ShaderName + "Vert"; #>
 <# string FragmentShaderName = ShaderName + "Frag"; #>
 /*
 本文件无用。
+有用的是<#= ShaderName #>.cs和<#= ClassName #>.cs。
 */
 <# var manager = new Manager(Host, GenerationEnvironment, true) { OutputPath = Path.GetDirectoryName(Host.TemplateFile)}; #>
 <#

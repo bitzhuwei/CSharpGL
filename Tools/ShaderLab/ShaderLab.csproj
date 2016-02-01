@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SomeShader.cs">
+      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SomeShaderRenderer.cs">
+      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
+    </Compile>
     <Content Include="CSSL+Renderer.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CSSL+Renderer.cs</LastGenOutput>
@@ -55,12 +61,6 @@
     <Compile Include="CSSL+Renderer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DemoShader.cs">
-      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DemoShaderRenderer.cs">
       <DependentUpon>CSSL+Renderer.tt</DependentUpon>
     </Compile>
     <Compile Include="FormShaderLab.cs">

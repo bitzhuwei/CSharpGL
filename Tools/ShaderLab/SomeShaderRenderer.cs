@@ -12,9 +12,9 @@ namespace ShaderLab
     using System.Threading.Tasks;
     using System.Windows.Forms;
     /// <summary>
-    /// 一个<see cref="DemoShaderRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="SomeShaderRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// </summary>
-    public class DemoShaderRenderer : RendererBase
+    public class SomeShaderRenderer : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -55,7 +55,7 @@ namespace ShaderLab
 
         private IModel model;
 
-        public DemoShaderRenderer(IModel model)
+        public SomeShaderRenderer(IModel model)
         {
             this.model = model;
         }

@@ -6,10 +6,10 @@ namespace CSharpShaders
 #if DEBUG
 
     /// <summary>
-    /// 一个<see cref="DemoShaderVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="SomeShaderVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的vertex shader。
     /// </summary>
-    class DemoShaderVert : VertexCSShaderCode
+    class SomeShaderVert : VertexCSShaderCode
     {
         [In]
         vec3 in_Position;
@@ -35,10 +35,10 @@ namespace CSharpShaders
     }
 
     /// <summary>
-    /// 一个<see cref="DemoShaderFrag"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="SomeShaderFrag"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的fragment shader。
     /// </summary>
-    class DemoShaderFrag : FragmentCSShaderCode
+    class SomeShaderFrag : FragmentCSShaderCode
     {
         [In]
         vec4 pass_Color;
