@@ -139,8 +139,8 @@ namespace ShaderLab
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoShader.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"DemoShader.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("<#= ShaderName #>.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("<#= ShaderName #>.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
