@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FieldTemplate.cs" />
+    <Compile Include="SemanticField.cs" />
     <Compile Include="Program.cs">
       <SubType>Code</SubType>
     </Compile>

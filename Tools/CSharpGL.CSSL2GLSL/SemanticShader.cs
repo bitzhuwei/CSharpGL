@@ -11,7 +11,7 @@ namespace CSharpGL.CSSL2GLSL
 {
     public abstract class SemanticShader
     {
-        protected List<FieldTemplate> fields = new List<FieldTemplate>();
+        protected List<SemanticField> fields = new List<SemanticField>();
         protected List<string> functions = new List<string>();
 
         ///// <summary>
@@ -46,15 +46,15 @@ namespace CSharpGL.CSSL2GLSL
             {
                 if (field.GetCustomAttribute<InAttribute>() != null)
                 {
-                    this.fields.Add(new FieldTemplate(FieldQualifier.In, field.FieldType, field.Name));
+                    this.fields.Add(new SemanticField(FieldQualifier.In, field.FieldType, field.Name));
                 }
                 else if (field.GetCustomAttribute<OutAttribute>() != null)
                 {
-                    this.fields.Add(new FieldTemplate(FieldQualifier.Out, field.FieldType, field.Name));
+                    this.fields.Add(new SemanticField(FieldQualifier.Out, field.FieldType, field.Name));
                 }
                 else if (field.GetCustomAttribute<UniformAttribute>() != null)
                 {
-                    this.fields.Add(new FieldTemplate(FieldQualifier.Uniform, field.FieldType, field.Name));
+                    this.fields.Add(new SemanticField(FieldQualifier.Uniform, field.FieldType, field.Name));
                 }
             }
 

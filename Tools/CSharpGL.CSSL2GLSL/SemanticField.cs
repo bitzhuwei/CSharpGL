@@ -5,13 +5,13 @@ using System.Text;
 
 namespace CSharpGL.CSSL2GLSL
 {
-    public class FieldTemplate
+    public class SemanticField
     {
         private FieldQualifier varQualifier;
         private Type varType;
         private string varName;
 
-        public FieldTemplate(FieldQualifier varQualifier, Type type, string varName)
+        public SemanticField(FieldQualifier varQualifier, Type type, string varName)
         {
             this.varQualifier = varQualifier;
             this.varType = type;
