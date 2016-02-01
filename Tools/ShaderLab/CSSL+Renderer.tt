@@ -14,10 +14,10 @@
 #>
 namespace CSharpShaders
 {
-#if DEBUG
-
-	// 注意：请把CSharp Shader代码放到单独的文件，并且不要加任何其他的using ...;
+	// 不可将此文件中的代码复制到其他文件内（如果包含了其他的using ...;，那么CSSL2GLSL.exe就无法正常编译这些代码了。）
     using CSharpShadingLanguage;
+
+#if DEBUG
 
     /// <summary>
     /// 一个<see cref="<#= VertexShaderName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
