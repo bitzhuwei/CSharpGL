@@ -114,7 +114,7 @@ namespace CSharpGL.CSSL2GLSL
                 builder.AppendFormat("Directory: {0}", directoryName); builder.AppendLine();
                 var foundCSSLCount = (from item in translationInfoList select item.GetCompiledShaderCount()).Sum();
                 var updatedCSSLCount = (from item in translationInfoList select item.GetUpdatedShaderCount()).Sum();
-                builder.AppendFormat("Found {0} CSSL shaders, and {0} of them are updated as needed.",
+                builder.AppendFormat("Found {0} CSSL shaders, and {1} of them are dumped to GLSL as needed.",
                     foundCSSLCount, updatedCSSLCount);
                 builder.AppendLine();
                 foreach (var item in translationInfoList)

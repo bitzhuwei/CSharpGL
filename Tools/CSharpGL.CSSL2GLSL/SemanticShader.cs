@@ -74,11 +74,11 @@ namespace CSharpGL.CSSL2GLSL
                 if (File.ReadAllText(targetFullname) != shaderCode)
                 {
                     File.WriteAllText(targetFullname, shaderCode);
-                    return false;
+                    return true;
                 }
                 else
                 {
-                    return true;
+                    return false;
                 }
             }
             else
