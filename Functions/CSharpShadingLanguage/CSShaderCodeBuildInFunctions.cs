@@ -37,6 +37,16 @@ namespace CSharpShadingLanguage
         protected vec4 texture(sampler2D texture, vec2 uv) { throw new NotNeedToImplementException(); }
         protected vec4 texture(sampler3D texture, vec3 uv) { throw new NotNeedToImplementException(); }
 
+        protected vec2 normalize(vec2 v) { throw new NotNeedToImplementException(); }
+        protected vec3 normalize(vec3 v) { throw new NotNeedToImplementException(); }
+        protected vec4 normalize(vec4 v) { throw new NotNeedToImplementException(); }
+
+        protected float dot(vec2 v1, vec2 v2) { throw new NotNeedToImplementException(); }
+        protected float dot(vec3 v1, vec3 v2) { throw new NotNeedToImplementException(); }
+        protected float dot(vec4 v1, vec4 v2) { throw new NotNeedToImplementException(); }
+
+        protected float max(float a, float b) { throw new NotNeedToImplementException(); }
+
         #endregion
 
     }

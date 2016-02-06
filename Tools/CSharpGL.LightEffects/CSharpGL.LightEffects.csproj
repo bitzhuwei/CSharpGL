@@ -60,6 +60,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DiffuseReflection.vert" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -76,7 +77,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="DiffuseReflection.frag" />
-    <EmbeddedResource Include="DiffuseReflection.vert" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

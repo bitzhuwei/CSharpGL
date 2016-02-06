@@ -10,7 +10,7 @@ namespace CSharpShadingLanguage.NeverUsed
     /// <summary>
     /// 在release版中不需要这个类型。这是为生成代码而写的。
     /// </summary>
-    class PrintVec234Components
+    public class PrintVec234Components
     {
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace CSharpShadingLanguage.NeverUsed
                 {
                     for (int i = 0; i < vLength; i++)
                     {
-                        builder.AppendFormat("public float {0} {{ get {{ return 0.0f; }} }}", components[i], vLength);
+                        builder.AppendFormat("public float {0} {{ get {{ return 0.0f; }} set {{ }} }}", components[i], vLength);
                         builder.AppendLine();
                     }
                     builder.AppendLine();
@@ -39,7 +39,7 @@ namespace CSharpShadingLanguage.NeverUsed
                     {
                         for (int j = 0; j < vLength; j++)
                         {
-                            builder.AppendFormat("public vec2 {0}{1} {{ get {{ return default(vec2); }} }}", components[i], components[j], vLength);
+                            builder.AppendFormat("public vec2 {0}{1} {{ get {{ return default(vec2); }} set {{ }} }}", components[i], components[j], vLength);
                             builder.AppendLine();
                         }
                     }
@@ -53,7 +53,7 @@ namespace CSharpShadingLanguage.NeverUsed
                         {
                             for (int k = 0; k < vLength; k++)
                             {
-                                builder.AppendFormat("public vec3 {0}{1}{2} {{ get {{ return default(vec3); }} }}", components[i], components[j], components[k], vLength);
+                                builder.AppendFormat("public vec3 {0}{1}{2} {{ get {{ return default(vec3); }} set {{ }} }}", components[i], components[j], components[k], vLength);
                                 builder.AppendLine();
                             }
                         }
@@ -70,7 +70,7 @@ namespace CSharpShadingLanguage.NeverUsed
                             {
                                 for (int m = 0; m < vLength; m++)
                                 {
-                                    builder.AppendFormat("public vec4 {0}{1}{2}{3} {{ get {{ return default(vec4); }} }}", components[i], components[j], components[k], components[m], vLength);
+                                    builder.AppendFormat("public vec4 {0}{1}{2}{3} {{ get {{ return default(vec4); }} set {{ }} }}", components[i], components[j], components[k], components[m], vLength);
                                     builder.AppendLine();
                                 }
                             }

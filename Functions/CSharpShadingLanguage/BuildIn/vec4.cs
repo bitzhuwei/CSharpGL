@@ -10,1045 +10,1045 @@ namespace CSharpShadingLanguage
     public struct vec4
     {
 
-        public float x { get { return 0.0f; } }
-        public float y { get { return 0.0f; } }
-        public float z { get { return 0.0f; } }
-        public float w { get { return 0.0f; } }
+        public float x { get { return 0.0f; } set { } }
+        public float y { get { return 0.0f; } set { } }
+        public float z { get { return 0.0f; } set { } }
+        public float w { get { return 0.0f; } set { } }
 
-        public vec2 xx { get { return default(vec2); } }
-        public vec2 xy { get { return default(vec2); } }
-        public vec2 xz { get { return default(vec2); } }
-        public vec2 xw { get { return default(vec2); } }
-        public vec2 yx { get { return default(vec2); } }
-        public vec2 yy { get { return default(vec2); } }
-        public vec2 yz { get { return default(vec2); } }
-        public vec2 yw { get { return default(vec2); } }
-        public vec2 zx { get { return default(vec2); } }
-        public vec2 zy { get { return default(vec2); } }
-        public vec2 zz { get { return default(vec2); } }
-        public vec2 zw { get { return default(vec2); } }
-        public vec2 wx { get { return default(vec2); } }
-        public vec2 wy { get { return default(vec2); } }
-        public vec2 wz { get { return default(vec2); } }
-        public vec2 ww { get { return default(vec2); } }
+        public vec2 xx { get { return default(vec2); } set { } }
+        public vec2 xy { get { return default(vec2); } set { } }
+        public vec2 xz { get { return default(vec2); } set { } }
+        public vec2 xw { get { return default(vec2); } set { } }
+        public vec2 yx { get { return default(vec2); } set { } }
+        public vec2 yy { get { return default(vec2); } set { } }
+        public vec2 yz { get { return default(vec2); } set { } }
+        public vec2 yw { get { return default(vec2); } set { } }
+        public vec2 zx { get { return default(vec2); } set { } }
+        public vec2 zy { get { return default(vec2); } set { } }
+        public vec2 zz { get { return default(vec2); } set { } }
+        public vec2 zw { get { return default(vec2); } set { } }
+        public vec2 wx { get { return default(vec2); } set { } }
+        public vec2 wy { get { return default(vec2); } set { } }
+        public vec2 wz { get { return default(vec2); } set { } }
+        public vec2 ww { get { return default(vec2); } set { } }
 
-        public vec3 xxx { get { return default(vec3); } }
-        public vec3 xxy { get { return default(vec3); } }
-        public vec3 xxz { get { return default(vec3); } }
-        public vec3 xxw { get { return default(vec3); } }
-        public vec3 xyx { get { return default(vec3); } }
-        public vec3 xyy { get { return default(vec3); } }
-        public vec3 xyz { get { return default(vec3); } }
-        public vec3 xyw { get { return default(vec3); } }
-        public vec3 xzx { get { return default(vec3); } }
-        public vec3 xzy { get { return default(vec3); } }
-        public vec3 xzz { get { return default(vec3); } }
-        public vec3 xzw { get { return default(vec3); } }
-        public vec3 xwx { get { return default(vec3); } }
-        public vec3 xwy { get { return default(vec3); } }
-        public vec3 xwz { get { return default(vec3); } }
-        public vec3 xww { get { return default(vec3); } }
-        public vec3 yxx { get { return default(vec3); } }
-        public vec3 yxy { get { return default(vec3); } }
-        public vec3 yxz { get { return default(vec3); } }
-        public vec3 yxw { get { return default(vec3); } }
-        public vec3 yyx { get { return default(vec3); } }
-        public vec3 yyy { get { return default(vec3); } }
-        public vec3 yyz { get { return default(vec3); } }
-        public vec3 yyw { get { return default(vec3); } }
-        public vec3 yzx { get { return default(vec3); } }
-        public vec3 yzy { get { return default(vec3); } }
-        public vec3 yzz { get { return default(vec3); } }
-        public vec3 yzw { get { return default(vec3); } }
-        public vec3 ywx { get { return default(vec3); } }
-        public vec3 ywy { get { return default(vec3); } }
-        public vec3 ywz { get { return default(vec3); } }
-        public vec3 yww { get { return default(vec3); } }
-        public vec3 zxx { get { return default(vec3); } }
-        public vec3 zxy { get { return default(vec3); } }
-        public vec3 zxz { get { return default(vec3); } }
-        public vec3 zxw { get { return default(vec3); } }
-        public vec3 zyx { get { return default(vec3); } }
-        public vec3 zyy { get { return default(vec3); } }
-        public vec3 zyz { get { return default(vec3); } }
-        public vec3 zyw { get { return default(vec3); } }
-        public vec3 zzx { get { return default(vec3); } }
-        public vec3 zzy { get { return default(vec3); } }
-        public vec3 zzz { get { return default(vec3); } }
-        public vec3 zzw { get { return default(vec3); } }
-        public vec3 zwx { get { return default(vec3); } }
-        public vec3 zwy { get { return default(vec3); } }
-        public vec3 zwz { get { return default(vec3); } }
-        public vec3 zww { get { return default(vec3); } }
-        public vec3 wxx { get { return default(vec3); } }
-        public vec3 wxy { get { return default(vec3); } }
-        public vec3 wxz { get { return default(vec3); } }
-        public vec3 wxw { get { return default(vec3); } }
-        public vec3 wyx { get { return default(vec3); } }
-        public vec3 wyy { get { return default(vec3); } }
-        public vec3 wyz { get { return default(vec3); } }
-        public vec3 wyw { get { return default(vec3); } }
-        public vec3 wzx { get { return default(vec3); } }
-        public vec3 wzy { get { return default(vec3); } }
-        public vec3 wzz { get { return default(vec3); } }
-        public vec3 wzw { get { return default(vec3); } }
-        public vec3 wwx { get { return default(vec3); } }
-        public vec3 wwy { get { return default(vec3); } }
-        public vec3 wwz { get { return default(vec3); } }
-        public vec3 www { get { return default(vec3); } }
+        public vec3 xxx { get { return default(vec3); } set { } }
+        public vec3 xxy { get { return default(vec3); } set { } }
+        public vec3 xxz { get { return default(vec3); } set { } }
+        public vec3 xxw { get { return default(vec3); } set { } }
+        public vec3 xyx { get { return default(vec3); } set { } }
+        public vec3 xyy { get { return default(vec3); } set { } }
+        public vec3 xyz { get { return default(vec3); } set { } }
+        public vec3 xyw { get { return default(vec3); } set { } }
+        public vec3 xzx { get { return default(vec3); } set { } }
+        public vec3 xzy { get { return default(vec3); } set { } }
+        public vec3 xzz { get { return default(vec3); } set { } }
+        public vec3 xzw { get { return default(vec3); } set { } }
+        public vec3 xwx { get { return default(vec3); } set { } }
+        public vec3 xwy { get { return default(vec3); } set { } }
+        public vec3 xwz { get { return default(vec3); } set { } }
+        public vec3 xww { get { return default(vec3); } set { } }
+        public vec3 yxx { get { return default(vec3); } set { } }
+        public vec3 yxy { get { return default(vec3); } set { } }
+        public vec3 yxz { get { return default(vec3); } set { } }
+        public vec3 yxw { get { return default(vec3); } set { } }
+        public vec3 yyx { get { return default(vec3); } set { } }
+        public vec3 yyy { get { return default(vec3); } set { } }
+        public vec3 yyz { get { return default(vec3); } set { } }
+        public vec3 yyw { get { return default(vec3); } set { } }
+        public vec3 yzx { get { return default(vec3); } set { } }
+        public vec3 yzy { get { return default(vec3); } set { } }
+        public vec3 yzz { get { return default(vec3); } set { } }
+        public vec3 yzw { get { return default(vec3); } set { } }
+        public vec3 ywx { get { return default(vec3); } set { } }
+        public vec3 ywy { get { return default(vec3); } set { } }
+        public vec3 ywz { get { return default(vec3); } set { } }
+        public vec3 yww { get { return default(vec3); } set { } }
+        public vec3 zxx { get { return default(vec3); } set { } }
+        public vec3 zxy { get { return default(vec3); } set { } }
+        public vec3 zxz { get { return default(vec3); } set { } }
+        public vec3 zxw { get { return default(vec3); } set { } }
+        public vec3 zyx { get { return default(vec3); } set { } }
+        public vec3 zyy { get { return default(vec3); } set { } }
+        public vec3 zyz { get { return default(vec3); } set { } }
+        public vec3 zyw { get { return default(vec3); } set { } }
+        public vec3 zzx { get { return default(vec3); } set { } }
+        public vec3 zzy { get { return default(vec3); } set { } }
+        public vec3 zzz { get { return default(vec3); } set { } }
+        public vec3 zzw { get { return default(vec3); } set { } }
+        public vec3 zwx { get { return default(vec3); } set { } }
+        public vec3 zwy { get { return default(vec3); } set { } }
+        public vec3 zwz { get { return default(vec3); } set { } }
+        public vec3 zww { get { return default(vec3); } set { } }
+        public vec3 wxx { get { return default(vec3); } set { } }
+        public vec3 wxy { get { return default(vec3); } set { } }
+        public vec3 wxz { get { return default(vec3); } set { } }
+        public vec3 wxw { get { return default(vec3); } set { } }
+        public vec3 wyx { get { return default(vec3); } set { } }
+        public vec3 wyy { get { return default(vec3); } set { } }
+        public vec3 wyz { get { return default(vec3); } set { } }
+        public vec3 wyw { get { return default(vec3); } set { } }
+        public vec3 wzx { get { return default(vec3); } set { } }
+        public vec3 wzy { get { return default(vec3); } set { } }
+        public vec3 wzz { get { return default(vec3); } set { } }
+        public vec3 wzw { get { return default(vec3); } set { } }
+        public vec3 wwx { get { return default(vec3); } set { } }
+        public vec3 wwy { get { return default(vec3); } set { } }
+        public vec3 wwz { get { return default(vec3); } set { } }
+        public vec3 www { get { return default(vec3); } set { } }
 
-        public vec4 xxxx { get { return default(vec4); } }
-        public vec4 xxxy { get { return default(vec4); } }
-        public vec4 xxxz { get { return default(vec4); } }
-        public vec4 xxxw { get { return default(vec4); } }
-        public vec4 xxyx { get { return default(vec4); } }
-        public vec4 xxyy { get { return default(vec4); } }
-        public vec4 xxyz { get { return default(vec4); } }
-        public vec4 xxyw { get { return default(vec4); } }
-        public vec4 xxzx { get { return default(vec4); } }
-        public vec4 xxzy { get { return default(vec4); } }
-        public vec4 xxzz { get { return default(vec4); } }
-        public vec4 xxzw { get { return default(vec4); } }
-        public vec4 xxwx { get { return default(vec4); } }
-        public vec4 xxwy { get { return default(vec4); } }
-        public vec4 xxwz { get { return default(vec4); } }
-        public vec4 xxww { get { return default(vec4); } }
-        public vec4 xyxx { get { return default(vec4); } }
-        public vec4 xyxy { get { return default(vec4); } }
-        public vec4 xyxz { get { return default(vec4); } }
-        public vec4 xyxw { get { return default(vec4); } }
-        public vec4 xyyx { get { return default(vec4); } }
-        public vec4 xyyy { get { return default(vec4); } }
-        public vec4 xyyz { get { return default(vec4); } }
-        public vec4 xyyw { get { return default(vec4); } }
-        public vec4 xyzx { get { return default(vec4); } }
-        public vec4 xyzy { get { return default(vec4); } }
-        public vec4 xyzz { get { return default(vec4); } }
-        public vec4 xyzw { get { return default(vec4); } }
-        public vec4 xywx { get { return default(vec4); } }
-        public vec4 xywy { get { return default(vec4); } }
-        public vec4 xywz { get { return default(vec4); } }
-        public vec4 xyww { get { return default(vec4); } }
-        public vec4 xzxx { get { return default(vec4); } }
-        public vec4 xzxy { get { return default(vec4); } }
-        public vec4 xzxz { get { return default(vec4); } }
-        public vec4 xzxw { get { return default(vec4); } }
-        public vec4 xzyx { get { return default(vec4); } }
-        public vec4 xzyy { get { return default(vec4); } }
-        public vec4 xzyz { get { return default(vec4); } }
-        public vec4 xzyw { get { return default(vec4); } }
-        public vec4 xzzx { get { return default(vec4); } }
-        public vec4 xzzy { get { return default(vec4); } }
-        public vec4 xzzz { get { return default(vec4); } }
-        public vec4 xzzw { get { return default(vec4); } }
-        public vec4 xzwx { get { return default(vec4); } }
-        public vec4 xzwy { get { return default(vec4); } }
-        public vec4 xzwz { get { return default(vec4); } }
-        public vec4 xzww { get { return default(vec4); } }
-        public vec4 xwxx { get { return default(vec4); } }
-        public vec4 xwxy { get { return default(vec4); } }
-        public vec4 xwxz { get { return default(vec4); } }
-        public vec4 xwxw { get { return default(vec4); } }
-        public vec4 xwyx { get { return default(vec4); } }
-        public vec4 xwyy { get { return default(vec4); } }
-        public vec4 xwyz { get { return default(vec4); } }
-        public vec4 xwyw { get { return default(vec4); } }
-        public vec4 xwzx { get { return default(vec4); } }
-        public vec4 xwzy { get { return default(vec4); } }
-        public vec4 xwzz { get { return default(vec4); } }
-        public vec4 xwzw { get { return default(vec4); } }
-        public vec4 xwwx { get { return default(vec4); } }
-        public vec4 xwwy { get { return default(vec4); } }
-        public vec4 xwwz { get { return default(vec4); } }
-        public vec4 xwww { get { return default(vec4); } }
-        public vec4 yxxx { get { return default(vec4); } }
-        public vec4 yxxy { get { return default(vec4); } }
-        public vec4 yxxz { get { return default(vec4); } }
-        public vec4 yxxw { get { return default(vec4); } }
-        public vec4 yxyx { get { return default(vec4); } }
-        public vec4 yxyy { get { return default(vec4); } }
-        public vec4 yxyz { get { return default(vec4); } }
-        public vec4 yxyw { get { return default(vec4); } }
-        public vec4 yxzx { get { return default(vec4); } }
-        public vec4 yxzy { get { return default(vec4); } }
-        public vec4 yxzz { get { return default(vec4); } }
-        public vec4 yxzw { get { return default(vec4); } }
-        public vec4 yxwx { get { return default(vec4); } }
-        public vec4 yxwy { get { return default(vec4); } }
-        public vec4 yxwz { get { return default(vec4); } }
-        public vec4 yxww { get { return default(vec4); } }
-        public vec4 yyxx { get { return default(vec4); } }
-        public vec4 yyxy { get { return default(vec4); } }
-        public vec4 yyxz { get { return default(vec4); } }
-        public vec4 yyxw { get { return default(vec4); } }
-        public vec4 yyyx { get { return default(vec4); } }
-        public vec4 yyyy { get { return default(vec4); } }
-        public vec4 yyyz { get { return default(vec4); } }
-        public vec4 yyyw { get { return default(vec4); } }
-        public vec4 yyzx { get { return default(vec4); } }
-        public vec4 yyzy { get { return default(vec4); } }
-        public vec4 yyzz { get { return default(vec4); } }
-        public vec4 yyzw { get { return default(vec4); } }
-        public vec4 yywx { get { return default(vec4); } }
-        public vec4 yywy { get { return default(vec4); } }
-        public vec4 yywz { get { return default(vec4); } }
-        public vec4 yyww { get { return default(vec4); } }
-        public vec4 yzxx { get { return default(vec4); } }
-        public vec4 yzxy { get { return default(vec4); } }
-        public vec4 yzxz { get { return default(vec4); } }
-        public vec4 yzxw { get { return default(vec4); } }
-        public vec4 yzyx { get { return default(vec4); } }
-        public vec4 yzyy { get { return default(vec4); } }
-        public vec4 yzyz { get { return default(vec4); } }
-        public vec4 yzyw { get { return default(vec4); } }
-        public vec4 yzzx { get { return default(vec4); } }
-        public vec4 yzzy { get { return default(vec4); } }
-        public vec4 yzzz { get { return default(vec4); } }
-        public vec4 yzzw { get { return default(vec4); } }
-        public vec4 yzwx { get { return default(vec4); } }
-        public vec4 yzwy { get { return default(vec4); } }
-        public vec4 yzwz { get { return default(vec4); } }
-        public vec4 yzww { get { return default(vec4); } }
-        public vec4 ywxx { get { return default(vec4); } }
-        public vec4 ywxy { get { return default(vec4); } }
-        public vec4 ywxz { get { return default(vec4); } }
-        public vec4 ywxw { get { return default(vec4); } }
-        public vec4 ywyx { get { return default(vec4); } }
-        public vec4 ywyy { get { return default(vec4); } }
-        public vec4 ywyz { get { return default(vec4); } }
-        public vec4 ywyw { get { return default(vec4); } }
-        public vec4 ywzx { get { return default(vec4); } }
-        public vec4 ywzy { get { return default(vec4); } }
-        public vec4 ywzz { get { return default(vec4); } }
-        public vec4 ywzw { get { return default(vec4); } }
-        public vec4 ywwx { get { return default(vec4); } }
-        public vec4 ywwy { get { return default(vec4); } }
-        public vec4 ywwz { get { return default(vec4); } }
-        public vec4 ywww { get { return default(vec4); } }
-        public vec4 zxxx { get { return default(vec4); } }
-        public vec4 zxxy { get { return default(vec4); } }
-        public vec4 zxxz { get { return default(vec4); } }
-        public vec4 zxxw { get { return default(vec4); } }
-        public vec4 zxyx { get { return default(vec4); } }
-        public vec4 zxyy { get { return default(vec4); } }
-        public vec4 zxyz { get { return default(vec4); } }
-        public vec4 zxyw { get { return default(vec4); } }
-        public vec4 zxzx { get { return default(vec4); } }
-        public vec4 zxzy { get { return default(vec4); } }
-        public vec4 zxzz { get { return default(vec4); } }
-        public vec4 zxzw { get { return default(vec4); } }
-        public vec4 zxwx { get { return default(vec4); } }
-        public vec4 zxwy { get { return default(vec4); } }
-        public vec4 zxwz { get { return default(vec4); } }
-        public vec4 zxww { get { return default(vec4); } }
-        public vec4 zyxx { get { return default(vec4); } }
-        public vec4 zyxy { get { return default(vec4); } }
-        public vec4 zyxz { get { return default(vec4); } }
-        public vec4 zyxw { get { return default(vec4); } }
-        public vec4 zyyx { get { return default(vec4); } }
-        public vec4 zyyy { get { return default(vec4); } }
-        public vec4 zyyz { get { return default(vec4); } }
-        public vec4 zyyw { get { return default(vec4); } }
-        public vec4 zyzx { get { return default(vec4); } }
-        public vec4 zyzy { get { return default(vec4); } }
-        public vec4 zyzz { get { return default(vec4); } }
-        public vec4 zyzw { get { return default(vec4); } }
-        public vec4 zywx { get { return default(vec4); } }
-        public vec4 zywy { get { return default(vec4); } }
-        public vec4 zywz { get { return default(vec4); } }
-        public vec4 zyww { get { return default(vec4); } }
-        public vec4 zzxx { get { return default(vec4); } }
-        public vec4 zzxy { get { return default(vec4); } }
-        public vec4 zzxz { get { return default(vec4); } }
-        public vec4 zzxw { get { return default(vec4); } }
-        public vec4 zzyx { get { return default(vec4); } }
-        public vec4 zzyy { get { return default(vec4); } }
-        public vec4 zzyz { get { return default(vec4); } }
-        public vec4 zzyw { get { return default(vec4); } }
-        public vec4 zzzx { get { return default(vec4); } }
-        public vec4 zzzy { get { return default(vec4); } }
-        public vec4 zzzz { get { return default(vec4); } }
-        public vec4 zzzw { get { return default(vec4); } }
-        public vec4 zzwx { get { return default(vec4); } }
-        public vec4 zzwy { get { return default(vec4); } }
-        public vec4 zzwz { get { return default(vec4); } }
-        public vec4 zzww { get { return default(vec4); } }
-        public vec4 zwxx { get { return default(vec4); } }
-        public vec4 zwxy { get { return default(vec4); } }
-        public vec4 zwxz { get { return default(vec4); } }
-        public vec4 zwxw { get { return default(vec4); } }
-        public vec4 zwyx { get { return default(vec4); } }
-        public vec4 zwyy { get { return default(vec4); } }
-        public vec4 zwyz { get { return default(vec4); } }
-        public vec4 zwyw { get { return default(vec4); } }
-        public vec4 zwzx { get { return default(vec4); } }
-        public vec4 zwzy { get { return default(vec4); } }
-        public vec4 zwzz { get { return default(vec4); } }
-        public vec4 zwzw { get { return default(vec4); } }
-        public vec4 zwwx { get { return default(vec4); } }
-        public vec4 zwwy { get { return default(vec4); } }
-        public vec4 zwwz { get { return default(vec4); } }
-        public vec4 zwww { get { return default(vec4); } }
-        public vec4 wxxx { get { return default(vec4); } }
-        public vec4 wxxy { get { return default(vec4); } }
-        public vec4 wxxz { get { return default(vec4); } }
-        public vec4 wxxw { get { return default(vec4); } }
-        public vec4 wxyx { get { return default(vec4); } }
-        public vec4 wxyy { get { return default(vec4); } }
-        public vec4 wxyz { get { return default(vec4); } }
-        public vec4 wxyw { get { return default(vec4); } }
-        public vec4 wxzx { get { return default(vec4); } }
-        public vec4 wxzy { get { return default(vec4); } }
-        public vec4 wxzz { get { return default(vec4); } }
-        public vec4 wxzw { get { return default(vec4); } }
-        public vec4 wxwx { get { return default(vec4); } }
-        public vec4 wxwy { get { return default(vec4); } }
-        public vec4 wxwz { get { return default(vec4); } }
-        public vec4 wxww { get { return default(vec4); } }
-        public vec4 wyxx { get { return default(vec4); } }
-        public vec4 wyxy { get { return default(vec4); } }
-        public vec4 wyxz { get { return default(vec4); } }
-        public vec4 wyxw { get { return default(vec4); } }
-        public vec4 wyyx { get { return default(vec4); } }
-        public vec4 wyyy { get { return default(vec4); } }
-        public vec4 wyyz { get { return default(vec4); } }
-        public vec4 wyyw { get { return default(vec4); } }
-        public vec4 wyzx { get { return default(vec4); } }
-        public vec4 wyzy { get { return default(vec4); } }
-        public vec4 wyzz { get { return default(vec4); } }
-        public vec4 wyzw { get { return default(vec4); } }
-        public vec4 wywx { get { return default(vec4); } }
-        public vec4 wywy { get { return default(vec4); } }
-        public vec4 wywz { get { return default(vec4); } }
-        public vec4 wyww { get { return default(vec4); } }
-        public vec4 wzxx { get { return default(vec4); } }
-        public vec4 wzxy { get { return default(vec4); } }
-        public vec4 wzxz { get { return default(vec4); } }
-        public vec4 wzxw { get { return default(vec4); } }
-        public vec4 wzyx { get { return default(vec4); } }
-        public vec4 wzyy { get { return default(vec4); } }
-        public vec4 wzyz { get { return default(vec4); } }
-        public vec4 wzyw { get { return default(vec4); } }
-        public vec4 wzzx { get { return default(vec4); } }
-        public vec4 wzzy { get { return default(vec4); } }
-        public vec4 wzzz { get { return default(vec4); } }
-        public vec4 wzzw { get { return default(vec4); } }
-        public vec4 wzwx { get { return default(vec4); } }
-        public vec4 wzwy { get { return default(vec4); } }
-        public vec4 wzwz { get { return default(vec4); } }
-        public vec4 wzww { get { return default(vec4); } }
-        public vec4 wwxx { get { return default(vec4); } }
-        public vec4 wwxy { get { return default(vec4); } }
-        public vec4 wwxz { get { return default(vec4); } }
-        public vec4 wwxw { get { return default(vec4); } }
-        public vec4 wwyx { get { return default(vec4); } }
-        public vec4 wwyy { get { return default(vec4); } }
-        public vec4 wwyz { get { return default(vec4); } }
-        public vec4 wwyw { get { return default(vec4); } }
-        public vec4 wwzx { get { return default(vec4); } }
-        public vec4 wwzy { get { return default(vec4); } }
-        public vec4 wwzz { get { return default(vec4); } }
-        public vec4 wwzw { get { return default(vec4); } }
-        public vec4 wwwx { get { return default(vec4); } }
-        public vec4 wwwy { get { return default(vec4); } }
-        public vec4 wwwz { get { return default(vec4); } }
-        public vec4 wwww { get { return default(vec4); } }
-        public float r { get { return 0.0f; } }
-        public float g { get { return 0.0f; } }
-        public float b { get { return 0.0f; } }
-        public float a { get { return 0.0f; } }
+        public vec4 xxxx { get { return default(vec4); } set { } }
+        public vec4 xxxy { get { return default(vec4); } set { } }
+        public vec4 xxxz { get { return default(vec4); } set { } }
+        public vec4 xxxw { get { return default(vec4); } set { } }
+        public vec4 xxyx { get { return default(vec4); } set { } }
+        public vec4 xxyy { get { return default(vec4); } set { } }
+        public vec4 xxyz { get { return default(vec4); } set { } }
+        public vec4 xxyw { get { return default(vec4); } set { } }
+        public vec4 xxzx { get { return default(vec4); } set { } }
+        public vec4 xxzy { get { return default(vec4); } set { } }
+        public vec4 xxzz { get { return default(vec4); } set { } }
+        public vec4 xxzw { get { return default(vec4); } set { } }
+        public vec4 xxwx { get { return default(vec4); } set { } }
+        public vec4 xxwy { get { return default(vec4); } set { } }
+        public vec4 xxwz { get { return default(vec4); } set { } }
+        public vec4 xxww { get { return default(vec4); } set { } }
+        public vec4 xyxx { get { return default(vec4); } set { } }
+        public vec4 xyxy { get { return default(vec4); } set { } }
+        public vec4 xyxz { get { return default(vec4); } set { } }
+        public vec4 xyxw { get { return default(vec4); } set { } }
+        public vec4 xyyx { get { return default(vec4); } set { } }
+        public vec4 xyyy { get { return default(vec4); } set { } }
+        public vec4 xyyz { get { return default(vec4); } set { } }
+        public vec4 xyyw { get { return default(vec4); } set { } }
+        public vec4 xyzx { get { return default(vec4); } set { } }
+        public vec4 xyzy { get { return default(vec4); } set { } }
+        public vec4 xyzz { get { return default(vec4); } set { } }
+        public vec4 xyzw { get { return default(vec4); } set { } }
+        public vec4 xywx { get { return default(vec4); } set { } }
+        public vec4 xywy { get { return default(vec4); } set { } }
+        public vec4 xywz { get { return default(vec4); } set { } }
+        public vec4 xyww { get { return default(vec4); } set { } }
+        public vec4 xzxx { get { return default(vec4); } set { } }
+        public vec4 xzxy { get { return default(vec4); } set { } }
+        public vec4 xzxz { get { return default(vec4); } set { } }
+        public vec4 xzxw { get { return default(vec4); } set { } }
+        public vec4 xzyx { get { return default(vec4); } set { } }
+        public vec4 xzyy { get { return default(vec4); } set { } }
+        public vec4 xzyz { get { return default(vec4); } set { } }
+        public vec4 xzyw { get { return default(vec4); } set { } }
+        public vec4 xzzx { get { return default(vec4); } set { } }
+        public vec4 xzzy { get { return default(vec4); } set { } }
+        public vec4 xzzz { get { return default(vec4); } set { } }
+        public vec4 xzzw { get { return default(vec4); } set { } }
+        public vec4 xzwx { get { return default(vec4); } set { } }
+        public vec4 xzwy { get { return default(vec4); } set { } }
+        public vec4 xzwz { get { return default(vec4); } set { } }
+        public vec4 xzww { get { return default(vec4); } set { } }
+        public vec4 xwxx { get { return default(vec4); } set { } }
+        public vec4 xwxy { get { return default(vec4); } set { } }
+        public vec4 xwxz { get { return default(vec4); } set { } }
+        public vec4 xwxw { get { return default(vec4); } set { } }
+        public vec4 xwyx { get { return default(vec4); } set { } }
+        public vec4 xwyy { get { return default(vec4); } set { } }
+        public vec4 xwyz { get { return default(vec4); } set { } }
+        public vec4 xwyw { get { return default(vec4); } set { } }
+        public vec4 xwzx { get { return default(vec4); } set { } }
+        public vec4 xwzy { get { return default(vec4); } set { } }
+        public vec4 xwzz { get { return default(vec4); } set { } }
+        public vec4 xwzw { get { return default(vec4); } set { } }
+        public vec4 xwwx { get { return default(vec4); } set { } }
+        public vec4 xwwy { get { return default(vec4); } set { } }
+        public vec4 xwwz { get { return default(vec4); } set { } }
+        public vec4 xwww { get { return default(vec4); } set { } }
+        public vec4 yxxx { get { return default(vec4); } set { } }
+        public vec4 yxxy { get { return default(vec4); } set { } }
+        public vec4 yxxz { get { return default(vec4); } set { } }
+        public vec4 yxxw { get { return default(vec4); } set { } }
+        public vec4 yxyx { get { return default(vec4); } set { } }
+        public vec4 yxyy { get { return default(vec4); } set { } }
+        public vec4 yxyz { get { return default(vec4); } set { } }
+        public vec4 yxyw { get { return default(vec4); } set { } }
+        public vec4 yxzx { get { return default(vec4); } set { } }
+        public vec4 yxzy { get { return default(vec4); } set { } }
+        public vec4 yxzz { get { return default(vec4); } set { } }
+        public vec4 yxzw { get { return default(vec4); } set { } }
+        public vec4 yxwx { get { return default(vec4); } set { } }
+        public vec4 yxwy { get { return default(vec4); } set { } }
+        public vec4 yxwz { get { return default(vec4); } set { } }
+        public vec4 yxww { get { return default(vec4); } set { } }
+        public vec4 yyxx { get { return default(vec4); } set { } }
+        public vec4 yyxy { get { return default(vec4); } set { } }
+        public vec4 yyxz { get { return default(vec4); } set { } }
+        public vec4 yyxw { get { return default(vec4); } set { } }
+        public vec4 yyyx { get { return default(vec4); } set { } }
+        public vec4 yyyy { get { return default(vec4); } set { } }
+        public vec4 yyyz { get { return default(vec4); } set { } }
+        public vec4 yyyw { get { return default(vec4); } set { } }
+        public vec4 yyzx { get { return default(vec4); } set { } }
+        public vec4 yyzy { get { return default(vec4); } set { } }
+        public vec4 yyzz { get { return default(vec4); } set { } }
+        public vec4 yyzw { get { return default(vec4); } set { } }
+        public vec4 yywx { get { return default(vec4); } set { } }
+        public vec4 yywy { get { return default(vec4); } set { } }
+        public vec4 yywz { get { return default(vec4); } set { } }
+        public vec4 yyww { get { return default(vec4); } set { } }
+        public vec4 yzxx { get { return default(vec4); } set { } }
+        public vec4 yzxy { get { return default(vec4); } set { } }
+        public vec4 yzxz { get { return default(vec4); } set { } }
+        public vec4 yzxw { get { return default(vec4); } set { } }
+        public vec4 yzyx { get { return default(vec4); } set { } }
+        public vec4 yzyy { get { return default(vec4); } set { } }
+        public vec4 yzyz { get { return default(vec4); } set { } }
+        public vec4 yzyw { get { return default(vec4); } set { } }
+        public vec4 yzzx { get { return default(vec4); } set { } }
+        public vec4 yzzy { get { return default(vec4); } set { } }
+        public vec4 yzzz { get { return default(vec4); } set { } }
+        public vec4 yzzw { get { return default(vec4); } set { } }
+        public vec4 yzwx { get { return default(vec4); } set { } }
+        public vec4 yzwy { get { return default(vec4); } set { } }
+        public vec4 yzwz { get { return default(vec4); } set { } }
+        public vec4 yzww { get { return default(vec4); } set { } }
+        public vec4 ywxx { get { return default(vec4); } set { } }
+        public vec4 ywxy { get { return default(vec4); } set { } }
+        public vec4 ywxz { get { return default(vec4); } set { } }
+        public vec4 ywxw { get { return default(vec4); } set { } }
+        public vec4 ywyx { get { return default(vec4); } set { } }
+        public vec4 ywyy { get { return default(vec4); } set { } }
+        public vec4 ywyz { get { return default(vec4); } set { } }
+        public vec4 ywyw { get { return default(vec4); } set { } }
+        public vec4 ywzx { get { return default(vec4); } set { } }
+        public vec4 ywzy { get { return default(vec4); } set { } }
+        public vec4 ywzz { get { return default(vec4); } set { } }
+        public vec4 ywzw { get { return default(vec4); } set { } }
+        public vec4 ywwx { get { return default(vec4); } set { } }
+        public vec4 ywwy { get { return default(vec4); } set { } }
+        public vec4 ywwz { get { return default(vec4); } set { } }
+        public vec4 ywww { get { return default(vec4); } set { } }
+        public vec4 zxxx { get { return default(vec4); } set { } }
+        public vec4 zxxy { get { return default(vec4); } set { } }
+        public vec4 zxxz { get { return default(vec4); } set { } }
+        public vec4 zxxw { get { return default(vec4); } set { } }
+        public vec4 zxyx { get { return default(vec4); } set { } }
+        public vec4 zxyy { get { return default(vec4); } set { } }
+        public vec4 zxyz { get { return default(vec4); } set { } }
+        public vec4 zxyw { get { return default(vec4); } set { } }
+        public vec4 zxzx { get { return default(vec4); } set { } }
+        public vec4 zxzy { get { return default(vec4); } set { } }
+        public vec4 zxzz { get { return default(vec4); } set { } }
+        public vec4 zxzw { get { return default(vec4); } set { } }
+        public vec4 zxwx { get { return default(vec4); } set { } }
+        public vec4 zxwy { get { return default(vec4); } set { } }
+        public vec4 zxwz { get { return default(vec4); } set { } }
+        public vec4 zxww { get { return default(vec4); } set { } }
+        public vec4 zyxx { get { return default(vec4); } set { } }
+        public vec4 zyxy { get { return default(vec4); } set { } }
+        public vec4 zyxz { get { return default(vec4); } set { } }
+        public vec4 zyxw { get { return default(vec4); } set { } }
+        public vec4 zyyx { get { return default(vec4); } set { } }
+        public vec4 zyyy { get { return default(vec4); } set { } }
+        public vec4 zyyz { get { return default(vec4); } set { } }
+        public vec4 zyyw { get { return default(vec4); } set { } }
+        public vec4 zyzx { get { return default(vec4); } set { } }
+        public vec4 zyzy { get { return default(vec4); } set { } }
+        public vec4 zyzz { get { return default(vec4); } set { } }
+        public vec4 zyzw { get { return default(vec4); } set { } }
+        public vec4 zywx { get { return default(vec4); } set { } }
+        public vec4 zywy { get { return default(vec4); } set { } }
+        public vec4 zywz { get { return default(vec4); } set { } }
+        public vec4 zyww { get { return default(vec4); } set { } }
+        public vec4 zzxx { get { return default(vec4); } set { } }
+        public vec4 zzxy { get { return default(vec4); } set { } }
+        public vec4 zzxz { get { return default(vec4); } set { } }
+        public vec4 zzxw { get { return default(vec4); } set { } }
+        public vec4 zzyx { get { return default(vec4); } set { } }
+        public vec4 zzyy { get { return default(vec4); } set { } }
+        public vec4 zzyz { get { return default(vec4); } set { } }
+        public vec4 zzyw { get { return default(vec4); } set { } }
+        public vec4 zzzx { get { return default(vec4); } set { } }
+        public vec4 zzzy { get { return default(vec4); } set { } }
+        public vec4 zzzz { get { return default(vec4); } set { } }
+        public vec4 zzzw { get { return default(vec4); } set { } }
+        public vec4 zzwx { get { return default(vec4); } set { } }
+        public vec4 zzwy { get { return default(vec4); } set { } }
+        public vec4 zzwz { get { return default(vec4); } set { } }
+        public vec4 zzww { get { return default(vec4); } set { } }
+        public vec4 zwxx { get { return default(vec4); } set { } }
+        public vec4 zwxy { get { return default(vec4); } set { } }
+        public vec4 zwxz { get { return default(vec4); } set { } }
+        public vec4 zwxw { get { return default(vec4); } set { } }
+        public vec4 zwyx { get { return default(vec4); } set { } }
+        public vec4 zwyy { get { return default(vec4); } set { } }
+        public vec4 zwyz { get { return default(vec4); } set { } }
+        public vec4 zwyw { get { return default(vec4); } set { } }
+        public vec4 zwzx { get { return default(vec4); } set { } }
+        public vec4 zwzy { get { return default(vec4); } set { } }
+        public vec4 zwzz { get { return default(vec4); } set { } }
+        public vec4 zwzw { get { return default(vec4); } set { } }
+        public vec4 zwwx { get { return default(vec4); } set { } }
+        public vec4 zwwy { get { return default(vec4); } set { } }
+        public vec4 zwwz { get { return default(vec4); } set { } }
+        public vec4 zwww { get { return default(vec4); } set { } }
+        public vec4 wxxx { get { return default(vec4); } set { } }
+        public vec4 wxxy { get { return default(vec4); } set { } }
+        public vec4 wxxz { get { return default(vec4); } set { } }
+        public vec4 wxxw { get { return default(vec4); } set { } }
+        public vec4 wxyx { get { return default(vec4); } set { } }
+        public vec4 wxyy { get { return default(vec4); } set { } }
+        public vec4 wxyz { get { return default(vec4); } set { } }
+        public vec4 wxyw { get { return default(vec4); } set { } }
+        public vec4 wxzx { get { return default(vec4); } set { } }
+        public vec4 wxzy { get { return default(vec4); } set { } }
+        public vec4 wxzz { get { return default(vec4); } set { } }
+        public vec4 wxzw { get { return default(vec4); } set { } }
+        public vec4 wxwx { get { return default(vec4); } set { } }
+        public vec4 wxwy { get { return default(vec4); } set { } }
+        public vec4 wxwz { get { return default(vec4); } set { } }
+        public vec4 wxww { get { return default(vec4); } set { } }
+        public vec4 wyxx { get { return default(vec4); } set { } }
+        public vec4 wyxy { get { return default(vec4); } set { } }
+        public vec4 wyxz { get { return default(vec4); } set { } }
+        public vec4 wyxw { get { return default(vec4); } set { } }
+        public vec4 wyyx { get { return default(vec4); } set { } }
+        public vec4 wyyy { get { return default(vec4); } set { } }
+        public vec4 wyyz { get { return default(vec4); } set { } }
+        public vec4 wyyw { get { return default(vec4); } set { } }
+        public vec4 wyzx { get { return default(vec4); } set { } }
+        public vec4 wyzy { get { return default(vec4); } set { } }
+        public vec4 wyzz { get { return default(vec4); } set { } }
+        public vec4 wyzw { get { return default(vec4); } set { } }
+        public vec4 wywx { get { return default(vec4); } set { } }
+        public vec4 wywy { get { return default(vec4); } set { } }
+        public vec4 wywz { get { return default(vec4); } set { } }
+        public vec4 wyww { get { return default(vec4); } set { } }
+        public vec4 wzxx { get { return default(vec4); } set { } }
+        public vec4 wzxy { get { return default(vec4); } set { } }
+        public vec4 wzxz { get { return default(vec4); } set { } }
+        public vec4 wzxw { get { return default(vec4); } set { } }
+        public vec4 wzyx { get { return default(vec4); } set { } }
+        public vec4 wzyy { get { return default(vec4); } set { } }
+        public vec4 wzyz { get { return default(vec4); } set { } }
+        public vec4 wzyw { get { return default(vec4); } set { } }
+        public vec4 wzzx { get { return default(vec4); } set { } }
+        public vec4 wzzy { get { return default(vec4); } set { } }
+        public vec4 wzzz { get { return default(vec4); } set { } }
+        public vec4 wzzw { get { return default(vec4); } set { } }
+        public vec4 wzwx { get { return default(vec4); } set { } }
+        public vec4 wzwy { get { return default(vec4); } set { } }
+        public vec4 wzwz { get { return default(vec4); } set { } }
+        public vec4 wzww { get { return default(vec4); } set { } }
+        public vec4 wwxx { get { return default(vec4); } set { } }
+        public vec4 wwxy { get { return default(vec4); } set { } }
+        public vec4 wwxz { get { return default(vec4); } set { } }
+        public vec4 wwxw { get { return default(vec4); } set { } }
+        public vec4 wwyx { get { return default(vec4); } set { } }
+        public vec4 wwyy { get { return default(vec4); } set { } }
+        public vec4 wwyz { get { return default(vec4); } set { } }
+        public vec4 wwyw { get { return default(vec4); } set { } }
+        public vec4 wwzx { get { return default(vec4); } set { } }
+        public vec4 wwzy { get { return default(vec4); } set { } }
+        public vec4 wwzz { get { return default(vec4); } set { } }
+        public vec4 wwzw { get { return default(vec4); } set { } }
+        public vec4 wwwx { get { return default(vec4); } set { } }
+        public vec4 wwwy { get { return default(vec4); } set { } }
+        public vec4 wwwz { get { return default(vec4); } set { } }
+        public vec4 wwww { get { return default(vec4); } set { } }
+        public float r { get { return 0.0f; } set { } }
+        public float g { get { return 0.0f; } set { } }
+        public float b { get { return 0.0f; } set { } }
+        public float a { get { return 0.0f; } set { } }
 
-        public vec2 rr { get { return default(vec2); } }
-        public vec2 rg { get { return default(vec2); } }
-        public vec2 rb { get { return default(vec2); } }
-        public vec2 ra { get { return default(vec2); } }
-        public vec2 gr { get { return default(vec2); } }
-        public vec2 gg { get { return default(vec2); } }
-        public vec2 gb { get { return default(vec2); } }
-        public vec2 ga { get { return default(vec2); } }
-        public vec2 br { get { return default(vec2); } }
-        public vec2 bg { get { return default(vec2); } }
-        public vec2 bb { get { return default(vec2); } }
-        public vec2 ba { get { return default(vec2); } }
-        public vec2 ar { get { return default(vec2); } }
-        public vec2 ag { get { return default(vec2); } }
-        public vec2 ab { get { return default(vec2); } }
-        public vec2 aa { get { return default(vec2); } }
+        public vec2 rr { get { return default(vec2); } set { } }
+        public vec2 rg { get { return default(vec2); } set { } }
+        public vec2 rb { get { return default(vec2); } set { } }
+        public vec2 ra { get { return default(vec2); } set { } }
+        public vec2 gr { get { return default(vec2); } set { } }
+        public vec2 gg { get { return default(vec2); } set { } }
+        public vec2 gb { get { return default(vec2); } set { } }
+        public vec2 ga { get { return default(vec2); } set { } }
+        public vec2 br { get { return default(vec2); } set { } }
+        public vec2 bg { get { return default(vec2); } set { } }
+        public vec2 bb { get { return default(vec2); } set { } }
+        public vec2 ba { get { return default(vec2); } set { } }
+        public vec2 ar { get { return default(vec2); } set { } }
+        public vec2 ag { get { return default(vec2); } set { } }
+        public vec2 ab { get { return default(vec2); } set { } }
+        public vec2 aa { get { return default(vec2); } set { } }
 
-        public vec3 rrr { get { return default(vec3); } }
-        public vec3 rrg { get { return default(vec3); } }
-        public vec3 rrb { get { return default(vec3); } }
-        public vec3 rra { get { return default(vec3); } }
-        public vec3 rgr { get { return default(vec3); } }
-        public vec3 rgg { get { return default(vec3); } }
-        public vec3 rgb { get { return default(vec3); } }
-        public vec3 rga { get { return default(vec3); } }
-        public vec3 rbr { get { return default(vec3); } }
-        public vec3 rbg { get { return default(vec3); } }
-        public vec3 rbb { get { return default(vec3); } }
-        public vec3 rba { get { return default(vec3); } }
-        public vec3 rar { get { return default(vec3); } }
-        public vec3 rag { get { return default(vec3); } }
-        public vec3 rab { get { return default(vec3); } }
-        public vec3 raa { get { return default(vec3); } }
-        public vec3 grr { get { return default(vec3); } }
-        public vec3 grg { get { return default(vec3); } }
-        public vec3 grb { get { return default(vec3); } }
-        public vec3 gra { get { return default(vec3); } }
-        public vec3 ggr { get { return default(vec3); } }
-        public vec3 ggg { get { return default(vec3); } }
-        public vec3 ggb { get { return default(vec3); } }
-        public vec3 gga { get { return default(vec3); } }
-        public vec3 gbr { get { return default(vec3); } }
-        public vec3 gbg { get { return default(vec3); } }
-        public vec3 gbb { get { return default(vec3); } }
-        public vec3 gba { get { return default(vec3); } }
-        public vec3 gar { get { return default(vec3); } }
-        public vec3 gag { get { return default(vec3); } }
-        public vec3 gab { get { return default(vec3); } }
-        public vec3 gaa { get { return default(vec3); } }
-        public vec3 brr { get { return default(vec3); } }
-        public vec3 brg { get { return default(vec3); } }
-        public vec3 brb { get { return default(vec3); } }
-        public vec3 bra { get { return default(vec3); } }
-        public vec3 bgr { get { return default(vec3); } }
-        public vec3 bgg { get { return default(vec3); } }
-        public vec3 bgb { get { return default(vec3); } }
-        public vec3 bga { get { return default(vec3); } }
-        public vec3 bbr { get { return default(vec3); } }
-        public vec3 bbg { get { return default(vec3); } }
-        public vec3 bbb { get { return default(vec3); } }
-        public vec3 bba { get { return default(vec3); } }
-        public vec3 bar { get { return default(vec3); } }
-        public vec3 bag { get { return default(vec3); } }
-        public vec3 bab { get { return default(vec3); } }
-        public vec3 baa { get { return default(vec3); } }
-        public vec3 arr { get { return default(vec3); } }
-        public vec3 arg { get { return default(vec3); } }
-        public vec3 arb { get { return default(vec3); } }
-        public vec3 ara { get { return default(vec3); } }
-        public vec3 agr { get { return default(vec3); } }
-        public vec3 agg { get { return default(vec3); } }
-        public vec3 agb { get { return default(vec3); } }
-        public vec3 aga { get { return default(vec3); } }
-        public vec3 abr { get { return default(vec3); } }
-        public vec3 abg { get { return default(vec3); } }
-        public vec3 abb { get { return default(vec3); } }
-        public vec3 aba { get { return default(vec3); } }
-        public vec3 aar { get { return default(vec3); } }
-        public vec3 aag { get { return default(vec3); } }
-        public vec3 aab { get { return default(vec3); } }
-        public vec3 aaa { get { return default(vec3); } }
+        public vec3 rrr { get { return default(vec3); } set { } }
+        public vec3 rrg { get { return default(vec3); } set { } }
+        public vec3 rrb { get { return default(vec3); } set { } }
+        public vec3 rra { get { return default(vec3); } set { } }
+        public vec3 rgr { get { return default(vec3); } set { } }
+        public vec3 rgg { get { return default(vec3); } set { } }
+        public vec3 rgb { get { return default(vec3); } set { } }
+        public vec3 rga { get { return default(vec3); } set { } }
+        public vec3 rbr { get { return default(vec3); } set { } }
+        public vec3 rbg { get { return default(vec3); } set { } }
+        public vec3 rbb { get { return default(vec3); } set { } }
+        public vec3 rba { get { return default(vec3); } set { } }
+        public vec3 rar { get { return default(vec3); } set { } }
+        public vec3 rag { get { return default(vec3); } set { } }
+        public vec3 rab { get { return default(vec3); } set { } }
+        public vec3 raa { get { return default(vec3); } set { } }
+        public vec3 grr { get { return default(vec3); } set { } }
+        public vec3 grg { get { return default(vec3); } set { } }
+        public vec3 grb { get { return default(vec3); } set { } }
+        public vec3 gra { get { return default(vec3); } set { } }
+        public vec3 ggr { get { return default(vec3); } set { } }
+        public vec3 ggg { get { return default(vec3); } set { } }
+        public vec3 ggb { get { return default(vec3); } set { } }
+        public vec3 gga { get { return default(vec3); } set { } }
+        public vec3 gbr { get { return default(vec3); } set { } }
+        public vec3 gbg { get { return default(vec3); } set { } }
+        public vec3 gbb { get { return default(vec3); } set { } }
+        public vec3 gba { get { return default(vec3); } set { } }
+        public vec3 gar { get { return default(vec3); } set { } }
+        public vec3 gag { get { return default(vec3); } set { } }
+        public vec3 gab { get { return default(vec3); } set { } }
+        public vec3 gaa { get { return default(vec3); } set { } }
+        public vec3 brr { get { return default(vec3); } set { } }
+        public vec3 brg { get { return default(vec3); } set { } }
+        public vec3 brb { get { return default(vec3); } set { } }
+        public vec3 bra { get { return default(vec3); } set { } }
+        public vec3 bgr { get { return default(vec3); } set { } }
+        public vec3 bgg { get { return default(vec3); } set { } }
+        public vec3 bgb { get { return default(vec3); } set { } }
+        public vec3 bga { get { return default(vec3); } set { } }
+        public vec3 bbr { get { return default(vec3); } set { } }
+        public vec3 bbg { get { return default(vec3); } set { } }
+        public vec3 bbb { get { return default(vec3); } set { } }
+        public vec3 bba { get { return default(vec3); } set { } }
+        public vec3 bar { get { return default(vec3); } set { } }
+        public vec3 bag { get { return default(vec3); } set { } }
+        public vec3 bab { get { return default(vec3); } set { } }
+        public vec3 baa { get { return default(vec3); } set { } }
+        public vec3 arr { get { return default(vec3); } set { } }
+        public vec3 arg { get { return default(vec3); } set { } }
+        public vec3 arb { get { return default(vec3); } set { } }
+        public vec3 ara { get { return default(vec3); } set { } }
+        public vec3 agr { get { return default(vec3); } set { } }
+        public vec3 agg { get { return default(vec3); } set { } }
+        public vec3 agb { get { return default(vec3); } set { } }
+        public vec3 aga { get { return default(vec3); } set { } }
+        public vec3 abr { get { return default(vec3); } set { } }
+        public vec3 abg { get { return default(vec3); } set { } }
+        public vec3 abb { get { return default(vec3); } set { } }
+        public vec3 aba { get { return default(vec3); } set { } }
+        public vec3 aar { get { return default(vec3); } set { } }
+        public vec3 aag { get { return default(vec3); } set { } }
+        public vec3 aab { get { return default(vec3); } set { } }
+        public vec3 aaa { get { return default(vec3); } set { } }
 
-        public vec4 rrrr { get { return default(vec4); } }
-        public vec4 rrrg { get { return default(vec4); } }
-        public vec4 rrrb { get { return default(vec4); } }
-        public vec4 rrra { get { return default(vec4); } }
-        public vec4 rrgr { get { return default(vec4); } }
-        public vec4 rrgg { get { return default(vec4); } }
-        public vec4 rrgb { get { return default(vec4); } }
-        public vec4 rrga { get { return default(vec4); } }
-        public vec4 rrbr { get { return default(vec4); } }
-        public vec4 rrbg { get { return default(vec4); } }
-        public vec4 rrbb { get { return default(vec4); } }
-        public vec4 rrba { get { return default(vec4); } }
-        public vec4 rrar { get { return default(vec4); } }
-        public vec4 rrag { get { return default(vec4); } }
-        public vec4 rrab { get { return default(vec4); } }
-        public vec4 rraa { get { return default(vec4); } }
-        public vec4 rgrr { get { return default(vec4); } }
-        public vec4 rgrg { get { return default(vec4); } }
-        public vec4 rgrb { get { return default(vec4); } }
-        public vec4 rgra { get { return default(vec4); } }
-        public vec4 rggr { get { return default(vec4); } }
-        public vec4 rggg { get { return default(vec4); } }
-        public vec4 rggb { get { return default(vec4); } }
-        public vec4 rgga { get { return default(vec4); } }
-        public vec4 rgbr { get { return default(vec4); } }
-        public vec4 rgbg { get { return default(vec4); } }
-        public vec4 rgbb { get { return default(vec4); } }
-        public vec4 rgba { get { return default(vec4); } }
-        public vec4 rgar { get { return default(vec4); } }
-        public vec4 rgag { get { return default(vec4); } }
-        public vec4 rgab { get { return default(vec4); } }
-        public vec4 rgaa { get { return default(vec4); } }
-        public vec4 rbrr { get { return default(vec4); } }
-        public vec4 rbrg { get { return default(vec4); } }
-        public vec4 rbrb { get { return default(vec4); } }
-        public vec4 rbra { get { return default(vec4); } }
-        public vec4 rbgr { get { return default(vec4); } }
-        public vec4 rbgg { get { return default(vec4); } }
-        public vec4 rbgb { get { return default(vec4); } }
-        public vec4 rbga { get { return default(vec4); } }
-        public vec4 rbbr { get { return default(vec4); } }
-        public vec4 rbbg { get { return default(vec4); } }
-        public vec4 rbbb { get { return default(vec4); } }
-        public vec4 rbba { get { return default(vec4); } }
-        public vec4 rbar { get { return default(vec4); } }
-        public vec4 rbag { get { return default(vec4); } }
-        public vec4 rbab { get { return default(vec4); } }
-        public vec4 rbaa { get { return default(vec4); } }
-        public vec4 rarr { get { return default(vec4); } }
-        public vec4 rarg { get { return default(vec4); } }
-        public vec4 rarb { get { return default(vec4); } }
-        public vec4 rara { get { return default(vec4); } }
-        public vec4 ragr { get { return default(vec4); } }
-        public vec4 ragg { get { return default(vec4); } }
-        public vec4 ragb { get { return default(vec4); } }
-        public vec4 raga { get { return default(vec4); } }
-        public vec4 rabr { get { return default(vec4); } }
-        public vec4 rabg { get { return default(vec4); } }
-        public vec4 rabb { get { return default(vec4); } }
-        public vec4 raba { get { return default(vec4); } }
-        public vec4 raar { get { return default(vec4); } }
-        public vec4 raag { get { return default(vec4); } }
-        public vec4 raab { get { return default(vec4); } }
-        public vec4 raaa { get { return default(vec4); } }
-        public vec4 grrr { get { return default(vec4); } }
-        public vec4 grrg { get { return default(vec4); } }
-        public vec4 grrb { get { return default(vec4); } }
-        public vec4 grra { get { return default(vec4); } }
-        public vec4 grgr { get { return default(vec4); } }
-        public vec4 grgg { get { return default(vec4); } }
-        public vec4 grgb { get { return default(vec4); } }
-        public vec4 grga { get { return default(vec4); } }
-        public vec4 grbr { get { return default(vec4); } }
-        public vec4 grbg { get { return default(vec4); } }
-        public vec4 grbb { get { return default(vec4); } }
-        public vec4 grba { get { return default(vec4); } }
-        public vec4 grar { get { return default(vec4); } }
-        public vec4 grag { get { return default(vec4); } }
-        public vec4 grab { get { return default(vec4); } }
-        public vec4 graa { get { return default(vec4); } }
-        public vec4 ggrr { get { return default(vec4); } }
-        public vec4 ggrg { get { return default(vec4); } }
-        public vec4 ggrb { get { return default(vec4); } }
-        public vec4 ggra { get { return default(vec4); } }
-        public vec4 gggr { get { return default(vec4); } }
-        public vec4 gggg { get { return default(vec4); } }
-        public vec4 gggb { get { return default(vec4); } }
-        public vec4 ggga { get { return default(vec4); } }
-        public vec4 ggbr { get { return default(vec4); } }
-        public vec4 ggbg { get { return default(vec4); } }
-        public vec4 ggbb { get { return default(vec4); } }
-        public vec4 ggba { get { return default(vec4); } }
-        public vec4 ggar { get { return default(vec4); } }
-        public vec4 ggag { get { return default(vec4); } }
-        public vec4 ggab { get { return default(vec4); } }
-        public vec4 ggaa { get { return default(vec4); } }
-        public vec4 gbrr { get { return default(vec4); } }
-        public vec4 gbrg { get { return default(vec4); } }
-        public vec4 gbrb { get { return default(vec4); } }
-        public vec4 gbra { get { return default(vec4); } }
-        public vec4 gbgr { get { return default(vec4); } }
-        public vec4 gbgg { get { return default(vec4); } }
-        public vec4 gbgb { get { return default(vec4); } }
-        public vec4 gbga { get { return default(vec4); } }
-        public vec4 gbbr { get { return default(vec4); } }
-        public vec4 gbbg { get { return default(vec4); } }
-        public vec4 gbbb { get { return default(vec4); } }
-        public vec4 gbba { get { return default(vec4); } }
-        public vec4 gbar { get { return default(vec4); } }
-        public vec4 gbag { get { return default(vec4); } }
-        public vec4 gbab { get { return default(vec4); } }
-        public vec4 gbaa { get { return default(vec4); } }
-        public vec4 garr { get { return default(vec4); } }
-        public vec4 garg { get { return default(vec4); } }
-        public vec4 garb { get { return default(vec4); } }
-        public vec4 gara { get { return default(vec4); } }
-        public vec4 gagr { get { return default(vec4); } }
-        public vec4 gagg { get { return default(vec4); } }
-        public vec4 gagb { get { return default(vec4); } }
-        public vec4 gaga { get { return default(vec4); } }
-        public vec4 gabr { get { return default(vec4); } }
-        public vec4 gabg { get { return default(vec4); } }
-        public vec4 gabb { get { return default(vec4); } }
-        public vec4 gaba { get { return default(vec4); } }
-        public vec4 gaar { get { return default(vec4); } }
-        public vec4 gaag { get { return default(vec4); } }
-        public vec4 gaab { get { return default(vec4); } }
-        public vec4 gaaa { get { return default(vec4); } }
-        public vec4 brrr { get { return default(vec4); } }
-        public vec4 brrg { get { return default(vec4); } }
-        public vec4 brrb { get { return default(vec4); } }
-        public vec4 brra { get { return default(vec4); } }
-        public vec4 brgr { get { return default(vec4); } }
-        public vec4 brgg { get { return default(vec4); } }
-        public vec4 brgb { get { return default(vec4); } }
-        public vec4 brga { get { return default(vec4); } }
-        public vec4 brbr { get { return default(vec4); } }
-        public vec4 brbg { get { return default(vec4); } }
-        public vec4 brbb { get { return default(vec4); } }
-        public vec4 brba { get { return default(vec4); } }
-        public vec4 brar { get { return default(vec4); } }
-        public vec4 brag { get { return default(vec4); } }
-        public vec4 brab { get { return default(vec4); } }
-        public vec4 braa { get { return default(vec4); } }
-        public vec4 bgrr { get { return default(vec4); } }
-        public vec4 bgrg { get { return default(vec4); } }
-        public vec4 bgrb { get { return default(vec4); } }
-        public vec4 bgra { get { return default(vec4); } }
-        public vec4 bggr { get { return default(vec4); } }
-        public vec4 bggg { get { return default(vec4); } }
-        public vec4 bggb { get { return default(vec4); } }
-        public vec4 bgga { get { return default(vec4); } }
-        public vec4 bgbr { get { return default(vec4); } }
-        public vec4 bgbg { get { return default(vec4); } }
-        public vec4 bgbb { get { return default(vec4); } }
-        public vec4 bgba { get { return default(vec4); } }
-        public vec4 bgar { get { return default(vec4); } }
-        public vec4 bgag { get { return default(vec4); } }
-        public vec4 bgab { get { return default(vec4); } }
-        public vec4 bgaa { get { return default(vec4); } }
-        public vec4 bbrr { get { return default(vec4); } }
-        public vec4 bbrg { get { return default(vec4); } }
-        public vec4 bbrb { get { return default(vec4); } }
-        public vec4 bbra { get { return default(vec4); } }
-        public vec4 bbgr { get { return default(vec4); } }
-        public vec4 bbgg { get { return default(vec4); } }
-        public vec4 bbgb { get { return default(vec4); } }
-        public vec4 bbga { get { return default(vec4); } }
-        public vec4 bbbr { get { return default(vec4); } }
-        public vec4 bbbg { get { return default(vec4); } }
-        public vec4 bbbb { get { return default(vec4); } }
-        public vec4 bbba { get { return default(vec4); } }
-        public vec4 bbar { get { return default(vec4); } }
-        public vec4 bbag { get { return default(vec4); } }
-        public vec4 bbab { get { return default(vec4); } }
-        public vec4 bbaa { get { return default(vec4); } }
-        public vec4 barr { get { return default(vec4); } }
-        public vec4 barg { get { return default(vec4); } }
-        public vec4 barb { get { return default(vec4); } }
-        public vec4 bara { get { return default(vec4); } }
-        public vec4 bagr { get { return default(vec4); } }
-        public vec4 bagg { get { return default(vec4); } }
-        public vec4 bagb { get { return default(vec4); } }
-        public vec4 baga { get { return default(vec4); } }
-        public vec4 babr { get { return default(vec4); } }
-        public vec4 babg { get { return default(vec4); } }
-        public vec4 babb { get { return default(vec4); } }
-        public vec4 baba { get { return default(vec4); } }
-        public vec4 baar { get { return default(vec4); } }
-        public vec4 baag { get { return default(vec4); } }
-        public vec4 baab { get { return default(vec4); } }
-        public vec4 baaa { get { return default(vec4); } }
-        public vec4 arrr { get { return default(vec4); } }
-        public vec4 arrg { get { return default(vec4); } }
-        public vec4 arrb { get { return default(vec4); } }
-        public vec4 arra { get { return default(vec4); } }
-        public vec4 argr { get { return default(vec4); } }
-        public vec4 argg { get { return default(vec4); } }
-        public vec4 argb { get { return default(vec4); } }
-        public vec4 arga { get { return default(vec4); } }
-        public vec4 arbr { get { return default(vec4); } }
-        public vec4 arbg { get { return default(vec4); } }
-        public vec4 arbb { get { return default(vec4); } }
-        public vec4 arba { get { return default(vec4); } }
-        public vec4 arar { get { return default(vec4); } }
-        public vec4 arag { get { return default(vec4); } }
-        public vec4 arab { get { return default(vec4); } }
-        public vec4 araa { get { return default(vec4); } }
-        public vec4 agrr { get { return default(vec4); } }
-        public vec4 agrg { get { return default(vec4); } }
-        public vec4 agrb { get { return default(vec4); } }
-        public vec4 agra { get { return default(vec4); } }
-        public vec4 aggr { get { return default(vec4); } }
-        public vec4 aggg { get { return default(vec4); } }
-        public vec4 aggb { get { return default(vec4); } }
-        public vec4 agga { get { return default(vec4); } }
-        public vec4 agbr { get { return default(vec4); } }
-        public vec4 agbg { get { return default(vec4); } }
-        public vec4 agbb { get { return default(vec4); } }
-        public vec4 agba { get { return default(vec4); } }
-        public vec4 agar { get { return default(vec4); } }
-        public vec4 agag { get { return default(vec4); } }
-        public vec4 agab { get { return default(vec4); } }
-        public vec4 agaa { get { return default(vec4); } }
-        public vec4 abrr { get { return default(vec4); } }
-        public vec4 abrg { get { return default(vec4); } }
-        public vec4 abrb { get { return default(vec4); } }
-        public vec4 abra { get { return default(vec4); } }
-        public vec4 abgr { get { return default(vec4); } }
-        public vec4 abgg { get { return default(vec4); } }
-        public vec4 abgb { get { return default(vec4); } }
-        public vec4 abga { get { return default(vec4); } }
-        public vec4 abbr { get { return default(vec4); } }
-        public vec4 abbg { get { return default(vec4); } }
-        public vec4 abbb { get { return default(vec4); } }
-        public vec4 abba { get { return default(vec4); } }
-        public vec4 abar { get { return default(vec4); } }
-        public vec4 abag { get { return default(vec4); } }
-        public vec4 abab { get { return default(vec4); } }
-        public vec4 abaa { get { return default(vec4); } }
-        public vec4 aarr { get { return default(vec4); } }
-        public vec4 aarg { get { return default(vec4); } }
-        public vec4 aarb { get { return default(vec4); } }
-        public vec4 aara { get { return default(vec4); } }
-        public vec4 aagr { get { return default(vec4); } }
-        public vec4 aagg { get { return default(vec4); } }
-        public vec4 aagb { get { return default(vec4); } }
-        public vec4 aaga { get { return default(vec4); } }
-        public vec4 aabr { get { return default(vec4); } }
-        public vec4 aabg { get { return default(vec4); } }
-        public vec4 aabb { get { return default(vec4); } }
-        public vec4 aaba { get { return default(vec4); } }
-        public vec4 aaar { get { return default(vec4); } }
-        public vec4 aaag { get { return default(vec4); } }
-        public vec4 aaab { get { return default(vec4); } }
-        public vec4 aaaa { get { return default(vec4); } }
-        public float s { get { return 0.0f; } }
-        public float t { get { return 0.0f; } }
-        public float p { get { return 0.0f; } }
-        public float q { get { return 0.0f; } }
+        public vec4 rrrr { get { return default(vec4); } set { } }
+        public vec4 rrrg { get { return default(vec4); } set { } }
+        public vec4 rrrb { get { return default(vec4); } set { } }
+        public vec4 rrra { get { return default(vec4); } set { } }
+        public vec4 rrgr { get { return default(vec4); } set { } }
+        public vec4 rrgg { get { return default(vec4); } set { } }
+        public vec4 rrgb { get { return default(vec4); } set { } }
+        public vec4 rrga { get { return default(vec4); } set { } }
+        public vec4 rrbr { get { return default(vec4); } set { } }
+        public vec4 rrbg { get { return default(vec4); } set { } }
+        public vec4 rrbb { get { return default(vec4); } set { } }
+        public vec4 rrba { get { return default(vec4); } set { } }
+        public vec4 rrar { get { return default(vec4); } set { } }
+        public vec4 rrag { get { return default(vec4); } set { } }
+        public vec4 rrab { get { return default(vec4); } set { } }
+        public vec4 rraa { get { return default(vec4); } set { } }
+        public vec4 rgrr { get { return default(vec4); } set { } }
+        public vec4 rgrg { get { return default(vec4); } set { } }
+        public vec4 rgrb { get { return default(vec4); } set { } }
+        public vec4 rgra { get { return default(vec4); } set { } }
+        public vec4 rggr { get { return default(vec4); } set { } }
+        public vec4 rggg { get { return default(vec4); } set { } }
+        public vec4 rggb { get { return default(vec4); } set { } }
+        public vec4 rgga { get { return default(vec4); } set { } }
+        public vec4 rgbr { get { return default(vec4); } set { } }
+        public vec4 rgbg { get { return default(vec4); } set { } }
+        public vec4 rgbb { get { return default(vec4); } set { } }
+        public vec4 rgba { get { return default(vec4); } set { } }
+        public vec4 rgar { get { return default(vec4); } set { } }
+        public vec4 rgag { get { return default(vec4); } set { } }
+        public vec4 rgab { get { return default(vec4); } set { } }
+        public vec4 rgaa { get { return default(vec4); } set { } }
+        public vec4 rbrr { get { return default(vec4); } set { } }
+        public vec4 rbrg { get { return default(vec4); } set { } }
+        public vec4 rbrb { get { return default(vec4); } set { } }
+        public vec4 rbra { get { return default(vec4); } set { } }
+        public vec4 rbgr { get { return default(vec4); } set { } }
+        public vec4 rbgg { get { return default(vec4); } set { } }
+        public vec4 rbgb { get { return default(vec4); } set { } }
+        public vec4 rbga { get { return default(vec4); } set { } }
+        public vec4 rbbr { get { return default(vec4); } set { } }
+        public vec4 rbbg { get { return default(vec4); } set { } }
+        public vec4 rbbb { get { return default(vec4); } set { } }
+        public vec4 rbba { get { return default(vec4); } set { } }
+        public vec4 rbar { get { return default(vec4); } set { } }
+        public vec4 rbag { get { return default(vec4); } set { } }
+        public vec4 rbab { get { return default(vec4); } set { } }
+        public vec4 rbaa { get { return default(vec4); } set { } }
+        public vec4 rarr { get { return default(vec4); } set { } }
+        public vec4 rarg { get { return default(vec4); } set { } }
+        public vec4 rarb { get { return default(vec4); } set { } }
+        public vec4 rara { get { return default(vec4); } set { } }
+        public vec4 ragr { get { return default(vec4); } set { } }
+        public vec4 ragg { get { return default(vec4); } set { } }
+        public vec4 ragb { get { return default(vec4); } set { } }
+        public vec4 raga { get { return default(vec4); } set { } }
+        public vec4 rabr { get { return default(vec4); } set { } }
+        public vec4 rabg { get { return default(vec4); } set { } }
+        public vec4 rabb { get { return default(vec4); } set { } }
+        public vec4 raba { get { return default(vec4); } set { } }
+        public vec4 raar { get { return default(vec4); } set { } }
+        public vec4 raag { get { return default(vec4); } set { } }
+        public vec4 raab { get { return default(vec4); } set { } }
+        public vec4 raaa { get { return default(vec4); } set { } }
+        public vec4 grrr { get { return default(vec4); } set { } }
+        public vec4 grrg { get { return default(vec4); } set { } }
+        public vec4 grrb { get { return default(vec4); } set { } }
+        public vec4 grra { get { return default(vec4); } set { } }
+        public vec4 grgr { get { return default(vec4); } set { } }
+        public vec4 grgg { get { return default(vec4); } set { } }
+        public vec4 grgb { get { return default(vec4); } set { } }
+        public vec4 grga { get { return default(vec4); } set { } }
+        public vec4 grbr { get { return default(vec4); } set { } }
+        public vec4 grbg { get { return default(vec4); } set { } }
+        public vec4 grbb { get { return default(vec4); } set { } }
+        public vec4 grba { get { return default(vec4); } set { } }
+        public vec4 grar { get { return default(vec4); } set { } }
+        public vec4 grag { get { return default(vec4); } set { } }
+        public vec4 grab { get { return default(vec4); } set { } }
+        public vec4 graa { get { return default(vec4); } set { } }
+        public vec4 ggrr { get { return default(vec4); } set { } }
+        public vec4 ggrg { get { return default(vec4); } set { } }
+        public vec4 ggrb { get { return default(vec4); } set { } }
+        public vec4 ggra { get { return default(vec4); } set { } }
+        public vec4 gggr { get { return default(vec4); } set { } }
+        public vec4 gggg { get { return default(vec4); } set { } }
+        public vec4 gggb { get { return default(vec4); } set { } }
+        public vec4 ggga { get { return default(vec4); } set { } }
+        public vec4 ggbr { get { return default(vec4); } set { } }
+        public vec4 ggbg { get { return default(vec4); } set { } }
+        public vec4 ggbb { get { return default(vec4); } set { } }
+        public vec4 ggba { get { return default(vec4); } set { } }
+        public vec4 ggar { get { return default(vec4); } set { } }
+        public vec4 ggag { get { return default(vec4); } set { } }
+        public vec4 ggab { get { return default(vec4); } set { } }
+        public vec4 ggaa { get { return default(vec4); } set { } }
+        public vec4 gbrr { get { return default(vec4); } set { } }
+        public vec4 gbrg { get { return default(vec4); } set { } }
+        public vec4 gbrb { get { return default(vec4); } set { } }
+        public vec4 gbra { get { return default(vec4); } set { } }
+        public vec4 gbgr { get { return default(vec4); } set { } }
+        public vec4 gbgg { get { return default(vec4); } set { } }
+        public vec4 gbgb { get { return default(vec4); } set { } }
+        public vec4 gbga { get { return default(vec4); } set { } }
+        public vec4 gbbr { get { return default(vec4); } set { } }
+        public vec4 gbbg { get { return default(vec4); } set { } }
+        public vec4 gbbb { get { return default(vec4); } set { } }
+        public vec4 gbba { get { return default(vec4); } set { } }
+        public vec4 gbar { get { return default(vec4); } set { } }
+        public vec4 gbag { get { return default(vec4); } set { } }
+        public vec4 gbab { get { return default(vec4); } set { } }
+        public vec4 gbaa { get { return default(vec4); } set { } }
+        public vec4 garr { get { return default(vec4); } set { } }
+        public vec4 garg { get { return default(vec4); } set { } }
+        public vec4 garb { get { return default(vec4); } set { } }
+        public vec4 gara { get { return default(vec4); } set { } }
+        public vec4 gagr { get { return default(vec4); } set { } }
+        public vec4 gagg { get { return default(vec4); } set { } }
+        public vec4 gagb { get { return default(vec4); } set { } }
+        public vec4 gaga { get { return default(vec4); } set { } }
+        public vec4 gabr { get { return default(vec4); } set { } }
+        public vec4 gabg { get { return default(vec4); } set { } }
+        public vec4 gabb { get { return default(vec4); } set { } }
+        public vec4 gaba { get { return default(vec4); } set { } }
+        public vec4 gaar { get { return default(vec4); } set { } }
+        public vec4 gaag { get { return default(vec4); } set { } }
+        public vec4 gaab { get { return default(vec4); } set { } }
+        public vec4 gaaa { get { return default(vec4); } set { } }
+        public vec4 brrr { get { return default(vec4); } set { } }
+        public vec4 brrg { get { return default(vec4); } set { } }
+        public vec4 brrb { get { return default(vec4); } set { } }
+        public vec4 brra { get { return default(vec4); } set { } }
+        public vec4 brgr { get { return default(vec4); } set { } }
+        public vec4 brgg { get { return default(vec4); } set { } }
+        public vec4 brgb { get { return default(vec4); } set { } }
+        public vec4 brga { get { return default(vec4); } set { } }
+        public vec4 brbr { get { return default(vec4); } set { } }
+        public vec4 brbg { get { return default(vec4); } set { } }
+        public vec4 brbb { get { return default(vec4); } set { } }
+        public vec4 brba { get { return default(vec4); } set { } }
+        public vec4 brar { get { return default(vec4); } set { } }
+        public vec4 brag { get { return default(vec4); } set { } }
+        public vec4 brab { get { return default(vec4); } set { } }
+        public vec4 braa { get { return default(vec4); } set { } }
+        public vec4 bgrr { get { return default(vec4); } set { } }
+        public vec4 bgrg { get { return default(vec4); } set { } }
+        public vec4 bgrb { get { return default(vec4); } set { } }
+        public vec4 bgra { get { return default(vec4); } set { } }
+        public vec4 bggr { get { return default(vec4); } set { } }
+        public vec4 bggg { get { return default(vec4); } set { } }
+        public vec4 bggb { get { return default(vec4); } set { } }
+        public vec4 bgga { get { return default(vec4); } set { } }
+        public vec4 bgbr { get { return default(vec4); } set { } }
+        public vec4 bgbg { get { return default(vec4); } set { } }
+        public vec4 bgbb { get { return default(vec4); } set { } }
+        public vec4 bgba { get { return default(vec4); } set { } }
+        public vec4 bgar { get { return default(vec4); } set { } }
+        public vec4 bgag { get { return default(vec4); } set { } }
+        public vec4 bgab { get { return default(vec4); } set { } }
+        public vec4 bgaa { get { return default(vec4); } set { } }
+        public vec4 bbrr { get { return default(vec4); } set { } }
+        public vec4 bbrg { get { return default(vec4); } set { } }
+        public vec4 bbrb { get { return default(vec4); } set { } }
+        public vec4 bbra { get { return default(vec4); } set { } }
+        public vec4 bbgr { get { return default(vec4); } set { } }
+        public vec4 bbgg { get { return default(vec4); } set { } }
+        public vec4 bbgb { get { return default(vec4); } set { } }
+        public vec4 bbga { get { return default(vec4); } set { } }
+        public vec4 bbbr { get { return default(vec4); } set { } }
+        public vec4 bbbg { get { return default(vec4); } set { } }
+        public vec4 bbbb { get { return default(vec4); } set { } }
+        public vec4 bbba { get { return default(vec4); } set { } }
+        public vec4 bbar { get { return default(vec4); } set { } }
+        public vec4 bbag { get { return default(vec4); } set { } }
+        public vec4 bbab { get { return default(vec4); } set { } }
+        public vec4 bbaa { get { return default(vec4); } set { } }
+        public vec4 barr { get { return default(vec4); } set { } }
+        public vec4 barg { get { return default(vec4); } set { } }
+        public vec4 barb { get { return default(vec4); } set { } }
+        public vec4 bara { get { return default(vec4); } set { } }
+        public vec4 bagr { get { return default(vec4); } set { } }
+        public vec4 bagg { get { return default(vec4); } set { } }
+        public vec4 bagb { get { return default(vec4); } set { } }
+        public vec4 baga { get { return default(vec4); } set { } }
+        public vec4 babr { get { return default(vec4); } set { } }
+        public vec4 babg { get { return default(vec4); } set { } }
+        public vec4 babb { get { return default(vec4); } set { } }
+        public vec4 baba { get { return default(vec4); } set { } }
+        public vec4 baar { get { return default(vec4); } set { } }
+        public vec4 baag { get { return default(vec4); } set { } }
+        public vec4 baab { get { return default(vec4); } set { } }
+        public vec4 baaa { get { return default(vec4); } set { } }
+        public vec4 arrr { get { return default(vec4); } set { } }
+        public vec4 arrg { get { return default(vec4); } set { } }
+        public vec4 arrb { get { return default(vec4); } set { } }
+        public vec4 arra { get { return default(vec4); } set { } }
+        public vec4 argr { get { return default(vec4); } set { } }
+        public vec4 argg { get { return default(vec4); } set { } }
+        public vec4 argb { get { return default(vec4); } set { } }
+        public vec4 arga { get { return default(vec4); } set { } }
+        public vec4 arbr { get { return default(vec4); } set { } }
+        public vec4 arbg { get { return default(vec4); } set { } }
+        public vec4 arbb { get { return default(vec4); } set { } }
+        public vec4 arba { get { return default(vec4); } set { } }
+        public vec4 arar { get { return default(vec4); } set { } }
+        public vec4 arag { get { return default(vec4); } set { } }
+        public vec4 arab { get { return default(vec4); } set { } }
+        public vec4 araa { get { return default(vec4); } set { } }
+        public vec4 agrr { get { return default(vec4); } set { } }
+        public vec4 agrg { get { return default(vec4); } set { } }
+        public vec4 agrb { get { return default(vec4); } set { } }
+        public vec4 agra { get { return default(vec4); } set { } }
+        public vec4 aggr { get { return default(vec4); } set { } }
+        public vec4 aggg { get { return default(vec4); } set { } }
+        public vec4 aggb { get { return default(vec4); } set { } }
+        public vec4 agga { get { return default(vec4); } set { } }
+        public vec4 agbr { get { return default(vec4); } set { } }
+        public vec4 agbg { get { return default(vec4); } set { } }
+        public vec4 agbb { get { return default(vec4); } set { } }
+        public vec4 agba { get { return default(vec4); } set { } }
+        public vec4 agar { get { return default(vec4); } set { } }
+        public vec4 agag { get { return default(vec4); } set { } }
+        public vec4 agab { get { return default(vec4); } set { } }
+        public vec4 agaa { get { return default(vec4); } set { } }
+        public vec4 abrr { get { return default(vec4); } set { } }
+        public vec4 abrg { get { return default(vec4); } set { } }
+        public vec4 abrb { get { return default(vec4); } set { } }
+        public vec4 abra { get { return default(vec4); } set { } }
+        public vec4 abgr { get { return default(vec4); } set { } }
+        public vec4 abgg { get { return default(vec4); } set { } }
+        public vec4 abgb { get { return default(vec4); } set { } }
+        public vec4 abga { get { return default(vec4); } set { } }
+        public vec4 abbr { get { return default(vec4); } set { } }
+        public vec4 abbg { get { return default(vec4); } set { } }
+        public vec4 abbb { get { return default(vec4); } set { } }
+        public vec4 abba { get { return default(vec4); } set { } }
+        public vec4 abar { get { return default(vec4); } set { } }
+        public vec4 abag { get { return default(vec4); } set { } }
+        public vec4 abab { get { return default(vec4); } set { } }
+        public vec4 abaa { get { return default(vec4); } set { } }
+        public vec4 aarr { get { return default(vec4); } set { } }
+        public vec4 aarg { get { return default(vec4); } set { } }
+        public vec4 aarb { get { return default(vec4); } set { } }
+        public vec4 aara { get { return default(vec4); } set { } }
+        public vec4 aagr { get { return default(vec4); } set { } }
+        public vec4 aagg { get { return default(vec4); } set { } }
+        public vec4 aagb { get { return default(vec4); } set { } }
+        public vec4 aaga { get { return default(vec4); } set { } }
+        public vec4 aabr { get { return default(vec4); } set { } }
+        public vec4 aabg { get { return default(vec4); } set { } }
+        public vec4 aabb { get { return default(vec4); } set { } }
+        public vec4 aaba { get { return default(vec4); } set { } }
+        public vec4 aaar { get { return default(vec4); } set { } }
+        public vec4 aaag { get { return default(vec4); } set { } }
+        public vec4 aaab { get { return default(vec4); } set { } }
+        public vec4 aaaa { get { return default(vec4); } set { } }
+        public float s { get { return 0.0f; } set { } }
+        public float t { get { return 0.0f; } set { } }
+        public float p { get { return 0.0f; } set { } }
+        public float q { get { return 0.0f; } set { } }
 
-        public vec2 ss { get { return default(vec2); } }
-        public vec2 st { get { return default(vec2); } }
-        public vec2 sp { get { return default(vec2); } }
-        public vec2 sq { get { return default(vec2); } }
-        public vec2 ts { get { return default(vec2); } }
-        public vec2 tt { get { return default(vec2); } }
-        public vec2 tp { get { return default(vec2); } }
-        public vec2 tq { get { return default(vec2); } }
-        public vec2 ps { get { return default(vec2); } }
-        public vec2 pt { get { return default(vec2); } }
-        public vec2 pp { get { return default(vec2); } }
-        public vec2 pq { get { return default(vec2); } }
-        public vec2 qs { get { return default(vec2); } }
-        public vec2 qt { get { return default(vec2); } }
-        public vec2 qp { get { return default(vec2); } }
-        public vec2 qq { get { return default(vec2); } }
+        public vec2 ss { get { return default(vec2); } set { } }
+        public vec2 st { get { return default(vec2); } set { } }
+        public vec2 sp { get { return default(vec2); } set { } }
+        public vec2 sq { get { return default(vec2); } set { } }
+        public vec2 ts { get { return default(vec2); } set { } }
+        public vec2 tt { get { return default(vec2); } set { } }
+        public vec2 tp { get { return default(vec2); } set { } }
+        public vec2 tq { get { return default(vec2); } set { } }
+        public vec2 ps { get { return default(vec2); } set { } }
+        public vec2 pt { get { return default(vec2); } set { } }
+        public vec2 pp { get { return default(vec2); } set { } }
+        public vec2 pq { get { return default(vec2); } set { } }
+        public vec2 qs { get { return default(vec2); } set { } }
+        public vec2 qt { get { return default(vec2); } set { } }
+        public vec2 qp { get { return default(vec2); } set { } }
+        public vec2 qq { get { return default(vec2); } set { } }
 
-        public vec3 sss { get { return default(vec3); } }
-        public vec3 sst { get { return default(vec3); } }
-        public vec3 ssp { get { return default(vec3); } }
-        public vec3 ssq { get { return default(vec3); } }
-        public vec3 sts { get { return default(vec3); } }
-        public vec3 stt { get { return default(vec3); } }
-        public vec3 stp { get { return default(vec3); } }
-        public vec3 stq { get { return default(vec3); } }
-        public vec3 sps { get { return default(vec3); } }
-        public vec3 spt { get { return default(vec3); } }
-        public vec3 spp { get { return default(vec3); } }
-        public vec3 spq { get { return default(vec3); } }
-        public vec3 sqs { get { return default(vec3); } }
-        public vec3 sqt { get { return default(vec3); } }
-        public vec3 sqp { get { return default(vec3); } }
-        public vec3 sqq { get { return default(vec3); } }
-        public vec3 tss { get { return default(vec3); } }
-        public vec3 tst { get { return default(vec3); } }
-        public vec3 tsp { get { return default(vec3); } }
-        public vec3 tsq { get { return default(vec3); } }
-        public vec3 tts { get { return default(vec3); } }
-        public vec3 ttt { get { return default(vec3); } }
-        public vec3 ttp { get { return default(vec3); } }
-        public vec3 ttq { get { return default(vec3); } }
-        public vec3 tps { get { return default(vec3); } }
-        public vec3 tpt { get { return default(vec3); } }
-        public vec3 tpp { get { return default(vec3); } }
-        public vec3 tpq { get { return default(vec3); } }
-        public vec3 tqs { get { return default(vec3); } }
-        public vec3 tqt { get { return default(vec3); } }
-        public vec3 tqp { get { return default(vec3); } }
-        public vec3 tqq { get { return default(vec3); } }
-        public vec3 pss { get { return default(vec3); } }
-        public vec3 pst { get { return default(vec3); } }
-        public vec3 psp { get { return default(vec3); } }
-        public vec3 psq { get { return default(vec3); } }
-        public vec3 pts { get { return default(vec3); } }
-        public vec3 ptt { get { return default(vec3); } }
-        public vec3 ptp { get { return default(vec3); } }
-        public vec3 ptq { get { return default(vec3); } }
-        public vec3 pps { get { return default(vec3); } }
-        public vec3 ppt { get { return default(vec3); } }
-        public vec3 ppp { get { return default(vec3); } }
-        public vec3 ppq { get { return default(vec3); } }
-        public vec3 pqs { get { return default(vec3); } }
-        public vec3 pqt { get { return default(vec3); } }
-        public vec3 pqp { get { return default(vec3); } }
-        public vec3 pqq { get { return default(vec3); } }
-        public vec3 qss { get { return default(vec3); } }
-        public vec3 qst { get { return default(vec3); } }
-        public vec3 qsp { get { return default(vec3); } }
-        public vec3 qsq { get { return default(vec3); } }
-        public vec3 qts { get { return default(vec3); } }
-        public vec3 qtt { get { return default(vec3); } }
-        public vec3 qtp { get { return default(vec3); } }
-        public vec3 qtq { get { return default(vec3); } }
-        public vec3 qps { get { return default(vec3); } }
-        public vec3 qpt { get { return default(vec3); } }
-        public vec3 qpp { get { return default(vec3); } }
-        public vec3 qpq { get { return default(vec3); } }
-        public vec3 qqs { get { return default(vec3); } }
-        public vec3 qqt { get { return default(vec3); } }
-        public vec3 qqp { get { return default(vec3); } }
-        public vec3 qqq { get { return default(vec3); } }
+        public vec3 sss { get { return default(vec3); } set { } }
+        public vec3 sst { get { return default(vec3); } set { } }
+        public vec3 ssp { get { return default(vec3); } set { } }
+        public vec3 ssq { get { return default(vec3); } set { } }
+        public vec3 sts { get { return default(vec3); } set { } }
+        public vec3 stt { get { return default(vec3); } set { } }
+        public vec3 stp { get { return default(vec3); } set { } }
+        public vec3 stq { get { return default(vec3); } set { } }
+        public vec3 sps { get { return default(vec3); } set { } }
+        public vec3 spt { get { return default(vec3); } set { } }
+        public vec3 spp { get { return default(vec3); } set { } }
+        public vec3 spq { get { return default(vec3); } set { } }
+        public vec3 sqs { get { return default(vec3); } set { } }
+        public vec3 sqt { get { return default(vec3); } set { } }
+        public vec3 sqp { get { return default(vec3); } set { } }
+        public vec3 sqq { get { return default(vec3); } set { } }
+        public vec3 tss { get { return default(vec3); } set { } }
+        public vec3 tst { get { return default(vec3); } set { } }
+        public vec3 tsp { get { return default(vec3); } set { } }
+        public vec3 tsq { get { return default(vec3); } set { } }
+        public vec3 tts { get { return default(vec3); } set { } }
+        public vec3 ttt { get { return default(vec3); } set { } }
+        public vec3 ttp { get { return default(vec3); } set { } }
+        public vec3 ttq { get { return default(vec3); } set { } }
+        public vec3 tps { get { return default(vec3); } set { } }
+        public vec3 tpt { get { return default(vec3); } set { } }
+        public vec3 tpp { get { return default(vec3); } set { } }
+        public vec3 tpq { get { return default(vec3); } set { } }
+        public vec3 tqs { get { return default(vec3); } set { } }
+        public vec3 tqt { get { return default(vec3); } set { } }
+        public vec3 tqp { get { return default(vec3); } set { } }
+        public vec3 tqq { get { return default(vec3); } set { } }
+        public vec3 pss { get { return default(vec3); } set { } }
+        public vec3 pst { get { return default(vec3); } set { } }
+        public vec3 psp { get { return default(vec3); } set { } }
+        public vec3 psq { get { return default(vec3); } set { } }
+        public vec3 pts { get { return default(vec3); } set { } }
+        public vec3 ptt { get { return default(vec3); } set { } }
+        public vec3 ptp { get { return default(vec3); } set { } }
+        public vec3 ptq { get { return default(vec3); } set { } }
+        public vec3 pps { get { return default(vec3); } set { } }
+        public vec3 ppt { get { return default(vec3); } set { } }
+        public vec3 ppp { get { return default(vec3); } set { } }
+        public vec3 ppq { get { return default(vec3); } set { } }
+        public vec3 pqs { get { return default(vec3); } set { } }
+        public vec3 pqt { get { return default(vec3); } set { } }
+        public vec3 pqp { get { return default(vec3); } set { } }
+        public vec3 pqq { get { return default(vec3); } set { } }
+        public vec3 qss { get { return default(vec3); } set { } }
+        public vec3 qst { get { return default(vec3); } set { } }
+        public vec3 qsp { get { return default(vec3); } set { } }
+        public vec3 qsq { get { return default(vec3); } set { } }
+        public vec3 qts { get { return default(vec3); } set { } }
+        public vec3 qtt { get { return default(vec3); } set { } }
+        public vec3 qtp { get { return default(vec3); } set { } }
+        public vec3 qtq { get { return default(vec3); } set { } }
+        public vec3 qps { get { return default(vec3); } set { } }
+        public vec3 qpt { get { return default(vec3); } set { } }
+        public vec3 qpp { get { return default(vec3); } set { } }
+        public vec3 qpq { get { return default(vec3); } set { } }
+        public vec3 qqs { get { return default(vec3); } set { } }
+        public vec3 qqt { get { return default(vec3); } set { } }
+        public vec3 qqp { get { return default(vec3); } set { } }
+        public vec3 qqq { get { return default(vec3); } set { } }
 
-        public vec4 ssss { get { return default(vec4); } }
-        public vec4 ssst { get { return default(vec4); } }
-        public vec4 sssp { get { return default(vec4); } }
-        public vec4 sssq { get { return default(vec4); } }
-        public vec4 ssts { get { return default(vec4); } }
-        public vec4 sstt { get { return default(vec4); } }
-        public vec4 sstp { get { return default(vec4); } }
-        public vec4 sstq { get { return default(vec4); } }
-        public vec4 ssps { get { return default(vec4); } }
-        public vec4 sspt { get { return default(vec4); } }
-        public vec4 sspp { get { return default(vec4); } }
-        public vec4 sspq { get { return default(vec4); } }
-        public vec4 ssqs { get { return default(vec4); } }
-        public vec4 ssqt { get { return default(vec4); } }
-        public vec4 ssqp { get { return default(vec4); } }
-        public vec4 ssqq { get { return default(vec4); } }
-        public vec4 stss { get { return default(vec4); } }
-        public vec4 stst { get { return default(vec4); } }
-        public vec4 stsp { get { return default(vec4); } }
-        public vec4 stsq { get { return default(vec4); } }
-        public vec4 stts { get { return default(vec4); } }
-        public vec4 sttt { get { return default(vec4); } }
-        public vec4 sttp { get { return default(vec4); } }
-        public vec4 sttq { get { return default(vec4); } }
-        public vec4 stps { get { return default(vec4); } }
-        public vec4 stpt { get { return default(vec4); } }
-        public vec4 stpp { get { return default(vec4); } }
-        public vec4 stpq { get { return default(vec4); } }
-        public vec4 stqs { get { return default(vec4); } }
-        public vec4 stqt { get { return default(vec4); } }
-        public vec4 stqp { get { return default(vec4); } }
-        public vec4 stqq { get { return default(vec4); } }
-        public vec4 spss { get { return default(vec4); } }
-        public vec4 spst { get { return default(vec4); } }
-        public vec4 spsp { get { return default(vec4); } }
-        public vec4 spsq { get { return default(vec4); } }
-        public vec4 spts { get { return default(vec4); } }
-        public vec4 sptt { get { return default(vec4); } }
-        public vec4 sptp { get { return default(vec4); } }
-        public vec4 sptq { get { return default(vec4); } }
-        public vec4 spps { get { return default(vec4); } }
-        public vec4 sppt { get { return default(vec4); } }
-        public vec4 sppp { get { return default(vec4); } }
-        public vec4 sppq { get { return default(vec4); } }
-        public vec4 spqs { get { return default(vec4); } }
-        public vec4 spqt { get { return default(vec4); } }
-        public vec4 spqp { get { return default(vec4); } }
-        public vec4 spqq { get { return default(vec4); } }
-        public vec4 sqss { get { return default(vec4); } }
-        public vec4 sqst { get { return default(vec4); } }
-        public vec4 sqsp { get { return default(vec4); } }
-        public vec4 sqsq { get { return default(vec4); } }
-        public vec4 sqts { get { return default(vec4); } }
-        public vec4 sqtt { get { return default(vec4); } }
-        public vec4 sqtp { get { return default(vec4); } }
-        public vec4 sqtq { get { return default(vec4); } }
-        public vec4 sqps { get { return default(vec4); } }
-        public vec4 sqpt { get { return default(vec4); } }
-        public vec4 sqpp { get { return default(vec4); } }
-        public vec4 sqpq { get { return default(vec4); } }
-        public vec4 sqqs { get { return default(vec4); } }
-        public vec4 sqqt { get { return default(vec4); } }
-        public vec4 sqqp { get { return default(vec4); } }
-        public vec4 sqqq { get { return default(vec4); } }
-        public vec4 tsss { get { return default(vec4); } }
-        public vec4 tsst { get { return default(vec4); } }
-        public vec4 tssp { get { return default(vec4); } }
-        public vec4 tssq { get { return default(vec4); } }
-        public vec4 tsts { get { return default(vec4); } }
-        public vec4 tstt { get { return default(vec4); } }
-        public vec4 tstp { get { return default(vec4); } }
-        public vec4 tstq { get { return default(vec4); } }
-        public vec4 tsps { get { return default(vec4); } }
-        public vec4 tspt { get { return default(vec4); } }
-        public vec4 tspp { get { return default(vec4); } }
-        public vec4 tspq { get { return default(vec4); } }
-        public vec4 tsqs { get { return default(vec4); } }
-        public vec4 tsqt { get { return default(vec4); } }
-        public vec4 tsqp { get { return default(vec4); } }
-        public vec4 tsqq { get { return default(vec4); } }
-        public vec4 ttss { get { return default(vec4); } }
-        public vec4 ttst { get { return default(vec4); } }
-        public vec4 ttsp { get { return default(vec4); } }
-        public vec4 ttsq { get { return default(vec4); } }
-        public vec4 ttts { get { return default(vec4); } }
-        public vec4 tttt { get { return default(vec4); } }
-        public vec4 tttp { get { return default(vec4); } }
-        public vec4 tttq { get { return default(vec4); } }
-        public vec4 ttps { get { return default(vec4); } }
-        public vec4 ttpt { get { return default(vec4); } }
-        public vec4 ttpp { get { return default(vec4); } }
-        public vec4 ttpq { get { return default(vec4); } }
-        public vec4 ttqs { get { return default(vec4); } }
-        public vec4 ttqt { get { return default(vec4); } }
-        public vec4 ttqp { get { return default(vec4); } }
-        public vec4 ttqq { get { return default(vec4); } }
-        public vec4 tpss { get { return default(vec4); } }
-        public vec4 tpst { get { return default(vec4); } }
-        public vec4 tpsp { get { return default(vec4); } }
-        public vec4 tpsq { get { return default(vec4); } }
-        public vec4 tpts { get { return default(vec4); } }
-        public vec4 tptt { get { return default(vec4); } }
-        public vec4 tptp { get { return default(vec4); } }
-        public vec4 tptq { get { return default(vec4); } }
-        public vec4 tpps { get { return default(vec4); } }
-        public vec4 tppt { get { return default(vec4); } }
-        public vec4 tppp { get { return default(vec4); } }
-        public vec4 tppq { get { return default(vec4); } }
-        public vec4 tpqs { get { return default(vec4); } }
-        public vec4 tpqt { get { return default(vec4); } }
-        public vec4 tpqp { get { return default(vec4); } }
-        public vec4 tpqq { get { return default(vec4); } }
-        public vec4 tqss { get { return default(vec4); } }
-        public vec4 tqst { get { return default(vec4); } }
-        public vec4 tqsp { get { return default(vec4); } }
-        public vec4 tqsq { get { return default(vec4); } }
-        public vec4 tqts { get { return default(vec4); } }
-        public vec4 tqtt { get { return default(vec4); } }
-        public vec4 tqtp { get { return default(vec4); } }
-        public vec4 tqtq { get { return default(vec4); } }
-        public vec4 tqps { get { return default(vec4); } }
-        public vec4 tqpt { get { return default(vec4); } }
-        public vec4 tqpp { get { return default(vec4); } }
-        public vec4 tqpq { get { return default(vec4); } }
-        public vec4 tqqs { get { return default(vec4); } }
-        public vec4 tqqt { get { return default(vec4); } }
-        public vec4 tqqp { get { return default(vec4); } }
-        public vec4 tqqq { get { return default(vec4); } }
-        public vec4 psss { get { return default(vec4); } }
-        public vec4 psst { get { return default(vec4); } }
-        public vec4 pssp { get { return default(vec4); } }
-        public vec4 pssq { get { return default(vec4); } }
-        public vec4 psts { get { return default(vec4); } }
-        public vec4 pstt { get { return default(vec4); } }
-        public vec4 pstp { get { return default(vec4); } }
-        public vec4 pstq { get { return default(vec4); } }
-        public vec4 psps { get { return default(vec4); } }
-        public vec4 pspt { get { return default(vec4); } }
-        public vec4 pspp { get { return default(vec4); } }
-        public vec4 pspq { get { return default(vec4); } }
-        public vec4 psqs { get { return default(vec4); } }
-        public vec4 psqt { get { return default(vec4); } }
-        public vec4 psqp { get { return default(vec4); } }
-        public vec4 psqq { get { return default(vec4); } }
-        public vec4 ptss { get { return default(vec4); } }
-        public vec4 ptst { get { return default(vec4); } }
-        public vec4 ptsp { get { return default(vec4); } }
-        public vec4 ptsq { get { return default(vec4); } }
-        public vec4 ptts { get { return default(vec4); } }
-        public vec4 pttt { get { return default(vec4); } }
-        public vec4 pttp { get { return default(vec4); } }
-        public vec4 pttq { get { return default(vec4); } }
-        public vec4 ptps { get { return default(vec4); } }
-        public vec4 ptpt { get { return default(vec4); } }
-        public vec4 ptpp { get { return default(vec4); } }
-        public vec4 ptpq { get { return default(vec4); } }
-        public vec4 ptqs { get { return default(vec4); } }
-        public vec4 ptqt { get { return default(vec4); } }
-        public vec4 ptqp { get { return default(vec4); } }
-        public vec4 ptqq { get { return default(vec4); } }
-        public vec4 ppss { get { return default(vec4); } }
-        public vec4 ppst { get { return default(vec4); } }
-        public vec4 ppsp { get { return default(vec4); } }
-        public vec4 ppsq { get { return default(vec4); } }
-        public vec4 ppts { get { return default(vec4); } }
-        public vec4 pptt { get { return default(vec4); } }
-        public vec4 pptp { get { return default(vec4); } }
-        public vec4 pptq { get { return default(vec4); } }
-        public vec4 ppps { get { return default(vec4); } }
-        public vec4 pppt { get { return default(vec4); } }
-        public vec4 pppp { get { return default(vec4); } }
-        public vec4 pppq { get { return default(vec4); } }
-        public vec4 ppqs { get { return default(vec4); } }
-        public vec4 ppqt { get { return default(vec4); } }
-        public vec4 ppqp { get { return default(vec4); } }
-        public vec4 ppqq { get { return default(vec4); } }
-        public vec4 pqss { get { return default(vec4); } }
-        public vec4 pqst { get { return default(vec4); } }
-        public vec4 pqsp { get { return default(vec4); } }
-        public vec4 pqsq { get { return default(vec4); } }
-        public vec4 pqts { get { return default(vec4); } }
-        public vec4 pqtt { get { return default(vec4); } }
-        public vec4 pqtp { get { return default(vec4); } }
-        public vec4 pqtq { get { return default(vec4); } }
-        public vec4 pqps { get { return default(vec4); } }
-        public vec4 pqpt { get { return default(vec4); } }
-        public vec4 pqpp { get { return default(vec4); } }
-        public vec4 pqpq { get { return default(vec4); } }
-        public vec4 pqqs { get { return default(vec4); } }
-        public vec4 pqqt { get { return default(vec4); } }
-        public vec4 pqqp { get { return default(vec4); } }
-        public vec4 pqqq { get { return default(vec4); } }
-        public vec4 qsss { get { return default(vec4); } }
-        public vec4 qsst { get { return default(vec4); } }
-        public vec4 qssp { get { return default(vec4); } }
-        public vec4 qssq { get { return default(vec4); } }
-        public vec4 qsts { get { return default(vec4); } }
-        public vec4 qstt { get { return default(vec4); } }
-        public vec4 qstp { get { return default(vec4); } }
-        public vec4 qstq { get { return default(vec4); } }
-        public vec4 qsps { get { return default(vec4); } }
-        public vec4 qspt { get { return default(vec4); } }
-        public vec4 qspp { get { return default(vec4); } }
-        public vec4 qspq { get { return default(vec4); } }
-        public vec4 qsqs { get { return default(vec4); } }
-        public vec4 qsqt { get { return default(vec4); } }
-        public vec4 qsqp { get { return default(vec4); } }
-        public vec4 qsqq { get { return default(vec4); } }
-        public vec4 qtss { get { return default(vec4); } }
-        public vec4 qtst { get { return default(vec4); } }
-        public vec4 qtsp { get { return default(vec4); } }
-        public vec4 qtsq { get { return default(vec4); } }
-        public vec4 qtts { get { return default(vec4); } }
-        public vec4 qttt { get { return default(vec4); } }
-        public vec4 qttp { get { return default(vec4); } }
-        public vec4 qttq { get { return default(vec4); } }
-        public vec4 qtps { get { return default(vec4); } }
-        public vec4 qtpt { get { return default(vec4); } }
-        public vec4 qtpp { get { return default(vec4); } }
-        public vec4 qtpq { get { return default(vec4); } }
-        public vec4 qtqs { get { return default(vec4); } }
-        public vec4 qtqt { get { return default(vec4); } }
-        public vec4 qtqp { get { return default(vec4); } }
-        public vec4 qtqq { get { return default(vec4); } }
-        public vec4 qpss { get { return default(vec4); } }
-        public vec4 qpst { get { return default(vec4); } }
-        public vec4 qpsp { get { return default(vec4); } }
-        public vec4 qpsq { get { return default(vec4); } }
-        public vec4 qpts { get { return default(vec4); } }
-        public vec4 qptt { get { return default(vec4); } }
-        public vec4 qptp { get { return default(vec4); } }
-        public vec4 qptq { get { return default(vec4); } }
-        public vec4 qpps { get { return default(vec4); } }
-        public vec4 qppt { get { return default(vec4); } }
-        public vec4 qppp { get { return default(vec4); } }
-        public vec4 qppq { get { return default(vec4); } }
-        public vec4 qpqs { get { return default(vec4); } }
-        public vec4 qpqt { get { return default(vec4); } }
-        public vec4 qpqp { get { return default(vec4); } }
-        public vec4 qpqq { get { return default(vec4); } }
-        public vec4 qqss { get { return default(vec4); } }
-        public vec4 qqst { get { return default(vec4); } }
-        public vec4 qqsp { get { return default(vec4); } }
-        public vec4 qqsq { get { return default(vec4); } }
-        public vec4 qqts { get { return default(vec4); } }
-        public vec4 qqtt { get { return default(vec4); } }
-        public vec4 qqtp { get { return default(vec4); } }
-        public vec4 qqtq { get { return default(vec4); } }
-        public vec4 qqps { get { return default(vec4); } }
-        public vec4 qqpt { get { return default(vec4); } }
-        public vec4 qqpp { get { return default(vec4); } }
-        public vec4 qqpq { get { return default(vec4); } }
-        public vec4 qqqs { get { return default(vec4); } }
-        public vec4 qqqt { get { return default(vec4); } }
-        public vec4 qqqp { get { return default(vec4); } }
-        public vec4 qqqq { get { return default(vec4); } }
+        public vec4 ssss { get { return default(vec4); } set { } }
+        public vec4 ssst { get { return default(vec4); } set { } }
+        public vec4 sssp { get { return default(vec4); } set { } }
+        public vec4 sssq { get { return default(vec4); } set { } }
+        public vec4 ssts { get { return default(vec4); } set { } }
+        public vec4 sstt { get { return default(vec4); } set { } }
+        public vec4 sstp { get { return default(vec4); } set { } }
+        public vec4 sstq { get { return default(vec4); } set { } }
+        public vec4 ssps { get { return default(vec4); } set { } }
+        public vec4 sspt { get { return default(vec4); } set { } }
+        public vec4 sspp { get { return default(vec4); } set { } }
+        public vec4 sspq { get { return default(vec4); } set { } }
+        public vec4 ssqs { get { return default(vec4); } set { } }
+        public vec4 ssqt { get { return default(vec4); } set { } }
+        public vec4 ssqp { get { return default(vec4); } set { } }
+        public vec4 ssqq { get { return default(vec4); } set { } }
+        public vec4 stss { get { return default(vec4); } set { } }
+        public vec4 stst { get { return default(vec4); } set { } }
+        public vec4 stsp { get { return default(vec4); } set { } }
+        public vec4 stsq { get { return default(vec4); } set { } }
+        public vec4 stts { get { return default(vec4); } set { } }
+        public vec4 sttt { get { return default(vec4); } set { } }
+        public vec4 sttp { get { return default(vec4); } set { } }
+        public vec4 sttq { get { return default(vec4); } set { } }
+        public vec4 stps { get { return default(vec4); } set { } }
+        public vec4 stpt { get { return default(vec4); } set { } }
+        public vec4 stpp { get { return default(vec4); } set { } }
+        public vec4 stpq { get { return default(vec4); } set { } }
+        public vec4 stqs { get { return default(vec4); } set { } }
+        public vec4 stqt { get { return default(vec4); } set { } }
+        public vec4 stqp { get { return default(vec4); } set { } }
+        public vec4 stqq { get { return default(vec4); } set { } }
+        public vec4 spss { get { return default(vec4); } set { } }
+        public vec4 spst { get { return default(vec4); } set { } }
+        public vec4 spsp { get { return default(vec4); } set { } }
+        public vec4 spsq { get { return default(vec4); } set { } }
+        public vec4 spts { get { return default(vec4); } set { } }
+        public vec4 sptt { get { return default(vec4); } set { } }
+        public vec4 sptp { get { return default(vec4); } set { } }
+        public vec4 sptq { get { return default(vec4); } set { } }
+        public vec4 spps { get { return default(vec4); } set { } }
+        public vec4 sppt { get { return default(vec4); } set { } }
+        public vec4 sppp { get { return default(vec4); } set { } }
+        public vec4 sppq { get { return default(vec4); } set { } }
+        public vec4 spqs { get { return default(vec4); } set { } }
+        public vec4 spqt { get { return default(vec4); } set { } }
+        public vec4 spqp { get { return default(vec4); } set { } }
+        public vec4 spqq { get { return default(vec4); } set { } }
+        public vec4 sqss { get { return default(vec4); } set { } }
+        public vec4 sqst { get { return default(vec4); } set { } }
+        public vec4 sqsp { get { return default(vec4); } set { } }
+        public vec4 sqsq { get { return default(vec4); } set { } }
+        public vec4 sqts { get { return default(vec4); } set { } }
+        public vec4 sqtt { get { return default(vec4); } set { } }
+        public vec4 sqtp { get { return default(vec4); } set { } }
+        public vec4 sqtq { get { return default(vec4); } set { } }
+        public vec4 sqps { get { return default(vec4); } set { } }
+        public vec4 sqpt { get { return default(vec4); } set { } }
+        public vec4 sqpp { get { return default(vec4); } set { } }
+        public vec4 sqpq { get { return default(vec4); } set { } }
+        public vec4 sqqs { get { return default(vec4); } set { } }
+        public vec4 sqqt { get { return default(vec4); } set { } }
+        public vec4 sqqp { get { return default(vec4); } set { } }
+        public vec4 sqqq { get { return default(vec4); } set { } }
+        public vec4 tsss { get { return default(vec4); } set { } }
+        public vec4 tsst { get { return default(vec4); } set { } }
+        public vec4 tssp { get { return default(vec4); } set { } }
+        public vec4 tssq { get { return default(vec4); } set { } }
+        public vec4 tsts { get { return default(vec4); } set { } }
+        public vec4 tstt { get { return default(vec4); } set { } }
+        public vec4 tstp { get { return default(vec4); } set { } }
+        public vec4 tstq { get { return default(vec4); } set { } }
+        public vec4 tsps { get { return default(vec4); } set { } }
+        public vec4 tspt { get { return default(vec4); } set { } }
+        public vec4 tspp { get { return default(vec4); } set { } }
+        public vec4 tspq { get { return default(vec4); } set { } }
+        public vec4 tsqs { get { return default(vec4); } set { } }
+        public vec4 tsqt { get { return default(vec4); } set { } }
+        public vec4 tsqp { get { return default(vec4); } set { } }
+        public vec4 tsqq { get { return default(vec4); } set { } }
+        public vec4 ttss { get { return default(vec4); } set { } }
+        public vec4 ttst { get { return default(vec4); } set { } }
+        public vec4 ttsp { get { return default(vec4); } set { } }
+        public vec4 ttsq { get { return default(vec4); } set { } }
+        public vec4 ttts { get { return default(vec4); } set { } }
+        public vec4 tttt { get { return default(vec4); } set { } }
+        public vec4 tttp { get { return default(vec4); } set { } }
+        public vec4 tttq { get { return default(vec4); } set { } }
+        public vec4 ttps { get { return default(vec4); } set { } }
+        public vec4 ttpt { get { return default(vec4); } set { } }
+        public vec4 ttpp { get { return default(vec4); } set { } }
+        public vec4 ttpq { get { return default(vec4); } set { } }
+        public vec4 ttqs { get { return default(vec4); } set { } }
+        public vec4 ttqt { get { return default(vec4); } set { } }
+        public vec4 ttqp { get { return default(vec4); } set { } }
+        public vec4 ttqq { get { return default(vec4); } set { } }
+        public vec4 tpss { get { return default(vec4); } set { } }
+        public vec4 tpst { get { return default(vec4); } set { } }
+        public vec4 tpsp { get { return default(vec4); } set { } }
+        public vec4 tpsq { get { return default(vec4); } set { } }
+        public vec4 tpts { get { return default(vec4); } set { } }
+        public vec4 tptt { get { return default(vec4); } set { } }
+        public vec4 tptp { get { return default(vec4); } set { } }
+        public vec4 tptq { get { return default(vec4); } set { } }
+        public vec4 tpps { get { return default(vec4); } set { } }
+        public vec4 tppt { get { return default(vec4); } set { } }
+        public vec4 tppp { get { return default(vec4); } set { } }
+        public vec4 tppq { get { return default(vec4); } set { } }
+        public vec4 tpqs { get { return default(vec4); } set { } }
+        public vec4 tpqt { get { return default(vec4); } set { } }
+        public vec4 tpqp { get { return default(vec4); } set { } }
+        public vec4 tpqq { get { return default(vec4); } set { } }
+        public vec4 tqss { get { return default(vec4); } set { } }
+        public vec4 tqst { get { return default(vec4); } set { } }
+        public vec4 tqsp { get { return default(vec4); } set { } }
+        public vec4 tqsq { get { return default(vec4); } set { } }
+        public vec4 tqts { get { return default(vec4); } set { } }
+        public vec4 tqtt { get { return default(vec4); } set { } }
+        public vec4 tqtp { get { return default(vec4); } set { } }
+        public vec4 tqtq { get { return default(vec4); } set { } }
+        public vec4 tqps { get { return default(vec4); } set { } }
+        public vec4 tqpt { get { return default(vec4); } set { } }
+        public vec4 tqpp { get { return default(vec4); } set { } }
+        public vec4 tqpq { get { return default(vec4); } set { } }
+        public vec4 tqqs { get { return default(vec4); } set { } }
+        public vec4 tqqt { get { return default(vec4); } set { } }
+        public vec4 tqqp { get { return default(vec4); } set { } }
+        public vec4 tqqq { get { return default(vec4); } set { } }
+        public vec4 psss { get { return default(vec4); } set { } }
+        public vec4 psst { get { return default(vec4); } set { } }
+        public vec4 pssp { get { return default(vec4); } set { } }
+        public vec4 pssq { get { return default(vec4); } set { } }
+        public vec4 psts { get { return default(vec4); } set { } }
+        public vec4 pstt { get { return default(vec4); } set { } }
+        public vec4 pstp { get { return default(vec4); } set { } }
+        public vec4 pstq { get { return default(vec4); } set { } }
+        public vec4 psps { get { return default(vec4); } set { } }
+        public vec4 pspt { get { return default(vec4); } set { } }
+        public vec4 pspp { get { return default(vec4); } set { } }
+        public vec4 pspq { get { return default(vec4); } set { } }
+        public vec4 psqs { get { return default(vec4); } set { } }
+        public vec4 psqt { get { return default(vec4); } set { } }
+        public vec4 psqp { get { return default(vec4); } set { } }
+        public vec4 psqq { get { return default(vec4); } set { } }
+        public vec4 ptss { get { return default(vec4); } set { } }
+        public vec4 ptst { get { return default(vec4); } set { } }
+        public vec4 ptsp { get { return default(vec4); } set { } }
+        public vec4 ptsq { get { return default(vec4); } set { } }
+        public vec4 ptts { get { return default(vec4); } set { } }
+        public vec4 pttt { get { return default(vec4); } set { } }
+        public vec4 pttp { get { return default(vec4); } set { } }
+        public vec4 pttq { get { return default(vec4); } set { } }
+        public vec4 ptps { get { return default(vec4); } set { } }
+        public vec4 ptpt { get { return default(vec4); } set { } }
+        public vec4 ptpp { get { return default(vec4); } set { } }
+        public vec4 ptpq { get { return default(vec4); } set { } }
+        public vec4 ptqs { get { return default(vec4); } set { } }
+        public vec4 ptqt { get { return default(vec4); } set { } }
+        public vec4 ptqp { get { return default(vec4); } set { } }
+        public vec4 ptqq { get { return default(vec4); } set { } }
+        public vec4 ppss { get { return default(vec4); } set { } }
+        public vec4 ppst { get { return default(vec4); } set { } }
+        public vec4 ppsp { get { return default(vec4); } set { } }
+        public vec4 ppsq { get { return default(vec4); } set { } }
+        public vec4 ppts { get { return default(vec4); } set { } }
+        public vec4 pptt { get { return default(vec4); } set { } }
+        public vec4 pptp { get { return default(vec4); } set { } }
+        public vec4 pptq { get { return default(vec4); } set { } }
+        public vec4 ppps { get { return default(vec4); } set { } }
+        public vec4 pppt { get { return default(vec4); } set { } }
+        public vec4 pppp { get { return default(vec4); } set { } }
+        public vec4 pppq { get { return default(vec4); } set { } }
+        public vec4 ppqs { get { return default(vec4); } set { } }
+        public vec4 ppqt { get { return default(vec4); } set { } }
+        public vec4 ppqp { get { return default(vec4); } set { } }
+        public vec4 ppqq { get { return default(vec4); } set { } }
+        public vec4 pqss { get { return default(vec4); } set { } }
+        public vec4 pqst { get { return default(vec4); } set { } }
+        public vec4 pqsp { get { return default(vec4); } set { } }
+        public vec4 pqsq { get { return default(vec4); } set { } }
+        public vec4 pqts { get { return default(vec4); } set { } }
+        public vec4 pqtt { get { return default(vec4); } set { } }
+        public vec4 pqtp { get { return default(vec4); } set { } }
+        public vec4 pqtq { get { return default(vec4); } set { } }
+        public vec4 pqps { get { return default(vec4); } set { } }
+        public vec4 pqpt { get { return default(vec4); } set { } }
+        public vec4 pqpp { get { return default(vec4); } set { } }
+        public vec4 pqpq { get { return default(vec4); } set { } }
+        public vec4 pqqs { get { return default(vec4); } set { } }
+        public vec4 pqqt { get { return default(vec4); } set { } }
+        public vec4 pqqp { get { return default(vec4); } set { } }
+        public vec4 pqqq { get { return default(vec4); } set { } }
+        public vec4 qsss { get { return default(vec4); } set { } }
+        public vec4 qsst { get { return default(vec4); } set { } }
+        public vec4 qssp { get { return default(vec4); } set { } }
+        public vec4 qssq { get { return default(vec4); } set { } }
+        public vec4 qsts { get { return default(vec4); } set { } }
+        public vec4 qstt { get { return default(vec4); } set { } }
+        public vec4 qstp { get { return default(vec4); } set { } }
+        public vec4 qstq { get { return default(vec4); } set { } }
+        public vec4 qsps { get { return default(vec4); } set { } }
+        public vec4 qspt { get { return default(vec4); } set { } }
+        public vec4 qspp { get { return default(vec4); } set { } }
+        public vec4 qspq { get { return default(vec4); } set { } }
+        public vec4 qsqs { get { return default(vec4); } set { } }
+        public vec4 qsqt { get { return default(vec4); } set { } }
+        public vec4 qsqp { get { return default(vec4); } set { } }
+        public vec4 qsqq { get { return default(vec4); } set { } }
+        public vec4 qtss { get { return default(vec4); } set { } }
+        public vec4 qtst { get { return default(vec4); } set { } }
+        public vec4 qtsp { get { return default(vec4); } set { } }
+        public vec4 qtsq { get { return default(vec4); } set { } }
+        public vec4 qtts { get { return default(vec4); } set { } }
+        public vec4 qttt { get { return default(vec4); } set { } }
+        public vec4 qttp { get { return default(vec4); } set { } }
+        public vec4 qttq { get { return default(vec4); } set { } }
+        public vec4 qtps { get { return default(vec4); } set { } }
+        public vec4 qtpt { get { return default(vec4); } set { } }
+        public vec4 qtpp { get { return default(vec4); } set { } }
+        public vec4 qtpq { get { return default(vec4); } set { } }
+        public vec4 qtqs { get { return default(vec4); } set { } }
+        public vec4 qtqt { get { return default(vec4); } set { } }
+        public vec4 qtqp { get { return default(vec4); } set { } }
+        public vec4 qtqq { get { return default(vec4); } set { } }
+        public vec4 qpss { get { return default(vec4); } set { } }
+        public vec4 qpst { get { return default(vec4); } set { } }
+        public vec4 qpsp { get { return default(vec4); } set { } }
+        public vec4 qpsq { get { return default(vec4); } set { } }
+        public vec4 qpts { get { return default(vec4); } set { } }
+        public vec4 qptt { get { return default(vec4); } set { } }
+        public vec4 qptp { get { return default(vec4); } set { } }
+        public vec4 qptq { get { return default(vec4); } set { } }
+        public vec4 qpps { get { return default(vec4); } set { } }
+        public vec4 qppt { get { return default(vec4); } set { } }
+        public vec4 qppp { get { return default(vec4); } set { } }
+        public vec4 qppq { get { return default(vec4); } set { } }
+        public vec4 qpqs { get { return default(vec4); } set { } }
+        public vec4 qpqt { get { return default(vec4); } set { } }
+        public vec4 qpqp { get { return default(vec4); } set { } }
+        public vec4 qpqq { get { return default(vec4); } set { } }
+        public vec4 qqss { get { return default(vec4); } set { } }
+        public vec4 qqst { get { return default(vec4); } set { } }
+        public vec4 qqsp { get { return default(vec4); } set { } }
+        public vec4 qqsq { get { return default(vec4); } set { } }
+        public vec4 qqts { get { return default(vec4); } set { } }
+        public vec4 qqtt { get { return default(vec4); } set { } }
+        public vec4 qqtp { get { return default(vec4); } set { } }
+        public vec4 qqtq { get { return default(vec4); } set { } }
+        public vec4 qqps { get { return default(vec4); } set { } }
+        public vec4 qqpt { get { return default(vec4); } set { } }
+        public vec4 qqpp { get { return default(vec4); } set { } }
+        public vec4 qqpq { get { return default(vec4); } set { } }
+        public vec4 qqqs { get { return default(vec4); } set { } }
+        public vec4 qqqt { get { return default(vec4); } set { } }
+        public vec4 qqqp { get { return default(vec4); } set { } }
+        public vec4 qqqq { get { return default(vec4); } set { } }
 
 
         public float this[int index] { get { throw new NotNeedToImplementException(); } }
 
-        public static vec4 operator +(vec4 lhs, vec4 rhs){ throw new NotNeedToImplementException(); }
-        public static vec4 operator -(vec4 lhs, vec4 rhs){ throw new NotNeedToImplementException(); }
-        public static vec4 operator *(vec4 self, float s){ throw new NotNeedToImplementException(); }
-        public static vec4 operator *(float lhs, vec4 rhs){ throw new NotNeedToImplementException(); }
-        public static vec4 operator *(vec4 lhs, vec4 rhs){ throw new NotNeedToImplementException(); }
-        public static vec4 operator /(vec4 lhs, float rhs){ throw new NotNeedToImplementException(); }
+        public static vec4 operator +(vec4 lhs, vec4 rhs) { throw new NotNeedToImplementException(); }
+        public static vec4 operator -(vec4 lhs, vec4 rhs) { throw new NotNeedToImplementException(); }
+        public static vec4 operator *(vec4 self, float s) { throw new NotNeedToImplementException(); }
+        public static vec4 operator *(float lhs, vec4 rhs) { throw new NotNeedToImplementException(); }
+        public static vec4 operator *(vec4 lhs, vec4 rhs) { throw new NotNeedToImplementException(); }
+        public static vec4 operator /(vec4 lhs, float rhs) { throw new NotNeedToImplementException(); }
 
     }
 }

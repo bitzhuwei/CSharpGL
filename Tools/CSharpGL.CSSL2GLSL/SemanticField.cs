@@ -23,7 +23,10 @@ namespace CSharpGL.CSSL2GLSL
             StringBuilder builder = new StringBuilder();
             builder.Append(this.varQualifier.ToString().ToLower());
             builder.Append(" ");
-            builder.Append(this.varType.Name);
+            if (this.varType.Name == "Single")
+            { builder.Append("float"); }
+            else
+            { builder.Append(this.varType.Name); }
             builder.Append(" ");
             builder.Append(this.varName);
             builder.Append(";");
