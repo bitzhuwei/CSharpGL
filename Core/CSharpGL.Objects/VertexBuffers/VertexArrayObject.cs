@@ -32,6 +32,8 @@ namespace CSharpGL.Objects.VertexBuffers
             this.bufferRenderers = propertyBuffers;
             foreach (var item in propertyBuffers)
             {
+                if (item == null) { throw new ArgumentException(); }
+
                 var renderer = item as IndexBufferRendererBase;
                 if (renderer != null)
                 {

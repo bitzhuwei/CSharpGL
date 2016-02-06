@@ -18,12 +18,12 @@ void main(void)
     vec3 worldPos = (viewMatrix * modelMatrix * vec4(in_Position, 1.0f)).xyz;
     vec3 N = (viewMatrix * modelMatrix * vec4(in_Normal, 1.0f)).xyz;
     N = normalize(N);
-    //计算入射光方向
+    // light's direction
     vec3 L = lightPosition - worldPos;
     L = normalize(L);
-    //计算方向光漫反射光强
+    // diffuse color from directional light
     vec3 diffuseColor = Kd * lightColor * max(dot(N, L), 0);
-    //计算环境光漫反射光强
+    // ambient color
     vec3 ambientColor = Kd * globalAmbient;
     pass_Color.xyz = diffuseColor + ambientColor;
     pass_Color.w = 1;

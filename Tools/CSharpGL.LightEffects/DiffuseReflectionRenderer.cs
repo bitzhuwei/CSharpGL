@@ -25,8 +25,8 @@ namespace CSharpGL.LightEffects
         const string strin_Position = "in_Position";
         BufferRenderer positionBufferRenderer;
 
-        const string strin_Color = "in_Color";
-        BufferRenderer colorBufferRenderer;
+        //const string strin_Color = "in_Color";
+        //BufferRenderer colorBufferRenderer;
 
         const string strin_Normal = "in_Normal";
         BufferRenderer normalBufferRenderer;
@@ -45,6 +45,18 @@ namespace CSharpGL.LightEffects
 
         const string strprojectionMatrix = "projectionMatrix";
         public mat4 projectionMatrix;
+
+        const string strlightPosition = "lightPosition";
+        public vec3 lightPosition = new vec3(5, 5, 5);
+
+        const string strlightColor = "lightColor";
+        public vec3 lightColor = new vec3(1, 0, 0);
+
+        const string strglobalAmbient = "globalAmbient";
+        public vec3 globalAmbient = new vec3(0.2f, 0.2f, 0.2f);
+
+        const string strKd = "Kd";
+        public float Kd = 1.0f;
 
         #endregion
 
@@ -74,7 +86,7 @@ namespace CSharpGL.LightEffects
             IModel model = this.model;
 
             this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);
-            this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
+            //this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
             this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
             this.indexBufferRenderer = model.GetIndexes();
 
@@ -110,6 +122,10 @@ namespace CSharpGL.LightEffects
             program.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
             program.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
             program.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
+            program.SetUniform(strlightPosition, lightPosition.x, lightPosition.y, lightPosition.z);
+            program.SetUniform(strlightColor, lightColor.x, lightColor.y, lightColor.z);
+            program.SetUniform(strglobalAmbient, globalAmbient.x, globalAmbient.y, globalAmbient.z);
+            program.SetUniform(strKd, Kd);
 
             int[] originalPolygonMode = new int[1];
             GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
@@ -120,7 +136,7 @@ namespace CSharpGL.LightEffects
             {
                 var vertexArrayObject = new VertexArrayObject(
                     this.positionBufferRenderer,
-                    this.colorBufferRenderer,
+                    //this.colorBufferRenderer,
                     this.normalBufferRenderer,
                     this.indexBufferRenderer);
                 vertexArrayObject.Create(e, this.shaderProgram);

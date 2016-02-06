@@ -44,7 +44,6 @@
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(810, 496);
             this.glCanvas1.TabIndex = 0;
-            this.glCanvas1.OpenGLDraw += new System.EventHandler<System.Windows.Forms.PaintEventArgs>(this.glCanvas1_OpenGLDraw);
             // 
             // FormDiffuseReflection
             // 
@@ -54,7 +53,7 @@
             this.Controls.Add(this.glCanvas1);
             this.Name = "FormDiffuseReflection";
             this.Text = "FormDiffuseReflection";
-            this.Load += new System.EventHandler(this.FormDiffuseReflection_Load);
+            this.Load += new System.EventHandler(this.FormGLCanvas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
 
