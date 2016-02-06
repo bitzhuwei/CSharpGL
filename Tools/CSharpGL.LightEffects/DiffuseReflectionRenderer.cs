@@ -1,5 +1,4 @@
-
-namespace ShaderLab
+namespace CSharpGL.LightEffects
 {
     using CSharpGL;
     using CSharpGL.Objects;
@@ -13,9 +12,9 @@ namespace ShaderLab
     using System.Threading.Tasks;
     using System.Windows.Forms;
     /// <summary>
-    /// 一个<see cref="SomeShaderRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="DiffuseReflectionRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// </summary>
-    public class SomeShaderRenderer : RendererBase
+    public class DiffuseReflectionRenderer : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -56,15 +55,15 @@ namespace ShaderLab
 
         private IModel model;
 
-        public SomeShaderRenderer(IModel model)
+        public DiffuseReflectionRenderer(IModel model)
         {
             this.model = model;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("SomeShader.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("SomeShader.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("DiffuseReflection.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("DiffuseReflection.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);

@@ -7,8 +7,8 @@
     <ProjectGuid>{423CEB01-876B-4838-9F68-575669E95362}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharpShaderLanguage</RootNamespace>
-    <AssemblyName>CSharpShaderLanguage</AssemblyName>
+    <RootNamespace>CSharpShadingLanguage</RootNamespace>
+    <AssemblyName>CSharpShadingLanguage</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="readme.txt" />
+    <Compile Include="BuildIn\Dump2FileAttribute.cs" />
     <Compile Include="BuildIn\mat2.cs" />
     <Compile Include="BuildIn\mat3.cs" />
     <Compile Include="BuildIn\mat4.cs" />

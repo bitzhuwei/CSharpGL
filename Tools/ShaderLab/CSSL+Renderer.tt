@@ -24,6 +24,7 @@ namespace CSharpShaders
     /// 一个<see cref="<#= VertexShaderName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的vertex shader。
     /// </summary>
+    [Dump2File(true)]
     class <#= VertexShaderName #> : VertexCSShaderCode
     {
         [In]
@@ -53,6 +54,7 @@ namespace CSharpShaders
     /// 一个<see cref="<#= FragmentShaderName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的fragment shader。
     /// </summary>
+    [Dump2File(true)]
     class <#= FragmentShaderName #> : FragmentCSShaderCode
     {
         [In]

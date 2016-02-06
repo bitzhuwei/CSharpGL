@@ -103,7 +103,7 @@ namespace CSharpShadingLanguage.Convertor
                     CSharpCodeProvider objCSharpCodePrivoder = new CSharpCodeProvider();
 
                     CompilerParameters objCompilerParameters = new CompilerParameters();
-                    objCompilerParameters.ReferencedAssemblies.Add("CSharpShaderLanguage.dll");
+                    objCompilerParameters.ReferencedAssemblies.Add("CSharpShadingLanguage.dll");
                     objCompilerParameters.GenerateExecutable = false;
                     objCompilerParameters.GenerateInMemory = true;
                     objCompilerParameters.IncludeDebugInformation = true;
@@ -192,7 +192,7 @@ namespace CSharpShadingLanguage.Convertor
 
         //            CompilerParameters objCompilerParameters = new CompilerParameters();
         //            objCompilerParameters.ReferencedAssemblies.Add("System.dll");
-        //            objCompilerParameters.ReferencedAssemblies.Add("CSharpShaderLanguage.dll");
+        //            objCompilerParameters.ReferencedAssemblies.Add("CSharpShadingLanguage.dll");
         //            objCompilerParameters.GenerateExecutable = false;
         //            objCompilerParameters.GenerateInMemory = true;
         //            //objCompilerParameters.IncludeDebugInformation = true;

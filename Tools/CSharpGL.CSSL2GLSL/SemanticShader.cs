@@ -63,28 +63,36 @@ namespace CSharpGL.CSSL2GLSL
 
         public bool Dump2File()
         {
-            this.Parse();
-
-            string shaderCode = DumpShaderCode();
-
-            string targetFullname = Path.Combine(
-                (new FileInfo(fullname)).DirectoryName, this.shaderCode.GetShaderFilename());
-            if (File.Exists(targetFullname))
+            Dump2FileAttribute attribute = this.shaderCode.GetType().GetCustomAttribute<Dump2FileAttribute>();
+            if (attribute == null || attribute.Dump2File)
             {
-                if (File.ReadAllText(targetFullname) != shaderCode)
+                this.Parse();
+
+                string shaderCode = DumpShaderCode();
+
+                string targetFullname = Path.Combine(
+                    (new FileInfo(fullname)).DirectoryName, this.shaderCode.GetShaderFilename());
+                if (File.Exists(targetFullname))
+                {
+                    if (File.ReadAllText(targetFullname) != shaderCode)
+                    {
+                        File.WriteAllText(targetFullname, shaderCode);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
                 {
                     File.WriteAllText(targetFullname, shaderCode);
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
             }
             else
             {
-                File.WriteAllText(targetFullname, shaderCode);
-                return true;
+                return false;
             }
         }
 

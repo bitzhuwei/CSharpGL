@@ -1,17 +1,16 @@
-
-namespace CSharpShaders
+namespace CSharpGL.LightEffects
 {
-	// 不可将此文件中的代码复制到其他文件内（如果包含了其他的using ...;，那么CSSL2GLSL.exe就无法正常编译这些代码了。）
+    // 不可将此文件中的代码复制到其他文件内（如果包含了其他的using ...;，那么CSSL2GLSL.exe就无法正常编译这些代码了。）
     using CSharpShadingLanguage;
 
 #if DEBUG
 
     /// <summary>
-    /// 一个<see cref="SomeShaderVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="DiffuseReflectionVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的vertex shader。
     /// </summary>
     [Dump2File(true)]
-    class SomeShaderVert : VertexCSShaderCode
+    class DiffuseReflectionVert : VertexCSShaderCode
     {
         [In]
         vec3 in_Position;
@@ -37,11 +36,10 @@ namespace CSharpShaders
     }
 
     /// <summary>
-    /// 一个<see cref="SomeShaderFrag"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="DiffuseReflectionFrag"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的fragment shader。
     /// </summary>
-    [Dump2File(true)]
-    class SomeShaderFrag : FragmentCSShaderCode
+    class DiffuseReflectionFrag : FragmentCSShaderCode
     {
         [In]
         vec4 pass_Color;
