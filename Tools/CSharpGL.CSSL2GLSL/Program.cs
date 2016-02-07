@@ -137,7 +137,11 @@ namespace CSharpGL.CSSL2GLSL
 
             File.WriteAllText(logFullname, builder.ToString());
             Process.Start("explorer", logFullname);
-            Process.Start("explorer", "/select," + logFullname);
+
+            if (args.Length >= 2 && args[1] == "-open-folder")
+            {
+                Process.Start("explorer", "/select," + logFullname);
+            }
         }
 
 
