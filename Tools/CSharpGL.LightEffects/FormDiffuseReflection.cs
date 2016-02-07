@@ -1,7 +1,9 @@
 ﻿using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
+using CSharpGL.Objects.Demos.UIs;
 using CSharpGL.Objects.ModelFactories;
 using CSharpGL.Objects.Models;
+using CSharpGL.UIs;
 using GLM;
 using System;
 using System.Collections.Generic;
@@ -17,18 +19,32 @@ namespace CSharpGL.LightEffects
 {
     public partial class FormDiffuseReflection : Form
     {
-        SatelliteRotator satelliteRoration;
+        SimpleUIAxis uiAxis;
         DiffuseReflectionRenderer renderer;
+
         Camera camera;
+        SatelliteRotator cameraRotator;
+
+        Camera modelRotationCamera;
+        SatelliteRotator modelRotator;
 
         public FormDiffuseReflection()
         {
             InitializeComponent();
 
             this.camera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
-            this.camera.Position = new GLM.vec3(5, 5, 5);
+            this.camera.Position = new GLM.vec3(2, 2, 2);
 
-            this.satelliteRoration = new SatelliteRotator(this.camera);
+            this.cameraRotator = new SatelliteRotator(this.camera);
+
+            this.modelRotationCamera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
+            this.modelRotator = new SatelliteRotator(this.modelRotationCamera);
+
+            Padding uiPadding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            Size uiSize = new System.Drawing.Size(50, 50);
+            IUILayoutParam uiParam = new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom, uiPadding, uiSize);
+            uiAxis = new SimpleUIAxis(uiParam);
+            uiAxis.Initialize();
 
             IModel model = (new TeapotFactory()).Create(1.0f);
             this.renderer = new DiffuseReflectionRenderer(model);
@@ -55,7 +71,7 @@ namespace CSharpGL.LightEffects
 
             FormDiffuseReflectionController form = new FormDiffuseReflectionController(this.renderer);
             form.Show();
-            
+
             MessageBox.Show("This is a diffuse reflection demo with point light and ambient light.");
 
             MessageBox.Show("Use 'c' to switch camera types between perspective and ortho");
@@ -67,7 +83,8 @@ namespace CSharpGL.LightEffects
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
             mat4 projectionMatrix = camera.GetProjectionMat4();
             mat4 viewMatrix = camera.GetViewMat4();
-            mat4 modelMatrix = mat4.identity();
+            mat4 modelMatrix = modelRotationCamera.GetViewMat4(); //mat4.identity();
+
 
             this.renderer.projectionMatrix = projectionMatrix;
             this.renderer.viewMatrix = viewMatrix;
@@ -75,7 +92,8 @@ namespace CSharpGL.LightEffects
 
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-            this.renderer.Render(new Objects.RenderEventArgs(Objects.RenderModes.Render, this.camera));
+            this.uiAxis.Render(arg);
+            this.renderer.Render(arg);
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
@@ -99,23 +117,43 @@ namespace CSharpGL.LightEffects
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
-            satelliteRoration.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
-            satelliteRoration.MouseDown(e.X, e.Y);
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                modelRotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
+                modelRotator.MouseDown(e.X, e.Y);
+            }
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                cameraRotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
+                cameraRotator.MouseDown(e.X, e.Y);
+            }
+
             PrintCameraInfo();
         }
 
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (satelliteRoration.MouseDownFlag)
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                satelliteRoration.MouseMove(e.X, e.Y);
-                PrintCameraInfo();
+                modelRotator.MouseMove(e.X, e.Y);
             }
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && cameraRotator.MouseDownFlag)
+            {
+                cameraRotator.MouseMove(e.X, e.Y);
+            }
+            PrintCameraInfo();
         }
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
         {
-            satelliteRoration.MouseUp(e.X, e.Y);
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                modelRotator.MouseUp(e.X, e.Y);
+            }
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                cameraRotator.MouseUp(e.X, e.Y);
+            }
             PrintCameraInfo();
         }
 
