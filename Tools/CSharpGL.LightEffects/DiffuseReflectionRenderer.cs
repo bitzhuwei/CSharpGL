@@ -47,16 +47,16 @@ namespace CSharpGL.LightEffects
         public mat4 projectionMatrix;
 
         const string strlightPosition = "lightPosition";
-        public vec3 lightPosition = new vec3(5, 5, 5);
+        public vec3 lightPosition = new vec3(50, 5, 5);
 
         const string strlightColor = "lightColor";
         public vec3 lightColor = new vec3(1, 0, 0);
 
         const string strglobalAmbient = "globalAmbient";
-        public vec3 globalAmbient = new vec3(0.2f, 0.2f, 0.2f);
+        public vec3 globalAmbient = new vec3(0.02f, 0.02f, 0.02f);
 
         const string strKd = "Kd";
-        public float Kd = 1.0f;
+        public float Kd = 5.0f;
 
         #endregion
 

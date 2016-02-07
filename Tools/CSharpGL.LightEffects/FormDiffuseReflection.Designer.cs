@@ -42,17 +42,17 @@
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(810, 496);
+            this.glCanvas1.Size = new System.Drawing.Size(665, 455);
             this.glCanvas1.TabIndex = 0;
             // 
             // FormDiffuseReflection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(836, 522);
+            this.ClientSize = new System.Drawing.Size(691, 481);
             this.Controls.Add(this.glCanvas1);
             this.Name = "FormDiffuseReflection";
-            this.Text = "FormDiffuseReflection";
+            this.Text = "FormDiffuseReflection - http://bitzhuwei.cnblogs.com";
             this.Load += new System.EventHandler(this.FormGLCanvas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);

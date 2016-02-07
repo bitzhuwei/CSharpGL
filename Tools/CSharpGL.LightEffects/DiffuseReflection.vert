@@ -19,13 +19,14 @@ void main(void)
     vec3 N = (viewMatrix * modelMatrix * vec4(in_Normal, 1.0f)).xyz;
     N = normalize(N);
     // light's direction
-    vec3 L = lightPosition - worldPos;
+    vec3 L = lightPosition;// -worldPos;
     L = normalize(L);
     // diffuse color from directional light
     vec3 diffuseColor = Kd * lightColor * max(dot(N, L), 0);
     // ambient color
     vec3 ambientColor = Kd * globalAmbient;
     pass_Color.xyz = diffuseColor + ambientColor;
+    //pass_Color.xyz = diffuseColor + ambientColor * 0.01f;
     pass_Color.w = 1;
 }
 

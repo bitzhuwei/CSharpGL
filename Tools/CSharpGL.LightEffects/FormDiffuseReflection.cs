@@ -33,7 +33,7 @@ namespace CSharpGL.LightEffects
             InitializeComponent();
 
             this.camera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
-            this.camera.Position = new GLM.vec3(2, 2, 2);
+            this.camera.Position = new GLM.vec3(5, 5, 5);
 
             this.cameraRotator = new SatelliteRotator(this.camera);
 
@@ -71,10 +71,13 @@ namespace CSharpGL.LightEffects
 
             FormDiffuseReflectionController form = new FormDiffuseReflectionController(this.renderer);
             form.Show();
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("This is a diffuse reflection demo with point light and ambient light.");
+            builder.AppendLine("Use 'c' to switch camera types between perspective and ortho.");
+            builder.AppendLine("Use right mouse to rotate camera.");
+            builder.AppendLine("Use left mouse to rotate model.");
 
-            MessageBox.Show("This is a diffuse reflection demo with point light and ambient light.");
-
-            MessageBox.Show("Use 'c' to switch camera types between perspective and ortho");
+            MessageBox.Show(builder.ToString());
 
         }
 

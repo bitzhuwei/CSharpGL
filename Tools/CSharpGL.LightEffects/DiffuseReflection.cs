@@ -47,7 +47,7 @@ namespace CSharpGL.LightEffects
             N = normalize(N);
 
             // light's direction
-            vec3 L = lightPosition - worldPos;
+            vec3 L = lightPosition;// -worldPos;
             L = normalize(L);
 
             // diffuse color from directional light
@@ -57,6 +57,7 @@ namespace CSharpGL.LightEffects
             vec3 ambientColor = Kd * globalAmbient;
 
             pass_Color.xyz = diffuseColor + ambientColor;
+            //pass_Color.xyz = diffuseColor + ambientColor * 0.01f;
             pass_Color.w = 1;
         }
     }
