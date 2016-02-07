@@ -53,7 +53,7 @@ namespace CSharpGL.LightEffects
         public vec3 lightColor = new vec3(1, 0, 0);
 
         const string strglobalAmbient = "globalAmbient";
-        public vec3 globalAmbient = new vec3(0.02f, 0.02f, 0.02f);
+        public vec3 globalAmbientColor = new vec3(0.02f, 0.02f, 0.02f);
 
         const string strKd = "Kd";
         public float Kd = 5.0f;
@@ -124,7 +124,7 @@ namespace CSharpGL.LightEffects
             program.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
             program.SetUniform(strlightPosition, lightPosition.x, lightPosition.y, lightPosition.z);
             program.SetUniform(strlightColor, lightColor.x, lightColor.y, lightColor.z);
-            program.SetUniform(strglobalAmbient, globalAmbient.x, globalAmbient.y, globalAmbient.z);
+            program.SetUniform(strglobalAmbient, globalAmbientColor.x, globalAmbientColor.y, globalAmbientColor.z);
             program.SetUniform(strKd, Kd);
 
             int[] originalPolygonMode = new int[1];

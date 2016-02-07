@@ -35,6 +35,9 @@
             this.lblLightColorDisplay = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblLightColor = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblGlobalAmbient = new System.Windows.Forms.Label();
+            this.lblGlobalAmbientDisplay = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trackKd)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,7 +78,7 @@
             this.lblLightColorDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLightColorDisplay.BackColor = System.Drawing.Color.Red;
-            this.lblLightColorDisplay.Location = new System.Drawing.Point(121, 71);
+            this.lblLightColorDisplay.Location = new System.Drawing.Point(145, 71);
             this.lblLightColorDisplay.Name = "lblLightColorDisplay";
             this.lblLightColorDisplay.Size = new System.Drawing.Size(460, 31);
             this.lblLightColorDisplay.TabIndex = 3;
@@ -95,22 +98,57 @@
             // 
             this.lblLightColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLightColor.AutoSize = true;
-            this.lblLightColor.Location = new System.Drawing.Point(587, 79);
+            this.lblLightColor.Location = new System.Drawing.Point(611, 79);
             this.lblLightColor.Name = "lblLightColor";
             this.lblLightColor.Size = new System.Drawing.Size(143, 15);
             this.lblLightColor.TabIndex = 0;
             this.lblLightColor.Text = "R:{0} G:{1} B:{2}";
             this.lblLightColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 119);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(127, 15);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "global ambient:";
+            // 
+            // lblGlobalAmbient
+            // 
+            this.lblGlobalAmbient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblGlobalAmbient.AutoSize = true;
+            this.lblGlobalAmbient.Location = new System.Drawing.Point(611, 119);
+            this.lblGlobalAmbient.Name = "lblGlobalAmbient";
+            this.lblGlobalAmbient.Size = new System.Drawing.Size(143, 15);
+            this.lblGlobalAmbient.TabIndex = 0;
+            this.lblGlobalAmbient.Text = "R:{0} G:{1} B:{2}";
+            this.lblGlobalAmbient.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblGlobalAmbientDisplay
+            // 
+            this.lblGlobalAmbientDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblGlobalAmbientDisplay.BackColor = System.Drawing.SystemColors.Desktop;
+            this.lblGlobalAmbientDisplay.Location = new System.Drawing.Point(145, 111);
+            this.lblGlobalAmbientDisplay.Name = "lblGlobalAmbientDisplay";
+            this.lblGlobalAmbientDisplay.Size = new System.Drawing.Size(460, 31);
+            this.lblGlobalAmbientDisplay.TabIndex = 3;
+            this.lblGlobalAmbientDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblGlobalAmbientDisplay.Click += new System.EventHandler(this.lblGlobalAmbient_Click);
+            // 
             // FormDiffuseReflectionController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(771, 473);
+            this.Controls.Add(this.lblGlobalAmbientDisplay);
             this.Controls.Add(this.lblLightColorDisplay);
+            this.Controls.Add(this.lblGlobalAmbient);
             this.Controls.Add(this.trackKd);
             this.Controls.Add(this.lblLightColor);
             this.Controls.Add(this.lblKd);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Name = "FormDiffuseReflectionController";
@@ -131,5 +169,8 @@
         private System.Windows.Forms.Label lblLightColorDisplay;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblLightColor;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblGlobalAmbient;
+        private System.Windows.Forms.Label lblGlobalAmbientDisplay;
     }
 }
