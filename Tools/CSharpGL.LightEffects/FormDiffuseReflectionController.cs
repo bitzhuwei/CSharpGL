@@ -65,5 +65,12 @@ namespace CSharpGL.LightEffects
                 this.lblGlobalAmbient.Text = string.Format("R:{0} G:{1} B:{2}", color.R, color.G, color.B);
             }
         }
+
+        private void trackLightPosition_Scroll(object sender, EventArgs e)
+        {
+            float value = (float)this.trackLightPosition.Value;
+            this.lblLightPosition.Text = value.ToShortString();
+            this.diffuseReflectionRenderer.lightPosition = new GLM.vec3(value, 0, 0);
+        }
     }
 }

@@ -27,6 +27,7 @@ namespace CSharpGL.LightEffects
 
         Camera modelRotationCamera;
         SatelliteRotator modelRotator;
+        private float rotateAngle;
 
         public FormDiffuseReflection()
         {
@@ -59,6 +60,19 @@ namespace CSharpGL.LightEffects
             this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
+        private void CreateElement()
+        {
+            var element = new DiffuseReflectionRenderer(factories[currentModelIndex].Create(this.radius));
+            element.Initialize();
+            this.newRenderer = element;
+        }
+
+        int currentModelIndex = 1;
+        //static readonly IModel[] models = new IModel[] { CubeModel.GetModel(), IceCreamModel.GetModel(), SphereModel.GetModel(), };
+        static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
+        private float radius = 2;
+        DiffuseReflectionRenderer newRenderer;
+
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
@@ -86,8 +100,9 @@ namespace CSharpGL.LightEffects
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
             mat4 projectionMatrix = camera.GetProjectionMat4();
             mat4 viewMatrix = camera.GetViewMat4();
-            mat4 modelMatrix = modelRotationCamera.GetViewMat4(); //mat4.identity();
-
+            mat4 modelMatrix = glm.rotate(rotateAngle, new vec3(0, 1, 0)); //modelRotationCamera.GetViewMat4(); //mat4.identity();
+            //rotateAngle += 0.03f;
+            //mat4 modelMatrix = this.modelRotator.GetModelRotation();//glm.rotate(rotateAngle, new vec3(0, 1, 0)); //modelRotationCamera.GetViewMat4(); //mat4.identity();
 
             this.renderer.projectionMatrix = projectionMatrix;
             this.renderer.viewMatrix = viewMatrix;
@@ -96,6 +111,11 @@ namespace CSharpGL.LightEffects
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
             this.uiAxis.Render(arg);
+            if (this.newRenderer != null)
+            {
+                this.renderer = newRenderer;
+                this.newRenderer = null;
+            }
             this.renderer.Render(arg);
         }
 
@@ -189,7 +209,13 @@ namespace CSharpGL.LightEffects
 
                 PrintCameraInfo();
             }
+            else if (e.KeyChar == 'm')
+            {
+                currentModelIndex++;
+                if (currentModelIndex >= factories.Length) { currentModelIndex = 0; }
 
+                CreateElement();
+            }
         }
 
     }

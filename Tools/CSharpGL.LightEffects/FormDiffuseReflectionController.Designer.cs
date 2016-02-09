@@ -38,7 +38,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblGlobalAmbient = new System.Windows.Forms.Label();
             this.lblGlobalAmbientDisplay = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblLightPosition = new System.Windows.Forms.Label();
+            this.trackLightPosition = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.trackKd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackLightPosition)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -137,6 +141,38 @@
             this.lblGlobalAmbientDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblGlobalAmbientDisplay.Click += new System.EventHandler(this.lblGlobalAmbient_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 159);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(127, 15);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "light position:";
+            // 
+            // lblLightPosition
+            // 
+            this.lblLightPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLightPosition.AutoSize = true;
+            this.lblLightPosition.Location = new System.Drawing.Point(704, 159);
+            this.lblLightPosition.Name = "lblLightPosition";
+            this.lblLightPosition.Size = new System.Drawing.Size(55, 15);
+            this.lblLightPosition.TabIndex = 0;
+            this.lblLightPosition.Text = "{0.00}";
+            this.lblLightPosition.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // trackLightPosition
+            // 
+            this.trackLightPosition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackLightPosition.Location = new System.Drawing.Point(145, 145);
+            this.trackLightPosition.Maximum = 100;
+            this.trackLightPosition.Name = "trackLightPosition";
+            this.trackLightPosition.Size = new System.Drawing.Size(553, 56);
+            this.trackLightPosition.TabIndex = 1;
+            this.trackLightPosition.Value = 5;
+            this.trackLightPosition.Scroll += new System.EventHandler(this.trackLightPosition_Scroll);
+            // 
             // FormDiffuseReflectionController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -145,16 +181,20 @@
             this.Controls.Add(this.lblGlobalAmbientDisplay);
             this.Controls.Add(this.lblLightColorDisplay);
             this.Controls.Add(this.lblGlobalAmbient);
+            this.Controls.Add(this.trackLightPosition);
             this.Controls.Add(this.trackKd);
+            this.Controls.Add(this.lblLightPosition);
             this.Controls.Add(this.lblLightColor);
             this.Controls.Add(this.lblKd);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Name = "FormDiffuseReflectionController";
             this.Text = "FormDiffuseReflectionController";
             this.Load += new System.EventHandler(this.FormDiffuseReflectionController_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackKd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackLightPosition)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,5 +212,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblGlobalAmbient;
         private System.Windows.Forms.Label lblGlobalAmbientDisplay;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblLightPosition;
+        private System.Windows.Forms.TrackBar trackLightPosition;
     }
 }
