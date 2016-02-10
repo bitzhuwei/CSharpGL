@@ -1,6 +1,7 @@
 ﻿using GLM;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -14,7 +15,36 @@ namespace CSharpGL.Objects.Cameras
     /// </summary>
     public class ArcBallRotator
     {
+        private vec3 _vectorCenterEye;
+        private vec3 _vectorUp;
+        private vec3 _vectorRight;
         private CameraState cameraState;
+        float _length, _radiusRadius;
+        mat4 _lastTransform = mat4.identity();
+        vec3 _startPosition, _endPosition, _normalVector = new vec3(0, 1, 0);
+        int _width;
+        int _height;
+
+        private float mouseSensitivity = 0.1f;
+
+        public float MouseSensitivity
+        {
+            get { return mouseSensitivity; }
+            set { mouseSensitivity = value; }
+        }
+
+        /// <summary>
+        /// 标识鼠标是否按下
+        /// </summary>
+        public bool MouseDownFlag { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICamera Camera { get; set; }
+
+
+        const string listenerName = "arcballListener";
 
         /// <summary>
         /// 用鼠标旋转模型。
@@ -26,21 +56,15 @@ namespace CSharpGL.Objects.Cameras
             this.cameraState = new CameraState() { position = camera.Position, target = camera.Target, up = camera.UpVector, };
 
             SetCamera(camera.Position, camera.Target, camera.UpVector);
-            this.sw = new StreamWriter("arcballRotator.log", false);
+#if DEBUG
+            const string filename = "ArcBallRotator.log";
+            if (File.Exists(filename)) { File.Delete(filename); }
+            Debug.Listeners.Add(new TextWriterTraceListener(filename, listenerName));
+            Debug.WriteLine(DateTime.Now);
+            Debug.Flush();
+#endif
         }
-        ~ArcBallRotator()
-        {
-            //try
-            //{
-            //    sw.Flush();
-            //    //this.sw.Close();
-            //    this.sw.Dispose();
-            //    //this.sw = null;
-            //}
-            //catch (Exception)
-            //{
-            //}
-        }
+
         private void SetCamera(vec3 position, vec3 target, vec3 up)
         {
             _vectorCenterEye = position - target;
@@ -55,12 +79,6 @@ namespace CSharpGL.Objects.Cameras
             this.cameraState.target = target;
             this.cameraState.up = up;
         }
-
-
-        /// <summary>
-        /// 标识鼠标是否按下
-        /// </summary>
-        public bool MouseDownFlag { get; private set; }
 
 
         class CameraState
@@ -79,23 +97,6 @@ namespace CSharpGL.Objects.Cameras
             }
         }
 
-        private Point downPosition = new Point();
-        private Size bound = new Size();
-
-        private float horizontalRotationFactor = 4;
-        private float verticalRotationFactor = 4;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ICamera Camera { get; set; }
-        float _length, _radiusRadius;
-        mat4 _lastTransform = mat4.identity();
-        vec3 _startPosition, _endPosition, _normalVector = new vec3(0, 1, 0);
-        int _width;
-        int _height;
-
-
         public void SetBounds(int width, int height)
         {
             this._width = width; this._height = height;
@@ -112,20 +113,20 @@ namespace CSharpGL.Objects.Cameras
         /// <param name="y"></param>
         public void MouseDown(int x, int y)
         {
-            sw.WriteLine();
-            sw.WriteLine("=================>MouseDown:");
+            Debug.WriteLine("");
+            Debug.WriteLine("=================>MouseDown:");
             if (!cameraState.IsSameState(this.Camera))
             {
                 SetCamera(this.Camera.Position, this.Camera.Target, this.Camera.UpVector);
-                sw.WriteLine("update camera state: {0}, {1}, {2}", this.cameraState.position, this.cameraState.target, this.cameraState.up);
+                Debug.WriteLine("update camera state: {0}, {1}, {2}", this.cameraState.position, this.cameraState.target, this.cameraState.up);
             }
 
             this._startPosition = GetArcBallPosition(x, y);
-            sw.WriteLine("Start position: {0}", this._startPosition);
+            Debug.WriteLine("Start position: {0}", this._startPosition);
 
             MouseDownFlag = true;
 
-            sw.WriteLine("-------------------MouseDown end.");
+            Debug.WriteLine("-------------------MouseDown end.");
         }
 
         private vec3 GetArcBallPosition(int x, int y)
@@ -147,63 +148,57 @@ namespace CSharpGL.Objects.Cameras
         {
             if (MouseDownFlag)
             {
-                sw.WriteLine("    =================>MouseMove:");
+                Debug.WriteLine("    =================>MouseMove:");
                 if (!cameraState.IsSameState(this.Camera))
                 {
                     SetCamera(this.Camera.Position, this.Camera.Target, this.Camera.UpVector);
-                    sw.WriteLine("    update camera state: {0}, {1}, {2}", this.cameraState.position, this.cameraState.target, this.cameraState.up);
+                    Debug.WriteLine("    update camera state: {0}, {1}, {2}", this.cameraState.position, this.cameraState.target, this.cameraState.up);
                 }
 
                 this._endPosition = GetArcBallPosition(x, y);
-                sw.WriteLine("    End position: {0}", this._endPosition);
+                Debug.WriteLine("    End position: {0}", this._endPosition);
                 var cosAngle = _startPosition.dot(_endPosition) / (_startPosition.Magnitude() * _endPosition.Magnitude());
                 if (cosAngle > 1) { cosAngle = 1; }
                 else if (cosAngle < -1) { cosAngle = -1; }
-                sw.Write("    cos angle: {0}", cosAngle);
+                Debug.Write(string.Format("    cos angle: {0}", cosAngle));
                 var angle = mouseSensitivity * (float)(Math.Acos(cosAngle) / Math.PI * 180);
-                sw.WriteLine(", angle: {0}", angle);
+                Debug.WriteLine(", angle: {0}", angle);
                 _normalVector = _startPosition.cross(_endPosition);
-                if (_normalVector.x == 0 && _normalVector.y == 0 && _normalVector.z == 00)
+                _normalVector.Normalize();
+                //if (_normalVector.x == 0 && _normalVector.y == 0 && _normalVector.z == 00)
+                if ((_normalVector.x == 0 && _normalVector.y == 0 && _normalVector.z == 0)
+                    || float.IsNaN(_normalVector.x) || float.IsNaN(_normalVector.y) || float.IsNaN(_normalVector.z))
                 {
-                    sw.WriteLine("    no movement recorded.");
+                    Debug.WriteLine("    no movement recorded.");
                 }
                 else
                 {
                     //_normalVector.Normalize();
-                    sw.WriteLine("    normal vector: {0}", _normalVector);
+                    Debug.WriteLine("    normal vector: {0}", _normalVector);
                     _startPosition = _endPosition;
 
                     mat4 newRotation = glm.rotate(angle, _normalVector);
-                    sw.WriteLine("    new rotation matrix:   {0}", newRotation);
+                    Debug.WriteLine("    new rotation matrix:   {0}", newRotation);
                     mat4 totalRotation = newRotation * _lastTransform;
                     _lastTransform = totalRotation;
-                    sw.WriteLine("    total rotation matrix: {0}", _lastTransform);
+                    Debug.WriteLine("    total rotation matrix: {0}", _lastTransform);
                 }
-                sw.WriteLine("    -------------------MouseMove end.");
+                Debug.WriteLine("    -------------------MouseMove end.");
             }
         }
 
         public void MouseUp(int x, int y)
         {
-            sw.WriteLine("=================>MouseUp:");
+            Debug.WriteLine("=================>MouseUp:");
             MouseDownFlag = false;
-            sw.WriteLine("-------------------MouseUp end.");
-            sw.WriteLine();
-            sw.Flush();
+            Debug.WriteLine("-------------------MouseUp end.");
+            Debug.WriteLine("");
+            Debug.Flush();
         }
 
         public mat4 GetRotationMatrix()
         {
             return _lastTransform;
         }
-
-
-
-        private vec3 _vectorCenterEye;
-        private vec3 _vectorUp;
-        private vec3 _vectorRight;
-        private float mouseSensitivity = 1.0f;
-        private StreamWriter sw;
-
     }
 }
