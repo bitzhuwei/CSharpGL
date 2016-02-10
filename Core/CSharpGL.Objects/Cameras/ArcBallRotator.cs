@@ -15,17 +15,17 @@ namespace CSharpGL.Objects.Cameras
     /// </summary>
     public class ArcBallRotator
     {
-        private vec3 _vectorCenterEye;
-        private vec3 _vectorUp;
-        private vec3 _vectorRight;
-        private CameraState cameraState;
+        vec3 _vectorCenterEye;
+        vec3 _vectorUp;
+        vec3 _vectorRight;
         float _length, _radiusRadius;
-        mat4 _lastTransform = mat4.identity();
+        CameraState cameraState = new CameraState();
+        mat4 totalRotation = mat4.identity();
         vec3 _startPosition, _endPosition, _normalVector = new vec3(0, 1, 0);
         int _width;
         int _height;
 
-        private float mouseSensitivity = 0.1f;
+        float mouseSensitivity = 0.1f;
 
         public float MouseSensitivity
         {
@@ -44,7 +44,7 @@ namespace CSharpGL.Objects.Cameras
         public ICamera Camera { get; set; }
 
 
-        const string listenerName = "arcballListener";
+        const string listenerName = "ArcBallRotator";
 
         /// <summary>
         /// 用鼠标旋转模型。
@@ -53,14 +53,13 @@ namespace CSharpGL.Objects.Cameras
         public ArcBallRotator(ICamera camera)
         {
             this.Camera = camera;
-            this.cameraState = new CameraState() { position = camera.Position, target = camera.Target, up = camera.UpVector, };
 
             SetCamera(camera.Position, camera.Target, camera.UpVector);
 #if DEBUG
             const string filename = "ArcBallRotator.log";
             if (File.Exists(filename)) { File.Delete(filename); }
             Debug.Listeners.Add(new TextWriterTraceListener(filename, listenerName));
-            Debug.WriteLine(DateTime.Now);
+            Debug.WriteLine(DateTime.Now, listenerName);
             Debug.Flush();
 #endif
         }
@@ -79,7 +78,6 @@ namespace CSharpGL.Objects.Cameras
             this.cameraState.target = target;
             this.cameraState.up = up;
         }
-
 
         class CameraState
         {
@@ -114,19 +112,21 @@ namespace CSharpGL.Objects.Cameras
         public void MouseDown(int x, int y)
         {
             Debug.WriteLine("");
-            Debug.WriteLine("=================>MouseDown:");
+            Debug.WriteLine("=================>MouseDown:", listenerName);
             if (!cameraState.IsSameState(this.Camera))
             {
                 SetCamera(this.Camera.Position, this.Camera.Target, this.Camera.UpVector);
-                Debug.WriteLine("update camera state: {0}, {1}, {2}", this.cameraState.position, this.cameraState.target, this.cameraState.up);
+                Debug.WriteLine(string.Format(
+                    "update camera state: {0}, {1}, {2}",
+                    this.cameraState.position, this.cameraState.target, this.cameraState.up), listenerName);
             }
 
             this._startPosition = GetArcBallPosition(x, y);
-            Debug.WriteLine("Start position: {0}", this._startPosition);
+            Debug.WriteLine(string.Format("Start position: {0}", this._startPosition), listenerName);
 
             MouseDownFlag = true;
 
-            Debug.WriteLine("-------------------MouseDown end.");
+            Debug.WriteLine("-------------------MouseDown end.", listenerName);
         }
 
         private vec3 GetArcBallPosition(int x, int y)
@@ -148,57 +148,61 @@ namespace CSharpGL.Objects.Cameras
         {
             if (MouseDownFlag)
             {
-                Debug.WriteLine("    =================>MouseMove:");
+                Debug.WriteLine("    =================>MouseMove:", listenerName);
                 if (!cameraState.IsSameState(this.Camera))
                 {
                     SetCamera(this.Camera.Position, this.Camera.Target, this.Camera.UpVector);
-                    Debug.WriteLine("    update camera state: {0}, {1}, {2}", this.cameraState.position, this.cameraState.target, this.cameraState.up);
+                    Debug.WriteLine(string.Format(
+                        "    update camera state: {0}, {1}, {2}",
+                        this.cameraState.position, this.cameraState.target, this.cameraState.up), listenerName);
                 }
 
                 this._endPosition = GetArcBallPosition(x, y);
-                Debug.WriteLine("    End position: {0}", this._endPosition);
+                Debug.WriteLine(string.Format(
+                    "    End position: {0}", this._endPosition), listenerName);
                 var cosAngle = _startPosition.dot(_endPosition) / (_startPosition.Magnitude() * _endPosition.Magnitude());
                 if (cosAngle > 1) { cosAngle = 1; }
                 else if (cosAngle < -1) { cosAngle = -1; }
-                Debug.Write(string.Format("    cos angle: {0}", cosAngle));
+                Debug.Write(string.Format("    cos angle: {0}", cosAngle), listenerName);
                 var angle = mouseSensitivity * (float)(Math.Acos(cosAngle) / Math.PI * 180);
-                Debug.WriteLine(", angle: {0}", angle);
+                Debug.WriteLine(string.Format(
+                    ", angle: {0}", angle), listenerName);
                 _normalVector = _startPosition.cross(_endPosition);
                 _normalVector.Normalize();
-                //if (_normalVector.x == 0 && _normalVector.y == 0 && _normalVector.z == 00)
                 if ((_normalVector.x == 0 && _normalVector.y == 0 && _normalVector.z == 0)
                     || float.IsNaN(_normalVector.x) || float.IsNaN(_normalVector.y) || float.IsNaN(_normalVector.z))
                 {
-                    Debug.WriteLine("    no movement recorded.");
+                    Debug.WriteLine("    no movement recorded.", listenerName);
                 }
                 else
                 {
-                    //_normalVector.Normalize();
-                    Debug.WriteLine("    normal vector: {0}", _normalVector);
+                    Debug.WriteLine(string.Format(
+                        "    normal vector: {0}", _normalVector), listenerName);
                     _startPosition = _endPosition;
 
                     mat4 newRotation = glm.rotate(angle, _normalVector);
-                    Debug.WriteLine("    new rotation matrix:   {0}", newRotation);
-                    mat4 totalRotation = newRotation * _lastTransform;
-                    _lastTransform = totalRotation;
-                    Debug.WriteLine("    total rotation matrix: {0}", _lastTransform);
+                    Debug.WriteLine(string.Format(
+                        "    new rotation matrix:   {0}", newRotation), listenerName);
+                    this.totalRotation = newRotation * totalRotation;
+                    Debug.WriteLine(string.Format(
+                        "    total rotation matrix: {0}", totalRotation), listenerName);
                 }
-                Debug.WriteLine("    -------------------MouseMove end.");
+                Debug.WriteLine("    -------------------MouseMove end.", listenerName);
             }
         }
 
         public void MouseUp(int x, int y)
         {
-            Debug.WriteLine("=================>MouseUp:");
+            Debug.WriteLine("=================>MouseUp:", listenerName);
             MouseDownFlag = false;
-            Debug.WriteLine("-------------------MouseUp end.");
+            Debug.WriteLine("-------------------MouseUp end.", listenerName);
             Debug.WriteLine("");
             Debug.Flush();
         }
 
         public mat4 GetRotationMatrix()
         {
-            return _lastTransform;
+            return totalRotation;
         }
     }
 }
