@@ -30,9 +30,11 @@ namespace CSharpShaders
 
         public override void main()
         {
+		    // TODO: this is where you should start with vertex shader.
             gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);
 
             pass_Color = vec4(in_Color, 1.0f);
+			// this is where your vertex shader ends.
         }
     }
 
@@ -51,7 +53,9 @@ namespace CSharpShaders
 
         public override void main()
         {
+		    // TODO: this is where you should start with fragment shader.
             out_Color = pass_Color;
+			// this is where your fragment shader ends.
         }
     }
 
