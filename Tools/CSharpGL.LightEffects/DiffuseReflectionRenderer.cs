@@ -47,7 +47,7 @@ namespace CSharpGL.LightEffects
         public mat4 projectionMatrix;
 
         const string strlightPosition = "lightPosition";
-        public vec3 lightPosition = new vec3(50, 5, 5);
+        public vec3 lightPosition = new vec3(5, 0, 0);//new vec3(50, 5, 5);
 
         const string strlightColor = "lightColor";
         public vec3 lightColor = new vec3(1, 0, 0);

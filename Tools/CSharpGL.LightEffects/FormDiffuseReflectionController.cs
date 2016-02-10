@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GLM;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,16 +20,26 @@ namespace CSharpGL.LightEffects
             InitializeComponent();
 
             this.diffuseReflectionRenderer = diffuseReflectionRenderer;
-            this.lblKd.Text = diffuseReflectionRenderer.Kd.ToShortString();
             {
-                Color color = Color.Red;
+                this.trackKd.Value = (int)diffuseReflectionRenderer.Kd;
+                this.lblKd.Text = diffuseReflectionRenderer.Kd.ToShortString();
+            }
+            {
+                vec3 c = 255 * diffuseReflectionRenderer.lightColor;
+                Color color = Color.FromArgb((int)c.x, (int)c.y, (int)c.z);
                 this.lblLightColorDisplay.BackColor = color;
                 this.lblLightColor.Text = string.Format("R:{0} G:{1} B:{2}", color.R, color.G, color.B);
             }
             {
-                Color color = Color.FromArgb(2, 2, 2);
+                vec3 c = 255 * diffuseReflectionRenderer.globalAmbientColor;
+                Color color = Color.FromArgb((int)c.x, (int)c.y, (int)c.z);
                 this.lblGlobalAmbientDisplay.BackColor = color;
                 this.lblGlobalAmbient.Text = string.Format("R:{0} G:{1} B:{2}", color.R, color.G, color.B);
+            }
+            {
+                float value = diffuseReflectionRenderer.lightPosition.x;
+                this.trackLightPosition.Value = (int)value;
+                this.lblLightPosition.Text = value.ToShortString();
             }
         }
 
