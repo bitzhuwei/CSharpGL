@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cameras\ArcBallRotator.cs" />
     <Compile Include="Cameras\LegacyBoundingBox.cs" />
     <Compile Include="Cameras\IBoundingBox.cs" />
     <Compile Include="Cameras\IBoundingBoxHelper.cs" />

@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EulerAngle.cs" />
     <Compile Include="glm_vec.cs" />
     <Compile Include="mat2.cs" />
     <Compile Include="mat3.cs" />
@@ -58,6 +59,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

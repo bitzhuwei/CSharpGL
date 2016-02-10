@@ -123,6 +123,16 @@ namespace GLM
                 this.x * rhs.y - rhs.x * this.y);
         }
 
+        public static bool operator ==(vec3 lhs, vec3 rhs)
+        {
+            return (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z);
+        }
+
+        public static bool operator !=(vec3 lhs, vec3 rhs)
+        {
+            return !(lhs == rhs);
+        }
+
         public float[] to_array()
         {
             return new[] { x, y, z };
@@ -144,7 +154,8 @@ namespace GLM
 
         public override string ToString()
         {
-            return string.Format("{0:0.00},{1:0.00},{2:0.00}", x, y, z);
+            //return string.Format("{0:0.00},{1:0.00},{2:0.00}", x, y, z);
+            return string.Format("{0}, {1}, {2}", x.ToShortString(), y.ToShortString(), z.ToShortString());
         }
     }
 }

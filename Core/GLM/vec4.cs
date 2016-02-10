@@ -138,7 +138,8 @@ namespace GLM
 
         public override string ToString()
         {
-            return string.Format("{0:0.00},{1:0.00},{2:0.00},{3:0.00}", x, y, z, w);
+            //return string.Format("{0:0.00},{1:0.00},{2:0.00},{3:0.00}", x, y, z, w);
+            return string.Format("{0}, {1}, {2}, {3}", x.ToShortString(), y.ToShortString(), z.ToShortString(), w.ToShortString());
             //return base.ToString();
         }
     }

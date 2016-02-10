@@ -21,13 +21,14 @@ namespace CSharpGL.LightEffects
     {
         SimpleUIAxis uiAxis;
         DiffuseReflectionRenderer renderer;
+        ArcBallRotator modelRotator;
 
         Camera camera;
         SatelliteRotator cameraRotator;
 
-        Camera modelRotationCamera;
-        SatelliteRotator modelRotator;
-        private float rotateAngle;
+        //Camera modelRotationCamera;
+        //SatelliteRotator modelRotator;
+        //private float rotateAngle;
 
         public FormDiffuseReflection()
         {
@@ -38,8 +39,9 @@ namespace CSharpGL.LightEffects
 
             this.cameraRotator = new SatelliteRotator(this.camera);
 
-            this.modelRotationCamera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
-            this.modelRotator = new SatelliteRotator(this.modelRotationCamera);
+            //this.modelRotationCamera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
+            //this.modelRotator = new SatelliteRotator(this.modelRotationCamera);
+            this.modelRotator = new ArcBallRotator(this.camera);
 
             Padding uiPadding = new System.Windows.Forms.Padding(10, 10, 10, 10);
             Size uiSize = new System.Drawing.Size(50, 50);
@@ -100,9 +102,10 @@ namespace CSharpGL.LightEffects
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
             mat4 projectionMatrix = camera.GetProjectionMat4();
             mat4 viewMatrix = camera.GetViewMat4();
-            mat4 modelMatrix = glm.rotate(rotateAngle, new vec3(0, 1, 0)); //modelRotationCamera.GetViewMat4(); //mat4.identity();
+            //mat4 modelMatrix = glm.rotate(rotateAngle, new vec3(0, 1, 0)); //modelRotationCamera.GetViewMat4(); //mat4.identity();
             //rotateAngle += 0.03f;
             //mat4 modelMatrix = this.modelRotator.GetModelRotation();//glm.rotate(rotateAngle, new vec3(0, 1, 0)); //modelRotationCamera.GetViewMat4(); //mat4.identity();
+            mat4 modelMatrix = this.modelRotator.GetRotationMatrix();
 
             this.renderer.projectionMatrix = projectionMatrix;
             this.renderer.viewMatrix = viewMatrix;

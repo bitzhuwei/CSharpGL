@@ -14,8 +14,11 @@ namespace GLM
             var cols = new vec3[] { col0, col1, col2 };
             for (int i = 0; i < cols.Length; i++)
             {
+                builder.Append("col ");
+                builder.Append(i);
+                builder.Append(": [");
                 builder.Append(cols[i]);
-                builder.Append(" + ");
+                builder.Append("] ");
             }
             return builder.ToString();
         }
