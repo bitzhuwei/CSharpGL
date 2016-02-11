@@ -64,6 +64,12 @@
     <Compile Include="FormDiffuseReflectionController.Designer.cs">
       <DependentUpon>FormDiffuseReflectionController.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDiffuseReflectionDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDiffuseReflectionDisplay.Designer.cs">
+      <DependentUpon>FormDiffuseReflectionDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DiffuseReflection.vert" />
@@ -75,6 +81,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDiffuseReflectionController.resx">
       <DependentUpon>FormDiffuseReflectionController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDiffuseReflectionDisplay.resx">
+      <DependentUpon>FormDiffuseReflectionDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

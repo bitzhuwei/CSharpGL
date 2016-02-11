@@ -75,6 +75,7 @@ namespace CSharpGL.LightEffects
         private float radius = 2;
         DiffuseReflectionRenderer newRenderer;
         private FormDiffuseReflectionController frmController;
+        private FormDiffuseReflectionDisplay frmDisplay;
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -88,6 +89,8 @@ namespace CSharpGL.LightEffects
 
             this.frmController = new FormDiffuseReflectionController(this.renderer);
             frmController.Show();
+            this.frmDisplay = new FormDiffuseReflectionDisplay(this.renderer);
+            this.frmDisplay.Show();
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("This is a diffuse reflection demo with point light and ambient light.");
             builder.AppendLine("Use 'c' to switch camera types between perspective and ortho.");
@@ -121,6 +124,9 @@ namespace CSharpGL.LightEffects
                 this.frmController.Close();
                 this.frmController = new FormDiffuseReflectionController(this.renderer);
                 this.frmController.Show();
+                this.frmDisplay.Close();
+                this.frmDisplay = new FormDiffuseReflectionDisplay(this.renderer);
+                this.frmDisplay.Show();
                 this.newRenderer = null;
             }
             this.renderer.Render(arg);
