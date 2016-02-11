@@ -16,7 +16,7 @@ void main(void)
 {
     gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);
     vec3 worldPos = (viewMatrix * modelMatrix * vec4(in_Position, 1.0f)).xyz;
-    vec3 N = (viewMatrix * modelMatrix * vec4(in_Normal, 1.0f)).xyz;
+    vec3 N = (transpose(viewMatrix * modelMatrix) * vec4(in_Normal, 1.0f)).xyz;
     N = normalize(N);
     // light's direction
     vec3 L = lightPosition;// -worldPos;

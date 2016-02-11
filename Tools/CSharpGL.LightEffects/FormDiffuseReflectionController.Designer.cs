@@ -39,10 +39,18 @@
             this.lblGlobalAmbient = new System.Windows.Forms.Label();
             this.lblGlobalAmbientDisplay = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.lblLightPosition = new System.Windows.Forms.Label();
-            this.trackLightPosition = new System.Windows.Forms.TrackBar();
+            this.lblLightPositionX = new System.Windows.Forms.Label();
+            this.trackLightPositionX = new System.Windows.Forms.TrackBar();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblLightPositionY = new System.Windows.Forms.Label();
+            this.trackLightPositionY = new System.Windows.Forms.TrackBar();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblLightPositionZ = new System.Windows.Forms.Label();
+            this.trackLightPositionZ = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.trackKd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackLightPosition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackLightPositionX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackLightPositionY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackLightPositionZ)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -146,32 +154,96 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 159);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(127, 15);
+            this.label4.Size = new System.Drawing.Size(143, 15);
             this.label4.TabIndex = 0;
-            this.label4.Text = "light position:";
+            this.label4.Text = "light position.x:";
             // 
-            // lblLightPosition
+            // lblLightPositionX
             // 
-            this.lblLightPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblLightPosition.AutoSize = true;
-            this.lblLightPosition.Location = new System.Drawing.Point(704, 159);
-            this.lblLightPosition.Name = "lblLightPosition";
-            this.lblLightPosition.Size = new System.Drawing.Size(55, 15);
-            this.lblLightPosition.TabIndex = 0;
-            this.lblLightPosition.Text = "{0.00}";
-            this.lblLightPosition.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLightPositionX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLightPositionX.AutoSize = true;
+            this.lblLightPositionX.Location = new System.Drawing.Point(704, 159);
+            this.lblLightPositionX.Name = "lblLightPositionX";
+            this.lblLightPositionX.Size = new System.Drawing.Size(55, 15);
+            this.lblLightPositionX.TabIndex = 0;
+            this.lblLightPositionX.Text = "{0.00}";
+            this.lblLightPositionX.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // trackLightPosition
+            // trackLightPositionX
             // 
-            this.trackLightPosition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.trackLightPositionX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackLightPosition.Location = new System.Drawing.Point(145, 145);
-            this.trackLightPosition.Maximum = 100;
-            this.trackLightPosition.Name = "trackLightPosition";
-            this.trackLightPosition.Size = new System.Drawing.Size(553, 56);
-            this.trackLightPosition.TabIndex = 1;
-            this.trackLightPosition.Value = 5;
-            this.trackLightPosition.Scroll += new System.EventHandler(this.trackLightPosition_Scroll);
+            this.trackLightPositionX.Location = new System.Drawing.Point(161, 145);
+            this.trackLightPositionX.Maximum = 100;
+            this.trackLightPositionX.Name = "trackLightPositionX";
+            this.trackLightPositionX.Size = new System.Drawing.Size(537, 56);
+            this.trackLightPositionX.TabIndex = 1;
+            this.trackLightPositionX.Value = 5;
+            this.trackLightPositionX.Scroll += new System.EventHandler(this.trackLightPositionX_Scroll);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 221);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(143, 15);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "light position.y:";
+            // 
+            // lblLightPositionY
+            // 
+            this.lblLightPositionY.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLightPositionY.AutoSize = true;
+            this.lblLightPositionY.Location = new System.Drawing.Point(704, 221);
+            this.lblLightPositionY.Name = "lblLightPositionY";
+            this.lblLightPositionY.Size = new System.Drawing.Size(55, 15);
+            this.lblLightPositionY.TabIndex = 0;
+            this.lblLightPositionY.Text = "{0.00}";
+            this.lblLightPositionY.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // trackLightPositionY
+            // 
+            this.trackLightPositionY.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackLightPositionY.Location = new System.Drawing.Point(161, 207);
+            this.trackLightPositionY.Maximum = 100;
+            this.trackLightPositionY.Name = "trackLightPositionY";
+            this.trackLightPositionY.Size = new System.Drawing.Size(537, 56);
+            this.trackLightPositionY.TabIndex = 1;
+            this.trackLightPositionY.Value = 5;
+            this.trackLightPositionY.Scroll += new System.EventHandler(this.trackLightPositionY_Scroll);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 283);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(143, 15);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "light position.z:";
+            // 
+            // lblLightPositionZ
+            // 
+            this.lblLightPositionZ.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLightPositionZ.AutoSize = true;
+            this.lblLightPositionZ.Location = new System.Drawing.Point(704, 283);
+            this.lblLightPositionZ.Name = "lblLightPositionZ";
+            this.lblLightPositionZ.Size = new System.Drawing.Size(55, 15);
+            this.lblLightPositionZ.TabIndex = 0;
+            this.lblLightPositionZ.Text = "{0.00}";
+            this.lblLightPositionZ.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // trackLightPositionZ
+            // 
+            this.trackLightPositionZ.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackLightPositionZ.Location = new System.Drawing.Point(161, 269);
+            this.trackLightPositionZ.Maximum = 100;
+            this.trackLightPositionZ.Name = "trackLightPositionZ";
+            this.trackLightPositionZ.Size = new System.Drawing.Size(537, 56);
+            this.trackLightPositionZ.TabIndex = 1;
+            this.trackLightPositionZ.Value = 5;
+            this.trackLightPositionZ.Scroll += new System.EventHandler(this.trackLightPositionZ_Scroll);
             // 
             // FormDiffuseReflectionController
             // 
@@ -181,11 +253,17 @@
             this.Controls.Add(this.lblGlobalAmbientDisplay);
             this.Controls.Add(this.lblLightColorDisplay);
             this.Controls.Add(this.lblGlobalAmbient);
-            this.Controls.Add(this.trackLightPosition);
+            this.Controls.Add(this.trackLightPositionZ);
+            this.Controls.Add(this.trackLightPositionY);
+            this.Controls.Add(this.lblLightPositionZ);
+            this.Controls.Add(this.trackLightPositionX);
+            this.Controls.Add(this.lblLightPositionY);
             this.Controls.Add(this.trackKd);
-            this.Controls.Add(this.lblLightPosition);
+            this.Controls.Add(this.lblLightPositionX);
             this.Controls.Add(this.lblLightColor);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.lblKd);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -194,7 +272,9 @@
             this.Text = "FormDiffuseReflectionController";
             this.Load += new System.EventHandler(this.FormDiffuseReflectionController_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackKd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackLightPosition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackLightPositionX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackLightPositionY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackLightPositionZ)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,7 +293,13 @@
         private System.Windows.Forms.Label lblGlobalAmbient;
         private System.Windows.Forms.Label lblGlobalAmbientDisplay;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblLightPosition;
-        private System.Windows.Forms.TrackBar trackLightPosition;
+        private System.Windows.Forms.Label lblLightPositionX;
+        private System.Windows.Forms.TrackBar trackLightPositionX;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblLightPositionY;
+        private System.Windows.Forms.TrackBar trackLightPositionY;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblLightPositionZ;
+        private System.Windows.Forms.TrackBar trackLightPositionZ;
     }
 }

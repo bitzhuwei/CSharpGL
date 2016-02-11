@@ -49,5 +49,18 @@ namespace CSharpShadingLanguage
 
         #endregion
 
+        #region matrix functions
+
+        protected mat2 inverse(mat2 matrix) { throw new NotNeedToImplementException(); }
+        protected mat3 inverse(mat3 matrix) { throw new NotNeedToImplementException(); }
+        protected mat4 inverse(mat4 matrix) { throw new NotNeedToImplementException(); }
+
+        protected mat2 transpose(mat2 matrix) { throw new NotNeedToImplementException(); }
+        protected mat3 transpose(mat3 matrix) { throw new NotNeedToImplementException(); }
+        protected mat4 transpose(mat4 matrix) { throw new NotNeedToImplementException(); }
+
+
+        #endregion matrix functions
+
     }
 }

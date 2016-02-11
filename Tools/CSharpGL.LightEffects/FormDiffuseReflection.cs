@@ -74,6 +74,7 @@ namespace CSharpGL.LightEffects
         static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
         private float radius = 2;
         DiffuseReflectionRenderer newRenderer;
+        private FormDiffuseReflectionController frmController;
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -85,8 +86,8 @@ namespace CSharpGL.LightEffects
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             glCanvas1_Resize(this.glCanvas1, e);
 
-            FormDiffuseReflectionController form = new FormDiffuseReflectionController(this.renderer);
-            form.Show();
+            this.frmController = new FormDiffuseReflectionController(this.renderer);
+            frmController.Show();
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("This is a diffuse reflection demo with point light and ambient light.");
             builder.AppendLine("Use 'c' to switch camera types between perspective and ortho.");
@@ -117,6 +118,9 @@ namespace CSharpGL.LightEffects
             if (this.newRenderer != null)
             {
                 this.renderer = newRenderer;
+                this.frmController.Close();
+                this.frmController = new FormDiffuseReflectionController(this.renderer);
+                this.frmController.Show();
                 this.newRenderer = null;
             }
             this.renderer.Render(arg);

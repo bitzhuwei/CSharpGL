@@ -38,8 +38,18 @@ namespace CSharpGL.LightEffects
             }
             {
                 float value = diffuseReflectionRenderer.lightPosition.x;
-                this.trackLightPosition.Value = (int)value;
-                this.lblLightPosition.Text = value.ToShortString();
+                this.trackLightPositionX.Value = (int)value;
+                this.lblLightPositionX.Text = value.ToShortString();
+            }
+            {
+                float value = diffuseReflectionRenderer.lightPosition.y;
+                this.trackLightPositionY.Value = (int)value;
+                this.lblLightPositionY.Text = value.ToShortString();
+            }
+            {
+                float value = diffuseReflectionRenderer.lightPosition.z;
+                this.trackLightPositionZ.Value = (int)value;
+                this.lblLightPositionZ.Text = value.ToShortString();
             }
         }
 
@@ -77,11 +87,25 @@ namespace CSharpGL.LightEffects
             }
         }
 
-        private void trackLightPosition_Scroll(object sender, EventArgs e)
+        private void trackLightPositionX_Scroll(object sender, EventArgs e)
         {
-            float value = (float)this.trackLightPosition.Value;
-            this.lblLightPosition.Text = value.ToShortString();
-            this.diffuseReflectionRenderer.lightPosition = new GLM.vec3(value, 0, 0);
+            float value = (float)this.trackLightPositionX.Value;
+            this.lblLightPositionX.Text = value.ToShortString();
+            this.diffuseReflectionRenderer.lightPosition.x = value;
+        }
+
+        private void trackLightPositionY_Scroll(object sender, EventArgs e)
+        {
+            float value = (float)this.trackLightPositionY.Value;
+            this.lblLightPositionY.Text = value.ToShortString();
+            this.diffuseReflectionRenderer.lightPosition.y = value;
+        }
+
+        private void trackLightPositionZ_Scroll(object sender, EventArgs e)
+        {
+            float value = (float)this.trackLightPositionZ.Value;
+            this.lblLightPositionZ.Text = value.ToShortString();
+            this.diffuseReflectionRenderer.lightPosition.z = value;
         }
     }
 }
