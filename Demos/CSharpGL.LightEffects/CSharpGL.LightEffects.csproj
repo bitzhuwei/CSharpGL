@@ -90,6 +90,8 @@
     <Compile Include="FormDiffuseReflectionDirectionalLightDisplay.Designer.cs">
       <DependentUpon>FormDiffuseReflectionDirectionalLightDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="PhongPointLight.cs" />
+    <Compile Include="PhongPointLightRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DiffuseReflectionDirectionalLight.vert" />
@@ -126,6 +128,8 @@
     <EmbeddedResource Include="DiffuseReflectionDirectionalLight.frag" />
     <EmbeddedResource Include="DiffuseReflectionPointLight.frag" />
     <EmbeddedResource Include="DiffuseReflectionPointLight.vert" />
+    <EmbeddedResource Include="PhongPointLight.frag" />
+    <EmbeddedResource Include="PhongPointLight.vert" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

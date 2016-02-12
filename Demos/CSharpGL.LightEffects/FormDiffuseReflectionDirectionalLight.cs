@@ -97,6 +97,8 @@ namespace CSharpGL.LightEffects
             builder.AppendLine("Use 'c' to switch camera types between perspective and ortho.");
             builder.AppendLine("Use right mouse to rotate camera.");
             builder.AppendLine("Use left mouse to rotate model.");
+            builder.AppendLine("Use 'j' to decrease vertex count.");
+            builder.AppendLine("Use 'k' to increase vertex count.");
 
             MessageBox.Show(builder.ToString());
 
@@ -229,6 +231,14 @@ namespace CSharpGL.LightEffects
                 if (currentModelIndex >= factories.Length) { currentModelIndex = 0; }
 
                 CreateElement();
+            }
+            else if (e.KeyChar == 'j')
+            {
+                this.renderer.DecreaseVertexCount();
+            }
+            else if (e.KeyChar == 'k')
+            {
+                this.renderer.IncreaseVertexCount();
             }
         }
 

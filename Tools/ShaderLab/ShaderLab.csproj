@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PhongPointLight.cs">
+      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhongPointLightRenderer.cs">
+      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
+    </Compile>
     <Compile Include="SomeShader.cs">
       <DependentUpon>CSSL+Renderer.tt</DependentUpon>
     </Compile>
