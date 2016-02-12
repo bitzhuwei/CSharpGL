@@ -44,13 +44,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiffuseReflectionPointLight.cs" />
     <Compile Include="DiffuseReflection.cs" />
+    <Compile Include="DiffuseReflectionPointLightRenderer.cs" />
     <Compile Include="DiffuseReflectionRenderer.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDiffuseReflectionPointLightController.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDiffuseReflectionPointLightController.Designer.cs">
+      <DependentUpon>FormDiffuseReflectionPointLightController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDiffuseReflectionPointLightDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDiffuseReflectionPointLightDisplay.Designer.cs">
+      <DependentUpon>FormDiffuseReflectionPointLightDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDiffuseReflectionPointLight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDiffuseReflectionPointLight.Designer.cs">
+      <DependentUpon>FormDiffuseReflectionPointLight.cs</DependentUpon>
     </Compile>
     <Compile Include="FormDiffuseReflection.cs">
       <SubType>Form</SubType>
@@ -76,6 +96,15 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDiffuseReflectionPointLightController.resx">
+      <DependentUpon>FormDiffuseReflectionPointLightController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDiffuseReflectionPointLightDisplay.resx">
+      <DependentUpon>FormDiffuseReflectionPointLightDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDiffuseReflectionPointLight.resx">
+      <DependentUpon>FormDiffuseReflectionPointLight.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDiffuseReflection.resx">
       <DependentUpon>FormDiffuseReflection.cs</DependentUpon>
     </EmbeddedResource>
@@ -95,6 +124,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="DiffuseReflection.frag" />
+    <EmbeddedResource Include="DiffuseReflectionPointLight.frag" />
+    <EmbeddedResource Include="DiffuseReflectionPointLight.vert" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

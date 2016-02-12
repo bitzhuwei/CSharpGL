@@ -16,7 +16,7 @@ namespace CSharpGL.LightEffects
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormDiffuseReflection());
+            Application.Run(new FormDiffuseReflectionPointLight());
         }
     }
 }

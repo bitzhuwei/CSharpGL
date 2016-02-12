@@ -15,14 +15,20 @@ namespace System
         /// <returns></returns>
         public static string ToShortString(this float value)
         {
-            string result = null;
+            string result = string.Empty;
+
             if (value <= -10 || 10 <= value)
             {
-                result = string.Format("{1}{0:0.00}", value, value >= 0.0f ? "+" : "");
+                result = string.Format("{0:0.00}", value);
             }
             else
             {
-                result = string.Format("{1}{0:0.0000}", value, value >= 0.0f ? "+" : "");
+                result = string.Format("{0:0.0000}", value);
+            }
+
+            if(!result.StartsWith("-"))
+            {
+                result = "+" + result;
             }
 
             return result;
