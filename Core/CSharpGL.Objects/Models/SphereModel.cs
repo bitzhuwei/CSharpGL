@@ -36,75 +36,39 @@ namespace CSharpGL.Objects.Models
             return RandomVec3();
         }
 
-        public static IModel GetModel(float radius = 1.0f, int halfLatitudeCount = 10, int longitudeCount = 40, Func<int, int, vec3> colorGenerator = null)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="radius"></param>
+        /// <param name="latitudeParts">用纬线把地球切割为几块。</param>
+        /// <param name="longitudeParts">用经线把地球切割为几块。</param>
+        /// <param name="colorGenerator"></param>
+        /// <returns></returns>
+        public static IModel GetModel(float radius = 1.0f, int latitudeParts = 10, int longitudeParts = 40, Func<int, int, vec3> colorGenerator = null)
         {
-            if (radius <= 0.0f || halfLatitudeCount < 1 || longitudeCount < 2) { throw new Exception(); }
+            if (radius <= 0.0f || latitudeParts < 1 || longitudeParts < 3) { throw new Exception(); }
 
             if (colorGenerator == null) { colorGenerator = defaultColorGenerator; }
 
             SphereModel sphere = new SphereModel();
-            int vertexCount = (halfLatitudeCount * 2 + 1) * (longitudeCount);
+            int vertexCount = (latitudeParts + 1) * (longitudeParts);
             sphere.positions = new vec3[vertexCount];
             sphere.normals = new vec3[vertexCount];
             sphere.colors = new vec3[vertexCount];
 
-            int indexCount = (halfLatitudeCount * 2) * ((longitudeCount + 1) * 2 + 1);
+            int indexCount = (latitudeParts) * (2 * (longitudeParts + 1) + 1);
             sphere.indexes = new uint[indexCount];
 
             int index = 0;
 
-            // 北半球
-            for (int i = 0; i < halfLatitudeCount; i++)
+            for (int i = 0; i < latitudeParts + 1; i++)
             {
-                double theta = (halfLatitudeCount - i) * Math.PI / 2 / halfLatitudeCount;
+                double theta = (latitudeParts - i * 2) * Math.PI / 2 / latitudeParts;
                 double y = radius * Math.Sin(theta);
-                for (int j = 0; j < longitudeCount; j++)
+                for (int j = 0; j < longitudeParts; j++)
                 {
-                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 2 / longitudeCount);
-                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 2 / longitudeCount);
-
-                    vec3 position = new vec3((float)x, (float)y, (float)z);
-                    sphere.positions[index] = position;
-
-                    position.Normalize();
-                    sphere.normals[index] = position;
-
-                    sphere.colors[index] = colorGenerator(i, j);
-
-                    index++;
-                }
-            }
-
-            // 赤道
-            {
-                double theta = 0;
-                double y = 0;
-                for (int j = 0; j < longitudeCount; j++)
-                {
-                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 2 / longitudeCount);
-                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 2 / longitudeCount);
-
-                    vec3 position = new vec3((float)x, (float)y, (float)z);
-                    sphere.positions[index] = position;
-
-                    position.Normalize();
-                    sphere.normals[index] = position;
-
-                    sphere.colors[index] = colorGenerator(-1, j);
-
-                    index++;
-                }
-            }
-
-            // 南半球
-            for (int i = 0; i < halfLatitudeCount; i++)
-            {
-                double theta = (i + 1) * Math.PI / 2 / halfLatitudeCount;
-                double y = -radius * Math.Sin(theta);
-                for (int j = 0; j < longitudeCount; j++)
-                {
-                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 2 / longitudeCount);
-                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 2 / longitudeCount);
+                    double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 2 / longitudeParts);
+                    double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 2 / longitudeParts);
 
                     vec3 position = new vec3((float)x, (float)y, (float)z);
                     sphere.positions[index] = position;
@@ -120,23 +84,26 @@ namespace CSharpGL.Objects.Models
 
             // 索引
             index = 0;
-            for (int i = 0; i < halfLatitudeCount * 2; i++)
+            for (int i = 0; i < latitudeParts; i++)
             {
-                for (int j = 0; j < (longitudeCount); j++)
+                for (int j = 0; j < (longitudeParts); j++)
                 {
-                    sphere.indexes[index++] = (uint)((longitudeCount) * (i + 0) + j);
-                    sphere.indexes[index++] = (uint)((longitudeCount) * (i + 1) + j);
+                    sphere.indexes[index++] = (uint)((longitudeParts) * (i + 0) + j);
+                    sphere.indexes[index++] = (uint)((longitudeParts) * (i + 1) + j);
                 }
                 {
-                    sphere.indexes[index++] = (uint)((longitudeCount) * (i + 0) + 0);
-                    sphere.indexes[index++] = (uint)((longitudeCount) * (i + 1) + 0);
+                    sphere.indexes[index++] = (uint)((longitudeParts) * (i + 0) + 0);
+                    sphere.indexes[index++] = (uint)((longitudeParts) * (i + 1) + 0);
                 }
+                // use 
+                // GL.Enable(GL.GL_PRIMITIVE_RESTART); 
+                // GL.PrimitiveRestartIndex(uint.MaxValue); 
+                // GL.Disable(GL.GL_PRIMITIVE_RESTART);
                 sphere.indexes[index++] = uint.MaxValue;
             }
 
             return sphere;
         }
-
 
         CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
         {
