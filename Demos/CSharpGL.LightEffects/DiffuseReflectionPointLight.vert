@@ -26,7 +26,6 @@ void main(void)
     // ambient color
     vec3 ambientColor = Kd * globalAmbient;
     pass_Color.xyz = diffuseColor + ambientColor;
-    //pass_Color.xyz = diffuseColor + ambientColor * 0.01f;
     pass_Color.w = 1;
 }
 

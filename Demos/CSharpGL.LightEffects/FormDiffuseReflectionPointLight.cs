@@ -93,6 +93,7 @@ namespace CSharpGL.LightEffects
             this.frmDisplay.Show();
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("This is a diffuse reflection demo with point light and ambient light.");
+            builder.AppendLine("Use 'm' to change model.");
             builder.AppendLine("Use 'c' to switch camera types between perspective and ortho.");
             builder.AppendLine("Use right mouse to rotate camera.");
             builder.AppendLine("Use left mouse to rotate model.");
