@@ -240,6 +240,23 @@ namespace CSharpGL.LightEffects
             {
                 this.renderer.IncreaseVertexCount();
             }
+            else if (e.KeyChar == 'p')
+            {
+                switch (this.renderer.polygonMode)
+                {
+                    case PolygonModes.Points:
+                        this.renderer.polygonMode = PolygonModes.Lines;
+                        break;
+                    case PolygonModes.Lines:
+                        this.renderer.polygonMode = PolygonModes.Filled;
+                        break;
+                    case PolygonModes.Filled:
+                        this.renderer.polygonMode = PolygonModes.Points;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
     }
