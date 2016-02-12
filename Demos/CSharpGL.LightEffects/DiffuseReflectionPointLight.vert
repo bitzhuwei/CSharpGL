@@ -2,7 +2,6 @@
 
 in vec3 in_Position;
 in vec3 in_Normal;
-out vec4 pass_Position;
 out vec4 pass_Color;
 uniform mat4 modelMatrix;
 uniform mat4 viewMatrix;

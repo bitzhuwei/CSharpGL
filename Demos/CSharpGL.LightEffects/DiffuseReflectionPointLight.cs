@@ -18,9 +18,6 @@ namespace CSharpGL.LightEffects
         vec3 in_Normal;
 
         [Out]
-        vec4 pass_Position;
-
-        [Out]
         vec4 pass_Color;
 
         [Uniform]
