@@ -108,7 +108,9 @@
     <Compile Include="FormDiffuseReflectionDirectionalLightDisplay.Designer.cs">
       <DependentUpon>FormDiffuseReflectionDirectionalLightDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="PhongPointLight.cs" />
+    <Compile Include="PhongPointLight.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PhongPointLightRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

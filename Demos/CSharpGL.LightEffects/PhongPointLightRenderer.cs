@@ -44,7 +44,7 @@ namespace CSharpGL.LightEffects
         public vec3 globalAmbientColor = new vec3(0.02f, 0.02f, 0.02f);
 
         const string strKd = "Kd";
-        public float Kd = 5.0f;
+        public float Kd = 2.5f;
 
         const string strKs = "Ks";
         public float Ks = 5.0f;
