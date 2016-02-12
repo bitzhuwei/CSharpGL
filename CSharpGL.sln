@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{05F33CBB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{2F6498B7-1671-444D-A45A-68DF5FD7247B}"
 	ProjectSection(SolutionItems) = preProject
+		ClearLogs.exe = ClearLogs.exe
 		Assets\CSharpGL-banner.png = Assets\CSharpGL-banner.png
 		Assets\CSharpGL.ico = Assets\CSharpGL.ico
 		Assets\CSharpGL.png = Assets\CSharpGL.png
@@ -96,6 +97,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Objects.Common", "Functions\CSharpGL.Objects.Common\CSharpGL.Objects.Common.csproj", "{388D3F0C-08B3-47DC-86A8-CC5CC87B5819}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.LightEffects", "Tools\CSharpGL.LightEffects\CSharpGL.LightEffects.csproj", "{629C3752-E730-4501-9BDA-C0550FD50A34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearLogs", "Tools\ClearLogs\ClearLogs.csproj", "{5603716F-B8A9-4E2A-8B64-4B44D2E27013}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -247,6 +250,10 @@ Global
 		{629C3752-E730-4501-9BDA-C0550FD50A34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{629C3752-E730-4501-9BDA-C0550FD50A34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{629C3752-E730-4501-9BDA-C0550FD50A34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5603716F-B8A9-4E2A-8B64-4B44D2E27013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5603716F-B8A9-4E2A-8B64-4B44D2E27013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5603716F-B8A9-4E2A-8B64-4B44D2E27013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5603716F-B8A9-4E2A-8B64-4B44D2E27013}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -290,5 +297,6 @@ Global
 		{E97977FD-EE85-47C5-810E-A0CBA258FAAE} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 		{388D3F0C-08B3-47DC-86A8-CC5CC87B5819} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 		{629C3752-E730-4501-9BDA-C0550FD50A34} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
+		{5603716F-B8A9-4E2A-8B64-4B44D2E27013} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
 	EndGlobalSection
 EndGlobal
