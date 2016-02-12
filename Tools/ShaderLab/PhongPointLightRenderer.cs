@@ -117,6 +117,9 @@ namespace ShaderLab
 
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);
 
+            GL.Enable(GL.GL_PRIMITIVE_RESTART);
+            GL.PrimitiveRestartIndex(uint.MaxValue);
+
             if (this.vertexArrayObject == null)
             {
                 var vertexArrayObject = new VertexArrayObject(
@@ -132,6 +135,8 @@ namespace ShaderLab
             {
                 this.vertexArrayObject.Render(e, this.shaderProgram);
             }
+
+            GL.Disable(GL.GL_PRIMITIVE_RESTART);
 
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
 
