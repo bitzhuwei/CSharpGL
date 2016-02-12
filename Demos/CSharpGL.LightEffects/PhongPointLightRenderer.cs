@@ -1,5 +1,5 @@
 
-namespace ShaderLab
+namespace CSharpGL.LightEffects
 {
     using CSharpGL;
     using CSharpGL.Objects;
@@ -26,14 +26,31 @@ namespace ShaderLab
         const string strin_Position = "in_Position";
         BufferRenderer positionBufferRenderer;
 
-        const string strin_Color = "in_Color";
-        BufferRenderer colorBufferRenderer;
+        //const string strin_Color = "in_Color";
+        //BufferRenderer colorBufferRenderer;
 
         const string strin_Normal = "in_Normal";
         BufferRenderer normalBufferRenderer;
 
         BufferRenderer indexBufferRenderer;
 
+        const string strlightPosition = "lightPosition";
+        public vec3 lightPosition = new vec3(5, 0, 0);//new vec3(50, 5, 5);
+
+        const string strlightColor = "lightColor";
+        public vec3 lightColor = new vec3(1, 0, 0);
+
+        const string strglobalAmbient = "globalAmbient";
+        public vec3 globalAmbientColor = new vec3(0.02f, 0.02f, 0.02f);
+
+        const string strKd = "Kd";
+        public float Kd = 5.0f;
+
+        const string strKs = "Ks";
+        public float Ks = 5.0f;
+
+        const string strshininess = "shininess";
+        public float shininess = 1.0f;
         #endregion
 
         #region uniforms
@@ -75,7 +92,7 @@ namespace ShaderLab
             IModel model = this.model;
 
             this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);
-            this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
+            //this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
             this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
             this.indexBufferRenderer = model.GetIndexes();
 
@@ -111,17 +128,26 @@ namespace ShaderLab
             program.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
             program.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
             program.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
+            program.SetUniform(strlightPosition, lightPosition.x, lightPosition.y, lightPosition.z);
+            program.SetUniform(strlightColor, lightColor.x, lightColor.y, lightColor.z);
+            program.SetUniform(strglobalAmbient, globalAmbientColor.x, globalAmbientColor.y, globalAmbientColor.z);
+            program.SetUniform(strKd, Kd);
+            program.SetUniform(strKs, Ks);
+            program.SetUniform(strshininess, shininess);
 
             int[] originalPolygonMode = new int[1];
             GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
 
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);
 
+            GL.Enable(GL.GL_PRIMITIVE_RESTART);
+            GL.PrimitiveRestartIndex(uint.MaxValue);
+
             if (this.vertexArrayObject == null)
             {
                 var vertexArrayObject = new VertexArrayObject(
                     this.positionBufferRenderer,
-                    this.colorBufferRenderer,
+                    //this.colorBufferRenderer,
                     this.normalBufferRenderer,
                     this.indexBufferRenderer);
                 vertexArrayObject.Create(e, this.shaderProgram);
@@ -132,6 +158,8 @@ namespace ShaderLab
             {
                 this.vertexArrayObject.Render(e, this.shaderProgram);
             }
+
+            GL.Disable(GL.GL_PRIMITIVE_RESTART);
 
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
 

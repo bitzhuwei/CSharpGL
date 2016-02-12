@@ -13,41 +13,41 @@ namespace CSharpGL.LightEffects
 {
     public partial class FormDiffuseReflectionDirectionalLightController : Form
     {
-        private DiffuseReflectionDirectionalLightRenderer diffuseReflectionRenderer;
+        private DiffuseReflectionDirectionalLightRenderer renderer;
 
-        public FormDiffuseReflectionDirectionalLightController(DiffuseReflectionDirectionalLightRenderer diffuseReflectionRenderer)
+        public FormDiffuseReflectionDirectionalLightController(DiffuseReflectionDirectionalLightRenderer renderer)
         {
             InitializeComponent();
 
-            this.diffuseReflectionRenderer = diffuseReflectionRenderer;
+            this.renderer = renderer;
             {
-                this.trackKd.Value = (int)diffuseReflectionRenderer.Kd;
-                this.lblKd.Text = diffuseReflectionRenderer.Kd.ToShortString();
+                this.trackKd.Value = (int)renderer.Kd;
+                this.lblKd.Text = renderer.Kd.ToShortString();
             }
             {
-                vec3 c = 255 * diffuseReflectionRenderer.lightColor;
+                vec3 c = 255 * renderer.lightColor;
                 Color color = Color.FromArgb((int)c.x, (int)c.y, (int)c.z);
                 this.lblLightColorDisplay.BackColor = color;
                 this.lblLightColor.Text = string.Format("R:{0} G:{1} B:{2}", color.R, color.G, color.B);
             }
             {
-                vec3 c = 255 * diffuseReflectionRenderer.globalAmbientColor;
+                vec3 c = 255 * renderer.globalAmbientColor;
                 Color color = Color.FromArgb((int)c.x, (int)c.y, (int)c.z);
                 this.lblGlobalAmbientDisplay.BackColor = color;
                 this.lblGlobalAmbient.Text = string.Format("R:{0} G:{1} B:{2}", color.R, color.G, color.B);
             }
             {
-                float value = diffuseReflectionRenderer.lightPosition.x;
+                float value = renderer.lightPosition.x;
                 this.trackLightPositionX.Value = (int)value;
                 this.lblLightPositionX.Text = value.ToShortString();
             }
             {
-                float value = diffuseReflectionRenderer.lightPosition.y;
+                float value = renderer.lightPosition.y;
                 this.trackLightPositionY.Value = (int)value;
                 this.lblLightPositionY.Text = value.ToShortString();
             }
             {
-                float value = diffuseReflectionRenderer.lightPosition.z;
+                float value = renderer.lightPosition.z;
                 this.trackLightPositionZ.Value = (int)value;
                 this.lblLightPositionZ.Text = value.ToShortString();
             }
@@ -57,7 +57,7 @@ namespace CSharpGL.LightEffects
         {
             float value = (float)this.trackKd.Value;
             this.lblKd.Text = value.ToShortString();
-            this.diffuseReflectionRenderer.Kd = value;
+            this.renderer.Kd = value;
         }
 
         private void FormDiffuseReflectionController_Load(object sender, EventArgs e)
@@ -70,7 +70,7 @@ namespace CSharpGL.LightEffects
             if (this.lightColorDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Color color = this.lightColorDlg.Color;
-                this.diffuseReflectionRenderer.lightColor = new GLM.vec3(color.R / 255.0f, color.G / 255.0f, color.B / 255.0f);
+                this.renderer.lightColor = new GLM.vec3(color.R / 255.0f, color.G / 255.0f, color.B / 255.0f);
                 this.lblLightColorDisplay.BackColor = color;
                 this.lblLightColor.Text = string.Format("R:{0} G:{1} B:{2}", color.R, color.G, color.B);
             }
@@ -81,7 +81,7 @@ namespace CSharpGL.LightEffects
             if (this.lightColorDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Color color = this.lightColorDlg.Color;
-                this.diffuseReflectionRenderer.globalAmbientColor = new GLM.vec3(color.R / 255.0f, color.G / 255.0f, color.B / 255.0f);
+                this.renderer.globalAmbientColor = new GLM.vec3(color.R / 255.0f, color.G / 255.0f, color.B / 255.0f);
                 this.lblGlobalAmbientDisplay.BackColor = color;
                 this.lblGlobalAmbient.Text = string.Format("R:{0} G:{1} B:{2}", color.R, color.G, color.B);
             }
@@ -91,21 +91,21 @@ namespace CSharpGL.LightEffects
         {
             float value = (float)this.trackLightPositionX.Value;
             this.lblLightPositionX.Text = value.ToShortString();
-            this.diffuseReflectionRenderer.lightPosition.x = value;
+            this.renderer.lightPosition.x = value;
         }
 
         private void trackLightPositionY_Scroll(object sender, EventArgs e)
         {
             float value = (float)this.trackLightPositionY.Value;
             this.lblLightPositionY.Text = value.ToShortString();
-            this.diffuseReflectionRenderer.lightPosition.y = value;
+            this.renderer.lightPosition.y = value;
         }
 
         private void trackLightPositionZ_Scroll(object sender, EventArgs e)
         {
             float value = (float)this.trackLightPositionZ.Value;
             this.lblLightPositionZ.Text = value.ToShortString();
-            this.diffuseReflectionRenderer.lightPosition.z = value;
+            this.renderer.lightPosition.z = value;
         }
     }
 }

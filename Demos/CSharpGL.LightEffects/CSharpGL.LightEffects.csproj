@@ -54,6 +54,24 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPhongPointLightDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPhongPointLightDisplay.Designer.cs">
+      <DependentUpon>FormPhongPointLightDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPhongPointLightController.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPhongPointLightController.Designer.cs">
+      <DependentUpon>FormPhongPointLightController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPhongPointLight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPhongPointLight.Designer.cs">
+      <DependentUpon>FormPhongPointLight.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDiffuseReflectionPointLightController.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +115,15 @@
     <EmbeddedResource Include="DiffuseReflectionDirectionalLight.vert" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPhongPointLightDisplay.resx">
+      <DependentUpon>FormPhongPointLightDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPhongPointLightController.resx">
+      <DependentUpon>FormPhongPointLightController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPhongPointLight.resx">
+      <DependentUpon>FormPhongPointLight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDiffuseReflectionPointLightController.resx">
       <DependentUpon>FormDiffuseReflectionPointLightController.cs</DependentUpon>

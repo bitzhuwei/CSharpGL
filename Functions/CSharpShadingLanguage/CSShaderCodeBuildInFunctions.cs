@@ -47,6 +47,8 @@ namespace CSharpShadingLanguage
 
         protected float max(float a, float b) { throw new NotNeedToImplementException(); }
 
+        protected float pow(float a, float b) { throw new NotNeedToImplementException(); }
+
         #endregion
 
         #region matrix functions

@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace CSharpGL.LightEffects
 {
-    public partial class FormDiffuseReflectionPointLightController : Form
+    public partial class FormPhongPointLightController : Form
     {
-        private DiffuseReflectionPointLightRenderer renderer;
+        private PhongPointLightRenderer renderer;
 
-        public FormDiffuseReflectionPointLightController(DiffuseReflectionPointLightRenderer renderer)
+        public FormPhongPointLightController(PhongPointLightRenderer renderer)
         {
             InitializeComponent();
 
@@ -50,6 +50,16 @@ namespace CSharpGL.LightEffects
                 float value = renderer.lightPosition.z;
                 this.trackLightPositionZ.Value = (int)value;
                 this.lblLightPositionZ.Text = value.ToShortString();
+            }
+            {
+                float value = renderer.Ks;
+                this.trackKs.Value = (int)value;
+                this.lblKs.Text = value.ToShortString();
+            }
+            {
+                float value = renderer.shininess;
+                this.trackShininess.Value = (int)(value * 100);
+                this.lblShininess.Text = value.ToShortString();
             }
         }
 
@@ -106,6 +116,20 @@ namespace CSharpGL.LightEffects
             float value = (float)this.trackLightPositionZ.Value;
             this.lblLightPositionZ.Text = value.ToShortString();
             this.renderer.lightPosition.z = value;
+        }
+
+        private void trackKs_Scroll(object sender, EventArgs e)
+        {
+            float value = (float)this.trackKs.Value;
+            this.lblKs.Text = value.ToShortString();
+            this.renderer.Ks = value;
+        }
+
+        private void trackShininess_Scroll(object sender, EventArgs e)
+        {
+            float value = (float)this.trackShininess.Value / 100.0f;
+            this.lblShininess.Text = value.ToShortString();
+            this.renderer.shininess = value;
         }
     }
 }
