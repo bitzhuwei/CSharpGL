@@ -50,14 +50,14 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // FormDiffuseReflectionPointLightDisplay
+            // FormPhongPointLightDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 500);
             this.Controls.Add(this.textBox1);
-            this.Name = "FormDiffuseReflectionPointLightDisplay";
-            this.Text = "FormDiffuseReflectionPointLightDisplay";
+            this.Name = "FormPhongPointLightDisplay";
+            this.Text = "FormPhongPointLightDisplay";
             this.ResumeLayout(false);
             this.PerformLayout();
 

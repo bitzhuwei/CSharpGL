@@ -347,7 +347,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Name = "FormPhongPointLightController";
-            this.Text = "FormDiffuseReflectionPointLightController";
+            this.Text = "FormPhongPointLightController";
             this.Load += new System.EventHandler(this.FormDiffuseReflectionController_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackKd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackLightPositionX)).EndInit();
