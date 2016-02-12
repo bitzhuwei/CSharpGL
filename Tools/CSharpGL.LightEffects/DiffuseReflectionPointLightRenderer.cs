@@ -12,7 +12,7 @@ namespace CSharpGL.LightEffects
     using System.Threading.Tasks;
     using System.Windows.Forms;
     /// <summary>
-    /// 一个<see cref="DiffuseReflectionRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="DiffuseReflectionDirectionalLightRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// </summary>
     public class DiffuseReflectionPointLightRenderer : RendererBase
     {

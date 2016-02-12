@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace CSharpGL.LightEffects
 {
-    public partial class FormDiffuseReflectionDisplay : Form
+    public partial class FormDiffuseReflectionDirectionalLightDisplay : Form
     {
-        private DiffuseReflectionRenderer renderer;
-        public FormDiffuseReflectionDisplay(DiffuseReflectionRenderer renderer)
+        private DiffuseReflectionDirectionalLightRenderer renderer;
+        public FormDiffuseReflectionDirectionalLightDisplay(DiffuseReflectionDirectionalLightRenderer renderer)
         {
             InitializeComponent();
 

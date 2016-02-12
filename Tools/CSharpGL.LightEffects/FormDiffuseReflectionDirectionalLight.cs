@@ -17,10 +17,10 @@ using System.Windows.Forms;
 
 namespace CSharpGL.LightEffects
 {
-    public partial class FormDiffuseReflection : Form
+    public partial class FormDiffuseReflectionDirectionalLight : Form
     {
         SimpleUIAxis uiAxis;
-        DiffuseReflectionRenderer renderer;
+        DiffuseReflectionDirectionalLightRenderer renderer;
         ArcBallRotator modelRotator;
 
         Camera camera;
@@ -30,7 +30,7 @@ namespace CSharpGL.LightEffects
         //SatelliteRotator modelRotator;
         //private float rotateAngle;
 
-        public FormDiffuseReflection()
+        public FormDiffuseReflectionDirectionalLight()
         {
             InitializeComponent();
 
@@ -50,7 +50,7 @@ namespace CSharpGL.LightEffects
             uiAxis.Initialize();
 
             IModel model = (new TeapotFactory()).Create(1.0f);
-            this.renderer = new DiffuseReflectionRenderer(model);
+            this.renderer = new DiffuseReflectionDirectionalLightRenderer(model);
             this.renderer.Initialize();//不在此显式初始化也可以。
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
@@ -64,7 +64,7 @@ namespace CSharpGL.LightEffects
 
         private void CreateElement()
         {
-            var element = new DiffuseReflectionRenderer(factories[currentModelIndex].Create(this.radius));
+            var element = new DiffuseReflectionDirectionalLightRenderer(factories[currentModelIndex].Create(this.radius));
             element.Initialize();
             this.newRenderer = element;
         }
@@ -73,9 +73,9 @@ namespace CSharpGL.LightEffects
         //static readonly IModel[] models = new IModel[] { CubeModel.GetModel(), IceCreamModel.GetModel(), SphereModel.GetModel(), };
         static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
         private float radius = 2;
-        DiffuseReflectionRenderer newRenderer;
-        private FormDiffuseReflectionController frmController;
-        private FormDiffuseReflectionDisplay frmDisplay;
+        DiffuseReflectionDirectionalLightRenderer newRenderer;
+        private FormDiffuseReflectionDirectionalLightController frmController;
+        private FormDiffuseReflectionDirectionalLightDisplay frmDisplay;
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -87,12 +87,12 @@ namespace CSharpGL.LightEffects
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             glCanvas1_Resize(this.glCanvas1, e);
 
-            this.frmController = new FormDiffuseReflectionController(this.renderer);
+            this.frmController = new FormDiffuseReflectionDirectionalLightController(this.renderer);
             frmController.Show();
-            this.frmDisplay = new FormDiffuseReflectionDisplay(this.renderer);
+            this.frmDisplay = new FormDiffuseReflectionDirectionalLightDisplay(this.renderer);
             this.frmDisplay.Show();
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine("This is a diffuse reflection demo with point light and ambient light.");
+            builder.AppendLine("This is a diffuse reflection demo with directional light and ambient light.");
             builder.AppendLine("Use 'c' to switch camera types between perspective and ortho.");
             builder.AppendLine("Use right mouse to rotate camera.");
             builder.AppendLine("Use left mouse to rotate model.");
@@ -122,10 +122,10 @@ namespace CSharpGL.LightEffects
             {
                 this.renderer = newRenderer;
                 this.frmController.Close();
-                this.frmController = new FormDiffuseReflectionController(this.renderer);
+                this.frmController = new FormDiffuseReflectionDirectionalLightController(this.renderer);
                 this.frmController.Show();
                 this.frmDisplay.Close();
-                this.frmDisplay = new FormDiffuseReflectionDisplay(this.renderer);
+                this.frmDisplay = new FormDiffuseReflectionDirectionalLightDisplay(this.renderer);
                 this.frmDisplay.Show();
                 this.newRenderer = null;
             }

@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace CSharpGL.LightEffects
 {
-    public partial class FormDiffuseReflectionController : Form
+    public partial class FormDiffuseReflectionDirectionalLightController : Form
     {
-        private DiffuseReflectionRenderer diffuseReflectionRenderer;
+        private DiffuseReflectionDirectionalLightRenderer diffuseReflectionRenderer;
 
-        public FormDiffuseReflectionController(DiffuseReflectionRenderer diffuseReflectionRenderer)
+        public FormDiffuseReflectionDirectionalLightController(DiffuseReflectionDirectionalLightRenderer diffuseReflectionRenderer)
         {
             InitializeComponent();
 

@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.LightEffects
 {
-    partial class FormDiffuseReflectionDisplay
+    partial class FormDiffuseReflectionDirectionalLightDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -50,14 +50,14 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // FormDiffuseReflectionDisplay
+            // FormDiffuseReflectionDirectionalLightDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 500);
             this.Controls.Add(this.textBox1);
-            this.Name = "FormDiffuseReflectionDisplay";
-            this.Text = "FormDiffuseReflectionDisplay";
+            this.Name = "FormDiffuseReflectionDirectionalLightDisplay";
+            this.Text = "FormDiffuseReflectionDirectionalLightDisplay";
             this.ResumeLayout(false);
             this.PerformLayout();
 

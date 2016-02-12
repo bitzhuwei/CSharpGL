@@ -47,7 +47,6 @@ namespace CSharpGL.LightEffects
             N = normalize(N);
 
             // light's direction
-            //vec3 L = (transpose(inverse(viewMatrix)) * vec4(lightPosition, 1.0f)).xyz;// directional light
             vec3 L = (viewMatrix * vec4(lightPosition, 1.0f)).xyz - worldPos;// point light
             L = normalize(L);
 

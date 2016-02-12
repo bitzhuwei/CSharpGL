@@ -12,9 +12,9 @@ namespace CSharpGL.LightEffects
     using System.Threading.Tasks;
     using System.Windows.Forms;
     /// <summary>
-    /// 一个<see cref="DiffuseReflectionRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="DiffuseReflectionDirectionalLightRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// </summary>
-    public class DiffuseReflectionRenderer : RendererBase
+    public class DiffuseReflectionDirectionalLightRenderer : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -67,15 +67,15 @@ namespace CSharpGL.LightEffects
 
         private IModel model;
 
-        public DiffuseReflectionRenderer(IModel model)
+        public DiffuseReflectionDirectionalLightRenderer(IModel model)
         {
             this.model = model;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("DiffuseReflection.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("DiffuseReflection.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("DiffuseReflectionDirectionalLight.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("DiffuseReflectionDirectionalLight.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);

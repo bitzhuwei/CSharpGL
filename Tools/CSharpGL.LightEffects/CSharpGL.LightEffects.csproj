@@ -45,9 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DiffuseReflectionPointLight.cs" />
-    <Compile Include="DiffuseReflection.cs" />
+    <Compile Include="DiffuseReflectionDirectionalLight.cs" />
     <Compile Include="DiffuseReflectionPointLightRenderer.cs" />
-    <Compile Include="DiffuseReflectionRenderer.cs" />
+    <Compile Include="DiffuseReflectionDirectionalLightRenderer.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,27 +72,27 @@
     <Compile Include="FormDiffuseReflectionPointLight.Designer.cs">
       <DependentUpon>FormDiffuseReflectionPointLight.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDiffuseReflection.cs">
+    <Compile Include="FormDiffuseReflectionDirectionalLight.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDiffuseReflection.Designer.cs">
-      <DependentUpon>FormDiffuseReflection.cs</DependentUpon>
+    <Compile Include="FormDiffuseReflectionDirectionalLight.Designer.cs">
+      <DependentUpon>FormDiffuseReflectionDirectionalLight.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDiffuseReflectionController.cs">
+    <Compile Include="FormDiffuseReflectionDirectionalLightController.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDiffuseReflectionController.Designer.cs">
-      <DependentUpon>FormDiffuseReflectionController.cs</DependentUpon>
+    <Compile Include="FormDiffuseReflectionDirectionalLightController.Designer.cs">
+      <DependentUpon>FormDiffuseReflectionDirectionalLightController.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDiffuseReflectionDisplay.cs">
+    <Compile Include="FormDiffuseReflectionDirectionalLightDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDiffuseReflectionDisplay.Designer.cs">
-      <DependentUpon>FormDiffuseReflectionDisplay.cs</DependentUpon>
+    <Compile Include="FormDiffuseReflectionDirectionalLightDisplay.Designer.cs">
+      <DependentUpon>FormDiffuseReflectionDirectionalLightDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="DiffuseReflection.vert" />
+    <EmbeddedResource Include="DiffuseReflectionDirectionalLight.vert" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -105,14 +105,14 @@
     <EmbeddedResource Include="FormDiffuseReflectionPointLight.resx">
       <DependentUpon>FormDiffuseReflectionPointLight.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDiffuseReflection.resx">
-      <DependentUpon>FormDiffuseReflection.cs</DependentUpon>
+    <EmbeddedResource Include="FormDiffuseReflectionDirectionalLight.resx">
+      <DependentUpon>FormDiffuseReflectionDirectionalLight.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDiffuseReflectionController.resx">
-      <DependentUpon>FormDiffuseReflectionController.cs</DependentUpon>
+    <EmbeddedResource Include="FormDiffuseReflectionDirectionalLightController.resx">
+      <DependentUpon>FormDiffuseReflectionDirectionalLightController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDiffuseReflectionDisplay.resx">
-      <DependentUpon>FormDiffuseReflectionDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="FormDiffuseReflectionDirectionalLightDisplay.resx">
+      <DependentUpon>FormDiffuseReflectionDirectionalLightDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -123,7 +123,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DiffuseReflection.frag" />
+    <EmbeddedResource Include="DiffuseReflectionDirectionalLight.frag" />
     <EmbeddedResource Include="DiffuseReflectionPointLight.frag" />
     <EmbeddedResource Include="DiffuseReflectionPointLight.vert" />
     <None Include="Properties\Settings.settings">

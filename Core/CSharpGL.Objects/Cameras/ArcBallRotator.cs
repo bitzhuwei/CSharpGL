@@ -57,7 +57,7 @@ namespace CSharpGL.Objects.Cameras
             SetCamera(camera.Position, camera.Target, camera.UpVector);
 #if DEBUG
             const string filename = "ArcBallRotator.log";
-            if (File.Exists(filename)) { File.Delete(filename); }
+            //if (File.Exists(filename)) { File.Delete(filename); }
             Debug.Listeners.Add(new TextWriterTraceListener(filename, listenerName));
             Debug.WriteLine(DateTime.Now, listenerName);
             Debug.Flush();

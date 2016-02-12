@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.LightEffects
 {
-    partial class FormDiffuseReflectionController
+    partial class FormDiffuseReflectionDirectionalLightController
     {
         /// <summary>
         /// Required designer variable.
@@ -245,7 +245,7 @@
             this.trackLightPositionZ.Value = 5;
             this.trackLightPositionZ.Scroll += new System.EventHandler(this.trackLightPositionZ_Scroll);
             // 
-            // FormDiffuseReflectionController
+            // FormDiffuseReflectionDirectionalLightController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -268,8 +268,8 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Name = "FormDiffuseReflectionController";
-            this.Text = "FormDiffuseReflectionController";
+            this.Name = "FormDiffuseReflectionDirectionalLightController";
+            this.Text = "FormDiffuseReflectionDirectionalLightController";
             this.Load += new System.EventHandler(this.FormDiffuseReflectionController_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackKd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackLightPositionX)).EndInit();

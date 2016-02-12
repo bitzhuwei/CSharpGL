@@ -10,7 +10,7 @@ namespace CSharpGL.LightEffects
     /// 这就是C#Shader形式的vertex shader。
     /// </summary>
     [Dump2File(true)]
-    class DiffuseReflectionVert : VertexCSShaderCode
+    class DiffuseReflectionDirectionalLightVert : VertexCSShaderCode
     {
         [In]
         vec3 in_Position;
@@ -47,8 +47,7 @@ namespace CSharpGL.LightEffects
             N = normalize(N);
 
             // light's direction
-            //vec3 L = (transpose(inverse(viewMatrix)) * vec4(lightPosition, 1.0f)).xyz;// directional light
-            vec3 L = (viewMatrix * vec4(lightPosition, 1.0f)).xyz - worldPos;// point light
+            vec3 L = (transpose(inverse(viewMatrix)) * vec4(lightPosition, 1.0f)).xyz;// directional light
             L = normalize(L);
 
             // diffuse color from directional light
@@ -68,7 +67,7 @@ namespace CSharpGL.LightEffects
     /// 这就是C#Shader形式的fragment shader。
     /// </summary>
     [Dump2File(true)]
-    class DiffuseReflectionFrag : FragmentCSShaderCode
+    class DiffuseReflectionDirectionalLightFrag : FragmentCSShaderCode
     {
         [In]
         vec4 pass_Color;
