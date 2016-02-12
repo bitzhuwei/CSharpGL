@@ -42,12 +42,13 @@ namespace CSharpGL.LightEffects
         public override void main()
         {
             gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);
-            vec3 worldPos = (modelMatrix * vec4(in_Position, 1.0f)).xyz;
-            vec3 N = (transpose(inverse(modelMatrix)) * vec4(in_Normal, 1.0f)).xyz;
+            vec3 worldPos = (viewMatrix * modelMatrix * vec4(in_Position, 1.0f)).xyz;
+            vec3 N = (transpose(inverse(viewMatrix * modelMatrix)) * vec4(in_Normal, 1.0f)).xyz;
             N = normalize(N);
 
             // light's direction
-            vec3 L = (vec4(lightPosition, 1.0f)).xyz;// -worldPos;
+            //vec3 L = (transpose(inverse(viewMatrix)) * vec4(lightPosition, 1.0f)).xyz;// directional light
+            vec3 L = (viewMatrix * vec4(lightPosition, 1.0f)).xyz - worldPos;// point light
             L = normalize(L);
 
             // diffuse color from directional light

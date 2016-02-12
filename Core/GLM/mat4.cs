@@ -20,6 +20,7 @@ namespace GLM
                 builder.Append(": [");
                 builder.Append(cols[i]);
                 builder.Append("] ");
+                builder.AppendLine();
             }
             return builder.ToString();
         }
