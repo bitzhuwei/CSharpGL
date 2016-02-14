@@ -45,17 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ObjModelElement.frag" />
-    <EmbeddedResource Include="ObjModelElement.vert" />
     <Compile Include="FormObjViewer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormObjViewer.Designer.cs">
       <DependentUpon>FormObjViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObjModelElement.cs" />
+    <Compile Include="ObjFile.cs" />
+    <Compile Include="ObjFileRenderer.cs" />
     <Compile Include="ObjModelAdpater.cs" />
-    <Compile Include="ObjModelPositionBuffer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormObjViewer.resx">
@@ -70,6 +68,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ObjFile.frag" />
+    <EmbeddedResource Include="ObjFile.vert" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -110,6 +110,10 @@
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Functions\CSharpShadingLanguage\CSharpShadingLanguage.csproj">
+      <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
+      <Name>CSharpShadingLanguage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CSharpGL.OBJParser\CSharpGL.OBJParser.csproj">
       <Project>{c58cb2c1-459c-497e-bdae-3dbe3964dad8}</Project>
       <Name>CSharpGL.OBJParser</Name>
@@ -120,6 +124,13 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)Tools\CSharpGL.CSSL2GLSL\bin\Debug\CSharpGL.CSSL2GLSL.exe  $(ProjectDir)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

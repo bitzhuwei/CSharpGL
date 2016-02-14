@@ -16,7 +16,7 @@ namespace CSharpGL.ObjViewer
 {
     public partial class FormObjViewer : Form
     {
-        List<ObjModelElement> elements = new List<ObjModelElement>();
+        List<ObjFileRenderer> elements = new List<ObjFileRenderer>();
         private Camera camera;
         SatelliteRotator satelliteRoration;
         public FormObjViewer()
@@ -32,7 +32,6 @@ namespace CSharpGL.ObjViewer
             this.glCanvas1.MouseMove += glCanvas1_MouseMove;
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
-            this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
@@ -42,33 +41,14 @@ namespace CSharpGL.ObjViewer
 
         private void FormGLCanvas_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Use 'c' to switch camera types between perspective and ortho");
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("Use 'c' to switch camera types between perspective and ortho");
+
+            MessageBox.Show(builder.ToString());
 
             // Init GL
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
-            // first resize
-            glCanvas1_Resize(this.glCanvas1, e);
         }
-
-        private void glCanvas1_Resize(object sender, EventArgs e)
-        {
-            //this.camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
-            ////  Set the projection matrix.
-            //GL.MatrixMode(GL.GL_PROJECTION);
-
-            ////  Load the identity.
-            //GL.LoadIdentity();
-
-            ////  Create a perspective transformation.
-            //GL.gluPerspective(60.0f, (double)Width / (double)Height, 0.01, 100.0);
-
-            ////  Use the 'look at' helper function to position and aim the camera.
-            //GL.gluLookAt(-5, 5, -5, 0, 0, 0, 0, 1, 0);
-
-            ////  Set the modelview matrix.
-            //GL.MatrixMode(GL.GL_MODELVIEW);
-        }
-
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -106,7 +86,10 @@ namespace CSharpGL.ObjViewer
                 }
 
             }
+            else if (e.KeyChar == 'n')
+            {
 
+            }
         }
         private void 打开OToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -117,7 +100,7 @@ namespace CSharpGL.ObjViewer
                 ObjFile file = OBJParser.ObjFile.Load(this.openFileDialog1.FileName);
                 foreach (var item in file.Models)
                 {
-                    ObjModelElement element = new ObjModelElement(item);
+                    ObjFileRenderer element = new ObjFileRenderer(new ObjModelAdpater(item));
                     element.Initialize();
                     elements.Add(element);
                 }

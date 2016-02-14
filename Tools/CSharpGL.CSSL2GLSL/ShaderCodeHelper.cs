@@ -19,6 +19,10 @@ namespace CSharpGL.CSSL2GLSL
             {
                 return new SemanticFragmentShader(shaderCode, fullname);
             }
+                else if (shaderCode.GetType().IsSubclassOf(typeof(GeometryCSShaderCode)))
+            {
+                return new SemanticGeometryShader(shaderCode, fullname);
+            }
             else
             {
                 throw new NotImplementedException();
@@ -42,6 +46,10 @@ namespace CSharpGL.CSSL2GLSL
             else if (type.IsSubclassOf(typeof(FragmentCSShaderCode)))
             {
                 extensionName = "frag";
+            }
+            else if(type.IsSubclassOf(typeof(GeometryCSShaderCode)))
+            {
+                extensionName = "geom";
             }
             else
             {

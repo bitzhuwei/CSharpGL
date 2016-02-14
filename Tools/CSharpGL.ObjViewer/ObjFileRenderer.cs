@@ -1,18 +1,21 @@
-﻿using CSharpGL.Objects;
-using CSharpGL.Objects.Models;
-using CSharpGL.Objects.Shaders;
-using CSharpGL.Objects.VertexBuffers;
-using CSharpGL.OBJParser;
-using GLM;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpGL.ObjViewer
 {
-    class ObjModelElement : RendererBase
+    using CSharpGL;
+    using CSharpGL.Objects;
+    using CSharpGL.Objects.Models;
+    using CSharpGL.Objects.Shaders;
+    using CSharpGL.Objects.VertexBuffers;
+    using GLM;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    /// <summary>
+    /// 一个<see cref="ObjFileRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// </summary>
+    public class ObjFileRenderer : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -35,7 +38,6 @@ namespace CSharpGL.ObjViewer
 
         #region uniforms
 
-
         const string strmodelMatrix = "modelMatrix";
         public mat4 modelMatrix;
 
@@ -50,38 +52,46 @@ namespace CSharpGL.ObjViewer
 
         public PolygonModes polygonMode = PolygonModes.Filled;
 
-        private int indexCount;
+        private int elementCount;
 
-        private ObjModelAdpater objModelAdapter;
+        private IModel model;
 
-        public ObjModelElement(ObjModel objModel)
+        public ObjFileRenderer(IModel model)
         {
-            this.objModelAdapter = new ObjModelAdpater(objModel);
+            this.model = model;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile(@"ObjModelElement.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(@"ObjModelElement.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("ObjFile.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("ObjFile.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
-
         }
 
         protected void InitializeVAO()
         {
-            IModel model = this.objModelAdapter;
+            IModel model = this.model;
 
             this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);
             //this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
             this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
             this.indexBufferRenderer = model.GetIndexes();
 
-            IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
-            if (renderer != null)
             {
-                this.indexCount = renderer.ElementCount;
+                IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+                if (renderer != null)
+                {
+                    this.elementCount = renderer.ElementCount;
+                }
+            }
+            {
+                ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;
+                if (renderer != null)
+                {
+                    this.elementCount = renderer.VertexCount;
+                }
             }
         }
 
@@ -94,8 +104,6 @@ namespace CSharpGL.ObjViewer
 
         protected override void DoRender(RenderEventArgs e)
         {
-            
-
             ShaderProgram program = this.shaderProgram;
             // 绑定shader
             program.Bind();
@@ -108,28 +116,33 @@ namespace CSharpGL.ObjViewer
             GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
 
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);
+
+            GL.Enable(GL.GL_PRIMITIVE_RESTART);
+            GL.PrimitiveRestartIndex(uint.MaxValue);
+
             if (this.vertexArrayObject == null)
             {
-                var vao = new VertexArrayObject(
+                var vertexArrayObject = new VertexArrayObject(
                     this.positionBufferRenderer,
                     //this.colorBufferRenderer,
                     this.normalBufferRenderer,
                     this.indexBufferRenderer);
-                vao.Create(e, this.shaderProgram);
+                vertexArrayObject.Create(e, this.shaderProgram);
 
-                this.vertexArrayObject = vao;
+                this.vertexArrayObject = vertexArrayObject;
             }
             else
             {
                 this.vertexArrayObject.Render(e, this.shaderProgram);
             }
+
+            GL.Disable(GL.GL_PRIMITIVE_RESTART);
+
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
 
             // 解绑shader
             program.Unbind();
         }
-
-
 
         protected override void DisposeUnmanagedResources()
         {
@@ -137,29 +150,59 @@ namespace CSharpGL.ObjViewer
             {
                 this.vertexArrayObject.Dispose();
             }
-
         }
 
         public void DecreaseVertexCount()
         {
-            IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
-            if (renderer != null)
             {
-                if (renderer.ElementCount > 0)
-                    renderer.ElementCount--;
+                IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+                if (renderer != null)
+                {
+                    if (renderer.ElementCount > 0)
+                    {
+                        renderer.ElementCount--;
+                    }
+                    return;
+                }
+            }
+            {
+                ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;
+                if (renderer != null)
+                {
+                    if (renderer.VertexCount > 0)
+                    {
+                        renderer.VertexCount--;
+                    }
+                    return;
+                }
             }
         }
 
         public void IncreaseVertexCount()
         {
-            IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
-            if (renderer != null)
             {
-                if (renderer.ElementCount < this.indexCount)
-                    renderer.ElementCount++;
+                IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+                if (renderer != null)
+                {
+                    if (renderer.ElementCount < this.elementCount)
+                    {
+                        renderer.ElementCount++;
+                    }
+                    return;
+                }
+            }
+            {
+                ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;
+                if (renderer != null)
+                {
+                    if (renderer.VertexCount < this.elementCount)
+                    {
+                        renderer.VertexCount++;
+                    }
+                    return;
+                }
             }
         }
-
-
     }
 }
+

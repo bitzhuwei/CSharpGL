@@ -44,6 +44,7 @@
     <Compile Include="BuildIn\mat2.cs" />
     <Compile Include="BuildIn\mat3.cs" />
     <Compile Include="BuildIn\mat4.cs" />
+    <Compile Include="GeometryCSShaderCode.cs" />
     <Compile Include="NeverUsed\PrintVec234Components.cs" />
     <Compile Include="NotNeedToImplementException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

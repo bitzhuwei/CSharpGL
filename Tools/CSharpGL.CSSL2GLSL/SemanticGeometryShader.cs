@@ -5,13 +5,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace CSharpGL.CSSL2GLSL
 {
-    public sealed class SemanticFragmentShader : SemanticShader
+    public sealed class SemanticGeometryShader : SemanticShader
     {
 
-        public SemanticFragmentShader(CSShaderCode shaderCode, string fullname)
+        public SemanticGeometryShader(CSShaderCode shaderCode, string fullname)
             : base(shaderCode, fullname)
         {
         }
@@ -83,9 +84,9 @@ namespace CSharpGL.CSSL2GLSL
                     line = line.Substring(preEmptyCount);
                 }
                 //if (isFragmentShader)
-                {
-                    line = Regex.Replace(line, @"discard\s*\(\s*\)\s*;", "discard;");
-                }
+                //{
+                //    line = Regex.Replace(line, @"discard\s*\(\s*\)\s*;", "discard;");
+                //}
                 mainBuilder.AppendLine(line);
             }
             return mainBuilder.ToString();

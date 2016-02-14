@@ -191,8 +191,7 @@ namespace CSharpGL.CSSL2GLSL
                                  (from type in cr.CompiledAssembly.GetTypes()
                                   where type.IsSubclassOf(typeof(CSShaderCode))
                                   select (Activator.CreateInstance(type) as CSShaderCode).Dump(fullname))
-                             select new SemanticShaderInfo() 
-                             { codeUpdated = semanticShader.Dump2File(), shader = semanticShader };
+                             select new SemanticShaderInfo() { codeUpdated = semanticShader.Dump2File(), shader = semanticShader };
 
                 translationInfo.semanticShaderList = result.ToList();
             }
