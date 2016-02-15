@@ -30,7 +30,7 @@ void main(void)
     for (i = 0; i < gl_in.length(); i++) {
         vec3 n = vertex_in[i].normal;
         vertex_out.normal = n;
-        vec4 position = gl_in[i].gl_Position + vec4(n, 0.0);
+        vec4 position = gl_in[i].gl_Position;// + vec4(n, 0.0);
         gl_Position = projectionMatrix * viewMatrix * (modelMatrix * position);
 		EmitVertex();
     }
