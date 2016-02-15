@@ -11,6 +11,7 @@ namespace CSharpShaders
     /// 这就是C#Shader形式的vertex shader。
     /// </summary>
     [Dump2File(true)]
+	[GLSLVersion(v150)]
     class SomeVert : VertexCSShaderCode
     {
 		/// <summary>
@@ -70,6 +71,7 @@ namespace CSharpShaders
     /// 这就是C#Shader形式的fragment shader。
     /// </summary>
     [Dump2File(true)]
+	[GLSLVersion(v150)]
     class SomeFrag : FragmentCSShaderCode
     {
 		/// <summary>
@@ -93,6 +95,7 @@ namespace CSharpShaders
     }
 
 	[Dump2File(false)]
+	[GLSLVersion(v150)]
     class SomeGeom : GeometryCSShaderCode
     {
         protected override InType LayoutIn
