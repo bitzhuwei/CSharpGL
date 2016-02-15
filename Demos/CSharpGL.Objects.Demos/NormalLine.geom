@@ -1,14 +1,14 @@
 #version 410 core
 
 layout (triangles) in;
-layout (triangle_strip, max_vertices = 3) out;
+layout (line_strip, max_vertices = 3) out;
 
 uniform mat4 modelMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 projectionMatrix;
 
 uniform int fur_layers = 1;
-uniform float fur_depth = 5.0;
+uniform float fur_depth = 0.2;
 
 in VS_GS_VERTEX
 {
@@ -33,6 +33,9 @@ void main(void)
         vec4 position = gl_in[i].gl_Position;// + vec4(n, 0.0);
         gl_Position = projectionMatrix * viewMatrix * (modelMatrix * position);
 		EmitVertex();
+		position = position + vec4(n, 0.0) * fur_depth;
+        gl_Position = projectionMatrix * viewMatrix * (modelMatrix * position);
+		EmitVertex();
+		EndPrimitive();
     }
-	EndPrimitive();
 }
