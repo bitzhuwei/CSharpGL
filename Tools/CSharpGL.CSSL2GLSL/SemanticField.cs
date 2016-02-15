@@ -41,7 +41,10 @@ namespace CSharpGL.CSSL2GLSL
             {
                 builder.Append(this.attribute.NameInGLSL);// in/out/uniform/flat
                 builder.Append(" ");
-                builder.Append(this.varType.Name);// VS_GS_VERTEX
+                if (this.varType.IsArray)
+                { builder.Append(this.varType.GetElementType().Name); }
+                else
+                { builder.Append(this.varType.Name); }// VS_GS_VERTEX
                 builder.AppendLine();
                 builder.Append("{");
                 builder.AppendLine();
@@ -57,6 +60,8 @@ namespace CSharpGL.CSSL2GLSL
                 builder.Append("} ");
                 builder.Append(this.varName);
                 // todo: try add []
+                if (this.varType.IsArray)
+                { builder.Append("[]"); }
                 builder.Append(";");
                 builder.AppendLine();
             }
