@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NormalLine.cs">
+      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NormalLineRenderer.cs">
+      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
+    </Compile>
     <Compile Include="PhongPointLight.cs">
       <DependentUpon>CSSL+Renderer.tt</DependentUpon>
     </Compile>

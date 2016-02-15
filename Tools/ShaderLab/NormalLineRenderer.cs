@@ -1,113 +1,4 @@
-﻿﻿<#@ template debug="false" hostspecific="true" language="C#" #>
-<#@ output extension=".cs" #>
-<#@ include file=".\Dump2MultipleFiles.ttinclude" #>
-<# string ShaderName = "NormalLine"; #>
-<# string ClassName = ShaderName + "Renderer"; #>
-<# string VertexShaderName = ShaderName + "Vert"; #>
-<# string FragmentShaderName = ShaderName + "Frag"; #>
-/*
-本文件无用。
-有用的是<#= ShaderName #>.cs和<#= ClassName #>.cs。
-*/
-<# var manager = new Manager(Host, GenerationEnvironment, true) { OutputPath = Path.GetDirectoryName(Host.TemplateFile)}; #>
-<#
-    manager.StartBlock(ShaderName + ".cs");
-#>
-namespace CSharpShaders
-{
-	// 不可将此文件中的代码复制到其他文件内（如果包含了其他的using ...;，那么CSSL2GLSL.exe就无法正常编译这些代码了。）
-    using CSharpShadingLanguage;
 
-#if DEBUG
-
-    /// <summary>
-    /// 一个<see cref="<#= VertexShaderName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
-    /// 这就是C#Shader形式的vertex shader。
-    /// </summary>
-    [Dump2File(true)]
-    class <#= VertexShaderName #> : VertexCSShaderCode
-    {
-		/// <summary>
-		/// vertex's position.
-		/// </summar>
-        [In]
-        vec3 in_Position;
-
-		/// <summary>
-		/// vertex's color.
-		/// </summar>
-        [In]
-        vec3 in_Normal;
-
-		/// <summary>
-		/// pass color to fragment color.
-		/// </summar>
-        [Out]
-        vec4 pass_Normal;
-
-		/// <summary>
-		/// scale, rotate and translate model.
-		/// </summar>
-        [Uniform]
-        mat4 modelMatrix;
-
-		/// <summary>
-		/// setup camera's position, target and up.
-		/// </summar>
-        [Uniform]
-        mat4 viewMatrix;
-
-		/// <summary>
-		/// project 3D scene to 2D screen.
-		/// </summar>
-        [Uniform]
-        mat4 projectionMatrix;
-
-        public override void main()
-        {
-		    // TODO: this is where you should start with vertex shader. Only ASCII code are welcome.
-            gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);
-
-            pass_Normal = vec4(in_Normal, 1.0f);
-			// this is where your vertex shader ends.
-        }
-    }
-
-    /// <summary>
-    /// 一个<see cref="<#= FragmentShaderName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
-    /// 这就是C#Shader形式的fragment shader。
-    /// </summary>
-    [Dump2File(true)]
-    class <#= FragmentShaderName #> : FragmentCSShaderCode
-    {
-		/// <summary>
-		/// color passed from vertex shader.
-		/// </summar>
-        [In]
-        vec4 pass_Normal;
-
-		/// <summary>
-		/// color that fragment shader dumped.
-		/// </summar>
-        [Out]
-        vec4 out_Color;
-
-        public override void main()
-        {
-		    // TODO: this is where you should start with fragment shader. Only ASCII code are welcome.
-            out_Color = pass_Normal;
-			// this is where your fragment shader ends.
-        }
-    }
-
-#endif
-}
-<#
-    manager.EndBlock();
-#>
-<#
-    manager.StartBlock(ClassName + ".cs");
-#>
 namespace ShaderLab
 {
     using CSharpGL;
@@ -122,9 +13,9 @@ namespace ShaderLab
     using System.Threading.Tasks;
     using System.Windows.Forms;
     /// <summary>
-    /// 一个<see cref="<#= ClassName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="NormalLineRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// </summary>
-    public class <#= ClassName #> : RendererBase
+    public class NormalLineRenderer : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -165,15 +56,15 @@ namespace ShaderLab
 
         private IModel model;
 
-        public <#= ClassName #>(IModel model)
+        public NormalLineRenderer(IModel model)
         {
             this.model = model;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("<#= ShaderName #>.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("<#= ShaderName #>.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("NormalLine.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("NormalLine.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -315,8 +206,3 @@ namespace ShaderLab
     }
 }
 
-<#
-    manager.EndBlock();
-
-    manager.Process(true);
-#>
