@@ -1,7 +1,7 @@
 #version 410 core
 
 layout (triangles) in;
-layout (line_strip, max_vertices = 3) out;
+layout (triangle_strip, max_vertices = 9) out;
 
 uniform mat4 modelMatrix;
 uniform mat4 viewMatrix;
@@ -27,13 +27,27 @@ void main(void)
 {
 	int odd = 0;
 	int i;
-    for (i = 0; i < gl_in.length(); i++) {
+
+	
+	for (i = 0; i < gl_in.length(); i++) {
+        vec3 n = vertex_in[i].normal;
+        vertex_out.normal = n;
+        vec4 position = gl_in[i].gl_Position;// + vec4(n, 0.0);
+        gl_Position = projectionMatrix * viewMatrix * (modelMatrix * position);
+		EmitVertex();
+    }
+	EndPrimitive();
+
+	for (i = 0; i < gl_in.length(); i++) {
         vec3 n = vertex_in[i].normal;
         vertex_out.normal = n;
         vec4 position = gl_in[i].gl_Position;// + vec4(n, 0.0);
         gl_Position = projectionMatrix * viewMatrix * (modelMatrix * position);
 		EmitVertex();
 		position = position + vec4(n, 0.0) * fur_depth;
+        gl_Position = projectionMatrix * viewMatrix * (modelMatrix * position);
+		EmitVertex();
+		position = position + vec4(n, 0.0) * fur_depth + vec4(0.01f, 0.01f, 0.01f, 0);
         gl_Position = projectionMatrix * viewMatrix * (modelMatrix * position);
 		EmitVertex();
 		EndPrimitive();
