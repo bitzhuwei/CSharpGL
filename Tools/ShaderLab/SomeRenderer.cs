@@ -13,9 +13,9 @@ namespace ShaderLab
     using System.Threading.Tasks;
     using System.Windows.Forms;
     /// <summary>
-    /// 一个<see cref="NormalLineRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="SomeRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// </summary>
-    public class NormalLineRenderer : RendererBase
+    public class SomeRenderer : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -56,15 +56,15 @@ namespace ShaderLab
 
         private IModel model;
 
-        public NormalLineRenderer(IModel model)
+        public SomeRenderer(IModel model)
         {
             this.model = model;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("NormalLine.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("NormalLine.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("Some.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("Some.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);

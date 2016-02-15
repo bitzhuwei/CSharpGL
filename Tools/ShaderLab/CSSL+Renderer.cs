@@ -8,7 +8,7 @@
 
 /*
 本文件无用。
-有用的是NormalLine.cs和NormalLineRenderer.cs。
+有用的是Some.cs和SomeRenderer.cs。
 */
 
 

@@ -7,11 +7,11 @@ namespace CSharpShaders
 #if DEBUG
 
     /// <summary>
-    /// 一个<see cref="NormalLineVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="SomeVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的vertex shader。
     /// </summary>
     [Dump2File(true)]
-    class NormalLineVert : VertexCSShaderCode
+    class SomeVert : VertexCSShaderCode
     {
 		/// <summary>
 		/// vertex's position.
@@ -60,11 +60,11 @@ namespace CSharpShaders
     }
 
     /// <summary>
-    /// 一个<see cref="NormalLineFrag"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="SomeFrag"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的fragment shader。
     /// </summary>
     [Dump2File(true)]
-    class NormalLineFrag : FragmentCSShaderCode
+    class SomeFrag : FragmentCSShaderCode
     {
 		/// <summary>
 		/// color passed from vertex shader.

@@ -47,22 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NormalLine.cs">
+    <Compile Include="Some.cs">
       <DependentUpon>CSSL+Renderer.tt</DependentUpon>
     </Compile>
-    <Compile Include="NormalLineRenderer.cs">
-      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PhongPointLight.cs">
-      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PhongPointLightRenderer.cs">
-      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SomeShader.cs">
-      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SomeShaderRenderer.cs">
+    <Compile Include="SomeRenderer.cs">
       <DependentUpon>CSSL+Renderer.tt</DependentUpon>
     </Compile>
     <Content Include="CSSL+Renderer.tt">
