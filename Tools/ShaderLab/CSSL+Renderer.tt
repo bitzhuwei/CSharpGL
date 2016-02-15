@@ -5,6 +5,7 @@
 <# string ClassName = ShaderName + "Renderer"; #>
 <# string VertexShaderName = ShaderName + "Vert"; #>
 <# string FragmentShaderName = ShaderName + "Frag"; #>
+<# string GeometryShaderName = ShaderName + "Geom"; #>
 /*
 本文件无用。
 有用的是<#= ShaderName #>.cs和<#= ClassName #>.cs。
@@ -101,7 +102,7 @@ namespace CSharpShaders
     }
 
 	[Dump2File(false)]
-    class ObjFileGeom : GeometryCSShaderCode
+    class <#= GeometryShaderName #> : GeometryCSShaderCode
     {
         protected override InType LayoutIn
         {

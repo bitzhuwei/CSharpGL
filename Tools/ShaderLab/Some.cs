@@ -87,7 +87,7 @@ namespace CSharpShaders
     }
 
 	[Dump2File(false)]
-    class ObjFileGeom : GeometryCSShaderCode
+    class SomeGeom : GeometryCSShaderCode
     {
         protected override InType LayoutIn
         {
