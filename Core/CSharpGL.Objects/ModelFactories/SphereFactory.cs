@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.ModelFactories
 {
-    public class SphereInTriangleFactory : ModelFactory
+    public class SphereFactory : ModelFactory
     {
         public override IModel Create(float radius)
         {
-            return SphereModelInTriangle.GetModel(radius);
+            return SphereModel.GetModel(radius);
         }
     }
 }

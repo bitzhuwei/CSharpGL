@@ -14,7 +14,7 @@ namespace CSharpGL.Objects.Models
     /// 一个球体的模型。
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_sphere.jpg
     /// </summary>
-    public class SphereModelInTriangle : IModel
+    public class SphereModel : IModel
     {
         vec3[] positions;
         vec3[] normals;
@@ -27,7 +27,7 @@ namespace CSharpGL.Objects.Models
             return new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
         }
 
-        private SphereModelInTriangle() { }
+        private SphereModel() { }
 
         static readonly Func<int, int, vec3> defaultColorGenerator = new Func<int, int, vec3>(DefaultColorGenerator);
 
@@ -50,7 +50,7 @@ namespace CSharpGL.Objects.Models
 
             if (colorGenerator == null) { colorGenerator = defaultColorGenerator; }
 
-            SphereModelInTriangle sphere = new SphereModelInTriangle();
+            SphereModel sphere = new SphereModel();
             int vertexCount = (latitudeParts + 1) * (longitudeParts);
             sphere.positions = new vec3[vertexCount];
             sphere.normals = new vec3[vertexCount];

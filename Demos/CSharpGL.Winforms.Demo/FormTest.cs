@@ -208,6 +208,12 @@ namespace CSharpGL.Winforms.Demo
             (new FormNormalLine()).Show();
         }
 
+        private void btnFormSimpleRenderer_Click(object sender, EventArgs e)
+        {
+
+            (new FormSimpleRenderer()).Show();
+        }
+
 
 
     }

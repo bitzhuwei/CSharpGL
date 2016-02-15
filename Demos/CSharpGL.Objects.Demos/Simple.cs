@@ -7,11 +7,11 @@ namespace CSharpGL.Objects.Demos
 #if DEBUG
 
     /// <summary>
-    /// 一个<see cref="NormalLineVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="SimpleVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的vertex shader。
     /// </summary>
-    [Dump2File(false)]
-    class NormalLineVert : VertexCSShaderCode
+    [Dump2File(true)]
+    class SimpleVert : VertexCSShaderCode
     {
 		/// <summary>
 		/// vertex's position.
@@ -19,8 +19,14 @@ namespace CSharpGL.Objects.Demos
         [In]
         vec3 in_Position;
 
+        /// <summary>
+        /// vertex's normal.
+        /// </summar>
+        [In]
+        vec3 in_Color;
+
 		/// <summary>
-		/// vertex's color.
+		/// vertex's normal.
 		/// </summar>
         [In]
         vec3 in_Normal;
@@ -29,7 +35,7 @@ namespace CSharpGL.Objects.Demos
 		/// pass color to fragment color.
 		/// </summar>
         [Out]
-        vec4 pass_Normal;
+        vec4 pass_Color;
 
 		/// <summary>
 		/// scale, rotate and translate model.
@@ -54,23 +60,23 @@ namespace CSharpGL.Objects.Demos
 		    // TODO: this is where you should start with vertex shader. Only ASCII code are welcome.
             gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);
 
-            pass_Normal = vec4(in_Normal, 1.0f);
+            pass_Color = vec4(in_Color, 1.0f);
 			// this is where your vertex shader ends.
         }
     }
 
     /// <summary>
-    /// 一个<see cref="NormalLineFrag"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="SimpleFrag"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的fragment shader。
     /// </summary>
-    [Dump2File(false)]
-    class NormalLineFrag : FragmentCSShaderCode
+    [Dump2File(true)]
+    class SimpleFrag : FragmentCSShaderCode
     {
 		/// <summary>
 		/// color passed from vertex shader.
 		/// </summar>
         [In]
-        vec4 pass_Normal;
+        vec4 pass_Color;
 
 		/// <summary>
 		/// color that fragment shader dumped.
@@ -81,21 +87,17 @@ namespace CSharpGL.Objects.Demos
         public override void main()
         {
 		    // TODO: this is where you should start with fragment shader. Only ASCII code are welcome.
-            vec4 color = pass_Normal;
-            if (color.r < 0) { color.r = -color.r; }
-            if (color.g < 0) { color.g = -color.g; }
-            if (color.b < 0) { color.b = -color.b; }
-            out_Color = color;
+            out_Color = pass_Color;
 			// this is where your fragment shader ends.
         }
     }
 
-    [Dump2File(false)]
-    class ObjFileGeom : GeometryCSShaderCode
+	[Dump2File(false)]
+    class SimpleGeom : GeometryCSShaderCode
     {
         protected override InType LayoutIn
         {
-            get { return InType.points; }
+            get { return InType.triangles; }
         }
 
         protected override OutType LayoutOut

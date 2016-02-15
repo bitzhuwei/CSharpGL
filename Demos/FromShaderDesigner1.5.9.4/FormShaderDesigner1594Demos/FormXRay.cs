@@ -258,7 +258,7 @@ namespace FormShaderDesigner1594Demos
         }
 
         int currentModelIndex = 1;
-        static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereInQuadFactory(), new TeapotFactory(), };
+        static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
         private float radius = 2;
         private XRayRenderer newElement;
     }

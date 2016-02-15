@@ -53,6 +53,9 @@ namespace CSharpGL.Objects.Models
             faceNZ = new SqureColor(new vec3(1, 1, 0)),
         };
 
+        static readonly uint[] identityIndex =
+            new uint[] { 0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 8, 9, 10, 8, 10, 11, 12, 13, 14, 12, 14, 15, 16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23 };
+
         static CubeColor GetRandomColor()
         {
             Random random = new Random();
@@ -70,6 +73,7 @@ namespace CSharpGL.Objects.Models
         CubePosition position;
         CubeNormal normal;
         CubeColor color;
+        uint[] index;
 
         public static IModel GetModel(float radius)
         {
@@ -105,6 +109,7 @@ namespace CSharpGL.Objects.Models
             this.position.faceNZ.position3 *= radius;
             this.color = identityColor;
             this.normal = identityNormal;
+            this.index = identityIndex;
         }
 
         CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
@@ -115,7 +120,7 @@ namespace CSharpGL.Objects.Models
                 unsafe
                 {
                     CubePosition* positionArray = (CubePosition*)positionBuffer.FirstElement();
-                    positionArray[0] = CubeModel.identityPosition;
+                    positionArray[0] = this.position;
                 }
 
                 return positionBuffer.GetRenderer();
@@ -131,7 +136,7 @@ namespace CSharpGL.Objects.Models
                 unsafe
                 {
                     CubeColor* colorArray = (CubeColor*)colorBuffer.FirstElement();
-                    colorArray[0] = CubeModel.identityColor;
+                    colorArray[0] = this.color;
                     //colorArray[0] = CubeModel.GetRandomColor();
                 }
 
@@ -148,7 +153,7 @@ namespace CSharpGL.Objects.Models
                 unsafe
                 {
                     CubeNormal* normalArray = (CubeNormal*)normalBuffer.FirstElement();
-                    normalArray[0] = CubeModel.identityNormal;
+                    normalArray[0] = this.normal;
                 }
 
                 return normalBuffer.GetRenderer();
@@ -158,125 +163,139 @@ namespace CSharpGL.Objects.Models
 
         CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetIndexes()
         {
-            using (var indexBuffer = new ZeroIndexBuffer(DrawMode.Quads, 0, 4 * 6))
-            {
-                //indexBuffer.Alloc(0);
+            //using (var indexBuffer = new ZeroIndexBuffer(DrawMode.Quads, 0, 4 * 6))
+            //{
+            //    //indexBuffer.Alloc(0);
 
-                return indexBuffer.GetRenderer() as ZeroIndexBufferRenderer;
+            //    return indexBuffer.GetRenderer() as ZeroIndexBufferRenderer;
+            //}
+            using (var buffer = new IndexBuffer<uint>(DrawMode.Triangles, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
+            {
+                buffer.Alloc(this.index.Length);
+                unsafe
+                {
+                    uint* array = (uint*)buffer.FirstElement();
+                    for (int i = 0; i < this.index.Length; i++)
+                    {
+                        array[i] = this.index[i];
+                    }
+                }
+
+                return buffer.GetRenderer();
             }
         }
-    }
 
-    class CubePositionBuffer : PropertyBuffer<CubePosition>
-    {
-        public CubePositionBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+        class CubePositionBuffer : PropertyBuffer<CubePosition>
         {
+            public CubePositionBuffer(string varNameInShader)
+                : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+            {
 
-        }
-    }
-
-    class CubeColorBuffer : PropertyBuffer<CubeColor>
-    {
-        public CubeColorBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
-
-    class CubeNormalBuffer : PropertyBuffer<CubeNormal>
-    {
-        public CubeNormalBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct CubeColor
-    {
-        public SqureColor faceX;
-        public SqureColor faceNX;
-        public SqureColor faceY;
-        public SqureColor faceNY;
-        public SqureColor faceZ;
-        public SqureColor faceNZ;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct SqureColor
-    {
-        public vec3 color0;
-        public vec3 color1;
-        public vec3 color2;
-        public vec3 color3;
-
-        public SqureColor(vec3 color)
-        {
-            this.color0 = color;
-            this.color1 = color;
-            this.color2 = color;
-            this.color3 = color;
+            }
         }
 
-        public override string ToString()
+        class CubeColorBuffer : PropertyBuffer<CubeColor>
         {
-            return string.Format("color: {0}", color0);
-        }
-    }
+            public CubeColorBuffer(string varNameInShader)
+                : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+            {
 
-    [StructLayout(LayoutKind.Sequential)]
-    public struct CubePosition
-    {
-        public SqurePosition faceX;
-        public SqurePosition faceNX;
-        public SqurePosition faceY;
-        public SqurePosition faceNY;
-        public SqurePosition faceZ;
-        public SqurePosition faceNZ;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct SqurePosition
-    {
-        public vec3 position0;
-        public vec3 position1;
-        public vec3 position2;
-        public vec3 position3;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct CubeNormal
-    {
-        public SqureNormal faceX;
-        public SqureNormal faceNX;
-        public SqureNormal faceY;
-        public SqureNormal faceNY;
-        public SqureNormal faceZ;
-        public SqureNormal faceNZ;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct SqureNormal
-    {
-        public vec3 normal0;
-        public vec3 normal1;
-        public vec3 normal2;
-        public vec3 normal3;
-
-        public SqureNormal(vec3 normal)
-        {
-            this.normal0 = normal;
-            this.normal1 = normal;
-            this.normal2 = normal;
-            this.normal3 = normal;
+            }
         }
 
-        public override string ToString()
+        class CubeNormalBuffer : PropertyBuffer<CubeNormal>
         {
-            return string.Format("normal: {0}", normal0);
+            public CubeNormalBuffer(string varNameInShader)
+                : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+            {
+
+            }
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct CubeColor
+        {
+            public SqureColor faceX;
+            public SqureColor faceNX;
+            public SqureColor faceY;
+            public SqureColor faceNY;
+            public SqureColor faceZ;
+            public SqureColor faceNZ;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct SqureColor
+        {
+            public vec3 color0;
+            public vec3 color1;
+            public vec3 color2;
+            public vec3 color3;
+
+            public SqureColor(vec3 color)
+            {
+                this.color0 = color;
+                this.color1 = color;
+                this.color2 = color;
+                this.color3 = color;
+            }
+
+            public override string ToString()
+            {
+                return string.Format("color: {0}", color0);
+            }
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct CubePosition
+        {
+            public SqurePosition faceX;
+            public SqurePosition faceNX;
+            public SqurePosition faceY;
+            public SqurePosition faceNY;
+            public SqurePosition faceZ;
+            public SqurePosition faceNZ;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct SqurePosition
+        {
+            public vec3 position0;
+            public vec3 position1;
+            public vec3 position2;
+            public vec3 position3;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct CubeNormal
+        {
+            public SqureNormal faceX;
+            public SqureNormal faceNX;
+            public SqureNormal faceY;
+            public SqureNormal faceNY;
+            public SqureNormal faceZ;
+            public SqureNormal faceNZ;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct SqureNormal
+        {
+            public vec3 normal0;
+            public vec3 normal1;
+            public vec3 normal2;
+            public vec3 normal3;
+
+            public SqureNormal(vec3 normal)
+            {
+                this.normal0 = normal;
+                this.normal1 = normal;
+                this.normal2 = normal;
+                this.normal3 = normal;
+            }
+
+            public override string ToString()
+            {
+                return string.Format("normal: {0}", normal0);
+            }
         }
     }
 }

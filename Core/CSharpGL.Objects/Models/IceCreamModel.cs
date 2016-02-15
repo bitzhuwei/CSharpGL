@@ -182,7 +182,7 @@ namespace CSharpGL.Objects.Models
 
         CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetIndexes()
         {
-            using (var indexBuffer = new IndexBuffer<uint>(DrawMode.QuadStrip, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
+            using (var indexBuffer = new IndexBuffer<uint>(DrawMode.TriangleStrip, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
             {
                 indexBuffer.Alloc(indexes.Length);
                 unsafe
@@ -197,32 +197,34 @@ namespace CSharpGL.Objects.Models
                 return indexBuffer.GetRenderer();
             }
         }
-    }
 
-    class IceCreamModelPositionBuffer : PropertyBuffer<vec3>
-    {
-        public IceCreamModelPositionBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+        class IceCreamModelPositionBuffer : PropertyBuffer<vec3>
         {
+            public IceCreamModelPositionBuffer(string varNameInShader)
+                : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+            {
 
+            }
+        }
+
+        class IceCreamModelColorBuffer : PropertyBuffer<vec3>
+        {
+            public IceCreamModelColorBuffer(string varNameInShader)
+                : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+            {
+
+            }
+        }
+
+        class IceCreamModelNormalBuffer : PropertyBuffer<vec3>
+        {
+            public IceCreamModelNormalBuffer(string varNameInShader)
+                : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+            {
+
+            }
         }
     }
 
-    class IceCreamModelColorBuffer : PropertyBuffer<vec3>
-    {
-        public IceCreamModelColorBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
-
-    class IceCreamModelNormalBuffer : PropertyBuffer<vec3>
-    {
-        public IceCreamModelNormalBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
+ 
 }

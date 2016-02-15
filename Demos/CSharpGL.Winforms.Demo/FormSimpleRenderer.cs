@@ -18,10 +18,10 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Winforms.Demo
 {
-    public partial class FormNormalLine : Form
+    public partial class FormSimpleRenderer : Form
     {
         SimpleUIAxis uiAxis;
-        NormalLineRenderer renderer;
+        SimpleRenderer renderer;
         ArcBallRotator modelRotator;
 
         Camera camera;
@@ -31,7 +31,7 @@ namespace CSharpGL.Winforms.Demo
         //SatelliteRotator modelRotator;
         //private float rotateAngle;
 
-        public FormNormalLine()
+        public FormSimpleRenderer()
         {
             InitializeComponent();
 
@@ -51,7 +51,7 @@ namespace CSharpGL.Winforms.Demo
             uiAxis.Initialize();
 
             IModel model = (new TeapotFactory()).Create(1.0f);
-            this.renderer = new NormalLineRenderer(model);
+            this.renderer = new SimpleRenderer(model);
             this.renderer.Initialize();//不在此显式初始化也可以。
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
@@ -65,7 +65,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void CreateElement()
         {
-            var element = new NormalLineRenderer(factories[currentModelIndex].Create(this.radius));
+            var element = new SimpleRenderer(factories[currentModelIndex].Create(this.radius));
             element.Initialize();
             this.newRenderer = element;
         }
@@ -74,7 +74,7 @@ namespace CSharpGL.Winforms.Demo
         //static readonly IModel[] models = new IModel[] { CubeModel.GetModel(), IceCreamModel.GetModel(), SphereModel.GetModel(), };
         static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
         private float radius = 1;
-        NormalLineRenderer newRenderer;
+        SimpleRenderer newRenderer;
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {

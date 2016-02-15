@@ -64,6 +64,7 @@
             this.btnFromShaderDesigner1594 = new System.Windows.Forms.Button();
             this.btnFormDoubleTexture = new System.Windows.Forms.Button();
             this.btnFormNormalLine = new System.Windows.Forms.Button();
+            this.btnFormSimpleRenderer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -452,6 +453,17 @@
             this.btnFormNormalLine.UseVisualStyleBackColor = true;
             this.btnFormNormalLine.Click += new System.EventHandler(this.btnFormNormalLine_Click);
             // 
+            // btnFormSimpleRenderer
+            // 
+            this.btnFormSimpleRenderer.Location = new System.Drawing.Point(374, 605);
+            this.btnFormSimpleRenderer.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormSimpleRenderer.Name = "btnFormSimpleRenderer";
+            this.btnFormSimpleRenderer.Size = new System.Drawing.Size(346, 29);
+            this.btnFormSimpleRenderer.TabIndex = 4;
+            this.btnFormSimpleRenderer.Text = "FormSimpleRenderer";
+            this.btnFormSimpleRenderer.UseVisualStyleBackColor = true;
+            this.btnFormSimpleRenderer.Click += new System.EventHandler(this.btnFormSimpleRenderer_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -471,6 +483,7 @@
             this.Controls.Add(this.btnFormTransformFeedback);
             this.Controls.Add(this.btnFormScientificVisual3DControl);
             this.Controls.Add(this.btnFormColorCodedPicking);
+            this.Controls.Add(this.btnFormSimpleRenderer);
             this.Controls.Add(this.btnFormNormalLine);
             this.Controls.Add(this.btnFormDoubleTexture);
             this.Controls.Add(this.btnFromShaderDesigner1594);
@@ -537,5 +550,6 @@
         private System.Windows.Forms.Button btnFromShaderDesigner1594;
         private System.Windows.Forms.Button btnFormDoubleTexture;
         private System.Windows.Forms.Button btnFormNormalLine;
+        private System.Windows.Forms.Button btnFormSimpleRenderer;
     }
 }

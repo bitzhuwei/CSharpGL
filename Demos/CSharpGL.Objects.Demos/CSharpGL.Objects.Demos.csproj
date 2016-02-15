@@ -61,6 +61,8 @@
     <Compile Include="SceneElements\CylinderElement.cs" />
     <Compile Include="SceneElements\FontElement.cs" />
     <Compile Include="SceneElements\PyramidElement.cs" />
+    <Compile Include="Simple.cs" />
+    <Compile Include="SimpleRenderer.cs" />
     <Compile Include="UIs\ColorPalette.cs" />
     <Compile Include="UIs\LegacySimpleUIRect.cs" />
     <Compile Include="UIs\SimpleUIColorIndicator.cs" />
@@ -193,6 +195,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NormalLine.geom" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Simple.frag" />
+    <EmbeddedResource Include="Simple.vert" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

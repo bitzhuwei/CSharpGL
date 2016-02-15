@@ -286,7 +286,7 @@ namespace FormShaderDesigner1594Demos
         { 
             new CubeFactory(), 
             new IceCreamFactory(), 
-            new SphereInQuadFactory(), 
+            new SphereFactory(), 
             new TeapotFactory(), 
         };
         static readonly RendererFactory[] rendererFactories = new RendererFactory[] 
