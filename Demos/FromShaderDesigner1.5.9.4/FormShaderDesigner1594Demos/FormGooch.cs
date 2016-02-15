@@ -260,7 +260,7 @@ namespace FormShaderDesigner1594Demos
         }
 
         int currentModelIndex = 1;
-        static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
+        static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereInQuadFactory(), new TeapotFactory(), };
         private float radius = 2;
         private GoochRenderer newElement;
     }

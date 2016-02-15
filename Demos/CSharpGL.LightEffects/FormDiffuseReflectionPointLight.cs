@@ -71,7 +71,7 @@ namespace CSharpGL.LightEffects
 
         int currentModelIndex = 1;
         //static readonly IModel[] models = new IModel[] { CubeModel.GetModel(), IceCreamModel.GetModel(), SphereModel.GetModel(), };
-        static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
+        static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereInQuadFactory(), new TeapotFactory(), };
         private float radius = 2;
         DiffuseReflectionPointLightRenderer newRenderer;
         private FormDiffuseReflectionPointLightController frmController;

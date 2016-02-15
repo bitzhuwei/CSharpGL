@@ -12,19 +12,15 @@ uniform float normalLength = 0.5f;
 in VS_GS_VERTEX
 {
     vec3 normal;
-    //vec2 tex_coord;
 } vertex_in[];
 
 out GS_FS_VERTEX
 {
     vec3 color;
-    //vec2 tex_coord;
-    //flat float fur_strength;
 } vertex_out;
 
 void main(void)
 {
-	int odd = 0;
 	int i;
 	
 	for (i = 0; i < gl_in.length(); i++) {

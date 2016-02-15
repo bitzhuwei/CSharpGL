@@ -14,7 +14,7 @@ namespace CSharpGL.Objects.Models
     /// 一个球体的模型。
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_sphere.jpg
     /// </summary>
-    public class SphereModel : IModel
+    public class SphereModelInTriangle : IModel
     {
         vec3[] positions;
         vec3[] normals;
@@ -27,7 +27,7 @@ namespace CSharpGL.Objects.Models
             return new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
         }
 
-        private SphereModel() { }
+        private SphereModelInTriangle() { }
 
         static readonly Func<int, int, vec3> defaultColorGenerator = new Func<int, int, vec3>(DefaultColorGenerator);
 
@@ -50,7 +50,7 @@ namespace CSharpGL.Objects.Models
 
             if (colorGenerator == null) { colorGenerator = defaultColorGenerator; }
 
-            SphereModel sphere = new SphereModel();
+            SphereModelInTriangle sphere = new SphereModelInTriangle();
             int vertexCount = (latitudeParts + 1) * (longitudeParts);
             sphere.positions = new vec3[vertexCount];
             sphere.normals = new vec3[vertexCount];
@@ -161,7 +161,7 @@ namespace CSharpGL.Objects.Models
 
         CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetIndexes()
         {
-            using (var indexBuffer = new IndexBuffer<uint>(DrawMode.QuadStrip, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
+            using (var indexBuffer = new IndexBuffer<uint>(DrawMode.TriangleStrip, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
             {
                 indexBuffer.Alloc(indexes.Length);
                 unsafe
@@ -176,32 +176,33 @@ namespace CSharpGL.Objects.Models
                 return indexBuffer.GetRenderer();
             }
         }
-    }
 
-    class SphereModelPositionBuffer : PropertyBuffer<vec3>
-    {
-        public SphereModelPositionBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+        class SphereModelPositionBuffer : PropertyBuffer<vec3>
         {
+            public SphereModelPositionBuffer(string varNameInShader)
+                : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+            {
 
+            }
+        }
+
+        class SphereModelColorBuffer : PropertyBuffer<vec3>
+        {
+            public SphereModelColorBuffer(string varNameInShader)
+                : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+            {
+
+            }
+        }
+
+        class SphereModelNormalBuffer : PropertyBuffer<vec3>
+        {
+            public SphereModelNormalBuffer(string varNameInShader)
+                : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+            {
+
+            }
         }
     }
 
-    class SphereModelColorBuffer : PropertyBuffer<vec3>
-    {
-        public SphereModelColorBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
-
-    class SphereModelNormalBuffer : PropertyBuffer<vec3>
-    {
-        public SphereModelNormalBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
 }
