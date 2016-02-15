@@ -203,6 +203,11 @@ namespace CSharpGL.Winforms.Demo
             (new FormDoubleTexture()).Show();
         }
 
+        private void btnFormNormalLine_Click(object sender, EventArgs e)
+        {
+            (new FormNormalLine()).Show();
+        }
+
 
 
     }

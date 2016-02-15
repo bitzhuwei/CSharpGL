@@ -53,6 +53,8 @@
     <EmbeddedResource Include="DoubleTexture.frag" />
     <EmbeddedResource Include="DoubleTexture.vert" />
     <Compile Include="DoubleTextureRenderer.cs" />
+    <Compile Include="NormalLine.cs" />
+    <Compile Include="NormalLineRenderer.cs" />
     <Compile Include="PickedGeometryIndexed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DemoSimplePointSpriteElement.cs" />
@@ -94,6 +96,10 @@
     <ProjectReference Include="..\..\Functions\CSharpGL.UIs\CSharpGL.UIs.csproj">
       <Project>{292f0a6f-6d7e-42fe-8b5c-3fba11fc9b49}</Project>
       <Name>CSharpGL.UIs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Functions\CSharpShadingLanguage\CSharpShadingLanguage.csproj">
+      <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
+      <Name>CSharpShadingLanguage</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -181,7 +187,14 @@
   <ItemGroup>
     <EmbeddedResource Include="DemoHexahedron2Element.vert" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NormalLine.frag" />
+    <EmbeddedResource Include="NormalLine.vert" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)Tools\CSharpGL.CSSL2GLSL\bin\Debug\CSharpGL.CSSL2GLSL.exe $(ProjectDir)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
