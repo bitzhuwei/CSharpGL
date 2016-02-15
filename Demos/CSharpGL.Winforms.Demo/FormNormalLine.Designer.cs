@@ -45,14 +45,14 @@
             this.glCanvas1.Size = new System.Drawing.Size(792, 455);
             this.glCanvas1.TabIndex = 0;
             // 
-            // FormDiffuseReflectionDirectionalLight
+            // FormNormalLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(818, 481);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "FormDiffuseReflectionDirectionalLight";
-            this.Text = "FormDiffuseReflection with directional light - http://bitzhuwei.cnblogs.com";
+            this.Name = "FormNormalLine";
+            this.Text = "FormNormalLine - http://bitzhuwei.cnblogs.com";
             this.Load += new System.EventHandler(this.FormGLCanvas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
