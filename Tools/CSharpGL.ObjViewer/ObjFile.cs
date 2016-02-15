@@ -59,12 +59,74 @@ namespace CSharpGL.ObjViewer
         }
     }
 
-    [Dump2File(false)]
+    [Dump2File(true)]
     class ObjFileGeom : GeometryCSShaderCode
     {
+        protected override InType LayoutIn
+        {
+            get { return InType.triangles; }
+        }
+
+        protected override OutType LayoutOut
+        {
+            get { return OutType.triangle_strip; }
+        }
+
+        protected override int max_vertices
+        {
+            get { return 240; }
+        }
+
+        [Uniform]
+        mat4 model_matrix;
+        [Uniform]
+        mat4 projection_matrix;
+
+        [Uniform]
+        int fur_layers = 30;
+        [Uniform]
+        float fur_depth = 5.0f;
+
+        class VS_GS_VERTEX
+        {
+            public vec3 normal;
+            public vec2 tex_coord;
+        }
+        [In]
+        VS_GS_VERTEX[] vertex_in;
+
+        class GS_FS_VERTEX
+        {
+            public vec3 normal;
+            public vec2 tex_coord;
+            [Flat]
+            public float fur_strength;
+        }
+        [Out]
+        GS_FS_VERTEX vertex_out;
+
         public override void main()
         {
-            throw new System.NotImplementedException();
+            int i, layer;
+            float disp_delta = 1.0f / Float(fur_layers);
+            float d = 0.0f;
+            vec4 position;
+
+            for (layer = 0; layer < fur_layers; layer++)
+            {
+                for (i = 0; i < gl_in.length(); i++)
+                {
+                    vec3 n = vertex_in[i].normal;
+                    vertex_out.normal = n;
+                    vertex_out.tex_coord = vertex_in[i].tex_coord;
+                    vertex_out.fur_strength = 1.0f - d;
+                    position = gl_in[i].gl_Position + vec4(n * d * fur_depth, 0.0f);
+                    gl_Position = projection_matrix * (model_matrix * position);
+                    EmitVertex();
+                }
+                d += disp_delta;
+                EndPrimitive();
+            }
         }
     }
 

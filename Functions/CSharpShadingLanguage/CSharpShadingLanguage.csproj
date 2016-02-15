@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="readme.txt" />
+    <Compile Include="BuildInFunction.cs" />
     <Compile Include="BuildIn\Dump2FileAttribute.cs" />
     <Compile Include="BuildIn\mat2.cs" />
     <Compile Include="BuildIn\mat3.cs" />

@@ -70,6 +70,7 @@
     </Compile>
     <EmbeddedResource Include="ObjFile.frag" />
     <EmbeddedResource Include="ObjFile.vert" />
+    <EmbeddedResource Include="ObjFile.geom" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -62,6 +62,9 @@ namespace CSharpShadingLanguage
         protected mat4 transpose(mat4 matrix) { throw new NotNeedToImplementException(); }
 
 
+        [BuildInFunction("float")]
+        protected float Float(float value) { throw new NotNeedToImplementException(); }
+
         #endregion matrix functions
 
     }

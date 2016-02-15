@@ -44,18 +44,22 @@ namespace CSharpGL.CSSL2GLSL
             FieldInfo[] fields = this.shaderCode.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic);
             foreach (var field in fields)
             {
-                if (field.GetCustomAttribute<InAttribute>() != null)
+                foreach (var attr in field.GetCustomAttributes<QualifierAttribute>())
                 {
-                    this.fields.Add(new SemanticField(FieldQualifier.In, field.FieldType, field.Name));
+                    this.fields.Add(new SemanticField(attr, field.FieldType, field.Name));
                 }
-                else if (field.GetCustomAttribute<OutAttribute>() != null)
-                {
-                    this.fields.Add(new SemanticField(FieldQualifier.Out, field.FieldType, field.Name));
-                }
-                else if (field.GetCustomAttribute<UniformAttribute>() != null)
-                {
-                    this.fields.Add(new SemanticField(FieldQualifier.Uniform, field.FieldType, field.Name));
-                }
+                //if (field.GetCustomAttribute<InAttribute>() != null)
+                //{
+                //    this.fields.Add(new SemanticField(FieldQualifier.In, field.FieldType, field.Name));
+                //}
+                //else if (field.GetCustomAttribute<OutAttribute>() != null)
+                //{
+                //    this.fields.Add(new SemanticField(FieldQualifier.Out, field.FieldType, field.Name));
+                //}
+                //else if (field.GetCustomAttribute<UniformAttribute>() != null)
+                //{
+                //    this.fields.Add(new SemanticField(FieldQualifier.Uniform, field.FieldType, field.Name));
+                //}
             }
 
             this.mainFunction = SearchMainFunction(this.fullname);
