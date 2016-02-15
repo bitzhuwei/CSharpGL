@@ -23,13 +23,19 @@ namespace CSharpShaders
 		/// vertex's color.
 		/// </summar>
         [In]
+        vec3 in_Color;
+		
+		/// <summary>
+		/// vertex's normal.
+		/// </summar>
+        [In]
         vec3 in_Normal;
 
 		/// <summary>
 		/// pass color to fragment color.
 		/// </summar>
         [Out]
-        vec4 pass_Normal;
+        vec4 pass_Color;
 
 		/// <summary>
 		/// scale, rotate and translate model.
@@ -54,7 +60,7 @@ namespace CSharpShaders
 		    // TODO: this is where you should start with vertex shader. Only ASCII code are welcome.
             gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);
 
-            pass_Normal = vec4(in_Normal, 1.0f);
+            pass_Color = vec4(in_Color, 1.0f);
 			// this is where your vertex shader ends.
         }
     }
@@ -70,7 +76,7 @@ namespace CSharpShaders
 		/// color passed from vertex shader.
 		/// </summar>
         [In]
-        vec4 pass_Normal;
+        vec4 pass_Color;
 
 		/// <summary>
 		/// color that fragment shader dumped.
@@ -81,7 +87,7 @@ namespace CSharpShaders
         public override void main()
         {
 		    // TODO: this is where you should start with fragment shader. Only ASCII code are welcome.
-            out_Color = pass_Normal;
+            out_Color = pass_Color;
 			// this is where your fragment shader ends.
         }
     }
