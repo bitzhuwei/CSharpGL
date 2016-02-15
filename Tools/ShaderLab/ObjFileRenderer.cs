@@ -13,9 +13,9 @@ namespace ShaderLab
     using System.Threading.Tasks;
     using System.Windows.Forms;
     /// <summary>
-    /// 一个<see cref="SomeShaderRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="ObjFileRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// </summary>
-    public class SomeShaderRenderer : RendererBase
+    public class ObjFileRenderer : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -56,15 +56,15 @@ namespace ShaderLab
 
         private IModel model;
 
-        public SomeShaderRenderer(IModel model)
+        public ObjFileRenderer(IModel model)
         {
             this.model = model;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("SomeShader.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("SomeShader.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("ObjFile.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("ObjFile.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -117,6 +117,9 @@ namespace ShaderLab
 
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);
 
+            GL.Enable(GL.GL_PRIMITIVE_RESTART);
+            GL.PrimitiveRestartIndex(uint.MaxValue);
+
             if (this.vertexArrayObject == null)
             {
                 var vertexArrayObject = new VertexArrayObject(
@@ -132,6 +135,8 @@ namespace ShaderLab
             {
                 this.vertexArrayObject.Render(e, this.shaderProgram);
             }
+
+            GL.Disable(GL.GL_PRIMITIVE_RESTART);
 
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
 

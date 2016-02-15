@@ -65,9 +65,10 @@ namespace CSharpGL.Objects.Demos
         {
             var vertexShaderSource = ManifestResourceLoader.LoadTextFile("NormalLine.vert");
             var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("NormalLine.frag");
+            var geometryShaderSource = ManifestResourceLoader.LoadTextFile("NormalLine.geom");
 
             shaderProgram = new ShaderProgram();
-            shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
+            shaderProgram.Create(vertexShaderSource, fragmentShaderSource, geometryShaderSource);
         }
 
         protected void InitializeVAO()

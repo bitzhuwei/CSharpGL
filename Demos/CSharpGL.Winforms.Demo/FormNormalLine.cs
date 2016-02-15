@@ -73,7 +73,7 @@ namespace CSharpGL.Winforms.Demo
         int currentModelIndex = 1;
         //static readonly IModel[] models = new IModel[] { CubeModel.GetModel(), IceCreamModel.GetModel(), SphereModel.GetModel(), };
         static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
-        private float radius = 2;
+        private float radius = 1;
         NormalLineRenderer newRenderer;
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

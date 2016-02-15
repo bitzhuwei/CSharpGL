@@ -191,6 +191,9 @@
     <EmbeddedResource Include="NormalLine.frag" />
     <EmbeddedResource Include="NormalLine.vert" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NormalLine.geom" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(SolutionDir)Tools\CSharpGL.CSSL2GLSL\bin\Debug\CSharpGL.CSSL2GLSL.exe $(ProjectDir)</PostBuildEvent>

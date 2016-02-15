@@ -7,11 +7,11 @@ namespace CSharpShaders
 #if DEBUG
 
     /// <summary>
-    /// 一个<see cref="SomeShaderVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="ObjFileVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的vertex shader。
     /// </summary>
     [Dump2File(true)]
-    class SomeShaderVert : VertexCSShaderCode
+    class ObjFileVert : VertexCSShaderCode
     {
 		/// <summary>
 		/// vertex's position.
@@ -60,11 +60,11 @@ namespace CSharpShaders
     }
 
     /// <summary>
-    /// 一个<see cref="SomeShaderFrag"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="ObjFileFrag"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的fragment shader。
     /// </summary>
     [Dump2File(true)]
-    class SomeShaderFrag : FragmentCSShaderCode
+    class ObjFileFrag : FragmentCSShaderCode
     {
 		/// <summary>
 		/// color passed from vertex shader.

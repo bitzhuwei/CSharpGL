@@ -1,12 +1,23 @@
-#version 150 core
+#version 410 core
 
-in vec4 pass_Normal;
-out vec4 out_Color;
+out vec4 color;
+
+uniform vec4 fur_color = vec4(0.8, 0.8, 0.9, 1.0);
+
+in GS_FS_VERTEX
+{
+    vec3 normal;
+    //vec2 tex_coord;
+    //flat float fur_strength;
+} fragment_in;
 
 void main(void)
 {
-    // TODO: this is where you should start with fragment shader. Only ASCII code are welcome.
-    out_Color = pass_Normal;
-    // this is where your fragment shader ends.
+    //vec4 rgba = texture(fur_texture, fragment_in.tex_coord);
+    //float t = rgba.a;
+    //t *= fragment_in.fur_strength;
+    //color = fur_color * vec4(1.0, 1.0, 1.0, t);
+	//color = vec4(1, 1, 1 ,1) + 0.01f * vec4(fragment_in.normal, 1.0f) * fur_color;
+	color = vec4(fragment_in.normal, 1.0f);// * fur_color;
+	//color = vec4(1, 1, 1, 1);
 }
-

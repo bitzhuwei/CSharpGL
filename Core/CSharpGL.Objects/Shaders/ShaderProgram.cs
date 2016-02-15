@@ -10,6 +10,7 @@ namespace CSharpGL.Objects.Shaders
     {
         private readonly Shader vertexShader = new Shader();
         private readonly Shader fragmentShader = new Shader();
+        private Shader geometryShader;// = new Shader();
 
         /// <summary>
         /// Creates the shader program.
@@ -19,16 +20,23 @@ namespace CSharpGL.Objects.Shaders
         /// <param name="attributeLocations">The attribute locations. This is an optional array of
         /// uint attribute locations to their names.</param>
         /// <exception cref="ShaderCompilationException"></exception>
-        public void Create(string vertexShaderSource, string fragmentShaderSource,
-            Dictionary<uint, string> attributeLocations)
+        public void Create(string vertexShaderSource, string fragmentShaderSource, string geometryShaderSource = null,
+            Dictionary<uint, string> attributeLocations = null)
         {
             //  Create the shaders.
             vertexShader.Create(GL.GL_VERTEX_SHADER, vertexShaderSource);
+            if (geometryShaderSource != null)
+            {
+                geometryShader = new Shader();
+                geometryShader.Create(GL.GL_GEOMETRY_SHADER, geometryShaderSource);
+            }
             fragmentShader.Create(GL.GL_FRAGMENT_SHADER, fragmentShaderSource);
 
             //  Create the program, attach the shaders.
             ShaderProgramObject = GL.CreateProgram();
             GL.AttachShader(ShaderProgramObject, vertexShader.ShaderObject);
+            if (geometryShaderSource != null)
+            { GL.AttachShader(ShaderProgramObject, geometryShader.ShaderObject); }
             GL.AttachShader(ShaderProgramObject, fragmentShader.ShaderObject);
 
             //  Before we link, bind any vertex attribute locations.
@@ -47,12 +55,17 @@ namespace CSharpGL.Objects.Shaders
             {
                 string log = this.GetInfoLog();
                 throw new ShaderCompilationException(
-                    string.Format("Failed to link shader program with ID {0}.", ShaderProgramObject), 
+                    string.Format("Failed to link shader program with ID {0}.", ShaderProgramObject),
                     log);
             }
             if (vertexShader.GetCompileStatus() == false)
             {
                 string log = vertexShader.GetInfoLog();
+                throw new Exception(log);
+            }
+            if (geometryShader != null && geometryShader.GetCompileStatus() == false)
+            {
+                string log = geometryShader.GetInfoLog();
                 throw new Exception(log);
             }
             if (fragmentShader.GetCompileStatus() == false)
@@ -62,6 +75,8 @@ namespace CSharpGL.Objects.Shaders
             }
 
             GL.DetachShader(ShaderProgramObject, vertexShader.ShaderObject);
+            if (geometryShader != null)
+            { GL.DetachShader(ShaderProgramObject, geometryShader.ShaderObject); }
             GL.DetachShader(ShaderProgramObject, fragmentShader.ShaderObject);
             vertexShader.Delete();
             fragmentShader.Delete();

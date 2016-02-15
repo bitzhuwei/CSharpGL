@@ -1,4 +1,3 @@
-
 namespace ShaderLab
 {
     using CSharpGL;
@@ -13,9 +12,9 @@ namespace ShaderLab
     using System.Threading.Tasks;
     using System.Windows.Forms;
     /// <summary>
-    /// 一个<see cref="PhongPointLightRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="DiffuseReflectionRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// </summary>
-    public class PhongPointLightRenderer : RendererBase
+    public class DiffuseReflectionRenderer : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -56,15 +55,15 @@ namespace ShaderLab
 
         private IModel model;
 
-        public PhongPointLightRenderer(IModel model)
+        public DiffuseReflectionRenderer(IModel model)
         {
             this.model = model;
         }
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("PhongPointLight.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("PhongPointLight.frag");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("DiffuseReflection.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("DiffuseReflection.frag");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
@@ -117,9 +116,6 @@ namespace ShaderLab
 
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);
 
-            GL.Enable(GL.GL_PRIMITIVE_RESTART);
-            GL.PrimitiveRestartIndex(uint.MaxValue);
-
             if (this.vertexArrayObject == null)
             {
                 var vertexArrayObject = new VertexArrayObject(
@@ -135,8 +131,6 @@ namespace ShaderLab
             {
                 this.vertexArrayObject.Render(e, this.shaderProgram);
             }
-
-            GL.Disable(GL.GL_PRIMITIVE_RESTART);
 
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
 
