@@ -15,10 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{05F33CBB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{2F6498B7-1671-444D-A45A-68DF5FD7247B}"
 	ProjectSection(SolutionItems) = preProject
-		ClearLogs.exe = ClearLogs.exe
+		ClearLogs.bat = ClearLogs.bat
 		Assets\CSharpGL-banner.png = Assets\CSharpGL-banner.png
 		Assets\CSharpGL.ico = Assets\CSharpGL.ico
 		Assets\CSharpGL.png = Assets\CSharpGL.png
+		CSSL2GLSL.bat = CSSL2GLSL.bat
 		Assets\HelloCSharpGL.png = Assets\HelloCSharpGL.png
 		Assets\Preview.png = Assets\Preview.png
 		Assets\Preview2.png = Assets\Preview2.png
