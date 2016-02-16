@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -16,7 +17,44 @@ namespace CSharpGL.CSSL2GLSL
         {
         }
 
-        protected override string SearchMainFunction(string fullname)
+        protected override string DumpShaderCode()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            GLSLVersionAttribute versionAttribute = this.shaderCode.GetType().GetCustomAttribute<GLSLVersionAttribute>();
+            if (versionAttribute != null)
+            {
+                this.Version = versionAttribute.Version;
+            }
+            switch (this.Version)
+            {
+                case GLSLVersion.v150:
+                    builder.AppendLine("#version 150 core");
+                    break;
+                default:
+                    builder.AppendLine("#version this is not implemented in CSSL2GLSL!");
+                    break;
+            }
+            builder.AppendLine();
+
+            foreach (var field in this.shaderCode.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic))
+            {
+                foreach (var attr in field.GetCustomAttributes<QualifierAttribute>())
+                {
+                    var semanticField = new SemanticField(attr, field.FieldType, field.Name, this.shaderCode);
+                    string fieldCode = semanticField.Dump();
+                    builder.AppendLine(fieldCode);
+                }
+            }
+            builder.AppendLine();
+
+            builder.Append(this.SearchMainFunction(fullname));
+            builder.AppendLine();
+
+            return builder.ToString();
+        }
+
+        string SearchMainFunction(string fullname)
         {
             string content = File.ReadAllText(fullname);
             // class XxxVertexShader : VertexShaderCode
@@ -85,5 +123,6 @@ namespace CSharpGL.CSSL2GLSL
             }
             return mainBuilder.ToString();
         }
+
     }
 }

@@ -95,17 +95,17 @@ namespace CSharpGL.Objects.Demos
 	[Dump2File(false)]
     class SimpleGeom : GeometryCSShaderCode
     {
-        protected override InType LayoutIn
+        public override InType LayoutIn
         {
             get { return InType.triangles; }
         }
 
-        protected override OutType LayoutOut
+        public override OutType LayoutOut
         {
             get { return OutType.triangle_strip; }
         }
 
-        protected override int max_vertices
+        public override int max_vertices
         {
             get { return 240; }
         }

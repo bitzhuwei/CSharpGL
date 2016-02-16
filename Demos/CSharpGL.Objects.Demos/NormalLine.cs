@@ -100,71 +100,121 @@ namespace CSharpGL.Objects.Demos
     }
 
     [Dump2File(false)]
-    class ObjFileGeom : GeometryCSShaderCode
+    class NormalLineGeom : GeometryCSShaderCode
     {
-        protected override InType LayoutIn
+        public override InType LayoutIn
         {
-            get { return InType.points; }
+            get { return InType.triangles; }
         }
 
-        protected override OutType LayoutOut
+        public override OutType LayoutOut
         {
             get { return OutType.triangle_strip; }
         }
 
-        protected override int max_vertices
+        public override int max_vertices
         {
-            get { return 240; }
+            get { return 11; }
         }
 
-        [Uniform]
-        mat4 model_matrix;
-        [Uniform]
-        mat4 projection_matrix;
-
-        [Uniform]
-        int fur_layers = 30;
-        [Uniform]
-        float fur_depth = 5.0f;
 
         class VS_GS_VERTEX
         {
             public vec3 normal;
-            public vec2 tex_coord;
         }
         [In]
         VS_GS_VERTEX[] vertex_in;
 
         class GS_FS_VERTEX
         {
-            public vec3 normal;
-            public vec2 tex_coord;
-            [Flat]
-            public float fur_strength;
+            public vec3 color;
         }
         [Out]
         GS_FS_VERTEX vertex_out;
 
+        [Uniform]
+        float normalLength = 0.5f;
+
+        /// <summary>
+        /// scale, rotate and translate model.
+        /// </summar>
+        [Uniform]
+        mat4 modelMatrix;
+
+        /// <summary>
+        /// setup camera's position, target and up.
+        /// </summar>
+        [Uniform]
+        mat4 viewMatrix;
+
+        /// <summary>
+        /// project 3D scene to 2D screen.
+        /// </summar>
+        [Uniform]
+        mat4 projectionMatrix;
+
         public override void main()
         {
-            int i, layer;
-            float disp_delta = 1.0f / Float(fur_layers);
-            float d = 0.0f;
-            vec4 position;
+            int i;
 
-            for (layer = 0; layer < fur_layers; layer++)
+            for (i = 0; i < gl_in.length(); i++)
             {
-                for (i = 0; i < gl_in.length(); i++)
+                vertex_out.color = vertex_in[i].normal;
+                vec4 position = gl_in[i].gl_Position;
+                gl_Position = projectionMatrix * viewMatrix * (modelMatrix * position);
+                EmitVertex();
+            }
+            EndPrimitive();
+
+            for (i = 0; i < gl_in.length(); i++)
+            {
+                vertex_out.color = vec3(1, 1, 1);
+
+                vec4 position = gl_in[i].gl_Position;
+                vec4 target = vec4(position.xyz + vertex_in[i].normal * normalLength, 1.0f);
                 {
-                    vec3 n = vertex_in[i].normal;
-                    vertex_out.normal = n;
-                    vertex_out.tex_coord = vertex_in[i].tex_coord;
-                    vertex_out.fur_strength = 1.0f - d;
-                    position = gl_in[i].gl_Position + vec4(n * d * fur_depth, 0.0f);
-                    gl_Position = projection_matrix * (model_matrix * position);
+                    vec4 v0 = position;
+                    gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v0);
                     EmitVertex();
+
+                    vec4 v1 = target;
+                    if (target.x > position.x) { v1.x += normalLength / 30.0f; }
+                    else { v1.x -= normalLength / 10.0f; }
+                    gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v1);
+                    EmitVertex();
+
+                    vec4 v2 = position;
+                    gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v2);
+                    EmitVertex();
+
+                    vec4 v3 = target;
+                    if (target.y > position.y) { v3.y += normalLength / 30.0f; }
+                    else { v3.y -= normalLength / 10.0f; }
+                    gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v3);
+                    EmitVertex();
+
+                    vec4 v4 = position;
+                    gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v4);
+                    EmitVertex();
+
+                    vec4 v5 = target;
+                    if (target.z > position.z) { v5.z += normalLength / 30.0f; }
+                    else { v5.z -= normalLength / 10.0f; }
+                    gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v5);
+                    EmitVertex();
+
+                    vec4 v6 = position;
+                    gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v6);
+                    EmitVertex();
+
+                    vec4 v7 = target;
+                    if (target.x > position.x) { v7.x += normalLength / 30.0f; }
+                    else { v7.x -= normalLength / 10.0f; }
+                    gl_Position = projectionMatrix * viewMatrix * (modelMatrix * v7);
+                    EmitVertex();
+
                 }
-                d += disp_delta;
+
                 EndPrimitive();
             }
         }

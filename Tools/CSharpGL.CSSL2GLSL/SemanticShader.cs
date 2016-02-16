@@ -18,7 +18,7 @@ namespace CSharpGL.CSSL2GLSL
         ///// 继承自<see cref="ShaderCode"/>的具体类型。
         ///// </summary>
         //protected Type shaderCodeType;
-        private CSShaderCode shaderCode;
+        protected CSShaderCode shaderCode;
 
         public CSShaderCode ShaderCode
         {
@@ -28,49 +28,22 @@ namespace CSharpGL.CSSL2GLSL
         protected string fullname;
         protected string mainFunction;
 
+        public GLSLVersion Version { get; set; }
+
         public SemanticShader(CSShaderCode shaderCode, string fullname)
         {
             this.shaderCode = shaderCode;
             this.fullname = fullname;
         }
 
-
-        protected abstract string SearchMainFunction(string fullname);
-
         protected static readonly char[] separator = new char[] { '\r', '\n' };
-
-        private void Parse()
-        {
-            FieldInfo[] fields = this.shaderCode.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic);
-            foreach (var field in fields)
-            {
-                foreach (var attr in field.GetCustomAttributes<QualifierAttribute>())
-                {
-                    this.fields.Add(new SemanticField(attr, field.FieldType, field.Name));
-                }
-                //if (field.GetCustomAttribute<InAttribute>() != null)
-                //{
-                //    this.fields.Add(new SemanticField(FieldQualifier.In, field.FieldType, field.Name));
-                //}
-                //else if (field.GetCustomAttribute<OutAttribute>() != null)
-                //{
-                //    this.fields.Add(new SemanticField(FieldQualifier.Out, field.FieldType, field.Name));
-                //}
-                //else if (field.GetCustomAttribute<UniformAttribute>() != null)
-                //{
-                //    this.fields.Add(new SemanticField(FieldQualifier.Uniform, field.FieldType, field.Name));
-                //}
-            }
-
-            this.mainFunction = SearchMainFunction(this.fullname);
-        }
 
         public bool Dump2File()
         {
             Dump2FileAttribute attribute = this.shaderCode.GetType().GetCustomAttribute<Dump2FileAttribute>();
             if (attribute == null || attribute.Dump2File)
             {
-                this.Parse();
+                //this.Parse();
 
                 string shaderCode = DumpShaderCode();
 
@@ -100,23 +73,7 @@ namespace CSharpGL.CSSL2GLSL
             }
         }
 
-        private string DumpShaderCode()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine("#version 150 core");
-            builder.AppendLine();
-
-            foreach (var item in this.fields)
-            {
-                string field = item.Dump();
-                builder.AppendLine(field);
-            }
-            builder.AppendLine();
-
-            builder.Append(this.mainFunction);
-            builder.AppendLine();
-
-            return builder.ToString();
-        }
+        protected abstract string DumpShaderCode();
     }
+
 }

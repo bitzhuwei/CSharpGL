@@ -29,7 +29,7 @@ namespace CSharpShadingLanguage
 
         protected gl_inArray gl_in;
 
-        protected enum InType
+        public enum InType
         {
             points,
             lines,
@@ -41,9 +41,9 @@ namespace CSharpShadingLanguage
         /// <summary>
         /// 输入类型。
         /// </summary>
-        protected abstract InType LayoutIn { get; }
+        public abstract InType LayoutIn { get; }
 
-        protected enum OutType
+        public enum OutType
         {
             points,
             line_strip,
@@ -53,12 +53,12 @@ namespace CSharpShadingLanguage
         /// <summary>
         /// 输出类型。
         /// </summary>
-        protected abstract OutType LayoutOut { get; }
+        public abstract OutType LayoutOut { get; }
 
         /// <summary>
         /// 最多多少个顶点。
         /// </summary>
-        protected abstract int max_vertices { get; }
+        public abstract int max_vertices { get; }
 
         protected vec4 gl_Position;
 
