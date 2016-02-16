@@ -90,6 +90,9 @@ namespace CSharpGL.CSSL2GLSL
         {
             StringBuilder builder = new StringBuilder();
             string logFullname = string.Empty;
+            string time = DateTime.Now.ToString("yyyyMMdd-HHmmss");
+            string logName = string.Format("CSSL2GLSLDump{0}.log", time);
+            logFullname = Path.Combine(Environment.CurrentDirectory, logName);
 
             try
             {
@@ -122,11 +125,6 @@ namespace CSharpGL.CSSL2GLSL
                     item.Append(builder, 4);
                 }
                 builder.AppendFormat("Translation all done!"); builder.AppendLine();
-
-                string time = DateTime.Now.ToString("yyyyMMdd-HHmmss");
-                string logName = string.Format("CSSL2GLSLDump{0}.log", time);
-                logFullname = Path.Combine(Environment.CurrentDirectory, logName);
-
             }
             catch (Exception e)
             {
