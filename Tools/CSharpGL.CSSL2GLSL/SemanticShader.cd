@@ -1,38 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
-  <Class Name="CSharpGL.CSSL2GLSL.FieldTemplate">
-    <Position X="8.25" Y="0.5" Width="4.75" />
-    <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAgAAAAAEAAAAAACAAAAAAAAA=</HashCode>
-      <FileName>FieldTemplate.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="CSharpGL.CSSL2GLSL.SemanticFragmentShader">
-    <Position X="0.5" Y="4.5" Width="4.75" />
+    <Position X="0.5" Y="4.5" Width="5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAIAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SemanticFragmentShader.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.CSSL2GLSL.SemanticShader">
-    <Position X="3.5" Y="0.5" Width="4.25" />
+    <Position X="3.5" Y="0.5" Width="4.5" />
     <TypeIdentifier>
-      <HashCode>AACgAAAAIAAEAgABAgIAAgAAEAAAAAAAAAAAAAACAAA=</HashCode>
+      <HashCode>IACAAAAAIAAEAgAAAgIAAgAAEAAAAAAAAAAAAAACAAA=</HashCode>
       <FileName>SemanticShader.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSharpGL.CSSL2GLSL.SemanticVertexShader">
     <Position X="6" Y="4.5" Width="4.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAIAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SemanticVertexShader.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="CSharpGL.CSSL2GLSL.SemanticField">
+    <Position X="8.25" Y="0.5" Width="6.75" />
+    <Members>
+      <Field Name="buildInDefaultableTypeDict" Hidden="true" />
+      <Field Name="buildInTypeDict" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAgIAgEAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>SemanticField.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="CSharpGL.CSSL2GLSL.FieldQualifier">
-    <Position X="11.25" Y="2.75" Width="1.5" />
+    <Position X="9" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiA=</HashCode>
-      <FileName>FieldTemplate.cs</FileName>
+      <FileName>SemanticField.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Microsoft YaHei UI" Size="9" />
