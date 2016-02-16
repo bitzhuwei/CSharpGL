@@ -10,7 +10,7 @@ void main(void)
     if (color.x < 0) { color.x = -color.x; }
     if (color.y < 0) { color.y = -color.y; }
     if (color.z < 0) { color.z = -color.z; }
-    out_Color = pass_Color;
+    out_Color = color;
     // this is where your fragment shader ends.
 }
 
