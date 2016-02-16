@@ -45,6 +45,9 @@
     <Content Include="readme.txt" />
     <Compile Include="AxisElement2.cs" />
     <Compile Include="AxisElement.cssl.cs" />
+    <Compile Include="Ground.cs" />
+    <Compile Include="Ground.cssl.cs" />
+    <Compile Include="GroundRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +83,10 @@
       <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
       <Name>CSharpShadingLanguage</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ground.frag" />
+    <EmbeddedResource Include="Ground.vert" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

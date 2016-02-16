@@ -52,6 +52,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CSSL+Renderer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Ground.cssl.cs">
+      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GroundRenderer.cs">
+      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
+    </Compile>
     <Compile Include="Some.cssl.cs">
       <DependentUpon>CSSL+Renderer.tt</DependentUpon>
     </Compile>

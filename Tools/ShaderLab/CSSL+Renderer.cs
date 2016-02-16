@@ -9,7 +9,7 @@
 
 /*
 本文件无用。
-有用的是Some.cs和SomeRenderer.cs。
+有用的是Ground.cs和GroundRenderer.cs。
 */
 
 

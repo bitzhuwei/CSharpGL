@@ -1,5 +1,6 @@
 ﻿using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
+using CSharpGL.Objects.Common;
 using CSharpGL.Objects.Demos;
 using CSharpGL.Objects.Demos.UIs;
 using CSharpGL.Objects.ModelFactories;
@@ -20,6 +21,8 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormNormalLine : Form
     {
+        GroundRenderer groundRenderer;
+
         SimpleUIAxis uiAxis;
         NormalLineRenderer renderer;
         ArcBallRotator modelRotator;
@@ -43,6 +46,10 @@ namespace CSharpGL.Winforms.Demo
             //this.modelRotationCamera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
             //this.modelRotator = new SatelliteRotator(this.modelRotationCamera);
             this.modelRotator = new ArcBallRotator(this.camera);
+
+            //this.groundRenderer = new GroundRenderer(new Ground(100, 100, 0.1f, 0.1f));
+            this.groundRenderer = new GroundRenderer(new Ground(100, 100, 1f, 1f));
+            this.groundRenderer.Initialize();
 
             Padding uiPadding = new System.Windows.Forms.Padding(10, 10, 10, 10);
             Size uiSize = new System.Drawing.Size(50, 50);
@@ -114,6 +121,9 @@ namespace CSharpGL.Winforms.Demo
             this.renderer.projectionMatrix = projectionMatrix;
             this.renderer.viewMatrix = viewMatrix;
             this.renderer.modelMatrix = modelMatrix;
+            this.groundRenderer.modelMatrix = mat4.identity();
+            this.groundRenderer.viewMatrix = viewMatrix;
+            this.groundRenderer.projectionMatrix = projectionMatrix;
 
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
@@ -124,6 +134,7 @@ namespace CSharpGL.Winforms.Demo
                 this.newRenderer = null;
             }
             this.renderer.Render(arg);
+            this.groundRenderer.Render(arg);
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)

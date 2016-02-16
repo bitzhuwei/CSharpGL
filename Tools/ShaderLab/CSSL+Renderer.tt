@@ -1,7 +1,7 @@
 ﻿﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ output extension=".cs" #>
 <#@ include file=".\Dump2MultipleFiles.ttinclude" #>
-<# string ShaderName = "Some"; #>
+<# string ShaderName = "Ground"; #>
 <# string ClassName = ShaderName + "Renderer"; #>
 <# string VertexShaderName = ShaderName + "Vert"; #>
 <# string FragmentShaderName = ShaderName + "Frag"; #>
@@ -256,7 +256,7 @@ namespace ShaderLab
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Windows.Forms;
+
     /// <summary>
     /// 一个<see cref="<#= ClassName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// </summary>
