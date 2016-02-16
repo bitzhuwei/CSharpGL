@@ -16,7 +16,7 @@ namespace CSharpGL.GLInformation
         {
             StringBuilder builder = new StringBuilder();
             string time = DateTime.Now.ToString("yyyyMMdd-HHmmss");
-            string logName = string.Format("CSharpGL.GLInformation.log");
+            string logName = string.Format("CSharpGL.GLInformation.txt");
             string logFullname = Path.Combine(Environment.CurrentDirectory, logName);
 
             // Initialises OpenGL.
