@@ -108,44 +108,42 @@ namespace CSharpGL.Objects.Models
 
             return model;
         }
-    }
 
-
-    class ObjModelPositionBuffer : PropertyBuffer<vec3>
-    {
-        public ObjModelPositionBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+        class ObjModelPositionBuffer : PropertyBuffer<vec3>
         {
+            public ObjModelPositionBuffer(string varNameInShader)
+                : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+            {
 
+            }
+        }
+
+        class ObjModelColorBuffer : PropertyBuffer<vec3>
+        {
+            public ObjModelColorBuffer(string varNameInShader)
+                : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+            {
+
+            }
+        }
+
+        class ObjModelNormalBuffer : PropertyBuffer<vec3>
+        {
+            public ObjModelNormalBuffer(string varNameInShader)
+                : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
+            {
+
+            }
+        }
+
+        class ObjModelIndexBuffer : IndexBuffer<uint>
+        {
+            public ObjModelIndexBuffer()
+                : base(DrawMode.Triangles, IndexElementType.UnsignedInt, BufferUsage.StaticDraw)
+            {
+
+            }
         }
     }
-
-    class ObjModelColorBuffer : PropertyBuffer<vec3>
-    {
-        public ObjModelColorBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
-
-    class ObjModelNormalBuffer : PropertyBuffer<vec3>
-    {
-        public ObjModelNormalBuffer(string varNameInShader)
-            : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
-
-    class ObjModelIndexBuffer : IndexBuffer<uint>
-    {
-        public ObjModelIndexBuffer()
-            : base(DrawMode.Triangles, IndexElementType.UnsignedInt, BufferUsage.StaticDraw)
-        {
-
-        }
-    }
-
 
 }
