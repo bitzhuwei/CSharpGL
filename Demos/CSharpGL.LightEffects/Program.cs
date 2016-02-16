@@ -17,8 +17,8 @@ namespace CSharpGL.LightEffects
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormPhongPointLight());
-            //Application.Run(new FormDiffuseReflectionPointLight());
-            //Application.Run(new FormDiffuseReflectionDirectionalLight());
+            Application.Run(new FormDiffuseReflectionPointLight());
+            Application.Run(new FormDiffuseReflectionDirectionalLight());
         }
     }
 }
