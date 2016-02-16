@@ -181,7 +181,8 @@ namespace CSharpGL.CSSL2GLSL
             CSharpCodeProvider objCSharpCodePrivoder = new CSharpCodeProvider();
 
             CompilerParameters objCompilerParameters = new CompilerParameters();
-            objCompilerParameters.ReferencedAssemblies.Add("CSharpShadingLanguage.dll");
+            objCompilerParameters.ReferencedAssemblies.Add(
+                typeof(CSharpShadingLanguage.CSShaderCode).Assembly.Location);
             objCompilerParameters.GenerateExecutable = false;
             objCompilerParameters.GenerateInMemory = true;
             objCompilerParameters.IncludeDebugInformation = true;
