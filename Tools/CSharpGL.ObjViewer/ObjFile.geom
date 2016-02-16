@@ -1,11 +1,25 @@
 #version 150 core
 
+layout (triangles) in;
+layout (triangle_strip, max_vertices = 240) out;
+
 uniform mat4 model_matrix;
 uniform mat4 projection_matrix;
-uniform int fur_layers;
-uniform float fur_depth;
-in VS_GS_VERTEX[] vertex_in;
-out GS_FS_VERTEX vertex_out;
+uniform int fur_layers = 30;
+uniform float fur_depth = 5;
+in VS_GS_VERTEX
+{
+    vec3 normal;
+    vec2 tex_coord;
+} vertex_in[];
+
+out GS_FS_VERTEX
+{
+    vec3 normal;
+    vec2 tex_coord;
+    Single fur_strength;
+} vertex_out;
+
 
 void main(void)
 {

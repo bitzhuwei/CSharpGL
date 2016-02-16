@@ -84,15 +84,35 @@ namespace CSharpGL.CSSL2GLSL
                     builder.Append(" ");
                 }
             }
+
+            internal void AppendSimple(StringBuilder builder, int preEmptySpace)
+            {
+                if (errors == null && this.semanticShaderList.Count > 0)
+                {
+                    PrintPreEmptySpace(builder, preEmptySpace);
+                    builder.AppendFormat("--> Translating {0}", fullname); builder.AppendLine();
+                    PrintPreEmptySpace(builder, preEmptySpace);
+                    builder.AppendFormat("{0} CSSL shaders:", this.semanticShaderList.Count); builder.AppendLine();
+                    foreach (var item in semanticShaderList)
+                    {
+                        PrintPreEmptySpace(builder, preEmptySpace + 4);
+                        builder.AppendFormat("{0} [{1}] to [{2}] OK!",
+                            item.codeUpdated ? "Dump" : "Not need to dump",
+                            item.shader.ShaderCode.GetType().Name, item.shader.ShaderCode.GetShaderFilename()); builder.AppendLine();
+                    }
+                }
+            }
         }
 
         static void Main(string[] args)
         {
             StringBuilder builder = new StringBuilder();
-            string logFullname = string.Empty;
+            StringBuilder simpleBuilder = new StringBuilder();
             string time = DateTime.Now.ToString("yyyyMMdd-HHmmss");
             string logName = string.Format("CSSL2GLSLDump{0}.log", time);
-            logFullname = Path.Combine(Environment.CurrentDirectory, logName);
+            string simpleLogName = string.Format("CSSL2GLSLDump{0}.simple.log", time);
+            string logFullname = Path.Combine(Environment.CurrentDirectory, logName);
+            string simpleLogFullname = Path.Combine(Environment.CurrentDirectory, simpleLogName);
 
             try
             {
@@ -110,35 +130,46 @@ namespace CSharpGL.CSSL2GLSL
                 List<TranslationInfo> translationInfoList = new List<TranslationInfo>();
                 foreach (var fullname in files)
                 {
+                    Console.WriteLine("translating {0}", fullname);
                     TranslationInfo translationInfo = TranslateCSharpShaderLanguage2GLSL(fullname);
                     translationInfoList.Add(translationInfo);
                 }
 
                 builder.AppendFormat("Directory: {0}", directoryName); builder.AppendLine();
+                simpleBuilder.AppendFormat("Directory: {0}", directoryName); simpleBuilder.AppendLine();
                 var foundCSSLCount = (from item in translationInfoList select item.GetCompiledShaderCount()).Sum();
                 var updatedCSSLCount = (from item in translationInfoList select item.GetUpdatedShaderCount()).Sum();
                 builder.AppendFormat("Found {0} CSSL shaders, and {1} of them are dumped to GLSL as needed.",
                     foundCSSLCount, updatedCSSLCount);
+                simpleBuilder.AppendFormat("Found {0} CSSL shaders, and {1} of them are dumped to GLSL as needed.",
+                    foundCSSLCount, updatedCSSLCount);
                 builder.AppendLine();
+                simpleBuilder.AppendLine();
                 foreach (var item in translationInfoList)
                 {
                     item.Append(builder, 4);
+                    item.AppendSimple(simpleBuilder, 4);
                 }
                 builder.AppendFormat("Translation all done!"); builder.AppendLine();
+                simpleBuilder.AppendFormat("Translation all done!"); simpleBuilder.AppendLine();
             }
             catch (Exception e)
             {
                 builder.AppendFormat("*********************Translation break off!*********************"); builder.AppendLine();
                 builder.AppendFormat("Exception for CSSL2GLSL:"); builder.AppendLine();
                 builder.AppendFormat(e.ToString()); builder.AppendLine();
+                simpleBuilder.AppendFormat("*********************Translation break off!*********************"); builder.AppendLine();
+                simpleBuilder.AppendFormat("Exception for CSSL2GLSL:"); builder.AppendLine();
+                simpleBuilder.AppendFormat(e.ToString()); builder.AppendLine();
             }
 
             File.WriteAllText(logFullname, builder.ToString());
-            Process.Start("explorer", logFullname);
+            File.WriteAllText(simpleLogFullname, simpleBuilder.ToString());
+            Process.Start("explorer", simpleLogFullname);
 
             if (args.Length >= 2 && args[1] == "-open-folder")
             {
-                Process.Start("explorer", "/select," + logFullname);
+                Process.Start("explorer", "/select," + simpleLogFullname);
             }
         }
 
