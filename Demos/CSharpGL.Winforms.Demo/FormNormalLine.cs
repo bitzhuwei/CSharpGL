@@ -70,9 +70,9 @@ namespace CSharpGL.Winforms.Demo
             this.newRenderer = element;
         }
 
-        int currentModelIndex = 1;
+        int currentModelIndex = 0;
         //static readonly IModel[] models = new IModel[] { CubeModel.GetModel(), IceCreamModel.GetModel(), SphereModel.GetModel(), };
-        static readonly ModelFactory[] factories = new ModelFactory[] { new CubeFactory(), new IceCreamFactory(), new SphereFactory(), new TeapotFactory(), };
+        static readonly ModelFactory[] factories = new ModelFactory[] { new TeapotFactory(), new CubeFactory(), new IceCreamFactory(), new SphereFactory(), };
         private float radius = 1;
         NormalLineRenderer newRenderer;
 
@@ -94,6 +94,8 @@ namespace CSharpGL.Winforms.Demo
             builder.AppendLine("Use left mouse to rotate model.");
             builder.AppendLine("Use 'j' to decrease vertex count.");
             builder.AppendLine("Use 'k' to increase vertex count.");
+            builder.AppendLine("Use '1' to show/hide model.");
+            builder.AppendLine("Use '2' to show/hide normal.");
 
             MessageBox.Show(builder.ToString());
 
@@ -245,6 +247,14 @@ namespace CSharpGL.Winforms.Demo
                     default:
                         break;
                 }
+            }
+            else if (e.KeyChar == '1')
+            {
+                this.renderer.showModel = !this.renderer.showModel;
+            }
+            else if (e.KeyChar == '2')
+            {
+                this.renderer.showNormal = !this.renderer.showNormal;
             }
         }
 
