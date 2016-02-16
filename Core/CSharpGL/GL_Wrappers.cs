@@ -1351,5 +1351,21 @@ namespace CSharpGL
 
 
         #endregion Blend
+
+
+        /// <summary>
+        /// Return a string	describing the current GL connection.
+        /// </summary>
+        /// <param name="name">Specifies a symbolic constant, one of OpenGL.VENDOR, OpenGL.RENDERER, OpenGL.VERSION, or OpenGL.EXTENSIONS.</param>
+        /// <returns>Pointer to the specified string.</returns>
+        public static unsafe string GetString(uint name)
+        {
+            sbyte* pStr = GL.glGetString(name);
+            var str = new string(pStr);
+
+            return str;
+        }
+
+
     }
 }

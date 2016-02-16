@@ -1089,7 +1089,7 @@ namespace CSharpGL
         /// <param name="name">Specifies a symbolic constant, one of OpenGL.VENDOR, OpenGL.RENDERER, OpenGL.VERSION, or OpenGL.EXTENSIONS.</param>
         /// <returns>Pointer to the specified string.</returns>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetString", SetLastError = true)]
-        private unsafe static extern sbyte* GetString(uint name);
+        private unsafe static extern sbyte* glGetString(uint name);
 
         /// <summary>
         /// Return texture environment parameters.
