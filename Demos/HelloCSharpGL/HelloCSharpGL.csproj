@@ -45,6 +45,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dlls\CSharpGL.Winforms.dll</HintPath>
     </Reference>
+    <Reference Include="CSharpShadingLanguage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\CSharpShadingLanguage.dll</HintPath>
+    </Reference>
     <Reference Include="GLM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dlls\GLM.dll</HintPath>
@@ -65,14 +69,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pyramid.cssl.cs" />
     <Compile Include="PyramidModelAdapter.cs" />
     <Compile Include="PyramidModel.cs" />
+    <Content Include="CSharpGL.CSSL2GLSL.exe" />
+    <Content Include="CSharpShadingLanguage.dll" />
     <Content Include="dlls\CSharpGL.dll" />
     <Content Include="dlls\CSharpGL.Objects.dll" />
     <Content Include="dlls\CSharpGL.Objects.pdb" />
     <Content Include="dlls\CSharpGL.pdb" />
     <Content Include="dlls\CSharpGL.Winforms.dll" />
     <Content Include="dlls\CSharpGL.Winforms.pdb" />
+    <Content Include="dlls\CSharpShadingLanguage.dll" />
+    <Content Include="dlls\CSharpShadingLanguage.pdb" />
     <Content Include="dlls\GLM.dll" />
     <Content Include="dlls\GLM.pdb" />
     <Content Include="dlls\Utilities.dll" />
@@ -108,6 +117,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Pyramid.frag" />
+    <EmbeddedResource Include="Pyramid.vert" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -117,12 +128,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Pyramid.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pyramid.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

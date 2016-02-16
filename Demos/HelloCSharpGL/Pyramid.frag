@@ -1,9 +1,13 @@
-﻿#version 150 core
+#version 150 core
 
 in vec4 pass_Color;
-out vec4 out_Color;// any name for 'out_Color' is OK, but make sure it's a 'out vec4'
+out vec4 out_Color;
 
-void main(void) 
+void main(void)
 {
-	out_Color = pass_Color;// setup color for this fragment
+    // TODO: this is where you should start with fragment shader. Only ASCII code are welcome.
+    // setup color for this fragment
+    out_Color = pass_Color;
+    // this is where your fragment shader ends.
 }
+
