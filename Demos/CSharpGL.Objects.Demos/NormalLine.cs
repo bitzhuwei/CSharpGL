@@ -99,7 +99,7 @@ namespace CSharpGL.Objects.Demos
 
     }
 
-    [Dump2File(false)]
+    [Dump2File(true)]
     class NormalLineGeom : GeometryCSShaderCode
     {
         public override InType LayoutIn
@@ -114,7 +114,7 @@ namespace CSharpGL.Objects.Demos
 
         public override int max_vertices
         {
-            get { return 11; }
+            get { return 27; }
         }
 
 

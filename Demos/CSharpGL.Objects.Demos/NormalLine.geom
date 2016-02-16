@@ -1,7 +1,7 @@
 #version 150 core
 
 layout (triangles) in;
-layout (triangle_strip, max_vertices = 240) out;
+layout (triangle_strip, max_vertices = 27) out;
 
 in VS_GS_VERTEX
 {

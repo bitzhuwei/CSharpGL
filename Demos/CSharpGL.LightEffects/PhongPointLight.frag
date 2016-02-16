@@ -6,9 +6,9 @@ in vec3 pass_lightPosition;
 out vec4 out_Color;
 uniform vec3 lightColor;
 uniform vec3 globalAmbient;
-uniform float Kd;
-uniform float Ks;
-uniform float shininess;
+uniform float Kd = 0;
+uniform float Ks = 0;
+uniform float shininess = 0;
 
 void main(void)
 {
