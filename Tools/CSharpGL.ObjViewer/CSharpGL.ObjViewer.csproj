@@ -51,7 +51,7 @@
     <Compile Include="FormObjViewer.Designer.cs">
       <DependentUpon>FormObjViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObjFile.cs" />
+    <Compile Include="ObjFile.cssl.cs" />
     <Compile Include="ObjFileRenderer.cs" />
     <Compile Include="ObjModelAdpater.cs" />
     <Compile Include="Program.cs" />

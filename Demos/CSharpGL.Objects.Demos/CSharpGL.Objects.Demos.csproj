@@ -53,7 +53,7 @@
     <EmbeddedResource Include="DoubleTexture.frag" />
     <EmbeddedResource Include="DoubleTexture.vert" />
     <Compile Include="DoubleTextureRenderer.cs" />
-    <Compile Include="NormalLine.cs" />
+    <Compile Include="NormalLine.cssl.cs" />
     <Compile Include="NormalLineRenderer.cs" />
     <Compile Include="PickedGeometryIndexed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,7 +61,7 @@
     <Compile Include="SceneElements\CylinderElement.cs" />
     <Compile Include="SceneElements\FontElement.cs" />
     <Compile Include="SceneElements\PyramidElement.cs" />
-    <Compile Include="Simple.cs" />
+    <Compile Include="Simple.cssl.cs" />
     <Compile Include="SimpleRenderer.cs" />
     <Compile Include="UIs\ColorPalette.cs" />
     <Compile Include="UIs\LegacySimpleUIRect.cs" />
@@ -202,7 +202,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)Tools\CSharpGL.CSSL2GLSL\bin\Debug\CSharpGL.CSSL2GLSL.exe $(ProjectDir)</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

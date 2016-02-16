@@ -47,7 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Some.cs">
+    <Compile Include="CSSL+Renderer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Some.cssl.cs">
       <DependentUpon>CSSL+Renderer.tt</DependentUpon>
     </Compile>
     <Compile Include="SomeRenderer.cs">
@@ -58,11 +63,6 @@
       <LastGenOutput>CSSL+Renderer.cs</LastGenOutput>
     </Content>
     <Content Include="readme.txt" />
-    <Compile Include="CSSL+Renderer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
-    </Compile>
     <Compile Include="FormShaderLab.cs">
       <SubType>Form</SubType>
     </Compile>

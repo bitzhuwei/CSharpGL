@@ -12,7 +12,7 @@
 */
 <# var manager = new Manager(Host, GenerationEnvironment, true) { OutputPath = Path.GetDirectoryName(Host.TemplateFile)}; #>
 <#
-    manager.StartBlock(ShaderName + ".cs");
+    manager.StartBlock(ShaderName + ".cssl.cs");
 #>
 namespace CSharpShaders
 {

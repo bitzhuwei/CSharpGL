@@ -44,8 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DiffuseReflectionPointLight.cs" />
-    <Compile Include="DiffuseReflectionDirectionalLight.cs" />
+    <Compile Include="DiffuseReflectionPointLight.cssl.cs" />
+    <Compile Include="DiffuseReflectionDirectionalLight.cssl.cs" />
     <Compile Include="DiffuseReflectionPointLightRenderer.cs" />
     <Compile Include="DiffuseReflectionDirectionalLightRenderer.cs" />
     <Compile Include="Form1.cs">
@@ -108,7 +108,7 @@
     <Compile Include="FormDiffuseReflectionDirectionalLightDisplay.Designer.cs">
       <DependentUpon>FormDiffuseReflectionDirectionalLightDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="PhongPointLight.cs">
+    <Compile Include="PhongPointLight.cssl.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PhongPointLightRenderer.cs" />
@@ -212,7 +212,8 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)Tools\CSharpGL.CSSL2GLSL\bin\Debug\CSharpGL.CSSL2GLSL.exe $(ProjectDir)</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

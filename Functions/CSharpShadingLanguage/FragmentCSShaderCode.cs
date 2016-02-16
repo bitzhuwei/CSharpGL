@@ -40,6 +40,8 @@ void main(void)
 
      */
 
+#if DEBUG
+
     /// <summary>
     /// 这是一个用CSSL写的fragment shader的例子。
     /// </summary>
@@ -63,5 +65,7 @@ void main(void)
         }
 
     }
+
+#endif
 
 }

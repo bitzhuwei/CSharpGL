@@ -39,6 +39,7 @@ void main(void)
 
      */
 
+#if DEBUG
     /// <summary>
     /// 这是一个用CSSL写的vertex shader的例子。
     /// </summary>
@@ -65,5 +66,7 @@ void main(void)
         }
 
     }
+
+#endif
 
 }

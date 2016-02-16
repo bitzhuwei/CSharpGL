@@ -44,8 +44,7 @@
     <Compile Include="AxisElement.cs" />
     <Content Include="readme.txt" />
     <Compile Include="AxisElement2.cs" />
-    <Compile Include="AxisElementFrag.cs" />
-    <Compile Include="AxisElementVert.cs" />
+    <Compile Include="AxisElement.cssl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,7 +83,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)Tools\CSharpGL.CSSL2GLSL\bin\Debug\CSharpGL.CSSL2GLSL.exe $(ProjectDir)</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
