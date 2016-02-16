@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CSharpGL.Objects.Common
 {
     /// <summary>
-    /// 地面
+    /// 用网格描述的地面
     /// </summary>
     public class Ground : IModel
     {
@@ -19,7 +19,7 @@ namespace CSharpGL.Objects.Common
         public vec3 lineColor = new vec3(1, 1, 1);
 
         /// <summary>
-        /// 地面
+        /// 用网格描述的地面
         /// </summary>
         /// <param name="xCount">x正半轴上有多少条线</param>
         /// <param name="zCount">z正半轴上有多少条线</param>
