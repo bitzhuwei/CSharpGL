@@ -30,7 +30,7 @@ namespace CSharpGL.Objects.Demos.UIs
         /// <param name="zFar"></param>
         /// <param name="rectColor">default color is red.</param>
         public SimpleUIAxis(IUILayoutParam param, GLColor rectColor = null,
-            float radius = 0.3f, float axisLength = 10, int faceCount = 10)
+            float radius = 0.8f, float axisLength = 10, int faceCount = 10)
         {
             // 把AxiesElement缩放到恰好放进此UI
             radius = radius / axisLength / 2;
