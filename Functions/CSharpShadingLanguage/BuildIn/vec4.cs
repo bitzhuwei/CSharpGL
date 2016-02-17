@@ -7,7 +7,7 @@ namespace CSharpShadingLanguage
     /// Represents a four dimensional vector.
     /// </summary>
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]
-    public struct vec4
+    public class vec4
     {
 
         public float x { get { return 0.0f; } set { } }

@@ -6,7 +6,7 @@ namespace CSharpShadingLanguage
     /// <summary>
     /// Represents a 3x3 matrix.
     /// </summary>
-    public struct mat3
+    public class mat3
     {
 
         #region Index Access
@@ -19,7 +19,7 @@ namespace CSharpShadingLanguage
         /// </value>
         /// <param name="column">The column index.</param>
         /// <returns>The column at index <paramref name="column"/>.</returns>
-        public vec3 this[int column] { get { throw new NotNeedToImplementException(); } }
+        public vec3 this[int column] { get { throw new NotNeedToImplementException(); } set { } }
 
         /// <summary>
         /// Gets or sets the element at <paramref name="column"/> and <paramref name="row"/>.
@@ -32,7 +32,7 @@ namespace CSharpShadingLanguage
         /// <returns>
         /// The element at <paramref name="column"/> and <paramref name="row"/>.
         /// </returns>
-        public float this[int column, int row] { get { throw new NotNeedToImplementException(); } }
+        public float this[int column, int row] { get { throw new NotNeedToImplementException(); } set { } }
         
         #endregion
 

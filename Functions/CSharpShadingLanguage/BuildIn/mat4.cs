@@ -7,7 +7,7 @@ namespace CSharpShadingLanguage
     /// <summary>
     /// Represents a 4x4 matrix.
     /// </summary>
-    public struct mat4
+    public class mat4
     {
 
         #region Index Access
@@ -20,7 +20,7 @@ namespace CSharpShadingLanguage
         /// </value>
         /// <param name="column">The column index.</param>
         /// <returns>The column at index <paramref name="column"/>.</returns>
-        public vec4 this[int column] { get { throw new NotNeedToImplementException(); } }
+        public vec4 this[int column] { get { throw new NotNeedToImplementException(); } set { } }
 
         /// <summary>
         /// Gets or sets the element at <paramref name="column"/> and <paramref name="row"/>.
@@ -33,7 +33,7 @@ namespace CSharpShadingLanguage
         /// <returns>
         /// The element at <paramref name="column"/> and <paramref name="row"/>.
         /// </returns>
-        public float this[int column, int row] { get { throw new NotNeedToImplementException(); } }
+        public float this[int column, int row] { get { throw new NotNeedToImplementException(); } set { } }
 
         #endregion
 

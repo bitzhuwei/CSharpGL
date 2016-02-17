@@ -6,7 +6,7 @@ namespace CSharpShadingLanguage
     /// <summary>
     /// Represents a three dimensional vector.
     /// </summary>
-    public struct vec3
+    public class vec3
     {
         public float x { get { return 0.0f; } set { } }
         public float y { get { return 0.0f; } set { } }

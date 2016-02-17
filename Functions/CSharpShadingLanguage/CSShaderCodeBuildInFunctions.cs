@@ -65,6 +65,8 @@ namespace CSharpShadingLanguage
         [BuildInFunction("float")]
         protected float Float(float value) { throw new NotNeedToImplementException(); }
 
+        protected mat4 mat4(float value) { throw new NotNeedToImplementException(); }
+
         #endregion matrix functions
 
     }

@@ -29,9 +29,9 @@ void main(void)
         {
             vertex_out.color = vertex_in[i].normal;
             vec4 position = gl_in[i].gl_Position;
-			mat4 translateView = mat4(1.0f);
-			for (int i = 0; i < 4; i++) { translateView[i].w = viewMatrix[i].w; }
-			translateView[3] = viewMatrix[3];
+            mat4 translateView = mat4(1.0f);
+            for (int t = 0; t < 4; t++) { translateView[t].w = viewMatrix[t].w; }
+            translateView[3] = viewMatrix[3];
             gl_Position = projectionMatrix * translateView * (modelMatrix * position);
             EmitVertex();
         }

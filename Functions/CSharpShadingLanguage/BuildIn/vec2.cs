@@ -6,7 +6,7 @@ namespace CSharpShadingLanguage
     /// <summary>
     /// Represents a two dimensional vector.
     /// </summary>
-    public struct vec2
+    public class vec2
     {
 
         public float x { get { return 0.0f; } set { } }

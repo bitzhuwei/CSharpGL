@@ -169,7 +169,10 @@ namespace CSharpGL.Objects.Demos
                 {
                     vertex_out.color = vertex_in[i].normal;
                     vec4 position = gl_in[i].gl_Position;
-                    gl_Position = projectionMatrix * viewMatrix * (modelMatrix * position);
+                    mat4 translateView = mat4(1.0f);
+                    for (int t = 0; t < 4; t++) { translateView[t].w = viewMatrix[t].w; }
+                    translateView[3] = viewMatrix[3];
+                    gl_Position = projectionMatrix * translateView * (modelMatrix * position);
                     EmitVertex();
                 }
                 EndPrimitive();
