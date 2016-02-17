@@ -275,53 +275,105 @@ namespace CSharpGL.Winforms.Demo
             }
             else if (e.KeyChar == 'w')
             {
-                //translateY += interval;
-                vec3 direction = this.camera.UpVector;
+                vec3 direction = (this.camera.Target - this.camera.Position);
+                direction.y = 0;
                 direction.Normalize();
                 vec3 movement = interval * direction;
                 this.translate += movement;
+
+                vec3 backward = this.camera.Position - this.camera.Target;
+                this.camera.Target = this.translate;
+                this.camera.Position = this.translate + backward;
             }
             else if (e.KeyChar == 's')
             {
-                //translateY -= interval;
-                vec3 direction = -this.camera.UpVector;
+                vec3 direction = -(this.camera.Target - this.camera.Position);
+                direction.y = 0;
                 direction.Normalize();
                 vec3 movement = interval * direction;
                 this.translate += movement;
+
+                vec3 backward = this.camera.Position - this.camera.Target;
+                this.camera.Target = this.translate;
+                this.camera.Position = this.translate + backward;
             }
             else if (e.KeyChar == 'a')
             {
                 //translateX -= interval;
                 vec3 direction = this.camera.UpVector.cross(this.camera.Target - this.camera.Position);
+                direction.y = 0;
                 direction.Normalize();
                 vec3 movement = interval * direction;
                 this.translate += movement;
+
+                vec3 backward = this.camera.Position - this.camera.Target;
+                this.camera.Target = this.translate;
+                this.camera.Position = this.translate + backward;
             }
             else if (e.KeyChar == 'd')
             {
                 //translateX += interval;
-                vec3 direction = this.camera.UpVector.cross(-(this.camera.Target - this.camera.Position));
+                vec3 direction = -this.camera.UpVector.cross(this.camera.Target - this.camera.Position);
+                direction.y = 0;
                 direction.Normalize();
                 vec3 movement = interval * direction;
                 this.translate += movement;
+
+                vec3 backward = this.camera.Position - this.camera.Target;
+                this.camera.Target = this.translate;
+                this.camera.Position = this.translate + backward;
             }
-            else if (e.KeyChar == 'q')
+            else if (e.KeyChar == ' ')
             {
-                //translateZ -= interval;
-                vec3 direction = (this.camera.Target - this.camera.Position);
-                direction.Normalize();
-                vec3 movement = interval * direction;
-                this.translate += movement;
-            }
-            else if (e.KeyChar == 'e')
-            {
-                //translateZ += interval;
-                vec3 direction = -(this.camera.Target - this.camera.Position);
-                direction.Normalize();
-                vec3 movement = interval * direction;
-                this.translate += movement;
+                this.targetY = 2.0f;
+                Timer timer = new Timer();
+                timer.Interval = 20;
+                timer.Tick += timer_Tick;
+                timer.Enabled = true;
             }
         }
 
+        float targetY = 0.0f;
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            Timer timer = sender as Timer;
+            if (targetY > 0.0f)
+            {
+                if (this.translate.y < targetY)
+                {
+                    this.translate.y += (float)timer.Interval * 0.01f;
+
+                    vec3 backward = this.camera.Position - this.camera.Target;
+                    this.camera.Target = this.translate;
+                    this.camera.Position = this.translate + backward;
+                }
+                else
+                {
+                    targetY = 0.0f;
+                }
+            }
+            else
+            {
+                if(this.translate.y > targetY)
+                {
+                    this.translate.y -= (float)timer.Interval * 0.01f;
+
+                    vec3 backward = this.camera.Position - this.camera.Target;
+                    this.camera.Target = this.translate;
+                    this.camera.Position = this.translate + backward;
+                }
+                else
+                {
+                    this.translate.y = 0;
+
+                    vec3 backward = this.camera.Position - this.camera.Target;
+                    this.camera.Target = this.translate;
+                    this.camera.Position = this.translate + backward;
+
+                    timer.Enabled = false;
+                }
+            }
+        }
     }
 }

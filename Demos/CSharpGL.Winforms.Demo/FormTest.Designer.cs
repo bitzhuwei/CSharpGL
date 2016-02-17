@@ -65,6 +65,7 @@
             this.btnFormDoubleTexture = new System.Windows.Forms.Button();
             this.btnFormNormalLine = new System.Windows.Forms.Button();
             this.btnFormSimpleRenderer = new System.Windows.Forms.Button();
+            this.btnFormLifeBar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBasis
@@ -464,6 +465,17 @@
             this.btnFormSimpleRenderer.UseVisualStyleBackColor = true;
             this.btnFormSimpleRenderer.Click += new System.EventHandler(this.btnFormSimpleRenderer_Click);
             // 
+            // btnFormLifeBar
+            // 
+            this.btnFormLifeBar.Location = new System.Drawing.Point(374, 642);
+            this.btnFormLifeBar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormLifeBar.Name = "btnFormLifeBar";
+            this.btnFormLifeBar.Size = new System.Drawing.Size(346, 29);
+            this.btnFormLifeBar.TabIndex = 4;
+            this.btnFormLifeBar.Text = "FormLifeBar";
+            this.btnFormLifeBar.UseVisualStyleBackColor = true;
+            this.btnFormLifeBar.Click += new System.EventHandler(this.btnFormLifeBar_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -483,6 +495,7 @@
             this.Controls.Add(this.btnFormTransformFeedback);
             this.Controls.Add(this.btnFormScientificVisual3DControl);
             this.Controls.Add(this.btnFormColorCodedPicking);
+            this.Controls.Add(this.btnFormLifeBar);
             this.Controls.Add(this.btnFormSimpleRenderer);
             this.Controls.Add(this.btnFormNormalLine);
             this.Controls.Add(this.btnFormDoubleTexture);
@@ -551,5 +564,6 @@
         private System.Windows.Forms.Button btnFormDoubleTexture;
         private System.Windows.Forms.Button btnFormNormalLine;
         private System.Windows.Forms.Button btnFormSimpleRenderer;
+        private System.Windows.Forms.Button btnFormLifeBar;
     }
 }

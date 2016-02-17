@@ -69,9 +69,9 @@ namespace CSharpGL.Objects.Demos
 
         protected void InitializeShader(out ShaderProgram shaderProgram)
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("HealthBar.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("HealthBar.frag");
-            var geometryShaderSource = ManifestResourceLoader.LoadTextFile("HealthBar.geom");
+            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("LifeBar.vert");
+            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("LifeBar.frag");
+            var geometryShaderSource = ManifestResourceLoader.LoadTextFile("LifeBar.geom");
 
             shaderProgram = new ShaderProgram();
             shaderProgram.Create(vertexShaderSource, fragmentShaderSource, geometryShaderSource);
