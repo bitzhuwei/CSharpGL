@@ -11,7 +11,7 @@ namespace CSharpGL.Objects.Demos
     /// 这就是C#Shader形式的vertex shader。
     /// </summary>
     [Dump2File(false)]
-    class NormalLineVert : VertexCSShaderCode
+    class HealthBarVert : VertexCSShaderCode
     {
         /// <summary>
         /// vertex's position.
@@ -64,7 +64,7 @@ namespace CSharpGL.Objects.Demos
     /// 这就是C#Shader形式的fragment shader。
     /// </summary>
     [Dump2File(true)]
-    class NormalLineFrag : FragmentCSShaderCode
+    class HealthBarFrag : FragmentCSShaderCode
     {
         /// <summary>
         /// color passed from vertex shader.
@@ -100,7 +100,7 @@ namespace CSharpGL.Objects.Demos
     }
 
     [Dump2File(true)]
-    class NormalLineGeom : GeometryCSShaderCode
+    class HealthBarGeom : GeometryCSShaderCode
     {
         public override InType LayoutIn
         {
@@ -169,7 +169,10 @@ namespace CSharpGL.Objects.Demos
                 {
                     vertex_out.color = vertex_in[i].normal;
                     vec4 position = gl_in[i].gl_Position;
-                    gl_Position = projectionMatrix * viewMatrix * (modelMatrix * position);
+                    mat4 translateView = mat4(1.0f);
+                    for (int t = 0; t < 4; t++) { translateView[t].w = viewMatrix[t].w; }
+                    translateView[3] = viewMatrix[3];
+                    gl_Position = projectionMatrix * translateView * (modelMatrix * position);
                     EmitVertex();
                 }
                 EndPrimitive();
