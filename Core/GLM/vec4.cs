@@ -63,6 +63,11 @@ namespace GLM
             this.w = w;
         }
 
+        public static vec4 operator -(vec4 lhs)
+        {
+            return new vec4(-lhs.x, -lhs.y, -lhs.z, -lhs.w);
+        }
+
         public static vec4 operator +(vec4 lhs, vec4 rhs)
         {
             return new vec4(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z, lhs.w + rhs.w);

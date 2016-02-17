@@ -50,6 +50,11 @@ namespace GLM
             this.y = v.y;
         }
 
+        public static vec2 operator -(vec2 lhs)
+        {
+            return new vec2(-lhs.x, -lhs.y);
+        }
+
         public static vec2 operator +(vec2 lhs, vec2 rhs)
         {
             return new vec2(lhs.x + rhs.x, lhs.y + rhs.y);

@@ -63,6 +63,11 @@ namespace GLM
             this.z = z;
         }
 
+        public static vec3 operator -(vec3 lhs)
+        {
+            return new vec3(-lhs.x, -lhs.y, -lhs.z);
+        }
+
         public static vec3 operator +(vec3 lhs, vec3 rhs)
         {
             return new vec3(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z);

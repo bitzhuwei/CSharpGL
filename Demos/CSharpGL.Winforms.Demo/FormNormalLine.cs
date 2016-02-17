@@ -83,6 +83,12 @@ namespace CSharpGL.Winforms.Demo
         private float radius = 1;
         NormalLineRenderer newRenderer;
 
+        //private float translateX;
+        //private float translateY;
+        //private float translateZ;
+        private vec3 translate = new vec3();
+        private float interval = 0.1f;
+
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
@@ -119,7 +125,7 @@ namespace CSharpGL.Winforms.Demo
             mat4 modelMatrix = this.modelRotator.GetRotationMatrix();
 
             this.renderer.projectionMatrix = projectionMatrix;
-            this.renderer.viewMatrix = viewMatrix;
+            this.renderer.viewMatrix = glm.translate(viewMatrix, translate);
             this.renderer.modelMatrix = modelMatrix;
             this.groundRenderer.modelMatrix = mat4.identity();
             this.groundRenderer.viewMatrix = viewMatrix;
@@ -266,6 +272,54 @@ namespace CSharpGL.Winforms.Demo
             else if (e.KeyChar == '2')
             {
                 this.renderer.showNormal = !this.renderer.showNormal;
+            }
+            else if (e.KeyChar == 'w')
+            {
+                //translateY += interval;
+                vec3 direction = this.camera.UpVector;
+                direction.Normalize();
+                vec3 movement = interval * direction;
+                this.translate += movement;
+            }
+            else if (e.KeyChar == 's')
+            {
+                //translateY -= interval;
+                vec3 direction = -this.camera.UpVector;
+                direction.Normalize();
+                vec3 movement = interval * direction;
+                this.translate += movement;
+            }
+            else if (e.KeyChar == 'a')
+            {
+                //translateX -= interval;
+                vec3 direction = this.camera.UpVector.cross(this.camera.Target - this.camera.Position);
+                direction.Normalize();
+                vec3 movement = interval * direction;
+                this.translate += movement;
+            }
+            else if (e.KeyChar == 'd')
+            {
+                //translateX += interval;
+                vec3 direction = this.camera.UpVector.cross(-(this.camera.Target - this.camera.Position));
+                direction.Normalize();
+                vec3 movement = interval * direction;
+                this.translate += movement;
+            }
+            else if (e.KeyChar == 'q')
+            {
+                //translateZ -= interval;
+                vec3 direction = (this.camera.Target - this.camera.Position);
+                direction.Normalize();
+                vec3 movement = interval * direction;
+                this.translate += movement;
+            }
+            else if (e.KeyChar == 'e')
+            {
+                //translateZ += interval;
+                vec3 direction = -(this.camera.Target - this.camera.Position);
+                direction.Normalize();
+                vec3 movement = interval * direction;
+                this.translate += movement;
             }
         }
 
