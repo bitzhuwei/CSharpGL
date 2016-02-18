@@ -214,12 +214,5 @@ namespace CSharpGL.Winforms.Demo
             (new FormSimpleRenderer()).Show();
         }
 
-        private void btnFormLifeBar_Click(object sender, EventArgs e)
-        {
-            //(new FormLifeBar()).Show();
-        }
-
-
-
     }
 }

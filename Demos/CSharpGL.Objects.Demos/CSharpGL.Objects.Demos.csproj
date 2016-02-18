@@ -53,6 +53,9 @@
     <EmbeddedResource Include="DoubleTexture.frag" />
     <EmbeddedResource Include="DoubleTexture.vert" />
     <Compile Include="DoubleTextureRenderer.cs" />
+    <Compile Include="LifeBar.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="NormalLine.cssl.cs" />
     <Compile Include="NormalLineRenderer.cs" />
     <Compile Include="PickedGeometryIndexed.cs" />

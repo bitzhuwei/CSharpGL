@@ -25,6 +25,7 @@ namespace CSharpGL.Winforms.Demo
 
         SimpleUIAxis uiAxis;
         NormalLineRenderer renderer;
+        NormalLineRenderer lifeBarRenderer;
         ArcBallRotator modelRotator;
 
         Camera camera;
@@ -60,6 +61,9 @@ namespace CSharpGL.Winforms.Demo
             IModel model = (new TeapotFactory()).Create(1.0f);
             this.renderer = new NormalLineRenderer(model);
             this.renderer.Initialize();//不在此显式初始化也可以。
+
+            this.lifeBarRenderer = new NormalLineRenderer(new LifeBar(5, 0.2f, 4));
+            this.lifeBarRenderer.Initialize();
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -116,6 +120,12 @@ namespace CSharpGL.Winforms.Demo
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
+            if (this.newRenderer != null)
+            {
+                this.renderer = newRenderer;
+                this.newRenderer = null;
+            }
+
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
             mat4 projectionMatrix = camera.GetProjectionMat4();
             mat4 viewMatrix = camera.GetViewMat4();
@@ -127,20 +137,36 @@ namespace CSharpGL.Winforms.Demo
             this.renderer.projectionMatrix = projectionMatrix;
             this.renderer.viewMatrix = glm.translate(viewMatrix, translate);
             this.renderer.modelMatrix = modelMatrix;
-            this.groundRenderer.modelMatrix = mat4.identity();
-            this.groundRenderer.viewMatrix = viewMatrix;
+
+            this.lifeBarRenderer.projectionMatrix = projectionMatrix;
+            this.lifeBarRenderer.viewMatrix = AlwaysFaceCamera(glm.translate(viewMatrix, translate));
+            this.lifeBarRenderer.modelMatrix = mat4.identity();
+
             this.groundRenderer.projectionMatrix = projectionMatrix;
+            this.groundRenderer.viewMatrix = viewMatrix;
+            this.groundRenderer.modelMatrix = mat4.identity();
 
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
             this.uiAxis.Render(arg);
-            if (this.newRenderer != null)
-            {
-                this.renderer = newRenderer;
-                this.newRenderer = null;
-            }
+
             this.renderer.Render(arg);
+            this.lifeBarRenderer.Render(arg);
             this.groundRenderer.Render(arg);
+        }
+
+        private mat4 AlwaysFaceCamera(mat4 viewMatrix)
+        {
+            mat4 result = mat4.identity();
+            for (int i = 0; i < 3; i++)
+            {
+                vec4 v = result[i];
+                v.w = viewMatrix[i].w;
+                result[i] = v;
+            }
+            result[3] = viewMatrix[3];
+
+            return result;
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
@@ -268,59 +294,60 @@ namespace CSharpGL.Winforms.Demo
             else if (e.KeyChar == '1')
             {
                 this.renderer.showModel = !this.renderer.showModel;
+                this.lifeBarRenderer.showModel = !this.lifeBarRenderer.showModel;
             }
             else if (e.KeyChar == '2')
             {
                 this.renderer.showNormal = !this.renderer.showNormal;
+                this.lifeBarRenderer.showNormal = !this.lifeBarRenderer.showNormal;
             }
             else if (e.KeyChar == 'w')
             {
-                //translateY += interval;
-                vec3 direction = this.camera.UpVector;
+                vec3 direction = (this.camera.Target - this.camera.Position);
+                direction.y = 0;
                 direction.Normalize();
                 vec3 movement = interval * direction;
                 this.translate += movement;
+
+                FollowTargetObject();
             }
             else if (e.KeyChar == 's')
             {
-                //translateY -= interval;
-                vec3 direction = -this.camera.UpVector;
+                vec3 direction = -(this.camera.Target - this.camera.Position);
+                direction.y = 0;
                 direction.Normalize();
                 vec3 movement = interval * direction;
                 this.translate += movement;
+
+                FollowTargetObject();
             }
             else if (e.KeyChar == 'a')
             {
-                //translateX -= interval;
-                vec3 direction = this.camera.UpVector.cross(this.camera.Target - this.camera.Position);
+                vec3 direction = -this.camera.UpVector.cross(this.camera.Target - this.camera.Position);
+                direction.y = 0;
                 direction.Normalize();
                 vec3 movement = interval * direction;
                 this.translate += movement;
+
+                FollowTargetObject();
             }
             else if (e.KeyChar == 'd')
             {
-                //translateX += interval;
                 vec3 direction = this.camera.UpVector.cross(-(this.camera.Target - this.camera.Position));
+                direction.y = 0;
                 direction.Normalize();
                 vec3 movement = interval * direction;
                 this.translate += movement;
+
+                FollowTargetObject();
             }
-            else if (e.KeyChar == 'q')
-            {
-                //translateZ -= interval;
-                vec3 direction = (this.camera.Target - this.camera.Position);
-                direction.Normalize();
-                vec3 movement = interval * direction;
-                this.translate += movement;
-            }
-            else if (e.KeyChar == 'e')
-            {
-                //translateZ += interval;
-                vec3 direction = -(this.camera.Target - this.camera.Position);
-                direction.Normalize();
-                vec3 movement = interval * direction;
-                this.translate += movement;
-            }
+        }
+
+        private void FollowTargetObject()
+        {
+            vec3 eyeVector = this.camera.Position - this.camera.Target;
+            this.camera.Target = this.translate;
+            this.camera.Position = this.translate + eyeVector;
         }
 
     }
