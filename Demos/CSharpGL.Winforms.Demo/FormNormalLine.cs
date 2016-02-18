@@ -148,7 +148,8 @@ namespace CSharpGL.Winforms.Demo
 
             this.lifeBarRenderer.projectionMatrix = projectionMatrix;
             this.lifeBarRenderer.viewMatrix = AlwaysFaceCamera(glm.translate(viewMatrix, translate));
-            this.lifeBarRenderer.modelMatrix = AlwaysSameSize(viewMatrix);
+            this.lifeBarRenderer.modelMatrix = AlwaysSameSize(
+                (this.camera.Target - this.camera.Position).Magnitude(), this.lifebar.Height);
 
             this.groundRenderer.projectionMatrix = projectionMatrix;
             this.groundRenderer.viewMatrix = viewMatrix;
@@ -163,17 +164,25 @@ namespace CSharpGL.Winforms.Demo
             this.groundRenderer.Render(arg);
         }
 
-        private mat4 AlwaysSameSize(mat4 viewMatrix)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="length">camera的Position和Target之间的距离</param>
+        /// <param name="height">血条高度</param>
+        /// <returns></returns>
+        private mat4 AlwaysSameSize(float length, float height)
         {
-            float length = (this.camera.Target - this.camera.Position).Magnitude();
-            //mat4 result = glm.translate(glm.scale(mat4.identity(),
-            //    new vec3(length / this.lifebar.Length, length / this.lifebar.Wdith, 1)),
-            //    new vec3(0, this.lifebar.Height / length, 0));
             mat4 result = glm.translate(glm.scale(mat4.identity(),
-                //new vec3(length / 8, length / 8, 1)),
                 new vec3(length, length, 1)),
-                new vec3(0, this.lifebar.Height / length, 0));
+                new vec3(0, height / length, 0));
 
+            //float scale = -viewMatrix[3].z;// scale会失常。
+            //mat4 result2 = new mat4(
+            //    new vec4(scale, 0, 0, 0),
+            //    new vec4(0, scale, 0, 0),
+            //    new vec4(0, 0, 1, 0),
+            //    new vec4(0, this.lifebar.Height, 0, 1)
+            //    );
 
             return result;
         }
