@@ -25,13 +25,17 @@ namespace CSharpGL.Objects.Demos
             this.positions[2] = new vec3(-length / 2, +width / 2, 0);
             this.positions[3] = new vec3(-length / 2, -width / 2, 0);
 
-            this.normals[0] = new vec3(length, width, 0);
-            this.normals[1] = new vec3(length, -width, 0);
-            this.normals[2] = new vec3(-length, width, 0);
-            this.normals[3] = new vec3(-length, -width, 0);
+            //this.normals[0] = new vec3(length, width, 0);
+            //this.normals[1] = new vec3(length, -width, 0);
+            //this.normals[2] = new vec3(-length, width, 0);
+            //this.normals[3] = new vec3(-length, -width, 0);
+            //for (int i = 0; i < this.normals.Length; i++)
+            //{
+            //    this.normals[i].Normalize();
+            //}
             for (int i = 0; i < this.normals.Length; i++)
             {
-                this.normals[i].Normalize();
+                this.normals[i] = new vec3(1, 0, 0);
             }
         }
 
