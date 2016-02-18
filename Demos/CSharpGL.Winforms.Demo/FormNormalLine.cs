@@ -62,7 +62,7 @@ namespace CSharpGL.Winforms.Demo
             this.renderer = new NormalLineRenderer(model);
             this.renderer.Initialize();//不在此显式初始化也可以。
 
-            this.lifebar = new LifeBar(5, 0.2f, 4);
+            this.lifebar = new LifeBar(0.2f, 0.02f, 4);
             this.lifeBarRenderer = new NormalLineRenderer(this.lifebar);
             this.lifeBarRenderer.Initialize();
 
@@ -148,8 +148,7 @@ namespace CSharpGL.Winforms.Demo
 
             this.lifeBarRenderer.projectionMatrix = projectionMatrix;
             this.lifeBarRenderer.viewMatrix = AlwaysFaceCamera(glm.translate(viewMatrix, translate));
-            float length = (this.camera.Target - this.camera.Position).Magnitude();
-            this.lifeBarRenderer.modelMatrix = glm.translate(AlwaysSameSize(viewMatrix), new vec3(0, 40 / length, 0));
+            this.lifeBarRenderer.modelMatrix = AlwaysSameSize(viewMatrix);
 
             this.groundRenderer.projectionMatrix = projectionMatrix;
             this.groundRenderer.viewMatrix = viewMatrix;
@@ -171,8 +170,9 @@ namespace CSharpGL.Winforms.Demo
             //    new vec3(length / this.lifebar.Length, length / this.lifebar.Wdith, 1)),
             //    new vec3(0, this.lifebar.Height / length, 0));
             mat4 result = glm.translate(glm.scale(mat4.identity(),
-    new vec3(length / 8, length / 8, 1)),
-    new vec3(0, this.lifebar.Height / length, 0));
+                //new vec3(length / 8, length / 8, 1)),
+                new vec3(length, length, 1)),
+                new vec3(0, this.lifebar.Height / length, 0));
 
 
             return result;
