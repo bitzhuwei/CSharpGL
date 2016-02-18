@@ -69,23 +69,23 @@ namespace GLM
         /// <returns></returns>
         public static mat4 lookAt(vec3 eye, vec3 center, vec3 up)
         {
-            vec3 f = (center - eye); f.Normalize();
-            vec3 s = f.cross(up); s.Normalize();
-            vec3 u = s.cross(f);
+            vec3 forward = (center - eye); forward.Normalize();
+            vec3 right = forward.cross(up); right.Normalize();
+            vec3 standardUp = right.cross(forward);
 
             mat4 Result = new mat4(1);
-            Result[0, 0] = s.x;
-            Result[1, 0] = s.y;
-            Result[2, 0] = s.z;
-            Result[0, 1] = u.x;
-            Result[1, 1] = u.y;
-            Result[2, 1] = u.z;
-            Result[0, 2] = -f.x;
-            Result[1, 2] = -f.y;
-            Result[2, 2] = -f.z;
-            Result[3, 0] = -s.dot(eye);// dot(s, eye);
-            Result[3, 1] = -u.dot(eye);// dot(u, eye);
-            Result[3, 2] = f.dot(eye);// dot(f, eye);
+            Result[0, 0] = right.x;
+            Result[1, 0] = right.y;
+            Result[2, 0] = right.z;
+            Result[0, 1] = standardUp.x;
+            Result[1, 1] = standardUp.y;
+            Result[2, 1] = standardUp.z;
+            Result[0, 2] = -forward.x;
+            Result[1, 2] = -forward.y;
+            Result[2, 2] = -forward.z;
+            Result[3, 0] = -right.dot(eye);// dot(s, eye);
+            Result[3, 1] = -standardUp.dot(eye);// dot(u, eye);
+            Result[3, 2] = forward.dot(eye);// dot(f, eye);
             return Result;
         }
 
