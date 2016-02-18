@@ -53,7 +53,8 @@
     <EmbeddedResource Include="DoubleTexture.frag" />
     <EmbeddedResource Include="DoubleTexture.vert" />
     <Compile Include="DoubleTextureRenderer.cs" />
-    <Compile Include="LifeBar.cs">
+    <Compile Include="LifeBar2.cs" />
+    <Compile Include="DemoLifeBar.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="NormalLine.cssl.cs" />

@@ -62,7 +62,7 @@ namespace CSharpGL.Winforms.Demo
             this.renderer = new NormalLineRenderer(model);
             this.renderer.Initialize();//不在此显式初始化也可以。
 
-            this.lifebar = new LifeBar(0.2f, 0.02f, 4);
+            this.lifebar = new DemoLifeBar(0.2f, 0.02f, 4);
             this.lifeBarRenderer = new NormalLineRenderer(this.lifebar);
             this.lifeBarRenderer.Initialize();
 
@@ -99,7 +99,7 @@ namespace CSharpGL.Winforms.Demo
         //private float translateZ;
         private vec3 translate = new vec3();
         private float interval = 0.1f;
-        private LifeBar lifebar;
+        private DemoLifeBar lifebar;
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
