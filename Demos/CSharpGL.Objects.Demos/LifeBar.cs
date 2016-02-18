@@ -14,7 +14,7 @@ namespace CSharpGL.Objects.Demos
         vec3[] positions = new vec3[4];
         vec3[] normals = new vec3[4];
 
-        public LifeBar(float length = 10.0f, float width = 2.0f, float height = 0.0f)
+        public LifeBar(float length = 0.2f, float width = 0.02f, float height = 4f)
         {
             this.Length = length;
             this.Wdith = width;
