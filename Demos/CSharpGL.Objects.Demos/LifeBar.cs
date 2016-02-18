@@ -16,10 +16,14 @@ namespace CSharpGL.Objects.Demos
 
         public LifeBar(float length = 10.0f, float width = 2.0f, float height = 0.0f)
         {
-            this.positions[0] = new vec3(length / 2, height + width / 2, 0);
-            this.positions[1] = new vec3(length / 2, height - width / 2, 0);
-            this.positions[2] = new vec3(-length / 2, height + width / 2, 0);
-            this.positions[3] = new vec3(-length / 2, height - width / 2, 0);
+            this.Length = length;
+            this.Wdith = width;
+            this.Height = height;
+
+            this.positions[0] = new vec3(length / 2, +width / 2, 0);
+            this.positions[1] = new vec3(length / 2, -width / 2, 0);
+            this.positions[2] = new vec3(-length / 2, +width / 2, 0);
+            this.positions[3] = new vec3(-length / 2, -width / 2, 0);
 
             this.normals[0] = new vec3(length, width, 0);
             this.normals[1] = new vec3(length, -width, 0);
@@ -93,5 +97,11 @@ namespace CSharpGL.Objects.Demos
                 : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
             { }
         }
+
+        public float Height { get; set; }
+
+        public float Length { get; set; }
+
+        public float Wdith { get; set; }
     }
 }

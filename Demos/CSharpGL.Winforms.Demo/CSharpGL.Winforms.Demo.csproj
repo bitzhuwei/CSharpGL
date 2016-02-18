@@ -52,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CameraDictionary.cs" />
+    <Compile Include="FormNormalLineDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNormalLineDisplay.Designer.cs">
+      <DependentUpon>FormNormalLineDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSimpleRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -283,6 +289,9 @@
       <DependentUpon>ScientificVisual3DControl.cs</DependentUpon>
     </Compile>
     <Compile Include="TestProjectionFunctions.cs" />
+    <EmbeddedResource Include="FormNormalLineDisplay.resx">
+      <DependentUpon>FormNormalLineDisplay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSimpleRenderer.resx">
       <DependentUpon>FormSimpleRenderer.cs</DependentUpon>
     </EmbeddedResource>

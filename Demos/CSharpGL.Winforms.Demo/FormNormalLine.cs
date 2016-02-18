@@ -62,7 +62,8 @@ namespace CSharpGL.Winforms.Demo
             this.renderer = new NormalLineRenderer(model);
             this.renderer.Initialize();//不在此显式初始化也可以。
 
-            this.lifeBarRenderer = new NormalLineRenderer(new LifeBar(5, 0.2f, 4));
+            this.lifebar = new LifeBar(5, 0.2f, 4);
+            this.lifeBarRenderer = new NormalLineRenderer(this.lifebar);
             this.lifeBarRenderer.Initialize();
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
@@ -72,6 +73,12 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.Resize += glCanvas1_Resize;
+
+            var displayer = new FormNormalLineDisplay(this.lifeBarRenderer);
+            displayer.Show();
+            displayer = new FormNormalLineDisplay(this.renderer);
+            displayer.Show();
+
         }
 
         private void CreateElement()
@@ -92,6 +99,7 @@ namespace CSharpGL.Winforms.Demo
         //private float translateZ;
         private vec3 translate = new vec3();
         private float interval = 0.1f;
+        private LifeBar lifebar;
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -140,7 +148,8 @@ namespace CSharpGL.Winforms.Demo
 
             this.lifeBarRenderer.projectionMatrix = projectionMatrix;
             this.lifeBarRenderer.viewMatrix = AlwaysFaceCamera(glm.translate(viewMatrix, translate));
-            this.lifeBarRenderer.modelMatrix = mat4.identity();
+            float length = (this.camera.Target - this.camera.Position).Magnitude();
+            this.lifeBarRenderer.modelMatrix = glm.translate(AlwaysSameSize(viewMatrix), new vec3(0, 40 / length, 0));
 
             this.groundRenderer.projectionMatrix = projectionMatrix;
             this.groundRenderer.viewMatrix = viewMatrix;
@@ -153,6 +162,20 @@ namespace CSharpGL.Winforms.Demo
             this.renderer.Render(arg);
             this.lifeBarRenderer.Render(arg);
             this.groundRenderer.Render(arg);
+        }
+
+        private mat4 AlwaysSameSize(mat4 viewMatrix)
+        {
+            float length = (this.camera.Target - this.camera.Position).Magnitude();
+            //mat4 result = glm.translate(glm.scale(mat4.identity(),
+            //    new vec3(length / this.lifebar.Length, length / this.lifebar.Wdith, 1)),
+            //    new vec3(0, this.lifebar.Height / length, 0));
+            mat4 result = glm.translate(glm.scale(mat4.identity(),
+    new vec3(length / 8, length / 8, 1)),
+    new vec3(0, this.lifebar.Height / length, 0));
+
+
+            return result;
         }
 
         private mat4 AlwaysFaceCamera(mat4 viewMatrix)
