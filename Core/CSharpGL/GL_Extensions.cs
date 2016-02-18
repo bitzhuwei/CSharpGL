@@ -1123,7 +1123,11 @@ namespace CSharpGL
         }
         public static void DeleteProgram(uint program)
         {
-            GetDelegateFor<glDeleteProgram>()(program);
+            IntPtr ptr = Win32.wglGetCurrentContext();
+            if (ptr != IntPtr.Zero)
+            {
+                GetDelegateFor<glDeleteProgram>()(program);
+            }
         }
         public static void DeleteShader(uint shader)
         {

@@ -57,8 +57,8 @@ namespace CSharpGL.Winforms.Demo
             uiAxis = new SimpleUIAxis(uiParam);
             uiAxis.Initialize();
 
-            IModel model = (new TeapotFactory()).Create(1.0f);
-            this.renderer = new LifeBarRenderer(model);
+            //IModel model = (new TeapotFactory()).Create(1.0f);
+            this.renderer = new LifeBarRenderer(new LifeBar(100,100,0));
             this.renderer.Initialize();//不在此显式初始化也可以。
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
@@ -70,18 +70,18 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.Resize += glCanvas1_Resize;
         }
 
-        private void CreateElement()
-        {
-            var element = new LifeBarRenderer(factories[currentModelIndex].Create(this.radius));
-            element.Initialize();
-            this.newRenderer = element;
-        }
+        //private void CreateElement()
+        //{
+        //    var element = new LifeBarRenderer(factories[currentModelIndex].Create(this.radius));
+        //    element.Initialize();
+        //    this.newRenderer = element;
+        //}
 
-        int currentModelIndex = 0;
-        //static readonly IModel[] models = new IModel[] { CubeModel.GetModel(), IceCreamModel.GetModel(), SphereModel.GetModel(), };
-        static readonly ModelFactory[] factories = new ModelFactory[] { new TeapotFactory(), new CubeFactory(), new IceCreamFactory(), new SphereFactory(), };
-        private float radius = 1;
-        LifeBarRenderer newRenderer;
+        //int currentModelIndex = 0;
+        ////static readonly IModel[] models = new IModel[] { CubeModel.GetModel(), IceCreamModel.GetModel(), SphereModel.GetModel(), };
+        //static readonly ModelFactory[] factories = new ModelFactory[] { new TeapotFactory(), new CubeFactory(), new IceCreamFactory(), new SphereFactory(), };
+        //private float radius = 1;
+        //LifeBarRenderer newRenderer;
 
         //private float translateX;
         //private float translateY;
@@ -134,11 +134,11 @@ namespace CSharpGL.Winforms.Demo
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
             this.uiAxis.Render(arg);
-            if (this.newRenderer != null)
-            {
-                this.renderer = newRenderer;
-                this.newRenderer = null;
-            }
+            //if (this.newRenderer != null)
+            //{
+            //    this.renderer = newRenderer;
+            //    this.newRenderer = null;
+            //}
             this.renderer.Render(arg);
             this.groundRenderer.Render(arg);
         }
@@ -233,13 +233,13 @@ namespace CSharpGL.Winforms.Demo
 
                 PrintCameraInfo();
             }
-            else if (e.KeyChar == 'm')
-            {
-                currentModelIndex++;
-                if (currentModelIndex >= factories.Length) { currentModelIndex = 0; }
+            //else if (e.KeyChar == 'm')
+            //{
+            //    currentModelIndex++;
+            //    if (currentModelIndex >= factories.Length) { currentModelIndex = 0; }
 
-                CreateElement();
-            }
+            //    CreateElement();
+            //}
             else if (e.KeyChar == 'j')
             {
                 this.renderer.DecreaseVertexCount();
@@ -264,14 +264,6 @@ namespace CSharpGL.Winforms.Demo
                     default:
                         break;
                 }
-            }
-            else if (e.KeyChar == '1')
-            {
-                this.renderer.showModel = !this.renderer.showModel;
-            }
-            else if (e.KeyChar == '2')
-            {
-                this.renderer.showNormal = !this.renderer.showNormal;
             }
             else if (e.KeyChar == 'w')
             {

@@ -11,9 +11,9 @@ namespace CSharpGL.Objects.Demos
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Windows.Forms;
+
     /// <summary>
-    /// 一个<see cref="NormalLineRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="LifeBarRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// </summary>
     public class LifeBarRenderer : RendererBase
     {
@@ -47,12 +47,6 @@ namespace CSharpGL.Objects.Demos
         const string strprojectionMatrix = "projectionMatrix";
         public mat4 projectionMatrix;
 
-        const string strshowModel = "showModel";
-        public bool showModel = true;
-
-        const string strshowNormal = "showNormal";
-        public bool showNormal = true;
-
         #endregion
 
 
@@ -71,10 +65,9 @@ namespace CSharpGL.Objects.Demos
         {
             var vertexShaderSource = ManifestResourceLoader.LoadTextFile("LifeBar.vert");
             var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("LifeBar.frag");
-            var geometryShaderSource = ManifestResourceLoader.LoadTextFile("LifeBar.geom");
 
             shaderProgram = new ShaderProgram();
-            shaderProgram.Create(vertexShaderSource, fragmentShaderSource, geometryShaderSource);
+            shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
         }
 
         protected void InitializeVAO()
@@ -118,8 +111,6 @@ namespace CSharpGL.Objects.Demos
             program.SetUniformMatrix4(strprojectionMatrix, projectionMatrix.to_array());
             program.SetUniformMatrix4(strviewMatrix, viewMatrix.to_array());
             program.SetUniformMatrix4(strmodelMatrix, modelMatrix.to_array());
-            program.SetUniform(strshowModel, this.showModel ? 1.0f : 0.0f);
-            program.SetUniform(strshowNormal, this.showNormal ? 1.0f : 0.0f);
 
             int[] originalPolygonMode = new int[1];
             GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);

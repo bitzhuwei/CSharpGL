@@ -10,7 +10,7 @@ namespace CSharpGL.Objects.Demos
     /// 一个<see cref="NormalLineVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的vertex shader。
     /// </summary>
-    [Dump2File(false)]
+    [Dump2File(true)]
     class NormalLineVert : VertexCSShaderCode
     {
         /// <summary>
@@ -25,11 +25,12 @@ namespace CSharpGL.Objects.Demos
         [In]
         vec3 in_Normal;
 
-        /// <summary>
-        /// pass color to fragment color.
-        /// </summar>
+        class VS_GS_VERTEX
+        {
+            public vec3 normal;
+        }
         [Out]
-        vec4 pass_Normal;
+        VS_GS_VERTEX vertex_out;
 
         /// <summary>
         /// scale, rotate and translate model.
@@ -52,9 +53,9 @@ namespace CSharpGL.Objects.Demos
         public override void main()
         {
             // TODO: this is where you should start with vertex shader. Only ASCII code are welcome.
-            gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);
+            gl_Position = vec4(in_Position, 1.0f);
 
-            pass_Normal = vec4(in_Normal, 1.0f);
+            vertex_out.normal = in_Normal;
             // this is where your vertex shader ends.
         }
     }
