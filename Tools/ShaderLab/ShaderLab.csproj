@@ -52,6 +52,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CSSL+Renderer.tt</DependentUpon>
     </Compile>
+    <Compile Include="LifeBar.cssl.cs">
+      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LifeBarRenderer.cs">
+      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
+    </Compile>
     <Compile Include="Some.cssl.cs">
       <DependentUpon>CSSL+Renderer.tt</DependentUpon>
     </Compile>

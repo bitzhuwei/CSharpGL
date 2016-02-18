@@ -1,7 +1,7 @@
 ﻿﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ output extension=".cs" #>
 <#@ include file=".\Dump2MultipleFiles.ttinclude" #>
-<# string ShaderName = "Ground"; #>
+<# string ShaderName = "LifeBar"; #>
 <# string ClassName = ShaderName + "Renderer"; #>
 <# string VertexShaderName = ShaderName + "Vert"; #>
 <# string FragmentShaderName = ShaderName + "Frag"; #>
@@ -41,11 +41,13 @@ namespace CSharpShaders
         [In]
         vec3 in_Normal;
 
-        /// <summary>
-        /// pass color to fragment color.
-        /// </summar>
+
+        class VS_GS_VERTEX
+        {
+            public vec3 normal;
+        }
         [Out]
-        vec4 pass_Normal;
+        VS_GS_VERTEX vertex_out;
 
         /// <summary>
         /// scale, rotate and translate model.
@@ -70,7 +72,7 @@ namespace CSharpShaders
             // TODO: this is where you should start with vertex shader. Only ASCII code are welcome.
             gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);
 
-            pass_Normal = vec4(in_Normal, 1.0f);
+            vertex_out.normal = in_Normal;
             // this is where your vertex shader ends.
         }
     }
@@ -83,11 +85,6 @@ namespace CSharpShaders
 	[GLSLVersion(GLSLVersion.v150)]
     sealed class <#= FragmentShaderName #> : FragmentCSShaderCode
     {
-        /// <summary>
-        /// color passed from vertex shader.
-        /// </summar>
-        [In]
-        vec4 pass_Normal;
 
         class GS_FS_VERTEX
         {
@@ -310,9 +307,10 @@ namespace ShaderLab
         {
             var vertexShaderSource = ManifestResourceLoader.LoadTextFile("<#= ShaderName #>.vert");
             var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("<#= ShaderName #>.frag");
+            var geometryShaderSource = ManifestResourceLoader.LoadTextFile("<#= ShaderName #>.geom");
 
             shaderProgram = new ShaderProgram();
-            shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);
+            shaderProgram.Create(vertexShaderSource, fragmentShaderSource, geometryShaderSource);
         }
 
         protected void InitializeVAO()
