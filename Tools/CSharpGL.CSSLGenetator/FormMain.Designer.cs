@@ -33,7 +33,6 @@
             this.txtShaderName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnGenerate = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
             this.cmbShaderProgramType = new System.Windows.Forms.ComboBox();
             this.lstVertexShaderField = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,6 +51,8 @@
             this.另存为AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.退出XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDlg = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,16 +90,6 @@
             this.btnGenerate.TabIndex = 3;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.UseVisualStyleBackColor = true;
-            // 
-            // btnReset
-            // 
-            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReset.Location = new System.Drawing.Point(374, 490);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(129, 23);
-            this.btnReset.TabIndex = 3;
-            this.btnReset.Text = "Generate";
-            this.btnReset.UseVisualStyleBackColor = true;
             // 
             // cmbShaderProgramType
             // 
@@ -256,6 +247,15 @@
             this.退出XToolStripMenuItem.Text = "退出(&X)";
             this.退出XToolStripMenuItem.Click += new System.EventHandler(this.退出XToolStripMenuItem_Click);
             // 
+            // openFileDlg
+            // 
+            this.openFileDlg.Filter = "(CSSL template *.xml)|*.xml";
+            // 
+            // saveFileDlg
+            // 
+            this.saveFileDlg.FileName = "*.xml";
+            this.saveFileDlg.Filter = "*.xml|*.xml";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -268,7 +268,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cmbShaderProgramType);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.label3);
@@ -279,6 +278,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
             this.Text = "CSSL generator";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -292,7 +292,6 @@
         private System.Windows.Forms.TextBox txtShaderName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnGenerate;
-        private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.ComboBox cmbShaderProgramType;
         private System.Windows.Forms.ListBox lstVertexShaderField;
         private System.Windows.Forms.Label label3;
@@ -311,5 +310,7 @@
         private System.Windows.Forms.ToolStripMenuItem 另存为AToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem 退出XToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDlg;
+        private System.Windows.Forms.SaveFileDialog saveFileDlg;
     }
 }

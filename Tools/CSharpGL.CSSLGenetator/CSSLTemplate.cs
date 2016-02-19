@@ -7,8 +7,11 @@ using System.Xml.Linq;
 
 namespace CSharpGL.CSSLGenetator
 {
-    class CSSLTemplate
+    class CSSLTemplate : ICloneable
     {
+        const string strExtentsion = "xml";
+        public string Fullname { get; set; }
+
         const string strShaderName = "ShaderName";
         public string ShaderName { get; set; }
 
@@ -20,6 +23,28 @@ namespace CSharpGL.CSSLGenetator
             return new XElement(typeof(CSSLTemplate).Name,
                 new XAttribute(strShaderName, ShaderName),
                 new XAttribute(strProgramType, ProgramType));
+        }
+
+        public void Save()
+        {
+            if (string.IsNullOrEmpty(this.Fullname)) { throw new Exception("file name not specified"); }
+
+            if (this.Fullname.ToLower().EndsWith("." + strExtentsion))
+            {
+                this.Fullname += "." + strExtentsion;
+            }
+
+            this.ToXElement().Save(this.Fullname);
+        }
+
+        internal static CSSLTemplate Load(string p)
+        {
+            throw new NotImplementedException();
+        }
+
+        object ICloneable.Clone()
+        {
+            throw new NotImplementedException();
         }
     }
 
