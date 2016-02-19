@@ -53,6 +53,7 @@
             this.退出XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDlg = new System.Windows.Forms.SaveFileDialog();
+            this.label7 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,7 +85,7 @@
             // btnGenerate
             // 
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenerate.Location = new System.Drawing.Point(380, 490);
+            this.btnGenerate.Location = new System.Drawing.Point(668, 490);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(258, 23);
             this.btnGenerate.TabIndex = 3;
@@ -102,11 +103,13 @@
             // 
             // lstVertexShaderField
             // 
+            this.lstVertexShaderField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lstVertexShaderField.FormattingEnabled = true;
             this.lstVertexShaderField.ItemHeight = 15;
             this.lstVertexShaderField.Location = new System.Drawing.Point(13, 112);
             this.lstVertexShaderField.Name = "lstVertexShaderField";
-            this.lstVertexShaderField.Size = new System.Drawing.Size(204, 184);
+            this.lstVertexShaderField.Size = new System.Drawing.Size(224, 364);
             this.lstVertexShaderField.TabIndex = 5;
             // 
             // label3
@@ -121,7 +124,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(223, 94);
+            this.label4.Location = new System.Drawing.Point(243, 94);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(127, 15);
             this.label4.TabIndex = 0;
@@ -129,17 +132,19 @@
             // 
             // lstGeometryShaderField
             // 
+            this.lstGeometryShaderField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lstGeometryShaderField.FormattingEnabled = true;
             this.lstGeometryShaderField.ItemHeight = 15;
-            this.lstGeometryShaderField.Location = new System.Drawing.Point(223, 112);
+            this.lstGeometryShaderField.Location = new System.Drawing.Point(243, 112);
             this.lstGeometryShaderField.Name = "lstGeometryShaderField";
-            this.lstGeometryShaderField.Size = new System.Drawing.Size(204, 184);
+            this.lstGeometryShaderField.Size = new System.Drawing.Size(224, 364);
             this.lstGeometryShaderField.TabIndex = 5;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(433, 94);
+            this.label5.Location = new System.Drawing.Point(473, 94);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(127, 15);
             this.label5.TabIndex = 0;
@@ -147,17 +152,19 @@
             // 
             // lstFragmentShaderField
             // 
+            this.lstFragmentShaderField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lstFragmentShaderField.FormattingEnabled = true;
             this.lstFragmentShaderField.ItemHeight = 15;
-            this.lstFragmentShaderField.Location = new System.Drawing.Point(433, 112);
+            this.lstFragmentShaderField.Location = new System.Drawing.Point(473, 112);
             this.lstFragmentShaderField.Name = "lstFragmentShaderField";
-            this.lstFragmentShaderField.Size = new System.Drawing.Size(204, 184);
+            this.lstFragmentShaderField.Size = new System.Drawing.Size(224, 364);
             this.lstFragmentShaderField.TabIndex = 5;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 299);
+            this.label6.Location = new System.Drawing.Point(703, 94);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 15);
             this.label6.TabIndex = 0;
@@ -165,11 +172,13 @@
             // 
             // lstStructure
             // 
+            this.lstStructure.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lstStructure.FormattingEnabled = true;
             this.lstStructure.ItemHeight = 15;
-            this.lstStructure.Location = new System.Drawing.Point(13, 317);
+            this.lstStructure.Location = new System.Drawing.Point(703, 112);
             this.lstStructure.Name = "lstStructure";
-            this.lstStructure.Size = new System.Drawing.Size(204, 184);
+            this.lstStructure.Size = new System.Drawing.Size(224, 364);
             this.lstStructure.TabIndex = 5;
             // 
             // menuStrip1
@@ -179,7 +188,7 @@
             this.文件FToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(650, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(938, 28);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -202,7 +211,7 @@
             this.新建NToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("新建NToolStripMenuItem.Image")));
             this.新建NToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.新建NToolStripMenuItem.Name = "新建NToolStripMenuItem";
-            this.新建NToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.新建NToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.新建NToolStripMenuItem.Text = "新建(&N)";
             this.新建NToolStripMenuItem.Click += new System.EventHandler(this.新建NToolStripMenuItem_Click);
             // 
@@ -211,40 +220,40 @@
             this.打开OToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("打开OToolStripMenuItem.Image")));
             this.打开OToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.打开OToolStripMenuItem.Name = "打开OToolStripMenuItem";
-            this.打开OToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.打开OToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.打开OToolStripMenuItem.Text = "打开(&O)";
             this.打开OToolStripMenuItem.Click += new System.EventHandler(this.打开OToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(147, 6);
             // 
             // 保存SToolStripMenuItem
             // 
             this.保存SToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("保存SToolStripMenuItem.Image")));
             this.保存SToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.保存SToolStripMenuItem.Name = "保存SToolStripMenuItem";
-            this.保存SToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.保存SToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.保存SToolStripMenuItem.Text = "保存(&S)";
             this.保存SToolStripMenuItem.Click += new System.EventHandler(this.保存SToolStripMenuItem_Click);
             // 
             // 另存为AToolStripMenuItem
             // 
             this.另存为AToolStripMenuItem.Name = "另存为AToolStripMenuItem";
-            this.另存为AToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.另存为AToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.另存为AToolStripMenuItem.Text = "另存为(&A)";
             this.另存为AToolStripMenuItem.Click += new System.EventHandler(this.另存为AToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(147, 6);
             // 
             // 退出XToolStripMenuItem
             // 
             this.退出XToolStripMenuItem.Name = "退出XToolStripMenuItem";
-            this.退出XToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.退出XToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.退出XToolStripMenuItem.Text = "退出(&X)";
             this.退出XToolStripMenuItem.Click += new System.EventHandler(this.退出XToolStripMenuItem_Click);
             // 
@@ -257,11 +266,20 @@
             this.saveFileDlg.FileName = "*.xml";
             this.saveFileDlg.Filter = "*.xml|*.xml";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(10, 501);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(352, 15);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "本程序不处理脏数据，所以请注意手动保存您的成果";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 525);
+            this.ClientSize = new System.Drawing.Size(938, 525);
             this.Controls.Add(this.lstStructure);
             this.Controls.Add(this.lstFragmentShaderField);
             this.Controls.Add(this.lstGeometryShaderField);
@@ -271,6 +289,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnGenerate);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtShaderName);
@@ -313,5 +332,6 @@
         private System.Windows.Forms.ToolStripMenuItem 退出XToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDlg;
         private System.Windows.Forms.SaveFileDialog saveFileDlg;
+        private System.Windows.Forms.Label label7;
     }
 }
