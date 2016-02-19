@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace System
 {
+    /// <summary>
+    /// from http://stackoverflow.com/questions/9355/programatically-select-multiple-files-in-windows-explorer/3011284#3011284
+    /// </summary>
     public static class OpenFolderHelper
     {
         [DllImport("shell32.dll", ExactSpelling = true)]
