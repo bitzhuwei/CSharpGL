@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace CSharpGL.CSSLGenetator
 {
-    class FieldStructureList : List<FieldStructure>
+    class FieldStructureList : List<FieldStructure>,ICloneable
     {
 
         public XElement ToXElement()
@@ -19,6 +19,13 @@ namespace CSharpGL.CSSLGenetator
             if (xElement.Name != typeof(FieldStructureList).Name) { throw new Exception(); }
 
             return new FieldStructureList();
+        }
+
+        public object Clone()
+        {
+            FieldStructureList list = new FieldStructureList();
+
+            return list;
         }
     }
 }

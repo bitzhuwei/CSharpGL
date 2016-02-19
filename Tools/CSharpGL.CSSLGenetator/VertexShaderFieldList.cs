@@ -14,5 +14,12 @@ namespace CSharpGL.CSSLGenetator
 
             return new VertexShaderFieldList();
         }
+
+        public override object Clone()
+        {
+            VertexShaderFieldList list = new VertexShaderFieldList();
+
+            return list;
+        }
     }
 }

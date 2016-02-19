@@ -14,5 +14,12 @@ namespace CSharpGL.CSSLGenetator
 
             return new GeometryShaderFieldList();
         }
+
+        public override object Clone()
+        {
+            GeometryShaderFieldList list = new GeometryShaderFieldList();
+
+            return list;
+        }
     }
 }

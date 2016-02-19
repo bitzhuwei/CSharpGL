@@ -14,5 +14,12 @@ namespace CSharpGL.CSSLGenetator
 
             return new FragmentShaderFieldList();
         }
+
+        public override object Clone()
+        {
+            FragmentShaderFieldList list = new FragmentShaderFieldList();
+
+            return list;
+        }
     }
 }

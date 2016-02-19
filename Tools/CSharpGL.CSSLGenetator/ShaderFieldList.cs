@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace CSharpGL.CSSLGenetator
 {
-    abstract class ShaderFieldList : List<ShaderField>
+    abstract class ShaderFieldList : List<ShaderField>, ICloneable
     {
 
         public XElement ToXElement()
@@ -14,5 +14,7 @@ namespace CSharpGL.CSSLGenetator
             return new XElement(this.GetType().Name);
         }
 
+
+        public abstract object Clone();
     }
 }

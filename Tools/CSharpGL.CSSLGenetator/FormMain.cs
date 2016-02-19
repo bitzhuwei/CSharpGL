@@ -149,7 +149,40 @@ namespace CSharpGL.CSSLGenetator
 
         private void Map2Template(CSSLTemplate cSSLTemplate)
         {
-            throw new NotImplementedException();
+            this.currentFile.ShaderName = this.txtShaderName.Text;
+            this.currentFile.ProgramType = (ShaderProgramType)(this.cmbShaderProgramType.SelectedItem);
+            {
+                this.currentFile.VertexShaderFieldList.Clear();
+                foreach (var item in this.lstVertexShaderField.Items)
+                {
+                    ShaderField shaderField = item as ShaderField;
+                    this.currentFile.VertexShaderFieldList.Add(shaderField);
+                }
+            }
+            {
+                this.currentFile.GeometryShaderFieldList.Clear();
+                foreach (var item in this.lstGeometryShaderField.Items)
+                {
+                    ShaderField shaderField = item as ShaderField;
+                    this.currentFile.GeometryShaderFieldList.Add(shaderField);
+                }
+            }
+            {
+                this.currentFile.FragmentShaderFieldList.Clear();
+                foreach (var item in this.lstFragmentShaderField.Items)
+                {
+                    ShaderField shaderField = item as ShaderField;
+                    this.currentFile.FragmentShaderFieldList.Add(shaderField);
+                }
+            }
+            {
+                this.currentFile.StrutureList.Clear();
+                foreach (var item in this.lstStructure.Items)
+                {
+                    FieldStructure structure = item as FieldStructure;
+                    this.currentFile.StrutureList.Add(structure);
+                }
+            }
         }
     }
 }

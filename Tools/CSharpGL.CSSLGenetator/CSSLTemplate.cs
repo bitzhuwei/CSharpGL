@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,15 +80,37 @@ namespace CSharpGL.CSSLGenetator
             return result;
         }
 
-        object ICloneable.Clone()
+        public object Clone()
         {
-            throw new NotImplementedException();
+            CSSLTemplate result = new CSSLTemplate();
+            result.ShaderName = this.ShaderName;
+            result.ProgramType = this.ProgramType;
+            result.VertexShaderFieldList = this.VertexShaderFieldList.Clone() as VertexShaderFieldList;
+            result.GeometryShaderFieldList = this.GeometryShaderFieldList.Clone() as GeometryShaderFieldList;
+            result.FragmentShaderFieldList = this.FragmentShaderFieldList.Clone() as FragmentShaderFieldList;
+            result.StrutureList = this.StrutureList.Clone() as FieldStructureList;
+
+            return result;
         }
 
 
-        internal void Generate()
+        public void Generate()
         {
-            throw new NotImplementedException();
+            string directory = (new FileInfo(this.Fullname)).DirectoryName;
+            {
+                var listener = new TextWriterTraceListener(Path.Combine(directory, this.ShaderName + ".cssl.cs"));
+                Debug.Listeners.Add(listener);
+
+                Debug.Close();
+                Debug.Listeners.Remove(listener);
+            }
+            {
+                var listener = new TextWriterTraceListener(Path.Combine(directory, this.ShaderName + "Renderer.cs"));
+                Debug.Listeners.Add(listener);
+
+                Debug.Close();
+                Debug.Listeners.Remove(listener);
+            }
         }
     }
 

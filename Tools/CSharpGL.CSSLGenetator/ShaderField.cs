@@ -11,12 +11,19 @@ namespace CSharpGL.CSSLGenetator
     /// uniform vec3 modelMatrix;
     /// in vec3 in_Position;
     /// </summary>
-    class ShaderField
+    class ShaderField : ICloneable
     {
 
         public XElement ToXElement()
         {
             return new XElement(this.GetType().Name);
+        }
+
+        public object Clone()
+        {
+            ShaderField result = new ShaderField();
+
+            return result;
         }
     }
 }
