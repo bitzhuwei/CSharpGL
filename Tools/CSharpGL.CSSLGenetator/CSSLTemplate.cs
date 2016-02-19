@@ -97,20 +97,28 @@ namespace CSharpGL.CSSLGenetator
         public void Generate()
         {
             string directory = (new FileInfo(this.Fullname)).DirectoryName;
-            {
-                var listener = new TextWriterTraceListener(Path.Combine(directory, this.ShaderName + ".cssl.cs"));
-                Debug.Listeners.Add(listener);
+            var csslFullname = Path.Combine(directory, this.ShaderName + ".cssl.cs");
+            var rendererFullname = Path.Combine(directory, this.ShaderName + "Renderer.cs");
 
+            {
+                var fileStream = new FileStream(csslFullname, FileMode.Create);
+                var listener = new TextWriterTraceListener(fileStream);
+                Debug.Listeners.Add(listener);
+                Debug.WriteLine("// hello cssl template.");
                 Debug.Close();
                 Debug.Listeners.Remove(listener);
             }
             {
-                var listener = new TextWriterTraceListener(Path.Combine(directory, this.ShaderName + "Renderer.cs"));
+                var fileStream = new FileStream(rendererFullname, FileMode.Create);
+                var listener = new TextWriterTraceListener(fileStream);
                 Debug.Listeners.Add(listener);
-
+                Debug.WriteLine("// hello cssl template renderer.");
                 Debug.Close();
                 Debug.Listeners.Remove(listener);
             }
+
+            //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
+            OpenFolderHelper.OpenFolderAndSelectFiles(directory, csslFullname, rendererFullname);
         }
 
         internal IEnumerable<IntermediateStructure> GetAllIntermediateStructures()

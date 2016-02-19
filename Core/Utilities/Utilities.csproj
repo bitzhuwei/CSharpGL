@@ -49,6 +49,7 @@
     <Compile Include="FloatHelper.cs" />
     <Compile Include="ITreeNode.cs" />
     <Compile Include="ManifestResourceLoader.cs" />
+    <Compile Include="OpenFolderHelper.cs" />
     <Compile Include="StructHelper.cs" />
     <Compile Include="UnmanagedArrayHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -95,9 +95,9 @@ namespace CSharpGL.CSSLGenetator
                 {
                     this.currentFile.Fullname = this.saveFileDlg.FileName;
                 }
-            }
 
-            this.currentFile.Save();
+                this.currentFile.Save();
+            }
         }
 
         private void 另存为AToolStripMenuItem_Click(object sender, EventArgs e)
