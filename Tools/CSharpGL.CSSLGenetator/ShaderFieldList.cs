@@ -2,10 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 
 namespace CSharpGL.CSSLGenetator
 {
-    class ShaderFieldList : List<ShaderField>
+    abstract class ShaderFieldList : List<ShaderField>
     {
+
+        public XElement ToXElement()
+        {
+            return new XElement(this.GetType().Name);
+        }
+
     }
 }

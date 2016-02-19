@@ -17,6 +17,13 @@ namespace CSharpGL.CSSLGenetator
         public FormMain()
         {
             InitializeComponent();
+
+            Application.Idle += Application_Idle;
+        }
+
+        void Application_Idle(object sender, EventArgs e)
+        {
+            this.Text = string.Format("CSSL generator - {0}", this.currentFile.Fullname);
         }
 
         private void 新建NToolStripMenuItem_Click(object sender, EventArgs e)
@@ -67,6 +74,7 @@ namespace CSharpGL.CSSLGenetator
                     this.lstStructure.Items.Add(item);
                 }
             }
+
         }
 
         private void 打开OToolStripMenuItem_Click(object sender, EventArgs e)
