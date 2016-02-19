@@ -133,7 +133,7 @@ namespace GLM
         /// <returns></returns>
         public void Normalize()
         {
-            var frt = (float)Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+            var frt = (float)Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w);
 
             this.x = x / frt;
             this.y = y / frt;
