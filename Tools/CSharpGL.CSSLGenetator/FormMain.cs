@@ -40,6 +40,32 @@ namespace CSharpGL.CSSLGenetator
                 }
             }
             {
+                this.lstVertexShaderField.Items.Clear();
+                foreach (var item in template.VertexShaderFieldList)
+                {
+                    this.lstVertexShaderField.Items.Add(item);
+                }
+            }
+            {
+                this.lstGeometryShaderField.Items.Clear();
+                foreach (var item in template.GeometryShaderFieldList)
+                {
+                    this.lstGeometryShaderField.Items.Add(item);
+                }
+            }
+            {
+                this.lstFragmentShaderField.Items.Clear();
+                foreach (var item in template.FragmentShaderFieldList)
+                {
+                    this.lstFragmentShaderField.Items.Add(item);
+                }
+            }
+            {
+                this.lstStructure.Items.Clear();
+                foreach (var item in template.StrutureList)
+                {
+                    this.lstStructure.Items.Add(item);
+                }
             }
         }
 
@@ -102,6 +128,20 @@ namespace CSharpGL.CSSLGenetator
                 }
             }
             this.新建NToolStripMenuItem_Click(sender, e);
+        }
+
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+            Map2Template(this.currentFile);
+
+            保存SToolStripMenuItem_Click(sender, e);
+
+            this.currentFile.Generate();
+        }
+
+        private void Map2Template(CSSLTemplate cSSLTemplate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

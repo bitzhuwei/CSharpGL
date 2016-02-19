@@ -21,6 +21,7 @@ namespace CSharpGL.CSSLGenetator
         public ShaderFieldList VertexShaderFieldList { get; set; }
         public ShaderFieldList GeometryShaderFieldList { get; set; }
         public ShaderFieldList FragmentShaderFieldList { get; set; }
+        public FieldStructureList StrutureList { get; set; }
 
         public XElement ToXElement()
         {
@@ -47,6 +48,12 @@ namespace CSharpGL.CSSLGenetator
         }
 
         object ICloneable.Clone()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        internal void Generate()
         {
             throw new NotImplementedException();
         }

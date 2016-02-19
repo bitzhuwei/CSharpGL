@@ -84,12 +84,13 @@
             // btnGenerate
             // 
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenerate.Location = new System.Drawing.Point(509, 490);
+            this.btnGenerate.Location = new System.Drawing.Point(380, 490);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(129, 23);
+            this.btnGenerate.Size = new System.Drawing.Size(258, 23);
             this.btnGenerate.TabIndex = 3;
-            this.btnGenerate.Text = "Generate";
+            this.btnGenerate.Text = "Save and Generate";
             this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // cmbShaderProgramType
             // 

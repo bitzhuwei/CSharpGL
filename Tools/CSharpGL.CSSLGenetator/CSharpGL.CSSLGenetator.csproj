@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSSLTemplate.cs" />
+    <Compile Include="FieldStructure.cs" />
+    <Compile Include="FieldStructureList.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
