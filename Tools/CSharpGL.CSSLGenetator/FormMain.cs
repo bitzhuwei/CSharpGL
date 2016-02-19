@@ -26,9 +26,21 @@ namespace CSharpGL.CSSLGenetator
             Map2UI(this.currentFile);
         }
 
-        private void Map2UI(CSSLTemplate cSSLTemplate)
+        private void Map2UI(CSSLTemplate template)
         {
-            throw new NotImplementedException();
+            this.txtShaderName.Text = template.ShaderName;
+            {
+                for (int index = 0; index < this.cmbShaderProgramType.Items.Count; index++)
+                {
+                    if (this.cmbShaderProgramType.Items[index].ToString() == template.ProgramType.ToString())
+                    {
+                        this.cmbShaderProgramType.SelectedIndex = index;
+                        break;
+                    }
+                }
+            }
+            {
+            }
         }
 
         private void 打开OToolStripMenuItem_Click(object sender, EventArgs e)
@@ -73,6 +85,22 @@ namespace CSharpGL.CSSLGenetator
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            {
+                ShaderProgramType[] types = new ShaderProgramType[] 
+                {
+                   ShaderProgramType.VertexFragment, 
+                   ShaderProgramType.VertexGeometryFragment,
+                };
+                if (types.Length != Enum.GetNames(typeof(ShaderProgramType)).Length)
+                {
+                    throw new Exception("not all members are included in types.");
+                }
+                this.cmbShaderProgramType.Items.Clear();
+                foreach (var item in types)
+                {
+                    this.cmbShaderProgramType.Items.Add(item);
+                }
+            }
             this.新建NToolStripMenuItem_Click(sender, e);
         }
     }

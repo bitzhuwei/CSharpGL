@@ -18,6 +18,10 @@ namespace CSharpGL.CSSLGenetator
         const string strProgramType = "ProgramType";
         public ShaderProgramType ProgramType { get; set; }
 
+        public ShaderFieldList VertexShaderFieldList { get; set; }
+        public ShaderFieldList GeometryShaderFieldList { get; set; }
+        public ShaderFieldList FragmentShaderFieldList { get; set; }
+
         public XElement ToXElement()
         {
             return new XElement(typeof(CSSLTemplate).Name,
