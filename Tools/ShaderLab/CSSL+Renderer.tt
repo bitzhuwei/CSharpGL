@@ -2,13 +2,13 @@
 <#@ output extension=".cs" #>
 <#@ include file=".\Dump2MultipleFiles.ttinclude" #>
 <# string ShaderName = "LifeBar"; #>
-<# string ClassName = ShaderName + "Renderer"; #>
+<# string RendererClassName = ShaderName + "Renderer"; #>
 <# string VertexShaderName = ShaderName + "Vert"; #>
 <# string FragmentShaderName = ShaderName + "Frag"; #>
 <# string GeometryShaderName = ShaderName + "Geom"; #>
 /*
 本文件无用。
-有用的是<#= ShaderName #>.cs和<#= ClassName #>.cs。
+有用的是<#= ShaderName #>.cs和<#= RendererClassName #>.cs。
 */
 <# var manager = new Manager(Host, GenerationEnvironment, true) { OutputPath = Path.GetDirectoryName(Host.TemplateFile)}; #>
 <#
@@ -231,9 +231,9 @@ namespace CSharpShadingLanguage.<#= ShaderName #>
     manager.EndBlock();
 #>
 <#
-    manager.StartBlock(ClassName + ".cs");
+    manager.StartBlock(RendererClassName + ".cs");
 #>
-namespace ShaderLab
+namespace Renderers
 {
     using CSharpGL;
     using CSharpGL.Objects;
@@ -247,9 +247,9 @@ namespace ShaderLab
     using System.Threading.Tasks;
 
     /// <summary>
-    /// 一个<see cref="<#= ClassName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
+    /// 一个<see cref="<#= RendererClassName #>"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// </summary>
-    public class <#= ClassName #> : RendererBase
+    public class <#= RendererClassName #> : RendererBase
     {
         ShaderProgram shaderProgram;
 
@@ -290,7 +290,7 @@ namespace ShaderLab
 
         private IModel model;
 
-        public <#= ClassName #>(IModel model)
+        public <#= RendererClassName #>(IModel model)
         {
             this.model = model;
         }

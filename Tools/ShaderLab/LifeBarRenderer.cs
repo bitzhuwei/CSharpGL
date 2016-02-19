@@ -1,5 +1,5 @@
 
-namespace ShaderLab
+namespace Renderers
 {
     using CSharpGL;
     using CSharpGL.Objects;
