@@ -25,8 +25,8 @@ namespace CSharpGL.Winforms.Demo
 
         SimpleUIAxis uiAxis;
         NormalLineRenderer renderer;
-        NormalLineRenderer lifeBarRenderer;
-        LifeBarRenderer lifebarRenderer2;
+        NormalLineRenderer demolifebarRenderer;
+        LifeBarRenderer lifebarRenderer;
         ArcBallRotator modelRotator;
 
         Camera camera;
@@ -63,12 +63,12 @@ namespace CSharpGL.Winforms.Demo
             this.renderer = new NormalLineRenderer(model);
             this.renderer.Initialize();//不在此显式初始化也可以。
 
-            this.lifebar = new DemoLifeBar(0.2f, 0.02f, 4);
-            this.lifeBarRenderer = new NormalLineRenderer(this.lifebar);
-            this.lifeBarRenderer.Initialize();
+            this.demoLifebar = new DemoLifeBar(0.2f, 0.02f, 4);
+            this.demolifebarRenderer = new NormalLineRenderer(this.demoLifebar);
+            this.demolifebarRenderer.Initialize();
 
-            this.lifebarRenderer2 = new LifeBarRenderer(new LifeBar(2f, 0.2f, 4f));
-            this.lifebarRenderer2.Initialize();
+            this.lifebarRenderer = new LifeBarRenderer(new LifeBar(2f, 0.2f, 4f));
+            this.lifebarRenderer.Initialize();
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -78,7 +78,7 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.Resize += glCanvas1_Resize;
 
-            var displayer = new FormNormalLineDisplay(this.lifeBarRenderer);
+            var displayer = new FormNormalLineDisplay(this.demolifebarRenderer);
             displayer.Show();
             displayer = new FormNormalLineDisplay(this.renderer);
             displayer.Show();
@@ -113,7 +113,7 @@ namespace CSharpGL.Winforms.Demo
         //private float translateZ;
         private vec3 translate = new vec3();
         private float interval = 0.1f;
-        private DemoLifeBar lifebar;
+        private DemoLifeBar demoLifebar;
 
         private void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -160,17 +160,17 @@ namespace CSharpGL.Winforms.Demo
             this.renderer.viewMatrix = glm.translate(viewMatrix, translate);
             this.renderer.modelMatrix = modelMatrix;
 
-            this.lifeBarRenderer.projectionMatrix = projectionMatrix;
-            this.lifeBarRenderer.viewMatrix = AlwaysFaceCamera(glm.translate(viewMatrix, translate));
-            this.lifeBarRenderer.modelMatrix = AlwaysSameSize(
-                (this.camera.Target - this.camera.Position).Magnitude(), this.lifebar.Height);
+            //this.demolifebarRenderer.projectionMatrix = projectionMatrix;
+            //this.demolifebarRenderer.viewMatrix = AlwaysFaceCamera(glm.translate(viewMatrix, translate));
+            //this.demolifebarRenderer.modelMatrix = AlwaysSameSize(
+            //    (this.camera.Target - this.camera.Position).Magnitude(), this.demoLifebar.Height);
 
-            this.lifebarRenderer2.projectionMatrix = projectionMatrix;
-            this.lifebarRenderer2.viewMatrix = AlwaysFaceCamera(glm.translate(viewMatrix, translate));
-            this.lifebarRenderer2.modelMatrix = //mat4.identity();
+            this.lifebarRenderer.projectionMatrix = projectionMatrix;
+            this.lifebarRenderer.viewMatrix = AlwaysFaceCamera(glm.translate(viewMatrix, translate));
+            this.lifebarRenderer.modelMatrix = //mat4.identity();
                 AlwaysSameSize(
                 (this.camera.Target - this.camera.Position).Magnitude() / 10,
-                this.lifebarRenderer2.model.Height);
+                this.lifebarRenderer.model.Height);
 
             this.groundRenderer.projectionMatrix = projectionMatrix;
             this.groundRenderer.viewMatrix = viewMatrix;
@@ -181,8 +181,8 @@ namespace CSharpGL.Winforms.Demo
             this.uiAxis.Render(arg);
 
             this.renderer.Render(arg);
-            this.lifeBarRenderer.Render(arg);
-            this.lifebarRenderer2.Render(arg);
+            //this.demolifebarRenderer.Render(arg);
+            this.lifebarRenderer.Render(arg);
             this.groundRenderer.Render(arg);
         }
 
@@ -348,12 +348,12 @@ namespace CSharpGL.Winforms.Demo
             else if (e.KeyChar == '1')
             {
                 this.renderer.showModel = !this.renderer.showModel;
-                this.lifeBarRenderer.showModel = !this.lifeBarRenderer.showModel;
+                this.demolifebarRenderer.showModel = !this.demolifebarRenderer.showModel;
             }
             else if (e.KeyChar == '2')
             {
                 this.renderer.showNormal = !this.renderer.showNormal;
-                this.lifeBarRenderer.showNormal = !this.lifeBarRenderer.showNormal;
+                this.demolifebarRenderer.showNormal = !this.demolifebarRenderer.showNormal;
             }
             else if (e.KeyChar == 'w')
             {
@@ -397,17 +397,17 @@ namespace CSharpGL.Winforms.Demo
             }
             else if (e.KeyChar == ',')
             {
-                this.lifebarRenderer2.model.Wdith -= 0.1f;
+                this.lifebarRenderer.model.Wdith -= 0.1f;
                 this.lblState.Text = string.Format("length: {0}, width: {1}",
-                    this.lifebarRenderer2.model.Length,
-                    this.lifebarRenderer2.model.Wdith);
+                    this.lifebarRenderer.model.Length,
+                    this.lifebarRenderer.model.Wdith);
             }
             else if (e.KeyChar == '.')
             {
-                this.lifebarRenderer2.model.Wdith += 0.1f;
+                this.lifebarRenderer.model.Wdith += 0.1f;
                 this.lblState.Text = string.Format("length: {0}, width: {1}",
-                    this.lifebarRenderer2.model.Length,
-                    this.lifebarRenderer2.model.Wdith);
+                    this.lifebarRenderer.model.Length,
+                    this.lifebarRenderer.model.Wdith);
             }
         }
 

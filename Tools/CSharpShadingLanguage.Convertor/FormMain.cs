@@ -129,7 +129,7 @@ namespace CSharpShadingLanguage.Convertor
                             if (type.IsSubclassOf(typeof(CSShaderCode)))
                             {
                                 CSShaderCode shaderCode = Activator.CreateInstance(type) as CSShaderCode;
-                                SemanticShader semanticShader = shaderCode.Dump(fullname);
+                                SemanticShader semanticShader = shaderCode.GetSemanticShader(fullname);
                                 semanticShaderList.Add(semanticShader);
                             }
                         }

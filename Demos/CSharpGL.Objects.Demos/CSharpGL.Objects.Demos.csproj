@@ -52,6 +52,8 @@
     <Compile Include="DemoTexImage2D.cs" />
     <EmbeddedResource Include="DoubleTexture.frag" />
     <EmbeddedResource Include="DoubleTexture.vert" />
+    <Compile Include="DemoText.cssl.cs" />
+    <Compile Include="DemoTextRenderer.cs" />
     <Compile Include="DoubleTextureRenderer.cs" />
     <Compile Include="LifeBar.cssl.cs" />
     <Compile Include="LifeBar.cs" />
@@ -210,6 +212,11 @@
     <EmbeddedResource Include="LifeBar.frag" />
     <EmbeddedResource Include="LifeBar.geom" />
     <EmbeddedResource Include="LifeBar.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DemoText.frag" />
+    <EmbeddedResource Include="DemoText.geom" />
+    <EmbeddedResource Include="DemoText.vert" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

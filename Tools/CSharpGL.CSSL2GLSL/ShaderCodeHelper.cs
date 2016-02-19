@@ -9,7 +9,7 @@ namespace CSharpGL.CSSL2GLSL
 {
     public static class ShaderCodeHelper
     {
-        public static SemanticShader Dump(this CSShaderCode shaderCode, string fullname)
+        public static SemanticShader GetSemanticShader(this CSShaderCode shaderCode, string fullname)
         {
             if (shaderCode.GetType().IsSubclassOf(typeof(VertexCSShaderCode)))
             {

@@ -147,10 +147,15 @@ namespace CSharpGL.CSSL2GLSL
                     foundCSSLCount, updatedCSSLCount);
                 builder.AppendLine();
                 simpleBuilder.AppendLine();
-                foreach (var item in translationInfoList)
                 {
-                    item.Append(builder, 4);
-                    item.AppendSimple(simpleBuilder, 4);
+                    var list = from item in translationInfoList
+                               orderby item.GetUpdatedShaderCount() descending
+                               select item;
+                    foreach (var item in list)
+                    {
+                        item.Append(builder, 4);
+                        item.AppendSimple(simpleBuilder, 4);
+                    }
                 }
                 builder.AppendFormat("Translation all done!"); builder.AppendLine();
                 simpleBuilder.AppendFormat("Translation all done!"); simpleBuilder.AppendLine();
@@ -222,7 +227,7 @@ namespace CSharpGL.CSSL2GLSL
                 var result = from semanticShader in
                                  (from type in cr.CompiledAssembly.GetTypes()
                                   where type.IsSubclassOf(typeof(CSShaderCode))
-                                  select (Activator.CreateInstance(type) as CSShaderCode).Dump(fullname))
+                                  select (Activator.CreateInstance(type) as CSShaderCode).GetSemanticShader(fullname))
                              select new SemanticShaderInfo() { codeUpdated = semanticShader.Dump2File(), shader = semanticShader };
 
                 translationInfo.semanticShaderList = result.ToList();

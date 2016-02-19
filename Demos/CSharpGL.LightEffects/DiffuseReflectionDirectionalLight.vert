@@ -9,7 +9,7 @@ uniform mat4 projectionMatrix;
 uniform vec3 lightPosition;
 uniform vec3 lightColor;
 uniform vec3 globalAmbient;
-uniform float Kd = 0;
+uniform float Kd;
 
 void main(void)
 {

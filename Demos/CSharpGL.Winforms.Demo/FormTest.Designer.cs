@@ -113,6 +113,7 @@
             // 
             // btnCamera
             // 
+            this.btnCamera.Enabled = false;
             this.btnCamera.Location = new System.Drawing.Point(13, 87);
             this.btnCamera.Margin = new System.Windows.Forms.Padding(4);
             this.btnCamera.Name = "btnCamera";
@@ -120,7 +121,6 @@
             this.btnCamera.TabIndex = 3;
             this.btnCamera.Text = "PyramidElement+Camera(MouseWheel)";
             this.btnCamera.UseVisualStyleBackColor = true;
-            this.btnCamera.Click += new System.EventHandler(this.btnCamera_Click);
             // 
             // btnSatelliteRotation
             // 

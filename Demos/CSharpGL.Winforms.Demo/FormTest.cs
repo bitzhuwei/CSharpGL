@@ -32,10 +32,10 @@ namespace CSharpGL.Winforms.Demo
             (new FormPyramidElement()).Show();
         }
 
-        private void btnCamera_Click(object sender, EventArgs e)
-        {
-            (new FormCamera()).Show();
-        }
+        //private void btnCamera_Click(object sender, EventArgs e)
+        //{
+        //    (new FormCamera()).Show();
+        //}
 
         private void btnSatelliteRotation_Click(object sender, EventArgs e)
         {
