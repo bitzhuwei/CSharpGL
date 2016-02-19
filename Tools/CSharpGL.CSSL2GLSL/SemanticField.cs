@@ -150,8 +150,8 @@ namespace CSharpGL.CSSL2GLSL
             buildInTypeDict.Add(typeof(CSharpShadingLanguage.sampler2D), "sampler2D");
             buildInTypeDict.Add(typeof(CSharpShadingLanguage.sampler3D), "sampler3D");
 
-            buildInDefaultableTypeDict.Add(typeof(float), "0.0");
-            buildInDefaultableTypeDict.Add(typeof(int), "0");
+            buildInDefaultableTypeDict.Add(typeof(float), (new float()).ToString());
+            buildInDefaultableTypeDict.Add(typeof(int), (new int()).ToString());
             buildInDefaultableTypeDict.Add(typeof(vec2), (CSharpShadingLanguage.CSShaderCode.vec2(0, 0)).ToString());
             buildInDefaultableTypeDict.Add(typeof(vec3), (CSharpShadingLanguage.CSShaderCode.vec3(0, 0, 0)).ToString());
             buildInDefaultableTypeDict.Add(typeof(vec4), (CSharpShadingLanguage.CSShaderCode.vec4(0, 0, 0, 0)).ToString());
