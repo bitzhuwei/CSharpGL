@@ -121,6 +121,16 @@ namespace GLM
             return (float)result;
         }
 
+        public static bool operator ==(vec4 lhs, vec4 rhs)
+        {
+            return (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.w == rhs.w);
+        }
+
+        public static bool operator !=(vec4 lhs, vec4 rhs)
+        {
+            return !(lhs == rhs);
+        }
+
         public float[] to_array()
         {
             return new[] { x, y, z, w };
@@ -131,14 +141,12 @@ namespace GLM
         /// </summary>
         /// <param name="vector"></param>
         /// <returns></returns>
-        public void Normalize()
+        public vec4 normalize()
         {
             var frt = (float)Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w);
 
-            this.x = x / frt;
-            this.y = y / frt;
-            this.z = z / frt;
-            this.w = w / frt;
+            return new vec4(x / frt, y / frt, z / frt, w / frt);
+            ;
         }
 
         public override string ToString()

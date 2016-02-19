@@ -108,6 +108,16 @@ namespace GLM
             return (float)result;
 
         }
+        public static bool operator ==(vec2 lhs, vec2 rhs)
+        {
+            return (lhs.x == rhs.x && lhs.y == rhs.y);
+        }
+
+        public static bool operator !=(vec2 lhs, vec2 rhs)
+        {
+            return !(lhs == rhs);
+        }
+
         public float[] to_array()
         {
             return new[] { x, y };
@@ -118,12 +128,11 @@ namespace GLM
         /// </summary>
         /// <param name="vector"></param>
         /// <returns></returns>
-        public void Normalize()
+        public vec2 normalize()
         {
             var frt = (float)Math.Sqrt(this.x * this.x + this.y * this.y);
 
-            this.x = x / frt;
-            this.y = y / frt;
+            return new vec2(x / frt, y / frt);
         }
 
         public override string ToString()
