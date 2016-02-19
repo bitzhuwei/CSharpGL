@@ -26,6 +26,7 @@ namespace CSharpGL.Winforms.Demo
         SimpleUIAxis uiAxis;
         NormalLineRenderer renderer;
         NormalLineRenderer lifeBarRenderer;
+        LifeBarRenderer lifebarRenderer2;
         ArcBallRotator modelRotator;
 
         Camera camera;
@@ -40,7 +41,7 @@ namespace CSharpGL.Winforms.Demo
             InitializeComponent();
 
             this.camera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
-            this.camera.Position = new GLM.vec3(5, 5, 5);
+            this.camera.Position = new GLM.vec3(50, 5, 5);
 
             this.cameraRotator = new SatelliteRotator(this.camera);
 
@@ -66,6 +67,9 @@ namespace CSharpGL.Winforms.Demo
             this.lifeBarRenderer = new NormalLineRenderer(this.lifebar);
             this.lifeBarRenderer.Initialize();
 
+            this.lifebarRenderer2 = new LifeBarRenderer(new LifeBar(2f, 0.2f, 4f));
+            this.lifebarRenderer2.Initialize();
+
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
@@ -79,6 +83,14 @@ namespace CSharpGL.Winforms.Demo
             displayer = new FormNormalLineDisplay(this.renderer);
             displayer.Show();
 
+            Application.Idle += Application_Idle;
+        }
+
+        void Application_Idle(object sender, EventArgs e)
+        {
+            this.lblCamera.Text = string.Format("P: {0}, T: {1}, U: {2}, D: {3}",
+                this.camera.Position, this.camera.Target, this.camera.UpVector,
+                (this.camera.Position - this.camera.Target).Magnitude());
         }
 
         private void CreateElement()
@@ -151,6 +163,13 @@ namespace CSharpGL.Winforms.Demo
             this.lifeBarRenderer.modelMatrix = AlwaysSameSize(
                 (this.camera.Target - this.camera.Position).Magnitude(), this.lifebar.Height);
 
+            this.lifebarRenderer2.projectionMatrix = projectionMatrix;
+            this.lifebarRenderer2.viewMatrix = AlwaysFaceCamera(glm.translate(viewMatrix, translate));
+            this.lifebarRenderer2.modelMatrix = //mat4.identity();
+                AlwaysSameSize(
+                (this.camera.Target - this.camera.Position).Magnitude() / 10,
+                this.lifebarRenderer2.model.Height);
+
             this.groundRenderer.projectionMatrix = projectionMatrix;
             this.groundRenderer.viewMatrix = viewMatrix;
             this.groundRenderer.modelMatrix = mat4.identity();
@@ -161,6 +180,7 @@ namespace CSharpGL.Winforms.Demo
 
             this.renderer.Render(arg);
             this.lifeBarRenderer.Render(arg);
+            this.lifebarRenderer2.Render(arg);
             this.groundRenderer.Render(arg);
         }
 
@@ -372,6 +392,20 @@ namespace CSharpGL.Winforms.Demo
                 this.translate += movement;
 
                 FollowTargetObject();
+            }
+            else if (e.KeyChar == ',')
+            {
+                this.lifebarRenderer2.model.Wdith -= 0.1f;
+                this.lblState.Text = string.Format("length: {0}, width: {1}",
+                    this.lifebarRenderer2.model.Length,
+                    this.lifebarRenderer2.model.Wdith);
+            }
+            else if (e.KeyChar == '.')
+            {
+                this.lifebarRenderer2.model.Wdith += 0.1f;
+                this.lblState.Text = string.Format("length: {0}, width: {1}",
+                    this.lifebarRenderer2.model.Length,
+                    this.lifebarRenderer2.model.Wdith);
             }
         }
 

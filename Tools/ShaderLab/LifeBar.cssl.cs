@@ -62,6 +62,11 @@ namespace CSharpShaders
         }
     }
 
+    class GS_FS_VERTEX
+    {
+        public vec3 color;
+    }
+
     /// <summary>
     /// 一个<see cref="LifeBarFrag"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的fragment shader。
@@ -71,10 +76,6 @@ namespace CSharpShaders
     sealed class LifeBarFrag : FragmentCSShaderCode
     {
 
-        class GS_FS_VERTEX
-        {
-            public vec3 color;
-        }
         [In]
         GS_FS_VERTEX fragment_in;
 
@@ -123,10 +124,6 @@ namespace CSharpShaders
         [In]
         VS_GS_VERTEX[] vertex_in;
 
-        class GS_FS_VERTEX
-        {
-            public vec3 color;
-        }
         [Out]
         GS_FS_VERTEX vertex_out;
 

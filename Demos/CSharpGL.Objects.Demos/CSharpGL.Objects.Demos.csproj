@@ -53,10 +53,12 @@
     <EmbeddedResource Include="DoubleTexture.frag" />
     <EmbeddedResource Include="DoubleTexture.vert" />
     <Compile Include="DoubleTextureRenderer.cs" />
-    <Compile Include="LifeBar2.cs" />
+    <Compile Include="LifeBar.cssl.cs" />
+    <Compile Include="LifeBar.cs" />
     <Compile Include="DemoLifeBar.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LifeBarRenderer.cs" />
     <Compile Include="NormalLine.cssl.cs" />
     <Compile Include="NormalLineRenderer.cs" />
     <Compile Include="PickedGeometryIndexed.cs" />
@@ -203,6 +205,11 @@
   <ItemGroup>
     <EmbeddedResource Include="Simple.frag" />
     <EmbeddedResource Include="Simple.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LifeBar.frag" />
+    <EmbeddedResource Include="LifeBar.geom" />
+    <EmbeddedResource Include="LifeBar.vert" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
