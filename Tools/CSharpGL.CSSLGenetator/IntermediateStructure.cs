@@ -10,7 +10,7 @@ namespace CSharpGL.CSSLGenetator
     /// 在shader间传递的结构体数据的类型
     /// in VS_GS_VERTEX { vec3 normal; } vertex_in[];
     /// </summary>
-    class IntermediateStructure : ICloneable
+    public class IntermediateStructure : ICloneable
     {
 
         const string strName = "Name";
@@ -47,6 +47,11 @@ namespace CSharpGL.CSSLGenetator
             result.FieldList = this.FieldList.Clone() as StructureFieldList;
 
             return result;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0}", this.Name);
         }
     }
 

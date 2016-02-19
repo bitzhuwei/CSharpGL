@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace CSharpGL.CSSLGenetator
 {
-    class StructureFieldList : List<StructureField>, ICloneable
+    public class StructureFieldList : List<StructureField>, ICloneable
     {
 
         public XElement ToXElement()

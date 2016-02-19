@@ -11,7 +11,7 @@ namespace CSharpGL.CSSLGenetator
     /// uniform vec3 modelMatrix;
     /// in vec3 in_Position;
     /// </summary>
-    class ShaderField : ICloneable
+    public class ShaderField : ICloneable
     {
         const string strQualifier = "Qualifier";
         public FieldQualifier Qualider { get; set; }
@@ -56,9 +56,10 @@ namespace CSharpGL.CSSLGenetator
 
             return result;
         }
+        
     }
 
-    static class QualifierHelper
+    public static class QualifierHelper
     {
         public static string GetString(this FieldQualifier qualifier)
         {
@@ -82,7 +83,7 @@ namespace CSharpGL.CSSLGenetator
         }
     }
 
-    enum FieldQualifier
+    public enum FieldQualifier
     {
         In,
         Out,

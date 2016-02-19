@@ -12,7 +12,7 @@ namespace CSharpGL.CSSLGenetator
     /// <summary>
     /// 生成一套CSSL+Renderer所需的所有信息都在这里。
     /// </summary>
-    class CSSLTemplate : ICloneable
+    public class CSSLTemplate : ICloneable
     {
         const string strExtentsion = "xml";
         public string Fullname { get; set; }
@@ -112,9 +112,22 @@ namespace CSharpGL.CSSLGenetator
                 Debug.Listeners.Remove(listener);
             }
         }
+
+        internal IEnumerable<IntermediateStructure> GetAllIntermediateStructures()
+        {
+            foreach (var item in BuildInFieldTypeHelper.GetBuildInTypeList())
+            {
+                yield return item;
+            }
+
+            foreach (var item in this.StrutureList)
+            {
+                yield return item;
+            }
+        }
     }
 
-    enum ShaderProgramType
+    public enum ShaderProgramType
     {
         VertexFragment,
         VertexGeometryFragment,

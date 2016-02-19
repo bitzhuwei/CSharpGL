@@ -46,13 +46,25 @@
   <ItemGroup>
     <Compile Include="BuildInFieldTypeHelper.cs" />
     <Compile Include="CSSLTemplate.cs" />
-    <Compile Include="IntermediateStructure.cs" />
-    <Compile Include="IntermediateStructureList.cs" />
-    <Compile Include="FormAddVertexShaderField.cs">
+    <Compile Include="FormAddIntermediateStructure.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAddVertexShaderField.Designer.cs">
-      <DependentUpon>FormAddVertexShaderField.cs</DependentUpon>
+    <Compile Include="FormAddIntermediateStructure.Designer.cs">
+      <DependentUpon>FormAddIntermediateStructure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAddStructureField.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddStructureField.Designer.cs">
+      <DependentUpon>FormAddStructureField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IntermediateStructure.cs" />
+    <Compile Include="IntermediateStructureList.cs" />
+    <Compile Include="FormAddShaderField.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddShaderField.Designer.cs">
+      <DependentUpon>FormAddShaderField.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -69,8 +81,14 @@
     <Compile Include="StructureField.cs" />
     <Compile Include="StructureFieldList.cs" />
     <Compile Include="VertexShaderFieldList.cs" />
-    <EmbeddedResource Include="FormAddVertexShaderField.resx">
-      <DependentUpon>FormAddVertexShaderField.cs</DependentUpon>
+    <EmbeddedResource Include="FormAddIntermediateStructure.resx">
+      <DependentUpon>FormAddIntermediateStructure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddStructureField.resx">
+      <DependentUpon>FormAddStructureField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddShaderField.resx">
+      <DependentUpon>FormAddShaderField.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

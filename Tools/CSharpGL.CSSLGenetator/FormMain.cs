@@ -185,9 +185,49 @@ namespace CSharpGL.CSSLGenetator
             }
         }
 
-        private void addAToolStripMenuItem_Click(object sender, EventArgs e)
+        private void vertexShaderAddField_Click(object sender, EventArgs e)
         {
-
+            var dlg = new FormAddShaderField(this.currentFile);
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ShaderField field = dlg.Result;
+                this.lstVertexShaderField.Items.Add(field);
+                this.currentFile.VertexShaderFieldList.Add(field);
+            }
         }
+
+        private void geometryShaderAddField_Click(object sender, EventArgs e)
+        {
+            var dlg = new FormAddShaderField(this.currentFile);
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ShaderField field = dlg.Result;
+                this.lstGeometryShaderField.Items.Add(field);
+                this.currentFile.GeometryShaderFieldList.Add(field);
+            }
+        }   
+        
+        private void fragmentShaderAddField_Click(object sender, EventArgs e)
+        {
+            var dlg = new FormAddShaderField(this.currentFile);
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ShaderField field = dlg.Result;
+                this.lstFragmentShaderField.Items.Add(field);
+                this.currentFile.FragmentShaderFieldList.Add(field);
+            }
+        }
+
+        private void addIntermediateStructure_Click(object sender, EventArgs e)
+        {
+            var dlg = new FormAddIntermediateStructure(this.currentFile);
+            if(dlg.ShowDialog()== System.Windows.Forms.DialogResult.OK)
+            {
+                IntermediateStructure field = dlg.Result;
+                this.lstStructure.Items.Add(field);
+                this.currentFile.StrutureList.Add(field);
+            }
+        }
+
     }
 }

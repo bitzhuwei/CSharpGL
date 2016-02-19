@@ -36,13 +36,29 @@
             this.btnGenerate = new System.Windows.Forms.Button();
             this.cmbShaderProgramType = new System.Windows.Forms.ComboBox();
             this.lstVertexShaderField = new System.Windows.Forms.ListBox();
+            this.menuVertexShaderField = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.修改UToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lstGeometryShaderField = new System.Windows.Forms.ListBox();
+            this.menuGeometryShaderField = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.lstFragmentShaderField = new System.Windows.Forms.ListBox();
+            this.menuFragmentShaderField = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.label6 = new System.Windows.Forms.Label();
             this.lstStructure = new System.Windows.Forms.ListBox();
+            this.menuFieldStructure = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.新增AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.修改UToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除DToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新建NToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,27 +71,11 @@
             this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDlg = new System.Windows.Forms.SaveFileDialog();
             this.label7 = new System.Windows.Forms.Label();
-            this.menuVertexShaderField = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuFieldStructure = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.修改UToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.新增AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.修改UToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除DToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuGeometryShaderField = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFragmentShaderField = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
             this.menuVertexShaderField.SuspendLayout();
-            this.menuFieldStructure.SuspendLayout();
             this.menuGeometryShaderField.SuspendLayout();
             this.menuFragmentShaderField.SuspendLayout();
+            this.menuFieldStructure.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -134,6 +134,35 @@
             this.lstVertexShaderField.Size = new System.Drawing.Size(224, 364);
             this.lstVertexShaderField.TabIndex = 5;
             // 
+            // menuVertexShaderField
+            // 
+            this.menuVertexShaderField.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuVertexShaderField.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addAToolStripMenuItem,
+            this.修改UToolStripMenuItem,
+            this.删除DToolStripMenuItem});
+            this.menuVertexShaderField.Name = "menuVertexShaderField";
+            this.menuVertexShaderField.Size = new System.Drawing.Size(136, 82);
+            // 
+            // addAToolStripMenuItem
+            // 
+            this.addAToolStripMenuItem.Name = "addAToolStripMenuItem";
+            this.addAToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.addAToolStripMenuItem.Text = "新增(&A)";
+            this.addAToolStripMenuItem.Click += new System.EventHandler(this.vertexShaderAddField_Click);
+            // 
+            // 修改UToolStripMenuItem
+            // 
+            this.修改UToolStripMenuItem.Name = "修改UToolStripMenuItem";
+            this.修改UToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.修改UToolStripMenuItem.Text = "修改(&U)";
+            // 
+            // 删除DToolStripMenuItem
+            // 
+            this.删除DToolStripMenuItem.Name = "删除DToolStripMenuItem";
+            this.删除DToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.删除DToolStripMenuItem.Text = "删除(&D)";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -164,6 +193,35 @@
             this.lstGeometryShaderField.Size = new System.Drawing.Size(224, 364);
             this.lstGeometryShaderField.TabIndex = 5;
             // 
+            // menuGeometryShaderField
+            // 
+            this.menuGeometryShaderField.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuGeometryShaderField.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3});
+            this.menuGeometryShaderField.Name = "menuShaderField";
+            this.menuGeometryShaderField.Size = new System.Drawing.Size(136, 82);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.toolStripMenuItem1.Text = "新增(&A)";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.geometryShaderAddField_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(135, 26);
+            this.toolStripMenuItem2.Text = "修改(&U)";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(135, 26);
+            this.toolStripMenuItem3.Text = "删除(&D)";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -185,6 +243,35 @@
             this.lstFragmentShaderField.Size = new System.Drawing.Size(224, 364);
             this.lstFragmentShaderField.TabIndex = 5;
             // 
+            // menuFragmentShaderField
+            // 
+            this.menuFragmentShaderField.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuFragmentShaderField.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem4,
+            this.toolStripMenuItem5,
+            this.toolStripMenuItem6});
+            this.menuFragmentShaderField.Name = "menuShaderField";
+            this.menuFragmentShaderField.Size = new System.Drawing.Size(182, 110);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(181, 26);
+            this.toolStripMenuItem4.Text = "新增(&A)";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.fragmentShaderAddField_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(135, 26);
+            this.toolStripMenuItem5.Text = "修改(&U)";
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(135, 26);
+            this.toolStripMenuItem6.Text = "删除(&D)";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -205,6 +292,35 @@
             this.lstStructure.Name = "lstStructure";
             this.lstStructure.Size = new System.Drawing.Size(224, 364);
             this.lstStructure.TabIndex = 5;
+            // 
+            // menuFieldStructure
+            // 
+            this.menuFieldStructure.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuFieldStructure.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.新增AToolStripMenuItem,
+            this.修改UToolStripMenuItem1,
+            this.删除DToolStripMenuItem1});
+            this.menuFieldStructure.Name = "menuFieldStructure";
+            this.menuFieldStructure.Size = new System.Drawing.Size(136, 82);
+            // 
+            // 新增AToolStripMenuItem
+            // 
+            this.新增AToolStripMenuItem.Name = "新增AToolStripMenuItem";
+            this.新增AToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.新增AToolStripMenuItem.Text = "新增(&A)";
+            this.新增AToolStripMenuItem.Click += new System.EventHandler(this.addIntermediateStructure_Click);
+            // 
+            // 修改UToolStripMenuItem1
+            // 
+            this.修改UToolStripMenuItem1.Name = "修改UToolStripMenuItem1";
+            this.修改UToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.修改UToolStripMenuItem1.Text = "修改(&U)";
+            // 
+            // 删除DToolStripMenuItem1
+            // 
+            this.删除DToolStripMenuItem1.Name = "删除DToolStripMenuItem1";
+            this.删除DToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.删除DToolStripMenuItem1.Text = "删除(&D)";
             // 
             // menuStrip1
             // 
@@ -236,7 +352,7 @@
             this.新建NToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("新建NToolStripMenuItem.Image")));
             this.新建NToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.新建NToolStripMenuItem.Name = "新建NToolStripMenuItem";
-            this.新建NToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
+            this.新建NToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.新建NToolStripMenuItem.Text = "新建(&N)";
             this.新建NToolStripMenuItem.Click += new System.EventHandler(this.新建NToolStripMenuItem_Click);
             // 
@@ -301,119 +417,6 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "本程序不处理脏数据，所以请注意手动保存您的成果";
             // 
-            // menuVertexShaderField
-            // 
-            this.menuVertexShaderField.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuVertexShaderField.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addAToolStripMenuItem,
-            this.修改UToolStripMenuItem,
-            this.删除DToolStripMenuItem});
-            this.menuVertexShaderField.Name = "menuVertexShaderField";
-            this.menuVertexShaderField.Size = new System.Drawing.Size(182, 110);
-            // 
-            // menuFieldStructure
-            // 
-            this.menuFieldStructure.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuFieldStructure.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新增AToolStripMenuItem,
-            this.修改UToolStripMenuItem1,
-            this.删除DToolStripMenuItem1});
-            this.menuFieldStructure.Name = "menuFieldStructure";
-            this.menuFieldStructure.Size = new System.Drawing.Size(136, 82);
-            // 
-            // addAToolStripMenuItem
-            // 
-            this.addAToolStripMenuItem.Name = "addAToolStripMenuItem";
-            this.addAToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.addAToolStripMenuItem.Text = "新增(&A)";
-            this.addAToolStripMenuItem.Click += new System.EventHandler(this.addAToolStripMenuItem_Click);
-            // 
-            // 修改UToolStripMenuItem
-            // 
-            this.修改UToolStripMenuItem.Name = "修改UToolStripMenuItem";
-            this.修改UToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
-            this.修改UToolStripMenuItem.Text = "修改(&U)";
-            // 
-            // 删除DToolStripMenuItem
-            // 
-            this.删除DToolStripMenuItem.Name = "删除DToolStripMenuItem";
-            this.删除DToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
-            this.删除DToolStripMenuItem.Text = "删除(&D)";
-            // 
-            // 新增AToolStripMenuItem
-            // 
-            this.新增AToolStripMenuItem.Name = "新增AToolStripMenuItem";
-            this.新增AToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
-            this.新增AToolStripMenuItem.Text = "新增(&A)";
-            // 
-            // 修改UToolStripMenuItem1
-            // 
-            this.修改UToolStripMenuItem1.Name = "修改UToolStripMenuItem1";
-            this.修改UToolStripMenuItem1.Size = new System.Drawing.Size(135, 26);
-            this.修改UToolStripMenuItem1.Text = "修改(&U)";
-            // 
-            // 删除DToolStripMenuItem1
-            // 
-            this.删除DToolStripMenuItem1.Name = "删除DToolStripMenuItem1";
-            this.删除DToolStripMenuItem1.Size = new System.Drawing.Size(135, 26);
-            this.删除DToolStripMenuItem1.Text = "删除(&D)";
-            // 
-            // menuGeometryShaderField
-            // 
-            this.menuGeometryShaderField.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuGeometryShaderField.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3});
-            this.menuGeometryShaderField.Name = "menuShaderField";
-            this.menuGeometryShaderField.Size = new System.Drawing.Size(136, 82);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(135, 26);
-            this.toolStripMenuItem1.Text = "新增(&A)";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(135, 26);
-            this.toolStripMenuItem2.Text = "修改(&U)";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(135, 26);
-            this.toolStripMenuItem3.Text = "删除(&D)";
-            // 
-            // menuFragmentShaderField
-            // 
-            this.menuFragmentShaderField.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuFragmentShaderField.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem4,
-            this.toolStripMenuItem5,
-            this.toolStripMenuItem6});
-            this.menuFragmentShaderField.Name = "menuShaderField";
-            this.menuFragmentShaderField.Size = new System.Drawing.Size(136, 82);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(181, 26);
-            this.toolStripMenuItem4.Text = "新增(&A)";
-            // 
-            // toolStripMenuItem5
-            // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(181, 26);
-            this.toolStripMenuItem5.Text = "修改(&U)";
-            // 
-            // toolStripMenuItem6
-            // 
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(181, 26);
-            this.toolStripMenuItem6.Text = "删除(&D)";
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -438,12 +441,12 @@
             this.Name = "FormMain";
             this.Text = "CSSL generator";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.menuVertexShaderField.ResumeLayout(false);
-            this.menuFieldStructure.ResumeLayout(false);
             this.menuGeometryShaderField.ResumeLayout(false);
             this.menuFragmentShaderField.ResumeLayout(false);
+            this.menuFieldStructure.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

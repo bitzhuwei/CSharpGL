@@ -6,20 +6,19 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.CSSLGenetator
 {
-    class GeometryShaderFieldList : ShaderFieldList
+    public class GeometryShaderFieldList : ShaderFieldList
     {
         internal static GeometryShaderFieldList Parse(System.Xml.Linq.XElement xElement)
         {
             if (xElement.Name != typeof(GeometryShaderFieldList).Name) { throw new Exception(); }
 
-            return new GeometryShaderFieldList();
-        }
+            var result = new GeometryShaderFieldList();
+            foreach (var item in xElement.Elements(typeof(ShaderField).Name))
+            {
+                result.Add(ShaderField.Parse(item));
+            }
 
-        public override object Clone()
-        {
-            GeometryShaderFieldList list = new GeometryShaderFieldList();
-
-            return list;
+            return result;
         }
     }
 }

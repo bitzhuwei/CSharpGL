@@ -6,15 +6,28 @@ using System.Xml.Linq;
 
 namespace CSharpGL.CSSLGenetator
 {
-    abstract class ShaderFieldList : List<ShaderField>, ICloneable
+    public abstract class ShaderFieldList : List<ShaderField>, ICloneable
     {
 
         public XElement ToXElement()
         {
-            return new XElement(this.GetType().Name);
+            return new XElement(this.GetType().Name,
+                from item in this
+                select item.ToXElement()
+                );
         }
 
 
-        public abstract object Clone();
+        public  object Clone()
+        {
+            var result = this.MemberwiseClone() as ShaderFieldList;
+            result.Clear();
+            foreach (var item in this)
+            {
+                result.Add(item.Clone() as ShaderField);
+            }
+
+            return result;
+        }
     }
 }
