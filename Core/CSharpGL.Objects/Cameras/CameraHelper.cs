@@ -91,8 +91,7 @@ namespace CSharpGL.Objects.Cameras
                 boundingBox.GetCenter(out centerX, out centerY, out centerZ);
                 vec3 target = new vec3(centerX, centerY, centerZ);
 
-                vec3 target2Position = camera.Position - camera.Target;
-                target2Position.Normalize();
+                vec3 target2Position = (camera.Position - camera.Target).normalize();
 
                 vec3 position = target + target2Position * (size * 2 + 1);
 
@@ -130,8 +129,7 @@ namespace CSharpGL.Objects.Cameras
                 boundingBox.GetCenter(out centerX, out centerY, out centerZ);
                 vec3 target = new vec3(centerX, centerY, centerZ);
 
-                vec3 target2Position = camera.Position - camera.Target;
-                target2Position.Normalize();
+                vec3 target2Position = (camera.Position - camera.Target).normalize();
 
                 vec3 position = target + target2Position * (size * 2 + 1);
 
@@ -294,8 +292,7 @@ namespace CSharpGL.Objects.Cameras
             {
                 case ViewTypes.UserView:
                     //UserView 定义为从顶视图开始，绕X 轴旋转30 度，在绕Z 轴45 度，并且能看到整个模型的虚拟模型空间。
-                    target2Position = new vec3((float)Math.Sqrt(3), (float)Math.Sqrt(3), -1);
-                    target2Position.Normalize();
+                    target2Position = (new vec3((float)Math.Sqrt(3), (float)Math.Sqrt(3), -1)).normalize();
                     upVector = new vec3(0, 0, -1);
                     break;
                 case ViewTypes.Top:

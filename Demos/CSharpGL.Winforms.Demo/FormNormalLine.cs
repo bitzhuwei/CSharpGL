@@ -357,7 +357,7 @@ namespace CSharpGL.Winforms.Demo
             {
                 vec3 direction = (this.camera.Target - this.camera.Position);
                 direction.y = 0;
-                direction.Normalize();
+                direction = direction.normalize();
                 vec3 movement = interval * direction;
                 this.translate += movement;
 
@@ -367,7 +367,7 @@ namespace CSharpGL.Winforms.Demo
             {
                 vec3 direction = -(this.camera.Target - this.camera.Position);
                 direction.y = 0;
-                direction.Normalize();
+                direction = direction.normalize();
                 vec3 movement = interval * direction;
                 this.translate += movement;
 
@@ -377,7 +377,7 @@ namespace CSharpGL.Winforms.Demo
             {
                 vec3 direction = -this.camera.UpVector.cross(this.camera.Target - this.camera.Position);
                 direction.y = 0;
-                direction.Normalize();
+                direction = direction.normalize();
                 vec3 movement = interval * direction;
                 this.translate += movement;
 
@@ -387,7 +387,7 @@ namespace CSharpGL.Winforms.Demo
             {
                 vec3 direction = this.camera.UpVector.cross(-(this.camera.Target - this.camera.Position));
                 direction.y = 0;
-                direction.Normalize();
+                direction = direction.normalize();
                 vec3 movement = interval * direction;
                 this.translate += movement;
 

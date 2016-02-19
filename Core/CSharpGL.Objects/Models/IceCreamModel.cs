@@ -56,8 +56,7 @@ namespace CSharpGL.Objects.Models
                     vec3 position = new vec3((float)x, (float)y, (float)z);
                     sphere.positions[index] = position;
 
-                    position.Normalize();
-                    sphere.normals[index] = position;
+                    sphere.normals[index] = position.normalize();
 
                     sphere.colors[index] = RandomVec3();
 
@@ -77,8 +76,7 @@ namespace CSharpGL.Objects.Models
                     vec3 position = new vec3((float)x, (float)y, (float)z);
                     sphere.positions[index] = position;
 
-                    position.Normalize();
-                    sphere.normals[index] = position;
+                    sphere.normals[index] = position.normalize();
 
                     sphere.colors[index] = RandomVec3();
 
@@ -99,8 +97,7 @@ namespace CSharpGL.Objects.Models
                     vec3 position = new vec3((float)x, (float)y, (float)z);
                     sphere.positions[index] = position;
 
-                    position.Normalize();
-                    sphere.normals[index] = position;
+                    sphere.normals[index] = position.normalize();
 
                     sphere.colors[index] = RandomVec3();
 

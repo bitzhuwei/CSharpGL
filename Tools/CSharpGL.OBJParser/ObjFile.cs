@@ -127,8 +127,7 @@ namespace CSharpGL.OBJParser
                 }
                 if (shared > 0)
                 {
-                    sum = sum / shared;
-                    sum.Normalize();
+                    sum = (sum / shared).normalize();
                 }
                 model.normalList[i] = sum;
             }

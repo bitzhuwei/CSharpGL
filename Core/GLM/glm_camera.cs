@@ -69,8 +69,8 @@ namespace GLM
         /// <returns></returns>
         public static mat4 lookAt(vec3 eye, vec3 center, vec3 up)
         {
-            vec3 forward = (center - eye); forward.Normalize();
-            vec3 right = forward.cross(up); right.Normalize();
+            vec3 forward = (center - eye).normalize();
+            vec3 right = forward.cross(up).normalize();
             vec3 standardUp = right.cross(forward);
 
             mat4 Result = new mat4(1);
@@ -241,7 +241,7 @@ namespace GLM
             float c = cos(angle);
             float s = sin(angle);
 
-            vec3 axis = v; axis.Normalize();// normalize(v);
+            vec3 axis = v.normalize();
             vec3 temp = (1.0f - c) * axis;
 
             mat4 rotate = mat4.identity();

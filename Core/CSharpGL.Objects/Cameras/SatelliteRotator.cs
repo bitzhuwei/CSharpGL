@@ -95,10 +95,8 @@ namespace CSharpGL.Objects.Cameras
                         back.x * cos + right.x * sin,
                         back.y * cos + right.y * sin,
                         back.z * cos + right.z * sin);
-                    back = newBack;
-                    right = up.cross(back);
-                    back.Normalize();
-                    right.Normalize();
+                    back = newBack.normalize();
+                    right = up.cross(back).normalize();
                 }
                 {
                     float deltaY = verticalRotationFactor * (y - downPosition.Y) / bound.Height;
@@ -108,10 +106,8 @@ namespace CSharpGL.Objects.Cameras
                         back.x * cos + up.x * sin,
                         back.y * cos + up.y * sin,
                         back.z * cos + up.z * sin);
-                    back = newBack;
-                    up = back.cross(right);
-                    back.Normalize();
-                    up.Normalize();
+                    back = newBack.normalize();
+                    up = back.cross(right).normalize();
                 }
 
                 camera.Position = camera.Target +
@@ -152,12 +148,9 @@ namespace CSharpGL.Objects.Cameras
             var camera = this.Camera;
             if (camera != null)
             {
-                vec3 back = camera.Position - camera.Target;
-                vec3 right = Camera.UpVector.cross(back);
-                vec3 up = back.cross(right);
-                back.Normalize();
-                right.Normalize();
-                up.Normalize();
+                vec3 back = (camera.Position - camera.Target).normalize();
+                vec3 right = Camera.UpVector.cross(back).normalize();
+                vec3 up = back.cross(right).normalize();
 
                 this.back = back;
                 this.right = right;

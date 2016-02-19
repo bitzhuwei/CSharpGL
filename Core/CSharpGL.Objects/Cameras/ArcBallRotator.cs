@@ -68,13 +68,10 @@ namespace CSharpGL.Objects.Cameras
 
         private void SetCamera(vec3 position, vec3 target, vec3 up)
         {
-            _vectorCenterEye = position - target;
-            _vectorCenterEye.Normalize();
+            _vectorCenterEye = (position - target).normalize();
             _vectorUp = up;
-            _vectorRight = _vectorUp.cross(_vectorCenterEye);
-            _vectorRight.Normalize();
-            _vectorUp = _vectorCenterEye.cross(_vectorRight);
-            _vectorUp.Normalize();
+            _vectorRight = _vectorUp.cross(_vectorCenterEye).normalize();
+            _vectorUp = _vectorCenterEye.cross(_vectorRight).normalize();
 
             this.cameraState.position = position;
             this.cameraState.target = target;
@@ -169,8 +166,7 @@ namespace CSharpGL.Objects.Cameras
                 var angle = mouseSensitivity * (float)(Math.Acos(cosAngle) / Math.PI * 180);
                 Debug.WriteLine(string.Format(
                     ", angle: {0}", angle), listenerName);
-                _normalVector = _startPosition.cross(_endPosition);
-                _normalVector.Normalize();
+                _normalVector = _startPosition.cross(_endPosition).normalize();
                 if ((_normalVector.x == 0 && _normalVector.y == 0 && _normalVector.z == 0)
                     || float.IsNaN(_normalVector.x) || float.IsNaN(_normalVector.y) || float.IsNaN(_normalVector.z))
                 {

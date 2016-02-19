@@ -77,8 +77,7 @@ namespace CSharpGL.Objects.Demos.UIs
             }
             else
             {
-                vec3 position = camera.Position - camera.Target;
-                position.Normalize();
+                vec3 position = (camera.Position - camera.Target).normalize();
                 GL.gluLookAt(position.x, position.y, position.z,
                     0, 0, 0,
                     camera.UpVector.x, camera.UpVector.y, camera.UpVector.z);

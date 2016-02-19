@@ -148,13 +148,11 @@ namespace GLM
         /// </summary>
         /// <param name="vector"></param>
         /// <returns></returns>
-        public void Normalize()
+        public vec3 normalize()
         {
             var frt = (float)Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
 
-            this.x = x / frt;
-            this.y = y / frt;
-            this.z = z / frt;
+            return new vec3(x / frt, y / frt, z / frt);
         }
 
         public override string ToString()

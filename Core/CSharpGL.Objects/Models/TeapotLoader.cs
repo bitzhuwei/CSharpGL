@@ -67,8 +67,7 @@ namespace CSharpGL.Objects.Models
                 vec3 vertex2 = model.positions[face.Item3 - 1];
                 vec3 v1 = vertex0 - vertex2;
                 vec3 v2 = vertex2 - vertex1;
-                faceNormals[i] = v2.cross(v1);// v1.cross(v2);
-                faceNormals[i].Normalize();
+                faceNormals[i] = v2.cross(v1).normalize();
             }
 
             for (int i = 0; i < model.positions.Count; i++)
@@ -86,8 +85,7 @@ namespace CSharpGL.Objects.Models
                 }
                 if (shared > 0)
                 {
-                    sum = sum / shared;
-                    sum.Normalize();
+                    sum = (sum / shared).normalize();
                 }
                 model.normals[i] = sum;
             }

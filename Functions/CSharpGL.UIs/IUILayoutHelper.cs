@@ -63,8 +63,7 @@ namespace CSharpGL.UIs
                 }
                 else
                 {
-                    vec3 position = camera.Position - camera.Target;
-                    position.Normalize();
+                    vec3 position = (camera.Position - camera.Target).normalize();
                     viewMatrix = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
                 }
                 // 下面注释掉的代码是用来测试legacy OpenGL的matrix与GLM库计算的matrix是否相同用的。已经证明了两者完全相同，此处仅作留念+以防万一。
