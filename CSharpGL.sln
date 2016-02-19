@@ -103,6 +103,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearLogs", "Tools\ClearLog
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.GLInformation", "Tools\CSharpGL.GLInformation\CSharpGL.GLInformation.csproj", "{2748A821-6B9F-414E-B05B-DDDA6CD4A4C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Objects.Controllers", "Functions\CSharpGL.Objects.Controllers\CSharpGL.Objects.Controllers.csproj", "{3B6C3168-4FCA-492E-869F-BB22E0E367FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -261,6 +263,10 @@ Global
 		{2748A821-6B9F-414E-B05B-DDDA6CD4A4C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2748A821-6B9F-414E-B05B-DDDA6CD4A4C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2748A821-6B9F-414E-B05B-DDDA6CD4A4C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B6C3168-4FCA-492E-869F-BB22E0E367FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B6C3168-4FCA-492E-869F-BB22E0E367FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B6C3168-4FCA-492E-869F-BB22E0E367FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B6C3168-4FCA-492E-869F-BB22E0E367FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -306,5 +312,6 @@ Global
 		{629C3752-E730-4501-9BDA-C0550FD50A34} = {05F33CBB-E502-4E48-9675-7415C6F675EE}
 		{5603716F-B8A9-4E2A-8B64-4B44D2E27013} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
 		{2748A821-6B9F-414E-B05B-DDDA6CD4A4C0} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
+		{3B6C3168-4FCA-492E-869F-BB22E0E367FD} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 	EndGlobalSection
 EndGlobal
