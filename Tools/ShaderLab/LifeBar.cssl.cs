@@ -1,5 +1,5 @@
 
-namespace CSharpShaders
+namespace CSharpShadingLanguage.LifeBar
 {
 	// 不可将此文件中的代码复制到其他文件内（如果包含了其他的using ...;，那么CSSL2GLSL.exe就无法正常编译这些代码了。）
     using CSharpShadingLanguage;
