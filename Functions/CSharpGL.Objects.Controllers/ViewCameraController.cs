@@ -7,24 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CSharpGL.Objects.Cameras;
 
 namespace CSharpGL.Objects.Controllers
 {
-    public partial class CameraController : UserControl
+    public partial class ViewCameraController : UserControl
     {
-        public CameraController()
+        public ViewCameraController()
         {
             InitializeComponent();
         }
-
-        public CameraController(Camera camera = null)
-        {
-            InitializeComponent();
-
-            this.TargetCamera = camera;
-        }
-
-        public Camera TargetCamera { get; set; }
     }
 }

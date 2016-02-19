@@ -82,6 +82,8 @@ namespace CSharpGL.Winforms.Demo
             displayer.Show();
             displayer = new FormNormalLineDisplay(this.renderer);
             displayer.Show();
+            var cameraController = new FormCameraController(this.camera);
+            cameraController.Show();
 
             Application.Idle += Application_Idle;
         }

@@ -13,7 +13,12 @@ namespace CSharpGL.Objects.Controllers
 {
     public partial class PerspectiveCameraController : UserControl
     {
-        public PerspectiveCameraController(IPerspectiveViewCamera camera)
+        public PerspectiveCameraController()
+        {
+            InitializeComponent();
+        }
+
+        public PerspectiveCameraController(IPerspectiveViewCamera camera = null)
         {
             InitializeComponent();
 

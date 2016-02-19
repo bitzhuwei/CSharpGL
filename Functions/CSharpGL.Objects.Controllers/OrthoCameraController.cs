@@ -13,6 +13,11 @@ namespace CSharpGL.Objects.Controllers
 {
     public partial class OrthoCameraController : UserControl
     {
+        public OrthoCameraController()
+        {
+            InitializeComponent();
+        }
+
         public OrthoCameraController(IOrthoViewCamera camera)
         {
             InitializeComponent();
@@ -21,5 +26,15 @@ namespace CSharpGL.Objects.Controllers
         }
 
         public IOrthoViewCamera camera { get; private set; }
+
+        private void trackLeft_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackRight_Scroll(object sender, EventArgs e)
+        {
+
+        }
     }
 }

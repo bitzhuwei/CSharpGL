@@ -52,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CameraDictionary.cs" />
+    <Compile Include="FormCameraController.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCameraController.Designer.cs">
+      <DependentUpon>FormCameraController.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormNormalLineDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -289,6 +295,9 @@
       <DependentUpon>ScientificVisual3DControl.cs</DependentUpon>
     </Compile>
     <Compile Include="TestProjectionFunctions.cs" />
+    <EmbeddedResource Include="FormCameraController.resx">
+      <DependentUpon>FormCameraController.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormNormalLineDisplay.resx">
       <DependentUpon>FormNormalLineDisplay.cs</DependentUpon>
     </EmbeddedResource>
@@ -449,6 +458,10 @@
     <ProjectReference Include="..\..\Functions\CSharpGL.Objects.Common\CSharpGL.Objects.Common.csproj">
       <Project>{388d3f0c-08b3-47dc-86a8-cc5cc87b5819}</Project>
       <Name>CSharpGL.Objects.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Functions\CSharpGL.Objects.Controllers\CSharpGL.Objects.Controllers.csproj">
+      <Project>{3b6c3168-4fca-492e-869f-bb22e0e367fd}</Project>
+      <Name>CSharpGL.Objects.Controllers</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Functions\CSharpGL.Objects.VolumeRendering\CSharpGL.Objects.VolumeRendering.csproj">
       <Project>{e97977fd-ee85-47c5-810e-a0cba258faae}</Project>

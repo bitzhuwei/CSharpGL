@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewCameraController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewCameraController.Designer.cs">
+      <DependentUpon>ViewCameraController.cs</DependentUpon>
+    </Compile>
     <Content Include="readme.txt" />
     <Compile Include="CameraController.cs">
       <SubType>UserControl</SubType>
@@ -66,6 +72,15 @@
   <ItemGroup>
     <EmbeddedResource Include="CameraController.resx">
       <DependentUpon>CameraController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrthoCameraController.resx">
+      <DependentUpon>OrthoCameraController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerspectiveCameraController.resx">
+      <DependentUpon>PerspectiveCameraController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewCameraController.resx">
+      <DependentUpon>ViewCameraController.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

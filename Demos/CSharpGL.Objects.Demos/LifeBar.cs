@@ -12,7 +12,7 @@ namespace CSharpGL.Objects.Demos
     public class LifeBar : IModel
     {
 
-        private vec3 color = new vec3(1, 0, 0);
+        private vec3 color = new vec3(1, 0.1f, 0.1f);
 
         public vec3 Color
         {
