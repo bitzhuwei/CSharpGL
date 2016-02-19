@@ -122,7 +122,7 @@ namespace CSharpGL.Objects.Demos
             program.SetUniform(strLength, this.model.Length);
             program.SetUniform(strWdith, this.model.Wdith);
             program.SetUniform(strHeight, this.model.Height);
-            program.SetUniform(strColor, this.model.Color.x, this.model.Color.y, this.model.Color.z);
+            //program.SetUniform(strColor, this.model.Color.x, this.model.Color.y, this.model.Color.z);
             //program.SetUniform(strcameraDistance, this.cameraDistance);
 
             int[] originalPolygonMode = new int[1];
