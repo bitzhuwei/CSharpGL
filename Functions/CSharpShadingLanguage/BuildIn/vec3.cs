@@ -165,35 +165,35 @@ namespace CSharpShadingLanguage
 
         internal vec3(float s)
         {
-            x = y = z = s;
+            a0 = a1 = a2 = s;
         }
 
         internal vec3(float x, float y, float z)
         {
-            this.x = x;
-            this.y = y;
-            this.z = z;
+            this.a0 = x;
+            this.a1 = y;
+            this.a2 = z;
         }
 
         internal vec3(vec3 v)
         {
-            this.x = v.x;
-            this.y = v.y;
-            this.z = v.z;
+            this.a0 = v.x;
+            this.a1 = v.y;
+            this.a2 = v.z;
         }
 
         internal vec3(vec4 v)
         {
-            this.x = v.x;
-            this.y = v.y;
-            this.z = v.z;
+            this.a0 = v.x;
+            this.a1 = v.y;
+            this.a2 = v.z;
         }
 
         internal vec3(vec2 xy, float z)
         {
-            this.x = xy.x;
-            this.y = xy.y;
-            this.z = z;
+            this.a0 = xy.x;
+            this.a1 = xy.y;
+            this.a2 = z;
         }
 
         public static vec3 operator -(vec3 lhs)
@@ -290,7 +290,8 @@ namespace CSharpShadingLanguage
 
         public override string ToString()
         {
-            return string.Format("{0:0.00},{1:0.00},{2:0.00}", x, y, z);
+            return string.Format("vec3({0}, {1}, {2})", x, y, z);
+            //return string.Format("{0:0.00},{1:0.00},{2:0.00}", x, y, z);
         }
     }
 }

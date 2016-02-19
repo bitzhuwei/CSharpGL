@@ -1045,10 +1045,10 @@ namespace CSharpShadingLanguage
         public vec4 qqqt { get { return new vec4(q, q, q, t); } set { this.q = value.a0; this.q = value.a1; this.q = value.a2; this.t = value.a3; } }
         public vec4 qqqp { get { return new vec4(q, q, q, p); } set { this.q = value.a0; this.q = value.a1; this.q = value.a2; this.p = value.a3; } }
         public vec4 qqqq { get { return new vec4(q, q, q, q); } set { this.q = value.a0; this.q = value.a1; this.q = value.a2; this.q = value.a3; } }
-   
+
         #endregion compositions
 
- 
+
         public float this[int index]
         {
             get
@@ -1061,7 +1061,7 @@ namespace CSharpShadingLanguage
             }
             set
             {
-                if (index == 0)      x = value;
+                if (index == 0) x = value;
                 else if (index == 1) y = value;
                 else if (index == 2) z = value;
                 else if (index == 3) w = value;
@@ -1073,31 +1073,31 @@ namespace CSharpShadingLanguage
 
         internal vec4(float s)
         {
-            x = y = z = w = s;
+            a0 = a1 = a2 = a3 = s;
         }
 
         internal vec4(float x, float y, float z, float w)
         {
-            this.x = x;
-            this.y = y;
-            this.z = z;
-            this.w = w;
+            this.a0 = x;
+            this.a1 = y;
+            this.a2 = z;
+            this.a3 = w;
         }
 
         internal vec4(vec4 v)
         {
-            this.x = v.x;
-            this.y = v.y;
-            this.z = v.z;
-            this.w = v.w;
+            this.a0 = v.x;
+            this.a1 = v.y;
+            this.a2 = v.z;
+            this.a3 = v.w;
         }
 
         internal vec4(vec3 xyz, float w)
         {
-            this.x = xyz.x;
-            this.y = xyz.y;
-            this.z = xyz.z;
-            this.w = w;
+            this.a0 = xyz.x;
+            this.a1 = xyz.y;
+            this.a2 = xyz.z;
+            this.a3 = w;
         }
 
         public static vec4 operator -(vec4 lhs)
@@ -1177,7 +1177,8 @@ namespace CSharpShadingLanguage
 
         public override string ToString()
         {
-            return string.Format("{0:0.00},{1:0.00},{2:0.00},{3:0.00}", x, y, z, w);
+            return string.Format("vec4({0}, {1}, {2}, {3})", x, y, z, w);
+            //return string.Format("{0:0.00},{1:0.00},{2:0.00},{3:0.00}", x, y, z, w);
         }
     }
 }

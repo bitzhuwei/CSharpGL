@@ -60,25 +60,25 @@ namespace CSharpShadingLanguage
 
         internal vec2(float s)
         {
-            x = y = s;
+            a0 = a1 = s;
         }
 
         internal vec2(float x, float y)
         {
-            this.x = x;
-            this.y = y;
+            this.a0 = x;
+            this.a1 = y;
         }
 
         internal vec2(vec2 v)
         {
-            this.x = v.x;
-            this.y = v.y;
+            this.a0 = v.x;
+            this.a1 = v.y;
         }
 
         internal vec2(vec3 v)
         {
-            this.x = v.x;
-            this.y = v.y;
+            this.a0 = v.x;
+            this.a1 = v.y;
         }
 
         public static vec2 operator -(vec2 lhs)
@@ -158,7 +158,8 @@ namespace CSharpShadingLanguage
 
         public override string ToString()
         {
-            return string.Format("{0:0.00},{1:0.00}", x, y);
+            return string.Format("vec2({0}, {1})", x, y);
+            //return string.Format("{0:0.00},{1:0.00}", x, y);
             //return string.Format("{0}, {1}", x.ToShortString(), y.ToShortString());
         }
     }

@@ -49,15 +49,23 @@ namespace CSharpGL.CSSL2GLSL
                     {
                         foreach (var item in this.shaderCode.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic))
                         {
-                            if(item.Name == this.varName)
+                            if (item.Name == this.varName)
                             {
                                 object obj = item.GetValue(this.shaderCode);
-                                builder.Append(string.Format(" = {0}", obj));
+                                if (obj != null)
+                                {
+                                    string str = obj.ToString();
+                                    if (str != buildInDefaultableTypeDict[currentType])
+                                    {
+                                        builder.Append(" = ");
+                                        builder.Append(str);
+                                    }
+                                }
                                 break;
                             }
                         }
                     }
-                           
+
                     builder.Append(";");// ;
                 }
                 else// 自定义类型
@@ -142,8 +150,11 @@ namespace CSharpGL.CSSL2GLSL
             buildInTypeDict.Add(typeof(CSharpShadingLanguage.sampler2D), "sampler2D");
             buildInTypeDict.Add(typeof(CSharpShadingLanguage.sampler3D), "sampler3D");
 
-            buildInDefaultableTypeDict.Add(typeof(float), "0.0f");
+            buildInDefaultableTypeDict.Add(typeof(float), "0.0");
             buildInDefaultableTypeDict.Add(typeof(int), "0");
+            buildInDefaultableTypeDict.Add(typeof(vec2), (CSharpShadingLanguage.CSShaderCode.vec2(0, 0)).ToString());
+            buildInDefaultableTypeDict.Add(typeof(vec3), (CSharpShadingLanguage.CSShaderCode.vec3(0, 0, 0)).ToString());
+            buildInDefaultableTypeDict.Add(typeof(vec4), (CSharpShadingLanguage.CSShaderCode.vec4(0, 0, 0, 0)).ToString());
         }
 
     }
