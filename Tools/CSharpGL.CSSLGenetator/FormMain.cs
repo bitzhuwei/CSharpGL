@@ -23,7 +23,7 @@ namespace CSharpGL.CSSLGenetator
 
         void Application_Idle(object sender, EventArgs e)
         {
-            this.Text = string.Format("CSSL generator - {0}", this.currentFile.Fullname);
+            this.Text = string.Format("CSSL Generator - {0}", this.currentFile.Fullname);
         }
 
         private void 新建NToolStripMenuItem_Click(object sender, EventArgs e)
