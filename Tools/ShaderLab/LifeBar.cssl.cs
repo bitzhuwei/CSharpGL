@@ -6,6 +6,16 @@ namespace CSharpShaders
 
 #if DEBUG
 
+    class VS_GS_VERTEX
+    {
+        public vec3 normal;
+    }
+	
+    class GS_FS_VERTEX
+    {
+        public vec3 color;
+    }
+
     /// <summary>
     /// 一个<see cref="LifeBarVert"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// 这就是C#Shader形式的vertex shader。
@@ -21,16 +31,11 @@ namespace CSharpShaders
         vec3 in_Position;
 
         /// <summary>
-        /// vertex's color.
+        /// vertex's normal.
         /// </summar>
         [In]
         vec3 in_Normal;
 
-
-        class VS_GS_VERTEX
-        {
-            public vec3 normal;
-        }
         [Out]
         VS_GS_VERTEX vertex_out;
 
@@ -60,11 +65,6 @@ namespace CSharpShaders
             vertex_out.normal = in_Normal;
             // this is where your vertex shader ends.
         }
-    }
-
-    class GS_FS_VERTEX
-    {
-        public vec3 color;
     }
 
     /// <summary>
@@ -116,11 +116,6 @@ namespace CSharpShaders
             get { return 27; }
         }
 
-
-        class VS_GS_VERTEX
-        {
-            public vec3 normal;
-        }
         [In]
         VS_GS_VERTEX[] vertex_in;
 
