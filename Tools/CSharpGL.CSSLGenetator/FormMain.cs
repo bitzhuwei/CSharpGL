@@ -179,10 +179,15 @@ namespace CSharpGL.CSSLGenetator
                 this.currentFile.StrutureList.Clear();
                 foreach (var item in this.lstStructure.Items)
                 {
-                    FieldStructure structure = item as FieldStructure;
+                    IntermediateStructure structure = item as IntermediateStructure;
                     this.currentFile.StrutureList.Add(structure);
                 }
             }
+        }
+
+        private void addAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

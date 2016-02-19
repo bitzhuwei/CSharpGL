@@ -26,7 +26,7 @@ namespace CSharpGL.CSSLGenetator
         public VertexShaderFieldList VertexShaderFieldList { get; set; }
         public GeometryShaderFieldList GeometryShaderFieldList { get; set; }
         public FragmentShaderFieldList FragmentShaderFieldList { get; set; }
-        public FieldStructureList StrutureList { get; set; }
+        public IntermediateStructureList StrutureList { get; set; }
 
         public CSSLTemplate()
         {
@@ -35,7 +35,7 @@ namespace CSharpGL.CSSLGenetator
             this.VertexShaderFieldList = new VertexShaderFieldList();
             this.GeometryShaderFieldList = new GeometryShaderFieldList();
             this.FragmentShaderFieldList = new FragmentShaderFieldList();
-            this.StrutureList = new FieldStructureList();
+            this.StrutureList = new IntermediateStructureList();
         }
 
         public XElement ToXElement()
@@ -73,7 +73,7 @@ namespace CSharpGL.CSSLGenetator
             result.VertexShaderFieldList = VertexShaderFieldList.Parse(element.Element(typeof(VertexShaderFieldList).Name));
             result.GeometryShaderFieldList = GeometryShaderFieldList.Parse(element.Element(typeof(GeometryShaderFieldList).Name));
             result.FragmentShaderFieldList = FragmentShaderFieldList.Parse(element.Element(typeof(FragmentShaderFieldList).Name));
-            result.StrutureList = FieldStructureList.Parse(element.Element(typeof(FieldStructureList).Name));
+            result.StrutureList = IntermediateStructureList.Parse(element.Element(typeof(IntermediateStructureList).Name));
 
             result.Fullname = fullname;
 
@@ -88,7 +88,7 @@ namespace CSharpGL.CSSLGenetator
             result.VertexShaderFieldList = this.VertexShaderFieldList.Clone() as VertexShaderFieldList;
             result.GeometryShaderFieldList = this.GeometryShaderFieldList.Clone() as GeometryShaderFieldList;
             result.FragmentShaderFieldList = this.FragmentShaderFieldList.Clone() as FragmentShaderFieldList;
-            result.StrutureList = this.StrutureList.Clone() as FieldStructureList;
+            result.StrutureList = this.StrutureList.Clone() as IntermediateStructureList;
 
             return result;
         }
