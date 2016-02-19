@@ -106,6 +106,8 @@ namespace CSharpGL.CSSL2GLSL
 
         static void Main(string[] args)
         {
+            //CSharpShadingLanguage.NeverUsed.PrintVec234Components.PrintComponents();
+            //return;
             StringBuilder builder = new StringBuilder();
             StringBuilder simpleBuilder = new StringBuilder();
             string time = DateTime.Now.ToString("yyyyMMdd-HHmmss");
