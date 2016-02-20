@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildInFieldTypeHelper.cs" />
+    <Compile Include="BuildInFieldTypeHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CSSLTemplate.cs" />
     <Compile Include="FormAddIntermediateStructure.cs">
       <SubType>Form</SubType>
