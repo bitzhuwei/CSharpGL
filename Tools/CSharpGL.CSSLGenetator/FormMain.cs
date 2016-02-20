@@ -95,9 +95,9 @@ namespace CSharpGL.CSSLGenetator
                 {
                     this.currentFile.Fullname = this.saveFileDlg.FileName;
                 }
-
-                this.currentFile.Save();
             }
+
+            this.currentFile.Save();
         }
 
         private void 另存为AToolStripMenuItem_Click(object sender, EventArgs e)
@@ -187,7 +187,7 @@ namespace CSharpGL.CSSLGenetator
 
         private void vertexShaderAddField_Click(object sender, EventArgs e)
         {
-            var dlg = new FormAddShaderField(this.currentFile);
+            var dlg = new FormAddVertexShaderField(this.currentFile);
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 ShaderField field = dlg.Result;

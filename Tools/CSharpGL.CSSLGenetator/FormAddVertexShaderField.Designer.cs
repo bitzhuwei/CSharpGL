@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.CSSLGenetator
 {
-    partial class FormAddShaderField
+    partial class FormAddVertexShaderField
     {
         /// <summary>
         /// Required designer variable.
@@ -36,6 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbType = new System.Windows.Forms.ComboBox();
+            this.lblPropertyType = new System.Windows.Forms.Label();
+            this.cmbPropertyType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnOK
@@ -68,6 +70,7 @@
             this.cmbQualifier.Name = "cmbQualifier";
             this.cmbQualifier.Size = new System.Drawing.Size(345, 23);
             this.cmbQualifier.TabIndex = 8;
+            this.cmbQualifier.SelectedIndexChanged += new System.EventHandler(this.cmbQualifier_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -111,13 +114,32 @@
             this.cmbType.Size = new System.Drawing.Size(345, 23);
             this.cmbType.TabIndex = 8;
             // 
-            // FormAddShaderField
+            // lblPropertyType
+            // 
+            this.lblPropertyType.AutoSize = true;
+            this.lblPropertyType.Location = new System.Drawing.Point(11, 105);
+            this.lblPropertyType.Name = "lblPropertyType";
+            this.lblPropertyType.Size = new System.Drawing.Size(111, 15);
+            this.lblPropertyType.TabIndex = 5;
+            this.lblPropertyType.Text = "PropertyType:";
+            // 
+            // cmbPropertyType
+            // 
+            this.cmbPropertyType.FormattingEnabled = true;
+            this.cmbPropertyType.Location = new System.Drawing.Point(128, 101);
+            this.cmbPropertyType.Name = "cmbPropertyType";
+            this.cmbPropertyType.Size = new System.Drawing.Size(344, 23);
+            this.cmbPropertyType.TabIndex = 8;
+            // 
+            // FormAddVertexShaderField
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(484, 187);
+            this.Controls.Add(this.cmbPropertyType);
+            this.Controls.Add(this.lblPropertyType);
             this.Controls.Add(this.cmbType);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbQualifier);
@@ -126,7 +148,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Name = "FormAddShaderField";
+            this.Name = "FormAddVertexShaderField";
             this.Text = "FormAddVertexShaderField";
             this.Load += new System.EventHandler(this.FormAddVertexShaderField_Load);
             this.ResumeLayout(false);
@@ -144,5 +166,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbType;
+        private System.Windows.Forms.Label lblPropertyType;
+        private System.Windows.Forms.ComboBox cmbPropertyType;
     }
 }

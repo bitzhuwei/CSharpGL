@@ -113,7 +113,6 @@ namespace CSharpGL.CSSLGenetator
                 var listener = new TextWriterTraceListener(fileStream);
                 Debug.Listeners.Add(listener);
                 GenerateRenderer();
-                Debug.WriteLine("// hello cssl template renderer.");
                 Debug.Close();
                 Debug.Listeners.Remove(listener);
             }
@@ -124,7 +123,328 @@ namespace CSharpGL.CSSLGenetator
 
         private void GenerateRenderer()
         {
-            //throw new NotImplementedException();
+            Debug.WriteLine(string.Format("namespace Renderers.{0}", this.ShaderName));
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("using CSharpGL;");
+            Debug.WriteLine("using CSharpGL.Objects;");
+            Debug.WriteLine("using CSharpGL.Objects.Models;");
+            Debug.WriteLine("using CSharpGL.Objects.Shaders;");
+            Debug.WriteLine("using CSharpGL.Objects.VertexBuffers;");
+            Debug.WriteLine("using GLM;");
+            Debug.WriteLine("using System;");
+            Debug.WriteLine("using System.Collections.Generic;");
+            Debug.WriteLine("using System.Linq;");
+            Debug.WriteLine("using System.Threading.Tasks;");
+            Debug.WriteLine("");
+            Debug.WriteLine("/// <summary>");
+            Debug.WriteLine(string.Format("/// 一个<see cref=\"\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。", this.ShaderName + "Renderer"));
+            Debug.WriteLine("/// </summary>");
+            Debug.WriteLine(string.Format("public class {0} : RendererBase", this.ShaderName + "Renderer"));
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("ShaderProgram shaderProgram;");
+            Debug.WriteLine("");
+            Debug.WriteLine("#region VAO/VBO renderers");
+            Debug.WriteLine("");
+            Debug.WriteLine("VertexArrayObject vertexArrayObject;");
+            Debug.WriteLine("");
+            foreach (var item in this.VertexShaderFieldList)
+            {
+                if (item.Qualider == FieldQualifier.In)
+                {
+                    Debug.WriteLine(string.Format("const string str{0} = \"{0}\";", item.FieldName, item.FieldName));
+                    Debug.WriteLine(string.Format("BufferRenderer {0}BufferRenderer;", item.FieldName));
+                }
+            }
+            Debug.WriteLine("");
+            Debug.WriteLine("BufferRenderer indexBufferRenderer;");
+            Debug.WriteLine("");
+            Debug.WriteLine("#endregion");
+            Debug.WriteLine("");
+
+            GenerateDeclaringUniforms();
+
+            Debug.WriteLine("");
+            Debug.WriteLine("public PolygonModes polygonMode = PolygonModes.Filled;");
+            Debug.WriteLine("");
+            Debug.WriteLine("private int elementCount;");
+            Debug.WriteLine("");
+            Debug.WriteLine("private IModel model;");
+            Debug.WriteLine("");
+            Debug.WriteLine(string.Format("public {0}(IModel model)", this.ShaderName + "Renderer"));
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("this.model = model;");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.WriteLine("");
+            Debug.WriteLine("protected void InitializeShader(out ShaderProgram shaderProgram)");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine(string.Format("var vertexShaderSource = ManifestResourceLoader.LoadTextFile(\"{0}.vert\");", this.ShaderName));
+            Debug.WriteLine(string.Format("var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(\"{0}.frag\");", this.ShaderName));
+            if (this.ProgramType == ShaderProgramType.VertexGeometryFragment)
+            {
+                Debug.WriteLine(string.Format("var geometryShaderSource = ManifestResourceLoader.LoadTextFile(\"{0}.geom\");", this.ShaderName));
+            }
+            Debug.WriteLine("");
+            Debug.WriteLine("shaderProgram = new ShaderProgram();");
+            if (this.ProgramType == ShaderProgramType.VertexGeometryFragment)
+            {
+                Debug.WriteLine("shaderProgram.Create(vertexShaderSource, fragmentShaderSource, geometryShaderSource);");
+            }
+            else
+            {
+                Debug.WriteLine("shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);");
+            }
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.WriteLine("");
+            Debug.WriteLine("protected void InitializeVAO()");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("IModel model = this.model;");
+            GenerateSetRenderer();
+            Debug.WriteLine("this.indexBufferRenderer = model.GetIndexes();");
+            Debug.WriteLine("");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;");
+            Debug.WriteLine("if (renderer != null)");
+            Debug.WriteLine("{ this.elementCount = renderer.ElementCount; }");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;");
+            Debug.WriteLine("if (renderer != null)");
+            Debug.WriteLine("{ this.elementCount = renderer.VertexCount; } ");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.WriteLine("");
+            Debug.WriteLine("protected override void DoInitialize()");
+            Debug.WriteLine("{");
+            Debug.WriteLine("    InitializeShader(out shaderProgram);");
+            Debug.WriteLine("");
+            Debug.WriteLine("    InitializeVAO();");
+            Debug.WriteLine("}");
+            Debug.WriteLine("");
+            Debug.WriteLine("protected override void DoRender(RenderEventArgs e)");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            GenerateSetUniforms();
+            Debug.WriteLine("");
+            Debug.WriteLine("int[] originalPolygonMode = new int[1];");
+            Debug.WriteLine("GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);");
+            Debug.WriteLine("GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);");
+            Debug.WriteLine("");
+            Debug.WriteLine("GL.Enable(GL.GL_PRIMITIVE_RESTART);");
+            Debug.WriteLine("GL.PrimitiveRestartIndex(uint.MaxValue);");
+            Debug.WriteLine("");
+            Debug.WriteLine("if (this.vertexArrayObject == null)");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("var vertexArrayObject = new VertexArrayObject(");
+            Debug.WriteLine("this.positionBufferRenderer,");
+            Debug.WriteLine("this.indexBufferRenderer);");
+            Debug.WriteLine("vertexArrayObject.Create(e, this.shaderProgram);");
+            Debug.WriteLine("");
+            Debug.WriteLine("this.vertexArrayObject = vertexArrayObject;");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.WriteLine("else");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("this.vertexArrayObject.Render(e, this.shaderProgram);");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.WriteLine("");
+            Debug.WriteLine("GL.Disable(GL.GL_PRIMITIVE_RESTART);");
+            Debug.WriteLine("");
+            Debug.WriteLine("GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));");
+            Debug.WriteLine("");
+            Debug.WriteLine("// 解绑shader");
+            Debug.WriteLine("program.Unbind();");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.WriteLine("");
+            Debug.WriteLine("protected override void DisposeUnmanagedResources()");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("if (this.vertexArrayObject != null)");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("this.vertexArrayObject.Dispose();");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.WriteLine("");
+            Debug.WriteLine("public void DecreaseVertexCount()");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;");
+            Debug.WriteLine("if (renderer != null)");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("if (renderer.ElementCount > 0) { renderer.ElementCount--; }");
+            Debug.WriteLine("return;");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;");
+            Debug.WriteLine("if (renderer != null)");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("if (renderer.VertexCount > 0) { renderer.VertexCount--; }");
+            Debug.WriteLine("return;");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.WriteLine("");
+            Debug.WriteLine("public void IncreaseVertexCount()");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;");
+            Debug.WriteLine("if (renderer != null)");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("if (renderer.ElementCount < this.elementCount) { renderer.ElementCount++; }");
+            Debug.WriteLine("return;");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;");
+            Debug.WriteLine("if (renderer != null)");
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("if (renderer.VertexCount < this.elementCount) { renderer.VertexCount++; }");
+            Debug.WriteLine("return;");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+        }
+
+        private void GenerateSetRenderer()
+        {
+            foreach (var item in this.VertexShaderFieldList)
+            {
+                if (item.Qualider == FieldQualifier.In)
+                {
+                    switch (item.PropertyType)
+                    {
+                        case PropertyType.Position:
+                            Debug.WriteLine(string.Format(
+                                "this.{0}BufferRenderer = model.GetPositionBufferRenderer(str{0});", item.FieldName));
+                            break;
+                        case PropertyType.Color:
+                            Debug.WriteLine(string.Format(
+                                "this.{0}BufferRenderer = model.GetColorBufferRenderer(str{0});", item.FieldName));
+                            break;
+                        case PropertyType.Normal:
+                            Debug.WriteLine(string.Format(
+                                "this.{0}BufferRenderer = model.GetNormalBufferRenderer(str{0});", item.FieldName));
+                            break;
+                        case PropertyType.Other:
+                            Debug.WriteLine(string.Format(
+                                "//this.{0}BufferRenderer = ???(str{0});", item.FieldName));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void GenerateSetUniforms()
+        {
+            Debug.WriteLine("ShaderProgram program = this.shaderProgram;");
+            Debug.WriteLine("// 绑定shader");
+            Debug.WriteLine("program.Bind();");
+            var list = (from item in this.VertexShaderFieldList where item.Qualider == FieldQualifier.Uniform select item)
+                                 .Union(
+                                 from item in this.GeometryShaderFieldList where item.Qualider == FieldQualifier.Uniform select item)
+                                 .Union(from item in this.FragmentShaderFieldList where item.Qualider == FieldQualifier.Uniform select item).Distinct();
+            foreach (var item in list)
+            {
+                if (item.FieldType == "float")
+                {
+                    Debug.WriteLine(string.Format(
+                        "program.SetUniform(str{0}, {0});", item.FieldName));
+                }
+                else if (item.FieldType == "vec2")
+                {
+                    Debug.WriteLine(string.Format(
+                        "program.SetUniform(str{0}, {0}.x, {0}.y);", item.FieldName));
+                }
+                else if (item.FieldType == "vec3")
+                {
+                    Debug.WriteLine(string.Format(
+                        "program.SetUniform(str{0}, {0}.x, {0}.y, {0}.z);", item.FieldName));
+                }
+                else if (item.FieldType == "vec4")
+                {
+                    Debug.WriteLine(string.Format(
+                        "program.SetUniform(str{0}, {0}.x, {0}.y, {0}.z, {0}.w);", item.FieldName));
+                }
+                else if (item.FieldType == "mat2")
+                {
+                    Debug.WriteLine(string.Format(
+                        "program.SetUniformMatrix2(str{0}, {0}.to_array());", item.FieldName));
+                }
+                else if (item.FieldType == "mat3")
+                {
+                    Debug.WriteLine(string.Format(
+                        "program.SetUniformMatrix3(str{0}, {0}.to_array());", item.FieldName));
+                }
+                else if (item.FieldType == "mat4")
+                {
+                    Debug.WriteLine(string.Format(
+                        "program.SetUniformMatrix4(str{0}, {0}.to_array());", item.FieldName));
+                }
+                
+            }
+        }
+
+        private IEnumerable<ShaderField> GenerateDeclaringUniforms()
+        {
+            Debug.WriteLine("#region uniforms");
+            Debug.WriteLine("");
+            var list = (from item in this.VertexShaderFieldList where item.Qualider == FieldQualifier.Uniform select item)
+                       .Union(
+                       from item in this.GeometryShaderFieldList where item.Qualider == FieldQualifier.Uniform select item)
+                       .Union(from item in this.FragmentShaderFieldList where item.Qualider == FieldQualifier.Uniform select item).Distinct();
+            foreach (var item in list)
+            {
+                Debug.WriteLine(string.Format("const string str{0} = \"{0}\";", item.FieldName, item.FieldName));
+                Debug.WriteLine(string.Format("public {0} {1};", item.FieldType, item.FieldName));
+                Debug.WriteLine("");
+            }
+            Debug.WriteLine("#endregion");
+            return list;
         }
 
         private void GenerateCSSL()
@@ -140,9 +460,13 @@ namespace CSharpGL.CSSLGenetator
             Debug.WriteLine("");
             Debug.Indent();
             GenerateStructures();
+            Debug.WriteLine("");
             GenerateVertexShader();
+            Debug.WriteLine("");
             GenerateGeometryShader();
+            Debug.WriteLine("");
             GenerateFragmentShader();
+            Debug.WriteLine("");
             Debug.Unindent();
             Debug.WriteLine("#endif");
             Debug.WriteLine("}");
@@ -161,7 +485,7 @@ namespace CSharpGL.CSSLGenetator
             Debug.WriteLine(string.Format("sealed class {0}: VertexCSShaderCode", this.ShaderName + "Frag"));
             Debug.WriteLine("{");
             Debug.Indent();
-            foreach (var item in this.VertexShaderFieldList)
+            foreach (var item in this.FragmentShaderFieldList)
             {
                 Debug.WriteLine(string.Format("[{0}]", item.Qualider.GetString()));
                 Debug.WriteLine(string.Format("{0} {1};", item.FieldType, item.FieldName));

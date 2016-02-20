@@ -242,6 +242,16 @@ namespace CSharpGL.Objects.Shaders
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
+        public void SetUniformMatrix2(string uniformName, float[] m)
+        {
+            GL.UniformMatrix2(GetUniformLocation(uniformName), 1, false, m);
+        }
+
+        /// <summary>
+        /// 请注意你的数据类型最终将转换为int还是float
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="m"></param>
         public void SetUniformMatrix3(string uniformName, float[] m)
         {
             GL.UniformMatrix3(GetUniformLocation(uniformName), 1, false, m);
