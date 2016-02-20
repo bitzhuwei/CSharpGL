@@ -462,8 +462,11 @@ namespace CSharpGL.CSSLGenetator
             GenerateStructures();
             Debug.WriteLine("");
             GenerateVertexShader();
-            Debug.WriteLine("");
-            GenerateGeometryShader();
+            if (this.ProgramType == ShaderProgramType.VertexGeometryFragment)
+            {
+                Debug.WriteLine("");
+                GenerateGeometryShader();
+            }
             Debug.WriteLine("");
             GenerateFragmentShader();
             Debug.WriteLine("");

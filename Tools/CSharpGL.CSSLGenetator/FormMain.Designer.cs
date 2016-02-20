@@ -162,6 +162,7 @@
             this.删除DToolStripMenuItem.Name = "删除DToolStripMenuItem";
             this.删除DToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.删除DToolStripMenuItem.Text = "删除(&D)";
+            this.删除DToolStripMenuItem.Click += new System.EventHandler(this.RemoveVertexShaderFIeld_Click);
             // 
             // label3
             // 
@@ -221,6 +222,7 @@
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(135, 26);
             this.toolStripMenuItem3.Text = "删除(&D)";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.RemoveGeometryShaderFIeld_Click);
             // 
             // label5
             // 
@@ -251,26 +253,27 @@
             this.toolStripMenuItem5,
             this.toolStripMenuItem6});
             this.menuFragmentShaderField.Name = "menuShaderField";
-            this.menuFragmentShaderField.Size = new System.Drawing.Size(136, 82);
+            this.menuFragmentShaderField.Size = new System.Drawing.Size(182, 110);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(135, 26);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem4.Text = "新增(&A)";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.fragmentShaderAddField_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(135, 26);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem5.Text = "修改(&U)";
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(135, 26);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem6.Text = "删除(&D)";
+            this.toolStripMenuItem6.Click += new System.EventHandler(this.RemoveFragmentShaderField_Click);
             // 
             // label6
             // 

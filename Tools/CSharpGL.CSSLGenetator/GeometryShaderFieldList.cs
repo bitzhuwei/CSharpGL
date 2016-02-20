@@ -20,5 +20,16 @@ namespace CSharpGL.CSSLGenetator
 
             return result;
         }
+
+        public override object Clone()
+        {
+            GeometryShaderFieldList list = new GeometryShaderFieldList();
+            foreach (var item in this)
+            {
+                list.Add(item.Clone() as ShaderField);
+            }
+
+            return list;
+        }
     }
 }

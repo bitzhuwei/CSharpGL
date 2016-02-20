@@ -18,16 +18,7 @@ namespace CSharpGL.CSSLGenetator
         }
 
 
-        public  object Clone()
-        {
-            var result = this.MemberwiseClone() as ShaderFieldList;
-            result.Clear();
-            foreach (var item in this)
-            {
-                result.Add(item.Clone() as ShaderField);
-            }
-
-            return result;
-        }
+        public abstract object Clone();
+       
     }
 }

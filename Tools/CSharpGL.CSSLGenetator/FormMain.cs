@@ -205,8 +205,8 @@ namespace CSharpGL.CSSLGenetator
                 this.lstGeometryShaderField.Items.Add(field);
                 this.currentFile.GeometryShaderFieldList.Add(field);
             }
-        }   
-        
+        }
+
         private void fragmentShaderAddField_Click(object sender, EventArgs e)
         {
             var dlg = new FormAddShaderField(this.currentFile);
@@ -221,11 +221,41 @@ namespace CSharpGL.CSSLGenetator
         private void addIntermediateStructure_Click(object sender, EventArgs e)
         {
             var dlg = new FormAddIntermediateStructure(this.currentFile);
-            if(dlg.ShowDialog()== System.Windows.Forms.DialogResult.OK)
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 IntermediateStructure field = dlg.Result;
                 this.lstStructure.Items.Add(field);
                 this.currentFile.StrutureList.Add(field);
+            }
+        }
+
+        private void RemoveVertexShaderFIeld_Click(object sender, EventArgs e)
+        {
+            if (this.lstVertexShaderField.SelectedIndex >= 0)
+            {
+                ShaderField field = this.lstVertexShaderField.SelectedItem as ShaderField;
+                this.currentFile.VertexShaderFieldList.Remove(field);
+                this.lstVertexShaderField.Items.Remove(field);
+            }
+        }
+
+        private void RemoveGeometryShaderFIeld_Click(object sender, EventArgs e)
+        {
+            if (this.lstGeometryShaderField.SelectedIndex >= 0)
+            {
+                ShaderField field = this.lstGeometryShaderField.SelectedItem as ShaderField;
+                this.currentFile.GeometryShaderFieldList.Remove(field);
+                this.lstGeometryShaderField.Items.Remove(field);
+            }
+        }
+
+        private void RemoveFragmentShaderField_Click(object sender, EventArgs e)
+        {
+            if (this.lstFragmentShaderField.SelectedIndex >= 0)
+            {
+                ShaderField field = this.lstFragmentShaderField.SelectedItem as ShaderField;
+                this.currentFile.FragmentShaderFieldList.Remove(field);
+                this.lstFragmentShaderField.Items.Remove(field);
             }
         }
 
