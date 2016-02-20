@@ -259,5 +259,20 @@ namespace CSharpGL.CSSLGenetator
             }
         }
 
+        private void cmbShaderProgramType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch ((ShaderProgramType)(this.cmbShaderProgramType.SelectedItem))
+            {
+                case ShaderProgramType.VertexFragment:
+                    this.lstGeometryShaderField.Visible = false;
+                    break;
+                case ShaderProgramType.VertexGeometryFragment:
+                    this.lstGeometryShaderField.Visible = true;
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
     }
 }
