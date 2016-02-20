@@ -93,6 +93,7 @@
     <Compile Include="StructureFieldList.cs" />
     <Compile Include="VertexShaderFieldList.cs" />
     <Content Include="vs+fs.xml" />
+    <Content Include="vs+gs+fs.xml" />
     <EmbeddedResource Include="FormAddIntermediateStructure.resx">
       <DependentUpon>FormAddIntermediateStructure.cs</DependentUpon>
     </EmbeddedResource>
