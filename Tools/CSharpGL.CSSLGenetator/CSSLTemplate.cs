@@ -104,7 +104,7 @@ namespace CSharpGL.CSSLGenetator
                 var fileStream = new FileStream(csslFullname, FileMode.Create);
                 var listener = new TextWriterTraceListener(fileStream);
                 Debug.Listeners.Add(listener);
-                Debug.WriteLine("// hello cssl template.");
+                GenerateCSSL();
                 Debug.Close();
                 Debug.Listeners.Remove(listener);
             }
@@ -112,6 +112,7 @@ namespace CSharpGL.CSSLGenetator
                 var fileStream = new FileStream(rendererFullname, FileMode.Create);
                 var listener = new TextWriterTraceListener(fileStream);
                 Debug.Listeners.Add(listener);
+                GenerateRenderer();
                 Debug.WriteLine("// hello cssl template renderer.");
                 Debug.Close();
                 Debug.Listeners.Remove(listener);
@@ -119,6 +120,125 @@ namespace CSharpGL.CSSLGenetator
 
             //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
             OpenFolderHelper.OpenFolderAndSelectFiles(directory, csslFullname, rendererFullname);
+        }
+
+        private void GenerateRenderer()
+        {
+            //throw new NotImplementedException();
+        }
+
+        private void GenerateCSSL()
+        {
+            Debug.WriteLine(string.Format("namespace CSharpShadingLanguage.{0}", this.ShaderName));
+            Debug.WriteLine("{");
+            Debug.Indent();
+            Debug.WriteLine("// 不可将此文件中的代码复制到其他文件内（如果包含了其他的using ...;，那么CSSL2GLSL.exe就无法正常编译这些代码了。）");
+            Debug.WriteLine("using CSharpShadingLanguage;");
+            Debug.WriteLine("");
+            Debug.Unindent();
+            Debug.WriteLine("#if DEBUG");
+            Debug.WriteLine("");
+            Debug.Indent();
+            GenerateStructures();
+            GenerateVertexShader();
+            GenerateGeometryShader();
+            GenerateFragmentShader();
+            Debug.Unindent();
+            Debug.WriteLine("#endif");
+            Debug.WriteLine("}");
+            Debug.WriteLine("");
+        }
+
+        private void GenerateFragmentShader()
+        {
+            Debug.WriteLine("/// <summary>");
+            Debug.WriteLine(string.Format(
+                "/// 一个<see cref=\"{0}\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。",
+                this.ShaderName + "Frag"));
+            Debug.WriteLine("/// </summary>");
+            Debug.WriteLine("[Dump2File(true)]");
+            Debug.WriteLine("[GLSLVersion(GLSLVersion.v150)]");
+            Debug.WriteLine(string.Format("sealed class {0}: VertexCSShaderCode", this.ShaderName + "Frag"));
+            Debug.WriteLine("{");
+            Debug.Indent();
+            foreach (var item in this.VertexShaderFieldList)
+            {
+                Debug.WriteLine(string.Format("[{0}]", item.Qualider.GetString()));
+                Debug.WriteLine(string.Format("{0} {1};", item.FieldType, item.FieldName));
+                Debug.WriteLine("");
+            }
+            Debug.WriteLine("public override void main()");
+            Debug.WriteLine("{");
+            Debug.WriteLine("}");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+        }
+
+        private void GenerateGeometryShader()
+        {
+            Debug.WriteLine("/// <summary>");
+            Debug.WriteLine(string.Format(
+                "/// 一个<see cref=\"{0}\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。",
+                this.ShaderName + "Geom"));
+            Debug.WriteLine("/// </summary>");
+            Debug.WriteLine("[Dump2File(true)]");
+            Debug.WriteLine("[GLSLVersion(GLSLVersion.v150)]");
+            Debug.WriteLine(string.Format("sealed class {0}: VertexCSShaderCode", this.ShaderName + "Geom"));
+            Debug.WriteLine("{");
+            Debug.Indent();
+            foreach (var item in this.GeometryShaderFieldList)
+            {
+                Debug.WriteLine(string.Format("[{0}]", item.Qualider.GetString()));
+                Debug.WriteLine(string.Format("{0} {1};", item.FieldType, item.FieldName));
+                Debug.WriteLine("");
+            }
+            Debug.WriteLine("public override void main()");
+            Debug.WriteLine("{");
+            Debug.WriteLine("}");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+        }
+
+        private void GenerateVertexShader()
+        {
+            Debug.WriteLine("/// <summary>");
+            Debug.WriteLine(string.Format(
+                "/// 一个<see cref=\"{0}\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。",
+                this.ShaderName + "Vert"));
+            Debug.WriteLine("/// </summary>");
+            Debug.WriteLine("[Dump2File(true)]");
+            Debug.WriteLine("[GLSLVersion(GLSLVersion.v150)]");
+            Debug.WriteLine(string.Format("sealed class {0}: VertexCSShaderCode", this.ShaderName + "Vert"));
+            Debug.WriteLine("{");
+            Debug.Indent();
+            foreach (var item in this.VertexShaderFieldList)
+            {
+                Debug.WriteLine(string.Format("[{0}]", item.Qualider.GetString()));
+                Debug.WriteLine(string.Format("{0} {1};", item.FieldType, item.FieldName));
+                Debug.WriteLine("");
+            }
+            Debug.WriteLine("public override void main()");
+            Debug.WriteLine("{");
+            Debug.WriteLine("}");
+            Debug.Unindent();
+            Debug.WriteLine("}");
+        }
+
+        private void GenerateStructures()
+        {
+            foreach (var item in this.StrutureList)
+            {
+                Debug.WriteLine(string.Format("class {0}", item.Name));
+                Debug.WriteLine("{");
+                Debug.Indent();
+                foreach (var field in item.FieldList)
+                {
+                    Debug.WriteLine(string.Format("public {0} {1};", field.FieldType, field.FieldName));
+                }
+                Debug.Unindent();
+                Debug.WriteLine("}");
+                Debug.WriteLine("");
+            }
         }
 
         internal IEnumerable<IntermediateStructure> GetAllIntermediateStructures()
