@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CSSLTemplate ShaderName="SomeShader" ProgramType="VertexFragment">
+  <VertexShaderFieldList>
+    <ShaderField PropertyType="Position" Qualifier="In" FieldType="vec3" FieldName="position" />
+    <ShaderField PropertyType="Color" Qualifier="In" FieldType="vec3" FieldName="color" />
+    <ShaderField PropertyType="Other" Qualifier="Out" FieldType="vec3" FieldName="passColor" />
+    <ShaderField PropertyType="Other" Qualifier="Uniform" FieldType="mat4" FieldName="mvp" />
+  </VertexShaderFieldList>
+  <GeometryShaderFieldList />
+  <FragmentShaderFieldList>
+    <ShaderField PropertyType="Other" Qualifier="In" FieldType="vec3" FieldName="passColor" />
+    <ShaderField PropertyType="Other" Qualifier="Out" FieldType="vec4" FieldName="outputColor" />
+  </FragmentShaderFieldList>
+  <IntermediateStructureList />
+</CSSLTemplate>
