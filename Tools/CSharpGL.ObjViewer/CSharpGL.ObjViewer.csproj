@@ -115,7 +115,7 @@
       <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
       <Name>CSharpShadingLanguage</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CSharpGL.OBJParser\CSharpGL.OBJParser.csproj">
+    <ProjectReference Include="..\..\Functions\FileParsers\CSharpGL.OBJParser\CSharpGL.OBJParser.csproj">
       <Project>{c58cb2c1-459c-497e-bdae-3dbe3964dad8}</Project>
       <Name>CSharpGL.OBJParser</Name>
     </ProjectReference>

@@ -47,11 +47,11 @@
     <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\GLM\GLM.csproj">
+    <ProjectReference Include="..\..\..\Core\GLM\GLM.csproj">
       <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
       <Name>GLM</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\Utilities\Utilities.csproj">
+    <ProjectReference Include="..\..\..\Core\Utilities\Utilities.csproj">
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
