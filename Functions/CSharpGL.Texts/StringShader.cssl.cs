@@ -22,14 +22,14 @@ namespace CSharpShadingLanguage.StringShader
         [Out]
         vec3 passColor;
 
-        [Uniform]
-        mat4 mvp;
-
         [In]
         vec2 texCoord;
 
         [Out]
         vec2 passTexCoord;
+
+        [Uniform]
+        mat4 mvp;
 
         public override void main()
         {
@@ -49,14 +49,14 @@ namespace CSharpShadingLanguage.StringShader
         [In]
         vec3 passColor;
 
-        [Out]
-        vec4 outputColor;
-
         [In]
         vec2 passTexCoord;
 
         [Uniform]
         sampler2D glyphTexture;
+
+        [Out]
+        vec4 outputColor;
 
         public override void main()
         {

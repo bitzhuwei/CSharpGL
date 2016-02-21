@@ -3,9 +3,9 @@
 in vec3 position;
 in vec3 color;
 out vec3 passColor;
-uniform mat4 mvp;
 in vec2 texCoord;
 out vec2 passTexCoord;
+uniform mat4 mvp;
 
 void main(void)
 {

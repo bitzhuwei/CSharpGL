@@ -1,9 +1,9 @@
 #version 150 core
 
 in vec3 passColor;
-out vec4 outputColor;
 in vec2 passTexCoord;
 uniform sampler2D glyphTexture;
+out vec4 outputColor;
 
 void main(void)
 {
