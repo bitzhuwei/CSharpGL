@@ -63,6 +63,7 @@
             // 
             // cmbQualifier
             // 
+            this.cmbQualifier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbQualifier.FormattingEnabled = true;
             this.cmbQualifier.Location = new System.Drawing.Point(128, 12);
             this.cmbQualifier.Name = "cmbQualifier";
@@ -105,6 +106,7 @@
             // 
             // cmbType
             // 
+            this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbType.FormattingEnabled = true;
             this.cmbType.Location = new System.Drawing.Point(128, 41);
             this.cmbType.Name = "cmbType";
