@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A7A799DC-D893-4711-BF05-A1E347CBE21B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CSharpGL.GlyphTextures</RootNamespace>
+    <AssemblyName>CSharpGL.GlyphTextures</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CharacterInfo.cs" />
+    <Compile Include="CharacterInfoDictHelper.cs" />
+    <Compile Include="CharacterInfoHelper.cs" />
+    <Compile Include="FontResource.cs" />
+    <Compile Include="FontResourceHelper.cs" />
+    <Compile Include="FontTexture.cs" />
+    <Compile Include="FontTextureHelper.cs" />
+    <Compile Include="FontTextureYieldHelper.cs" />
+    <Compile Include="FreeTypes\BBox.cs" />
+    <Compile Include="FreeTypes\FreeTypeAPI.cs" />
+    <Compile Include="FreeTypes\FreeTypeEnumerations.cs" />
+    <Compile Include="FreeTypes\FreeTypeObjects.cs" />
+    <Compile Include="FreeTypes\FT_BitmapBuffer.cs" />
+    <Compile Include="FreeTypes\FT_BitmapGlyph.cs" />
+    <Compile Include="FreeTypes\FT_Face.cs" />
+    <Compile Include="FreeTypes\FT_Generic.cs" />
+    <Compile Include="FreeTypes\FT_GlyphRec.cs" />
+    <Compile Include="FreeTypes\FT_Library.cs" />
+    <Compile Include="FreeTypes\FT_ListRec.cs" />
+    <Compile Include="FreeTypes\FT_Vector.cs" />
+    <Compile Include="KeyValuePairHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FreeTypes\freetype.2.5.4ForStudy.dll" />
+    <Content Include="FreeTypes\freetype.dll" />
+    <Content Include="LucidaTypewriterRegular.ttf.png" />
+    <Content Include="LucidaTypewriterRegular.ttf.xml" />
+    <Content Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FreeTypes\freetype.exp" />
+    <None Include="FreeTypes\freetype.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Utilities\Utilities.csproj">
+      <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
