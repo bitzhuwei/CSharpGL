@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StringModel.cs" />
     <Compile Include="StringShader.cssl.cs" />
     <Compile Include="StringShaderRenderer.cs" />
     <Content Include="readme.txt" />
