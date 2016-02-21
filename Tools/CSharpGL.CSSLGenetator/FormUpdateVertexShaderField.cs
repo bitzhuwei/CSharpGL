@@ -12,21 +12,22 @@ namespace CSharpGL.CSSLGenetator
 {
     public partial class FormUpdateVertexShaderField : Form
     {
+        public ShaderField Result { get; private set; }
 
         private CSSLTemplate template;
-        private ShaderField target;
+        private ShaderField clonedTarget;
 
         public FormUpdateVertexShaderField(CSSLTemplate template, ShaderField target)
         {
             InitializeComponent();
 
             this.template = template;
-            this.target = target;
+            this.clonedTarget = target.Clone() as ShaderField;
         }
 
         private void FormAddVertexShaderField_Load(object sender, EventArgs e)
         {
-            this.txtName.Text = this.target.FieldName;
+            this.txtName.Text = this.clonedTarget.FieldName;
 
             {
                 FieldQualifier[] qualifiers = new FieldQualifier[]
@@ -42,7 +43,7 @@ namespace CSharpGL.CSSLGenetator
                 }
                 for (int i = 0; i < this.cmbQualifier.Items.Count; i++)
                 {
-                    if (this.cmbQualifier.Items[i].ToString() == this.target.Qualider.ToString())
+                    if (this.cmbQualifier.Items[i].ToString() == this.clonedTarget.Qualider.ToString())
                     {
                         this.cmbQualifier.SelectedIndex = i;
                         break;
@@ -57,7 +58,7 @@ namespace CSharpGL.CSSLGenetator
                 }
                 for (int i = 0; i < this.cmbType.Items.Count; i++)
                 {
-                    if (this.cmbType.Items[i].ToString() == this.target.FieldType)
+                    if (this.cmbType.Items[i].ToString() == this.clonedTarget.FieldType)
                     {
                         this.cmbType.SelectedIndex = i;
                         break;
@@ -79,7 +80,7 @@ namespace CSharpGL.CSSLGenetator
                 }
                 for (int i = 0; i < this.cmbPropertyType.Items.Count; i++)
                 {
-                    if (this.cmbPropertyType.Items[i].ToString() == this.target.PropertyType.ToString())
+                    if (this.cmbPropertyType.Items[i].ToString() == this.clonedTarget.PropertyType.ToString())
                     {
                         this.cmbPropertyType.SelectedIndex = i;
                         break;
@@ -90,10 +91,12 @@ namespace CSharpGL.CSSLGenetator
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            this.target.Qualider = (FieldQualifier)this.cmbQualifier.SelectedItem;
-            this.target.FieldType = this.cmbType.SelectedItem.ToString();
-            this.target.FieldName = this.txtName.Text;
-            this.target.PropertyType = (PropertyType)this.cmbPropertyType.SelectedItem;
+            this.clonedTarget.Qualider = (FieldQualifier)this.cmbQualifier.SelectedItem;
+            this.clonedTarget.FieldType = this.cmbType.SelectedItem.ToString();
+            this.clonedTarget.FieldName = this.txtName.Text;
+            this.clonedTarget.PropertyType = (PropertyType)this.cmbPropertyType.SelectedItem;
+
+            this.Result = this.clonedTarget;
 
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
@@ -120,5 +123,6 @@ namespace CSharpGL.CSSLGenetator
                 }
             }
         }
+
     }
 }

@@ -388,64 +388,75 @@ namespace CSharpGL.CSSLGenetator
 
         private void UpdateVertexShaderField_Click(object sender, EventArgs e)
         {
-            if (this.lstVertexShaderField.SelectedIndex >= 0)
+            int index = this.lstVertexShaderField.SelectedIndex;
+            if (index >= 0)
             {
-                if ((new FormUpdateVertexShaderField(
-                     this.currentFile, this.lstVertexShaderField.SelectedItem as ShaderField)).ShowDialog()
-                    == System.Windows.Forms.DialogResult.OK)
+                var form = new FormUpdateVertexShaderField(
+                     this.currentFile, this.lstVertexShaderField.SelectedItem as ShaderField);
+                if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    this.lstVertexShaderField.Items.Clear();
-                    foreach (var item in this.currentFile.VertexShaderFieldList)
-                    {
-                        this.lstVertexShaderField.Items.Add(item);
-                    }
+                    this.lstVertexShaderField.Items[index] = form.Result;
+                    this.currentFile.VertexShaderFieldList[index] = form.Result;
+                    //this.lstVertexShaderField.Items.Clear();
+                    //foreach (var item in this.currentFile.VertexShaderFieldList)
+                    //{
+                    //    this.lstVertexShaderField.Items.Add(item);
+                    //}
                 }
             }
         }
 
         private void UpdateGeometryShaderField_Click(object sender, EventArgs e)
         {
-            if (this.lstGeometryShaderField.SelectedIndex >= 0)
+            int index = this.lstGeometryShaderField.SelectedIndex;
+            if (index >= 0)
             {
-                if ((new FormUpdateShaderField(
-                     this.currentFile, this.lstGeometryShaderField.SelectedItem as ShaderField)).ShowDialog()
-                    == System.Windows.Forms.DialogResult.OK)
+                var form = new FormUpdateShaderField(
+                     this.currentFile, this.lstGeometryShaderField.Items[index] as ShaderField);
+                if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    this.lstGeometryShaderField.Items.Clear();
-                    foreach (var item in this.currentFile.GeometryShaderFieldList)
-                    {
-                        this.lstGeometryShaderField.Items.Add(item);
-                    }
+                    this.lstGeometryShaderField.Items[index] = form.Result;
+                    this.currentFile.GeometryShaderFieldList[index] = form.Result;
+                    //this.lstGeometryShaderField.Items.Clear();
+                    //foreach (var item in this.currentFile.GeometryShaderFieldList)
+                    //{
+                    //this.lstGeometryShaderField.Items.Add(item);
+                    //}
                 }
             }
         }
 
         private void UpdateFragmentShaderField_Click(object sender, EventArgs e)
         {
-            if (this.lstFragmentShaderField.SelectedIndex >= 0)
+            int index = this.lstFragmentShaderField.SelectedIndex;
+            if (index >= 0)
             {
-                if ((new FormUpdateShaderField(
-                     this.currentFile, this.lstFragmentShaderField.SelectedItem as ShaderField)).ShowDialog()
-                    == System.Windows.Forms.DialogResult.OK)
+                var form = new FormUpdateShaderField(
+                     this.currentFile, this.lstFragmentShaderField.Items[index] as ShaderField);
+                if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    this.lstFragmentShaderField.Items.Clear();
-                    foreach (var item in this.currentFile.FragmentShaderFieldList)
-                    {
-                        this.lstFragmentShaderField.Items.Add(item);
-                    }
+                    this.lstFragmentShaderField.Items[index] = form.Result;
+                    this.currentFile.FragmentShaderFieldList[index] = form.Result;
+                    //this.lstFragmentShaderField.Items.Clear();
+                    //foreach (var item in this.currentFile.FragmentShaderFieldList)
+                    //{
+                    //this.lstFragmentShaderField.Items.Add(item);
+                    //}
                 }
             }
         }
 
         private void UpdateFieldStructure_Click(object sender, EventArgs e)
         {
+            int index = this.lstStructure.SelectedIndex;
             if (this.lstStructure.SelectedIndex >= 0)
             {
                 var form = new FormUpdateIntermediateStructure(this.currentFile,
-                    this.lstStructure.SelectedItem as IntermediateStructure);
+                    this.lstStructure.Items[index] as IntermediateStructure);
                 if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    this.lstStructure.Items[this.lstStructure.SelectedIndex] = form.Result;
+                    this.lstStructure.Items[index] = form.Result;
+                    this.currentFile.StrutureList[index] = form.Result;
                 }
 
             }
