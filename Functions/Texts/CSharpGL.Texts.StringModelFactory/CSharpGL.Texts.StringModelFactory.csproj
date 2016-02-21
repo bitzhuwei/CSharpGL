@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,6 +42,9 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="DummyStringModelFactory.cs" />
+    <Compile Include="FontTextureManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +58,10 @@
     <ProjectReference Include="..\..\..\Core\GLM\GLM.csproj">
       <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
       <Name>GLM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\Utilities\Utilities.csproj">
+      <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\CSharpGL.GlyphTextures\CSharpGL.GlyphTextures.csproj">
       <Project>{a7a799dc-d893-4711-bf05-a1e347cbe21b}</Project>
