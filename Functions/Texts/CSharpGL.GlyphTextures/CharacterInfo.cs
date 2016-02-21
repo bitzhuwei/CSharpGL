@@ -10,6 +10,7 @@ namespace CSharpGL.GlyphTextures
     /// </summary>
     public class CharacterInfo
     {
+        public static readonly CharacterInfo Default = new CharacterInfo() { yoffset = 0, xoffset = 0, height = 0, width = 0, };
 
         /// <summary>
         /// 此字符的字形在纹理的横向偏移量

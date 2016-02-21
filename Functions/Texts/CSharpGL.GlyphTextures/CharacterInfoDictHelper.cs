@@ -11,7 +11,7 @@ namespace CSharpGL.GlyphTextures
     {
         public const string strCharacterInfoDict = "CharacterInfoDict";
 
-        public static XElement ToXElement(this Dictionary<char, CharacterInfo> dict)
+        public static XElement ToXElement(this FullDictionary<char, CharacterInfo> dict)
         {
             XElement result = new XElement(strCharacterInfoDict,
                 from item in dict
@@ -20,9 +20,10 @@ namespace CSharpGL.GlyphTextures
             return result;
         }
 
-        public static Dictionary<char, CharacterInfo> Parse(XElement xElement)
+        public static FullDictionary<char, CharacterInfo> Parse(XElement xElement)
         {
-            Dictionary<char, CharacterInfo> result = new Dictionary<char, CharacterInfo>();
+            FullDictionary<char, CharacterInfo> result = new FullDictionary<char, CharacterInfo>(
+                new CharacterInfo() { width = 0, height = 0, xoffset = 0, yoffset = 0, });
 
             foreach (var item in xElement.Elements(KeyValuePairHelper.strKeyValuePair))
             {

@@ -62,7 +62,7 @@ namespace CSharpGL.GlyphTextures
         /// <summary>
         /// 记录每个字符在<see cref="FontBitmap"/>里的偏移量及其字形的宽高。
         /// </summary>
-        public Dictionary<char, CharacterInfo> CharInfoDict { get; private set; }
+        public FullDictionary<char, CharacterInfo> CharInfoDict { get; private set; }
 
         ~FontResource()
         {

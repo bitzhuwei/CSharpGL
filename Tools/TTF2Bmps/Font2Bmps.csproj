@@ -97,6 +97,10 @@
       <Project>{0d6e73c8-27b8-4614-9861-f4f22808ea7c}</Project>
       <Name>CSharpGL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Core\Utilities\Utilities.csproj">
+      <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Functions\Texts\CSharpGL.GlyphTextures.FromTTF\CSharpGL.GlyphTextures.FromTTF.csproj">
       <Project>{4c8ecb5c-be09-4d2f-9544-8aca2b5299e7}</Project>
       <Name>CSharpGL.GlyphTextures.FromTTF</Name>

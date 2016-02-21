@@ -73,7 +73,7 @@ namespace CSharpGL.GlyphTextures.FromTTF
 
             FreeTypeFace face = new FreeTypeFace(library, ttfFullname);
 
-            Dictionary<char, CharacterInfo> charInfoDict;
+            FullDictionary<char, CharacterInfo> charInfoDict;
             int textureWidth, textureHeight;
 
             GetTextureBlueprint(face, fontHeight, maxTextureWidth, firstChar, lastChar, out charInfoDict, out textureWidth, out textureHeight);
@@ -105,7 +105,7 @@ namespace CSharpGL.GlyphTextures.FromTTF
         /// <returns></returns>
         private static System.Drawing.Bitmap GetBigBitmap(FreeTypeFace face, int fontHeight, int maxTextureWidth,
             char firstChar, char lastChar,
-            Dictionary<char, CharacterInfo> charInfoDict,
+            FullDictionary<char, CharacterInfo> charInfoDict,
             int widthOfTexture, int heightOfTexture)
         {
             System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(widthOfTexture, heightOfTexture);
@@ -203,9 +203,9 @@ namespace CSharpGL.GlyphTextures.FromTTF
         /// <param name="textureHeight"></param>
         private static void GetTextureBlueprint(FreeTypeFace face, int fontHeight, int maxTextureWidth,
             char firstChar, char lastChar,
-            out Dictionary<char, CharacterInfo> charInfoDict, out int textureWidth, out int textureHeight)
+            out FullDictionary<char, CharacterInfo> charInfoDict, out int textureWidth, out int textureHeight)
         {
-            charInfoDict = new Dictionary<char, CharacterInfo>();
+            charInfoDict = new FullDictionary<char, CharacterInfo>(CharacterInfo.Default);
             textureWidth = 0;
             textureHeight = fontHeight;
 

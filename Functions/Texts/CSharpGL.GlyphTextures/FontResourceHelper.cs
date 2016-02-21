@@ -19,6 +19,7 @@ namespace CSharpGL.GlyphTextures
         /// <param name="fontSize"></param>
         /// <param name="maxRowWidth"></param>
         /// <returns></returns>
+        [Obsolete("早期想法，太浪费")]
         public static System.Drawing.Bitmap GenerateBitmapForString(this FontResource fontResource,
             string content, int fontSize, int maxRowWidth)
         {

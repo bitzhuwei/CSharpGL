@@ -30,7 +30,7 @@ namespace CSharpGL.GlyphTextures.FromTTF
 
             FreeTypeFace face = new FreeTypeFace(library, ttfFullname);
 
-            Dictionary<char, CharacterInfo> charInfoDict = null;
+            FullDictionary<char, CharacterInfo> charInfoDict = null;
             int textureWidth = 0, textureHeight = 0;
             System.Drawing.Bitmap bigBitmap = null;
 
@@ -91,7 +91,7 @@ namespace CSharpGL.GlyphTextures.FromTTF
         private static IEnumerable<TTFTextureYeildingState> GetBigBitmap(
             FreeTypeFace face, int fontHeight, int maxTextureWidth,
             char firstChar, char lastChar,
-            Dictionary<char, CharacterInfo> charInfoDict, int textureWidth, int textureHeight)
+            FullDictionary<char, CharacterInfo> charInfoDict, int textureWidth, int textureHeight)
         {
             int count = lastChar - firstChar;
             int index = 0;
@@ -205,7 +205,7 @@ namespace CSharpGL.GlyphTextures.FromTTF
             int count = lastChar - firstChar;
             int index = 0;
 
-            var charInfoDict = new Dictionary<char, CharacterInfo>();
+            var charInfoDict = new FullDictionary<char, CharacterInfo>(CharacterInfo.Default);
             int textureWidth = 0;
             int textureHeight = fontHeight;
 
@@ -309,7 +309,7 @@ namespace CSharpGL.GlyphTextures.FromTTF
             public int percent;
             public FontTexture ttfTexture;
             internal System.Drawing.Bitmap bigBitmap;
-            internal Dictionary<char, CharacterInfo> dict;
+            internal FullDictionary<char, CharacterInfo> dict;
             internal int textureWidth;
             internal int textureHeight;
         }

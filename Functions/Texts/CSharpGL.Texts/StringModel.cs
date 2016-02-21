@@ -93,6 +93,18 @@ namespace CSharpGL.Texts
             public vec2 leftDown;
             public vec2 rightUp;
             public vec2 rightDown;
+
+            public GlyphPosition(
+                vec2 leftUp,
+                vec2 leftDown,
+                vec2 rightUp,
+                vec2 rightDown)
+            {
+                this.leftUp = leftUp;
+                this.leftDown = leftDown;
+                this.rightUp = rightUp;
+                this.rightDown = rightDown;
+            }
         }
 
         public struct GlyphColor
@@ -101,6 +113,18 @@ namespace CSharpGL.Texts
             public vec4 leftDown;
             public vec4 rightUp;
             public vec4 rightDown;
+
+            public GlyphColor(
+                vec4 leftUp,
+                vec4 leftDown,
+                vec4 rightUp,
+                vec4 rightDown)
+            {
+                this.leftUp = leftUp;
+                this.leftDown = leftDown;
+                this.rightUp = rightUp;
+                this.rightDown = rightDown;
+            }
         }
 
         public struct GlyphTexCoord
@@ -109,22 +133,34 @@ namespace CSharpGL.Texts
             public vec2 leftDown;
             public vec2 rightUp;
             public vec2 rightDown;
+
+            public GlyphTexCoord(
+                vec2 leftUp,
+                vec2 leftDown,
+                vec2 rightUp,
+                vec2 rightDown)
+            {
+                this.leftUp = leftUp;
+                this.leftDown = leftDown;
+                this.rightUp = rightUp;
+                this.rightDown = rightDown;
+            }
         }
 
-        public class PositionBuffer : PropertyBuffer<GlyphPosition>
+        class PositionBuffer : PropertyBuffer<GlyphPosition>
         {
             public PositionBuffer(string varNameInShader)
                 : base(varNameInShader, 2, GL.GL_FLOAT, BufferUsage.StaticDraw)
             { }
         }
-        public class ColorBuffer : PropertyBuffer<GlyphColor>
+        class ColorBuffer : PropertyBuffer<GlyphColor>
         {
             public ColorBuffer(string varNameInShader)
                 : base(varNameInShader, 4, GL.GL_FLOAT, BufferUsage.StaticDraw)
             { }
         }
 
-        public class TexCoordBuffer : PropertyBuffer<GlyphTexCoord>
+        class TexCoordBuffer : PropertyBuffer<GlyphTexCoord>
         {
             public TexCoordBuffer(string varNameInShader)
                 : base(varNameInShader, 2, GL.GL_FLOAT, BufferUsage.StaticDraw)
