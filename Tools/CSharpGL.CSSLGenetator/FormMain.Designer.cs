@@ -163,6 +163,7 @@
             this.修改UToolStripMenuItem.Name = "修改UToolStripMenuItem";
             this.修改UToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.修改UToolStripMenuItem.Text = "修改(&U)";
+            this.修改UToolStripMenuItem.Click += new System.EventHandler(this.UpdateVertexShaderField_Click);
             // 
             // 删除DToolStripMenuItem
             // 
@@ -228,6 +229,7 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(135, 26);
             this.toolStripMenuItem2.Text = "修改(&U)";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.UpdateGeometryShaderField_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -284,6 +286,7 @@
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(135, 26);
             this.toolStripMenuItem5.Text = "修改(&U)";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.UpdateFragmentShaderField_Click);
             // 
             // toolStripMenuItem6
             // 
@@ -326,25 +329,26 @@
             this.修改UToolStripMenuItem1,
             this.删除DToolStripMenuItem1});
             this.menuFieldStructure.Name = "menuFieldStructure";
-            this.menuFieldStructure.Size = new System.Drawing.Size(136, 82);
+            this.menuFieldStructure.Size = new System.Drawing.Size(182, 110);
             // 
             // 新增AToolStripMenuItem
             // 
             this.新增AToolStripMenuItem.Name = "新增AToolStripMenuItem";
-            this.新增AToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.新增AToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.新增AToolStripMenuItem.Text = "新增(&A)";
             this.新增AToolStripMenuItem.Click += new System.EventHandler(this.addIntermediateStructure_Click);
             // 
             // 修改UToolStripMenuItem1
             // 
             this.修改UToolStripMenuItem1.Name = "修改UToolStripMenuItem1";
-            this.修改UToolStripMenuItem1.Size = new System.Drawing.Size(135, 26);
+            this.修改UToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
             this.修改UToolStripMenuItem1.Text = "修改(&U)";
+            this.修改UToolStripMenuItem1.Click += new System.EventHandler(this.UpdateFieldStructure_Click);
             // 
             // 删除DToolStripMenuItem1
             // 
             this.删除DToolStripMenuItem1.Name = "删除DToolStripMenuItem1";
-            this.删除DToolStripMenuItem1.Size = new System.Drawing.Size(135, 26);
+            this.删除DToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
             this.删除DToolStripMenuItem1.Text = "删除(&D)";
             // 
             // menuStrip1

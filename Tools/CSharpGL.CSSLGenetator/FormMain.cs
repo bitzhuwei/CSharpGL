@@ -188,7 +188,7 @@ namespace CSharpGL.CSSLGenetator
 
         private void vertexShaderAddField_Click(object sender, EventArgs e)
         {
-            var dlg = new FormAddVertexShaderField(this.currentFile);
+            var dlg = new FormInsertVertexShaderField(this.currentFile);
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 ShaderField field = dlg.Result;
@@ -199,7 +199,7 @@ namespace CSharpGL.CSSLGenetator
 
         private void geometryShaderAddField_Click(object sender, EventArgs e)
         {
-            var dlg = new FormAddShaderField(this.currentFile);
+            var dlg = new FormInsertShaderField(this.currentFile);
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 ShaderField field = dlg.Result;
@@ -210,7 +210,7 @@ namespace CSharpGL.CSSLGenetator
 
         private void fragmentShaderAddField_Click(object sender, EventArgs e)
         {
-            var dlg = new FormAddShaderField(this.currentFile);
+            var dlg = new FormInsertShaderField(this.currentFile);
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 ShaderField field = dlg.Result;
@@ -221,7 +221,7 @@ namespace CSharpGL.CSSLGenetator
 
         private void addIntermediateStructure_Click(object sender, EventArgs e)
         {
-            var dlg = new FormAddIntermediateStructure(this.currentFile);
+            var dlg = new FormInsertIntermediateStructure(this.currentFile);
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 IntermediateStructure field = dlg.Result;
@@ -381,6 +381,26 @@ namespace CSharpGL.CSSLGenetator
         private void lstVertexShaderField_DragLeave(object sender, EventArgs e)
         {
             isDrag = false;
+        }
+
+        private void UpdateVertexShaderField_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateGeometryShaderField_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateFragmentShaderField_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateFieldStructure_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

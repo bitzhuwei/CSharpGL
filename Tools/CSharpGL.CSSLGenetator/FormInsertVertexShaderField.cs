@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace CSharpGL.CSSLGenetator
 {
-    public partial class FormAddVertexShaderField : Form
+    public partial class FormInsertVertexShaderField : Form
     {
 
         public ShaderField Result { get; private set; }
 
         private CSSLTemplate template;
 
-        public FormAddVertexShaderField(CSSLTemplate template)
+        public FormInsertVertexShaderField(CSSLTemplate template)
         {
             InitializeComponent();
 

@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace CSharpGL.CSSLGenetator
 {
-    public partial class FormAddShaderField : Form
+    public partial class FormUpdateVertexShaderField : Form
     {
 
         public ShaderField Result { get; private set; }
 
         private CSSLTemplate template;
 
-        public FormAddShaderField(CSSLTemplate template)
+        public FormUpdateVertexShaderField(CSSLTemplate template)
         {
             InitializeComponent();
 
@@ -48,6 +48,21 @@ namespace CSharpGL.CSSLGenetator
                 }
                 this.cmbType.SelectedIndex = 0;
             }
+            {
+                PropertyType[] qualifiers = new PropertyType[]
+                {
+                    PropertyType.Other,
+                    PropertyType.Position,
+                    PropertyType.Color,
+                    PropertyType.Normal,
+                };
+                this.cmbPropertyType.Items.Clear();
+                foreach (var item in qualifiers)
+                {
+                    this.cmbPropertyType.Items.Add(item);
+                }
+                this.cmbPropertyType.SelectedIndex = 0;
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -57,7 +72,7 @@ namespace CSharpGL.CSSLGenetator
                 Qualider = (FieldQualifier)this.cmbQualifier.SelectedItem,
                 FieldType = this.cmbType.SelectedItem.ToString(),
                 FieldName = this.txtName.Text,
-                PropertyType = PropertyType.Other,
+                PropertyType = (PropertyType)this.cmbPropertyType.SelectedItem,
             };
 
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -66,6 +81,21 @@ namespace CSharpGL.CSSLGenetator
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+        }
+
+        private void cmbQualifier_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((FieldQualifier)(this.cmbQualifier.SelectedItem) == FieldQualifier.In)
+            {
+                this.lblPropertyType.Visible = true;
+                this.cmbPropertyType.Visible = true;
+            }
+            else
+            {
+                this.lblPropertyType.Visible = false;
+                this.cmbPropertyType.Visible = false;
+                this.cmbPropertyType.SelectedIndex = 0;
+            }
         }
     }
 }

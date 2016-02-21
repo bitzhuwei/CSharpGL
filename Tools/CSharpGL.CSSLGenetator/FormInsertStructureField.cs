@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace CSharpGL.CSSLGenetator
 {
-    public partial class FormAddStructureField : Form
+    public partial class FormInsertStructureField : Form
     {
 
         public StructureField Result { get; private set; }
 
         private CSSLTemplate template;
 
-        public FormAddStructureField(CSSLTemplate template)
+        public FormInsertStructureField(CSSLTemplate template)
         {
             InitializeComponent();
 

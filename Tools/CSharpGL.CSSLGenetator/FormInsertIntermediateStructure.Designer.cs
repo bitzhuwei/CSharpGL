@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.CSSLGenetator
 {
-    partial class FormAddIntermediateStructure
+    partial class FormInsertIntermediateStructure
     {
         /// <summary>
         /// Required designer variable.

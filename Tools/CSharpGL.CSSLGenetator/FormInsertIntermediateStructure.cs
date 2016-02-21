@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace CSharpGL.CSSLGenetator
 {
-    public partial class FormAddIntermediateStructure : Form
+    public partial class FormInsertIntermediateStructure : Form
     {
 
         public IntermediateStructure Result { get; private set; }
 
         private CSSLTemplate template;
 
-        public FormAddIntermediateStructure(CSSLTemplate template)
+        public FormInsertIntermediateStructure(CSSLTemplate template)
         {
             InitializeComponent();
 
@@ -50,7 +50,7 @@ namespace CSharpGL.CSSLGenetator
 
         private void addAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var dlg = new FormAddStructureField(this.template);
+            var dlg = new FormInsertStructureField(this.template);
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 StructureField field = dlg.Result;

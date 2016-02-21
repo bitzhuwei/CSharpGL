@@ -49,30 +49,36 @@
     </Compile>
     <Content Include="readme.txt" />
     <Compile Include="CSSLTemplate.cs" />
-    <Compile Include="FormAddIntermediateStructure.cs">
+    <Compile Include="FormInsertIntermediateStructure.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAddIntermediateStructure.Designer.cs">
-      <DependentUpon>FormAddIntermediateStructure.cs</DependentUpon>
+    <Compile Include="FormInsertIntermediateStructure.Designer.cs">
+      <DependentUpon>FormInsertIntermediateStructure.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAddVertexShaderField.cs">
+    <Compile Include="FormUpdateVertexShaderField.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAddVertexShaderField.Designer.cs">
-      <DependentUpon>FormAddVertexShaderField.cs</DependentUpon>
+    <Compile Include="FormUpdateVertexShaderField.Designer.cs">
+      <DependentUpon>FormUpdateVertexShaderField.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAddStructureField.cs">
+    <Compile Include="FormInsertVertexShaderField.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAddStructureField.Designer.cs">
-      <DependentUpon>FormAddStructureField.cs</DependentUpon>
+    <Compile Include="FormInsertVertexShaderField.Designer.cs">
+      <DependentUpon>FormInsertVertexShaderField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormInsertStructureField.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInsertStructureField.Designer.cs">
+      <DependentUpon>FormInsertStructureField.cs</DependentUpon>
     </Compile>
     <Compile Include="IntermediateStructure.cs" />
-    <Compile Include="FormAddShaderField.cs">
+    <Compile Include="FormInsertShaderField.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAddShaderField.Designer.cs">
-      <DependentUpon>FormAddShaderField.cs</DependentUpon>
+    <Compile Include="FormInsertShaderField.Designer.cs">
+      <DependentUpon>FormInsertShaderField.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -94,17 +100,20 @@
     <Compile Include="VertexShaderFieldList.cs" />
     <Content Include="vs+fs.xml" />
     <Content Include="vs+gs+fs.xml" />
-    <EmbeddedResource Include="FormAddIntermediateStructure.resx">
-      <DependentUpon>FormAddIntermediateStructure.cs</DependentUpon>
+    <EmbeddedResource Include="FormInsertIntermediateStructure.resx">
+      <DependentUpon>FormInsertIntermediateStructure.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAddVertexShaderField.resx">
-      <DependentUpon>FormAddVertexShaderField.cs</DependentUpon>
+    <EmbeddedResource Include="FormUpdateVertexShaderField.resx">
+      <DependentUpon>FormUpdateVertexShaderField.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAddStructureField.resx">
-      <DependentUpon>FormAddStructureField.cs</DependentUpon>
+    <EmbeddedResource Include="FormInsertVertexShaderField.resx">
+      <DependentUpon>FormInsertVertexShaderField.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAddShaderField.resx">
-      <DependentUpon>FormAddShaderField.cs</DependentUpon>
+    <EmbeddedResource Include="FormInsertStructureField.resx">
+      <DependentUpon>FormInsertStructureField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInsertShaderField.resx">
+      <DependentUpon>FormInsertShaderField.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
