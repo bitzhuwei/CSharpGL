@@ -38,22 +38,24 @@ namespace CSharpGL.Texts.StringModelFactory
                 char ch = content[i];
                 CharacterInfo info = fontResource.CharInfoDict[ch];
                 glyphPositions[i] = new StringModel.GlyphPosition(
-                    new GLM.vec2(currentWidth, currentHeight),
                     new GLM.vec2(currentWidth, currentHeight + fontResource.FontHeight),
-                    new GLM.vec2(currentWidth + info.width, currentHeight + fontResource.FontHeight),
-                    new GLM.vec2(currentWidth + info.width, currentHeight));
+                    new GLM.vec2(currentWidth, currentHeight),
+                    new GLM.vec2(currentWidth + info.width, currentHeight),
+                    new GLM.vec2(currentWidth + info.width, currentHeight + fontResource.FontHeight));
+                const int shrimp = 2;
                 glyphTexCoords[i] = new StringModel.GlyphTexCoord(
-                    new GLM.vec2((float)info.xoffset / (float)fontResource.FontBitmap.Width, (float)(currentHeight) / (float)fontResource.FontBitmap.Height),
-                    new GLM.vec2((float)info.xoffset / (float)fontResource.FontBitmap.Width, (float)(currentHeight + fontResource.FontHeight) / (float)fontResource.FontBitmap.Height),
-                    new GLM.vec2((float)(info.xoffset + info.width) / (float)fontResource.FontBitmap.Width, (float)(currentHeight + fontResource.FontHeight) / (float)fontResource.FontBitmap.Height),
-                    new GLM.vec2((float)(info.xoffset + info.width) / (float)fontResource.FontBitmap.Width, (float)(currentHeight) / (float)fontResource.FontBitmap.Height)
+                    new GLM.vec2((float)(info.xoffset + shrimp) / (float)fontResource.FontBitmap.Width, (float)(currentHeight) / (float)fontResource.FontBitmap.Height),
+                    new GLM.vec2((float)(info.xoffset + shrimp) / (float)fontResource.FontBitmap.Width, (float)(currentHeight + fontResource.FontHeight) / (float)fontResource.FontBitmap.Height),
+                    new GLM.vec2((float)(info.xoffset - shrimp + info.width) / (float)fontResource.FontBitmap.Width, (float)(currentHeight + fontResource.FontHeight) / (float)fontResource.FontBitmap.Height),
+                    new GLM.vec2((float)(info.xoffset - shrimp + info.width) / (float)fontResource.FontBitmap.Width, (float)(currentHeight) / (float)fontResource.FontBitmap.Height)
                     );
-                currentWidth += info.width;
+                currentWidth += info.width + 10;
             }
             // move to center
             for (int i = 0; i < content.Length; i++)
             {
                 StringModel.GlyphPosition position = glyphPositions[i];
+
                 position.leftUp.x -= currentWidth / 2;
                 position.leftDown.x -= currentWidth / 2;
                 position.rightUp.x -= currentWidth / 2;
@@ -62,6 +64,15 @@ namespace CSharpGL.Texts.StringModelFactory
                 position.leftDown.y -= (currentHeight + fontResource.FontHeight) / 2;
                 position.rightUp.y -= (currentHeight + fontResource.FontHeight) / 2;
                 position.rightDown.y -= (currentHeight + fontResource.FontHeight) / 2;
+
+                position.leftUp.x /= (currentHeight + fontResource.FontHeight);
+                position.leftDown.x /= (currentHeight + fontResource.FontHeight);
+                position.rightUp.x /= (currentHeight + fontResource.FontHeight);
+                position.rightDown.x /= (currentHeight + fontResource.FontHeight);
+                position.leftUp.y /= (currentHeight + fontResource.FontHeight);
+                position.leftDown.y /= (currentHeight + fontResource.FontHeight);
+                position.rightUp.y /= (currentHeight + fontResource.FontHeight);
+                position.rightDown.y /= (currentHeight + fontResource.FontHeight);
                 glyphPositions[i] = position;
             }
 

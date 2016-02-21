@@ -186,14 +186,14 @@ namespace CSharpGL.Winforms.Demo
                         this.lifebarRenderer.model.Height)
                     : glm.translate(mat4.identity(), new vec3(0, this.lifebarRenderer.model.Height, 0));
 
-            this.stringRenderer.mvp = projectionMatrix * viewMatrix * modelMatrix;
-                //projectionMatrix
-                //* (alwaysFaceCamera ? AlwaysFaceCamera(glm.translate(viewMatrix, translate)) : glm.translate(viewMatrix, translate))
-                //* (alwaysSameSize ?
-                //    AlwaysSameSize(
-                //        (this.camera.Target - this.camera.Position).Magnitude() / 10,
-                //        this.lifebarRenderer.model.Height)
-                //    : glm.translate(mat4.identity(), new vec3(0, this.lifebarRenderer.model.Height, 0)));
+            this.stringRenderer.mvp = //projectionMatrix * viewMatrix * modelMatrix;
+                projectionMatrix
+                * (alwaysFaceCamera ? AlwaysFaceCamera(glm.translate(viewMatrix, translate)) : glm.translate(viewMatrix, translate))
+                * (alwaysSameSize ?
+                    AlwaysSameSize(
+                        (this.camera.Target - this.camera.Position).Magnitude() / 10,
+                        this.lifebarRenderer.model.Height + 1)
+                    : glm.translate(mat4.identity(), new vec3(0, this.lifebarRenderer.model.Height, 0)));
 
             this.groundRenderer.projectionMatrix = projectionMatrix;
             this.groundRenderer.viewMatrix = viewMatrix;
