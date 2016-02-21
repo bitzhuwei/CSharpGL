@@ -5,6 +5,8 @@ using CSharpGL.Objects.Demos;
 using CSharpGL.Objects.Demos.UIs;
 using CSharpGL.Objects.ModelFactories;
 using CSharpGL.Objects.Models;
+using CSharpGL.Texts;
+using CSharpGL.Texts.StringModelFactory;
 using CSharpGL.UIs;
 using GLM;
 using System;
@@ -27,6 +29,7 @@ namespace CSharpGL.Winforms.Demo
         NormalLineRenderer renderer;
         //NormalLineRenderer demolifebarRenderer;
         LifeBarRenderer lifebarRenderer;
+        StringRenderer stringRenderer;
         ArcBallRotator modelRotator;
 
         Camera camera;
@@ -69,6 +72,10 @@ namespace CSharpGL.Winforms.Demo
 
             this.lifebarRenderer = new LifeBarRenderer(new LifeBar(2f, 0.2f, 4f));
             this.lifebarRenderer.Initialize();
+
+            StringModel stringModel = DummyStringModelFactory.GetModel("teapot");
+            this.stringRenderer = new StringRenderer(stringModel);
+            this.stringRenderer.Initialize();
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -179,6 +186,15 @@ namespace CSharpGL.Winforms.Demo
                         this.lifebarRenderer.model.Height)
                     : glm.translate(mat4.identity(), new vec3(0, this.lifebarRenderer.model.Height, 0));
 
+            this.stringRenderer.mvp = projectionMatrix * viewMatrix * modelMatrix;
+                //projectionMatrix
+                //* (alwaysFaceCamera ? AlwaysFaceCamera(glm.translate(viewMatrix, translate)) : glm.translate(viewMatrix, translate))
+                //* (alwaysSameSize ?
+                //    AlwaysSameSize(
+                //        (this.camera.Target - this.camera.Position).Magnitude() / 10,
+                //        this.lifebarRenderer.model.Height)
+                //    : glm.translate(mat4.identity(), new vec3(0, this.lifebarRenderer.model.Height, 0)));
+
             this.groundRenderer.projectionMatrix = projectionMatrix;
             this.groundRenderer.viewMatrix = viewMatrix;
             this.groundRenderer.modelMatrix = mat4.identity();
@@ -190,6 +206,7 @@ namespace CSharpGL.Winforms.Demo
             this.renderer.Render(arg);
             //this.demolifebarRenderer.Render(arg);
             this.lifebarRenderer.Render(arg);
+            this.stringRenderer.Render(arg);
             this.groundRenderer.Render(arg);
         }
 

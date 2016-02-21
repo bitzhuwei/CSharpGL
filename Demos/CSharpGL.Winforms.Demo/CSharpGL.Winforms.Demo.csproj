@@ -482,6 +482,10 @@
       <Project>{04255068-da28-4cc0-af34-3e5af828ab03}</Project>
       <Name>CSharpGL.ColorCodedPicking</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Functions\Texts\CSharpGL.Texts.StringModelFactory\CSharpGL.Texts.StringModelFactory.csproj">
+      <Project>{ea9a13c8-4838-4c77-a8ca-06ac9d153722}</Project>
+      <Name>CSharpGL.Texts.StringModelFactory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Functions\Texts\CSharpGL.Texts\CSharpGL.Texts.csproj">
       <Project>{febc2c4a-e846-44e7-99c1-ecf2816abf40}</Project>
       <Name>CSharpGL.Texts</Name>

@@ -127,6 +127,7 @@ namespace CSharpGL.CSSL2GLSL
                 {
                     directoryName = Environment.CurrentDirectory;
                 }
+                Console.WriteLine("Searching *.cssl.cs files...");
                 string[] files = System.IO.Directory.GetFiles(directoryName, "*.cssl.cs",
                     System.IO.SearchOption.AllDirectories);
                 List<TranslationInfo> translationInfoList = new List<TranslationInfo>();

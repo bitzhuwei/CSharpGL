@@ -12,16 +12,16 @@ namespace CSharpShadingLanguage.StringShader
     /// </summary>
     [Dump2File(true)]
     [GLSLVersion(GLSLVersion.v150)]
-    sealed class StringShaderVert : VertexCSShaderCode
+    sealed class StringVert : VertexCSShaderCode
     {
         [In]
-        vec3 position;
+        vec2 position;
 
         [In]
-        vec3 color;
+        vec4 color;
 
         [Out]
-        vec3 passColor;
+        vec4 passColor;
 
         [In]
         vec2 texCoord;
@@ -34,7 +34,7 @@ namespace CSharpShadingLanguage.StringShader
 
         public override void main()
         {
-            gl_Position = mvp * vec4(position, 1.0f);
+            gl_Position = mvp * vec4(position.x, 0.0f, position.y, 1.0f);
             passColor = color;
             passTexCoord = texCoord;
         }
@@ -45,10 +45,10 @@ namespace CSharpShadingLanguage.StringShader
     /// </summary>
     [Dump2File(true)]
     [GLSLVersion(GLSLVersion.v150)]
-    sealed class StringShaderFrag : FragmentCSShaderCode
+    sealed class StringFrag : FragmentCSShaderCode
     {
         [In]
-        vec3 passColor;
+        vec4 passColor;
 
         [In]
         vec2 passTexCoord;
@@ -61,8 +61,15 @@ namespace CSharpShadingLanguage.StringShader
 
         public override void main()
         {
-            vec4 glyphColor = texture(glyphTexture, passTexCoord);
-            outputColor = vec4(passColor, 1.0f) * glyphColor;
+            float transparency = texture(glyphTexture, passTexCoord).r;
+            if (transparency == 0.0f)
+            {
+                discard();
+            }
+            else
+            {
+                outputColor = vec4(1, 1, 1, transparency) * passColor;
+            }
         }
     }
 

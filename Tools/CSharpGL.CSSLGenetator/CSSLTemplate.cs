@@ -256,7 +256,13 @@ namespace CSharpGL.CSSLGenetator
             Debug.WriteLine("{");
             Debug.Indent();
             Debug.WriteLine("var vertexArrayObject = new VertexArrayObject(");
-            Debug.WriteLine("this.positionBufferRenderer,");
+            foreach (var item in this.VertexShaderFieldList)
+            {
+                if (item.Qualider == FieldQualifier.In)
+                {
+                    Debug.WriteLine(string.Format("this.{0}BufferRenderer,", item.FieldName));
+                }
+            }
             Debug.WriteLine("this.indexBufferRenderer);");
             Debug.WriteLine("vertexArrayObject.Create(e, this.shaderProgram);");
             Debug.WriteLine("");

@@ -45,9 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="String.cssl.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="StringModel.cs" />
-    <Compile Include="StringShader.cssl.cs" />
-    <Compile Include="StringShaderRenderer.cs" />
+    <Compile Include="StringRenderer.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Content Include="readme.txt" />
     <Compile Include="PointSpriteStringElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,6 +59,8 @@
   <ItemGroup>
     <EmbeddedResource Include="PointSpriteStringElement.frag" />
     <EmbeddedResource Include="PointSpriteStringElement.vert" />
+    <EmbeddedResource Include="String.frag" />
+    <EmbeddedResource Include="String.vert" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\GLM\GLM.csproj">
@@ -81,10 +87,6 @@
       <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
       <Name>CSharpShadingLanguage</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="StringShader.vert" />
-    <EmbeddedResource Include="StringShader.frag" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

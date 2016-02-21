@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Texts.StringModelFactory
 {
-    class DummyStringModelFactory
+    public class DummyStringModelFactory
     {
         /// <summary>
         /// 简单地生成一行文字。
         /// </summary>
         /// <param name="content"></param>
         /// <returns></returns>
-        public StringModel GetModel(string content)
+        public static StringModel GetModel(string content)
         {
             StringModel model = new StringModel();
 
@@ -25,13 +25,13 @@ namespace CSharpGL.Texts.StringModelFactory
             //fontResource.GenerateBitmapForString(content, 10, 10000);
             int currentWidth = 0; int currentHeight = 0;
             /*
-             * 0     2  4     6 8     10 12   14  
+             * 0     3  4     6 8     11 12   15
              * -------  ------- -------  -------
              * |     |  |     | |     |  |     |
              * |     |  |     | |     |  |     |
              * |     |  |     | |     |  |     |
              * -------  ------- -------  -------
-             * 1     3  5     7 9     11 13   15 
+             * 1     2  5     6 9     10 13   14 
              */
             for (int i = 0; i < content.Length; i++)
             {
@@ -40,13 +40,13 @@ namespace CSharpGL.Texts.StringModelFactory
                 glyphPositions[i] = new StringModel.GlyphPosition(
                     new GLM.vec2(currentWidth, currentHeight),
                     new GLM.vec2(currentWidth, currentHeight + fontResource.FontHeight),
-                    new GLM.vec2(currentWidth + info.width, currentHeight),
-                    new GLM.vec2(currentWidth + info.width, currentHeight + fontResource.FontHeight));
+                    new GLM.vec2(currentWidth + info.width, currentHeight + fontResource.FontHeight),
+                    new GLM.vec2(currentWidth + info.width, currentHeight));
                 glyphTexCoords[i] = new StringModel.GlyphTexCoord(
-                    new GLM.vec2(info.xoffset, info.yoffset),
-                    new GLM.vec2(info.xoffset, info.yoffset + info.height),
-                    new GLM.vec2(info.xoffset + info.width, info.yoffset),
-                    new GLM.vec2(info.xoffset + info.width, info.yoffset + info.height)
+                    new GLM.vec2((float)info.xoffset / (float)fontResource.FontBitmap.Width, (float)(currentHeight) / (float)fontResource.FontBitmap.Height),
+                    new GLM.vec2((float)info.xoffset / (float)fontResource.FontBitmap.Width, (float)(currentHeight + fontResource.FontHeight) / (float)fontResource.FontBitmap.Height),
+                    new GLM.vec2((float)(info.xoffset + info.width) / (float)fontResource.FontBitmap.Width, (float)(currentHeight + fontResource.FontHeight) / (float)fontResource.FontBitmap.Height),
+                    new GLM.vec2((float)(info.xoffset + info.width) / (float)fontResource.FontBitmap.Width, (float)(currentHeight) / (float)fontResource.FontBitmap.Height)
                     );
                 currentWidth += info.width;
             }
@@ -58,6 +58,11 @@ namespace CSharpGL.Texts.StringModelFactory
                 position.leftDown.x -= currentWidth / 2;
                 position.rightUp.x -= currentWidth / 2;
                 position.rightDown.x -= currentWidth / 2;
+                position.leftUp.y -= (currentHeight + fontResource.FontHeight) / 2;
+                position.leftDown.y -= (currentHeight + fontResource.FontHeight) / 2;
+                position.rightUp.y -= (currentHeight + fontResource.FontHeight) / 2;
+                position.rightDown.y -= (currentHeight + fontResource.FontHeight) / 2;
+                glyphPositions[i] = position;
             }
 
             var glyphColors = new StringModel.GlyphColor[content.Length];

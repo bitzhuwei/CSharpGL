@@ -50,8 +50,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LucidaTypewriterRegular.ttf.png" />
-    <Content Include="LucidaTypewriterRegular.ttf.xml" />
+    <EmbeddedResource Include="LucidaTypewriterRegular.ttf.png" />
+    <EmbeddedResource Include="LucidaTypewriterRegular.ttf.xml" />
     <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
