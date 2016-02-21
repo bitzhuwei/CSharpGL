@@ -179,6 +179,8 @@ namespace CSharpGL.CSSL2GLSL
             {
                 Process.Start("explorer", "/select," + simpleLogFullname);
             }
+
+            Console.WriteLine("done!");
         }
 
 
