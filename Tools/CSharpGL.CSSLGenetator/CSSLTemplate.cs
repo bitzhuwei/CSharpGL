@@ -457,16 +457,17 @@ namespace CSharpGL.CSSLGenetator
 
         private void GenerateCSSL()
         {
+            Debug.WriteLine("// 此文件由CSharpGL.CSSLGenerator.exe生成。");
+            Debug.WriteLine("// 用法：使用CSSL2GLSL.exe编译此文件，即可获得对应的vertex shader, geometry shader, fragment shader。");
+            Debug.WriteLine("// 此文件中的类型不应被直接调用，发布release时可以去掉。");
+            Debug.WriteLine("#if DEBUG");
+            Debug.WriteLine("");
             Debug.WriteLine(string.Format("namespace CSharpShadingLanguage.{0}", this.ShaderName));
             Debug.WriteLine("{");
             Debug.Indent();
             Debug.WriteLine("// 不可将此文件中的代码复制到其他文件内（如果包含了其他的using ...;，那么CSSL2GLSL.exe就无法正常编译这些代码了。）");
             Debug.WriteLine("using CSharpShadingLanguage;");
             Debug.WriteLine("");
-            Debug.Unindent();
-            Debug.WriteLine("#if DEBUG");
-            Debug.WriteLine("");
-            Debug.Indent();
             GenerateStructures();
             Debug.WriteLine("");
             GenerateVertexShader();
@@ -479,9 +480,9 @@ namespace CSharpGL.CSSLGenetator
             GenerateFragmentShader();
             Debug.WriteLine("");
             Debug.Unindent();
-            Debug.WriteLine("#endif");
             Debug.WriteLine("}");
             Debug.WriteLine("");
+            Debug.WriteLine("#endif");
         }
 
         private void GenerateFragmentShader()
