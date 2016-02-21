@@ -117,8 +117,15 @@ namespace CSharpGL.CSSLGenetator
                 Debug.Listeners.Remove(listener);
             }
 
-            //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
-            OpenFolderHelper.OpenFolderAndSelectFiles(directory, csslFullname, rendererFullname);
+            try
+            {
+                //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
+                OpenFolderHelper.OpenFolderAndSelectFiles(directory, csslFullname, rendererFullname);
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void GenerateRenderer()
@@ -426,7 +433,7 @@ namespace CSharpGL.CSSLGenetator
                     Debug.WriteLine(string.Format(
                         "program.SetUniformMatrix4(str{0}, {0}.to_array());", item.FieldName));
                 }
-                
+
             }
         }
 
