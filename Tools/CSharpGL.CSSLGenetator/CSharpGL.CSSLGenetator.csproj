@@ -55,6 +55,18 @@
     <Compile Include="FormInsertIntermediateStructure.Designer.cs">
       <DependentUpon>FormInsertIntermediateStructure.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUpdateStructureField.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUpdateStructureField.Designer.cs">
+      <DependentUpon>FormUpdateStructureField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUpdateShaderField.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUpdateShaderField.Designer.cs">
+      <DependentUpon>FormUpdateShaderField.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUpdateVertexShaderField.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +114,12 @@
     <Content Include="vs+gs+fs.xml" />
     <EmbeddedResource Include="FormInsertIntermediateStructure.resx">
       <DependentUpon>FormInsertIntermediateStructure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUpdateStructureField.resx">
+      <DependentUpon>FormUpdateStructureField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUpdateShaderField.resx">
+      <DependentUpon>FormUpdateShaderField.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUpdateVertexShaderField.resx">
       <DependentUpon>FormUpdateVertexShaderField.cs</DependentUpon>

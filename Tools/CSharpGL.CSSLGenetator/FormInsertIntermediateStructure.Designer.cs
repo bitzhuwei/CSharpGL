@@ -33,14 +33,14 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lstFIeld = new System.Windows.Forms.ListBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lstField = new System.Windows.Forms.ListBox();
             this.menuFieldList = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改UToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuFieldList.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,18 +83,53 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "name:";
             // 
-            // lstFIeld
+            // lstField
             // 
-            this.lstFIeld.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lstField.AllowDrop = true;
+            this.lstField.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstFIeld.ContextMenuStrip = this.menuFieldList;
-            this.lstFIeld.FormattingEnabled = true;
-            this.lstFIeld.ItemHeight = 15;
-            this.lstFIeld.Location = new System.Drawing.Point(12, 70);
-            this.lstFIeld.Name = "lstFIeld";
-            this.lstFIeld.Size = new System.Drawing.Size(269, 424);
-            this.lstFIeld.TabIndex = 9;
+            this.lstField.ContextMenuStrip = this.menuFieldList;
+            this.lstField.FormattingEnabled = true;
+            this.lstField.ItemHeight = 15;
+            this.lstField.Location = new System.Drawing.Point(12, 70);
+            this.lstField.Name = "lstField";
+            this.lstField.Size = new System.Drawing.Size(269, 424);
+            this.lstField.TabIndex = 9;
+            this.lstField.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstField_DragDrop);
+            this.lstField.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstField_DragEnter);
+            this.lstField.DragLeave += new System.EventHandler(this.lstField_DragLeave);
+            this.lstField.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lstField_MouseDown);
+            // 
+            // menuFieldList
+            // 
+            this.menuFieldList.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuFieldList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addAToolStripMenuItem,
+            this.修改UToolStripMenuItem,
+            this.删除DToolStripMenuItem});
+            this.menuFieldList.Name = "menuVertexShaderField";
+            this.menuFieldList.Size = new System.Drawing.Size(136, 82);
+            // 
+            // addAToolStripMenuItem
+            // 
+            this.addAToolStripMenuItem.Name = "addAToolStripMenuItem";
+            this.addAToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.addAToolStripMenuItem.Text = "新增(&A)";
+            this.addAToolStripMenuItem.Click += new System.EventHandler(this.addAToolStripMenuItem_Click);
+            // 
+            // 修改UToolStripMenuItem
+            // 
+            this.修改UToolStripMenuItem.Name = "修改UToolStripMenuItem";
+            this.修改UToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.修改UToolStripMenuItem.Text = "修改(&U)";
+            this.修改UToolStripMenuItem.Click += new System.EventHandler(this.修改UToolStripMenuItem_Click);
+            // 
+            // 删除DToolStripMenuItem
+            // 
+            this.删除DToolStripMenuItem.Name = "删除DToolStripMenuItem";
+            this.删除DToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.删除DToolStripMenuItem.Text = "删除(&D)";
             // 
             // label3
             // 
@@ -123,43 +158,14 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "result:";
             // 
-            // menuFieldList
-            // 
-            this.menuFieldList.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuFieldList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addAToolStripMenuItem,
-            this.修改UToolStripMenuItem,
-            this.删除DToolStripMenuItem});
-            this.menuFieldList.Name = "menuVertexShaderField";
-            this.menuFieldList.Size = new System.Drawing.Size(182, 110);
-            // 
-            // addAToolStripMenuItem
-            // 
-            this.addAToolStripMenuItem.Name = "addAToolStripMenuItem";
-            this.addAToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.addAToolStripMenuItem.Text = "新增(&A)";
-            this.addAToolStripMenuItem.Click += new System.EventHandler(this.addAToolStripMenuItem_Click);
-            // 
-            // 修改UToolStripMenuItem
-            // 
-            this.修改UToolStripMenuItem.Name = "修改UToolStripMenuItem";
-            this.修改UToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.修改UToolStripMenuItem.Text = "修改(&U)";
-            // 
-            // 删除DToolStripMenuItem
-            // 
-            this.删除DToolStripMenuItem.Name = "删除DToolStripMenuItem";
-            this.删除DToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.删除DToolStripMenuItem.Text = "删除(&D)";
-            // 
-            // FormAddIntermediateStructure
+            // FormInsertIntermediateStructure
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(558, 537);
-            this.Controls.Add(this.lstFIeld);
+            this.Controls.Add(this.lstField);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox1);
@@ -167,7 +173,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Name = "FormAddIntermediateStructure";
+            this.Name = "FormInsertIntermediateStructure";
             this.Text = "FormAddIntermediateStructure";
             this.Load += new System.EventHandler(this.FormAddVertexShaderField_Load);
             this.menuFieldList.ResumeLayout(false);
@@ -182,7 +188,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox lstFIeld;
+        private System.Windows.Forms.ListBox lstField;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;

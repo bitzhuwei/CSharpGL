@@ -10,13 +10,15 @@ using System.Windows.Forms;
 
 namespace CSharpGL.CSSLGenetator
 {
-    public partial class FormUpdateVertexShaderField : Form
+    public partial class FormUpdateShaderField : Form
     {
+
+        public ShaderField Result { get; private set; }
 
         private CSSLTemplate template;
         private ShaderField target;
 
-        public FormUpdateVertexShaderField(CSSLTemplate template, ShaderField target)
+        public FormUpdateShaderField(CSSLTemplate template, ShaderField target)
         {
             InitializeComponent();
 
@@ -64,28 +66,6 @@ namespace CSharpGL.CSSLGenetator
                     }
                 }
             }
-            {
-                PropertyType[] qualifiers = new PropertyType[]
-                {
-                    PropertyType.Other,
-                    PropertyType.Position,
-                    PropertyType.Color,
-                    PropertyType.Normal,
-                };
-                this.cmbPropertyType.Items.Clear();
-                foreach (var item in qualifiers)
-                {
-                    this.cmbPropertyType.Items.Add(item);
-                }
-                for (int i = 0; i < this.cmbPropertyType.Items.Count; i++)
-                {
-                    if (this.cmbPropertyType.Items[i].ToString() == this.target.PropertyType.ToString())
-                    {
-                        this.cmbPropertyType.SelectedIndex = i;
-                        break;
-                    }
-                }
-            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -93,7 +73,7 @@ namespace CSharpGL.CSSLGenetator
             this.target.Qualider = (FieldQualifier)this.cmbQualifier.SelectedItem;
             this.target.FieldType = this.cmbType.SelectedItem.ToString();
             this.target.FieldName = this.txtName.Text;
-            this.target.PropertyType = (PropertyType)this.cmbPropertyType.SelectedItem;
+            this.target.PropertyType = PropertyType.Other;
 
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
@@ -101,24 +81,6 @@ namespace CSharpGL.CSSLGenetator
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-        }
-
-        private void cmbQualifier_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if ((FieldQualifier)(this.cmbQualifier.SelectedItem) == FieldQualifier.In)
-            {
-                this.lblPropertyType.Visible = true;
-                this.cmbPropertyType.Visible = true;
-            }
-            else
-            {
-                this.lblPropertyType.Visible = false;
-                this.cmbPropertyType.Visible = false;
-                if (this.cmbPropertyType.Items.Count > 0)
-                {
-                    this.cmbPropertyType.SelectedIndex = 0;
-                }
-            }
         }
     }
 }

@@ -288,38 +288,6 @@ namespace CSharpGL.CSSLGenetator
                     control.Items.Insert(indexPos, control.SelectedItem);
                 else
                     control.Items.Add(control.SelectedItem);
-                if (control == this.lstVertexShaderField)
-                {
-                    this.currentFile.VertexShaderFieldList.Clear();
-                    foreach (var item in control.Items)
-                    {
-                        this.currentFile.VertexShaderFieldList.Add(item as ShaderField);
-                    }
-                }
-                else if (control == this.lstGeometryShaderField)
-                {
-                    this.currentFile.GeometryShaderFieldList.Clear();
-                    foreach (var item in control.Items)
-                    {
-                        this.currentFile.GeometryShaderFieldList.Add(item as ShaderField);
-                    }
-                }
-                else if (control == this.lstFragmentShaderField)
-                {
-                    this.currentFile.FragmentShaderFieldList.Clear();
-                    foreach (var item in control.Items)
-                    {
-                        this.currentFile.FragmentShaderFieldList.Add(item as ShaderField);
-                    }
-                }
-                else if (control == this.lstStructure)
-                {
-                    this.currentFile.StrutureList.Clear();
-                    foreach (var item in control.Items)
-                    {
-                        this.currentFile.StrutureList.Add(item as IntermediateStructure);
-                    }
-                }
             }
         }
 
@@ -381,21 +349,92 @@ namespace CSharpGL.CSSLGenetator
         private void lstVertexShaderField_DragLeave(object sender, EventArgs e)
         {
             isDrag = false;
+            var control = sender as ListBox;
+            //PointToClient()将指定屏幕点的位置计算成工作区坐标。
+            //IndexFromPoint()返回指定坐标处的项的从零开始的索引。
+            if (control == this.lstVertexShaderField)
+            {
+                this.currentFile.VertexShaderFieldList.Clear();
+                foreach (var item in control.Items)
+                {
+                    this.currentFile.VertexShaderFieldList.Add(item as ShaderField);
+                }
+            }
+            else if (control == this.lstGeometryShaderField)
+            {
+                this.currentFile.GeometryShaderFieldList.Clear();
+                foreach (var item in control.Items)
+                {
+                    this.currentFile.GeometryShaderFieldList.Add(item as ShaderField);
+                }
+            }
+            else if (control == this.lstFragmentShaderField)
+            {
+                this.currentFile.FragmentShaderFieldList.Clear();
+                foreach (var item in control.Items)
+                {
+                    this.currentFile.FragmentShaderFieldList.Add(item as ShaderField);
+                }
+            }
+            else if (control == this.lstStructure)
+            {
+                this.currentFile.StrutureList.Clear();
+                foreach (var item in control.Items)
+                {
+                    this.currentFile.StrutureList.Add(item as IntermediateStructure);
+                }
+            }
         }
 
         private void UpdateVertexShaderField_Click(object sender, EventArgs e)
         {
-
+            if (this.lstVertexShaderField.SelectedIndex >= 0)
+            {
+                if ((new FormUpdateVertexShaderField(
+                     this.currentFile, this.lstVertexShaderField.SelectedItem as ShaderField)).ShowDialog()
+                    == System.Windows.Forms.DialogResult.OK)
+                {
+                    this.lstVertexShaderField.Items.Clear();
+                    foreach (var item in this.currentFile.VertexShaderFieldList)
+                    {
+                        this.lstVertexShaderField.Items.Add(item);
+                    }
+                }
+            }
         }
 
         private void UpdateGeometryShaderField_Click(object sender, EventArgs e)
         {
-
+            if (this.lstGeometryShaderField.SelectedIndex >= 0)
+            {
+                if ((new FormUpdateShaderField(
+                     this.currentFile, this.lstGeometryShaderField.SelectedItem as ShaderField)).ShowDialog()
+                    == System.Windows.Forms.DialogResult.OK)
+                {
+                    this.lstGeometryShaderField.Items.Clear();
+                    foreach (var item in this.currentFile.GeometryShaderFieldList)
+                    {
+                        this.lstGeometryShaderField.Items.Add(item);
+                    }
+                }
+            }
         }
 
         private void UpdateFragmentShaderField_Click(object sender, EventArgs e)
         {
-
+            if (this.lstFragmentShaderField.SelectedIndex >= 0)
+            {
+                if ((new FormUpdateShaderField(
+                     this.currentFile, this.lstFragmentShaderField.SelectedItem as ShaderField)).ShowDialog()
+                    == System.Windows.Forms.DialogResult.OK)
+                {
+                    this.lstFragmentShaderField.Items.Clear();
+                    foreach (var item in this.currentFile.FragmentShaderFieldList)
+                    {
+                        this.lstFragmentShaderField.Items.Add(item);
+                    }
+                }
+            }
         }
 
         private void UpdateFieldStructure_Click(object sender, EventArgs e)
