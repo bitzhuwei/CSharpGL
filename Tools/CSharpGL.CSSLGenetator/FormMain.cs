@@ -13,6 +13,7 @@ namespace CSharpGL.CSSLGenetator
     public partial class FormMain : Form
     {
         CSSLTemplate currentFile;
+        private bool isDrag;
 
         public FormMain()
         {
@@ -272,6 +273,114 @@ namespace CSharpGL.CSSLGenetator
                 default:
                     throw new NotImplementedException();
             }
+        }
+
+        private void lstVertexShaderField_DragDrop(object sender, DragEventArgs e)
+        {
+            //GetDataPresent()确定此实例中存储的数据是否与指定的格式关联，或是否可以转换成指定的格式。
+            if (e.Data.GetDataPresent(DataFormats.StringFormat))
+            {
+                var control = sender as ListBox;
+                //PointToClient()将指定屏幕点的位置计算成工作区坐标。
+                //IndexFromPoint()返回指定坐标处的项的从零开始的索引。
+                int indexPos = control.IndexFromPoint(control.PointToClient(new Point(e.X, e.Y)));
+                if (indexPos > -1)
+                    control.Items.Insert(indexPos, control.SelectedItem);
+                else
+                    control.Items.Add(control.SelectedItem);
+                if (control == this.lstVertexShaderField)
+                {
+                    this.currentFile.VertexShaderFieldList.Clear();
+                    foreach (var item in control.Items)
+                    {
+                        this.currentFile.VertexShaderFieldList.Add(item as ShaderField);
+                    }
+                }
+                else if (control == this.lstGeometryShaderField)
+                {
+                    this.currentFile.GeometryShaderFieldList.Clear();
+                    foreach (var item in control.Items)
+                    {
+                        this.currentFile.GeometryShaderFieldList.Add(item as ShaderField);
+                    }
+                }
+                else if (control == this.lstFragmentShaderField)
+                {
+                    this.currentFile.FragmentShaderFieldList.Clear();
+                    foreach (var item in control.Items)
+                    {
+                        this.currentFile.FragmentShaderFieldList.Add(item as ShaderField);
+                    }
+                }
+                else if (control == this.lstStructure)
+                {
+                    this.currentFile.StrutureList.Clear();
+                    foreach (var item in control.Items)
+                    {
+                        this.currentFile.StrutureList.Add(item as IntermediateStructure);
+                    }
+                }
+            }
+        }
+
+        private void lstVertexShaderField_DragEnter(object sender, DragEventArgs e)
+        {
+            //GetDataPresent()确定此实例中存储的数据是否与指定的格式关联，或是否可以转换成指定的格式。
+            if (e.Data.GetDataPresent(DataFormats.Text))
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void lstVertexShaderField_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button != System.Windows.Forms.MouseButtons.Left) { return; }
+
+            isDrag = true;
+            var control = sender as ListBox;
+            if (control.Items.Count == 0)
+            {
+                return;
+            }
+            // int index = control.IndexFromPoint(e.X, e.Y);
+            int index = -1;
+            for (int i = 0; i < control.Items.Count; i++)
+            {//取得选中项的下表
+                if (control.GetSelected(i))
+                {
+                    index = i;
+                    break;
+                }
+            }
+            //在指定坐标处找到的项的从零开始的索引；如果找不到匹配项，则返回 ListBox.NoMatches。
+            if (index < 0)
+            {
+                return;
+            }
+            //index为listbox中的索引
+            string s = control.Items[index].ToString();
+            // DragDropEffects  指定拖放操作的可能效果
+            DragDropEffects dde1 = DoDragDrop(s, DragDropEffects.Move);//开始拖拽操作，s为要拖拽的数据
+            if (isDrag)
+            {
+                if (s == control.Items[index].ToString())
+                {
+                    control.Items.RemoveAt(index);//是把自己位置的删除掉
+                }
+                else
+                {
+                    control.Items.RemoveAt(index + 1);
+                }
+            }
+        }
+
+        private void lstVertexShaderField_DragLeave(object sender, EventArgs e)
+        {
+            isDrag = false;
         }
 
     }

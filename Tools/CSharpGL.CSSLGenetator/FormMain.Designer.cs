@@ -126,6 +126,7 @@
             // 
             // lstVertexShaderField
             // 
+            this.lstVertexShaderField.AllowDrop = true;
             this.lstVertexShaderField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstVertexShaderField.ContextMenuStrip = this.menuVertexShaderField;
@@ -135,6 +136,10 @@
             this.lstVertexShaderField.Name = "lstVertexShaderField";
             this.lstVertexShaderField.Size = new System.Drawing.Size(224, 364);
             this.lstVertexShaderField.TabIndex = 5;
+            this.lstVertexShaderField.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragDrop);
+            this.lstVertexShaderField.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragEnter);
+            this.lstVertexShaderField.DragLeave += new System.EventHandler(this.lstVertexShaderField_DragLeave);
+            this.lstVertexShaderField.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lstVertexShaderField_MouseDown);
             // 
             // menuVertexShaderField
             // 
@@ -144,25 +149,25 @@
             this.修改UToolStripMenuItem,
             this.删除DToolStripMenuItem});
             this.menuVertexShaderField.Name = "menuVertexShaderField";
-            this.menuVertexShaderField.Size = new System.Drawing.Size(130, 76);
+            this.menuVertexShaderField.Size = new System.Drawing.Size(136, 82);
             // 
             // addAToolStripMenuItem
             // 
             this.addAToolStripMenuItem.Name = "addAToolStripMenuItem";
-            this.addAToolStripMenuItem.Size = new System.Drawing.Size(129, 24);
+            this.addAToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.addAToolStripMenuItem.Text = "新增(&A)";
             this.addAToolStripMenuItem.Click += new System.EventHandler(this.vertexShaderAddField_Click);
             // 
             // 修改UToolStripMenuItem
             // 
             this.修改UToolStripMenuItem.Name = "修改UToolStripMenuItem";
-            this.修改UToolStripMenuItem.Size = new System.Drawing.Size(129, 24);
+            this.修改UToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.修改UToolStripMenuItem.Text = "修改(&U)";
             // 
             // 删除DToolStripMenuItem
             // 
             this.删除DToolStripMenuItem.Name = "删除DToolStripMenuItem";
-            this.删除DToolStripMenuItem.Size = new System.Drawing.Size(129, 24);
+            this.删除DToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.删除DToolStripMenuItem.Text = "删除(&D)";
             this.删除DToolStripMenuItem.Click += new System.EventHandler(this.RemoveVertexShaderFIeld_Click);
             // 
@@ -186,6 +191,7 @@
             // 
             // lstGeometryShaderField
             // 
+            this.lstGeometryShaderField.AllowDrop = true;
             this.lstGeometryShaderField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstGeometryShaderField.ContextMenuStrip = this.menuGeometryShaderField;
@@ -195,6 +201,10 @@
             this.lstGeometryShaderField.Name = "lstGeometryShaderField";
             this.lstGeometryShaderField.Size = new System.Drawing.Size(224, 364);
             this.lstGeometryShaderField.TabIndex = 5;
+            this.lstGeometryShaderField.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragDrop);
+            this.lstGeometryShaderField.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragEnter);
+            this.lstGeometryShaderField.DragLeave += new System.EventHandler(this.lstVertexShaderField_DragLeave);
+            this.lstGeometryShaderField.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lstVertexShaderField_MouseDown);
             // 
             // menuGeometryShaderField
             // 
@@ -204,25 +214,25 @@
             this.toolStripMenuItem2,
             this.toolStripMenuItem3});
             this.menuGeometryShaderField.Name = "menuShaderField";
-            this.menuGeometryShaderField.Size = new System.Drawing.Size(130, 76);
+            this.menuGeometryShaderField.Size = new System.Drawing.Size(136, 82);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(129, 24);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(135, 26);
             this.toolStripMenuItem1.Text = "新增(&A)";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.geometryShaderAddField_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(129, 24);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(135, 26);
             this.toolStripMenuItem2.Text = "修改(&U)";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(129, 24);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(135, 26);
             this.toolStripMenuItem3.Text = "删除(&D)";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.RemoveGeometryShaderFIeld_Click);
             // 
@@ -237,6 +247,7 @@
             // 
             // lstFragmentShaderField
             // 
+            this.lstFragmentShaderField.AllowDrop = true;
             this.lstFragmentShaderField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstFragmentShaderField.ContextMenuStrip = this.menuFragmentShaderField;
@@ -246,6 +257,10 @@
             this.lstFragmentShaderField.Name = "lstFragmentShaderField";
             this.lstFragmentShaderField.Size = new System.Drawing.Size(224, 364);
             this.lstFragmentShaderField.TabIndex = 5;
+            this.lstFragmentShaderField.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragDrop);
+            this.lstFragmentShaderField.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragEnter);
+            this.lstFragmentShaderField.DragLeave += new System.EventHandler(this.lstVertexShaderField_DragLeave);
+            this.lstFragmentShaderField.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lstVertexShaderField_MouseDown);
             // 
             // menuFragmentShaderField
             // 
@@ -255,25 +270,25 @@
             this.toolStripMenuItem5,
             this.toolStripMenuItem6});
             this.menuFragmentShaderField.Name = "menuShaderField";
-            this.menuFragmentShaderField.Size = new System.Drawing.Size(130, 76);
+            this.menuFragmentShaderField.Size = new System.Drawing.Size(136, 82);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(129, 24);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(135, 26);
             this.toolStripMenuItem4.Text = "新增(&A)";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.fragmentShaderAddField_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(129, 24);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(135, 26);
             this.toolStripMenuItem5.Text = "修改(&U)";
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(129, 24);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(135, 26);
             this.toolStripMenuItem6.Text = "删除(&D)";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.RemoveFragmentShaderField_Click);
             // 
@@ -288,6 +303,7 @@
             // 
             // lstStructure
             // 
+            this.lstStructure.AllowDrop = true;
             this.lstStructure.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstStructure.ContextMenuStrip = this.menuFieldStructure;
@@ -297,6 +313,10 @@
             this.lstStructure.Name = "lstStructure";
             this.lstStructure.Size = new System.Drawing.Size(224, 364);
             this.lstStructure.TabIndex = 5;
+            this.lstStructure.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragDrop);
+            this.lstStructure.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragEnter);
+            this.lstStructure.DragLeave += new System.EventHandler(this.lstVertexShaderField_DragLeave);
+            this.lstStructure.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lstVertexShaderField_MouseDown);
             // 
             // menuFieldStructure
             // 
