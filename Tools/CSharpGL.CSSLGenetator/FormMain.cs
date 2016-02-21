@@ -439,7 +439,16 @@ namespace CSharpGL.CSSLGenetator
 
         private void UpdateFieldStructure_Click(object sender, EventArgs e)
         {
+            if (this.lstStructure.SelectedIndex >= 0)
+            {
+                var form = new FormUpdateIntermediateStructure(this.currentFile,
+                    this.lstStructure.SelectedItem as IntermediateStructure);
+                if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    this.lstStructure.Items[this.lstStructure.SelectedIndex] = form.Result;
+                }
 
+            }
         }
 
     }
