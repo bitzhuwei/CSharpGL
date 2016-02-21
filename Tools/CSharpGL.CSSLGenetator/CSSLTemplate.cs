@@ -130,6 +130,7 @@ namespace CSharpGL.CSSLGenetator
             Debug.WriteLine("using CSharpGL.Objects;");
             Debug.WriteLine("using CSharpGL.Objects.Models;");
             Debug.WriteLine("using CSharpGL.Objects.Shaders;");
+            Debug.WriteLine("using CSharpGL.Objects.Textures;");
             Debug.WriteLine("using CSharpGL.Objects.VertexBuffers;");
             Debug.WriteLine("using GLM;");
             Debug.WriteLine("using System;");
@@ -485,12 +486,12 @@ namespace CSharpGL.CSSLGenetator
             Debug.WriteLine("/// </summary>");
             Debug.WriteLine("[Dump2File(true)]");
             Debug.WriteLine("[GLSLVersion(GLSLVersion.v150)]");
-            Debug.WriteLine(string.Format("sealed class {0}: VertexCSShaderCode", this.ShaderName + "Frag"));
+            Debug.WriteLine(string.Format("sealed class {0} : FragmentCSShaderCode", this.ShaderName + "Frag"));
             Debug.WriteLine("{");
             Debug.Indent();
             foreach (var item in this.FragmentShaderFieldList)
             {
-                Debug.WriteLine(string.Format("[{0}]", item.Qualider.GetString()));
+                Debug.WriteLine(string.Format("[{0}]", item.Qualider));
                 Debug.WriteLine(string.Format("{0} {1};", item.FieldType, item.FieldName));
                 Debug.WriteLine("");
             }
@@ -510,12 +511,12 @@ namespace CSharpGL.CSSLGenetator
             Debug.WriteLine("/// </summary>");
             Debug.WriteLine("[Dump2File(true)]");
             Debug.WriteLine("[GLSLVersion(GLSLVersion.v150)]");
-            Debug.WriteLine(string.Format("sealed class {0}: VertexCSShaderCode", this.ShaderName + "Geom"));
+            Debug.WriteLine(string.Format("sealed class {0} : GeometryCSShaderCode", this.ShaderName + "Geom"));
             Debug.WriteLine("{");
             Debug.Indent();
             foreach (var item in this.GeometryShaderFieldList)
             {
-                Debug.WriteLine(string.Format("[{0}]", item.Qualider.GetString()));
+                Debug.WriteLine(string.Format("[{0}]", item.Qualider));
                 Debug.WriteLine(string.Format("{0} {1};", item.FieldType, item.FieldName));
                 Debug.WriteLine("");
             }
@@ -535,12 +536,12 @@ namespace CSharpGL.CSSLGenetator
             Debug.WriteLine("/// </summary>");
             Debug.WriteLine("[Dump2File(true)]");
             Debug.WriteLine("[GLSLVersion(GLSLVersion.v150)]");
-            Debug.WriteLine(string.Format("sealed class {0}: VertexCSShaderCode", this.ShaderName + "Vert"));
+            Debug.WriteLine(string.Format("sealed class {0} : VertexCSShaderCode", this.ShaderName + "Vert"));
             Debug.WriteLine("{");
             Debug.Indent();
             foreach (var item in this.VertexShaderFieldList)
             {
-                Debug.WriteLine(string.Format("[{0}]", item.Qualider.GetString()));
+                Debug.WriteLine(string.Format("[{0}]", item.Qualider));
                 Debug.WriteLine(string.Format("{0} {1};", item.FieldType, item.FieldName));
                 Debug.WriteLine("");
             }

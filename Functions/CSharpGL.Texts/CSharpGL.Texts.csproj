@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StringShader.cssl.cs" />
+    <Compile Include="StringShaderRenderer.cs" />
     <EmbeddedResource Include="LucidaTypewriterRegular.ttf.png" />
     <EmbeddedResource Include="LucidaTypewriterRegular.ttf.xml" />
     <Content Include="FreeTypes\freetype.2.5.4ForStudy.dll" />
@@ -97,10 +99,16 @@
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CSharpShadingLanguage\CSharpShadingLanguage.csproj">
+      <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
+      <Name>CSharpShadingLanguage</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="FreeTypes\freetype.exp" />
     <None Include="FreeTypes\freetype.lib" />
+    <EmbeddedResource Include="StringShader.vert" />
+    <EmbeddedResource Include="StringShader.frag" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

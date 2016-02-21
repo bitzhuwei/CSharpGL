@@ -92,6 +92,9 @@
     <Compile Include="Shaders\ShaderProgram.cs" />
     <Compile Include="Texture2D.cs" />
     <Compile Include="RendererBase.cs" />
+    <Compile Include="Textures\sampler1D.cs" />
+    <Compile Include="Textures\sampler3D.cs" />
+    <Compile Include="Textures\sampler2D.cs" />
     <Compile Include="VertexBuffers\BufferRenderer.cs" />
     <Compile Include="VertexBuffers\IndexBuffer.cs" />
     <Compile Include="VertexBuffers\IndexBufferBase.cs" />
@@ -123,9 +126,7 @@
   <ItemGroup>
     <Content Include="readme.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Textures\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Models\TeapotModel.obj" />
     <None Include="VertexBuffers\BufferRenderers.cd" />

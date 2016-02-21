@@ -428,9 +428,9 @@ namespace CSharpGL.Winforms.Demo
 
         private void FollowTargetObject()
         {
-            vec3 eyeVector = this.camera.Position - this.camera.Target;
-            this.camera.Target = this.translate;
-            this.camera.Position = this.translate + eyeVector;
+            //vec3 eyeVector = this.camera.Position - this.camera.Target;
+            //this.camera.Target = this.translate;
+            //this.camera.Position = this.translate + eyeVector;
         }
 
     }

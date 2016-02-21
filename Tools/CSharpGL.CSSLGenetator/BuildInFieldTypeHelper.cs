@@ -20,9 +20,9 @@ namespace CSharpGL.CSSLGenetator
             buildInFieldTypeList.Add(new IntermediateStructure() { Name = "mat2" });
             buildInFieldTypeList.Add(new IntermediateStructure() { Name = "mat3" });
             buildInFieldTypeList.Add(new IntermediateStructure() { Name = "mat4" });
-            buildInFieldTypeList.Add(new IntermediateStructure() { Name = "sampler1" });
-            buildInFieldTypeList.Add(new IntermediateStructure() { Name = "sampler2" });
-            buildInFieldTypeList.Add(new IntermediateStructure() { Name = "sampler3" });
+            buildInFieldTypeList.Add(new IntermediateStructure() { Name = "sampler1D" });
+            buildInFieldTypeList.Add(new IntermediateStructure() { Name = "sampler2D" });
+            buildInFieldTypeList.Add(new IntermediateStructure() { Name = "sampler3D" });
         }
 
         public static IEnumerable<IntermediateStructure> GetBuildInTypeList()
