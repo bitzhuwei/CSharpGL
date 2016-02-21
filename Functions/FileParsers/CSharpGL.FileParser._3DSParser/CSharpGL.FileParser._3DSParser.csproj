@@ -92,7 +92,7 @@
     <Compile Include="Vector.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Utilities\Utilities.csproj">
+    <ProjectReference Include="..\..\..\Core\Utilities\Utilities.csproj">
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>
     </ProjectReference>

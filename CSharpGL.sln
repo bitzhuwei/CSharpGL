@@ -71,11 +71,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.ColorCodedPicking"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL._3DSViewer", "Tools\CSharpGL._3DSViewer\CSharpGL._3DSViewer.csproj", "{123E2591-A479-41DB-9A5F-A2C5101CE308}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.FileParser._3DSParser", "Functions\CSharpGL.FileParser._3DSParser\CSharpGL.FileParser._3DSParser.csproj", "{D2B3C9B4-7E9D-46A8-A119-7743E56253B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.FileParser._3DSParser", "Functions\FileParsers\CSharpGL.FileParser._3DSParser\CSharpGL.FileParser._3DSParser.csproj", "{D2B3C9B4-7E9D-46A8-A119-7743E56253B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.FileParser._3DSParser.ToLegacyOpenGL", "Functions\CSharpGL.FileParser._3DSParser.ToLegacyOpenGL\CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.csproj", "{6EF9DD2F-70EA-46FF-9DAA-A1C2834B0A7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.FileParser._3DSParser.ToLegacyOpenGL", "Functions\FileParsers\CSharpGL.FileParser._3DSParser.ToLegacyOpenGL\CSharpGL.FileParser._3DSParser.ToLegacyOpenGL.csproj", "{6EF9DD2F-70EA-46FF-9DAA-A1C2834B0A7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.FileParser._3DSParser.ToModernOpenGL", "Functions\CSharpGL.FileParser._3DSParser.ToModernOpenGL\CSharpGL.FileParser._3DSParser.ToModernOpenGL.csproj", "{EB937FBB-0032-4ACC-A1E2-B542CD02C417}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.FileParser._3DSParser.ToModernOpenGL", "Functions\FileParsers\CSharpGL.FileParser._3DSParser.ToModernOpenGL\CSharpGL.FileParser._3DSParser.ToModernOpenGL.csproj", "{EB937FBB-0032-4ACC-A1E2-B542CD02C417}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL4Vsix2013", "Tools\CSharpGL4Vsix2013\CSharpGL4Vsix2013.csproj", "{70ECF3CC-AEB8-40D1-B1B6-B01190E7DB58}"
 EndProject
@@ -91,7 +91,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.OBJParser", "Tools
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.ObjViewer", "Tools\CSharpGL.ObjViewer\CSharpGL.ObjViewer.csproj", "{17D90148-1C3D-4D51-A8A7-D7A993AD8E1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL._3DSFiles", "Functions\CSharpGL._3DSFiles\CSharpGL._3DSFiles.csproj", "{2C4FC122-BD74-4F1F-BCED-D44CF6CA7FA1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL._3DSFiles", "Functions\FileParsers\CSharpGL._3DSFiles\CSharpGL._3DSFiles.csproj", "{2C4FC122-BD74-4F1F-BCED-D44CF6CA7FA1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Objects.VolumeRendering", "Functions\CSharpGL.Objects.VolumeRendering\CSharpGL.Objects.VolumeRendering.csproj", "{E97977FD-EE85-47C5-810E-A0CBA258FAAE}"
 EndProject
