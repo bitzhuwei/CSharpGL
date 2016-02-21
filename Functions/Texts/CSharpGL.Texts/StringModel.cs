@@ -27,7 +27,7 @@ namespace CSharpGL.Texts
                 buffer.Alloc(positions.Length);
                 unsafe
                 {
-                    GlyphPosition* array = (GlyphPosition*)buffer.FirstElement();
+                    var array = (GlyphPosition*)buffer.FirstElement();
                     for (int i = 0; i < positions.Length; i++)
                     {
                         array[i] = positions[i];
@@ -45,7 +45,7 @@ namespace CSharpGL.Texts
                 buffer.Alloc(colors.Length);
                 unsafe
                 {
-                    GlyphColor* array = (GlyphColor*)buffer.FirstElement();
+                    var array = (GlyphColor*)buffer.FirstElement();
                     for (int i = 0; i < colors.Length; i++)
                     {
                         array[i] = colors[i];
@@ -63,7 +63,7 @@ namespace CSharpGL.Texts
                 buffer.Alloc(texCoords.Length);
                 unsafe
                 {
-                    GlyphTexCoord* array = (GlyphTexCoord*)buffer.FirstElement();
+                    var array = (GlyphTexCoord*)buffer.FirstElement();
                     for (int i = 0; i < texCoords.Length; i++)
                     {
                         array[i] = texCoords[i];

@@ -1,4 +1,4 @@
-namespace Renderers.StringShader
+namespace CSharpGL.Texts
 {
     using CSharpGL;
     using CSharpGL.Objects;
@@ -47,10 +47,10 @@ namespace Renderers.StringShader
         public PolygonModes polygonMode = PolygonModes.Filled;
         
         private int elementCount;
+
+        private StringModel model;
         
-        private IModel model;
-        
-        public StringShaderRenderer(IModel model)
+        public StringShaderRenderer(StringModel model)
         {
             this.model = model;
         }
@@ -66,10 +66,10 @@ namespace Renderers.StringShader
         
         protected void InitializeVAO()
         {
-            IModel model = this.model;
             this.positionBufferRenderer = model.GetPositionBufferRenderer(strposition);
             this.colorBufferRenderer = model.GetColorBufferRenderer(strcolor);
             //this.texCoordBufferRenderer = ???(strtexCoord);
+            this.texCoordBufferRenderer = model.GetTexCoordBufferRenderer(strtexCoord);
             this.indexBufferRenderer = model.GetIndexes();
             
             {
