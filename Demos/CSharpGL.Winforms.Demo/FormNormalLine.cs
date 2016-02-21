@@ -30,6 +30,7 @@ namespace CSharpGL.Winforms.Demo
         //NormalLineRenderer demolifebarRenderer;
         LifeBarRenderer lifebarRenderer;
         StringRenderer stringRenderer;
+        DummyLabel label;
         ArcBallRotator modelRotator;
 
         Camera camera;
@@ -73,9 +74,13 @@ namespace CSharpGL.Winforms.Demo
             this.lifebarRenderer = new LifeBarRenderer(new LifeBar(2f, 0.2f, 4f));
             this.lifebarRenderer.Initialize();
 
-            StringModel stringModel = DummyStringModelFactory.GetModel("teapot");
-            this.stringRenderer = new StringRenderer(stringModel);
+            //StringModel stringModel = DummyStringModelFactory.GetModel("teapot");
+            this.stringRenderer = new StringRenderer("teapot".GetModel());
             this.stringRenderer.Initialize();
+
+            uiParam = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, new Padding(10, 10, 120, 10), new Size(50, 50));
+            this.label = new DummyLabel(uiParam, "Hello Label!");
+            this.label.Initialize();
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -202,6 +207,7 @@ namespace CSharpGL.Winforms.Demo
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
             this.uiAxis.Render(arg);
+            this.label.Render(arg);
 
             this.renderer.Render(arg);
             //this.demolifebarRenderer.Render(arg);

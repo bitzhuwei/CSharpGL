@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Texts.StringModelFactory
 {
-    public class DummyStringModelFactory
+    public static class DummyStringModelFactory
     {
         /// <summary>
         /// 简单地生成一行文字。
         /// </summary>
         /// <param name="content"></param>
         /// <returns></returns>
-        public static StringModel GetModel(string content)
+        public static StringModel GetModel(this string content)
         {
             StringModel model = new StringModel();
 
@@ -80,10 +80,10 @@ namespace CSharpGL.Texts.StringModelFactory
             for (int i = 0; i < glyphColors.Length; i++)
             {
                 glyphColors[i] = new StringModel.GlyphColor(
-                    new GLM.vec4(1, 1, 1, 1),
-                    new GLM.vec4(1, 1, 1, 1),
-                    new GLM.vec4(1, 1, 1, 1),
-                    new GLM.vec4(1, 1, 1, 1)
+                    new GLM.vec4(0, 0, 0, 1),
+                    new GLM.vec4(0, 0, 0, 1),
+                    new GLM.vec4(0, 0, 0, 1),
+                    new GLM.vec4(0, 0, 0, 1)
                     );
             }
 
