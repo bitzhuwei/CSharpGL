@@ -43,7 +43,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Winforms", "Functi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpFont", "Functions\SharpFont\SharpFont.csproj", "{8492DA27-3077-43A2-80B0-D51E7DA83BD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Texts", "Functions\CSharpGL.Texts\CSharpGL.Texts.csproj", "{FEBC2C4A-E846-44E7-99C1-ECF2816ABF40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Texts", "Functions\Texts\CSharpGL.Texts\CSharpGL.Texts.csproj", "{FEBC2C4A-E846-44E7-99C1-ECF2816ABF40}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DumpUnicode2File", "Tools\DumpUnicode2File\DumpUnicode2File.csproj", "{99C2F4E5-3275-4681-AEC4-F59D97C158A8}"
 EndProject
@@ -107,9 +107,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Objects.Controller
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.CSSLGenetator", "Tools\CSharpGL.CSSLGenetator\CSharpGL.CSSLGenetator.csproj", "{67E7CB72-E44B-4648-BE4B-FE4009BAA3E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.GlyphTextures", "Functions\CSharpGL.GlyphTextures\CSharpGL.GlyphTextures.csproj", "{A7A799DC-D893-4711-BF05-A1E347CBE21B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.GlyphTextures", "Functions\Texts\CSharpGL.GlyphTextures\CSharpGL.GlyphTextures.csproj", "{A7A799DC-D893-4711-BF05-A1E347CBE21B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.GlyphTextures.FromTTF", "Functions\CSharpGL.GlyphTextures.FromTTF\CSharpGL.GlyphTextures.FromTTF.csproj", "{4C8ECB5C-BE09-4D2F-9544-8ACA2B5299E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.GlyphTextures.FromTTF", "Functions\Texts\CSharpGL.GlyphTextures.FromTTF\CSharpGL.GlyphTextures.FromTTF.csproj", "{4C8ECB5C-BE09-4D2F-9544-8ACA2B5299E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FileParsers", "FileParsers", "{48802073-D765-498D-91D4-A5BCADC568F6}"
 EndProject

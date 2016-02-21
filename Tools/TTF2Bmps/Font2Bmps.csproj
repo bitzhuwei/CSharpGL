@@ -97,11 +97,11 @@
       <Project>{0d6e73c8-27b8-4614-9861-f4f22808ea7c}</Project>
       <Name>CSharpGL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Functions\CSharpGL.GlyphTextures.FromTTF\CSharpGL.GlyphTextures.FromTTF.csproj">
+    <ProjectReference Include="..\..\Functions\Texts\CSharpGL.GlyphTextures.FromTTF\CSharpGL.GlyphTextures.FromTTF.csproj">
       <Project>{4c8ecb5c-be09-4d2f-9544-8aca2b5299e7}</Project>
       <Name>CSharpGL.GlyphTextures.FromTTF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Functions\CSharpGL.GlyphTextures\CSharpGL.GlyphTextures.csproj">
+    <ProjectReference Include="..\..\Functions\Texts\CSharpGL.GlyphTextures\CSharpGL.GlyphTextures.csproj">
       <Project>{a7a799dc-d893-4711-bf05-a1e347cbe21b}</Project>
       <Name>CSharpGL.GlyphTextures</Name>
     </ProjectReference>

@@ -446,11 +446,11 @@
       <Project>{b340c561-2e18-42af-a52d-e6d9f924293e}</Project>
       <Name>CSharpGL.Objects</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Functions\CSharpGL.GlyphTextures.FromTTF\CSharpGL.GlyphTextures.FromTTF.csproj">
+    <ProjectReference Include="..\..\Functions\Texts\CSharpGL.GlyphTextures.FromTTF\CSharpGL.GlyphTextures.FromTTF.csproj">
       <Project>{4c8ecb5c-be09-4d2f-9544-8aca2b5299e7}</Project>
       <Name>CSharpGL.GlyphTextures.FromTTF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Functions\CSharpGL.GlyphTextures\CSharpGL.GlyphTextures.csproj">
+    <ProjectReference Include="..\..\Functions\Texts\CSharpGL.GlyphTextures\CSharpGL.GlyphTextures.csproj">
       <Project>{a7a799dc-d893-4711-bf05-a1e347cbe21b}</Project>
       <Name>CSharpGL.GlyphTextures</Name>
     </ProjectReference>
@@ -482,7 +482,7 @@
       <Project>{04255068-da28-4cc0-af34-3e5af828ab03}</Project>
       <Name>CSharpGL.ColorCodedPicking</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Functions\CSharpGL.Texts\CSharpGL.Texts.csproj">
+    <ProjectReference Include="..\..\Functions\Texts\CSharpGL.Texts\CSharpGL.Texts.csproj">
       <Project>{febc2c4a-e846-44e7-99c1-ecf2816abf40}</Project>
       <Name>CSharpGL.Texts</Name>
     </ProjectReference>

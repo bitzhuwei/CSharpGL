@@ -73,7 +73,7 @@
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CSharpGL.GlyphTextures\CSharpGL.GlyphTextures.csproj">
+    <ProjectReference Include="..\Texts\CSharpGL.GlyphTextures\CSharpGL.GlyphTextures.csproj">
       <Project>{a7a799dc-d893-4711-bf05-a1e347cbe21b}</Project>
       <Name>CSharpGL.GlyphTextures</Name>
     </ProjectReference>
@@ -81,7 +81,7 @@
       <Project>{388d3f0c-08b3-47dc-86a8-cc5cc87b5819}</Project>
       <Name>CSharpGL.Objects.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CSharpGL.Texts\CSharpGL.Texts.csproj">
+    <ProjectReference Include="..\Texts\CSharpGL.Texts\CSharpGL.Texts.csproj">
       <Project>{febc2c4a-e846-44e7-99c1-ecf2816abf40}</Project>
       <Name>CSharpGL.Texts</Name>
     </ProjectReference>

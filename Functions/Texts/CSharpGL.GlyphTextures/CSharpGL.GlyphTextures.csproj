@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FEBC2C4A-E846-44E7-99C1-ECF2816ABF40}</ProjectGuid>
+    <ProjectGuid>{A7A799DC-D893-4711-BF05-A1E347CBE21B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharpGL.Texts</RootNamespace>
-    <AssemblyName>CSharpGL.Texts</AssemblyName>
+    <RootNamespace>CSharpGL.GlyphTextures</RootNamespace>
+    <AssemblyName>CSharpGL.GlyphTextures</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,10 +33,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Numerics.Vectors, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binary\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,45 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StringShader.cssl.cs" />
-    <Compile Include="StringShaderRenderer.cs" />
-    <Content Include="readme.txt" />
-    <Compile Include="PointSpriteStringElement.cs" />
+    <Compile Include="CharacterInfo.cs" />
+    <Compile Include="CharacterInfoDictHelper.cs" />
+    <Compile Include="CharacterInfoHelper.cs" />
+    <Compile Include="FontResource.cs" />
+    <Compile Include="FontResourceHelper.cs" />
+    <Compile Include="FontTexture.cs" />
+    <Compile Include="KeyValuePairHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="PointSpriteStringElement.frag" />
-    <EmbeddedResource Include="PointSpriteStringElement.vert" />
+    <Content Include="LucidaTypewriterRegular.ttf.png" />
+    <Content Include="LucidaTypewriterRegular.ttf.xml" />
+    <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\GLM\GLM.csproj">
-      <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
-      <Name>GLM</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\CSharpGL.Objects\CSharpGL.Objects.csproj">
-      <Project>{b340c561-2e18-42af-a52d-e6d9f924293e}</Project>
-      <Name>CSharpGL.Objects</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\CSharpGL\CSharpGL.csproj">
-      <Project>{0d6e73c8-27b8-4614-9861-f4f22808ea7c}</Project>
-      <Name>CSharpGL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\Utilities\Utilities.csproj">
+    <ProjectReference Include="..\..\..\Core\Utilities\Utilities.csproj">
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CSharpGL.GlyphTextures\CSharpGL.GlyphTextures.csproj">
-      <Project>{a7a799dc-d893-4711-bf05-a1e347cbe21b}</Project>
-      <Name>CSharpGL.GlyphTextures</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CSharpShadingLanguage\CSharpShadingLanguage.csproj">
-      <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
-      <Name>CSharpShadingLanguage</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="StringShader.vert" />
-    <EmbeddedResource Include="StringShader.frag" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
