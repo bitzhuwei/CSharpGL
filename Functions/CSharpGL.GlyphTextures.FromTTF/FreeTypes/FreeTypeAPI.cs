@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Texts.FreeTypes
+namespace CSharpGL.GlyphTextures.FromTTF.FreeTypes
 {
     /// <summary>
     /// 封装了一些FreeType的函数。

@@ -1,4 +1,4 @@
-﻿using CSharpGL.Texts;
+﻿using CSharpGL.GlyphTextures;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,9 +11,9 @@ namespace Font2Bmps
 {
     class FontTexturePNGPrinter
     {
-        private CSharpGL.Texts.FontTexture ttfTexture;
+        private FontTexture ttfTexture;
 
-        public FontTexturePNGPrinter(CSharpGL.Texts.FontTexture ttfTexture)
+        public FontTexturePNGPrinter(FontTexture ttfTexture)
         {
             this.ttfTexture = ttfTexture;
             this.font = new Font("微软雅黑", ttfTexture.FontHeight / 2);

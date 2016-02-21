@@ -109,6 +109,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.CSSLGenetator", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.GlyphTextures", "Functions\CSharpGL.GlyphTextures\CSharpGL.GlyphTextures.csproj", "{A7A799DC-D893-4711-BF05-A1E347CBE21B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.GlyphTextures.FromTTF", "Functions\CSharpGL.GlyphTextures.FromTTF\CSharpGL.GlyphTextures.FromTTF.csproj", "{4C8ECB5C-BE09-4D2F-9544-8ACA2B5299E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -279,6 +281,10 @@ Global
 		{A7A799DC-D893-4711-BF05-A1E347CBE21B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7A799DC-D893-4711-BF05-A1E347CBE21B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7A799DC-D893-4711-BF05-A1E347CBE21B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C8ECB5C-BE09-4D2F-9544-8ACA2B5299E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C8ECB5C-BE09-4D2F-9544-8ACA2B5299E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C8ECB5C-BE09-4D2F-9544-8ACA2B5299E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C8ECB5C-BE09-4D2F-9544-8ACA2B5299E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -327,5 +333,6 @@ Global
 		{3B6C3168-4FCA-492E-869F-BB22E0E367FD} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 		{67E7CB72-E44B-4648-BE4B-FE4009BAA3E8} = {AFEBDC89-3258-4DF5-9231-D09952C23613}
 		{A7A799DC-D893-4711-BF05-A1E347CBE21B} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
+		{4C8ECB5C-BE09-4D2F-9544-8ACA2B5299E7} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 	EndGlobalSection
 EndGlobal

@@ -46,35 +46,7 @@
   <ItemGroup>
     <Compile Include="StringShader.cssl.cs" />
     <Compile Include="StringShaderRenderer.cs" />
-    <EmbeddedResource Include="LucidaTypewriterRegular.ttf.png" />
-    <EmbeddedResource Include="LucidaTypewriterRegular.ttf.xml" />
-    <Content Include="FreeTypes\freetype.2.5.4ForStudy.dll" />
-    <Content Include="FreeTypes\freetype.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="readme.txt" />
-    <Compile Include="CharacterInfo.cs" />
-    <Compile Include="CharacterInfoDictHelper.cs" />
-    <Compile Include="CharacterInfoHelper.cs" />
-    <Compile Include="Class1.cs" />
-    <Compile Include="FontResource.cs" />
-    <Compile Include="FontResourceHelper.cs" />
-    <Compile Include="FontTexture.cs" />
-    <Compile Include="FontTextureHelper.cs" />
-    <Compile Include="FontTextureYieldHelper.cs" />
-    <Compile Include="FreeTypes\BBox.cs" />
-    <Compile Include="FreeTypes\FreeTypeAPI.cs" />
-    <Compile Include="FreeTypes\FreeTypeEnumerations.cs" />
-    <Compile Include="FreeTypes\FreeTypeObjects.cs" />
-    <Compile Include="FreeTypes\FT_BitmapBuffer.cs" />
-    <Compile Include="FreeTypes\FT_BitmapGlyph.cs" />
-    <Compile Include="FreeTypes\FT_Face.cs" />
-    <Compile Include="FreeTypes\FT_Generic.cs" />
-    <Compile Include="FreeTypes\FT_GlyphRec.cs" />
-    <Compile Include="FreeTypes\FT_Library.cs" />
-    <Compile Include="FreeTypes\FT_ListRec.cs" />
-    <Compile Include="FreeTypes\FT_Vector.cs" />
-    <Compile Include="KeyValuePairHelper.cs" />
     <Compile Include="PointSpriteStringElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -99,14 +71,16 @@
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CSharpGL.GlyphTextures\CSharpGL.GlyphTextures.csproj">
+      <Project>{a7a799dc-d893-4711-bf05-a1e347cbe21b}</Project>
+      <Name>CSharpGL.GlyphTextures</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CSharpShadingLanguage\CSharpShadingLanguage.csproj">
       <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
       <Name>CSharpShadingLanguage</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="FreeTypes\freetype.exp" />
-    <None Include="FreeTypes\freetype.lib" />
     <EmbeddedResource Include="StringShader.vert" />
     <EmbeddedResource Include="StringShader.frag" />
   </ItemGroup>

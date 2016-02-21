@@ -1,5 +1,4 @@
-﻿using CSharpGL.GlyphTextures.FreeTypes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -45,24 +44,24 @@ namespace CSharpGL.GlyphTextures
         /// </summary>
         public Dictionary<char, CharacterInfo> CharInfoDict { get; set; }
 
-        internal FontTexture() { }
+        public FontTexture() { }
 
-        /// <summary>
-        /// 获取一个<see cref="FontTexture"/>实例。
-        /// </summary>
-        /// <param name="ttfFullname"></param>
-        /// <param name="fontHeight"></param>
-        /// <param name="firstChar"></param>
-        /// <param name="lastChar"></param>
-        /// <param name="maxTextureWidth"></param>
-        /// <returns></returns>
-        public static FontTexture GetTTFTexture(string ttfFullname, int fontHeight,
-            int maxTextureWidth, char firstChar = '\0', char lastChar = '~')
-        {
-            var result = FontTextureHelper.GetTTFTexture(ttfFullname, fontHeight, maxTextureWidth, firstChar, lastChar);
+        ///// <summary>
+        ///// 获取一个<see cref="FontTexture"/>实例。
+        ///// </summary>
+        ///// <param name="ttfFullname"></param>
+        ///// <param name="fontHeight"></param>
+        ///// <param name="firstChar"></param>
+        ///// <param name="lastChar"></param>
+        ///// <param name="maxTextureWidth"></param>
+        ///// <returns></returns>
+        //public static FontTexture GetTTFTexture(string ttfFullname, int fontHeight,
+        //    int maxTextureWidth, char firstChar = '\0', char lastChar = '~')
+        //{
+        //    var result = FontTextureHelper.GetTTFTexture(ttfFullname, fontHeight, maxTextureWidth, firstChar, lastChar);
 
-            return result;
-        }
+        //    return result;
+        //}
 
         ~FontTexture()
         {

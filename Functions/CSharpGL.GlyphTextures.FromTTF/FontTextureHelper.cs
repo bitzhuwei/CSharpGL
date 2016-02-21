@@ -1,18 +1,62 @@
-﻿using CSharpGL.Texts.FreeTypes;
+﻿using CSharpGL.GlyphTextures.FromTTF.FreeTypes;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace CSharpGL.Texts
+namespace CSharpGL.GlyphTextures.FromTTF
 {
-    public static class FontTextureYieldHelper
+    public static class FontTextureHelper
     {
+        public const string strTTFTexture = "TTFTexture";
+        public const string strFontHeight = "FontHeight";
+        public const string strFirstChar = "FirstChar";
+        public const string strLastChar = "LastChar";
+
+        public static XElement ToXElement(this FontTexture texture)
+        {
+            XElement result = new XElement(strTTFTexture,
+                new XAttribute(strFontHeight, texture.FontHeight),
+                new XAttribute(strFirstChar, (int)texture.FirstChar),
+                new XAttribute(strLastChar, (int)texture.LastChar),
+                texture.CharInfoDict.ToXElement());
+
+            return result;
+        }
+
+        private static FontTexture Parse(XElement xElement)
+        {
+            FontTexture result = new FontTexture();
+            result.FontHeight = int.Parse(xElement.Attribute(strFontHeight).Value);
+            result.FirstChar = (char)int.Parse(xElement.Attribute(strFirstChar).Value);
+            result.LastChar = (char)int.Parse(xElement.Attribute(strLastChar).Value);
+            result.CharInfoDict = CharacterInfoDictHelper.Parse(
+                xElement.Element(CharacterInfoDictHelper.strCharacterInfoDict));
+
+            return result;
+        }
+
+        /// <summary>
+        /// 根据已经生成的贴图和附带的Xml配置文件得到一个<see cref="FontTexture"/>。
+        /// <para>此贴图和Xml文件</para>
+        /// </summary>
+        /// <param name="textureFullname"></param>
+        /// <param name="xmlFullname"></param>
+        /// <returns></returns>
+        public static FontTexture GetTTFTexture(string textureFullname, string xmlFullname)
+        {
+            XElement ttfTextureElement = XElement.Load(xmlFullname); //new XElement(xmlFullname);
+            FontTexture result = Parse(ttfTextureElement);
+
+            System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(textureFullname);
+            result.BigBitmap = bigBitmap;
+
+            return result;
+        }
 
         /// <summary>
         /// 用一个纹理绘制指定范围内的所有可见字符
@@ -23,57 +67,28 @@ namespace CSharpGL.Texts
         /// <param name="lastChar"></param>
         /// <param name="maxTextureWidth">生成的纹理的最大宽度。</param>
         /// <returns></returns>
-        public static IEnumerable<TTFTextureYeildingState> GetTTFTexture(
-            string ttfFullname, int fontHeight, int maxTextureWidth, char firstChar, char lastChar)
+        public static FontTexture GetTTFTexture(string ttfFullname, int fontHeight, int maxTextureWidth, char firstChar, char lastChar)
         {
             FreeTypeLibrary library = new FreeTypeLibrary();
 
             FreeTypeFace face = new FreeTypeFace(library, ttfFullname);
 
-            Dictionary<char, CharacterInfo> charInfoDict = null;
-            int textureWidth = 0, textureHeight = 0;
-            System.Drawing.Bitmap bigBitmap = null;
+            Dictionary<char, CharacterInfo> charInfoDict;
+            int textureWidth, textureHeight;
 
-            foreach (var item in GetTextureBlueprint(face, fontHeight, maxTextureWidth, firstChar, lastChar))
-            {
-                charInfoDict = item.dict;
-                textureWidth = item.textureWidth;
-                textureHeight = item.textureHeight;
-
-                yield return item;
-            }
+            GetTextureBlueprint(face, fontHeight, maxTextureWidth, firstChar, lastChar, out charInfoDict, out textureWidth, out textureHeight);
 
             if (textureWidth == 0) { textureWidth = 1; }
             if (textureHeight == 0) { textureHeight = 1; }
 
-            foreach (var item in GetBigBitmap(face, fontHeight, maxTextureWidth,
-                firstChar, lastChar, charInfoDict, textureWidth, textureHeight))
-            {
-                bigBitmap = item.bigBitmap;
-
-                yield return item;
-            }
+            System.Drawing.Bitmap bigBitmap = GetBigBitmap(face, fontHeight, maxTextureWidth, firstChar, lastChar, charInfoDict, textureWidth, textureHeight);
 
             face.Dispose();
             library.Dispose();
 
-            var result = new FontTexture()
-            {
-                TtfFullname = ttfFullname,
-                FontHeight = fontHeight,
-                FirstChar = firstChar,
-                LastChar = lastChar,
-                BigBitmap = bigBitmap,
-                CharInfoDict = charInfoDict,
-            };
+            var result = new FontTexture() { TtfFullname = ttfFullname, FontHeight = fontHeight, FirstChar = firstChar, LastChar = lastChar, BigBitmap = bigBitmap, CharInfoDict = charInfoDict, };
 
-            FileInfo fileInfo = new FileInfo(ttfFullname);
-            yield return new TTFTextureYeildingState()
-            {
-                percent = 100,
-                ttfTexture = result,
-                message = string.Format("got font texture for {0}", fileInfo.Name),
-            };
+            return result;
         }
 
         /// <summary>
@@ -85,24 +100,22 @@ namespace CSharpGL.Texts
         /// <param name="lastChar"></param>
         /// <param name="maxTextureWidth"></param>
         /// <param name="charInfoDict"></param>
-        /// <param name="textureWidth"></param>
-        /// <param name="textureHeight"></param>
+        /// <param name="widthOfTexture"></param>
+        /// <param name="heightOfTexture"></param>
         /// <returns></returns>
-        private static IEnumerable<TTFTextureYeildingState> GetBigBitmap(
-            FreeTypeFace face, int fontHeight, int maxTextureWidth,
+        private static System.Drawing.Bitmap GetBigBitmap(FreeTypeFace face, int fontHeight, int maxTextureWidth,
             char firstChar, char lastChar,
-            Dictionary<char, CharacterInfo> charInfoDict, int textureWidth, int textureHeight)
+            Dictionary<char, CharacterInfo> charInfoDict,
+            int widthOfTexture, int heightOfTexture)
         {
-            int count = lastChar - firstChar;
-            int index = 0;
-
-            System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(textureWidth, textureHeight);
+            System.Drawing.Bitmap bigBitmap = new System.Drawing.Bitmap(widthOfTexture, heightOfTexture);
             Graphics graphics = Graphics.FromImage(bigBitmap);
 
             for (char c = firstChar; c <= lastChar; c++)
             {
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, fontHeight);
                 int size = glyph.obj.bitmap.width * glyph.obj.bitmap.rows;
+
                 {
                     bool zeroBuffer = glyph.obj.bitmap.buffer == IntPtr.Zero;
                     if ((size == 0) && (!zeroBuffer)) { throw new Exception(string.Format("glyph size({0}) for non zero buffer({1})", 0, glyph.obj.bitmap.buffer)); }
@@ -170,22 +183,11 @@ namespace CSharpGL.Texts
                 }
 
                 if (c == char.MaxValue) { break; }
-
-                yield return new TTFTextureYeildingState()
-                {
-                    percent = index++ * 100 / count,
-                    message = c.ToString(),//string.Format("print glyph for [{0}]", c),
-                };
             }
 
             graphics.Dispose();
 
-            yield return new TTFTextureYeildingState()
-            {
-                percent = index++ * 100 / count,
-                bigBitmap = bigBitmap,
-                message = "texture is ready",
-            };
+            return bigBitmap;
         }
 
         /// <summary>
@@ -199,15 +201,13 @@ namespace CSharpGL.Texts
         /// <param name="charInfoDict"></param>
         /// <param name="textureWidth"></param>
         /// <param name="textureHeight"></param>
-        private static IEnumerable<TTFTextureYeildingState> GetTextureBlueprint(
-            FreeTypeFace face, int fontHeight, int maxTextureWidth, char firstChar, char lastChar)
+        private static void GetTextureBlueprint(FreeTypeFace face, int fontHeight, int maxTextureWidth,
+            char firstChar, char lastChar,
+            out Dictionary<char, CharacterInfo> charInfoDict, out int textureWidth, out int textureHeight)
         {
-            int count = lastChar - firstChar;
-            int index = 0;
-
-            var charInfoDict = new Dictionary<char, CharacterInfo>();
-            int textureWidth = 0;
-            int textureHeight = fontHeight;
+            charInfoDict = new Dictionary<char, CharacterInfo>();
+            textureWidth = 0;
+            textureHeight = fontHeight;
 
             int glyphXOffset = 0;
             int glyphYOffset = 0;
@@ -215,22 +215,6 @@ namespace CSharpGL.Texts
             for (char c = firstChar; c <= lastChar; c++)
             {
                 FreeTypeBitmapGlyph glyph = new FreeTypeBitmapGlyph(face, c, fontHeight);
-                {
-                    var rect = glyph.glyphRec;
-                    var glyphChar = glyph.glyphChar;
-                    var left = glyph.obj.left;
-                    var top = glyph.obj.top;
-                    var x = glyph.obj.root.advance.x >> 6;
-                    var y = glyph.obj.root.advance.y >> 6;
-                    var clazz = glyph.obj.root.clazz;
-                    var format = glyph.obj.root.format;
-                    var library = glyph.obj.root.library;
-                    var num_grays = glyph.obj.bitmap.num_grays;
-                    var palette = glyph.obj.bitmap.palette;
-                    var palette_mode = glyph.obj.bitmap.palette_mode;
-                    var pitch = glyph.obj.bitmap.pitch;
-                    var pixel_mode = glyph.obj.bitmap.pixel_mode;
-                }
 
                 bool zeroSize = (glyph.obj.bitmap.rows == 0 && glyph.obj.bitmap.width == 0);
 
@@ -243,14 +227,15 @@ namespace CSharpGL.Texts
                 int glyphWidth = glyph.obj.bitmap.width;
                 int glyphHeight = glyph.obj.bitmap.rows;
 
+
                 if (c == ' ' && zeroSize)// 空格需要特殊处理
                 {
                     zeroSize = false;
-                    FreeTypeBitmapGlyph tabGlyph = new FreeTypeBitmapGlyph(face, ' ', fontHeight);
+                    FreeTypeBitmapGlyph tabGlyph = new FreeTypeBitmapGlyph(face, '\t', fontHeight);
                     glyphWidth = tabGlyph.obj.bitmap.width / 8;
-                    if (glyphWidth < 1) { glyphWidth = fontHeight / 3; }
+                    if (glyphWidth < 1) { glyphWidth = fontHeight / 2; }
                     glyphHeight = tabGlyph.obj.bitmap.rows;
-                    if (glyphHeight < 1) { glyphHeight = 1; }
+                    //if (glyphHeight < 1) { glyphHeight = 1; }
                 }
                 else if (c == '\t' && zeroSize)// tab可能需要特殊处理
                 {
@@ -258,7 +243,7 @@ namespace CSharpGL.Texts
                     glyphWidth = glyph.obj.bitmap.width;
                     if (glyphWidth < 1) { glyphWidth = fontHeight * 2; }
                     glyphHeight = glyph.obj.bitmap.rows;
-                    if (glyphHeight < 1) { glyphHeight = 1; }
+                    //if (glyphHeight < 1) { glyphHeight = 1; }
                 }
 
                 if (!zeroSize)
@@ -284,34 +269,42 @@ namespace CSharpGL.Texts
                 }
 
                 if (c == char.MaxValue) { break; }
-
-                yield return new TTFTextureYeildingState()
-                {
-                    percent = index++ * 100 / count,
-                    //message = "generating blueprint",
-                    message = "blueprint",
-                };
             }
 
-            yield return new TTFTextureYeildingState()
-            {
-                percent = index++ * 100 / count,
-                dict = charInfoDict,
-                textureWidth = textureWidth,
-                textureHeight = textureHeight,
-                message = "blueprint done",
-            };
         }
 
-        public class TTFTextureYeildingState
-        {
-            public string message;
-            public int percent;
-            public FontTexture ttfTexture;
-            internal System.Drawing.Bitmap bigBitmap;
-            internal Dictionary<char, CharacterInfo> dict;
-            internal int textureWidth;
-            internal int textureHeight;
-        }
+
+        //public static void GetTextureWidthHeight(this FontTexture fontTexture, int maxTextureWidth, out int width, out int height)
+        //{
+        //    int textureWidth = maxTextureWidth;
+        //    int textureHeight = maxTextureWidth;
+        //    System.Drawing.Bitmap bitmap = fontTexture.BigBitmap;
+
+        //    for (int size = 1; size <= maxTextureWidth; size *= 2)
+        //    {
+        //        if (bitmap.Width < size)
+        //        {
+        //            textureWidth = size / 2;
+        //            break;
+        //        }
+        //        if (bitmap.Width == size)
+        //            textureWidth = size;
+
+        //    }
+
+        //    for (int size = 1; size <= maxTextureWidth; size *= 2)
+        //    {
+        //        if (bitmap.Height < size)
+        //        {
+        //            textureHeight = size / 2;
+        //            break;
+        //        }
+        //        if (bitmap.Height == size)
+        //            textureHeight = size;
+        //    }
+
+        //    width = textureWidth;
+        //    height = textureHeight;
+        //}
     }
 }

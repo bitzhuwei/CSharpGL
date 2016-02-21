@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace CSharpGL.GlyphTextures.FreeTypes
+namespace CSharpGL.GlyphTextures.FromTTF.FreeTypes
 {
     /// <summary>
     /// FreeType对象的基类型。

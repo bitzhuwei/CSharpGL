@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.GlyphTextures.FreeTypes
+namespace CSharpGL.GlyphTextures.FromTTF.FreeTypes
 {
     public enum FT_LOAD_TYPES
     {

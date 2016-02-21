@@ -46,33 +46,13 @@
     <Compile Include="FontResource.cs" />
     <Compile Include="FontResourceHelper.cs" />
     <Compile Include="FontTexture.cs" />
-    <Compile Include="FontTextureHelper.cs" />
-    <Compile Include="FontTextureYieldHelper.cs" />
-    <Compile Include="FreeTypes\BBox.cs" />
-    <Compile Include="FreeTypes\FreeTypeAPI.cs" />
-    <Compile Include="FreeTypes\FreeTypeEnumerations.cs" />
-    <Compile Include="FreeTypes\FreeTypeObjects.cs" />
-    <Compile Include="FreeTypes\FT_BitmapBuffer.cs" />
-    <Compile Include="FreeTypes\FT_BitmapGlyph.cs" />
-    <Compile Include="FreeTypes\FT_Face.cs" />
-    <Compile Include="FreeTypes\FT_Generic.cs" />
-    <Compile Include="FreeTypes\FT_GlyphRec.cs" />
-    <Compile Include="FreeTypes\FT_Library.cs" />
-    <Compile Include="FreeTypes\FT_ListRec.cs" />
-    <Compile Include="FreeTypes\FT_Vector.cs" />
     <Compile Include="KeyValuePairHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FreeTypes\freetype.2.5.4ForStudy.dll" />
-    <Content Include="FreeTypes\freetype.dll" />
     <Content Include="LucidaTypewriterRegular.ttf.png" />
     <Content Include="LucidaTypewriterRegular.ttf.xml" />
     <Content Include="readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="FreeTypes\freetype.exp" />
-    <None Include="FreeTypes\freetype.lib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Utilities\Utilities.csproj">

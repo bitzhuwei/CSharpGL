@@ -21,15 +21,20 @@ namespace CSharpGL.GlyphTextures
             }
         }
 
+        public const string strTTFTexture = "TTFTexture";
+        public const string strFontHeight = "FontHeight";
+        public const string strFirstChar = "FirstChar";
+        public const string strLastChar = "LastChar";
+
         private FontResource()
         {
             this.FontBitmap = ManifestResourceLoader.LoadBitmap("LucidaTypewriterRegular.ttf.png");
 
             string xmlContent = ManifestResourceLoader.LoadTextFile("LucidaTypewriterRegular.ttf.xml");
             XElement xElement = XElement.Parse(xmlContent, LoadOptions.None);
-            this.FontHeight = int.Parse(xElement.Attribute(FontTextureHelper.strFontHeight).Value);
-            this.FirstChar = (char)int.Parse(xElement.Attribute(FontTextureHelper.strFirstChar).Value);
-            this.LastChar = (char)int.Parse(xElement.Attribute(FontTextureHelper.strLastChar).Value);
+            this.FontHeight = int.Parse(xElement.Attribute(strFontHeight).Value);
+            this.FirstChar = (char)int.Parse(xElement.Attribute(strFirstChar).Value);
+            this.LastChar = (char)int.Parse(xElement.Attribute(strLastChar).Value);
             this.CharInfoDict = CharacterInfoDictHelper.Parse(
                 xElement.Element(CharacterInfoDictHelper.strCharacterInfoDict));
         }

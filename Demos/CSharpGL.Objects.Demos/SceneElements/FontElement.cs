@@ -1,10 +1,11 @@
 ﻿using GLM;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Shaders;
-using CSharpGL.Texts;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using CSharpGL.GlyphTextures;
+using CSharpGL.GlyphTextures.FromTTF;
 
 namespace CSharpGL.Objects.SceneElements
 {

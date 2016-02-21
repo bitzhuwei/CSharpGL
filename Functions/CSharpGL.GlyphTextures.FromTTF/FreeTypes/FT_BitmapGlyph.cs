@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.GlyphTextures.FreeTypes
+namespace CSharpGL.GlyphTextures.FromTTF.FreeTypes
 {
     [StructLayout(LayoutKind.Sequential)]
     public class FT_BitmapGlyph

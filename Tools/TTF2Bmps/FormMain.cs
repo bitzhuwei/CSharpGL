@@ -1,5 +1,6 @@
 ﻿using CSharpGL;
-using CSharpGL.Texts;
+using CSharpGL.GlyphTextures;
+using CSharpGL.GlyphTextures.FromTTF;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

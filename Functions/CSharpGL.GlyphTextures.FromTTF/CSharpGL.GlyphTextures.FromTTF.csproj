@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{292F0A6F-6D7E-42FE-8B5C-3FBA11FC9B49}</ProjectGuid>
+    <ProjectGuid>{4C8ECB5C-BE09-4D2F-9544-8ACA2B5299E7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharpGL.UIs</RootNamespace>
-    <AssemblyName>CSharpGL.UIs</AssemblyName>
+    <RootNamespace>CSharpGL.GlyphTextures.FromTTF</RootNamespace>
+    <AssemblyName>CSharpGL.GlyphTextures.FromTTF</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,7 +33,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,34 +40,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="FontTextureHelper.cs" />
+    <Compile Include="FontTextureYieldHelper.cs" />
+    <Compile Include="FreeTypes\BBox.cs" />
+    <Compile Include="FreeTypes\FreeTypeAPI.cs" />
+    <Compile Include="FreeTypes\FreeTypeEnumerations.cs" />
+    <Compile Include="FreeTypes\FreeTypeObjects.cs" />
+    <Compile Include="FreeTypes\FT_BitmapBuffer.cs" />
+    <Compile Include="FreeTypes\FT_BitmapGlyph.cs" />
+    <Compile Include="FreeTypes\FT_Face.cs" />
+    <Compile Include="FreeTypes\FT_Generic.cs" />
+    <Compile Include="FreeTypes\FT_GlyphRec.cs" />
+    <Compile Include="FreeTypes\FT_Library.cs" />
+    <Compile Include="FreeTypes\FT_ListRec.cs" />
+    <Compile Include="FreeTypes\FT_Vector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IUILayout.cs" />
-    <Compile Include="IUILayoutArgs.cs" />
-    <Compile Include="IUILayoutHelper.cs" />
-    <Compile Include="IUILayoutParam.cs" />
-    <Compile Include="SimpleUIAxis.cs" />
-    <Compile Include="SimpleUIPointSpriteStringElement.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SimpleUIPointSpriteStringElement.frag" />
+    <Content Include="FreeTypes\freetype.2.5.4ForStudy.dll" />
+    <Content Include="FreeTypes\freetype.dll" />
+    <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SimpleUIPointSpriteStringElement.vert" />
+    <None Include="FreeTypes\freetype.exp" />
+    <None Include="FreeTypes\freetype.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\GLM\GLM.csproj">
-      <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
-      <Name>GLM</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\CSharpGL.Objects\CSharpGL.Objects.csproj">
-      <Project>{b340c561-2e18-42af-a52d-e6d9f924293e}</Project>
-      <Name>CSharpGL.Objects</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\CSharpGL\CSharpGL.csproj">
-      <Project>{0d6e73c8-27b8-4614-9861-f4f22808ea7c}</Project>
-      <Name>CSharpGL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Core\Utilities\Utilities.csproj">
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>
@@ -77,17 +74,6 @@
       <Project>{a7a799dc-d893-4711-bf05-a1e347cbe21b}</Project>
       <Name>CSharpGL.GlyphTextures</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CSharpGL.Objects.Common\CSharpGL.Objects.Common.csproj">
-      <Project>{388d3f0c-08b3-47dc-86a8-cc5cc87b5819}</Project>
-      <Name>CSharpGL.Objects.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CSharpGL.Texts\CSharpGL.Texts.csproj">
-      <Project>{febc2c4a-e846-44e7-99c1-ecf2816abf40}</Project>
-      <Name>CSharpGL.Texts</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

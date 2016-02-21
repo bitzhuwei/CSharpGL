@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Texts.FreeTypes
+namespace CSharpGL.GlyphTextures.FromTTF.FreeTypes
 {
     /// <summary>
     /// 字形的包围盒。

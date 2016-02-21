@@ -446,6 +446,14 @@
       <Project>{b340c561-2e18-42af-a52d-e6d9f924293e}</Project>
       <Name>CSharpGL.Objects</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Functions\CSharpGL.GlyphTextures.FromTTF\CSharpGL.GlyphTextures.FromTTF.csproj">
+      <Project>{4c8ecb5c-be09-4d2f-9544-8aca2b5299e7}</Project>
+      <Name>CSharpGL.GlyphTextures.FromTTF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Functions\CSharpGL.GlyphTextures\CSharpGL.GlyphTextures.csproj">
+      <Project>{a7a799dc-d893-4711-bf05-a1e347cbe21b}</Project>
+      <Name>CSharpGL.GlyphTextures</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Functions\CSharpGL.Objects.Common\CSharpGL.Objects.Common.csproj">
       <Project>{388d3f0c-08b3-47dc-86a8-cc5cc87b5819}</Project>
       <Name>CSharpGL.Objects.Common</Name>

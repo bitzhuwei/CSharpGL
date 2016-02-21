@@ -93,13 +93,17 @@
       <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
       <Name>GLM</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Functions\CSharpGL.Texts\CSharpGL.Texts.csproj">
-      <Project>{febc2c4a-e846-44e7-99c1-ecf2816abf40}</Project>
-      <Name>CSharpGL.Texts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Core\CSharpGL\CSharpGL.csproj">
       <Project>{0d6e73c8-27b8-4614-9861-f4f22808ea7c}</Project>
       <Name>CSharpGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Functions\CSharpGL.GlyphTextures.FromTTF\CSharpGL.GlyphTextures.FromTTF.csproj">
+      <Project>{4c8ecb5c-be09-4d2f-9544-8aca2b5299e7}</Project>
+      <Name>CSharpGL.GlyphTextures.FromTTF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Functions\CSharpGL.GlyphTextures\CSharpGL.GlyphTextures.csproj">
+      <Project>{a7a799dc-d893-4711-bf05-a1e347cbe21b}</Project>
+      <Name>CSharpGL.GlyphTextures</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

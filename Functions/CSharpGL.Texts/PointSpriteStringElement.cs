@@ -1,6 +1,5 @@
 ﻿using GLM;
 using CSharpGL.Objects.Shaders;
-using CSharpGL.Texts;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,6 +7,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CSharpGL.GlyphTextures;
 
 namespace CSharpGL.Objects.SceneElements
 {
