@@ -20,14 +20,16 @@ namespace CSharpShadingLanguage.Compiler.Test
                     var tokenList = lexi.Analyze();
                     foreach (var token in tokenList)
                     {
-                        Console.WriteLine(token);
-                        sw.WriteLine(token);
+                        //Console.WriteLine(token);
+                        //sw.WriteLine(token);
 
                         if (token.TokenType == EnumTokenTypeCSSLCompiler.unknown)
                         {
                             Console.ReadKey(true);
                         }
                     }
+                    // find public override void main() { }
+
                 }
 
                 //Console.ReadKey(true);

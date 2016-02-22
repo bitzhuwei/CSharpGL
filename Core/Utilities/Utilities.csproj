@@ -49,6 +49,11 @@
     <Compile Include="FloatHelper.cs" />
     <Compile Include="FullDictionary.cs" />
     <Compile Include="ITreeNode.cs" />
+    <Compile Include="KMP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KMP.tt</DependentUpon>
+    </Compile>
     <Compile Include="ManifestResourceLoader.cs" />
     <Compile Include="OpenFolderHelper.cs" />
     <Compile Include="StructHelper.cs" />
@@ -58,7 +63,14 @@
     <Compile Include="UnmanagedArray.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="KMP.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>KMP.cs</LastGenOutput>
+    </Content>
     <Content Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
