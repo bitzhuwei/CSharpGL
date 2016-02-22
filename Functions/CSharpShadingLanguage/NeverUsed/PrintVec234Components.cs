@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+#if DEBUG
+
 namespace CSharpShadingLanguage.NeverUsed
 {
-#if DEBUG
     /// <summary>
     /// 在release版中不需要这个类型。这是为生成代码而写的。
     /// </summary>
@@ -99,5 +100,6 @@ namespace CSharpShadingLanguage.NeverUsed
             }
         }
     }
-#endif
 }
+
+#endif
