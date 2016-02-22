@@ -47,7 +47,6 @@
     <Compile Include="BuildInFieldTypeHelper.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Content Include="readme.txt" />
     <Compile Include="CSSLTemplate.cs" />
     <Compile Include="FormUpdateIntermediateStructure.cs">
       <SubType>Form</SubType>
@@ -116,6 +115,7 @@
     <Compile Include="StructureField.cs" />
     <Compile Include="StructureFieldList.cs" />
     <Compile Include="VertexShaderFieldList.cs" />
+    <Content Include="readme.txt" />
     <Content Include="vs+fs.xml" />
     <Content Include="vs+gs+fs.xml" />
     <EmbeddedResource Include="FormUpdateIntermediateStructure.resx">

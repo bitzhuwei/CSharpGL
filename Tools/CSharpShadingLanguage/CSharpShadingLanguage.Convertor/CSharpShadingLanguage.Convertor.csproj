@@ -99,7 +99,6 @@
       <Name>CSharpGL.CSSL2GLSL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="readme.txt" />
   </ItemGroup>
