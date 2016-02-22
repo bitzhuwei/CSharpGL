@@ -83,6 +83,7 @@ namespace CSharpGL.Winforms.Demo
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
+            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
@@ -99,7 +100,7 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            //if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 this.rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
                 this.rotator.MouseDown(e.X, e.Y);
@@ -108,32 +109,40 @@ namespace CSharpGL.Winforms.Demo
 
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.rotator.MouseDownFlag && e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (this.rotator.MouseDownFlag)// && e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 this.rotator.MouseMove(e.X, e.Y);
 
                 this.glCanvas1.Invalidate();
             }
 
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            //if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 IPickedGeometry pickedGeometry = this.Pick(e.X, e.Y);
                 if (pickedGeometry != null)
                 {
-                    this.txtPickedInfo.Text = string.Format("{0:yyyy-MM-dd HH:mm:ss.ff} {1}",
-                        DateTime.Now, pickedGeometry);
+                    element.pickedVertexID = pickedGeometry.StageVertexID
+                        - pickedGeometry.StageVertexID % 8 + 8 - 1;//ID从0开始。0-7是第一个立方体的顶点的索引。
+                    element.picked = true;
+                    this.txtPickedInfo.Text = string.Format(
+                        "{0:yyyy-MM-dd HH:mm:ss.ff} {1}{2}picked pirimitive's last vertex id: {3}",
+                        DateTime.Now, pickedGeometry,
+                        Environment.NewLine,
+                        element.pickedVertexID);
                 }
                 else
                 {
                     this.txtPickedInfo.Text = string.Format("{0:yyyy-MM-dd HH:mm:ss.ff} {1}",
                         DateTime.Now, "nothing picked");
+                    element.pickedVertexID = uint.MaxValue;
+                    element.picked = false;
                 }
             }
         }
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            //if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 this.rotator.MouseUp(e.X, e.Y);
             }
@@ -145,10 +154,10 @@ namespace CSharpGL.Winforms.Demo
 
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("Use 'c' to switch camera types between perspective and ortho");
-            builder.AppendLine("Use 'j' to increase faces");
-            builder.AppendLine("Use 'k' to decrease faces");
+            builder.AppendLine("Use 'j' to decrease faces");
+            builder.AppendLine("Use 'k' to increase faces");
             //builder.AppendLine("Use right click to pick a primitive.");
-            builder.AppendLine("Click Down Right Mouse to pick a primitive.");
+            //builder.AppendLine("Click Down Right Mouse to pick a primitive.");
             MessageBox.Show(builder.ToString());
         }
 

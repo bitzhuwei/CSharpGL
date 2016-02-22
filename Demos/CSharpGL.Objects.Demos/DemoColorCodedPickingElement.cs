@@ -193,6 +193,8 @@ namespace CSharpGL.Objects.Demos
 
         private int count = 3;
         private ShaderProgram pickingShaderProgram;
+        public float pickedVertexID = uint.MaxValue;
+        public bool picked;
 
         public int Count
         {
@@ -223,10 +225,24 @@ namespace CSharpGL.Objects.Demos
             {
                 shaderProgram.SetUniform("pickingBaseID", ((IColorCodedPicking)this).PickingBaseID);
                 shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+                //shaderProgram.SetUniform("picked", 0.0f);
+                shaderProgram.SetUniform("pickedVertexIDMin", this.pickedVertexID);
+                shaderProgram.SetUniform("pickedVertexIDMax", this.pickedVertexID - 1);
             }
             else
             {
                 shaderProgram.SetUniformMatrix4(strMVP, mvp.to_array());
+                //shaderProgram.SetUniform("picked", picked ? 1.0f : 0.0f);
+                if (this.picked)
+                {
+                    shaderProgram.SetUniform("pickedVertexIDMin", this.pickedVertexID - 7);
+                    shaderProgram.SetUniform("pickedVertexIDMax", this.pickedVertexID);
+                }
+                else
+                {
+                    shaderProgram.SetUniform("pickedVertexIDMin", this.pickedVertexID);
+                    shaderProgram.SetUniform("pickedVertexIDMax", this.pickedVertexID - 1);
+                }
             }
 
             GL.Enable(GL.GL_PRIMITIVE_RESTART);
