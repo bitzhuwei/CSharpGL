@@ -29,11 +29,53 @@ namespace CSharpShadingLanguage.Compiler.Test
                         }
                     }
                     // find public override void main() { }
+                    List<Token<EnumTokenTypeCSSLCompiler>> target = new List<Token<EnumTokenTypeCSSLCompiler>>();
+                    target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = "public", });
+                    target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = "override", });
+                    target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = "void", });
+                    target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = "main", });
+                    target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.token_LeftParentheses_, Detail = "(", });
+                    target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.token_RightParentheses_, Detail = ")", });
+                    target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.token_LeftBrace_, Detail = "{", });
+                    int index = tokenList.KMP(target, new TokenComparer());
+                    if (index < 0) { throw new Exception(); }
+                    int rightBraceIndex = index + 7; int leftBraceCount = 1;
+                    for (; rightBraceIndex < tokenList.Count; rightBraceIndex++)
+                    {
+                        if (tokenList[rightBraceIndex].TokenType == EnumTokenTypeCSSLCompiler.token_LeftBrace_)
+                        {
+                            leftBraceCount++;
+                        }
+                        else if (tokenList[rightBraceIndex].TokenType == EnumTokenTypeCSSLCompiler.token_RightBrace_)
+                        {
+                            leftBraceCount--;
+                            if (leftBraceCount == 0)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    Console.WriteLine("right brace '}}' for public override void main() {{ is {0}", tokenList[rightBraceIndex]);
 
                 }
 
-                //Console.ReadKey(true);
-                //System.Diagnostics.Process.Start("explorer", "/select," + item + ".txt");
+     
+            }
+
+        }
+
+        class TokenComparer : IComparer<Token<EnumTokenTypeCSSLCompiler>>
+        {
+
+            int IComparer<Token<EnumTokenTypeCSSLCompiler>>.Compare(Token<EnumTokenTypeCSSLCompiler> x, Token<EnumTokenTypeCSSLCompiler> y)
+            {
+                if (x == null && y == null) { return 0; }
+                if (x == null || y == null) { return 1; }
+
+                if (x.Detail == y.Detail
+                    && x.TokenType == y.TokenType) { return 0; }
+
+                return 1;
             }
         }
     }

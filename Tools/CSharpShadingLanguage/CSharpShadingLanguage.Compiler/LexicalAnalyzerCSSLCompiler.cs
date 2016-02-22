@@ -1386,6 +1386,7 @@ namespace CSharpShadingLanguage.Compiler
             if (c == ':') return EnumCharTypeCSSLCompiler.Colon;
             if (c == ';') return EnumCharTypeCSSLCompiler.Semicolon;
             if (c == '=') return EnumCharTypeCSSLCompiler.Equality;
+            if (c == '@') return EnumCharTypeCSSLCompiler.At;
             if (regChineseLetter.IsMatch(Convert.ToString(c))) return EnumCharTypeCSSLCompiler.ChineseLetter;
             if (c == ' ' || c == '\t' || c == '\r' || c == '\n') return EnumCharTypeCSSLCompiler.Space;
             return EnumCharTypeCSSLCompiler.Unknown;

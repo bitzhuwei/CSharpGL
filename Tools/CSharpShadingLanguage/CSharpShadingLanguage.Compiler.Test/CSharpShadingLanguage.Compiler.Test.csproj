@@ -52,6 +52,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Utilities\Utilities.csproj">
+      <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CSharpShadingLanguage.Compiler\CSharpShadingLanguage.Compiler.csproj">
       <Project>{adf41702-e94d-4ca0-b314-1b29e5c9af6f}</Project>
       <Name>CSharpShadingLanguage.Compiler</Name>

@@ -49,11 +49,7 @@
     <Compile Include="FloatHelper.cs" />
     <Compile Include="FullDictionary.cs" />
     <Compile Include="ITreeNode.cs" />
-    <Compile Include="KMP.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>KMP.tt</DependentUpon>
-    </Compile>
+    <Compile Include="KMP.cs" />
     <Compile Include="ManifestResourceLoader.cs" />
     <Compile Include="OpenFolderHelper.cs" />
     <Compile Include="StructHelper.cs" />
@@ -63,10 +59,6 @@
     <Compile Include="UnmanagedArray.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="KMP.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>KMP.cs</LastGenOutput>
-    </Content>
     <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>

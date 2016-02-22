@@ -163,6 +163,23 @@ namespace System
 
     public static class IListKMP
     {
+        sealed class DefaultComparer<T> : IComparer<T>
+        {
+            private static readonly DefaultComparer<T> instance = new DefaultComparer<T>();
+
+            public static DefaultComparer<T> Instance
+            {
+                get { return DefaultComparer<T>.instance; }
+            }
+
+
+            int IComparer<T>.Compare(T x, T y)
+            {
+                if (x.Equals(y)) { return 0; }
+                else { return 1; }
+            }
+        }
+
         /// <summary>
         /// This indicates that no pattern found from source.
         /// </summary>
@@ -176,13 +193,17 @@ namespace System
         /// </summary>
         /// <param name="source"></param>
         /// <param name="pattern"></param>
+        /// <param name="comparer"></param>
         /// <returns></returns>
-        public static int KMP(this IList<IComparable> source, IList<IComparable> pattern)
+        public static int KMP<T>(this IList<T> source, IList<T> pattern, IComparer<T> comparer = null)
         {
             if (source == null || pattern == null || source.Count == 0 || pattern.Count == 0)
             { return KMPNoMatch; }
+
+            if (comparer == null) { comparer = DefaultComparer<T>.Instance; }
+
             var i = 0; var j = 0; var result = KMPNoMatch;
-            var nextVal = GetNextVal(pattern);
+            var nextVal = GetNextVal(pattern, comparer);
 
             while (i < source.Count && j < pattern.Count)
             {
@@ -190,7 +211,7 @@ namespace System
                 {// source[i] does NOT equal with pattern[0], so i should be increased by 1 and j should be reset to 0.
                     i++; j = 0;
                 }
-                else if (source[i].Equals(pattern[j]))
+                else if (comparer.Compare(source[i], pattern[j]) == 0) //(source[i].Equals(pattern[j]))
                 {
                     i++; j++;
                 }
@@ -205,6 +226,7 @@ namespace System
 
             return result;
         }
+
         /// <summary>
         /// nextVal[j]: source[i] should compare with pattern[ nextVal[j] ] in next loop
         /// <para>if source[i] does NOT equal with pattern[j].</para>
@@ -214,7 +236,7 @@ namespace System
         /// </summary>
         /// <param name="pattern"></param>
         /// <returns></returns>
-        private static int[] GetNextVal(IList<IComparable> pattern)
+        private static int[] GetNextVal<T>(IList<T> pattern, IComparer<T> comparer)
         {
             var j = 0; var k = -1;
             var nextVal = new int[pattern.Count];
@@ -223,10 +245,10 @@ namespace System
 
             while (j < pattern.Count - 1)
             {
-                if ((k == -1) || (pattern[j].Equals(pattern[k])))
+                if ((k == -1) || (comparer.Compare(pattern[j], pattern[k]) == 0))
                 {
                     j++; k++;
-                    if (!(pattern[j].Equals(pattern[k])))
+                    if (!(comparer.Compare(pattern[j], pattern[k]) == 0))
                     { nextVal[j] = k; }
                     else
                     { nextVal[j] = nextVal[k]; }
@@ -237,6 +259,7 @@ namespace System
 
             return nextVal;
         }
+
     }
 
 }

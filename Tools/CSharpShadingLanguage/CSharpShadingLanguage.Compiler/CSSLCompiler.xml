@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContextfreeGrammar GrammarName="CSSLCompiler" Namespace="CSharpShadingLanguage.Compiler">
   <source_code_of_CGCompiler>Name:CSSLCompiler
-&lt;Expression&gt; ::= "~" "!" "@" "#" "%" "^" "&amp;" "*" "(" ")" "-" "+" "=" "{" "}" "[" "]" ":" ";" "&lt;" "&gt;" "," "." "?" "/" "~=" "!=" "%=" "^=" "&amp;=" "*=" "-=" "+=" "&lt;=" "&gt;=" "/=" "&amp;&amp;" "++" "&lt;&lt;" "&gt;&gt;" identifier number;
+&lt;Expression&gt; ::= "~" "!" "@" "#" "%" "^" "&amp;" "*" "(" ")" "-" "+" "=" "{" "}" "[" "]" ":" ";" "&lt;" "&gt;" "," "." "?" "/" "~=" "!=" "%=" "^=" "&amp;=" "*=" "-=" "+=" "&lt;=" "&gt;=" "/=" "&amp;&amp;" "++" "&lt;&lt;" "&gt;&gt;" string identifier number;
 </source_code_of_CGCompiler>
   <ContextfreeProductionList Count="1">
     <ContextfreeProduction>
       <ProductionNode NodeName="Expression" NodeNote="Expression" Position="NonLeave" />
       <RightSection CandidateCount="1">
-        <ProductionNodeList NodeCount="42">
+        <ProductionNodeList NodeCount="43">
           <ProductionNode NodeName="&quot;~&quot;" NodeNote="&quot;~&quot;" Position="Leave" />
           <ProductionNode NodeName="&quot;!&quot;" NodeNote="&quot;!&quot;" Position="Leave" />
           <ProductionNode NodeName="&quot;@&quot;" NodeNote="&quot;@&quot;" Position="Leave" />
@@ -48,6 +48,7 @@
           <ProductionNode NodeName="&quot;++&quot;" NodeNote="&quot;++&quot;" Position="Leave" />
           <ProductionNode NodeName="&quot;&lt;&lt;&quot;" NodeNote="&quot;&lt;&lt;&quot;" Position="Leave" />
           <ProductionNode NodeName="&quot;&gt;&gt;&quot;" NodeNote="&quot;&gt;&gt;&quot;" Position="Leave" />
+          <ProductionNode NodeName="string" NodeNote="string" Position="Leave" />
           <ProductionNode NodeName="identifier" NodeNote="identifier" Position="Leave" />
           <ProductionNode NodeName="number" NodeNote="number" Position="Leave" />
         </ProductionNodeList>
