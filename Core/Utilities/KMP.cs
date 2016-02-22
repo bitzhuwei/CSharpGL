@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace bitzhuwei.Algorithm.Common
+namespace System
 {
     public static class StringKMP
     {
@@ -14,7 +14,7 @@ namespace bitzhuwei.Algorithm.Common
         /// <summary>
         /// Special value of next[] array, which means i should be increased by 1 and j sould be reset to 0.
         /// </summary>
-        public const int FirstBlood = -1;
+        private const int FirstBlood = -1;
         /// <summary>
         /// Find first match for specified pattern in the source.
         /// </summary>
@@ -92,7 +92,7 @@ namespace bitzhuwei.Algorithm.Common
         /// <summary>
         /// Special value of next[] array, which means i should be increased by 1 and j sould be reset to 0.
         /// </summary>
-        public const int FirstBlood = -1;
+        private const int FirstBlood = -1;
         /// <summary>
         /// Find first match for specified pattern in the source.
         /// </summary>
@@ -170,7 +170,7 @@ namespace bitzhuwei.Algorithm.Common
         /// <summary>
         /// Special value of next[] array, which means i should be increased by 1 and j sould be reset to 0.
         /// </summary>
-        public const int FirstBlood = -1;
+        private const int FirstBlood = -1;
         /// <summary>
         /// Find first match for specified pattern in the source.
         /// </summary>
