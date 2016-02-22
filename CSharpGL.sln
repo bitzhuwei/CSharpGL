@@ -118,6 +118,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Texts", "Texts", "{45E40750
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Texts.StringModelFactory", "Functions\Texts\CSharpGL.Texts.StringModelFactory\CSharpGL.Texts.StringModelFactory.csproj", "{EA9A13C8-4838-4C77-A8CA-06AC9D153722}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenAssetImportLibrary", "Functions\FileParsers\OpenAssetImportLibrary\OpenAssetImportLibrary.csproj", "{60EEAFB2-B0E7-417B-92F2-4019619C10B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -296,6 +298,10 @@ Global
 		{EA9A13C8-4838-4C77-A8CA-06AC9D153722}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA9A13C8-4838-4C77-A8CA-06AC9D153722}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA9A13C8-4838-4C77-A8CA-06AC9D153722}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60EEAFB2-B0E7-417B-92F2-4019619C10B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60EEAFB2-B0E7-417B-92F2-4019619C10B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60EEAFB2-B0E7-417B-92F2-4019619C10B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60EEAFB2-B0E7-417B-92F2-4019619C10B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -348,5 +354,6 @@ Global
 		{48802073-D765-498D-91D4-A5BCADC568F6} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 		{45E40750-C73E-4523-B838-D93069D695D0} = {4536AD65-96CD-4BA7-9D4F-17C650C38F29}
 		{EA9A13C8-4838-4C77-A8CA-06AC9D153722} = {45E40750-C73E-4523-B838-D93069D695D0}
+		{60EEAFB2-B0E7-417B-92F2-4019619C10B6} = {48802073-D765-498D-91D4-A5BCADC568F6}
 	EndGlobalSection
 EndGlobal
