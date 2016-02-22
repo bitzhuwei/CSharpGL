@@ -50,9 +50,17 @@ namespace CSharpShadingLanguage.Compiler
         /// </summary>
         token_RightParentheses_,
         /// <summary>
+        /// &quot;-&quot;
+        /// </summary>
+        token_Minus_,
+        /// <summary>
         /// &quot;+&quot;
         /// </summary>
         token_Plus_,
+        /// <summary>
+        /// &quot;=&quot;
+        /// </summary>
+        token_Equality_,
         /// <summary>
         /// &quot;{&quot;
         /// </summary>
@@ -126,6 +134,10 @@ namespace CSharpShadingLanguage.Compiler
         /// </summary>
         token_Multiply_Equality_,
         /// <summary>
+        /// &quot;-=&quot;
+        /// </summary>
+        token_Minus_Equality_,
+        /// <summary>
         /// &quot;+=&quot;
         /// </summary>
         token_Plus_Equality_,
@@ -169,7 +181,6 @@ namespace CSharpShadingLanguage.Compiler
         /// #
         /// </summary>
         token_startEnd,
-     
     }
 
 }

@@ -69,8 +69,14 @@ namespace CSharpShadingLanguage.Compiler
                 case EnumCharTypeCSSLCompiler.RightParentheses:
                     gotToken = GetRightParentheses(result);
                     break;
+                case EnumCharTypeCSSLCompiler.Minus:
+                    gotToken = GetMinusOpt(result);
+                    break;
                 case EnumCharTypeCSSLCompiler.Plus:
                     gotToken = GetPlusOpt(result);
+                    break;
+                case EnumCharTypeCSSLCompiler.Equality:
+                    gotToken = GetEquality(result);
                     break;
                 case EnumCharTypeCSSLCompiler.LeftBrace:
                     gotToken = GetLeftBrace(result);
@@ -488,6 +494,46 @@ namespace CSharpShadingLanguage.Compiler
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
+        protected virtual bool GetMinusOpt(Token<EnumTokenTypeCSSLCompiler> result)
+        {
+            var count = this.GetSourceCode().Length;
+            //item.CharType: Minus
+            //todo: maybe you need to set TokenType to their right position.
+            //Mapped nodes:
+            //    "-"
+            //result.TokenType = EnumTokenTypeCSSLCompiler.token_Minus_;
+            //    "-="
+            //result.TokenType = EnumTokenTypeCSSLCompiler.token_Minus_Equality_;
+            if (PtNextLetter + 2 <= count)
+            {
+                var str = this.GetSourceCode().Substring(PtNextLetter, 2);
+                if ("-=" == str)
+                {
+                    result.TokenType = EnumTokenTypeCSSLCompiler.token_Minus_Equality_;
+                    result.Detail = str;
+                    PtNextLetter += 2;
+                    return true;
+                }
+            }
+            if (PtNextLetter + 1 <= count)
+            {
+                var str = this.GetSourceCode().Substring(PtNextLetter, 1);
+                if ("-" == str)
+                {
+                    result.TokenType = EnumTokenTypeCSSLCompiler.token_Minus_;
+                    result.Detail = str;
+                    PtNextLetter += 1;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        /// <summary>
+        /// )
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
         protected virtual bool GetPlusOpt(Token<EnumTokenTypeCSSLCompiler> result)
         {
             var count = this.GetSourceCode().Length;
@@ -524,6 +570,32 @@ namespace CSharpShadingLanguage.Compiler
                 if ("+" == str)
                 {
                     result.TokenType = EnumTokenTypeCSSLCompiler.token_Plus_;
+                    result.Detail = str;
+                    PtNextLetter += 1;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        /// <summary>
+        /// )
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        protected virtual bool GetEquality(Token<EnumTokenTypeCSSLCompiler> result)
+        {
+            var count = this.GetSourceCode().Length;
+            //item.CharType: Equality
+            //Mapped nodes:
+            //    "="
+            //result.TokenType = EnumTokenTypeCSSLCompiler.token_Equality_;
+            if (PtNextLetter + 1 <= count)
+            {
+                var str = this.GetSourceCode().Substring(PtNextLetter, 1);
+                if ("=" == str)
+                {
+                    result.TokenType = EnumTokenTypeCSSLCompiler.token_Equality_;
                     result.Detail = str;
                     PtNextLetter += 1;
                     return true;
@@ -892,7 +964,6 @@ namespace CSharpShadingLanguage.Compiler
                 if ("//" == str)
                 {
                     SkipSingleLineNote();
-                    return false;
                 }
             }
             if (PtNextLetter + 1 <= count)

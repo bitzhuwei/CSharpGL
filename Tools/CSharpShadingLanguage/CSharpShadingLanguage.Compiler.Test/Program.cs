@@ -22,6 +22,11 @@ namespace CSharpShadingLanguage.Compiler.Test
                     {
                         Console.WriteLine(token);
                         sw.WriteLine(token);
+
+                        if (token.TokenType == EnumTokenTypeCSSLCompiler.unknown)
+                        {
+                            Console.ReadKey(true);
+                        }
                     }
                 }
 
