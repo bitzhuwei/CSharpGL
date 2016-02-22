@@ -65,6 +65,12 @@ namespace CSharpShadingLanguage
         [BuildInFunction("float")]
         public static float Float(float value) { return value; }
 
+        [BuildInFunction("int")]
+        public static float Int(float value) { return value; }
+
+        [BuildInFunction("uint")]
+        public static float Uint(float value) { return value; }
+
         public static mat4 mat4(float value) { return new mat4(value); }
 
         #endregion matrix functions

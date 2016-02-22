@@ -137,6 +137,8 @@ namespace CSharpGL.CSSL2GLSL
                 //    line = Regex.Replace(line, @"discard\s*\(\s*\)\s*;", "discard;");
                 //}
                 line = Regex.Replace(line, @"Float\s*\(", @"float(");
+                line = Regex.Replace(line, @"Uint\s*\(", @"uint(");
+                line = Regex.Replace(line, @"int\s*\(", @"int(");
                 //line = Regex.Replace(line, @"^[a-zA-Z0-9_]+Float\s*\(", @"float(");
                 mainBuilder.AppendLine(line);
             }
