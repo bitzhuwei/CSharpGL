@@ -108,6 +108,12 @@ namespace CSharpShadingLanguage.Compiler
                 case EnumCharTypeCSSLCompiler.Divide:
                     gotToken = GetDivideOpt(result);
                     break;
+                case EnumCharTypeCSSLCompiler.Letter:
+                    gotToken = GetIdentifier(result);
+                    break;
+                case EnumCharTypeCSSLCompiler.Number:
+                    gotToken = GetConstentNumber(result);
+                    break;
                 case EnumCharTypeCSSLCompiler.Space:
                     gotToken = GetSpace(result);
                     break;
@@ -133,7 +139,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: Reverse
-//todo: maybe you need to set TokenType to their right position.
+            //todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "~"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_Reverse_;
@@ -161,7 +167,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -173,7 +179,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: Not
-//todo: maybe you need to set TokenType to their right position.
+            //todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "!"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_Not_;
@@ -201,7 +207,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -227,7 +233,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -253,7 +259,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -265,7 +271,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: Percent
-//todo: maybe you need to set TokenType to their right position.
+            //todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "%"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_Percent_;
@@ -293,7 +299,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -305,7 +311,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: Xor
-//todo: maybe you need to set TokenType to their right position.
+            //todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "^"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_Xor_;
@@ -333,7 +339,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -345,7 +351,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: And
-//todo: maybe you need to set TokenType to their right position.
+            //todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "&"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_And_;
@@ -382,7 +388,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -394,7 +400,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: Multiply
-//todo: maybe you need to set TokenType to their right position.
+            //todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "*"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_Multiply_;
@@ -422,7 +428,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -448,7 +454,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -474,7 +480,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -486,7 +492,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: Plus
-//todo: maybe you need to set TokenType to their right position.
+            //todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "+"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_Plus_;
@@ -523,7 +529,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -549,7 +555,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -575,7 +581,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -601,7 +607,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -627,7 +633,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -653,7 +659,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -679,7 +685,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -691,7 +697,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: LessThan
-//todo: maybe you need to set TokenType to their right position.
+            //todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "<"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_LessThan_;
@@ -728,7 +734,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -740,7 +746,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: GreaterThan
-//todo: maybe you need to set TokenType to their right position.
+            //todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    ">"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_GreaterThan_;
@@ -777,7 +783,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -803,7 +809,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -829,7 +835,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -855,7 +861,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
         /// <summary>
@@ -867,7 +873,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: Divide
-//todo: maybe you need to set TokenType to their right position.
+            //todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "/"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_Divide_;
@@ -883,6 +889,11 @@ namespace CSharpShadingLanguage.Compiler
                     PtNextLetter += 2;
                     return true;
                 }
+                if ("//" == str)
+                {
+                    SkipSingleLineNote();
+                    return false;
+                }
             }
             if (PtNextLetter + 1 <= count)
             {
@@ -895,9 +906,300 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-            
+
             return false;
         }
+        #region GetIdentifier
+        /// <summary>
+        /// 获取标识符（函数名，变量名，等）
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        protected virtual bool GetIdentifier(Token<EnumTokenTypeCSSLCompiler> result)
+        {
+            result.TokenType = EnumTokenTypeCSSLCompiler.identifier;
+            StringBuilder builder = new StringBuilder();
+            while (PtNextLetter < this.GetSourceCode().Length)
+            {
+                var ct = GetCharType(this.GetSourceCode()[PtNextLetter]);
+                if (ct == EnumCharTypeCSSLCompiler.Letter
+                    || ct == EnumCharTypeCSSLCompiler.Number
+                    || ct == EnumCharTypeCSSLCompiler.UnderLine
+                    || ct == EnumCharTypeCSSLCompiler.ChineseLetter)
+                {
+                    builder.Append(this.GetSourceCode()[PtNextLetter]);
+                    PtNextLetter++;
+                }
+                else
+                    break;
+            }
+            result.Detail = builder.ToString();
+            // specify if this string is a keyword
+            foreach (var item in LexicalAnalyzerCSSLCompiler.keywords)
+            {
+                if (item.ToString().Substring(6) == result.Detail)
+                {
+                    result.TokenType = item;
+                    break;
+                }
+            }
+            return true;
+        }
+
+        public static readonly IEnumerable<EnumTokenTypeCSSLCompiler> keywords = new List<EnumTokenTypeCSSLCompiler>()
+        {
+        };
+
+        #endregion GetIdentifier
+        #region GetConstentNumber
+        /// <summary>
+        /// 数值
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        protected virtual bool GetConstentNumber(Token<EnumTokenTypeCSSLCompiler> result)
+        {
+            result.TokenType = EnumTokenTypeCSSLCompiler.number;
+            if (this.GetSourceCode()[PtNextLetter] == '0')//可能是八进制或十六进制数
+            {
+                if (PtNextLetter + 1 < this.GetSourceCode().Length)
+                {
+                    char c = this.GetSourceCode()[PtNextLetter + 1];
+                    if (c == 'x' || c == 'X')
+                    {//十六进制数
+                        return GetConstentHexadecimalNumber(result);
+                    }
+                    else if (GetCharType(c) == EnumCharTypeCSSLCompiler.Number)
+                    {//八进制数
+                        return GetConstentOctonaryNumber(result);
+                    }
+                    else//十进制数
+                    {
+                        return GetConstentDecimalNumber(result);
+                    }
+                }
+                else
+                {//源代码最后一个字符 0
+                    result.Detail = "0";//0
+                    PtNextLetter++;
+                    return true;
+                }
+            }
+            else//十进制数
+            {
+                return GetConstentDecimalNumber(result);
+            }
+        }
+        /// <summary>
+        /// 十进制数
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        protected virtual bool GetConstentDecimalNumber(Token<EnumTokenTypeCSSLCompiler> result)
+        {
+            char c;
+            StringBuilder tag = new StringBuilder();
+            c = this.GetSourceCode()[PtNextLetter];
+            string numberSerial1, numberSerial2, numberSerial3;
+            numberSerial1 = GetNumberSerial(this.GetSourceCode(), 10);
+            tag.Append(numberSerial1);
+            result.LexicalError = string.IsNullOrEmpty(numberSerial1);
+            if (PtNextLetter < this.GetSourceCode().Length)
+            {
+                c = this.GetSourceCode()[PtNextLetter];
+                if (c == 'l' || c == 'L')
+                {
+                    tag.Append(c);
+                    PtNextLetter++;
+                }
+                if (c == '.')
+                {
+                    tag.Append(c);
+                    PtNextLetter++;
+                    numberSerial2 = GetNumberSerial(this.GetSourceCode(), 10);
+                    tag.Append(numberSerial2);
+                    result.LexicalError = result.LexicalError || string.IsNullOrEmpty(numberSerial2);
+                    if (PtNextLetter < this.GetSourceCode().Length)
+                    {
+                        c = this.GetSourceCode()[PtNextLetter];
+                    }
+                }
+                if (c == 'e' || c == 'E')
+                {
+                    tag.Append(c);
+                    PtNextLetter++;
+                    if (PtNextLetter < this.GetSourceCode().Length)
+                    {
+                        c = this.GetSourceCode()[PtNextLetter];
+                        if (c == '+' || c == '-')
+                        {
+                            tag.Append(c);
+                            PtNextLetter++;
+                        }
+                    }
+                    numberSerial3 = GetNumberSerial(this.GetSourceCode(), 10);
+                    tag.Append(numberSerial3);
+                    result.LexicalError = result.LexicalError || string.IsNullOrEmpty(numberSerial3);
+                }
+            }
+            result.Detail = tag.ToString();
+            if (result.LexicalError)
+            {
+                result.Tag = string.Format("十进制数[{0}]格式错误，无法解析。", tag.ToString());
+            }
+            return true;
+        }
+        /// <summary>
+        /// 八进制数
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        protected virtual bool GetConstentOctonaryNumber(Token<EnumTokenTypeCSSLCompiler> result)
+        {
+            char c;
+            StringBuilder tag = new StringBuilder(this.GetSourceCode().Substring(PtNextLetter, 1));
+            PtNextLetter++;
+            string numberSerial = GetNumberSerial(this.GetSourceCode(), 8);
+            tag.Append(numberSerial);
+            if (PtNextLetter < this.GetSourceCode().Length)
+            {
+                c = this.GetSourceCode()[PtNextLetter];
+                if (c == 'l' || c == 'L')
+                {
+                    tag.Append(c);
+                    PtNextLetter++;
+                }
+            }
+            result.Detail = tag.ToString();
+            if (string.IsNullOrEmpty(numberSerial))
+            {
+                result.LexicalError = true;
+                result.Tag = string.Format("八进制数[{0}]格式错误，无法解析。", tag.ToString());
+                return false;
+            }
+            return true;
+        }
+        /// <summary>
+        /// 十六进制数
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        protected virtual bool GetConstentHexadecimalNumber(Token<EnumTokenTypeCSSLCompiler> result)
+        {
+            char c;
+            StringBuilder tag = new StringBuilder(this.GetSourceCode().Substring(PtNextLetter, 2));
+            PtNextLetter += 2;
+            string numberSerial = GetNumberSerial(this.GetSourceCode(), 16);
+            tag.Append(numberSerial);
+            if (PtNextLetter < this.GetSourceCode().Length)
+            {
+                c = this.GetSourceCode()[PtNextLetter];
+                if (c == 'l' || c == 'L')
+                {
+                    tag.Append(c);
+                    PtNextLetter++;
+                }
+            }
+            result.Detail = tag.ToString();
+            if (string.IsNullOrEmpty(numberSerial))
+            {
+                result.LexicalError = true;
+                result.Tag = string.Format("十六进制数[{0}]格式错误。", tag.ToString());
+                return false;
+            }
+            return true;
+        }
+        /// <summary>
+        /// 数字序列
+        /// </summary>
+        /// <param name="sourceCode"></param>
+        /// <param name="scale">进制</param>
+        /// <returns></returns>
+        protected virtual string GetNumberSerial(string sourceCode, int scale)
+        {
+            if (scale == 10)
+            {
+                return GetNumberSerialDecimal(this.GetSourceCode());
+            }
+            if (scale == 16)
+            {
+                return GetNumberSerialHexadecimal(this.GetSourceCode());
+            }
+            if (scale == 8)
+            {
+                return GetNumberSerialOctonary(this.GetSourceCode());
+            }
+            return string.Empty;
+        }
+        /// <summary>
+        /// 十进制数序列
+        /// </summary>
+        /// <param name="sourceCode"></param>
+        /// <returns></returns>
+        protected virtual string GetNumberSerialDecimal(string sourceCode)
+        {
+            StringBuilder result = new StringBuilder(String.Empty);
+            char c;
+            while (PtNextLetter < this.GetSourceCode().Length)
+            {
+                c = this.GetSourceCode()[PtNextLetter];
+                if ('0' <= c && c <= '9')
+                {
+                    result.Append(c);
+                    PtNextLetter++;
+                }
+                else
+                    break;
+            }
+            return result.ToString();
+        }
+        /// <summary>
+        /// 八进制数序列
+        /// </summary>
+        /// <param name="sourceCode"></param>
+        /// <returns></returns>
+        protected virtual string GetNumberSerialOctonary(string sourceCode)
+        {
+            StringBuilder result = new StringBuilder(String.Empty);
+            char c;
+            while (PtNextLetter < this.GetSourceCode().Length)
+            {
+                c = this.GetSourceCode()[PtNextLetter];
+                if ('0' <= c && c <= '7')
+                {
+                    result.Append(c);
+                    PtNextLetter++;
+                }
+                else
+                    break;
+            }
+            return result.ToString();
+        }
+        /// <summary>
+        /// 十六进制数序列（不包括0x前缀）
+        /// </summary>
+        /// <param name="sourceCode"></param>
+        /// <returns></returns>
+        protected virtual string GetNumberSerialHexadecimal(string sourceCode)
+        {
+            StringBuilder result = new StringBuilder(String.Empty);
+            char c;
+            while (PtNextLetter < this.GetSourceCode().Length)
+            {
+                c = this.GetSourceCode()[PtNextLetter];
+                if (('0' <= c && c <= '9')
+                || ('a' <= c && c <= 'f')
+                || ('A' <= c && c <= 'F'))
+                {
+                    result.Append(c);
+                    PtNextLetter++;
+                }
+                else
+                    break;
+            }
+            return result.ToString();
+        }
+        #endregion GetConstentNumber
         /// <summary>
         /// 未知符号
         /// </summary>

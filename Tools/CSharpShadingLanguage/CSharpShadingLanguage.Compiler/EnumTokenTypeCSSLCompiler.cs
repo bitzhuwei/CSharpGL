@@ -158,9 +158,18 @@ namespace CSharpShadingLanguage.Compiler
         /// </summary>
         token_GreaterThan_GreaterThan_,
         /// <summary>
+        /// identifier
+        /// </summary>
+        identifier,
+        /// <summary>
+        /// number
+        /// </summary>
+        number,
+        /// <summary>
         /// #
         /// </summary>
         token_startEnd,
+     
     }
 
 }
