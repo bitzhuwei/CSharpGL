@@ -38,12 +38,20 @@ namespace CSharpGL.Objects.VertexBuffers
         }
 
         /// <summary>
-        /// 此VBO中的数据在内存中的内存大小（单位：字节）
+        /// 此VBO中的数据在内存中占用多少个字节？
         /// </summary>
         public int ByteLength
         {
             get { return (this.array == null) ? 0 : this.array.ByteLength; }
 
+        }
+
+        /// <summary>
+        /// 此VBO含有多个个元素？
+        /// </summary>
+        public int Length
+        {
+            get { return (this.array == null) ? 0 : this.array.Length; }
         }
 
         /// <summary>
