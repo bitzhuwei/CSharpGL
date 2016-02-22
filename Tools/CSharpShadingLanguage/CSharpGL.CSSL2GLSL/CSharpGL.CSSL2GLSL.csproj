@@ -60,7 +60,7 @@
     <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Functions\CSharpShadingLanguage\CSharpShadingLanguage.csproj">
+    <ProjectReference Include="..\CSharpShadingLanguage\CSharpShadingLanguage.csproj">
       <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
       <Name>CSharpShadingLanguage</Name>
       <EmbedInteropTypes>False</EmbedInteropTypes>

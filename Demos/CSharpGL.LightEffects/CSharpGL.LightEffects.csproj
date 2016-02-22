@@ -201,7 +201,7 @@
       <Project>{63ef1f63-9251-4e20-bce3-843c7f4d482b}</Project>
       <Name>CSharpGL.Winforms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Functions\CSharpShadingLanguage\CSharpShadingLanguage.csproj">
+    <ProjectReference Include="..\..\Tools\CSharpShadingLanguage\CSharpShadingLanguage\CSharpShadingLanguage.csproj">
       <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
       <Name>CSharpShadingLanguage</Name>
     </ProjectReference>

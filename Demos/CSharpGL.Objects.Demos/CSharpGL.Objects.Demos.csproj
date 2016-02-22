@@ -115,7 +115,7 @@
       <Project>{292f0a6f-6d7e-42fe-8b5c-3fba11fc9b49}</Project>
       <Name>CSharpGL.UIs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Functions\CSharpShadingLanguage\CSharpShadingLanguage.csproj">
+    <ProjectReference Include="..\..\Tools\CSharpShadingLanguage\CSharpShadingLanguage\CSharpShadingLanguage.csproj">
       <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
       <Name>CSharpShadingLanguage</Name>
     </ProjectReference>
