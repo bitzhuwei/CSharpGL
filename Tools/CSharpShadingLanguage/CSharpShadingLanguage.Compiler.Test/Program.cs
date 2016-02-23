@@ -11,6 +11,7 @@ namespace CSharpShadingLanguage.Compiler.Test
     {
         static void Main(string[] args)
         {
+            var x = Environment.NewLine;
             foreach (var item in System.IO.Directory.GetFiles("./", "*.cs"))
             {
                 using (var sw = new System.IO.StreamWriter(item + ".txt"))
@@ -37,7 +38,7 @@ namespace CSharpShadingLanguage.Compiler.Test
                     target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.token_LeftParentheses_, Detail = "(", });
                     target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.token_RightParentheses_, Detail = ")", });
                     target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.token_LeftBrace_, Detail = "{", });
-                    int index = tokenList.KMP(target, new TokenComparer());
+                    int index = tokenList.KMP(target,0, new TokenComparer());
                     if (index < 0) { throw new Exception(); }
                     int rightBraceIndex = index + 7; int leftBraceCount = 1;
                     for (; rightBraceIndex < tokenList.Count; rightBraceIndex++)

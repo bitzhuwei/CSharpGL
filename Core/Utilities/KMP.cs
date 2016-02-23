@@ -193,16 +193,17 @@ namespace System
         /// </summary>
         /// <param name="source"></param>
         /// <param name="pattern"></param>
+        /// <param name="startIndex"></param>
         /// <param name="comparer"></param>
         /// <returns></returns>
-        public static int KMP<T>(this IList<T> source, IList<T> pattern, IComparer<T> comparer = null)
+        public static int KMP<T>(this IList<T> source, IList<T> pattern, int startIndex = 0, IComparer<T> comparer = null)
         {
             if (source == null || pattern == null || source.Count == 0 || pattern.Count == 0)
             { return KMPNoMatch; }
 
             if (comparer == null) { comparer = DefaultComparer<T>.Instance; }
 
-            var i = 0; var j = 0; var result = KMPNoMatch;
+            var i = startIndex; var j = 0; var result = KMPNoMatch;
             var nextVal = GetNextVal(pattern, comparer);
 
             while (i < source.Count && j < pattern.Count)

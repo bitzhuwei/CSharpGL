@@ -1,4 +1,6 @@
-﻿using CSharpShadingLanguage;
+﻿using bitzhuwei.CompilerBase;
+using CSharpShadingLanguage;
+using CSharpShadingLanguage.Compiler;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -74,6 +76,31 @@ namespace CSharpGL.CSSL2GLSL
         }
 
         protected abstract string DumpShaderCode();
+
+        protected sealed class TokenComparer : IComparer<Token<EnumTokenTypeCSSLCompiler>>
+        {
+            private TokenComparer() { }
+
+            private static readonly TokenComparer instance = new TokenComparer();
+
+            public static TokenComparer Instance
+            {
+                get { return TokenComparer.instance; }
+            }
+
+
+            int IComparer<Token<EnumTokenTypeCSSLCompiler>>.Compare(Token<EnumTokenTypeCSSLCompiler> x, Token<EnumTokenTypeCSSLCompiler> y)
+            {
+                if (x == null && y == null) { return 0; }
+                if (x == null || y == null) { return 1; }
+
+                if (x.Detail == y.Detail
+                    && x.TokenType == y.TokenType) { return 0; }
+
+                return 1;
+            }
+        }
+
     }
 
 }

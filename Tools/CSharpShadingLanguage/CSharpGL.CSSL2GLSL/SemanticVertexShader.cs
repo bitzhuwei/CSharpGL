@@ -6,6 +6,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using bitzhuwei.CompilerBase;
+using CSharpShadingLanguage.Compiler;
 
 namespace CSharpGL.CSSL2GLSL
 {
@@ -57,54 +59,58 @@ namespace CSharpGL.CSSL2GLSL
         string SearchMainFunction(string fullname)
         {
             string content = File.ReadAllText(fullname);
-            // class XxxVertexShader : VertexShaderCode
-            Match match = Regex.Match(content, @"class\s+" + this.ShaderCode.GetType().Name + @"\s*:");
-            int classStart = match.Index + match.Length;
-            // public override void main() { ... }
-            match = Regex.Match(content.Substring(classStart),
-                @"public\s+override\s+void\s+main\s*\(\s*\)\s*\{");
-            // 自行找到main(){}函数的‘}’
-            int firstLeftBrace = classStart + match.Index + match.Length - 1;
-            int left = 1;
-            int lastRightBrace = -1;
-            for (int i = firstLeftBrace + 1; i < content.Length; i++)
+            var lexi = new CSharpShadingLanguage.Compiler.LexicalAnalyzerCSSLCompiler(content);
+            var tokenList = lexi.Analyze();
+            int classIndex, mainIndex;
             {
-                char c = content[i];
-                if (c == '\"')
+                // class XxxVertexShader : VertexCSShaderCode
+                List<Token<EnumTokenTypeCSSLCompiler>> target = new List<Token<EnumTokenTypeCSSLCompiler>>();
+                target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = "class", });
+                target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = this.shaderCode.GetType().Name, });
+                target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.token_Colon_, Detail = ":", });
+                target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = typeof(VertexCSShaderCode).Name, });
+                classIndex = tokenList.KMP(target, 0, TokenComparer.Instance);
+                if (classIndex < 0) { throw new Exception(string.Format("class for {0} not found!", this.shaderCode.GetType().Name)); }
+            }
+            {
+                // public override void main() { }
+                List<Token<EnumTokenTypeCSSLCompiler>> target = new List<Token<EnumTokenTypeCSSLCompiler>>();
+                target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = "public", });
+                target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = "override", });
+                target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = "void", });
+                target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = "main", });
+                target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.token_LeftParentheses_, Detail = "(", });
+                target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.token_RightParentheses_, Detail = ")", });
+                target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.token_LeftBrace_, Detail = "{", });
+                mainIndex = tokenList.KMP(target, classIndex + 3, TokenComparer.Instance);
+                if (mainIndex < 0) { throw new Exception(string.Format("main() for {0} not found!", this.shaderCode.GetType().Name)); }
+            }
+            int lastRightBraceIndex = -1;
+            {
+                int leftBraceCount = 1;
+                for (int rightBraceIndex = mainIndex + 7; rightBraceIndex < tokenList.Count; rightBraceIndex++)
                 {
-                    for (int j = i + 1; j < content.Length; j++)
+                    if (tokenList[rightBraceIndex].TokenType == EnumTokenTypeCSSLCompiler.token_LeftBrace_)
                     {
-                        char tmp = content[j];
-                        if (tmp == '\"')
+                        leftBraceCount++;
+                    }
+                    else if (tokenList[rightBraceIndex].TokenType == EnumTokenTypeCSSLCompiler.token_RightBrace_)
+                    {
+                        leftBraceCount--;
+                        if (leftBraceCount == 0)
                         {
-                            i = j;
+                            lastRightBraceIndex = tokenList[rightBraceIndex].IndexOfSourceCode;
                             break;
                         }
                     }
                 }
-                else if (c == '\'')
-                {
-                    i = i + 2;
-                }
-                else if (c == '{')
-                {
-                    left++;
-                }
-                else if (c == '}')
-                {
-                    left--;
-                    if (left == 0)
-                    {
-                        lastRightBrace = i;
-                        break;
-                    }
-                }
             }
 
+            int firstLeftBraceIndex = tokenList[mainIndex + 6].IndexOfSourceCode;
             StringBuilder mainBuilder = new StringBuilder();
             mainBuilder.AppendLine("void main(void)");
             mainBuilder.AppendLine("{");
-            string[] parts = content.Substring(firstLeftBrace + 1, lastRightBrace - (firstLeftBrace - 1))
+            string[] parts = content.Substring(firstLeftBraceIndex + 1, lastRightBraceIndex - (firstLeftBraceIndex - 1))
                 .Split(separator, StringSplitOptions.RemoveEmptyEntries);
             int preEmptyCount = 0;
             {
@@ -123,6 +129,77 @@ namespace CSharpGL.CSSL2GLSL
             }
             return mainBuilder.ToString();
         }
+
+
+        //string SearchMainFunction(string fullname)
+        //{
+        //    string content = File.ReadAllText(fullname);
+        //    // class XxxVertexShader : VertexShaderCode
+        //    Match match = Regex.Match(content, @"class\s+" + this.ShaderCode.GetType().Name + @"\s*:");
+        //    int classStart = match.Index + match.Length;
+        //    // public override void main() { ... }
+        //    match = Regex.Match(content.Substring(classStart),
+        //        @"public\s+override\s+void\s+main\s*\(\s*\)\s*\{");
+        //    // 自行找到main(){}函数的‘}’
+        //    int firstLeftBrace = classStart + match.Index + match.Length - 1;
+        //    int left = 1;
+        //    int lastRightBrace = -1;
+        //    for (int i = firstLeftBrace + 1; i < content.Length; i++)
+        //    {
+        //        char c = content[i];
+        //        if (c == '\"')
+        //        {
+        //            for (int j = i + 1; j < content.Length; j++)
+        //            {
+        //                char tmp = content[j];
+        //                if (tmp == '\"')
+        //                {
+        //                    i = j;
+        //                    break;
+        //                }
+        //            }
+        //        }
+        //        else if (c == '\'')
+        //        {
+        //            i = i + 2;
+        //        }
+        //        else if (c == '{')
+        //        {
+        //            left++;
+        //        }
+        //        else if (c == '}')
+        //        {
+        //            left--;
+        //            if (left == 0)
+        //            {
+        //                lastRightBrace = i;
+        //                break;
+        //            }
+        //        }
+        //    }
+
+        //    StringBuilder mainBuilder = new StringBuilder();
+        //    mainBuilder.AppendLine("void main(void)");
+        //    mainBuilder.AppendLine("{");
+        //    string[] parts = content.Substring(firstLeftBrace + 1, lastRightBrace - (firstLeftBrace - 1))
+        //        .Split(separator, StringSplitOptions.RemoveEmptyEntries);
+        //    int preEmptyCount = 0;
+        //    {
+        //        string line = Regex.Replace(parts[parts.Length - 1], "\t", "    ");
+        //        preEmptyCount = Regex.Match(line, @" *").Length;
+        //    }
+        //    foreach (var item in parts)
+        //    {
+        //        string line = Regex.Replace(item, "\t", "    ");
+
+        //        if (Regex.Match(line, @"[\t ]*").Length >= preEmptyCount)
+        //        {
+        //            line = line.Substring(preEmptyCount);
+        //        }
+        //        mainBuilder.AppendLine(line);
+        //    }
+        //    return mainBuilder.ToString();
+        //}
 
     }
 }
