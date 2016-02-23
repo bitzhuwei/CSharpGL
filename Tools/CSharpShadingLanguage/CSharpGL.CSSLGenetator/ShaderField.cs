@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpShadingLanguage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -92,6 +93,27 @@ namespace CSharpGL.CSSLGenetator
             }
 
             return result;
+        }
+
+        public static Type GetAttributeType(this FieldQualifier qualifier)
+        {
+            Type type = null;
+            switch (qualifier)
+            {
+                case FieldQualifier.In:
+                    type = typeof(InAttribute);
+                    break;
+                case FieldQualifier.Out:
+                    type = typeof(OutAttribute);
+                    break;
+                case FieldQualifier.Uniform:
+                    type = typeof(UniformAttribute);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+
+            return type;
         }
     }
 
