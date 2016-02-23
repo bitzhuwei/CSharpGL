@@ -30,7 +30,7 @@ namespace CSharpGL.CSSLGenetator
             result.FieldType = xElement.Attribute(strFieldType).Value;
             result.FieldName = xElement.Attribute(strFieldName).Value;
 
-            return new StructureField();
+            return result;
         }
 
         public object Clone()
