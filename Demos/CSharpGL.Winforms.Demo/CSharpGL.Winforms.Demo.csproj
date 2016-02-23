@@ -462,7 +462,7 @@
       <Project>{3b6c3168-4fca-492e-869f-bb22e0e367fd}</Project>
       <Name>CSharpGL.Objects.Controllers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Functions\CSharpGL.Objects.VolumeRendering\CSharpGL.Objects.VolumeRendering.csproj">
+    <ProjectReference Include="..\CSharpGL.Objects.VolumeRendering\CSharpGL.Objects.VolumeRendering.csproj">
       <Project>{e97977fd-ee85-47c5-810e-a0cba258faae}</Project>
       <Name>CSharpGL.Objects.VolumeRendering</Name>
     </ProjectReference>

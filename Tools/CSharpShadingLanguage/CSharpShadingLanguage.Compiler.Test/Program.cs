@@ -11,7 +11,6 @@ namespace CSharpShadingLanguage.Compiler.Test
     {
         static void Main(string[] args)
         {
-            var x = Environment.NewLine;
             foreach (var item in System.IO.Directory.GetFiles("./", "*.cs"))
             {
                 using (var sw = new System.IO.StreamWriter(item + ".txt"))
