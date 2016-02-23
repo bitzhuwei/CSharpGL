@@ -170,9 +170,9 @@ namespace CSharpShadingLanguage.Compiler
         /// </summary>
         token_GreaterThan_GreaterThan_,
         /// <summary>
-        /// string
+        /// constString
         /// </summary>
-        token_string,
+        constString,
         /// <summary>
         /// identifier
         /// </summary>

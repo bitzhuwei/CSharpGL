@@ -114,6 +114,9 @@ namespace CSharpShadingLanguage.Compiler
                 case EnumCharTypeCSSLCompiler.Divide:
                     gotToken = GetDivideOpt(result);
                     break;
+                case EnumCharTypeCSSLCompiler.DoubleQuotation:
+                    gotToken = GetConstentString(result);
+                    break;
                 case EnumCharTypeCSSLCompiler.Letter:
                     gotToken = GetIdentifier(result);
                     break;
@@ -145,7 +148,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: Reverse
-            //todo: maybe you need to set TokenType to their right position.
+//todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "~"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_Reverse_;
@@ -173,7 +176,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -185,7 +188,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: Not
-            //todo: maybe you need to set TokenType to their right position.
+//todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "!"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_Not_;
@@ -213,7 +216,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -239,7 +242,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -265,7 +268,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -277,7 +280,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: Percent
-            //todo: maybe you need to set TokenType to their right position.
+//todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "%"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_Percent_;
@@ -305,7 +308,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -317,7 +320,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: Xor
-            //todo: maybe you need to set TokenType to their right position.
+//todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "^"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_Xor_;
@@ -345,7 +348,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -357,7 +360,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: And
-            //todo: maybe you need to set TokenType to their right position.
+//todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "&"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_And_;
@@ -394,7 +397,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -406,7 +409,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: Multiply
-            //todo: maybe you need to set TokenType to their right position.
+//todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "*"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_Multiply_;
@@ -434,7 +437,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -460,7 +463,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -486,7 +489,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -498,7 +501,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: Minus
-            //todo: maybe you need to set TokenType to their right position.
+//todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "-"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_Minus_;
@@ -526,7 +529,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -538,7 +541,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: Plus
-            //todo: maybe you need to set TokenType to their right position.
+//todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "+"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_Plus_;
@@ -575,7 +578,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -601,7 +604,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -627,7 +630,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -653,7 +656,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -679,7 +682,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -705,7 +708,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -731,7 +734,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -757,7 +760,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -769,7 +772,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: LessThan
-            //todo: maybe you need to set TokenType to their right position.
+//todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "<"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_LessThan_;
@@ -806,7 +809,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -818,7 +821,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: GreaterThan
-            //todo: maybe you need to set TokenType to their right position.
+//todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    ">"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_GreaterThan_;
@@ -855,7 +858,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -881,7 +884,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -907,7 +910,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -933,7 +936,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         /// <summary>
@@ -945,7 +948,7 @@ namespace CSharpShadingLanguage.Compiler
         {
             var count = this.GetSourceCode().Length;
             //item.CharType: Divide
-            //todo: maybe you need to set TokenType to their right position.
+//todo: maybe you need to set TokenType to their right position.
             //Mapped nodes:
             //    "/"
             //result.TokenType = EnumTokenTypeCSSLCompiler.token_Divide_;
@@ -954,16 +957,13 @@ namespace CSharpShadingLanguage.Compiler
             if (PtNextLetter + 2 <= count)
             {
                 var str = this.GetSourceCode().Substring(PtNextLetter, 2);
+                if ("//" == str) { SkipSingleLineNote(); return false; }
                 if ("/=" == str)
                 {
                     result.TokenType = EnumTokenTypeCSSLCompiler.token_Divide_Equality_;
                     result.Detail = str;
                     PtNextLetter += 2;
                     return true;
-                }
-                if ("//" == str)
-                {
-                    SkipSingleLineNote();
                 }
             }
             if (PtNextLetter + 1 <= count)
@@ -977,7 +977,7 @@ namespace CSharpShadingLanguage.Compiler
                     return true;
                 }
             }
-
+            
             return false;
         }
         #region GetIdentifier
@@ -1016,11 +1016,11 @@ namespace CSharpShadingLanguage.Compiler
             }
             return true;
         }
-
+        
         public static readonly IEnumerable<EnumTokenTypeCSSLCompiler> keywords = new List<EnumTokenTypeCSSLCompiler>()
         {
         };
-
+        
         #endregion GetIdentifier
         #region GetConstentNumber
         /// <summary>
@@ -1271,6 +1271,41 @@ namespace CSharpShadingLanguage.Compiler
             return result.ToString();
         }
         #endregion GetConstentNumber
+        /// <summary>
+        /// 字符串常量 "XXX"
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        protected virtual bool GetConstentString(Token<EnumTokenTypeCSSLCompiler> result)
+        {
+            result.TokenType = EnumTokenTypeCSSLCompiler.constString;
+            int count = this.GetSourceCode().Length;
+            StringBuilder constString = new StringBuilder("\"");
+            PtNextLetter++;
+            bool notMatched = true;
+            char c;
+            while ((PtNextLetter < count) && notMatched)
+            {
+                c = this.GetSourceCode()[PtNextLetter];
+                if (c == '"')
+                {
+                    constString.Append(c);
+                    notMatched = false;
+                    PtNextLetter++;
+                }
+                else if (c == '\r' || c == '\n')
+                {
+                    break;
+                }
+                else
+                {
+                    constString.Append(c);
+                    PtNextLetter++;
+                }
+            }
+            result.Detail = constString.ToString();
+            return true;
+        }
         /// <summary>
         /// 未知符号
         /// </summary>

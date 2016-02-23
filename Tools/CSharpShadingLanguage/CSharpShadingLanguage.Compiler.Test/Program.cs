@@ -21,7 +21,7 @@ namespace CSharpShadingLanguage.Compiler.Test
                     foreach (var token in tokenList)
                     {
                         //Console.WriteLine(token);
-                        //sw.WriteLine(token);
+                        sw.WriteLine(token);
 
                         if (token.TokenType == EnumTokenTypeCSSLCompiler.unknown)
                         {
