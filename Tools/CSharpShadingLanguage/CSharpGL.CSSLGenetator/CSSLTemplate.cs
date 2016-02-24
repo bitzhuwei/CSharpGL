@@ -131,6 +131,10 @@ namespace CSharpGL.CSSLGenetator
             }
         }
 
+        //TODO:生成Renderer的过程也用CodeDom重写一下吧。
+        /// <summary>
+        /// 
+        /// </summary>
         private void GenerateRenderer()
         {
             Debug.WriteLine(string.Format("namespace Renderers.{0}", this.ShaderName));
