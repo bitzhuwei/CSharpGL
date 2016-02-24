@@ -6,6 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.CodeDom;
+using Microsoft.CSharp;
+using CSharpShadingLanguage;
+using System.CodeDom.Compiler;
 
 namespace CSharpGL.CSSLGenetator
 {
@@ -14,6 +18,10 @@ namespace CSharpGL.CSSLGenetator
     /// </summary>
     public class CSSLTemplate : ICloneable
     {
+        const GLSLVersion defaultVersion = GLSLVersion.v150;
+        const CSharpShadingLanguage.GeometryCSShaderCode.InType defaultLayoutIn = GeometryCSShaderCode.InType.triangles;
+        const CSharpShadingLanguage.GeometryCSShaderCode.OutType defaultLayoutOut = GeometryCSShaderCode.OutType.triangle_strip;
+
         const string strExtentsion = "xml";
         public string Fullname { get; set; }
 
@@ -101,12 +109,7 @@ namespace CSharpGL.CSSLGenetator
             var rendererFullname = Path.Combine(directory, this.ShaderName + "Renderer.cs");
 
             {
-                var fileStream = new FileStream(csslFullname, FileMode.Create);
-                var listener = new TextWriterTraceListener(fileStream);
-                Debug.Listeners.Add(listener);
                 GenerateCSSL();
-                Debug.Close();
-                Debug.Listeners.Remove(listener);
             }
             {
                 var fileStream = new FileStream(rendererFullname, FileMode.Create);
@@ -463,124 +466,211 @@ namespace CSharpGL.CSSLGenetator
 
         private void GenerateCSSL()
         {
-            Debug.WriteLine("// 此文件由CSharpGL.CSSLGenerator.exe生成。");
-            Debug.WriteLine("// 用法：使用CSSL2GLSL.exe编译此文件，即可获得对应的vertex shader, geometry shader, fragment shader。");
-            Debug.WriteLine("// 此文件中的类型不应被直接调用，发布release时可以去掉。");
-            Debug.WriteLine("#if DEBUG");
-            Debug.WriteLine("");
-            Debug.WriteLine(string.Format("namespace CSharpShadingLanguage.{0}", this.ShaderName));
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("// 不可将此文件中的代码复制到其他文件内（如果包含了其他的using ...;，那么CSSL2GLSL.exe就无法正常编译这些代码了。）");
-            Debug.WriteLine("using CSharpShadingLanguage;");
-            Debug.WriteLine("");
-            GenerateStructures();
-            Debug.WriteLine("");
-            GenerateVertexShader();
+            Debug.WriteLine("#if DEBUG");// todo: 没有对应#if 的对象？
+            CodeNamespace csslNamespace = new CodeNamespace(string.Format("CSharpShadingLanguage.{0}", this.ShaderName));
+            csslNamespace.Imports.Add(new CodeNamespaceImport(typeof(CSharpShadingLanguage.CSShaderCode).Namespace));
+            csslNamespace.Comments.Add(new CodeCommentStatement("此文件由CSharpGL.CSSLGenerator.exe生成。"));
+            csslNamespace.Comments.Add(new CodeCommentStatement("用法：使用CSSL2GLSL.exe编译此文件，即可获得对应的vertex shader, geometry shader, fragment shader。"));
+            csslNamespace.Comments.Add(new CodeCommentStatement("此文件中的类型不应被直接调用，发布release时可以去掉。"));
+            csslNamespace.Comments.Add(new CodeCommentStatement("不可将此文件中的代码复制到其他文件内（如果包含了其他的using ...;，那么CSSL2GLSL.exe就无法正常编译这些代码了。）"));
+            csslNamespace.Types.AddRange(GenerateStructures());
+            csslNamespace.Types.Add(GenerateVertexShader());
             if (this.ProgramType == ShaderProgramType.VertexGeometryFragment)
             {
                 Debug.WriteLine("");
-                GenerateGeometryShader();
+                csslNamespace.Types.Add(GenerateGeometryShader());
             }
-            Debug.WriteLine("");
-            GenerateFragmentShader();
-            Debug.WriteLine("");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.WriteLine("");
-            Debug.WriteLine("#endif");
+            csslNamespace.Types.Add(GenerateFragmentShader());
+            Debug.WriteLine("#endif");// todo: 没有对应#if 的对象？
+
+            string directory = (new FileInfo(this.Fullname)).DirectoryName;
+            var csslFullname = Path.Combine(directory, this.ShaderName + ".cssl.cs");
+            using (var sw = new StreamWriter(csslFullname, false))
+            {
+                CSharpCodeProvider codeProvider = new CSharpCodeProvider();
+                CodeGeneratorOptions geneOptions = new CodeGeneratorOptions();//代码生成选项
+                geneOptions.BlankLinesBetweenMembers = true;
+                geneOptions.BracingStyle = "C";
+                geneOptions.ElseOnClosing = false;
+                geneOptions.IndentString = "    ";
+                geneOptions.VerbatimOrder = true;
+
+                codeProvider.GenerateCodeFromNamespace(csslNamespace, sw, geneOptions);
+            }
         }
 
-        private void GenerateFragmentShader()
+        private CodeTypeDeclaration GenerateFragmentShader()
         {
-            Debug.WriteLine("/// <summary>");
-            Debug.WriteLine(string.Format(
-                "/// 一个<see cref=\"{0}\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。",
-                this.ShaderName + "Frag"));
-            Debug.WriteLine("/// </summary>");
-            Debug.WriteLine("[Dump2File(true)]");
-            Debug.WriteLine("[GLSLVersion(GLSLVersion.v150)]");
-            Debug.WriteLine(string.Format("sealed class {0} : FragmentCSShaderCode", this.ShaderName + "Frag"));
-            Debug.WriteLine("{");
-            Debug.Indent();
+            CodeTypeDeclaration fragmentShaderType = new CodeTypeDeclaration(this.ShaderName + "Frag");
+            fragmentShaderType.BaseTypes.Add(typeof(FragmentCSShaderCode));
+            fragmentShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
+            fragmentShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
+              "一个<see cref=\"{0}\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。",
+              this.ShaderName + "Frag"), true)));
+            fragmentShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
+                "(GLSLVersion){0} is GLSLVersion.{1}", (uint)defaultVersion, defaultVersion), true)));
+            fragmentShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("</summary>", true)));
+            fragmentShaderType.CustomAttributes.Add(new CodeAttributeDeclaration(
+                new CodeTypeReference(typeof(Dump2FileAttribute)), new CodeAttributeArgument(
+                    new CodePrimitiveExpression(true))));
+            var codeVersionAttribute = new CodeAttributeDeclaration(
+                new CodeTypeReference(typeof(GLSLVersionAttribute)),
+                    new CodeAttributeArgument(
+                        new CodeCastExpression(typeof(GLSLVersion), new CodePrimitiveExpression((uint)defaultVersion))));
+            fragmentShaderType.CustomAttributes.Add(codeVersionAttribute);
+
             foreach (var item in this.FragmentShaderFieldList)
             {
-                Debug.WriteLine(string.Format("[{0}]", item.Qualider));
-                Debug.WriteLine(string.Format("{0} {1};", item.FieldType, item.FieldName));
-                Debug.WriteLine("");
+                CodeMemberField fieldCode = new CodeMemberField(item.FieldType, item.FieldName);
+                fieldCode.CustomAttributes.Add(new CodeAttributeDeclaration(
+                    new CodeTypeReference(item.Qualider.GetAttributeType())));
+                fragmentShaderType.Members.Add(fieldCode);
             }
-            Debug.WriteLine("public override void main()");
-            Debug.WriteLine("{");
-            Debug.WriteLine("}");
-            Debug.Unindent();
-            Debug.WriteLine("}");
+
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
+            method.ReturnType = new CodeTypeReference(typeof(void));
+            method.Name = "main";
+            fragmentShaderType.Members.Add(method);
+
+            return fragmentShaderType;
         }
 
-        private void GenerateGeometryShader()
+        private CodeTypeDeclaration GenerateGeometryShader()
         {
-            Debug.WriteLine("/// <summary>");
-            Debug.WriteLine(string.Format(
-                "/// 一个<see cref=\"{0}\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。",
-                this.ShaderName + "Geom"));
-            Debug.WriteLine("/// </summary>");
-            Debug.WriteLine("[Dump2File(true)]");
-            Debug.WriteLine("[GLSLVersion(GLSLVersion.v150)]");
-            Debug.WriteLine(string.Format("sealed class {0} : GeometryCSShaderCode", this.ShaderName + "Geom"));
-            Debug.WriteLine("{");
-            Debug.Indent();
+            CodeTypeDeclaration geometryShaderType = new CodeTypeDeclaration(this.ShaderName + "Geom");
+            geometryShaderType.BaseTypes.Add(typeof(GeometryCSShaderCode));
+            geometryShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
+            geometryShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
+              "一个<see cref=\"{0}\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。",
+              this.ShaderName + "Geom"), true)));
+            geometryShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
+                "(GLSLVersion){0} is GLSLVersion.{1}", (uint)defaultVersion, defaultVersion), true)));
+            geometryShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("</summary>", true)));
+            geometryShaderType.CustomAttributes.Add(new CodeAttributeDeclaration(
+                new CodeTypeReference(typeof(Dump2FileAttribute)), new CodeAttributeArgument(
+                    new CodePrimitiveExpression(true))));
+            var codeVersionAttribute = new CodeAttributeDeclaration(
+                new CodeTypeReference(typeof(GLSLVersionAttribute)),
+                    new CodeAttributeArgument(
+                        new CodeCastExpression(typeof(GLSLVersion), new CodePrimitiveExpression((uint)defaultVersion))));
+            geometryShaderType.CustomAttributes.Add(codeVersionAttribute);
+
+            {
+                var layoutInProperty = new CodeMemberProperty();
+                layoutInProperty.Attributes = MemberAttributes.Public | MemberAttributes.Override;
+                layoutInProperty.Type = new CodeTypeReference(typeof(GeometryCSShaderCode.InType));
+                layoutInProperty.Name = "LayoutIn";
+                layoutInProperty.HasGet = true;
+                layoutInProperty.HasSet = false;
+                layoutInProperty.GetStatements.Add(new CodeMethodReturnStatement(
+                    new CodeCastExpression(typeof(GeometryCSShaderCode.InType), new CodePrimitiveExpression((uint)defaultLayoutIn))));
+                layoutInProperty.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
+                layoutInProperty.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
+                    "(InType){0} is InType.{1}", (uint)defaultLayoutIn, defaultLayoutIn), true)));
+                layoutInProperty.Comments.Add(new CodeCommentStatement(new CodeComment("</summary>", true)));
+                geometryShaderType.Members.Add(layoutInProperty);
+            }
+
+            {
+                var layoutOutProperty = new CodeMemberProperty();
+                layoutOutProperty.Attributes = MemberAttributes.Public | MemberAttributes.Override;
+                layoutOutProperty.Type = new CodeTypeReference(typeof(GeometryCSShaderCode.OutType));
+                layoutOutProperty.Name = "LayoutOut";
+                layoutOutProperty.HasGet = true;
+                layoutOutProperty.HasSet = false;
+                layoutOutProperty.GetStatements.Add(new CodeMethodReturnStatement(
+                    new CodeCastExpression(typeof(GeometryCSShaderCode.OutType), new CodePrimitiveExpression((uint)defaultLayoutOut))));
+                layoutOutProperty.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
+                layoutOutProperty.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
+                    "(OutType){0} is OutType.{1}", (uint)defaultLayoutOut, defaultLayoutOut), true)));
+                layoutOutProperty.Comments.Add(new CodeCommentStatement(new CodeComment("</summary>", true)));
+                geometryShaderType.Members.Add(layoutOutProperty);
+            }
+
+            {
+                var max_verticesProperty = new CodeMemberProperty();
+                max_verticesProperty.Attributes = MemberAttributes.Public | MemberAttributes.Override;
+                max_verticesProperty.Type = new CodeTypeReference(typeof(int));
+                max_verticesProperty.Name = "max_vertices";
+                max_verticesProperty.HasGet = true;
+                max_verticesProperty.HasSet = false;
+                max_verticesProperty.GetStatements.Add(new CodeMethodReturnStatement(new CodePrimitiveExpression(100)));
+                geometryShaderType.Members.Add(max_verticesProperty);
+            }
+
             foreach (var item in this.GeometryShaderFieldList)
             {
-                Debug.WriteLine(string.Format("[{0}]", item.Qualider));
-                Debug.WriteLine(string.Format("{0} {1};", item.FieldType, item.FieldName));
-                Debug.WriteLine("");
+                CodeMemberField fieldCode = new CodeMemberField(item.FieldType, item.FieldName);
+                fieldCode.CustomAttributes.Add(new CodeAttributeDeclaration(
+                    new CodeTypeReference(item.Qualider.GetAttributeType())));
+                geometryShaderType.Members.Add(fieldCode);
             }
-            Debug.WriteLine("public override void main()");
-            Debug.WriteLine("{");
-            Debug.WriteLine("}");
-            Debug.Unindent();
-            Debug.WriteLine("}");
+
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
+            method.ReturnType = new CodeTypeReference(typeof(void));
+            method.Name = "main";
+            geometryShaderType.Members.Add(method);
+
+            return geometryShaderType;
         }
 
-        private void GenerateVertexShader()
+        private CodeTypeDeclaration GenerateVertexShader()
         {
-            Debug.WriteLine("/// <summary>");
-            Debug.WriteLine(string.Format(
-                "/// 一个<see cref=\"{0}\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。",
-                this.ShaderName + "Vert"));
-            Debug.WriteLine("/// </summary>");
-            Debug.WriteLine("[Dump2File(true)]");
-            Debug.WriteLine("[GLSLVersion(GLSLVersion.v150)]");
-            Debug.WriteLine(string.Format("sealed class {0} : VertexCSShaderCode", this.ShaderName + "Vert"));
-            Debug.WriteLine("{");
-            Debug.Indent();
+            CodeTypeDeclaration vertexShaderType = new CodeTypeDeclaration(this.ShaderName + "Vert");
+            vertexShaderType.BaseTypes.Add(typeof(VertexCSShaderCode));
+            vertexShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
+            vertexShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
+                "一个<see cref=\"{0}\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。",
+                this.ShaderName + "Vert"), true)));
+            vertexShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
+                "(GLSLVersion){0} is GLSLVersion.{1}", (uint)defaultVersion, defaultVersion), true)));
+            vertexShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("</summary>", true)));
+            var dump2FileAttrArg = new CodeAttributeArgument();
+            vertexShaderType.CustomAttributes.Add(new CodeAttributeDeclaration(
+                new CodeTypeReference(typeof(Dump2FileAttribute)), new CodeAttributeArgument(
+                    new CodePrimitiveExpression(true))));
+            var codeVersionAttribute = new CodeAttributeDeclaration(
+                new CodeTypeReference(typeof(GLSLVersionAttribute)),
+                    new CodeAttributeArgument(
+                        new CodeCastExpression(typeof(GLSLVersion), new CodePrimitiveExpression((uint)defaultVersion))));
+            vertexShaderType.CustomAttributes.Add(codeVersionAttribute);
+
             foreach (var item in this.VertexShaderFieldList)
             {
-                Debug.WriteLine(string.Format("[{0}]", item.Qualider));
-                Debug.WriteLine(string.Format("{0} {1};", item.FieldType, item.FieldName));
-                Debug.WriteLine("");
+                CodeMemberField fieldCode = new CodeMemberField(item.FieldType, item.FieldName);
+                fieldCode.CustomAttributes.Add(new CodeAttributeDeclaration(
+                    new CodeTypeReference(item.Qualider.GetAttributeType())));
+                vertexShaderType.Members.Add(fieldCode);
             }
-            Debug.WriteLine("public override void main()");
-            Debug.WriteLine("{");
-            Debug.WriteLine("}");
-            Debug.Unindent();
-            Debug.WriteLine("}");
+
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
+            method.ReturnType = new CodeTypeReference(typeof(void));
+            method.Name = "main";
+            vertexShaderType.Members.Add(method);
+
+            return vertexShaderType;
         }
 
-        private void GenerateStructures()
+        private CodeTypeDeclarationCollection GenerateStructures()
         {
+            CodeTypeDeclarationCollection collection = new CodeTypeDeclarationCollection();
+            //todo:
             foreach (var item in this.StrutureList)
             {
-                Debug.WriteLine(string.Format("class {0}", item.Name));
-                Debug.WriteLine("{");
-                Debug.Indent();
+                CodeTypeDeclaration codeType = new CodeTypeDeclaration(item.Name);
+                codeType.IsClass = true;
                 foreach (var field in item.FieldList)
                 {
-                    Debug.WriteLine(string.Format("public {0} {1};", field.FieldType, field.FieldName));
+                    CodeMemberField member = new CodeMemberField(field.FieldType, field.FieldName);
+                    codeType.Members.Add(member);
                 }
-                Debug.Unindent();
-                Debug.WriteLine("}");
-                Debug.WriteLine("");
+                collection.Add(codeType);
             }
+
+            return collection;
         }
 
         internal IEnumerable<IntermediateStructure> GetAllIntermediateStructures()
