@@ -51,23 +51,30 @@ namespace CSharpGL.Buffers
             // init shader program
             ShaderProgram program = new ShaderProgram();
             string vertexShaderCode = null, geometryShaderCode = null, fragmentShaderCode = null;
-            FillShaderCodes(ref vertexShaderCode, ref geometryShaderCode, ref fragmentShaderCode);
+            FillShaderCodes(this.allShaderCodes, ref vertexShaderCode, ref geometryShaderCode, ref fragmentShaderCode);
             program.Create(vertexShaderCode, fragmentShaderCode, geometryShaderCode, null);
             this.shaderProgram = program;
+            this.allShaderCodes = null;
 
-            // init vertex buffer objects
+            // init property buffer objects' renderer
             var propertyBufferRenderers = new BufferRenderer[map.Count()];
             int index = 0;
             foreach (var item in map)
             {
-                propertyBufferRenderers[index++] = this.model.GetBufferRenderer(
-                    item.NameInIConvert2BufferRenderer, item.VarNameInShader);
+                BufferRenderer bufferRenderer = this.model.GetBufferRenderer(
+                item.NameInIConvert2BufferRenderer, item.VarNameInShader);
+                if (bufferRenderer == null) { throw new Exception(); }
+                propertyBufferRenderers[index++] = bufferRenderer;
             }
             this.propertyBufferRenderers = propertyBufferRenderers;
+            this.map = null;
+
+            // init index buffer object's renderer
             this.indexBufferRenderer = this.model.GetIndexBufferRenderer();
+            this.model = null;
         }
 
-        private void FillShaderCodes(ref string vertexShaderCode, ref string geometryShaderCode, ref string fragmentShaderCode)
+        private void FillShaderCodes(CodeShader[] allShaderCodes, ref string vertexShaderCode, ref string geometryShaderCode, ref string fragmentShaderCode)
         {
             bool vertexShaderFilled = false, geometryShaderFilled = false, fragmentShaderFilled = false;
             foreach (var item in allShaderCodes)
