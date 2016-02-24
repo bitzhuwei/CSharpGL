@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="bitzhuwei.CompilerBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\bitzhuwei.CompilerBase.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,10 +45,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="EnumCharTypeGLSLCompiler.cs" />
+    <Compile Include="EnumTokenTypeGLSLCompiler.cs" />
+    <Compile Include="LexicalAnalyzerGLSLCompiler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bitzhuwei.CompilerBase.dll" />
+    <Content Include="GLSLCompiler.txt" />
+    <Content Include="GLSLCompiler.xml" />
     <Content Include="readme.txt" />
+    <Content Include="使用说明.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

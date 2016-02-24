@@ -1,0 +1,4 @@
+﻿1. 请在项目中引用"bitzhuwei.CompilerBase.dll".
+2. 在需要调用生成的代码的源文件中添加"using bitzhuwei.CompilerBase;".
+3. Enjoy!
+  ——http://bitzhuwei.cnblogs.com

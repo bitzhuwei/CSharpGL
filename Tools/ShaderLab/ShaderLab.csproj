@@ -52,18 +52,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CSSL+Renderer.tt</DependentUpon>
     </Compile>
-    <Compile Include="LifeBar.cssl.cs">
-      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LifeBarRenderer.cs">
-      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Some.cssl.cs">
-      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SomeRenderer.cs">
-      <DependentUpon>CSSL+Renderer.tt</DependentUpon>
-    </Compile>
     <Content Include="CSSL+Renderer.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CSSL+Renderer.cs</LastGenOutput>
