@@ -1,4 +1,5 @@
-﻿using CSharpGL.Objects;
+﻿using CSharpGL.Buffers;
+using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Common;
 using CSharpGL.Objects.Demos;
@@ -26,7 +27,7 @@ namespace CSharpGL.Winforms.Demo
         GroundRenderer groundRenderer;
 
         SimpleUIAxis uiAxis;
-        NormalLineRenderer renderer;
+        NewNormalLineRenderer renderer;
         //NormalLineRenderer demolifebarRenderer;
         LifeBarRenderer lifebarRenderer;
         StringRenderer stringRenderer;
@@ -63,8 +64,12 @@ namespace CSharpGL.Winforms.Demo
             uiAxis = new SimpleUIAxis(uiParam);
             uiAxis.Initialize();
 
-            IModel model = (new TeapotFactory()).Create(1.0f);
-            this.renderer = new NormalLineRenderer(model);
+            //IModel model = (new TeapotFactory()).Create(1.0f);
+            IDumpBufferRenderers model = new NewNormalLineDemoModel();
+            var map = new BufferNameMap();
+            map.Add(NewNormalLineRenderer.strin_Position, NewNormalLineDemoModel.strPosition);
+            map.Add(NewNormalLineRenderer.strin_Normal, NewNormalLineDemoModel.strNormal);
+            this.renderer = new NewNormalLineRenderer(model, map);
             this.renderer.Initialize();//不在此显式初始化也可以。
 
             //this.demoLifebar = new DemoLifeBar(0.2f, 0.02f, 4);
@@ -90,13 +95,6 @@ namespace CSharpGL.Winforms.Demo
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.Resize += glCanvas1_Resize;
 
-            //var displayer = new FormNormalLineDisplay(this.demolifebarRenderer);
-            //displayer.Show();
-            var displayer = new FormNormalLineDisplay(this.renderer);
-            displayer.Show();
-            var cameraController = new FormCameraController(this.camera);
-            cameraController.Show();
-
             Application.Idle += Application_Idle;
         }
 
@@ -107,22 +105,6 @@ namespace CSharpGL.Winforms.Demo
                 (this.camera.Position - this.camera.Target).Magnitude());
         }
 
-        private void CreateElement()
-        {
-            var element = new NormalLineRenderer(factories[currentModelIndex].Create(this.radius));
-            element.Initialize();
-            this.newRenderer = element;
-        }
-
-        int currentModelIndex = 0;
-        //static readonly IModel[] models = new IModel[] { CubeModel.GetModel(), IceCreamModel.GetModel(), SphereModel.GetModel(), };
-        static readonly ModelFactory[] factories = new ModelFactory[] { new TeapotFactory(), new CubeFactory(), new IceCreamFactory(), new SphereFactory(), };
-        private float radius = 1;
-        NormalLineRenderer newRenderer;
-
-        //private float translateX;
-        //private float translateY;
-        //private float translateZ;
         private vec3 translate = new vec3();
         private float interval = 0.1f;
         private DemoLifeBar demoLifebar;
@@ -158,12 +140,6 @@ namespace CSharpGL.Winforms.Demo
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            if (this.newRenderer != null)
-            {
-                this.renderer = newRenderer;
-                this.newRenderer = null;
-            }
-
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
             mat4 projectionMatrix = camera.GetProjectionMat4();
             mat4 viewMatrix = camera.GetViewMat4();
@@ -342,13 +318,6 @@ namespace CSharpGL.Winforms.Demo
                 }
 
                 PrintCameraInfo();
-            }
-            else if (e.KeyChar == 'm')
-            {
-                currentModelIndex++;
-                if (currentModelIndex >= factories.Length) { currentModelIndex = 0; }
-
-                CreateElement();
             }
             else if (e.KeyChar == 'j')
             {

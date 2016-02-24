@@ -13,8 +13,26 @@ namespace CSharpGL.Buffers
     /// 如果没有，或者map中有的名字不存在，就默认为两者使用的名字相同。
     /// 这里存储的内容需要OpenGL开发者和APP开发者协商对接。
     /// </summary>
-    public class BufferNameMap : Dictionary<string, string>
+    public class BufferNameMap
     {
+        Dictionary<string, string> dictionary = new Dictionary<string, string>();
+
+        public string GetNameInIDumpBufferRenderers(string nameInShader)
+        {
+            string result = null;
+            if (!this.dictionary.TryGetValue(nameInShader, out result))
+            {
+                result = nameInShader;
+            }
+
+            return result;
+        }
+
+        public void Add(string nameInShader, string nameInIDumpBufferRenderers)
+        {
+            this.dictionary.Add(nameInShader, nameInIDumpBufferRenderers);
+        }
+
         const string strDumperType = "DumperType";
         /// <summary>
         /// Type's fullname
@@ -32,7 +50,7 @@ namespace CSharpGL.Buffers
             XElement result = new XElement(typeof(BufferNameMap).Name,
                 new XAttribute(strDumperType, DumperType),
                 new XAttribute(strRendererType, RendererType),
-                from item in this
+                from item in this.dictionary
                 select KeyValuePairHelper.ToXElement(item)
                 );
 
@@ -50,7 +68,7 @@ namespace CSharpGL.Buffers
             foreach (var item in xElement.Elements(KeyValuePairHelper.strItem))
             {
                 var pair = KeyValuePairHelper.Parse(item);
-                result.Add(pair.Key, pair.Value);
+                result.dictionary.Add(pair.Key, pair.Value);
             }
 
             return result;

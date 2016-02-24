@@ -15,7 +15,7 @@ namespace CSharpGL.Objects.Models
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000061.jpg
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000062.jpg
     /// </summary>
-    public class CubeModel : IModel, IDumpBufferRenderers
+    public class CubeModel : IModel
     {
         static vec3[] eightVertexes = new vec3[] 
         { 
@@ -298,43 +298,5 @@ namespace CSharpGL.Objects.Models
             }
         }
 
-        /// <summary>
-        /// buffer name.
-        /// </summary>
-        public const string strPosition = "position";
-        /// <summary>
-        /// buffer name.
-        /// </summary>
-        public const string strColor = "color";
-        /// <summary>
-        /// buffer name.
-        /// </summary>
-        public const string strNormal = "normal";
-
-        public BufferRenderer GetBufferRenderer(string bufferName, string varNameInShader)
-        {
-            IModel model = this;
-            if (bufferName == strPosition)
-            {
-                return model.GetPositionBufferRenderer(varNameInShader);
-            }
-            else if (bufferName == strColor)
-            {
-                return model.GetColorBufferRenderer(varNameInShader);
-            }
-            else if (bufferName == strNormal)
-            {
-                return model.GetNormalBufferRenderer(varNameInShader);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public BufferRenderer GetIndexBufferRenderer()
-        {
-            return (this as IModel).GetIndexes();
-        }
     }
 }

@@ -61,7 +61,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LifeBarRenderer.cs" />
+    <Compile Include="NewNormalLine.cssl.cs" />
+    <Compile Include="NewNormalLineDemoModel.cs" />
     <Compile Include="NormalLine.cssl.cs" />
+    <Compile Include="NewNormalLineRenderer.cs" />
     <Compile Include="NormalLineRenderer.cs" />
     <Compile Include="PickedGeometryIndexed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +82,10 @@
     <Compile Include="UIs\SimpleUIRect.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\CSharpGL.Buffers\CSharpGL.Buffers.csproj">
+      <Project>{4c35ae1f-4b5e-478d-8642-9c6e487feb17}</Project>
+      <Name>CSharpGL.Buffers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\GLM\GLM.csproj">
       <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
       <Name>GLM</Name>
@@ -225,6 +232,15 @@
     <EmbeddedResource Include="DemoText.frag" />
     <EmbeddedResource Include="DemoText.geom" />
     <EmbeddedResource Include="DemoText.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewNormalLine.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewNormalLine.geom" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewNormalLine.vert" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
