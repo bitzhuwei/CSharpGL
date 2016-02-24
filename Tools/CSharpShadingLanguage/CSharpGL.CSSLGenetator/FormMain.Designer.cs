@@ -72,6 +72,7 @@
             this.saveFileDlg = new System.Windows.Forms.SaveFileDialog();
             this.label7 = new System.Windows.Forms.Label();
             this.btnGenerateCSSL = new System.Windows.Forms.Button();
+            this.btnGenerateCSSLAndMain = new System.Windows.Forms.Button();
             this.menuVertexShaderField.SuspendLayout();
             this.menuGeometryShaderField.SuspendLayout();
             this.menuFragmentShaderField.SuspendLayout();
@@ -135,7 +136,7 @@
             this.lstVertexShaderField.ItemHeight = 15;
             this.lstVertexShaderField.Location = new System.Drawing.Point(13, 112);
             this.lstVertexShaderField.Name = "lstVertexShaderField";
-            this.lstVertexShaderField.Size = new System.Drawing.Size(224, 364);
+            this.lstVertexShaderField.Size = new System.Drawing.Size(224, 319);
             this.lstVertexShaderField.TabIndex = 5;
             this.lstVertexShaderField.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragDrop);
             this.lstVertexShaderField.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragEnter);
@@ -201,7 +202,7 @@
             this.lstGeometryShaderField.ItemHeight = 15;
             this.lstGeometryShaderField.Location = new System.Drawing.Point(243, 112);
             this.lstGeometryShaderField.Name = "lstGeometryShaderField";
-            this.lstGeometryShaderField.Size = new System.Drawing.Size(224, 364);
+            this.lstGeometryShaderField.Size = new System.Drawing.Size(224, 319);
             this.lstGeometryShaderField.TabIndex = 5;
             this.lstGeometryShaderField.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragDrop);
             this.lstGeometryShaderField.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragEnter);
@@ -258,7 +259,7 @@
             this.lstFragmentShaderField.ItemHeight = 15;
             this.lstFragmentShaderField.Location = new System.Drawing.Point(473, 112);
             this.lstFragmentShaderField.Name = "lstFragmentShaderField";
-            this.lstFragmentShaderField.Size = new System.Drawing.Size(224, 364);
+            this.lstFragmentShaderField.Size = new System.Drawing.Size(224, 319);
             this.lstFragmentShaderField.TabIndex = 5;
             this.lstFragmentShaderField.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragDrop);
             this.lstFragmentShaderField.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragEnter);
@@ -315,7 +316,7 @@
             this.lstStructure.ItemHeight = 15;
             this.lstStructure.Location = new System.Drawing.Point(703, 112);
             this.lstStructure.Name = "lstStructure";
-            this.lstStructure.Size = new System.Drawing.Size(224, 364);
+            this.lstStructure.Size = new System.Drawing.Size(224, 319);
             this.lstStructure.TabIndex = 5;
             this.lstStructure.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragDrop);
             this.lstStructure.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragEnter);
@@ -459,6 +460,17 @@
             this.btnGenerateCSSL.UseVisualStyleBackColor = true;
             this.btnGenerateCSSL.Click += new System.EventHandler(this.btnGenerateCSSL_Click);
             // 
+            // btnGenerateCSSLAndMain
+            // 
+            this.btnGenerateCSSLAndMain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGenerateCSSLAndMain.Location = new System.Drawing.Point(404, 461);
+            this.btnGenerateCSSLAndMain.Name = "btnGenerateCSSLAndMain";
+            this.btnGenerateCSSLAndMain.Size = new System.Drawing.Size(258, 23);
+            this.btnGenerateCSSLAndMain.TabIndex = 3;
+            this.btnGenerateCSSLAndMain.Text = "Save and Generate CSSL+main";
+            this.btnGenerateCSSLAndMain.UseVisualStyleBackColor = true;
+            this.btnGenerateCSSLAndMain.Click += new System.EventHandler(this.btnGenerateCSSLAndMain_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -472,6 +484,7 @@
             this.Controls.Add(this.cmbShaderProgramType);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.btnGenerateCSSLAndMain);
             this.Controls.Add(this.btnGenerateCSSL);
             this.Controls.Add(this.btnGenerateRenderer);
             this.Controls.Add(this.label7);
@@ -539,5 +552,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.Button btnGenerateCSSL;
+        private System.Windows.Forms.Button btnGenerateCSSLAndMain;
     }
 }

@@ -106,7 +106,7 @@ namespace CSharpGL.CSSLGenetator
         /// <summary>
         /// 
         /// </summary>
-        public void GenerateRenderer()
+        public string GenerateRenderer()
         {
             string directory = (new FileInfo(this.Fullname)).DirectoryName;
             var rendererFullname = Path.Combine(directory, this.ShaderName + "Renderer.cs");
@@ -351,18 +351,107 @@ namespace CSharpGL.CSSLGenetator
             Debug.Close();
             Debug.Listeners.Remove(listener);
 
-            try
-            {
-                //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
-                OpenFolderHelper.OpenFolderAndSelectFiles(directory, rendererFullname);
-            }
-            catch (Exception)
-            {
-
-            }
+            return rendererFullname;
         }
 
-        public void GenerateCSSL()
+        public string GenerateCSSLMain()
+        {
+            string directory = (new FileInfo(this.Fullname)).DirectoryName;
+            var csslMainFullname = Path.Combine(directory, this.ShaderName + ".main.cs");
+
+            Debug.WriteLine("#if DEBUG");// todo: 没有对应#if 的对象？
+            CodeNamespace csslNamespace = new CodeNamespace(string.Format("CSharpShadingLanguage.{0}", this.ShaderName));
+            csslNamespace.Imports.Add(new CodeNamespaceImport(typeof(CSharpShadingLanguage.CSShaderCode).Namespace));
+            csslNamespace.Comments.Add(new CodeCommentStatement("此文件由CSharpGL.CSSLGenerator.exe生成。"));
+            csslNamespace.Comments.Add(new CodeCommentStatement("用法：使用CSSL2GLSL.exe编译此文件，即可获得对应的vertex shader, geometry shader, fragment shader。"));
+            csslNamespace.Comments.Add(new CodeCommentStatement("此文件中的类型不应被直接调用，发布release时可以去掉。"));
+            csslNamespace.Comments.Add(new CodeCommentStatement("不可将此文件中的代码复制到其他文件内（如果包含了其他的using ...;，那么CSSL2GLSL.exe就无法正常编译这些代码了。）"));
+            csslNamespace.Types.Add(GenerateVertexShaderMain());
+            if (this.ProgramType == ShaderProgramType.VertexGeometryFragment)
+            {
+                Debug.WriteLine("");
+                csslNamespace.Types.Add(GenerateGeometryShaderMain());
+            }
+            csslNamespace.Types.Add(GenerateFragmentShaderMain());
+            Debug.WriteLine("#endif");// todo: 没有对应#if 的对象？
+
+            using (var sw = new StreamWriter(csslMainFullname, false))
+            {
+                CSharpCodeProvider codeProvider = new CSharpCodeProvider();
+                CodeGeneratorOptions geneOptions = new CodeGeneratorOptions();//代码生成选项
+                geneOptions.BlankLinesBetweenMembers = true;
+                geneOptions.BracingStyle = "C";
+                geneOptions.ElseOnClosing = false;
+                geneOptions.IndentString = "    ";
+                geneOptions.VerbatimOrder = true;
+
+                codeProvider.GenerateCodeFromNamespace(csslNamespace, sw, geneOptions);
+            }
+
+            return csslMainFullname;
+        }
+
+        private CodeTypeDeclaration GenerateFragmentShaderMain()
+        {
+            CodeTypeDeclaration fragmentShaderType = new CodeTypeDeclaration(this.ShaderName + "Frag");
+            fragmentShaderType.IsPartial = true;
+            fragmentShaderType.BaseTypes.Add(typeof(FragmentCSShaderCode));
+            fragmentShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
+            fragmentShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
+              "一个<see cref=\"{0}\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。",
+              this.ShaderName + "Frag"), true)));
+            fragmentShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("</summary>", true)));
+
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
+            method.ReturnType = new CodeTypeReference(typeof(void));
+            method.Name = "main";
+            fragmentShaderType.Members.Add(method);
+
+            return fragmentShaderType;
+        }
+
+        private CodeTypeDeclaration GenerateGeometryShaderMain()
+        {
+            CodeTypeDeclaration geometryShaderType = new CodeTypeDeclaration(this.ShaderName + "Geom");
+            geometryShaderType.IsPartial = true;
+            geometryShaderType.BaseTypes.Add(typeof(GeometryCSShaderCode));
+            geometryShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
+            geometryShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
+              "一个<see cref=\"{0}\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。",
+              this.ShaderName + "Geom"), true)));
+            geometryShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("</summary>", true)));
+
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
+            method.ReturnType = new CodeTypeReference(typeof(void));
+            method.Name = "main";
+            geometryShaderType.Members.Add(method);
+
+            return geometryShaderType;
+        }
+
+        private CodeTypeDeclaration GenerateVertexShaderMain()
+        {
+            CodeTypeDeclaration vertexShaderType = new CodeTypeDeclaration(this.ShaderName + "Vert");
+            vertexShaderType.IsPartial = true;
+            vertexShaderType.BaseTypes.Add(typeof(VertexCSShaderCode));
+            vertexShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
+            vertexShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
+                "一个<see cref=\"{0}\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。",
+                this.ShaderName + "Vert"), true)));
+            vertexShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("</summary>", true)));
+
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
+            method.ReturnType = new CodeTypeReference(typeof(void));
+            method.Name = "main";
+            vertexShaderType.Members.Add(method);
+
+            return vertexShaderType;
+        }
+
+        public string GenerateCSSL()
         {
             string directory = (new FileInfo(this.Fullname)).DirectoryName;
             var csslFullname = Path.Combine(directory, this.ShaderName + ".cssl.cs");
@@ -397,46 +486,8 @@ namespace CSharpGL.CSSLGenetator
                 codeProvider.GenerateCodeFromNamespace(csslNamespace, sw, geneOptions);
             }
 
-            try
-            {
-                //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
-                OpenFolderHelper.OpenFolderAndSelectFiles(directory, csslFullname, csslFullname);
-            }
-            catch (Exception)
-            {
-
-            }
+            return csslFullname;
         }
-
-        //public void Generate()
-        //{
-        //    string directory = (new FileInfo(this.Fullname)).DirectoryName;
-        //    var csslFullname = Path.Combine(directory, this.ShaderName + ".cssl.cs");
-        //    var rendererFullname = Path.Combine(directory, this.ShaderName + "Renderer.cs");
-
-        //    {
-        //        GenerateCSSL();
-        //    }
-        //    {
-        //        var fileStream = new FileStream(rendererFullname, FileMode.Create);
-        //        var listener = new TextWriterTraceListener(fileStream);
-        //        Debug.Listeners.Add(listener);
-        //        GenerateRenderer();
-        //        Debug.Close();
-        //        Debug.Listeners.Remove(listener);
-        //    }
-
-        //    try
-        //    {
-        //        //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
-        //        OpenFolderHelper.OpenFolderAndSelectFiles(directory, csslFullname, rendererFullname);
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //    }
-        //}
-
 
         private void GenerateSetRenderer()
         {
@@ -540,6 +591,7 @@ namespace CSharpGL.CSSLGenetator
         private CodeTypeDeclaration GenerateFragmentShader()
         {
             CodeTypeDeclaration fragmentShaderType = new CodeTypeDeclaration(this.ShaderName + "Frag");
+            fragmentShaderType.IsPartial = true;
             fragmentShaderType.BaseTypes.Add(typeof(FragmentCSShaderCode));
             fragmentShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
             fragmentShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
@@ -565,18 +617,13 @@ namespace CSharpGL.CSSLGenetator
                 fragmentShaderType.Members.Add(fieldCode);
             }
 
-            CodeMemberMethod method = new CodeMemberMethod();
-            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
-            method.ReturnType = new CodeTypeReference(typeof(void));
-            method.Name = "main";
-            fragmentShaderType.Members.Add(method);
-
             return fragmentShaderType;
         }
 
         private CodeTypeDeclaration GenerateGeometryShader()
         {
             CodeTypeDeclaration geometryShaderType = new CodeTypeDeclaration(this.ShaderName + "Geom");
+            geometryShaderType.IsPartial = true;
             geometryShaderType.BaseTypes.Add(typeof(GeometryCSShaderCode));
             geometryShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
             geometryShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
@@ -645,18 +692,13 @@ namespace CSharpGL.CSSLGenetator
                 geometryShaderType.Members.Add(fieldCode);
             }
 
-            CodeMemberMethod method = new CodeMemberMethod();
-            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
-            method.ReturnType = new CodeTypeReference(typeof(void));
-            method.Name = "main";
-            geometryShaderType.Members.Add(method);
-
             return geometryShaderType;
         }
 
         private CodeTypeDeclaration GenerateVertexShader()
         {
             CodeTypeDeclaration vertexShaderType = new CodeTypeDeclaration(this.ShaderName + "Vert");
+            vertexShaderType.IsPartial = true;
             vertexShaderType.BaseTypes.Add(typeof(VertexCSShaderCode));
             vertexShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
             vertexShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
@@ -682,12 +724,6 @@ namespace CSharpGL.CSSLGenetator
                     new CodeTypeReference(item.Qualider.GetAttributeType())));
                 vertexShaderType.Members.Add(fieldCode);
             }
-
-            CodeMemberMethod method = new CodeMemberMethod();
-            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
-            method.ReturnType = new CodeTypeReference(typeof(void));
-            method.Name = "main";
-            vertexShaderType.Members.Add(method);
 
             return vertexShaderType;
         }

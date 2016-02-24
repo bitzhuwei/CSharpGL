@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -469,7 +470,17 @@ namespace CSharpGL.CSSLGenetator
 
             保存SToolStripMenuItem_Click(sender, e);
 
-            this.currentFile.GenerateCSSL();
+            string csslFullname = this.currentFile.GenerateCSSL();
+            try
+            {
+                string directory = (new FileInfo(this.currentFile.Fullname)).DirectoryName;
+                //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
+                OpenFolderHelper.OpenFolderAndSelectFiles(directory, csslFullname);
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void btnGenerateRenderer_Click(object sender, EventArgs e)
@@ -478,7 +489,37 @@ namespace CSharpGL.CSSLGenetator
 
             保存SToolStripMenuItem_Click(sender, e);
 
-            this.currentFile.GenerateRenderer();
+            string rendererFullname = this.currentFile.GenerateRenderer();
+            try
+            {
+                string directory = (new FileInfo(this.currentFile.Fullname)).DirectoryName;
+                //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
+                OpenFolderHelper.OpenFolderAndSelectFiles(directory, rendererFullname);
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void btnGenerateCSSLAndMain_Click(object sender, EventArgs e)
+        {
+            Map2Template(this.currentFile);
+
+            保存SToolStripMenuItem_Click(sender, e);
+
+            string csslFullname = this.currentFile.GenerateCSSL();
+            string mainFulaname = this.currentFile.GenerateCSSLMain();
+            try
+            {
+                string directory = (new FileInfo(this.currentFile.Fullname)).DirectoryName;
+                //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
+                OpenFolderHelper.OpenFolderAndSelectFiles(directory, csslFullname, mainFulaname);
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
 

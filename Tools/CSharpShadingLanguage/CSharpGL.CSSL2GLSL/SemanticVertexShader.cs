@@ -14,7 +14,7 @@ namespace CSharpGL.CSSL2GLSL
     public sealed class SemanticVertexShader : SemanticShader
     {
 
-        public SemanticVertexShader(CSShaderCode shaderCode, string fullname)
+        public SemanticVertexShader(CSShaderCode shaderCode, CSSLFileGroup fullname)
             : base(shaderCode, fullname)
         {
         }
@@ -50,7 +50,7 @@ namespace CSharpGL.CSSL2GLSL
             }
             builder.AppendLine();
 
-            builder.Append(this.SearchMainFunction(fullname));
+            builder.Append(this.SearchMainFunction(fileGroup.MainFile));
             builder.AppendLine();
 
             return builder.ToString();

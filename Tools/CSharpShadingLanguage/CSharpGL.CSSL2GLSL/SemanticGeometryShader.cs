@@ -15,8 +15,8 @@ namespace CSharpGL.CSSL2GLSL
     public sealed class SemanticGeometryShader : SemanticShader
     {
 
-        public SemanticGeometryShader(CSShaderCode shaderCode, string fullname)
-            : base(shaderCode, fullname)
+        public SemanticGeometryShader(CSShaderCode shaderCode, CSSLFileGroup fileGroup)
+            : base(shaderCode, fileGroup)
         {
         }
 
@@ -62,7 +62,7 @@ namespace CSharpGL.CSSL2GLSL
             }
             builder.AppendLine();
 
-            builder.Append(this.SearchMainFunction(fullname));
+            builder.Append(this.SearchMainFunction(fileGroup.MainFile));
             builder.AppendLine();
 
             return builder.ToString();

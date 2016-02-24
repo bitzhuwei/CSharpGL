@@ -9,19 +9,19 @@ namespace CSharpGL.CSSL2GLSL
 {
     public static class ShaderCodeHelper
     {
-        public static SemanticShader GetSemanticShader(this CSShaderCode shaderCode, string fullname)
+        public static SemanticShader GetSemanticShader(this CSShaderCode shaderCode, CSSLFileGroup fullnames)
         {
             if (shaderCode.GetType().IsSubclassOf(typeof(VertexCSShaderCode)))
             {
-                return new SemanticVertexShader(shaderCode, fullname);
+                return new SemanticVertexShader(shaderCode, fullnames);
             }
             else if (shaderCode.GetType().IsSubclassOf(typeof(FragmentCSShaderCode)))
             {
-                return new SemanticFragmentShader(shaderCode, fullname);
+                return new SemanticFragmentShader(shaderCode, fullnames);
             }
                 else if (shaderCode.GetType().IsSubclassOf(typeof(GeometryCSShaderCode)))
             {
-                return new SemanticGeometryShader(shaderCode, fullname);
+                return new SemanticGeometryShader(shaderCode, fullnames);
             }
             else
             {
