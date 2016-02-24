@@ -103,7 +103,6 @@
       <DependentUpon>FormXRay.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Renderers\Cloud.xml" />
     <EmbeddedResource Include="FormPolkadot3d.resx">
       <DependentUpon>FormPolkadot3d.cs</DependentUpon>
     </EmbeddedResource>
