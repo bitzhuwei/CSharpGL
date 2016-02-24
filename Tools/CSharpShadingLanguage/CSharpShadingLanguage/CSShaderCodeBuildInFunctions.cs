@@ -75,5 +75,18 @@ namespace CSharpShadingLanguage
 
         #endregion matrix functions
 
+        #region others
+
+        public static float mix(float x, float y, float a) { throw new NotNeedToImplementException(); }
+        public static vec2 mix(vec2 x, vec2 y, float a) { throw new NotNeedToImplementException(); }
+        public static vec3 mix(vec3 x, vec3 y, float a) { throw new NotNeedToImplementException(); }
+        public static vec4 mix(vec4 x, vec4 y, float a) { throw new NotNeedToImplementException(); }
+
+        public static float clamp(float x, float minVal, float maxVal) { throw new NotNeedToImplementException(); }
+        public static vec2 clamp(vec2 x, float minVal, float maxVal) { throw new NotNeedToImplementException(); }
+        public static vec3 clamp(vec3 x, float minVal, float maxVal) { throw new NotNeedToImplementException(); }
+        public static vec4 clamp(vec4 x, float minVal, float maxVal) { throw new NotNeedToImplementException(); }
+
+        #endregion others
     }
 }

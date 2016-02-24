@@ -19,8 +19,8 @@ namespace CSharpGL.Winforms.Demo
             //return;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new FormTest());
-            Application.Run(new FormColorCodedPicking());
+            Application.Run(new FormTest());
+            //Application.Run(new FormColorCodedPicking());
         }
 
         /// <summary>

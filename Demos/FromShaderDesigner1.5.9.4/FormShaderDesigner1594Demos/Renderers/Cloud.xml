@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CSSLTemplate ShaderName="Cloud" ProgramType="VertexFragment">
+  <VertexShaderFieldList>
+    <ShaderField PropertyType="Position" Qualifier="In" FieldType="vec3" FieldName="in_Position" />
+    <ShaderField PropertyType="Normal" Qualifier="In" FieldType="vec3" FieldName="in_Normal" />
+    <ShaderField PropertyType="Other" Qualifier="Uniform" FieldType="mat4" FieldName="projectionMatrix" />
+    <ShaderField PropertyType="Other" Qualifier="Uniform" FieldType="mat4" FieldName="viewMatrix" />
+    <ShaderField PropertyType="Other" Qualifier="Uniform" FieldType="mat4" FieldName="modelMatrix" />
+    <ShaderField PropertyType="Other" Qualifier="Out" FieldType="float" FieldName="LightIntensity" />
+    <ShaderField PropertyType="Other" Qualifier="Out" FieldType="vec3" FieldName="MCposition" />
+    <ShaderField PropertyType="Other" Qualifier="Uniform" FieldType="vec3" FieldName="LightPos" />
+    <ShaderField PropertyType="Other" Qualifier="Uniform" FieldType="float" FieldName="Scale" />
+  </VertexShaderFieldList>
+  <GeometryShaderFieldList />
+  <FragmentShaderFieldList>
+    <ShaderField PropertyType="Other" Qualifier="In" FieldType="vec3" FieldName="MCposition" />
+    <ShaderField PropertyType="Other" Qualifier="In" FieldType="float" FieldName="LightIntensity" />
+    <ShaderField PropertyType="Other" Qualifier="Out" FieldType="vec4" FieldName="outputColor" />
+    <ShaderField PropertyType="Other" Qualifier="Uniform" FieldType="float" FieldName="TIME_FROM_INIT" />
+    <ShaderField PropertyType="Other" Qualifier="Uniform" FieldType="sampler3D" FieldName="Noise" />
+    <ShaderField PropertyType="Other" Qualifier="Uniform" FieldType="vec3" FieldName="SkyColor" />
+    <ShaderField PropertyType="Other" Qualifier="Uniform" FieldType="vec3" FieldName="CloudColor" />
+  </FragmentShaderFieldList>
+  <IntermediateStructureList />
+</CSSLTemplate>
