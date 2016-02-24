@@ -1,4 +1,2 @@
 OpenAssetImportLibrary尚未完成。
 CSharpGL.FileParser._3DSParser.ToModernOpenGL尚未完成。
-
-自己实现GLSL的CodeDomProvider。
