@@ -48,11 +48,16 @@
     <Compile Include="PropertyNameMap.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UniformVariableBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSharpGL.Objects\CSharpGL.Objects.csproj">
       <Project>{b340c561-2e18-42af-a52d-e6d9f924293e}</Project>
       <Name>CSharpGL.Objects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GLM\GLM.csproj">
+      <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
+      <Name>GLM</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
