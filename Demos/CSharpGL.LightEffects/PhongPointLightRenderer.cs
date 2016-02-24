@@ -89,6 +89,13 @@ namespace CSharpGL.LightEffects
 
         protected void InitializeVAO()
         {
+            #region IDumpBufferRenderers
+
+            IDumpBufferRenderers dumper = this as IDumpBufferRenderers;
+            this.positionBufferRenderer = dumper.GetBufferRenderer(strin_Position, strin_Position);
+
+            #endregion
+
             IModel model = this.model;
 
             this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);

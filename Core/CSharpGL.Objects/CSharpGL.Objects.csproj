@@ -60,6 +60,7 @@
     <Compile Include="ModelFactories\ModelFactory.cs" />
     <Compile Include="ModelFactories\SphereFactory.cs" />
     <Compile Include="Models\CubeModel.cs" />
+    <Compile Include="Models\IDumpBufferRenderers.cs" />
     <Compile Include="Models\IceCreamModel.cs" />
     <Compile Include="Models\IModel.cs" />
     <Compile Include="Models\TeapotLoader.cs" />
