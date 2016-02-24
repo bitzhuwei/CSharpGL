@@ -101,43 +101,21 @@ namespace CSharpGL.CSSLGenetator
             return result;
         }
 
-
-        public void Generate()
-        {
-            string directory = (new FileInfo(this.Fullname)).DirectoryName;
-            var csslFullname = Path.Combine(directory, this.ShaderName + ".cssl.cs");
-            var rendererFullname = Path.Combine(directory, this.ShaderName + "Renderer.cs");
-
-            {
-                GenerateCSSL();
-            }
-            {
-                var fileStream = new FileStream(rendererFullname, FileMode.Create);
-                var listener = new TextWriterTraceListener(fileStream);
-                Debug.Listeners.Add(listener);
-                GenerateRenderer();
-                Debug.Close();
-                Debug.Listeners.Remove(listener);
-            }
-
-            try
-            {
-                //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
-                OpenFolderHelper.OpenFolderAndSelectFiles(directory, csslFullname, rendererFullname);
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
         //TODO:生成Renderer的过程也用CodeDom重写一下吧。
         //可参考 http://www.cnblogs.com/nokiaguy/archive/2008/05/12/1193471.html
         /// <summary>
         /// 
         /// </summary>
-        private void GenerateRenderer()
+        public void GenerateRenderer()
         {
+            string directory = (new FileInfo(this.Fullname)).DirectoryName;
+            var rendererFullname = Path.Combine(directory, this.ShaderName + "Renderer.cs");
+
+            var fileStream = new FileStream(rendererFullname, FileMode.Create);
+            var listener = new TextWriterTraceListener(fileStream);
+            Debug.Listeners.Add(listener);
+            //
+            #region generate renderer
             Debug.WriteLine(string.Format("namespace Renderers.{0}", this.ShaderName));
             Debug.WriteLine("{");
             Debug.Indent();
@@ -368,7 +346,97 @@ namespace CSharpGL.CSSLGenetator
             Debug.WriteLine("}");
             Debug.Unindent();
             Debug.WriteLine("}");
+            #endregion  generate renderer
+            //
+            Debug.Close();
+            Debug.Listeners.Remove(listener);
+
+            try
+            {
+                //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
+                OpenFolderHelper.OpenFolderAndSelectFiles(directory, rendererFullname);
+            }
+            catch (Exception)
+            {
+
+            }
         }
+
+        public void GenerateCSSL()
+        {
+            string directory = (new FileInfo(this.Fullname)).DirectoryName;
+            var csslFullname = Path.Combine(directory, this.ShaderName + ".cssl.cs");
+
+            Debug.WriteLine("#if DEBUG");// todo: 没有对应#if 的对象？
+            CodeNamespace csslNamespace = new CodeNamespace(string.Format("CSharpShadingLanguage.{0}", this.ShaderName));
+            csslNamespace.Imports.Add(new CodeNamespaceImport(typeof(CSharpShadingLanguage.CSShaderCode).Namespace));
+            csslNamespace.Comments.Add(new CodeCommentStatement("此文件由CSharpGL.CSSLGenerator.exe生成。"));
+            csslNamespace.Comments.Add(new CodeCommentStatement("用法：使用CSSL2GLSL.exe编译此文件，即可获得对应的vertex shader, geometry shader, fragment shader。"));
+            csslNamespace.Comments.Add(new CodeCommentStatement("此文件中的类型不应被直接调用，发布release时可以去掉。"));
+            csslNamespace.Comments.Add(new CodeCommentStatement("不可将此文件中的代码复制到其他文件内（如果包含了其他的using ...;，那么CSSL2GLSL.exe就无法正常编译这些代码了。）"));
+            csslNamespace.Types.AddRange(GenerateStructures());
+            csslNamespace.Types.Add(GenerateVertexShader());
+            if (this.ProgramType == ShaderProgramType.VertexGeometryFragment)
+            {
+                Debug.WriteLine("");
+                csslNamespace.Types.Add(GenerateGeometryShader());
+            }
+            csslNamespace.Types.Add(GenerateFragmentShader());
+            Debug.WriteLine("#endif");// todo: 没有对应#if 的对象？
+
+            using (var sw = new StreamWriter(csslFullname, false))
+            {
+                CSharpCodeProvider codeProvider = new CSharpCodeProvider();
+                CodeGeneratorOptions geneOptions = new CodeGeneratorOptions();//代码生成选项
+                geneOptions.BlankLinesBetweenMembers = true;
+                geneOptions.BracingStyle = "C";
+                geneOptions.ElseOnClosing = false;
+                geneOptions.IndentString = "    ";
+                geneOptions.VerbatimOrder = true;
+
+                codeProvider.GenerateCodeFromNamespace(csslNamespace, sw, geneOptions);
+            }
+
+            try
+            {
+                //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
+                OpenFolderHelper.OpenFolderAndSelectFiles(directory, csslFullname, csslFullname);
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        //public void Generate()
+        //{
+        //    string directory = (new FileInfo(this.Fullname)).DirectoryName;
+        //    var csslFullname = Path.Combine(directory, this.ShaderName + ".cssl.cs");
+        //    var rendererFullname = Path.Combine(directory, this.ShaderName + "Renderer.cs");
+
+        //    {
+        //        GenerateCSSL();
+        //    }
+        //    {
+        //        var fileStream = new FileStream(rendererFullname, FileMode.Create);
+        //        var listener = new TextWriterTraceListener(fileStream);
+        //        Debug.Listeners.Add(listener);
+        //        GenerateRenderer();
+        //        Debug.Close();
+        //        Debug.Listeners.Remove(listener);
+        //    }
+
+        //    try
+        //    {
+        //        //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
+        //        OpenFolderHelper.OpenFolderAndSelectFiles(directory, csslFullname, rendererFullname);
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //    }
+        //}
+
 
         private void GenerateSetRenderer()
         {
@@ -469,41 +537,6 @@ namespace CSharpGL.CSSLGenetator
             return list;
         }
 
-        private void GenerateCSSL()
-        {
-            Debug.WriteLine("#if DEBUG");// todo: 没有对应#if 的对象？
-            CodeNamespace csslNamespace = new CodeNamespace(string.Format("CSharpShadingLanguage.{0}", this.ShaderName));
-            csslNamespace.Imports.Add(new CodeNamespaceImport(typeof(CSharpShadingLanguage.CSShaderCode).Namespace));
-            csslNamespace.Comments.Add(new CodeCommentStatement("此文件由CSharpGL.CSSLGenerator.exe生成。"));
-            csslNamespace.Comments.Add(new CodeCommentStatement("用法：使用CSSL2GLSL.exe编译此文件，即可获得对应的vertex shader, geometry shader, fragment shader。"));
-            csslNamespace.Comments.Add(new CodeCommentStatement("此文件中的类型不应被直接调用，发布release时可以去掉。"));
-            csslNamespace.Comments.Add(new CodeCommentStatement("不可将此文件中的代码复制到其他文件内（如果包含了其他的using ...;，那么CSSL2GLSL.exe就无法正常编译这些代码了。）"));
-            csslNamespace.Types.AddRange(GenerateStructures());
-            csslNamespace.Types.Add(GenerateVertexShader());
-            if (this.ProgramType == ShaderProgramType.VertexGeometryFragment)
-            {
-                Debug.WriteLine("");
-                csslNamespace.Types.Add(GenerateGeometryShader());
-            }
-            csslNamespace.Types.Add(GenerateFragmentShader());
-            Debug.WriteLine("#endif");// todo: 没有对应#if 的对象？
-
-            string directory = (new FileInfo(this.Fullname)).DirectoryName;
-            var csslFullname = Path.Combine(directory, this.ShaderName + ".cssl.cs");
-            using (var sw = new StreamWriter(csslFullname, false))
-            {
-                CSharpCodeProvider codeProvider = new CSharpCodeProvider();
-                CodeGeneratorOptions geneOptions = new CodeGeneratorOptions();//代码生成选项
-                geneOptions.BlankLinesBetweenMembers = true;
-                geneOptions.BracingStyle = "C";
-                geneOptions.ElseOnClosing = false;
-                geneOptions.IndentString = "    ";
-                geneOptions.VerbatimOrder = true;
-
-                codeProvider.GenerateCodeFromNamespace(csslNamespace, sw, geneOptions);
-            }
-        }
-
         private CodeTypeDeclaration GenerateFragmentShader()
         {
             CodeTypeDeclaration fragmentShaderType = new CodeTypeDeclaration(this.ShaderName + "Frag");
@@ -526,7 +559,7 @@ namespace CSharpGL.CSSLGenetator
 
             foreach (var item in this.FragmentShaderFieldList)
             {
-                CodeMemberField fieldCode = new CodeMemberField(item.FieldType, item.FieldName);
+                CodeMemberField fieldCode = GetCodeMemberField(item);
                 fieldCode.CustomAttributes.Add(new CodeAttributeDeclaration(
                     new CodeTypeReference(item.Qualider.GetAttributeType())));
                 fragmentShaderType.Members.Add(fieldCode);
@@ -606,7 +639,7 @@ namespace CSharpGL.CSSLGenetator
 
             foreach (var item in this.GeometryShaderFieldList)
             {
-                CodeMemberField fieldCode = new CodeMemberField(item.FieldType, item.FieldName);
+                CodeMemberField fieldCode = GetCodeMemberField(item);
                 fieldCode.CustomAttributes.Add(new CodeAttributeDeclaration(
                     new CodeTypeReference(item.Qualider.GetAttributeType())));
                 geometryShaderType.Members.Add(fieldCode);
@@ -644,7 +677,7 @@ namespace CSharpGL.CSSLGenetator
 
             foreach (var item in this.VertexShaderFieldList)
             {
-                CodeMemberField fieldCode = new CodeMemberField(item.FieldType, item.FieldName);
+                CodeMemberField fieldCode = GetCodeMemberField(item);
                 fieldCode.CustomAttributes.Add(new CodeAttributeDeclaration(
                     new CodeTypeReference(item.Qualider.GetAttributeType())));
                 vertexShaderType.Members.Add(fieldCode);
@@ -659,6 +692,30 @@ namespace CSharpGL.CSSLGenetator
             return vertexShaderType;
         }
 
+        static readonly Dictionary<string, Type> primitiveDict = new Dictionary<string, Type>();
+
+        static CSSLTemplate()
+        {
+            primitiveDict.Add("float", typeof(float));
+            primitiveDict.Add("int", typeof(int));
+            primitiveDict.Add("bool", typeof(bool));
+        }
+        private CodeMemberField GetCodeMemberField(ShaderField shaderField)
+        {
+            CodeMemberField result = null;
+            Type type = null;
+            if (primitiveDict.TryGetValue(shaderField.FieldType, out type))
+            {
+                result = new CodeMemberField(type, shaderField.FieldName);
+            }
+            else
+            {
+                result = new CodeMemberField(shaderField.FieldType, shaderField.FieldName);
+            }
+
+            return result;
+        }
+
         private CodeTypeDeclarationCollection GenerateStructures()
         {
             CodeTypeDeclarationCollection collection = new CodeTypeDeclarationCollection();
@@ -669,13 +726,29 @@ namespace CSharpGL.CSSLGenetator
                 codeType.IsClass = true;
                 foreach (var field in item.FieldList)
                 {
-                    CodeMemberField member = new CodeMemberField(field.FieldType, field.FieldName);
+                    CodeMemberField member = GetCodeMemberField(field);
                     codeType.Members.Add(member);
                 }
                 collection.Add(codeType);
             }
 
             return collection;
+        }
+
+        private CodeMemberField GetCodeMemberField(StructureField structureField)
+        {
+            CodeMemberField result = null;
+            Type type = null;
+            if (primitiveDict.TryGetValue(structureField.FieldType, out type))
+            {
+                result = new CodeMemberField(type, structureField.FieldName);
+            }
+            else
+            {
+                result = new CodeMemberField(structureField.FieldType, structureField.FieldName);
+            }
+
+            return result;
         }
 
         internal IEnumerable<IntermediateStructure> GetAllIntermediateStructures()

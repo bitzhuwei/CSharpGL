@@ -139,15 +139,6 @@ namespace CSharpGL.CSSLGenetator
             this.新建NToolStripMenuItem_Click(sender, e);
         }
 
-        private void btnGenerate_Click(object sender, EventArgs e)
-        {
-            Map2Template(this.currentFile);
-
-            保存SToolStripMenuItem_Click(sender, e);
-
-            this.currentFile.Generate();
-        }
-
         private void Map2Template(CSSLTemplate cSSLTemplate)
         {
             this.currentFile.ShaderName = this.txtShaderName.Text;
@@ -257,6 +248,16 @@ namespace CSharpGL.CSSLGenetator
                 ShaderField field = this.lstFragmentShaderField.SelectedItem as ShaderField;
                 this.currentFile.FragmentShaderFieldList.Remove(field);
                 this.lstFragmentShaderField.Items.Remove(field);
+            }
+        }
+
+        private void RemoveFieldStructure_Click(object sender, EventArgs e)
+        {
+            if (this.lstStructure.SelectedIndex >= 0)
+            {
+                IntermediateStructure field = this.lstStructure.SelectedItem as IntermediateStructure;
+                this.currentFile.StrutureList.Remove(field);
+                this.lstStructure.Items.Remove(field);
             }
         }
 
@@ -461,6 +462,25 @@ namespace CSharpGL.CSSLGenetator
 
             }
         }
+
+        private void btnGenerateCSSL_Click(object sender, EventArgs e)
+        {
+            Map2Template(this.currentFile);
+
+            保存SToolStripMenuItem_Click(sender, e);
+
+            this.currentFile.GenerateCSSL();
+        }
+
+        private void btnGenerateRenderer_Click(object sender, EventArgs e)
+        {
+            Map2Template(this.currentFile);
+
+            保存SToolStripMenuItem_Click(sender, e);
+
+            this.currentFile.GenerateRenderer();
+        }
+
 
     }
 }

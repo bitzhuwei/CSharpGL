@@ -33,7 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtShaderName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnGenerate = new System.Windows.Forms.Button();
+            this.btnGenerateRenderer = new System.Windows.Forms.Button();
             this.cmbShaderProgramType = new System.Windows.Forms.ComboBox();
             this.lstVertexShaderField = new System.Windows.Forms.ListBox();
             this.menuVertexShaderField = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -71,6 +71,7 @@
             this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDlg = new System.Windows.Forms.SaveFileDialog();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnGenerateCSSL = new System.Windows.Forms.Button();
             this.menuVertexShaderField.SuspendLayout();
             this.menuGeometryShaderField.SuspendLayout();
             this.menuFragmentShaderField.SuspendLayout();
@@ -103,16 +104,16 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "shader program type:";
             // 
-            // btnGenerate
+            // btnGenerateRenderer
             // 
-            this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenerate.Location = new System.Drawing.Point(668, 490);
-            this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(258, 23);
-            this.btnGenerate.TabIndex = 3;
-            this.btnGenerate.Text = "Save and Generate";
-            this.btnGenerate.UseVisualStyleBackColor = true;
-            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            this.btnGenerateRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGenerateRenderer.Location = new System.Drawing.Point(668, 490);
+            this.btnGenerateRenderer.Name = "btnGenerateRenderer";
+            this.btnGenerateRenderer.Size = new System.Drawing.Size(258, 23);
+            this.btnGenerateRenderer.TabIndex = 3;
+            this.btnGenerateRenderer.Text = "Save and Generate Renderer";
+            this.btnGenerateRenderer.UseVisualStyleBackColor = true;
+            this.btnGenerateRenderer.Click += new System.EventHandler(this.btnGenerateRenderer_Click);
             // 
             // cmbShaderProgramType
             // 
@@ -329,27 +330,28 @@
             this.修改UToolStripMenuItem1,
             this.删除DToolStripMenuItem1});
             this.menuFieldStructure.Name = "menuFieldStructure";
-            this.menuFieldStructure.Size = new System.Drawing.Size(182, 110);
+            this.menuFieldStructure.Size = new System.Drawing.Size(136, 82);
             // 
             // 新增AToolStripMenuItem
             // 
             this.新增AToolStripMenuItem.Name = "新增AToolStripMenuItem";
-            this.新增AToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.新增AToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.新增AToolStripMenuItem.Text = "新增(&A)";
             this.新增AToolStripMenuItem.Click += new System.EventHandler(this.addIntermediateStructure_Click);
             // 
             // 修改UToolStripMenuItem1
             // 
             this.修改UToolStripMenuItem1.Name = "修改UToolStripMenuItem1";
-            this.修改UToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.修改UToolStripMenuItem1.Size = new System.Drawing.Size(135, 26);
             this.修改UToolStripMenuItem1.Text = "修改(&U)";
             this.修改UToolStripMenuItem1.Click += new System.EventHandler(this.UpdateFieldStructure_Click);
             // 
             // 删除DToolStripMenuItem1
             // 
             this.删除DToolStripMenuItem1.Name = "删除DToolStripMenuItem1";
-            this.删除DToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.删除DToolStripMenuItem1.Size = new System.Drawing.Size(135, 26);
             this.删除DToolStripMenuItem1.Text = "删除(&D)";
+            this.删除DToolStripMenuItem1.Click += new System.EventHandler(this.RemoveFieldStructure_Click);
             // 
             // menuStrip1
             // 
@@ -446,6 +448,17 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "本程序不处理脏数据，所以请注意手动保存您的成果";
             // 
+            // btnGenerateCSSL
+            // 
+            this.btnGenerateCSSL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGenerateCSSL.Location = new System.Drawing.Point(404, 490);
+            this.btnGenerateCSSL.Name = "btnGenerateCSSL";
+            this.btnGenerateCSSL.Size = new System.Drawing.Size(258, 23);
+            this.btnGenerateCSSL.TabIndex = 3;
+            this.btnGenerateCSSL.Text = "Save and Generate CSSL";
+            this.btnGenerateCSSL.UseVisualStyleBackColor = true;
+            this.btnGenerateCSSL.Click += new System.EventHandler(this.btnGenerateCSSL_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -459,7 +472,8 @@
             this.Controls.Add(this.cmbShaderProgramType);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.btnGenerate);
+            this.Controls.Add(this.btnGenerateCSSL);
+            this.Controls.Add(this.btnGenerateRenderer);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -486,7 +500,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtShaderName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnGenerate;
+        private System.Windows.Forms.Button btnGenerateRenderer;
         private System.Windows.Forms.ComboBox cmbShaderProgramType;
         private System.Windows.Forms.ListBox lstVertexShaderField;
         private System.Windows.Forms.Label label3;
@@ -524,5 +538,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.Button btnGenerateCSSL;
     }
 }
