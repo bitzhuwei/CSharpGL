@@ -214,5 +214,10 @@ namespace CSharpGL.Winforms.Demo
             (new FormSimpleRenderer()).Show();
         }
 
+        private void btnFormNewNormalLine_Click(object sender, EventArgs e)
+        {
+            (new FormNewNormalLine()).Show();
+        }
+
     }
 }

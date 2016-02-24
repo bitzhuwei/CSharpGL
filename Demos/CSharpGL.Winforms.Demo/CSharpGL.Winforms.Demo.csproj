@@ -58,6 +58,12 @@
     <Compile Include="FormCameraController.Designer.cs">
       <DependentUpon>FormCameraController.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormNewNormalLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNewNormalLine.Designer.cs">
+      <DependentUpon>FormNewNormalLine.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormNormalLineDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +298,9 @@
     <EmbeddedResource Include="FormCameraController.resx">
       <DependentUpon>FormCameraController.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormNewNormalLine.resx">
+      <DependentUpon>FormNewNormalLine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormNormalLineDisplay.resx">
       <DependentUpon>FormNormalLineDisplay.cs</DependentUpon>
     </EmbeddedResource>
@@ -438,6 +447,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\CSharpGL.Buffers\CSharpGL.Buffers.csproj">
+      <Project>{4c35ae1f-4b5e-478d-8642-9c6e487feb17}</Project>
+      <Name>CSharpGL.Buffers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\GLM\GLM.csproj">
       <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
       <Name>GLM</Name>

@@ -11,8 +11,9 @@ namespace CSharpGL.Buffers
     /// 持有从<see cref="IDumpBufferRenderers"/>到GLSL中in变量名的对应关系。
     /// 每个<see cref="IDumpBufferRenderers"/>和每个GLSL的代表（Renderer）都有一个Map关系。
     /// 如果没有，或者map中有的名字不存在，就默认为两者使用的名字相同。
+    /// 这里存储的内容需要OpenGL开发者和APP开发者协商对接。
     /// </summary>
-    class BufferNameMap : Dictionary<string, string>
+    public class BufferNameMap : Dictionary<string, string>
     {
         const string strDumperType = "DumperType";
         /// <summary>
@@ -63,7 +64,7 @@ namespace CSharpGL.Buffers
 
             const string strValue = "Value";
 
-            public static XElement ToXElement(this KeyValuePair<string, string> item)
+            public static XElement ToXElement(KeyValuePair<string, string> item)
             {
                 return new XElement(strItem,
                     new XAttribute(strKey, item.Key),
@@ -83,5 +84,6 @@ namespace CSharpGL.Buffers
 
         }
     }
+
 
 }
