@@ -132,6 +132,7 @@ namespace CSharpGL.CSSLGenetator
         }
 
         //TODO:生成Renderer的过程也用CodeDom重写一下吧。
+        //可参考 http://www.cnblogs.com/nokiaguy/archive/2008/05/12/1193471.html
         /// <summary>
         /// 
         /// </summary>
