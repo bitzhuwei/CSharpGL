@@ -21,6 +21,7 @@ namespace CSharpGL.Buffers
         protected BufferRenderer[] propertyBufferRenderers;
         protected IndexBufferRendererBase indexBufferRenderer;
         //protected VertexArrayObject vertexArrayObject;
+        UniformVariableBase uniformVariables;
 
         /// <summary>
         /// 从模型到buffer的renderer
@@ -54,7 +55,9 @@ namespace CSharpGL.Buffers
             FillShaderCodes(this.allShaderCodes, ref vertexShaderCode, ref geometryShaderCode, ref fragmentShaderCode);
             program.Create(vertexShaderCode, fragmentShaderCode, geometryShaderCode, null);
             this.shaderProgram = program;
-            this.allShaderCodes = null;
+
+            // init all uniform variables
+
 
             // init property buffer objects' renderer
             var propertyBufferRenderers = new BufferRenderer[map.Count()];
@@ -67,11 +70,13 @@ namespace CSharpGL.Buffers
                 propertyBufferRenderers[index++] = bufferRenderer;
             }
             this.propertyBufferRenderers = propertyBufferRenderers;
-            this.map = null;
 
             // init index buffer object's renderer
             this.indexBufferRenderer = this.model.GetIndexBufferRenderer();
+
             this.model = null;
+            this.allShaderCodes = null;
+            this.map = null;
         }
 
         private void FillShaderCodes(CodeShader[] allShaderCodes, ref string vertexShaderCode, ref string geometryShaderCode, ref string fragmentShaderCode)

@@ -11,7 +11,7 @@ namespace CSharpGL.Buffers
     /// <summary>
     /// shader中的一个uniform变量。
     /// </summary>
-    public class UniformVariableBase
+    public abstract class UniformVariableBase
     {
 
         /// <summary>
