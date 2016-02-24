@@ -10,7 +10,7 @@ using CSharpGL.Objects.VertexBuffers;
 
 namespace CSharpGL.Objects.Demos
 {
-    public class NewNormalLineDemoModel : IDumpBufferRenderers
+    public class NewNormalLineDemoModel : IConvert2BufferRenderer
     {
         TeapotModel model = TeapotLoader.GetModel();
 
@@ -27,7 +27,7 @@ namespace CSharpGL.Objects.Demos
         /// </summary>
         public const string strNormal = "normal";
 
-        VertexBuffers.BufferRenderer IDumpBufferRenderers.GetBufferRenderer(string bufferName, string varNameInShader)
+        BufferRenderer IConvert2BufferRenderer.GetBufferRenderer(string bufferName, string varNameInShader)
         {
             IModel model = this.model;
 
@@ -49,7 +49,7 @@ namespace CSharpGL.Objects.Demos
             }
         }
 
-        VertexBuffers.BufferRenderer IDumpBufferRenderers.GetIndexBufferRenderer()
+        IndexBufferRendererBase IConvert2BufferRenderer.GetIndexBufferRenderer()
         {
             IModel model = this.model;
             return model.GetIndexes();

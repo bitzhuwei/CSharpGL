@@ -40,6 +40,6 @@ namespace CSharpGL.Objects.Models
         /// 应为<see cref="ZeroIndexBufferRenderer"/>或<see cref="IndexBufferRenderer"/>。
         /// </summary>
         /// <returns></returns>
-        BufferRenderer GetIndexes();
+        IndexBufferRendererBase GetIndexes();
     }
 }

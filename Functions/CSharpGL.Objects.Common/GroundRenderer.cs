@@ -31,7 +31,7 @@ namespace CSharpGL.Objects.Common
         //const string strin_Normal = "in_Normal";
         //BufferRenderer normalBufferRenderer;
 
-        BufferRenderer indexBufferRenderer;
+        IndexBufferRendererBase indexBufferRenderer;
 
         #endregion
 
@@ -80,7 +80,7 @@ namespace CSharpGL.Objects.Common
             //this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
             this.lineColor = this.model.lineColor;
             //this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
-            this.indexBufferRenderer = model.GetIndexes();
+            this.indexBufferRenderer = model.GetIndexes() as IndexBufferRendererBase;
 
             this.model = null;
 
@@ -129,10 +129,9 @@ namespace CSharpGL.Objects.Common
             if (this.vertexArrayObject == null)
             {
                 var vertexArrayObject = new VertexArrayObject(
-                    this.positionBufferRenderer,
-                    //this.colorBufferRenderer,
-                    //this.normalBufferRenderer,
-                    this.indexBufferRenderer);
+                    this.indexBufferRenderer,
+                    this.positionBufferRenderer
+                    );
                 vertexArrayObject.Create(e, this.shaderProgram);
 
                 this.vertexArrayObject = vertexArrayObject;

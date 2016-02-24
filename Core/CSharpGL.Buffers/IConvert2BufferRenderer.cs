@@ -12,7 +12,7 @@ namespace CSharpGL.Buffers
     /// <para>从模型的数据格式转换为<see cref="VertexBuffer&lt;T&gt;"/>，<see cref="VertexBuffer&lt;T&gt;"/>转换为<see cref="BufferRenderer"/>，
     /// <see cref="BufferRenderer"/>则可用于控制GPU的渲染操作。</para>
     /// </summary>
-    public interface IDumpBufferRenderers
+    public interface IConvert2BufferRenderer
     {
 
         /// <summary>
@@ -28,6 +28,6 @@ namespace CSharpGL.Buffers
         /// 应为<see cref="ZeroIndexBufferRenderer"/>或<see cref="IndexBufferRenderer"/>。
         /// </summary>
         /// <returns></returns>
-        BufferRenderer GetIndexBufferRenderer();
+        IndexBufferRendererBase GetIndexBufferRenderer();
     }
 }

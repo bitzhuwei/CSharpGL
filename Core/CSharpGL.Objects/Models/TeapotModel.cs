@@ -72,7 +72,7 @@ namespace CSharpGL.Objects.Models
 
         }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetIndexes()
+        CSharpGL.Objects.VertexBuffers.IndexBufferRendererBase IModel.GetIndexes()
         {
             using (var buffer = new ObjModelIndexBuffer())
             {
@@ -93,7 +93,7 @@ namespace CSharpGL.Objects.Models
                     }
                 }
 
-                return buffer.GetRenderer();
+                return buffer.GetRenderer() as IndexBufferRendererBase;
             }
         }
 

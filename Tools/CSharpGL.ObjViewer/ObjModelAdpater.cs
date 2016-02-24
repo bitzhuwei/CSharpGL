@@ -78,7 +78,7 @@ namespace CSharpGL.ObjViewer
 
         }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetIndexes()
+        CSharpGL.Objects.VertexBuffers.IndexBufferRendererBase IModel.GetIndexes()
         {
             using (var buffer = new IndexBuffer<uint>(DrawMode.Triangles, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
             {
@@ -94,7 +94,7 @@ namespace CSharpGL.ObjViewer
                     }
                 }
 
-                return buffer.GetRenderer();
+                return buffer.GetRenderer() as IndexBufferRendererBase;
             }
         }
     }

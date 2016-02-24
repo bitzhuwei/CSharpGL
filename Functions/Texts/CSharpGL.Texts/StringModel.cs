@@ -79,11 +79,11 @@ namespace CSharpGL.Texts
             return null;
         }
 
-        public Objects.VertexBuffers.BufferRenderer GetIndexes()
+        public Objects.VertexBuffers.IndexBufferRendererBase GetIndexes()
         {
             using (var buffer = new ZeroIndexBuffer(DrawMode.Quads, 0, this.positions.Length * 4))
             {
-                return buffer.GetRenderer();
+                return buffer.GetRenderer() as IndexBufferRendererBase;
             }
         }
 

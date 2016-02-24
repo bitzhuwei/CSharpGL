@@ -23,12 +23,12 @@ namespace CSharpGL.Objects.Common
         VertexArrayObject[] axisVAO;
         BufferRenderer[] positionBufferRenderers = new BufferRenderer[3];
         BufferRenderer[] colorBufferRenderers = new BufferRenderer[3];
-        BufferRenderer[] indexBufferRenderers = new BufferRenderer[3];
+        IndexBufferRendererBase[] indexBufferRenderers = new IndexBufferRendererBase[3];
 
         VertexArrayObject planVAO;
         BufferRenderer planPositionBufferRenderer;
         BufferRenderer planColorBufferRenderer;
-        BufferRenderer planIndexBufferRenderer;
+        IndexBufferRendererBase planIndexBufferRenderer;
 
         /// <summary>
         /// shader program
@@ -136,7 +136,7 @@ namespace CSharpGL.Objects.Common
                     }
                     cylinderIndex[indexLength - 2] = 0;
                     cylinderIndex[indexLength - 1] = 1;
-                    this.indexBufferRenderers[axisIndex] = indexBuffer.GetRenderer();
+                    this.indexBufferRenderers[axisIndex] = indexBuffer.GetRenderer() as IndexBufferRendererBase;
                 }
 
             }
@@ -176,7 +176,7 @@ namespace CSharpGL.Objects.Common
                 using (var indexBuffer = new ZeroIndexBuffer(DrawMode.LineLoop, 0, planVertexCount))
                 {
                     indexBuffer.Alloc(planVertexCount);//这句话实际上什么都没有做。
-                    this.planIndexBufferRenderer = indexBuffer.GetRenderer();
+                    this.planIndexBufferRenderer = indexBuffer.GetRenderer() as IndexBufferRendererBase;
                 }
             }
         }
@@ -199,14 +199,18 @@ namespace CSharpGL.Objects.Common
                 this.axisVAO = new VertexArrayObject[3];
                 for (int i = 0; i < 3; i++)
                 {
-                    var vao = new VertexArrayObject(this.positionBufferRenderers[i], this.colorBufferRenderers[i], this.indexBufferRenderers[i]);
+                    var vao = new VertexArrayObject(
+                        this.indexBufferRenderers[i],
+                        this.positionBufferRenderers[i], this.colorBufferRenderers[i]);
                     vao.Create(e, this.shaderProgram);
 
                     this.axisVAO[i] = vao;
                 }
 
                 {
-                    var vao = new VertexArrayObject(this.planPositionBufferRenderer, planColorBufferRenderer, this.planIndexBufferRenderer);
+                    var vao = new VertexArrayObject(
+                        this.planIndexBufferRenderer,
+                        this.planPositionBufferRenderer, planColorBufferRenderer);
                     vao.Create(e, this.shaderProgram);
 
                     this.planVAO = vao;

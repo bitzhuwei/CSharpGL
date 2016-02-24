@@ -80,11 +80,11 @@ namespace CSharpGL.Objects.Demos
             }
         }
 
-        VertexBuffers.BufferRenderer IModel.GetIndexes()
+        IndexBufferRendererBase IModel.GetIndexes()
         {
             using (var buffer = new ZeroIndexBuffer(DrawMode.TriangleStrip, 0, this.positions.Length))
             {
-                return buffer.GetRenderer();
+                return buffer.GetRenderer() as IndexBufferRendererBase;
             }
         }
 

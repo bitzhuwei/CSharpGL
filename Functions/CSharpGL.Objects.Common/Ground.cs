@@ -79,11 +79,11 @@ namespace CSharpGL.Objects.Common
             return null;
         }
 
-        VertexBuffers.BufferRenderer IModel.GetIndexes()
+        VertexBuffers.IndexBufferRendererBase IModel.GetIndexes()
         {
             using (var buffer = new ZeroIndexBuffer(DrawMode.Lines, 0, positionArray.Length))
             {
-                return buffer.GetRenderer();
+                return buffer.GetRenderer() as IndexBufferRendererBase;
             }
         }
 

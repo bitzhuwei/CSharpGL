@@ -16,23 +16,10 @@ namespace CSharpGL.Objects.Demos
     /// <summary>
     /// 一个<see cref="NormalLineRenderer"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。
     /// </summary>
-    public class NewNormalLineRenderer : RendererBase
+    public class NewNormalLineRenderer : DummyModernRenderer
     {
-        ShaderProgram shaderProgram;
-
-        #region VAO/VBO renderers
 
         VertexArrayObject vertexArrayObject;
-
-        public const string strin_Position = "in_Position";
-        BufferRenderer positionBufferRenderer;
-
-        public const string strin_Normal = "in_Normal";
-        BufferRenderer normalBufferRenderer;
-
-        BufferRenderer indexBufferRenderer;
-
-        #endregion
 
         #region uniforms
 
@@ -58,43 +45,14 @@ namespace CSharpGL.Objects.Demos
 
         private int elementCount;
 
-        private IDumpBufferRenderers model;
-        /// <summary>
-        /// model与此renderer之间的buffer的对应关系。
-        /// </summary>
-        private BufferNameMap map;
-
-        public NewNormalLineRenderer(IDumpBufferRenderers model, BufferNameMap map = null)
+        public NewNormalLineRenderer(IConvert2BufferRenderer model, CodeShader[] allShaderCodes, PropertyNameMap map)
+            : base(model, allShaderCodes, map)
         {
-            this.model = model;
-            if (map == null)
-            {
-                this.map = new BufferNameMap();
-            }
-            else
-            {
-                this.map = map;
-            }
         }
 
-        protected void InitializeShader(out ShaderProgram shaderProgram)
+        protected override void DoInitialize()
         {
-            var vertexShaderSource = ManifestResourceLoader.LoadTextFile("NewNormalLine.vert");
-            var fragmentShaderSource = ManifestResourceLoader.LoadTextFile("NewNormalLine.frag");
-            var geometryShaderSource = ManifestResourceLoader.LoadTextFile("NewNormalLine.geom");
-
-            shaderProgram = new ShaderProgram();
-            shaderProgram.Create(vertexShaderSource, fragmentShaderSource, geometryShaderSource);
-        }
-
-        protected void InitializeVAO()
-        {
-            IDumpBufferRenderers model = this.model;
-            this.positionBufferRenderer = model.GetBufferRenderer(
-                map.GetNameInIDumpBufferRenderers(strin_Position), strin_Position);
-            this.normalBufferRenderer = model.GetBufferRenderer(
-                map.GetNameInIDumpBufferRenderers(strin_Normal), strin_Normal);
-            this.indexBufferRenderer = model.GetIndexBufferRenderer();
+            base.DoInitialize();
 
             {
                 IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
@@ -110,13 +68,7 @@ namespace CSharpGL.Objects.Demos
                     this.elementCount = renderer.VertexCount;
                 }
             }
-        }
 
-        protected override void DoInitialize()
-        {
-            InitializeShader(out shaderProgram);
-
-            InitializeVAO();
         }
 
         protected override void DoRender(RenderEventArgs e)
@@ -141,17 +93,14 @@ namespace CSharpGL.Objects.Demos
 
             if (this.vertexArrayObject == null)
             {
-                var vertexArrayObject = new VertexArrayObject(
-                    this.positionBufferRenderer,
-                    this.normalBufferRenderer,
-                    this.indexBufferRenderer);
-                vertexArrayObject.Create(e, this.shaderProgram);
+                var vertexArrayObject = new VertexArrayObject(this.indexBufferRenderer, this.propertyBufferRenderers);
+                vertexArrayObject.Create(e, program);
 
                 this.vertexArrayObject = vertexArrayObject;
             }
             else
             {
-                this.vertexArrayObject.Render(e, this.shaderProgram);
+                this.vertexArrayObject.Render(e, program);
             }
 
             GL.Disable(GL.GL_PRIMITIVE_RESTART);

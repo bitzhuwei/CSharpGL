@@ -72,6 +72,7 @@
     <Compile Include="SceneElements\CylinderElement.cs" />
     <Compile Include="SceneElements\FontElement.cs" />
     <Compile Include="SceneElements\PyramidElement.cs" />
+    <Compile Include="ShaderHelper.cs" />
     <Compile Include="Simple.cssl.cs" />
     <Compile Include="SimpleRenderer.cs" />
     <Compile Include="UIs\ColorPalette.cs" />

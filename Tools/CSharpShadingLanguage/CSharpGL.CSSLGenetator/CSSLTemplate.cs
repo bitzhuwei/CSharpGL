@@ -152,7 +152,7 @@ namespace CSharpGL.CSSLGenetator
                 }
             }
             Debug.WriteLine("");
-            Debug.WriteLine("BufferRenderer indexBufferRenderer;");
+            Debug.WriteLine("IndexBufferRendererBase indexBufferRenderer;");
             Debug.WriteLine("");
             Debug.WriteLine("#endregion");
             Debug.WriteLine("");
@@ -200,7 +200,7 @@ namespace CSharpGL.CSSLGenetator
             Debug.Indent();
             Debug.WriteLine("IModel model = this.model;");
             GenerateSetRenderer();
-            Debug.WriteLine("this.indexBufferRenderer = model.GetIndexes();");
+            Debug.WriteLine("this.indexBufferRenderer = model.GetIndexes() as IndexBufferRendererBase;");
             Debug.WriteLine("");
             Debug.WriteLine("{");
             Debug.Indent();

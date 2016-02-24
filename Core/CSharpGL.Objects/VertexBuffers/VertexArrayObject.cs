@@ -24,35 +24,20 @@ namespace CSharpGL.Objects.VertexBuffers
         /// 一个vertex array object。（即VAO）
         /// <para>VAO是用来管理VBO的。可以进一步减少DrawCall。</para>
         /// </summary>
-        /// <param name="propertyBuffers">给出此VAO要管理的所有VBO。</param>
-        public VertexArrayObject(params BufferRenderer[] propertyBuffers)
+        /// <param name="propertyBufferRenderers">给出此VAO要管理的所有VBO。</param>
+        public VertexArrayObject(IndexBufferRendererBase indexBufferRenderer, params BufferRenderer[] propertyBufferRenderers)
         {
-            bool indexBufferExists = false;
-
-            this.bufferRenderers = propertyBuffers;
-            foreach (var item in propertyBuffers)
+            if (indexBufferRenderer == null)
             {
-                if (item == null) { throw new ArgumentException(); }
-
-                var renderer = item as IndexBufferRendererBase;
-                if (renderer != null)
-                {
-                    if (this.indexBufferRenderer != null)
-                    {
-                        throw new Exception("More than 1 index buffer renderer!");
-                    }
-                    else
-                    {
-                        indexBufferRenderer = renderer;
-                        indexBufferExists = true;
-                    }
-                }
+                throw new ArgumentNullException("indexBufferRenderer");
+            }
+            if (propertyBufferRenderers == null || propertyBufferRenderers.Length == 0)
+            {
+                throw new ArgumentNullException("propertyBuffers");
             }
 
-            if (!indexBufferExists)
-            {
-                throw new Exception("No index buffer renderer exists!");
-            }
+            this.indexBufferRenderer = indexBufferRenderer;
+            this.bufferRenderers = propertyBufferRenderers;
         }
 
         /// <summary>

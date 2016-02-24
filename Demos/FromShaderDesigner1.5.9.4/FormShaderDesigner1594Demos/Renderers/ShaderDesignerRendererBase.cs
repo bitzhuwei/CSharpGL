@@ -15,7 +15,7 @@ namespace FormShaderDesigner1594Demos.Renderers
 {
     public abstract class ShaderDesignerRendererBase : CSharpGL.Objects.RendererBase
     {
-        protected BufferRenderer indexBufferRenderer;
+        protected IndexBufferRendererBase indexBufferRenderer;
         protected int indexCount;
         public PolygonModes polygonMode = PolygonModes.Filled;
 

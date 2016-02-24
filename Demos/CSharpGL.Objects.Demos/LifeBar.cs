@@ -52,11 +52,11 @@ namespace CSharpGL.Objects.Demos
             throw new NotImplementedException();
         }
 
-        VertexBuffers.BufferRenderer IModel.GetIndexes()
+        VertexBuffers.IndexBufferRendererBase IModel.GetIndexes()
         {
             using (var buffer = new ZeroIndexBuffer(DrawMode.Points, 0, 1))
             {
-                return buffer.GetRenderer();
+                return buffer.GetRenderer() as IndexBufferRendererBase;
             }
         }
 

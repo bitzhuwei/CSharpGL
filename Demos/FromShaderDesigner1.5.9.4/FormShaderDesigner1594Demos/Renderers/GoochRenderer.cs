@@ -73,7 +73,7 @@ namespace FormShaderDesigner1594Demos.Renderers
             this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);
             //this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
             this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
-            this.indexBufferRenderer = model.GetIndexes();
+            this.indexBufferRenderer = model.GetIndexes() as IndexBufferRendererBase;
             IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
             if (renderer != null)
             {
@@ -112,10 +112,10 @@ namespace FormShaderDesigner1594Demos.Renderers
             if (this.vertexArrayObject == null)
             {
                 var vao = new VertexArrayObject(
+                    this.indexBufferRenderer,
                     this.positionBufferRenderer,
                     //colorBufferRenderer, 
-                    this.normalBufferRenderer,
-                    this.indexBufferRenderer);
+                    this.normalBufferRenderer);
                 vao.Create(e, this.shaderProgram);
 
                 this.vertexArrayObject = vao;

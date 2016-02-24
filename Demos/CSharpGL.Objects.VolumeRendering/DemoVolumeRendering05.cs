@@ -127,7 +127,9 @@ namespace CSharpGL.Objects.VolumeRendering
                 this.indexBufferRenderer = indexBuffer.GetRenderer() as ZeroIndexBufferRenderer;
                 indexBuffer.Dispose();
             }
-            this.vao = new VertexArrayObject(this.positionBufferRenderer, this.uvBufferRenderer, this.indexBufferRenderer);
+            this.vao = new VertexArrayObject(
+                this.indexBufferRenderer,
+                this.positionBufferRenderer, this.uvBufferRenderer);
         }
 
         private void InitTexture()

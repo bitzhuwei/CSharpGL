@@ -30,7 +30,7 @@ namespace CSharpGL.Texts
         const string strtexCoord = "texCoord";
         BufferRenderer texCoordBufferRenderer;
         
-        BufferRenderer indexBufferRenderer;
+        IndexBufferRendererBase indexBufferRenderer;
         
         #endregion
         
@@ -70,7 +70,7 @@ namespace CSharpGL.Texts
             this.colorBufferRenderer = model.GetColorBufferRenderer(strcolor);
             //this.texCoordBufferRenderer = ???(strtexCoord);
             this.texCoordBufferRenderer = model.GetTexCoordBufferRenderer(strtexCoord);
-            this.indexBufferRenderer = model.GetIndexes();
+            this.indexBufferRenderer = model.GetIndexes() as IndexBufferRendererBase;
             
             {
                 IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
@@ -112,10 +112,10 @@ namespace CSharpGL.Texts
             if (this.vertexArrayObject == null)
             {
                 var vertexArrayObject = new VertexArrayObject(
+                this.indexBufferRenderer,
                 this.positionBufferRenderer,
                 this.colorBufferRenderer,
-                this.texCoordBufferRenderer,
-                this.indexBufferRenderer);
+                this.texCoordBufferRenderer);
                 vertexArrayObject.Create(e, this.shaderProgram);
                 
                 this.vertexArrayObject = vertexArrayObject;

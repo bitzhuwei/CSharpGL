@@ -65,11 +65,15 @@ namespace CSharpGL.Winforms.Demo
             uiAxis.Initialize();
 
             //IModel model = (new TeapotFactory()).Create(1.0f);
-            IDumpBufferRenderers model = new NewNormalLineDemoModel();
-            var map = new BufferNameMap();
-            map.Add(NewNormalLineRenderer.strin_Position, NewNormalLineDemoModel.strPosition);
-            map.Add(NewNormalLineRenderer.strin_Normal, NewNormalLineDemoModel.strNormal);
-            this.renderer = new NewNormalLineRenderer(model, map);
+            IConvert2BufferRenderer model = new NewNormalLineDemoModel();
+            var map = new PropertyNameMap();
+            map.Add("in_Position", NewNormalLineDemoModel.strPosition);
+            map.Add("in_Normal", NewNormalLineDemoModel.strNormal);
+            CodeShader[] codeShaders = new CodeShader[3];
+            codeShaders[0] = new CodeShader(ShaderHelper.Load("NewNormalLine.vert"), ShaderType.VertexShader);
+            codeShaders[1] = new CodeShader(ShaderHelper.Load("NewNormalLine.geom"), ShaderType.GeometryShader);
+            codeShaders[2] = new CodeShader(ShaderHelper.Load("NewNormalLine.frag"), ShaderType.FragmentShader);
+            this.renderer = new NewNormalLineRenderer(model, codeShaders, map);
             this.renderer.Initialize();//不在此显式初始化也可以。
 
             //this.demoLifebar = new DemoLifeBar(0.2f, 0.02f, 4);
