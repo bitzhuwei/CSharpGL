@@ -70,7 +70,18 @@ namespace CSharpGL.CSSL2GLSL
                 target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.token_Colon_, Detail = ":", });
                 target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = typeof(VertexCSShaderCode).Name, });
                 classIndex = tokenList.KMP(target, 0, TokenComparer.Instance);
-                if (classIndex < 0) { throw new Exception(string.Format("class for {0} not found!", this.shaderCode.GetType().Name)); }
+                if (classIndex < 0)
+                {
+                    target.Clear();//CSharpShadingLanguage
+                    target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = "class", });
+                    target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = this.shaderCode.GetType().Name, });
+                    target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.token_Colon_, Detail = ":", });
+                    target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = typeof(VertexCSShaderCode).Namespace, });
+                    target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.token_Dot_, Detail = ".", });
+                    target.Add(new Token<EnumTokenTypeCSSLCompiler>() { TokenType = EnumTokenTypeCSSLCompiler.identifier, Detail = typeof(VertexCSShaderCode).Name, });
+                    classIndex = tokenList.KMP(target, 0, TokenComparer.Instance);
+                    if (classIndex < 0) { throw new Exception(string.Format("class for {0} not found!", this.shaderCode.GetType().Name)); }
+                }
             }
             {
                 // public override void main() { }
