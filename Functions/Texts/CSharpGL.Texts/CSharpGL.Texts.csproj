@@ -52,6 +52,7 @@
     <Compile Include="StringRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Content Include="readme.jpg" />
     <Content Include="readme.txt" />
     <Compile Include="PointSpriteStringElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
