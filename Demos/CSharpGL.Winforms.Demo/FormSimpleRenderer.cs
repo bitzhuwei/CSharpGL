@@ -5,6 +5,7 @@ using CSharpGL.Objects.Demos;
 using CSharpGL.Objects.Demos.UIs;
 using CSharpGL.Objects.ModelFactories;
 using CSharpGL.Objects.Models;
+using CSharpGL.Objects.ModernRendering;
 using CSharpGL.UIs;
 using GLM;
 using System;
@@ -21,7 +22,7 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormSimpleRenderer : Form
     {
-        GroundRenderer groundRenderer;
+        ModernRenderer groundRenderer;
 
         SimpleUIAxis uiAxis;
         SimpleRenderer renderer;
@@ -47,8 +48,17 @@ namespace CSharpGL.Winforms.Demo
             //this.modelRotator = new SatelliteRotator(this.modelRotationCamera);
             this.modelRotator = new ArcBallRotator(this.camera);
 
-            this.groundRenderer = new GroundRenderer(new Ground());
-            this.groundRenderer.Initialize();
+            {
+                const string strGround = "Ground";
+                IConvert2BufferPointer model = new Ground();
+                CodeShader[] shaders = new CodeShader[2];
+                shaders[0] = CSharpGL.Objects.Common.ShaderLoadingHelper.LoadShaderSourceCode(strGround, CodeShader.GLSLShaderType.VertexShader);
+                shaders[1] = CSharpGL.Objects.Common.ShaderLoadingHelper.LoadShaderSourceCode(strGround, CodeShader.GLSLShaderType.FragmentShader);
+                PropertyNameMap propertyNameMap = CSharpGL.Objects.Common.ShaderLoadingHelper.LoadPropertyNameMap(strGround);
+                UniformNameMap uniformNameMap = CSharpGL.Objects.Common.ShaderLoadingHelper.LoadUniformNameMap(strGround);
+                this.groundRenderer = new ModernRenderer(model, shaders, propertyNameMap, uniformNameMap);
+                this.groundRenderer.Initialize();
+            }
 
             Padding uiPadding = new System.Windows.Forms.Padding(10, 10, 10, 10);
             Size uiSize = new System.Drawing.Size(50, 50);
@@ -56,9 +66,11 @@ namespace CSharpGL.Winforms.Demo
             uiAxis = new SimpleUIAxis(uiParam);
             uiAxis.Initialize();
 
-            IModel model = (new TeapotFactory()).Create(1.0f);
-            this.renderer = new SimpleRenderer(model);
-            this.renderer.Initialize();//不在此显式初始化也可以。
+            {
+                IModel model = (new TeapotFactory()).Create(1.0f);
+                this.renderer = new SimpleRenderer(model);
+                this.renderer.Initialize();//不在此显式初始化也可以。
+            }
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
@@ -118,9 +130,9 @@ namespace CSharpGL.Winforms.Demo
             this.renderer.projectionMatrix = projectionMatrix;
             this.renderer.viewMatrix = viewMatrix;
             this.renderer.modelMatrix = modelMatrix;
-            this.groundRenderer.projectionMatrix = projectionMatrix;
-            this.groundRenderer.viewMatrix = viewMatrix;
-            this.groundRenderer.modelMatrix = mat4.identity();
+            this.groundRenderer.SetUniformValue("projectionMatrix", projectionMatrix);
+            this.groundRenderer.SetUniformValue("viewMatrix", viewMatrix);
+            this.groundRenderer.SetUniformValue("modelMatrix", mat4.identity());
 
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 

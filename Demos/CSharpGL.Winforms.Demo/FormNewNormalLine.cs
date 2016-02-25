@@ -25,7 +25,7 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormNewNormalLine : Form
     {
-        GroundRenderer groundRenderer;
+        ModernRenderer groundRenderer;
 
         SimpleUIAxis uiAxis;
         ModernRenderer renderer;
@@ -55,9 +55,17 @@ namespace CSharpGL.Winforms.Demo
             //this.modelRotator = new SatelliteRotator(this.modelRotationCamera);
             this.modelRotator = new ArcBallRotator(this.camera);
 
-            //this.groundRenderer = new GroundRenderer(new Ground(100, 100, 0.1f, 0.1f));
-            this.groundRenderer = new GroundRenderer(new Ground(100, 100, 1f, 1f));
-            this.groundRenderer.Initialize();
+            {
+                const string strGround = "Ground";
+                IConvert2BufferPointer model = new Ground();
+                CodeShader[] shaders = new CodeShader[2];
+                shaders[0] = CSharpGL.Objects.Common.ShaderLoadingHelper.LoadShaderSourceCode(strGround, CodeShader.GLSLShaderType.VertexShader);
+                shaders[1] = CSharpGL.Objects.Common.ShaderLoadingHelper.LoadShaderSourceCode(strGround, CodeShader.GLSLShaderType.FragmentShader);
+                PropertyNameMap propertyNameMap = CSharpGL.Objects.Common.ShaderLoadingHelper.LoadPropertyNameMap(strGround);
+                UniformNameMap uniformNameMap = CSharpGL.Objects.Common.ShaderLoadingHelper.LoadUniformNameMap(strGround);
+                this.groundRenderer = new ModernRenderer(model, shaders, propertyNameMap, uniformNameMap);
+                this.groundRenderer.Initialize();
+            }
 
             Padding uiPadding = new System.Windows.Forms.Padding(10, 10, 10, 10);
             Size uiSize = new System.Drawing.Size(50, 50);
@@ -66,26 +74,28 @@ namespace CSharpGL.Winforms.Demo
             uiAxis.Initialize();
 
             //IModel model = (new TeapotFactory()).Create(1.0f);
-            IConvert2BufferPointer model = new NewNormalLineDemoModel();
-            CodeShader[] codeShaders = new CodeShader[3];
-            codeShaders[0] = new CodeShader(ShaderHelper.Load("NewNormalLine.vert"), CodeShader.GLSLShaderType.VertexShader);
-            codeShaders[1] = new CodeShader(ShaderHelper.Load("NewNormalLine.geom"), CodeShader.GLSLShaderType.GeometryShader);
-            codeShaders[2] = new CodeShader(ShaderHelper.Load("NewNormalLine.frag"), CodeShader.GLSLShaderType.FragmentShader);
-            var propertyNameMap = new PropertyNameMap();
-            propertyNameMap.Add("in_Position", NewNormalLineDemoModel.strPosition);
-            propertyNameMap.Add("in_Normal", NewNormalLineDemoModel.strNormal);
-            var uniformNameMap = new UniformNameMap();
-            uniformNameMap.Add("model matrix", "modelMatrix");
-            uniformNameMap.Add("view matrix", "viewMatrix");
-            uniformNameMap.Add("projection matrix", "projectionMatrix");
-            uniformNameMap.Add("show model", "showModel");
-            uniformNameMap.Add("show normal", "showNormal");
-            uniformNameMap.Add("normal length", "normalLength");
-            this.renderer = new ModernRenderer(model, codeShaders, propertyNameMap, uniformNameMap);
-            this.renderer.Initialize();//不在此显式初始化也可以。
-            this.renderer.SetUniformValue("show model", 1.0f);
-            this.renderer.SetUniformValue("show normal", 1.0f);
-            this.renderer.SetUniformValue("normal length", 1.0f);
+            {
+                IConvert2BufferPointer model = new NewNormalLineDemoModel();
+                CodeShader[] codeShaders = new CodeShader[3];
+                codeShaders[0] = new CodeShader(ShaderHelper.Load("NewNormalLine.vert"), CodeShader.GLSLShaderType.VertexShader);
+                codeShaders[1] = new CodeShader(ShaderHelper.Load("NewNormalLine.geom"), CodeShader.GLSLShaderType.GeometryShader);
+                codeShaders[2] = new CodeShader(ShaderHelper.Load("NewNormalLine.frag"), CodeShader.GLSLShaderType.FragmentShader);
+                var propertyNameMap = new PropertyNameMap();
+                propertyNameMap.Add("in_Position", NewNormalLineDemoModel.strPosition);
+                propertyNameMap.Add("in_Normal", NewNormalLineDemoModel.strNormal);
+                var uniformNameMap = new UniformNameMap();
+                uniformNameMap.Add("model matrix", "modelMatrix");
+                uniformNameMap.Add("view matrix", "viewMatrix");
+                uniformNameMap.Add("projection matrix", "projectionMatrix");
+                uniformNameMap.Add("show model", "showModel");
+                uniformNameMap.Add("show normal", "showNormal");
+                uniformNameMap.Add("normal length", "normalLength");
+                this.renderer = new ModernRenderer(model, codeShaders, propertyNameMap, uniformNameMap);
+                this.renderer.Initialize();//不在此显式初始化也可以。
+                this.renderer.SetUniformValue("show model", 1.0f);
+                this.renderer.SetUniformValue("show normal", 1.0f);
+                this.renderer.SetUniformValue("normal length", 1.0f);
+            }
 
             //this.demoLifebar = new DemoLifeBar(0.2f, 0.02f, 4);
             //this.demolifebarRenderer = new NormalLineRenderer(this.demoLifebar);
@@ -191,9 +201,10 @@ namespace CSharpGL.Winforms.Demo
                         this.lifebarRenderer.model.Height + 1)
                     : glm.translate(mat4.identity(), new vec3(0, this.lifebarRenderer.model.Height, 0)));
 
-            this.groundRenderer.projectionMatrix = projectionMatrix;
-            this.groundRenderer.viewMatrix = viewMatrix;
-            this.groundRenderer.modelMatrix = mat4.identity();
+            this.groundRenderer.SetUniformValue("projectionMatrix", projectionMatrix);
+            this.groundRenderer.SetUniformValue("viewMatrix", viewMatrix);
+            this.groundRenderer.SetUniformValue("modelMatrix", mat4.identity());
+            this.groundRenderer.SetUniformValue("lineColor", new vec3(1, 1, 1));
 
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 

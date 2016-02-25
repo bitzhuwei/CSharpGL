@@ -5,6 +5,7 @@ using CSharpGL.Objects.Demos;
 using CSharpGL.Objects.Demos.UIs;
 using CSharpGL.Objects.ModelFactories;
 using CSharpGL.Objects.Models;
+using CSharpGL.Objects.ModernRendering;
 using CSharpGL.Texts;
 using CSharpGL.Texts.StringModelFactory;
 using CSharpGL.UIs;
@@ -23,7 +24,7 @@ namespace CSharpGL.Winforms.Demo
 {
     public partial class FormNormalLine : Form
     {
-        GroundRenderer groundRenderer;
+        ModernRenderer groundRenderer;
 
         SimpleUIAxis uiAxis;
         NormalLineRenderer renderer;
@@ -53,9 +54,17 @@ namespace CSharpGL.Winforms.Demo
             //this.modelRotator = new SatelliteRotator(this.modelRotationCamera);
             this.modelRotator = new ArcBallRotator(this.camera);
 
-            //this.groundRenderer = new GroundRenderer(new Ground(100, 100, 0.1f, 0.1f));
-            this.groundRenderer = new GroundRenderer(new Ground(100, 100, 1f, 1f));
-            this.groundRenderer.Initialize();
+            {
+                const string strGround = "Ground";
+                IConvert2BufferPointer model = new Ground();
+                CodeShader[] shaders = new CodeShader[2];
+                shaders[0] = CSharpGL.Objects.Common.ShaderLoadingHelper.LoadShaderSourceCode(strGround, CodeShader.GLSLShaderType.VertexShader);
+                shaders[1] = CSharpGL.Objects.Common.ShaderLoadingHelper.LoadShaderSourceCode(strGround, CodeShader.GLSLShaderType.FragmentShader);
+                PropertyNameMap propertyNameMap = CSharpGL.Objects.Common.ShaderLoadingHelper.LoadPropertyNameMap(strGround);
+                UniformNameMap uniformNameMap = CSharpGL.Objects.Common.ShaderLoadingHelper.LoadUniformNameMap(strGround);
+                this.groundRenderer = new ModernRenderer(model, shaders, propertyNameMap, uniformNameMap);
+                this.groundRenderer.Initialize();
+            }
 
             Padding uiPadding = new System.Windows.Forms.Padding(10, 10, 10, 10);
             Size uiSize = new System.Drawing.Size(50, 50);
@@ -63,9 +72,11 @@ namespace CSharpGL.Winforms.Demo
             uiAxis = new SimpleUIAxis(uiParam);
             uiAxis.Initialize();
 
-            IModel model = (new TeapotFactory()).Create(1.0f);
-            this.renderer = new NormalLineRenderer(model);
-            this.renderer.Initialize();//不在此显式初始化也可以。
+            {
+                IModel model = (new TeapotFactory()).Create(1.0f);
+                this.renderer = new NormalLineRenderer(model);
+                this.renderer.Initialize();//不在此显式初始化也可以。
+            }
 
             //this.demoLifebar = new DemoLifeBar(0.2f, 0.02f, 4);
             //this.demolifebarRenderer = new NormalLineRenderer(this.demoLifebar);
@@ -200,9 +211,9 @@ namespace CSharpGL.Winforms.Demo
                         this.lifebarRenderer.model.Height + 1)
                     : glm.translate(mat4.identity(), new vec3(0, this.lifebarRenderer.model.Height, 0)));
 
-            this.groundRenderer.projectionMatrix = projectionMatrix;
-            this.groundRenderer.viewMatrix = viewMatrix;
-            this.groundRenderer.modelMatrix = mat4.identity();
+            this.groundRenderer.SetUniformValue("projectionMatrix", projectionMatrix);
+            this.groundRenderer.SetUniformValue("viewMatrix", viewMatrix);
+            this.groundRenderer.SetUniformValue("modelMatrix", mat4.identity());
 
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 

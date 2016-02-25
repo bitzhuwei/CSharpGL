@@ -1,4 +1,5 @@
 ﻿using CSharpGL.Objects.Models;
+using CSharpGL.Objects.ModernRendering;
 using CSharpGL.Objects.VertexBuffers;
 using GLM;
 using System;
@@ -12,7 +13,7 @@ namespace CSharpGL.Objects.Common
     /// <summary>
     /// 用网格描述的地面
     /// </summary>
-    public class Ground : IModel
+    public class Ground : IModel, IConvert2BufferPointer
     {
         private unsafe vec3[] positionArray;
 
@@ -92,6 +93,27 @@ namespace CSharpGL.Objects.Common
             public PositionBuffer(string varNameInGLSL)
                 : base(varNameInGLSL, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
             { }
+        }
+
+        public const string strPosition = "position";
+
+        BufferPointer IConvert2BufferPointer.GetBufferRenderer(string bufferName, string varNameInShader)
+        {
+            if (bufferName == strPosition)
+            {
+                IModel model = this;
+                return model.GetPositionBufferRenderer(varNameInShader);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        IndexBufferPointerBase IConvert2BufferPointer.GetIndexBufferRenderer()
+        {
+            IModel model = this;
+            return model.GetIndexes();
         }
     }
 }

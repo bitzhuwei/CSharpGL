@@ -76,7 +76,7 @@ namespace CSharpGL.Objects.ModernRendering
 
         public XElement ToXElement()
         {
-            XElement result = new XElement(typeof(PropertyNameMap).Name,
+            XElement result = new XElement(typeof(UniformNameMap).Name,
                 //new XAttribute(strRendererType, RendererType),
                 //new XAttribute(strDumperType, DumperType),
                 from nameInIConvert2BufferRenderer in this.namesInIConvert2BufferRenderer
