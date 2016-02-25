@@ -26,6 +26,11 @@ namespace CSharpGL.CSSLGenetator
         const string strFieldValue = "FieldValue";
         public string FieldValue { get; set; }
 
+        public ShaderField()
+        {
+            FieldValue = string.Empty;
+        }
+
         public override string ToString()
         {
             return string.Format("{0} {1} {2};", Qualider.GetString(), FieldType, FieldName);
@@ -39,6 +44,7 @@ namespace CSharpGL.CSSLGenetator
             result.Qualider = (FieldQualifier)Enum.Parse(typeof(FieldQualifier), element.Attribute(strQualifier).Value);
             result.FieldType = element.Attribute(strFieldType).Value;
             result.FieldName = element.Attribute(strFieldName).Value;
+            result.FieldValue = element.Attribute(strFieldValue).Value;
 
             return result;
         }
@@ -48,7 +54,8 @@ namespace CSharpGL.CSSLGenetator
             return new XElement(this.GetType().Name,
                 new XAttribute(strQualifier, Qualider),
                 new XAttribute(strFieldType, FieldType),
-                new XAttribute(strFieldName, FieldName)
+                new XAttribute(strFieldName, FieldName),
+                new XAttribute(strFieldValue, FieldValue)
                 );
         }
 
