@@ -65,6 +65,8 @@ namespace CSharpGL.CSSLGenetator
                     }
                 }
             }
+
+            this.txtValue.Text = this.clonedTarget.FieldValue;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -72,6 +74,7 @@ namespace CSharpGL.CSSLGenetator
             this.clonedTarget.Qualider = (FieldQualifier)this.cmbQualifier.SelectedItem;
             this.clonedTarget.FieldType = this.cmbType.SelectedItem.ToString();
             this.clonedTarget.FieldName = this.txtName.Text;
+            this.clonedTarget.FieldValue = this.txtValue.Text;
 
             this.Result = this.clonedTarget;
 
@@ -83,21 +86,12 @@ namespace CSharpGL.CSSLGenetator
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
         }
 
-        private void cmbQualifier_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((FieldQualifier)(this.cmbQualifier.SelectedItem) == FieldQualifier.In)
+            IntermediateStructure structure = this.cmbType.SelectedItem as IntermediateStructure;
+            if (structure != null)
             {
-                this.lblPropertyType.Visible = true;
-                this.cmbPropertyType.Visible = true;
-            }
-            else
-            {
-                this.lblPropertyType.Visible = false;
-                this.cmbPropertyType.Visible = false;
-                if (this.cmbPropertyType.Items.Count > 0)
-                {
-                    this.cmbPropertyType.SelectedIndex = 0;
-                }
+                this.txtValue.Text = structure.DefaultValue;
             }
         }
 

@@ -93,7 +93,7 @@
             this.cmbType.Size = new System.Drawing.Size(368, 23);
             this.cmbType.TabIndex = 8;
             // 
-            // FormAddStructureField
+            // FormUpdateStructureField
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -106,8 +106,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Name = "FormAddStructureField";
-            this.Text = "FormAddStructureField";
+            this.Name = "FormUpdateStructureField";
+            this.Text = "FormUpdateStructureField";
             this.Load += new System.EventHandler(this.FormAddVertexShaderField_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -66,6 +66,7 @@ namespace CSharpGL.CSSLGenetator
             result.Qualider = this.Qualider;
             result.FieldType = this.FieldType;
             result.FieldName = this.FieldName;
+            result.FieldValue = this.FieldValue;
 
             return result;
         }

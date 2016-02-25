@@ -36,8 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbType = new System.Windows.Forms.ComboBox();
-            this.lblPropertyType = new System.Windows.Forms.Label();
-            this.cmbPropertyType = new System.Windows.Forms.ComboBox();
+            this.txtValue = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnOK
@@ -71,7 +71,6 @@
             this.cmbQualifier.Name = "cmbQualifier";
             this.cmbQualifier.Size = new System.Drawing.Size(345, 23);
             this.cmbQualifier.TabIndex = 8;
-            this.cmbQualifier.SelectedIndexChanged += new System.EventHandler(this.cmbQualifier_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -115,34 +114,33 @@
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(345, 23);
             this.cmbType.TabIndex = 8;
+            this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
             // 
-            // lblPropertyType
+            // txtValue
             // 
-            this.lblPropertyType.AutoSize = true;
-            this.lblPropertyType.Location = new System.Drawing.Point(11, 105);
-            this.lblPropertyType.Name = "lblPropertyType";
-            this.lblPropertyType.Size = new System.Drawing.Size(111, 15);
-            this.lblPropertyType.TabIndex = 5;
-            this.lblPropertyType.Text = "PropertyType:";
+            this.txtValue.Location = new System.Drawing.Point(127, 101);
+            this.txtValue.Name = "txtValue";
+            this.txtValue.Size = new System.Drawing.Size(345, 25);
+            this.txtValue.TabIndex = 10;
             // 
-            // cmbPropertyType
+            // label4
             // 
-            this.cmbPropertyType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPropertyType.FormattingEnabled = true;
-            this.cmbPropertyType.Location = new System.Drawing.Point(128, 101);
-            this.cmbPropertyType.Name = "cmbPropertyType";
-            this.cmbPropertyType.Size = new System.Drawing.Size(344, 23);
-            this.cmbPropertyType.TabIndex = 8;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(11, 104);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 15);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "value:";
             // 
-            // FormAddVertexShaderField
+            // FormUpdateVertexShaderField
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(484, 187);
-            this.Controls.Add(this.cmbPropertyType);
-            this.Controls.Add(this.lblPropertyType);
+            this.Controls.Add(this.txtValue);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.cmbType);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbQualifier);
@@ -151,8 +149,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Name = "FormAddVertexShaderField";
-            this.Text = "FormAddVertexShaderField";
+            this.Name = "FormUpdateVertexShaderField";
+            this.Text = "FormUpdateVertexShaderField";
             this.Load += new System.EventHandler(this.FormAddVertexShaderField_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -169,7 +167,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbType;
-        private System.Windows.Forms.Label lblPropertyType;
-        private System.Windows.Forms.ComboBox cmbPropertyType;
+        private System.Windows.Forms.TextBox txtValue;
+        private System.Windows.Forms.Label label4;
     }
 }
