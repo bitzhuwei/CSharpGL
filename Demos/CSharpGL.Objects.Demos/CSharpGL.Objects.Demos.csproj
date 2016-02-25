@@ -64,7 +64,6 @@
     <Compile Include="NewNormalLine.cssl.cs" />
     <Compile Include="NewNormalLineDemoModel.cs" />
     <Compile Include="NormalLine.cssl.cs" />
-    <Compile Include="NewNormalLineRenderer.cs" />
     <Compile Include="NormalLineRenderer.cs" />
     <Compile Include="PickedGeometryIndexed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

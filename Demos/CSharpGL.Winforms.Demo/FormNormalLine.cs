@@ -75,7 +75,7 @@ namespace CSharpGL.Winforms.Demo
             this.lifebarRenderer.Initialize();
 
             //StringModel stringModel = DummyStringModelFactory.GetModel("teapot");
-            this.stringRenderer = new StringRenderer("teapot".GetModel());
+            this.stringRenderer = new StringRenderer("teapot".GetDummyModel());
             this.stringRenderer.Initialize();
 
             uiParam = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, new Padding(10, 10, 120, 10), new Size(50, 50));

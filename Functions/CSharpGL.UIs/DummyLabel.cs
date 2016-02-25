@@ -22,7 +22,7 @@ namespace CSharpGL.UIs
         /// <param name="content"></param>
         public DummyLabel(IUILayoutParam param, string content)
         {
-            this.renderer = new StringRenderer(content.GetModel());
+            this.renderer = new StringRenderer(content.GetDummyModel());
 
             IUILayout layout = this;
             layout.Param = param;

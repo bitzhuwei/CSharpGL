@@ -27,7 +27,7 @@ namespace CSharpGL.Winforms.Demo
         GroundRenderer groundRenderer;
 
         SimpleUIAxis uiAxis;
-        NewNormalLineRenderer renderer;
+        DummyModernRenderer renderer;
         //NormalLineRenderer demolifebarRenderer;
         LifeBarRenderer lifebarRenderer;
         StringRenderer stringRenderer;
@@ -66,15 +66,25 @@ namespace CSharpGL.Winforms.Demo
 
             //IModel model = (new TeapotFactory()).Create(1.0f);
             IConvert2BufferRenderer model = new NewNormalLineDemoModel();
-            var map = new PropertyNameMap();
-            map.Add("in_Position", NewNormalLineDemoModel.strPosition);
-            map.Add("in_Normal", NewNormalLineDemoModel.strNormal);
             CodeShader[] codeShaders = new CodeShader[3];
             codeShaders[0] = new CodeShader(ShaderHelper.Load("NewNormalLine.vert"), ShaderType.VertexShader);
             codeShaders[1] = new CodeShader(ShaderHelper.Load("NewNormalLine.geom"), ShaderType.GeometryShader);
             codeShaders[2] = new CodeShader(ShaderHelper.Load("NewNormalLine.frag"), ShaderType.FragmentShader);
-            this.renderer = new NewNormalLineRenderer(model, codeShaders, map);
+            var propertyNameMap = new PropertyNameMap();
+            propertyNameMap.Add("in_Position", NewNormalLineDemoModel.strPosition);
+            propertyNameMap.Add("in_Normal", NewNormalLineDemoModel.strNormal);
+            var uniformNameMap = new UniformNameMap();
+            uniformNameMap.Add("model matrix", "modelMatrix");
+            uniformNameMap.Add("view matrix", "viewMatrix");
+            uniformNameMap.Add("projection matrix", "projectionMatrix");
+            uniformNameMap.Add("show model", "showModel");
+            uniformNameMap.Add("show normal", "showNormal");
+            uniformNameMap.Add("normal length", "normalLength");
+            this.renderer = new DummyModernRenderer(model, codeShaders, propertyNameMap, uniformNameMap);
             this.renderer.Initialize();//不在此显式初始化也可以。
+            this.renderer.SetUniformValue("show model", 1.0f);
+            this.renderer.SetUniformValue("show normal", 1.0f);
+            this.renderer.SetUniformValue("normal length", 1.0f);
 
             //this.demoLifebar = new DemoLifeBar(0.2f, 0.02f, 4);
             //this.demolifebarRenderer = new NormalLineRenderer(this.demoLifebar);
@@ -84,7 +94,7 @@ namespace CSharpGL.Winforms.Demo
             this.lifebarRenderer.Initialize();
 
             //StringModel stringModel = DummyStringModelFactory.GetModel("teapot");
-            this.stringRenderer = new StringRenderer("teapot".GetModel());
+            this.stringRenderer = new StringRenderer("teapot".GetDummyModel());
             this.stringRenderer.Initialize();
 
             uiParam = new IUILayoutParam(AnchorStyles.Right | AnchorStyles.Bottom, new Padding(10, 10, 120, 10), new Size(50, 50));
@@ -152,9 +162,9 @@ namespace CSharpGL.Winforms.Demo
             //mat4 modelMatrix = this.modelRotator.GetModelRotation();//glm.rotate(rotateAngle, new vec3(0, 1, 0)); //modelRotationCamera.GetViewMat4(); //mat4.identity();
             mat4 modelMatrix = this.modelRotator.GetRotationMatrix();
 
-            this.renderer.projectionMatrix = projectionMatrix;
-            this.renderer.viewMatrix = glm.translate(viewMatrix, translate);
-            this.renderer.modelMatrix = modelMatrix;
+            this.renderer.SetUniformValue("projection matrix", projectionMatrix);
+            this.renderer.SetUniformValue("view matrix", glm.translate(viewMatrix, translate));
+            this.renderer.SetUniformValue("model matrix", modelMatrix);
 
             //this.demolifebarRenderer.projectionMatrix = projectionMatrix;
             //this.demolifebarRenderer.viewMatrix = AlwaysFaceCamera(glm.translate(viewMatrix, translate));
@@ -350,12 +360,18 @@ namespace CSharpGL.Winforms.Demo
             }
             else if (e.KeyChar == '1')
             {
-                this.renderer.showModel = !this.renderer.showModel;
+                //this.renderer.showModel = !this.renderer.showModel;
+                float value = 0;
+                this.renderer.GetUniformValue("show model", out value);
+                this.renderer.SetUniformValue("show model", value == 1.0f ? 0.0f : 1.0f);
                 //this.demolifebarRenderer.showModel = !this.demolifebarRenderer.showModel;
             }
             else if (e.KeyChar == '2')
             {
-                this.renderer.showNormal = !this.renderer.showNormal;
+                //this.renderer.showNormal = !this.renderer.showNormal;
+                float value = 0;
+                this.renderer.GetUniformValue("show normal", out value);
+                this.renderer.SetUniformValue("show normal", value == 1.0f ? 0.0f : 1.0f);
                 //this.demolifebarRenderer.showNormal = !this.demolifebarRenderer.showNormal;
             }
             else if (e.KeyChar == 'w')
