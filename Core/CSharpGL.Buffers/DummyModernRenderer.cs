@@ -13,6 +13,7 @@ namespace CSharpGL.Buffers
 {
     /// <summary>
     /// 试验版的Renderer，使用modern OpenGL
+    /// 整合了数据结构（buffers' renderers）和算法（shader program）
     /// </summary>
     public class DummyModernRenderer : RendererBase
     {
