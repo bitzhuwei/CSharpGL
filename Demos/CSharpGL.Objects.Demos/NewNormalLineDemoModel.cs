@@ -27,7 +27,7 @@ namespace CSharpGL.Objects.Demos
         /// </summary>
         public const string strNormal = "normal";
 
-        BufferRenderer IConvert2BufferRenderer.GetBufferRenderer(string bufferName, string varNameInShader)
+        BufferPointer IConvert2BufferRenderer.GetBufferRenderer(string bufferName, string varNameInShader)
         {
             IModel model = this.model;
 
@@ -49,7 +49,7 @@ namespace CSharpGL.Objects.Demos
             }
         }
 
-        IndexBufferRendererBase IConvert2BufferRenderer.GetIndexBufferRenderer()
+        IndexBufferPointerBase IConvert2BufferRenderer.GetIndexBufferRenderer()
         {
             IModel model = this.model;
             return model.GetIndexes();

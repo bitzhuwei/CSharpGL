@@ -20,7 +20,7 @@ namespace CSharpGL.Texts
         public GlyphColor[] colors { get; set; }
         public GlyphTexCoord[] texCoords { get; set; }
 
-        public Objects.VertexBuffers.BufferRenderer GetPositionBufferRenderer(string varNameInShader)
+        public Objects.VertexBuffers.BufferPointer GetPositionBufferRenderer(string varNameInShader)
         {
             using (var buffer = new PositionBuffer(varNameInShader))
             {
@@ -38,7 +38,7 @@ namespace CSharpGL.Texts
             }
         }
 
-        public Objects.VertexBuffers.BufferRenderer GetColorBufferRenderer(string varNameInShader)
+        public Objects.VertexBuffers.BufferPointer GetColorBufferRenderer(string varNameInShader)
         {
             using (var buffer = new ColorBuffer(varNameInShader))
             {
@@ -56,7 +56,7 @@ namespace CSharpGL.Texts
             }
         }
 
-        public Objects.VertexBuffers.BufferRenderer GetTexCoordBufferRenderer(string varNameInShader)
+        public Objects.VertexBuffers.BufferPointer GetTexCoordBufferRenderer(string varNameInShader)
         {
             using (var buffer = new TexCoordBuffer(varNameInShader))
             {
@@ -74,16 +74,16 @@ namespace CSharpGL.Texts
             }
         }
 
-        public Objects.VertexBuffers.BufferRenderer GetNormalBufferRenderer(string varNameInShader)
+        public Objects.VertexBuffers.BufferPointer GetNormalBufferRenderer(string varNameInShader)
         {
             return null;
         }
 
-        public Objects.VertexBuffers.IndexBufferRendererBase GetIndexes()
+        public Objects.VertexBuffers.IndexBufferPointerBase GetIndexes()
         {
             using (var buffer = new ZeroIndexBuffer(DrawMode.Quads, 0, this.positions.Length * 4))
             {
-                return buffer.GetRenderer() as IndexBufferRendererBase;
+                return buffer.GetRenderer() as IndexBufferPointerBase;
             }
         }
 

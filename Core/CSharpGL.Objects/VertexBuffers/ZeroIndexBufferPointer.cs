@@ -9,7 +9,7 @@ namespace CSharpGL.Objects.VertexBuffers
     /// <summary>
     /// 没有显式索引时的渲染方法。
     /// </summary>
-    public sealed class ZeroIndexBufferRenderer : IndexBufferRendererBase
+    public sealed class ZeroIndexBufferPointer : IndexBufferPointerBase
     {
         /// <summary>
         /// 没有显式索引时的渲染方法。
@@ -18,7 +18,7 @@ namespace CSharpGL.Objects.VertexBuffers
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
         ///<param name="firstVertex">要渲染的第一个顶点的索引</param>
         /// <param name="vertexCount">要渲染多少个顶点？</param>
-        internal ZeroIndexBufferRenderer(DrawMode mode, int firstVertex, int vertexCount)
+        internal ZeroIndexBufferPointer(DrawMode mode, int firstVertex, int vertexCount)
             : base(mode, 0)
         {
             this.FirstVertex = firstVertex;

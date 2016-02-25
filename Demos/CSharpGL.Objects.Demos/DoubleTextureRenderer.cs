@@ -20,15 +20,15 @@ namespace CSharpGL.Objects.Demos
         VertexArrayObject vertexArrayObject;
 
         const string strin_Position = "in_Position";
-        BufferRenderer positionBufferRenderer;
+        BufferPointer positionBufferRenderer;
 
         const string strin_Color = "in_UV";
-        BufferRenderer colorBufferRenderer;
+        BufferPointer colorBufferRenderer;
 
         //const string strin_Normal = "in_Normal";
         //BufferRenderer normalBufferRenderer;
 
-        IndexBufferRendererBase indexBufferRenderer;
+        IndexBufferPointerBase indexBufferRenderer;
 
         #endregion
 
@@ -98,17 +98,17 @@ namespace CSharpGL.Objects.Demos
                 this.colorBufferRenderer = colorBuffer.GetRenderer();
             }
             //this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
-            this.indexBufferRenderer = model.GetIndexes() as IndexBufferRendererBase;
+            this.indexBufferRenderer = model.GetIndexes() as IndexBufferPointerBase;
 
             {
-                IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+                IndexBufferPointer renderer = this.indexBufferRenderer as IndexBufferPointer;
                 if (renderer != null)
                 {
                     this.elementCount = renderer.ElementCount;
                 }
             }
             {
-                ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;
+                ZeroIndexBufferPointer renderer = this.indexBufferRenderer as ZeroIndexBufferPointer;
                 if (renderer != null)
                 {
                     this.elementCount = renderer.VertexCount;
@@ -192,7 +192,7 @@ namespace CSharpGL.Objects.Demos
         public void DecreaseVertexCount()
         {
             {
-                IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+                IndexBufferPointer renderer = this.indexBufferRenderer as IndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.ElementCount > 0)
@@ -200,7 +200,7 @@ namespace CSharpGL.Objects.Demos
                 }
             }
             {
-                ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;
+                ZeroIndexBufferPointer renderer = this.indexBufferRenderer as ZeroIndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.VertexCount > 0)
@@ -212,7 +212,7 @@ namespace CSharpGL.Objects.Demos
         public void IncreaseVertexCount()
         {
             {
-                IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+                IndexBufferPointer renderer = this.indexBufferRenderer as IndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.ElementCount < this.elementCount)
@@ -220,7 +220,7 @@ namespace CSharpGL.Objects.Demos
                 }
             }
             {
-                ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;
+                ZeroIndexBufferPointer renderer = this.indexBufferRenderer as ZeroIndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.VertexCount < this.elementCount)

@@ -172,15 +172,15 @@ namespace CSharpGL.Objects.VertexBuffers
         /// 获取一个可渲染此VBO的渲染器。
         /// </summary>
         /// <returns></returns>
-        protected abstract BufferRenderer CreateRenderer();
+        protected abstract BufferPointer CreateRenderer();
 
-        private BufferRenderer renderer = null;
+        private BufferPointer renderer = null;
 
         /// <summary>
         /// 获取一个可渲染此VBO的渲染器。
         /// </summary>
         /// <returns></returns>
-        public BufferRenderer GetRenderer()
+        public BufferPointer GetRenderer()
         {
             if (renderer == null)
             {

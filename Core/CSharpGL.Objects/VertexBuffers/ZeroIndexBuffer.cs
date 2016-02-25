@@ -40,9 +40,9 @@ namespace CSharpGL.Objects.VertexBuffers
             return null;
         }
 
-        protected override BufferRenderer CreateRenderer()
+        protected override BufferPointer CreateRenderer()
         {
-            ZeroIndexBufferRenderer renderer = new ZeroIndexBufferRenderer(
+            ZeroIndexBufferPointer renderer = new ZeroIndexBufferPointer(
                  this.Mode, this.FirstVertex, this.VertexCount);
 
             return renderer;

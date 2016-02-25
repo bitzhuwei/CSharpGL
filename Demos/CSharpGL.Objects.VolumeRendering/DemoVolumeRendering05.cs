@@ -17,9 +17,9 @@ namespace CSharpGL.Objects.VolumeRendering
     {
         VertexArrayObject vao;
 
-        BufferRenderer positionBufferRenderer;
-        BufferRenderer uvBufferRenderer;
-        ZeroIndexBufferRenderer indexBufferRenderer;
+        BufferPointer positionBufferRenderer;
+        BufferPointer uvBufferRenderer;
+        ZeroIndexBufferPointer indexBufferRenderer;
 
         CRawDataProcessor textureProcessor = new CRawDataProcessor();
 
@@ -124,7 +124,7 @@ namespace CSharpGL.Objects.VolumeRendering
             {
                 var indexBuffer = new ZeroIndexBuffer(DrawMode.Points, 0, xFrameCount * yFrameCount * zFrameCount);
                 indexBuffer.Alloc(xFrameCount * yFrameCount * zFrameCount);// this actually does nothing.
-                this.indexBufferRenderer = indexBuffer.GetRenderer() as ZeroIndexBufferRenderer;
+                this.indexBufferRenderer = indexBuffer.GetRenderer() as ZeroIndexBufferPointer;
                 indexBuffer.Dispose();
             }
             this.vao = new VertexArrayObject(

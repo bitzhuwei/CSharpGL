@@ -22,8 +22,8 @@ namespace CSharpGL.Buffers
 
         // 数据结构
         protected VertexArrayObject vertexArrayObject;
-        protected BufferRenderer[] propertyBufferRenderers;
-        protected IndexBufferRendererBase indexBufferRenderer;
+        protected BufferPointer[] propertyBufferRenderers;
+        protected IndexBufferPointerBase indexBufferRenderer;
         //protected VertexArrayObject vertexArrayObject;
         protected UniformVariableBase[] uniformVariables;
 
@@ -146,11 +146,11 @@ namespace CSharpGL.Buffers
             this.uniformVariables = GetAllUniformVariables(this.allShaderCodes);
 
             // init property buffer objects' renderer
-            var propertyBufferRenderers = new BufferRenderer[propertyNameMap.Count()];
+            var propertyBufferRenderers = new BufferPointer[propertyNameMap.Count()];
             int index = 0;
             foreach (var item in propertyNameMap)
             {
-                BufferRenderer bufferRenderer = this.model.GetBufferRenderer(
+                BufferPointer bufferRenderer = this.model.GetBufferRenderer(
                 item.NameInIConvert2BufferRenderer, item.VarNameInShader);
                 if (bufferRenderer == null) { throw new Exception(); }
                 propertyBufferRenderers[index++] = bufferRenderer;
@@ -166,14 +166,14 @@ namespace CSharpGL.Buffers
             //this.uniformNameMap = null;
 
             {
-                IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+                IndexBufferPointer renderer = this.indexBufferRenderer as IndexBufferPointer;
                 if (renderer != null)
                 {
                     this.elementCount = renderer.ElementCount;
                 }
             }
             {
-                ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;
+                ZeroIndexBufferPointer renderer = this.indexBufferRenderer as ZeroIndexBufferPointer;
                 if (renderer != null)
                 {
                     this.elementCount = renderer.VertexCount;
@@ -292,7 +292,7 @@ namespace CSharpGL.Buffers
         public void DecreaseVertexCount()
         {
             {
-                IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+                IndexBufferPointer renderer = this.indexBufferRenderer as IndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.ElementCount > 0)
@@ -303,7 +303,7 @@ namespace CSharpGL.Buffers
                 }
             }
             {
-                ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;
+                ZeroIndexBufferPointer renderer = this.indexBufferRenderer as ZeroIndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.VertexCount > 0)
@@ -318,7 +318,7 @@ namespace CSharpGL.Buffers
         public void IncreaseVertexCount()
         {
             {
-                IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+                IndexBufferPointer renderer = this.indexBufferRenderer as IndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.ElementCount < this.elementCount)
@@ -329,7 +329,7 @@ namespace CSharpGL.Buffers
                 }
             }
             {
-                ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;
+                ZeroIndexBufferPointer renderer = this.indexBufferRenderer as ZeroIndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.VertexCount < this.elementCount)

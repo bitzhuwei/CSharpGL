@@ -12,8 +12,8 @@ namespace CSharpGL.Objects.VertexBuffers
     /// </summary>
     public sealed class VertexArrayObject : IDisposable
     {
-        private BufferRenderer[] bufferRenderers;
-        private IndexBufferRendererBase indexBufferRenderer;
+        private BufferPointer[] bufferRenderers;
+        private IndexBufferPointerBase indexBufferRenderer;
 
         /// <summary>
         /// 此VAO的ID，由OpenGL给出。
@@ -25,7 +25,7 @@ namespace CSharpGL.Objects.VertexBuffers
         /// <para>VAO是用来管理VBO的。可以进一步减少DrawCall。</para>
         /// </summary>
         /// <param name="propertyBufferRenderers">给出此VAO要管理的所有VBO。</param>
-        public VertexArrayObject(IndexBufferRendererBase indexBufferRenderer, params BufferRenderer[] propertyBufferRenderers)
+        public VertexArrayObject(IndexBufferPointerBase indexBufferRenderer, params BufferPointer[] propertyBufferRenderers)
         {
             if (indexBufferRenderer == null)
             {

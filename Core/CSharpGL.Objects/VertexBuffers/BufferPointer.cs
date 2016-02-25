@@ -9,7 +9,7 @@ namespace CSharpGL.Objects.VertexBuffers
     /// <summary>
     /// 为给定VBO执行渲染时所需的操作。
     /// </summary>
-    public abstract class BufferRenderer : IDisposable
+    public abstract class BufferPointer : IDisposable
     {
         private bool disposedValue = false;
 
@@ -22,7 +22,7 @@ namespace CSharpGL.Objects.VertexBuffers
         /// 为给定VBO执行渲染时所需的操作。
         /// </summary>
         /// <param name="bufferID">用GL.GenBuffers()得到的VBO的ID。</param>
-        internal BufferRenderer(uint bufferID)
+        internal BufferPointer(uint bufferID)
         {
             this.BufferID = bufferID;
         }
@@ -40,7 +40,7 @@ namespace CSharpGL.Objects.VertexBuffers
             GC.SuppressFinalize(this);
         }
 
-        ~BufferRenderer()
+        ~BufferPointer()
         {
             this.Dispose(false);
         }

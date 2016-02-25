@@ -104,7 +104,7 @@ namespace CSharpGL.Objects.Models
             return sphere;
         }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferPointer IModel.GetPositionBufferRenderer(string varNameInShader)
         {
             using (var buffer = new SphereModelPositionBuffer(varNameInShader))
             {
@@ -122,7 +122,7 @@ namespace CSharpGL.Objects.Models
             }
         }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetColorBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferPointer IModel.GetColorBufferRenderer(string varNameInShader)
         {
             using (var buffer = new SphereModelColorBuffer(varNameInShader))
             {
@@ -140,7 +140,7 @@ namespace CSharpGL.Objects.Models
             }
         }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetNormalBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferPointer IModel.GetNormalBufferRenderer(string varNameInShader)
         {
             using (var buffer = new SphereModelNormalBuffer(varNameInShader))
             {
@@ -158,7 +158,7 @@ namespace CSharpGL.Objects.Models
             }
         }
 
-        CSharpGL.Objects.VertexBuffers.IndexBufferRendererBase IModel.GetIndexes()
+        CSharpGL.Objects.VertexBuffers.IndexBufferPointerBase IModel.GetIndexes()
         {
             using (var indexBuffer = new IndexBuffer<uint>(DrawMode.TriangleStrip, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
             {
@@ -172,7 +172,7 @@ namespace CSharpGL.Objects.Models
                     }
                 }
 
-                return indexBuffer.GetRenderer() as IndexBufferRendererBase;
+                return indexBuffer.GetRenderer() as IndexBufferPointerBase;
             }
         }
 

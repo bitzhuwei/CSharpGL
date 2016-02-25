@@ -21,14 +21,14 @@ namespace CSharpGL.Objects.Common
     {
 
         VertexArrayObject[] axisVAO;
-        BufferRenderer[] positionBufferRenderers = new BufferRenderer[3];
-        BufferRenderer[] colorBufferRenderers = new BufferRenderer[3];
-        IndexBufferRendererBase[] indexBufferRenderers = new IndexBufferRendererBase[3];
+        BufferPointer[] positionBufferRenderers = new BufferPointer[3];
+        BufferPointer[] colorBufferRenderers = new BufferPointer[3];
+        IndexBufferPointerBase[] indexBufferRenderers = new IndexBufferPointerBase[3];
 
         VertexArrayObject planVAO;
-        BufferRenderer planPositionBufferRenderer;
-        BufferRenderer planColorBufferRenderer;
-        IndexBufferRendererBase planIndexBufferRenderer;
+        BufferPointer planPositionBufferRenderer;
+        BufferPointer planColorBufferRenderer;
+        IndexBufferPointerBase planIndexBufferRenderer;
 
         /// <summary>
         /// shader program
@@ -136,7 +136,7 @@ namespace CSharpGL.Objects.Common
                     }
                     cylinderIndex[indexLength - 2] = 0;
                     cylinderIndex[indexLength - 1] = 1;
-                    this.indexBufferRenderers[axisIndex] = indexBuffer.GetRenderer() as IndexBufferRendererBase;
+                    this.indexBufferRenderers[axisIndex] = indexBuffer.GetRenderer() as IndexBufferPointerBase;
                 }
 
             }
@@ -176,7 +176,7 @@ namespace CSharpGL.Objects.Common
                 using (var indexBuffer = new ZeroIndexBuffer(DrawMode.LineLoop, 0, planVertexCount))
                 {
                     indexBuffer.Alloc(planVertexCount);//这句话实际上什么都没有做。
-                    this.planIndexBufferRenderer = indexBuffer.GetRenderer() as IndexBufferRendererBase;
+                    this.planIndexBufferRenderer = indexBuffer.GetRenderer() as IndexBufferPointerBase;
                 }
             }
         }
