@@ -36,6 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbType = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtValue = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnOK
@@ -112,8 +114,25 @@
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(345, 23);
             this.cmbType.TabIndex = 8;
+            this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
             // 
-            // FormAddShaderField
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(11, 104);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 15);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "value:";
+            // 
+            // txtValue
+            // 
+            this.txtValue.Location = new System.Drawing.Point(127, 101);
+            this.txtValue.Name = "txtValue";
+            this.txtValue.Size = new System.Drawing.Size(345, 25);
+            this.txtValue.TabIndex = 7;
+            // 
+            // FormInsertShaderField
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -124,12 +143,14 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbQualifier);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtValue);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Name = "FormAddShaderField";
-            this.Text = "FormAddVertexShaderField";
+            this.Name = "FormInsertShaderField";
+            this.Text = "FormInsertVertexShaderField";
             this.Load += new System.EventHandler(this.FormAddVertexShaderField_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -146,5 +167,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbType;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtValue;
     }
 }

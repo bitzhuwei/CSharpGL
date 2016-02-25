@@ -57,7 +57,6 @@ namespace CSharpGL.CSSLGenetator
                 Qualider = (FieldQualifier)this.cmbQualifier.SelectedItem,
                 FieldType = this.cmbType.SelectedItem.ToString(),
                 FieldName = this.txtName.Text,
-                PropertyType = PropertyType.Other,
             };
 
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -66,6 +65,15 @@ namespace CSharpGL.CSSLGenetator
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+        }
+
+        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IntermediateStructure structure = this.cmbType.SelectedItem as IntermediateStructure;
+            if (structure != null)
+            {
+                this.txtValue.Text = structure.DefaultValue;
+            }
         }
     }
 }

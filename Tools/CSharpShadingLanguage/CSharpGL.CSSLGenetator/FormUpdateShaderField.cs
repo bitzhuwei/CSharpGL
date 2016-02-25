@@ -73,7 +73,6 @@ namespace CSharpGL.CSSLGenetator
             this.clonedTarget.Qualider = (FieldQualifier)this.cmbQualifier.SelectedItem;
             this.clonedTarget.FieldType = this.cmbType.SelectedItem.ToString();
             this.clonedTarget.FieldName = this.txtName.Text;
-            this.clonedTarget.PropertyType = PropertyType.Other;
 
             this.Result = this.clonedTarget;
 

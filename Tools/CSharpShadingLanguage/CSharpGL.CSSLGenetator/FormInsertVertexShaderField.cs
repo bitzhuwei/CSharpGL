@@ -48,21 +48,6 @@ namespace CSharpGL.CSSLGenetator
                 }
                 this.cmbType.SelectedIndex = 0;
             }
-            {
-                PropertyType[] qualifiers = new PropertyType[]
-                {
-                    PropertyType.Other,
-                    PropertyType.Position,
-                    PropertyType.Color,
-                    PropertyType.Normal,
-                };
-                this.cmbPropertyType.Items.Clear();
-                foreach (var item in qualifiers)
-                {
-                    this.cmbPropertyType.Items.Add(item);
-                }
-                this.cmbPropertyType.SelectedIndex = 0;
-            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -72,7 +57,6 @@ namespace CSharpGL.CSSLGenetator
                 Qualider = (FieldQualifier)this.cmbQualifier.SelectedItem,
                 FieldType = this.cmbType.SelectedItem.ToString(),
                 FieldName = this.txtName.Text,
-                PropertyType = (PropertyType)this.cmbPropertyType.SelectedItem,
             };
 
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -83,18 +67,12 @@ namespace CSharpGL.CSSLGenetator
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
         }
 
-        private void cmbQualifier_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((FieldQualifier)(this.cmbQualifier.SelectedItem) == FieldQualifier.In)
+            IntermediateStructure structure = this.cmbType.SelectedItem as IntermediateStructure;
+            if (structure != null)
             {
-                this.lblPropertyType.Visible = true;
-                this.cmbPropertyType.Visible = true;
-            }
-            else
-            {
-                this.lblPropertyType.Visible = false;
-                this.cmbPropertyType.Visible = false;
-                this.cmbPropertyType.SelectedIndex = 0;
+                this.txtValue.Text = structure.DefaultValue;
             }
         }
     }

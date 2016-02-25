@@ -23,18 +23,12 @@ namespace CSharpGL.CSSLGenetator
         const string strFieldName = "FieldName";
         public string FieldName { get; set; }
 
-        const string strPropertyType = "PropertyType";
-        public PropertyType PropertyType { get; set; }
-
-        public ShaderField()
-        {
-            this.PropertyType = CSSLGenetator.PropertyType.Other;
-        }
+        const string strFieldValue = "FieldValue";
+        public string FieldValue { get; set; }
 
         public override string ToString()
         {
-            return string.Format("{3}{0} {1} {2};", Qualider.GetString(), FieldType, FieldName,
-                PropertyType == CSSLGenetator.PropertyType.Other ? "" : "(" + PropertyType + ")");
+            return string.Format("{0} {1} {2};", Qualider.GetString(), FieldType, FieldName);
         }
 
         public static ShaderField Parse(XElement element)
@@ -45,14 +39,13 @@ namespace CSharpGL.CSSLGenetator
             result.Qualider = (FieldQualifier)Enum.Parse(typeof(FieldQualifier), element.Attribute(strQualifier).Value);
             result.FieldType = element.Attribute(strFieldType).Value;
             result.FieldName = element.Attribute(strFieldName).Value;
-            result.PropertyType = (PropertyType)Enum.Parse(typeof(PropertyType), element.Attribute(strPropertyType).Value);
 
             return result;
         }
+
         public XElement ToXElement()
         {
             return new XElement(this.GetType().Name,
-                new XAttribute(strPropertyType, PropertyType),
                 new XAttribute(strQualifier, Qualider),
                 new XAttribute(strFieldType, FieldType),
                 new XAttribute(strFieldName, FieldName)
@@ -65,7 +58,6 @@ namespace CSharpGL.CSSLGenetator
             result.Qualider = this.Qualider;
             result.FieldType = this.FieldType;
             result.FieldName = this.FieldName;
-            result.PropertyType = this.PropertyType;
 
             return result;
         }
@@ -124,11 +116,4 @@ namespace CSharpGL.CSSLGenetator
         Uniform,
     }
 
-    public enum PropertyType
-    {
-        Position,
-        Color,
-        Normal,
-        Other,
-    }
 }

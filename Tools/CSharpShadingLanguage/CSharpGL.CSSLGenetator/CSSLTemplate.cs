@@ -320,37 +320,6 @@ namespace CSharpGL.CSSLGenetator
             return csslFullname;
         }
 
-        private void GenerateSetRenderer()
-        {
-            foreach (var item in this.VertexShaderFieldList)
-            {
-                if (item.Qualider == FieldQualifier.In)
-                {
-                    switch (item.PropertyType)
-                    {
-                        case PropertyType.Position:
-                            Debug.WriteLine(string.Format(
-                                "this.{0}BufferRenderer = model.GetPositionBufferRenderer(str{0});", item.FieldName));
-                            break;
-                        case PropertyType.Color:
-                            Debug.WriteLine(string.Format(
-                                "this.{0}BufferRenderer = model.GetColorBufferRenderer(str{0});", item.FieldName));
-                            break;
-                        case PropertyType.Normal:
-                            Debug.WriteLine(string.Format(
-                                "this.{0}BufferRenderer = model.GetNormalBufferRenderer(str{0});", item.FieldName));
-                            break;
-                        case PropertyType.Other:
-                            Debug.WriteLine(string.Format(
-                                "//this.{0}BufferRenderer = ???(str{0});", item.FieldName));
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-        }
-
         private void GenerateSetUniforms()
         {
             Debug.WriteLine("ShaderProgram program = this.shaderProgram;");

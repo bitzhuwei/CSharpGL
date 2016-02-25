@@ -65,28 +65,6 @@ namespace CSharpGL.CSSLGenetator
                     }
                 }
             }
-            {
-                PropertyType[] qualifiers = new PropertyType[]
-                {
-                    PropertyType.Other,
-                    PropertyType.Position,
-                    PropertyType.Color,
-                    PropertyType.Normal,
-                };
-                this.cmbPropertyType.Items.Clear();
-                foreach (var item in qualifiers)
-                {
-                    this.cmbPropertyType.Items.Add(item);
-                }
-                for (int i = 0; i < this.cmbPropertyType.Items.Count; i++)
-                {
-                    if (this.cmbPropertyType.Items[i].ToString() == this.clonedTarget.PropertyType.ToString())
-                    {
-                        this.cmbPropertyType.SelectedIndex = i;
-                        break;
-                    }
-                }
-            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -94,7 +72,6 @@ namespace CSharpGL.CSSLGenetator
             this.clonedTarget.Qualider = (FieldQualifier)this.cmbQualifier.SelectedItem;
             this.clonedTarget.FieldType = this.cmbType.SelectedItem.ToString();
             this.clonedTarget.FieldName = this.txtName.Text;
-            this.clonedTarget.PropertyType = (PropertyType)this.cmbPropertyType.SelectedItem;
 
             this.Result = this.clonedTarget;
 
