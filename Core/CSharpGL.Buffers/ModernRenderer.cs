@@ -15,7 +15,7 @@ namespace CSharpGL.Buffers
     /// 试验版的Renderer，使用modern OpenGL
     /// 整合了数据结构（buffers' renderers）和算法（shader program）
     /// </summary>
-    public class DummyModernRenderer : RendererBase
+    public class ModernRenderer : RendererBase
     {
         // 算法
         protected ShaderProgram shaderProgram;
@@ -24,13 +24,12 @@ namespace CSharpGL.Buffers
         protected VertexArrayObject vertexArrayObject;
         protected BufferPointer[] propertyBufferRenderers;
         protected IndexBufferPointerBase indexBufferRenderer;
-        //protected VertexArrayObject vertexArrayObject;
         protected UniformVariableBase[] uniformVariables;
 
         /// <summary>
-        /// 从模型到buffer的renderer
+        /// 从模型到buffer的pointer
         /// </summary>
-        private IConvert2BufferRenderer model;
+        private IConvert2BufferPointer model;
         /// <summary>
         /// shader代码
         /// </summary>
@@ -55,7 +54,7 @@ namespace CSharpGL.Buffers
         /// <param name="model">从模型到buffer的renderer</param>
         /// <param name="allShaderCodes">shader代码</param>
         /// <param name="propertyNameMap">vertex shader中的in变量与<see cref="propertyBufferRenderers"/>中的元素名字的对应关系。</param>
-        public DummyModernRenderer(IConvert2BufferRenderer model, CodeShader[] allShaderCodes, PropertyNameMap propertyNameMap, UniformNameMap uniformNameMap)
+        public ModernRenderer(IConvert2BufferPointer model, CodeShader[] allShaderCodes, PropertyNameMap propertyNameMap, UniformNameMap uniformNameMap)
         {
             this.model = model;
             this.allShaderCodes = allShaderCodes;

@@ -27,7 +27,7 @@ namespace CSharpGL.Winforms.Demo
         GroundRenderer groundRenderer;
 
         SimpleUIAxis uiAxis;
-        DummyModernRenderer renderer;
+        ModernRenderer renderer;
         //NormalLineRenderer demolifebarRenderer;
         LifeBarRenderer lifebarRenderer;
         StringRenderer stringRenderer;
@@ -65,7 +65,7 @@ namespace CSharpGL.Winforms.Demo
             uiAxis.Initialize();
 
             //IModel model = (new TeapotFactory()).Create(1.0f);
-            IConvert2BufferRenderer model = new NewNormalLineDemoModel();
+            IConvert2BufferPointer model = new NewNormalLineDemoModel();
             CodeShader[] codeShaders = new CodeShader[3];
             codeShaders[0] = new CodeShader(ShaderHelper.Load("NewNormalLine.vert"), ShaderType.VertexShader);
             codeShaders[1] = new CodeShader(ShaderHelper.Load("NewNormalLine.geom"), ShaderType.GeometryShader);
@@ -80,7 +80,7 @@ namespace CSharpGL.Winforms.Demo
             uniformNameMap.Add("show model", "showModel");
             uniformNameMap.Add("show normal", "showNormal");
             uniformNameMap.Add("normal length", "normalLength");
-            this.renderer = new DummyModernRenderer(model, codeShaders, propertyNameMap, uniformNameMap);
+            this.renderer = new ModernRenderer(model, codeShaders, propertyNameMap, uniformNameMap);
             this.renderer.Initialize();//不在此显式初始化也可以。
             this.renderer.SetUniformValue("show model", 1.0f);
             this.renderer.SetUniformValue("show normal", 1.0f);

@@ -46,8 +46,8 @@
     <Content Include="readme.txt" />
     <Compile Include="Class1.cs" />
     <Compile Include="CodeShader.cs" />
-    <Compile Include="DummyModernRenderer.cs" />
-    <Compile Include="IConvert2BufferRenderer.cs" />
+    <Compile Include="ModernRenderer.cs" />
+    <Compile Include="IConvert2BufferPointer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UniformNameMap.cs" />
     <Compile Include="PropertyNameMap.cs">

@@ -12,7 +12,7 @@ namespace CSharpGL.Buffers
     /// <para>从模型的数据格式转换为<see cref="VertexBuffer&lt;T&gt;"/>，<see cref="VertexBuffer&lt;T&gt;"/>转换为<see cref="BufferPointer"/>，
     /// <see cref="BufferPointer"/>则可用于控制GPU的渲染操作。</para>
     /// </summary>
-    public interface IConvert2BufferRenderer
+    public interface IConvert2BufferPointer
     {
 
         /// <summary>

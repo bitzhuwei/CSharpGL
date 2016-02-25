@@ -23,7 +23,7 @@ namespace CSharpGL.CSSLGenetator
         const CSharpShadingLanguage.GeometryCSShaderCode.InType defaultLayoutIn = GeometryCSShaderCode.InType.triangles;
         const CSharpShadingLanguage.GeometryCSShaderCode.OutType defaultLayoutOut = GeometryCSShaderCode.OutType.triangle_strip;
 
-        const string strExtentsion = "xml";
+        const string strExtentsion = "config";
         public string Fullname { get; set; }
 
         const string strShaderName = "ShaderName";

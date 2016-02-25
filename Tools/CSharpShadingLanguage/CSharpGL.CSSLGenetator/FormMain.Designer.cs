@@ -429,8 +429,8 @@
             // 
             // saveFileDlg
             // 
-            this.saveFileDlg.FileName = "*.xml";
-            this.saveFileDlg.Filter = "*.xml|*.xml";
+            this.saveFileDlg.FileName = "*.config";
+            this.saveFileDlg.Filter = "*.config|*.config";
             // 
             // label7
             // 
