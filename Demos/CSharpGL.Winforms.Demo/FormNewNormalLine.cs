@@ -1,4 +1,4 @@
-﻿using CSharpGL.Buffers;
+﻿
 using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.Common;
@@ -6,6 +6,7 @@ using CSharpGL.Objects.Demos;
 using CSharpGL.Objects.Demos.UIs;
 using CSharpGL.Objects.ModelFactories;
 using CSharpGL.Objects.Models;
+using CSharpGL.Objects.ModernRendering;
 using CSharpGL.Texts;
 using CSharpGL.Texts.StringModelFactory;
 using CSharpGL.UIs;
@@ -67,9 +68,9 @@ namespace CSharpGL.Winforms.Demo
             //IModel model = (new TeapotFactory()).Create(1.0f);
             IConvert2BufferPointer model = new NewNormalLineDemoModel();
             CodeShader[] codeShaders = new CodeShader[3];
-            codeShaders[0] = new CodeShader(ShaderHelper.Load("NewNormalLine.vert"), ShaderType.VertexShader);
-            codeShaders[1] = new CodeShader(ShaderHelper.Load("NewNormalLine.geom"), ShaderType.GeometryShader);
-            codeShaders[2] = new CodeShader(ShaderHelper.Load("NewNormalLine.frag"), ShaderType.FragmentShader);
+            codeShaders[0] = new CodeShader(ShaderHelper.Load("NewNormalLine.vert"), CodeShader.GLSLShaderType.VertexShader);
+            codeShaders[1] = new CodeShader(ShaderHelper.Load("NewNormalLine.geom"), CodeShader.GLSLShaderType.GeometryShader);
+            codeShaders[2] = new CodeShader(ShaderHelper.Load("NewNormalLine.frag"), CodeShader.GLSLShaderType.FragmentShader);
             var propertyNameMap = new PropertyNameMap();
             propertyNameMap.Add("in_Position", NewNormalLineDemoModel.strPosition);
             propertyNameMap.Add("in_Normal", NewNormalLineDemoModel.strNormal);

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CSharpGL.Buffers;
+
 using CSharpGL.Objects.Models;
 using CSharpGL.Objects.VertexBuffers;
+using CSharpGL.Objects.ModernRendering;
 
 
 namespace CSharpGL.Objects.Demos

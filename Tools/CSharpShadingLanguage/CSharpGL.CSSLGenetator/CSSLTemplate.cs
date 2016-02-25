@@ -10,7 +10,9 @@ using System.CodeDom;
 using Microsoft.CSharp;
 using CSharpShadingLanguage;
 using System.CodeDom.Compiler;
-using CSharpGL.Buffers;
+
+using CSharpGL.Objects;
+using CSharpGL.Objects.ModernRendering;
 
 namespace CSharpGL.CSSLGenetator
 {
