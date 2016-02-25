@@ -168,6 +168,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\CSharpGL.Buffers\CSharpGL.Buffers.csproj">
+      <Project>{4c35ae1f-4b5e-478d-8642-9c6e487feb17}</Project>
+      <Name>CSharpGL.Buffers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Core\Utilities\Utilities.csproj">
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>

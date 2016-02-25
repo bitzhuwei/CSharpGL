@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<CSSLTemplate ShaderName="SomeShader" ProgramType="VertexGeometryFragment">
+<CSSLTemplate ShaderName="DemoVSGSFSShader" ProgramType="VertexGeometryFragment">
   <VertexShaderFieldList>
     <ShaderField PropertyType="Position" Qualifier="In" FieldType="vec3" FieldName="position" />
     <ShaderField PropertyType="Color" Qualifier="In" FieldType="vec3" FieldName="color" />

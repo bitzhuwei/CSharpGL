@@ -61,28 +61,28 @@ namespace CSharpGL.Buffers
             this.namesInShader.Add(nameInShader);
         }
 
-        const string strRendererType = "RendererType";
-        /// <summary>
-        /// type's fullname
-        /// </summary>
-        public string RendererType { get; set; }
+        //const string strRendererType = "RendererType";
+        ///// <summary>
+        ///// type's fullname
+        ///// </summary>
+        //public string RendererType { get; set; }
 
-        const string strDumperType = "DumperType";
-        /// <summary>
-        /// Type's fullname
-        /// </summary>
-        public string DumperType { get; set; }
+        //const string strDumperType = "DumperType";
+        ///// <summary>
+        ///// Type's fullname
+        ///// </summary>
+        //public string DumperType { get; set; }
 
 
         public XElement ToXElement()
         {
             XElement result = new XElement(typeof(PropertyNameMap).Name,
-                new XAttribute(strRendererType, RendererType),
-                new XAttribute(strDumperType, DumperType),
+                //new XAttribute(strRendererType, RendererType),
+                //new XAttribute(strDumperType, DumperType),
                 from nameInIConvert2BufferRenderer in this.namesInIConvert2BufferRenderer
                 join nameInShader in this.namesInShader
                 on this.namesInIConvert2BufferRenderer.IndexOf(nameInIConvert2BufferRenderer) equals this.namesInShader.IndexOf(nameInShader)
-                select new NamePair(nameInIConvert2BufferRenderer, nameInShader)
+                select new NamePair(nameInIConvert2BufferRenderer, nameInShader).ToXElement()
                 );
 
             return result;
@@ -93,8 +93,8 @@ namespace CSharpGL.Buffers
             if (xElement.Name != typeof(UniformNameMap).Name) { throw new Exception(); }
 
             UniformNameMap result = new UniformNameMap();
-            result.RendererType = xElement.Attribute(strRendererType).Value;
-            result.DumperType = xElement.Attribute(strDumperType).Value;
+            //result.RendererType = xElement.Attribute(strRendererType).Value;
+            //result.DumperType = xElement.Attribute(strDumperType).Value;
 
             foreach (var item in xElement.Elements(typeof(NamePair).Name))
             {
@@ -140,7 +140,7 @@ namespace CSharpGL.Buffers
             public XElement ToXElement()
             {
                 return new XElement(typeof(NamePair).Name,
-                    new XAttribute(strNameInIConvert2BufferRenderer, strNameInIConvert2BufferRenderer),
+                    new XAttribute(strNameInIConvert2BufferRenderer, NameInIConvert2BufferRenderer),
                     new XAttribute(strUniformNameInShader, UniformNameInShader));
             }
 

@@ -33,7 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtShaderName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnGenerateRenderer = new System.Windows.Forms.Button();
             this.cmbShaderProgramType = new System.Windows.Forms.ComboBox();
             this.lstVertexShaderField = new System.Windows.Forms.ListBox();
             this.menuVertexShaderField = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -71,13 +70,11 @@
             this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDlg = new System.Windows.Forms.SaveFileDialog();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnGenerateCSSL = new System.Windows.Forms.Button();
-            this.btnGenerateCSSLAndMain = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkCSSL = new System.Windows.Forms.CheckBox();
-            this.chkMain = new System.Windows.Forms.CheckBox();
-            this.chkPropertyNameMap = new System.Windows.Forms.CheckBox();
             this.chkUniformNameMap = new System.Windows.Forms.CheckBox();
+            this.chkPropertyNameMap = new System.Windows.Forms.CheckBox();
+            this.chkMain = new System.Windows.Forms.CheckBox();
+            this.chkCSSL = new System.Windows.Forms.CheckBox();
             this.btnSaveAndGenerate = new System.Windows.Forms.Button();
             this.menuVertexShaderField.SuspendLayout();
             this.menuGeometryShaderField.SuspendLayout();
@@ -112,17 +109,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "shader program type:";
             // 
-            // btnGenerateRenderer
-            // 
-            this.btnGenerateRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenerateRenderer.Location = new System.Drawing.Point(650, 94);
-            this.btnGenerateRenderer.Name = "btnGenerateRenderer";
-            this.btnGenerateRenderer.Size = new System.Drawing.Size(258, 23);
-            this.btnGenerateRenderer.TabIndex = 3;
-            this.btnGenerateRenderer.Text = "Save and Generate Renderer";
-            this.btnGenerateRenderer.UseVisualStyleBackColor = true;
-            this.btnGenerateRenderer.Click += new System.EventHandler(this.btnGenerateRenderer_Click);
-            // 
             // cmbShaderProgramType
             // 
             this.cmbShaderProgramType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -143,7 +129,7 @@
             this.lstVertexShaderField.ItemHeight = 15;
             this.lstVertexShaderField.Location = new System.Drawing.Point(13, 112);
             this.lstVertexShaderField.Name = "lstVertexShaderField";
-            this.lstVertexShaderField.Size = new System.Drawing.Size(224, 274);
+            this.lstVertexShaderField.Size = new System.Drawing.Size(224, 319);
             this.lstVertexShaderField.TabIndex = 5;
             this.lstVertexShaderField.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragDrop);
             this.lstVertexShaderField.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragEnter);
@@ -209,7 +195,7 @@
             this.lstGeometryShaderField.ItemHeight = 15;
             this.lstGeometryShaderField.Location = new System.Drawing.Point(243, 112);
             this.lstGeometryShaderField.Name = "lstGeometryShaderField";
-            this.lstGeometryShaderField.Size = new System.Drawing.Size(224, 274);
+            this.lstGeometryShaderField.Size = new System.Drawing.Size(224, 319);
             this.lstGeometryShaderField.TabIndex = 5;
             this.lstGeometryShaderField.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragDrop);
             this.lstGeometryShaderField.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragEnter);
@@ -266,7 +252,7 @@
             this.lstFragmentShaderField.ItemHeight = 15;
             this.lstFragmentShaderField.Location = new System.Drawing.Point(473, 112);
             this.lstFragmentShaderField.Name = "lstFragmentShaderField";
-            this.lstFragmentShaderField.Size = new System.Drawing.Size(224, 274);
+            this.lstFragmentShaderField.Size = new System.Drawing.Size(224, 319);
             this.lstFragmentShaderField.TabIndex = 5;
             this.lstFragmentShaderField.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragDrop);
             this.lstFragmentShaderField.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragEnter);
@@ -323,7 +309,7 @@
             this.lstStructure.ItemHeight = 15;
             this.lstStructure.Location = new System.Drawing.Point(703, 112);
             this.lstStructure.Name = "lstStructure";
-            this.lstStructure.Size = new System.Drawing.Size(224, 274);
+            this.lstStructure.Size = new System.Drawing.Size(224, 319);
             this.lstStructure.TabIndex = 5;
             this.lstStructure.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragDrop);
             this.lstStructure.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstVertexShaderField_DragEnter);
@@ -456,74 +442,21 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "本程序不处理脏数据，所以请注意手动保存您的成果";
             // 
-            // btnGenerateCSSL
-            // 
-            this.btnGenerateCSSL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenerateCSSL.Location = new System.Drawing.Point(386, 94);
-            this.btnGenerateCSSL.Name = "btnGenerateCSSL";
-            this.btnGenerateCSSL.Size = new System.Drawing.Size(258, 23);
-            this.btnGenerateCSSL.TabIndex = 3;
-            this.btnGenerateCSSL.Text = "Save and Generate CSSL";
-            this.btnGenerateCSSL.UseVisualStyleBackColor = true;
-            this.btnGenerateCSSL.Click += new System.EventHandler(this.btnGenerateCSSL_Click);
-            // 
-            // btnGenerateCSSLAndMain
-            // 
-            this.btnGenerateCSSLAndMain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenerateCSSLAndMain.Location = new System.Drawing.Point(122, 94);
-            this.btnGenerateCSSLAndMain.Name = "btnGenerateCSSLAndMain";
-            this.btnGenerateCSSLAndMain.Size = new System.Drawing.Size(258, 23);
-            this.btnGenerateCSSLAndMain.TabIndex = 3;
-            this.btnGenerateCSSLAndMain.Text = "Save and Generate CSSL+main";
-            this.btnGenerateCSSLAndMain.UseVisualStyleBackColor = true;
-            this.btnGenerateCSSLAndMain.Click += new System.EventHandler(this.btnGenerateCSSLAndMain_Click);
-            // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.chkUniformNameMap);
             this.groupBox1.Controls.Add(this.chkPropertyNameMap);
             this.groupBox1.Controls.Add(this.chkMain);
             this.groupBox1.Controls.Add(this.chkCSSL);
             this.groupBox1.Controls.Add(this.btnSaveAndGenerate);
-            this.groupBox1.Controls.Add(this.btnGenerateCSSLAndMain);
-            this.groupBox1.Controls.Add(this.btnGenerateCSSL);
-            this.groupBox1.Controls.Add(this.btnGenerateRenderer);
-            this.groupBox1.Location = new System.Drawing.Point(12, 389);
+            this.groupBox1.Location = new System.Drawing.Point(12, 438);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(914, 123);
+            this.groupBox1.Size = new System.Drawing.Size(914, 89);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Save config file and Generate ...";
-            // 
-            // chkCSSL
-            // 
-            this.chkCSSL.AutoSize = true;
-            this.chkCSSL.Location = new System.Drawing.Point(0, 24);
-            this.chkCSSL.Name = "chkCSSL";
-            this.chkCSSL.Size = new System.Drawing.Size(101, 19);
-            this.chkCSSL.TabIndex = 4;
-            this.chkCSSL.Text = "*.cssl.cs";
-            this.chkCSSL.UseVisualStyleBackColor = true;
-            // 
-            // chkMain
-            // 
-            this.chkMain.AutoSize = true;
-            this.chkMain.Location = new System.Drawing.Point(107, 24);
-            this.chkMain.Name = "chkMain";
-            this.chkMain.Size = new System.Drawing.Size(101, 19);
-            this.chkMain.TabIndex = 4;
-            this.chkMain.Text = "*.main.cs";
-            this.chkMain.UseVisualStyleBackColor = true;
-            // 
-            // chkPropertyNameMap
-            // 
-            this.chkPropertyNameMap.AutoSize = true;
-            this.chkPropertyNameMap.Location = new System.Drawing.Point(214, 24);
-            this.chkPropertyNameMap.Name = "chkPropertyNameMap";
-            this.chkPropertyNameMap.Size = new System.Drawing.Size(197, 19);
-            this.chkPropertyNameMap.TabIndex = 4;
-            this.chkPropertyNameMap.Text = "*.PropertyNameMap.xml";
-            this.chkPropertyNameMap.UseVisualStyleBackColor = true;
             // 
             // chkUniformNameMap
             // 
@@ -535,10 +468,42 @@
             this.chkUniformNameMap.Text = "*.UniformNameMap.xml";
             this.chkUniformNameMap.UseVisualStyleBackColor = true;
             // 
+            // chkPropertyNameMap
+            // 
+            this.chkPropertyNameMap.AutoSize = true;
+            this.chkPropertyNameMap.Location = new System.Drawing.Point(214, 24);
+            this.chkPropertyNameMap.Name = "chkPropertyNameMap";
+            this.chkPropertyNameMap.Size = new System.Drawing.Size(197, 19);
+            this.chkPropertyNameMap.TabIndex = 4;
+            this.chkPropertyNameMap.Text = "*.PropertyNameMap.xml";
+            this.chkPropertyNameMap.UseVisualStyleBackColor = true;
+            // 
+            // chkMain
+            // 
+            this.chkMain.AutoSize = true;
+            this.chkMain.Location = new System.Drawing.Point(107, 24);
+            this.chkMain.Name = "chkMain";
+            this.chkMain.Size = new System.Drawing.Size(101, 19);
+            this.chkMain.TabIndex = 4;
+            this.chkMain.Text = "*.main.cs";
+            this.chkMain.UseVisualStyleBackColor = true;
+            // 
+            // chkCSSL
+            // 
+            this.chkCSSL.AutoSize = true;
+            this.chkCSSL.Checked = true;
+            this.chkCSSL.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkCSSL.Location = new System.Drawing.Point(0, 24);
+            this.chkCSSL.Name = "chkCSSL";
+            this.chkCSSL.Size = new System.Drawing.Size(101, 19);
+            this.chkCSSL.TabIndex = 4;
+            this.chkCSSL.Text = "*.cssl.cs";
+            this.chkCSSL.UseVisualStyleBackColor = true;
+            // 
             // btnSaveAndGenerate
             // 
             this.btnSaveAndGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveAndGenerate.Location = new System.Drawing.Point(650, 65);
+            this.btnSaveAndGenerate.Location = new System.Drawing.Point(650, 60);
             this.btnSaveAndGenerate.Name = "btnSaveAndGenerate";
             this.btnSaveAndGenerate.Size = new System.Drawing.Size(258, 23);
             this.btnSaveAndGenerate.TabIndex = 3;
@@ -588,7 +553,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtShaderName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnGenerateRenderer;
         private System.Windows.Forms.ComboBox cmbShaderProgramType;
         private System.Windows.Forms.ListBox lstVertexShaderField;
         private System.Windows.Forms.Label label3;
@@ -626,8 +590,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
-        private System.Windows.Forms.Button btnGenerateCSSL;
-        private System.Windows.Forms.Button btnGenerateCSSLAndMain;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox chkMain;
         private System.Windows.Forms.CheckBox chkCSSL;

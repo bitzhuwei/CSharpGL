@@ -10,6 +10,7 @@ using System.CodeDom;
 using Microsoft.CSharp;
 using CSharpShadingLanguage;
 using System.CodeDom.Compiler;
+using CSharpGL.Buffers;
 
 namespace CSharpGL.CSSLGenetator
 {
@@ -354,11 +355,94 @@ namespace CSharpGL.CSSLGenetator
             return rendererFullname;
         }
 
-        public string GenerateCSSLMain()
+        public void GenerateUinformNameMap(string uniformNameMapFullname)
         {
-            string directory = (new FileInfo(this.Fullname)).DirectoryName;
-            var csslMainFullname = Path.Combine(directory, this.ShaderName + ".main.cs");
+            List<ShaderField> shaderFieldList = new List<ShaderField>();
 
+            foreach (var item in this.VertexShaderFieldList)
+            {
+                if (item.Qualider == FieldQualifier.Uniform)
+                {
+                    bool exists = false;
+                    foreach (var shaderField in shaderFieldList)
+                    {
+                        if (shaderField.FieldName == item.FieldName)
+                        { exists = true; }
+                    }
+                    if (!exists)
+                    { shaderFieldList.Add(item); }
+                }
+            }
+
+            foreach (var item in this.GeometryShaderFieldList)
+            {
+                if (item.Qualider == FieldQualifier.Uniform)
+                {
+                    bool exists = false;
+                    foreach (var shaderField in shaderFieldList)
+                    {
+                        if (shaderField.FieldName == item.FieldName)
+                        { exists = true; }
+                    }
+                    if (!exists)
+                    { shaderFieldList.Add(item); }
+                }
+            }
+
+            foreach (var item in this.FragmentShaderFieldList)
+            {
+                if (item.Qualider == FieldQualifier.Uniform)
+                {
+                    bool exists = false;
+                    foreach (var shaderField in shaderFieldList)
+                    {
+                        if (shaderField.FieldName == item.FieldName)
+                        { exists = true; }
+                    }
+                    if (!exists)
+                    { shaderFieldList.Add(item); }
+                }
+            }
+
+            UniformNameMap map = new UniformNameMap();
+            foreach (var item in shaderFieldList)
+            {
+                map.Add(item.FieldName, item.FieldName);
+            }
+
+            map.ToXElement().Save(uniformNameMapFullname);
+        }
+
+        public void GenerateProperyNameMap(string propertyNameMapFullname)
+        {
+            List<ShaderField> shaderFieldList = new List<ShaderField>();
+
+            foreach (var item in this.VertexShaderFieldList)
+            {
+                if (item.Qualider == FieldQualifier.In)
+                {
+                    bool exists = false;
+                    foreach (var shaderField in shaderFieldList)
+                    {
+                        if (shaderField.FieldName == item.FieldName)
+                        { exists = true; }
+                    }
+                    if (!exists)
+                    { shaderFieldList.Add(item); }
+                }
+            }
+
+            PropertyNameMap map = new PropertyNameMap();
+            foreach (var item in shaderFieldList)
+            {
+                map.Add(item.FieldName, item.FieldName);
+            }
+
+            map.ToXElement().Save(propertyNameMapFullname);
+        }
+
+        public string GenerateCSSLMain(string csslMainFullname)
+        {
             Debug.WriteLine("#if DEBUG");// todo: 没有对应#if 的对象？
             CodeNamespace csslNamespace = new CodeNamespace(string.Format("CSharpShadingLanguage.{0}", this.ShaderName));
             csslNamespace.Imports.Add(new CodeNamespaceImport(typeof(CSharpShadingLanguage.CSShaderCode).Namespace));
@@ -451,11 +535,8 @@ namespace CSharpGL.CSSLGenetator
             return vertexShaderType;
         }
 
-        public string GenerateCSSL()
+        public string GenerateCSSL(string csslFullname)
         {
-            string directory = (new FileInfo(this.Fullname)).DirectoryName;
-            var csslFullname = Path.Combine(directory, this.ShaderName + ".cssl.cs");
-
             Debug.WriteLine("#if DEBUG");// todo: 没有对应#if 的对象？
             CodeNamespace csslNamespace = new CodeNamespace(string.Format("CSharpShadingLanguage.{0}", this.ShaderName));
             csslNamespace.Imports.Add(new CodeNamespaceImport(typeof(CSharpShadingLanguage.CSShaderCode).Namespace));
