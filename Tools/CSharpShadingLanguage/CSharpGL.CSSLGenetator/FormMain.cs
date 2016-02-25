@@ -522,6 +522,11 @@ namespace CSharpGL.CSSLGenetator
             }
         }
 
+        private void btnSaveAndGenerate_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }
