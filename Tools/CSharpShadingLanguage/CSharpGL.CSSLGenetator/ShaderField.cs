@@ -33,7 +33,8 @@ namespace CSharpGL.CSSLGenetator
 
         public override string ToString()
         {
-            return string.Format("{0} {1} {2};", Qualider.GetString(), FieldType, FieldName);
+            return string.Format("{0} {1} {2}{3};", Qualider.GetString(), FieldType, FieldName,
+                string.IsNullOrEmpty(FieldValue) ? "" : " = " + FieldValue);
         }
 
         public static ShaderField Parse(XElement element)

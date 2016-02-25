@@ -57,6 +57,7 @@ namespace CSharpGL.CSSLGenetator
                 Qualider = (FieldQualifier)this.cmbQualifier.SelectedItem,
                 FieldType = this.cmbType.SelectedItem.ToString(),
                 FieldName = this.txtName.Text,
+                FieldValue = this.txtValue.Text,
             };
 
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
