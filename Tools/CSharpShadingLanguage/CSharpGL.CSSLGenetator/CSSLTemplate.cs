@@ -549,7 +549,36 @@ namespace CSharpGL.CSSLGenetator
                 result = new CodeMemberField(shaderField.FieldType, shaderField.FieldName);
             }
 
+            result.InitExpression = GetInitExpression(shaderField);
+
             return result;
+        }
+
+        private CodeExpression GetInitExpression(ShaderField shaderField)
+        {
+            if (string.IsNullOrEmpty(shaderField.FieldValue)) { return null; }
+
+            string[] parts = shaderField.FieldValue.Split(new char[] { '(', ',', ')' }, StringSplitOptions.RemoveEmptyEntries);
+            if (parts[0] == "int")
+            {
+                return new CodePrimitiveExpression(int.Parse(parts[1]));
+            }
+            else if (parts[0] == "float")
+            {
+                return new CodePrimitiveExpression(float.Parse(parts[1]));
+            }
+            else
+            {
+                string[] valueParts = new string[parts.Length - 1];
+                for (int i = 0; i < valueParts.Length; i++)
+                {
+                    valueParts[i] = parts[i + 1];
+                }
+                return new CodeMethodInvokeExpression(
+                    new CodeMethodReferenceExpression(null, parts[0]),
+                    (from item in valueParts 
+                     select new CodePrimitiveExpression(float.Parse(item.TrimEnd('f', 'd')))).ToArray());
+            }
         }
 
         private CodeTypeDeclarationCollection GenerateStructures()

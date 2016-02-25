@@ -37,9 +37,9 @@ namespace CSharpShadingLanguage.Ground
     [CSharpShadingLanguage.GLSLVersionAttribute(((CSharpShadingLanguage.GLSLVersion)(0u)))]
     public partial class GroundFrag : CSharpShadingLanguage.FragmentCSShaderCode
     {
-        
+
         [CSharpShadingLanguage.UniformAttribute()]
-        private vec3 lineColor;
+        private vec3 lineColor = vec3(1, 1, 1);
         
         [CSharpShadingLanguage.OutAttribute()]
         private vec4 outputColor;
