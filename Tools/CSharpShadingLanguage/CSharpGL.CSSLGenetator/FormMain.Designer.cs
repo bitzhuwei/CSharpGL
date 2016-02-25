@@ -425,7 +425,7 @@
             // 
             // openFileDlg
             // 
-            this.openFileDlg.Filter = "(CSSL template *.xml)|*.xml";
+            this.openFileDlg.Filter = "(CSSL template *.config)|*.config";
             // 
             // saveFileDlg
             // 

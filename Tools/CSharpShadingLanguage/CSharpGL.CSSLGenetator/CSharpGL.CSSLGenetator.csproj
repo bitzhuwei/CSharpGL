@@ -116,8 +116,8 @@
     <Compile Include="StructureFieldList.cs" />
     <Compile Include="VertexShaderFieldList.cs" />
     <Content Include="readme.txt" />
-    <Content Include="vs+fs.xml" />
-    <Content Include="vs+gs+fs.xml" />
+    <None Include="vs+fs.config" />
+    <None Include="vs+gs+fs.config" />
     <EmbeddedResource Include="FormUpdateIntermediateStructure.resx">
       <DependentUpon>FormUpdateIntermediateStructure.cs</DependentUpon>
     </EmbeddedResource>
