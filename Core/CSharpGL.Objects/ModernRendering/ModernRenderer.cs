@@ -142,7 +142,28 @@ namespace CSharpGL.Objects.ModernRendering
             this.shaderProgram = program;
 
             // init all uniform variables
-            this.uniformVariables = GetAllUniformVariables(this.allShaderCodes);
+            UniformVariableBase[] uniformVariables = GetAllUniformVariables(this.allShaderCodes);
+            if (uniformVariables.Length != this.uniformNameMap.Count())
+            {
+                throw new Exception(String.Format("uniforms' count not match! [{0}] in shaders but [{1}] in map.",
+                  uniformVariables.Length, this.uniformNameMap.Count()));
+            }
+            var pairs = from variable in uniformVariables
+                        join mappingPair in this.uniformNameMap on variable.VarName equals mappingPair.UniformNameInShader
+                        select new { variable, mappingPair };
+            if (pairs.Count() != uniformVariables.Length)
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.AppendLine(string.Format("Only {0} of {1} uniforms are paired:",
+                    pairs.Count(), uniformVariables.Length));
+                foreach (var item in pairs)
+                {
+                    builder.AppendLine(string.Format("{0}", item.mappingPair));
+                }
+
+                throw new Exception(builder.ToString());
+            }
+            this.uniformVariables = uniformVariables;
 
             // init property buffer objects' renderer
             var propertyBufferRenderers = new BufferPointer[propertyNameMap.Count()];

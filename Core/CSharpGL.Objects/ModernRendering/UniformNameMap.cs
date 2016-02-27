@@ -36,15 +36,15 @@ namespace CSharpGL.Objects.ModernRendering
         //    return result;
         //}
 
-        public string this[string nameInShader]
+        public string this[string nameInModel]
         {
             get
             {
                 string result = null;
-                int index = this.namesInIConvert2BufferRenderer.IndexOf(nameInShader);
+                int index = this.namesInIConvert2BufferRenderer.IndexOf(nameInModel);
                 if (index < 0)
                 {
-                    result = nameInShader;
+                    result = nameInModel;
                 }
                 else
                 {
