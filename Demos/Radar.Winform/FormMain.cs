@@ -203,7 +203,6 @@ namespace Radar.Winform
             for (int i = 0; i < 20; i++)
             {
                 string filename = datafilePrefix + (i + 1).ToString() + ".txt";
-                //using (var fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
                 using (var sr = new StreamReader(filename))
                 {
                     while (!sr.EndOfStream)
@@ -222,8 +221,14 @@ namespace Radar.Winform
                                     colorList.Add(color);
 
                                     float x = vertexIndex % xSize;
-                                    float y = (vertexIndex / xSize) % ySize;
-                                    float z = (vertexIndex / ySize / xSize) % zSize;
+                                    float y = (vertexIndex % (xSize * ySize)) / ySize;
+                                    float z = vertexIndex / ySize / xSize;
+
+                                    if (vertexIndex !=
+                                        x + y * xSize + z * ySize * xSize)
+                                    {
+                                        Console.WriteLine("asdf");
+                                    }
                                     vec3 position = new vec3(x - xSize / 2, y - ySize / 2, z - zSize / 2);
                                     positionList.Add(position);
                                 }
