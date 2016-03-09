@@ -29,7 +29,7 @@ namespace Radar.Winform
 
 
             this.camera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
-            this.camera.Position = new vec3(0, 0, 5);
+            this.camera.Position = new vec3(0, 0, 80);
             this.camera.Target = new vec3(0, 0, 0);
             this.camera.UpVector = new vec3(0, 1, 0);
             this.cameraRotator = new SatelliteRotator(this.camera);
@@ -48,6 +48,7 @@ namespace Radar.Winform
 
         }
 
+        int pointSize = 2;
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
@@ -57,6 +58,8 @@ namespace Radar.Winform
 
             this.modelRenderer.SetUniformValue("mvp",
                 projectionMatrix * viewMatrix * modelMatrix);
+
+            GL.PointSize(pointSize);
 
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
@@ -149,7 +152,6 @@ namespace Radar.Winform
 
             //MessageBox.Show(builder.ToString());
 
-            //GL.PointSize(100);
 
             this.glCanvas1.Invalidate();//重绘图形。
 
@@ -245,6 +247,13 @@ namespace Radar.Winform
             UniformNameMap uniformNameMap = UniformNameMap.Parse(XElement.Load("Radar.UniformNameMap.xml"));
             this.modelRenderer = new ModernRenderer(model, codeShaders, propertyNameMap, uniformNameMap);
             this.modelRenderer.Initialize();//不在此显式初始化也可以。
+        }
+
+        private void trackPointSize_Scroll(object sender, EventArgs e)
+        {
+            this.pointSize = trackPointSize.Value;
+
+            this.glCanvas1.Invalidate();
         }
 
     }
