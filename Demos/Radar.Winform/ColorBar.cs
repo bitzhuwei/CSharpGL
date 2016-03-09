@@ -12,22 +12,6 @@ namespace Radar.Winform
         public static ColorBar GetDefault()
         {
             List<ColorCoordTuple> list = new List<ColorCoordTuple>();
-            /*
-                         coords[0] = 0.0f;
-            colors[0] = System.Drawing.Color.FromArgb(255, 0, 22, 76);
-
-            coords[1] = 0.25f;
-            colors[1] = System.Drawing.Color.FromArgb(255, 0, 193, 136);
-
-            coords[2] = 0.5f;
-            colors[2] = System.Drawing.Color.FromArgb(255, 166, 255, 27);
-
-            coords[3] = 0.75f;
-            colors[3] = System.Drawing.Color.FromArgb(255, 255, 173, 0);
-
-            coords[4] = 1.0f;
-            colors[4] = System.Drawing.Color.FromArgb(255, 255, 8, 1);
-             */
             list.Add(new ColorCoordTuple() { Color = new vec3(0 / 255.0f, 22.0f / 255.0f, 76.0f / 255.0f), Coord = 0.0f, });
             list.Add(new ColorCoordTuple() { Color = new vec3(0 / 255.0f, 193.0f / 255.0f, 136.0f / 255.0f), Coord = 0.25f, });
             list.Add(new ColorCoordTuple() { Color = new vec3(166 / 255.0f, 255.0f / 255.0f, 27.0f / 255.0f), Coord = 0.5f, });
@@ -78,16 +62,6 @@ namespace Radar.Winform
             return result;
         }
 
-        /// <summary>
-        /// 如果两点重合，则斜率为NAN.
-        /// </summary>
-        /// <param name="x1"></param>
-        /// <param name="y1"></param>
-        /// <returns></returns>
-        private static vec3 LineSlope(vec3 y2, vec3 y1, float dx)
-        {
-            return (y2 - y1) / dx;
-        }
     }
 
     class ColorCoordTuple
