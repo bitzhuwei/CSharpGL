@@ -29,10 +29,10 @@ namespace Radar.Winform
             colors[4] = System.Drawing.Color.FromArgb(255, 255, 8, 1);
              */
             list.Add(new ColorCoordTuple() { Color = new vec3(0 / 255.0f, 22.0f / 255.0f, 76.0f / 255.0f), Coord = 0.0f, });
-            list.Add(new ColorCoordTuple() { Color = new vec3(0 / 255.0f, 193.0f / 255.0f, 136.0f / 255.0f), Coord = 0.0f, });
-            list.Add(new ColorCoordTuple() { Color = new vec3(166 / 255.0f, 255.0f / 255.0f, 27.0f / 255.0f), Coord = 0.0f, });
-            list.Add(new ColorCoordTuple() { Color = new vec3(255 / 255.0f, 173.0f / 255.0f, 0.0f / 255.0f), Coord = 0.0f, });
-            list.Add(new ColorCoordTuple() { Color = new vec3(255 / 255.0f, 8.0f / 255.0f, 2.0f / 255.0f), Coord = 0.0f, });
+            list.Add(new ColorCoordTuple() { Color = new vec3(0 / 255.0f, 193.0f / 255.0f, 136.0f / 255.0f), Coord = 0.25f, });
+            list.Add(new ColorCoordTuple() { Color = new vec3(166 / 255.0f, 255.0f / 255.0f, 27.0f / 255.0f), Coord = 0.5f, });
+            list.Add(new ColorCoordTuple() { Color = new vec3(255 / 255.0f, 173.0f / 255.0f, 0.0f / 255.0f), Coord = 0.75f, });
+            list.Add(new ColorCoordTuple() { Color = new vec3(255 / 255.0f, 8.0f / 255.0f, 2.0f / 255.0f), Coord = 1.0f, });
 
             ColorBar result = new ColorBar(list);
             return result;

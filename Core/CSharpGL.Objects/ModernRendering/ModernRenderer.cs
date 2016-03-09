@@ -119,7 +119,7 @@ namespace CSharpGL.Objects.ModernRendering
 
                 this.vertexArrayObject = vertexArrayObject;
             }
-            else
+            //else
             {
                 this.vertexArrayObject.Render(e, program);
             }

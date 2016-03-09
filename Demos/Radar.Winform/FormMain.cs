@@ -27,8 +27,14 @@ namespace Radar.Winform
         {
             InitializeComponent();
 
+
             this.camera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
+            this.camera.Position = new vec3(0, 0, 5);
+            this.camera.Target = new vec3(0, 0, 0);
+            this.camera.UpVector = new vec3(0, 1, 0);
             this.cameraRotator = new SatelliteRotator(this.camera);
+
+            LoadModel();
 
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
@@ -37,6 +43,9 @@ namespace Radar.Winform
             this.glCanvas1.MouseMove += glCanvas1_MouseMove;
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
+
+            this.glCanvas1.Invalidate();
+
         }
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -95,6 +104,8 @@ namespace Radar.Winform
                         break;
                 }
             }
+
+            this.glCanvas1.Invalidate();
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
@@ -108,6 +119,8 @@ namespace Radar.Winform
             if (cameraRotator.MouseDownFlag)
             {
                 cameraRotator.MouseMove(e.X, e.Y);
+
+                this.glCanvas1.Invalidate();
             }
         }
 
@@ -119,9 +132,30 @@ namespace Radar.Winform
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
+
+            this.glCanvas1.Invalidate();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
+        {
+
+
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("This is a diffuse reflection demo with directional light and ambient light.");
+            builder.AppendLine("Use 'c' to switch camera types between perspective and ortho.");
+            builder.AppendLine("Use mouse to rotate camera.");
+            builder.AppendLine("Use 'j' to decrease vertex count.");
+            builder.AppendLine("Use 'k' to increase vertex count.");
+
+            //MessageBox.Show(builder.ToString());
+
+            //GL.PointSize(100);
+
+            this.glCanvas1.Invalidate();//重绘图形。
+
+        }
+
+        private void LoadModel()
         {
             string datafilePrefix = @"data\floordata";
             int noneZeroItemCount = 0;
@@ -182,6 +216,7 @@ namespace Radar.Winform
                                 if (value != 0.0f)
                                 {
                                     vec3 color = colorBar.GetColor(min, max, value);
+                                    //vec3 color = new vec3(1, 1, 1);
                                     colorList.Add(color);
 
                                     float x = vertexIndex % xSize;
@@ -210,17 +245,6 @@ namespace Radar.Winform
             UniformNameMap uniformNameMap = UniformNameMap.Parse(XElement.Load("Radar.UniformNameMap.xml"));
             this.modelRenderer = new ModernRenderer(model, codeShaders, propertyNameMap, uniformNameMap);
             this.modelRenderer.Initialize();//不在此显式初始化也可以。
-
-            this.glCanvas1.Invalidate();//重绘图形。
-
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine("This is a diffuse reflection demo with directional light and ambient light.");
-            builder.AppendLine("Use 'c' to switch camera types between perspective and ortho.");
-            builder.AppendLine("Use mouse to rotate camera.");
-            builder.AppendLine("Use 'j' to decrease vertex count.");
-            builder.AppendLine("Use 'k' to increase vertex count.");
-
-            MessageBox.Show(builder.ToString());
         }
 
     }
