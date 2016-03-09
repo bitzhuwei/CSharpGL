@@ -36,7 +36,7 @@ namespace Radar.Winform
 
             LoadModel();
 
-            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+            GL.ClearColor(0, 0, 0, 0);
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
