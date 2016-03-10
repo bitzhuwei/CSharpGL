@@ -15,7 +15,7 @@ namespace Radar.Winform
         List<vec3> positionList = new List<vec3>();
         List<vec3> colorList = new List<vec3>();
 
-        public RadarModel(List<vec3> positionList,List<vec3> colorList)
+        public RadarModel(List<vec3> positionList, List<vec3> colorList)
         {
             this.positionList = positionList;
             this.colorList = colorList;
