@@ -1,4 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <UniformNameMap>
   <NamePair NameInIConvert2BufferRenderer="mvp" UniformNameInShader="mvp" />
+  <NamePair NameInIConvert2BufferRenderer="pointSize" UniformNameInShader="pointSize" />
+  <NamePair NameInIConvert2BufferRenderer="cloudTexture" UniformNameInShader="cloudTexture" />
+  <NamePair NameInIConvert2BufferRenderer="canvasWidth" UniformNameInShader="canvasWidth" />
+  <NamePair NameInIConvert2BufferRenderer="canvasHeight" UniformNameInShader="canvasHeight" />
+  <NamePair NameInIConvert2BufferRenderer="brightness" UniformNameInShader="brightness" />
 </UniformNameMap>

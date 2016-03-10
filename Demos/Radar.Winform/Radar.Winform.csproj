@@ -118,6 +118,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="cloud30.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="cloud50.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Radar.PropertyNameMap.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

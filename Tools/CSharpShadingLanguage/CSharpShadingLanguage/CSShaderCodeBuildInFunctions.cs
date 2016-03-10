@@ -87,6 +87,10 @@ namespace CSharpShadingLanguage
         public static vec3 clamp(vec3 x, float minVal, float maxVal) { throw new NotNeedToImplementException(); }
         public static vec4 clamp(vec4 x, float minVal, float maxVal) { throw new NotNeedToImplementException(); }
 
+        public static float length(vec2 v) { throw new NotNeedToImplementException(); }
+        public static float length(vec3 v) { throw new NotNeedToImplementException(); }
+        public static float length(vec4 v) { throw new NotNeedToImplementException(); }
+
         #endregion others
     }
 }

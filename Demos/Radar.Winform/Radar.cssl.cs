@@ -27,6 +27,14 @@ namespace CSharpShadingLanguage.Radar
 
         [CSharpShadingLanguage.OutAttribute()]
         private vec3 pass_color;
+
+        [CSharpShadingLanguage.OutAttribute()]
+        private vec2 pass_position;
+
+
+        [CSharpShadingLanguage.UniformAttribute()]
+        private float pointSize;
+
     }
 
     /// <summary>
@@ -37,11 +45,28 @@ namespace CSharpShadingLanguage.Radar
     [CSharpShadingLanguage.GLSLVersionAttribute(((CSharpShadingLanguage.GLSLVersion)(0u)))]
     public partial class RadarFrag : CSharpShadingLanguage.FragmentCSShaderCode
     {
-
         [CSharpShadingLanguage.InAttribute()]
         private vec3 pass_color;
 
+        [CSharpShadingLanguage.InAttribute()]
+        private vec2 pass_position;
+
+        [CSharpShadingLanguage.UniformAttribute()]
+        private float pointSize;
+
         [CSharpShadingLanguage.OutAttribute()]
         private vec4 output_color;
+
+        [CSharpShadingLanguage.Uniform]
+        private sampler2D cloudTexture;
+
+        [CSharpShadingLanguage.Uniform]
+        private float canvasWidth;
+
+        [CSharpShadingLanguage.Uniform]
+        private float canvasHeight;
+
+        [CSharpShadingLanguage.Uniform]
+        private float brightness = 1.0f;
     }
 }

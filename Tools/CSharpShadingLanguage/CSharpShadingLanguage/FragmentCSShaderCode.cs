@@ -14,6 +14,8 @@ namespace CSharpShadingLanguage
     public abstract class FragmentCSShaderCode : CSShaderCode
     {
 
+        protected vec4 gl_FragCoord { get; private set; }
+
         //TODO:在CSharpShaderLanguage.Convertor项目中没有区分vertex shader和fragment shader的Dump动作。目前是认为没有下面这个discard();方法的。注意注意！以后要改啊！
         /// <summary>
         /// 代表GLSL里的discard;语句。

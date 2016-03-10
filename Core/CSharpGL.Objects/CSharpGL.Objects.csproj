@@ -84,6 +84,7 @@
     <Compile Include="Cameras\ViewTypes.cs" />
     <Compile Include="GLColor.cs" />
     <Compile Include="ModernRendering\CodeShader.cs" />
+    <Compile Include="ModernRendering\GLSwitch.cs" />
     <Compile Include="ModernRendering\IConvert2BufferPointer.cs" />
     <Compile Include="ModernRendering\ModernRenderer.cs" />
     <Compile Include="ModernRendering\PropertyNameMap.cs" />

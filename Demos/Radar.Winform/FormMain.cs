@@ -1,4 +1,5 @@
 ﻿using CSharpGL;
+using CSharpGL.Enumerations;
 using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
 using CSharpGL.Objects.ModernRendering;
@@ -37,6 +38,7 @@ namespace Radar.Winform
             LoadModel();
 
             GL.ClearColor(0, 0, 0, 0);
+            this.glCanvas1.Resize += glCanvas1_Resize;
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.KeyPress += glCanvas1_KeyPress;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
@@ -48,7 +50,13 @@ namespace Radar.Winform
 
         }
 
-        int pointSize = 2;
+        void glCanvas1_Resize(object sender, EventArgs e)
+        {
+            this.modelRenderer.SetUniformValue("canvasWidth", (float)this.glCanvas1.Width);
+            this.modelRenderer.SetUniformValue("canvasHeight", (float)this.glCanvas1.Height);
+        }
+
+        //int pointSize = 2;
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
@@ -59,7 +67,7 @@ namespace Radar.Winform
             this.modelRenderer.SetUniformValue("mvp",
                 projectionMatrix * viewMatrix * modelMatrix);
 
-            GL.PointSize(pointSize);
+            //GL.PointSize(pointSize);
 
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
@@ -230,6 +238,7 @@ namespace Radar.Winform
                                         Console.WriteLine("asdf");
                                     }
                                     vec3 position = new vec3(x - xSize / 2, y - ySize / 2, z - zSize / 2);
+                                    position = position / 10;
                                     positionList.Add(position);
                                 }
 
@@ -251,12 +260,21 @@ namespace Radar.Winform
             PropertyNameMap propertyNameMap = PropertyNameMap.Parse(XElement.Load("Radar.PropertyNameMap.xml"));
             UniformNameMap uniformNameMap = UniformNameMap.Parse(XElement.Load("Radar.UniformNameMap.xml"));
             this.modelRenderer = new ModernRenderer(model, codeShaders, propertyNameMap, uniformNameMap);
+            this.modelRenderer.SwitchList.Add(new PointSpriteSwitch());
             this.modelRenderer.Initialize();//不在此显式初始化也可以。
+            this.modelRenderer.SetUniformValue("canvasWidth", (float)this.glCanvas1.Width);
+            this.modelRenderer.SetUniformValue("canvasHeight", (float)this.glCanvas1.Height);
+            this.modelRenderer.SetUniformValue("brightness", 1.0f);
+            Texture2D texture = new Texture2D();
+            texture.Initialize(new Bitmap("cloud30.png"));
+            this.modelRenderer.SetUniformValue("cloudTexture", new samplerValue(texture.Name, ActiveTextureIndex.Texture0));
         }
 
         private void trackPointSize_Scroll(object sender, EventArgs e)
         {
-            this.pointSize = trackPointSize.Value;
+            //this.pointSize = trackPointSize.Value;
+
+            this.modelRenderer.SetUniformValue("pointSize", (float)trackPointSize.Value);
 
             this.glCanvas1.Invalidate();
         }

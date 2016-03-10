@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\ActiveTextureIndex.cs" />
     <Compile Include="Enumerations\BeginTransformFeedbackPrimitiveMode.cs" />
     <Compile Include="Enumerations\BlendFunc.cs" />
     <Compile Include="Enumerations\DrawMode.cs" />

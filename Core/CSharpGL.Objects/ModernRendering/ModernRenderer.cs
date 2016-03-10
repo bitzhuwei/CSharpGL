@@ -25,6 +25,13 @@ namespace CSharpGL.Objects.ModernRendering
         protected BufferPointer[] propertyBufferPointers;
         protected IndexBufferPointerBase indexBufferPointer;
         protected UniformVariableBase[] uniformVariables;
+        //protected UniformVariableBase[] uniformSamplers;
+        private List<GLSwitch> switchList = new List<GLSwitch>();
+
+        public IList<GLSwitch> SwitchList
+        {
+            get { return switchList; }
+        }
 
         /// <summary>
         /// 从模型到buffer的pointer
@@ -104,6 +111,11 @@ namespace CSharpGL.Objects.ModernRendering
                 item.SetUniform(program);
             }
 
+            foreach (var item in switchList)
+            {
+                item.On();
+            }
+
             int[] originalPolygonMode = new int[1];
             GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
 
@@ -127,6 +139,16 @@ namespace CSharpGL.Objects.ModernRendering
             GL.Disable(GL.GL_PRIMITIVE_RESTART);
 
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
+
+            foreach (var item in switchList)
+            {
+                item.Off();
+            }
+
+            foreach (var item in this.uniformVariables)
+            {
+                item.ResetUniform(program);
+            }
 
             // 解绑shader
             program.Unbind();
@@ -163,6 +185,10 @@ namespace CSharpGL.Objects.ModernRendering
 
                 throw new Exception(builder.ToString());
             }
+            //var samplers = from variable in uniformVariables
+            //               where variable.GetValue().GetType() == typeof(samplerValue)
+            //               select variable;
+            //this.uniformSamplers = samplers.ToArray();
             this.uniformVariables = uniformVariables;
 
             // init property buffer objects' renderer
@@ -250,6 +276,8 @@ namespace CSharpGL.Objects.ModernRendering
             { uniformVar = new UniformMat3(tokenList[index + 2].Detail); }
             else if (varType == "mat4")
             { uniformVar = new UniformMat4(tokenList[index + 2].Detail); }
+            else if (varType == "sampler2D")
+            { uniformVar = new UniformSampler2D(tokenList[index + 2].Detail); }
             else
             { throw new NotImplementedException(); }
 
