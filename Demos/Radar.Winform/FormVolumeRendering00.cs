@@ -39,7 +39,6 @@ namespace Radar.Winform
             m_Renderer.Initialize(processor, m_pTransform);
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
-            this.glCanvas1.KeyPress += glCanvas1_KeyPress;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
             this.glCanvas1.MouseMove += glCanvas1_MouseMove;
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
@@ -50,16 +49,11 @@ namespace Radar.Winform
 
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
-            //if (this.camera != null)
-            //{
-            //    this.camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
-            //}
             m_Renderer.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
         }
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
-            //this.camera.MouseWheel(e.Delta);
             m_Renderer.MouseWheel(e.Delta);
         }
 
@@ -69,16 +63,11 @@ namespace Radar.Winform
             GL.ClearColor(0, 0, 0, 0);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            //var arg = new RenderEventArgs(RenderModes.Render, this.camera);
-            //element.Render(arg);
-
             m_Renderer.Render();
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
-            //this.rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
-            //this.rotator.MouseDown(e.X, e.Y);
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 lastPoint = e.Location;
@@ -90,10 +79,6 @@ namespace Radar.Winform
 
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            //if (this.rotator.mouseDownFlag)
-            //{
-            //    this.rotator.MouseMove(e.X, e.Y);
-            //}
             if (nFlags && e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 m_pTransform.Rotate(lastPoint.Y - e.Y, lastPoint.X - e.X, 0);
@@ -107,26 +92,6 @@ namespace Radar.Winform
             {
                 nFlags = false;
             }
-            //this.rotator.MouseUp(e.X, e.Y);
-        }
-
-        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //if (e.KeyChar == 'c')
-            //{
-            //    switch (this.camera.CameraType)
-            //    {
-            //        case CameraType.Perspecitive:
-            //            this.camera.CameraType = CameraType.Ortho;
-            //            break;
-            //        case CameraType.Ortho:
-            //            this.camera.CameraType = CameraType.Perspecitive;
-            //            break;
-            //        default:
-            //            throw new NotImplementedException();
-            //    }
-
-            //}
         }
 
         private void FormVolumeRendering01_Load(object sender, EventArgs e)
