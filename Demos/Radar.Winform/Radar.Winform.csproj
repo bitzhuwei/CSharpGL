@@ -49,6 +49,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorBar.cs" />
+    <Compile Include="FormVolumeRendering00.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVolumeRendering00.Designer.cs">
+      <DependentUpon>FormVolumeRendering00.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RawDataProcessor.cs" />
+    <Compile Include="RendererHelper.cs" />
+    <Compile Include="TranformationMgr.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +71,9 @@
     <Compile Include="RadarModel.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVolumeRendering00.resx">
+      <DependentUpon>FormVolumeRendering00.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

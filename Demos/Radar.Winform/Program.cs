@@ -16,7 +16,9 @@ namespace Radar.Winform
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            Application.Run(new FormVolumeRendering00());
+            //Application.Run(new FormVolumeRendering());
+            //Application.Run(new FormMain());
         }
     }
 }
