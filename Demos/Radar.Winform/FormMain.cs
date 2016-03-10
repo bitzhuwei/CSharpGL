@@ -56,7 +56,7 @@ namespace Radar.Winform
             this.modelRenderer.SetUniformValue("canvasHeight", (float)this.glCanvas1.Height);
         }
 
-        //int pointSize = 2;
+        int pointSize = 2;
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             var arg = new RenderEventArgs(RenderModes.Render, this.camera);
@@ -67,7 +67,7 @@ namespace Radar.Winform
             this.modelRenderer.SetUniformValue("mvp",
                 projectionMatrix * viewMatrix * modelMatrix);
 
-            //GL.PointSize(pointSize);
+            GL.PointSize(pointSize);
 
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
@@ -272,7 +272,7 @@ namespace Radar.Winform
 
         private void trackPointSize_Scroll(object sender, EventArgs e)
         {
-            //this.pointSize = trackPointSize.Value;
+            this.pointSize = trackPointSize.Value;
 
             this.modelRenderer.SetUniformValue("pointSize", (float)trackPointSize.Value);
 

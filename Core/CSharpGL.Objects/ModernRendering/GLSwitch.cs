@@ -18,7 +18,7 @@ namespace CSharpGL.Objects.ModernRendering
         int m_ParticleSize = 30;
         public override void On()
         {
-            GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
+            //GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
             GL.Enable(GL.GL_POINT_SPRITE_ARB);
             GL.TexEnv(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);
             GL.Enable(GL.GL_POINT_SMOOTH);

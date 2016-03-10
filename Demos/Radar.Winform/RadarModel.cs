@@ -72,6 +72,7 @@ namespace Radar.Winform
             }
         }
 
+
         class PositionBuffer : PropertyBuffer<vec3>
         {
             public PositionBuffer(string varNameInShader)
