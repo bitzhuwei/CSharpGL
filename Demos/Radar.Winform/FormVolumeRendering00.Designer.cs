@@ -42,6 +42,7 @@ namespace Radar.Winform
             this.lblPositiveZ = new System.Windows.Forms.Label();
             this.trackPositiveZ = new System.Windows.Forms.TrackBar();
             this.lblNegativeZ = new System.Windows.Forms.Label();
+            this.lblBlendFuncParams = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
@@ -53,7 +54,8 @@ namespace Radar.Winform
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblExport3DTexture});
+            this.lblExport3DTexture,
+            this.lblBlendFuncParams});
             this.statusStrip1.Location = new System.Drawing.Point(0, 546);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(715, 25);
@@ -163,6 +165,12 @@ namespace Radar.Winform
             this.lblNegativeZ.TabIndex = 5;
             this.lblNegativeZ.Text = "-1";
             // 
+            // lblBlendFuncParams
+            // 
+            this.lblBlendFuncParams.Name = "lblBlendFuncParams";
+            this.lblBlendFuncParams.Size = new System.Drawing.Size(139, 20);
+            this.lblBlendFuncParams.Text = "blendfunc params";
+            // 
             // FormVolumeRendering00
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -207,5 +215,6 @@ namespace Radar.Winform
         private System.Windows.Forms.Label lblPositiveZ;
         private System.Windows.Forms.TrackBar trackPositiveZ;
         private System.Windows.Forms.Label lblNegativeZ;
+        private System.Windows.Forms.ToolStripStatusLabel lblBlendFuncParams;
     }
 }

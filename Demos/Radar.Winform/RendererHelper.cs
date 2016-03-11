@@ -53,7 +53,8 @@ namespace Radar.Winform
             GL.AlphaFunc(GL.GL_GREATER, alphaThreshold);
 
             GL.Enable(GL.GL_BLEND);
-            GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+            //GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+            GL.BlendFunc(this.SourceFactor, this.DestFactor);
 
             GL.MatrixMode(GL.GL_TEXTURE);
             GL.LoadIdentity();
@@ -114,6 +115,22 @@ namespace Radar.Winform
             {
                 wheel = 0.001f;
             }
+        }
+
+        private uint sourceFactor = GL.GL_SRC_ALPHA;
+
+        public uint SourceFactor
+        {
+            get { return sourceFactor; }
+            set { sourceFactor = value; }
+        }
+
+        private uint destFactor = GL.GL_ONE_MINUS_SRC_ALPHA;
+
+        public uint DestFactor
+        {
+            get { return destFactor; }
+            set { destFactor = value; }
         }
     }
 }

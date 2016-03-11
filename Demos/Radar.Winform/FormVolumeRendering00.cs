@@ -44,7 +44,78 @@ namespace Radar.Winform
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.Resize += glCanvas1_Resize;
+            this.glCanvas1.KeyPress += glCanvas1_KeyPress;
+        }
 
+        uint[] sourceFactors = new uint[] 
+        {
+            GL.GL_ZERO, GL.GL_ONE, 
+            GL.GL_SRC_COLOR, GL.GL_ONE_MINUS_SRC_COLOR, 
+            GL.GL_DST_COLOR, GL.GL_ONE_MINUS_DST_COLOR, 
+            GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, 
+            GL.GL_DST_ALPHA, GL.GL_ONE_MINUS_DST_ALPHA, 
+            //GL.GL_CONSTANT_COLOR, GL.GL_ONE_MINUS_CONSTANT_COLOR, 
+            //GL.GL_CONSTANT_ALPHA, GL.GL_ONE_MINUS_CONSTANT_ALPHA, 
+            GL.GL_SRC_ALPHA_SATURATE 
+        };
+        uint[] destFactors = new uint[] 
+        {
+            GL.GL_ZERO, GL.GL_ONE, 
+            GL.GL_SRC_COLOR, GL.GL_ONE_MINUS_SRC_COLOR, 
+            GL.GL_DST_COLOR, GL.GL_ONE_MINUS_DST_COLOR, 
+            GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, 
+            GL.GL_DST_ALPHA, GL.GL_ONE_MINUS_DST_ALPHA, 
+            //GL.GL_CONSTANT_COLOR, GL.GL_ONE_MINUS_CONSTANT_COLOR, 
+            //GL.GL_CONSTANT_ALPHA, GL.GL_ONE_MINUS_CONSTANT_ALPHA 
+        };
+        int sourceFactorIndex = 0;
+        int destFactorIndex = 0;
+        void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 's')
+            {
+                sourceFactorIndex++;
+                if (sourceFactorIndex >= sourceFactors.Length) { sourceFactorIndex = 0; }
+                this.m_Renderer.SourceFactor = sourceFactors[sourceFactorIndex];
+            }
+            else if (e.KeyChar == 'd')
+            {
+                destFactorIndex++;
+                if (destFactorIndex >= destFactors.Length) { destFactorIndex = 0; }
+                this.m_Renderer.DestFactor = destFactors[destFactorIndex];
+            }
+            else if(e.KeyChar=='a')
+            {
+                destFactorIndex--;
+                if (destFactorIndex < 0 )
+                {
+                    destFactorIndex = destFactors.Length - 1;
+                    sourceFactorIndex--;
+                    if (sourceFactorIndex < 0)
+                    { sourceFactorIndex = sourceFactors.Length - 1; }
+                }
+
+                this.m_Renderer.SourceFactor = sourceFactors[sourceFactorIndex];
+                this.m_Renderer.DestFactor = destFactors[destFactorIndex];
+            }
+            else if (e.KeyChar == 'b')
+            {
+                destFactorIndex++;
+                if (destFactorIndex >= destFactors.Length)
+                {
+                    destFactorIndex = 0;
+                    sourceFactorIndex++;
+                    if (sourceFactorIndex >= sourceFactors.Length)
+                    { sourceFactorIndex = 0; }
+                }
+
+                this.m_Renderer.SourceFactor = sourceFactors[sourceFactorIndex];
+                this.m_Renderer.DestFactor = destFactors[destFactorIndex];
+            }
+
+            this.lblBlendFuncParams.Text = string.Format("{0} - {1}",
+                sourceFactors[sourceFactorIndex],
+                destFactors[destFactorIndex]);
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)

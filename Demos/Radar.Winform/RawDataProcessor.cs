@@ -84,7 +84,7 @@ namespace Radar.Winform
                     rgbBuffer[nIndx * 4] = (byte)(color.x * 255);
                     rgbBuffer[nIndx * 4 + 1] = (byte)(color.y * 255);
                     rgbBuffer[nIndx * 4 + 2] = (byte)(color.z * 255);
-                    rgbBuffer[nIndx * 4 + 3] = (byte)((value - min) / (max - min) * 255.0f);
+                    rgbBuffer[nIndx * 4 + 3] = (byte)((value - min) / (max - min) * 255.0f / 10);
                 }
             }
 
