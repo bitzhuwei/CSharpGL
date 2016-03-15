@@ -195,6 +195,9 @@ namespace Radar.Winform
                 this.rotator.MouseMove(e.X, e.Y);
 
                 UpdateCameraDirectionDisplay(this.camera);
+
+            var direction = camera.Target - camera.Position;
+            this.section_Renderer.reverseRender = direction.z > 0;
             }
         }
 

@@ -27,7 +27,8 @@ namespace Radar.Winform
             if (blend) { GL.Enable(GL.GL_BLEND); }
             else { GL.Disable(GL.GL_BLEND); }
             GL.BlendFunc(this.SourceFactor, this.DestFactor);
-
+            GL.LoadIdentity();
+            GL.Scale(6,6,6);
             //GL.MatrixMode(GL.GL_TEXTURE);
             //GL.Scaled((float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetWidth(),
             //    (float)m_pRawDataProc.GetWidth() / (float)(float)m_pRawDataProc.GetHeight(),
@@ -40,23 +41,47 @@ namespace Radar.Winform
             GL.BindTexture(GL.GL_TEXTURE_3D, m_pRawDataProc.GetTexture3D());
             if (renderZ)
             {
-                for (float fIndx = negativeZ; fIndx <= positiveZ; fIndx += 0.01f)
+                if (!reverseRender)
                 {
-                    GL.Begin(GL.GL_QUADS);
+                    for (float fIndx = negativeZ; fIndx <= positiveZ; fIndx += 0.01f)
+                    {
+                        GL.Begin(GL.GL_QUADS);
 
-                    GL.TexCoord3f(0.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
-                    GL.Vertex3f(-dOrthoSize / w, -dOrthoSize / h, fIndx / d);
+                        GL.TexCoord3f(0.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
+                        GL.Vertex3f(-dOrthoSize / w, -dOrthoSize / h, fIndx / d);
 
-                    GL.TexCoord3f(1.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
-                    GL.Vertex3f(dOrthoSize / w, -dOrthoSize / h, fIndx / d);
+                        GL.TexCoord3f(1.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
+                        GL.Vertex3f(dOrthoSize / w, -dOrthoSize / h, fIndx / d);
 
-                    GL.TexCoord3f(1.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
-                    GL.Vertex3f(dOrthoSize / w, dOrthoSize / h, fIndx / d);
+                        GL.TexCoord3f(1.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
+                        GL.Vertex3f(dOrthoSize / w, dOrthoSize / h, fIndx / d);
 
-                    GL.TexCoord3f(0.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
-                    GL.Vertex3f(-dOrthoSize / w, dOrthoSize / h, fIndx / d);
+                        GL.TexCoord3f(0.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
+                        GL.Vertex3f(-dOrthoSize / w, dOrthoSize / h, fIndx / d);
 
-                    GL.End();
+                        GL.End();
+                    }
+                }
+                else
+                {
+                    for (float fIndx = positiveZ; fIndx >= negativeZ; fIndx -= 0.01f)
+                    {
+                        GL.Begin(GL.GL_QUADS);
+
+                        GL.TexCoord3f(0.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
+                        GL.Vertex3f(-dOrthoSize / w, -dOrthoSize / h, fIndx / d);
+
+                        GL.TexCoord3f(1.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
+                        GL.Vertex3f(dOrthoSize / w, -dOrthoSize / h, fIndx / d);
+
+                        GL.TexCoord3f(1.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
+                        GL.Vertex3f(dOrthoSize / w, dOrthoSize / h, fIndx / d);
+
+                        GL.TexCoord3f(0.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
+                        GL.Vertex3f(-dOrthoSize / w, dOrthoSize / h, fIndx / d);
+
+                        GL.End();
+                    }
                 }
             }
             //
@@ -108,11 +133,13 @@ namespace Radar.Winform
         }
 
         private uint destFactor = GL.GL_ONE_MINUS_SRC_COLOR;
+        public bool reverseRender = false;
 
         public uint DestFactor
         {
             get { return destFactor; }
             set { destFactor = value; }
         }
+
     }
 }
