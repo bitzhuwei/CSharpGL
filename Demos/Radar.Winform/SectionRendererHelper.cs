@@ -7,11 +7,18 @@ using System.Threading.Tasks;
 
 namespace Radar.Winform
 {
+    public enum SliceAxis
+    {
+        X, Y, Z,
+    }
+
     public class SectionRendererHelper
     {
+
         public float alphaThreshold = 0.00f;
         public float sectionCenter = 0.0f;
         public float halfThickness = 2.0f;
+        public SliceAxis slice = SliceAxis.Z;
 
         public bool Initialize(RawDataProcessor pRawDataProc_i)
         {
@@ -34,95 +41,19 @@ namespace Radar.Winform
             var d = (float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetDepth();
             GL.Enable(GL.GL_TEXTURE_3D);
             GL.BindTexture(GL.GL_TEXTURE_3D, m_pRawDataProc.GetTexture3D());
-            if (renderZ)
+            switch (this.slice)
             {
-                if (!reverseRender4Z)
-                {
-                    for (float fIndx = sectionCenter - halfThickness / 2; fIndx <= sectionCenter + halfThickness / 2; fIndx += 0.01f)
-                    {
-                        GL.Begin(GL.GL_QUADS);
-
-                        GL.TexCoord3f(0.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
-                        GL.Vertex3f(-dOrthoSize / w, -dOrthoSize / h, fIndx / d);
-
-                        GL.TexCoord3f(1.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
-                        GL.Vertex3f(dOrthoSize / w, -dOrthoSize / h, fIndx / d);
-
-                        GL.TexCoord3f(1.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
-                        GL.Vertex3f(dOrthoSize / w, dOrthoSize / h, fIndx / d);
-
-                        GL.TexCoord3f(0.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
-                        GL.Vertex3f(-dOrthoSize / w, dOrthoSize / h, fIndx / d);
-
-                        GL.End();
-                    }
-                }
-                else
-                {
-                    for (float fIndx = sectionCenter + halfThickness / 2; fIndx >= sectionCenter - halfThickness / 2; fIndx -= 0.01f)
-                    {
-                        GL.Begin(GL.GL_QUADS);
-
-                        GL.TexCoord3f(0.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
-                        GL.Vertex3f(-dOrthoSize / w, -dOrthoSize / h, fIndx / d);
-
-                        GL.TexCoord3f(1.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
-                        GL.Vertex3f(dOrthoSize / w, -dOrthoSize / h, fIndx / d);
-
-                        GL.TexCoord3f(1.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
-                        GL.Vertex3f(dOrthoSize / w, dOrthoSize / h, fIndx / d);
-
-                        GL.TexCoord3f(0.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
-                        GL.Vertex3f(-dOrthoSize / w, dOrthoSize / h, fIndx / d);
-
-                        GL.End();
-                    }
-                }
-            }
-            else
-            {
-                if (!reverseRender4Y)
-                {
-                    for (float fIndx = sectionCenter - halfThickness / 2; fIndx <= sectionCenter + halfThickness / 2; fIndx += 1.0f / 921.0f)
-                    {
-                        GL.Begin(GL.GL_QUADS);
-
-                        GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
-                        GL.Vertex3f(-dOrthoSize / w, fIndx / h, -dOrthoSize / d);
-
-                        GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
-                        GL.Vertex3f(dOrthoSize / w, fIndx / h, -dOrthoSize / d);
-
-                        GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
-                        GL.Vertex3f(dOrthoSize / w, fIndx / h, dOrthoSize / d);
-
-                        GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
-                        GL.Vertex3f(-dOrthoSize / w, fIndx / h, dOrthoSize / d);
-
-                        GL.End();
-                    }
-                }
-                else
-                {
-                    for (float fIndx = sectionCenter + halfThickness / 2; fIndx >= sectionCenter - halfThickness / 2; fIndx -= 1.0f / 921.0f)
-                    {
-                        GL.Begin(GL.GL_QUADS);
-
-                        GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
-                        GL.Vertex3f(-dOrthoSize / w, fIndx / h, -dOrthoSize / d);
-
-                        GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
-                        GL.Vertex3f(dOrthoSize / w, fIndx / h, -dOrthoSize / d);
-
-                        GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
-                        GL.Vertex3f(dOrthoSize / w, fIndx / h, dOrthoSize / d);
-
-                        GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
-                        GL.Vertex3f(-dOrthoSize / w, fIndx / h, dOrthoSize / d);
-
-                        GL.End();
-                    }
-                }
+                case SliceAxis.X:
+                    SliceXRendering(w, h, d);
+                    break;
+                case SliceAxis.Y:
+                    SliceYRendering(w, h, d);
+                    break;
+                case SliceAxis.Z:
+                    SliceZRendering(w, h, d);
+                    break;
+                default:
+                    throw new NotImplementedException();
             }
             GL.BindTexture(GL.GL_TEXTURE_3D, 0);
             GL.Disable(GL.GL_TEXTURE_3D);
@@ -131,6 +62,143 @@ namespace Radar.Winform
 
             GL.Disable(GL.GL_BLEND);
 
+        }
+
+        private void SliceXRendering(float w, float h, float d)
+        {
+            if (!reverseRender4Y)
+            {
+                for (float fIndx = sectionCenter - halfThickness / 2; fIndx <= sectionCenter + halfThickness / 2; fIndx += 1.0f / 921.0f)
+                {
+                    GL.Begin(GL.GL_QUADS);
+
+                    GL.TexCoord3f(((float)fIndx + 1.0f) / 2.0f, 0.0f, 0.0f);
+                    GL.Vertex3f(fIndx / h, -dOrthoSize / w, -dOrthoSize / d);
+
+                    GL.TexCoord3f(((float)fIndx + 1.0f) / 2.0f, 1.0f, 0.0f);
+                    GL.Vertex3f(fIndx / h, dOrthoSize / w, -dOrthoSize / d);
+
+                    GL.TexCoord3f(((float)fIndx + 1.0f) / 2.0f, 1.0f, 1.0f);
+                    GL.Vertex3f(fIndx / h, dOrthoSize / w, dOrthoSize / d);
+
+                    GL.TexCoord3f(((float)fIndx + 1.0f) / 2.0f, 0.0f, 1.0f);
+                    GL.Vertex3f(fIndx / h, -dOrthoSize / w, dOrthoSize / d);
+
+                    GL.End();
+                }
+            }
+            else
+            {
+                for (float fIndx = sectionCenter + halfThickness / 2; fIndx >= sectionCenter - halfThickness / 2; fIndx -= 1.0f / 921.0f)
+                {
+                    GL.Begin(GL.GL_QUADS);
+
+                    GL.TexCoord3f(((float)fIndx + 1.0f) / 2.0f, 0.0f, 0.0f);
+                    GL.Vertex3f(fIndx / h, -dOrthoSize / w, -dOrthoSize / d);
+
+                    GL.TexCoord3f(((float)fIndx + 1.0f) / 2.0f, 1.0f, 0.0f);
+                    GL.Vertex3f(fIndx / h, dOrthoSize / w, -dOrthoSize / d);
+
+                    GL.TexCoord3f(((float)fIndx + 1.0f) / 2.0f, 1.0f, 1.0f);
+                    GL.Vertex3f(fIndx / h, dOrthoSize / w, dOrthoSize / d);
+
+                    GL.TexCoord3f(((float)fIndx + 1.0f) / 2.0f, 0.0f, 1.0f);
+                    GL.Vertex3f(fIndx / h, -dOrthoSize / w, dOrthoSize / d);
+
+                    GL.End();
+                }
+            }
+        }
+        private void SliceYRendering(float w, float h, float d)
+        {
+            if (!reverseRender4Y)
+            {
+                for (float fIndx = sectionCenter - halfThickness / 2; fIndx <= sectionCenter + halfThickness / 2; fIndx += 1.0f / 921.0f)
+                {
+                    GL.Begin(GL.GL_QUADS);
+
+                    GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
+                    GL.Vertex3f(-dOrthoSize / w, fIndx / h, -dOrthoSize / d);
+
+                    GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
+                    GL.Vertex3f(dOrthoSize / w, fIndx / h, -dOrthoSize / d);
+
+                    GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
+                    GL.Vertex3f(dOrthoSize / w, fIndx / h, dOrthoSize / d);
+
+                    GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
+                    GL.Vertex3f(-dOrthoSize / w, fIndx / h, dOrthoSize / d);
+
+                    GL.End();
+                }
+            }
+            else
+            {
+                for (float fIndx = sectionCenter + halfThickness / 2; fIndx >= sectionCenter - halfThickness / 2; fIndx -= 1.0f / 921.0f)
+                {
+                    GL.Begin(GL.GL_QUADS);
+
+                    GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
+                    GL.Vertex3f(-dOrthoSize / w, fIndx / h, -dOrthoSize / d);
+
+                    GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
+                    GL.Vertex3f(dOrthoSize / w, fIndx / h, -dOrthoSize / d);
+
+                    GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
+                    GL.Vertex3f(dOrthoSize / w, fIndx / h, dOrthoSize / d);
+
+                    GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
+                    GL.Vertex3f(-dOrthoSize / w, fIndx / h, dOrthoSize / d);
+
+                    GL.End();
+                }
+            }
+        }
+
+        private void SliceZRendering(float w, float h, float d)
+        {
+            if (!reverseRender4Z)
+            {
+                for (float fIndx = sectionCenter - halfThickness / 2; fIndx <= sectionCenter + halfThickness / 2; fIndx += 0.01f)
+                {
+                    GL.Begin(GL.GL_QUADS);
+
+                    GL.TexCoord3f(0.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
+                    GL.Vertex3f(-dOrthoSize / w, -dOrthoSize / h, fIndx / d);
+
+                    GL.TexCoord3f(1.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
+                    GL.Vertex3f(dOrthoSize / w, -dOrthoSize / h, fIndx / d);
+
+                    GL.TexCoord3f(1.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
+                    GL.Vertex3f(dOrthoSize / w, dOrthoSize / h, fIndx / d);
+
+                    GL.TexCoord3f(0.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
+                    GL.Vertex3f(-dOrthoSize / w, dOrthoSize / h, fIndx / d);
+
+                    GL.End();
+                }
+            }
+            else
+            {
+                for (float fIndx = sectionCenter + halfThickness / 2; fIndx >= sectionCenter - halfThickness / 2; fIndx -= 0.01f)
+                {
+                    GL.Begin(GL.GL_QUADS);
+
+                    GL.TexCoord3f(0.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
+                    GL.Vertex3f(-dOrthoSize / w, -dOrthoSize / h, fIndx / d);
+
+                    GL.TexCoord3f(1.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
+                    GL.Vertex3f(dOrthoSize / w, -dOrthoSize / h, fIndx / d);
+
+                    GL.TexCoord3f(1.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
+                    GL.Vertex3f(dOrthoSize / w, dOrthoSize / h, fIndx / d);
+
+                    GL.TexCoord3f(0.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
+                    GL.Vertex3f(-dOrthoSize / w, dOrthoSize / h, fIndx / d);
+
+                    GL.End();
+                }
+            }
         }
 
         bool blend = true;
@@ -149,7 +217,6 @@ namespace Radar.Winform
         private uint destFactor = GL.GL_ONE_MINUS_SRC_COLOR;
         public bool reverseRender4Z = false;
         public bool reverseRender4Y = false;
-        public bool renderZ = true;
 
         public uint DestFactor
         {

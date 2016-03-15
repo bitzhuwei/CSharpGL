@@ -199,10 +199,10 @@ namespace Radar.Winform
                 var direction = (camera.Target - camera.Position).normalize();
                 this.section_Renderer.reverseRender4Z = direction.z >= 0;
                 this.section_Renderer.reverseRender4Y = direction.y >= 0;
-                if (Math.Abs(direction.y) < 0.8f)
-                { this.section_Renderer.renderZ = true; }
-                else if (Math.Abs(direction.z) < 0.8f)
-                { this.section_Renderer.renderZ = false; }
+                //if (Math.Abs(direction.y) < 0.8f)
+                //{ this.section_Renderer.renderZ = true; }
+                //else if (Math.Abs(direction.z) < 0.8f)
+                //{ this.section_Renderer.renderZ = false; }
             }
         }
 
@@ -210,8 +210,8 @@ namespace Radar.Winform
         {
             var direction = camera.Target - camera.Position;
             this.lblCameraDirection.Text =
-                string.Format("{0} {1}", direction,
-                this.section_Renderer.renderZ ? "renderZ" : "renderY");
+                string.Format("{0}, slice: {1}", direction,
+                    this.section_Renderer.slice);
         }
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
@@ -252,5 +252,22 @@ namespace Radar.Winform
             this.section_Renderer.halfThickness = value;
             this.lblSectionThick.Text = (value * 2).ToShortString();
         }
+
+        private void rdoSliceX_CheckedChanged(object sender, EventArgs e)
+        {
+            this.section_Renderer.slice = SliceAxis.X;
+        }
+
+        private void rdoSliceY_CheckedChanged(object sender, EventArgs e)
+        {
+            this.section_Renderer.slice = SliceAxis.Y;
+        }
+
+        private void rdoSliceZ_CheckedChanged(object sender, EventArgs e)
+        {
+            this.section_Renderer.slice = SliceAxis.Z;
+        }
+
+
     }
 }

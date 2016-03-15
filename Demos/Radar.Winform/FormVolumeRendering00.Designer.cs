@@ -44,6 +44,10 @@ namespace Radar.Winform
             this.label4 = new System.Windows.Forms.Label();
             this.lblSectionPosition = new System.Windows.Forms.Label();
             this.lblSectionThick = new System.Windows.Forms.Label();
+            this.rdoSliceX = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.rdoSliceY = new System.Windows.Forms.RadioButton();
+            this.rdoSliceZ = new System.Windows.Forms.RadioButton();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackSectionPosition)).BeginInit();
@@ -135,12 +139,12 @@ namespace Radar.Winform
             this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.glCanvas1.Location = new System.Drawing.Point(13, 199);
+            this.glCanvas1.Location = new System.Drawing.Point(13, 224);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(689, 346);
+            this.glCanvas1.Size = new System.Drawing.Size(689, 321);
             this.glCanvas1.TabIndex = 3;
             // 
             // trackSectionThickness
@@ -184,14 +188,62 @@ namespace Radar.Winform
             this.lblSectionThick.TabIndex = 5;
             this.lblSectionThick.Text = "2.00";
             // 
+            // rdoSliceX
+            // 
+            this.rdoSliceX.AutoSize = true;
+            this.rdoSliceX.Location = new System.Drawing.Point(94, 198);
+            this.rdoSliceX.Name = "rdoSliceX";
+            this.rdoSliceX.Size = new System.Drawing.Size(81, 19);
+            this.rdoSliceX.TabIndex = 6;
+            this.rdoSliceX.Text = "切割X轴";
+            this.rdoSliceX.UseVisualStyleBackColor = true;
+            this.rdoSliceX.CheckedChanged += new System.EventHandler(this.rdoSliceX_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 202);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 15);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "切割方向：";
+            // 
+            // rdoSliceY
+            // 
+            this.rdoSliceY.AutoSize = true;
+            this.rdoSliceY.Location = new System.Drawing.Point(181, 198);
+            this.rdoSliceY.Name = "rdoSliceY";
+            this.rdoSliceY.Size = new System.Drawing.Size(81, 19);
+            this.rdoSliceY.TabIndex = 6;
+            this.rdoSliceY.Text = "切割Y轴";
+            this.rdoSliceY.UseVisualStyleBackColor = true;
+            this.rdoSliceY.CheckedChanged += new System.EventHandler(this.rdoSliceY_CheckedChanged);
+            // 
+            // rdoSliceZ
+            // 
+            this.rdoSliceZ.AutoSize = true;
+            this.rdoSliceZ.Checked = true;
+            this.rdoSliceZ.Location = new System.Drawing.Point(268, 198);
+            this.rdoSliceZ.Name = "rdoSliceZ";
+            this.rdoSliceZ.Size = new System.Drawing.Size(81, 19);
+            this.rdoSliceZ.TabIndex = 6;
+            this.rdoSliceZ.TabStop = true;
+            this.rdoSliceZ.Text = "切割Z轴";
+            this.rdoSliceZ.UseVisualStyleBackColor = true;
+            this.rdoSliceZ.CheckedChanged += new System.EventHandler(this.rdoSliceZ_CheckedChanged);
+            // 
             // FormVolumeRendering00
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(715, 571);
+            this.Controls.Add(this.rdoSliceZ);
+            this.Controls.Add(this.rdoSliceY);
+            this.Controls.Add(this.rdoSliceX);
             this.Controls.Add(this.lblSectionThick);
             this.Controls.Add(this.lblSectionPosition);
             this.Controls.Add(this.lblAlphaThreshold);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -231,5 +283,9 @@ namespace Radar.Winform
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblSectionPosition;
         private System.Windows.Forms.Label lblSectionThick;
+        private System.Windows.Forms.RadioButton rdoSliceX;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton rdoSliceY;
+        private System.Windows.Forms.RadioButton rdoSliceZ;
     }
 }
