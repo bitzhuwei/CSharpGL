@@ -29,11 +29,6 @@ namespace Radar.Winform
             GL.BlendFunc(this.SourceFactor, this.DestFactor);
             GL.LoadIdentity();
             GL.Scale(6,6,6);
-            //GL.MatrixMode(GL.GL_TEXTURE);
-            //GL.Scaled((float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetWidth(),
-            //    (float)m_pRawDataProc.GetWidth() / (float)(float)m_pRawDataProc.GetHeight(),
-            //    (float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetDepth());
-            //GL.MatrixMode(GL.GL_MODELVIEW);
             var w = (float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetWidth();
             var h = (float)m_pRawDataProc.GetWidth() / (float)(float)m_pRawDataProc.GetHeight();
             var d = (float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetDepth();

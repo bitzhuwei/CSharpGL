@@ -196,8 +196,8 @@ namespace Radar.Winform
 
                 UpdateCameraDirectionDisplay(this.camera);
 
-            var direction = camera.Target - camera.Position;
-            this.section_Renderer.reverseRender = direction.z > 0;
+                var direction = camera.Target - camera.Position;
+                this.section_Renderer.reverseRender = direction.z >= 0;
             }
         }
 
