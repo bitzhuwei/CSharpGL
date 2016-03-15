@@ -56,6 +56,7 @@
       <DependentUpon>FormVolumeRendering00.cs</DependentUpon>
     </Compile>
     <Compile Include="RawDataProcessor.cs" />
+    <Compile Include="SectionRendererHelper.cs" />
     <Compile Include="RendererHelper.cs" />
     <Compile Include="TranformationMgr.cs" />
     <Compile Include="FormMain.cs">

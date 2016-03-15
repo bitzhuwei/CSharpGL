@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Radar.Winform
 {
-    public class RendererHelper
+    public class SectionRendererHelper
     {
         public float alphaThreshold = 0.00f;
         public float negativeZ = -1.0f;
@@ -99,6 +99,27 @@ namespace Radar.Winform
 
                 GL.End();
             }
+            //
+            //float negtiveY = -1;
+            //float positiveY = 1;
+            //for (float fIndx = negtiveY; fIndx <= positiveY; fIndx += 0.01f)
+            //{
+            //    GL.Begin(GL.GL_QUADS);
+
+            //    GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
+            //    GL.Vertex3f(-dOrthoSize, fIndx, -dOrthoSize);
+
+            //    GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
+            //    GL.Vertex3f(dOrthoSize, fIndx, -dOrthoSize);
+
+            //    GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
+            //    GL.Vertex3f(dOrthoSize, fIndx, dOrthoSize);
+
+            //    GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
+            //    GL.Vertex3f(-dOrthoSize, fIndx, dOrthoSize);
+
+            //    GL.End();
+            //}
             GL.BindTexture(GL.GL_TEXTURE_3D, 0);
         }
 
@@ -107,11 +128,11 @@ namespace Radar.Winform
         private RawDataProcessor m_pRawDataProc;
         private TranformationMgr m_pTransformMgr;
 
-        private float wheel = 1.0f;
+        private float wheel = 0.16f;
         public void MouseWheel(int p)
         {
             wheel -= (float)p / 5000.0f;
-            if(wheel<=0)
+            if (wheel <= 0)
             {
                 wheel = 0.001f;
             }

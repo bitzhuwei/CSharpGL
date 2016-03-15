@@ -30,7 +30,7 @@ namespace Radar.Winform
         private void InitializeComponent()
         {
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.lblExport3DTexture = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblBlendFuncParams = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.trackAlpha = new System.Windows.Forms.TrackBar();
@@ -42,19 +42,20 @@ namespace Radar.Winform
             this.lblPositiveZ = new System.Windows.Forms.Label();
             this.trackPositiveZ = new System.Windows.Forms.TrackBar();
             this.lblNegativeZ = new System.Windows.Forms.Label();
-            this.lblBlendFuncParams = new System.Windows.Forms.ToolStripStatusLabel();
+            this.trackSectionHeight = new System.Windows.Forms.TrackBar();
+            this.label3 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackNegativeZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackPositiveZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackSectionHeight)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblExport3DTexture,
             this.lblBlendFuncParams});
             this.statusStrip1.Location = new System.Drawing.Point(0, 546);
             this.statusStrip1.Name = "statusStrip1";
@@ -62,12 +63,11 @@ namespace Radar.Winform
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // lblExport3DTexture
+            // lblBlendFuncParams
             // 
-            this.lblExport3DTexture.Name = "lblExport3DTexture";
-            this.lblExport3DTexture.Size = new System.Drawing.Size(119, 20);
-            this.lblExport3DTexture.Text = "点此导出3D贴图";
-            this.lblExport3DTexture.Click += new System.EventHandler(this.lblExport3DTexture_Click);
+            this.lblBlendFuncParams.Name = "lblBlendFuncParams";
+            this.lblBlendFuncParams.Size = new System.Drawing.Size(139, 20);
+            this.lblBlendFuncParams.Text = "blendfunc params";
             // 
             // openFileDialog1
             // 
@@ -82,7 +82,6 @@ namespace Radar.Winform
             this.trackAlpha.Name = "trackAlpha";
             this.trackAlpha.Size = new System.Drawing.Size(547, 56);
             this.trackAlpha.TabIndex = 4;
-            this.trackAlpha.Value = 5;
             this.trackAlpha.Scroll += new System.EventHandler(this.trackAlpha_Scroll);
             // 
             // label1
@@ -102,19 +101,19 @@ namespace Radar.Winform
             this.lblAlphaThreshold.Name = "lblAlphaThreshold";
             this.lblAlphaThreshold.Size = new System.Drawing.Size(39, 15);
             this.lblAlphaThreshold.TabIndex = 5;
-            this.lblAlphaThreshold.Text = "0.05";
+            this.lblAlphaThreshold.Text = "0.00";
             // 
             // glCanvas1
             // 
             this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.glCanvas1.Location = new System.Drawing.Point(13, 137);
+            this.glCanvas1.Location = new System.Drawing.Point(13, 206);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(689, 408);
+            this.glCanvas1.Size = new System.Drawing.Size(689, 339);
             this.glCanvas1.TabIndex = 3;
             // 
             // trackNegativeZ
@@ -165,11 +164,24 @@ namespace Radar.Winform
             this.lblNegativeZ.TabIndex = 5;
             this.lblNegativeZ.Text = "-1";
             // 
-            // lblBlendFuncParams
+            // trackSectionHeight
             // 
-            this.lblBlendFuncParams.Name = "lblBlendFuncParams";
-            this.lblBlendFuncParams.Size = new System.Drawing.Size(139, 20);
-            this.lblBlendFuncParams.Text = "blendfunc params";
+            this.trackSectionHeight.Location = new System.Drawing.Point(93, 137);
+            this.trackSectionHeight.Maximum = 100;
+            this.trackSectionHeight.Minimum = -100;
+            this.trackSectionHeight.Name = "trackSectionHeight";
+            this.trackSectionHeight.Size = new System.Drawing.Size(609, 56);
+            this.trackSectionHeight.TabIndex = 4;
+            this.trackSectionHeight.Scroll += new System.EventHandler(this.trackSectionHeight_Scroll);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 137);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 15);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "剖面高度：";
             // 
             // FormVolumeRendering00
             // 
@@ -179,9 +191,11 @@ namespace Radar.Winform
             this.Controls.Add(this.lblNegativeZ);
             this.Controls.Add(this.lblPositiveZ);
             this.Controls.Add(this.lblAlphaThreshold);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.trackPositiveZ);
+            this.Controls.Add(this.trackSectionHeight);
             this.Controls.Add(this.trackNegativeZ);
             this.Controls.Add(this.trackAlpha);
             this.Controls.Add(this.glCanvas1);
@@ -195,6 +209,7 @@ namespace Radar.Winform
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackNegativeZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackPositiveZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackSectionHeight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,7 +220,6 @@ namespace Radar.Winform
         private System.Windows.Forms.StatusStrip statusStrip1;
         private GLCanvas glCanvas1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.ToolStripStatusLabel lblExport3DTexture;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.TrackBar trackAlpha;
         private System.Windows.Forms.Label label1;
@@ -216,5 +230,7 @@ namespace Radar.Winform
         private System.Windows.Forms.TrackBar trackPositiveZ;
         private System.Windows.Forms.Label lblNegativeZ;
         private System.Windows.Forms.ToolStripStatusLabel lblBlendFuncParams;
+        private System.Windows.Forms.TrackBar trackSectionHeight;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -21,6 +21,8 @@ namespace Radar.Winform
         private RawDataProcessor processor = new RawDataProcessor();
         private TranformationMgr m_pTransform = new TranformationMgr();
         private RendererHelper m_Renderer = new RendererHelper();
+        private SectionRendererHelper section_Renderer = new SectionRendererHelper();
+
         private bool nFlags;
         private const string textureFilename = "floordata";
 
@@ -37,6 +39,7 @@ namespace Radar.Winform
             }
             processor.ReadFile(filenames, 921, 921, 20);
             m_Renderer.Initialize(processor, m_pTransform);
+            section_Renderer.Initialize(processor, m_pTransform);
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
@@ -68,8 +71,8 @@ namespace Radar.Winform
             //GL.GL_CONSTANT_COLOR, GL.GL_ONE_MINUS_CONSTANT_COLOR, 
             //GL.GL_CONSTANT_ALPHA, GL.GL_ONE_MINUS_CONSTANT_ALPHA 
         };
-        int sourceFactorIndex = 0;
-        int destFactorIndex = 0;
+        int sourceFactorIndex = 3;
+        int destFactorIndex = 3;
         void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 's')
@@ -77,12 +80,14 @@ namespace Radar.Winform
                 sourceFactorIndex++;
                 if (sourceFactorIndex >= sourceFactors.Length) { sourceFactorIndex = 0; }
                 this.m_Renderer.SourceFactor = sourceFactors[sourceFactorIndex];
+                this.section_Renderer.SourceFactor = sourceFactors[sourceFactorIndex];
             }
             else if (e.KeyChar == 'd')
             {
                 destFactorIndex++;
                 if (destFactorIndex >= destFactors.Length) { destFactorIndex = 0; }
                 this.m_Renderer.DestFactor = destFactors[destFactorIndex];
+                this.section_Renderer.DestFactor = destFactors[destFactorIndex];
             }
             else if(e.KeyChar=='a')
             {
@@ -97,6 +102,8 @@ namespace Radar.Winform
 
                 this.m_Renderer.SourceFactor = sourceFactors[sourceFactorIndex];
                 this.m_Renderer.DestFactor = destFactors[destFactorIndex];
+                this.section_Renderer.SourceFactor = sourceFactors[sourceFactorIndex];
+                this.section_Renderer.DestFactor = destFactors[destFactorIndex];
             }
             else if (e.KeyChar == 'b')
             {
@@ -111,6 +118,8 @@ namespace Radar.Winform
 
                 this.m_Renderer.SourceFactor = sourceFactors[sourceFactorIndex];
                 this.m_Renderer.DestFactor = destFactors[destFactorIndex];
+                this.section_Renderer.SourceFactor = sourceFactors[sourceFactorIndex];
+                this.section_Renderer.DestFactor = destFactors[destFactorIndex];
             }
 
             this.lblBlendFuncParams.Text = string.Format("{0} - {1}",
@@ -121,11 +130,13 @@ namespace Radar.Winform
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
             m_Renderer.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
+            section_Renderer.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
         }
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             m_Renderer.MouseWheel(e.Delta);
+            section_Renderer.MouseWheel(e.Delta);
         }
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -134,7 +145,8 @@ namespace Radar.Winform
             GL.ClearColor(0, 0, 0, 0);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            m_Renderer.Render();
+            //m_Renderer.Render();
+            section_Renderer.Render();
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
@@ -171,48 +183,12 @@ namespace Radar.Winform
 
         }
 
-        private void lblExport3DTexture_Click(object sender, EventArgs e)
-        {
-            if (this.saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                this.Export3DTexture(textureFilename, 921, 921, 20, this.saveFileDialog1.FileName);
-
-                Process.Start("explorer", (new FileInfo(this.saveFileDialog1.FileName)).DirectoryName);
-            }
-        }
-
-
-        private void Export3DTexture(string lpDataFile_i, int imageWidth, int imageHeight, int imageCount, string exportFilename)
-        {
-            FileStream file = new FileStream(lpDataFile_i, FileMode.Open, FileAccess.Read);
-
-            byte[] chBuffer = new byte[imageWidth * imageHeight * imageCount];
-
-            // Holds the RGBA buffer
-            file.Read(chBuffer, 0, chBuffer.Length);
-
-            int index = 0;
-            for (int i = 0; i < imageCount; i++)
-            {
-                Bitmap bitmap = new Bitmap(imageWidth, imageHeight);
-                for (int col = 0; col < imageWidth; col++)
-                {
-                    for (int row = 0; row < imageHeight; row++)
-                    {
-                        byte component = chBuffer[index++];
-                        Color c = Color.FromArgb(component, component, component, component);
-                        bitmap.SetPixel(col, row, c);
-                    }
-                }
-                bitmap.Save(string.Format("{0}{1}.png", exportFilename, i), System.Drawing.Imaging.ImageFormat.Png);
-            }
-
-        }
 
         private void trackAlpha_Scroll(object sender, EventArgs e)
         {
             var value = (float)this.trackAlpha.Value / 100.0f;
             this.m_Renderer.alphaThreshold = value;
+            this.section_Renderer.alphaThreshold = value;
             this.lblAlphaThreshold.Text = value.ToShortString();
         }
 
@@ -228,6 +204,15 @@ namespace Radar.Winform
             var value = (float)this.trackPositiveZ.Value / 100.0f;
             this.m_Renderer.positiveZ = value;
             this.lblPositiveZ.Text = value.ToShortString();
+        }
+
+        private void trackSectionHeight_Scroll(object sender, EventArgs e)
+        {
+            var value = (float)this.trackSectionHeight.Value / 100.0f;
+            //this.section_Renderer.negativeZ = value - 0.1f;
+            //this.section_Renderer.positiveZ = value + 0.1f;
+            this.section_Renderer.negativeZ = value;
+            this.section_Renderer.positiveZ = value;
         }
     }
 }
