@@ -7,22 +7,42 @@ using System.Threading.Tasks;
 
 namespace Radar.Winform
 {
+    /// <summary>
+    /// 切割方向
+    /// </summary>
     public enum SliceAxis
     {
         X, Y, Z,
     }
 
-    public class SectionRendererHelper
+    /// <summary>
+    /// 渲染radar模型
+    /// </summary>
+    public class RadarRenderer
     {
-
+        /// <summary>
+        /// 低于指定不透明度的位置不显示
+        /// </summary>
         public float alphaThreshold = 0.00f;
+        
+        /// <summary>
+        /// 指定要渲染的中间层
+        /// </summary>
         public float sectionCenter = 0.0f;
+
+        /// <summary>
+        /// 指定要渲染的层数
+        /// </summary>
         public float halfThickness = 2.0f;
+
+        /// <summary>
+        /// 指定切割方式
+        /// </summary>
         public SliceAxis slice = SliceAxis.Z;
 
-        public bool Initialize(RawDataProcessor pRawDataProc_i)
+        public bool Initialize(RawDataProcessor dataProcessor)
         {
-            m_pRawDataProc = pRawDataProc_i;
+            this.dataProcessor = dataProcessor;
 
             return true;
         }
@@ -31,16 +51,25 @@ namespace Radar.Winform
             GL.Enable(GL.GL_ALPHA_TEST);
             GL.AlphaFunc(GL.GL_GREATER, alphaThreshold);
 
+            // 混合模式：半透明效果
             if (blend) { GL.Enable(GL.GL_BLEND); }
             else { GL.Disable(GL.GL_BLEND); }
             GL.BlendFunc(this.SourceFactor, this.DestFactor);
+
+            // 放大一点
             GL.LoadIdentity();
             GL.Scale(6, 6, 6);
-            var w = (float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetWidth();
-            var h = (float)m_pRawDataProc.GetWidth() / (float)(float)m_pRawDataProc.GetHeight();
-            var d = (float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetDepth();
+
+            // x y z方向的比例
+            var w = (float)dataProcessor.GetWidth() / (float)dataProcessor.GetWidth();
+            var h = (float)dataProcessor.GetWidth() / (float)(float)dataProcessor.GetHeight();
+            var d = (float)dataProcessor.GetWidth() / (float)dataProcessor.GetDepth();
+
+            // 启用指定的3D纹理
             GL.Enable(GL.GL_TEXTURE_3D);
-            GL.BindTexture(GL.GL_TEXTURE_3D, m_pRawDataProc.GetTexture3D());
+            GL.BindTexture(GL.GL_TEXTURE_3D, dataProcessor.GetTexture3D());
+
+            // 按指定切割方式渲染
             switch (this.slice)
             {
                 case SliceAxis.X:
@@ -55,18 +84,17 @@ namespace Radar.Winform
                 default:
                     throw new NotImplementedException();
             }
+
+            // 收工扫尾
             GL.BindTexture(GL.GL_TEXTURE_3D, 0);
             GL.Disable(GL.GL_TEXTURE_3D);
             GL.Disable(GL.GL_ALPHA_TEST);
-            GL.AlphaFunc(GL.GL_GREATER, alphaThreshold);
-
             GL.Disable(GL.GL_BLEND);
-
         }
 
         private void SliceXRendering(float w, float h, float d)
         {
-            if (!reverseRender4Y)
+            if (!reverseRender4X)
             {
                 for (float fIndx = sectionCenter - halfThickness / 2; fIndx <= sectionCenter + halfThickness / 2; fIndx += 1.0f / 921.0f)
                 {
@@ -204,7 +232,7 @@ namespace Radar.Winform
         bool blend = true;
 
         float dOrthoSize = 1.0f;
-        private RawDataProcessor m_pRawDataProc;
+        private RawDataProcessor dataProcessor;
 
         private uint sourceFactor = GL.GL_ONE_MINUS_SRC_COLOR;
 
@@ -215,8 +243,9 @@ namespace Radar.Winform
         }
 
         private uint destFactor = GL.GL_ONE_MINUS_SRC_COLOR;
-        public bool reverseRender4Z = false;
+        public bool reverseRender4X = false;
         public bool reverseRender4Y = false;
+        public bool reverseRender4Z = false;
 
         public uint DestFactor
         {

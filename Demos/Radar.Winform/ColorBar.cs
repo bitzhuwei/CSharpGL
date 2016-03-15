@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace Radar.Winform
 {
+    /// <summary>
+    /// 配色方案
+    /// </summary>
     class ColorBar
     {
+        /// <summary>
+        /// 获取默认的配色方案
+        /// </summary>
+        /// <returns></returns>
         public static ColorBar GetDefault()
         {
             List<ColorCoordTuple> list = new List<ColorCoordTuple>();
@@ -33,6 +40,13 @@ namespace Radar.Winform
             this.colorList.AddRange(colors);
         }
 
+        /// <summary>
+        /// 插值获取颜色
+        /// </summary>
+        /// <param name="minValue"></param>
+        /// <param name="maxValue"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public vec3 GetColor(float minValue, float maxValue, float value)
         {
             if (maxValue < minValue) { throw new ArgumentException("fault value range"); }

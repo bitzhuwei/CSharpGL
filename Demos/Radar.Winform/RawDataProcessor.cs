@@ -9,34 +9,41 @@ using System.Threading.Tasks;
 
 namespace Radar.Winform
 {
+    /// <summary>
+    /// 解析数据文件，得到3D纹理
+    /// </summary>
     public class RawDataProcessor
     {
-        int m_uImageCount;
-        int m_uImageWidth;
-        int m_uImageHeight;
-        uint[] m_nTexId = new uint[1];
+        int slices;
+        int width;
+        int height;
+        uint[] textureId = new uint[1];
 
-        // Call this only after the open gl is initialized.
-        public bool ReadFile(string[] lpDataFile_i, int nWidth_i, int nHeight_i, int nSlices_i)
+        /// <summary>
+        /// 读取数据文件，获取3D纹理
+        /// </summary>
+        /// <param name="dataFiles"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="slices"></param>
+        /// <returns></returns>
+        public bool ReadFile(string[] dataFiles, int width, int height, int slices)
         {
-            // File has only image data. The dimension of the data should be known.
-            m_uImageCount = nSlices_i;
-            m_uImageWidth = nWidth_i;
-            m_uImageHeight = nHeight_i;
+            this.slices = slices;
+            this.width = width;
+            this.height = height;
 
-            // Holds the luminance buffer
-            //byte[] chBuffer = new byte[m_uImageWidth * m_uImageHeight * m_uImageCount];
-            //UnmanagedArray<byte> chBuffer = new UnmanagedArray<byte>(m_uImageWidth * m_uImageHeight * m_uImageCount);
-            float[] chBuffer = new float[m_uImageWidth * m_uImageHeight * m_uImageCount];
+            float[] chBuffer = new float[width * height * slices];
             float min = 0, max = 0;
 
+            // 找到数据中的最大、最小值，为配色做准备
             {
                 int index = 0;
                 bool minSet = false, maxSet = false;
                 char[] separator = new char[] { ' ', '\t', '\r', '\n' };
-                for (int i = 0; i < lpDataFile_i.Length; i++)
+                for (int i = 0; i < dataFiles.Length; i++)
                 {
-                    string filename = lpDataFile_i[i];
+                    string filename = dataFiles[i];
                     using (var sr = new StreamReader(filename))
                     {
                         while (!sr.EndOfStream)
@@ -66,77 +73,69 @@ namespace Radar.Winform
                 }
             }
 
-            // Convert the data to RGBA data.
-            // Here we are simply putting the same value to R, G, B and A channels.
-            // Usually for raw data, the alpha value will be constructed by a threshold value given by the user 
-
-            // Holds the RGBA buffer
-            UnmanagedArray<byte> pRGBABuffer = new UnmanagedArray<byte>(m_uImageWidth * m_uImageHeight * m_uImageCount * 4);
+            // 用非托管数组存储顶点颜色，为创建3D纹理做准备
+            UnmanagedArray<byte> pRGBABuffer = new UnmanagedArray<byte>(width * height * slices * 4);
             unsafe
             {
                 byte* rgbBuffer = (byte*)pRGBABuffer.FirstElement();
-                for (int nIndx = 0; nIndx < m_uImageWidth * m_uImageHeight * m_uImageCount; ++nIndx)
+                for (int nIndx = 0; nIndx < width * height * slices; ++nIndx)
                 {
                     float value = chBuffer[nIndx];
-                    //if (value < 20) { value = 0; }
-                    ColorBar bar = ColorBar.GetDefault();
-                    vec3 color = bar.GetColor(min, max, value);
+                    ColorBar bar = ColorBar.GetDefault();// 默认配色方案
+                    vec3 color = bar.GetColor(min, max, value);// 有数值得到对应的颜色
                     rgbBuffer[nIndx * 4] = (byte)(color.x * 255);
                     rgbBuffer[nIndx * 4 + 1] = (byte)(color.y * 255);
                     rgbBuffer[nIndx * 4 + 2] = (byte)(color.z * 255);
+                    // 适当降低不透明度（此处用 / 10）
                     rgbBuffer[nIndx * 4 + 3] = (byte)((value - min) / (max - min) * 255.0f / 10);
                 }
             }
 
-            // If this function is getting called again for another data file.
-            // Deleting and creating texture is not a good idea, 
-            // we can use the glTexSubImage3D for better performance for such scenario.
-            // I am not using that now :-)
-            if (0 != m_nTexId[0])
+            // 创建3D贴图，为渲染做准备
+            if (0 != textureId[0])
             {
-                GL.DeleteTextures(1, m_nTexId);
+                GL.DeleteTextures(1, textureId);
             }
-            GL.GenTextures(1, m_nTexId);
-
-            GL.BindTexture(GL.GL_TEXTURE_3D, m_nTexId[0]);
+            GL.GenTextures(1, textureId);
+            GL.BindTexture(GL.GL_TEXTURE_3D, textureId[0]);
             GL.TexEnvi(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, (int)GL.GL_REPLACE);
             GL.TexParameteri(GL.GL_TEXTURE_3D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_BORDER);
             GL.TexParameteri(GL.GL_TEXTURE_3D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_BORDER);
             GL.TexParameteri(GL.GL_TEXTURE_3D, GL.GL_TEXTURE_WRAP_R, (int)GL.GL_CLAMP_TO_BORDER);
             GL.TexParameteri(GL.GL_TEXTURE_3D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
             GL.TexParameteri(GL.GL_TEXTURE_3D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
-
-            //uint target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, IntPtr pixels)
-
-            GL.TexImage3D(GL.GL_TEXTURE_3D, 0, (int)GL.GL_RGBA, m_uImageWidth, m_uImageHeight, m_uImageCount, 0,
+            GL.TexImage3D(GL.GL_TEXTURE_3D, 0, (int)GL.GL_RGBA, width, height, slices, 0,
                 GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, pRGBABuffer.Header);
             GL.BindTexture(GL.GL_TEXTURE_3D, 0);
+
+            // 非托管数组要手动释放
+            pRGBABuffer.Dispose();
 
             return true;
         }
         public uint GetTexture3D()
         {
-            return m_nTexId[0];
+            return textureId[0];
         }
         public int GetWidth()
         {
-            return m_uImageWidth;
+            return width;
         }
         public int GetHeight()
         {
-            return m_uImageHeight;
+            return height;
         }
         public int GetDepth()
         {
-            return m_uImageCount;
+            return slices;
         }
 
         ~RawDataProcessor()
         {
-            // If not initialized, then this will be zero. So no checking is needed.
-            if (0 != m_nTexId[0])
+            // 删除3D纹理
+            if (0 != textureId[0])
             {
-                GL.DeleteTextures(1, m_nTexId);
+                GL.DeleteTextures(1, textureId);
             }
         }
     }

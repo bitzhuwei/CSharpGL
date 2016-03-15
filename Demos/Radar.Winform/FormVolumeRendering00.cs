@@ -23,21 +23,35 @@ namespace Radar.Winform
         /// 解析数据文件，得到3D纹理
         /// </summary>
         private RawDataProcessor processor = new RawDataProcessor();
-        private TranformationMgr m_pTransform = new TranformationMgr();
-        private RendererHelper m_Renderer = new RendererHelper();
 
+        /// <summary>
+        /// 从哪个角度观察模型
+        /// </summary>
         private Camera camera;
+        
+        /// <summary>
+        /// 旋转camera
+        /// </summary>
         private SatelliteRotator rotator;
-        private SectionRendererHelper section_Renderer = new SectionRendererHelper();
+
+        /// <summary>
+        /// 执行渲染指令
+        /// </summary>
+        private RadarRenderer radarRenderer = new RadarRenderer();
+
+        /// <summary>
+        /// 在窗口固定位置渲染一个坐标轴
+        /// </summary>
         private SimpleUIAxis axis;
 
-        private bool nFlags;
         private const string textureFilename = "floordata";
 
 
         public FormVolumeRendering00()
         {
             InitializeComponent();
+
+            // 解析文件，得到3D数据纹理
             string datafilePrefix = @"data\floordata";
             string[] filenames = new string[20];
             for (int i = 0; i < 20; i++)
@@ -46,20 +60,22 @@ namespace Radar.Winform
                 filenames[i] = filename;
             }
             processor.ReadFile(filenames, 921, 921, 20);
-            m_Renderer.Initialize(processor, m_pTransform);
 
+            // 初始化camera及其rotator
             this.camera = new Camera(CameraType.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
             this.camera.Position = new vec3(0, 0, 5);
             this.camera.Target = new vec3(0, 0, 0);
             this.camera.UpVector = new vec3(0, 1, 0);
             this.rotator = new SatelliteRotator(this.camera);
-            section_Renderer.Initialize(processor);
+            radarRenderer.Initialize(processor);
 
+            // 初始化axis
             this.axis = new SimpleUIAxis(
                 new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom,
                 new Padding(10, 10, 10, 10), new Size(50, 50)));
             this.axis.Initialize();
 
+            // 初始化各个事件
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
             this.glCanvas1.MouseMove += glCanvas1_MouseMove;
@@ -80,6 +96,7 @@ namespace Radar.Winform
             //GL.GL_CONSTANT_ALPHA, GL.GL_ONE_MINUS_CONSTANT_ALPHA, 
             GL.GL_SRC_ALPHA_SATURATE 
         };
+
         uint[] destFactors = new uint[] 
         {
             GL.GL_ZERO, GL.GL_ONE, 
@@ -92,21 +109,20 @@ namespace Radar.Winform
         };
         int sourceFactorIndex = 3;
         int destFactorIndex = 3;
+
         void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 's')
             {
                 sourceFactorIndex++;
                 if (sourceFactorIndex >= sourceFactors.Length) { sourceFactorIndex = 0; }
-                this.m_Renderer.SourceFactor = sourceFactors[sourceFactorIndex];
-                this.section_Renderer.SourceFactor = sourceFactors[sourceFactorIndex];
+                this.radarRenderer.SourceFactor = sourceFactors[sourceFactorIndex];
             }
             else if (e.KeyChar == 'd')
             {
                 destFactorIndex++;
                 if (destFactorIndex >= destFactors.Length) { destFactorIndex = 0; }
-                this.m_Renderer.DestFactor = destFactors[destFactorIndex];
-                this.section_Renderer.DestFactor = destFactors[destFactorIndex];
+                this.radarRenderer.DestFactor = destFactors[destFactorIndex];
             }
             else if (e.KeyChar == 'a')
             {
@@ -119,10 +135,8 @@ namespace Radar.Winform
                     { sourceFactorIndex = sourceFactors.Length - 1; }
                 }
 
-                this.m_Renderer.SourceFactor = sourceFactors[sourceFactorIndex];
-                this.m_Renderer.DestFactor = destFactors[destFactorIndex];
-                this.section_Renderer.SourceFactor = sourceFactors[sourceFactorIndex];
-                this.section_Renderer.DestFactor = destFactors[destFactorIndex];
+                this.radarRenderer.SourceFactor = sourceFactors[sourceFactorIndex];
+                this.radarRenderer.DestFactor = destFactors[destFactorIndex];
             }
             else if (e.KeyChar == 'b')
             {
@@ -135,10 +149,8 @@ namespace Radar.Winform
                     { sourceFactorIndex = 0; }
                 }
 
-                this.m_Renderer.SourceFactor = sourceFactors[sourceFactorIndex];
-                this.m_Renderer.DestFactor = destFactors[destFactorIndex];
-                this.section_Renderer.SourceFactor = sourceFactors[sourceFactorIndex];
-                this.section_Renderer.DestFactor = destFactors[destFactorIndex];
+                this.radarRenderer.SourceFactor = sourceFactors[sourceFactorIndex];
+                this.radarRenderer.DestFactor = destFactors[destFactorIndex];
             }
 
             this.lblBlendFuncParams.Text = string.Format("{0} - {1}",
@@ -148,18 +160,17 @@ namespace Radar.Winform
 
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
-            m_Renderer.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
-            //section_Renderer.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
+            // 改变窗口大小
             this.camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
         }
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
-            m_Renderer.MouseWheel(e.Delta);
-            //section_Renderer.MouseWheel(e.Delta);
+            // 缩放
             this.camera.MouseWheel(e.Delta);
         }
 
+        // 执行渲染
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             // 背景色：天蓝色
@@ -168,46 +179,43 @@ namespace Radar.Winform
             GL.ClearColor(0, 0, 0, 0);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
+            // 渲染坐标轴
             this.axis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
 
+            // camera准备
             this.camera.LegacyGLProjection();
-            section_Renderer.Render();
+            // 渲染radar
+            radarRenderer.Render();
 
         }
 
+        /// <summary>
+        /// 旋转camera：鼠标按下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                lastPoint = e.Location;
-                nFlags = true;
-
-                this.rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
-                this.rotator.MouseDown(e.X, e.Y);
-            }
+            this.rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
+            this.rotator.MouseDown(e.X, e.Y);
         }
 
-        Point lastPoint = new Point();
-
+        /// <summary>
+        /// 旋转camera：鼠标移动
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (nFlags && e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                m_pTransform.Rotate(lastPoint.Y - e.Y, lastPoint.X - e.X, 0);
-                lastPoint = e.Location;
+            this.rotator.MouseMove(e.X, e.Y);
 
-                this.rotator.MouseMove(e.X, e.Y);
+            UpdateCameraDirectionDisplay(this.camera);
 
-                UpdateCameraDirectionDisplay(this.camera);
-
-                var direction = (camera.Target - camera.Position).normalize();
-                this.section_Renderer.reverseRender4Z = direction.z >= 0;
-                this.section_Renderer.reverseRender4Y = direction.y >= 0;
-                //if (Math.Abs(direction.y) < 0.8f)
-                //{ this.section_Renderer.renderZ = true; }
-                //else if (Math.Abs(direction.z) < 0.8f)
-                //{ this.section_Renderer.renderZ = false; }
-            }
+            // camera位置不同时，要调整渲染各个层的顺序
+            var direction = (camera.Target - camera.Position).normalize();
+            this.radarRenderer.reverseRender4X = direction.x >= 0;
+            this.radarRenderer.reverseRender4Y = direction.y >= 0;
+            this.radarRenderer.reverseRender4Z = direction.z >= 0;
         }
 
         private void UpdateCameraDirectionDisplay(Camera camera)
@@ -215,61 +223,94 @@ namespace Radar.Winform
             var direction = camera.Target - camera.Position;
             this.lblCameraDirection.Text =
                 string.Format("{0}, slice: {1}", direction,
-                    this.section_Renderer.slice);
+                    this.radarRenderer.slice);
         }
 
+        /// <summary>
+        /// 旋转camera：鼠标弹起
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                nFlags = false;
-
-                this.rotator.MouseUp(e.X, e.Y);
-            }
+            this.rotator.MouseUp(e.X, e.Y);
         }
 
         private void FormVolumeRendering01_Load(object sender, EventArgs e)
         {
             this.glCanvas1_Resize(this.glCanvas1, e);
-
         }
 
-
+        /// <summary>
+        /// 低于指定透明度的就不显示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trackAlpha_Scroll(object sender, EventArgs e)
         {
             var value = (float)this.trackAlpha.Value / 100.0f;
-            this.m_Renderer.alphaThreshold = value;
-            this.section_Renderer.alphaThreshold = value;
+            this.radarRenderer.alphaThreshold = value;
             this.lblAlphaThreshold.Text = value.ToShortString();
         }
 
-        private void trackSectionHeight_Scroll(object sender, EventArgs e)
+        /// <summary>
+        /// 指定要渲染的中间层
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void trackSectionPosition_Scroll(object sender, EventArgs e)
         {
             var value = (float)this.trackSectionPosition.Value / 100.0f;
-            this.section_Renderer.sectionCenter = value;
+            this.radarRenderer.sectionCenter = value;
             this.lblSectionPosition.Text = value.ToShortString();
         }
 
+        /// <summary>
+        /// 指定要渲染的层数
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trackSectionThickness_Scroll(object sender, EventArgs e)
         {
             var value = (float)this.trackSectionThickness.Value / 100.0f;
-            this.section_Renderer.halfThickness = value;
+            this.radarRenderer.halfThickness = value;
             this.lblSectionThick.Text = (value * 2).ToShortString();
         }
 
+        /// <summary>
+        /// 指定切割方式：将X轴方向切割
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rdoSliceX_CheckedChanged(object sender, EventArgs e)
         {
-            this.section_Renderer.slice = SliceAxis.X;
+            this.radarRenderer.slice = SliceAxis.X;
+
+            UpdateCameraDirectionDisplay(this.camera);
         }
 
+        /// <summary>
+        /// 指定切割方式：将Y轴方向切割
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rdoSliceY_CheckedChanged(object sender, EventArgs e)
         {
-            this.section_Renderer.slice = SliceAxis.Y;
+            this.radarRenderer.slice = SliceAxis.Y;
+
+            UpdateCameraDirectionDisplay(this.camera);
         }
 
+        /// <summary>
+        /// 指定切割方式：将Z轴方向切割
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rdoSliceZ_CheckedChanged(object sender, EventArgs e)
         {
-            this.section_Renderer.slice = SliceAxis.Z;
+            this.radarRenderer.slice = SliceAxis.Z;
+
+            UpdateCameraDirectionDisplay(this.camera);
         }
 
 

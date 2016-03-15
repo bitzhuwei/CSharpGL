@@ -123,7 +123,7 @@ namespace Radar.Winform
             this.trackSectionPosition.Name = "trackSectionPosition";
             this.trackSectionPosition.Size = new System.Drawing.Size(563, 56);
             this.trackSectionPosition.TabIndex = 4;
-            this.trackSectionPosition.Scroll += new System.EventHandler(this.trackSectionHeight_Scroll);
+            this.trackSectionPosition.Scroll += new System.EventHandler(this.trackSectionPosition_Scroll);
             // 
             // label3
             // 
