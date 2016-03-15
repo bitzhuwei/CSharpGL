@@ -19,6 +19,9 @@ namespace Radar.Winform
 {
     public partial class FormVolumeRendering00 : Form
     {
+        /// <summary>
+        /// 解析数据文件，得到3D纹理
+        /// </summary>
         private RawDataProcessor processor = new RawDataProcessor();
         private TranformationMgr m_pTransform = new TranformationMgr();
         private RendererHelper m_Renderer = new RendererHelper();
@@ -159,14 +162,15 @@ namespace Radar.Winform
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
+            // 背景色：天蓝色
             //GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+            // 背景色：黑色
             GL.ClearColor(0, 0, 0, 0);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             this.axis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
 
             this.camera.LegacyGLProjection();
-            //m_Renderer.Render();
             section_Renderer.Render();
 
         }
