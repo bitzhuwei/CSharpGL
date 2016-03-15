@@ -31,26 +31,24 @@ namespace Radar.Winform
         {
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblBlendFuncParams = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblCameraDirection = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.trackAlpha = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.lblAlphaThreshold = new System.Windows.Forms.Label();
-            this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
-            this.trackNegativeZ = new System.Windows.Forms.TrackBar();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblPositiveZ = new System.Windows.Forms.Label();
-            this.trackPositiveZ = new System.Windows.Forms.TrackBar();
-            this.lblNegativeZ = new System.Windows.Forms.Label();
-            this.trackSectionHeight = new System.Windows.Forms.TrackBar();
+            this.trackSectionPosition = new System.Windows.Forms.TrackBar();
             this.label3 = new System.Windows.Forms.Label();
-            this.lblCameraDirection = new System.Windows.Forms.ToolStripStatusLabel();
+            this.glCanvas1 = new CSharpGL.Winforms.GLCanvas();
+            this.trackSectionThickness = new System.Windows.Forms.TrackBar();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblSectionPosition = new System.Windows.Forms.Label();
+            this.lblSectionThick = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackAlpha)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackSectionPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackNegativeZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackPositiveZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackSectionHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackSectionThickness)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -70,6 +68,12 @@ namespace Radar.Winform
             this.lblBlendFuncParams.Name = "lblBlendFuncParams";
             this.lblBlendFuncParams.Size = new System.Drawing.Size(139, 20);
             this.lblBlendFuncParams.Text = "blendfunc params";
+            // 
+            // lblCameraDirection
+            // 
+            this.lblCameraDirection.Name = "lblCameraDirection";
+            this.lblCameraDirection.Size = new System.Drawing.Size(132, 20);
+            this.lblCameraDirection.Text = "camera direction";
             // 
             // openFileDialog1
             // 
@@ -105,106 +109,94 @@ namespace Radar.Winform
             this.lblAlphaThreshold.TabIndex = 5;
             this.lblAlphaThreshold.Text = "0.00";
             // 
+            // trackSectionPosition
+            // 
+            this.trackSectionPosition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackSectionPosition.Location = new System.Drawing.Point(94, 74);
+            this.trackSectionPosition.Maximum = 100;
+            this.trackSectionPosition.Minimum = -100;
+            this.trackSectionPosition.Name = "trackSectionPosition";
+            this.trackSectionPosition.Size = new System.Drawing.Size(563, 56);
+            this.trackSectionPosition.TabIndex = 4;
+            this.trackSectionPosition.Scroll += new System.EventHandler(this.trackSectionHeight_Scroll);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 15);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "剖面位置：";
+            // 
             // glCanvas1
             // 
             this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.glCanvas1.Location = new System.Drawing.Point(13, 206);
+            this.glCanvas1.Location = new System.Drawing.Point(13, 199);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.Objects.RenderContexts.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.Winforms.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(689, 339);
+            this.glCanvas1.Size = new System.Drawing.Size(689, 346);
             this.glCanvas1.TabIndex = 3;
             // 
-            // trackNegativeZ
+            // trackSectionThickness
             // 
-            this.trackNegativeZ.Location = new System.Drawing.Point(93, 75);
-            this.trackNegativeZ.Maximum = 0;
-            this.trackNegativeZ.Minimum = -100;
-            this.trackNegativeZ.Name = "trackNegativeZ";
-            this.trackNegativeZ.Size = new System.Drawing.Size(248, 56);
-            this.trackNegativeZ.TabIndex = 4;
-            this.trackNegativeZ.Value = -100;
-            this.trackNegativeZ.Scroll += new System.EventHandler(this.trackNegativeZ_Scroll);
+            this.trackSectionThickness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackSectionThickness.Location = new System.Drawing.Point(94, 136);
+            this.trackSectionThickness.Maximum = 100;
+            this.trackSectionThickness.Name = "trackSectionThickness";
+            this.trackSectionThickness.Size = new System.Drawing.Size(563, 56);
+            this.trackSectionThickness.TabIndex = 4;
+            this.trackSectionThickness.Value = 100;
+            this.trackSectionThickness.Scroll += new System.EventHandler(this.trackSectionThickness_Scroll);
             // 
-            // label2
+            // label4
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 75);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 15);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Z轴阀值：";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 136);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(82, 15);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "剖面厚度：";
             // 
-            // lblPositiveZ
+            // lblSectionPosition
             // 
-            this.lblPositiveZ.AutoSize = true;
-            this.lblPositiveZ.Location = new System.Drawing.Point(663, 75);
-            this.lblPositiveZ.Name = "lblPositiveZ";
-            this.lblPositiveZ.Size = new System.Drawing.Size(15, 15);
-            this.lblPositiveZ.TabIndex = 5;
-            this.lblPositiveZ.Text = "1";
+            this.lblSectionPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSectionPosition.AutoSize = true;
+            this.lblSectionPosition.Location = new System.Drawing.Point(663, 74);
+            this.lblSectionPosition.Name = "lblSectionPosition";
+            this.lblSectionPosition.Size = new System.Drawing.Size(39, 15);
+            this.lblSectionPosition.TabIndex = 5;
+            this.lblSectionPosition.Text = "0.00";
             // 
-            // trackPositiveZ
+            // lblSectionThick
             // 
-            this.trackPositiveZ.Location = new System.Drawing.Point(403, 74);
-            this.trackPositiveZ.Maximum = 100;
-            this.trackPositiveZ.Name = "trackPositiveZ";
-            this.trackPositiveZ.Size = new System.Drawing.Size(254, 56);
-            this.trackPositiveZ.TabIndex = 4;
-            this.trackPositiveZ.Value = 100;
-            this.trackPositiveZ.Scroll += new System.EventHandler(this.trackPositiveZ_Scroll);
-            // 
-            // lblNegativeZ
-            // 
-            this.lblNegativeZ.AutoSize = true;
-            this.lblNegativeZ.Location = new System.Drawing.Point(347, 75);
-            this.lblNegativeZ.Name = "lblNegativeZ";
-            this.lblNegativeZ.Size = new System.Drawing.Size(23, 15);
-            this.lblNegativeZ.TabIndex = 5;
-            this.lblNegativeZ.Text = "-1";
-            // 
-            // trackSectionHeight
-            // 
-            this.trackSectionHeight.Location = new System.Drawing.Point(93, 137);
-            this.trackSectionHeight.Maximum = 100;
-            this.trackSectionHeight.Minimum = -100;
-            this.trackSectionHeight.Name = "trackSectionHeight";
-            this.trackSectionHeight.Size = new System.Drawing.Size(609, 56);
-            this.trackSectionHeight.TabIndex = 4;
-            this.trackSectionHeight.Scroll += new System.EventHandler(this.trackSectionHeight_Scroll);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 137);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 15);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "剖面高度：";
-            // 
-            // lblCameraDirection
-            // 
-            this.lblCameraDirection.Name = "lblCameraDirection";
-            this.lblCameraDirection.Size = new System.Drawing.Size(132, 20);
-            this.lblCameraDirection.Text = "camera direction";
+            this.lblSectionThick.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSectionThick.AutoSize = true;
+            this.lblSectionThick.Location = new System.Drawing.Point(664, 136);
+            this.lblSectionThick.Name = "lblSectionThick";
+            this.lblSectionThick.Size = new System.Drawing.Size(39, 15);
+            this.lblSectionThick.TabIndex = 5;
+            this.lblSectionThick.Text = "2.00";
             // 
             // FormVolumeRendering00
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(715, 571);
-            this.Controls.Add(this.lblNegativeZ);
-            this.Controls.Add(this.lblPositiveZ);
+            this.Controls.Add(this.lblSectionThick);
+            this.Controls.Add(this.lblSectionPosition);
             this.Controls.Add(this.lblAlphaThreshold);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.trackPositiveZ);
-            this.Controls.Add(this.trackSectionHeight);
-            this.Controls.Add(this.trackNegativeZ);
+            this.Controls.Add(this.trackSectionThickness);
+            this.Controls.Add(this.trackSectionPosition);
             this.Controls.Add(this.trackAlpha);
             this.Controls.Add(this.glCanvas1);
             this.Controls.Add(this.statusStrip1);
@@ -214,10 +206,9 @@ namespace Radar.Winform
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackAlpha)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackSectionPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackNegativeZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackPositiveZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackSectionHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackSectionThickness)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,14 +223,13 @@ namespace Radar.Winform
         private System.Windows.Forms.TrackBar trackAlpha;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblAlphaThreshold;
-        private System.Windows.Forms.TrackBar trackNegativeZ;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblPositiveZ;
-        private System.Windows.Forms.TrackBar trackPositiveZ;
-        private System.Windows.Forms.Label lblNegativeZ;
         private System.Windows.Forms.ToolStripStatusLabel lblBlendFuncParams;
-        private System.Windows.Forms.TrackBar trackSectionHeight;
+        private System.Windows.Forms.TrackBar trackSectionPosition;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripStatusLabel lblCameraDirection;
+        private System.Windows.Forms.TrackBar trackSectionThickness;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblSectionPosition;
+        private System.Windows.Forms.Label lblSectionThick;
     }
 }

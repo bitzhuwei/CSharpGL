@@ -10,8 +10,8 @@ namespace Radar.Winform
     public class SectionRendererHelper
     {
         public float alphaThreshold = 0.00f;
-        public float negativeZ = -1.0f;
-        public float positiveZ = 1.0f;
+        public float sectionCenter = 0.0f;
+        public float halfThickness = 2.0f;
 
         public bool Initialize(RawDataProcessor pRawDataProc_i)
         {
@@ -28,7 +28,7 @@ namespace Radar.Winform
             else { GL.Disable(GL.GL_BLEND); }
             GL.BlendFunc(this.SourceFactor, this.DestFactor);
             GL.LoadIdentity();
-            GL.Scale(6,6,6);
+            GL.Scale(6, 6, 6);
             var w = (float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetWidth();
             var h = (float)m_pRawDataProc.GetWidth() / (float)(float)m_pRawDataProc.GetHeight();
             var d = (float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetDepth();
@@ -36,9 +36,9 @@ namespace Radar.Winform
             GL.BindTexture(GL.GL_TEXTURE_3D, m_pRawDataProc.GetTexture3D());
             if (renderZ)
             {
-                if (!reverseRender)
+                if (!reverseRender4Z)
                 {
-                    for (float fIndx = negativeZ; fIndx <= positiveZ; fIndx += 0.01f)
+                    for (float fIndx = sectionCenter - halfThickness / 2; fIndx <= sectionCenter + halfThickness / 2; fIndx += 0.01f)
                     {
                         GL.Begin(GL.GL_QUADS);
 
@@ -59,7 +59,7 @@ namespace Radar.Winform
                 }
                 else
                 {
-                    for (float fIndx = positiveZ; fIndx >= negativeZ; fIndx -= 0.01f)
+                    for (float fIndx = sectionCenter + halfThickness / 2; fIndx >= sectionCenter - halfThickness / 2; fIndx -= 0.01f)
                     {
                         GL.Begin(GL.GL_QUADS);
 
@@ -79,28 +79,49 @@ namespace Radar.Winform
                     }
                 }
             }
-            //
-            if (renderY)
+            else
             {
-                float negtiveY = -1;
-                float positiveY = 1;
-                for (float fIndx = negtiveY; fIndx <= positiveY; fIndx += 0.01f)
+                if (!reverseRender4Y)
                 {
-                    GL.Begin(GL.GL_QUADS);
+                    for (float fIndx = sectionCenter - halfThickness / 2; fIndx <= sectionCenter + halfThickness / 2; fIndx += 1.0f / 921.0f)
+                    {
+                        GL.Begin(GL.GL_QUADS);
 
-                    GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
-                    GL.Vertex3f(-dOrthoSize, fIndx, -dOrthoSize);
+                        GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
+                        GL.Vertex3f(-dOrthoSize / w, fIndx / h, -dOrthoSize / d);
 
-                    GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
-                    GL.Vertex3f(dOrthoSize, fIndx, -dOrthoSize);
+                        GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
+                        GL.Vertex3f(dOrthoSize / w, fIndx / h, -dOrthoSize / d);
 
-                    GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
-                    GL.Vertex3f(dOrthoSize, fIndx, dOrthoSize);
+                        GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
+                        GL.Vertex3f(dOrthoSize / w, fIndx / h, dOrthoSize / d);
 
-                    GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
-                    GL.Vertex3f(-dOrthoSize, fIndx, dOrthoSize);
+                        GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
+                        GL.Vertex3f(-dOrthoSize / w, fIndx / h, dOrthoSize / d);
 
-                    GL.End();
+                        GL.End();
+                    }
+                }
+                else
+                {
+                    for (float fIndx = sectionCenter + halfThickness / 2; fIndx >= sectionCenter - halfThickness / 2; fIndx -= 1.0f / 921.0f)
+                    {
+                        GL.Begin(GL.GL_QUADS);
+
+                        GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
+                        GL.Vertex3f(-dOrthoSize / w, fIndx / h, -dOrthoSize / d);
+
+                        GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
+                        GL.Vertex3f(dOrthoSize / w, fIndx / h, -dOrthoSize / d);
+
+                        GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
+                        GL.Vertex3f(dOrthoSize / w, fIndx / h, dOrthoSize / d);
+
+                        GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
+                        GL.Vertex3f(-dOrthoSize / w, fIndx / h, dOrthoSize / d);
+
+                        GL.End();
+                    }
                 }
             }
             GL.BindTexture(GL.GL_TEXTURE_3D, 0);
@@ -113,8 +134,6 @@ namespace Radar.Winform
         }
 
         bool blend = true;
-        bool renderZ = true;
-        bool renderY = false;
 
         float dOrthoSize = 1.0f;
         private RawDataProcessor m_pRawDataProc;
@@ -128,7 +147,9 @@ namespace Radar.Winform
         }
 
         private uint destFactor = GL.GL_ONE_MINUS_SRC_COLOR;
-        public bool reverseRender = false;
+        public bool reverseRender4Z = false;
+        public bool reverseRender4Y = false;
+        public bool renderZ = true;
 
         public uint DestFactor
         {

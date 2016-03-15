@@ -196,15 +196,22 @@ namespace Radar.Winform
 
                 UpdateCameraDirectionDisplay(this.camera);
 
-                var direction = camera.Target - camera.Position;
-                this.section_Renderer.reverseRender = direction.z >= 0;
+                var direction = (camera.Target - camera.Position).normalize();
+                this.section_Renderer.reverseRender4Z = direction.z >= 0;
+                this.section_Renderer.reverseRender4Y = direction.y >= 0;
+                if (Math.Abs(direction.y) < 0.8f)
+                { this.section_Renderer.renderZ = true; }
+                else if (Math.Abs(direction.z) < 0.8f)
+                { this.section_Renderer.renderZ = false; }
             }
         }
 
         private void UpdateCameraDirectionDisplay(Camera camera)
         {
             var direction = camera.Target - camera.Position;
-            this.lblCameraDirection.Text = string.Format("{0}", direction);
+            this.lblCameraDirection.Text =
+                string.Format("{0} {1}", direction,
+                this.section_Renderer.renderZ ? "renderZ" : "renderY");
         }
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
@@ -232,28 +239,18 @@ namespace Radar.Winform
             this.lblAlphaThreshold.Text = value.ToShortString();
         }
 
-        private void trackNegativeZ_Scroll(object sender, EventArgs e)
-        {
-            var value = (float)this.trackNegativeZ.Value / 100.0f;
-            this.m_Renderer.negativeZ = value;
-            this.lblNegativeZ.Text = value.ToShortString();
-        }
-
-        private void trackPositiveZ_Scroll(object sender, EventArgs e)
-        {
-            var value = (float)this.trackPositiveZ.Value / 100.0f;
-            this.m_Renderer.positiveZ = value;
-            this.lblPositiveZ.Text = value.ToShortString();
-        }
-
-        float interval = 0.1f;
         private void trackSectionHeight_Scroll(object sender, EventArgs e)
         {
-            var value = (float)this.trackSectionHeight.Value / 100.0f;
-            //this.section_Renderer.negativeZ = value - 0.1f;
-            //this.section_Renderer.positiveZ = value + 0.1f;
-            this.section_Renderer.negativeZ = value - interval;
-            this.section_Renderer.positiveZ = value + interval;
+            var value = (float)this.trackSectionPosition.Value / 100.0f;
+            this.section_Renderer.sectionCenter = value;
+            this.lblSectionPosition.Text = value.ToShortString();
+        }
+
+        private void trackSectionThickness_Scroll(object sender, EventArgs e)
+        {
+            var value = (float)this.trackSectionThickness.Value / 100.0f;
+            this.section_Renderer.halfThickness = value;
+            this.lblSectionThick.Text = (value * 2).ToShortString();
         }
     }
 }
