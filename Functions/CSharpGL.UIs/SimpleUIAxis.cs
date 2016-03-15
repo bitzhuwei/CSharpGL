@@ -8,8 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CSharpGL.Objects;
 
-namespace CSharpGL.Objects.Demos.UIs
+namespace CSharpGL.UIs
 {
     /// <summary>
     /// 用一个<see cref="AxisElement"/>绘制一个固定在窗口某处的坐标系。

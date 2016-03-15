@@ -1,6 +1,7 @@
 ﻿using CSharpGL;
 using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
+using CSharpGL.UIs;
 using GLM;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,11 @@ namespace Radar.Winform
         private RawDataProcessor processor = new RawDataProcessor();
         private TranformationMgr m_pTransform = new TranformationMgr();
         private RendererHelper m_Renderer = new RendererHelper();
+
+        private Camera camera;
+        private SatelliteRotator rotator;
         private SectionRendererHelper section_Renderer = new SectionRendererHelper();
+        private SimpleUIAxis axis;
 
         private bool nFlags;
         private const string textureFilename = "floordata";
@@ -39,7 +44,18 @@ namespace Radar.Winform
             }
             processor.ReadFile(filenames, 921, 921, 20);
             m_Renderer.Initialize(processor, m_pTransform);
-            section_Renderer.Initialize(processor, m_pTransform);
+
+            this.camera = new Camera(CameraType.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
+            this.camera.Position = new vec3(0, 0, 5);
+            this.camera.Target = new vec3(0, 0, 0);
+            this.camera.UpVector = new vec3(0, 1, 0);
+            this.rotator = new SatelliteRotator(this.camera);
+            section_Renderer.Initialize(processor);
+
+            this.axis = new SimpleUIAxis(
+                new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom,
+                new Padding(10, 10, 10, 10), new Size(50, 50)));
+            this.axis.Initialize();
 
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
@@ -89,10 +105,10 @@ namespace Radar.Winform
                 this.m_Renderer.DestFactor = destFactors[destFactorIndex];
                 this.section_Renderer.DestFactor = destFactors[destFactorIndex];
             }
-            else if(e.KeyChar=='a')
+            else if (e.KeyChar == 'a')
             {
                 destFactorIndex--;
-                if (destFactorIndex < 0 )
+                if (destFactorIndex < 0)
                 {
                     destFactorIndex = destFactors.Length - 1;
                     sourceFactorIndex--;
@@ -130,13 +146,15 @@ namespace Radar.Winform
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
             m_Renderer.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
-            section_Renderer.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
+            //section_Renderer.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
+            this.camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
         }
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             m_Renderer.MouseWheel(e.Delta);
-            section_Renderer.MouseWheel(e.Delta);
+            //section_Renderer.MouseWheel(e.Delta);
+            this.camera.MouseWheel(e.Delta);
         }
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -145,8 +163,12 @@ namespace Radar.Winform
             GL.ClearColor(0, 0, 0, 0);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
+            this.axis.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+
+            this.camera.LegacyGLProjection();
             //m_Renderer.Render();
             section_Renderer.Render();
+
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
@@ -155,6 +177,9 @@ namespace Radar.Winform
             {
                 lastPoint = e.Location;
                 nFlags = true;
+
+                this.rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
+                this.rotator.MouseDown(e.X, e.Y);
             }
         }
 
@@ -166,7 +191,17 @@ namespace Radar.Winform
             {
                 m_pTransform.Rotate(lastPoint.Y - e.Y, lastPoint.X - e.X, 0);
                 lastPoint = e.Location;
+
+                this.rotator.MouseMove(e.X, e.Y);
+
+                UpdateCameraDirectionDisplay(this.camera);
             }
+        }
+
+        private void UpdateCameraDirectionDisplay(Camera camera)
+        {
+            var direction = camera.Target - camera.Position;
+            this.lblCameraDirection.Text = string.Format("{0}", direction);
         }
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
@@ -174,6 +209,8 @@ namespace Radar.Winform
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 nFlags = false;
+
+                this.rotator.MouseUp(e.X, e.Y);
             }
         }
 
@@ -206,13 +243,14 @@ namespace Radar.Winform
             this.lblPositiveZ.Text = value.ToShortString();
         }
 
+        float interval = 0.1f;
         private void trackSectionHeight_Scroll(object sender, EventArgs e)
         {
             var value = (float)this.trackSectionHeight.Value / 100.0f;
             //this.section_Renderer.negativeZ = value - 0.1f;
             //this.section_Renderer.positiveZ = value + 0.1f;
-            this.section_Renderer.negativeZ = value;
-            this.section_Renderer.positiveZ = value;
+            this.section_Renderer.negativeZ = value - interval;
+            this.section_Renderer.positiveZ = value + interval;
         }
     }
 }

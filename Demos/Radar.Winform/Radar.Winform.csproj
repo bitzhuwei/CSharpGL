@@ -125,6 +125,10 @@
       <Project>{388d3f0c-08b3-47dc-86a8-cc5cc87b5819}</Project>
       <Name>CSharpGL.Objects.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Functions\CSharpGL.UIs\CSharpGL.UIs.csproj">
+      <Project>{292f0a6f-6d7e-42fe-8b5c-3fba11fc9b49}</Project>
+      <Name>CSharpGL.UIs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Tools\CSharpShadingLanguage\CSharpShadingLanguage\CSharpShadingLanguage.csproj">
       <Project>{423ceb01-876b-4838-9f68-575669e95362}</Project>
       <Name>CSharpShadingLanguage</Name>

@@ -13,130 +13,91 @@ namespace Radar.Winform
         public float negativeZ = -1.0f;
         public float positiveZ = 1.0f;
 
-        public bool Initialize(RawDataProcessor pRawDataProc_i, TranformationMgr pTransformationMgr_i)
+        public bool Initialize(RawDataProcessor pRawDataProc_i)
         {
             m_pRawDataProc = pRawDataProc_i;
-            m_pTransformMgr = pTransformationMgr_i;
 
             return true;
         }
-        public void Resize(int nWidth_i, int nHeight_i)
-        {
-            //Find the aspect ratio of the window.
-            double AspectRatio = (double)(nWidth_i) / (double)(nHeight_i);
-            //glViewport( 0, 0, cx , cy );
-            GL.Viewport(0, 0, nWidth_i, nHeight_i);
-            GL.MatrixMode(GL.GL_PROJECTION);
-            GL.LoadIdentity();
-
-            //Set the orthographic projection.
-            if (nWidth_i <= nHeight_i)
-            {
-                GL.Ortho(-dOrthoSize, dOrthoSize, -(dOrthoSize / AspectRatio),
-                    dOrthoSize / AspectRatio, 2.0f * -dOrthoSize, 2.0f * dOrthoSize);
-            }
-            else
-            {
-                GL.Ortho(-dOrthoSize * AspectRatio, dOrthoSize * AspectRatio,
-                    -dOrthoSize, dOrthoSize, 2.0f * -dOrthoSize, 2.0f * dOrthoSize);
-            }
-
-            GL.MatrixMode(GL.GL_MODELVIEW);
-            GL.LoadIdentity();
-        }
         public void Render()
         {
-            float fFrameCount = (float)m_pRawDataProc.GetDepth();
-            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-
             GL.Enable(GL.GL_ALPHA_TEST);
             GL.AlphaFunc(GL.GL_GREATER, alphaThreshold);
 
-            GL.Enable(GL.GL_BLEND);
-            //GL.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+            if (blend) { GL.Enable(GL.GL_BLEND); }
+            else { GL.Disable(GL.GL_BLEND); }
             GL.BlendFunc(this.SourceFactor, this.DestFactor);
 
-            GL.MatrixMode(GL.GL_TEXTURE);
-            GL.LoadIdentity();
-
-            // Translate and make 0.5f as the center 
-            // (texture co ordinate is from 0 to 1. so center of rotation has to be 0.5f)
-            GL.Translatef(0.5f, 0.5f, 0.5f);
-
-            // A scaling applied to normalize the axis 
-            // (Usually the number of slices will be less so if this is not - 
-            // normalized then the z axis will look bulky)
-            // Flipping of the y axis is done by giving a negative value in y axis.
-            // This can be achieved either by changing the y co ordinates in -
-            // texture mapping or by negative scaling of y axis
-            GL.Scaled((float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetWidth(),
-                -1.0f * (float)m_pRawDataProc.GetWidth() / (float)(float)m_pRawDataProc.GetHeight(),
-                (float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetDepth());
-            GL.Scalef(wheel, wheel, wheel);
-
-            // Apply the user provided transformations
-            GL.MultMatrixd(m_pTransformMgr.GetMatrix());
-
-            GL.Translatef(-0.5f, -0.5f, -0.5f);
-
+            //GL.MatrixMode(GL.GL_TEXTURE);
+            //GL.Scaled((float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetWidth(),
+            //    (float)m_pRawDataProc.GetWidth() / (float)(float)m_pRawDataProc.GetHeight(),
+            //    (float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetDepth());
+            //GL.MatrixMode(GL.GL_MODELVIEW);
+            var w = (float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetWidth();
+            var h = (float)m_pRawDataProc.GetWidth() / (float)(float)m_pRawDataProc.GetHeight();
+            var d = (float)m_pRawDataProc.GetWidth() / (float)m_pRawDataProc.GetDepth();
             GL.Enable(GL.GL_TEXTURE_3D);
             GL.BindTexture(GL.GL_TEXTURE_3D, m_pRawDataProc.GetTexture3D());
-            for (float fIndx = negativeZ; fIndx <= positiveZ; fIndx += 0.01f)
+            if (renderZ)
             {
-                GL.Begin(GL.GL_QUADS);
+                for (float fIndx = negativeZ; fIndx <= positiveZ; fIndx += 0.01f)
+                {
+                    GL.Begin(GL.GL_QUADS);
 
-                GL.TexCoord3f(0.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
-                GL.Vertex3f(-dOrthoSize, -dOrthoSize, fIndx);
+                    GL.TexCoord3f(0.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
+                    GL.Vertex3f(-dOrthoSize / w, -dOrthoSize / h, fIndx / d);
 
-                GL.TexCoord3f(1.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
-                GL.Vertex3f(dOrthoSize, -dOrthoSize, fIndx);
+                    GL.TexCoord3f(1.0f, 0.0f, ((float)fIndx + 1.0f) / 2.0f);
+                    GL.Vertex3f(dOrthoSize / w, -dOrthoSize / h, fIndx / d);
 
-                GL.TexCoord3f(1.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
-                GL.Vertex3f(dOrthoSize, dOrthoSize, fIndx);
+                    GL.TexCoord3f(1.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
+                    GL.Vertex3f(dOrthoSize / w, dOrthoSize / h, fIndx / d);
 
-                GL.TexCoord3f(0.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
-                GL.Vertex3f(-dOrthoSize, dOrthoSize, fIndx);
+                    GL.TexCoord3f(0.0f, 1.0f, ((float)fIndx + 1.0f) / 2.0f);
+                    GL.Vertex3f(-dOrthoSize / w, dOrthoSize / h, fIndx / d);
 
-                GL.End();
+                    GL.End();
+                }
             }
             //
-            //float negtiveY = -1;
-            //float positiveY = 1;
-            //for (float fIndx = negtiveY; fIndx <= positiveY; fIndx += 0.01f)
-            //{
-            //    GL.Begin(GL.GL_QUADS);
+            if (renderY)
+            {
+                float negtiveY = -1;
+                float positiveY = 1;
+                for (float fIndx = negtiveY; fIndx <= positiveY; fIndx += 0.01f)
+                {
+                    GL.Begin(GL.GL_QUADS);
 
-            //    GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
-            //    GL.Vertex3f(-dOrthoSize, fIndx, -dOrthoSize);
+                    GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
+                    GL.Vertex3f(-dOrthoSize, fIndx, -dOrthoSize);
 
-            //    GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
-            //    GL.Vertex3f(dOrthoSize, fIndx, -dOrthoSize);
+                    GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 0.0f);
+                    GL.Vertex3f(dOrthoSize, fIndx, -dOrthoSize);
 
-            //    GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
-            //    GL.Vertex3f(dOrthoSize, fIndx, dOrthoSize);
+                    GL.TexCoord3f(1.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
+                    GL.Vertex3f(dOrthoSize, fIndx, dOrthoSize);
 
-            //    GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
-            //    GL.Vertex3f(-dOrthoSize, fIndx, dOrthoSize);
+                    GL.TexCoord3f(0.0f, ((float)fIndx + 1.0f) / 2.0f, 1.0f);
+                    GL.Vertex3f(-dOrthoSize, fIndx, dOrthoSize);
 
-            //    GL.End();
-            //}
+                    GL.End();
+                }
+            }
             GL.BindTexture(GL.GL_TEXTURE_3D, 0);
+            GL.Disable(GL.GL_TEXTURE_3D);
+            GL.Disable(GL.GL_ALPHA_TEST);
+            GL.AlphaFunc(GL.GL_GREATER, alphaThreshold);
+
+            GL.Disable(GL.GL_BLEND);
+
         }
 
+        bool blend = true;
+        bool renderZ = true;
+        bool renderY = false;
 
         float dOrthoSize = 1.0f;
         private RawDataProcessor m_pRawDataProc;
-        private TranformationMgr m_pTransformMgr;
-
-        private float wheel = 0.16f;
-        public void MouseWheel(int p)
-        {
-            wheel -= (float)p / 5000.0f;
-            if (wheel <= 0)
-            {
-                wheel = 0.001f;
-            }
-        }
 
         private uint sourceFactor = GL.GL_ONE_MINUS_SRC_COLOR;
 

@@ -47,7 +47,6 @@ namespace Radar.Winform
         public void Render()
         {
             float fFrameCount = (float)m_pRawDataProc.GetDepth();
-            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             GL.Enable(GL.GL_ALPHA_TEST);
             GL.AlphaFunc(GL.GL_GREATER, alphaThreshold);

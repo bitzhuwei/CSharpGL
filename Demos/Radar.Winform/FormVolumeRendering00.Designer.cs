@@ -44,6 +44,7 @@ namespace Radar.Winform
             this.lblNegativeZ = new System.Windows.Forms.Label();
             this.trackSectionHeight = new System.Windows.Forms.TrackBar();
             this.label3 = new System.Windows.Forms.Label();
+            this.lblCameraDirection = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
@@ -56,7 +57,8 @@ namespace Radar.Winform
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblBlendFuncParams});
+            this.lblBlendFuncParams,
+            this.lblCameraDirection});
             this.statusStrip1.Location = new System.Drawing.Point(0, 546);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(715, 25);
@@ -183,6 +185,12 @@ namespace Radar.Winform
             this.label3.TabIndex = 5;
             this.label3.Text = "剖面高度：";
             // 
+            // lblCameraDirection
+            // 
+            this.lblCameraDirection.Name = "lblCameraDirection";
+            this.lblCameraDirection.Size = new System.Drawing.Size(132, 20);
+            this.lblCameraDirection.Text = "camera direction";
+            // 
             // FormVolumeRendering00
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -232,5 +240,6 @@ namespace Radar.Winform
         private System.Windows.Forms.ToolStripStatusLabel lblBlendFuncParams;
         private System.Windows.Forms.TrackBar trackSectionHeight;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolStripStatusLabel lblCameraDirection;
     }
 }
