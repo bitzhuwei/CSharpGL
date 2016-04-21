@@ -132,6 +132,10 @@ namespace CSharpGL.Demos
                 propertyNameMap.Add("in_Color", "color");
                 var renderer = new ModernRenderer(bufferable, shaders, propertyNameMap, "position");
                 renderer.Initialize();
+                GLSwitch lineWidthSwitch = new LineWidthSwitch(10.0f);
+                renderer.SwitchList.Add(lineWidthSwitch);
+                GLSwitch pointSizeSwitch = new PointSizeSwitch(10.0f);
+                renderer.SwitchList.Add(pointSizeSwitch);
                 this.renderer = renderer;
             }
             {
