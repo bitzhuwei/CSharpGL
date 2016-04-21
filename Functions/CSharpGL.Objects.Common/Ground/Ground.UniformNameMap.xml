@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<UniformNameMap>
-  <NamePair NameInIConvert2BufferRenderer="projectionMatrix" UniformNameInShader="projectionMatrix" />
-  <NamePair NameInIConvert2BufferRenderer="viewMatrix" UniformNameInShader="viewMatrix" />
-  <NamePair NameInIConvert2BufferRenderer="modelMatrix" UniformNameInShader="modelMatrix" />
-  <NamePair NameInIConvert2BufferRenderer="lineColor" UniformNameInShader="lineColor" />
-</UniformNameMap>

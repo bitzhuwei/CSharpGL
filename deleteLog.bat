@@ -1,0 +1,2 @@
+del *.log /S
+pause

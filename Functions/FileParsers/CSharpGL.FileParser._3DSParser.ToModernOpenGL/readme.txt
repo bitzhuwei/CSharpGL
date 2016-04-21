@@ -1,2 +1,0 @@
-﻿本项目从CSharpGL.FileParser._3DSParser项目中的chunk树中抽取出3ds文件里的模型并用modern OpenGL显示。
-本项目尚未完成。

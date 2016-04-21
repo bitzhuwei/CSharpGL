@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<PropertyNameMap>
-  <NamePair VarNameInShader="position" NameInIConvert2BufferRenderer="position" />
-  <NamePair VarNameInShader="color" NameInIConvert2BufferRenderer="color" />
-</PropertyNameMap>
