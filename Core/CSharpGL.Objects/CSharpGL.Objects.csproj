@@ -36,6 +36,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="bitzhuwei.CompilerBase">
+      <HintPath>..\CSharpGL.GLSLCompiler\bitzhuwei.CompilerBase.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -80,6 +83,13 @@
     <Compile Include="Cameras\Camera.cs" />
     <Compile Include="Cameras\ViewTypes.cs" />
     <Compile Include="GLColor.cs" />
+    <Compile Include="ModernRendering\CodeShader.cs" />
+    <Compile Include="ModernRendering\GLSwitch.cs" />
+    <Compile Include="ModernRendering\IConvert2BufferPointer.cs" />
+    <Compile Include="ModernRendering\ModernRenderer.cs" />
+    <Compile Include="ModernRendering\PropertyNameMap.cs" />
+    <Compile Include="ModernRendering\UniformNameMap.cs" />
+    <Compile Include="ModernRendering\UniformVariableBase.cs" />
     <Compile Include="Shaders\ShaderCompilationException.cs" />
     <Compile Include="Shaders\Shader.cs" />
     <Compile Include="RenderContexts\DIBSection.cs" />
@@ -95,21 +105,25 @@
     <Compile Include="Textures\sampler1D.cs" />
     <Compile Include="Textures\sampler3D.cs" />
     <Compile Include="Textures\sampler2D.cs" />
-    <Compile Include="VertexBuffers\BufferRenderer.cs" />
+    <Compile Include="VertexBuffers\BufferPointer.cs" />
     <Compile Include="VertexBuffers\IndexBuffer.cs" />
     <Compile Include="VertexBuffers\IndexBufferBase.cs" />
-    <Compile Include="VertexBuffers\IndexBufferRendererBase.cs" />
-    <Compile Include="VertexBuffers\PropertyBufferRenderer.cs" />
+    <Compile Include="VertexBuffers\IndexBufferPointerBase.cs" />
+    <Compile Include="VertexBuffers\PropertyBufferPointer.cs" />
     <Compile Include="VertexBuffers\VertexArrayObject.cs" />
-    <Compile Include="VertexBuffers\IndexBufferRenderer.cs" />
+    <Compile Include="VertexBuffers\IndexBufferPointer.cs" />
     <Compile Include="VertexBuffers\PropertyBuffer.cs" />
     <Compile Include="VertexBuffers\VertexBuffer.cs" />
     <Compile Include="VertexBuffers\ZeroIndexBuffer.cs" />
-    <Compile Include="VertexBuffers\ZeroIndexBufferRenderer.cs">
+    <Compile Include="VertexBuffers\ZeroIndexBufferPointer.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CSharpGL.GLSLCompiler\CSharpGL.GLSLCompiler.csproj">
+      <Project>{777388e6-87c6-40b1-a9fd-6afc7d3642d8}</Project>
+      <Name>CSharpGL.GLSLCompiler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GLM\GLM.csproj">
       <Project>{425b5714-8c57-48e4-a88a-3cce10096f7b}</Project>
       <Name>GLM</Name>
@@ -129,7 +143,7 @@
   <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Models\TeapotModel.obj" />
-    <None Include="VertexBuffers\BufferRenderers.cd" />
+    <None Include="VertexBuffers\BufferPointers.cd" />
     <None Include="VertexBuffers\VertexBuffers.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

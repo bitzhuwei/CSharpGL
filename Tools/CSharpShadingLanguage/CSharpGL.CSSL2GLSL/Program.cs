@@ -22,7 +22,7 @@ namespace CSharpGL.CSSL2GLSL
         }
         class TranslationInfo
         {
-            public string fullname;
+            public CSSLFileGroup fileGroup;
             public CompilerErrorCollection errors;
             public IList<SemanticShaderInfo> semanticShaderList = new List<SemanticShaderInfo>();
 
@@ -52,7 +52,7 @@ namespace CSharpGL.CSSL2GLSL
             public void Append(StringBuilder builder, int preEmptySpace)
             {
                 PrintPreEmptySpace(builder, preEmptySpace);
-                builder.AppendFormat("--> Translating {0}", fullname); builder.AppendLine();
+                builder.AppendFormat("--> Translating {0}", fileGroup); builder.AppendLine();
                 if (errors != null)
                 {
                     PrintPreEmptySpace(builder, preEmptySpace);
@@ -90,7 +90,7 @@ namespace CSharpGL.CSSL2GLSL
                 if (errors == null && this.semanticShaderList.Count > 0)
                 {
                     PrintPreEmptySpace(builder, preEmptySpace);
-                    builder.AppendFormat("--> Translating {0}", fullname); builder.AppendLine();
+                    builder.AppendFormat("--> Translating {0}", fileGroup); builder.AppendLine();
                     PrintPreEmptySpace(builder, preEmptySpace);
                     builder.AppendFormat("{0} CSSL shaders:", this.semanticShaderList.Count); builder.AppendLine();
                     foreach (var item in semanticShaderList)
@@ -128,13 +128,20 @@ namespace CSharpGL.CSSL2GLSL
                     directoryName = Environment.CurrentDirectory;
                 }
                 Console.WriteLine("Searching *.cssl.cs files...");
-                string[] files = System.IO.Directory.GetFiles(directoryName, "*.cssl.cs",
+                string[] csslFiles = System.IO.Directory.GetFiles(directoryName, "*.cssl.cs",
                     System.IO.SearchOption.AllDirectories);
+                string[] mainFiles = System.IO.Directory.GetFiles(directoryName, "*.main.cs",
+                    System.IO.SearchOption.AllDirectories);
+                var fileGroupList = from csslFile in csslFiles
+                                    join mainFile in mainFiles
+                                    on csslFile.Substring(0, csslFile.Length - ".cssl.cs".Length).ToLower()
+                                    equals mainFile.Substring(0, mainFile.Length - ".main.cs".Length).ToLower()
+                                    select new CSSLFileGroup(csslFile, mainFile);
                 List<TranslationInfo> translationInfoList = new List<TranslationInfo>();
-                foreach (var fullname in files)
+                foreach (var fileGroup in fileGroupList)
                 {
-                    Console.WriteLine("translating {0}", fullname);
-                    TranslationInfo translationInfo = TranslateCSharpShaderLanguage2GLSL(fullname);
+                    Console.WriteLine("translating {0}", fileGroup);
+                    TranslationInfo translationInfo = TranslateCSharpShaderLanguage2GLSL(fileGroup);
                     translationInfoList.Add(translationInfo);
                 }
 
@@ -184,9 +191,9 @@ namespace CSharpGL.CSSL2GLSL
         }
 
 
-        private static TranslationInfo TranslateCSharpShaderLanguage2GLSL(string fullname)
+        private static TranslationInfo TranslateCSharpShaderLanguage2GLSL(CSSLFileGroup fileGroup)
         {
-            TranslationInfo translationInfo = new TranslationInfo() { fullname = fullname, };
+            TranslationInfo translationInfo = new TranslationInfo() { fileGroup = fileGroup, };
 
             CSharpCodeProvider objCSharpCodePrivoder = new CSharpCodeProvider();
 
@@ -197,7 +204,7 @@ namespace CSharpGL.CSSL2GLSL
             objCompilerParameters.GenerateInMemory = true;
             objCompilerParameters.IncludeDebugInformation = true;
             CompilerResults cr = objCSharpCodePrivoder.CompileAssemblyFromFile(
-                objCompilerParameters, fullname);
+                objCompilerParameters, fileGroup.ToArray());
 
             if (cr.Errors.HasErrors)
             {
@@ -230,7 +237,7 @@ namespace CSharpGL.CSSL2GLSL
                 var result = from semanticShader in
                                  (from type in cr.CompiledAssembly.GetTypes()
                                   where type.IsSubclassOf(typeof(CSShaderCode))
-                                  select (Activator.CreateInstance(type) as CSShaderCode).GetSemanticShader(fullname))
+                                  select (Activator.CreateInstance(type) as CSShaderCode).GetSemanticShader(fileGroup))
                              select new SemanticShaderInfo() { codeUpdated = semanticShader.Dump2File(), shader = semanticShader };
 
                 translationInfo.semanticShaderList = result.ToList();

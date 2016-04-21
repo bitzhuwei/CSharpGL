@@ -158,7 +158,7 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "result:";
             // 
-            // FormInsertIntermediateStructure
+            // FormUpdateIntermediateStructure
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -173,8 +173,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Name = "FormInsertIntermediateStructure";
-            this.Text = "FormAddIntermediateStructure";
+            this.Name = "FormUpdateIntermediateStructure";
+            this.Text = "FormUpdateIntermediateStructure";
             this.Load += new System.EventHandler(this.FormAddVertexShaderField_Load);
             this.menuFieldList.ResumeLayout(false);
             this.ResumeLayout(false);

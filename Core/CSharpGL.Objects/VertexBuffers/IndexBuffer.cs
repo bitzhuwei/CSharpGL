@@ -79,14 +79,14 @@ namespace CSharpGL.Objects.VertexBuffers
         //    return result;
         //}
 
-        protected override BufferRenderer CreateRenderer()
+        protected override BufferPointer CreateRenderer()
         {
             uint[] buffers = new uint[1];
             GL.GenBuffers(1, buffers);
             GL.BindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, buffers[0]);
             GL.BufferData(GL.GL_ELEMENT_ARRAY_BUFFER, this.ByteLength, this.Header, (uint)this.Usage);
 
-            IndexBufferRenderer renderer = new IndexBufferRenderer(
+            IndexBufferPointer renderer = new IndexBufferPointer(
                  buffers[0], this.Mode, this.ElementCount, this.Type);
 
             return renderer;

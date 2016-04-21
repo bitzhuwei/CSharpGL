@@ -42,13 +42,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AxisElement.cs" />
+    <Compile Include="Ground\Ground.cssl.cs" />
+    <Compile Include="Ground\Ground.main.cs" />
+    <Compile Include="ShaderLoadingHelper.cs" />
     <Content Include="readme.txt" />
     <Compile Include="AxisElement2.cs" />
     <Compile Include="AxisElement.cssl.cs" />
-    <Compile Include="Ground.cs" />
-    <Compile Include="Ground.cssl.cs" />
-    <Compile Include="GroundRenderer.cs" />
+    <Compile Include="Ground\Ground.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Ground\Ground.PropertyNameMap.xml" />
+    <EmbeddedResource Include="Ground\Ground.UniformNameMap.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AxisElement.frag" />
@@ -85,8 +88,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Ground.frag" />
-    <EmbeddedResource Include="Ground.vert" />
+    <None Include="Ground\Ground.config" />
+    <EmbeddedResource Include="Ground\Ground.frag" />
+    <EmbeddedResource Include="Ground\Ground.vert" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

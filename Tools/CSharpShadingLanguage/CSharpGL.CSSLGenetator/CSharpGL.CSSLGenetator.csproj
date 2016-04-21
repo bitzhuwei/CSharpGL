@@ -116,8 +116,8 @@
     <Compile Include="StructureFieldList.cs" />
     <Compile Include="VertexShaderFieldList.cs" />
     <Content Include="readme.txt" />
-    <Content Include="vs+fs.xml" />
-    <Content Include="vs+gs+fs.xml" />
+    <None Include="vs+fs.config" />
+    <None Include="vs+gs+fs.config" />
     <EmbeddedResource Include="FormUpdateIntermediateStructure.resx">
       <DependentUpon>FormUpdateIntermediateStructure.cs</DependentUpon>
     </EmbeddedResource>
@@ -168,6 +168,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\CSharpGL.Objects\CSharpGL.Objects.csproj">
+      <Project>{b340c561-2e18-42af-a52d-e6d9f924293e}</Project>
+      <Name>CSharpGL.Objects</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Core\Utilities\Utilities.csproj">
       <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
       <Name>Utilities</Name>

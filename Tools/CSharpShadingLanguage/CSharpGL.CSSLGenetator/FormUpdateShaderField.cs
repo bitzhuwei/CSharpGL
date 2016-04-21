@@ -66,6 +66,8 @@ namespace CSharpGL.CSSLGenetator
                     }
                 }
             }
+
+            this.txtValue.Text = this.clonedTarget.FieldValue;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -73,7 +75,6 @@ namespace CSharpGL.CSSLGenetator
             this.clonedTarget.Qualider = (FieldQualifier)this.cmbQualifier.SelectedItem;
             this.clonedTarget.FieldType = this.cmbType.SelectedItem.ToString();
             this.clonedTarget.FieldName = this.txtName.Text;
-            this.clonedTarget.PropertyType = PropertyType.Other;
 
             this.Result = this.clonedTarget;
 
@@ -83,6 +84,15 @@ namespace CSharpGL.CSSLGenetator
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+        }
+
+        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IntermediateStructure structure = this.cmbType.SelectedItem as IntermediateStructure;
+            if (structure != null)
+            {
+                this.txtValue.Text = structure.DefaultValue;
+            }
         }
     }
 }

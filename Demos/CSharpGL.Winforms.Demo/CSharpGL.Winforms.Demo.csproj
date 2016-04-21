@@ -58,6 +58,12 @@
     <Compile Include="FormCameraController.Designer.cs">
       <DependentUpon>FormCameraController.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormNewNormalLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNewNormalLine.Designer.cs">
+      <DependentUpon>FormNewNormalLine.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormNormalLineDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -291,6 +297,9 @@
     <Compile Include="TestProjectionFunctions.cs" />
     <EmbeddedResource Include="FormCameraController.resx">
       <DependentUpon>FormCameraController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNewNormalLine.resx">
+      <DependentUpon>FormNewNormalLine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormNormalLineDisplay.resx">
       <DependentUpon>FormNormalLineDisplay.cs</DependentUpon>

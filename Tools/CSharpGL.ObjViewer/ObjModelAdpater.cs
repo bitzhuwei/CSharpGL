@@ -19,7 +19,7 @@ namespace CSharpGL.ObjViewer
         }
 
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferPointer IModel.GetPositionBufferRenderer(string varNameInShader)
         {
             using (var buffer = new ObjModelPositionBuffer(varNameInShader))
             {
@@ -38,7 +38,7 @@ namespace CSharpGL.ObjViewer
 
         }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetColorBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferPointer IModel.GetColorBufferRenderer(string varNameInShader)
         {
             if (model.uvList.Count == 0) { return null; }
 
@@ -59,7 +59,7 @@ namespace CSharpGL.ObjViewer
 
         }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetNormalBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferPointer IModel.GetNormalBufferRenderer(string varNameInShader)
         {
             using (var buffer = new ObjModelNormalBuffer(varNameInShader))
             {
@@ -78,7 +78,7 @@ namespace CSharpGL.ObjViewer
 
         }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetIndexes()
+        CSharpGL.Objects.VertexBuffers.IndexBufferPointerBase IModel.GetIndexes()
         {
             using (var buffer = new IndexBuffer<uint>(DrawMode.Triangles, IndexElementType.UnsignedInt, BufferUsage.StaticDraw))
             {
@@ -94,7 +94,7 @@ namespace CSharpGL.ObjViewer
                     }
                 }
 
-                return buffer.GetRenderer();
+                return buffer.GetRenderer() as IndexBufferPointerBase;
             }
         }
     }

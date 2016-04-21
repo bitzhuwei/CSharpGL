@@ -27,15 +27,15 @@ namespace CSharpGL.CSSL2GLSL
             get { return shaderCode; }
             protected set { shaderCode = value; }
         }
-        protected string fullname;
+        protected CSSLFileGroup fileGroup;
         protected string mainFunction;
 
         public GLSLVersion Version { get; set; }
 
-        public SemanticShader(CSShaderCode shaderCode, string fullname)
+        public SemanticShader(CSShaderCode shaderCode, CSSLFileGroup fileGroup)
         {
             this.shaderCode = shaderCode;
-            this.fullname = fullname;
+            this.fileGroup = fileGroup;
         }
 
         protected static readonly char[] separator = new char[] { '\r', '\n' };
@@ -50,7 +50,7 @@ namespace CSharpGL.CSSL2GLSL
                 string shaderCode = DumpShaderCode();
 
                 string targetFullname = Path.Combine(
-                    (new FileInfo(fullname)).DirectoryName, this.shaderCode.GetShaderFilename());
+                    (new FileInfo(fileGroup.CsslFile)).DirectoryName, this.shaderCode.GetShaderFilename());
                 if (File.Exists(targetFullname))
                 {
                     if (File.ReadAllText(targetFullname) != shaderCode)

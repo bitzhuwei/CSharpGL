@@ -17,9 +17,9 @@ namespace CSharpGL.Objects.VolumeRendering
     {
         VertexArrayObject vao;
 
-        BufferRenderer positionBufferRenderer;
-        BufferRenderer uvBufferRenderer;
-        BufferRenderer indexBufferRenderer;
+        BufferPointer positionBufferRenderer;
+        BufferPointer uvBufferRenderer;
+        IndexBufferPointerBase indexBufferRenderer;
 
         CRawDataProcessor textureProcessor = new CRawDataProcessor();
 
@@ -145,11 +145,13 @@ namespace CSharpGL.Objects.VolumeRendering
                         }
                     }
                 }
-                this.indexBufferRenderer = indexBuffer.GetRenderer();
+                this.indexBufferRenderer = indexBuffer.GetRenderer() as IndexBufferPointerBase;
                 indexBuffer.Dispose();
             }
 
-            this.vao = new VertexArrayObject(this.positionBufferRenderer, this.uvBufferRenderer, this.indexBufferRenderer);
+            this.vao = new VertexArrayObject(
+                this.indexBufferRenderer,
+                this.positionBufferRenderer, this.uvBufferRenderer);
         }
 
         private void InitTexture()

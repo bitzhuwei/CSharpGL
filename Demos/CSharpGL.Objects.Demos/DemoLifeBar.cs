@@ -39,7 +39,7 @@ namespace CSharpGL.Objects.Demos
             }
         }
 
-        VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
+        VertexBuffers.BufferPointer IModel.GetPositionBufferRenderer(string varNameInShader)
         {
             using (var buffer = new PositionBuffer(varNameInShader))
             {
@@ -57,12 +57,12 @@ namespace CSharpGL.Objects.Demos
             }
         }
 
-        VertexBuffers.BufferRenderer IModel.GetColorBufferRenderer(string varNameInShader)
+        VertexBuffers.BufferPointer IModel.GetColorBufferRenderer(string varNameInShader)
         {
             throw new NotImplementedException();
         }
 
-        VertexBuffers.BufferRenderer IModel.GetNormalBufferRenderer(string varNameInShader)
+        VertexBuffers.BufferPointer IModel.GetNormalBufferRenderer(string varNameInShader)
         {
             using (var buffer = new NormalBuffer(varNameInShader))
             {
@@ -80,11 +80,11 @@ namespace CSharpGL.Objects.Demos
             }
         }
 
-        VertexBuffers.BufferRenderer IModel.GetIndexes()
+        IndexBufferPointerBase IModel.GetIndexes()
         {
             using (var buffer = new ZeroIndexBuffer(DrawMode.TriangleStrip, 0, this.positions.Length))
             {
-                return buffer.GetRenderer();
+                return buffer.GetRenderer() as IndexBufferPointerBase;
             }
         }
 

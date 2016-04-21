@@ -1,6 +1,5 @@
 ﻿using CSharpGL.Objects;
 using CSharpGL.Objects.Cameras;
-using CSharpGL.Objects.Demos.UIs;
 using CSharpGL.Objects.ModelFactories;
 using CSharpGL.Objects.Models;
 using CSharpGL.UIs;

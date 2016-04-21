@@ -23,15 +23,15 @@ namespace CSharpGL.LightEffects
         VertexArrayObject vertexArrayObject;
 
         const string strin_Position = "in_Position";
-        BufferRenderer positionBufferRenderer;
+        BufferPointer positionBufferRenderer;
 
         //const string strin_Color = "in_Color";
         //BufferRenderer colorBufferRenderer;
 
         const string strin_Normal = "in_Normal";
-        BufferRenderer normalBufferRenderer;
+        BufferPointer normalBufferRenderer;
 
-        BufferRenderer indexBufferRenderer;
+        IndexBufferPointerBase indexBufferRenderer;
 
         #endregion
 
@@ -88,17 +88,17 @@ namespace CSharpGL.LightEffects
             this.positionBufferRenderer = model.GetPositionBufferRenderer(strin_Position);
             //this.colorBufferRenderer = model.GetColorBufferRenderer(strin_Color);
             this.normalBufferRenderer = model.GetNormalBufferRenderer(strin_Normal);
-            this.indexBufferRenderer = model.GetIndexes();
+            this.indexBufferRenderer = model.GetIndexes() as IndexBufferPointerBase;
 
             {
-                IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+                IndexBufferPointer renderer = this.indexBufferRenderer as IndexBufferPointer;
                 if (renderer != null)
                 {
                     this.elementCount = renderer.ElementCount;
                 }
             }
             {
-                ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;
+                ZeroIndexBufferPointer renderer = this.indexBufferRenderer as ZeroIndexBufferPointer;
                 if (renderer != null)
                 {
                     this.elementCount = renderer.VertexCount;
@@ -138,10 +138,10 @@ namespace CSharpGL.LightEffects
             if (this.vertexArrayObject == null)
             {
                 var vertexArrayObject = new VertexArrayObject(
+                    this.indexBufferRenderer,
                     this.positionBufferRenderer,
                     //this.colorBufferRenderer,
-                    this.normalBufferRenderer,
-                    this.indexBufferRenderer);
+                    this.normalBufferRenderer);
                 vertexArrayObject.Create(e, this.shaderProgram);
 
                 this.vertexArrayObject = vertexArrayObject;
@@ -170,7 +170,7 @@ namespace CSharpGL.LightEffects
         public void DecreaseVertexCount()
         {
             {
-                IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+                IndexBufferPointer renderer = this.indexBufferRenderer as IndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.ElementCount > 0)
@@ -181,7 +181,7 @@ namespace CSharpGL.LightEffects
                 }
             }
             {
-                ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;
+                ZeroIndexBufferPointer renderer = this.indexBufferRenderer as ZeroIndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.VertexCount > 0)
@@ -196,7 +196,7 @@ namespace CSharpGL.LightEffects
         public void IncreaseVertexCount()
         {
             {
-                IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+                IndexBufferPointer renderer = this.indexBufferRenderer as IndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.ElementCount < this.elementCount)
@@ -207,7 +207,7 @@ namespace CSharpGL.LightEffects
                 }
             }
             {
-                ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;
+                ZeroIndexBufferPointer renderer = this.indexBufferRenderer as ZeroIndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.VertexCount < this.elementCount)

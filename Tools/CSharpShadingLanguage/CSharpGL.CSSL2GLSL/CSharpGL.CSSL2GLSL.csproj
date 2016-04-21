@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CSSLFileGroup.cs" />
     <Compile Include="SemanticField.cs" />
     <Compile Include="Program.cs">
       <SubType>Code</SubType>

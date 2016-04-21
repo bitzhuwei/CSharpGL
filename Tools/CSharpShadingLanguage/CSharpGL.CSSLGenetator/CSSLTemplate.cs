@@ -11,10 +11,14 @@ using Microsoft.CSharp;
 using CSharpShadingLanguage;
 using System.CodeDom.Compiler;
 
+using CSharpGL.Objects;
+using CSharpGL.Objects.ModernRendering;
+
 namespace CSharpGL.CSSLGenetator
 {
     /// <summary>
     /// 生成一套CSSL+Renderer所需的所有信息都在这里。
+    /// 可参考 http://www.cnblogs.com/nokiaguy/archive/2008/05/12/1193471.html
     /// </summary>
     public class CSSLTemplate : ICloneable
     {
@@ -22,7 +26,7 @@ namespace CSharpGL.CSSLGenetator
         const CSharpShadingLanguage.GeometryCSShaderCode.InType defaultLayoutIn = GeometryCSShaderCode.InType.triangles;
         const CSharpShadingLanguage.GeometryCSShaderCode.OutType defaultLayoutOut = GeometryCSShaderCode.OutType.triangle_strip;
 
-        const string strExtentsion = "xml";
+        const string strExtentsion = "config";
         public string Fullname { get; set; }
 
         const string strShaderName = "ShaderName";
@@ -101,272 +105,188 @@ namespace CSharpGL.CSSLGenetator
             return result;
         }
 
-        //TODO:生成Renderer的过程也用CodeDom重写一下吧。
-        //可参考 http://www.cnblogs.com/nokiaguy/archive/2008/05/12/1193471.html
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GenerateRenderer()
+        public void GenerateUinformNameMap(string uniformNameMapFullname)
         {
-            string directory = (new FileInfo(this.Fullname)).DirectoryName;
-            var rendererFullname = Path.Combine(directory, this.ShaderName + "Renderer.cs");
+            List<ShaderField> shaderFieldList = new List<ShaderField>();
 
-            var fileStream = new FileStream(rendererFullname, FileMode.Create);
-            var listener = new TextWriterTraceListener(fileStream);
-            Debug.Listeners.Add(listener);
-            //
-            #region generate renderer
-            Debug.WriteLine(string.Format("namespace Renderers.{0}", this.ShaderName));
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("using CSharpGL;");
-            Debug.WriteLine("using CSharpGL.Objects;");
-            Debug.WriteLine("using CSharpGL.Objects.Models;");
-            Debug.WriteLine("using CSharpGL.Objects.Shaders;");
-            Debug.WriteLine("using CSharpGL.Objects.Textures;");
-            Debug.WriteLine("using CSharpGL.Objects.VertexBuffers;");
-            Debug.WriteLine("using GLM;");
-            Debug.WriteLine("using System;");
-            Debug.WriteLine("using System.Collections.Generic;");
-            Debug.WriteLine("using System.Linq;");
-            Debug.WriteLine("using System.Threading.Tasks;");
-            Debug.WriteLine("");
-            Debug.WriteLine("/// <summary>");
-            Debug.WriteLine(string.Format("/// 一个<see cref=\"\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。", this.ShaderName + "Renderer"));
-            Debug.WriteLine("/// </summary>");
-            Debug.WriteLine(string.Format("public class {0} : RendererBase", this.ShaderName + "Renderer"));
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("ShaderProgram shaderProgram;");
-            Debug.WriteLine("");
-            Debug.WriteLine("#region VAO/VBO renderers");
-            Debug.WriteLine("");
-            Debug.WriteLine("VertexArrayObject vertexArrayObject;");
-            Debug.WriteLine("");
             foreach (var item in this.VertexShaderFieldList)
             {
-                if (item.Qualider == FieldQualifier.In)
+                if (item.Qualider == FieldQualifier.Uniform)
                 {
-                    Debug.WriteLine(string.Format("const string str{0} = \"{0}\";", item.FieldName, item.FieldName));
-                    Debug.WriteLine(string.Format("BufferRenderer {0}BufferRenderer;", item.FieldName));
+                    bool exists = false;
+                    foreach (var shaderField in shaderFieldList)
+                    {
+                        if (shaderField.FieldName == item.FieldName)
+                        { exists = true; }
+                    }
+                    if (!exists)
+                    { shaderFieldList.Add(item); }
                 }
             }
-            Debug.WriteLine("");
-            Debug.WriteLine("BufferRenderer indexBufferRenderer;");
-            Debug.WriteLine("");
-            Debug.WriteLine("#endregion");
-            Debug.WriteLine("");
 
-            GenerateDeclaringUniforms();
-
-            Debug.WriteLine("");
-            Debug.WriteLine("public PolygonModes polygonMode = PolygonModes.Filled;");
-            Debug.WriteLine("");
-            Debug.WriteLine("private int elementCount;");
-            Debug.WriteLine("");
-            Debug.WriteLine("private IModel model;");
-            Debug.WriteLine("");
-            Debug.WriteLine(string.Format("public {0}(IModel model)", this.ShaderName + "Renderer"));
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("this.model = model;");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.WriteLine("");
-            Debug.WriteLine("protected void InitializeShader(out ShaderProgram shaderProgram)");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine(string.Format("var vertexShaderSource = ManifestResourceLoader.LoadTextFile(\"{0}.vert\");", this.ShaderName));
-            Debug.WriteLine(string.Format("var fragmentShaderSource = ManifestResourceLoader.LoadTextFile(\"{0}.frag\");", this.ShaderName));
-            if (this.ProgramType == ShaderProgramType.VertexGeometryFragment)
+            foreach (var item in this.GeometryShaderFieldList)
             {
-                Debug.WriteLine(string.Format("var geometryShaderSource = ManifestResourceLoader.LoadTextFile(\"{0}.geom\");", this.ShaderName));
-            }
-            Debug.WriteLine("");
-            Debug.WriteLine("shaderProgram = new ShaderProgram();");
-            if (this.ProgramType == ShaderProgramType.VertexGeometryFragment)
-            {
-                Debug.WriteLine("shaderProgram.Create(vertexShaderSource, fragmentShaderSource, geometryShaderSource);");
-            }
-            else
-            {
-                Debug.WriteLine("shaderProgram.Create(vertexShaderSource, fragmentShaderSource, null);");
-            }
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.WriteLine("");
-            Debug.WriteLine("protected void InitializeVAO()");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("IModel model = this.model;");
-            GenerateSetRenderer();
-            Debug.WriteLine("this.indexBufferRenderer = model.GetIndexes();");
-            Debug.WriteLine("");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;");
-            Debug.WriteLine("if (renderer != null)");
-            Debug.WriteLine("{ this.elementCount = renderer.ElementCount; }");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;");
-            Debug.WriteLine("if (renderer != null)");
-            Debug.WriteLine("{ this.elementCount = renderer.VertexCount; } ");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.WriteLine("");
-            Debug.WriteLine("protected override void DoInitialize()");
-            Debug.WriteLine("{");
-            Debug.WriteLine("    InitializeShader(out shaderProgram);");
-            Debug.WriteLine("");
-            Debug.WriteLine("    InitializeVAO();");
-            Debug.WriteLine("}");
-            Debug.WriteLine("");
-            Debug.WriteLine("protected override void DoRender(RenderEventArgs e)");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            GenerateSetUniforms();
-            Debug.WriteLine("");
-            Debug.WriteLine("int[] originalPolygonMode = new int[1];");
-            Debug.WriteLine("GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);");
-            Debug.WriteLine("GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.polygonMode);");
-            Debug.WriteLine("");
-            Debug.WriteLine("GL.Enable(GL.GL_PRIMITIVE_RESTART);");
-            Debug.WriteLine("GL.PrimitiveRestartIndex(uint.MaxValue);");
-            Debug.WriteLine("");
-            Debug.WriteLine("if (this.vertexArrayObject == null)");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("var vertexArrayObject = new VertexArrayObject(");
-            foreach (var item in this.VertexShaderFieldList)
-            {
-                if (item.Qualider == FieldQualifier.In)
+                if (item.Qualider == FieldQualifier.Uniform)
                 {
-                    Debug.WriteLine(string.Format("this.{0}BufferRenderer,", item.FieldName));
+                    bool exists = false;
+                    foreach (var shaderField in shaderFieldList)
+                    {
+                        if (shaderField.FieldName == item.FieldName)
+                        { exists = true; }
+                    }
+                    if (!exists)
+                    { shaderFieldList.Add(item); }
                 }
             }
-            Debug.WriteLine("this.indexBufferRenderer);");
-            Debug.WriteLine("vertexArrayObject.Create(e, this.shaderProgram);");
-            Debug.WriteLine("");
-            Debug.WriteLine("this.vertexArrayObject = vertexArrayObject;");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.WriteLine("else");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("this.vertexArrayObject.Render(e, this.shaderProgram);");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.WriteLine("");
-            Debug.WriteLine("GL.Disable(GL.GL_PRIMITIVE_RESTART);");
-            Debug.WriteLine("");
-            Debug.WriteLine("GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));");
-            Debug.WriteLine("");
-            Debug.WriteLine("// 解绑shader");
-            Debug.WriteLine("program.Unbind();");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.WriteLine("");
-            Debug.WriteLine("protected override void DisposeUnmanagedResources()");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("if (this.vertexArrayObject != null)");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("this.vertexArrayObject.Dispose();");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.WriteLine("");
-            Debug.WriteLine("public void DecreaseVertexCount()");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;");
-            Debug.WriteLine("if (renderer != null)");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("if (renderer.ElementCount > 0) { renderer.ElementCount--; }");
-            Debug.WriteLine("return;");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;");
-            Debug.WriteLine("if (renderer != null)");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("if (renderer.VertexCount > 0) { renderer.VertexCount--; }");
-            Debug.WriteLine("return;");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.WriteLine("");
-            Debug.WriteLine("public void IncreaseVertexCount()");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;");
-            Debug.WriteLine("if (renderer != null)");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("if (renderer.ElementCount < this.elementCount) { renderer.ElementCount++; }");
-            Debug.WriteLine("return;");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;");
-            Debug.WriteLine("if (renderer != null)");
-            Debug.WriteLine("{");
-            Debug.Indent();
-            Debug.WriteLine("if (renderer.VertexCount < this.elementCount) { renderer.VertexCount++; }");
-            Debug.WriteLine("return;");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            Debug.Unindent();
-            Debug.WriteLine("}");
-            #endregion  generate renderer
-            //
-            Debug.Close();
-            Debug.Listeners.Remove(listener);
 
-            try
+            foreach (var item in this.FragmentShaderFieldList)
             {
-                //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
-                OpenFolderHelper.OpenFolderAndSelectFiles(directory, rendererFullname);
+                if (item.Qualider == FieldQualifier.Uniform)
+                {
+                    bool exists = false;
+                    foreach (var shaderField in shaderFieldList)
+                    {
+                        if (shaderField.FieldName == item.FieldName)
+                        { exists = true; }
+                    }
+                    if (!exists)
+                    { shaderFieldList.Add(item); }
+                }
             }
-            catch (Exception)
-            {
 
+            UniformNameMap map = new UniformNameMap();
+            foreach (var item in shaderFieldList)
+            {
+                map.Add(item.FieldName, item.FieldName);
             }
+
+            map.ToXElement().Save(uniformNameMapFullname);
         }
 
-        public void GenerateCSSL()
+        public void GenerateProperyNameMap(string propertyNameMapFullname)
         {
-            string directory = (new FileInfo(this.Fullname)).DirectoryName;
-            var csslFullname = Path.Combine(directory, this.ShaderName + ".cssl.cs");
+            List<ShaderField> shaderFieldList = new List<ShaderField>();
 
+            foreach (var item in this.VertexShaderFieldList)
+            {
+                if (item.Qualider == FieldQualifier.In)
+                {
+                    bool exists = false;
+                    foreach (var shaderField in shaderFieldList)
+                    {
+                        if (shaderField.FieldName == item.FieldName)
+                        { exists = true; }
+                    }
+                    if (!exists)
+                    { shaderFieldList.Add(item); }
+                }
+            }
+
+            PropertyNameMap map = new PropertyNameMap();
+            foreach (var item in shaderFieldList)
+            {
+                map.Add(item.FieldName, item.FieldName);
+            }
+
+            map.ToXElement().Save(propertyNameMapFullname);
+        }
+
+        public string GenerateCSSLMain(string csslMainFullname)
+        {
+            Debug.WriteLine("#if DEBUG");// todo: 没有对应#if 的对象？
+            CodeNamespace csslNamespace = new CodeNamespace(string.Format("CSharpShadingLanguage.{0}", this.ShaderName));
+            csslNamespace.Imports.Add(new CodeNamespaceImport(typeof(CSharpShadingLanguage.CSShaderCode).Namespace));
+            csslNamespace.Comments.Add(new CodeCommentStatement("此文件由CSharpGL.CSSLGenerator.exe生成。"));
+            csslNamespace.Comments.Add(new CodeCommentStatement("用法：使用CSSL2GLSL.exe编译此文件，即可获得对应的vertex shader, geometry shader, fragment shader。"));
+            csslNamespace.Comments.Add(new CodeCommentStatement("此文件中的类型不应被直接调用，发布release时可以去掉。"));
+            csslNamespace.Comments.Add(new CodeCommentStatement("不可将此文件中的代码复制到其他文件内（如果包含了其他的using ...;，那么CSSL2GLSL.exe就无法正常编译这些代码了。）"));
+            csslNamespace.Types.Add(GenerateVertexShaderMain());
+            if (this.ProgramType == ShaderProgramType.VertexGeometryFragment)
+            {
+                Debug.WriteLine("");
+                csslNamespace.Types.Add(GenerateGeometryShaderMain());
+            }
+            csslNamespace.Types.Add(GenerateFragmentShaderMain());
+            Debug.WriteLine("#endif");// todo: 没有对应#if 的对象？
+
+            using (var sw = new StreamWriter(csslMainFullname, false))
+            {
+                CSharpCodeProvider codeProvider = new CSharpCodeProvider();
+                CodeGeneratorOptions geneOptions = new CodeGeneratorOptions();//代码生成选项
+                geneOptions.BlankLinesBetweenMembers = true;
+                geneOptions.BracingStyle = "C";
+                geneOptions.ElseOnClosing = false;
+                geneOptions.IndentString = "    ";
+                geneOptions.VerbatimOrder = true;
+
+                codeProvider.GenerateCodeFromNamespace(csslNamespace, sw, geneOptions);
+            }
+
+            return csslMainFullname;
+        }
+
+        private CodeTypeDeclaration GenerateFragmentShaderMain()
+        {
+            CodeTypeDeclaration fragmentShaderType = new CodeTypeDeclaration(this.ShaderName + "Frag");
+            fragmentShaderType.IsPartial = true;
+            fragmentShaderType.BaseTypes.Add(typeof(FragmentCSShaderCode));
+            fragmentShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
+            fragmentShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
+              "一个<see cref=\"{0}\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。",
+              this.ShaderName + "Frag"), true)));
+            fragmentShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("</summary>", true)));
+
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
+            method.ReturnType = new CodeTypeReference(typeof(void));
+            method.Name = "main";
+            fragmentShaderType.Members.Add(method);
+
+            return fragmentShaderType;
+        }
+
+        private CodeTypeDeclaration GenerateGeometryShaderMain()
+        {
+            CodeTypeDeclaration geometryShaderType = new CodeTypeDeclaration(this.ShaderName + "Geom");
+            geometryShaderType.IsPartial = true;
+            geometryShaderType.BaseTypes.Add(typeof(GeometryCSShaderCode));
+            geometryShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
+            geometryShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
+              "一个<see cref=\"{0}\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。",
+              this.ShaderName + "Geom"), true)));
+            geometryShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("</summary>", true)));
+
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
+            method.ReturnType = new CodeTypeReference(typeof(void));
+            method.Name = "main";
+            geometryShaderType.Members.Add(method);
+
+            return geometryShaderType;
+        }
+
+        private CodeTypeDeclaration GenerateVertexShaderMain()
+        {
+            CodeTypeDeclaration vertexShaderType = new CodeTypeDeclaration(this.ShaderName + "Vert");
+            vertexShaderType.IsPartial = true;
+            vertexShaderType.BaseTypes.Add(typeof(VertexCSShaderCode));
+            vertexShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
+            vertexShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
+                "一个<see cref=\"{0}\"/>对应一个(vertex shader+fragment shader+..shader)组成的shader program。",
+                this.ShaderName + "Vert"), true)));
+            vertexShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("</summary>", true)));
+
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
+            method.ReturnType = new CodeTypeReference(typeof(void));
+            method.Name = "main";
+            vertexShaderType.Members.Add(method);
+
+            return vertexShaderType;
+        }
+
+        public string GenerateCSSL(string csslFullname)
+        {
             Debug.WriteLine("#if DEBUG");// todo: 没有对应#if 的对象？
             CodeNamespace csslNamespace = new CodeNamespace(string.Format("CSharpShadingLanguage.{0}", this.ShaderName));
             csslNamespace.Imports.Add(new CodeNamespaceImport(typeof(CSharpShadingLanguage.CSShaderCode).Namespace));
@@ -397,76 +317,7 @@ namespace CSharpGL.CSSLGenetator
                 codeProvider.GenerateCodeFromNamespace(csslNamespace, sw, geneOptions);
             }
 
-            try
-            {
-                //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
-                OpenFolderHelper.OpenFolderAndSelectFiles(directory, csslFullname, csslFullname);
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-        //public void Generate()
-        //{
-        //    string directory = (new FileInfo(this.Fullname)).DirectoryName;
-        //    var csslFullname = Path.Combine(directory, this.ShaderName + ".cssl.cs");
-        //    var rendererFullname = Path.Combine(directory, this.ShaderName + "Renderer.cs");
-
-        //    {
-        //        GenerateCSSL();
-        //    }
-        //    {
-        //        var fileStream = new FileStream(rendererFullname, FileMode.Create);
-        //        var listener = new TextWriterTraceListener(fileStream);
-        //        Debug.Listeners.Add(listener);
-        //        GenerateRenderer();
-        //        Debug.Close();
-        //        Debug.Listeners.Remove(listener);
-        //    }
-
-        //    try
-        //    {
-        //        //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
-        //        OpenFolderHelper.OpenFolderAndSelectFiles(directory, csslFullname, rendererFullname);
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //    }
-        //}
-
-
-        private void GenerateSetRenderer()
-        {
-            foreach (var item in this.VertexShaderFieldList)
-            {
-                if (item.Qualider == FieldQualifier.In)
-                {
-                    switch (item.PropertyType)
-                    {
-                        case PropertyType.Position:
-                            Debug.WriteLine(string.Format(
-                                "this.{0}BufferRenderer = model.GetPositionBufferRenderer(str{0});", item.FieldName));
-                            break;
-                        case PropertyType.Color:
-                            Debug.WriteLine(string.Format(
-                                "this.{0}BufferRenderer = model.GetColorBufferRenderer(str{0});", item.FieldName));
-                            break;
-                        case PropertyType.Normal:
-                            Debug.WriteLine(string.Format(
-                                "this.{0}BufferRenderer = model.GetNormalBufferRenderer(str{0});", item.FieldName));
-                            break;
-                        case PropertyType.Other:
-                            Debug.WriteLine(string.Format(
-                                "//this.{0}BufferRenderer = ???(str{0});", item.FieldName));
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
+            return csslFullname;
         }
 
         private void GenerateSetUniforms()
@@ -540,6 +391,7 @@ namespace CSharpGL.CSSLGenetator
         private CodeTypeDeclaration GenerateFragmentShader()
         {
             CodeTypeDeclaration fragmentShaderType = new CodeTypeDeclaration(this.ShaderName + "Frag");
+            fragmentShaderType.IsPartial = true;
             fragmentShaderType.BaseTypes.Add(typeof(FragmentCSShaderCode));
             fragmentShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
             fragmentShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
@@ -565,18 +417,13 @@ namespace CSharpGL.CSSLGenetator
                 fragmentShaderType.Members.Add(fieldCode);
             }
 
-            CodeMemberMethod method = new CodeMemberMethod();
-            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
-            method.ReturnType = new CodeTypeReference(typeof(void));
-            method.Name = "main";
-            fragmentShaderType.Members.Add(method);
-
             return fragmentShaderType;
         }
 
         private CodeTypeDeclaration GenerateGeometryShader()
         {
             CodeTypeDeclaration geometryShaderType = new CodeTypeDeclaration(this.ShaderName + "Geom");
+            geometryShaderType.IsPartial = true;
             geometryShaderType.BaseTypes.Add(typeof(GeometryCSShaderCode));
             geometryShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
             geometryShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
@@ -645,18 +492,13 @@ namespace CSharpGL.CSSLGenetator
                 geometryShaderType.Members.Add(fieldCode);
             }
 
-            CodeMemberMethod method = new CodeMemberMethod();
-            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
-            method.ReturnType = new CodeTypeReference(typeof(void));
-            method.Name = "main";
-            geometryShaderType.Members.Add(method);
-
             return geometryShaderType;
         }
 
         private CodeTypeDeclaration GenerateVertexShader()
         {
             CodeTypeDeclaration vertexShaderType = new CodeTypeDeclaration(this.ShaderName + "Vert");
+            vertexShaderType.IsPartial = true;
             vertexShaderType.BaseTypes.Add(typeof(VertexCSShaderCode));
             vertexShaderType.Comments.Add(new CodeCommentStatement(new CodeComment("<summary>", true)));
             vertexShaderType.Comments.Add(new CodeCommentStatement(new CodeComment(string.Format(
@@ -683,12 +525,6 @@ namespace CSharpGL.CSSLGenetator
                 vertexShaderType.Members.Add(fieldCode);
             }
 
-            CodeMemberMethod method = new CodeMemberMethod();
-            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
-            method.ReturnType = new CodeTypeReference(typeof(void));
-            method.Name = "main";
-            vertexShaderType.Members.Add(method);
-
             return vertexShaderType;
         }
 
@@ -713,7 +549,36 @@ namespace CSharpGL.CSSLGenetator
                 result = new CodeMemberField(shaderField.FieldType, shaderField.FieldName);
             }
 
+            result.InitExpression = GetInitExpression(shaderField);
+
             return result;
+        }
+
+        private CodeExpression GetInitExpression(ShaderField shaderField)
+        {
+            if (string.IsNullOrEmpty(shaderField.FieldValue)) { return null; }
+
+            string[] parts = shaderField.FieldValue.Split(new char[] { '(', ',', ')' }, StringSplitOptions.RemoveEmptyEntries);
+            if (parts[0] == "int")
+            {
+                return new CodePrimitiveExpression(int.Parse(parts[1]));
+            }
+            else if (parts[0] == "float")
+            {
+                return new CodePrimitiveExpression(float.Parse(parts[1]));
+            }
+            else
+            {
+                string[] valueParts = new string[parts.Length - 1];
+                for (int i = 0; i < valueParts.Length; i++)
+                {
+                    valueParts[i] = parts[i + 1];
+                }
+                return new CodeMethodInvokeExpression(
+                    new CodeMethodReferenceExpression(null, parts[0]),
+                    (from item in valueParts 
+                     select new CodePrimitiveExpression(float.Parse(item.TrimEnd('f', 'd')))).ToArray());
+            }
         }
 
         private CodeTypeDeclarationCollection GenerateStructures()

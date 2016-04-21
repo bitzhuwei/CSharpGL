@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
+  <Class Name="CSharpGL.Objects.VertexBuffers.IndexBufferPointer">
+    <Position X="6.25" Y="7.5" Width="6.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAARAAAAAAAAA=</HashCode>
+      <FileName>VertexBuffers\IndexBufferPointer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.Objects.VertexBuffers.PropertyBufferPointer">
+    <Position X="8.25" Y="4.5" Width="6.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAEAAAAAAAAAAAAAAAAAAAABAAAAAABAA=</HashCode>
+      <FileName>VertexBuffers\PropertyBufferPointer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.Objects.VertexBuffers.ZeroIndexBufferPointer">
+    <Position X="0.5" Y="7.5" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAEAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>VertexBuffers\ZeroIndexBufferPointer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.Objects.VertexBuffers.BufferPointer">
+    <Position X="5.75" Y="0.5" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACCAAAAAAAAAAAAAAAAAAAAAABAAAgAAEAA=</HashCode>
+      <FileName>VertexBuffers\BufferPointer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CSharpGL.Objects.VertexBuffers.IndexBufferPointerBase">
+    <Position X="4" Y="4.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VertexBuffers\IndexBufferPointerBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

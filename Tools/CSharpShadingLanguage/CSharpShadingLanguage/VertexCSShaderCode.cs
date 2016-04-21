@@ -16,6 +16,7 @@ namespace CSharpShadingLanguage
 
         protected vec4 gl_Position;
 
+        protected float gl_PointSize;
     }
 
     /*
@@ -32,9 +33,9 @@ uniform mat4 modelMatrix;
 
 void main(void) 
 {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0);
+    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0);
 
-	pass_UV = in_UV;
+    pass_UV = in_UV;
 }
 
      */

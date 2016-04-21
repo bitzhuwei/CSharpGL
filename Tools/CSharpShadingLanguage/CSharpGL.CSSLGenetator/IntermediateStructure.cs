@@ -18,6 +18,8 @@ namespace CSharpGL.CSSLGenetator
 
         public StructureFieldList FieldList { get; set; }
 
+        public string DefaultValue { get; set; }
+
         public IntermediateStructure()
         {
             this.FieldList = new StructureFieldList();

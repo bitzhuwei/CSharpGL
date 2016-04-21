@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -463,22 +464,49 @@ namespace CSharpGL.CSSLGenetator
             }
         }
 
-        private void btnGenerateCSSL_Click(object sender, EventArgs e)
+        private void btnSaveAndGenerate_Click(object sender, EventArgs e)
         {
             Map2Template(this.currentFile);
 
             保存SToolStripMenuItem_Click(sender, e);
 
-            this.currentFile.GenerateCSSL();
-        }
+            string directory = (new FileInfo(this.currentFile.Fullname)).DirectoryName;
 
-        private void btnGenerateRenderer_Click(object sender, EventArgs e)
-        {
-            Map2Template(this.currentFile);
+            List<string> files = new List<string>();
+            if (this.chkCSSL.Checked)
+            {
+                var csslFullname = Path.Combine(directory, this.currentFile.ShaderName + ".cssl.cs");
+                files.Add(csslFullname);
+                this.currentFile.GenerateCSSL(csslFullname);
+            }
+            if (this.chkMain.Checked)
+            {
+                var csslMainFullname = Path.Combine(directory, this.currentFile.ShaderName + ".main.cs");
+                files.Add(csslMainFullname);
+                this.currentFile.GenerateCSSLMain(csslMainFullname);
+            }
+            if (this.chkPropertyNameMap.Checked)
+            {
+                var propertyNameMapFullname = Path.Combine(directory, this.currentFile.ShaderName + ".PropertyNameMap.xml");
+                files.Add(propertyNameMapFullname);
+                this.currentFile.GenerateProperyNameMap(propertyNameMapFullname);
+            }
+            if (this.chkUniformNameMap.Checked)
+            {
+                var uniformNameMapFullname = Path.Combine(directory, this.currentFile.ShaderName + ".UniformNameMap.xml");
+                files.Add(uniformNameMapFullname);
+                this.currentFile.GenerateUinformNameMap(uniformNameMapFullname);
+            }
 
-            保存SToolStripMenuItem_Click(sender, e);
+            try
+            {
+                //Process.Start("explorer", "/select," + csslFullname + "," + rendererFullname);
+                OpenFolderHelper.OpenFolderAndSelectFiles(directory, files.ToArray());
+            }
+            catch (Exception)
+            {
 
-            this.currentFile.GenerateRenderer();
+            }
         }
 
 

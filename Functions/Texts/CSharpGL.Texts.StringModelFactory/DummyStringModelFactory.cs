@@ -15,7 +15,7 @@ namespace CSharpGL.Texts.StringModelFactory
         /// </summary>
         /// <param name="content"></param>
         /// <returns></returns>
-        public static StringModel GetModel(this string content)
+        public static StringModel GetDummyModel(this string content)
         {
             StringModel model = new StringModel();
 

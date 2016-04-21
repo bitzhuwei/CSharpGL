@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Objects.Models
 {
-    sealed class TeapotLoader
+    public sealed class TeapotLoader
     {
         static TeapotModel model;
         static readonly object synObj = new object();

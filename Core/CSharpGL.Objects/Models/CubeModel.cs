@@ -112,7 +112,7 @@ namespace CSharpGL.Objects.Models
             this.index = identityIndex;
         }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferPointer IModel.GetPositionBufferRenderer(string varNameInShader)
         {
             using (var positionBuffer = new CubePositionBuffer(varNameInShader))
             {
@@ -128,7 +128,7 @@ namespace CSharpGL.Objects.Models
 
         }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetColorBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferPointer IModel.GetColorBufferRenderer(string varNameInShader)
         {
             using (var colorBuffer = new CubeColorBuffer(varNameInShader))
             {
@@ -145,7 +145,7 @@ namespace CSharpGL.Objects.Models
 
         }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetNormalBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferPointer IModel.GetNormalBufferRenderer(string varNameInShader)
         {
             using (var normalBuffer = new CubeNormalBuffer(varNameInShader))
             {
@@ -161,7 +161,7 @@ namespace CSharpGL.Objects.Models
 
         }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetIndexes()
+        CSharpGL.Objects.VertexBuffers.IndexBufferPointerBase IModel.GetIndexes()
         {
             //using (var indexBuffer = new ZeroIndexBuffer(DrawMode.Quads, 0, 4 * 6))
             //{
@@ -181,7 +181,7 @@ namespace CSharpGL.Objects.Models
                     }
                 }
 
-                return buffer.GetRenderer();
+                return buffer.GetRenderer() as IndexBufferPointerBase;
             }
         }
 
@@ -297,5 +297,6 @@ namespace CSharpGL.Objects.Models
                 return string.Format("normal: {0}", normal0);
             }
         }
+
     }
 }

@@ -54,14 +54,14 @@ namespace CSharpGL.Objects.VertexBuffers
         /// </summary>
         public int DataSize { get; private set; }
 
-        protected override BufferRenderer CreateRenderer()
+        protected override BufferPointer CreateRenderer()
         {
             uint[] buffers = new uint[1];
             GL.GenBuffers(1, buffers);
             GL.BindBuffer(GL.GL_ARRAY_BUFFER, buffers[0]);
             GL.BufferData(GL.GL_ARRAY_BUFFER, this.ByteLength, this.Header, (uint)this.Usage);
 
-            PropertyBufferRenderer renderer = new PropertyBufferRenderer(
+            PropertyBufferPointer renderer = new PropertyBufferPointer(
                 this.VarNameInVertexShader, buffers[0], this.DataSize, this.DataType);
 
             return renderer;

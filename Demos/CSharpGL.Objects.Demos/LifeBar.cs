@@ -27,7 +27,7 @@ namespace CSharpGL.Objects.Demos
             this.Height = height;
         }
 
-        VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
+        VertexBuffers.BufferPointer IModel.GetPositionBufferRenderer(string varNameInShader)
         {
             using (var buffer = new PositionBuffer(varNameInShader))
             {
@@ -42,21 +42,21 @@ namespace CSharpGL.Objects.Demos
             }
         }
 
-        VertexBuffers.BufferRenderer IModel.GetColorBufferRenderer(string varNameInShader)
+        VertexBuffers.BufferPointer IModel.GetColorBufferRenderer(string varNameInShader)
         {
             throw new NotImplementedException();
         }
 
-        VertexBuffers.BufferRenderer IModel.GetNormalBufferRenderer(string varNameInShader)
+        VertexBuffers.BufferPointer IModel.GetNormalBufferRenderer(string varNameInShader)
         {
             throw new NotImplementedException();
         }
 
-        VertexBuffers.BufferRenderer IModel.GetIndexes()
+        VertexBuffers.IndexBufferPointerBase IModel.GetIndexes()
         {
             using (var buffer = new ZeroIndexBuffer(DrawMode.Points, 0, 1))
             {
-                return buffer.GetRenderer();
+                return buffer.GetRenderer() as IndexBufferPointerBase;
             }
         }
 

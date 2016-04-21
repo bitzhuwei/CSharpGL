@@ -15,7 +15,7 @@ namespace FormShaderDesigner1594Demos.Renderers
 {
     public abstract class ShaderDesignerRendererBase : CSharpGL.Objects.RendererBase
     {
-        protected BufferRenderer indexBufferRenderer;
+        protected IndexBufferPointerBase indexBufferRenderer;
         protected int indexCount;
         public PolygonModes polygonMode = PolygonModes.Filled;
 
@@ -32,7 +32,7 @@ namespace FormShaderDesigner1594Demos.Renderers
         public void DecreaseVertexCount()
         {
             {
-                IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+                IndexBufferPointer renderer = this.indexBufferRenderer as IndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.ElementCount > 0)
@@ -44,7 +44,7 @@ namespace FormShaderDesigner1594Demos.Renderers
                 }
             }
             {
-                ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;
+                ZeroIndexBufferPointer renderer = this.indexBufferRenderer as ZeroIndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.VertexCount > 0)
@@ -61,7 +61,7 @@ namespace FormShaderDesigner1594Demos.Renderers
         public void IncreaseVertexCount()
         {
             {
-                IndexBufferRenderer renderer = this.indexBufferRenderer as IndexBufferRenderer;
+                IndexBufferPointer renderer = this.indexBufferRenderer as IndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.ElementCount < this.indexCount)
@@ -73,7 +73,7 @@ namespace FormShaderDesigner1594Demos.Renderers
                 }
             }
             {
-                ZeroIndexBufferRenderer renderer = this.indexBufferRenderer as ZeroIndexBufferRenderer;
+                ZeroIndexBufferPointer renderer = this.indexBufferRenderer as ZeroIndexBufferPointer;
                 if (renderer != null)
                 {
                     if (renderer.VertexCount < this.indexCount)

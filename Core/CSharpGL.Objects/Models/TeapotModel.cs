@@ -16,7 +16,7 @@ namespace CSharpGL.Objects.Models
 
         internal TeapotModel() { }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetPositionBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferPointer IModel.GetPositionBufferRenderer(string varNameInShader)
         {
             using (var buffer = new ObjModelPositionBuffer(varNameInShader))
             {
@@ -35,7 +35,7 @@ namespace CSharpGL.Objects.Models
 
         }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetColorBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferPointer IModel.GetColorBufferRenderer(string varNameInShader)
         {
             using (var buffer = new ObjModelColorBuffer(varNameInShader))
             {
@@ -53,7 +53,7 @@ namespace CSharpGL.Objects.Models
             }
         }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetNormalBufferRenderer(string varNameInShader)
+        CSharpGL.Objects.VertexBuffers.BufferPointer IModel.GetNormalBufferRenderer(string varNameInShader)
         {
             using (var buffer = new ObjModelNormalBuffer(varNameInShader))
             {
@@ -72,7 +72,7 @@ namespace CSharpGL.Objects.Models
 
         }
 
-        CSharpGL.Objects.VertexBuffers.BufferRenderer IModel.GetIndexes()
+        CSharpGL.Objects.VertexBuffers.IndexBufferPointerBase IModel.GetIndexes()
         {
             using (var buffer = new ObjModelIndexBuffer())
             {
@@ -93,7 +93,7 @@ namespace CSharpGL.Objects.Models
                     }
                 }
 
-                return buffer.GetRenderer();
+                return buffer.GetRenderer() as IndexBufferPointerBase;
             }
         }
 
