@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelAdapters\CubeModel.cs" />
+    <Compile Include="ModelAdapters\CubeModelAdapter.cs" />
     <Compile Include="ModelAdapters\SphereModel.cs" />
     <Compile Include="FormBulletinBoard.cs">
       <SubType>Form</SubType>
@@ -63,6 +63,7 @@
     <Compile Include="GLSwitchTypeConverter.cs" />
     <Compile Include="ModelAdapters\BigDipperAdapter.cs" />
     <Compile Include="Models\BigDipper.cs" />
+    <Compile Include="Models\CubeModel.cs" />
     <Compile Include="Models\PCIModel.cs" />
     <Compile Include="Form01ModernRenderer.cs">
       <SubType>Form</SubType>

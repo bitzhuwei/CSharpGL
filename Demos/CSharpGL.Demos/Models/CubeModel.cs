@@ -14,7 +14,7 @@ namespace CSharpGL.ModelAdapters
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000061.jpg
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000062.jpg
     /// </summary>
-    public class CubeModel : IBufferable
+    public class CubeModel
     {
         static vec3[] eightVertexes = new vec3[] 
         { 
@@ -69,17 +69,12 @@ namespace CSharpGL.ModelAdapters
             return result;
         }
 
-        CubePosition position;
-        CubeNormal normal;
-        CubeColor color;
-        uint[] index;
+        public CubePosition position;
+        public CubeNormal normal;
+        public CubeColor color;
+        public uint[] index;
 
-        public static IBufferable GetModel(float radius)
-        {
-            return new CubeModel(radius);
-        }
-
-        private CubeModel(float radius)
+        public CubeModel(float radius)
         {
             this.position = identityPosition;
             this.position.faceX.position0 *= radius;
@@ -109,33 +104,6 @@ namespace CSharpGL.ModelAdapters
             this.color = identityColor;
             this.normal = identityNormal;
             this.index = identityIndex;
-        }
-
-        class PositionBuffer : PropertyBuffer<CubePosition>
-        {
-            public PositionBuffer(string varNameInShader)
-                : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-            {
-
-            }
-        }
-
-        class ColorBuffer : PropertyBuffer<CubeColor>
-        {
-            public ColorBuffer(string varNameInShader)
-                : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-            {
-
-            }
-        }
-
-        class NormalBuffer : PropertyBuffer<CubeNormal>
-        {
-            public NormalBuffer(string varNameInShader)
-                : base(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw)
-            {
-
-            }
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -225,76 +193,5 @@ namespace CSharpGL.ModelAdapters
         }
 
 
-        public const string strPosition = "position";
-        public const string strColor = "color";
-        public const string strNormal = "normal";
-
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
-        {
-            if (bufferName == strPosition)
-            {
-                using (var positionBuffer = new PositionBuffer(varNameInShader))
-                {
-                    positionBuffer.Alloc(1);
-                    unsafe
-                    {
-                        var positionArray = (CubePosition*)positionBuffer.FirstElement();
-                        positionArray[0] = this.position;
-                    }
-
-                    return positionBuffer.GetBufferPtr() as PropertyBufferPtr;
-                }
-            }
-            else if (bufferName == strColor)
-            {
-                using (var colorBuffer = new ColorBuffer(varNameInShader))
-                {
-                    colorBuffer.Alloc(1);
-                    unsafe
-                    {
-                        var colorArray = (CubeColor*)colorBuffer.FirstElement();
-                        colorArray[0] = this.color;
-                    }
-
-                    return colorBuffer.GetBufferPtr() as PropertyBufferPtr;
-                }
-            }
-            else if (bufferName == strNormal)
-            {
-                using (var normalBuffer = new NormalBuffer(varNameInShader))
-                {
-                    normalBuffer.Alloc(1);
-                    unsafe
-                    {
-                        var normalArray = (CubeNormal*)normalBuffer.FirstElement();
-                        normalArray[0] = this.normal;
-                    }
-
-                    return normalBuffer.GetBufferPtr() as PropertyBufferPtr;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public IndexBufferPtr GetIndex()
-        {
-            using (var buffer = new OneIndexBuffer<uint>(DrawMode.Triangles, BufferUsage.StaticDraw))
-            {
-                buffer.Alloc(this.index.Length);
-                unsafe
-                {
-                    uint* array = (uint*)buffer.FirstElement();
-                    for (int i = 0; i < this.index.Length; i++)
-                    {
-                        array[i] = this.index[i];
-                    }
-                }
-
-                return buffer.GetBufferPtr() as IndexBufferPtr;
-            }
-        }
     }
 }
