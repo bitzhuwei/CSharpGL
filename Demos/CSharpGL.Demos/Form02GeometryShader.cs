@@ -21,9 +21,10 @@ namespace CSharpGL.Demos
         {
             Cube,
             Sphere,
+            Teapot,
         }
 
-        private GeometryModel selectedModel = GeometryModel.Cube;
+        private GeometryModel selectedModel = GeometryModel.Teapot;
         public GeometryModel SelectedModel
         {
             get { return selectedModel; }
@@ -32,7 +33,8 @@ namespace CSharpGL.Demos
                 if (value != selectedModel)
                 {
                     selectedModel = value;
-                    this.rendererPropertyGrid.DisplayObject(this.rendererDict[value]);
+                    if (this.rendererPropertyGrid != null)
+                    { this.rendererPropertyGrid.DisplayObject(this.rendererDict[value]); }
                     this.cameraUpdated = true;
                 }
             }
@@ -150,8 +152,9 @@ namespace CSharpGL.Demos
                 var bufferables = new IBufferable[]{
                     new CubeModelAdapter(new CubeModel(1.0f)),
                     new SphereModelAdapter(new SphereModel(1.0f)),
+                    new TeapotModelAdapter(TeapotModel.GetModel(1.0f)),
                 };
-                var keys = new GeometryModel[] { GeometryModel.Cube, GeometryModel.Sphere, };
+                var keys = new GeometryModel[] { GeometryModel.Cube, GeometryModel.Sphere, GeometryModel.Teapot };
                 for (int i = 0; i < bufferables.Length; i++)
                 {
                     IBufferable bufferable = bufferables[i];
@@ -172,7 +175,7 @@ namespace CSharpGL.Demos
                     renderer.SwitchList.Add(pointSizeSwitch);
                     this.rendererDict.Add(key, renderer);
                 }
-                this.SelectedModel = GeometryModel.Cube;
+                this.SelectedModel = GeometryModel.Teapot;
             }
             {
                 var frmBulletinBoard = new FormBulletinBoard();

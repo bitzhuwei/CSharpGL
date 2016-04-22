@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="GLSwitchTypeConverter.cs" />
     <Compile Include="ModelAdapters\BigDipperAdapter.cs" />
+    <Compile Include="ModelAdapters\TeapotModelAdapter.cs" />
     <Compile Include="Models\BigDipper.cs" />
     <Compile Include="Models\CubeModel.cs" />
     <Compile Include="Models\PCIModel.cs" />
@@ -92,8 +93,13 @@
     <Compile Include="Models\SphereModel.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\TeapotLoader.cs" />
+    <Compile Include="Models\TeapotModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Models\TeapotModel.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Shaders\BigDipper.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

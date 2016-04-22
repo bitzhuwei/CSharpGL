@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL
+namespace CSharpGL.Models
 {
     /// <summary>
     /// 一个球体的模型。

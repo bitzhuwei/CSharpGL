@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.ModelAdapters
+namespace CSharpGL.Models
 {
     /// <summary>
     /// 一个立方体的模型。
