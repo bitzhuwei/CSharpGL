@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.ModelAdapters
 {
+    /// <summary>
+    /// 经典的茶壶模型
+    /// <para>使用<see cref="OneIndexBuffer"/></para>
+    /// </summary>
     public class TeapotModelAdapter : IBufferable
     {
 

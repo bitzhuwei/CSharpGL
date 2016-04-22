@@ -28,13 +28,13 @@ namespace CSharpGL.Models
                     Colors[i] = BigDipperColors[i];
                 }
             }
-            {
-                Indexes = new uint[BigDipperIndexes.Length];
-                for (int i = 0; i < BigDipperIndexes.Length; i++)
-                {
-                    Indexes[i] = BigDipperIndexes[i];
-                }
-            }
+            //{
+            //    Indexes = new uint[BigDipperIndexes.Length];
+            //    for (int i = 0; i < BigDipperIndexes.Length; i++)
+            //    {
+            //        Indexes[i] = BigDipperIndexes[i];
+            //    }
+            //}
         }
 
         static vec3[] BigDipperPositions { get; set; }

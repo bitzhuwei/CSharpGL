@@ -13,6 +13,7 @@ namespace CSharpGL.ModelAdapters
     /// <summary>
     /// 一个球体的模型。
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_sphere.jpg
+    /// <para>使用<see cref="OneIndexBuffer"/></para>
     /// </summary>
     public class SphereModelAdapter : IBufferable
     {
