@@ -169,6 +169,10 @@ namespace CSharpGL.Demos
                     string positionNameInIBufferable = "position";
                     var renderer = new ModernRenderer(bufferable, shaders, propertyNameMap, positionNameInIBufferable);
                     renderer.Initialize();
+                    renderer.SetUniformValue("normalLength", 0.5f);
+                    renderer.SetUniformValue("showModel", true);
+                    renderer.SetUniformValue("showNormal", true);
+
                     GLSwitch lineWidthSwitch = new LineWidthSwitch(10.0f);
                     renderer.SwitchList.Add(lineWidthSwitch);
                     GLSwitch pointSizeSwitch = new PointSizeSwitch(10.0f);

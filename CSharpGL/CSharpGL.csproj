@@ -63,6 +63,7 @@
     </Compile>
     <Compile Include="OpenGLObjects\GLSwitches\LineWidthSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PointSizeSwitch.cs" />
+    <Compile Include="OpenGLObjects\UniformVariables\UniformBool.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSampler2D.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformFloat.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformMat2.cs" />

@@ -80,6 +80,7 @@ namespace CSharpGL
         static Dictionary<Type, Type> variableDict = new Dictionary<Type, Type>();
         static ModernRenderer()
         {
+            variableDict.Add(typeof(bool), typeof(UniformBool));
             variableDict.Add(typeof(float), typeof(UniformFloat));
             variableDict.Add(typeof(vec2), typeof(UniformVec2));
             variableDict.Add(typeof(vec3), typeof(UniformVec3));
