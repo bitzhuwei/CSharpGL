@@ -15,7 +15,7 @@ namespace CSharpGL
             if (this.vertexArrayObject != null)
             {
                 this.vertexArrayObject.Dispose();
-                this.vertexArrayObject = null;
+                //this.vertexArrayObject = null;
             }
             if (this.propertyBufferPtrs != null)
             {

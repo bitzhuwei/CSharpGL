@@ -82,6 +82,8 @@ namespace CSharpGL
             {
                 GL.GetDelegateFor<GL.glDeleteBuffers>()(1, new uint[] { this.BufferID });
             }
+
+            this.BufferID = 0;
         }
 
         protected virtual void DisposeManagedResources()

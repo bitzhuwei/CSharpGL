@@ -68,11 +68,11 @@ namespace System
             }
         }
 
-        protected override void CleanUnmanagedRes()
+        protected override void DisposeUnmanagedResources()
         {
             UnmanagedArray<T>.thisTypeDisposedCount++;
 
-            base.CleanUnmanagedRes();
+            base.DisposeUnmanagedResources();
         }
         ///// <summary>
         ///// 按索引顺序依次获取各个元素。
@@ -183,11 +183,11 @@ namespace System
                 if (disposing)
                 {
                     // Dispose managed resources.
-                    CleanManagedRes();
+                    DisposeManagedResources();
                 } // end if
 
                 // Dispose unmanaged resources.
-                CleanUnmanagedRes();
+                DisposeUnmanagedResources();
 
                 UnmanagedArrayBase.disposedCount++;
             } // end if
@@ -197,11 +197,14 @@ namespace System
 
         #endregion
 
-        protected virtual void CleanUnmanagedRes()
+        protected virtual void DisposeUnmanagedResources()
         {
+            Marshal.FreeHGlobal(this.Header);
+
+            this.Header = IntPtr.Zero;
         }
 
-        protected virtual void CleanManagedRes()
+        protected virtual void DisposeManagedResources()
         {
         }
 

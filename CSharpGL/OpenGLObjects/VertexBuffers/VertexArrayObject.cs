@@ -12,8 +12,8 @@ namespace CSharpGL
     /// </summary>
     public sealed class VertexArrayObject : IDisposable
     {
-        private VertexBufferPtr[] bufferRenderers;
-        private IndexBufferPtr indexBufferRenderer;
+        private VertexBufferPtr[] propertyBufferPtrs;
+        private IndexBufferPtr indexBufferPtr;
 
         /// <summary>
         /// 此VAO的ID，由OpenGL给出。
@@ -24,20 +24,20 @@ namespace CSharpGL
         /// 一个vertex array object。（即VAO）
         /// <para>VAO是用来管理VBO的。可以进一步减少DrawCall。</para>
         /// </summary>
-        /// <param name="propertyBufferRenderers">给出此VAO要管理的所有VBO。</param>
-        public VertexArrayObject(IndexBufferPtr indexBufferRenderer, params VertexBufferPtr[] propertyBufferRenderers)
+        /// <param name="propertyBufferPtrs">给出此VAO要管理的所有VBO。</param>
+        public VertexArrayObject(IndexBufferPtr indexBufferPtr, params VertexBufferPtr[] propertyBufferPtrs)
         {
-            if (indexBufferRenderer == null)
+            if (indexBufferPtr == null)
             {
                 throw new ArgumentNullException("indexBufferRenderer");
             }
-            if (propertyBufferRenderers == null || propertyBufferRenderers.Length == 0)
+            if (propertyBufferPtrs == null || propertyBufferPtrs.Length == 0)
             {
                 throw new ArgumentNullException("propertyBuffers");
             }
 
-            this.indexBufferRenderer = indexBufferRenderer;
-            this.bufferRenderers = propertyBufferRenderers;
+            this.indexBufferPtr = indexBufferPtr;
+            this.propertyBufferPtrs = propertyBufferPtrs;
         }
 
         /// <summary>
@@ -57,9 +57,13 @@ namespace CSharpGL
             this.ID = buffers[0];
 
             this.Bind();
-            foreach (var item in this.bufferRenderers)
+            VertexBufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
+            if (propertyBufferPtrs != null)
             {
-                item.Render(e, shaderProgram);
+                foreach (var item in propertyBufferPtrs)
+                {
+                    item.Render(e, shaderProgram);
+                }
             }
             this.Unbind();
         }
@@ -81,9 +85,13 @@ namespace CSharpGL
         /// <param name="shaderProgram"></param>
         public void Render(RenderEventArgs e, ShaderProgram shaderProgram)
         {
-            this.Bind();
-            this.indexBufferRenderer.Render(e, shaderProgram);
-            this.Unbind();
+            IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
+            if (indexBufferPtr != null)
+            {
+                this.Bind();
+                indexBufferPtr.Render(e, shaderProgram);
+                this.Unbind();
+            }
         }
 
         public override string ToString()
@@ -122,13 +130,19 @@ namespace CSharpGL
                 {
                     GL.GetDelegateFor<GL.glDeleteVertexArrays>()(1, new uint[] { this.ID });
                 }
-                foreach (var item in this.bufferRenderers)
                 {
-                    item.Dispose();
+                    VertexBufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
+                    foreach (var item in propertyBufferPtrs)
+                    {
+                        item.Dispose();
+                    }
+                    this.propertyBufferPtrs = null;
                 }
-                this.indexBufferRenderer.Dispose();
-                this.bufferRenderers = null;
-                this.indexBufferRenderer = null;
+                {
+                    IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
+                    indexBufferPtr.Dispose();
+                    this.indexBufferPtr = null;
+                }
             }
 
             this.disposedValue = true;

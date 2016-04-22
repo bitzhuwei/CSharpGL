@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class ModernRenderer 
+    public partial class ModernRenderer
     {
-       
+
         private void RenderRender(RenderEventArgs e)
         {
             ShaderProgram program = this.shaderProgram;
+            if (program == null) { return; }
 
             // 绑定shader
             program.Bind();
@@ -24,15 +25,23 @@ namespace CSharpGL
 
             if (this.vertexArrayObject == null)
             {
-                var vertexArrayObject = new VertexArrayObject(
-                    this.indexBufferPtr, this.propertyBufferPtrs);
-                vertexArrayObject.Create(e, program);
+                IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
+                PropertyBufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
+                if (indexBufferPtr != null && propertyBufferPtrs != null)
+                {
+                    var vertexArrayObject = new VertexArrayObject(
+                        indexBufferPtr, propertyBufferPtrs);
+                    vertexArrayObject.Create(e, program);
 
-                this.vertexArrayObject = vertexArrayObject;
+                    this.vertexArrayObject = vertexArrayObject;
+                }
             }
-            //else
             {
-                this.vertexArrayObject.Render(e, program);
+                VertexArrayObject vertexArrayObject = this.vertexArrayObject;
+                if (vertexArrayObject != null)
+                {
+                    vertexArrayObject.Render(e, program);
+                }
             }
 
             foreach (var item in switchList) { item.Off(); }
