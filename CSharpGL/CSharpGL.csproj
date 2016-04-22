@@ -63,6 +63,12 @@
     </Compile>
     <Compile Include="OpenGLObjects\GLSwitches\LineWidthSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PointSizeSwitch.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.Picking.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRendererFactory.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\OneIndexModernRenderer.Picking.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\OneIndexModernRenderer.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ZeroIndexModernRenderer.Picking.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ZeroIndexModernRenderer.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformBool.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSampler2D.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformFloat.cs" />
@@ -121,13 +127,11 @@
     <Compile Include="UITypeEditors\GLSwithListEditor.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\IBufferable.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.Property.cs" />
-    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.ColorCodedPickingRender.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.PickingRender.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.RenderRender.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.RendererBase.cs" />
-    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.ColorCodedPicking.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.Uniforms.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.Dispose.cs" />
-    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.elementCount.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\PropertyNameMap.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ShaderCode.cs" />

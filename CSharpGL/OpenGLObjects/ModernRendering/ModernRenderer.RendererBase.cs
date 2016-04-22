@@ -14,7 +14,7 @@ namespace CSharpGL
         {
             if (e.RenderMode == RenderModes.ColorCodedPicking)
             {
-                ColorCodedPickingRender(e);
+                PickingRender(e);
             }
             else if (e.RenderMode == RenderModes.Render)
             {
@@ -55,14 +55,10 @@ namespace CSharpGL
             }
             this.propertyBufferPtrs = propertyBufferPtrs;
 
-            // init index buffer object's renderer
-            this.indexBufferPtr = this.bufferable.GetIndex();
-
             this.bufferable = null;
             this.shaderCode = null;
             this.propertyNameMap = null;
 
-            InitializeElementCount();
         }
 
     }

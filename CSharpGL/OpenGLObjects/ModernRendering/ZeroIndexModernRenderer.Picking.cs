@@ -8,25 +8,10 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class ModernRenderer : IColorCodedPicking
+    public partial class ZeroIndexModernRenderer : ModernRenderer
     {
 
-        mat4 IColorCodedPicking.MVP
-        {
-            get { return pickingMVP.Value; }
-            set { pickingMVP.Value = value; }
-        }
-
-        uint IColorCodedPicking.PickingBaseID { get; set; }
-
-        uint IColorCodedPicking.GetVertexCount()
-        {
-            return (uint)(this.positionBufferPtr.ByteLength / this.positionBufferPtr.DataSize / this.positionBufferPtr.DataTypeByteLength);
-            //if (this.elementCount < 0) { return 0; }
-            //else { return (uint)this.elementCount; }
-        }
-
-        IPickedGeometry IColorCodedPicking.Pick(uint stageVertexID)
+        public override IPickedGeometry Pick(uint stageVertexID)
         {
             var element = this as IColorCodedPicking;
             PickedGeometry pickedGeometry = element.TryPick<PickedGeometry>(
@@ -121,12 +106,6 @@ namespace CSharpGL
             }
             GL.UnmapBuffer(BufferTarget.ArrayBuffer);
         }
-
-        void IRenderable.Render(RenderEventArgs e)
-        {
-            base.Render(e);
-        }
-
 
     }
 }

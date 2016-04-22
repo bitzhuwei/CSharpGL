@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class ModernRenderer
+    public abstract partial class ModernRenderer : IColorCodedPicking
     {
         // Color Coded Picking
         protected VertexArrayObject vertexArrayObject4Picking;
@@ -23,7 +23,7 @@ namespace CSharpGL
         // 数据结构
         protected VertexArrayObject vertexArrayObject;
         protected PropertyBufferPtr[] propertyBufferPtrs;
-        protected IndexBufferPtr indexBufferPtr;
+        //protected IndexBufferPtr indexBufferPtr;
         protected List<GLSwitch> switchList = new List<GLSwitch>();
 
         /// <summary>
@@ -55,5 +55,6 @@ namespace CSharpGL
             this.positionNameInIBufferable = positionNameInIBufferable;
             this.switchList.AddRange(switches);
         }
+
     }
 }

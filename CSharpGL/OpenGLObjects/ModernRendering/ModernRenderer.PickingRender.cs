@@ -10,7 +10,7 @@ namespace CSharpGL
     public partial class ModernRenderer : IColorCodedPicking
     {
 
-        private void ColorCodedPickingRender(RenderEventArgs e)
+        private void PickingRender(RenderEventArgs e)
         {
             if (this.pickingShaderProgram == null)
             { this.pickingShaderProgram = PickingShaderHelper.GetPickingShaderProgram(); }
