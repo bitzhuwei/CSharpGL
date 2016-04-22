@@ -40,10 +40,32 @@ namespace CSharpGL
         /// <summary>
         /// GL_FLOAT etc
         /// <para>gl.VertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);</para>
-        /// <para>gl.VertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);</para>
+        /// <para>gl.VertexAttribPointer(attributeLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);</para>
         /// <para>表示第3个参数</para>
         /// </summary>
         public uint DataType { get; private set; }
+
+        /// <summary>
+        /// <see cref="DataType"/>有多少字节？
+        /// </summary>
+        public int DataTypeByteLength
+        {
+            get
+            {
+                if (DataType == GL.GL_FLOAT)
+                { return sizeof(float); }
+                else if (DataType == GL.GL_BYTE)
+                { return sizeof(byte); }
+                else if (DataType == GL.GL_UNSIGNED_BYTE)
+                { return sizeof(byte); }
+                else if (DataType == GL.GL_SHORT)
+                { return sizeof(short); }
+                else if (DataType == GL.GL_UNSIGNED_SHORT)
+                { return sizeof(ushort); }
+                else
+                { throw new NotImplementedException(); }
+            }
+        }
 
         /// <summary>
         /// gl.VertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);
