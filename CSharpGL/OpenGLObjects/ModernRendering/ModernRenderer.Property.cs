@@ -34,6 +34,55 @@ namespace CSharpGL
             }
         }
 
+        public int VertexCount
+        {
+            get
+            {
+                if (this.indexBufferPtr == null) { return 0; }
+
+                {
+                    var indexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
+                    if (indexBufferPtr != null)
+                    {
+                        return indexBufferPtr.ElementCount;
+                    }
+                }
+                {
+                    var indexBufferPtr = this.indexBufferPtr as ZeroIndexBufferPtr;
+                    if (indexBufferPtr != null)
+                    {
+                        return indexBufferPtr.VertexCount;
+                    }
+                }
+                { throw new NotImplementedException(); }
+            }
+            set
+            {
+                {
+                    var indexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
+                    if (indexBufferPtr != null)
+                    {
+                        if (indexBufferPtr.ElementCount > 0)
+                        {
+                            indexBufferPtr.ElementCount = value;
+                        }
+                        return;
+                    }
+                }
+                {
+                    var indexBufferPtr = this.indexBufferPtr as ZeroIndexBufferPtr;
+                    if (indexBufferPtr != null)
+                    {
+                        if (indexBufferPtr.VertexCount > 0)
+                        {
+                            indexBufferPtr.VertexCount = value;
+                        }
+                        return;
+                    }
+                }
+            }
+        }
+
         [Editor(typeof(GLSwithListEditor), typeof(UITypeEditor))]
         public List<GLSwitch> SwitchList
         {
