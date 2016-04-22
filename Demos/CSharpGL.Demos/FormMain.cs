@@ -26,5 +26,10 @@ namespace CSharpGL.Demos
         {
             (new Form01ModernRenderer()).Show();
         }
+
+        private void btnGeometryShader_Click(object sender, EventArgs e)
+        {
+            (new Form02GeometryShader()).Show();
+        }
     }
 }

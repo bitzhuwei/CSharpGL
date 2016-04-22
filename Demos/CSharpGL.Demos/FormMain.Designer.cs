@@ -30,6 +30,7 @@
         {
             this.btnForm00GLCanvas = new System.Windows.Forms.Button();
             this.btnForm02ModernRenderer = new System.Windows.Forms.Button();
+            this.btnGeometryShader = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -54,11 +55,23 @@
             this.btnForm02ModernRenderer.UseVisualStyleBackColor = true;
             this.btnForm02ModernRenderer.Click += new System.EventHandler(this.btnForm01ModernRenderer_Click);
             // 
+            // btnGeometryShader
+            // 
+            this.btnGeometryShader.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnGeometryShader.Location = new System.Drawing.Point(12, 98);
+            this.btnGeometryShader.Name = "btnGeometryShader";
+            this.btnGeometryShader.Size = new System.Drawing.Size(269, 37);
+            this.btnGeometryShader.TabIndex = 0;
+            this.btnGeometryShader.Text = "Form02 GeometryShader";
+            this.btnGeometryShader.UseVisualStyleBackColor = true;
+            this.btnGeometryShader.Click += new System.EventHandler(this.btnGeometryShader_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 545);
+            this.Controls.Add(this.btnGeometryShader);
             this.Controls.Add(this.btnForm02ModernRenderer);
             this.Controls.Add(this.btnForm00GLCanvas);
             this.Name = "FormMain";
@@ -71,5 +84,6 @@
 
         private System.Windows.Forms.Button btnForm00GLCanvas;
         private System.Windows.Forms.Button btnForm02ModernRenderer;
+        private System.Windows.Forms.Button btnGeometryShader;
     }
 }

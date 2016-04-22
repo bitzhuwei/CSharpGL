@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form02GeometryShader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form02GeometryShader.Designer.cs">
+      <DependentUpon>Form02GeometryShader.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelAdapters\CubeModelAdapter.cs" />
     <Compile Include="ModelAdapters\SphereModel.cs" />
     <Compile Include="FormBulletinBoard.cs">
@@ -91,6 +97,9 @@
     <None Include="Shaders\BigDipper.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <EmbeddedResource Include="Form02GeometryShader.resx">
+      <DependentUpon>Form02GeometryShader.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form01ModernRenderer.resx">
       <DependentUpon>Form01ModernRenderer.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,6 +134,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Shaders\EmitNormalLine.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Shaders\EmitNormalLine.geom">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Shaders\EmitNormalLine.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
