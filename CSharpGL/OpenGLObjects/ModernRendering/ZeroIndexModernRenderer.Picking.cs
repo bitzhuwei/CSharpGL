@@ -14,11 +14,13 @@ namespace CSharpGL
         public override IPickedGeometry Pick(uint stageVertexID)
         {
             uint lastVertexID;
-            var element = this as IColorCodedPicking;
-            PickedGeometry pickedGeometry;
-            if (element.TryPick(this.indexBufferPtr.Mode.ToPrimitiveMode(), stageVertexID,
-                out pickedGeometry, out lastVertexID))
+            PickedGeometry pickedGeometry = null;
+            if (this.GetLastVertexIDOfPickedGeometry(stageVertexID, out lastVertexID))
             {
+                pickedGeometry = new PickedGeometry();
+                pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
+                pickedGeometry.StageVertexID = stageVertexID;
+                pickedGeometry.From = this;
                 // Fill primitive's position information.
                 int vertexCount = pickedGeometry.GeometryType.GetVertexCount();
                 if (vertexCount == -1) { vertexCount = this.positionBufferPtr.Length; }
