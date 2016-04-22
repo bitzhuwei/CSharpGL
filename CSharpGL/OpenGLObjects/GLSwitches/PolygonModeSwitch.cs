@@ -8,7 +8,7 @@ namespace CSharpGL
     public class PolygonModeSwitch : GLSwitch
     {
 
-        int[] originalPolygonMode = new int[1];
+        int[] originalPolygonMode = new int[2];
 
         public PolygonModeSwitch() : this(PolygonModes.Filled) { }
 
