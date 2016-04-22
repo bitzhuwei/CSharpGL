@@ -21,8 +21,9 @@ namespace CSharpGL
 
         uint IColorCodedPicking.GetVertexCount()
         {
-            if (this.elementCount < 0) { return 0; }
-            else { return (uint)this.elementCount; }
+            return (uint)(this.positionBufferPtr.ByteLength / this.positionBufferPtr.DataSize / this.positionBufferPtr.DataTypeByteLength);
+            //if (this.elementCount < 0) { return 0; }
+            //else { return (uint)this.elementCount; }
         }
 
         IPickedGeometry IColorCodedPicking.Pick(uint stageVertexID)
@@ -57,7 +58,7 @@ namespace CSharpGL
         {
             //const int lastVertexID = 0;
             const int vertexCount = 2;
-            var offsets = new int[vertexCount] { (this.positionBufferPtr.Length - 1) * this.positionBufferPtr.DataSize * sizeof(float), 0, };
+            var offsets = new int[vertexCount] { (this.positionBufferPtr.Length - 1) * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength, 0, };
             pickedGeometry.Positions = new vec3[vertexCount];
             pickedGeometry.Indexes = new uint[vertexCount];
             for (int i = 0; i < vertexCount; i++)
@@ -66,7 +67,7 @@ namespace CSharpGL
                 //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
                 IntPtr pointer = GL.MapBufferRange(BufferTarget.ArrayBuffer,
                     offsets[i],
-                    1 * this.positionBufferPtr.DataSize * sizeof(float),
+                    1 * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength,
                     MapBufferRangeAccess.MapReadBit);
                 if (pointer.ToInt32() != 0)
                 {
@@ -82,7 +83,7 @@ namespace CSharpGL
                     Debug.WriteLine("Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferID);
                 }
                 GL.UnmapBuffer(BufferTarget.ArrayBuffer);
-                pickedGeometry.Indexes[i] = (uint)offsets[i] / (uint)(this.positionBufferPtr.DataSize * sizeof(float));
+                pickedGeometry.Indexes[i] = (uint)offsets[i] / (uint)(this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
             }
         }
 
@@ -90,10 +91,10 @@ namespace CSharpGL
         {
             GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferID);
             //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
-            int offset = (int)((lastVertexID - (vertexCount - 1)) * this.positionBufferPtr.DataSize * sizeof(float));
+            int offset = (int)((lastVertexID - (vertexCount - 1)) * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
             IntPtr pointer = GL.MapBufferRange(BufferTarget.ArrayBuffer,
                 offset,
-                vertexCount * this.positionBufferPtr.DataSize * sizeof(float),
+                vertexCount * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength,
                 MapBufferRangeAccess.MapReadBit);
             pickedGeometry.Positions = new vec3[vertexCount];
             pickedGeometry.Indexes = new uint[vertexCount];
