@@ -31,7 +31,15 @@ namespace CSharpGL
 
         public override void Off()
         {
-            GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
+            if (originalPolygonMode[0] == originalPolygonMode[1])
+            {
+                GL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
+            }
+            else
+            {
+                GL.PolygonMode(PolygonModeFaces.Front, (PolygonModes)originalPolygonMode[0]);
+                GL.PolygonMode(PolygonModeFaces.Back, (PolygonModes)originalPolygonMode[1]);
+            }
         }
 
         public PolygonModes Mode { get; set; }
