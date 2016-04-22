@@ -35,10 +35,13 @@ namespace CSharpGL.Demos
         private FormBulletinBoard bulletinBoard;
         private FormProperyGrid rendererPropertyGrid;
         private FormProperyGrid cameraPropertyGrid;
+        private FormProperyGrid formPropertyGrid;
 
         public Form01BigDipper()
         {
             InitializeComponent();
+
+            this.RenderMode = RenderModes.Render;
 
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
@@ -51,8 +54,15 @@ namespace CSharpGL.Demos
         }
 
 
+        public RenderModes RenderMode { get; set; }
+
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
+            if (this.RenderMode == RenderModes.ColorCodedPicking)
+            { GL.ClearColor(1, 1, 1, 1); }
+            else if (this.RenderMode == RenderModes.Render)
+            { GL.ClearColor(0, 0, 0, 0); }
+
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             ModernRenderer renderer = this.renderer;
@@ -68,7 +78,7 @@ namespace CSharpGL.Demos
                     renderer.SetUniformValue("modelMatrix", modelMatrix);
                     cameraUpdated = false;
                 }
-                renderer.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+                renderer.Render(new RenderEventArgs(this.RenderMode, this.camera));
             }
         }
 
@@ -160,6 +170,13 @@ namespace CSharpGL.Demos
                 frmPropertyGrid.Show();
                 this.cameraPropertyGrid = frmPropertyGrid;
             }
+            {
+                var frmPropertyGrid = new FormProperyGrid();
+                frmPropertyGrid.DisplayObject(this);
+                frmPropertyGrid.Show();
+                this.formPropertyGrid = frmPropertyGrid;
+            }
+
         }
 
     }
