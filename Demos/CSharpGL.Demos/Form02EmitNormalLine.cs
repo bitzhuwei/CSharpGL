@@ -36,6 +36,7 @@ namespace CSharpGL.Demos
                     if (this.rendererPropertyGrid != null)
                     { this.rendererPropertyGrid.DisplayObject(this.rendererDict[value]); }
                     this.cameraUpdated = true;
+                    this.UpdateMVP(this.rendererDict[this.selectedModel]);
                 }
             }
         }
@@ -48,6 +49,12 @@ namespace CSharpGL.Demos
         //ModernRenderer renderer;
 
         bool cameraUpdated = true;
+
+        public bool CameraUpdated
+        {
+            get { return cameraUpdated; }
+        }
+
         /// <summary>
         /// 控制Camera的旋转、进退
         /// </summary>
@@ -76,9 +83,29 @@ namespace CSharpGL.Demos
             GL.ClearColor(0, 0, 0, 0);
         }
 
+        RenderModes renderMode;
+
+        public RenderModes RenderMode
+        {
+            get { return renderMode; }
+            set
+            {
+                if (value != renderMode)
+                {
+                    renderMode = value;
+                    this.UpdateMVP(this.rendererDict[this.selectedModel]);
+                }
+            }
+        }
+
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
+            if (this.RenderMode == RenderModes.ColorCodedPicking)
+            { GL.ClearColor(1, 1, 1, 1); }
+            else if (this.RenderMode == RenderModes.Render)
+            { GL.ClearColor(0, 0, 0, 0); }
+
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             ModernRenderer renderer = this.rendererDict[this.SelectedModel];
@@ -86,16 +113,32 @@ namespace CSharpGL.Demos
             {
                 if (cameraUpdated)
                 {
-                    mat4 projectionMatrix = camera.GetProjectionMat4();
-                    mat4 viewMatrix = camera.GetViewMat4();
-                    mat4 modelMatrix = mat4.identity();
-                    renderer.SetUniformValue("projectionMatrix", projectionMatrix);
-                    renderer.SetUniformValue("viewMatrix", viewMatrix);
-                    renderer.SetUniformValue("modelMatrix", modelMatrix);
+                    UpdateMVP(renderer);
                     cameraUpdated = false;
                 }
-                renderer.Render(new RenderEventArgs(RenderModes.Render, this.camera));
+                renderer.Render(new RenderEventArgs(RenderMode, this.camera));
             }
+        }
+
+        private void UpdateMVP(ModernRenderer renderer)
+        {
+            mat4 projectionMatrix = camera.GetProjectionMat4();
+            mat4 viewMatrix = camera.GetViewMat4();
+            mat4 modelMatrix = mat4.identity();
+
+            if (this.RenderMode == RenderModes.ColorCodedPicking)
+            {
+                IColorCodedPicking picking = renderer;
+                picking.MVP = projectionMatrix * viewMatrix * modelMatrix;
+            }
+            else if (this.RenderMode == RenderModes.Render)
+            {
+                renderer.SetUniformValue("projectionMatrix", projectionMatrix);
+                renderer.SetUniformValue("viewMatrix", viewMatrix);
+                renderer.SetUniformValue("modelMatrix", modelMatrix);
+            }
+            else
+            { throw new NotImplementedException(); }
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
@@ -207,6 +250,7 @@ namespace CSharpGL.Demos
                 frmPropertyGrid.Show();
                 this.formPropertyGrid = frmPropertyGrid;
             }
+
         }
 
     }

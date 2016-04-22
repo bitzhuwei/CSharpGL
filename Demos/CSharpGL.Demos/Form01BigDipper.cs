@@ -23,6 +23,11 @@ namespace CSharpGL.Demos
         ModernRenderer renderer;
 
         bool cameraUpdated = true;
+
+        public bool CameraUpdated
+        {
+            get { return cameraUpdated; }
+        }
         /// <summary>
         /// 控制Camera的旋转、进退
         /// </summary>
@@ -73,9 +78,14 @@ namespace CSharpGL.Demos
                     mat4 projectionMatrix = camera.GetProjectionMat4();
                     mat4 viewMatrix = camera.GetViewMat4();
                     mat4 modelMatrix = mat4.identity();
-                    renderer.SetUniformValue("projectionMatrix", projectionMatrix);
-                    renderer.SetUniformValue("viewMatrix", viewMatrix);
-                    renderer.SetUniformValue("modelMatrix", modelMatrix);
+                    if (this.RenderMode == RenderModes.ColorCodedPicking)
+                    { ((IColorCodedPicking)renderer).MVP = projectionMatrix * viewMatrix * modelMatrix; }
+                    else if (this.RenderMode == RenderModes.Render)
+                    {
+                        renderer.SetUniformValue("projectionMatrix", projectionMatrix);
+                        renderer.SetUniformValue("viewMatrix", viewMatrix);
+                        renderer.SetUniformValue("modelMatrix", modelMatrix);
+                    }
                     cameraUpdated = false;
                 }
                 renderer.Render(new RenderEventArgs(this.RenderMode, this.camera));
