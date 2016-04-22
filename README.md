@@ -8,7 +8,7 @@
 <p>这个demo每秒随机更换一个背景色。演示了如何使用GLCanvas（drag-drop即可），清晰展示了GLCanvas最基本的渲染功能。</p>
 <p><img src="http://images2015.cnblogs.com/blog/383191/201604/383191-20160422030915695-929033581.png" alt="" /><img src="http://images2015.cnblogs.com/blog/383191/201604/383191-20160422030916398-869374143.png" alt="" /></p>
 <p>&nbsp;</p>
-<h1>Demo：北斗七星</h1>
+<h1>Demo：北斗七星(Big Dipper)</h1>
 <p>这个demo演示了如何用CSharpGL进行modern rendering。</p>
 <p>北斗七星模型的顶点位置如下：</p>
 <div>
@@ -46,6 +46,17 @@
 <p>其他类型就不贴图了。</p>
 <p>另外，不同的DrawMode下，拾取到的图元也是不同的。</p>
 <p><img src="http://images2015.cnblogs.com/blog/383191/201604/383191-20160422030929851-1647886969.png" alt="" /></p>
+<h1>Demo：Geometry Shader(EmitNormalLine)</h1>
+<p>用geometry shader自动渲染出模型顶点的法线是目前我找到的geometry Shader的最好的应用。</p>
+<p>下图中的白色针状就是各个顶点的法线。</p>
+<h2>Teapot</h2>
+<p><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000022.jpg" alt="" width="687" height="574" /></p>
+<h2>Sphere</h2>
+<p><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000023.jpg" alt="" width="687" height="574" /></p>
+<h2>Cube</h2>
+<p><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000021.jpg" alt="" width="687" height="574" /></p>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <h1>总结</h1>
 <p>原CSharpGL的其他功能（UI、3ds解析器、TTF2Bmp、CSSL等），我将逐步加入新CSharpGL。</p>
+<p>欢迎对OpenGL有兴趣的同学关注（<a href="https://github.com/bitzhuwei/CSharpGL">https://github.com/bitzhuwei/CSharpGL</a>）</p>
