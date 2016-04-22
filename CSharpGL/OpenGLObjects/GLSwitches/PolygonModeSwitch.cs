@@ -37,6 +37,7 @@ namespace CSharpGL
             }
             else
             {
+                //TODO: not tested yet
                 GL.PolygonMode(PolygonModeFaces.Front, (PolygonModes)originalPolygonMode[0]);
                 GL.PolygonMode(PolygonModeFaces.Back, (PolygonModes)originalPolygonMode[1]);
             }
