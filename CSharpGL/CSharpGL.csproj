@@ -75,6 +75,7 @@
     <Compile Include="TypeConverters\Mat2TypeConverter.cs" />
     <Compile Include="TypeConverters\Mat3TypeConverter.cs" />
     <Compile Include="TypeConverters\Mat4TypeConverter.cs" />
+    <Compile Include="TypeConverters\SamplerValueTypeConverter.cs" />
     <Compile Include="TypeConverters\Vec4TypeConverter.cs" />
     <Compile Include="TypeConverters\Vec3TypeConverter.cs" />
     <Compile Include="TypeConverters\Vec2TypeConverter.cs" />

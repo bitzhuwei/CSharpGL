@@ -34,7 +34,8 @@ namespace CSharpGL
             GL.GetDelegateFor<GL.glActiveTexture>()((uint)value.Index);
             GL.Enable(GL.GL_TEXTURE_2D);
             GL.BindTexture(GL.GL_TEXTURE_2D, value.Name);
-            program.SetUniform(VarName, (int)((uint)value.Index - GL.GL_TEXTURE0));
+            //program.SetUniform(VarName, (int)((uint)value.Index - GL.GL_TEXTURE0));
+            program.SetUniform(VarName, (int)(value.Index));
         }
 
         public override void ResetUniform(ShaderProgram program)
@@ -70,6 +71,7 @@ namespace CSharpGL
 
     }
 
+    [TypeConverter(typeof(SamplerValueTypeConverter))]
     public struct samplerValue
     {
         private uint name;
@@ -79,23 +81,34 @@ namespace CSharpGL
             get { return name; }
             set { name = value; }
         }
-        private ActiveTextureIndex index;
+        private uint index;
 
-        public ActiveTextureIndex Index
+        public uint Index
         {
             get { return index; }
             set { index = value; }
         }
 
-        public samplerValue(uint name, ActiveTextureIndex index)
+        public samplerValue(uint name, uint index)
         {
             this.name = name;
             this.index = index;
         }
 
+        static readonly char[] separator = new char[] { '[', ']', };
+
+        public static samplerValue Parse(string value)
+        {
+            string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+            uint name = uint.Parse(parts[1]);
+            uint index = uint.Parse(parts[3]);
+
+            return new samplerValue(name, index);
+        }
+
         public override string ToString()
         {
-            return string.Format("name:{0} index:{1}", name, index);
+            return string.Format("name:[{0}] index:[{1}]", name, index);
         }
 
         public static bool operator ==(samplerValue left, samplerValue right)
