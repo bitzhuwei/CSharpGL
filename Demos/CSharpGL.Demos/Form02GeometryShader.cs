@@ -17,10 +17,33 @@ namespace CSharpGL.Demos
     public partial class Form02GeometryShader : Form
     {
 
-        /// <summary>
-        /// 要渲染的对象
-        /// </summary>
-        ModernRenderer renderer;
+        public enum GeometryModel
+        {
+            Cube,
+            Sphere,
+        }
+
+        private GeometryModel selectedModel = GeometryModel.Cube;
+        public GeometryModel SelectedModel
+        {
+            get { return selectedModel; }
+            set
+            {
+                if (value != selectedModel)
+                {
+                    selectedModel = value;
+                    this.rendererPropertyGrid.DisplayObject(this.rendererDict[value]);
+                    this.cameraUpdated = true;
+                }
+            }
+        }
+
+        Dictionary<GeometryModel, ModernRenderer> rendererDict = new Dictionary<GeometryModel, ModernRenderer>();
+
+        ///// <summary>
+        ///// 要渲染的对象
+        ///// </summary>
+        //ModernRenderer renderer;
 
         bool cameraUpdated = true;
         /// <summary>
@@ -35,6 +58,7 @@ namespace CSharpGL.Demos
         private FormBulletinBoard bulletinBoard;
         private FormProperyGrid rendererPropertyGrid;
         private FormProperyGrid cameraPropertyGrid;
+        private FormProperyGrid formPropertyGrid;
 
         public Form02GeometryShader()
         {
@@ -55,7 +79,7 @@ namespace CSharpGL.Demos
         {
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            ModernRenderer renderer = this.renderer;
+            ModernRenderer renderer = this.rendererDict[this.SelectedModel];
             if (renderer != null)
             {
                 if (cameraUpdated)
@@ -87,7 +111,7 @@ namespace CSharpGL.Demos
             }
 
             {
-                IColorCodedPicking pickable = this.renderer;
+                IColorCodedPicking pickable = this.rendererDict[this.SelectedModel];
                 pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
                 IPickedGeometry pickedGeometry = ColorCodedPicking.Pick(
                     this.camera, e.X, e.Y, this.glCanvas1.Width, this.glCanvas1.Height, pickable);
@@ -123,22 +147,32 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
-                IBufferable bufferable = new CubeModelAdapter(new CubeModel(1.0f));
-                ShaderCode[] shaders = new ShaderCode[3];
-                shaders[0] = new ShaderCode(File.ReadAllText(@"Shaders\EmitNormalLine.vert"), ShaderType.VertexShader);
-                shaders[1] = new ShaderCode(File.ReadAllText(@"Shaders\EmitNormalLine.geom"), ShaderType.GeometryShader);
-                shaders[2] = new ShaderCode(File.ReadAllText(@"Shaders\EmitNormalLine.frag"), ShaderType.FragmentShader);
-                var propertyNameMap = new PropertyNameMap();
-                propertyNameMap.Add("in_Position", "position");
-                propertyNameMap.Add("in_Normal", "normal");
-                string positionNameInIBufferable = "position";
-                var renderer = new ModernRenderer(bufferable, shaders, propertyNameMap, positionNameInIBufferable);
-                renderer.Initialize();
-                GLSwitch lineWidthSwitch = new LineWidthSwitch(10.0f);
-                renderer.SwitchList.Add(lineWidthSwitch);
-                GLSwitch pointSizeSwitch = new PointSizeSwitch(10.0f);
-                renderer.SwitchList.Add(pointSizeSwitch);
-                this.renderer = renderer;
+                var bufferables = new IBufferable[]{
+                    new CubeModelAdapter(new CubeModel(1.0f)),
+                    new SphereModelAdapter(new SphereModel(1.0f)),
+                };
+                var keys = new GeometryModel[] { GeometryModel.Cube, GeometryModel.Sphere, };
+                for (int i = 0; i < bufferables.Length; i++)
+                {
+                    IBufferable bufferable = bufferables[i];
+                    GeometryModel key = keys[i];
+                    ShaderCode[] shaders = new ShaderCode[3];
+                    shaders[0] = new ShaderCode(File.ReadAllText(@"Shaders\EmitNormalLine.vert"), ShaderType.VertexShader);
+                    shaders[1] = new ShaderCode(File.ReadAllText(@"Shaders\EmitNormalLine.geom"), ShaderType.GeometryShader);
+                    shaders[2] = new ShaderCode(File.ReadAllText(@"Shaders\EmitNormalLine.frag"), ShaderType.FragmentShader);
+                    var propertyNameMap = new PropertyNameMap();
+                    propertyNameMap.Add("in_Position", "position");
+                    propertyNameMap.Add("in_Normal", "normal");
+                    string positionNameInIBufferable = "position";
+                    var renderer = new ModernRenderer(bufferable, shaders, propertyNameMap, positionNameInIBufferable);
+                    renderer.Initialize();
+                    GLSwitch lineWidthSwitch = new LineWidthSwitch(10.0f);
+                    renderer.SwitchList.Add(lineWidthSwitch);
+                    GLSwitch pointSizeSwitch = new PointSizeSwitch(10.0f);
+                    renderer.SwitchList.Add(pointSizeSwitch);
+                    this.rendererDict.Add(key, renderer);
+                }
+                this.SelectedModel = GeometryModel.Cube;
             }
             {
                 var frmBulletinBoard = new FormBulletinBoard();
@@ -148,7 +182,7 @@ namespace CSharpGL.Demos
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this.renderer);
+                frmPropertyGrid.DisplayObject(this.rendererDict[this.SelectedModel]);
                 frmPropertyGrid.Show();
                 this.rendererPropertyGrid = frmPropertyGrid;
             }
@@ -157,6 +191,12 @@ namespace CSharpGL.Demos
                 frmPropertyGrid.DisplayObject(this.camera);
                 frmPropertyGrid.Show();
                 this.cameraPropertyGrid = frmPropertyGrid;
+            }
+            {
+                var frmPropertyGrid = new FormProperyGrid();
+                frmPropertyGrid.DisplayObject(this);
+                frmPropertyGrid.Show();
+                this.formPropertyGrid = frmPropertyGrid;
             }
         }
 
