@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form02GeometryShader : Form
+    public partial class Form02EmitNormalLine : Form
     {
 
         public enum GeometryModel
@@ -62,7 +62,7 @@ namespace CSharpGL.Demos
         private FormProperyGrid cameraPropertyGrid;
         private FormProperyGrid formPropertyGrid;
 
-        public Form02GeometryShader()
+        public Form02EmitNormalLine()
         {
             InitializeComponent();
 

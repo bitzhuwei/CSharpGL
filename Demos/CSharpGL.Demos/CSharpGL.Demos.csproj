@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form02GeometryShader.cs">
+    <Compile Include="Form02EmitNormalLine.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form02GeometryShader.Designer.cs">
-      <DependentUpon>Form02GeometryShader.cs</DependentUpon>
+    <Compile Include="Form02EmitNormalLine.Designer.cs">
+      <DependentUpon>Form02EmitNormalLine.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelAdapters\CubeModelAdapter.cs" />
     <Compile Include="ModelAdapters\SphereModelAdapter.cs" />
@@ -72,11 +72,11 @@
     <Compile Include="Models\BigDipper.cs" />
     <Compile Include="Models\CubeModel.cs" />
     <Compile Include="Models\PCIModel.cs" />
-    <Compile Include="Form01ModernRenderer.cs">
+    <Compile Include="Form01BigDipper.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form01ModernRenderer.Designer.cs">
-      <DependentUpon>Form01ModernRenderer.cs</DependentUpon>
+    <Compile Include="Form01BigDipper.Designer.cs">
+      <DependentUpon>Form01BigDipper.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -106,11 +106,11 @@
     <None Include="Shaders\BigDipper.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <EmbeddedResource Include="Form02GeometryShader.resx">
-      <DependentUpon>Form02GeometryShader.cs</DependentUpon>
+    <EmbeddedResource Include="Form02EmitNormalLine.resx">
+      <DependentUpon>Form02EmitNormalLine.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form01ModernRenderer.resx">
-      <DependentUpon>Form01ModernRenderer.cs</DependentUpon>
+    <EmbeddedResource Include="Form01BigDipper.resx">
+      <DependentUpon>Form01BigDipper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form00GLCanvas.resx">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>

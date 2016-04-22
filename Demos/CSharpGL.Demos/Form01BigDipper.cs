@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form01ModernRenderer : Form
+    public partial class Form01BigDipper : Form
     {
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace CSharpGL.Demos
         private FormProperyGrid rendererPropertyGrid;
         private FormProperyGrid cameraPropertyGrid;
 
-        public Form01ModernRenderer()
+        public Form01BigDipper()
         {
             InitializeComponent();
 

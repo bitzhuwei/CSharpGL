@@ -1,7 +1,7 @@
 ﻿using CSharpGL.Windows;
 namespace CSharpGL.Demos
 {
-    partial class Form02GeometryShader
+    partial class Form01BigDipper
     {
         /// <summary>
         /// Required designer variable.
