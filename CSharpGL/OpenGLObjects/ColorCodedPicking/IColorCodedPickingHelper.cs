@@ -56,15 +56,15 @@ namespace CSharpGL
         /// <param name="mode">specifies what type of primitive it is.</param>
         /// <param name="stageVertexID">Refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</param>
         /// <returns></returns>
-        public static T TryPick<T>(
-            this IColorCodedPicking element, PrimitiveMode mode, uint stageVertexID)
-            where T : IPickedGeometry, new()
+        public static bool TryPick<T>(
+            this IColorCodedPicking element, PrimitiveMode mode, uint stageVertexID, out T pickedGeometry, out uint lastVertexID)
+            where T : class, IPickedGeometry, new()
         {
-            T pickedGeometry = default(T);
+            lastVertexID = uint.MaxValue;
+            pickedGeometry = null;
 
             if (element != null)
             {
-                uint lastVertexID;
                 if (element.GetLastVertexIDOfPickedGeometry(stageVertexID, out lastVertexID))
                 {
                     pickedGeometry = new T();
@@ -72,59 +72,61 @@ namespace CSharpGL
                     pickedGeometry.GeometryType = mode.ToGeometryType();
                     pickedGeometry.StageVertexID = stageVertexID;
                     pickedGeometry.From = element;
+
+                    return true;
                 }
             }
 
-            return pickedGeometry;
+            return false;
         }
 
-        /// <summary>
-        /// Get the primitive of <paramref name="element"/> according to vertex's id.
-        /// <para>Returns <code>null</code> if <paramref name="element"/> is null or <paramref name="stageVertexID"/> does not belong to any of this <paramref name="element"/>'s vertices.</para>
-        /// <para>Note: the <paramref name="stageVertexID"/> refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</para>
-        /// </summary>
-        /// <typeparam name="T">Subclass of <see cref="IPickedGeometry"/></typeparam>
-        /// <param name="element">the scene's element that contains the primitive.</param>
-        /// <param name="mode">specifies what type of primitive it is.</param>
-        /// <param name="stageVertexID">Refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</param>
-        /// <param name="positions">element's vertices' position array.</param>
-        /// <returns></returns>
-        public static T TryPick<T>(
-            this IColorCodedPicking element, PrimitiveMode mode, uint stageVertexID, float[] positions)
-            where T : IPickedGeometry, new()
-        {
-            if (positions == null) { throw new ArgumentNullException("positions"); }
+        ///// <summary>
+        ///// Get the primitive of <paramref name="element"/> according to vertex's id.
+        ///// <para>Returns <code>null</code> if <paramref name="element"/> is null or <paramref name="stageVertexID"/> does not belong to any of this <paramref name="element"/>'s vertices.</para>
+        ///// <para>Note: the <paramref name="stageVertexID"/> refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</para>
+        ///// </summary>
+        ///// <typeparam name="T">Subclass of <see cref="IPickedGeometry"/></typeparam>
+        ///// <param name="element">the scene's element that contains the primitive.</param>
+        ///// <param name="mode">specifies what type of primitive it is.</param>
+        ///// <param name="stageVertexID">Refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</param>
+        ///// <param name="positions">element's vertices' position array.</param>
+        ///// <returns></returns>
+        //public static T TryPick<T>(
+        //    this IColorCodedPicking element, PrimitiveMode mode, uint stageVertexID, float[] positions)
+        //    where T : IPickedGeometry, new()
+        //{
+        //    if (positions == null) { throw new ArgumentNullException("positions"); }
 
-            T pickedGeometry = element.TryPick<T>(mode, stageVertexID);
+        //    T pickedGeometry = element.TryPick<T>(mode, stageVertexID);
 
-            // Fill primitive's positions and colors. This maybe changes much more than lines above in second dev.
-            if (pickedGeometry != null)
-            {
-                uint lastVertexID;
-                if (element.GetLastVertexIDOfPickedGeometry(stageVertexID, out lastVertexID))
-                {
-                    int vertexCount = pickedGeometry.GeometryType.GetVertexCount();
-                    if (vertexCount == -1) { vertexCount = positions.Length / 3; }
-                    float[] geometryPositions = new float[vertexCount * 3];
-                    uint i = lastVertexID * 3 + 2;
-                    for (int j = (geometryPositions.Length - 1); j >= 0; i--, j--)
-                    {
-                        if (i == uint.MaxValue)// This is when mode is GL_LINE_LOOP.
-                        { i = (uint)positions.Length - 1; }
-                        geometryPositions[j] = positions[i];
-                    }
+        //    // Fill primitive's positions and colors. This maybe changes much more than lines above in second dev.
+        //    if (pickedGeometry != null)
+        //    {
+        //        uint lastVertexID;
+        //        if (element.GetLastVertexIDOfPickedGeometry(stageVertexID, out lastVertexID))
+        //        {
+        //            int vertexCount = pickedGeometry.GeometryType.GetVertexCount();
+        //            if (vertexCount == -1) { vertexCount = positions.Length / 3; }
+        //            float[] geometryPositions = new float[vertexCount * 3];
+        //            uint i = lastVertexID * 3 + 2;
+        //            for (int j = (geometryPositions.Length - 1); j >= 0; i--, j--)
+        //            {
+        //                if (i == uint.MaxValue)// This is when mode is GL_LINE_LOOP.
+        //                { i = (uint)positions.Length - 1; }
+        //                geometryPositions[j] = positions[i];
+        //            }
 
-                    var poss = new vec3[vertexCount];
-                    for (int t = 0; t < vertexCount; t++)
-                    {
-                        poss[t] = new vec3(geometryPositions[t * 3 + 0], geometryPositions[t * 3 + 1], geometryPositions[t * 3 + 2]);
-                    }
-                    pickedGeometry.Positions = poss;
-                }
-            }
+        //            var poss = new vec3[vertexCount];
+        //            for (int t = 0; t < vertexCount; t++)
+        //            {
+        //                poss[t] = new vec3(geometryPositions[t * 3 + 0], geometryPositions[t * 3 + 1], geometryPositions[t * 3 + 2]);
+        //            }
+        //            pickedGeometry.Positions = poss;
+        //        }
+        //    }
 
-            return pickedGeometry;
-        }
+        //    return pickedGeometry;
+        //}
 
 
         /// <summary>
