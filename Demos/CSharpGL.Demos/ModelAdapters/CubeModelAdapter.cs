@@ -14,6 +14,7 @@ namespace CSharpGL.ModelAdapters
     /// 一个立方体的模型。
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000061.jpg
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000062.jpg
+    /// <para>使用<see cref="OneIndexBuffer"/></para>
     /// </summary>
     public class CubeModelAdapter : IBufferable
     {

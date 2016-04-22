@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.ModelAdapters
 {
+    /// <summary>
+    /// 北斗七星
+    /// <para>使用<see cref="ZeroIndexBuffer"/></para>
+    /// </summary>
     class BigDipperAdapter : IBufferable
     {
         private BigDipper model;
@@ -76,19 +80,24 @@ namespace CSharpGL.ModelAdapters
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer<uint>(
-                    DrawMode.LineStrip, BufferUsage.StaticDraw))
-                {
-                    buffer.Alloc(model.Indexes.Length);
-                    unsafe
-                    {
-                        var array = (uint*)buffer.FirstElement();
-                        for (int i = 0; i < model.Indexes.Length; i++)
-                        {
-                            array[i] = model.Indexes[i];
-                        }
-                    }
+                //using (var buffer = new OneIndexBuffer<uint>(
+                //    DrawMode.LineStrip, BufferUsage.StaticDraw))
+                //{
+                //    buffer.Alloc(model.Indexes.Length);
+                //    unsafe
+                //    {
+                //        var array = (uint*)buffer.FirstElement();
+                //        for (int i = 0; i < model.Indexes.Length; i++)
+                //        {
+                //            array[i] = model.Indexes[i];
+                //        }
+                //    }
 
+                //indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                //}
+                using (var buffer = new ZeroIndexBuffer(
+                    DrawMode.LineStrip, 0, this.model.Positions.Length))
+                {
                     indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
                 }
             }
