@@ -27,11 +27,11 @@ namespace CSharpGL
 
         protected override void DoInitialize()
         {
-            base.DoInitialize();
-
             // init index buffer object's renderer
             this.zeroIndexBufferPtr = this.bufferable.GetIndex() as ZeroIndexBufferPtr;
             if (this.zeroIndexBufferPtr == null) { throw new Exception(); }
+
+            base.DoInitialize();
         }
 
         protected override void DisposeUnmanagedResources()
