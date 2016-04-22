@@ -44,7 +44,7 @@ namespace System
         /// <returns></returns>
         public static unsafe void* LastElement(this UnmanagedArrayBase array)
         {
-            var last = (array.Header + (array.ByteLength - array.ByteLength / array.Length)).ToPointer();
+            void* last = (array.Header + (array.ByteLength - array.ByteLength / array.Length)).ToPointer();
 
             return last;
         }

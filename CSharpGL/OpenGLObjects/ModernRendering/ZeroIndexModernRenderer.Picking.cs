@@ -57,7 +57,7 @@ namespace CSharpGL
                 {
                     unsafe
                     {
-                        vec3* array = (vec3*)pointer.ToPointer();
+                        var array = (vec3*)pointer.ToPointer();
                         pickedGeometry.Positions[i] = array[0];
                     }
                 }
@@ -86,7 +86,7 @@ namespace CSharpGL
             {
                 unsafe
                 {
-                    vec3* array = (vec3*)pointer.ToPointer();
+                    var array = (vec3*)pointer.ToPointer();
                     for (uint i = 0; i < vertexCount; i++)
                     {
                         pickedGeometry.Positions[i] = array[i];
