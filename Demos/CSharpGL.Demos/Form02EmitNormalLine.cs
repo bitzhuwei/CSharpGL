@@ -178,6 +178,8 @@ namespace CSharpGL.Demos
                     GLSwitch pointSizeSwitch = new PointSizeSwitch(10.0f);
                     renderer.SwitchList.Add(pointSizeSwitch);
                     this.rendererDict.Add(key, renderer);
+                    GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
+                    renderer.SwitchList.Add(polygonModeSwitch);
                 }
                 this.SelectedModel = GeometryModel.Teapot;
             }

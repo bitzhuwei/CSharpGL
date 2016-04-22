@@ -137,6 +137,9 @@ namespace CSharpGL.Demos
                 renderer.SwitchList.Add(lineWidthSwitch);
                 GLSwitch pointSizeSwitch = new PointSizeSwitch(10.0f);
                 renderer.SwitchList.Add(pointSizeSwitch);
+                GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
+                renderer.SwitchList.Add(polygonModeSwitch);
+
                 this.renderer = renderer;
             }
             {
