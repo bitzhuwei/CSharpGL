@@ -41,7 +41,7 @@ namespace CSharpGL
 
         public override void Render(RenderEventArgs e, ShaderProgram shaderProgram)
         {
-            GL.GetDelegateFor<GL.glBindBuffer>()(GL.GL_ELEMENT_ARRAY_BUFFER, this.BufferID);
+            GL.GetDelegateFor<GL.glBindBuffer>()(GL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
             GL.DrawElements(this.Mode, this.ElementCount, (uint)this.Type, IntPtr.Zero);
         }
     }

@@ -45,7 +45,7 @@ namespace CSharpGL
             pickedGeometry.StageVertexId = stageVertexId;
             pickedGeometry.From = this;
             pickedGeometry.Indexes = lastIndexId.IndexIdList.ToArray();
-            GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferID);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
             IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
             unsafe
             {
@@ -301,7 +301,7 @@ namespace CSharpGL
                     break;
                 }
             }
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, this.oneIndexBufferPtr.BufferID);
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, this.oneIndexBufferPtr.BufferId);
             IntPtr pointer = GL.MapBuffer(BufferTarget.ElementArrayBuffer, MapBufferAccess.ReadOnly);
 
             if (glSwitch == null)

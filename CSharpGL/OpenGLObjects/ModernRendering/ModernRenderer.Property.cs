@@ -37,13 +37,13 @@ namespace CSharpGL
         /// <summary>
         /// 用GL.GenBuffers()得到的VBO的ID。
         /// </summary>
-        public uint BufferID
+        public uint BufferId
         {
             get
             {
                 if (this.indexBufferPtr != null)
                 {
-                    return this.indexBufferPtr.BufferID;
+                    return this.indexBufferPtr.BufferId;
                 }
                 else
                 {

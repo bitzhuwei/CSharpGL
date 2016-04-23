@@ -48,7 +48,7 @@ namespace CSharpGL
             pickedGeometry.Indexes = new uint[vertexCount];
             for (int i = 0; i < vertexCount; i++)
             {
-                GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferID);
+                GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
                 //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
                 IntPtr pointer = GL.MapBufferRange(BufferTarget.ArrayBuffer,
                     offsets[i],
@@ -65,7 +65,7 @@ namespace CSharpGL
                 else
                 {
                     ErrorCode error = (ErrorCode)GL.GetError();
-                    Debug.WriteLine("Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferID);
+                    Debug.WriteLine("Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId);
                 }
                 GL.UnmapBuffer(BufferTarget.ArrayBuffer);
                 pickedGeometry.Indexes[i] = (uint)offsets[i] / (uint)(this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
@@ -74,7 +74,7 @@ namespace CSharpGL
 
         private void ContinuousBufferRange(uint lastVertexId, int vertexCount, PickedGeometry pickedGeometry)
         {
-            GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferID);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
             //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
             int offset = (int)((lastVertexId - (vertexCount - 1)) * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
             IntPtr pointer = GL.MapBufferRange(BufferTarget.ArrayBuffer,
@@ -102,7 +102,7 @@ namespace CSharpGL
             else
             {
                 ErrorCode error = (ErrorCode)GL.GetError();
-                Debug.WriteLine("Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferID);
+                Debug.WriteLine("Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId);
             }
             GL.UnmapBuffer(BufferTarget.ArrayBuffer);
         }

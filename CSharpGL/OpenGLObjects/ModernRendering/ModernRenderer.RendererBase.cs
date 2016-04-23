@@ -46,7 +46,7 @@ namespace CSharpGL
                 {
                     this.positionBufferPtr = new PropertyBufferPtr(
                         "in_Position",// in_Postion same with in the PickingShader.vert shader
-                        bufferPtr.BufferID,
+                        bufferPtr.BufferId,
                         bufferPtr.DataSize,
                         bufferPtr.DataType,
                         bufferPtr.Length,

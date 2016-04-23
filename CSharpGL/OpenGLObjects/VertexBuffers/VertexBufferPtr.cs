@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <summary>
         /// 用GL.GenBuffers()得到的VBO的ID。
         /// </summary>
-        public uint BufferID { get; private set; }
+        public uint BufferId { get; private set; }
 
         /// <summary>
         /// 此VBO含有多个个元素？
@@ -35,7 +35,7 @@ namespace CSharpGL
         /// <param name="length">此VBO含有多个个元素？</param>
         internal VertexBufferPtr(uint bufferID, int length, int byteLength)
         {
-            this.BufferID = bufferID;
+            this.BufferId = bufferID;
             this.Length = length;
             this.ByteLength = byteLength;
         }
@@ -80,10 +80,10 @@ namespace CSharpGL
             IntPtr context = Win32.wglGetCurrentContext();
             if (context != IntPtr.Zero)
             {
-                GL.GetDelegateFor<GL.glDeleteBuffers>()(1, new uint[] { this.BufferID });
+                GL.GetDelegateFor<GL.glDeleteBuffers>()(1, new uint[] { this.BufferId });
             }
 
-            this.BufferID = 0;
+            this.BufferId = 0;
         }
 
         protected virtual void DisposeManagedResources()
