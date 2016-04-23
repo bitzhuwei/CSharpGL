@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class ModernRenderer 
+    public partial class ModernRenderer
     {
 
         protected override void DisposeUnmanagedResources()
@@ -25,7 +25,6 @@ namespace CSharpGL
             if (this.indexBufferPtr != null)
             {
                 this.indexBufferPtr.Dispose();
-                this.indexBufferPtr = null;
             }
             if (this.shaderProgram != null)
             {

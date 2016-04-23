@@ -12,6 +12,8 @@ namespace CSharpGL
     /// </summary>
     public class PickedGeometry : IPickedGeometry
     {
+        public string ErrorInfo { get; set; }
+
         /// <summary>
         /// Gets or sets primitive's geometry type.
         /// </summary>
@@ -67,6 +69,12 @@ namespace CSharpGL
             builder.AppendFormat("Stage Vertex ID: {0}", stageVertexID);
             builder.AppendLine();
             builder.AppendFormat("From: {0}", this.From);
+
+            if (!string.IsNullOrEmpty(this.ErrorInfo))
+            {
+                builder.AppendLine("Error:");
+                builder.AppendLine(this.ErrorInfo);
+            }
 
             return builder.ToString();
         }

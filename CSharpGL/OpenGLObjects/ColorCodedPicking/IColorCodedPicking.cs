@@ -21,7 +21,9 @@ namespace CSharpGL
         /// Gets or internal sets how many primitived have been rendered till now during hit test.
         /// <para>This will be set up by <see cref="ColorCodedPickingScene.Draw(RenderMode.HitTest)"/>, so just use it to set shader's uniform variable.</para>
         /// </summary>
-        uint PickingBaseID { get; set; }
+        uint PickingBaseID { get; }
+
+        void SetPickingBaseID(uint value);
 
         /// <summary>
         /// Gets vertices' count in this element's VBO representing positions.
@@ -36,6 +38,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="stageVertexID">Refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</param>
         /// <returns></returns>
-        IPickedGeometry Pick(uint stageVertexID);
+        IPickedGeometry Pick(ICamera camera, uint stageVertexID, 
+            int x, int y, int canvasWidth, int canvasHeight);
     }
 }

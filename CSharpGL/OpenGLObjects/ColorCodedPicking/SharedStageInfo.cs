@@ -32,7 +32,7 @@ namespace CSharpGL
         {
             if (pickable != null)
             {
-                pickable.PickingBaseID = this.RenderedVertexCount;
+                pickable.SetPickingBaseID(this.RenderedVertexCount);
 
                 //  render the element.
                 pickable.Render(e);

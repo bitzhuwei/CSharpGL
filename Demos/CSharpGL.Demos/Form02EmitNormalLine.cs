@@ -210,7 +210,7 @@ namespace CSharpGL.Demos
                     propertyNameMap.Add("in_Position", "position");
                     propertyNameMap.Add("in_Normal", "normal");
                     string positionNameInIBufferable = "position";
-                    var renderer = new ModernRenderer(bufferable, shaders, propertyNameMap, positionNameInIBufferable);
+                    var renderer = ModernRendererFactory.GetModernRenderer(bufferable, shaders, propertyNameMap, positionNameInIBufferable);
                     renderer.Initialize();
                     renderer.SetUniformValue("normalLength", 0.5f);
                     renderer.SetUniformValue("showModel", true);

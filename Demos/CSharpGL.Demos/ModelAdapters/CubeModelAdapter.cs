@@ -29,51 +29,64 @@ namespace CSharpGL.ModelAdapters
         public const string strPosition = "position";
         public const string strColor = "color";
         public const string strNormal = "normal";
+        Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
-                using (var positionBuffer = new PropertyBuffer<CubeModel.CubePosition>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    positionBuffer.Alloc(1);
-                    unsafe
+                    using (var buffer = new PropertyBuffer<CubeModel.CubePosition>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        var positionArray = (CubeModel.CubePosition*)positionBuffer.FirstElement();
-                        positionArray[0] = this.model.position;
+                        buffer.Alloc(1);
+                        unsafe
+                        {
+                            var positionArray = (CubeModel.CubePosition*)buffer.FirstElement();
+                            positionArray[0] = this.model.position;
 
+                        }
+
+                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
                     }
-
-                    return positionBuffer.GetBufferPtr() as PropertyBufferPtr;
                 }
+                return propertyBufferPtrDict[bufferName];
             }
             else if (bufferName == strColor)
             {
-                using (var colorBuffer = new PropertyBuffer<CubeModel.CubeColor>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    colorBuffer.Alloc(1);
-                    unsafe
+                    using (var buffer = new PropertyBuffer<CubeModel.CubeColor>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        var colorArray = (CubeModel.CubeColor*)colorBuffer.FirstElement();
-                        colorArray[0] = this.model.color;
-                    }
+                        buffer.Alloc(1);
+                        unsafe
+                        {
+                            var colorArray = (CubeModel.CubeColor*)buffer.FirstElement();
+                            colorArray[0] = this.model.color;
+                        }
 
-                    return colorBuffer.GetBufferPtr() as PropertyBufferPtr;
+                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                    }
                 }
+                return propertyBufferPtrDict[bufferName];
             }
             else if (bufferName == strNormal)
             {
-                using (var normalBuffer = new PropertyBuffer<CubeModel.CubeNormal>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    normalBuffer.Alloc(1);
-                    unsafe
+                    using (var buffer = new PropertyBuffer<CubeModel.CubeNormal>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        var normalArray = (CubeModel.CubeNormal*)normalBuffer.FirstElement();
-                        normalArray[0] = this.model.normal;
-                    }
+                        buffer.Alloc(1);
+                        unsafe
+                        {
+                            var normalArray = (CubeModel.CubeNormal*)buffer.FirstElement();
+                            normalArray[0] = this.model.normal;
+                        }
 
-                    return normalBuffer.GetBufferPtr() as PropertyBufferPtr;
+                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                    }
                 }
+                return propertyBufferPtrDict[bufferName];
             }
             else
             {
@@ -83,20 +96,27 @@ namespace CSharpGL.ModelAdapters
 
         public IndexBufferPtr GetIndex()
         {
-            using (var buffer = new OneIndexBuffer<uint>(DrawMode.Triangles, BufferUsage.StaticDraw))
+            if (indexBufferPtr == null)
             {
-                buffer.Alloc(this.model.index.Length);
-                unsafe
+                using (var buffer = new OneIndexBuffer<uint>(DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    uint* array = (uint*)buffer.FirstElement();
-                    for (int i = 0; i < this.model.index.Length; i++)
+                    buffer.Alloc(this.model.index.Length);
+                    unsafe
                     {
-                        array[i] = this.model.index[i];
+                        uint* array = (uint*)buffer.FirstElement();
+                        for (int i = 0; i < this.model.index.Length; i++)
+                        {
+                            array[i] = this.model.index[i];
+                        }
                     }
-                }
 
-                return buffer.GetBufferPtr() as IndexBufferPtr;
+                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                }
             }
+
+            return indexBufferPtr;
         }
+
+        IndexBufferPtr indexBufferPtr = null;
     }
 }

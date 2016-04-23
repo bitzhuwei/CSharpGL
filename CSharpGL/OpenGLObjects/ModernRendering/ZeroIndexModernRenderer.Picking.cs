@@ -8,36 +8,21 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class ModernRenderer : IColorCodedPicking
+    public partial class ZeroIndexModernRenderer : ModernRenderer
     {
 
-        mat4 IColorCodedPicking.MVP
+        public override IPickedGeometry Pick(ICamera camera, uint stageVertexID,
+            int x, int y, int canvasWidth, int canvasHeight)
         {
-            get { return pickingMVP.Value; }
-            set { pickingMVP.Value = value; }
-        }
-
-        uint IColorCodedPicking.PickingBaseID { get; set; }
-
-        uint IColorCodedPicking.GetVertexCount()
-        {
-            return (uint)(this.positionBufferPtr.ByteLength / this.positionBufferPtr.DataSize / this.positionBufferPtr.DataTypeByteLength);
-            //if (this.elementCount < 0) { return 0; }
-            //else { return (uint)this.elementCount; }
-        }
-
-        IPickedGeometry IColorCodedPicking.Pick(uint stageVertexID)
-        {
-            var element = this as IColorCodedPicking;
-            PickedGeometry pickedGeometry = element.TryPick<PickedGeometry>(
-                this.indexBufferPtr.Mode.ToPrimitiveMode(), stageVertexID);
-
-            if (pickedGeometry == null) { return null; }
-
-            // Fill primitive's position information.
             uint lastVertexID;
-            if (element.GetLastVertexIDOfPickedGeometry(stageVertexID, out lastVertexID))
+            PickedGeometry pickedGeometry = null;
+            if (this.GetLastVertexIDOfPickedGeometry(stageVertexID, out lastVertexID))
             {
+                pickedGeometry = new PickedGeometry();
+                pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
+                pickedGeometry.StageVertexID = stageVertexID;
+                pickedGeometry.From = this;
+                // Fill primitive's position information.
                 int vertexCount = pickedGeometry.GeometryType.GetVertexCount();
                 if (vertexCount == -1) { vertexCount = this.positionBufferPtr.Length; }
                 if (lastVertexID == 0 && vertexCount == 2)
@@ -73,7 +58,7 @@ namespace CSharpGL
                 {
                     unsafe
                     {
-                        vec3* array = (vec3*)pointer.ToPointer();
+                        var array = (vec3*)pointer.ToPointer();
                         pickedGeometry.Positions[i] = array[0];
                     }
                 }
@@ -102,7 +87,7 @@ namespace CSharpGL
             {
                 unsafe
                 {
-                    vec3* array = (vec3*)pointer.ToPointer();
+                    var array = (vec3*)pointer.ToPointer();
                     for (uint i = 0; i < vertexCount; i++)
                     {
                         pickedGeometry.Positions[i] = array[i];
@@ -121,12 +106,6 @@ namespace CSharpGL
             }
             GL.UnmapBuffer(BufferTarget.ArrayBuffer);
         }
-
-        void IRenderable.Render(RenderEventArgs e)
-        {
-            base.Render(e);
-        }
-
 
     }
 }
