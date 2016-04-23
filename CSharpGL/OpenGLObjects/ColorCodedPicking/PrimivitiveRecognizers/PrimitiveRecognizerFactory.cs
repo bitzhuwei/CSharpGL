@@ -21,8 +21,10 @@ namespace CSharpGL
                     recognizer = new LineStripRecognizer();
                     break;
                 case DrawMode.LineLoop:
+                    recognizer = new LineLoopRecognizer();
                     break;
                 case DrawMode.Lines:
+                    recognizer = new LinesRecognizer();
                     break;
                 case DrawMode.LineStripAdjacency:
                     break;
@@ -43,6 +45,7 @@ namespace CSharpGL
                 case DrawMode.Patches:
                     break;
                 case DrawMode.QuadStrip:
+                    recognizer = new QuadStripRecognizer();
                     break;
                 case DrawMode.Quads:
                     break;
