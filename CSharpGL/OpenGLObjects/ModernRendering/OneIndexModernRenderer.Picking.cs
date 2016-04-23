@@ -19,11 +19,20 @@ namespace CSharpGL
             PickedGeometry pickedGeometry = null;
             if (this.GetLastVertexIDOfPickedGeometry(stageVertexID, out lastVertexID))
             {
-                // 找到 lastIndexID
-                RecognizedPrimitiveIndex lastIndexID = this.GetLastIndexIDOfPickedGeometry(
-                    camera, lastVertexID, x, y, canvasWidth, canvasHeight);
-                // 获取pickedGeometry
-                pickedGeometry = this.GetGeometry(lastIndexID, stageVertexID);
+                try
+                {
+                    // 找到 lastIndexID
+                    RecognizedPrimitiveIndex lastIndexID = this.GetLastIndexIDOfPickedGeometry(
+                        camera, lastVertexID, x, y, canvasWidth, canvasHeight);
+                    // 获取pickedGeometry
+                    pickedGeometry = this.GetGeometry(lastIndexID, stageVertexID);
+                }
+                catch (Exception ex)
+                {
+                    pickedGeometry = new PickedGeometry();
+                    pickedGeometry.ErrorInfo = ex.ToString();
+                    Debug.WriteLine(ex);
+                }
             }
 
             return pickedGeometry;
