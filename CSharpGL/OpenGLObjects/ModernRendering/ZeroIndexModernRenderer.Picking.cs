@@ -14,9 +14,9 @@ namespace CSharpGL
         public override IPickedGeometry Pick(ICamera camera, uint stageVertexId,
             int x, int y, int canvasWidth, int canvasHeight)
         {
-            uint lastVertexID;
+            uint lastVertexId;
             PickedGeometry pickedGeometry = null;
-            if (this.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexID))
+            if (this.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
             {
                 pickedGeometry = new PickedGeometry();
                 pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
@@ -25,7 +25,7 @@ namespace CSharpGL
                 // Fill primitive's position information.
                 int vertexCount = pickedGeometry.GeometryType.GetVertexCount();
                 if (vertexCount == -1) { vertexCount = this.positionBufferPtr.Length; }
-                if (lastVertexID == 0 && vertexCount == 2)
+                if (lastVertexId == 0 && vertexCount == 2)
                 {
                     // This is when mode is GL_LINE_LOOP and picked last line(the loop back one)
                     PickingLastLineInLineLoop(pickedGeometry);
@@ -33,7 +33,7 @@ namespace CSharpGL
                 else
                 {
                     // Other conditions
-                    ContinuousBufferRange(lastVertexID, vertexCount, pickedGeometry);
+                    ContinuousBufferRange(lastVertexId, vertexCount, pickedGeometry);
                 }
             }
 
@@ -41,7 +41,7 @@ namespace CSharpGL
         }
         private void PickingLastLineInLineLoop(PickedGeometry pickedGeometry)
         {
-            //const int lastVertexID = 0;
+            //const int lastVertexId = 0;
             const int vertexCount = 2;
             var offsets = new int[vertexCount] { (this.positionBufferPtr.Length - 1) * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength, 0, };
             pickedGeometry.Positions = new vec3[vertexCount];
@@ -72,11 +72,11 @@ namespace CSharpGL
             }
         }
 
-        private void ContinuousBufferRange(uint lastVertexID, int vertexCount, PickedGeometry pickedGeometry)
+        private void ContinuousBufferRange(uint lastVertexId, int vertexCount, PickedGeometry pickedGeometry)
         {
             GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferID);
             //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
-            int offset = (int)((lastVertexID - (vertexCount - 1)) * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
+            int offset = (int)((lastVertexId - (vertexCount - 1)) * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
             IntPtr pointer = GL.MapBufferRange(BufferTarget.ArrayBuffer,
                 offset,
                 vertexCount * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength,
@@ -91,7 +91,7 @@ namespace CSharpGL
                     for (uint i = 0; i < vertexCount; i++)
                     {
                         pickedGeometry.Positions[i] = array[i];
-                        pickedGeometry.Indexes[i] = lastVertexID - ((uint)vertexCount - 1) + i;
+                        pickedGeometry.Indexes[i] = lastVertexId - ((uint)vertexCount - 1) + i;
                     }
                     //for (int j = (positions.Length - 1), i = vertexCount - 1; j >= 0; i--, j--)
                     //{

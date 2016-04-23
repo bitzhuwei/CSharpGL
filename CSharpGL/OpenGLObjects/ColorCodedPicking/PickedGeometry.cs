@@ -50,18 +50,18 @@ namespace CSharpGL
             if (positions == null) { positions = new vec3[0]; }
 
             uint stageVertexId = this.StageVertexID;
-            //uint lastVertexID = uint.MaxValue;
+            //uint lastVertexId = uint.MaxValue;
             //string strLastVertexID;
             //IColorCodedPicking picking = this.From;
             //if (picking != null)
             //{
-            //    if (picking.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexID))
-            //    { strLastVertexID = string.Format("{0}", lastVertexID); }
+            //    if (picking.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
+            //    { strLastVertexID = string.Format("{0}", lastVertexId); }
             //}
 
             for (int i = 0; i < positions.Length; i++)
             {
-                //builder.Append(lastVertexID - (positions.Length - 1) + i); 
+                //builder.Append(lastVertexId - (positions.Length - 1) + i); 
                 builder.Append('['); builder.Append(Indexes[i]); builder.Append("]: ");
                 builder.AppendLine(positions[i].ToString());
             }

@@ -8,9 +8,9 @@ namespace CSharpGL
 {
     abstract class PrimitiveRecognizer
     {
-        public abstract List<RecognizedPrimitiveIndex> Recognize(uint lastVertexID, IntPtr pointer, int length);
+        public abstract List<RecognizedPrimitiveIndex> Recognize(uint lastVertexId, IntPtr pointer, int length);
 
-        public abstract List<RecognizedPrimitiveIndex> Recognize(uint lastVertexID, IntPtr pointer, int length, uint primitiveRestartIndex);
+        public abstract List<RecognizedPrimitiveIndex> Recognize(uint lastVertexId, IntPtr pointer, int length, uint primitiveRestartIndex);
     }
 
     class RecognizedPrimitiveIndex

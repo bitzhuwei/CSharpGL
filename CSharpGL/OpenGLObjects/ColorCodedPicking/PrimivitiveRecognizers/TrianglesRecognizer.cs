@@ -9,7 +9,7 @@ namespace CSharpGL
     class TrianglesRecognizer : PrimitiveRecognizer
     {
         public override List<RecognizedPrimitiveIndex> Recognize(
-            uint lastVertexID, IntPtr pointer, int length)
+            uint lastVertexId, IntPtr pointer, int length)
         {
             var lastIndexIDList = new List<RecognizedPrimitiveIndex>();
             unsafe
@@ -17,9 +17,9 @@ namespace CSharpGL
                 var array = (uint*)pointer.ToPointer();
                 for (uint i = 2; i < length; i += 3)
                 {
-                    if (array[i] == lastVertexID)
+                    if (array[i] == lastVertexId)
                     {
-                        var item = new RecognizedPrimitiveIndex(lastVertexID);
+                        var item = new RecognizedPrimitiveIndex(lastVertexId);
                         item.IndexIDList.Add(array[i - 2]);
                         item.IndexIDList.Add(array[i - 1]);
                         item.IndexIDList.Add(array[i - 0]);
@@ -32,7 +32,7 @@ namespace CSharpGL
         }
 
         public override List<RecognizedPrimitiveIndex> Recognize(
-            uint lastVertexID, IntPtr pointer, int length, uint primitiveRestartIndex)
+            uint lastVertexId, IntPtr pointer, int length, uint primitiveRestartIndex)
         {
             var lastIndexIDList = new List<RecognizedPrimitiveIndex>();
             unsafe
@@ -47,9 +47,9 @@ namespace CSharpGL
                     }
                     else
                     {
-                        if (array[i + 2] == lastVertexID)
+                        if (array[i + 2] == lastVertexId)
                         {
-                            var item = new RecognizedPrimitiveIndex(lastVertexID);
+                            var item = new RecognizedPrimitiveIndex(lastVertexId);
                             item.IndexIDList.Add(array[i + 0]);
                             item.IndexIDList.Add(array[i + 1]);
                             item.IndexIDList.Add(array[i + 2]);

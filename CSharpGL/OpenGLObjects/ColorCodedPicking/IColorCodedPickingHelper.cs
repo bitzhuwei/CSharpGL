@@ -17,11 +17,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="element"></param>
         /// <param name="stageVertexId"></param>
-        /// <param name="lastVertexID"></param>
+        /// <param name="lastVertexId"></param>
         /// <returns></returns>
-        public static bool GetLastVertexIdOfPickedGeometry(this IColorCodedPicking element, uint stageVertexId, out uint lastVertexID)
+        public static bool GetLastVertexIdOfPickedGeometry(this IColorCodedPicking element, uint stageVertexId, out uint lastVertexId)
         {
-            lastVertexID = uint.MaxValue;
+            lastVertexId = uint.MaxValue;
             bool result = false;
 
             if (element != null)
@@ -33,7 +33,7 @@ namespace CSharpGL
                 uint id = stageVertexId - element.PickingBaseID;
                 if (id < vertexCount)
                 {
-                    lastVertexID = id;
+                    lastVertexId = id;
                     result = true;
                 }
                 else // ID is in some subsequent element.
@@ -46,58 +46,58 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Get geometry's index(start from 0) according to <paramref name="lastVertexID"/> and <paramref name="mode"/>.
+        /// Get geometry's index(start from 0) according to <paramref name="lastVertexId"/> and <paramref name="mode"/>.
         /// <para>Returns false if failed.</para>
         /// </summary>
         /// <param name="element"></param>
         /// <param name="mode"></param>
-        /// <param name="lastVertexID">Refers to the last vertex that constructs the primitive.
+        /// <param name="lastVertexId">Refers to the last vertex that constructs the primitive.
         /// <para>Ranges from 0 to (<paramref name="element"/>'s vertices' count - 1).</para></param>
         /// <param name="index"></param>
         /// <returns></returns>
-        public static bool GetGeometryIndex(this IColorCodedPicking element, PrimitiveMode mode, uint lastVertexID, out uint index)
+        public static bool GetGeometryIndex(this IColorCodedPicking element, PrimitiveMode mode, uint lastVertexId, out uint index)
         {
             index = uint.MaxValue;
             if (element == null) { return false; }
 
             uint vertexCount = element.GetVertexCount();
 
-            if (lastVertexID < vertexCount)
+            if (lastVertexId < vertexCount)
             {
                 switch (mode)
                 {
                     case PrimitiveMode.Points:
                         // vertexID should range from 0 to vertexCount - 1.
-                        index = lastVertexID;
+                        index = lastVertexId;
                         break;
                     case PrimitiveMode.Lines:
                         // vertexID should range from 0 to vertexCount - 1.
-                        index = lastVertexID / 2;
+                        index = lastVertexId / 2;
                         break;
                     case PrimitiveMode.LineLoop:
                         // vertexID should range from 0 to vertexCount.
-                        if (lastVertexID == 0) // This is the last primitive.
+                        if (lastVertexId == 0) // This is the last primitive.
                         { index = vertexCount - 1; }
                         else
-                        { index = lastVertexID - 1; }
+                        { index = lastVertexId - 1; }
                         break;
                     case PrimitiveMode.LineStrip:
-                        index = lastVertexID - 1;// If lastVertexID is 0, this returns -1.
+                        index = lastVertexId - 1;// If lastVertexId is 0, this returns -1.
                         break;
                     case PrimitiveMode.Triangles:
-                        index = lastVertexID / 3;
+                        index = lastVertexId / 3;
                         break;
                     case PrimitiveMode.TriangleStrip:
-                        index = lastVertexID - 2;// if lastVertexID is 0 or 1, this returns -2 or -1.
+                        index = lastVertexId - 2;// if lastVertexId is 0 or 1, this returns -2 or -1.
                         break;
                     case PrimitiveMode.TriangleFan:
-                        index = lastVertexID - 2;// if lastVertexID is 0 or 1, this returns -2 or -1.
+                        index = lastVertexId - 2;// if lastVertexId is 0 or 1, this returns -2 or -1.
                         break;
                     case PrimitiveMode.Quads:
-                        index = lastVertexID / 4;
+                        index = lastVertexId / 4;
                         break;
                     case PrimitiveMode.QuadStrip:
-                        index = lastVertexID / 2 - 1;// If lastVertexID is 0 or 1, this returns -1.
+                        index = lastVertexId / 2 - 1;// If lastVertexId is 0 or 1, this returns -1.
                         break;
                     case PrimitiveMode.Polygon:
                         index = 0;

@@ -15,15 +15,15 @@ namespace CSharpGL
         public override IPickedGeometry Pick(ICamera camera, uint stageVertexId,
             int x, int y, int canvasWidth, int canvasHeight)
         {
-            uint lastVertexID;
+            uint lastVertexId;
             PickedGeometry pickedGeometry = null;
-            if (this.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexID))
+            if (this.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
             {
                 try
                 {
                     // 找到 lastIndexID
                     RecognizedPrimitiveIndex lastIndexID = this.GetLastIndexIDOfPickedGeometry(
-                        camera, lastVertexID, x, y, canvasWidth, canvasHeight);
+                        camera, lastVertexId, x, y, canvasWidth, canvasHeight);
                     // 获取pickedGeometry
                     pickedGeometry = this.GetGeometry(lastIndexID, stageVertexId);
                 }
@@ -65,9 +65,9 @@ namespace CSharpGL
 
         private RecognizedPrimitiveIndex GetLastIndexIDOfPickedGeometry(
             ICamera camera,
-            uint lastVertexID, int x, int y, int canvasWidth, int canvasHeight)
+            uint lastVertexId, int x, int y, int canvasWidth, int canvasHeight)
         {
-            List<RecognizedPrimitiveIndex> lastIndexIDList = GetLastIndexIDList(lastVertexID);
+            List<RecognizedPrimitiveIndex> lastIndexIDList = GetLastIndexIDList(lastVertexId);
 
             RecognizedPrimitiveIndex lastIndexID = GetLastIndexID(
                 camera, lastIndexIDList, x, y, canvasWidth, canvasHeight);
@@ -76,7 +76,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 在所有可能的图元（<see cref="lastVertexID"/>匹配）中，
+        /// 在所有可能的图元（<see cref="lastVertexId"/>匹配）中，
         /// 逐个测试，找到最接近摄像机的那个图元，
         /// 返回此图元的最后一个索引在<see cref="indexBufferPtr"/>中的索引（位置）。
         /// </summary>
@@ -286,9 +286,9 @@ namespace CSharpGL
         /// 瞄准每个图元的索引（例如1个三角形有3个索引）中的最后一个索引，
         /// 将此索引在<see cref="indexBufferPtr"/>中的索引（位置）收集起来。
         /// </summary>
-        /// <param name="lastVertexID"></param>
+        /// <param name="lastVertexId"></param>
         /// <returns></returns>
-        private List<RecognizedPrimitiveIndex> GetLastIndexIDList(uint lastVertexID)
+        private List<RecognizedPrimitiveIndex> GetLastIndexIDList(uint lastVertexId)
         {
             List<RecognizedPrimitiveIndex> lastIndexIDList = null;
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(this.indexBufferPtr.Mode);
@@ -305,9 +305,9 @@ namespace CSharpGL
             IntPtr pointer = GL.MapBuffer(BufferTarget.ElementArrayBuffer, MapBufferAccess.ReadOnly);
 
             if (glSwitch == null)
-            { lastIndexIDList = recognizer.Recognize(lastVertexID, pointer, this.indexBufferPtr.Length); }
+            { lastIndexIDList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr.Length); }
             else
-            { lastIndexIDList = recognizer.Recognize(lastVertexID, pointer, this.indexBufferPtr.Length, glSwitch.RestartIndex); }
+            { lastIndexIDList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr.Length, glSwitch.RestartIndex); }
 
             GL.UnmapBuffer(BufferTarget.ElementArrayBuffer);
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
