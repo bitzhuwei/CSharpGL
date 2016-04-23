@@ -91,8 +91,16 @@ namespace CSharpGL
             if (lastIndexIdList.Count == 0) { throw new ArgumentException(); }
 
             int current = 0;
+            foreach (var item in lastIndexIdList[0].IndexIdList)
+            {
+                if (item == uint.MaxValue) { throw new Exception(); }
+            }
             for (int i = 1; i < lastIndexIdList.Count; i++)
             {
+                foreach (var item in lastIndexIdList[i].IndexIdList)
+                {
+                    if (item == uint.MaxValue) { throw new Exception(); }
+                }
                 OneIndexBufferPtr twoPrimitivesIndexBufferPtr;
                 uint lastIndex0, lastIndex1;
                 AssembleIndexBuffer(
@@ -294,8 +302,11 @@ namespace CSharpGL
             List<RecognizedPrimitiveIndex> lastIndexIdList = null;
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
                 this.indexBufferPtr.Mode);
-            if (recognizer == null) { throw new NotImplementedException(string.Format(
-                "尚未实现[{0}]的recognizer!", this.indexBufferPtr.Mode)); }
+            if (recognizer == null)
+            {
+                throw new NotImplementedException(string.Format(
+                    "尚未实现[{0}]的recognizer!", this.indexBufferPtr.Mode));
+            }
             PrimitiveRestartSwitch glSwitch = null;
             foreach (var item in this.switchList)
             {
