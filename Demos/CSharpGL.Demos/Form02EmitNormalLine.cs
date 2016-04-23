@@ -223,6 +223,8 @@ namespace CSharpGL.Demos
                     this.rendererDict.Add(key, renderer);
                     GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
                     renderer.SwitchList.Add(polygonModeSwitch);
+                    GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(uint.MaxValue);
+                    renderer.SwitchList.Add(primitiveRestartSwitch);
                 }
                 this.SelectedModel = GeometryModel.Teapot;
             }
