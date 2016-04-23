@@ -55,7 +55,7 @@ namespace CSharpGL
             //IColorCodedPicking picking = this.From;
             //if (picking != null)
             //{
-            //    if (picking.GetLastVertexIDOfPickedGeometry(stageVertexId, out lastVertexID))
+            //    if (picking.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexID))
             //    { strLastVertexID = string.Format("{0}", lastVertexID); }
             //}
 

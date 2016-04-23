@@ -17,7 +17,7 @@ namespace CSharpGL
         {
             uint lastVertexID;
             PickedGeometry pickedGeometry = null;
-            if (this.GetLastVertexIDOfPickedGeometry(stageVertexId, out lastVertexID))
+            if (this.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexID))
             {
                 try
                 {
