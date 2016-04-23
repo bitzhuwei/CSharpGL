@@ -69,7 +69,7 @@ namespace CSharpGL
         {
             List<RecognizedPrimitiveIndex> lastIndexIdList = GetLastIndexIdList(lastVertexId);
 
-            RecognizedPrimitiveIndex lastIndexId = GetLastIndexID(
+            RecognizedPrimitiveIndex lastIndexId = GetLastIndexId(
                 camera, lastIndexIdList, x, y, canvasWidth, canvasHeight);
 
             return lastIndexId;
@@ -82,7 +82,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="lastIndexIdList"></param>
         /// <returns></returns>
-        private RecognizedPrimitiveIndex GetLastIndexID(
+        private RecognizedPrimitiveIndex GetLastIndexId(
             ICamera camera,
             List<RecognizedPrimitiveIndex> lastIndexIdList,
             int x, int y, int canvasWidth, int canvasHeight)
