@@ -219,17 +219,17 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="recognizedPrimitiveIndex10"></param>
-        /// <param name="recognizedPrimitiveIndex11"></param>
+        /// <param name="recognizedPrimitiveIndex0"></param>
+        /// <param name="recognizedPrimitiveIndex1"></param>
         /// <returns></returns>
         private List<uint> ArrangeIndexes(
-            RecognizedPrimitiveIndex recognizedPrimitiveIndex10,
-            RecognizedPrimitiveIndex recognizedPrimitiveIndex11,
+            RecognizedPrimitiveIndex recognizedPrimitiveIndex0,
+            RecognizedPrimitiveIndex recognizedPrimitiveIndex1,
             out uint lastIndex0, out uint lastIndex1)
         {
             List<uint> sameIndexList = new List<uint>();
-            List<uint> array0 = new List<uint>(recognizedPrimitiveIndex10.IndexIdList);
-            List<uint> array1 = new List<uint>(recognizedPrimitiveIndex11.IndexIdList);
+            List<uint> array0 = new List<uint>(recognizedPrimitiveIndex0.IndexIdList);
+            List<uint> array1 = new List<uint>(recognizedPrimitiveIndex1.IndexIdList);
             array0.Sort(); array1.Sort();
             int p0 = 0, p1 = 0;
             while (p0 < array0.Count && p1 < array1.Count)
