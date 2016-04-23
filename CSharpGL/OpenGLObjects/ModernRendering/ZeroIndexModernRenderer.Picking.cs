@@ -20,7 +20,7 @@ namespace CSharpGL
             {
                 pickedGeometry = new PickedGeometry();
                 pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
-                pickedGeometry.StageVertexID = stageVertexId;
+                pickedGeometry.StageVertexId = stageVertexId;
                 pickedGeometry.From = this;
                 // Fill primitive's position information.
                 int vertexCount = pickedGeometry.GeometryType.GetVertexCount();

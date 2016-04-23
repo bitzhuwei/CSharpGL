@@ -42,7 +42,7 @@ namespace CSharpGL
         {
             var pickedGeometry = new PickedGeometry();
             pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
-            pickedGeometry.StageVertexID = stageVertexId;
+            pickedGeometry.StageVertexId = stageVertexId;
             pickedGeometry.From = this;
             pickedGeometry.Indexes = lastIndexId.IndexIDList.ToArray();
             GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferID);

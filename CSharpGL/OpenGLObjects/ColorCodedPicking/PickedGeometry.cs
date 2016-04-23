@@ -33,7 +33,7 @@ namespace CSharpGL
         /// The last vertex's id that constructs the picked primitive.
         /// <para>This id is in scene's all <see cref="IColorCodedPicking"/>s' order.</para>
         /// </summary>
-        public uint StageVertexID { get; set; }
+        public uint StageVertexId { get; set; }
 
         /// <summary>
         /// The element that this picked primitive belongs to.
@@ -49,7 +49,7 @@ namespace CSharpGL
             var positions = this.Positions;
             if (positions == null) { positions = new vec3[0]; }
 
-            uint stageVertexId = this.StageVertexID;
+            uint stageVertexId = this.StageVertexId;
             //uint lastVertexId = uint.MaxValue;
             //string strLastVertexID;
             //IColorCodedPicking picking = this.From;

@@ -36,6 +36,6 @@ namespace CSharpGL
         /// The last vertex's id that constructs the picked primitive.
         /// <para>This id is in scene's all <see cref="IColorCodedPicking"/>s' order.</para>
         /// </summary>
-        uint StageVertexID { get; set; }
+        uint StageVertexId { get; set; }
     }
 }
