@@ -22,7 +22,7 @@ namespace CSharpGL
                 try
                 {
                     // 找到 lastIndexId
-                    RecognizedPrimitiveIndex lastIndexId = this.GetLastIndexIDOfPickedGeometry(
+                    RecognizedPrimitiveIndex lastIndexId = this.GetLastIndexIdOfPickedGeometry(
                         camera, lastVertexId, x, y, canvasWidth, canvasHeight);
                     // 获取pickedGeometry
                     pickedGeometry = this.GetGeometry(lastIndexId, stageVertexId);
@@ -63,7 +63,7 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private RecognizedPrimitiveIndex GetLastIndexIDOfPickedGeometry(
+        private RecognizedPrimitiveIndex GetLastIndexIdOfPickedGeometry(
             ICamera camera,
             uint lastVertexId, int x, int y, int canvasWidth, int canvasHeight)
         {
