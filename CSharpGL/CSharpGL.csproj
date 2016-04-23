@@ -62,6 +62,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizerFactory.cs" />
+    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PointsRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\TriangleStripRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\TrianglesRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizer.cs" />
