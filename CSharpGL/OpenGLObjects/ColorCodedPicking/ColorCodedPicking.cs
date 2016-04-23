@@ -61,6 +61,29 @@ namespace CSharpGL
             var result = new List<Tuple<Point, IPickedGeometry>>();
             if (pickableElements.Length == 0) { return result; }
 
+            Render4Picking(camera, pickableElements);
+
+            for (int row = 0; row < rect.Width; row++)
+            {
+                for (int col = 0; col < rect.Height; col++)
+                {
+                    int x = rect.X + col;
+                    int y = rect.Y + row;
+
+                    IPickedGeometry pickedGeometry = ReadPixel(x, y, canvasWidth, canvasHeight, pickableElements);
+
+                    if (pickedGeometry != null)
+                    {
+                        result.Add(new Tuple<Point, IPickedGeometry>(new Point(x, y), pickedGeometry));
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private static void Render4Picking(Camera camera, IColorCodedPicking[] pickableElements)
+        {
             // 暂存clear color
             var originalClearColor = new float[4];
             GL.GetFloat(GetTarget.ColorClearValue, originalClearColor);
@@ -80,24 +103,6 @@ namespace CSharpGL
             }
 
             GL.Flush();
-
-            for (int row = 0; row < rect.Width; row++)
-            {
-                for (int col = 0; col < rect.Height; col++)
-                {
-                    int x = rect.X + col;
-                    int y = rect.Y + row;
-
-                    IPickedGeometry pickedGeometry = ReadPixel(x, y, canvasWidth, canvasHeight, pickableElements);
-
-                    if (pickedGeometry != null)
-                    {
-                        result.Add(new Tuple<Point, IPickedGeometry>(new Point(x, y), pickedGeometry));
-                    }
-                }
-            }
-
-            return result;
         }
 
         private static IPickedGeometry ReadPixel(int x, int y, int canvasWidth, int canvasHeight, IColorCodedPicking[] pickableElements)
