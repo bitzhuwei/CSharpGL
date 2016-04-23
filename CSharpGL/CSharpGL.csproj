@@ -68,6 +68,7 @@
     <Compile Include="OpenGLObjects\GLSwitches\PointSizeSwitch.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.Picking.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRendererFactory.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\OneIndexModernRenderer.Property.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\OneIndexModernRenderer.Picking.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\OneIndexModernRenderer.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ZeroIndexModernRenderer.Picking.cs" />
