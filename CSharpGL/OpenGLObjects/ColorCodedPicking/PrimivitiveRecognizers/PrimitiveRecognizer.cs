@@ -8,8 +8,24 @@ namespace CSharpGL
 {
     abstract class PrimitiveRecognizer
     {
+        /// <summary>
+        /// 识别出以<see cref="lastVertexId"/>结尾的图元。
+        /// </summary>
+        /// <param name="lastVertexId"></param>
+        /// <param name="pointer"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public abstract List<RecognizedPrimitiveIndex> Recognize(uint lastVertexId, IntPtr pointer, int length);
 
+        /// <summary>
+        /// 识别出以<see cref="lastVertexId"/>结尾的图元。
+        /// <para>识别过程中要考虑排除PrimitiveRestartIndex</para>
+        /// </summary>
+        /// <param name="lastVertexId"></param>
+        /// <param name="pointer"></param>
+        /// <param name="length"></param>
+        /// <param name="primitiveRestartIndex"></param>
+        /// <returns></returns>
         public abstract List<RecognizedPrimitiveIndex> Recognize(uint lastVertexId, IntPtr pointer, int length, uint primitiveRestartIndex);
     }
 

@@ -27,6 +27,7 @@ namespace CSharpGL
                 case DrawMode.LinesAdjacency:
                     break;
                 case DrawMode.TriangleStrip:
+                    recognizer = new TriangleStripRecognizer();
                     break;
                 case DrawMode.TriangleFan:
                     break;
