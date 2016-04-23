@@ -12,7 +12,7 @@ namespace CSharpGL
     public partial class OneIndexModernRenderer
     {
 
-        public override IPickedGeometry Pick(uint stageVertexID)
+        public override IPickedGeometry Pick(uint stageVertexID, int x, int y, int canvasWidth, int canvasHeight)
         {
             uint lastVertexID;
             PickedGeometry pickedGeometry = null;
@@ -66,12 +66,19 @@ namespace CSharpGL
             int current = 0;
             for (int i = 1; i < lastIndexIDList.Count; i++)
             {
+                OneIndexBuffer<uint> twoPrimitivesIndexBuffer = AssembleIndexBuffer(
+                    lastIndexIDList[i - 1], lastIndexIDList[i], this.indexBufferPtr.Mode);
 
             }
 
             GL.UnmapBuffer(BufferTarget.ArrayBuffer);
 
             return lastIndexIDList[current];
+        }
+
+        private OneIndexBuffer<uint> AssembleIndexBuffer(RecognizedPrimitiveIndex recognizedPrimitiveIndex1, RecognizedPrimitiveIndex recognizedPrimitiveIndex2, DrawMode drawMode)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

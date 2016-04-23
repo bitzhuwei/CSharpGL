@@ -16,14 +16,14 @@ namespace CSharpGL
         /// <param name="camera"></param>
         /// <param name="x">鼠标位置</param>
         /// <param name="y">鼠标位置</param>
-        /// <param name="width">画布宽度</param>
-        /// <param name="height">画布高度</param>
+        /// <param name="canvasWidth">画布宽度</param>
+        /// <param name="canvasHeight">画布高度</param>
         /// <param name="pickableElements">在哪些对象中执行拾取操作</param>
         /// <returns></returns>
-        public static IPickedGeometry Pick(Camera camera, int x, int y, int width, int height, params IColorCodedPicking[] pickableElements)
+        public static IPickedGeometry Pick(Camera camera, int x, int y, int canvasWidth, int canvasHeight, params IColorCodedPicking[] pickableElements)
         {
             Rectangle rect = new Rectangle(x, y, 1, 1);
-            List<Tuple<Point, IPickedGeometry>> list = Pick(camera, rect, width, height, pickableElements);
+            List<Tuple<Point, IPickedGeometry>> list = Pick(camera, rect, canvasWidth, canvasHeight, pickableElements);
             if (list.Count > 0)
             { return list[0].Item2; }
             else
@@ -52,11 +52,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="rect">拾取范围</param>
-        /// <param name="width">画布宽度</param>
-        /// <param name="height">画布高度</param>
+        /// <param name="canvasWidth">画布宽度</param>
+        /// <param name="canvasHeight">画布高度</param>
         /// <param name="pickableElements">在哪些对象中执行拾取操作</param>
         /// <returns></returns>
-        public static List<Tuple<Point, IPickedGeometry>> Pick(Camera camera, Rectangle rect, int width, int height, params IColorCodedPicking[] pickableElements)
+        public static List<Tuple<Point, IPickedGeometry>> Pick(Camera camera, Rectangle rect, int canvasWidth, int canvasHeight, params IColorCodedPicking[] pickableElements)
         {
             var result = new List<Tuple<Point, IPickedGeometry>>();
             if (pickableElements.Length == 0) { return result; }
@@ -88,7 +88,7 @@ namespace CSharpGL
                     int x = rect.X + col;
                     int y = rect.Y + row;
 
-                    IPickedGeometry pickedGeometry = ReadPixel(height, pickableElements, x, y);
+                    IPickedGeometry pickedGeometry = ReadPixel(x, y, canvasWidth, canvasHeight, pickableElements);
 
                     if (pickedGeometry != null)
                     {
@@ -100,13 +100,13 @@ namespace CSharpGL
             return result;
         }
 
-        private static IPickedGeometry ReadPixel(int height, IColorCodedPicking[] pickableElements, int x, int y)
+        private static IPickedGeometry ReadPixel(int x, int y, int canvasWidth, int canvasHeight, IColorCodedPicking[] pickableElements)
         {
             IPickedGeometry pickedGeometry = null;
             // get coded color.
             //byte[] codedColor = new byte[4];
             UnmanagedArray<byte> codedColor = new UnmanagedArray<byte>(4);
-            GL.ReadPixels(x, height - y - 1, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, codedColor.Header);
+            GL.ReadPixels(x, canvasHeight - y - 1, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, codedColor.Header);
             if (!
                 // This is when (x, y) is on background and no primitive is picked.
                 (codedColor[0] == byte.MaxValue && codedColor[1] == byte.MaxValue
@@ -132,7 +132,7 @@ namespace CSharpGL
                 // get picked primitive.
                 foreach (var item in pickableElements)
                 {
-                    pickedGeometry = item.Pick(stageVertexID);
+                    pickedGeometry = item.Pick(stageVertexID, x, y, canvasWidth, canvasHeight);
                     if (pickedGeometry != null)
                     { break; }
                 }
