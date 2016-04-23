@@ -22,7 +22,7 @@ namespace CSharpGL
                 try
                 {
                     // 找到 lastIndexId
-                    RecognizedPrimitiveIndex lastIndexId = 
+                    RecognizedPrimitiveIndex lastIndexId =
                         this.GetLastIndexIdOfPickedGeometry(
                             camera, lastVertexId, x, y, canvasWidth, canvasHeight);
                     // 获取pickedGeometry
@@ -292,7 +292,10 @@ namespace CSharpGL
         private List<RecognizedPrimitiveIndex> GetLastIndexIdList(uint lastVertexId)
         {
             List<RecognizedPrimitiveIndex> lastIndexIdList = null;
-            PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(this.indexBufferPtr.Mode);
+            PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
+                this.indexBufferPtr.Mode);
+            if (recognizer == null) { throw new NotImplementedException(string.Format(
+                "尚未实现[{0}]的recognizer!", this.indexBufferPtr.Mode)); }
             PrimitiveRestartSwitch glSwitch = null;
             foreach (var item in this.switchList)
             {
