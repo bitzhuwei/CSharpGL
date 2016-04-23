@@ -44,16 +44,16 @@ namespace CSharpGL
             pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
             pickedGeometry.StageVertexId = stageVertexId;
             pickedGeometry.From = this;
-            pickedGeometry.Indexes = lastIndexId.IndexIDList.ToArray();
+            pickedGeometry.Indexes = lastIndexId.IndexIdList.ToArray();
             GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferID);
             IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
             unsafe
             {
                 var array = (vec3*)pointer.ToPointer();
                 List<vec3> list = new List<vec3>();
-                for (int i = 0; i < lastIndexId.IndexIDList.Count; i++)
+                for (int i = 0; i < lastIndexId.IndexIdList.Count; i++)
                 {
-                    list.Add(array[lastIndexId.IndexIDList[i]]);
+                    list.Add(array[lastIndexId.IndexIdList[i]]);
                 }
                 pickedGeometry.Positions = list.ToArray();
             }
@@ -67,7 +67,7 @@ namespace CSharpGL
             ICamera camera,
             uint lastVertexId, int x, int y, int canvasWidth, int canvasHeight)
         {
-            List<RecognizedPrimitiveIndex> lastIndexIdList = GetLastIndexIDList(lastVertexId);
+            List<RecognizedPrimitiveIndex> lastIndexIdList = GetLastIndexIdList(lastVertexId);
 
             RecognizedPrimitiveIndex lastIndexId = GetLastIndexID(
                 camera, lastIndexIdList, x, y, canvasWidth, canvasHeight);
@@ -192,17 +192,17 @@ namespace CSharpGL
                 recognizedPrimitiveIndex0, recognizedPrimitiveIndex1,
                 out lastIndex0, out lastIndex1);
             if (indexArray.Count !=
-                recognizedPrimitiveIndex0.IndexIDList.Count
+                recognizedPrimitiveIndex0.IndexIdList.Count
                 + 1
-                + recognizedPrimitiveIndex1.IndexIDList.Count)
+                + recognizedPrimitiveIndex1.IndexIdList.Count)
             { throw new Exception(); }
 
             using (var indexBuffer = new OneIndexBuffer<uint>(drawMode, BufferUsage.StaticDraw))
             {
                 indexBuffer.Alloc(
-                    recognizedPrimitiveIndex0.IndexIDList.Count
+                    recognizedPrimitiveIndex0.IndexIdList.Count
                     + 1
-                    + recognizedPrimitiveIndex1.IndexIDList.Count);
+                    + recognizedPrimitiveIndex1.IndexIdList.Count);
                 unsafe
                 {
                     var array = (uint*)indexBuffer.FirstElement();
@@ -228,8 +228,8 @@ namespace CSharpGL
             out uint lastIndex0, out uint lastIndex1)
         {
             List<uint> sameIndexList = new List<uint>();
-            List<uint> array0 = new List<uint>(recognizedPrimitiveIndex10.IndexIDList);
-            List<uint> array1 = new List<uint>(recognizedPrimitiveIndex11.IndexIDList);
+            List<uint> array0 = new List<uint>(recognizedPrimitiveIndex10.IndexIdList);
+            List<uint> array1 = new List<uint>(recognizedPrimitiveIndex11.IndexIdList);
             array0.Sort(); array1.Sort();
             int p0 = 0, p1 = 0;
             while (p0 < array0.Count && p1 < array1.Count)
@@ -288,7 +288,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="lastVertexId"></param>
         /// <returns></returns>
-        private List<RecognizedPrimitiveIndex> GetLastIndexIDList(uint lastVertexId)
+        private List<RecognizedPrimitiveIndex> GetLastIndexIdList(uint lastVertexId)
         {
             List<RecognizedPrimitiveIndex> lastIndexIdList = null;
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(this.indexBufferPtr.Mode);

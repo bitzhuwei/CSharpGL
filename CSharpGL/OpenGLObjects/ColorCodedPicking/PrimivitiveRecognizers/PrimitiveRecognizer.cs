@@ -21,23 +21,23 @@ namespace CSharpGL
             //if (indexIDs[indexIDs.Length - 1] != lastIndexId) { throw new ArgumentException(); }
 
             this.LastIndexID = lastIndexId;
-            this.IndexIDList = new List<uint>();
-            this.IndexIDList.AddRange(indexIDs);
+            this.IndexIdList = new List<uint>();
+            this.IndexIdList.AddRange(indexIDs);
         }
 
         public uint LastIndexID { get; set; }
 
-        public List<uint> IndexIDList { get; set; }
+        public List<uint> IndexIdList { get; set; }
 
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < this.IndexIDList.Count - 1; i++)
+            for (int i = 0; i < this.IndexIdList.Count - 1; i++)
             {
-                builder.Append(this.IndexIDList[i]); builder.Append(", ");
+                builder.Append(this.IndexIdList[i]); builder.Append(", ");
             }
 
-            builder.Append(this.IndexIDList[this.IndexIDList.Count - 1]);
+            builder.Append(this.IndexIdList[this.IndexIdList.Count - 1]);
             builder.Append(" | ");
             builder.Append(LastIndexID);
 
