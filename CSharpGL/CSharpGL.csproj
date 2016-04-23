@@ -61,6 +61,7 @@
     <Compile Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\LineLoopRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizerFactory.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PointsRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\LineStripRecognizer.cs" />
