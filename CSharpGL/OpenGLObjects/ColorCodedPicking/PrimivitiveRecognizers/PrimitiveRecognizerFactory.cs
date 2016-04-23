@@ -18,6 +18,7 @@ namespace CSharpGL
                     recognizer = new PointsRecognizer();
                     break;
                 case DrawMode.LineStrip:
+                    recognizer = new LineStripRecognizer();
                     break;
                 case DrawMode.LineLoop:
                     break;
