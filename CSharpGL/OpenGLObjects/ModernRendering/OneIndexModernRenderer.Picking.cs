@@ -44,7 +44,6 @@ namespace CSharpGL
             pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
             pickedGeometry.StageVertexID = stageVertexID;
             pickedGeometry.From = this;
-            //TODO: 
             pickedGeometry.Indexes = lastIndexID.IndexIDList.ToArray();
             GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferID);
             IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
@@ -265,7 +264,7 @@ namespace CSharpGL
             else
             {
                 if (sameIndexList.Count == 0)
-                { throw new Exception("array0 is totally empty!"); }
+                { throw new Exception("array1 is totally empty!"); }
 
                 lastIndex1 = sameIndexList.Last();
             }
