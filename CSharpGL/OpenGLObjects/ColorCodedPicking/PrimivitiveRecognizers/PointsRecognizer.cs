@@ -52,7 +52,7 @@ namespace CSharpGL
                             lastIndexIdList.Add(item);
                         }
 
-                        i += 3;
+                        i++;
                     }
                 }
             }
