@@ -21,12 +21,12 @@ namespace CSharpGL
         /// <summary>
         /// 此VBO含有多个个元素？
         /// </summary>
-        public int Length { get; set; }
+        public int Length { get; private set; }
 
         /// <summary>
         /// 此VBO含有多个个字节？
         /// </summary>
-        public int ByteLength { get; set; }
+        public int ByteLength { get; private set; }
 
         /// <summary>
         /// 为给定VBO执行渲染时所需的操作。

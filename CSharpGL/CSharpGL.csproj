@@ -71,6 +71,7 @@
     <Compile Include="OpenGLObjects\ModernRendering\OneIndexModernRenderer.Property.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\OneIndexModernRenderer.Picking.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\OneIndexModernRenderer.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ZeroIndexModernRenderer.Property.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ZeroIndexModernRenderer.Picking.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ZeroIndexModernRenderer.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformBool.cs" />
