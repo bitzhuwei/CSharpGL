@@ -15,6 +15,7 @@ namespace CSharpGL
             switch (mode)
             {
                 case DrawMode.Points:
+                    recognizer = new PointsRecognizer();
                     break;
                 case DrawMode.LineStrip:
                     break;
