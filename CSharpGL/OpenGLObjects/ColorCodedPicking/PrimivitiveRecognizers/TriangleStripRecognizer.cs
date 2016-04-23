@@ -15,6 +15,7 @@ namespace CSharpGL
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
+                for (uint i = 2; i < length; i += 1)
                 {
                     if (array[i] == lastVertexId)
                     {
@@ -55,6 +56,7 @@ namespace CSharpGL
                             lastIndexIdList.Add(item);
                         }
 
+                        i += 1;
                     }
                 }
             }
