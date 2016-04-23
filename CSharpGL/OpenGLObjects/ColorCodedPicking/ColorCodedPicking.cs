@@ -56,7 +56,7 @@ namespace CSharpGL
         /// <param name="canvasHeight">画布高度</param>
         /// <param name="pickableElements">在哪些对象中执行拾取操作</param>
         /// <returns></returns>
-        public static List<Tuple<Point, IPickedGeometry>> Pick(Camera camera, Rectangle rect, int canvasWidth, int canvasHeight, params IColorCodedPicking[] pickableElements)
+        public static List<Tuple<Point, IPickedGeometry>> Pick(ICamera camera, Rectangle rect, int canvasWidth, int canvasHeight, params IColorCodedPicking[] pickableElements)
         {
             var result = new List<Tuple<Point, IPickedGeometry>>();
             if (pickableElements.Length == 0) { return result; }
@@ -70,7 +70,8 @@ namespace CSharpGL
                     int x = rect.X + col;
                     int y = rect.Y + row;
 
-                    IPickedGeometry pickedGeometry = ReadPixel(x, y, canvasWidth, canvasHeight, pickableElements);
+                    IPickedGeometry pickedGeometry = ReadPixel(camera,
+                        x, y, canvasWidth, canvasHeight, pickableElements);
 
                     if (pickedGeometry != null)
                     {
@@ -82,7 +83,7 @@ namespace CSharpGL
             return result;
         }
 
-        private static void Render4Picking(Camera camera, IColorCodedPicking[] pickableElements)
+        private static void Render4Picking(ICamera camera, IColorCodedPicking[] pickableElements)
         {
             // 暂存clear color
             var originalClearColor = new float[4];
@@ -105,7 +106,9 @@ namespace CSharpGL
             GL.Flush();
         }
 
-        private static IPickedGeometry ReadPixel(int x, int y, int canvasWidth, int canvasHeight, IColorCodedPicking[] pickableElements)
+        private static IPickedGeometry ReadPixel(ICamera camera,
+            int x, int y, int canvasWidth, int canvasHeight,
+            IColorCodedPicking[] pickableElements)
         {
             IPickedGeometry pickedGeometry = null;
             // get coded color.
@@ -137,7 +140,8 @@ namespace CSharpGL
                 // get picked primitive.
                 foreach (var item in pickableElements)
                 {
-                    pickedGeometry = item.Pick(stageVertexID, x, y, canvasWidth, canvasHeight);
+                    pickedGeometry = item.Pick(camera, stageVertexID,
+                        x, y, canvasWidth, canvasHeight);
                     if (pickedGeometry != null)
                     { break; }
                 }
