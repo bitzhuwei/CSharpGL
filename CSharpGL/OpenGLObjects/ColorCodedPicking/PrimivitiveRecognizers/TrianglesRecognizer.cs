@@ -17,9 +17,9 @@ namespace CSharpGL
                 var array = (uint*)pointer.ToPointer();
                 for (uint i = 2; i < length; i += 3)
                 {
-                    if (array[i] == lastVertexId)
+                    if (array[i - 0] == lastVertexId)
                     {
-                        var item = new RecognizedPrimitiveIndex(lastVertexId, i);
+                        var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
                         item.IndexIdList.Add(array[i - 2]);
                         item.IndexIdList.Add(array[i - 1]);
                         item.IndexIdList.Add(array[i - 0]);
