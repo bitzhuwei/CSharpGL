@@ -61,6 +61,9 @@
     <Compile Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizerFactory.cs" />
+    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\TrianglesRecognizer.cs" />
+    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizer.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\LineWidthSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PointSizeSwitch.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.Picking.cs" />
