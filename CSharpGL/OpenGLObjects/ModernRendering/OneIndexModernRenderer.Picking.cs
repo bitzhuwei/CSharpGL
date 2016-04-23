@@ -36,8 +36,21 @@ namespace CSharpGL
             pickedGeometry.StageVertexID = stageVertexID;
             pickedGeometry.From = this;
             //TODO: 
-            //pickedGeometry.Positions = ?
             pickedGeometry.Indexes = lastIndexID.IndexIDList.ToArray();
+            GL.BindBuffer(BufferTarget.ArrayBuffer, this.oneIndexBufferPtr.BufferID);
+            IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
+            unsafe
+            {
+                var array = (vec3*)pointer.ToPointer();
+                List<vec3> list = new List<vec3>();
+                for (int i = 0; i < lastIndexID.IndexIDList.Count; i++)
+                {
+                    list.Add(array[lastIndexID.IndexIDList[i]]);
+                }
+                pickedGeometry.Positions = list.ToArray();
+            }
+            GL.UnmapBuffer(BufferTarget.ArrayBuffer);
+
 
             return pickedGeometry;
         }
