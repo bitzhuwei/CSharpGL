@@ -18,93 +18,93 @@ namespace CSharpGL
             PickedGeometry pickedGeometry = null;
             if (this.GetLastVertexIDOfPickedGeometry(stageVertexID, out lastVertexID))
             {
-                pickedGeometry = new PickedGeometry();
-                pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
-                pickedGeometry.StageVertexID = stageVertexID;
-                pickedGeometry.From = this;
-                // Fill primitive's position information.
-                int vertexCount = pickedGeometry.GeometryType.GetVertexCount();
-                if (vertexCount == -1) { vertexCount = this.positionBufferPtr.Length; }
-                if (lastVertexID == 0 && vertexCount == 2)
-                {
-                    // This is when mode is GL_LINE_LOOP and picked last line(the loop back one)
-                    PickingLastLineInLineLoop(pickedGeometry);
-                }
-                else
-                {
-                    // Other conditions
-                    ContinuousBufferRange(lastVertexID, vertexCount, pickedGeometry);
-                }
+                // 找到 lastIndexID
+                RecognizedPrimitiveIndex lastIndexID = this.GetLastIndexIDOfPickedGeometry(lastVertexID);
+                // 获取pickedGeometry
+                pickedGeometry = this.GetGeometry(lastIndexID, stageVertexID);
             }
 
             return pickedGeometry;
         }
-        private void PickingLastLineInLineLoop(PickedGeometry pickedGeometry)
+
+        private PickedGeometry GetGeometry(RecognizedPrimitiveIndex lastIndexID, uint stageVertexID)
         {
-            //const int lastVertexID = 0;
-            const int vertexCount = 2;
-            var offsets = new int[vertexCount] { (this.positionBufferPtr.Length - 1) * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength, 0, };
-            pickedGeometry.Positions = new vec3[vertexCount];
-            pickedGeometry.Indexes = new uint[vertexCount];
-            for (int i = 0; i < vertexCount; i++)
-            {
-                GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferID);
-                //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
-                IntPtr pointer = GL.MapBufferRange(BufferTarget.ArrayBuffer,
-                    offsets[i],
-                    1 * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength,
-                    MapBufferRangeAccess.MapReadBit);
-                if (pointer.ToInt32() != 0)
-                {
-                    unsafe
-                    {
-                        vec3* array = (vec3*)pointer.ToPointer();
-                        pickedGeometry.Positions[i] = array[0];
-                    }
-                }
-                else
-                {
-                    ErrorCode error = (ErrorCode)GL.GetError();
-                    Debug.WriteLine("Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferID);
-                }
-                GL.UnmapBuffer(BufferTarget.ArrayBuffer);
-                pickedGeometry.Indexes[i] = (uint)offsets[i] / (uint)(this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
-            }
+            var pickedGeometry = new PickedGeometry();
+            pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
+            pickedGeometry.StageVertexID = stageVertexID;
+            pickedGeometry.From = this;
+            //TODO: 
+            //pickedGeometry.Positions = ?
+            pickedGeometry.Indexes = lastIndexID.IndexIDList.ToArray();
+
+            return pickedGeometry;
         }
 
-        private void ContinuousBufferRange(uint lastVertexID, int vertexCount, PickedGeometry pickedGeometry)
+        private RecognizedPrimitiveIndex GetLastIndexIDOfPickedGeometry(uint lastVertexID)
         {
+            List<RecognizedPrimitiveIndex> lastIndexIDList = GetLastIndexIDList(lastVertexID);
+
+            RecognizedPrimitiveIndex lastIndexID = GetLastIndexID(lastIndexIDList);
+
+            return lastIndexID;
+        }
+
+        /// <summary>
+        /// 在所有可能的图元（<see cref="lastVertexID"/>匹配）中，
+        /// 逐个测试，找到最接近摄像机的那个图元，
+        /// 返回此图元的最后一个索引在<see cref="indexBufferPtr"/>中的索引（位置）。
+        /// </summary>
+        /// <param name="lastIndexIDList"></param>
+        /// <returns></returns>
+        private RecognizedPrimitiveIndex GetLastIndexID(List<RecognizedPrimitiveIndex> lastIndexIDList)
+        {
+            if (lastIndexIDList.Count == 0) { throw new ArgumentException(); }
+
             GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferID);
-            //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
-            int offset = (int)((lastVertexID - (vertexCount - 1)) * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
-            IntPtr pointer = GL.MapBufferRange(BufferTarget.ArrayBuffer,
-                offset,
-                vertexCount * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength,
-                MapBufferRangeAccess.MapReadBit);
-            pickedGeometry.Positions = new vec3[vertexCount];
-            pickedGeometry.Indexes = new uint[vertexCount];
-            if (pointer.ToInt32() != 0)
+            IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
+
+            int current = 0;
+            for (int i = 1; i < lastIndexIDList.Count; i++)
             {
-                unsafe
+
+            }
+
+            GL.UnmapBuffer(BufferTarget.ArrayBuffer);
+
+            return lastIndexIDList[current];
+        }
+
+        /// <summary>
+        /// 遍历以<see cref="lastVerteID"/>为最后一个顶点的图元，
+        /// 瞄准每个图元的索引（例如1个三角形有3个索引）中的最后一个索引，
+        /// 将此索引在<see cref="indexBufferPtr"/>中的索引（位置）收集起来。
+        /// </summary>
+        /// <param name="lastVertexID"></param>
+        /// <returns></returns>
+        private List<RecognizedPrimitiveIndex> GetLastIndexIDList(uint lastVertexID)
+        {
+            List<RecognizedPrimitiveIndex> lastIndexIDList = null;
+            PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(this.indexBufferPtr.Mode);
+            PrimitiveRestartSwitch glSwitch = null;
+            foreach (var item in this.switchList)
+            {
+                if (item is PrimitiveRestartSwitch)
                 {
-                    vec3* array = (vec3*)pointer.ToPointer();
-                    for (uint i = 0; i < vertexCount; i++)
-                    {
-                        pickedGeometry.Positions[i] = array[i];
-                        pickedGeometry.Indexes[i] = lastVertexID - ((uint)vertexCount - 1) + i;
-                    }
-                    //for (int j = (positions.Length - 1), i = vertexCount - 1; j >= 0; i--, j--)
-                    //{
-                    //    positions[j] = array[i];
-                    //}
+                    glSwitch = item as PrimitiveRestartSwitch;
+                    break;
                 }
             }
+            GL.BindBuffer(BufferTarget.ArrayBuffer, this.oneIndexBufferPtr.BufferID);
+            IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
+
+            if (glSwitch == null)
+            { lastIndexIDList = recognizer.Recognize(lastVertexID, pointer, this.indexBufferPtr.Length); }
             else
-            {
-                ErrorCode error = (ErrorCode)GL.GetError();
-                Debug.WriteLine("Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferID);
-            }
+            { lastIndexIDList = recognizer.Recognize(lastVertexID, pointer, this.indexBufferPtr.Length, glSwitch.RestartIndex); }
+
             GL.UnmapBuffer(BufferTarget.ArrayBuffer);
+
+            return lastIndexIDList;
         }
     }
 }
