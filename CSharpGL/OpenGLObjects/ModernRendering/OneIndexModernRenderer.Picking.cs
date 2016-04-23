@@ -12,12 +12,12 @@ namespace CSharpGL
     public partial class OneIndexModernRenderer
     {
 
-        public override IPickedGeometry Pick(ICamera camera, uint stageVertexID,
+        public override IPickedGeometry Pick(ICamera camera, uint stageVertexId,
             int x, int y, int canvasWidth, int canvasHeight)
         {
             uint lastVertexID;
             PickedGeometry pickedGeometry = null;
-            if (this.GetLastVertexIDOfPickedGeometry(stageVertexID, out lastVertexID))
+            if (this.GetLastVertexIDOfPickedGeometry(stageVertexId, out lastVertexID))
             {
                 try
                 {
@@ -25,7 +25,7 @@ namespace CSharpGL
                     RecognizedPrimitiveIndex lastIndexID = this.GetLastIndexIDOfPickedGeometry(
                         camera, lastVertexID, x, y, canvasWidth, canvasHeight);
                     // 获取pickedGeometry
-                    pickedGeometry = this.GetGeometry(lastIndexID, stageVertexID);
+                    pickedGeometry = this.GetGeometry(lastIndexID, stageVertexId);
                 }
                 catch (Exception ex)
                 {
@@ -38,11 +38,11 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private PickedGeometry GetGeometry(RecognizedPrimitiveIndex lastIndexID, uint stageVertexID)
+        private PickedGeometry GetGeometry(RecognizedPrimitiveIndex lastIndexID, uint stageVertexId)
         {
             var pickedGeometry = new PickedGeometry();
             pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
-            pickedGeometry.StageVertexID = stageVertexID;
+            pickedGeometry.StageVertexID = stageVertexId;
             pickedGeometry.From = this;
             pickedGeometry.Indexes = lastIndexID.IndexIDList.ToArray();
             GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferID);
@@ -136,9 +136,9 @@ namespace CSharpGL
                 uint shiftedG = (uint)codedColor[1] << 8;
                 uint shiftedB = (uint)codedColor[2] << 16;
                 uint shiftedA = (uint)codedColor[3] << 24;
-                uint stageVertexID = shiftedR + shiftedG + shiftedB + shiftedA;
+                uint stageVertexId = shiftedR + shiftedG + shiftedB + shiftedA;
 
-                return stageVertexID;
+                return stageVertexId;
             }
             else
             { return uint.MaxValue; }

@@ -33,12 +33,12 @@ namespace CSharpGL
 
         /// <summary>
         /// Get the primitive according to vertex's id.
-        /// <para>Note: the <paramref name="stageVertexID"/> refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</para>
+        /// <para>Note: the <paramref name="stageVertexId"/> refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</para>
         /// <para>You can use <see cref="PickedPrimitiveHelper.TryPick()"/> to simplify your work.</para>
         /// </summary>
-        /// <param name="stageVertexID">Refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</param>
+        /// <param name="stageVertexId">Refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</param>
         /// <returns></returns>
-        IPickedGeometry Pick(ICamera camera, uint stageVertexID, 
+        IPickedGeometry Pick(ICamera camera, uint stageVertexId, 
             int x, int y, int canvasWidth, int canvasHeight);
     }
 }

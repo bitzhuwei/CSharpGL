@@ -33,7 +33,7 @@ namespace CSharpGL
             return vertexCount;
         }
 
-        public abstract IPickedGeometry Pick(ICamera camera, uint stageVertexID,
+        public abstract IPickedGeometry Pick(ICamera camera, uint stageVertexId,
             int x, int y, int canvasWidth, int canvasHeight);
 
     }

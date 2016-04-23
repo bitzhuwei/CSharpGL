@@ -135,12 +135,12 @@ namespace CSharpGL
                 uint shiftedG = (uint)codedColor[1] << 8;
                 uint shiftedB = (uint)codedColor[2] << 16;
                 uint shiftedA = (uint)codedColor[3] << 24;
-                uint stageVertexID = shiftedR + shiftedG + shiftedB + shiftedA;
+                uint stageVertexId = shiftedR + shiftedG + shiftedB + shiftedA;
 
                 // get picked primitive.
                 foreach (var item in pickableElements)
                 {
-                    pickedGeometry = item.Pick(camera, stageVertexID,
+                    pickedGeometry = item.Pick(camera, stageVertexId,
                         x, y, canvasWidth, canvasHeight);
                     if (pickedGeometry != null)
                     { break; }

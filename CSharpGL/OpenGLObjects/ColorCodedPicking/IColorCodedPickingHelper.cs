@@ -12,25 +12,25 @@ namespace CSharpGL
     public static class IColorCodedPickingHelper
     {
         /// <summary>
-        /// Returns last vertex's id of picked geometry if the geometry represented by <paramref name="stageVertexID"/> belongs to this <paramref name="element"/> instance.
-        /// <para>Returns false if <paramref name="stageVertexID"/> the primitive is in some other element.</para>
+        /// Returns last vertex's id of picked geometry if the geometry represented by <paramref name="stageVertexId"/> belongs to this <paramref name="element"/> instance.
+        /// <para>Returns false if <paramref name="stageVertexId"/> the primitive is in some other element.</para>
         /// </summary>
         /// <param name="element"></param>
-        /// <param name="stageVertexID"></param>
+        /// <param name="stageVertexId"></param>
         /// <param name="lastVertexID"></param>
         /// <returns></returns>
-        public static bool GetLastVertexIDOfPickedGeometry(this IColorCodedPicking element, uint stageVertexID, out uint lastVertexID)
+        public static bool GetLastVertexIDOfPickedGeometry(this IColorCodedPicking element, uint stageVertexId, out uint lastVertexID)
         {
             lastVertexID = uint.MaxValue;
             bool result = false;
 
             if (element != null)
             {
-                if (stageVertexID < element.PickingBaseID) // ID is in some previous element.
+                if (stageVertexId < element.PickingBaseID) // ID is in some previous element.
                 { return false; }
 
                 uint vertexCount = element.GetVertexCount();
-                uint id = stageVertexID - element.PickingBaseID;
+                uint id = stageVertexId - element.PickingBaseID;
                 if (id < vertexCount)
                 {
                     lastVertexID = id;

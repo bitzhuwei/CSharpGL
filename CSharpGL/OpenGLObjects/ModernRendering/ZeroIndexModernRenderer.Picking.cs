@@ -11,16 +11,16 @@ namespace CSharpGL
     public partial class ZeroIndexModernRenderer : ModernRenderer
     {
 
-        public override IPickedGeometry Pick(ICamera camera, uint stageVertexID,
+        public override IPickedGeometry Pick(ICamera camera, uint stageVertexId,
             int x, int y, int canvasWidth, int canvasHeight)
         {
             uint lastVertexID;
             PickedGeometry pickedGeometry = null;
-            if (this.GetLastVertexIDOfPickedGeometry(stageVertexID, out lastVertexID))
+            if (this.GetLastVertexIDOfPickedGeometry(stageVertexId, out lastVertexID))
             {
                 pickedGeometry = new PickedGeometry();
                 pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
-                pickedGeometry.StageVertexID = stageVertexID;
+                pickedGeometry.StageVertexID = stageVertexId;
                 pickedGeometry.From = this;
                 // Fill primitive's position information.
                 int vertexCount = pickedGeometry.GeometryType.GetVertexCount();

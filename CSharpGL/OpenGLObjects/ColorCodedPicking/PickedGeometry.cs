@@ -49,13 +49,13 @@ namespace CSharpGL
             var positions = this.Positions;
             if (positions == null) { positions = new vec3[0]; }
 
-            uint stageVertexID = this.StageVertexID;
+            uint stageVertexId = this.StageVertexID;
             //uint lastVertexID = uint.MaxValue;
             //string strLastVertexID;
             //IColorCodedPicking picking = this.From;
             //if (picking != null)
             //{
-            //    if (picking.GetLastVertexIDOfPickedGeometry(stageVertexID, out lastVertexID))
+            //    if (picking.GetLastVertexIDOfPickedGeometry(stageVertexId, out lastVertexID))
             //    { strLastVertexID = string.Format("{0}", lastVertexID); }
             //}
 
@@ -66,7 +66,7 @@ namespace CSharpGL
                 builder.AppendLine(positions[i].ToString());
             }
 
-            builder.AppendFormat("Stage Vertex ID: {0}", stageVertexID);
+            builder.AppendFormat("Stage Vertex ID: {0}", stageVertexId);
             builder.AppendLine();
             builder.AppendFormat("From: {0}", this.From);
 
