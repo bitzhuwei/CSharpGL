@@ -48,12 +48,16 @@ namespace CSharpGL
                     recognizer = new QuadStripRecognizer();
                     break;
                 case DrawMode.Quads:
+                    recognizer = new QuadsRecognizer();
                     break;
                 case DrawMode.Polygon:
                     break;
                 default:
                     break;
             }
+
+            if (recognizer == null)
+            { throw new NotImplementedException(); }
 
             return recognizer;
         }

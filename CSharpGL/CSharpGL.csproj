@@ -66,6 +66,8 @@
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PointsRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\LineStripRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\LinesRecognizer.cs" />
+    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\QuadStripRecognizer.cs" />
+    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\QuadsRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\TriangleStripRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\TrianglesRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizer.cs" />
