@@ -19,10 +19,10 @@ namespace CSharpGL
                 {
                     if (array[i] == lastVertexID)
                     {
-                        var item = new RecognizedPrimitiveIndex(i);
-                        item.IndexIDList.Add(i - 2);
-                        item.IndexIDList.Add(i - 1);
-                        item.IndexIDList.Add(i - 0);
+                        var item = new RecognizedPrimitiveIndex(lastVertexID);
+                        item.IndexIDList.Add(array[i - 2]);
+                        item.IndexIDList.Add(array[i - 1]);
+                        item.IndexIDList.Add(array[i - 0]);
                         lastIndexIDList.Add(item);
                     }
                 }
@@ -49,10 +49,10 @@ namespace CSharpGL
                     {
                         if (array[i + 2] == lastVertexID)
                         {
-                            var item = new RecognizedPrimitiveIndex(i + 2);
-                            item.IndexIDList.Add(i + 0);
-                            item.IndexIDList.Add(i + 1);
-                            item.IndexIDList.Add(i + 2);
+                            var item = new RecognizedPrimitiveIndex(lastVertexID);
+                            item.IndexIDList.Add(array[i + 0]);
+                            item.IndexIDList.Add(array[i + 1]);
+                            item.IndexIDList.Add(array[i + 2]);
                             lastIndexIDList.Add(item);
                         }
 

@@ -15,7 +15,18 @@ namespace CSharpGL
         protected string positionNameInIBufferable;
         protected PropertyBufferPtr positionBufferPtr;
         protected UniformMat4 pickingMVP = new UniformMat4("MVP");
+
         protected ShaderProgram pickingShaderProgram;
+        protected ShaderProgram PickingShaderProgram
+        {
+            get
+            {
+                if (pickingShaderProgram == null)
+                { pickingShaderProgram = PickingShaderHelper.GetPickingShaderProgram(); }
+
+                return pickingShaderProgram;
+            }
+        }
 
         // normal rendering
         // 算法

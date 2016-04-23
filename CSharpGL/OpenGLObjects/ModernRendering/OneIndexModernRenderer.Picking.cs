@@ -37,7 +37,7 @@ namespace CSharpGL
             pickedGeometry.From = this;
             //TODO: 
             pickedGeometry.Indexes = lastIndexID.IndexIDList.ToArray();
-            GL.BindBuffer(BufferTarget.ArrayBuffer, this.oneIndexBufferPtr.BufferID);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferID);
             IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
             unsafe
             {
@@ -50,7 +50,7 @@ namespace CSharpGL
                 pickedGeometry.Positions = list.ToArray();
             }
             GL.UnmapBuffer(BufferTarget.ArrayBuffer);
-
+            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
             return pickedGeometry;
         }
@@ -88,7 +88,7 @@ namespace CSharpGL
                     lastIndexIDList[current], lastIndexIDList[i], this.indexBufferPtr.Mode);
                 uint pickedIndex = Pick(camera, twoPrimitivesIndexBufferPtr, x, y, canvasWidth, canvasHeight);
                 if (pickedIndex == 1)
-                { current++; }
+                { current = i; }
                 else if (pickedIndex == 0)
                 { /* nothing to do */}
                 else
@@ -143,7 +143,7 @@ namespace CSharpGL
             // 恢复clear color
             GL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
-            ShaderProgram program = PickingShaderHelper.GetPickingShaderProgram();
+            ShaderProgram program = this.PickingShaderProgram;
             // 绑定shader
             program.Bind();
             program.SetUniform("pickingBaseID", 0u);
@@ -153,6 +153,7 @@ namespace CSharpGL
                 var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, camera);
                 this.positionBufferPtr.Render(arg, program);
                 twoPrimitivesIndexBufferPtr.Render(arg, program);
+                GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
             }
             foreach (var item in switchList) { item.Off(); }
 
@@ -254,8 +255,8 @@ namespace CSharpGL
                     break;
                 }
             }
-            GL.BindBuffer(BufferTarget.ArrayBuffer, this.oneIndexBufferPtr.BufferID);
-            IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, this.oneIndexBufferPtr.BufferID);
+            IntPtr pointer = GL.MapBuffer(BufferTarget.ElementArrayBuffer, MapBufferAccess.ReadOnly);
 
             if (glSwitch == null)
             { lastIndexIDList = recognizer.Recognize(lastVertexID, pointer, this.indexBufferPtr.Length); }
@@ -263,6 +264,7 @@ namespace CSharpGL
             { lastIndexIDList = recognizer.Recognize(lastVertexID, pointer, this.indexBufferPtr.Length, glSwitch.RestartIndex); }
 
             GL.UnmapBuffer(BufferTarget.ArrayBuffer);
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
 
             return lastIndexIDList;
         }

@@ -9,23 +9,16 @@ namespace CSharpGL
     public static class PickingShaderHelper //: IDisposable
     {
 
-        static ShaderProgram pickingShaderProgram = null;
-
         public static ShaderProgram GetPickingShaderProgram()
         {
-            if (pickingShaderProgram == null)
-            {
-                ShaderCode[] shaders = new ShaderCode[2];
-                shaders[0] = new ShaderCode(GetShaderSource(ShaderType.VertexShader), ShaderType.VertexShader);
-                shaders[1] = new ShaderCode(GetShaderSource(ShaderType.FragmentShader), ShaderType.FragmentShader);
+            ShaderCode[] shaders = new ShaderCode[2];
+            shaders[0] = new ShaderCode(GetShaderSource(ShaderType.VertexShader), ShaderType.VertexShader);
+            shaders[1] = new ShaderCode(GetShaderSource(ShaderType.FragmentShader), ShaderType.FragmentShader);
 
-                var shaderProgram = new ShaderProgram();
-                shaderProgram.Create((from item in shaders select item.CreateShader()).ToArray());
+            var shaderProgram = new ShaderProgram();
+            shaderProgram.Create((from item in shaders select item.CreateShader()).ToArray());
 
-                pickingShaderProgram = shaderProgram;
-            }
-
-            return pickingShaderProgram;
+            return shaderProgram;
         }
 
         /// <summary>

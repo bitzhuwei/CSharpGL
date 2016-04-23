@@ -12,10 +12,7 @@ namespace CSharpGL
 
         private void PickingRender(RenderEventArgs e)
         {
-            if (this.pickingShaderProgram == null)
-            { this.pickingShaderProgram = PickingShaderHelper.GetPickingShaderProgram(); }
-
-            ShaderProgram program = this.pickingShaderProgram;
+            ShaderProgram program = this.PickingShaderProgram;
 
             // 绑定shader
             program.Bind();
