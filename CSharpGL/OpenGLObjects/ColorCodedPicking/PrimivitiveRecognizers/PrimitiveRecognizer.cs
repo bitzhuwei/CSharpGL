@@ -31,12 +31,14 @@ namespace CSharpGL
 
     class RecognizedPrimitiveIndex
     {
-        public RecognizedPrimitiveIndex(uint lastIndexId, params uint[] indexIDs)
+        private uint Index;
+        public RecognizedPrimitiveIndex(uint lastIndexId, uint index, params uint[] indexIDs)
         {
             //if (indexIDs.Length == 0) { throw new ArgumentException(); }
             //if (indexIDs[indexIDs.Length - 1] != lastIndexId) { throw new ArgumentException(); }
 
             this.LastIndexID = lastIndexId;
+            this.Index = index;
             this.IndexIdList = new List<uint>();
             this.IndexIdList.AddRange(indexIDs);
         }
@@ -54,8 +56,7 @@ namespace CSharpGL
             }
 
             builder.Append(this.IndexIdList[this.IndexIdList.Count - 1]);
-            builder.Append(" | ");
-            builder.Append(LastIndexID);
+            builder.AppendFormat(" | index[{0}] is [{1}]", Index, LastIndexID);
 
             return builder.ToString();
         }
