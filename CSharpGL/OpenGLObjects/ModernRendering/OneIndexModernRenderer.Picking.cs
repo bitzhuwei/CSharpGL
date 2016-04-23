@@ -19,7 +19,8 @@ namespace CSharpGL
             if (this.GetLastVertexIDOfPickedGeometry(stageVertexID, out lastVertexID))
             {
                 // 找到 lastIndexID
-                RecognizedPrimitiveIndex lastIndexID = this.GetLastIndexIDOfPickedGeometry(lastVertexID);
+                RecognizedPrimitiveIndex lastIndexID = this.GetLastIndexIDOfPickedGeometry(
+                    lastVertexID, x, y, canvasWidth, canvasHeight);
                 // 获取pickedGeometry
                 pickedGeometry = this.GetGeometry(lastIndexID, stageVertexID);
             }
@@ -40,11 +41,13 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private RecognizedPrimitiveIndex GetLastIndexIDOfPickedGeometry(uint lastVertexID)
+        private RecognizedPrimitiveIndex GetLastIndexIDOfPickedGeometry(
+            uint lastVertexID, int x, int y, int canvasWidth, int canvasHeight)
         {
             List<RecognizedPrimitiveIndex> lastIndexIDList = GetLastIndexIDList(lastVertexID);
 
-            RecognizedPrimitiveIndex lastIndexID = GetLastIndexID(lastIndexIDList);
+            RecognizedPrimitiveIndex lastIndexID = GetLastIndexID(
+                lastIndexIDList, x, y, canvasWidth, canvasHeight);
 
             return lastIndexID;
         }
@@ -56,7 +59,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="lastIndexIDList"></param>
         /// <returns></returns>
-        private RecognizedPrimitiveIndex GetLastIndexID(List<RecognizedPrimitiveIndex> lastIndexIDList)
+        private RecognizedPrimitiveIndex GetLastIndexID(
+            List<RecognizedPrimitiveIndex> lastIndexIDList,
+            int x, int y, int canvasWidth, int canvasHeight)
         {
             if (lastIndexIDList.Count == 0) { throw new ArgumentException(); }
 
