@@ -21,11 +21,11 @@ namespace CSharpGL
             {
                 try
                 {
-                    // 找到 lastIndexID
-                    RecognizedPrimitiveIndex lastIndexID = this.GetLastIndexIDOfPickedGeometry(
+                    // 找到 lastIndexId
+                    RecognizedPrimitiveIndex lastIndexId = this.GetLastIndexIDOfPickedGeometry(
                         camera, lastVertexId, x, y, canvasWidth, canvasHeight);
                     // 获取pickedGeometry
-                    pickedGeometry = this.GetGeometry(lastIndexID, stageVertexId);
+                    pickedGeometry = this.GetGeometry(lastIndexId, stageVertexId);
                 }
                 catch (Exception ex)
                 {
@@ -38,22 +38,22 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private PickedGeometry GetGeometry(RecognizedPrimitiveIndex lastIndexID, uint stageVertexId)
+        private PickedGeometry GetGeometry(RecognizedPrimitiveIndex lastIndexId, uint stageVertexId)
         {
             var pickedGeometry = new PickedGeometry();
             pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
             pickedGeometry.StageVertexID = stageVertexId;
             pickedGeometry.From = this;
-            pickedGeometry.Indexes = lastIndexID.IndexIDList.ToArray();
+            pickedGeometry.Indexes = lastIndexId.IndexIDList.ToArray();
             GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferID);
             IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
             unsafe
             {
                 var array = (vec3*)pointer.ToPointer();
                 List<vec3> list = new List<vec3>();
-                for (int i = 0; i < lastIndexID.IndexIDList.Count; i++)
+                for (int i = 0; i < lastIndexId.IndexIDList.Count; i++)
                 {
-                    list.Add(array[lastIndexID.IndexIDList[i]]);
+                    list.Add(array[lastIndexId.IndexIDList[i]]);
                 }
                 pickedGeometry.Positions = list.ToArray();
             }
@@ -67,12 +67,12 @@ namespace CSharpGL
             ICamera camera,
             uint lastVertexId, int x, int y, int canvasWidth, int canvasHeight)
         {
-            List<RecognizedPrimitiveIndex> lastIndexIDList = GetLastIndexIDList(lastVertexId);
+            List<RecognizedPrimitiveIndex> lastIndexIdList = GetLastIndexIDList(lastVertexId);
 
-            RecognizedPrimitiveIndex lastIndexID = GetLastIndexID(
-                camera, lastIndexIDList, x, y, canvasWidth, canvasHeight);
+            RecognizedPrimitiveIndex lastIndexId = GetLastIndexID(
+                camera, lastIndexIdList, x, y, canvasWidth, canvasHeight);
 
-            return lastIndexID;
+            return lastIndexId;
         }
 
         /// <summary>
@@ -80,22 +80,22 @@ namespace CSharpGL
         /// 逐个测试，找到最接近摄像机的那个图元，
         /// 返回此图元的最后一个索引在<see cref="indexBufferPtr"/>中的索引（位置）。
         /// </summary>
-        /// <param name="lastIndexIDList"></param>
+        /// <param name="lastIndexIdList"></param>
         /// <returns></returns>
         private RecognizedPrimitiveIndex GetLastIndexID(
             ICamera camera,
-            List<RecognizedPrimitiveIndex> lastIndexIDList,
+            List<RecognizedPrimitiveIndex> lastIndexIdList,
             int x, int y, int canvasWidth, int canvasHeight)
         {
-            if (lastIndexIDList.Count == 0) { throw new ArgumentException(); }
+            if (lastIndexIdList.Count == 0) { throw new ArgumentException(); }
 
             int current = 0;
-            for (int i = 1; i < lastIndexIDList.Count; i++)
+            for (int i = 1; i < lastIndexIdList.Count; i++)
             {
                 OneIndexBufferPtr twoPrimitivesIndexBufferPtr;
                 uint lastIndex0, lastIndex1;
                 AssembleIndexBuffer(
-                    lastIndexIDList[current], lastIndexIDList[i], this.indexBufferPtr.Mode,
+                    lastIndexIdList[current], lastIndexIdList[i], this.indexBufferPtr.Mode,
                     out twoPrimitivesIndexBufferPtr, out lastIndex0, out lastIndex1);
                 uint pickedIndex = Pick(camera, twoPrimitivesIndexBufferPtr, x, y, canvasWidth, canvasHeight);
                 if (pickedIndex == lastIndex1)
@@ -108,7 +108,7 @@ namespace CSharpGL
                 { throw new Exception("This should not happen!"); }
             }
 
-            return lastIndexIDList[current];
+            return lastIndexIdList[current];
         }
 
         private uint Pick(ICamera camera, OneIndexBufferPtr twoPrimitivesIndexBufferPtr, int x, int y, int canvasWidth, int canvasHeight)
@@ -290,7 +290,7 @@ namespace CSharpGL
         /// <returns></returns>
         private List<RecognizedPrimitiveIndex> GetLastIndexIDList(uint lastVertexId)
         {
-            List<RecognizedPrimitiveIndex> lastIndexIDList = null;
+            List<RecognizedPrimitiveIndex> lastIndexIdList = null;
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(this.indexBufferPtr.Mode);
             PrimitiveRestartSwitch glSwitch = null;
             foreach (var item in this.switchList)
@@ -305,14 +305,14 @@ namespace CSharpGL
             IntPtr pointer = GL.MapBuffer(BufferTarget.ElementArrayBuffer, MapBufferAccess.ReadOnly);
 
             if (glSwitch == null)
-            { lastIndexIDList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr.Length); }
+            { lastIndexIdList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr.Length); }
             else
-            { lastIndexIDList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr.Length, glSwitch.RestartIndex); }
+            { lastIndexIdList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr.Length, glSwitch.RestartIndex); }
 
             GL.UnmapBuffer(BufferTarget.ElementArrayBuffer);
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
 
-            return lastIndexIDList;
+            return lastIndexIdList;
         }
     }
 }

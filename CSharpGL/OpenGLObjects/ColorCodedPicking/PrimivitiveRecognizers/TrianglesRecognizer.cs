@@ -11,7 +11,7 @@ namespace CSharpGL
         public override List<RecognizedPrimitiveIndex> Recognize(
             uint lastVertexId, IntPtr pointer, int length)
         {
-            var lastIndexIDList = new List<RecognizedPrimitiveIndex>();
+            var lastIndexIdList = new List<RecognizedPrimitiveIndex>();
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
@@ -23,18 +23,18 @@ namespace CSharpGL
                         item.IndexIDList.Add(array[i - 2]);
                         item.IndexIDList.Add(array[i - 1]);
                         item.IndexIDList.Add(array[i - 0]);
-                        lastIndexIDList.Add(item);
+                        lastIndexIdList.Add(item);
                     }
                 }
             }
 
-            return lastIndexIDList;
+            return lastIndexIdList;
         }
 
         public override List<RecognizedPrimitiveIndex> Recognize(
             uint lastVertexId, IntPtr pointer, int length, uint primitiveRestartIndex)
         {
-            var lastIndexIDList = new List<RecognizedPrimitiveIndex>();
+            var lastIndexIdList = new List<RecognizedPrimitiveIndex>();
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
@@ -53,7 +53,7 @@ namespace CSharpGL
                             item.IndexIDList.Add(array[i + 0]);
                             item.IndexIDList.Add(array[i + 1]);
                             item.IndexIDList.Add(array[i + 2]);
-                            lastIndexIDList.Add(item);
+                            lastIndexIdList.Add(item);
                         }
 
                         i += 3;
@@ -61,7 +61,7 @@ namespace CSharpGL
                 }
             }
 
-            return lastIndexIDList;
+            return lastIndexIdList;
         }
 
     }

@@ -15,12 +15,12 @@ namespace CSharpGL
 
     class RecognizedPrimitiveIndex
     {
-        public RecognizedPrimitiveIndex(uint lastIndexID, params uint[] indexIDs)
+        public RecognizedPrimitiveIndex(uint lastIndexId, params uint[] indexIDs)
         {
             //if (indexIDs.Length == 0) { throw new ArgumentException(); }
-            //if (indexIDs[indexIDs.Length - 1] != lastIndexID) { throw new ArgumentException(); }
+            //if (indexIDs[indexIDs.Length - 1] != lastIndexId) { throw new ArgumentException(); }
 
-            this.LastIndexID = lastIndexID;
+            this.LastIndexID = lastIndexId;
             this.IndexIDList = new List<uint>();
             this.IndexIDList.AddRange(indexIDs);
         }
