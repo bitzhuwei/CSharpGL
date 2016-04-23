@@ -103,6 +103,8 @@ namespace CSharpGL
                 { current = i; }
                 else if (pickedIndex == lastIndex0)
                 { /* nothing to do */}
+                else if (pickedIndex == uint.MaxValue)
+                { /* nothing to do */}
                 else
                 { throw new Exception("This should not happen!"); }
             }
@@ -140,7 +142,7 @@ namespace CSharpGL
                 return stageVertexID;
             }
             else
-            { throw new Exception("This should not happen!"); }
+            { return uint.MaxValue; }
         }
 
         private void Render4Picking(ICamera camera, OneIndexBufferPtr twoPrimitivesIndexBufferPtr)
