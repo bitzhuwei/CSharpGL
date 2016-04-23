@@ -84,12 +84,15 @@ namespace CSharpGL
             int current = 0;
             for (int i = 1; i < lastIndexIDList.Count; i++)
             {
-                OneIndexBufferPtr twoPrimitivesIndexBufferPtr = AssembleIndexBuffer(
-                    lastIndexIDList[current], lastIndexIDList[i], this.indexBufferPtr.Mode);
+                OneIndexBufferPtr twoPrimitivesIndexBufferPtr;
+                uint lastIndex0, lastIndex1;
+                AssembleIndexBuffer(
+                    lastIndexIDList[current], lastIndexIDList[i], this.indexBufferPtr.Mode,
+                    out twoPrimitivesIndexBufferPtr, out lastIndex0, out lastIndex1);
                 uint pickedIndex = Pick(camera, twoPrimitivesIndexBufferPtr, x, y, canvasWidth, canvasHeight);
-                if (pickedIndex == 1)
+                if (pickedIndex == lastIndex1)
                 { current = i; }
-                else if (pickedIndex == 0)
+                else if (pickedIndex == lastIndex0)
                 { /* nothing to do */}
                 else
                 { throw new Exception("This should not happen!"); }
@@ -148,6 +151,8 @@ namespace CSharpGL
             program.Bind();
             program.SetUniform("pickingBaseID", 0u);
             pickingMVP.SetUniform(program);
+            GL.GetDelegateFor<GL.glPrimitiveRestartIndex>()(uint.MaxValue);
+            GL.Enable(GL.GL_PRIMITIVE_RESTART);
             foreach (var item in switchList) { item.On(); }
             {
                 var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, camera);
@@ -155,6 +160,7 @@ namespace CSharpGL
                 twoPrimitivesIndexBufferPtr.Render(arg, program);
                 GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
             }
+            GL.Disable(GL.GL_PRIMITIVE_RESTART);
             foreach (var item in switchList) { item.Off(); }
 
             pickingMVP.ResetUniform(program);
@@ -165,24 +171,28 @@ namespace CSharpGL
             GL.Flush();
         }
 
-        private OneIndexBufferPtr AssembleIndexBuffer(
+        private void AssembleIndexBuffer(
+            RecognizedPrimitiveIndex recognizedPrimitiveIndex0,
             RecognizedPrimitiveIndex recognizedPrimitiveIndex1,
-            RecognizedPrimitiveIndex recognizedPrimitiveIndex2,
-            DrawMode drawMode)
+            DrawMode drawMode,
+            out OneIndexBufferPtr oneIndexBufferPtr,
+            out uint lastIndex0, out uint lastIndex1)
         {
-            List<uint> indexArray = ArrangeIndexes(recognizedPrimitiveIndex1, recognizedPrimitiveIndex1);
+            List<uint> indexArray = ArrangeIndexes(
+                recognizedPrimitiveIndex0, recognizedPrimitiveIndex1,
+                out lastIndex0, out lastIndex1);
             if (indexArray.Count !=
-                recognizedPrimitiveIndex1.IndexIDList.Count
+                recognizedPrimitiveIndex0.IndexIDList.Count
                 + 1
-                + recognizedPrimitiveIndex2.IndexIDList.Count)
+                + recognizedPrimitiveIndex1.IndexIDList.Count)
             { throw new Exception(); }
 
             using (var indexBuffer = new OneIndexBuffer<uint>(drawMode, BufferUsage.StaticDraw))
             {
                 indexBuffer.Alloc(
-                    recognizedPrimitiveIndex1.IndexIDList.Count
+                    recognizedPrimitiveIndex0.IndexIDList.Count
                     + 1
-                    + recognizedPrimitiveIndex2.IndexIDList.Count);
+                    + recognizedPrimitiveIndex1.IndexIDList.Count);
                 unsafe
                 {
                     var array = (uint*)indexBuffer.FirstElement();
@@ -192,45 +202,71 @@ namespace CSharpGL
                     }
                 }
 
-                return indexBuffer.GetBufferPtr() as OneIndexBufferPtr;
+                oneIndexBufferPtr = indexBuffer.GetBufferPtr() as OneIndexBufferPtr;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="recognizedPrimitiveIndex10"></param>
         /// <param name="recognizedPrimitiveIndex11"></param>
-        /// <param name="recognizedPrimitiveIndex12"></param>
         /// <returns></returns>
-        private List<uint> ArrangeIndexes(RecognizedPrimitiveIndex recognizedPrimitiveIndex11, RecognizedPrimitiveIndex recognizedPrimitiveIndex12)
+        private List<uint> ArrangeIndexes(
+            RecognizedPrimitiveIndex recognizedPrimitiveIndex10,
+            RecognizedPrimitiveIndex recognizedPrimitiveIndex11,
+            out uint lastIndex0, out uint lastIndex1)
         {
             List<uint> sameIndexList = new List<uint>();
+            List<uint> array0 = new List<uint>(recognizedPrimitiveIndex10.IndexIDList);
             List<uint> array1 = new List<uint>(recognizedPrimitiveIndex11.IndexIDList);
-            List<uint> array2 = new List<uint>(recognizedPrimitiveIndex12.IndexIDList);
-            array1.Sort(); array2.Sort();
-            int p1 = 0, p2 = 0;
-            while (p1 < array1.Count && p2 < array2.Count)
+            array0.Sort(); array1.Sort();
+            int p0 = 0, p1 = 0;
+            while (p0 < array0.Count && p1 < array1.Count)
             {
-                if (array1[p1] < array2[p2])
+                if (array0[p0] < array1[p1])
+                { p0++; }
+                else if (array0[p0] > array1[p1])
                 { p1++; }
-                else if (array1[p1] > array1[p2])
-                { p2++; }
                 else
                 {
-                    sameIndexList.Add(array1[p1]);
+                    sameIndexList.Add(array0[p0]);
+                    array0.RemoveAt(p0);
                     array1.RemoveAt(p1);
-                    array2.RemoveAt(p2);
                 }
             }
 
-            if (array1.Last() == array2.Last()) { throw new Exception(); }
+            if (array0.Count == 0 && array1.Count == 0)
+            { throw new Exception("Two primitives are totally the same!"); }
+
+            if (array0.Count > 0)
+            { lastIndex0 = array0.Last(); }
+            else
+            {
+                if (sameIndexList.Count == 0)
+                { throw new Exception("array0 is totally empty!"); }
+
+                lastIndex0 = sameIndexList.Last();
+            }
+
+            if (array1.Count > 0)
+            { lastIndex1 = array1.Last(); }
+            else
+            {
+                if (sameIndexList.Count == 0)
+                { throw new Exception("array0 is totally empty!"); }
+
+                lastIndex1 = sameIndexList.Last();
+            }
+
+            if (lastIndex0 == lastIndex1) { throw new Exception(); }
 
             List<uint> result = new List<uint>();
             result.AddRange(sameIndexList);
-            result.AddRange(array1);
+            result.AddRange(array0);
             result.Add(uint.MaxValue);// primitive restart index
             result.AddRange(sameIndexList);
-            result.AddRange(array2);
+            result.AddRange(array1);
 
             return result;
         }
