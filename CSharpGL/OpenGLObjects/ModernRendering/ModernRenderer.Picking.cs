@@ -16,7 +16,12 @@ namespace CSharpGL
             set { pickingMVP.Value = value; }
         }
 
-        public uint PickingBaseID { get; set; }
+        public uint PickingBaseID { get; private set; }
+
+        public void SetPickingBaseID(uint value)
+        {
+            this.PickingBaseID = value;
+        }
 
         public uint GetVertexCount()
         {
@@ -28,7 +33,8 @@ namespace CSharpGL
             return vertexCount;
         }
 
-        public abstract IPickedGeometry Pick(ICamera camera, uint stageVertexID, 
+        public abstract IPickedGeometry Pick(ICamera camera, uint stageVertexID,
             int x, int y, int canvasWidth, int canvasHeight);
+
     }
 }
