@@ -52,9 +52,9 @@ namespace CSharpGL.Demos
             // 
             // dlgSaveFile
             // 
-            this.dlgSaveFile.DefaultExt = "bmp";
-            this.dlgSaveFile.FileName = "*.bmp";
-            this.dlgSaveFile.Filter = "*.bmp|*.bmp";
+            this.dlgSaveFile.DefaultExt = "png";
+            this.dlgSaveFile.FileName = "*.png";
+            this.dlgSaveFile.Filter = "(*.png)|*.png";
             this.dlgSaveFile.RestoreDirectory = true;
             // 
             // lblText

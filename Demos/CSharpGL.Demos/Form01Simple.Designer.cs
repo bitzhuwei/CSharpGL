@@ -31,16 +31,16 @@ namespace CSharpGL.Demos
         {
             this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.lblReadColor = new System.Windows.Forms.Label();
-            this.glCanvas1 = new CSharpGL.Windows.GLCanvas();
             this.lblText = new System.Windows.Forms.Label();
+            this.glCanvas1 = new CSharpGL.Windows.GLCanvas();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
             // dlgSaveFile
             // 
-            this.dlgSaveFile.DefaultExt = "bmp";
-            this.dlgSaveFile.FileName = "*.bmp";
-            this.dlgSaveFile.Filter = "*.bmp|*.bmp";
+            this.dlgSaveFile.DefaultExt = "png";
+            this.dlgSaveFile.FileName = "*.png";
+            this.dlgSaveFile.Filter = "(*.png)|*.png";
             this.dlgSaveFile.RestoreDirectory = true;
             // 
             // lblReadColor
@@ -51,6 +51,15 @@ namespace CSharpGL.Demos
             this.lblReadColor.Size = new System.Drawing.Size(119, 15);
             this.lblReadColor.TabIndex = 1;
             this.lblReadColor.Text = "Color At Mouse";
+            // 
+            // lblText
+            // 
+            this.lblText.AutoSize = true;
+            this.lblText.Location = new System.Drawing.Point(137, 9);
+            this.lblText.Name = "lblText";
+            this.lblText.Size = new System.Drawing.Size(119, 15);
+            this.lblText.TabIndex = 1;
+            this.lblText.Text = "Color At Mouse";
             // 
             // glCanvas1
             // 
@@ -65,15 +74,6 @@ namespace CSharpGL.Demos
             this.glCanvas1.Size = new System.Drawing.Size(705, 493);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
-            // 
-            // lblText
-            // 
-            this.lblText.AutoSize = true;
-            this.lblText.Location = new System.Drawing.Point(137, 9);
-            this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(119, 15);
-            this.lblText.TabIndex = 1;
-            this.lblText.Text = "Color At Mouse";
             // 
             // Form01Simple
             // 
