@@ -80,8 +80,17 @@ namespace CSharpGL.Demos
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             // 天蓝色背景
             //GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
-            GL.ClearColor(0, 0, 0, 0);
+            GL.ClearColor(ClearColor.x, ClearColor.y, ClearColor.z, ClearColor.w);
+
+            Application.Idle += Application_Idle;
         }
+
+        void Application_Idle(object sender, EventArgs e)
+        {
+            this.Text = string.Format("Form01Simple {0}", this.rendererDict[this.selectedModel].DrawMode);
+        }
+
+        public vec4 ClearColor { get; set; }
 
         RenderModes renderMode;
 
