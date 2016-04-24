@@ -48,10 +48,10 @@
             // 
             this.btnForm01Simple.Font = new System.Drawing.Font("宋体", 12F);
             this.btnForm01Simple.Location = new System.Drawing.Point(12, 55);
-            this.btnForm01Simple.Name = "btnForm02BigDipper";
+            this.btnForm01Simple.Name = "btnForm01Simple";
             this.btnForm01Simple.Size = new System.Drawing.Size(269, 37);
             this.btnForm01Simple.TabIndex = 0;
-            this.btnForm01Simple.Text = "Form02 BigDipper";
+            this.btnForm01Simple.Text = "Form01 Simple";
             this.btnForm01Simple.UseVisualStyleBackColor = true;
             this.btnForm01Simple.Click += new System.EventHandler(this.btnForm01Simple_Click);
             // 
@@ -59,7 +59,7 @@
             // 
             this.btnForm02EmitNormalLine.Font = new System.Drawing.Font("宋体", 12F);
             this.btnForm02EmitNormalLine.Location = new System.Drawing.Point(12, 98);
-            this.btnForm02EmitNormalLine.Name = "btnEmitNormalLine";
+            this.btnForm02EmitNormalLine.Name = "btnForm02EmitNormalLine";
             this.btnForm02EmitNormalLine.Size = new System.Drawing.Size(269, 37);
             this.btnForm02EmitNormalLine.TabIndex = 0;
             this.btnForm02EmitNormalLine.Text = "Form02 EmitNormalLine";
