@@ -1,5 +1,7 @@
-﻿using System;
+﻿using GLM;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +32,8 @@ namespace CSharpGL
         public PropertyBuffer(string varNameInVertexShader, int dataSize, uint dataType, BufferUsage usage)
             : base(usage)
         {
+            Debug.Assert(typeof(T) == typeof(float) || typeof(T) == typeof(vec2) || typeof(T) == typeof(vec3) || typeof(T) == typeof(vec4));
+
             this.VarNameInVertexShader = varNameInVertexShader;
             this.DataSize = dataSize;
             this.DataType = dataType;
