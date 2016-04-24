@@ -24,59 +24,69 @@ namespace CSharpGL.ModelAdapters
         public const string strColor = "color";
         public const string strNormal = "normal";
         private TeapotModel model;
+        Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
-                using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    buffer.Alloc(model.positions.Count);
-                    unsafe
+                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        var array = (vec3*)buffer.FirstElement();
-                        for (int i = 0; i < model.positions.Count; i++)
+                        buffer.Alloc(model.positions.Count);
+                        unsafe
                         {
-                            array[i] = model.positions[i];
+                            var array = (vec3*)buffer.FirstElement();
+                            for (int i = 0; i < model.positions.Count; i++)
+                            {
+                                array[i] = model.positions[i];
+                            }
                         }
+                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
                     }
-
-                    return buffer.GetBufferPtr() as PropertyBufferPtr;
                 }
+                return propertyBufferPtrDict[bufferName];
             }
             else if (bufferName == strColor)
             {
-                using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    buffer.Alloc(model.normals.Count);
-                    unsafe
+                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        var array = (vec3*)buffer.FirstElement();
-                        for (int i = 0; i < model.normals.Count; i++)
+                        buffer.Alloc(model.normals.Count);
+                        unsafe
                         {
-                            array[i] = model.normals[i];
+                            var array = (vec3*)buffer.FirstElement();
+                            for (int i = 0; i < model.normals.Count; i++)
+                            {
+                                array[i] = model.normals[i];
+                            }
                         }
+                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
                     }
-
-                    return buffer.GetBufferPtr() as PropertyBufferPtr;
                 }
+                return propertyBufferPtrDict[bufferName];
             }
             else if (bufferName == strNormal)
             {
-                using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    buffer.Alloc(model.normals.Count);
-                    unsafe
+                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        var array = (vec3*)buffer.FirstElement();
-                        for (int i = 0; i < model.normals.Count; i++)
+                        buffer.Alloc(model.normals.Count);
+                        unsafe
                         {
-                            array[i] = model.normals[i];
+                            var array = (vec3*)buffer.FirstElement();
+                            for (int i = 0; i < model.normals.Count; i++)
+                            {
+                                array[i] = model.normals[i];
+                            }
                         }
+                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
                     }
-
-                    return buffer.GetBufferPtr() as PropertyBufferPtr;
                 }
+                return propertyBufferPtrDict[bufferName];
             }
             else
             {
@@ -86,28 +96,34 @@ namespace CSharpGL.ModelAdapters
 
         public IndexBufferPtr GetIndex()
         {
-            using (var buffer = new OneIndexBuffer<uint>(DrawMode.Triangles, BufferUsage.StaticDraw))
+            if (indexBufferPtr == null)
             {
-                buffer.Alloc(model.faces.Count * 3);
-                unsafe
+                using (var buffer = new OneIndexBuffer<uint>(DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    uint* array = (uint*)buffer.FirstElement();
-                    for (int i = 0; i < model.faces.Count; i++)
+                    buffer.Alloc(model.faces.Count * 3);
+                    unsafe
                     {
-                        //TODO: 用ushort类型的IndexBuffer就会引发系统错误，为什么？
-                        //array[i * 3 + 0] = (ushort)(faces[i].Item1 - 1);
-                        //array[i * 3 + 1] = (ushort)(faces[i].Item2 - 1);
-                        //array[i * 3 + 2] = (ushort)(faces[i].Item3 - 1);
+                        uint* array = (uint*)buffer.FirstElement();
+                        for (int i = 0; i < model.faces.Count; i++)
+                        {
+                            //TODO: 用ushort类型的IndexBuffer就会引发系统错误，为什么？
+                            //array[i * 3 + 0] = (ushort)(faces[i].Item1 - 1);
+                            //array[i * 3 + 1] = (ushort)(faces[i].Item2 - 1);
+                            //array[i * 3 + 2] = (ushort)(faces[i].Item3 - 1);
 
-                        array[i * 3 + 0] = (uint)(model.faces[i].Item1 - 1);
-                        array[i * 3 + 1] = (uint)(model.faces[i].Item2 - 1);
-                        array[i * 3 + 2] = (uint)(model.faces[i].Item3 - 1);
+                            array[i * 3 + 0] = (uint)(model.faces[i].Item1 - 1);
+                            array[i * 3 + 1] = (uint)(model.faces[i].Item2 - 1);
+                            array[i * 3 + 2] = (uint)(model.faces[i].Item3 - 1);
+                        }
                     }
-                }
 
-                return buffer.GetBufferPtr() as IndexBufferPtr;
+                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                }
             }
+
+            return indexBufferPtr;
         }
+        IndexBufferPtr indexBufferPtr = null;
     }
 
 }
