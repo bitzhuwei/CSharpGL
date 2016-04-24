@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -1417,6 +1418,20 @@ namespace CSharpGL
             return str;
         }
 
-
+        /// <summary>
+        /// 读取某一点的颜色
+        /// </summary>
+        /// <param name="x">以左下角为(0, 0)</param>
+        /// <param name="y">以左下角为(0, 0)</param>
+        /// <returns></returns>
+        public static Color ReadPixel(int x, int y)
+        {
+            using (var pdata = new UnmanagedArray<Pixel>(1))
+            {
+                GL.ReadPixels(x, y, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, pdata.Header);
+                Color c = pdata[0].ToColor();
+                return c;
+            }
+        }
     }
 }
