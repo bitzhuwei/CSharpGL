@@ -48,44 +48,48 @@ namespace CSharpGL
         {
             var pdata = new UnmanagedArray<Pixel>(width * height);
             GL.ReadPixels(x, y, width, height, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, pdata.Header);
-            var bitmap = new Bitmap(width, height);
-            int index = 0;
-            for (int j = height - 1; j >= 0; j--)
-            {
-                for (int i = 0; i < width; i++)
-                {
-                    Pixel v = pdata[index++];
-                    Color c = v.ToColor();
-                    bitmap.SetPixel(i, j, c);
-                }
-            }
-
-            bitmap.Save(filename);
             //{
-            //    System.Drawing.Imaging.PixelFormat format = System.Drawing.Imaging.PixelFormat.Format32bppArgb;
-            //    System.Drawing.Imaging.ImageLockMode lockMode = System.Drawing.Imaging.ImageLockMode.WriteOnly;
-            //    var bitmap = new Bitmap(width, height, format);
-            //    Rectangle bitmapRect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
-            //    System.Drawing.Imaging.BitmapData bmpData = bitmap.LockBits(bitmapRect, lockMode, format);
-            //    int length = Math.Abs(bmpData.Stride) * bitmap.Height;
-            //    byte[] bitmapBytes = new byte[length];
-            //    for (int row = 0; row < height; row++)
+            //    var bitmap = new Bitmap(width, height);
+            //    int index = 0;
+            //    for (int j = height - 1; j >= 0; j--)
             //    {
-            //        for (int col = 0; col < width; col += 4)
+            //        for (int i = 0; i < width; i++)
             //        {
-            //            bitmapBytes[row * bmpData.Stride + col * 4 + 0] = pdata[row * width + col + 0];
-            //            bitmapBytes[row * bmpData.Stride + col * 4 + 1] = pdata[row * width + col + 1];
-            //            bitmapBytes[row * bmpData.Stride + col * 4 + 2] = pdata[row * width + col + 2];
-            //            bitmapBytes[row * bmpData.Stride + col * 4 + 3] = pdata[row * width + col + 3];
+            //            Pixel v = pdata[index++];
+            //            Color c = v.ToColor();
+            //            bitmap.SetPixel(i, j, c);
             //        }
             //    }
 
-            //    System.Runtime.InteropServices.Marshal.Copy(bitmapBytes, 0, bmpData.Scan0, length);
-
-            //    bitmap.UnlockBits(bmpData);
-
             //    bitmap.Save(filename);
             //}
+            {
+                System.Drawing.Imaging.PixelFormat format = System.Drawing.Imaging.PixelFormat.Format32bppArgb;
+                System.Drawing.Imaging.ImageLockMode lockMode = System.Drawing.Imaging.ImageLockMode.WriteOnly;
+                var bitmap = new Bitmap(width, height, format);
+                Rectangle bitmapRect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+                System.Drawing.Imaging.BitmapData bmpData = bitmap.LockBits(bitmapRect, lockMode, format);
+                int length = Math.Abs(bmpData.Stride) * bitmap.Height;
+                byte[] bitmapBytes = new byte[length];
+                int index = 0;
+                for (int j = height - 1; j >= 0; j--)
+                {
+                    for (int i = 0; i < width; i++)
+                    {
+                        Pixel v = pdata[index++];
+                        bitmapBytes[j * bmpData.Stride + i * 4 + 0] = v.b;
+                        bitmapBytes[j * bmpData.Stride + i * 4 + 1] = v.g;
+                        bitmapBytes[j * bmpData.Stride + i * 4 + 2] = v.r;
+                        bitmapBytes[j * bmpData.Stride + i * 4 + 3] = v.a;
+                    }
+                }
+
+                System.Runtime.InteropServices.Marshal.Copy(bitmapBytes, 0, bmpData.Scan0, length);
+
+                bitmap.UnlockBits(bmpData);
+
+                bitmap.Save(filename);
+            }
         }
     }
 }
