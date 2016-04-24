@@ -94,7 +94,6 @@ namespace CSharpGL.Demos
 
         RenderModes renderMode;
         private readonly object synObj = new object();
-        private Point mousePosition;
 
         public RenderModes RenderMode
         {
@@ -156,16 +155,12 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
-            this.mousePosition = new Point(e.X, e.Y);
-
             rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
             rotator.MouseDown(e.X, e.Y);
         }
 
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            this.mousePosition = new Point(e.X, e.Y);
-
             if (rotator.MouseDownFlag)
             {
                 rotator.MouseMove(e.X, e.Y);
@@ -200,8 +195,6 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
         {
-            this.mousePosition = new Point(e.X, e.Y);
-
             rotator.MouseUp(e.X, e.Y);
         }
 
