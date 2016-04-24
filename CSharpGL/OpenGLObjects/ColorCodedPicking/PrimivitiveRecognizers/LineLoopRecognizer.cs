@@ -8,29 +8,8 @@ namespace CSharpGL
 {
     class LineLoopRecognizer : PrimitiveRecognizer
     {
-        public override List<RecognizedPrimitiveIndex> Recognize(
-            uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr)
-        {
-            var lastIndexIdList = new List<RecognizedPrimitiveIndex>();
-            switch (oneIndexBufferPtr.Type)
-            {
-                case IndexElementType.UnsignedByte:
-                    RecognizeByte(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList);
-                    break;
-                case IndexElementType.UnsignedShort:
-                    RecognizeUShort(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList);
-                    break;
-                case IndexElementType.UnsignedInt:
-                    RecognizeUInt(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList);
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
-
-            return lastIndexIdList;
-        }
-
-        private void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList)
+     
+        protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe
@@ -56,7 +35,7 @@ namespace CSharpGL
             }
         }
 
-        private void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList)
+        protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe
@@ -82,7 +61,7 @@ namespace CSharpGL
             }
         }
 
-        private void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr,
+        protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr,
             List<RecognizedPrimitiveIndex> lastIndexIdList)
         {
             int length = oneIndexBufferPtr.Length;
@@ -109,29 +88,8 @@ namespace CSharpGL
             }
         }
 
-        public override List<RecognizedPrimitiveIndex> Recognize(
-            uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, uint primitiveRestartIndex)
-        {
-            var lastIndexIdList = new List<RecognizedPrimitiveIndex>();
-            switch (oneIndexBufferPtr.Type)
-            {
-                case IndexElementType.UnsignedByte:
-                    RecognizeByte(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList, primitiveRestartIndex);
-                    break;
-                case IndexElementType.UnsignedShort:
-                    RecognizeUShort(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList, primitiveRestartIndex);
-                    break;
-                case IndexElementType.UnsignedInt:
-                    RecognizeUInt(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList, primitiveRestartIndex);
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
 
-            return lastIndexIdList;
-        }
-
-        private void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex)
+        protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe
@@ -163,7 +121,7 @@ namespace CSharpGL
             }
         }
 
-        private void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex)
+        protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe
@@ -195,7 +153,7 @@ namespace CSharpGL
             }
         }
 
-        private void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex)
+        protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex)
         {
             int length = oneIndexBufferPtr.Length;
             unsafe

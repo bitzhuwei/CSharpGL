@@ -8,10 +8,10 @@ namespace CSharpGL
 {
     class PointsRecognizer : PrimitiveRecognizer
     {
-        public override List<RecognizedPrimitiveIndex> Recognize(
-           uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr)
+
+
+        protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList)
         {
-            var lastIndexIdList = new List<RecognizedPrimitiveIndex>();
             int length = oneIndexBufferPtr.Length;
             unsafe
             {
@@ -26,14 +26,46 @@ namespace CSharpGL
                     }
                 }
             }
-
-            return lastIndexIdList;
         }
 
-        public override List<RecognizedPrimitiveIndex> Recognize(
-            uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, uint primitiveRestartIndex)
+        protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList)
         {
-            var lastIndexIdList = new List<RecognizedPrimitiveIndex>();
+            int length = oneIndexBufferPtr.Length;
+            unsafe
+            {
+                var array = (ushort*)pointer.ToPointer();
+                for (uint i = 0; i < length; i++)
+                {
+                    if (array[i - 0] == lastVertexId)
+                    {
+                        var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
+                        item.IndexIdList.Add(array[i - 0]);
+                        lastIndexIdList.Add(item);
+                    }
+                }
+            }
+        }
+
+        protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList)
+        {
+            int length = oneIndexBufferPtr.Length;
+            unsafe
+            {
+                var array = (byte*)pointer.ToPointer();
+                for (uint i = 0; i < length; i++)
+                {
+                    if (array[i - 0] == lastVertexId)
+                    {
+                        var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
+                        item.IndexIdList.Add(array[i - 0]);
+                        lastIndexIdList.Add(item);
+                    }
+                }
+            }
+        }
+
+        protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex)
+        {
             int length = oneIndexBufferPtr.Length;
             unsafe
             {
@@ -58,9 +90,62 @@ namespace CSharpGL
                     }
                 }
             }
-
-            return lastIndexIdList;
         }
 
+        protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex)
+        {
+            int length = oneIndexBufferPtr.Length;
+            unsafe
+            {
+                var array = (ushort*)pointer.ToPointer();
+                uint i = 0;
+                while (i + 0 < length)
+                {
+                    if (array[i] == primitiveRestartIndex)
+                    {
+                        i++;
+                    }
+                    else
+                    {
+                        if (array[i + 0] == lastVertexId)
+                        {
+                            var item = new RecognizedPrimitiveIndex(lastVertexId, i + 0);
+                            item.IndexIdList.Add(array[i + 0]);
+                            lastIndexIdList.Add(item);
+                        }
+
+                        i++;
+                    }
+                }
+            }
+        }
+
+        protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, List<RecognizedPrimitiveIndex> lastIndexIdList, uint primitiveRestartIndex)
+        {
+            int length = oneIndexBufferPtr.Length;
+            unsafe
+            {
+                var array = (byte*)pointer.ToPointer();
+                uint i = 0;
+                while (i + 0 < length)
+                {
+                    if (array[i] == primitiveRestartIndex)
+                    {
+                        i++;
+                    }
+                    else
+                    {
+                        if (array[i + 0] == lastVertexId)
+                        {
+                            var item = new RecognizedPrimitiveIndex(lastVertexId, i + 0);
+                            item.IndexIdList.Add(array[i + 0]);
+                            lastIndexIdList.Add(item);
+                        }
+
+                        i++;
+                    }
+                }
+            }
+        }
     }
 }
