@@ -93,10 +93,6 @@ namespace CSharpGL
                         pickedGeometry.Positions[i] = array[i];
                         pickedGeometry.Indexes[i] = lastVertexId - ((uint)vertexCount - 1) + i;
                     }
-                    //for (int j = (positions.Length - 1), i = vertexCount - 1; j >= 0; i--, j--)
-                    //{
-                    //    positions[j] = array[i];
-                    //}
                 }
             }
             else
