@@ -87,7 +87,7 @@ namespace CSharpGL.Demos
 
         void Application_Idle(object sender, EventArgs e)
         {
-            this.Text = string.Format("Form01Simple {0}", this.rendererDict[this.selectedModel].DrawMode);
+            this.Text = string.Format("{0} {1}", this.Name, this.rendererDict[this.selectedModel].DrawMode);
         }
 
         public Color ClearColor { get; set; }
@@ -138,7 +138,6 @@ namespace CSharpGL.Demos
                     c = Color.FromArgb(255, c);
                     this.lblReadColor.BackColor = c;
                     this.lblText.Text = string.Format("{0}: {1}", this.mousePosition, this.lblReadColor.BackColor);
-
                 }
             }
         }
@@ -184,7 +183,6 @@ namespace CSharpGL.Demos
 
             lock (this.synObj)
             {
-
                 IColorCodedPicking pickable = this.rendererDict[this.SelectedModel];
                 pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
                 IPickedGeometry pickedGeometry = ColorCodedPicking.Pick(
