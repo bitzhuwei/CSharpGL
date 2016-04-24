@@ -9,9 +9,10 @@ namespace CSharpGL
     class LineStripRecognizer : PrimitiveRecognizer
     {
         public override List<RecognizedPrimitiveIndex> Recognize(
-            uint lastVertexId, IntPtr pointer, int length)
+            uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr)
         {
             var lastIndexIdList = new List<RecognizedPrimitiveIndex>();
+            int length = oneIndexBufferPtr.Length;
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
@@ -31,9 +32,10 @@ namespace CSharpGL
         }
 
         public override List<RecognizedPrimitiveIndex> Recognize(
-            uint lastVertexId, IntPtr pointer, int length, uint primitiveRestartIndex)
+            uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, uint primitiveRestartIndex)
         {
             var lastIndexIdList = new List<RecognizedPrimitiveIndex>();
+            int length = oneIndexBufferPtr.Length;
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();

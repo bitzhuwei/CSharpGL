@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <param name="pointer"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public abstract List<RecognizedPrimitiveIndex> Recognize(uint lastVertexId, IntPtr pointer, int length);
+        public abstract List<RecognizedPrimitiveIndex> Recognize(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr);
 
         /// <summary>
         /// 识别出以<see cref="lastVertexId"/>结尾的图元。
@@ -26,7 +26,7 @@ namespace CSharpGL
         /// <param name="length"></param>
         /// <param name="primitiveRestartIndex"></param>
         /// <returns></returns>
-        public abstract List<RecognizedPrimitiveIndex> Recognize(uint lastVertexId, IntPtr pointer, int length, uint primitiveRestartIndex);
+        public abstract List<RecognizedPrimitiveIndex> Recognize(uint lastVertexId, IntPtr pointer, OneIndexBufferPtr oneIndexBufferPtr, uint primitiveRestartIndex);
     }
 
     class RecognizedPrimitiveIndex

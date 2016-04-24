@@ -311,9 +311,9 @@ namespace CSharpGL
             IntPtr pointer = GL.MapBuffer(BufferTarget.ElementArrayBuffer, MapBufferAccess.ReadOnly);
 
             if (glSwitch == null)
-            { lastIndexIdList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr.Length); }
+            { lastIndexIdList = recognizer.Recognize(lastVertexId, pointer, this.oneIndexBufferPtr); }
             else
-            { lastIndexIdList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr.Length, glSwitch.RestartIndex); }
+            { lastIndexIdList = recognizer.Recognize(lastVertexId, pointer, this.oneIndexBufferPtr, glSwitch.RestartIndex); }
 
             GL.UnmapBuffer(BufferTarget.ElementArrayBuffer);
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
