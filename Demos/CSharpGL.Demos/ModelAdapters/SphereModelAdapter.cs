@@ -28,59 +28,69 @@ namespace CSharpGL.ModelAdapters
         public const string strPosition = "position";
         public const string strColor = "color";
         public const string strNormal = "normal";
+        Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
-                using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    buffer.Alloc(model.positions.Length);
-                    unsafe
+                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        var array = (vec3*)buffer.FirstElement();
-                        for (int i = 0; i < model.positions.Length; i++)
+                        buffer.Alloc(model.positions.Length);
+                        unsafe
                         {
-                            array[i] = model.positions[i];
+                            var array = (vec3*)buffer.FirstElement();
+                            for (int i = 0; i < model.positions.Length; i++)
+                            {
+                                array[i] = model.positions[i];
+                            }
                         }
+                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
                     }
-
-                    return buffer.GetBufferPtr() as PropertyBufferPtr;
                 }
+                return propertyBufferPtrDict[bufferName];
             }
             else if (bufferName == strColor)
             {
-                using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    buffer.Alloc(model.colors.Length);
-                    unsafe
+                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        var array = (vec3*)buffer.FirstElement();
-                        for (int i = 0; i < model.colors.Length; i++)
+                        buffer.Alloc(model.colors.Length);
+                        unsafe
                         {
-                            array[i] = model.colors[i];
+                            var array = (vec3*)buffer.FirstElement();
+                            for (int i = 0; i < model.colors.Length; i++)
+                            {
+                                array[i] = model.colors[i];
+                            }
                         }
+                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
                     }
-
-                    return buffer.GetBufferPtr() as PropertyBufferPtr;
                 }
+                return propertyBufferPtrDict[bufferName];
             }
             else if (bufferName == strNormal)
             {
-                using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    buffer.Alloc(model.normals.Length);
-                    unsafe
+                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        var array = (vec3*)buffer.FirstElement();
-                        for (int i = 0; i < model.normals.Length; i++)
+                        buffer.Alloc(model.normals.Length);
+                        unsafe
                         {
-                            array[i] = model.normals[i];
+                            var array = (vec3*)buffer.FirstElement();
+                            for (int i = 0; i < model.normals.Length; i++)
+                            {
+                                array[i] = model.normals[i];
+                            }
                         }
+                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
                     }
-
-                    return buffer.GetBufferPtr() as PropertyBufferPtr;
                 }
+                return propertyBufferPtrDict[bufferName];
             }
             else
             {
@@ -91,22 +101,27 @@ namespace CSharpGL.ModelAdapters
 
         public IndexBufferPtr GetIndex()
         {
-
-            using (var indexBuffer = new OneIndexBuffer<uint>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
+            if (indexBufferPtr == null)
             {
-                indexBuffer.Alloc(model.indexes.Length);
-                unsafe
+                using (var buffer = new OneIndexBuffer<uint>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                 {
-                    uint* indexArray = (uint*)indexBuffer.FirstElement();
-                    for (int i = 0; i < model.indexes.Length; i++)
+                    buffer.Alloc(model.indexes.Length);
+                    unsafe
                     {
-                        indexArray[i] = model.indexes[i];
+                        uint* indexArray = (uint*)buffer.FirstElement();
+                        for (int i = 0; i < model.indexes.Length; i++)
+                        {
+                            indexArray[i] = model.indexes[i];
+                        }
                     }
-                }
 
-                return indexBuffer.GetBufferPtr() as IndexBufferPtr;
+                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                }
             }
+
+            return indexBufferPtr;
         }
+        IndexBufferPtr indexBufferPtr = null;
     }
 
 }
