@@ -31,6 +31,9 @@ namespace CSharpGL
 
                 if (item.nameInIBufferable == positionNameInIBufferable)
                 {
+                    //if (bufferPtr.ByteLength / bufferPtr.Length != System.Runtime.InteropServices.Marshal.SizeOf(typeof(vec3)))
+                    if (bufferPtr.DataSize != 3 || bufferPtr.DataType != GL.GL_FLOAT)
+                    { throw new Exception(string.Format("position buffer must use a type composed of 3 float as PropertyBuffer<T>'s T!")); }
                     this.positionBufferPtr = new PropertyBufferPtr(
                         "in_Position",// in_Postion same with in the PickingShader.vert shader
                         bufferPtr.BufferId,
