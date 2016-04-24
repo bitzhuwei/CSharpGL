@@ -28,18 +28,10 @@ namespace CSharpGL.Models
                     Colors[i] = BigDipperColors[i];
                 }
             }
-            //{
-            //    Indexes = new uint[BigDipperIndexes.Length];
-            //    for (int i = 0; i < BigDipperIndexes.Length; i++)
-            //    {
-            //        Indexes[i] = BigDipperIndexes[i];
-            //    }
-            //}
         }
 
         static vec3[] BigDipperPositions { get; set; }
         static vec3[] BigDipperColors { get; set; }
-        static uint[] BigDipperIndexes { get; set; }
 
         static BigDipper()
         {
@@ -61,12 +53,6 @@ namespace CSharpGL.Models
             BigDipperColors[4] = new vec3(0, 1, 1);
             BigDipperColors[5] = new vec3(0, 0, 1);
             BigDipperColors[6] = new vec3(0.5f, 0, 1);
-
-            BigDipperIndexes = new uint[7];
-            for (uint i = 0; i < BigDipperIndexes.Length; i++)
-            {
-                BigDipperIndexes[i] = i;
-            }
 
         }
     }
