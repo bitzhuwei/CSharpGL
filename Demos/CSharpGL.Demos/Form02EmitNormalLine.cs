@@ -80,7 +80,7 @@ namespace CSharpGL.Demos
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             // 天蓝色背景
             //GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
-            GL.ClearColor(ClearColor.x, ClearColor.y, ClearColor.z, ClearColor.w);
+            GL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f); 
 
             Application.Idle += Application_Idle;
         }
@@ -90,7 +90,7 @@ namespace CSharpGL.Demos
             this.Text = string.Format("Form01Simple {0}", this.rendererDict[this.selectedModel].DrawMode);
         }
 
-        public vec4 ClearColor { get; set; }
+        public Color ClearColor { get; set; }
 
         RenderModes renderMode;
 
@@ -113,7 +113,7 @@ namespace CSharpGL.Demos
             if (this.RenderMode == RenderModes.ColorCodedPicking)
             { GL.ClearColor(1, 1, 1, 1); }
             else if (this.RenderMode == RenderModes.Render)
-            { GL.ClearColor(0, 0, 0, 0); }
+            { GL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f); }
 
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
