@@ -32,8 +32,8 @@ namespace CSharpGL
         public PropertyBuffer(string varNameInVertexShader, int dataSize, uint dataType, BufferUsage usage)
             : base(usage)
         {
-            bool allRight = (typeof(T) == typeof(float) || typeof(T) == typeof(vec2) || typeof(T) == typeof(vec3) || typeof(T) == typeof(vec4));
-            if (!allRight) { throw new ArgumentException(string.Format("Invalid T type [{0}]!", typeof(T).FullName)); }
+            //bool allRight = (typeof(T) == typeof(float) || typeof(T) == typeof(vec2) || typeof(T) == typeof(vec3) || typeof(T) == typeof(vec4));
+            //if (!allRight) { throw new ArgumentException(string.Format("Invalid T type [{0}]!", typeof(T).FullName)); }
 
             this.VarNameInVertexShader = varNameInVertexShader;
             this.DataSize = dataSize;
