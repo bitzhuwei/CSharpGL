@@ -52,6 +52,7 @@
     <Compile Include="Form02EmitNormalLine.Designer.cs">
       <DependentUpon>Form02EmitNormalLine.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelAdapters\ChainModelAdapter.cs" />
     <Compile Include="ModelAdapters\CubeModelAdapter.cs" />
     <Compile Include="ModelAdapters\SphereModelAdapter.cs" />
     <Compile Include="FormBulletinBoard.cs">
@@ -68,14 +69,15 @@
     </Compile>
     <Compile Include="ModelAdapters\BigDipperAdapter.cs" />
     <Compile Include="ModelAdapters\TeapotModelAdapter.cs" />
+    <Compile Include="Models\ChainModel.cs" />
     <Compile Include="Models\BigDipper.cs" />
     <Compile Include="Models\CubeModel.cs" />
     <Compile Include="Models\PCIModel.cs" />
-    <Compile Include="Form01BigDipper.cs">
+    <Compile Include="Form01Simple.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form01BigDipper.Designer.cs">
-      <DependentUpon>Form01BigDipper.cs</DependentUpon>
+    <Compile Include="Form01Simple.Designer.cs">
+      <DependentUpon>Form01Simple.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -99,17 +101,17 @@
     <None Include="Models\TeapotModel.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Shaders\BigDipper.frag">
+    <None Include="Shaders\Simple.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Shaders\BigDipper.vert">
+    <None Include="Shaders\Simple.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="Form02EmitNormalLine.resx">
       <DependentUpon>Form02EmitNormalLine.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form01BigDipper.resx">
-      <DependentUpon>Form01BigDipper.cs</DependentUpon>
+    <EmbeddedResource Include="Form01Simple.resx">
+      <DependentUpon>Form01Simple.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form00GLCanvas.resx">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>

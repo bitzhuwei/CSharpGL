@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.btnForm00GLCanvas = new System.Windows.Forms.Button();
-            this.btnForm02BigDipper = new System.Windows.Forms.Button();
-            this.btnEmitNormalLine = new System.Windows.Forms.Button();
+            this.btnForm01Simple = new System.Windows.Forms.Button();
+            this.btnForm02EmitNormalLine = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -44,35 +44,35 @@
             this.btnForm00GLCanvas.UseVisualStyleBackColor = true;
             this.btnForm00GLCanvas.Click += new System.EventHandler(this.btnForm00GLCanvas_Click);
             // 
-            // btnForm02BigDipper
+            // btnForm01Simple
             // 
-            this.btnForm02BigDipper.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnForm02BigDipper.Location = new System.Drawing.Point(12, 55);
-            this.btnForm02BigDipper.Name = "btnForm02BigDipper";
-            this.btnForm02BigDipper.Size = new System.Drawing.Size(269, 37);
-            this.btnForm02BigDipper.TabIndex = 0;
-            this.btnForm02BigDipper.Text = "Form02 BigDipper";
-            this.btnForm02BigDipper.UseVisualStyleBackColor = true;
-            this.btnForm02BigDipper.Click += new System.EventHandler(this.btnForm02BigDipper_Click);
+            this.btnForm01Simple.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnForm01Simple.Location = new System.Drawing.Point(12, 55);
+            this.btnForm01Simple.Name = "btnForm02BigDipper";
+            this.btnForm01Simple.Size = new System.Drawing.Size(269, 37);
+            this.btnForm01Simple.TabIndex = 0;
+            this.btnForm01Simple.Text = "Form02 BigDipper";
+            this.btnForm01Simple.UseVisualStyleBackColor = true;
+            this.btnForm01Simple.Click += new System.EventHandler(this.btnForm01Simple_Click);
             // 
-            // btnEmitNormalLine
+            // btnForm02EmitNormalLine
             // 
-            this.btnEmitNormalLine.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnEmitNormalLine.Location = new System.Drawing.Point(12, 98);
-            this.btnEmitNormalLine.Name = "btnEmitNormalLine";
-            this.btnEmitNormalLine.Size = new System.Drawing.Size(269, 37);
-            this.btnEmitNormalLine.TabIndex = 0;
-            this.btnEmitNormalLine.Text = "Form02 EmitNormalLine";
-            this.btnEmitNormalLine.UseVisualStyleBackColor = true;
-            this.btnEmitNormalLine.Click += new System.EventHandler(this.btnEmitNormalLine_Click);
+            this.btnForm02EmitNormalLine.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnForm02EmitNormalLine.Location = new System.Drawing.Point(12, 98);
+            this.btnForm02EmitNormalLine.Name = "btnEmitNormalLine";
+            this.btnForm02EmitNormalLine.Size = new System.Drawing.Size(269, 37);
+            this.btnForm02EmitNormalLine.TabIndex = 0;
+            this.btnForm02EmitNormalLine.Text = "Form02 EmitNormalLine";
+            this.btnForm02EmitNormalLine.UseVisualStyleBackColor = true;
+            this.btnForm02EmitNormalLine.Click += new System.EventHandler(this.btnForm02EmitNormalLine_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 545);
-            this.Controls.Add(this.btnEmitNormalLine);
-            this.Controls.Add(this.btnForm02BigDipper);
+            this.Controls.Add(this.btnForm02EmitNormalLine);
+            this.Controls.Add(this.btnForm01Simple);
             this.Controls.Add(this.btnForm00GLCanvas);
             this.Name = "FormMain";
             this.Text = "CSharpGL Test/Demo Panel - http://bitzhuwei.cnblogs.com";
@@ -83,7 +83,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnForm00GLCanvas;
-        private System.Windows.Forms.Button btnForm02BigDipper;
-        private System.Windows.Forms.Button btnEmitNormalLine;
+        private System.Windows.Forms.Button btnForm01Simple;
+        private System.Windows.Forms.Button btnForm02EmitNormalLine;
     }
 }

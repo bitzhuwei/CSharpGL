@@ -1,7 +1,7 @@
 ﻿using CSharpGL.Windows;
 namespace CSharpGL.Demos
 {
-    partial class Form01BigDipper
+    partial class Form01Simple
     {
         /// <summary>
         /// Required designer variable.
@@ -52,8 +52,8 @@ namespace CSharpGL.Demos
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(731, 534);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "Form01ModernRenderer";
-            this.Text = "Form01ModernRenderer";
+            this.Name = "Form01Simple";
+            this.Text = "Form01Simple";
             this.Load += new System.EventHandler(this.Form01ModernRenderer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);

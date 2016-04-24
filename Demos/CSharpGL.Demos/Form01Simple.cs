@@ -14,13 +14,37 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form01BigDipper : Form
+    public partial class Form01Simple : Form
     {
+        public enum GeometryModel
+        {
+            BigDipper,
+            Chain,
+        }
 
-        /// <summary>
-        /// 要渲染的对象
-        /// </summary>
-        ModernRenderer renderer;
+        private GeometryModel selectedModel = GeometryModel.Chain;
+        public GeometryModel SelectedModel
+        {
+            get { return selectedModel; }
+            set
+            {
+                if (value != selectedModel)
+                {
+                    selectedModel = value;
+                    if (this.rendererPropertyGrid != null)
+                    { this.rendererPropertyGrid.DisplayObject(this.rendererDict[value]); }
+                    this.cameraUpdated = true;
+                    this.UpdateMVP(this.rendererDict[this.selectedModel]);
+                }
+            }
+        }
+
+        Dictionary<GeometryModel, ModernRenderer> rendererDict = new Dictionary<GeometryModel, ModernRenderer>();
+
+        ///// <summary>
+        ///// 要渲染的对象
+        ///// </summary>
+        //ModernRenderer renderer;
 
         bool cameraUpdated = true;
 
@@ -28,6 +52,7 @@ namespace CSharpGL.Demos
         {
             get { return cameraUpdated; }
         }
+
         /// <summary>
         /// 控制Camera的旋转、进退
         /// </summary>
@@ -42,7 +67,7 @@ namespace CSharpGL.Demos
         private FormProperyGrid cameraPropertyGrid;
         private FormProperyGrid formPropertyGrid;
 
-        public Form01BigDipper()
+        public Form01Simple()
         {
             InitializeComponent();
 
@@ -59,7 +84,20 @@ namespace CSharpGL.Demos
         }
 
 
-        public RenderModes RenderMode { get; set; }
+        RenderModes renderMode;
+
+        public RenderModes RenderMode
+        {
+            get { return renderMode; }
+            set
+            {
+                if (value != renderMode)
+                {
+                    renderMode = value;
+                    this.UpdateMVP(this.rendererDict[this.selectedModel]);
+                }
+            }
+        }
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
@@ -70,26 +108,37 @@ namespace CSharpGL.Demos
 
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            ModernRenderer renderer = this.renderer;
+            ModernRenderer renderer = this.rendererDict[this.SelectedModel];
             if (renderer != null)
             {
                 if (cameraUpdated)
                 {
-                    mat4 projectionMatrix = camera.GetProjectionMat4();
-                    mat4 viewMatrix = camera.GetViewMat4();
-                    mat4 modelMatrix = mat4.identity();
-                    if (this.RenderMode == RenderModes.ColorCodedPicking)
-                    { ((IColorCodedPicking)renderer).MVP = projectionMatrix * viewMatrix * modelMatrix; }
-                    else if (this.RenderMode == RenderModes.Render)
-                    {
-                        renderer.SetUniformValue("projectionMatrix", projectionMatrix);
-                        renderer.SetUniformValue("viewMatrix", viewMatrix);
-                        renderer.SetUniformValue("modelMatrix", modelMatrix);
-                    }
+                    UpdateMVP(renderer);
                     cameraUpdated = false;
                 }
-                renderer.Render(new RenderEventArgs(this.RenderMode, this.camera));
+                renderer.Render(new RenderEventArgs(RenderMode, this.camera));
             }
+        }
+
+        private void UpdateMVP(ModernRenderer renderer)
+        {
+            mat4 projectionMatrix = camera.GetProjectionMat4();
+            mat4 viewMatrix = camera.GetViewMat4();
+            mat4 modelMatrix = mat4.identity();
+
+            if (this.RenderMode == RenderModes.ColorCodedPicking)
+            {
+                IColorCodedPicking picking = renderer;
+                picking.MVP = projectionMatrix * viewMatrix * modelMatrix;
+            }
+            else if (this.RenderMode == RenderModes.Render)
+            {
+                renderer.SetUniformValue("projectionMatrix", projectionMatrix);
+                renderer.SetUniformValue("viewMatrix", viewMatrix);
+                renderer.SetUniformValue("modelMatrix", modelMatrix);
+            }
+            else
+            { throw new NotImplementedException(); }
         }
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
@@ -107,7 +156,7 @@ namespace CSharpGL.Demos
             }
 
             {
-                IColorCodedPicking pickable = this.renderer;
+                IColorCodedPicking pickable = this.rendererDict[this.SelectedModel];
                 pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
                 IPickedGeometry pickedGeometry = ColorCodedPicking.Pick(
                     this.camera, e.X, e.Y, this.glCanvas1.Width, this.glCanvas1.Height, pickable);
@@ -143,24 +192,35 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
-                IBufferable bufferable = new BigDipperAdapter(new BigDipper());
-                ShaderCode[] shaders = new ShaderCode[2];
-                shaders[0] = new ShaderCode(File.ReadAllText(@"Shaders\BigDipper.vert"), ShaderType.VertexShader);
-                shaders[1] = new ShaderCode(File.ReadAllText(@"Shaders\BigDipper.frag"), ShaderType.FragmentShader);
-                var propertyNameMap = new PropertyNameMap();
-                propertyNameMap.Add("in_Position", "position");
-                propertyNameMap.Add("in_Color", "color");
-                string positionNameInIBufferable = "position";
-                var renderer = ModernRendererFactory.GetModernRenderer(bufferable, shaders, propertyNameMap, positionNameInIBufferable);
-                renderer.Initialize();
-                GLSwitch lineWidthSwitch = new LineWidthSwitch(10.0f);
-                renderer.SwitchList.Add(lineWidthSwitch);
-                GLSwitch pointSizeSwitch = new PointSizeSwitch(10.0f);
-                renderer.SwitchList.Add(pointSizeSwitch);
-                GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
-                renderer.SwitchList.Add(polygonModeSwitch);
+                Random random = new Random();
+                var bufferables = new IBufferable[]{
+                    new BigDipperAdapter(new BigDipper()),
+                    new ChainModelAdapter(new ChainModel(random.Next(7, 100), 5, 5)),
+                };
+                var keys = new GeometryModel[] { GeometryModel.BigDipper, GeometryModel.Chain, };
+                for (int i = 0; i < bufferables.Length; i++)
+                {
+                    IBufferable bufferable = bufferables[i];
+                    GeometryModel key = keys[i];
+                    ShaderCode[] shaders = new ShaderCode[2];
+                    shaders[0] = new ShaderCode(File.ReadAllText(@"Shaders\Simple.vert"), ShaderType.VertexShader);
+                    shaders[1] = new ShaderCode(File.ReadAllText(@"Shaders\Simple.frag"), ShaderType.FragmentShader);
+                    var propertyNameMap = new PropertyNameMap();
+                    propertyNameMap.Add("in_Position", "position");
+                    propertyNameMap.Add("in_Color", "color");
+                    string positionNameInIBufferable = "position";
+                    var renderer = ModernRendererFactory.GetModernRenderer(bufferable, shaders, propertyNameMap, positionNameInIBufferable);
+                    renderer.Initialize();
+                    GLSwitch lineWidthSwitch = new LineWidthSwitch(10.0f);
+                    renderer.SwitchList.Add(lineWidthSwitch);
+                    GLSwitch pointSizeSwitch = new PointSizeSwitch(10.0f);
+                    renderer.SwitchList.Add(pointSizeSwitch);
+                    GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
+                    renderer.SwitchList.Add(polygonModeSwitch);
 
-                this.renderer = renderer;
+                    this.rendererDict.Add(key, renderer);
+                }
+                this.SelectedModel = GeometryModel.Chain;
             }
             {
                 var frmBulletinBoard = new FormBulletinBoard();
@@ -170,7 +230,7 @@ namespace CSharpGL.Demos
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this.renderer);
+                frmPropertyGrid.DisplayObject(this.rendererDict[this.SelectedModel]);
                 frmPropertyGrid.Show();
                 this.rendererPropertyGrid = frmPropertyGrid;
             }
