@@ -39,8 +39,8 @@ namespace CSharpGL
         /// <summary>
         /// 把OpenGL渲染的内容保存到图片文件。
         /// </summary>
-        /// <param name="x">左下角</param>
-        /// <param name="y">左下角</param>
+        /// <param name="x">左下角坐标为(0, 0)</param>
+        /// <param name="y">左下角坐标为(0, 0)</param>
         /// <param name="width">宽度</param>
         /// <param name="height">高度</param>
         /// <param name="filename"></param>
