@@ -45,10 +45,10 @@ namespace CSharpGL
         /// <param name="filename"></param>
         public static void Save2Picture(int x, int y, int width, int height, string filename)
         {
-            System.Drawing.Imaging.PixelFormat format = System.Drawing.Imaging.PixelFormat.Format32bppArgb;
-            System.Drawing.Imaging.ImageLockMode lockMode = System.Drawing.Imaging.ImageLockMode.WriteOnly;
+            var format = System.Drawing.Imaging.PixelFormat.Format32bppArgb;
+            var lockMode = System.Drawing.Imaging.ImageLockMode.WriteOnly;
             var bitmap = new Bitmap(width, height, format);
-            Rectangle bitmapRect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+            var bitmapRect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
             System.Drawing.Imaging.BitmapData bmpData = bitmap.LockBits(bitmapRect, lockMode, format);
             GL.ReadPixels(x, y, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, bmpData.Scan0);
             bitmap.UnlockBits(bmpData);
