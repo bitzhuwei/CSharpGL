@@ -98,12 +98,12 @@ namespace CSharpGL.ModelAdapters
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer<uint>(DrawMode.Triangles, BufferUsage.StaticDraw))
+                using (var buffer = new OneIndexBuffer<byte>(DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
                     buffer.Alloc(this.model.index.Length);
                     unsafe
                     {
-                        uint* array = (uint*)buffer.FirstElement();
+                        var array = (byte*)buffer.FirstElement();
                         for (int i = 0; i < this.model.index.Length; i++)
                         {
                             array[i] = this.model.index[i];
