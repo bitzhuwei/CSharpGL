@@ -247,6 +247,7 @@
     <Compile Include="OpenGLAPI\Win32API\WindowStylesEx.cs" />
     <Compile Include="OpenGLAPI\Win32API\WNDCLASSEX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Save2Picture.cs" />
     <Compile Include="Utilities\ArrayHelper.cs" />
     <Compile Include="Utilities\BinaryInsertHelper.cs" />
     <Compile Include="Utilities\ByteArrayHelper.cs" />

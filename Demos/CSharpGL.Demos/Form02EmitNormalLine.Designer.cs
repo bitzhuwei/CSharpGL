@@ -30,6 +30,7 @@ namespace CSharpGL.Demos
         private void InitializeComponent()
         {
             this.glCanvas1 = new CSharpGL.Windows.GLCanvas();
+            this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,14 +46,22 @@ namespace CSharpGL.Demos
             this.glCanvas1.RenderTrigger = CSharpGL.Windows.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(705, 508);
             this.glCanvas1.TabIndex = 0;
+            this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
             // 
-            // Form01ModernRenderer
+            // dlgSaveFile
+            // 
+            this.dlgSaveFile.DefaultExt = "bmp";
+            this.dlgSaveFile.FileName = "*.bmp";
+            this.dlgSaveFile.Filter = "*.bmp|*.bmp";
+            this.dlgSaveFile.RestoreDirectory = true;
+            // 
+            // Form02EmitNormalLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(731, 534);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "Form01ModernRenderer";
+            this.Name = "Form02EmitNormalLine";
             this.Text = "Form01ModernRenderer";
             this.Load += new System.EventHandler(this.Form01ModernRenderer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
@@ -63,5 +72,6 @@ namespace CSharpGL.Demos
         #endregion
 
         private GLCanvas glCanvas1;
+        private System.Windows.Forms.SaveFileDialog dlgSaveFile;
     }
 }

@@ -265,5 +265,18 @@ namespace CSharpGL.Demos
 
         }
 
+        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 's')
+            {
+                if (dlgSaveFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    Save2PictureHelper.Save2Picture(0, 0,
+                        this.glCanvas1.Width, this.glCanvas1.Height,
+                        dlgSaveFile.FileName);
+                }
+            }
+        }
+
     }
 }

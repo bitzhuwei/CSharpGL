@@ -93,6 +93,8 @@ namespace CSharpGL.Demos
         public Color ClearColor { get; set; }
 
         RenderModes renderMode;
+        private readonly object synObj = new object();
+        private Point mousePosition;
 
         public RenderModes RenderMode
         {
@@ -109,22 +111,35 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            if (this.RenderMode == RenderModes.ColorCodedPicking)
-            { GL.ClearColor(1, 1, 1, 1); }
-            else if (this.RenderMode == RenderModes.Render)
-            { GL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f); }
-
-            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-
-            ModernRenderer renderer = this.rendererDict[this.SelectedModel];
-            if (renderer != null)
+            lock (this.synObj)
             {
-                if (cameraUpdated)
+                if (this.RenderMode == RenderModes.ColorCodedPicking)
+                { GL.ClearColor(1, 1, 1, 1); }
+                else if (this.RenderMode == RenderModes.Render)
+                { GL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f); }
+
+                GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+
+                ModernRenderer renderer = this.rendererDict[this.SelectedModel];
+                if (renderer != null)
                 {
-                    UpdateMVP(renderer);
-                    cameraUpdated = false;
+                    if (cameraUpdated)
+                    {
+                        UpdateMVP(renderer);
+                        cameraUpdated = false;
+                    }
+                    renderer.Render(new RenderEventArgs(RenderMode, this.camera));
                 }
-                renderer.Render(new RenderEventArgs(RenderMode, this.camera));
+
+                {
+                    var pdata = new UnmanagedArray<Pixel>(1);
+                    GL.ReadPixels(this.mousePosition.X, this.glCanvas1.Height - this.mousePosition.Y - 1, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, pdata.Header);
+                    Color c = pdata[0].ToColor();
+                    c = Color.FromArgb(255, c);
+                    this.lblReadColor.BackColor = c;
+                    this.lblText.Text = string.Format("{0}: {1}", this.mousePosition, this.lblReadColor.BackColor);
+
+                }
             }
         }
 
@@ -151,19 +166,25 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
+            this.mousePosition = new Point(e.X, e.Y);
+
             rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
             rotator.MouseDown(e.X, e.Y);
         }
 
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
+            this.mousePosition = new Point(e.X, e.Y);
+
             if (rotator.MouseDownFlag)
             {
                 rotator.MouseMove(e.X, e.Y);
                 this.cameraUpdated = true;
             }
 
+            lock (this.synObj)
             {
+
                 IColorCodedPicking pickable = this.rendererDict[this.SelectedModel];
                 pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
                 IPickedGeometry pickedGeometry = ColorCodedPicking.Pick(
@@ -181,6 +202,8 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
         {
+            this.mousePosition = new Point(e.X, e.Y);
+
             rotator.MouseUp(e.X, e.Y);
         }
 
@@ -255,6 +278,22 @@ namespace CSharpGL.Demos
                 this.formPropertyGrid = frmPropertyGrid;
             }
 
+        }
+
+        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 's')
+            {
+                if (dlgSaveFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    lock (this.synObj)
+                    {
+                        Save2PictureHelper.Save2Picture(0, 0,
+                            this.glCanvas1.Width, this.glCanvas1.Height,
+                            dlgSaveFile.FileName);
+                    }
+                }
+            }
         }
 
     }
