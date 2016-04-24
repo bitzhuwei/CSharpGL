@@ -130,15 +130,6 @@ namespace CSharpGL.Demos
                     }
                     renderer.Render(new RenderEventArgs(RenderMode, this.camera));
                 }
-
-                {
-                    var pdata = new UnmanagedArray<Pixel>(1);
-                    GL.ReadPixels(this.mousePosition.X, this.glCanvas1.Height - this.mousePosition.Y - 1, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, pdata.Header);
-                    Color c = pdata[0].ToColor();
-                    c = Color.FromArgb(255, c);
-                    this.lblReadColor.BackColor = c;
-                    this.lblText.Text = string.Format("{0}: {1}", this.mousePosition, this.lblReadColor.BackColor);
-                }
             }
         }
 
@@ -183,17 +174,26 @@ namespace CSharpGL.Demos
 
             lock (this.synObj)
             {
-                IColorCodedPicking pickable = this.rendererDict[this.SelectedModel];
-                pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
-                IPickedGeometry pickedGeometry = ColorCodedPicking.Pick(
-                    this.camera, e.X, e.Y, this.glCanvas1.Width, this.glCanvas1.Height, pickable);
-                if (pickedGeometry != null)
                 {
-                    this.bulletinBoard.SetContent(pickedGeometry.ToString());
+                    this.glCanvas1_OpenGLDraw(selectedModel, null);
+                    Color c = GL.ReadPixel(e.X, this.glCanvas1.Height - e.Y - 1);
+                    c = Color.FromArgb(255, c);
+                    this.lblReadColor.BackColor = c;
+                    this.lblText.Text = string.Format("Position: {0}, {1}", new Point(e.X, e.Y), this.lblReadColor.BackColor);
                 }
-                else
                 {
-                    this.bulletinBoard.SetContent("picked nothing.");
+                    IColorCodedPicking pickable = this.rendererDict[this.SelectedModel];
+                    pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
+                    IPickedGeometry pickedGeometry = ColorCodedPicking.Pick(
+                        this.camera, e.X, e.Y, this.glCanvas1.Width, this.glCanvas1.Height, pickable);
+                    if (pickedGeometry != null)
+                    {
+                        this.bulletinBoard.SetContent(pickedGeometry.ToString());
+                    }
+                    else
+                    {
+                        this.bulletinBoard.SetContent("picked nothing.");
+                    }
                 }
             }
         }
