@@ -38,7 +38,7 @@ namespace CSharpGL.Models
             {
                 for (int i = 0; i < pointCount; i++)
                 {
-                    uint p = (uint)((256 * 256 * 256) / pointCount * (i + pointCount / 10));
+                    uint p = (uint)((256 * 256 * 256) / pointCount * (i));
                     var color = new vec3();
                     color.x = ((p >> 0) & 0xFF) / 255.0f;
                     color.y = ((p >> 8) & 0xFF) / 255.0f;
