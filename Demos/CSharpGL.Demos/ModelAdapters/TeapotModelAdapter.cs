@@ -106,14 +106,9 @@ namespace CSharpGL.ModelAdapters
                         var array = (ushort*)buffer.FirstElement();
                         for (int i = 0; i < model.faces.Count; i++)
                         {
-                            //TODO: 用ushort类型的IndexBuffer就会引发系统错误，为什么？
                             array[i * 3 + 0] = (ushort)(model.faces[i].Item1 - 1);
                             array[i * 3 + 1] = (ushort)(model.faces[i].Item2 - 1);
                             array[i * 3 + 2] = (ushort)(model.faces[i].Item3 - 1);
-
-                            //array[i * 3 + 0] = (uint)(model.faces[i].Item1 - 1);
-                            //array[i * 3 + 1] = (uint)(model.faces[i].Item2 - 1);
-                            //array[i * 3 + 2] = (uint)(model.faces[i].Item3 - 1);
                         }
                     }
 
