@@ -103,19 +103,56 @@ namespace CSharpGL.ModelAdapters
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer<uint>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
+                if (model.indexes.Length < byte.MaxValue)
                 {
-                    buffer.Alloc(model.indexes.Length);
-                    unsafe
+                    using (var buffer = new OneIndexBuffer<byte>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                     {
-                        uint* indexArray = (uint*)buffer.FirstElement();
-                        for (int i = 0; i < model.indexes.Length; i++)
+                        buffer.Alloc(model.indexes.Length);
+                        unsafe
                         {
-                            indexArray[i] = model.indexes[i];
+                            var indexArray = (byte*)buffer.FirstElement();
+                            for (int i = 0; i < model.indexes.Length; i++)
+                            {
+                                indexArray[i] = (byte)model.indexes[i];
+                            }
                         }
-                    }
 
-                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                        indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                    }
+                }
+                else if (model.indexes.Length < ushort.MaxValue)
+                {
+                    using (var buffer = new OneIndexBuffer<ushort>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
+                    {
+                        buffer.Alloc(model.indexes.Length);
+                        unsafe
+                        {
+                            var indexArray = (ushort*)buffer.FirstElement();
+                            for (int i = 0; i < model.indexes.Length; i++)
+                            {
+                                indexArray[i] = (ushort)model.indexes[i];
+                            }
+                        }
+
+                        indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                    }
+                }
+                else
+                {
+                    using (var buffer = new OneIndexBuffer<uint>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
+                    {
+                        buffer.Alloc(model.indexes.Length);
+                        unsafe
+                        {
+                            var indexArray = (uint*)buffer.FirstElement();
+                            for (int i = 0; i < model.indexes.Length; i++)
+                            {
+                                indexArray[i] = model.indexes[i];
+                            }
+                        }
+
+                        indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                    }
                 }
             }
 
