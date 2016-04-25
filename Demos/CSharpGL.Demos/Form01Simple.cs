@@ -176,10 +176,24 @@ namespace CSharpGL.Demos
                         dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
                     dragParam.lastNearPos = glm.unProject(new vec3(e.X, glCanvas1.Height - e.Y - 1, 0),
                         dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
-                    using (var depth = new UnmanagedArray<float>(1))
                     {
-                        GL.ReadPixels(e.X, glCanvas1.Height - e.Y - 1, 1, 1, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT, depth.Header);
-                        dragParam.targetDepth = depth[0];
+                        vec3 vertexWorldPos = new vec3(dragParam.projectionMatrix * dragParam.viewMatrix
+                            * new vec4(pickedGeometry.Positions.Last(), 1));
+                        vec3 projectedPos = glm.project(vertexWorldPos, dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
+                        //vec3 newLastVertexPos = glm.unProject(projectedPos,
+                        //    dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
+                        vec3 win = new vec3(projectedPos.x, projectedPos.y, 1);
+                        vec3 farPos = glm.unProject(win,
+                            dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
+                        win.z = 0;
+                        vec3 nearPos = glm.unProject(win,
+                            dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
+                        vec3 vTarget = vertexWorldPos - nearPos;
+                        vec3 vFar = farPos - nearPos;
+                        float x = vTarget.x / vFar.x;
+                        float y = vTarget.y / vFar.y;
+                        float z = vTarget.z / vFar.z;
+                        dragParam.targetDepth = x / 3 + y / 3 + z / 3;
                     }
                     this.dragParam = dragParam;
 
