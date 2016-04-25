@@ -35,7 +35,7 @@ namespace CSharpGL.Demos
                     selectedModel = value;
                     if (this.rendererPropertyGrid != null)
                     { this.rendererPropertyGrid.DisplayObject(this.rendererDict[value]); }
-                    this.cameraUpdated = true;
+                    //this.cameraUpdated = true;
                     this.UpdateMVP(this.rendererDict[this.selectedModel]);
                 }
             }
@@ -48,12 +48,12 @@ namespace CSharpGL.Demos
         ///// </summary>
         //ModernRenderer renderer;
 
-        bool cameraUpdated = true;
+        //bool cameraUpdated = true;
 
-        public bool CameraUpdated
-        {
-            get { return cameraUpdated; }
-        }
+        //public bool CameraUpdated
+        //{
+        //    get { return cameraUpdated; }
+        //}
 
         /// <summary>
         /// 控制Camera的旋转、进退
@@ -124,10 +124,10 @@ namespace CSharpGL.Demos
                 ModernRenderer renderer = this.rendererDict[this.SelectedModel];
                 if (renderer != null)
                 {
-                    if (cameraUpdated)
+                    //if (cameraUpdated)
                     {
                         UpdateMVP(renderer);
-                        cameraUpdated = false;
+                        //cameraUpdated = false;
                     }
                     renderer.Render(new RenderEventArgs(RenderMode, this.camera));
                 }
@@ -172,7 +172,7 @@ namespace CSharpGL.Demos
             if (rotator.MouseDownFlag)
             {
                 rotator.MouseMove(e.X, e.Y);
-                this.cameraUpdated = true;
+                //this.cameraUpdated = true;
             }
 
             lock (this.synObj)
@@ -211,7 +211,7 @@ namespace CSharpGL.Demos
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             camera.MouseWheel(e.Delta);
-            cameraUpdated = true;
+            //cameraUpdated = true;
         }
 
         private void Form01ModernRenderer_Load(object sender, EventArgs e)
