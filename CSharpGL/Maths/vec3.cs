@@ -174,7 +174,7 @@ namespace GLM
             return string.Format("{0}, {1}, {2}", x.ToShortString(), y.ToShortString(), z.ToShortString());
         }
 
-        public static vec3 Parse(string value)
+        internal static vec3 Parse(string value)
         {
             string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
             float x = float.Parse(parts[0]);

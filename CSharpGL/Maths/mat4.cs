@@ -14,7 +14,7 @@ namespace GLM
     {
         static readonly char[] separator = new char[] { '[', ']' };
 
-        public static mat4 Parse(string value)
+        internal static mat4 Parse(string value)
         {
             string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
             vec4 col0 = vec4.Parse(parts[1]);

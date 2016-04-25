@@ -12,7 +12,7 @@ namespace GLM
     {
         static readonly char[] separator = new char[] { '[', ']' };
 
-        public static mat3 Parse(string value)
+        internal static mat3 Parse(string value)
         {
             string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
             vec3 col0 = vec3.Parse(parts[1]);
