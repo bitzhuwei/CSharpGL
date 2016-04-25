@@ -179,11 +179,12 @@ namespace CSharpGL.Demos
                 {
                     IColorCodedPicking pickable = this.rendererDict[this.SelectedModel];
                     pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
-                    IPickedGeometry pickedGeometry = ColorCodedPicking.Pick(
+                    PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
                         this.camera, e.X, e.Y, this.glCanvas1.Width, this.glCanvas1.Height, pickable);
                     if (pickedGeometry != null)
                     {
-                        this.bulletinBoard.SetContent(pickedGeometry.ToString());
+                        this.bulletinBoard.SetContent(pickedGeometry.ToString(
+                            camera.GetProjectionMat4(), camera.GetViewMat4()));
                     }
                     else
                     {
