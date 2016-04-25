@@ -168,11 +168,11 @@ namespace CSharpGL.Demos
             }
             else
             {
-                RunPIcking(e.X, e.Y);
+                RunPicking(e.X, e.Y);
             }
         }
 
-        private void RunPIcking(int x, int y)
+        private void RunPicking(int x, int y)
         {
             lock (this.synObj)
             {

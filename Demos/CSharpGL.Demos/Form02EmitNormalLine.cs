@@ -174,21 +174,28 @@ namespace CSharpGL.Demos
                 rotator.MouseMove(e.X, e.Y);
                 //this.cameraUpdated = true;
             }
+            else
+            {
+                RunPicking(e.X, e.Y);
+            }
+        }
 
+        private void RunPicking(int x, int y)
+        {
             lock (this.synObj)
             {
                 {
                     this.glCanvas1_OpenGLDraw(selectedModel, null);
-                    Color c = GL.ReadPixel(e.X, this.glCanvas1.Height - e.Y - 1);
+                    Color c = GL.ReadPixel(x, this.glCanvas1.Height - y - 1);
                     c = Color.FromArgb(255, c);
                     this.lblReadColor.BackColor = c;
-                    this.lblText.Text = string.Format("Position: {0}, {1}", new Point(e.X, e.Y), this.lblReadColor.BackColor);
+                    this.lblText.Text = string.Format("Position: {0}, {1}", new Point(x, y), this.lblReadColor.BackColor);
                 }
                 {
                     IColorCodedPicking pickable = this.rendererDict[this.SelectedModel];
                     pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
                     PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
-                        this.camera, e.X, e.Y, this.glCanvas1.Width, this.glCanvas1.Height, pickable);
+                        this.camera, x, y, this.glCanvas1.Width, this.glCanvas1.Height, pickable);
                     if (pickedGeometry != null)
                     {
                         this.bulletinBoard.SetContent(pickedGeometry.ToString(
