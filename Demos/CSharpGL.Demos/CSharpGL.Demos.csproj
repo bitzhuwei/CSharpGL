@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form03UnProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form03UnProject.Designer.cs">
+      <DependentUpon>Form03UnProject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form02EmitNormalLine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     <None Include="Shaders\Simple.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <EmbeddedResource Include="Form03UnProject.resx">
+      <DependentUpon>Form03UnProject.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form02EmitNormalLine.resx">
       <DependentUpon>Form02EmitNormalLine.cs</DependentUpon>
     </EmbeddedResource>

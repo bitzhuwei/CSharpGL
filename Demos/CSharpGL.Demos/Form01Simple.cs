@@ -22,7 +22,7 @@ namespace CSharpGL.Demos
             Chain,
         }
 
-        private GeometryModel selectedModel = GeometryModel.Chain;
+        private GeometryModel selectedModel = GeometryModel.BigDipper;
         public GeometryModel SelectedModel
         {
             get { return selectedModel; }
@@ -62,7 +62,7 @@ namespace CSharpGL.Demos
         /// </summary>
         Camera camera;
 
-        private FormBulletinBoard bulletinBoard;
+        private FormBulletinBoard RunPickingBoard;
         private FormProperyGrid rendererPropertyGrid;
         private FormProperyGrid cameraPropertyGrid;
         private FormProperyGrid formPropertyGrid;
@@ -153,10 +153,9 @@ namespace CSharpGL.Demos
             { throw new NotImplementedException(); }
         }
 
-        //Point mouseLastPosition;
-        //vec3 unProjectLastPosition;
-        vec3 lastUnProjectPos;
-        PickedGeometry pickedGeometry;
+        DragParam dragParam;
+
+        private FormBulletinBoard mouseBoard;
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -172,17 +171,41 @@ namespace CSharpGL.Demos
                 PickedGeometry pickedGeometry = RunPicking(e.X, e.Y);
                 if (pickedGeometry != null)
                 {
-                    this.lastUnProjectPos = GetUnProjectPosition(e.X, e.Y);
+                    var dragParam = new DragParam(camera, pickedGeometry);
+                    dragParam.lastFarPos = glm.unProject(new vec3(e.X, glCanvas1.Height - e.Y - 1, 1),
+                        dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
+                    dragParam.lastNearPos = glm.unProject(new vec3(e.X, glCanvas1.Height - e.Y - 1, 0),
+                        dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
+                    using (var depth = new UnmanagedArray<float>(1))
+                    {
+                        GL.ReadPixels(e.X, glCanvas1.Height - e.Y - 1, 1, 1, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT, depth.Header);
+                        dragParam.targetDepth = depth[0];
+                    }
+                    this.dragParam = dragParam;
+
+                    this.lblRightMouseDown.Text = string.Format("near: [{0}] far: [{1}] depth: [{2}]",
+                        dragParam.lastNearPos, dragParam.lastFarPos, dragParam.targetDepth);
                 }
 
-                this.pickedGeometry = pickedGeometry;
+                //{
+                //    StringBuilder builder = new StringBuilder();
+                //    builder.Append("Mouse Down:");
+                //    builder.AppendLine();
+                //    if (pickedGeometry != null)
+                //    {
+                //        builder.Append(pickedGeometry.ToString(camera.GetProjectionMat4(), camera.GetViewMat4()));
+                //        builder.AppendLine();
+                //        builder.Append(string.Format("unProjection Position: [{0}]", this.lastUnProjectPos));
+                //    }
+                //    else
+                //    { builder.Append("Picked Nothing."); }
+                //    this.mouseBoard.SetContent(builder.ToString());
+                //}
             }
         }
 
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            //mouseLastPosition = new Point(e.X, e.Y);
-
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 // operate camera
@@ -192,64 +215,40 @@ namespace CSharpGL.Demos
             else if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 // move vertex
-                PickedGeometry pickedGeometry = this.pickedGeometry;
-                if (pickedGeometry != null)
+                if (this.dragParam != null)
                 {
-                    vec3 pos = GetUnProjectPosition(e.X, e.Y);
-                    vec3 difference = pos - this.lastUnProjectPos;
-                    this.lastUnProjectPos = pos;
+                    var farPos = glm.unProject(new vec3(e.X, glCanvas1.Height - e.Y - 1, 1),
+                        dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
+                    var nearPos = glm.unProject(new vec3(e.X, glCanvas1.Height - e.Y - 1, 0),
+                        dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
+                    vec3 difference =
+                        (nearPos - dragParam.lastNearPos) * (1 - dragParam.targetDepth)
+                        + (farPos - dragParam.lastFarPos) * dragParam.targetDepth;
+                    dragParam.lastFarPos = farPos;
+                    dragParam.lastNearPos = nearPos;
+
                     this.rendererDict[this.selectedModel].MovePositions(
-                        difference, pickedGeometry.Indexes);
+                        difference / 2, dragParam.pickedGeometry.Indexes);
+
+                    this.lblRightMouseMove.Text = string.Format("near: [{0}] far: [{1}] diff: [{2}]",
+                        nearPos, farPos, difference);
+
+                    //StringBuilder builder = new StringBuilder();
+                    //builder.Append("Mouse Move:");
+                    //builder.AppendLine();
+                    //builder.Append(pickedGeometry.ToString(camera.GetProjectionMat4(), camera.GetViewMat4()));
+                    //builder.AppendLine();
+                    //builder.Append(string.Format("unProjection Position: [{0}]", this.lastUnProjectPos));
+                    //builder.AppendLine();
+                    //builder.Append(string.Format("Difference: [{0}]", differenceTarget));
+                    //this.mouseBoard.SetContent(builder.ToString());
                 }
+                else
+                { this.mouseBoard.SetContent("Mouse Move: No action."); }
             }
             else
             {
                 RunPicking(e.X, e.Y);
-            }
-        }
-
-        private vec3 GetUnProjectPosition(int x, int y)
-        {
-            mat4 projection = camera.GetProjectionMat4();
-            mat4 view = camera.GetViewMat4();
-            vec3 worldPos = glm.unProject(
-                new vec3(x, this.glCanvas1.Height - y - 1, 0),
-                view, projection,
-                new vec4(0, 0, this.glCanvas1.Width, this.glCanvas1.Height));
-            mat4 inverseProj = glm.inverse(projection);
-            mat4 inverseView = glm.inverse(view);
-            vec4 modelPos4 = inverseView * inverseProj * new vec4(worldPos, 1);
-            return new vec3(modelPos4);
-        }
-
-        private PickedGeometry RunPicking(int x, int y)
-        {
-            lock (this.synObj)
-            {
-                {
-                    this.glCanvas1_OpenGLDraw(selectedModel, null);
-                    Color c = GL.ReadPixel(x, this.glCanvas1.Height - y - 1);
-                    c = Color.FromArgb(255, c);
-                    this.lblReadColor.BackColor = c;
-                    this.lblText.Text = string.Format("Position: {0}, {1}", new Point(x, y), this.lblReadColor.BackColor);
-                }
-                {
-                    IColorCodedPicking pickable = this.rendererDict[this.SelectedModel];
-                    pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
-                    PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
-                        this.camera, x, y, this.glCanvas1.Width, this.glCanvas1.Height, pickable);
-                    if (pickedGeometry != null)
-                    {
-                        this.bulletinBoard.SetContent(pickedGeometry.ToString(
-                            camera.GetProjectionMat4(), camera.GetViewMat4()));
-                    }
-                    else
-                    {
-                        this.bulletinBoard.SetContent("picked nothing.");
-                    }
-
-                    return pickedGeometry;
-                }
             }
         }
 
@@ -264,6 +263,9 @@ namespace CSharpGL.Demos
             {
                 // move vertex
                 //this.pickedGeometry = null;
+                this.dragParam = null;
+
+                this.mouseBoard.SetContent("Mouse Up: No action.");
             }
         }
 
@@ -273,11 +275,49 @@ namespace CSharpGL.Demos
             //cameraUpdated = true;
         }
 
+        private PickedGeometry RunPicking(int x, int y)
+        {
+            lock (this.synObj)
+            {
+                {
+                    this.glCanvas1_OpenGLDraw(selectedModel, null);
+                    Color c = GL.ReadPixel(x, this.glCanvas1.Height - y - 1);
+                    c = Color.FromArgb(255, c);
+                    this.lblReadColor.BackColor = c;
+                    var depth = new UnmanagedArray<float>(1);
+                    GL.ReadPixels(x, glCanvas1.Height - y - 1, 1, 1,
+                        GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT, depth.Header);
+                    var targetDepth = depth[0];
+                    depth.Dispose();
+                    this.lblText.Text = string.Format(
+                        "Position: {0}, {1}, Depth: {2}",
+                            new Point(x, y), this.lblReadColor.BackColor, targetDepth);
+                }
+                {
+                    IColorCodedPicking pickable = this.rendererDict[this.SelectedModel];
+                    pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
+                    PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
+                        this.camera, x, y, this.glCanvas1.Width, this.glCanvas1.Height, pickable);
+                    if (pickedGeometry != null)
+                    {
+                        this.RunPickingBoard.SetContent(pickedGeometry.ToString(
+                            camera.GetProjectionMat4(), camera.GetViewMat4()));
+                    }
+                    else
+                    {
+                        this.RunPickingBoard.SetContent("picked nothing.");
+                    }
+
+                    return pickedGeometry;
+                }
+            }
+        }
+
         private void Form01ModernRenderer_Load(object sender, EventArgs e)
         {
             {
                 var camera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
-                camera.Position = new vec3(0, 0, 5);
+                camera.Position = new vec3(0, 0, -2);
                 var rotator = new SatelliteRotator(camera);
                 this.camera = camera;
                 this.rotator = rotator;
@@ -311,32 +351,38 @@ namespace CSharpGL.Demos
 
                     this.rendererDict.Add(key, renderer);
                 }
-                this.SelectedModel = GeometryModel.Chain;
+                this.SelectedModel = GeometryModel.BigDipper;
+            }
+            {
+                var frmBulletinBoard = new FormBulletinBoard();
+                //frmBulletinBoard.Dump = true;
+                frmBulletinBoard.Show();
+                this.RunPickingBoard = frmBulletinBoard;
             }
             {
                 var frmBulletinBoard = new FormBulletinBoard();
                 frmBulletinBoard.Dump = true;
                 frmBulletinBoard.Show();
-                this.bulletinBoard = frmBulletinBoard;
+                this.mouseBoard = frmBulletinBoard;
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();
                 frmPropertyGrid.DisplayObject(this.rendererDict[this.SelectedModel]);
                 frmPropertyGrid.Show();
-                this.rendererPropertyGrid = frmPropertyGrid;
+                //this.rendererPropertyGrid = frmPropertyGrid;
             }
-            {
-                var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this.camera);
-                frmPropertyGrid.Show();
-                this.cameraPropertyGrid = frmPropertyGrid;
-            }
-            {
-                var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this);
-                frmPropertyGrid.Show();
-                this.formPropertyGrid = frmPropertyGrid;
-            }
+            //{
+            //    var frmPropertyGrid = new FormProperyGrid();
+            //    frmPropertyGrid.DisplayObject(this.camera);
+            //    frmPropertyGrid.Show();
+            //    this.cameraPropertyGrid = frmPropertyGrid;
+            //}
+            //{
+            //    var frmPropertyGrid = new FormProperyGrid();
+            //    frmPropertyGrid.DisplayObject(this);
+            //    frmPropertyGrid.Show();
+            //    this.formPropertyGrid = frmPropertyGrid;
+            //}
 
         }
 
@@ -356,5 +402,30 @@ namespace CSharpGL.Demos
             }
         }
 
+        private void glCanvas1_Resize(object sender, EventArgs e)
+        {
+            if (camera != null)
+                camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
+        }
+
+        class DragParam
+        {
+            public DragParam(Camera camera, PickedGeometry pickedGeometry)
+            {
+                this.pickedGeometry = pickedGeometry;
+                this.projectionMatrix = camera.GetProjectionMat4();
+                this.viewMatrix = camera.GetViewMat4();
+                var viewport = new int[4]; GL.GetInteger(GetTarget.Viewport, viewport);
+                this.viewport = new vec4(viewport[0], viewport[1], viewport[2], viewport[3]);
+            }
+
+            public vec3 lastFarPos;
+            public vec3 lastNearPos;
+            public float targetDepth;
+            public mat4 projectionMatrix;
+            public mat4 viewMatrix;
+            public vec4 viewport;
+            public PickedGeometry pickedGeometry;
+        }
     }
 }
