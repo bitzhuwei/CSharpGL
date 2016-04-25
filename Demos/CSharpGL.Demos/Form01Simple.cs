@@ -153,18 +153,54 @@ namespace CSharpGL.Demos
             { throw new NotImplementedException(); }
         }
 
+        //Point mouseLastPosition;
+        //vec3 unProjectLastPosition;
+        vec3 lastUnProjectPos;
+        PickedGeometry pickedGeometry;
+
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
-            rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
-            rotator.MouseDown(e.X, e.Y);
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                // operate camera
+                rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
+                rotator.MouseDown(e.X, e.Y);
+            }
+            else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                // move vertex
+                PickedGeometry pickedGeometry = RunPicking(e.X, e.Y);
+                if (pickedGeometry != null)
+                {
+                    this.lastUnProjectPos = GetUnProjectPosition(e.X, e.Y);
+                }
+
+                this.pickedGeometry = pickedGeometry;
+            }
         }
 
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (rotator.MouseDownFlag)
+            //mouseLastPosition = new Point(e.X, e.Y);
+
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
+                // operate camera
                 rotator.MouseMove(e.X, e.Y);
                 //this.cameraUpdated = true;
+            }
+            else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                // move vertex
+                PickedGeometry pickedGeometry = this.pickedGeometry;
+                if (pickedGeometry != null)
+                {
+                    vec3 pos = GetUnProjectPosition(e.X, e.Y);
+                    vec3 difference = pos - this.lastUnProjectPos;
+                    this.lastUnProjectPos = pos;
+                    this.rendererDict[this.selectedModel].MovePositions(
+                        difference, pickedGeometry.Indexes);
+                }
             }
             else
             {
@@ -172,7 +208,21 @@ namespace CSharpGL.Demos
             }
         }
 
-        private void RunPicking(int x, int y)
+        private vec3 GetUnProjectPosition(int x, int y)
+        {
+            mat4 projection = camera.GetProjectionMat4();
+            mat4 view = camera.GetViewMat4();
+            vec3 worldPos = glm.unProject(
+                new vec3(x, this.glCanvas1.Height - y - 1, 0),
+                view, projection,
+                new vec4(0, 0, this.glCanvas1.Width, this.glCanvas1.Height));
+            mat4 inverseProj = glm.inverse(projection);
+            mat4 inverseView = glm.inverse(view);
+            vec4 modelPos4 = inverseView * inverseProj * new vec4(worldPos, 1);
+            return new vec3(modelPos4);
+        }
+
+        private PickedGeometry RunPicking(int x, int y)
         {
             lock (this.synObj)
             {
@@ -197,13 +247,24 @@ namespace CSharpGL.Demos
                     {
                         this.bulletinBoard.SetContent("picked nothing.");
                     }
+
+                    return pickedGeometry;
                 }
             }
         }
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
         {
-            rotator.MouseUp(e.X, e.Y);
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                // operate camera
+                rotator.MouseUp(e.X, e.Y);
+            }
+            else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                // move vertex
+                //this.pickedGeometry = null;
+            }
         }
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
