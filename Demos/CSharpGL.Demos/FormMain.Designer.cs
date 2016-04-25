@@ -31,6 +31,7 @@
             this.btnForm00GLCanvas = new System.Windows.Forms.Button();
             this.btnForm01Simple = new System.Windows.Forms.Button();
             this.btnForm02EmitNormalLine = new System.Windows.Forms.Button();
+            this.btnForm03UnProjection = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -66,11 +67,23 @@
             this.btnForm02EmitNormalLine.UseVisualStyleBackColor = true;
             this.btnForm02EmitNormalLine.Click += new System.EventHandler(this.btnForm02EmitNormalLine_Click);
             // 
+            // btnForm03UnProjection
+            // 
+            this.btnForm03UnProjection.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnForm03UnProjection.Location = new System.Drawing.Point(12, 141);
+            this.btnForm03UnProjection.Name = "button1";
+            this.btnForm03UnProjection.Size = new System.Drawing.Size(269, 37);
+            this.btnForm03UnProjection.TabIndex = 0;
+            this.btnForm03UnProjection.Text = "Form03 UnProjection";
+            this.btnForm03UnProjection.UseVisualStyleBackColor = true;
+            this.btnForm03UnProjection.Click += new System.EventHandler(this.btnForm03UnProjection_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 545);
+            this.Controls.Add(this.btnForm03UnProjection);
             this.Controls.Add(this.btnForm02EmitNormalLine);
             this.Controls.Add(this.btnForm01Simple);
             this.Controls.Add(this.btnForm00GLCanvas);
@@ -85,5 +98,6 @@
         private System.Windows.Forms.Button btnForm00GLCanvas;
         private System.Windows.Forms.Button btnForm01Simple;
         private System.Windows.Forms.Button btnForm02EmitNormalLine;
+        private System.Windows.Forms.Button btnForm03UnProjection;
     }
 }
