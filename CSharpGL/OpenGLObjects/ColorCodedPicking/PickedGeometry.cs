@@ -52,9 +52,17 @@ namespace CSharpGL
             for (int i = 0; i < positions.Length; i++)
             {
                 var pos4 = new vec4(positions[i], 1);
-                vec4 worldPos4 = projection * view * pos4;
-                vec3 worldPos = new vec3(worldPos4);
+                vec3 worldPos = new vec3(view * pos4);
                 builder.Append(string.Format("[{0}]: {1}", this.Indexes[i], worldPos));
+                builder.AppendLine();
+            }
+            builder.Append("Positions in Projection Space:");
+            builder.AppendLine();
+            for (int i = 0; i < positions.Length; i++)
+            {
+                var pos4 = new vec4(positions[i], 1);
+                vec3 projectionPos = new vec3(projection * view * pos4);
+                builder.Append(string.Format("[{0}]: {1}", this.Indexes[i], projectionPos));
                 builder.AppendLine();
             }
 
