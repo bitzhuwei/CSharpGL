@@ -64,35 +64,23 @@ namespace CSharpGL.Demos
                 this.RunPickingBoard = frmBulletinBoard;
             }
             {
-                var frmBulletinBoard = new FormBulletinBoard();
-                frmBulletinBoard.Dump = true;
-                frmBulletinBoard.Show();
-                this.mouseDownBoard = frmBulletinBoard;
-            }
-            {
-                var frmBulletinBoard = new FormBulletinBoard();
-                frmBulletinBoard.Dump = true;
-                frmBulletinBoard.Show();
-                this.mouseMoveBoard = frmBulletinBoard;
-            }
-            {
                 var frmPropertyGrid = new FormProperyGrid();
                 frmPropertyGrid.DisplayObject(this.rendererDict[this.SelectedModel]);
                 frmPropertyGrid.Show();
-                //this.rendererPropertyGrid = frmPropertyGrid;
+                this.rendererPropertyGrid = frmPropertyGrid;
             }
-            //{
-            //    var frmPropertyGrid = new FormProperyGrid();
-            //    frmPropertyGrid.DisplayObject(this.camera);
-            //    frmPropertyGrid.Show();
-            //    this.cameraPropertyGrid = frmPropertyGrid;
-            //}
-            //{
-            //    var frmPropertyGrid = new FormProperyGrid();
-            //    frmPropertyGrid.DisplayObject(this);
-            //    frmPropertyGrid.Show();
-            //    this.formPropertyGrid = frmPropertyGrid;
-            //}
+            {
+                var frmPropertyGrid = new FormProperyGrid();
+                frmPropertyGrid.DisplayObject(this.camera);
+                frmPropertyGrid.Show();
+                this.cameraPropertyGrid = frmPropertyGrid;
+            }
+            {
+                var frmPropertyGrid = new FormProperyGrid();
+                frmPropertyGrid.DisplayObject(this);
+                frmPropertyGrid.Show();
+                this.formPropertyGrid = frmPropertyGrid;
+            }
 
         }
 

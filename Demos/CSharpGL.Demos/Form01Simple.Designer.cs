@@ -32,6 +32,7 @@ namespace CSharpGL.Demos
             this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.lblReadColor = new System.Windows.Forms.Label();
             this.glCanvas1 = new CSharpGL.Windows.GLCanvas();
+            this.lblColor = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +47,7 @@ namespace CSharpGL.Demos
             // 
             this.lblReadColor.AutoSize = true;
             this.lblReadColor.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblReadColor.Location = new System.Drawing.Point(12, 9);
+            this.lblReadColor.Location = new System.Drawing.Point(82, 9);
             this.lblReadColor.Name = "lblReadColor";
             this.lblReadColor.Size = new System.Drawing.Size(149, 20);
             this.lblReadColor.TabIndex = 1;
@@ -67,11 +68,20 @@ namespace CSharpGL.Demos
             this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
             this.glCanvas1.Resize += new System.EventHandler(this.glCanvas1_Resize);
             // 
+            // lblColor
+            // 
+            this.lblColor.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblColor.Location = new System.Drawing.Point(12, 9);
+            this.lblColor.Name = "lblColor";
+            this.lblColor.Size = new System.Drawing.Size(64, 20);
+            this.lblColor.TabIndex = 1;
+            // 
             // Form01Simple
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(746, 485);
+            this.Controls.Add(this.lblColor);
             this.Controls.Add(this.lblReadColor);
             this.Controls.Add(this.glCanvas1);
             this.Name = "Form01Simple";
@@ -88,5 +98,6 @@ namespace CSharpGL.Demos
         private GLCanvas glCanvas1;
         private System.Windows.Forms.SaveFileDialog dlgSaveFile;
         private System.Windows.Forms.Label lblReadColor;
+        private System.Windows.Forms.Label lblColor;
     }
 }
