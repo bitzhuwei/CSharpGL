@@ -36,14 +36,14 @@ namespace CSharpGL.Demos
                 if (pickedGeometry != null)
                 {
                     var dragParam = new DragParam(camera, pickedGeometry);
-                    dragParam.lastFarPos = glm.unProject(new vec3(e.X, glCanvas1.Height - e.Y - 1, 1),
-                        dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
-                    dragParam.lastNearPos = glm.unProject(new vec3(e.X, glCanvas1.Height - e.Y - 1, 0),
-                        dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
+
+                    //dragParam.lastFarPos = glm.unProject(new vec3(e.X, glCanvas1.Height - e.Y - 1, 1),
+                    //    dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
+                    //dragParam.lastNearPos = glm.unProject(new vec3(e.X, glCanvas1.Height - e.Y - 1, 0),
+                    //    dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
                     this.dragParam = dragParam;
 
-                    this.lblRightMouseDown.Text = string.Format("near: [{0}] far: [{1}] depth: [{2}]",
-                        dragParam.lastNearPos, dragParam.lastFarPos, dragParam.targetDepth);
+                    this.lblRightMouseDown.Text = dragParam.ToString();
                 }
             }
         }
@@ -61,18 +61,7 @@ namespace CSharpGL.Demos
                 // move vertex
                 if (this.dragParam != null)
                 {
-                    var farPos = glm.unProject(new vec3(e.X, glCanvas1.Height - e.Y - 1, 1),
-                        dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
-                    var nearPos = glm.unProject(new vec3(e.X, glCanvas1.Height - e.Y - 1, 0),
-                        dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
-                    vec3[] differences = new vec3[dragParam.targetDepth.Length];
-                    for (int i = 0; i < differences.Length; i++)
-                    {
-                        differences[i] = (nearPos - dragParam.lastNearPos) * (1 - dragParam.targetDepth[i])
-                            + (farPos - dragParam.lastFarPos) * dragParam.targetDepth[i];
-                    }
-                    dragParam.lastFarPos = farPos;
-                    dragParam.lastNearPos = nearPos;
+                    //var newDragParam=new DragParam(this.camera, )
 
                     this.rendererDict[this.selectedModel].MovePositions(
                         differences, glm.inverse(dragParam.projectionMatrix * dragParam.viewMatrix), dragParam.pickedGeometry.Indexes);
@@ -154,15 +143,14 @@ namespace CSharpGL.Demos
                 var viewport = new int[4]; GL.GetInteger(GetTarget.Viewport, viewport);
                 this.viewport = new vec4(viewport[0], viewport[1], viewport[2], viewport[3]);
 
-                this.targetDepth = new float[pickedGeometry.Positions.Length];
+                this.k = new float[pickedGeometry.Positions.Length];
                 for (int i = 0; i < pickedGeometry.Positions.Length; i++)
                 {
                     var worldPos = new vec3(projectionMatrix * viewMatrix * new vec4(pickedGeometry.Positions[i], 1));
-                    vec3 projectedPos = glm.project(worldPos, viewMatrix, projectionMatrix, this.viewport);
-                    vec3 win = new vec3(projectedPos.x, projectedPos.y, 1);
-                    vec3 farPos = glm.unProject(win,
-                        viewMatrix, projectionMatrix, this.viewport);
-                    win.z = 0;
+                    vec3 windowPos = glm.project(worldPos, viewMatrix, projectionMatrix, this.viewport);
+                    vec3 win = new vec3(windowPos.x, windowPos.y, 1);
+                    var farPos = glm.unProject(win, viewMatrix, projectionMatrix, this.viewport);
+                    //win.z = 0;
                     //vec3 nearPos = glm.unProject(win,
                     //    dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
                     vec3 vTarget = worldPos - camera.Position;//nearPos;
@@ -170,17 +158,37 @@ namespace CSharpGL.Demos
                     float x = vTarget.x / vFar.x;
                     float y = vTarget.y / vFar.y;
                     float z = vTarget.z / vFar.z;
-                    this.targetDepth[i] = x / 3 + y / 3 + z / 3;
+                    this.k[i] = x / 3 + y / 3 + z / 3;
                 }
             }
 
             public vec3 lastFarPos;
-            public vec3 lastNearPos;
-            public float[] targetDepth;
+            //public vec3 lastNearPos;
+            public float[] k;
             public mat4 projectionMatrix;
             public mat4 viewMatrix;
             public vec4 viewport;
             public PickedGeometry pickedGeometry;
+
+            public override string ToString()
+            {
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < this.k.Length; i++)
+                {
+                    builder.Append(string.Format("[{0}]: ", this.pickedGeometry.Indexes[i]));
+                    //builder.Append(string.Format("far pos: [{0}]", lastFarPos[i]));
+                    builder.Append(string.Format("depth: [{0}]", this.k[i]));
+                    builder.AppendLine();
+                }
+                builder.AppendLine("projection matrix: ");
+                builder.AppendLine(this.projectionMatrix.ToString());
+                builder.AppendLine("view matrix: ");
+                builder.AppendLine(this.viewMatrix.ToString());
+                builder.AppendLine("viewport: ");
+                builder.AppendLine(this.viewport.ToString());
+
+                return builder.ToString();
+            }
         }
     }
 }
