@@ -79,19 +79,14 @@ namespace CSharpGL
             List<RecognizedPrimitiveIndex> lastIndexIdList,
             int x, int y, int canvasWidth, int canvasHeight)
         {
-            if (lastIndexIdList.Count == 0) { throw new ArgumentException(); }
+            if (lastIndexIdList == null || lastIndexIdList.Count == 0) { throw new ArgumentException(); }
 
             int current = 0;
-            foreach (var item in lastIndexIdList[0].IndexIdList)
-            {
-                if (item == uint.MaxValue) { throw new Exception(); }
-            }
+#if DEBUG
+            NoPrimitiveRestartIndex(lastIndexIdList);
+#endif
             for (int i = 1; i < lastIndexIdList.Count; i++)
             {
-                foreach (var item in lastIndexIdList[i].IndexIdList)
-                {
-                    if (item == uint.MaxValue) { throw new Exception(); }
-                }
                 OneIndexBufferPtr twoPrimitivesIndexBufferPtr;
                 uint lastIndex0, lastIndex1;
                 AssembleIndexBuffer(
@@ -102,13 +97,28 @@ namespace CSharpGL
                 { current = i; }
                 else if (pickedIndex == lastIndex0)
                 { /* nothing to do */}
-                else if (pickedIndex == uint.MaxValue)
+                else if (pickedIndex == uint.MaxValue)// 两个候选图元都没有被拾取到
                 { /* nothing to do */}
                 else
                 { throw new Exception("This should not happen!"); }
             }
 
             return lastIndexIdList[current];
+        }
+
+        private void NoPrimitiveRestartIndex(List<RecognizedPrimitiveIndex> lastIndexIdList)
+        {
+            PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();
+            if (glSwitch != null)
+            {
+                foreach (var lastIndexId in lastIndexIdList)
+                {
+                    foreach (var indexId in lastIndexId.IndexIdList)
+                    {
+                        if (indexId == glSwitch.RestartIndex) { throw new Exception(); }
+                    }
+                }
+            }
         }
 
         private uint Pick(ICamera camera, OneIndexBufferPtr twoPrimitivesIndexBufferPtr, int x, int y, int canvasWidth, int canvasHeight)
@@ -290,35 +300,33 @@ namespace CSharpGL
         /// <returns></returns>
         private List<RecognizedPrimitiveIndex> GetLastIndexIdList(uint lastVertexId)
         {
-            List<RecognizedPrimitiveIndex> lastIndexIdList = null;
-            PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
-                this.indexBufferPtr.Mode);
-            if (recognizer == null)
-            {
-                throw new NotImplementedException(string.Format(
-                    "尚未实现[{0}]的recognizer!", this.indexBufferPtr.Mode));
-            }
-            PrimitiveRestartSwitch glSwitch = null;
-            foreach (var item in this.switchList)
-            {
-                if (item is PrimitiveRestartSwitch)
-                {
-                    glSwitch = item as PrimitiveRestartSwitch;
-                    break;
-                }
-            }
+            PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(this.indexBufferPtr.Mode);
+            PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();
+
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, this.oneIndexBufferPtr.BufferId);
             IntPtr pointer = GL.MapBuffer(BufferTarget.ElementArrayBuffer, MapBufferAccess.ReadOnly);
-
+            List<RecognizedPrimitiveIndex> lastIndexIdList = null;
             if (glSwitch == null)
             { lastIndexIdList = recognizer.Recognize(lastVertexId, pointer, this.oneIndexBufferPtr); }
             else
             { lastIndexIdList = recognizer.Recognize(lastVertexId, pointer, this.oneIndexBufferPtr, glSwitch.RestartIndex); }
-
             GL.UnmapBuffer(BufferTarget.ElementArrayBuffer);
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
 
             return lastIndexIdList;
+        }
+
+        private PrimitiveRestartSwitch GetPrimitiveRestartSwitch()
+        {
+            foreach (var item in this.switchList)
+            {
+                if (item is PrimitiveRestartSwitch)
+                {
+                    return item as PrimitiveRestartSwitch;
+                }
+            }
+
+            return null;
         }
     }
 }
