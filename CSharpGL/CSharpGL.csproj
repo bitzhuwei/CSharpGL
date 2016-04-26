@@ -264,6 +264,7 @@
     <Compile Include="Utilities\OrderedCollection.cs" />
     <Compile Include="Utilities\PositionHelper.cs" />
     <Compile Include="Utilities\SpaceGeometryHelper.cs" />
+    <Compile Include="Utilities\StatisticsHelper.cs" />
     <Compile Include="Utilities\StringHelper.cs" />
     <Compile Include="Utilities\StructHelper.cs" />
     <Compile Include="Utilities\UnmanagedArray.cs" />
