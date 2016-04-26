@@ -132,6 +132,19 @@ namespace CSharpGL.Demos
 
         class DragParam
         {
+
+            //public vec3 cameraPos;
+            public vec3 lastFarPos;
+            //public vec3 lastNearPos;
+            public float[] depth;
+            public vec3[] factors;
+            public vec3[] worldPos;
+            public vec3[] windowPos;
+            public mat4 projectionMatrix;
+            public mat4 viewMatrix;
+            public vec4 viewport;
+            public PickedGeometry pickedGeometry;
+
             public DragParam(Camera camera, PickedGeometry pickedGeometry)
             {
                 this.pickedGeometry = pickedGeometry;
@@ -140,7 +153,8 @@ namespace CSharpGL.Demos
                 var viewport = new int[4]; GL.GetInteger(GetTarget.Viewport, viewport);
                 this.viewport = new vec4(viewport[0], viewport[1], viewport[2], viewport[3]);
 
-                this.k = new float[pickedGeometry.Positions.Length];
+                //this.cameraPos = camera.Position;
+                this.depth = new float[pickedGeometry.Positions.Length];
                 this.worldPos = new vec3[pickedGeometry.Positions.Length];
                 this.windowPos = new vec3[pickedGeometry.Positions.Length];
                 this.factors = new vec3[pickedGeometry.Positions.Length];
@@ -150,46 +164,35 @@ namespace CSharpGL.Demos
                     vec3 windowPos = glm.project(worldPos, viewMatrix, projectionMatrix, this.viewport);
                     vec3 win = new vec3(windowPos.x, windowPos.y, 1);
                     var farPos = glm.unProject(win, viewMatrix, projectionMatrix, this.viewport);
-                    //win.z = 0;
-                    //vec3 nearPos = glm.unProject(win,
-                    //    dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
-                    vec3 vTarget = worldPos - camera.Position;//nearPos;
-                    vec3 vFar = farPos - camera.Position;// nearPos;
+                    win.z = 0;
+                    vec3 nearPos = glm.unProject(win, viewMatrix, projectionMatrix, this.viewport);
+                    vec3 vTarget = worldPos - nearPos;
+                    vec3 vFar = farPos - nearPos;
                     float x = vTarget.x / vFar.x;
                     float y = vTarget.y / vFar.y;
                     float z = vTarget.z / vFar.z;
-                    this.k[i] = x / 3 + y / 3 + z / 3;
-
+                    this.depth[i] = x / 3 + y / 3 + z / 3;
                     this.worldPos[i] = worldPos;
                     this.windowPos[i] = windowPos;
                     this.factors[i] = new vec3(x, y, z);
                 }
             }
 
-            public vec3 lastFarPos;
-            //public vec3 lastNearPos;
-            public float[] k;
-            public vec3[] factors;
-            public vec3[] worldPos;
-            public vec3[] windowPos;
-            public mat4 projectionMatrix;
-            public mat4 viewMatrix;
-            public vec4 viewport;
-            public PickedGeometry pickedGeometry;
-
             public override string ToString()
             {
                 StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < this.k.Length; i++)
+                builder.AppendLine(string.Format("lastFarPos: [{0}]", lastFarPos));
+                for (int i = 0; i < this.depth.Length; i++)
                 {
                     builder.AppendLine(string.Format("[{0}]: ", this.pickedGeometry.Indexes[i]));
-                    builder.AppendLine(string.Format("far pos: [{0}]", lastFarPos[i]));
-                    builder.AppendLine(string.Format("depth: [{0}]", this.k[i]));
-                    builder.AppendLine(string.Format("factor: [{0}]", this.factors[i]));
+                    builder.AppendLine(string.Format("depth: [{0}]", this.depth[i]));
                     builder.AppendLine(string.Format("worldPos: [{0}]", this.worldPos[i]));
                     builder.AppendLine(string.Format("windowPos: [{0}]", this.windowPos[i]));
+                    builder.AppendLine(string.Format("factor: [{0}]", this.factors[i]));
                     builder.AppendLine();
                 }
+                //builder.AppendLine("cameraPos: ");
+                //builder.AppendLine(this.cameraPos.ToString());
                 builder.AppendLine("viewport: ");
                 builder.AppendLine(this.viewport.ToString());
                 builder.AppendLine("projection matrix: ");
@@ -203,10 +206,10 @@ namespace CSharpGL.Demos
             public vec3[] GetDifferences(vec3 farDifference)
             {
                 mat4 inversed = glm.inverse(this.projectionMatrix * this.viewMatrix);
-                var differences = new vec3[this.k.Length];
+                var differences = new vec3[this.depth.Length];
                 for (int i = 0; i < differences.Length; i++)
                 {
-                    differences[i] = this.k[i] * farDifference;
+                    differences[i] = this.depth[i] * farDifference;
                     differences[i] = new vec3(inversed * (new vec4(differences[i], 0)));
                 }
 
