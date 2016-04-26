@@ -57,7 +57,10 @@ namespace CSharpGL
             }
 
             if (recognizer == null)
-            { throw new NotImplementedException(); }
+            {
+                throw new NotImplementedException(string.Format(
+                    "尚未实现[{0}]的recognizer!", mode));
+            }
 
             return recognizer;
         }
