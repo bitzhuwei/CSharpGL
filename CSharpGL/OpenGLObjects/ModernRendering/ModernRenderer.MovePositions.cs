@@ -21,7 +21,7 @@ namespace CSharpGL
         /// <param name="viewport"></param>
         /// <param name="positionIndexes"></param>
         public void MovePositions(Point differenceOnScreen,
-            mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, uint[] positionIndexes)
+            mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, params uint[] positionIndexes)
         {
             if (positionIndexes == null) { return; }
             if (positionIndexes.Length == 0) { return; }
@@ -37,7 +37,7 @@ namespace CSharpGL
                         viewMatrix, projectionMatrix, viewport);
                     vec3 newProjected = new vec3(projected.x + differenceOnScreen.X,
                         projected.y + differenceOnScreen.Y, projected.z);
-                    array[positionIndexes[i]]=glm.unProject(newProjected,
+                    array[positionIndexes[i]] = glm.unProject(newProjected,
                         viewMatrix, projectionMatrix, viewport);
                 }
             }
