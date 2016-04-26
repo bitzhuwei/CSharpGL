@@ -36,11 +36,10 @@ namespace CSharpGL.Demos
                 if (pickedGeometry != null)
                 {
                     var dragParam = new DragParam(camera, pickedGeometry);
-
-                    //dragParam.lastFarPos = glm.unProject(new vec3(e.X, glCanvas1.Height - e.Y - 1, 1),
-                    //    dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
+                    dragParam.lastFarPos = glm.unProject(new vec3(e.X, glCanvas1.Height - e.Y - 1, 1),
+                        dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
                     //dragParam.lastNearPos = glm.unProject(new vec3(e.X, glCanvas1.Height - e.Y - 1, 0),
-                    //    dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
+                    //dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
                     this.dragParam = dragParam;
 
                     this.lblRightMouseDown.Text = dragParam.ToString();
@@ -61,13 +60,15 @@ namespace CSharpGL.Demos
                 // move vertex
                 if (this.dragParam != null)
                 {
-                    //var newDragParam=new DragParam(this.camera, )
-
+                    vec3 farPos = glm.unProject(new vec3(e.X, glCanvas1.Height - e.Y - 1, 1),
+                        dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
+                    vec3 farDifference = farPos - dragParam.lastFarPos;
+                    dragParam.lastFarPos = farPos;
+                    vec3[] differences = dragParam.GetDifferences(farDifference);
                     this.rendererDict[this.selectedModel].MovePositions(
-                        differences, glm.inverse(dragParam.projectionMatrix * dragParam.viewMatrix), dragParam.pickedGeometry.Indexes);
+                        differences, dragParam.pickedGeometry.Indexes);
 
-                    this.lblRightMouseMove.Text = string.Format("near: [{0}] far: [{1}] diff: [{2}]",
-                        nearPos, farPos, differences);
+                    this.lblRightMouseMove.Text = dragParam.ToString();
                 }
                 else
                 { this.mouseBoard.SetContent("Mouse Move: No action."); }
@@ -188,6 +189,19 @@ namespace CSharpGL.Demos
                 builder.AppendLine(this.viewport.ToString());
 
                 return builder.ToString();
+            }
+
+            public vec3[] GetDifferences(vec3 farDifference)
+            {
+                mat4 inversed = glm.inverse(this.projectionMatrix*this.viewMatrix);
+                var differences = new vec3[this.k.Length];
+                for (int i = 0; i < differences.Length; i++)
+                {
+                    differences[i] = this.k[i] * farDifference;
+                    differences[i] = new vec3(inversed * (new vec4(differences[i], 0)));
+                }
+
+                return differences;
             }
         }
     }
