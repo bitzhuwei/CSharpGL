@@ -57,12 +57,12 @@ namespace CSharpGL
             float average1 = values[0];
             for (int index = 1; index < values.Length; index++)
             {
-                average1 = average1 * (index / (index + 1)) + values[index] / (index + 1);
+                average1 = average1 * ((float)index / ((float)index + 1)) + values[index] / (index + 1);
             }
             float average2 = values[values.Length - 1];
             for (int j = values.Length - 2, index = 1; index < values.Length; j--, index++)
             {
-                average2 = average2 * (index / (index + 1)) + values[j] / (index + 1);
+                average2 = average2 * ((float)index / ((float)index + 1)) + values[j] / (index + 1);
             }
 
             float result = average1 / 2 + average2 / 2;
@@ -80,12 +80,12 @@ namespace CSharpGL
             double average1 = values[0];
             for (int index = 1; index < values.Length; index++)
             {
-                average1 = average1 * (index / (index + 1)) + values[index] / (index + 1);
+                average1 = average1 * ((double)index / ((double)index + 1)) + values[index] / (index + 1);
             }
             double average2 = values[values.Length - 1];
             for (int j = values.Length - 2, index = 1; index < values.Length; j--, index++)
             {
-                average2 = average2 * (index / (index + 1)) + values[j] / (index + 1);
+                average2 = average2 * ((double)index / ((double)index + 1)) + values[j] / (index + 1);
             }
 
             double result = average1 / 2 + average2 / 2;
