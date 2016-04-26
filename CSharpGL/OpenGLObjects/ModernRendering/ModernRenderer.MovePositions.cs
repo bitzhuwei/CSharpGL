@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +11,17 @@ namespace CSharpGL
 {
     public abstract partial class ModernRenderer
     {
+
         /// <summary>
-        /// 根据<paramref name="differences"/>来修改指定索引处的顶点位置。
+        /// 根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。
         /// </summary>
-        /// <param name="differences"></param>
+        /// <param name="differenceOnScreen"></param>
+        /// <param name="viewMatrix"></param>
+        /// <param name="projectionMatrix"></param>
+        /// <param name="viewport"></param>
         /// <param name="positionIndexes"></param>
-        public void MovePositions(vec3[] differences, uint[] positionIndexes)
+        public void MovePositions(Point differenceOnScreen,
+            mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, uint[] positionIndexes)
         {
             if (positionIndexes == null) { return; }
             if (positionIndexes.Length == 0) { return; }
@@ -27,7 +33,12 @@ namespace CSharpGL
                 var array = (vec3*)pointer.ToPointer();
                 for (int i = 0; i < positionIndexes.Length; i++)
                 {
-                    array[positionIndexes[i]] = array[positionIndexes[i]] + differences[i];
+                    vec3 projected = glm.project(array[positionIndexes[i]],
+                        viewMatrix, projectionMatrix, viewport);
+                    vec3 newProjected = new vec3(projected.x + differenceOnScreen.X,
+                        projected.y + differenceOnScreen.Y, projected.z);
+                    array[positionIndexes[i]]=glm.unProject(newProjected,
+                        viewMatrix, projectionMatrix, viewport);
                 }
             }
             GL.UnmapBuffer(BufferTarget.ArrayBuffer);
