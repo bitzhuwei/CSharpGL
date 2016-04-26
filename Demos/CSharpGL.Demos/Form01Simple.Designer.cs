@@ -70,6 +70,7 @@ namespace CSharpGL.Demos
             // 
             // lblColor
             // 
+            this.lblColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.lblColor.Font = new System.Drawing.Font("宋体", 12F);
             this.lblColor.Location = new System.Drawing.Point(12, 9);
             this.lblColor.Name = "lblColor";
