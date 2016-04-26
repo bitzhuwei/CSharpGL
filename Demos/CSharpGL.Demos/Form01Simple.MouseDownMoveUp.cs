@@ -43,7 +43,8 @@ namespace CSharpGL.Demos
                     //dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
                     this.dragParam = dragParam;
 
-                    this.mouseDownBoard.SetContent(dragParam.ToString());
+                    this.mouseDownBoard.SetContent(string.Format("MouseDown{0}{1}",
+                        Environment.NewLine, dragParam));
                 }
             }
         }
@@ -69,7 +70,8 @@ namespace CSharpGL.Demos
                     this.rendererDict[this.selectedModel].MovePositions(
                         differences, dragParam.pickedGeometry.Indexes);
 
-                    this.mouseMoveBoard.SetContent(dragParam.ToString());
+                    this.mouseMoveBoard.SetContent(string.Format("MouseMove{0}{1}",
+                        Environment.NewLine, dragParam));
                 }
                 else
                 { this.mouseDownBoard.SetContent("Mouse Move: No action."); }
@@ -139,6 +141,9 @@ namespace CSharpGL.Demos
                 this.viewport = new vec4(viewport[0], viewport[1], viewport[2], viewport[3]);
 
                 this.k = new float[pickedGeometry.Positions.Length];
+                this.worldPos = new vec3[pickedGeometry.Positions.Length];
+                this.windowPos = new vec3[pickedGeometry.Positions.Length];
+                this.factors = new vec3[pickedGeometry.Positions.Length];
                 for (int i = 0; i < pickedGeometry.Positions.Length; i++)
                 {
                     var worldPos = new vec3(projectionMatrix * viewMatrix * new vec4(pickedGeometry.Positions[i], 1));
@@ -154,12 +159,19 @@ namespace CSharpGL.Demos
                     float y = vTarget.y / vFar.y;
                     float z = vTarget.z / vFar.z;
                     this.k[i] = x / 3 + y / 3 + z / 3;
+
+                    this.worldPos[i] = worldPos;
+                    this.windowPos[i] = windowPos;
+                    this.factors[i] = new vec3(x, y, z);
                 }
             }
 
             public vec3 lastFarPos;
             //public vec3 lastNearPos;
             public float[] k;
+            public vec3[] factors;
+            public vec3[] worldPos;
+            public vec3[] windowPos;
             public mat4 projectionMatrix;
             public mat4 viewMatrix;
             public vec4 viewport;
@@ -170,17 +182,20 @@ namespace CSharpGL.Demos
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < this.k.Length; i++)
                 {
-                    builder.Append(string.Format("[{0}]: ", this.pickedGeometry.Indexes[i]));
-                    //builder.Append(string.Format("far pos: [{0}]", lastFarPos[i]));
-                    builder.Append(string.Format("depth: [{0}]", this.k[i]));
+                    builder.AppendLine(string.Format("[{0}]: ", this.pickedGeometry.Indexes[i]));
+                    builder.AppendLine(string.Format("far pos: [{0}]", lastFarPos[i]));
+                    builder.AppendLine(string.Format("depth: [{0}]", this.k[i]));
+                    builder.AppendLine(string.Format("factor: [{0}]", this.factors[i]));
+                    builder.AppendLine(string.Format("worldPos: [{0}]", this.worldPos[i]));
+                    builder.AppendLine(string.Format("windowPos: [{0}]", this.windowPos[i]));
                     builder.AppendLine();
                 }
+                builder.AppendLine("viewport: ");
+                builder.AppendLine(this.viewport.ToString());
                 builder.AppendLine("projection matrix: ");
                 builder.AppendLine(this.projectionMatrix.ToString());
                 builder.AppendLine("view matrix: ");
                 builder.AppendLine(this.viewMatrix.ToString());
-                builder.AppendLine("viewport: ");
-                builder.AppendLine(this.viewport.ToString());
 
                 return builder.ToString();
             }
