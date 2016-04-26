@@ -59,6 +59,7 @@
       <DependentUpon>Form02EmitNormalLine.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelAdapters\ChainModelAdapter.cs" />
+    <Compile Include="ModelAdapters\TetrahedronModelAdapter.cs" />
     <Compile Include="ModelAdapters\CubeModelAdapter.cs" />
     <Compile Include="ModelAdapters\SphereModelAdapter.cs" />
     <Compile Include="FormBulletinBoard.cs">
@@ -77,6 +78,7 @@
     <Compile Include="ModelAdapters\TeapotModelAdapter.cs" />
     <Compile Include="Models\ChainModel.cs" />
     <Compile Include="Models\BigDipper.cs" />
+    <Compile Include="Models\TetrahedronModel.cs" />
     <Compile Include="Models\CubeModel.cs" />
     <Compile Include="Models\PCIModel.cs" />
     <Compile Include="Form01Simple.cs">

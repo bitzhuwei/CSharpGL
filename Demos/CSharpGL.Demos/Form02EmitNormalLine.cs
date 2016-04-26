@@ -19,6 +19,7 @@ namespace CSharpGL.Demos
 
         public enum GeometryModel
         {
+            Tetrahedron,
             Cube,
             Sphere,
             Teapot,
@@ -233,11 +234,12 @@ namespace CSharpGL.Demos
             }
             {
                 var bufferables = new IBufferable[]{
+                    new TetrahedronModelAdapter(new TetrahedronModel(1.0f)),
                     new CubeModelAdapter(new CubeModel(1.0f)),
                     new SphereModelAdapter(new SphereModel(1.0f)),
                     new TeapotModelAdapter(TeapotModel.GetModel(1.0f)),
                 };
-                var keys = new GeometryModel[] { GeometryModel.Cube, GeometryModel.Sphere, GeometryModel.Teapot };
+                var keys = new GeometryModel[] { GeometryModel.Tetrahedron, GeometryModel.Cube, GeometryModel.Sphere, GeometryModel.Teapot };
                 for (int i = 0; i < bufferables.Length; i++)
                 {
                     IBufferable bufferable = bufferables[i];
@@ -267,7 +269,7 @@ namespace CSharpGL.Demos
 
                     this.rendererDict.Add(key, renderer);
                 }
-                this.SelectedModel = GeometryModel.Teapot;
+                this.SelectedModel = GeometryModel.Tetrahedron;
             }
             {
                 var frmBulletinBoard = new FormBulletinBoard();
