@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form01Simple.FormLoad.cs" />
     <Compile Include="Form03UnProject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +176,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="drag-element.jpg" />
     <Content Include="Models\CubeModel.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

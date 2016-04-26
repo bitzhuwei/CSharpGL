@@ -11,13 +11,12 @@ namespace CSharpGL
     public abstract partial class ModernRenderer
     {
         /// <summary>
-        /// 根据<paramref name="difference"/>来修改指定索引处的顶点位置。
+        /// 根据<paramref name="differences"/>来修改指定索引处的顶点位置。
         /// </summary>
-        /// <param name="difference"></param>
+        /// <param name="differences"></param>
         /// <param name="positionIndexes"></param>
-        public void MovePositions(vec3 difference, uint[] positionIndexes)
+        public void MovePositions(vec3[] differences, uint[] positionIndexes)
         {
-            if (difference == new vec3(0, 0, 0)) { return; }
             if (positionIndexes == null) { return; }
             if (positionIndexes.Length == 0) { return; }
 
@@ -26,9 +25,9 @@ namespace CSharpGL
             unsafe
             {
                 var array = (vec3*)pointer.ToPointer();
-                foreach (var index in positionIndexes)
+                for (int i = 0; i < positionIndexes.Length; i++)
                 {
-                    array[index] = array[index] + difference;
+                    array[positionIndexes[i]] = array[positionIndexes[i]] + differences[i];
                 }
             }
             GL.UnmapBuffer(BufferTarget.ArrayBuffer);
