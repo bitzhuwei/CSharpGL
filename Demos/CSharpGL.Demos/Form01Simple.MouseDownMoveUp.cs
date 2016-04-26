@@ -16,7 +16,7 @@ namespace CSharpGL.Demos
 {
     public partial class Form01Simple
     {
-        
+
         DragParam dragParam;
 
         private FormBulletinBoard mouseBoard;
@@ -75,7 +75,7 @@ namespace CSharpGL.Demos
                     dragParam.lastNearPos = nearPos;
 
                     this.rendererDict[this.selectedModel].MovePositions(
-                        differences, dragParam.pickedGeometry.Indexes);
+                        differences, glm.inverse(dragParam.projectionMatrix * dragParam.viewMatrix), dragParam.pickedGeometry.Indexes);
 
                     this.lblRightMouseMove.Text = string.Format("near: [{0}] far: [{1}] diff: [{2}]",
                         nearPos, farPos, differences);

@@ -15,7 +15,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="differences"></param>
         /// <param name="positionIndexes"></param>
-        public void MovePositions(vec3[] differences, uint[] positionIndexes)
+        public void MovePositions(vec3[] differences, mat4 inverseProjectViewMatrix, uint[] positionIndexes)
         {
             if (positionIndexes == null) { return; }
             if (positionIndexes.Length == 0) { return; }
@@ -27,7 +27,8 @@ namespace CSharpGL
                 var array = (vec3*)pointer.ToPointer();
                 for (int i = 0; i < positionIndexes.Length; i++)
                 {
-                    array[positionIndexes[i]] = array[positionIndexes[i]] + differences[i];
+                    array[positionIndexes[i]] = array[positionIndexes[i]]
+                        + new vec3(inverseProjectViewMatrix * new vec4(differences[i], 0));
                 }
             }
             GL.UnmapBuffer(BufferTarget.ArrayBuffer);
