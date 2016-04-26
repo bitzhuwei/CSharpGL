@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DragParam.cs" />
     <Compile Include="Form01Simple.FormLoad.cs">
       <SubType>Form</SubType>
     </Compile>
