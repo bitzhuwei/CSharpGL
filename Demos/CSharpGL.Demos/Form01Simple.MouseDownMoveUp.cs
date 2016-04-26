@@ -108,7 +108,9 @@ namespace CSharpGL.Demos
                     Color c = GL.ReadPixel(x, this.glCanvas1.Height - y - 1);
                     c = Color.FromArgb(255, c);
                     this.lblReadColor.BackColor = c;
-                    this.lblReadColor.Text = string.Format("Color at mouse: {0}", c);
+                    this.lblReadColor.Text = string.Format(
+                        "Color at mouse [{0}]: [{1}]",
+                        new Point(x, this.glCanvas1.Height - y - 1), c);
                 }
                 {
                     IColorCodedPicking pickable = this.rendererDict[this.SelectedModel];
@@ -161,7 +163,7 @@ namespace CSharpGL.Demos
                 for (int i = 0; i < pickedGeometry.Positions.Length; i++)
                 {
                     var worldPos = new vec3(projectionMatrix * viewMatrix * new vec4(pickedGeometry.Positions[i], 1));
-                    vec3 windowPos = glm.project(worldPos, viewMatrix, projectionMatrix, this.viewport);
+                    vec3 windowPos = glm.project(pickedGeometry.Positions[i], viewMatrix, projectionMatrix, this.viewport);
                     vec3 win = new vec3(windowPos.x, windowPos.y, 1);
                     var farPos = glm.unProject(win, viewMatrix, projectionMatrix, this.viewport);
                     win.z = 0;
