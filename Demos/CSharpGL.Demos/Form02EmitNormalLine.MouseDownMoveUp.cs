@@ -54,7 +54,7 @@ namespace CSharpGL.Demos
             {
                 // move vertex
                 DragParam dragParam = this.dragParam;
-                if (this.dragParam != null)
+                if (dragParam != null)
                 {
                     var current = new Point(e.X, glCanvas1.Height - e.Y - 1);
                     Point differenceOnScreen = new Point(
