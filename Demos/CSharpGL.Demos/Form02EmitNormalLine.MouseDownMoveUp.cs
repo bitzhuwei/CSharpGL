@@ -17,22 +17,56 @@ namespace CSharpGL.Demos
     public partial class Form02EmitNormalLine : Form
     {
 
+        DragParam dragParam;
+
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
-            this.mousePosition = new Point(e.X, e.Y);
-
-            rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
-            rotator.MouseDown(e.X, e.Y);
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                // operate camera
+                rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
+                rotator.MouseDown(e.X, e.Y);
+            }
+            else if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                // move vertex
+                PickedGeometry pickedGeometry = RunPicking(e.X, e.Y);
+                if (pickedGeometry != null)
+                {
+                    var dragParam = new DragParam(pickedGeometry,
+                        camera.GetProjectionMat4(),
+                        camera.GetViewMat4(),
+                        new Point(e.X, glCanvas1.Height - e.Y - 1));
+                    this.dragParam = dragParam;
+                }
+            }
         }
 
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            this.mousePosition = new Point(e.X, e.Y);
-
-            if (rotator.MouseDownFlag)
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
+                // operate camera
                 rotator.MouseMove(e.X, e.Y);
                 //this.cameraUpdated = true;
+            }
+            else if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                // move vertex
+                DragParam dragParam = this.dragParam;
+                if (this.dragParam != null)
+                {
+                    var current = new Point(e.X, glCanvas1.Height - e.Y - 1);
+                    Point differenceOnScreen = new Point(
+                        current.X - dragParam.lastMousePositionOnScreen.X,
+                        current.Y - dragParam.lastMousePositionOnScreen.Y);
+                    dragParam.lastMousePositionOnScreen = current;
+                    this.rendererDict[this.selectedModel].MovePositions(
+                        differenceOnScreen,
+                        dragParam.viewMatrix, dragParam.projectionMatrix,
+                        dragParam.viewport,
+                        dragParam.pickedGeometry.Indexes);
+                }
             }
             else
             {
@@ -40,7 +74,7 @@ namespace CSharpGL.Demos
             }
         }
 
-        private void RunPicking(int x, int y)
+        private PickedGeometry RunPicking(int x, int y)
         {
             lock (this.synObj)
             {
@@ -60,22 +94,31 @@ namespace CSharpGL.Demos
                         this.camera, x, y, this.glCanvas1.Width, this.glCanvas1.Height, pickable);
                     if (pickedGeometry != null)
                     {
-                        this.bulletinBoard.SetContent(pickedGeometry.ToString(
+                        this.RunPickingBoard.SetContent(pickedGeometry.ToString(
                             camera.GetProjectionMat4(), camera.GetViewMat4()));
                     }
                     else
                     {
-                        this.bulletinBoard.SetContent("picked nothing.");
+                        this.RunPickingBoard.SetContent("picked nothing.");
                     }
+
+                    return pickedGeometry;
                 }
             }
         }
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
         {
-            this.mousePosition = new Point(e.X, e.Y);
-
-            rotator.MouseUp(e.X, e.Y);
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                // operate camera
+                rotator.MouseUp(e.X, e.Y);
+            }
+            else if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                // move vertex
+                this.dragParam = null;
+            }
         }
 
     }

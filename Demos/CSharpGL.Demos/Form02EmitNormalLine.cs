@@ -65,7 +65,7 @@ namespace CSharpGL.Demos
         /// </summary>
         Camera camera;
 
-        private FormBulletinBoard bulletinBoard;
+        private FormBulletinBoard RunPickingBoard;
         private FormProperyGrid rendererPropertyGrid;
         private FormProperyGrid cameraPropertyGrid;
         private FormProperyGrid formPropertyGrid;
@@ -95,7 +95,6 @@ namespace CSharpGL.Demos
 
         RenderModes renderMode;
         private readonly object synObj = new object();
-        private Point mousePosition;
 
         public RenderModes RenderMode
         {
