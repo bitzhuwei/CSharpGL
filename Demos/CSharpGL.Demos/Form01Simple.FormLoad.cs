@@ -67,7 +67,13 @@ namespace CSharpGL.Demos
                 var frmBulletinBoard = new FormBulletinBoard();
                 frmBulletinBoard.Dump = true;
                 frmBulletinBoard.Show();
-                this.mouseBoard = frmBulletinBoard;
+                this.mouseDownBoard = frmBulletinBoard;
+            }
+            {
+                var frmBulletinBoard = new FormBulletinBoard();
+                frmBulletinBoard.Dump = true;
+                frmBulletinBoard.Show();
+                this.mouseMoveBoard = frmBulletinBoard;
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();

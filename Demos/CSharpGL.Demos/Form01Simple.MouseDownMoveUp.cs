@@ -19,7 +19,8 @@ namespace CSharpGL.Demos
 
         DragParam dragParam;
 
-        private FormBulletinBoard mouseBoard;
+        private FormBulletinBoard mouseDownBoard;
+        private FormBulletinBoard mouseMoveBoard;
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -42,7 +43,7 @@ namespace CSharpGL.Demos
                     //dragParam.viewMatrix, dragParam.projectionMatrix, dragParam.viewport);
                     this.dragParam = dragParam;
 
-                    this.lblRightMouseDown.Text = dragParam.ToString();
+                    this.mouseDownBoard.SetContent(dragParam.ToString());
                 }
             }
         }
@@ -68,10 +69,10 @@ namespace CSharpGL.Demos
                     this.rendererDict[this.selectedModel].MovePositions(
                         differences, dragParam.pickedGeometry.Indexes);
 
-                    this.lblRightMouseMove.Text = dragParam.ToString();
+                    this.mouseMoveBoard.SetContent(dragParam.ToString());
                 }
                 else
-                { this.mouseBoard.SetContent("Mouse Move: No action."); }
+                { this.mouseDownBoard.SetContent("Mouse Move: No action."); }
             }
             else
             {
@@ -92,7 +93,7 @@ namespace CSharpGL.Demos
                 //this.pickedGeometry = null;
                 this.dragParam = null;
 
-                this.mouseBoard.SetContent("Mouse Up: No action.");
+                this.mouseDownBoard.SetContent("Mouse Up: No action.");
             }
         }
 
@@ -105,14 +106,7 @@ namespace CSharpGL.Demos
                     Color c = GL.ReadPixel(x, this.glCanvas1.Height - y - 1);
                     c = Color.FromArgb(255, c);
                     this.lblReadColor.BackColor = c;
-                    var depth = new UnmanagedArray<float>(1);
-                    GL.ReadPixels(x, glCanvas1.Height - y - 1, 1, 1,
-                        GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT, depth.Header);
-                    var targetDepth = depth[0];
-                    depth.Dispose();
-                    this.lblText.Text = string.Format(
-                        "Position: {0}, {1}, Depth: {2}",
-                            new Point(x, y), this.lblReadColor.BackColor, targetDepth);
+                    this.lblReadColor.Text = string.Format("Color at mouse: {0}", c);
                 }
                 {
                     IColorCodedPicking pickable = this.rendererDict[this.SelectedModel];
@@ -193,7 +187,7 @@ namespace CSharpGL.Demos
 
             public vec3[] GetDifferences(vec3 farDifference)
             {
-                mat4 inversed = glm.inverse(this.projectionMatrix*this.viewMatrix);
+                mat4 inversed = glm.inverse(this.projectionMatrix * this.viewMatrix);
                 var differences = new vec3[this.k.Length];
                 for (int i = 0; i < differences.Length; i++)
                 {
