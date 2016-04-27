@@ -31,8 +31,8 @@ namespace CSharpGL.Demos
         {
             this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.lblReadColor = new System.Windows.Forms.Label();
-            this.glCanvas1 = new CSharpGL.Windows.GLCanvas();
             this.lblColor = new System.Windows.Forms.Label();
+            this.glCanvas1 = new CSharpGL.Windows.GLCanvas();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,6 +53,15 @@ namespace CSharpGL.Demos
             this.lblReadColor.TabIndex = 1;
             this.lblReadColor.Text = "Color At Mouse";
             // 
+            // lblColor
+            // 
+            this.lblColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.lblColor.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblColor.Location = new System.Drawing.Point(12, 9);
+            this.lblColor.Name = "lblColor";
+            this.lblColor.Size = new System.Drawing.Size(64, 20);
+            this.lblColor.TabIndex = 1;
+            // 
             // glCanvas1
             // 
             this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -65,17 +74,10 @@ namespace CSharpGL.Demos
             this.glCanvas1.RenderTrigger = CSharpGL.Windows.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(720, 439);
             this.glCanvas1.TabIndex = 0;
+            this.glCanvas1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.glCanvas1_KeyDown);
             this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
+            this.glCanvas1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.glCanvas1_KeyUp);
             this.glCanvas1.Resize += new System.EventHandler(this.glCanvas1_Resize);
-            // 
-            // lblColor
-            // 
-            this.lblColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.lblColor.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblColor.Location = new System.Drawing.Point(12, 9);
-            this.lblColor.Name = "lblColor";
-            this.lblColor.Size = new System.Drawing.Size(64, 20);
-            this.lblColor.TabIndex = 1;
             // 
             // Form01Simple
             // 

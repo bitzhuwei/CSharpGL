@@ -33,10 +33,11 @@ namespace CSharpGL.Demos
                 PickedGeometry pickedGeometry = RunPicking(e.X, e.Y);
                 if (pickedGeometry != null)
                 {
-                    var dragParam = new DragParam(pickedGeometry,
+                    var dragParam = new DragParam(
                         camera.GetProjectionMat4(),
                         camera.GetViewMat4(),
-                        new Point(e.X, glCanvas1.Height - e.Y - 1));
+                        new Point(e.X, glCanvas1.Height - e.Y - 1),
+                        pickedGeometry.Indexes);
                     this.dragParam = dragParam;
                 }
             }
@@ -65,7 +66,7 @@ namespace CSharpGL.Demos
                         differenceOnScreen,
                         dragParam.viewMatrix, dragParam.projectionMatrix,
                         dragParam.viewport,
-                        dragParam.pickedGeometry.Indexes);
+                        dragParam.pickedIndexes);
                 }
             }
             else

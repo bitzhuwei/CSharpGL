@@ -17,27 +17,60 @@ namespace CSharpGL.Demos
     public partial class Form01Simple
     {
 
-        DragParam dragParam;
+        private void glCanvas1_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if (e.Control && (!this.leftMouseDown)) { this.controlDown = true; }
+        }
+
+        private void glCanvas1_KeyUp(object sender, KeyEventArgs e)
+        {
+            //if (!e.Control)
+            //{
+            //    this.controlDown = false;
+            //}
+        }
+
+        private List<uint> selectedIndexes = new List<uint>();
+        private DragParam dragParam;
+        //private bool controlDown = false;
+        //private bool leftMouseDown = false;
+        //private bool rightMouseDown = false;
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
+                //this.rightMouseDown = true;
                 // operate camera
                 rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
                 rotator.MouseDown(e.X, e.Y);
             }
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
+                //this.leftMouseDown = true;
                 // move vertex
-                PickedGeometry pickedGeometry = RunPicking(e.X, e.Y);
-                if (pickedGeometry != null)
+                //if (this.controlDown)// 框选
+                //{
+                //}
+                //else// 试图拖拽
                 {
-                    var dragParam = new DragParam(pickedGeometry,
-                        camera.GetProjectionMat4(),
-                        camera.GetViewMat4(),
-                        new Point(e.X, glCanvas1.Height -  e.Y - 1));
-                    this.dragParam = dragParam;
+                    PickedGeometry pickedGeometry = RunPicking(e.X, e.Y);
+                    if (pickedGeometry != null)
+                    { this.selectedIndexes.AddRange(pickedGeometry.Indexes); }
+                    List<uint> selectedIndexes = this.selectedIndexes;
+                    if (selectedIndexes.Count > 0)
+                    {
+                        var dragParam = new DragParam(
+                            camera.GetProjectionMat4(),
+                            camera.GetViewMat4(),
+                            new Point(e.X, glCanvas1.Height - e.Y - 1),
+                            selectedIndexes);
+                        this.dragParam = dragParam;
+                    }
+                    else
+                    {
+                        this.dragParam = null;
+                    }
                 }
             }
         }
@@ -53,20 +86,28 @@ namespace CSharpGL.Demos
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 // move vertex
-                DragParam dragParam = this.dragParam;
-                if (dragParam != null)
+                //if (this.controlDown)// 框选
+                //{
+
+                //}
+                //else// 试图拖拽
                 {
-                    var current = new Point(e.X, glCanvas1.Height - e.Y - 1);
-                    Point differenceOnScreen = new Point(
-                        current.X - dragParam.lastMousePositionOnScreen.X,
-                        current.Y - dragParam.lastMousePositionOnScreen.Y);
-                    dragParam.lastMousePositionOnScreen = current;
-                    this.rendererDict[this.selectedModel].MovePositions(
-                        differenceOnScreen,
-                        dragParam.viewMatrix, dragParam.projectionMatrix,
-                        dragParam.viewport,
-                        dragParam.pickedGeometry.Indexes);
+                    DragParam dragParam = this.dragParam;
+                    if (dragParam != null)
+                    {
+                        var current = new Point(e.X, glCanvas1.Height - e.Y - 1);
+                        Point differenceOnScreen = new Point(
+                            current.X - dragParam.lastMousePositionOnScreen.X,
+                            current.Y - dragParam.lastMousePositionOnScreen.Y);
+                        dragParam.lastMousePositionOnScreen = current;
+                        this.rendererDict[this.selectedModel].MovePositions(
+                            differenceOnScreen,
+                            dragParam.viewMatrix, dragParam.projectionMatrix,
+                            dragParam.viewport,
+                            dragParam.pickedIndexes);
+                    }
                 }
+
             }
             else
             {
@@ -78,13 +119,22 @@ namespace CSharpGL.Demos
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
+                //this.rightMouseDown = false;
                 // operate camera
                 rotator.MouseUp(e.X, e.Y);
             }
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
+                //this.leftMouseDown = false;
                 // move vertex
-                this.dragParam = null;
+                //if (this.controlDown)
+                //{
+
+                //}
+                //else
+                {
+                    this.selectedIndexes.Clear();
+                }
             }
         }
 
