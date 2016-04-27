@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="CSharpGL.HighlightModernRenderer" Collapsed="true">
+    <Position X="0.5" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAABAAAAAAEgAAAAAABgJAgwgAAAAAAAA=</HashCode>
+      <FileName>OpenGLObjects\ModernRendering\HighlightModernRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.ModernRenderer" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEABYAAAAQAAAMAAgBAAAABjgAAQEgEKAAQQQA=</HashCode>
+      <FileName>OpenGLObjects\ModernRendering\ModernRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.OneIndexModernRenderer" Collapsed="true">
+    <Position X="3.5" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAEEgAAACAAAAgAABiAAAAAABgIAgwAAAhAQAAA=</HashCode>
+      <FileName>OpenGLObjects\ModernRendering\OneIndexModernRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.PickableModernRenderer" Collapsed="true">
+    <Position X="5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAEAABAAAAFAAAEAAAgAAAgJAAAAEQAAA=</HashCode>
+      <FileName>OpenGLObjects\ModernRendering\PickableModernRenderer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CSharpGL.PickableModernRendererFactory" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OpenGLObjects\ModernRendering\PickableModernRendererFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.PropertyNameMap" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACIgAAAAAAAAABAAAAAIAAAAAAAAAAEAAAAAABAAAAA=</HashCode>
+      <FileName>OpenGLObjects\ModernRendering\PropertyNameMap.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CSharpGL.ShaderCode" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAEAEAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>OpenGLObjects\ModernRendering\ShaderCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.ZeroIndexModernRenderer" Collapsed="true">
+    <Position X="6.5" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAABgEAAAAABAAAAAAAAAIZAAA=</HashCode>
+      <FileName>OpenGLObjects\ModernRendering\ZeroIndexModernRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CSharpGL.IBufferable" Collapsed="true">
+    <Position X="9.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OpenGLObjects\ModernRendering\IBufferable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
