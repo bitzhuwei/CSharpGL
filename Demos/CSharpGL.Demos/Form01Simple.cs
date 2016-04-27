@@ -39,7 +39,7 @@ namespace CSharpGL.Demos
             }
         }
 
-        Dictionary<GeometryModel, PickableModernRenderer> rendererDict = new Dictionary<GeometryModel, PickableModernRenderer>();
+        Dictionary<GeometryModel, HighlightedPickableRenderer> rendererDict = new Dictionary<GeometryModel, HighlightedPickableRenderer>();
 
         ///// <summary>
         ///// 要渲染的对象
@@ -87,7 +87,8 @@ namespace CSharpGL.Demos
 
         void Application_Idle(object sender, EventArgs e)
         {
-            this.Text = string.Format("{0} {1}", this.Name, this.rendererDict[this.selectedModel].DrawMode);
+            this.Text = string.Format("{0} {1}", this.Name, 
+                this.rendererDict[this.selectedModel].PickableRenderer.DrawMode);
         }
 
         public Color ClearColor { get; set; }
@@ -120,7 +121,7 @@ namespace CSharpGL.Demos
 
                 GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-                PickableModernRenderer renderer = this.rendererDict[this.SelectedModel];
+                HighlightedPickableRenderer renderer = this.rendererDict[this.SelectedModel];
                 if (renderer != null)
                 {
                     //if (cameraUpdated)
@@ -128,12 +129,13 @@ namespace CSharpGL.Demos
                         UpdateMVP(renderer);
                         //cameraUpdated = false;
                     }
-                    renderer.Render(new RenderEventArgs(RenderMode, this.camera));
+                    var arg = new RenderEventArgs(RenderMode, this.camera);
+                    renderer.Render(arg);
                 }
             }
         }
 
-        private void UpdateMVP(PickableModernRenderer renderer)
+        private void UpdateMVP(HighlightedPickableRenderer renderer)
         {
             mat4 projectionMatrix = camera.GetProjectionMat4();
             mat4 viewMatrix = camera.GetViewMat4();
@@ -142,14 +144,16 @@ namespace CSharpGL.Demos
             if (this.RenderMode == RenderModes.ColorCodedPicking
                 || this.RenderMode == RenderModes.ColorCodedPickingPoints)
             {
-                IColorCodedPicking picking = renderer;
-                picking.MVP = projectionMatrix * viewMatrix * modelMatrix;
+                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+                renderer.PickableRenderer.MVP = mvp;
             }
             else if (this.RenderMode == RenderModes.Render)
             {
-                renderer.SetUniformValue("projectionMatrix", projectionMatrix);
-                renderer.SetUniformValue("viewMatrix", viewMatrix);
-                renderer.SetUniformValue("modelMatrix", modelMatrix);
+                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+                renderer.Highlighter.MVP = mvp;
+                renderer.PickableRenderer.SetUniformValue("projectionMatrix", projectionMatrix);
+                renderer.PickableRenderer.SetUniformValue("viewMatrix", viewMatrix);
+                renderer.PickableRenderer.SetUniformValue("modelMatrix", modelMatrix);
             }
             else
             { throw new NotImplementedException(); }

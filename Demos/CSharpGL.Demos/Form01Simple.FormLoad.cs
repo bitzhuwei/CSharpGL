@@ -16,7 +16,7 @@ namespace CSharpGL.Demos
 {
     public partial class Form01Simple : Form
     {
-        
+
         private void Form01ModernRenderer_Load(object sender, EventArgs e)
         {
             {
@@ -44,14 +44,20 @@ namespace CSharpGL.Demos
                     propertyNameMap.Add("in_Position", "position");
                     propertyNameMap.Add("in_Color", "color");
                     string positionNameInIBufferable = "position";
-                    var renderer = PickableModernRendererFactory.GetModernRenderer(bufferable, shaders, propertyNameMap, positionNameInIBufferable);
-                    renderer.Initialize();
-                    GLSwitch lineWidthSwitch = new LineWidthSwitch(10.0f);
-                    renderer.SwitchList.Add(lineWidthSwitch);
-                    GLSwitch pointSizeSwitch = new PointSizeSwitch(10.0f);
-                    renderer.SwitchList.Add(pointSizeSwitch);
-                    GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
-                    renderer.SwitchList.Add(polygonModeSwitch);
+                    var highlightRenderer = new HighlightModernRenderer(bufferable, positionNameInIBufferable);
+                    highlightRenderer.Initialize();
+                    var pickableRenderer = PickableModernRendererFactory.GetModernRenderer(bufferable, shaders, propertyNameMap, positionNameInIBufferable);
+                    pickableRenderer.Initialize();
+                    {
+                        GLSwitch lineWidthSwitch = new LineWidthSwitch(4);
+                        pickableRenderer.SwitchList.Add(lineWidthSwitch);
+                        GLSwitch pointSizeSwitch = new PointSizeSwitch(4);
+                        pickableRenderer.SwitchList.Add(pointSizeSwitch);
+                        GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Lines);
+                        pickableRenderer.SwitchList.Add(polygonModeSwitch);
+                    }
+                    HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
+                        highlightRenderer, pickableRenderer);
 
                     this.rendererDict.Add(key, renderer);
                 }
@@ -65,7 +71,7 @@ namespace CSharpGL.Demos
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this.rendererDict[this.SelectedModel]);
+                frmPropertyGrid.DisplayObject(this.rendererDict[this.SelectedModel].PickableRenderer);
                 frmPropertyGrid.Show();
                 this.rendererPropertyGrid = frmPropertyGrid;
             }
