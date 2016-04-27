@@ -28,11 +28,11 @@ namespace CSharpGL
                 new PropertyNameMap("in_Position", positionNameInIBufferable),
                 positionNameInIBufferable, switches)
         {
-            var uniform = new UniformVec4("highlightColor");
+            var uniformHighlightColor = new UniformVec4("highlightColor");
             //another way: uniform.SetValue(new vec4(1, 1, 1, 1));
-            uniform.Value = new vec4(1, 1, 1, 1);
-            this.UniformVariables.Add(uniform);
-            this.UniformVariables.Add(this.pickingMVP);
+            uniformHighlightColor.Value = new vec4(1, 1, 1, 1);
+            this.UniformVariables.Add(uniformHighlightColor);
+            this.UniformVariables.Add(this.uniformMVP);
             var polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Lines);
             this.SwitchList.Add(polygonModeSwitch);
             var lineWidthSwitch = new LineWidthSwitch(10.0f);
