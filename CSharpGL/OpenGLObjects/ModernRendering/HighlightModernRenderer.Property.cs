@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GLM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// 高亮显示某些图元
     /// </summary>
-    public partial class HighlightModernRenderer 
+    public partial class HighlightModernRenderer
     {
         protected OneIndexBufferPtr oneIndexBufferPtr;
 
@@ -53,6 +54,21 @@ namespace CSharpGL
                 { return this.oneIndexBufferPtr.Type; }
             }
         }
+
+        protected UniformMat4 uniformMVP = new UniformMat4("MVP");
+
+        public mat4 MVP
+        {
+            get { return this.uniformMVP.Value; }
+            set
+            {
+                if (value != this.uniformMVP.Value)
+                {
+                    this.uniformMVP.Value = value;
+                }
+            }
+        }
+
     }
 
 
