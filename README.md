@@ -56,6 +56,20 @@
 <h2>Cube</h2>
 <p><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000021.jpg" alt="" width="687" height="574" /></p>
 <p>&nbsp;</p>
+<h1>将OpenGL渲染出来的内容保存到PNG图片</h1>
+<p><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000092.jpg" alt="" width="687" height="574" /></p>
+<p><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_c.png" alt="" width="529" height="394" /></p>
+<p>&nbsp;</p>
+<h1>拖拽图元</h1>
+<p><img src="http://images2015.cnblogs.com/blog/383191/201604/383191-20160427022619548-1430824180.png" alt="" /></p>
+<p>例如，你可以把Big Dipper这个模型拽成下面这个样子。</p>
+<p><img src="http://images2015.cnblogs.com/blog/383191/201604/383191-20160427022620845-826784277.png" alt="" /></p>
+<p>配合旋转，还可以继续拖拽成这样。</p>
+<p><img src="http://images2015.cnblogs.com/blog/383191/201604/383191-20160427022622111-180174169.png" alt="" /></p>
+<p>当然，能拖拽的不只是线段。还可以拖拽三角形（如下图）、四边形。</p>
+<p><img src="http://images2015.cnblogs.com/blog/383191/201604/383191-20160427023855377-1510998196.png" alt="" width="557" height="465" /></p>
+<p>另外，还可以单点拖拽。</p>
+<p><img src="http://images2015.cnblogs.com/blog/383191/201604/383191-20160427141620955-245791237.jpg" alt="" width="950" height="404" /></p>
 <p>&nbsp;</p>
 <h1>总结</h1>
 <p>原CSharpGL的其他功能（UI、3ds解析器、TTF2Bmp、CSSL等），我将逐步加入新CSharpGL。</p>
