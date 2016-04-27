@@ -6,9 +6,22 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 根据<see cref="IndexBufferPtr"/>的具体类型获取一个<see cref="PickableModernRenderer"/>
+    /// </summary>
     public static class PickableModernRendererFactory
     {
-        public static PickableModernRenderer GetModernRenderer(this IBufferable bufferable, ShaderCode[] shaderCodes,
+        /// <summary>
+        /// 根据<see cref="IndexBufferPtr"/>的具体类型获取一个<see cref="PickableModernRenderer"/>
+        /// </summary>
+        /// <param name="bufferable"></param>
+        /// <param name="shaderCodes"></param>
+        /// <param name="propertyNameMap"></param>
+        /// <param name="positionNameInIBufferable"></param>
+        /// <param name="switches"></param>
+        /// <returns></returns>
+        public static PickableModernRenderer GetModernRenderer(
+            this IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, string positionNameInIBufferable,
             params GLSwitch[] switches)
         {

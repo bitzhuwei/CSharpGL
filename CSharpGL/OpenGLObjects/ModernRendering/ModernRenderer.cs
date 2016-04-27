@@ -25,6 +25,9 @@ namespace CSharpGL
         /// 从模型到buffer的pointer
         /// </summary>
         protected IBufferable bufferable;
+        /// <summary>
+        /// 各种类型的shader代码
+        /// </summary>
         protected ShaderCode[] shaderCode;
         /// <summary>
         /// vertex shader中的in变量与<see cref="propertyBufferPointers"/>中的元素名字的对应关系。

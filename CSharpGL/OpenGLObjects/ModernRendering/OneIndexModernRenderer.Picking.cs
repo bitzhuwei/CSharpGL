@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    //TODO:  copyed from ModernRenderer, need to update(This is complex)
+    // check http://www.cnblogs.com/bitzhuwei/p/CSharpGL-18-Picking-of-OneIndexBuffer.html
     public partial class OneIndexModernRenderer
     {
 
@@ -225,6 +225,15 @@ namespace CSharpGL
             GL.Flush();
         }
 
+        /// <summary>
+        /// 将共享点前移，然后重新渲染、拾取
+        /// </summary>
+        /// <param name="recognizedPrimitiveIndex0"></param>
+        /// <param name="recognizedPrimitiveIndex1"></param>
+        /// <param name="drawMode"></param>
+        /// <param name="oneIndexBufferPtr"></param>
+        /// <param name="lastIndex0"></param>
+        /// <param name="lastIndex1"></param>
         private void AssembleIndexBuffer(
             RecognizedPrimitiveIndex recognizedPrimitiveIndex0,
             RecognizedPrimitiveIndex recognizedPrimitiveIndex1,
@@ -261,7 +270,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// 将共享点前移，构成2个图元组成的新的小小的索引。
         /// </summary>
         /// <param name="recognizedPrimitiveIndex0"></param>
         /// <param name="recognizedPrimitiveIndex1"></param>

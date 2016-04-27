@@ -111,7 +111,8 @@ namespace CSharpGL
             else
             {
                 ErrorCode error = (ErrorCode)GL.GetError();
-                Debug.WriteLine("Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId);
+                throw new Exception(string.Format(
+                    "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId));
             }
             GL.UnmapBuffer(BufferTarget.ArrayBuffer);
         }

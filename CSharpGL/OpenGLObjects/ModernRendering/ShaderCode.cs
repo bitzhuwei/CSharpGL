@@ -10,6 +10,12 @@ namespace CSharpGL
     /// </summary>
     public class ShaderCode
     {
+
+        /// <summary>
+        /// 各种类型的shader代码
+        /// </summary>
+        /// <param name="sourceCode"></param>
+        /// <param name="shaderType"></param>
         public ShaderCode(string sourceCode, ShaderType shaderType)
         {
             this.SourceCode = sourceCode;
