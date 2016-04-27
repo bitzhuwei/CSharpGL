@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form01Simple
+    public partial class Form01ModernRenderer
     {
 
         private void glCanvas1_KeyDown(object sender, KeyEventArgs e)

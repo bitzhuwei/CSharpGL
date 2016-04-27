@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form01Simple : Form
+    public partial class Form01ModernRenderer : Form
     {
         public enum GeometryModel
         {
@@ -74,7 +74,7 @@ namespace CSharpGL.Demos
         private FormProperyGrid highlightRendererPropertyGrid;
         private FormProperyGrid formPropertyGrid;
 
-        public Form01Simple()
+        public Form01ModernRenderer()
         {
             InitializeComponent();
 

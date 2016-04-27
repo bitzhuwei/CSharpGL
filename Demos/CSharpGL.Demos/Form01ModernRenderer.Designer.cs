@@ -1,7 +1,7 @@
 ﻿using CSharpGL.Windows;
 namespace CSharpGL.Demos
 {
-    partial class Form01Simple
+    partial class Form01ModernRenderer
     {
         /// <summary>
         /// Required designer variable.

@@ -47,22 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DragParam.cs" />
-    <Compile Include="Form01Simple.FormLoad.cs">
+    <Compile Include="Form01ModernRenderer.FormLoad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form01Simple.MouseDownMoveUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form02EmitNormalLine.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form02EmitNormalLine.Designer.cs">
-      <DependentUpon>Form02EmitNormalLine.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form02EmitNormalLine.FormLoad.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form02EmitNormalLine.MouseDownMoveUp.cs">
+    <Compile Include="Form01ModernRenderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HighlightedPickableRenderer.cs" />
@@ -89,11 +77,11 @@
     <Compile Include="Models\TetrahedronModel.cs" />
     <Compile Include="Models\CubeModel.cs" />
     <Compile Include="Models\PCIModel.cs" />
-    <Compile Include="Form01Simple.cs">
+    <Compile Include="Form01ModernRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form01Simple.Designer.cs">
-      <DependentUpon>Form01Simple.cs</DependentUpon>
+    <Compile Include="Form01ModernRenderer.Designer.cs">
+      <DependentUpon>Form01ModernRenderer.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -123,11 +111,8 @@
     <None Include="Shaders\Simple.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <EmbeddedResource Include="Form02EmitNormalLine.resx">
-      <DependentUpon>Form02EmitNormalLine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form01Simple.resx">
-      <DependentUpon>Form01Simple.cs</DependentUpon>
+    <EmbeddedResource Include="Form01ModernRenderer.resx">
+      <DependentUpon>Form01ModernRenderer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form00GLCanvas.resx">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>

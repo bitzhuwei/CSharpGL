@@ -22,14 +22,10 @@ namespace CSharpGL.Demos
             (new Form00GLCanvas()).Show();
         }
 
-        private void btnForm01Simple_Click(object sender, EventArgs e)
+        private void btnForm01ModernRenderer_Click(object sender, EventArgs e)
         {
-            (new Form01Simple()).Show();
+            (new Form01ModernRenderer()).Show();
         }
 
-        private void btnForm02EmitNormalLine_Click(object sender, EventArgs e)
-        {
-            (new Form02EmitNormalLine()).Show();
-        }
     }
 }

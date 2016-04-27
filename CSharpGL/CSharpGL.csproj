@@ -283,6 +283,7 @@
   <ItemGroup>
     <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Highlight.vert" />
     <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Highlight.frag" />
+    <None Include="OpenGLObjects\ModernRendering\ModernRenderer.cd" />
     <None Include="OpenGLObjects\ModernRendering\PickableModernRenderer.cd" />
     <None Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.cd" />
     <EmbeddedResource Include="Controls\GLCanvas.resx">

@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             this.btnForm00GLCanvas = new System.Windows.Forms.Button();
-            this.btnForm01Simple = new System.Windows.Forms.Button();
-            this.btnForm02EmitNormalLine = new System.Windows.Forms.Button();
+            this.btnForm01ModernRenderer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -44,35 +43,23 @@
             this.btnForm00GLCanvas.UseVisualStyleBackColor = true;
             this.btnForm00GLCanvas.Click += new System.EventHandler(this.btnForm00GLCanvas_Click);
             // 
-            // btnForm01Simple
+            // btnForm01ModernRenderer
             // 
-            this.btnForm01Simple.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnForm01Simple.Location = new System.Drawing.Point(12, 55);
-            this.btnForm01Simple.Name = "btnForm01Simple";
-            this.btnForm01Simple.Size = new System.Drawing.Size(269, 37);
-            this.btnForm01Simple.TabIndex = 0;
-            this.btnForm01Simple.Text = "Form01 Simple";
-            this.btnForm01Simple.UseVisualStyleBackColor = true;
-            this.btnForm01Simple.Click += new System.EventHandler(this.btnForm01Simple_Click);
-            // 
-            // btnForm02EmitNormalLine
-            // 
-            this.btnForm02EmitNormalLine.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnForm02EmitNormalLine.Location = new System.Drawing.Point(12, 98);
-            this.btnForm02EmitNormalLine.Name = "btnForm02EmitNormalLine";
-            this.btnForm02EmitNormalLine.Size = new System.Drawing.Size(269, 37);
-            this.btnForm02EmitNormalLine.TabIndex = 0;
-            this.btnForm02EmitNormalLine.Text = "Form02 EmitNormalLine";
-            this.btnForm02EmitNormalLine.UseVisualStyleBackColor = true;
-            this.btnForm02EmitNormalLine.Click += new System.EventHandler(this.btnForm02EmitNormalLine_Click);
+            this.btnForm01ModernRenderer.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnForm01ModernRenderer.Location = new System.Drawing.Point(12, 55);
+            this.btnForm01ModernRenderer.Name = "btnForm01ModernRenderer";
+            this.btnForm01ModernRenderer.Size = new System.Drawing.Size(269, 37);
+            this.btnForm01ModernRenderer.TabIndex = 0;
+            this.btnForm01ModernRenderer.Text = "Form01 ModernRenderer";
+            this.btnForm01ModernRenderer.UseVisualStyleBackColor = true;
+            this.btnForm01ModernRenderer.Click += new System.EventHandler(this.btnForm01ModernRenderer_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 545);
-            this.Controls.Add(this.btnForm02EmitNormalLine);
-            this.Controls.Add(this.btnForm01Simple);
+            this.Controls.Add(this.btnForm01ModernRenderer);
             this.Controls.Add(this.btnForm00GLCanvas);
             this.Name = "FormMain";
             this.Text = "CSharpGL Test/Demo Panel - http://bitzhuwei.cnblogs.com";
@@ -83,7 +70,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnForm00GLCanvas;
-        private System.Windows.Forms.Button btnForm01Simple;
-        private System.Windows.Forms.Button btnForm02EmitNormalLine;
+        private System.Windows.Forms.Button btnForm01ModernRenderer;
     }
 }

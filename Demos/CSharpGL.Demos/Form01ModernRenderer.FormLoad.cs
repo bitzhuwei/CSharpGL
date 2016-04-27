@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form01Simple : Form
+    public partial class Form01ModernRenderer : Form
     {
 
         private void Form01ModernRenderer_Load(object sender, EventArgs e)
