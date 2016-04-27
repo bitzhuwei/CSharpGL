@@ -13,12 +13,10 @@ namespace CSharpGL
     public partial class HighlightModernRenderer
     {
 
+        protected int maxElementCount = 0;
+
         protected override void DoInitialize()
         {
-            // init index buffer object's renderer
-            this.oneIndexBufferPtr = this.bufferable.GetIndex() as OneIndexBufferPtr;
-            if (this.oneIndexBufferPtr == null) { throw new Exception(); }
-
             // init shader program
             ShaderProgram program = new ShaderProgram();
             var shaders = (from item in shaderCode select item.CreateShader()).ToArray();
@@ -51,6 +49,17 @@ namespace CSharpGL
                 }
             }
             this.propertyBufferPtrs = propertyBufferPtrs;
+
+            // init index buffer object's renderer
+            IndexBufferPtr indexBufferPtr = this.bufferable.GetIndex();
+            using (var buffer = new OneIndexBuffer<uint>(
+                   indexBufferPtr.Mode, BufferUsage.DynamicDraw))
+            {
+                buffer.Alloc(this.positionBufferPtr.Length);
+                this.oneIndexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
+            }
+            this.maxElementCount = this.oneIndexBufferPtr.ElementCount;
+            this.oneIndexBufferPtr.ElementCount = 0;// 高亮0个图元
 
             this.bufferable = null;
             this.shaderCode = null;
