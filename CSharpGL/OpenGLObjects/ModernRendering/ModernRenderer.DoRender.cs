@@ -25,7 +25,7 @@ namespace CSharpGL
 
             if (this.vertexArrayObject == null)
             {
-                IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
+                IndexBufferPtr indexBufferPtr = this.GetIndexBufferPtr();
                 PropertyBufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
                 if (indexBufferPtr != null && propertyBufferPtrs != null)
                 {
@@ -40,8 +40,8 @@ namespace CSharpGL
                 VertexArrayObject vertexArrayObject = this.vertexArrayObject;
                 if (vertexArrayObject != null)
                 {
-                    if (vertexArrayObject.IndexBufferPtr != this.indexBufferPtr)
-                    { vertexArrayObject.IndexBufferPtr = this.indexBufferPtr; }
+                    if (vertexArrayObject.IndexBufferPtr != this.GetIndexBufferPtr())
+                    { vertexArrayObject.IndexBufferPtr = this.GetIndexBufferPtr(); }
                     vertexArrayObject.Render(e, program);
                 }
             }

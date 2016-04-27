@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 namespace CSharpGL
 {
     /// <summary>
-    /// 高亮显示某些图元
+    /// 高亮显示指定的图元。
     /// </summary>
     public partial class HighlightModernRenderer : ModernRenderer
     {
 
         /// <summary>
-        /// 
+        /// 高亮显示指定的图元。
         /// </summary>
         /// <param name="bufferable">一种渲染方式</param>
         /// <param name="shaderCodes">各种类型的shader代码</param>

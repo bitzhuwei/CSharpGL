@@ -53,7 +53,6 @@
     <Compile Include="Form01ModernRenderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HighlightedPickableRenderer.cs" />
     <Compile Include="ModelAdapters\ChainModelAdapter.cs" />
     <Compile Include="ModelAdapters\TetrahedronModelAdapter.cs" />
     <Compile Include="ModelAdapters\CubeModelAdapter.cs" />

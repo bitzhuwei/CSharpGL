@@ -7,9 +7,6 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    /// <summary>
-    /// 高亮显示某些图元
-    /// </summary>
     public partial class HighlightModernRenderer
     {
         public void ClearHighlightIndexes()
@@ -35,16 +32,11 @@ namespace CSharpGL
             IntPtr pointer = GL.MapBuffer(BufferTarget.ElementArrayBuffer, MapBufferAccess.WriteOnly);
             unsafe
             {
-                unsafe
+                var array = (uint*)pointer.ToPointer();
+                for (int i = 0; i < indexesLength; i++)
                 {
-                    var array = (uint*)pointer.ToPointer();
-                    for (int i = 0; i < indexesLength; i++)
-                    {
-                        array[i + this.oneIndexBufferPtr.ElementCount] = indexes[i];
-                    }
+                    array[i + this.oneIndexBufferPtr.ElementCount] = indexes[i];
                 }
-
-                //var array = (uint*)
             }
             GL.UnmapBuffer(BufferTarget.ElementArrayBuffer);
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
@@ -71,16 +63,11 @@ namespace CSharpGL
             IntPtr pointer = GL.MapBuffer(BufferTarget.ElementArrayBuffer, MapBufferAccess.WriteOnly);
             unsafe
             {
-                unsafe
+                var array = (uint*)pointer.ToPointer();
+                for (int i = 0; i < indexesLength; i++)
                 {
-                    var array = (uint*)pointer.ToPointer();
-                    for (int i = 0; i < indexesLength; i++)
-                    {
-                        array[i] = indexes[i];
-                    }
+                    array[i] = indexes[i];
                 }
-
-                //var array = (uint*)
             }
             GL.UnmapBuffer(BufferTarget.ElementArrayBuffer);
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);

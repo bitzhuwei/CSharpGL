@@ -102,15 +102,18 @@ namespace CSharpGL.Demos
                 };
                 for (int i = 0; i < bufferables.Length; i++)
                 {
+                    GeometryModel key = keys[i];
                     IBufferable bufferable = bufferables[i];
                     ShaderCode[] shaders = shaderCodesGroup[i];
                     var propertyNameMap = propertyNameMaps[i];
                     string positionNameInIBufferable = positionNameInIBufferables[i];
                     var highlightRenderer = new HighlightModernRenderer(
                         bufferable, positionNameInIBufferable);
+                    highlightRenderer.Name = string.Format("Highlight: [{0}]", key);
                     highlightRenderer.Initialize();
                     var pickableRenderer = PickableModernRendererFactory.GetModernRenderer(
                         bufferable, shaders, propertyNameMap, positionNameInIBufferable);
+                    pickableRenderer.Name = string.Format("Pickable: [{0}]", key);
                     pickableRenderer.Initialize();
                     var uniformVariables = uniformVariablesList[i];
                     foreach (var item in uniformVariables)
@@ -130,7 +133,6 @@ namespace CSharpGL.Demos
                     HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
                         highlightRenderer, pickableRenderer);
 
-                    GeometryModel key = keys[i];
                     this.rendererDict.Add(key, renderer);
                 }
                 this.SelectedModel = GeometryModel.BigDipper;

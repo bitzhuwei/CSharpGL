@@ -16,9 +16,9 @@ namespace CSharpGL
         {
             get
             {
-                if (this.indexBufferPtr != null)
+                if (this.GetIndexBufferPtr() != null)
                 {
-                    return this.indexBufferPtr.Mode;
+                    return this.GetIndexBufferPtr().Mode;
                 }
                 else
                 {
@@ -27,9 +27,9 @@ namespace CSharpGL
             }
             set
             {
-                if (this.indexBufferPtr != null)
+                if (this.GetIndexBufferPtr() != null)
                 {
-                    this.indexBufferPtr.Mode = value;
+                    this.GetIndexBufferPtr().Mode = value;
                 }
             }
         }
@@ -41,9 +41,9 @@ namespace CSharpGL
         {
             get
             {
-                if (this.indexBufferPtr != null)
+                if (this.GetIndexBufferPtr() != null)
                 {
-                    return this.indexBufferPtr.BufferId;
+                    return this.GetIndexBufferPtr().BufferId;
                 }
                 else
                 {
@@ -59,9 +59,9 @@ namespace CSharpGL
         {
             get
             {
-                if (this.indexBufferPtr != null)
+                if (this.GetIndexBufferPtr() != null)
                 {
-                    return this.indexBufferPtr.Length;
+                    return this.GetIndexBufferPtr().Length;
                 }
                 else
                 {
@@ -77,9 +77,9 @@ namespace CSharpGL
         {
             get
             {
-                if (this.indexBufferPtr != null)
+                if (this.GetIndexBufferPtr() != null)
                 {
-                    return this.indexBufferPtr.ByteLength;
+                    return this.GetIndexBufferPtr().ByteLength;
                 }
                 else
                 {

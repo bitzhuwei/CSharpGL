@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    /// <summary>
-    /// 高亮显示某些图元
-    /// </summary>
     public partial class HighlightModernRenderer
     {
 
+        /// <summary>
+        /// <see cref="this.oneIndexBufferPtr"/>实际存在多少个元素。
+        /// </summary>
         protected int maxElementCount = 0;
-        IndexElementType originalIndexBufferPtrElementType = IndexElementType.UnsignedInt;
 
         protected override void DoInitialize()
         {
@@ -51,7 +50,7 @@ namespace CSharpGL
             }
             this.propertyBufferPtrs = propertyBufferPtrs;
 
-            // init index buffer object's renderer
+            // init index buffer 
             IndexBufferPtr indexBufferPtr = this.bufferable.GetIndex();
 
             using (var buffer = new OneIndexBuffer<uint>(

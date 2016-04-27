@@ -22,10 +22,10 @@ namespace CSharpGL
                 switch (e.RenderMode)
                 {
                     case RenderModes.Render:
-                        pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
+                        pickedGeometry.GeometryType = this.GetIndexBufferPtr().Mode.ToPrimitiveMode().ToGeometryType();
                         break;
                     case RenderModes.ColorCodedPicking:
-                        pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
+                        pickedGeometry.GeometryType = this.GetIndexBufferPtr().Mode.ToPrimitiveMode().ToGeometryType();
                         break;
                     case RenderModes.ColorCodedPickingPoints:
                         pickedGeometry.GeometryType = GeometryTypes.Point;

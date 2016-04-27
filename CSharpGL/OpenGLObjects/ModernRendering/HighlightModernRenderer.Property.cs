@@ -7,16 +7,13 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    /// <summary>
-    /// 高亮显示某些图元
-    /// </summary>
     public partial class HighlightModernRenderer
     {
         protected OneIndexBufferPtr oneIndexBufferPtr;
 
-        protected override IndexBufferPtr indexBufferPtr
+        protected override IndexBufferPtr GetIndexBufferPtr()
         {
-            get { return this.oneIndexBufferPtr; }
+            return this.oneIndexBufferPtr;
         }
 
         /// <summary>

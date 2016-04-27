@@ -37,10 +37,10 @@ namespace CSharpGL
             switch (e.RenderMode)
             {
                 case RenderModes.Render:
-                    pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
+                    pickedGeometry.GeometryType = this.GetIndexBufferPtr().Mode.ToPrimitiveMode().ToGeometryType();
                     break;
                 case RenderModes.ColorCodedPicking:
-                    pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
+                    pickedGeometry.GeometryType = this.GetIndexBufferPtr().Mode.ToPrimitiveMode().ToGeometryType();
                     break;
                 case RenderModes.ColorCodedPickingPoints:
                     pickedGeometry.GeometryType = GeometryTypes.Point;
@@ -100,10 +100,10 @@ namespace CSharpGL
             switch (e.RenderMode)
             {
                 case RenderModes.Render:
-                    renderingPoints = this.indexBufferPtr.Mode == CSharpGL.DrawMode.Points;
+                    renderingPoints = this.GetIndexBufferPtr().Mode == CSharpGL.DrawMode.Points;
                     break;
                 case RenderModes.ColorCodedPicking:
-                    renderingPoints = this.indexBufferPtr.Mode == CSharpGL.DrawMode.Points;
+                    renderingPoints = this.GetIndexBufferPtr().Mode == CSharpGL.DrawMode.Points;
                     break;
                 case RenderModes.ColorCodedPickingPoints:
                     renderingPoints = true;
@@ -121,7 +121,7 @@ namespace CSharpGL
                     OneIndexBufferPtr twoPrimitivesIndexBufferPtr;
                     uint lastIndex0, lastIndex1;
                     AssembleIndexBuffer(
-                        lastIndexIdList[current], lastIndexIdList[i], this.indexBufferPtr.Mode,
+                        lastIndexIdList[current], lastIndexIdList[i], this.GetIndexBufferPtr().Mode,
                         out twoPrimitivesIndexBufferPtr, out lastIndex0, out lastIndex1);
                     uint pickedIndex = Pick(e, twoPrimitivesIndexBufferPtr,
                         x, y, canvasWidth, canvasHeight);
@@ -338,10 +338,10 @@ namespace CSharpGL
             switch (e.RenderMode)
             {
                 case RenderModes.Render:
-                    recognizer = PrimitiveRecognizerFactory.Create(this.indexBufferPtr.Mode);
+                    recognizer = PrimitiveRecognizerFactory.Create(this.GetIndexBufferPtr().Mode);
                     break;
                 case RenderModes.ColorCodedPicking:
-                    recognizer = PrimitiveRecognizerFactory.Create(this.indexBufferPtr.Mode);
+                    recognizer = PrimitiveRecognizerFactory.Create(this.GetIndexBufferPtr().Mode);
                     break;
                 case RenderModes.ColorCodedPickingPoints:
                     recognizer = PrimitiveRecognizerFactory.Create(DrawMode.Points);

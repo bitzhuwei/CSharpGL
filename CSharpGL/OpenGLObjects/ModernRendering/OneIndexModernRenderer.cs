@@ -27,7 +27,7 @@ namespace CSharpGL
 
         protected override void DoInitialize()
         {
-            // init index buffer object's renderer
+            // init index buffer 
             this.oneIndexBufferPtr = this.bufferable.GetIndex() as OneIndexBufferPtr;
             if (this.oneIndexBufferPtr == null) { throw new Exception(); }
 
@@ -45,9 +45,9 @@ namespace CSharpGL
             base.DisposeUnmanagedResources();
         }
 
-        protected override IndexBufferPtr indexBufferPtr
+        protected override IndexBufferPtr GetIndexBufferPtr()
         {
-            get { return this.oneIndexBufferPtr; }
+            return this.oneIndexBufferPtr;
         }
 
     }

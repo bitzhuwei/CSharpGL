@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 用Shader+VBO(VAO)进行渲染。
+    /// </summary>
     public abstract partial class ModernRenderer : RendererBase
     {
         protected string positionNameInIBufferable;
         protected PropertyBufferPtr positionBufferPtr;
         
-        // normal rendering
         // 算法
         protected ShaderProgram shaderProgram;
         // 数据结构
         protected VertexArrayObject vertexArrayObject;
         protected PropertyBufferPtr[] propertyBufferPtrs;
-        //protected IndexBufferPtr indexBufferPtr;
         protected List<GLSwitch> switchList = new List<GLSwitch>();
 
         /// <summary>
@@ -32,11 +33,11 @@ namespace CSharpGL
 
 
         /// <summary>
-        /// 
+        /// 用Shader+VBO(VAO)进行渲染。
         /// </summary>
-        /// <param name="bufferable">一种渲染方式</param>
+        /// <param name="bufferable">将具体模型转换为可被OpenGL拿来渲染的格式</param>
         /// <param name="shaderCodes">各种类型的shader代码</param>
-        /// <param name="propertyNameMap">关联<see cref="VertexBufferPtr"/>和<see cref="ShaderCode"/>中的属性</param>
+        /// <param name="propertyNameMap">关联<see cref="PropertyBufferPtr"/>和<see cref="shaderCode"/>中的属性</param>
         /// <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
         ///<param name="switches"></param>
         public ModernRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
