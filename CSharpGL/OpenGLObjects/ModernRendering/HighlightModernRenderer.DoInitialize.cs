@@ -14,6 +14,7 @@ namespace CSharpGL
     {
 
         protected int maxElementCount = 0;
+        IndexElementType originalIndexBufferPtrElementType = IndexElementType.UnsignedInt;
 
         protected override void DoInitialize()
         {
@@ -52,10 +53,11 @@ namespace CSharpGL
 
             // init index buffer object's renderer
             IndexBufferPtr indexBufferPtr = this.bufferable.GetIndex();
+
             using (var buffer = new OneIndexBuffer<uint>(
                    indexBufferPtr.Mode, BufferUsage.DynamicDraw))
             {
-                buffer.Alloc(this.positionBufferPtr.Length);
+                buffer.Alloc(this.positionBufferPtr.ByteLength / (this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength));
                 this.oneIndexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
             }
             this.maxElementCount = this.oneIndexBufferPtr.ElementCount;
