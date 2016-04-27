@@ -31,34 +31,106 @@ namespace CSharpGL.Demos
                 var bufferables = new IBufferable[]{
                     new BigDipperAdapter(new BigDipper()),
                     new ChainModelAdapter(new ChainModel(random.Next(7, 100), 5, 5)),
+                    new TetrahedronModelAdapter(new TetrahedronModel(1.0f)),
+                    new CubeModelAdapter(new CubeModel(1.0f)),
+                    new SphereModelAdapter(new SphereModel(1.0f)),
+                    new TeapotModelAdapter(TeapotModel.GetModel(1.0f)),
                 };
-                var keys = new GeometryModel[] { GeometryModel.BigDipper, GeometryModel.Chain, };
+                var keys = new GeometryModel[] 
+                { 
+                    GeometryModel.BigDipper, 
+                    GeometryModel.Chain,
+                    GeometryModel.Tetrahedron, 
+                    GeometryModel.Cube, 
+                    GeometryModel.Sphere, 
+                    GeometryModel.Teapot, 
+                };
+                ShaderCode[] simpleShader = new ShaderCode[2];
+                simpleShader[0] = new ShaderCode(File.ReadAllText(@"Shaders\Simple.vert"), ShaderType.VertexShader);
+                simpleShader[1] = new ShaderCode(File.ReadAllText(@"Shaders\Simple.frag"), ShaderType.FragmentShader);
+                ShaderCode[] emitNormalLineShader = new ShaderCode[3];
+                emitNormalLineShader[0] = new ShaderCode(File.ReadAllText(@"Shaders\EmitNormalLine.vert"), ShaderType.VertexShader);
+                emitNormalLineShader[1] = new ShaderCode(File.ReadAllText(@"Shaders\EmitNormalLine.geom"), ShaderType.GeometryShader);
+                emitNormalLineShader[2] = new ShaderCode(File.ReadAllText(@"Shaders\EmitNormalLine.frag"), ShaderType.FragmentShader);
+                var shaderCodesGroup = new ShaderCode[][]
+                {
+                    simpleShader,
+                    simpleShader,
+                    emitNormalLineShader,
+                    emitNormalLineShader,
+                    emitNormalLineShader,
+                    emitNormalLineShader,
+                };
+                var simpleShaderPropertyNameMap = new PropertyNameMap();
+                simpleShaderPropertyNameMap.Add("in_Position", "position");
+                simpleShaderPropertyNameMap.Add("in_Color", "color");
+                var emitNormalLineShaderPropertyNameMap = new PropertyNameMap();
+                emitNormalLineShaderPropertyNameMap.Add("in_Position", "position");
+                emitNormalLineShaderPropertyNameMap.Add("in_Normal", "normal");
+                var propertyNameMaps = new PropertyNameMap[]
+                {
+                    simpleShaderPropertyNameMap,
+                    simpleShaderPropertyNameMap,
+                    emitNormalLineShaderPropertyNameMap,
+                    emitNormalLineShaderPropertyNameMap,
+                    emitNormalLineShaderPropertyNameMap,
+                    emitNormalLineShaderPropertyNameMap,
+                };
+                var positionNameInIBufferables = new string[]
+                {
+                    "position", 
+                    "position", 
+                    "position", 
+                    "position", 
+                    "position", 
+                    "position", 
+                };
+                var uniformTupleList = new List<Tuple<string, ValueType>>()
+                {
+                    new Tuple<string, ValueType>("normalLength", 0.5f),
+                    new Tuple<string, ValueType>("showModel", true),
+                    new Tuple<string, ValueType>("showNormal", true),
+                };
+                var uniformVariablesList = new List<List<Tuple<string, ValueType>>>()
+                {
+                    new List<Tuple<string, ValueType>>(),
+                    new List<Tuple<string, ValueType>>(),
+                    uniformTupleList,
+                    uniformTupleList,
+                    uniformTupleList,
+                    uniformTupleList,
+                };
                 for (int i = 0; i < bufferables.Length; i++)
                 {
                     IBufferable bufferable = bufferables[i];
-                    GeometryModel key = keys[i];
-                    ShaderCode[] shaders = new ShaderCode[2];
-                    shaders[0] = new ShaderCode(File.ReadAllText(@"Shaders\Simple.vert"), ShaderType.VertexShader);
-                    shaders[1] = new ShaderCode(File.ReadAllText(@"Shaders\Simple.frag"), ShaderType.FragmentShader);
-                    var propertyNameMap = new PropertyNameMap();
-                    propertyNameMap.Add("in_Position", "position");
-                    propertyNameMap.Add("in_Color", "color");
-                    string positionNameInIBufferable = "position";
-                    var highlightRenderer = new HighlightModernRenderer(bufferable, positionNameInIBufferable);
+                    ShaderCode[] shaders = shaderCodesGroup[i];
+                    var propertyNameMap = propertyNameMaps[i];
+                    string positionNameInIBufferable = positionNameInIBufferables[i];
+                    var highlightRenderer = new HighlightModernRenderer(
+                        bufferable, positionNameInIBufferable);
                     highlightRenderer.Initialize();
-                    var pickableRenderer = PickableModernRendererFactory.GetModernRenderer(bufferable, shaders, propertyNameMap, positionNameInIBufferable);
+                    var pickableRenderer = PickableModernRendererFactory.GetModernRenderer(
+                        bufferable, shaders, propertyNameMap, positionNameInIBufferable);
                     pickableRenderer.Initialize();
+                    var uniformVariables = uniformVariablesList[i];
+                    foreach (var item in uniformVariables)
+                    {
+                        pickableRenderer.SetUniformValue(item.Item1, item.Item2);
+                    }
                     {
                         GLSwitch lineWidthSwitch = new LineWidthSwitch(4);
                         pickableRenderer.SwitchList.Add(lineWidthSwitch);
                         GLSwitch pointSizeSwitch = new PointSizeSwitch(4);
                         pickableRenderer.SwitchList.Add(pointSizeSwitch);
-                        GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Lines);
+                        GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
                         pickableRenderer.SwitchList.Add(polygonModeSwitch);
+                        GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(uint.MaxValue);
+                        pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
                     }
                     HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
                         highlightRenderer, pickableRenderer);
 
+                    GeometryModel key = keys[i];
                     this.rendererDict.Add(key, renderer);
                 }
                 this.SelectedModel = GeometryModel.BigDipper;

@@ -20,6 +20,10 @@ namespace CSharpGL.Demos
         {
             BigDipper,
             Chain,
+            Tetrahedron,
+            Cube,
+            Sphere,
+            Teapot,
         }
 
         private GeometryModel selectedModel = GeometryModel.BigDipper;
