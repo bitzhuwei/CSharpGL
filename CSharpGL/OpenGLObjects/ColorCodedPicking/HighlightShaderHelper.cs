@@ -6,6 +6,15 @@ namespace CSharpGL
     public static class HighlightShaderHelper //: IDisposable
     {
 
+        public static ShaderCode[] GetHighlightShaderCode()
+        {
+            ShaderCode[] shaders = new ShaderCode[2];
+            shaders[0] = new ShaderCode(GetShaderSource(ShaderType.VertexShader), ShaderType.VertexShader);
+            shaders[1] = new ShaderCode(GetShaderSource(ShaderType.FragmentShader), ShaderType.FragmentShader);
+
+            return shaders;
+        }
+
         public static ShaderProgram GetHighlightShaderProgram()
         {
             ShaderCode[] shaders = new ShaderCode[2];
