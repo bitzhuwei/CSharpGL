@@ -24,16 +24,30 @@ namespace CSharpGL
                     this.GetLastIndexIdOfPickedGeometry(
                         e, lastVertexId, x, y, canvasWidth, canvasHeight);
                 // 获取pickedGeometry
-                pickedGeometry = this.GetGeometry(lastIndexId, stageVertexId);
+                pickedGeometry = this.GetGeometry(e, lastIndexId, stageVertexId);
             }
 
             return pickedGeometry;
         }
 
-        private PickedGeometry GetGeometry(RecognizedPrimitiveIndex lastIndexId, uint stageVertexId)
+        private PickedGeometry GetGeometry(RenderEventArgs e,
+            RecognizedPrimitiveIndex lastIndexId, uint stageVertexId)
         {
             var pickedGeometry = new PickedGeometry();
-            pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
+            switch (e.RenderMode)
+            {
+                case RenderModes.Render:
+                    pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
+                    break;
+                case RenderModes.ColorCodedPicking:
+                    pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
+                    break;
+                case RenderModes.ColorCodedPickingPoints:
+                    pickedGeometry.GeometryType = GeometryTypes.Point;
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
             pickedGeometry.StageVertexId = stageVertexId;
             pickedGeometry.From = this;
             pickedGeometry.Indexes = lastIndexId.IndexIdList.ToArray();
@@ -59,7 +73,7 @@ namespace CSharpGL
             RenderEventArgs e,
             uint lastVertexId, int x, int y, int canvasWidth, int canvasHeight)
         {
-            List<RecognizedPrimitiveIndex> lastIndexIdList = GetLastIndexIdList(lastVertexId);
+            List<RecognizedPrimitiveIndex> lastIndexIdList = GetLastIndexIdList(e, lastVertexId);
 
             RecognizedPrimitiveIndex lastIndexId = GetLastIndexId(
                 e, lastIndexIdList, x, y, canvasWidth, canvasHeight);
@@ -82,26 +96,44 @@ namespace CSharpGL
             if (lastIndexIdList == null || lastIndexIdList.Count == 0) { throw new ArgumentException(); }
 
             int current = 0;
-#if DEBUG
-            NoPrimitiveRestartIndex(lastIndexIdList);
-#endif
-            for (int i = 1; i < lastIndexIdList.Count; i++)
+            bool renderingPoints = false;
+            switch (e.RenderMode)
             {
-                OneIndexBufferPtr twoPrimitivesIndexBufferPtr;
-                uint lastIndex0, lastIndex1;
-                AssembleIndexBuffer(
-                    lastIndexIdList[current], lastIndexIdList[i], this.indexBufferPtr.Mode,
-                    out twoPrimitivesIndexBufferPtr, out lastIndex0, out lastIndex1);
-                uint pickedIndex = Pick(e, twoPrimitivesIndexBufferPtr,
-                    x, y, canvasWidth, canvasHeight);
-                if (pickedIndex == lastIndex1)
-                { current = i; }
-                else if (pickedIndex == lastIndex0)
-                { /* nothing to do */}
-                else if (pickedIndex == uint.MaxValue)// 两个候选图元都没有被拾取到
-                { /* nothing to do */}
-                else
-                { throw new Exception("This should not happen!"); }
+                case RenderModes.Render:
+                    renderingPoints = this.indexBufferPtr.Mode == CSharpGL.DrawMode.Points;
+                    break;
+                case RenderModes.ColorCodedPicking:
+                    renderingPoints = this.indexBufferPtr.Mode == CSharpGL.DrawMode.Points;
+                    break;
+                case RenderModes.ColorCodedPickingPoints:
+                    renderingPoints = true;
+                    break;
+                default:
+                    throw new NotFiniteNumberException();
+            }
+            if (!renderingPoints)
+            {
+#if DEBUG
+                NoPrimitiveRestartIndex(lastIndexIdList);
+#endif
+                for (int i = 1; i < lastIndexIdList.Count; i++)
+                {
+                    OneIndexBufferPtr twoPrimitivesIndexBufferPtr;
+                    uint lastIndex0, lastIndex1;
+                    AssembleIndexBuffer(
+                        lastIndexIdList[current], lastIndexIdList[i], this.indexBufferPtr.Mode,
+                        out twoPrimitivesIndexBufferPtr, out lastIndex0, out lastIndex1);
+                    uint pickedIndex = Pick(e, twoPrimitivesIndexBufferPtr,
+                        x, y, canvasWidth, canvasHeight);
+                    if (pickedIndex == lastIndex1)
+                    { current = i; }
+                    else if (pickedIndex == lastIndex0)
+                    { /* nothing to do */}
+                    else if (pickedIndex == uint.MaxValue)// 两个候选图元都没有被拾取到
+                    { /* nothing to do */}
+                    else
+                    { throw new Exception("This should not happen!"); }
+                }
             }
 
             return lastIndexIdList[current];
@@ -300,9 +332,23 @@ namespace CSharpGL
         /// </summary>
         /// <param name="lastVertexId"></param>
         /// <returns></returns>
-        private List<RecognizedPrimitiveIndex> GetLastIndexIdList(uint lastVertexId)
+        private List<RecognizedPrimitiveIndex> GetLastIndexIdList(RenderEventArgs e, uint lastVertexId)
         {
-            PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(this.indexBufferPtr.Mode);
+            PrimitiveRecognizer recognizer = null;
+            switch (e.RenderMode)
+            {
+                case RenderModes.Render:
+                    recognizer = PrimitiveRecognizerFactory.Create(this.indexBufferPtr.Mode);
+                    break;
+                case RenderModes.ColorCodedPicking:
+                    recognizer = PrimitiveRecognizerFactory.Create(this.indexBufferPtr.Mode);
+                    break;
+                case RenderModes.ColorCodedPickingPoints:
+                    recognizer = PrimitiveRecognizerFactory.Create(DrawMode.Points);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
             PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();
 
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, this.oneIndexBufferPtr.BufferId);

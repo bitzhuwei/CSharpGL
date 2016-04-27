@@ -30,9 +30,9 @@ namespace CSharpGL.Demos
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 // move vertex
-                PickedGeometry pickedGeometry = RunPicking(
-                    new RenderEventArgs(RenderModes.ColorCodedPicking, this.camera),
-                    e.X, e.Y);
+                PickedGeometry pickedGeometry = RunPicking(new RenderEventArgs(
+                    this.PickingMode == SelectionMode.DrawMode ? RenderModes.ColorCodedPicking : RenderModes.ColorCodedPickingPoints,
+                    this.camera), e.X, e.Y);
                 if (pickedGeometry != null)
                 {
                     var dragParam = new DragParam(
@@ -73,7 +73,9 @@ namespace CSharpGL.Demos
             }
             else
             {
-                RunPicking(new RenderEventArgs(RenderModes.ColorCodedPicking, this.camera), e.X, e.Y);
+                RunPicking(new RenderEventArgs(
+                    this.PickingMode == SelectionMode.DrawMode ? RenderModes.ColorCodedPicking : RenderModes.ColorCodedPickingPoints,
+                    this.camera), e.X, e.Y);
             }
         }
 
@@ -82,7 +84,7 @@ namespace CSharpGL.Demos
             lock (this.synObj)
             {
                 {
-                    this.glCanvas1_OpenGLDraw(selectedModel, null);
+                    this.glCanvas1_OpenGLDraw(this.glCanvas1, null);
                     Color c = GL.ReadPixel(x, this.glCanvas1.Height - y - 1);
                     c = Color.FromArgb(255, c);
                     this.lblColor.BackColor = c;
@@ -94,8 +96,7 @@ namespace CSharpGL.Demos
                     IColorCodedPicking pickable = this.rendererDict[this.SelectedModel];
                     pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
                     PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
-                        e, x, y, this.glCanvas1.Width, this.glCanvas1.Height,
-                         SelectionMode.DrawMode, pickable);
+                        e, x, y, this.glCanvas1.Width, this.glCanvas1.Height, pickable);
                     if (pickedGeometry != null)
                     {
                         this.RunPickingBoard.SetContent(pickedGeometry.ToString(
@@ -125,5 +126,6 @@ namespace CSharpGL.Demos
             }
         }
 
+        public SelectionMode PickingMode { get; set; }
     }
 }

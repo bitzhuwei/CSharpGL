@@ -20,8 +20,8 @@ namespace CSharpGL
         /// <param name="type">type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
         /// <para>表示第3个参数，表示索引元素的类型。</para></param>
         /// <param name="length">此VBO含有多个个元素？</param>
-        internal OneIndexBufferPtr(uint bufferID, DrawMode mode, int elementCount, 
-            IndexElementType type , int length, int byteLength)
+        internal OneIndexBufferPtr(uint bufferID, DrawMode mode, int elementCount,
+            IndexElementType type, int length, int byteLength)
             : base(mode, bufferID, length, byteLength)
         {
             this.ElementCount = elementCount;
@@ -42,7 +42,20 @@ namespace CSharpGL
         public override void Render(RenderEventArgs e, ShaderProgram shaderProgram)
         {
             GL.GetDelegateFor<GL.glBindBuffer>()(GL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
-            GL.DrawElements(this.Mode, this.ElementCount, (uint)this.Type, IntPtr.Zero);
+            switch (e.RenderMode)
+            {
+                case RenderModes.Render:
+                    GL.DrawElements(this.Mode, this.ElementCount, (uint)this.Type, IntPtr.Zero);
+                    break;
+                case RenderModes.ColorCodedPicking:
+                    GL.DrawElements(this.Mode, this.ElementCount, (uint)this.Type, IntPtr.Zero);
+                    break;
+                case RenderModes.ColorCodedPickingPoints:
+                    GL.DrawElements(DrawMode.Points, this.ElementCount, (uint)this.Type, IntPtr.Zero);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }

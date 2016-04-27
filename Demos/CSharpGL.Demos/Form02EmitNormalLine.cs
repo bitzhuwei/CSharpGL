@@ -114,7 +114,8 @@ namespace CSharpGL.Demos
         {
             lock (this.synObj)
             {
-                if (this.RenderMode == RenderModes.ColorCodedPicking)
+                if (this.RenderMode == RenderModes.ColorCodedPicking
+                    || this.RenderMode == RenderModes.ColorCodedPickingPoints)
                 { GL.ClearColor(1, 1, 1, 1); }
                 else if (this.RenderMode == RenderModes.Render)
                 { GL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f); }
@@ -142,16 +143,17 @@ namespace CSharpGL.Demos
             mat4 viewMatrix = camera.GetViewMat4();
             mat4 modelMatrix = mat4.identity();
 
-            if (this.RenderMode == RenderModes.ColorCodedPicking)
-            {
-                IColorCodedPicking picking = renderer;
-                picking.MVP = projectionMatrix * viewMatrix * modelMatrix;
-            }
-            else if (this.RenderMode == RenderModes.Render)
+            if (renderMode == RenderModes.Render)
             {
                 renderer.SetUniformValue("projectionMatrix", projectionMatrix);
                 renderer.SetUniformValue("viewMatrix", viewMatrix);
                 renderer.SetUniformValue("modelMatrix", modelMatrix);
+            }
+            else if (renderMode == RenderModes.ColorCodedPicking
+                || renderMode == RenderModes.ColorCodedPickingPoints)
+            {
+                IColorCodedPicking picking = renderer;
+                picking.MVP = projectionMatrix * viewMatrix * modelMatrix;
             }
             else
             { throw new NotImplementedException(); }

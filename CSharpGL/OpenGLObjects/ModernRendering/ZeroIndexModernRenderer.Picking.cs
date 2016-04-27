@@ -19,7 +19,20 @@ namespace CSharpGL
             if (this.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
             {
                 pickedGeometry = new PickedGeometry();
-                pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
+                switch (e.RenderMode)
+                {
+                    case RenderModes.Render:
+                        pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
+                        break;
+                    case RenderModes.ColorCodedPicking:
+                        pickedGeometry.GeometryType = this.indexBufferPtr.Mode.ToPrimitiveMode().ToGeometryType();
+                        break;
+                    case RenderModes.ColorCodedPickingPoints:
+                        pickedGeometry.GeometryType = GeometryTypes.Point;
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
                 pickedGeometry.StageVertexId = stageVertexId;
                 pickedGeometry.From = this;
                 // Fill primitive's position information.

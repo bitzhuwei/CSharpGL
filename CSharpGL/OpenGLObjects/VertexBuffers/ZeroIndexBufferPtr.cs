@@ -37,7 +37,20 @@ namespace CSharpGL
 
         public override void Render(RenderEventArgs e, ShaderProgram shaderProgram)
         {
-            GL.DrawArrays(this.Mode, this.FirstVertex, this.VertexCount);
+            switch (e.RenderMode)
+            {
+                case RenderModes.Render:
+                    GL.DrawArrays(this.Mode, this.FirstVertex, this.VertexCount);
+                    break;
+                case RenderModes.ColorCodedPicking:
+                    GL.DrawArrays(this.Mode, this.FirstVertex, this.VertexCount);
+                    break;
+                case RenderModes.ColorCodedPickingPoints:
+                    GL.DrawArrays(DrawMode.Points, this.FirstVertex, this.VertexCount);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }
