@@ -75,6 +75,7 @@
     <Compile Include="OpenGLObjects\ColorCodedPicking\SelectionMode.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\LineWidthSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PointSizeSwitch.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\HighlightModernRenderer.DoInitialize.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\HighlightModernRenderer.Property.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\HighlightModernRenderer.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.Dispose.cs" />

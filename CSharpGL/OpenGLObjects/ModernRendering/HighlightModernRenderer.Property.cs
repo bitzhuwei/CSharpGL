@@ -11,6 +11,12 @@ namespace CSharpGL
     /// </summary>
     public partial class HighlightModernRenderer 
     {
+        protected OneIndexBufferPtr oneIndexBufferPtr;
+
+        protected override IndexBufferPtr indexBufferPtr
+        {
+            get { return this.oneIndexBufferPtr; }
+        }
 
         /// <summary>
         /// 要渲染多少个索引。
