@@ -28,6 +28,8 @@ namespace CSharpGL
                 new PropertyNameMap("in_Position", positionNameInIBufferable),
                 positionNameInIBufferable, switches)
         {
+            this.Name = this.GetType().Name;
+
             var uniformHighlightColor = new UniformVec4("highlightColor");
             //another way: uniform.SetValue(new vec4(1, 1, 1, 1));
             uniformHighlightColor.Value = new vec4(1, 1, 1, 1);

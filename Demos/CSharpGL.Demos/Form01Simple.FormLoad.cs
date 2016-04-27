@@ -73,13 +73,13 @@ namespace CSharpGL.Demos
                 var frmPropertyGrid = new FormProperyGrid();
                 frmPropertyGrid.DisplayObject(this.rendererDict[this.SelectedModel].PickableRenderer);
                 frmPropertyGrid.Show();
-                this.rendererPropertyGrid = frmPropertyGrid;
+                this.pickableRendererPropertyGrid = frmPropertyGrid;
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this.camera);
+                frmPropertyGrid.DisplayObject(this.rendererDict[this.SelectedModel].Highlighter);
                 frmPropertyGrid.Show();
-                this.cameraPropertyGrid = frmPropertyGrid;
+                this.highlightRendererPropertyGrid = frmPropertyGrid;
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();

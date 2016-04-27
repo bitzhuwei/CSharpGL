@@ -31,8 +31,11 @@ namespace CSharpGL.Demos
                 if (value != selectedModel)
                 {
                     selectedModel = value;
-                    if (this.rendererPropertyGrid != null)
-                    { this.rendererPropertyGrid.DisplayObject(this.rendererDict[value]); }
+                    if (this.pickableRendererPropertyGrid != null)
+                    {
+                        this.pickableRendererPropertyGrid.DisplayObject(this.rendererDict[value].PickableRenderer);
+                        this.highlightRendererPropertyGrid.DisplayObject(this.rendererDict[value].Highlighter);
+                    }
                     //this.cameraUpdated = true;
                     this.UpdateMVP(this.rendererDict[this.selectedModel]);
                 }
@@ -63,8 +66,8 @@ namespace CSharpGL.Demos
         Camera camera;
 
         private FormBulletinBoard RunPickingBoard;
-        private FormProperyGrid rendererPropertyGrid;
-        private FormProperyGrid cameraPropertyGrid;
+        private FormProperyGrid pickableRendererPropertyGrid;
+        private FormProperyGrid highlightRendererPropertyGrid;
         private FormProperyGrid formPropertyGrid;
 
         public Form01Simple()

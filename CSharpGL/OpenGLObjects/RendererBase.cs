@@ -13,6 +13,9 @@ namespace CSharpGL
     /// </summary>
     public abstract class RendererBase : IRenderable, IDisposable
     {
+
+        public string Name { get; set; }
+
         /// <summary>
         /// 为便于调试而设置的ID值，没有应用意义。
         /// </summary>
@@ -22,7 +25,7 @@ namespace CSharpGL
 
         public override string ToString()
         {
-            return string.Format("element: {0}, {1}", this.ID, this.GetType().Name);
+            return string.Format("[{0}]: [{1}]", this.ID, this.Name);
         }
 
         /// <summary>
