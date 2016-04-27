@@ -12,20 +12,33 @@ namespace CSharpGL.Demos
     class DragParam
     {
 
-        public PickedGeometry pickedGeometry;
+        public List<uint> pickedIndexes = new List<uint>();
         public mat4 projectionMatrix;
         public mat4 viewMatrix;
         public Point lastMousePositionOnScreen;
         public vec4 viewport;
 
-        public DragParam(PickedGeometry pickedGeometry, mat4 projectionMatrix, mat4 viewMatrix, Point lastMousePositionOnScreen)
+        public DragParam(mat4 projectionMatrix, mat4 viewMatrix, Point lastMousePositionOnScreen)
         {
-            this.pickedGeometry = pickedGeometry;
             this.projectionMatrix = projectionMatrix;
             this.viewMatrix = viewMatrix;
             this.lastMousePositionOnScreen = lastMousePositionOnScreen;
             var viewport = new int[4]; GL.GetInteger(GetTarget.Viewport, viewport);
             this.viewport = new vec4(viewport[0], viewport[1], viewport[2], viewport[3]);
+        }
+
+        public DragParam(mat4 projectionMatrix, mat4 viewMatrix, Point lastMousePositionOnScreen,
+           IEnumerable<uint> indexes)
+            :this(projectionMatrix, viewMatrix, lastMousePositionOnScreen)
+        {
+            this.pickedIndexes.AddRange(indexes);
+        }
+
+        public DragParam(mat4 projectionMatrix, mat4 viewMatrix, Point lastMousePositionOnScreen,
+            params uint[] indexes)
+            : this(projectionMatrix, viewMatrix, lastMousePositionOnScreen)
+        {
+            this.pickedIndexes.AddRange(indexes);
         }
 
         public override string ToString()
