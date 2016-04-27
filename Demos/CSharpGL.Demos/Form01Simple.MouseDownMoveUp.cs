@@ -117,9 +117,18 @@ namespace CSharpGL.Demos
             }
             else
             {
-                RunPicking(new RenderEventArgs(
+                PickedGeometry pickedGeometry = RunPicking(new RenderEventArgs(
                     this.PickingMode == SelectionMode.DrawMode ? RenderModes.ColorCodedPicking : RenderModes.ColorCodedPickingPoints,
                     this.camera), e.X, e.Y);
+                if (pickedGeometry != null)
+                {
+                    this.rendererDict[this.selectedModel].Highlighter.SetHighlightIndexes(
+                        pickedGeometry.Indexes.ToArray());
+                }
+                else
+                {
+                    this.rendererDict[this.selectedModel].Highlighter.ClearHighlightIndexes();
+                }
             }
         }
 

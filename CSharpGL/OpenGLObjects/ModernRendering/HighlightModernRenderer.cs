@@ -37,7 +37,7 @@ namespace CSharpGL
             this.SwitchList.Add(polygonModeSwitch);
             var lineWidthSwitch = new LineWidthSwitch(10.0f);
             this.SwitchList.Add(lineWidthSwitch);
-            var pointSizeSwitch = new PointSizeSwitch(10.0f);
+            var pointSizeSwitch = new PointSizeSwitch(20.0f);
             this.SwitchList.Add(pointSizeSwitch);
         }
 
