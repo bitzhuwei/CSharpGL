@@ -150,7 +150,7 @@
     <Compile Include="OpenGLObjects\ModernRendering\IBufferable.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.Property.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\PickableModernRenderer.PickingRender.cs" />
-    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.RenderRender.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.DoRender.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.DoInitialize.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer.Uniforms.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\PickableModernRenderer.Dispose.cs" />
