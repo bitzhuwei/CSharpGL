@@ -9,11 +9,19 @@ namespace CSharpGL
 {
     public partial class HighlightModernRenderer
     {
+        /// <summary>
+        /// 清空高亮显示。
+        /// </summary>
         public void ClearHighlightIndexes()
         {
             this.oneIndexBufferPtr.ElementCount = 0;
         }
 
+        /// <summary>
+        /// 增加要高亮显示的图元。
+        /// </summary>
+        /// <param name="mode">要高亮显示的图元类型</param>
+        /// <param name="indexes">要高亮显示的图元的索引。</param>
         public void AddHighlightIndexes(DrawMode mode, params uint[] indexes)
         {
             int indexesLength = indexes.Length;
@@ -45,6 +53,11 @@ namespace CSharpGL
             this.oneIndexBufferPtr.ElementCount += indexesLength;
         }
 
+        /// <summary>
+        /// 增加要高亮显示的图元。
+        /// </summary>
+        /// <param name="mode">要高亮显示的图元类型</param>
+        /// <param name="indexes">要高亮显示的图元的索引。</param>
         public void SetHighlightIndexes(DrawMode mode, params uint[] indexes)
         {
             int indexesLength = indexes.Length;
