@@ -40,6 +40,8 @@ namespace CSharpGL
                 VertexArrayObject vertexArrayObject = this.vertexArrayObject;
                 if (vertexArrayObject != null)
                 {
+                    if (vertexArrayObject.IndexBufferPtr != this.indexBufferPtr)
+                    { vertexArrayObject.IndexBufferPtr = this.indexBufferPtr; }
                     vertexArrayObject.Render(e, program);
                 }
             }

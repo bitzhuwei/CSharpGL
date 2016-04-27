@@ -15,6 +15,12 @@ namespace CSharpGL
         private VertexBufferPtr[] propertyBufferPtrs;
         private IndexBufferPtr indexBufferPtr;
 
+        public IndexBufferPtr IndexBufferPtr
+        {
+            get { return indexBufferPtr; }
+            set { indexBufferPtr = value; }
+        }
+
         /// <summary>
         /// 此VAO的ID，由OpenGL给出。
         /// </summary>
