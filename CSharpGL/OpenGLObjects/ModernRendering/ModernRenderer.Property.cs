@@ -12,7 +12,7 @@ namespace CSharpGL
     public partial class ModernRenderer
     {
 
-        public DrawMode DrawMode
+        public DrawMode Mode
         {
             get
             {

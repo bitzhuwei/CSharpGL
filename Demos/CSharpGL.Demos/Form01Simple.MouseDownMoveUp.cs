@@ -61,6 +61,8 @@ namespace CSharpGL.Demos
                     {
                         this.selectedIndexes.AddRange(pickedGeometry.Indexes);
                         this.rendererDict[this.selectedModel].Highlighter.SetHighlightIndexes(
+                            this.PickingMode == SelectionMode.DrawMode ?
+                                this.rendererDict[this.selectedModel].PickableRenderer.Mode : DrawMode.Points,
                             this.selectedIndexes.ToArray());
                     }
                     List<uint> selectedIndexes = this.selectedIndexes;
@@ -123,6 +125,8 @@ namespace CSharpGL.Demos
                 if (pickedGeometry != null)
                 {
                     this.rendererDict[this.selectedModel].Highlighter.SetHighlightIndexes(
+                        this.PickingMode == SelectionMode.DrawMode ?
+                            this.rendererDict[this.selectedModel].PickableRenderer.Mode : DrawMode.Points,
                         pickedGeometry.Indexes.ToArray());
                 }
                 else

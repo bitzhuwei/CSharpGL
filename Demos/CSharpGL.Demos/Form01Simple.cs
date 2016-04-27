@@ -88,7 +88,7 @@ namespace CSharpGL.Demos
         void Application_Idle(object sender, EventArgs e)
         {
             this.Text = string.Format("{0} {1}", this.Name, 
-                this.rendererDict[this.selectedModel].PickableRenderer.DrawMode);
+                this.rendererDict[this.selectedModel].PickableRenderer.Mode);
         }
 
         public Color ClearColor { get; set; }

@@ -17,7 +17,7 @@ namespace CSharpGL
             this.oneIndexBufferPtr.ElementCount = 0;
         }
 
-        public void AddHighlightIndexes(params uint[] indexes)
+        public void AddHighlightIndexes(DrawMode mode, params uint[] indexes)
         {
             int indexesLength = indexes.Length;
             if (indexesLength + this.oneIndexBufferPtr.ElementCount > this.maxElementCount)
@@ -49,10 +49,11 @@ namespace CSharpGL
             GL.UnmapBuffer(BufferTarget.ElementArrayBuffer);
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
 
+            this.oneIndexBufferPtr.Mode = mode;
             this.oneIndexBufferPtr.ElementCount += indexesLength;
         }
 
-        public void SetHighlightIndexes(params uint[] indexes)
+        public void SetHighlightIndexes(DrawMode mode, params uint[] indexes)
         {
             int indexesLength = indexes.Length;
             if (indexesLength > this.maxElementCount)
@@ -84,6 +85,7 @@ namespace CSharpGL
             GL.UnmapBuffer(BufferTarget.ElementArrayBuffer);
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
 
+            this.oneIndexBufferPtr.Mode = mode;
             this.oneIndexBufferPtr.ElementCount = indexesLength;
         }
 
