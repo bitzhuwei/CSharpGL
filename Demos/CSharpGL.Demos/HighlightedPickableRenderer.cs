@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL
+namespace CSharpGL.Demos
 {
     /// <summary>
     /// 高亮显示拾取的图元。
