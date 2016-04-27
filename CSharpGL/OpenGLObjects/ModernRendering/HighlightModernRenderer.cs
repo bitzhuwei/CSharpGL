@@ -32,6 +32,8 @@ namespace CSharpGL
             //another way: uniform.SetValue(new vec4(1, 1, 1, 1));
             uniform.Value = new vec4(1, 1, 1, 1);
             this.UniformVariables.Add(uniform);
+            var glSwitch = new PolygonModeSwitch(PolygonModes.Lines);
+            this.SwitchList.Add(glSwitch);
         }
 
     }
