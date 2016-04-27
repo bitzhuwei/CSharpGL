@@ -54,7 +54,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 增加要高亮显示的图元。
+        /// 设置要高亮显示的图元。
         /// </summary>
         /// <param name="mode">要高亮显示的图元类型</param>
         /// <param name="indexes">要高亮显示的图元的索引。</param>
