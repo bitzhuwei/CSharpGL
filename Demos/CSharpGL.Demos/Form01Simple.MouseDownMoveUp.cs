@@ -58,7 +58,11 @@ namespace CSharpGL.Demos
                         this.PickingMode == SelectionMode.DrawMode ? RenderModes.ColorCodedPicking : RenderModes.ColorCodedPickingPoints,
                         this.camera), e.X, e.Y);
                     if (pickedGeometry != null)
-                    { this.selectedIndexes.AddRange(pickedGeometry.Indexes); }
+                    {
+                        this.selectedIndexes.AddRange(pickedGeometry.Indexes);
+                        this.rendererDict[this.selectedModel].Highlighter.SetHighlightIndexes(
+                            this.selectedIndexes.ToArray());
+                    }
                     List<uint> selectedIndexes = this.selectedIndexes;
                     if (selectedIndexes.Count > 0)
                     {
@@ -102,7 +106,7 @@ namespace CSharpGL.Demos
                             current.X - dragParam.lastMousePositionOnScreen.X,
                             current.Y - dragParam.lastMousePositionOnScreen.Y);
                         dragParam.lastMousePositionOnScreen = current;
-                        this.rendererDict[this.selectedModel].MovePositions(
+                        this.rendererDict[this.selectedModel].PickableRenderer.MovePositions(
                             differenceOnScreen,
                             dragParam.viewMatrix, dragParam.projectionMatrix,
                             dragParam.viewport,
@@ -138,6 +142,7 @@ namespace CSharpGL.Demos
                 //else
                 {
                     this.selectedIndexes.Clear();
+                    this.rendererDict[this.selectedModel].Highlighter.ClearHighlightIndexes();
                 }
             }
         }
@@ -156,7 +161,7 @@ namespace CSharpGL.Demos
                         new Point(x, this.glCanvas1.Height - y - 1), c);
                 }
                 {
-                    IColorCodedPicking pickable = this.rendererDict[this.SelectedModel];
+                    IColorCodedPicking pickable = this.rendererDict[this.SelectedModel].PickableRenderer;
                     pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
                     PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
                         e, x, y, this.glCanvas1.Width, this.glCanvas1.Height,
