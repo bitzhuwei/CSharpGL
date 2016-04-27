@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/bitzhuwei/CSharpGL</projectUrl>
+    <iconUrl>http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_CSharpGL-text.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Test nuGet.</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>OpenGL C#</tags>
+  </metadata>
+</package>
