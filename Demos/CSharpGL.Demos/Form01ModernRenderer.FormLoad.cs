@@ -121,9 +121,9 @@ namespace CSharpGL.Demos
                         pickableRenderer.SetUniformValue(item.Item1, item.Item2);
                     }
                     {
-                        GLSwitch lineWidthSwitch = new LineWidthSwitch(4);
+                        GLSwitch lineWidthSwitch = new LineWidthSwitch(5);
                         pickableRenderer.SwitchList.Add(lineWidthSwitch);
-                        GLSwitch pointSizeSwitch = new PointSizeSwitch(4);
+                        GLSwitch pointSizeSwitch = new PointSizeSwitch(10);
                         pickableRenderer.SwitchList.Add(pointSizeSwitch);
                         GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
                         pickableRenderer.SwitchList.Add(polygonModeSwitch);
