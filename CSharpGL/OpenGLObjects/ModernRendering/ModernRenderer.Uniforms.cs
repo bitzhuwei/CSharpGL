@@ -73,7 +73,9 @@ namespace CSharpGL
             }
             else
             {
-                return null;
+                throw new Exception(string.Format(
+                    "UniformVariable type [{0}] doesn't exists or not included in the variableDict!",
+                    t));
             }
         }
 
