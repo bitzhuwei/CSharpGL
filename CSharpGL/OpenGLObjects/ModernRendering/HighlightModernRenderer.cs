@@ -32,7 +32,7 @@ namespace CSharpGL
             var uniform = new UniformVec4("highlightColor");
             //another way: uniform.SetValue(new vec4(1, 1, 1, 1));
             uniform.Value = new vec4(1, 1, 1, 1);
-            this.uniformVariables.Add(uniform);
+            this.UniformVariables.Add(uniform);
         }
 
         protected override void DoInitialize()
@@ -77,17 +77,6 @@ namespace CSharpGL
             this.bufferable = null;
             this.shaderCode = null;
             this.propertyNameMap = null;
-        }
-
-        protected override void DisposeUnmanagedResources()
-        {
-            if (this.oneIndexBufferPtr != null)
-            {
-                this.oneIndexBufferPtr.Dispose();
-                this.oneIndexBufferPtr = null;
-            }
-
-            base.DisposeUnmanagedResources();
         }
 
         protected override IndexBufferPtr indexBufferPtr
