@@ -3,19 +3,10 @@ using System.Linq;
 
 namespace CSharpGL
 {
-    public static class PickingShaderHelper //: IDisposable
+    public static class HighlightShaderHelper //: IDisposable
     {
 
-        public static ShaderCode[] GetPickingShaderCode()
-        {
-            ShaderCode[] shaders = new ShaderCode[2];
-            shaders[0] = new ShaderCode(GetShaderSource(ShaderType.VertexShader), ShaderType.VertexShader);
-            shaders[1] = new ShaderCode(GetShaderSource(ShaderType.FragmentShader), ShaderType.FragmentShader);
-
-            return shaders;
-        }
-
-        public static ShaderProgram GetPickingShaderProgram()
+        public static ShaderProgram GetHighlightShaderProgram()
         {
             ShaderCode[] shaders = new ShaderCode[2];
             shaders[0] = new ShaderCode(GetShaderSource(ShaderType.VertexShader), ShaderType.VertexShader);
@@ -52,7 +43,7 @@ namespace CSharpGL
                     if (vertexShader == null)
                     {
                         vertexShader = ManifestResourceLoader.LoadTextFile(
-                            @"OpenGLObjects.ColorCodedPicking.Picking.vert");
+                            @"OpenGLObjects.ColorCodedPicking.Highlight.vert");
                     }
                     result = vertexShader;
                     break;
@@ -60,7 +51,7 @@ namespace CSharpGL
                     if (fragmentShader == null)
                     {
                         fragmentShader = ManifestResourceLoader.LoadTextFile(
-                            @"OpenGLObjects.ColorCodedPicking.Picking.frag");
+                            @"OpenGLObjects.ColorCodedPicking.Highlight.frag");
                     }
                     result = fragmentShader;
                     break;

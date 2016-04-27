@@ -24,7 +24,9 @@ namespace CSharpGL
         internal HighlightModernRenderer(IBufferable bufferable,
             string positionNameInIBufferable,
             params GLSwitch[] switches)
-            : base(bufferable, null, new PropertyNameMap("in_Position", positionNameInIBufferable), positionNameInIBufferable, switches)
+            : base(bufferable, PickingShaderHelper.GetPickingShaderCode(),
+                new PropertyNameMap("in_Position", positionNameInIBufferable),
+                positionNameInIBufferable, switches)
         {
         }
 

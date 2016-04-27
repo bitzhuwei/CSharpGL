@@ -61,6 +61,7 @@
     <Compile Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="OpenGLObjects\ColorCodedPicking\HighlightShaderHelper.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\LineLoopRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizerFactory.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PointsRecognizer.cs" />
@@ -297,8 +298,8 @@
     <EmbeddedResource Include="UITypeEditors\FormGLSwtichType.resx">
       <DependentUpon>FormGLSwtichType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\PickingShader.frag" />
-    <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\PickingShader.vert" />
+    <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Picking.frag" />
+    <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Picking.vert" />
     <None Include="OpenGLObjects\VertexBuffers\VertexBuffer.cd" />
     <None Include="OpenGLObjects\VertexBuffers\VertexBufferPtr.cd" />
   </ItemGroup>
