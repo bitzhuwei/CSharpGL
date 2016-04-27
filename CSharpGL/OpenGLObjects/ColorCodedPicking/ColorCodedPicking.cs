@@ -20,10 +20,13 @@ namespace CSharpGL
         /// <param name="canvasHeight">画布高度</param>
         /// <param name="pickableElements">在哪些对象中执行拾取操作</param>
         /// <returns></returns>
-        public static PickedGeometry Pick(Camera camera, int x, int y, int canvasWidth, int canvasHeight, params IColorCodedPicking[] pickableElements)
+        public static PickedGeometry Pick(RenderEventArgs e,
+            int x, int y, int canvasWidth, int canvasHeight,
+            SelectionMode selectionMode, params IColorCodedPicking[] pickableElements)
         {
             Rectangle rect = new Rectangle(x, y, 1, 1);
-            List<Tuple<Point, PickedGeometry>> list = Pick(camera, rect, canvasWidth, canvasHeight, pickableElements);
+            List<Tuple<Point, PickedGeometry>> list = Pick(e,
+                rect, canvasWidth, canvasHeight, selectionMode, pickableElements);
             if (list.Count > 0)
             { return list[0].Item2; }
             else
@@ -41,10 +44,12 @@ namespace CSharpGL
         /// <param name="height">画布高度</param>
         /// <param name="pickableElements">在哪些对象中执行拾取操作</param>
         /// <returns></returns>
-        public static List<Tuple<Point, PickedGeometry>> Pick(Camera camera, int x, int y, int radius, int width, int height, params IColorCodedPicking[] pickableElements)
+        public static List<Tuple<Point, PickedGeometry>> Pick(RenderEventArgs e,
+            int x, int y, int radius, int width, int height,
+            SelectionMode selectionMode, params IColorCodedPicking[] pickableElements)
         {
             Rectangle rect = new Rectangle(x - radius, y - radius, radius * 2, radius * 2);
-            return Pick(camera, rect, width, height, pickableElements);
+            return Pick(e, rect, width, height, selectionMode, pickableElements);
         }
 
         /// <summary>
@@ -56,12 +61,14 @@ namespace CSharpGL
         /// <param name="canvasHeight">画布高度</param>
         /// <param name="pickableElements">在哪些对象中执行拾取操作</param>
         /// <returns></returns>
-        public static List<Tuple<Point, PickedGeometry>> Pick(ICamera camera, Rectangle rect, int canvasWidth, int canvasHeight, params IColorCodedPicking[] pickableElements)
+        public static List<Tuple<Point, PickedGeometry>> Pick(RenderEventArgs e,
+            Rectangle rect, int canvasWidth, int canvasHeight,
+            SelectionMode selectionMode, params IColorCodedPicking[] pickableElements)
         {
             var result = new List<Tuple<Point, PickedGeometry>>();
             if (pickableElements.Length == 0) { return result; }
 
-            Render4Picking(camera, pickableElements);
+            Render4Picking(e, selectionMode, pickableElements);
 
             for (int row = 0; row < rect.Width; row++)
             {
@@ -70,7 +77,7 @@ namespace CSharpGL
                     int x = rect.X + col;
                     int y = rect.Y + row;
 
-                    PickedGeometry pickedGeometry = ReadPixel(camera,
+                    PickedGeometry pickedGeometry = ReadPixel(e,
                         x, y, canvasWidth, canvasHeight, pickableElements);
 
                     if (pickedGeometry != null)
@@ -83,7 +90,7 @@ namespace CSharpGL
             return result;
         }
 
-        private static void Render4Picking(ICamera camera, IColorCodedPicking[] pickableElements)
+        private static void Render4Picking(RenderEventArgs e, SelectionMode selectionMode, IColorCodedPicking[] pickableElements)
         {
             // 暂存clear color
             var originalClearColor = new float[4];
@@ -96,17 +103,19 @@ namespace CSharpGL
             GL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
             SharedStageInfo info = new SharedStageInfo();
-            var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, camera);
+            //var arg = new RenderEventArgs(
+            //    selectionMode == SelectionMode.DrawMode ? RenderModes.ColorCodedPicking : RenderModes.ColorCodedPickingPoints,
+            //    camera);
 
             foreach (var pickable in pickableElements)
             {
-                info.RenderForPicking(pickable, arg);
+                info.RenderForPicking(pickable, e);
             }
 
             GL.Flush();
         }
 
-        private static PickedGeometry ReadPixel(ICamera camera,
+        private static PickedGeometry ReadPixel(RenderEventArgs e,
             int x, int y, int canvasWidth, int canvasHeight,
             IColorCodedPicking[] pickableElements)
         {
@@ -140,7 +149,7 @@ namespace CSharpGL
                 // get picked primitive.
                 foreach (var item in pickableElements)
                 {
-                    pickedGeometry = item.Pick(camera, stageVertexId,
+                    pickedGeometry = item.Pick(e, stageVertexId,
                         x, y, canvasWidth, canvasHeight);
                     if (pickedGeometry != null)
                     { break; }
@@ -150,5 +159,11 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
+    }
+
+    public enum SelectionMode
+    {
+        DrawMode,
+        Points,
     }
 }

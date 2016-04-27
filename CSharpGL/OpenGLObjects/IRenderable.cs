@@ -50,6 +50,7 @@ namespace CSharpGL
     {
         Render,
         ColorCodedPicking,
+        ColorCodedPickingPoints
         //DesignMode,
     }
 }

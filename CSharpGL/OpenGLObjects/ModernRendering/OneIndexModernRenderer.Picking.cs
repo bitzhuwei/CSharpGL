@@ -12,7 +12,7 @@ namespace CSharpGL
     public partial class OneIndexModernRenderer
     {
 
-        public override PickedGeometry Pick(ICamera camera, uint stageVertexId,
+        public override PickedGeometry Pick(RenderEventArgs e, uint stageVertexId,
             int x, int y, int canvasWidth, int canvasHeight)
         {
             uint lastVertexId;
@@ -22,7 +22,7 @@ namespace CSharpGL
                 // 找到 lastIndexId
                 RecognizedPrimitiveIndex lastIndexId =
                     this.GetLastIndexIdOfPickedGeometry(
-                        camera, lastVertexId, x, y, canvasWidth, canvasHeight);
+                        e, lastVertexId, x, y, canvasWidth, canvasHeight);
                 // 获取pickedGeometry
                 pickedGeometry = this.GetGeometry(lastIndexId, stageVertexId);
             }
@@ -56,13 +56,13 @@ namespace CSharpGL
         }
 
         private RecognizedPrimitiveIndex GetLastIndexIdOfPickedGeometry(
-            ICamera camera,
+            RenderEventArgs e,
             uint lastVertexId, int x, int y, int canvasWidth, int canvasHeight)
         {
             List<RecognizedPrimitiveIndex> lastIndexIdList = GetLastIndexIdList(lastVertexId);
 
             RecognizedPrimitiveIndex lastIndexId = GetLastIndexId(
-                camera, lastIndexIdList, x, y, canvasWidth, canvasHeight);
+                e, lastIndexIdList, x, y, canvasWidth, canvasHeight);
 
             return lastIndexId;
         }
@@ -75,7 +75,7 @@ namespace CSharpGL
         /// <param name="lastIndexIdList"></param>
         /// <returns></returns>
         private RecognizedPrimitiveIndex GetLastIndexId(
-            ICamera camera,
+            RenderEventArgs e,
             List<RecognizedPrimitiveIndex> lastIndexIdList,
             int x, int y, int canvasWidth, int canvasHeight)
         {
@@ -92,7 +92,8 @@ namespace CSharpGL
                 AssembleIndexBuffer(
                     lastIndexIdList[current], lastIndexIdList[i], this.indexBufferPtr.Mode,
                     out twoPrimitivesIndexBufferPtr, out lastIndex0, out lastIndex1);
-                uint pickedIndex = Pick(camera, twoPrimitivesIndexBufferPtr, x, y, canvasWidth, canvasHeight);
+                uint pickedIndex = Pick(e, twoPrimitivesIndexBufferPtr,
+                    x, y, canvasWidth, canvasHeight);
                 if (pickedIndex == lastIndex1)
                 { current = i; }
                 else if (pickedIndex == lastIndex0)
@@ -121,9 +122,10 @@ namespace CSharpGL
             }
         }
 
-        private uint Pick(ICamera camera, OneIndexBufferPtr twoPrimitivesIndexBufferPtr, int x, int y, int canvasWidth, int canvasHeight)
+        private uint Pick(RenderEventArgs e, OneIndexBufferPtr twoPrimitivesIndexBufferPtr,
+            int x, int y, int canvasWidth, int canvasHeight)
         {
-            Render4Picking(camera, twoPrimitivesIndexBufferPtr);
+            Render4Picking(e, twoPrimitivesIndexBufferPtr);
 
             uint pickedIndex = ReadPixel(x, y, canvasHeight);
 
@@ -154,7 +156,7 @@ namespace CSharpGL
             { return uint.MaxValue; }
         }
 
-        private void Render4Picking(ICamera camera, OneIndexBufferPtr twoPrimitivesIndexBufferPtr)
+        private void Render4Picking(RenderEventArgs e, OneIndexBufferPtr twoPrimitivesIndexBufferPtr)
         {
             // 暂存clear color
             var originalClearColor = new float[4];
@@ -175,9 +177,9 @@ namespace CSharpGL
             GL.Enable(GL.GL_PRIMITIVE_RESTART);
             foreach (var item in switchList) { item.On(); }
             {
-                var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, camera);
-                this.positionBufferPtr.Render(arg, program);
-                twoPrimitivesIndexBufferPtr.Render(arg, program);
+                //var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, camera);
+                this.positionBufferPtr.Render(e, program);
+                twoPrimitivesIndexBufferPtr.Render(e, program);
                 GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
             }
             GL.Disable(GL.GL_PRIMITIVE_RESTART);

@@ -11,7 +11,7 @@ namespace CSharpGL
     public partial class ZeroIndexModernRenderer : ModernRenderer
     {
 
-        public override PickedGeometry Pick(ICamera camera, uint stageVertexId,
+        public override PickedGeometry Pick(RenderEventArgs e, uint stageVertexId,
             int x, int y, int canvasWidth, int canvasHeight)
         {
             uint lastVertexId;

@@ -54,7 +54,9 @@ namespace CSharpGL.Demos
                 //}
                 //else// 试图拖拽
                 {
-                    PickedGeometry pickedGeometry = RunPicking(e.X, e.Y);
+                    PickedGeometry pickedGeometry = RunPicking(
+                        new RenderEventArgs(RenderModes.ColorCodedPicking, this.camera),
+                        e.X, e.Y);
                     if (pickedGeometry != null)
                     { this.selectedIndexes.AddRange(pickedGeometry.Indexes); }
                     List<uint> selectedIndexes = this.selectedIndexes;
@@ -111,7 +113,7 @@ namespace CSharpGL.Demos
             }
             else
             {
-                RunPicking(e.X, e.Y);
+                RunPicking(new RenderEventArgs(RenderModes.ColorCodedPicking, this.camera), e.X, e.Y);
             }
         }
 
@@ -138,7 +140,7 @@ namespace CSharpGL.Demos
             }
         }
 
-        private PickedGeometry RunPicking(int x, int y)
+        private PickedGeometry RunPicking(RenderEventArgs e, int x, int y)
         {
             lock (this.synObj)
             {
@@ -155,7 +157,8 @@ namespace CSharpGL.Demos
                     IColorCodedPicking pickable = this.rendererDict[this.SelectedModel];
                     pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
                     PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
-                        this.camera, x, y, this.glCanvas1.Width, this.glCanvas1.Height, pickable);
+                        e, x, y, this.glCanvas1.Width, this.glCanvas1.Height,
+                        SelectionMode.DrawMode, pickable);
                     if (pickedGeometry != null)
                     {
                         this.RunPickingBoard.SetContent(pickedGeometry.ToString(
