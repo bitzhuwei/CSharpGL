@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// 高亮显示某些图元
     /// </summary>
-    public partial class HighlightModernRenderer : ModernRenderer
+    public partial class HighlightModernRenderer
     {
 
         protected override void DoInitialize()
