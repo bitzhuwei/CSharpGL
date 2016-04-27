@@ -44,7 +44,7 @@ namespace CSharpGL.Demos
                     propertyNameMap.Add("in_Position", "position");
                     propertyNameMap.Add("in_Color", "color");
                     string positionNameInIBufferable = "position";
-                    var renderer = ModernRendererFactory.GetModernRenderer(bufferable, shaders, propertyNameMap, positionNameInIBufferable);
+                    var renderer = PickableModernRendererFactory.GetModernRenderer(bufferable, shaders, propertyNameMap, positionNameInIBufferable);
                     renderer.Initialize();
                     GLSwitch lineWidthSwitch = new LineWidthSwitch(10.0f);
                     renderer.SwitchList.Add(lineWidthSwitch);

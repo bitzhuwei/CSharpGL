@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public static class ModernRendererFactory
+    public static class PickableModernRendererFactory
     {
-        public static ModernRenderer GetModernRenderer(this IBufferable bufferable, ShaderCode[] shaderCodes,
+        public static PickableModernRenderer GetModernRenderer(this IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, string positionNameInIBufferable,
             params GLSwitch[] switches)
         {

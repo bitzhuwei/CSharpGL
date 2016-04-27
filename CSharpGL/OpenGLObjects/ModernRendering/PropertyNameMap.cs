@@ -20,6 +20,13 @@ namespace CSharpGL
         List<string> namesInShader = new List<string>();
         List<string> namesInIBufferable = new List<string>();
 
+        public PropertyNameMap() { }
+
+        public PropertyNameMap(string nameInShader, string nameInIBufferable)
+        {
+            this.Add(nameInShader, nameInIBufferable);
+        }
+
         public void Add(string nameInShader, string nameInIBufferable)
         {
             this.namesInShader.Add(nameInShader);

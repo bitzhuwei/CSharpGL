@@ -3,8 +3,8 @@
   <Class Name="CSharpGL.ModernRenderer">
     <Position X="0.5" Y="0.5" Width="11.25" />
     <TypeIdentifier>
-      <HashCode>AAQAKAEIBMBAEAYAAAMAAgAAAACBhEAAQMgGCAAQQQA=</HashCode>
-      <FileName>OpenGLObjects\ModernRendering\ModernRenderer.ColorCodedPicking.cs</FileName>
+      <HashCode>AAQAAAEABUAAEAQBAAMAFgBAEAABjgAAwPgEKAEQQQA=</HashCode>
+      <FileName>OpenGLObjects\ModernRendering\PickableModernRenderer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>

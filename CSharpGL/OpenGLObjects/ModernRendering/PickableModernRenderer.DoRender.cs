@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class ModernRenderer : RendererBase
+    public partial class PickableModernRenderer
     {
 
         protected override void DoRender(RenderEventArgs e)
@@ -19,7 +19,7 @@ namespace CSharpGL
             }
             else if (e.RenderMode == RenderModes.Render)
             {
-                RenderRender(e);
+                base.DoRender(e);
             }
 
         }

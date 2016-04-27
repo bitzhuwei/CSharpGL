@@ -10,7 +10,7 @@ namespace CSharpGL
     public partial class ModernRenderer
     {
 
-        private void RenderRender(RenderEventArgs e)
+        protected override void DoRender(RenderEventArgs e)
         {
             ShaderProgram program = this.shaderProgram;
             if (program == null) { return; }

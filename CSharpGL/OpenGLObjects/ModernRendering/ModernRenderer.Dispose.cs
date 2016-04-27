@@ -1,5 +1,4 @@
-﻿using GLM;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class ModernRenderer
+    public abstract partial class ModernRenderer 
     {
-
         protected override void DisposeUnmanagedResources()
         {
             if (this.vertexArrayObject != null)
@@ -30,24 +28,7 @@ namespace CSharpGL
             {
                 this.shaderProgram.Delete();
                 this.shaderProgram = null;
-            }
-            // dispose picking resources
-            if (this.vertexArrayObject4Picking != null)
-            {
-                this.vertexArrayObject4Picking.Dispose();
-                this.vertexArrayObject4Picking = null;
-            }
-            if (this.positionBufferPtr != null)
-            {
-                this.positionBufferPtr = null;// already disposed in propertyBufferPtrs
-            }
-            if (this.pickingShaderProgram != null)
-            {
-                this.pickingShaderProgram.Delete();
-                this.pickingShaderProgram = null;
-            }
-
+            } 
         }
-
     }
 }

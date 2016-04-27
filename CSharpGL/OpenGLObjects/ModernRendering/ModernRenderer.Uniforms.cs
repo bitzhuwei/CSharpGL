@@ -9,7 +9,7 @@ namespace CSharpGL
 {
     public partial class ModernRenderer
     {
-        private List<UniformVariable> uniformVariables = new List<UniformVariable>();
+        protected List<UniformVariable> uniformVariables = new List<UniformVariable>();
 
         //protected OrderedCollection<string> uniformVariableNames = new OrderedCollection<string>(", ");
 

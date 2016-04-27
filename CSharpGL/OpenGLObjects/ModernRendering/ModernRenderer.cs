@@ -1,33 +1,16 @@
-﻿using GLM;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public abstract partial class ModernRenderer : IColorCodedPicking
+    public abstract partial class ModernRenderer : RendererBase
     {
-        // Color Coded Picking
-        protected VertexArrayObject vertexArrayObject4Picking;
         protected string positionNameInIBufferable;
         protected PropertyBufferPtr positionBufferPtr;
-        protected UniformMat4 pickingMVP = new UniformMat4("MVP");
-
-        protected ShaderProgram pickingShaderProgram;
-        protected ShaderProgram PickingShaderProgram
-        {
-            get
-            {
-                if (pickingShaderProgram == null)
-                { pickingShaderProgram = PickingShaderHelper.GetPickingShaderProgram(); }
-
-                return pickingShaderProgram;
-            }
-        }
-
+        
         // normal rendering
         // 算法
         protected ShaderProgram shaderProgram;

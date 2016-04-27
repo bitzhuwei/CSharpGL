@@ -42,7 +42,7 @@ namespace CSharpGL.Demos
             }
         }
 
-        Dictionary<GeometryModel, ModernRenderer> rendererDict = new Dictionary<GeometryModel, ModernRenderer>();
+        Dictionary<GeometryModel, PickableModernRenderer> rendererDict = new Dictionary<GeometryModel, PickableModernRenderer>();
 
         ///// <summary>
         ///// 要渲染的对象
@@ -122,7 +122,7 @@ namespace CSharpGL.Demos
 
                 GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-                ModernRenderer renderer = this.rendererDict[this.SelectedModel];
+                PickableModernRenderer renderer = this.rendererDict[this.SelectedModel];
                 if (renderer != null)
                 {
                     //if (cameraUpdated)
@@ -137,7 +137,7 @@ namespace CSharpGL.Demos
             }
         }
 
-        private void UpdateMVP(ModernRenderer renderer)
+        private void UpdateMVP(PickableModernRenderer renderer)
         {
             mat4 projectionMatrix = camera.GetProjectionMat4();
             mat4 viewMatrix = camera.GetViewMat4();

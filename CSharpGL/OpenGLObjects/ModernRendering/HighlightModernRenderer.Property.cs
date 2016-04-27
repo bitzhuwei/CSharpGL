@@ -6,26 +6,10 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class OneIndexModernRenderer : PickableModernRenderer
+    /// <summary>
+    /// 高亮显示某些图元
+    /// </summary>
     {
-
-        private int mapBufferRangeLength = 2 * 2 * 2 * 2 * 3 * 3 * 3 * 3 * 10;
-
-        public int MapBufferRangeLength
-        {
-            get { return mapBufferRangeLength; }
-            set
-            {
-                if (value < sizeof(uint) * 4)
-                {
-                    mapBufferRangeLength = sizeof(uint) * 4;
-                }
-                else
-                {
-                    mapBufferRangeLength = value;
-                }
-            }
-        }
 
         /// <summary>
         /// 要渲染多少个索引。
@@ -63,4 +47,6 @@ namespace CSharpGL
             }
         }
     }
+
+
 }

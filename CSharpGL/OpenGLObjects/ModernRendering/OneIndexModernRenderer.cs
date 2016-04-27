@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class OneIndexModernRenderer : ModernRenderer
+    public partial class OneIndexModernRenderer : PickableModernRenderer
     {
         protected OneIndexBufferPtr oneIndexBufferPtr;
 

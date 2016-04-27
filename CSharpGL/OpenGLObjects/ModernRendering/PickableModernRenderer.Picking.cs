@@ -7,8 +7,24 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class ModernRenderer : IColorCodedPicking
+    public partial class PickableModernRenderer : IColorCodedPicking
     {
+        // Color Coded Picking
+        protected VertexArrayObject vertexArrayObject4Picking;
+
+        protected UniformMat4 pickingMVP = new UniformMat4("MVP");
+
+        protected ShaderProgram pickingShaderProgram;
+        protected ShaderProgram PickingShaderProgram
+        {
+            get
+            {
+                if (pickingShaderProgram == null)
+                { pickingShaderProgram = PickingShaderHelper.GetPickingShaderProgram(); }
+
+                return pickingShaderProgram;
+            }
+        }
 
         public mat4 MVP
         {
