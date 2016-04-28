@@ -111,12 +111,12 @@ namespace CSharpGL
             GL.Color(color.R, color.G, color.B);
             GL.RasterPos2i(x, y);
 
-            GL.PushAttrib(GL.GL_LIST_BIT | GL.GL_CURRENT_BIT |
-                GL.GL_ENABLE_BIT | GL.GL_TRANSFORM_BIT);
+            //GL.PushAttrib(GL.GL_LIST_BIT | GL.GL_CURRENT_BIT |
+            //    GL.GL_ENABLE_BIT | GL.GL_TRANSFORM_BIT);
             GL.Color(color.R, color.G, color.B);
-            GL.Disable(GL.GL_LIGHTING);
-            GL.Disable(GL.GL_TEXTURE_2D);
-            GL.Disable(GL.GL_DEPTH_TEST);
+            //GL.Disable(GL.GL_LIGHTING);
+            //GL.Disable(GL.GL_TEXTURE_2D);
+            //GL.Disable(GL.GL_DEPTH_TEST);
             GL.RasterPos2i(x, y);
 
             //  Set the list base.
@@ -129,8 +129,8 @@ namespace CSharpGL
             GL.CallLists(lists.Length, GL.GL_UNSIGNED_BYTE, lists);
             GL.Flush();
 
-            //  Reset the list bit.
-            GL.PopAttrib();
+            ////  Reset the list bit.
+            //GL.PopAttrib();
 
             //  Pop the modelview.
             GL.PopMatrix();
