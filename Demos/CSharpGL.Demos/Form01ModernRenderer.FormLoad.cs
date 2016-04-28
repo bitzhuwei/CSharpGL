@@ -29,12 +29,12 @@ namespace CSharpGL.Demos
             {
                 Random random = new Random();
                 var bufferables = new IBufferable[]{
-                    new BigDipperAdapter(new BigDipper()),
-                    new ChainModelAdapter(new ChainModel(random.Next(7, 100), 5, 5)),
-                    new TetrahedronModelAdapter(new TetrahedronModel(1.0f)),
-                    new CubeModelAdapter(new CubeModel(1.0f)),
-                    new SphereModelAdapter(new SphereModel(1.0f)),
-                    new TeapotModelAdapter(TeapotModel.GetModel(1.0f)),
+                    new BigDipperConverter(new BigDipper()),
+                    new ChainModelConverter(new ChainModel(random.Next(7, 100), 5, 5)),
+                    new TetrahedronModelConverter(new TetrahedronModel(1.0f)),
+                    new CubeModelConverter(new CubeModel(1.0f)),
+                    new SphereModelConverter(new SphereModel(1.0f)),
+                    new TeapotModelConverter(TeapotModel.GetModel(1.0f)),
                 };
                 var keys = new GeometryModel[] 
                 { 

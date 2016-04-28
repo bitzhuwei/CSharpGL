@@ -54,10 +54,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HighlightedPickableRenderer.cs" />
-    <Compile Include="ModelAdapters\ChainModelAdapter.cs" />
-    <Compile Include="ModelAdapters\TetrahedronModelAdapter.cs" />
-    <Compile Include="ModelAdapters\CubeModelAdapter.cs" />
-    <Compile Include="ModelAdapters\SphereModelAdapter.cs" />
+    <Compile Include="IBufferable\ChainModelConverter.cs" />
+    <Compile Include="IBufferable\TetrahedronModelConverter.cs" />
+    <Compile Include="IBufferable\CubeModelConverter.cs" />
+    <Compile Include="IBufferable\SphereModelConverter.cs" />
     <Compile Include="FormBulletinBoard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,8 +70,8 @@
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelAdapters\BigDipperAdapter.cs" />
-    <Compile Include="ModelAdapters\TeapotModelAdapter.cs" />
+    <Compile Include="IBufferable\BigDipperConverter.cs" />
+    <Compile Include="IBufferable\TeapotModelConverter.cs" />
     <Compile Include="Models\ChainModel.cs" />
     <Compile Include="Models\BigDipper.cs" />
     <Compile Include="Models\TetrahedronModel.cs" />

@@ -12,10 +12,10 @@ namespace CSharpGL.ModelAdapters
     /// 北斗七星
     /// <para>使用<see cref="ZeroIndexBuffer"/></para>
     /// </summary>
-    class ChainModelAdapter : IBufferable
+    class ChainModelConverter : IBufferable
     {
         private ChainModel model;
-        public ChainModelAdapter(ChainModel model)
+        public ChainModelConverter(ChainModel model)
         {
             this.model = model;
         }

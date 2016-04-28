@@ -1,26 +1,21 @@
-﻿using CSharpGL;
-using CSharpGL.Models;
+﻿using CSharpGL.Models;
 using GLM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CSharpGL.ModelAdapters
 {
     /// <summary>
-    /// 一个四面体的模型。
-    /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_tetrahedron.jpg
+    /// 经典的茶壶模型
     /// <para>使用<see cref="OneIndexBuffer"/></para>
     /// </summary>
-    public class TetrahedronModelAdapter : IBufferable
+    public class TeapotModelConverter : IBufferable
     {
 
-        private TetrahedronModel model;
-
-        public TetrahedronModelAdapter(TetrahedronModel model)
+        public TeapotModelConverter(TeapotModel model)
         {
             this.model = model;
         }
@@ -28,6 +23,7 @@ namespace CSharpGL.ModelAdapters
         public const string strPosition = "position";
         public const string strColor = "color";
         public const string strNormal = "normal";
+        private TeapotModel model;
         Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
@@ -38,16 +34,15 @@ namespace CSharpGL.ModelAdapters
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(this.model.position.Length);
+                        buffer.Alloc(model.positions.Count);
                         unsafe
                         {
                             var array = (vec3*)buffer.FirstElement();
-                            for (int i = 0; i < this.model.position.Length; i++)
+                            for (int i = 0; i < model.positions.Count; i++)
                             {
-                                array[i] = this.model.position[i];
+                                array[i] = model.positions[i];
                             }
                         }
-
                         propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
                     }
                 }
@@ -59,16 +54,15 @@ namespace CSharpGL.ModelAdapters
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(this.model.color.Length);
+                        buffer.Alloc(model.normals.Count);
                         unsafe
                         {
                             var array = (vec3*)buffer.FirstElement();
-                            for (int i = 0; i < this.model.color.Length; i++)
+                            for (int i = 0; i < model.normals.Count; i++)
                             {
-                                array[i] = this.model.color[i];
+                                array[i] = model.normals[i];
                             }
                         }
-
                         propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
                     }
                 }
@@ -80,16 +74,15 @@ namespace CSharpGL.ModelAdapters
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(this.model.normal.Length);
+                        buffer.Alloc(model.normals.Count);
                         unsafe
                         {
                             var array = (vec3*)buffer.FirstElement();
-                            for (int i = 0; i < this.model.normal.Length; i++)
+                            for (int i = 0; i < model.normals.Count; i++)
                             {
-                                array[i] = this.model.normal[i];
+                                array[i] = model.normals[i];
                             }
                         }
-
                         propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
                     }
                 }
@@ -105,15 +98,17 @@ namespace CSharpGL.ModelAdapters
         {
             if (indexBufferPtr == null)
             {
-                using (var buffer = new OneIndexBuffer<byte>(DrawMode.Triangles, BufferUsage.StaticDraw))
+                using (var buffer = new OneIndexBuffer<ushort>(DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    buffer.Alloc(this.model.index.Length);
+                    buffer.Alloc(model.faces.Count * 3);
                     unsafe
                     {
-                        var array = (byte*)buffer.FirstElement();
-                        for (int i = 0; i < this.model.index.Length; i++)
+                        var array = (ushort*)buffer.FirstElement();
+                        for (int i = 0; i < model.faces.Count; i++)
                         {
-                            array[i] = this.model.index[i];
+                            array[i * 3 + 0] = (ushort)(model.faces[i].Item1 - 1);
+                            array[i * 3 + 1] = (ushort)(model.faces[i].Item2 - 1);
+                            array[i * 3 + 2] = (ushort)(model.faces[i].Item3 - 1);
                         }
                     }
 
@@ -123,7 +118,7 @@ namespace CSharpGL.ModelAdapters
 
             return indexBufferPtr;
         }
-
         IndexBufferPtr indexBufferPtr = null;
     }
+
 }

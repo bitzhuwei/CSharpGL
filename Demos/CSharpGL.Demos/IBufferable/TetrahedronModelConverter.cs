@@ -11,16 +11,16 @@ using System.Threading.Tasks;
 namespace CSharpGL.ModelAdapters
 {
     /// <summary>
-    /// 一个球体的模型。
-    /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_sphere.jpg
+    /// 一个四面体的模型。
+    /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_tetrahedron.jpg
     /// <para>使用<see cref="OneIndexBuffer"/></para>
     /// </summary>
-    public class SphereModelAdapter : IBufferable
+    public class TetrahedronModelConverter : IBufferable
     {
 
-        private SphereModel model;
+        private TetrahedronModel model;
 
-        public SphereModelAdapter(SphereModel model)
+        public TetrahedronModelConverter(TetrahedronModel model)
         {
             this.model = model;
         }
@@ -38,15 +38,16 @@ namespace CSharpGL.ModelAdapters
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(model.positions.Length);
+                        buffer.Alloc(this.model.position.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.FirstElement();
-                            for (int i = 0; i < model.positions.Length; i++)
+                            for (int i = 0; i < this.model.position.Length; i++)
                             {
-                                array[i] = model.positions[i];
+                                array[i] = this.model.position[i];
                             }
                         }
+
                         propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
                     }
                 }
@@ -58,15 +59,16 @@ namespace CSharpGL.ModelAdapters
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(model.colors.Length);
+                        buffer.Alloc(this.model.color.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.FirstElement();
-                            for (int i = 0; i < model.colors.Length; i++)
+                            for (int i = 0; i < this.model.color.Length; i++)
                             {
-                                array[i] = model.colors[i];
+                                array[i] = this.model.color[i];
                             }
                         }
+
                         propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
                     }
                 }
@@ -78,15 +80,16 @@ namespace CSharpGL.ModelAdapters
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(model.normals.Length);
+                        buffer.Alloc(this.model.normal.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.FirstElement();
-                            for (int i = 0; i < model.normals.Length; i++)
+                            for (int i = 0; i < this.model.normal.Length; i++)
                             {
-                                array[i] = model.normals[i];
+                                array[i] = this.model.normal[i];
                             }
                         }
+
                         propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
                     }
                 }
@@ -96,69 +99,31 @@ namespace CSharpGL.ModelAdapters
             {
                 return null;
             }
-
         }
 
         public IndexBufferPtr GetIndex()
         {
             if (indexBufferPtr == null)
             {
-                if (model.indexes.Length < byte.MaxValue)
+                using (var buffer = new OneIndexBuffer<byte>(DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    using (var buffer = new OneIndexBuffer<byte>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
+                    buffer.Alloc(this.model.index.Length);
+                    unsafe
                     {
-                        buffer.Alloc(model.indexes.Length);
-                        unsafe
+                        var array = (byte*)buffer.FirstElement();
+                        for (int i = 0; i < this.model.index.Length; i++)
                         {
-                            var indexArray = (byte*)buffer.FirstElement();
-                            for (int i = 0; i < model.indexes.Length; i++)
-                            {
-                                indexArray[i] = (byte)model.indexes[i];
-                            }
+                            array[i] = this.model.index[i];
                         }
-
-                        indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
                     }
-                }
-                else if (model.indexes.Length < ushort.MaxValue)
-                {
-                    using (var buffer = new OneIndexBuffer<ushort>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
-                    {
-                        buffer.Alloc(model.indexes.Length);
-                        unsafe
-                        {
-                            var indexArray = (ushort*)buffer.FirstElement();
-                            for (int i = 0; i < model.indexes.Length; i++)
-                            {
-                                indexArray[i] = (ushort)model.indexes[i];
-                            }
-                        }
 
-                        indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
-                    }
-                }
-                else
-                {
-                    using (var buffer = new OneIndexBuffer<uint>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
-                    {
-                        buffer.Alloc(model.indexes.Length);
-                        unsafe
-                        {
-                            var indexArray = (uint*)buffer.FirstElement();
-                            for (int i = 0; i < model.indexes.Length; i++)
-                            {
-                                indexArray[i] = model.indexes[i];
-                            }
-                        }
-
-                        indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
-                    }
+                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
                 }
             }
 
             return indexBufferPtr;
         }
+
         IndexBufferPtr indexBufferPtr = null;
     }
-
 }

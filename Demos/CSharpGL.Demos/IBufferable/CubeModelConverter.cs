@@ -16,12 +16,12 @@ namespace CSharpGL.ModelAdapters
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000062.jpg
     /// <para>使用<see cref="OneIndexBuffer"/></para>
     /// </summary>
-    public class CubeModelAdapter : IBufferable
+    public class CubeModelConverter : IBufferable
     {
 
         private CubeModel model;
 
-        public CubeModelAdapter(CubeModel model)
+        public CubeModelConverter(CubeModel model)
         {
             this.model = model;
         }

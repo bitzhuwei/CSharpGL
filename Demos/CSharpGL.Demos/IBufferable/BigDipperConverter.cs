@@ -12,10 +12,10 @@ namespace CSharpGL.ModelAdapters
     /// 北斗七星
     /// <para>使用<see cref="ZeroIndexBuffer"/></para>
     /// </summary>
-    class BigDipperAdapter : IBufferable
+    class BigDipperConverter : IBufferable
     {
         private BigDipper model;
-        public BigDipperAdapter(BigDipper model)
+        public BigDipperConverter(BigDipper model)
         {
             this.model = model;
         }
