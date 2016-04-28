@@ -135,7 +135,7 @@ namespace CSharpGL.Demos
 
                     this.rendererDict.Add(key, renderer);
                 }
-                this.SelectedModel = GeometryModel.BigDipper;
+                this.SelectedModel = GeometryModel.Cube;
             }
             {
                 var frmBulletinBoard = new FormBulletinBoard();
