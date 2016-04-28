@@ -142,20 +142,25 @@ namespace CSharpGL.Demos
                     PickedGeometry pickedGeometry = this.pickedGeometry;
                     if (pickedGeometry != null)
                     {
-                        GL.DrawText(this.mousePosition.X + 5,
+                        string content = string.Format("[index: {0}]", 
+                            pickedGeometry.Indexes.PrintArray());
+                        SizeF size = e.Graphics.MeasureString(content, font);
+                        GL.DrawText(this.mousePosition.X - (int)(size.Width / 2),
                             this.glCanvas1.Height - this.mousePosition.Y - 1,
                             this.TextColor, "Courier New", 14.0f,
-                            string.Format("indexes:{0}", pickedGeometry.Indexes.PrintArray()));
+                            content);
                     }
                     else
                     {
-                        GL.DrawText(this.mousePosition.X + 5,
+                        GL.DrawText(this.mousePosition.X,
                             this.glCanvas1.Height - this.mousePosition.Y - 1,
                             this.TextColor, "Courier New", 14.0f, "");
                     }
                 }
             }
         }
+
+        Font font = new Font("Courier New", 14.0f);
 
         private void UpdateMVP(HighlightedPickableRenderer renderer)
         {
