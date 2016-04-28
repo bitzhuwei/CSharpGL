@@ -1433,5 +1433,44 @@ namespace CSharpGL
                 return c;
             }
         }
+
+        #region Text
+
+        /// <summary>
+        /// Draws the text.
+        /// </summary>
+        /// <param name="x">The x.</param>
+        /// <param name="y">The y.</param>
+        /// <param name="r">The r.</param>
+        /// <param name="g">The g.</param>
+        /// <param name="b">The b.</param>
+        /// <param name="faceName">Name of the face.</param>
+        /// <param name="fontSize">Size of the font.</param>
+        /// <param name="text">The text.</param>
+        public static void DrawText(int x, int y, Color color,
+            string faceName, float fontSize, string text)
+        {
+            //  Use the font bitmaps object to render the text.
+            FontBitmaps.DrawText(x, y, color, faceName, fontSize, text);
+        }
+
+        #endregion
+
+        public static int[] GetViewport()
+        {
+            var viewport = new int[4];
+            GL.GetInteger(GetTarget.Viewport, viewport);
+
+            return viewport;
+        }
+
+        public static void GetViewport(out int x, out int y, out int width, out int height)
+        {
+            var viewport = new int[4];
+            GL.GetInteger(GetTarget.Viewport, viewport);
+
+            x = viewport[0]; y = viewport[1];
+            width = viewport[2]; height = viewport[3];
+        }
     }
 }

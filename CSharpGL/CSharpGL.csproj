@@ -58,6 +58,8 @@
     <Compile Include="Controls\RenderTriggers.cs" />
     <Compile Include="OpenGLAPI\Enumerations\ErrorCode.cs" />
     <Compile Include="OpenGLAPI\Enumerations\MapBufferRangeAccess.cs" />
+    <Compile Include="OpenGLAPI\FontBitmapEntry.cs" />
+    <Compile Include="OpenGLAPI\FontBitmaps.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.cs">
       <SubType>Code</SubType>
     </Compile>
