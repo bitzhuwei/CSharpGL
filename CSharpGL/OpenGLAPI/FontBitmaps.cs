@@ -108,8 +108,8 @@ namespace CSharpGL
             GL.MatrixMode(GL.GL_MODELVIEW);
             GL.PushMatrix();
             GL.LoadIdentity();
-            GL.Color(color.R, color.G, color.B);
-            GL.RasterPos2i(x, y);
+            //GL.Color(color.R, color.G, color.B);
+            //GL.RasterPos2i(x, y);
 
             //GL.PushAttrib(GL.GL_LIST_BIT | GL.GL_CURRENT_BIT |
             //    GL.GL_ENABLE_BIT | GL.GL_TRANSFORM_BIT);
