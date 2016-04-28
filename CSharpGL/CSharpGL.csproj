@@ -58,6 +58,7 @@
     <Compile Include="Controls\RenderTriggers.cs" />
     <Compile Include="OpenGLAPI\Enumerations\ErrorCode.cs" />
     <Compile Include="OpenGLAPI\Enumerations\MapBufferRangeAccess.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\PolugonOffset.cs" />
     <Compile Include="OpenGLAPI\FontBitmapEntry.cs" />
     <Compile Include="OpenGLAPI\FontBitmaps.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.cs">
@@ -77,6 +78,7 @@
     <Compile Include="OpenGLObjects\ColorCodedPicking\SelectionMode.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\LineWidthSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PointSizeSwitch.cs" />
+    <Compile Include="OpenGLObjects\GLSwitches\PolygonOffsetSwitch.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightModernRenderer.SetupHighlight.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightModernRenderer.DoInitialize.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightModernRenderer.Property.cs" />

@@ -16,3 +16,5 @@ v0.0.0.1:
 2. Color-coded-picking of primitives in a VBO.
 3. Highlight picked primitives.
 4. Draw text using glRasterPos() and CallList.
+v0.0.0.2:
+1. PolygonOffsetSwitch.
