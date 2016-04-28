@@ -79,7 +79,7 @@ namespace CSharpGL.Demos
             this.glCanvas1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.glCanvas1_KeyUp);
             this.glCanvas1.Resize += new System.EventHandler(this.glCanvas1_Resize);
             // 
-            // Form01Simple
+            // Form01ModernRenderer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -87,7 +87,7 @@ namespace CSharpGL.Demos
             this.Controls.Add(this.lblColor);
             this.Controls.Add(this.lblReadColor);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "Form01Simple";
+            this.Name = "Form01ModernRenderer";
             this.Text = "Form01Simple";
             this.Load += new System.EventHandler(this.Form01ModernRenderer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();

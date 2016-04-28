@@ -25,7 +25,9 @@ namespace CSharpGL.Demos
         {
         }
 
+        PickedGeometry pickedGeometry;
         private DragParam dragParam;
+        private Point mousePosition;
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -54,11 +56,15 @@ namespace CSharpGL.Demos
                         pickedGeometry.Indexes);
                     this.dragParam = dragParam;
                 }
+
+                this.pickedGeometry = pickedGeometry;
             }
         }
 
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
+            this.mousePosition = new Point(e.X, e.Y);
+
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 // operate camera
@@ -98,6 +104,8 @@ namespace CSharpGL.Demos
                 {
                     this.rendererDict[this.selectedModel].Highlighter.ClearHighlightIndexes();
                 }
+
+                this.pickedGeometry = pickedGeometry;
             }
         }
 

@@ -40,6 +40,10 @@ namespace CSharpGL.Demos
                         this.pickableRendererPropertyGrid.DisplayObject(this.rendererDict[value].PickableRenderer);
                         this.highlightRendererPropertyGrid.DisplayObject(this.rendererDict[value].Highlighter);
                     }
+                    {
+                        this.Text = string.Format("{0} {1}", this.Name,
+                            this.rendererDict[this.selectedModel].PickableRenderer.Mode);
+                    }
                     //this.cameraUpdated = true;
                     this.UpdateMVP(this.rendererDict[this.selectedModel]);
                 }
@@ -88,14 +92,8 @@ namespace CSharpGL.Demos
             // 天蓝色背景
             //GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             GL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f);
+            this.TextColor = Color.White;
 
-            Application.Idle += Application_Idle;
-        }
-
-        void Application_Idle(object sender, EventArgs e)
-        {
-            this.Text = string.Format("{0} {1}", this.Name, 
-                this.rendererDict[this.selectedModel].PickableRenderer.Mode);
         }
 
         public Color ClearColor { get; set; }
@@ -115,6 +113,8 @@ namespace CSharpGL.Demos
                 }
             }
         }
+
+        public Color TextColor { get; set; }
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
@@ -138,6 +138,21 @@ namespace CSharpGL.Demos
                     }
                     var arg = new RenderEventArgs(RenderMode, this.camera);
                     renderer.Render(arg);
+
+                    PickedGeometry pickedGeometry = this.pickedGeometry;
+                    if (pickedGeometry != null)
+                    {
+                        GL.DrawText(this.mousePosition.X + 5,
+                            this.glCanvas1.Height - this.mousePosition.Y - 1,
+                            this.TextColor, "Courier New", 14.0f,
+                            string.Format("indexes:{0}", pickedGeometry.Indexes.PrintArray()));
+                    }
+                    else
+                    {
+                        GL.DrawText(this.mousePosition.X + 5,
+                            this.glCanvas1.Height - this.mousePosition.Y - 1,
+                            this.TextColor, "Courier New", 14.0f, "");
+                    }
                 }
             }
         }
