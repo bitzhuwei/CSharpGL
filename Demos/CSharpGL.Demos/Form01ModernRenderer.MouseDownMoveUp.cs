@@ -54,18 +54,18 @@ namespace CSharpGL.Demos
                 //}
                 //else// 试图拖拽
                 {
+                    List<uint> selectedIndexes = this.selectedIndexes;
                     PickedGeometry pickedGeometry = RunPicking(new RenderEventArgs(
                         this.PickingMode == SelectionMode.DrawMode ? RenderModes.ColorCodedPicking : RenderModes.ColorCodedPickingPoints,
                         this.camera), e.X, e.Y);
                     if (pickedGeometry != null)
                     {
-                        this.selectedIndexes.AddRange(pickedGeometry.Indexes);
+                        selectedIndexes.AddRange(pickedGeometry.Indexes);
                         this.rendererDict[this.selectedModel].Highlighter.SetHighlightIndexes(
                             this.PickingMode == SelectionMode.DrawMode ?
                                 this.rendererDict[this.selectedModel].PickableRenderer.Mode : DrawMode.Points,
-                            this.selectedIndexes.ToArray());
+                            selectedIndexes.ToArray());
                     }
-                    List<uint> selectedIndexes = this.selectedIndexes;
                     if (selectedIndexes.Count > 0)
                     {
                         var dragParam = new DragParam(
