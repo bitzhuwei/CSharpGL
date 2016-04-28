@@ -23,8 +23,14 @@ namespace CSharpGL
                 RecognizedPrimitiveIndex lastIndexId =
                     this.GetLastIndexIdOfPickedGeometry(
                         e, lastVertexId, x, y, canvasWidth, canvasHeight);
-                // 获取pickedGeometry
-                pickedGeometry = this.GetGeometry(e, lastIndexId, stageVertexId);
+                Debug.WriteLineIf(lastIndexId == null, string.Format(
+                    "Got lastVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}] [{3}] [{4}] [{5}] [{6}]",
+                    lastVertexId, e, stageVertexId, x, y, canvasWidth, canvasHeight));
+                if (lastIndexId != null)
+                {
+                    // 获取pickedGeometry
+                    pickedGeometry = this.GetGeometry(e, lastIndexId, stageVertexId);
+                }
             }
 
             return pickedGeometry;
@@ -75,6 +81,8 @@ namespace CSharpGL
         {
             List<RecognizedPrimitiveIndex> lastIndexIdList = GetLastIndexIdList(e, lastVertexId);
 
+            if (lastIndexIdList.Count == 0) { return null; }
+
             RecognizedPrimitiveIndex lastIndexId = GetLastIndexId(
                 e, lastIndexIdList, x, y, canvasWidth, canvasHeight);
 
@@ -93,7 +101,8 @@ namespace CSharpGL
             List<RecognizedPrimitiveIndex> lastIndexIdList,
             int x, int y, int canvasWidth, int canvasHeight)
         {
-            if (lastIndexIdList == null || lastIndexIdList.Count == 0) { throw new ArgumentException(); }
+            if (lastIndexIdList == null || lastIndexIdList.Count == 0)
+            { return null; }
 
             int current = 0;
             bool renderingPoints = false;
