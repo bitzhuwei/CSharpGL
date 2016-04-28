@@ -10,3 +10,9 @@ It abstracts objects in OpenGL and describes them as classes.
 It provides maths class for matrix and vectors.
 It provide useful utilities.
 
+release notes:
+v0.0.0.1:
+1. Modern rendering(Shader+VBO).
+2. Color-coded-picking of primitives in a VBO.
+3. Highlight picked primitives.
+4. Draw text using glRasterPos() and CallList.
