@@ -14,12 +14,12 @@ namespace CSharpGL
     public class sampler2D : IDisposable
     {
         private bool initialized;
-        private uint[] texture = new uint[1];
+        private uint[] id = new uint[1];
 
         /// <summary>
         /// 纹理名（用于标识一个纹理，由OpenGL指定），可在shader中用于指定uniform sampler2D纹理变量。
         /// </summary>
-        public uint Name { get { return this.texture[0]; } }
+        public uint Id { get { return this.id[0]; } }
 
         public void Initialize(System.Drawing.Bitmap bitmap)
         {
@@ -88,8 +88,8 @@ namespace CSharpGL
                 BitmapData bitmapData = targetImage.LockBits(new Rectangle(0, 0, targetImage.Width, targetImage.Height),
                     ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
                 //GL.ActiveTexture(GL.GL_TEXTURE0);
-                GL.GenTextures(1, texture);
-                GL.BindTexture(GL.GL_TEXTURE_2D, texture[0]);
+                GL.GenTextures(1, id);
+                GL.BindTexture(GL.GL_TEXTURE_2D, id[0]);
                 GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA,
                     targetImage.Width, targetImage.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
                     bitmapData.Scan0);
@@ -151,20 +151,8 @@ namespace CSharpGL
                 } // end if
 
                 // TODO: Dispose unmanaged resources.
-                // 为什么此函数会引发异常？
-                /*
-                 * 未处理System.AccessViolationException
-  HResult=-2147467261
-  Message=尝试读取或写入受保护的内存。这通常指示其他内存已损坏。
-  Source=CSharpGL
-  StackTrace:
-       在 CSharpGL.GL.DeleteTextures(Int32 n, UInt32[] textures)
-       在 CSharpGL.Objects.Texture2D.Dispose(Boolean disposing)
-       在 CSharpGL.Objects.Texture2D.Finalize()
-  InnerException: 
-
-                 */
-                GL.DeleteTextures(this.texture.Length, this.texture);
+                GL.DeleteTextures(this.id.Length, this.id);
+                this.id[0] = 0;
 
             } // end if
 
@@ -175,7 +163,7 @@ namespace CSharpGL
 
         public void Bind()
         {
-            GL.BindTexture(GL.GL_TEXTURE_2D, this.texture[0]);
+            GL.BindTexture(GL.GL_TEXTURE_2D, this.id[0]);
         }
 
         public void Unbind()
