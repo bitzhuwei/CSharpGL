@@ -30,8 +30,8 @@ namespace CSharpGL.Models
             }
         }
 
-        static vec3[] BigDipperPositions { get; set; }
-        static vec3[] BigDipperColors { get; set; }
+        static readonly vec3[] BigDipperPositions;
+        static readonly vec3[] BigDipperColors;
 
         static BigDipper()
         {
