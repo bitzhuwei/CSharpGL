@@ -35,6 +35,7 @@ namespace CSharpGL.Demos
                     new TetrahedronModelConverter(new TetrahedronModel(1.0f)),
                     new Cube(),
                     new Sphere(),
+                    new Teapot(),
                 };
                 var keys = new GeometryModel[] 
                 { 
