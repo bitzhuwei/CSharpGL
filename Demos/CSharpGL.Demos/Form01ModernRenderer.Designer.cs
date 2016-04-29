@@ -33,6 +33,7 @@ namespace CSharpGL.Demos
             this.lblReadColor = new System.Windows.Forms.Label();
             this.lblColor = new System.Windows.Forms.Label();
             this.glCanvas1 = new CSharpGL.Windows.GLCanvas();
+            this.lblDrawText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,17 +68,27 @@ namespace CSharpGL.Demos
             this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.glCanvas1.Location = new System.Drawing.Point(13, 33);
+            this.glCanvas1.Location = new System.Drawing.Point(13, 56);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.Windows.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.Windows.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(720, 439);
+            this.glCanvas1.Size = new System.Drawing.Size(720, 416);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.glCanvas1_KeyDown);
             this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
             this.glCanvas1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.glCanvas1_KeyUp);
             this.glCanvas1.Resize += new System.EventHandler(this.glCanvas1_Resize);
+            // 
+            // lblDrawText
+            // 
+            this.lblDrawText.AutoSize = true;
+            this.lblDrawText.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblDrawText.Location = new System.Drawing.Point(12, 32);
+            this.lblDrawText.Name = "lblDrawText";
+            this.lblDrawText.Size = new System.Drawing.Size(89, 20);
+            this.lblDrawText.TabIndex = 1;
+            this.lblDrawText.Text = "DrawText";
             // 
             // Form01ModernRenderer
             // 
@@ -85,6 +96,7 @@ namespace CSharpGL.Demos
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(746, 485);
             this.Controls.Add(this.lblColor);
+            this.Controls.Add(this.lblDrawText);
             this.Controls.Add(this.lblReadColor);
             this.Controls.Add(this.glCanvas1);
             this.Name = "Form01ModernRenderer";
@@ -102,5 +114,6 @@ namespace CSharpGL.Demos
         private System.Windows.Forms.SaveFileDialog dlgSaveFile;
         private System.Windows.Forms.Label lblReadColor;
         private System.Windows.Forms.Label lblColor;
+        private System.Windows.Forms.Label lblDrawText;
     }
 }

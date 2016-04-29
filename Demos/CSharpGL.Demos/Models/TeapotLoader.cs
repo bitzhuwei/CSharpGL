@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Models
 {
-    public partial class TeapotModel
+    internal partial class TeapotModel
     {
-        public sealed class TeapotLoader
+        internal sealed class TeapotLoader
         {
             static TeapotModel model;
             static readonly object synObj = new object();
 
-            public static TeapotModel GetModel()
+            internal static TeapotModel GetModel()
             {
                 if (model == null)
                 {
@@ -33,7 +33,7 @@ namespace CSharpGL.Models
                 return model;
             }
 
-            public static TeapotModel Load()
+            internal static TeapotModel Load()
             {
                 using (var reader = new StreamReader(@"Models\TeapotModel.obj"))
                 {

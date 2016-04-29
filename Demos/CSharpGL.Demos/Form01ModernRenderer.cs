@@ -194,6 +194,7 @@ namespace CSharpGL.Demos
                     this.glCanvas1.Height - this.mousePosition.Y - 1,
                     this.TextColor, "Courier New", fontSize,
                     content);
+                this.lblDrawText.Text = content;
             }
             else
             {
@@ -201,6 +202,7 @@ namespace CSharpGL.Demos
                     this.glCanvas1.Height - this.mousePosition.Y - 1,
                     this.TextColor, "Courier New", fontSize,
                     "");
+                this.lblDrawText.Text = "";
             }
             {
                 // Cross cursor shows where the mouse is.

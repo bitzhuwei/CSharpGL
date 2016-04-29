@@ -12,12 +12,12 @@ namespace CSharpGL.ModelAdapters
     /// 经典的茶壶模型
     /// <para>使用<see cref="OneIndexBuffer"/></para>
     /// </summary>
-    public class TeapotModelConverter : IBufferable
+    public class Teapot : IBufferable
     {
 
-        public TeapotModelConverter(TeapotModel model)
+        public Teapot(float radius = 1.0f)
         {
-            this.model = model;
+            this.model = TeapotModel.GetModel(radius);
         }
 
         public const string strPosition = "position";

@@ -71,7 +71,7 @@
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="IBufferable\BigDipper.cs" />
-    <Compile Include="IBufferable\TeapotModelConverter.cs" />
+    <Compile Include="IBufferable\Teapot.cs" />
     <Compile Include="Models\ChainModel.cs" />
     <Compile Include="Models\BigDipperModel.cs" />
     <Compile Include="Models\TetrahedronModel.cs" />

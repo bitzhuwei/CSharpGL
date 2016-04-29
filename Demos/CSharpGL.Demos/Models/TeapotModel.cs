@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Models
 {
-    public partial class TeapotModel
+    internal partial class TeapotModel
     {
-        public List<vec3> positions = new List<vec3>();
-        public List<vec3> normals = new List<vec3>();
-        public List<Tuple<ushort, ushort, ushort>> faces = new List<Tuple<ushort, ushort, ushort>>();
+        internal List<vec3> positions = new List<vec3>();
+        internal List<vec3> normals = new List<vec3>();
+        internal List<Tuple<ushort, ushort, ushort>> faces = new List<Tuple<ushort, ushort, ushort>>();
 
         private TeapotModel() { }
 
-        public static TeapotModel GetModel(float radius = 1.0f)
+        internal static TeapotModel GetModel(float radius = 1.0f)
         {
             TeapotModel model = TeapotLoader.GetModel();
 
