@@ -14,8 +14,8 @@ namespace CSharpGL.ModelAdapters
     /// </summary>
     class BigDipperConverter : IBufferable
     {
-        private BigDipper model;
-        public BigDipperConverter(BigDipper model)
+        private BigDipperModel model;
+        public BigDipperConverter(BigDipperModel model)
         {
             this.model = model;
         }

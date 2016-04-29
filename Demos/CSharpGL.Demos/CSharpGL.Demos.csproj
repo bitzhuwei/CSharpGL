@@ -73,7 +73,7 @@
     <Compile Include="IBufferable\BigDipperConverter.cs" />
     <Compile Include="IBufferable\TeapotModelConverter.cs" />
     <Compile Include="Models\ChainModel.cs" />
-    <Compile Include="Models\BigDipper.cs" />
+    <Compile Include="Models\BigDipperModel.cs" />
     <Compile Include="Models\TetrahedronModel.cs" />
     <Compile Include="Models\CubeModel.cs" />
     <Compile Include="Form01ModernRenderer.cs">

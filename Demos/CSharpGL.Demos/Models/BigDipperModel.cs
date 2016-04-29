@@ -10,7 +10,7 @@ namespace CSharpGL.Models
     /// <summary>
     /// 北斗七星
     /// </summary>
-    class BigDipper
+    class BigDipperModel
     {
         public vec3[] Positions { get; protected set; }
         public vec3[] Colors { get; protected set; }
@@ -21,7 +21,7 @@ namespace CSharpGL.Models
             return string.Format("{0} vertexes, {1} indexes", Positions.Length, Indexes.Length);
         }
 
-        public BigDipper()
+        public BigDipperModel()
         {
             {
                 Positions = new vec3[BigDipperPositions.Length];
@@ -42,7 +42,7 @@ namespace CSharpGL.Models
         static readonly vec3[] BigDipperPositions;
         static readonly vec3[] BigDipperColors;
 
-        static BigDipper()
+        static BigDipperModel()
         {
             BigDipperPositions = new vec3[7];
             BigDipperPositions[0] = new vec3(0, 2, 0);
