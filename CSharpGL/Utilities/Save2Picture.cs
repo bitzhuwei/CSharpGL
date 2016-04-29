@@ -46,15 +46,17 @@ namespace CSharpGL
         public static void Save2Picture(int x, int y, int width, int height, string filename)
         {
             var format = System.Drawing.Imaging.PixelFormat.Format32bppArgb;
-            var lockMode = System.Drawing.Imaging.ImageLockMode.WriteOnly;
-            var bitmap = new Bitmap(width, height, format);
-            var bitmapRect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
-            System.Drawing.Imaging.BitmapData bmpData = bitmap.LockBits(bitmapRect, lockMode, format);
-            GL.ReadPixels(x, y, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, bmpData.Scan0);
-            bitmap.UnlockBits(bmpData);
-            bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
+            using (var bitmap = new Bitmap(width, height, format))
+            {
+                var bitmapRect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+                var lockMode = System.Drawing.Imaging.ImageLockMode.WriteOnly;
+                System.Drawing.Imaging.BitmapData bmpData = bitmap.LockBits(bitmapRect, lockMode, format);
+                GL.ReadPixels(x, y, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, bmpData.Scan0);
+                bitmap.UnlockBits(bmpData);
+                bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
 
-            bitmap.Save(filename);
+                bitmap.Save(filename);
+            }
         }
     }
 }
