@@ -16,58 +16,11 @@ namespace CSharpGL.Models
     /// </summary>
     public class CubeModel
     {
-        static vec3[] eightVertexes = new vec3[] 
+        static readonly vec3[] eightVertexes = new vec3[] 
         { 
             new vec3(-1, 1, 1), new vec3(1, 1, 1), new vec3(1, 1, -1), new vec3(-1, 1, -1),
             new vec3(-1, -1, 1), new vec3(1, -1, 1), new vec3(1, -1, -1), new vec3(-1, -1, -1), 
         };
-
-        static readonly CubePosition identityPosition = new CubePosition()
-        {
-            faceX = new SqurePosition() { position0 = eightVertexes[1], position1 = eightVertexes[2], position2 = eightVertexes[6], position3 = eightVertexes[5], },
-            faceNX = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[3], position2 = eightVertexes[7], position3 = eightVertexes[4], },
-            faceY = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[1], position2 = eightVertexes[2], position3 = eightVertexes[3], },
-            faceNY = new SqurePosition() { position0 = eightVertexes[4], position1 = eightVertexes[5], position2 = eightVertexes[6], position3 = eightVertexes[7], },
-            faceZ = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[1], position2 = eightVertexes[5], position3 = eightVertexes[4], },
-            faceNZ = new SqurePosition() { position0 = eightVertexes[3], position1 = eightVertexes[2], position2 = eightVertexes[6], position3 = eightVertexes[7], },
-        };
-
-        static readonly CubeNormal identityNormal = new CubeNormal()
-        {
-            faceX = new SqureNormal(new vec3(1, 0, 0)),
-            faceNX = new SqureNormal(new vec3(-1, 0, 0)),
-            faceY = new SqureNormal(new vec3(0, 1, 0)),
-            faceNY = new SqureNormal(new vec3(0, -1, 0)),
-            faceZ = new SqureNormal(new vec3(0, 0, 1)),
-            faceNZ = new SqureNormal(new vec3(0, 0, -1)),
-        };
-
-        static readonly CubeColor identityColor = new CubeColor()
-        {
-            faceX = new SqureColor(new vec3(0, 0, 1)),
-            faceNX = new SqureColor(new vec3(0, 1, 0)),
-            faceY = new SqureColor(new vec3(0, 1, 1)),
-            faceNY = new SqureColor(new vec3(1, 0, 0)),
-            faceZ = new SqureColor(new vec3(1, 0, 1)),
-            faceNZ = new SqureColor(new vec3(1, 1, 0)),
-        };
-
-        static readonly byte[] identityIndex =
-            new byte[] { 0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 8, 9, 10, 8, 10, 11, 12, 13, 14, 12, 14, 15, 16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23 };
-
-        static CubeColor GetRandomColor()
-        {
-            Random random = new Random();
-            CubeColor result = new CubeColor();
-            result.faceX = new SqureColor(new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
-            result.faceNX = new SqureColor(new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
-            result.faceY = new SqureColor(new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
-            result.faceNY = new SqureColor(new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
-            result.faceZ = new SqureColor(new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
-            result.faceNZ = new SqureColor(new vec3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
-
-            return result;
-        }
 
         public CubePosition position;
         public CubeNormal normal;
@@ -76,7 +29,15 @@ namespace CSharpGL.Models
 
         public CubeModel(float radius)
         {
-            this.position = identityPosition;
+            this.position = new CubePosition()
+            {
+                faceX = new SqurePosition() { position0 = eightVertexes[1], position1 = eightVertexes[2], position2 = eightVertexes[6], position3 = eightVertexes[5], },
+                faceNX = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[3], position2 = eightVertexes[7], position3 = eightVertexes[4], },
+                faceY = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[1], position2 = eightVertexes[2], position3 = eightVertexes[3], },
+                faceNY = new SqurePosition() { position0 = eightVertexes[4], position1 = eightVertexes[5], position2 = eightVertexes[6], position3 = eightVertexes[7], },
+                faceZ = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[1], position2 = eightVertexes[5], position3 = eightVertexes[4], },
+                faceNZ = new SqurePosition() { position0 = eightVertexes[3], position1 = eightVertexes[2], position2 = eightVertexes[6], position3 = eightVertexes[7], },
+            };
             this.position.faceX.position0 *= radius;
             this.position.faceX.position1 *= radius;
             this.position.faceX.position2 *= radius;
@@ -101,9 +62,33 @@ namespace CSharpGL.Models
             this.position.faceNZ.position1 *= radius;
             this.position.faceNZ.position2 *= radius;
             this.position.faceNZ.position3 *= radius;
-            this.color = identityColor;
-            this.normal = identityNormal;
-            this.index = identityIndex;
+            this.color = new CubeColor()
+            {
+                faceX = new SqureColor(new vec3(0, 0, 1)),
+                faceNX = new SqureColor(new vec3(0, 1, 0)),
+                faceY = new SqureColor(new vec3(0, 1, 1)),
+                faceNY = new SqureColor(new vec3(1, 0, 0)),
+                faceZ = new SqureColor(new vec3(1, 0, 1)),
+                faceNZ = new SqureColor(new vec3(1, 1, 0)),
+            };
+            this.normal = new CubeNormal()
+            {
+                faceX = new SqureNormal(new vec3(1, 0, 0)),
+                faceNX = new SqureNormal(new vec3(-1, 0, 0)),
+                faceY = new SqureNormal(new vec3(0, 1, 0)),
+                faceNY = new SqureNormal(new vec3(0, -1, 0)),
+                faceZ = new SqureNormal(new vec3(0, 0, 1)),
+                faceNZ = new SqureNormal(new vec3(0, 0, -1)),
+            };
+            this.index = new byte[] 
+            {
+                0, 1, 2, 0, 2, 3, 
+                4, 5, 6, 4, 6, 7, 
+                8, 9, 10, 8, 10, 11,
+                12, 13, 14, 12, 14, 15,
+                16, 17, 18, 16, 18, 19,
+                20, 21, 22, 20, 22, 23 
+            };
         }
 
         [StructLayout(LayoutKind.Sequential)]
