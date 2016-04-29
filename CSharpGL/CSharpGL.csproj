@@ -76,9 +76,9 @@
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\TrianglesRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\SelectionMode.cs" />
-    <Compile Include="OpenGLObjects\DummyUI\IUILayout.cs" />
-    <Compile Include="OpenGLObjects\DummyUI\IUILayoutArgs.cs" />
-    <Compile Include="OpenGLObjects\DummyUI\IUILayoutHelper.cs" />
+    <Compile Include="OpenGLObjects\UILayout\IUILayout.cs" />
+    <Compile Include="OpenGLObjects\UILayout\IUILayoutArgs.cs" />
+    <Compile Include="OpenGLObjects\UILayout\IUILayoutHelper.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\LineWidthSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PointSizeSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PolygonOffsetSwitch.cs" />
@@ -98,7 +98,7 @@
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexModernRenderer.Property.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexModernRenderer.Picking.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexModernRenderer.cs" />
-    <Compile Include="OpenGLObjects\DummyUI\UIModernRenderer.cs" />
+    <Compile Include="OpenGLObjects\UILayout\UIModernRenderer.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformBool.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSampler2D.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformFloat.cs" />
