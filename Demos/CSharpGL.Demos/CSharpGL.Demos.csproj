@@ -70,7 +70,7 @@
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="IBufferable\BigDipperConverter.cs" />
+    <Compile Include="IBufferable\BigDipper.cs" />
     <Compile Include="IBufferable\TeapotModelConverter.cs" />
     <Compile Include="Models\ChainModel.cs" />
     <Compile Include="Models\BigDipperModel.cs" />

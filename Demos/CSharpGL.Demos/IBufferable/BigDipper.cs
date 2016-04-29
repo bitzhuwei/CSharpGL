@@ -12,13 +12,8 @@ namespace CSharpGL.ModelAdapters
     /// 北斗七星
     /// <para>使用<see cref="ZeroIndexBuffer"/></para>
     /// </summary>
-    class BigDipperConverter : IBufferable
+    public class BigDipper : IBufferable
     {
-        private BigDipperModel model;
-        public BigDipperConverter(BigDipperModel model)
-        {
-            this.model = model;
-        }
 
         public const string position = "position";
         public const string color = "color";
@@ -33,13 +28,13 @@ namespace CSharpGL.ModelAdapters
                     using (var buffer = new PropertyBuffer<vec3>(
                         varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(model.Positions.Length);
+                        buffer.Alloc(BigDipperModel.positions.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.FirstElement();
-                            for (int i = 0; i < model.Positions.Length; i++)
+                            for (int i = 0; i < BigDipperModel.positions.Length; i++)
                             {
-                                array[i] = model.Positions[i];
+                                array[i] = BigDipperModel.positions[i];
                             }
                         }
 
@@ -55,13 +50,13 @@ namespace CSharpGL.ModelAdapters
                     using (var buffer = new PropertyBuffer<vec3>(
                         varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(model.Colors.Length);
+                        buffer.Alloc(BigDipperModel.colors.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.FirstElement();
-                            for (int i = 0; i < model.Colors.Length; i++)
+                            for (int i = 0; i < BigDipperModel.colors.Length; i++)
                             {
-                                array[i] = model.Colors[i];
+                                array[i] = BigDipperModel.colors[i];
                             }
                         }
 
@@ -80,23 +75,8 @@ namespace CSharpGL.ModelAdapters
         {
             if (indexBufferPtr == null)
             {
-                //using (var buffer = new OneIndexBuffer<uint>(
-                //    DrawMode.LineStrip, BufferUsage.StaticDraw))
-                //{
-                //    buffer.Alloc(model.Indexes.Length);
-                //    unsafe
-                //    {
-                //        var array = (uint*)buffer.FirstElement();
-                //        for (int i = 0; i < model.Indexes.Length; i++)
-                //        {
-                //            array[i] = model.Indexes[i];
-                //        }
-                //    }
-
-                //indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
-                //}
                 using (var buffer = new ZeroIndexBuffer(
-                    DrawMode.LineStrip, 0, this.model.Positions.Length))
+                    DrawMode.LineStrip, 0, BigDipperModel.positions.Length))
                 {
                     indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
                 }
