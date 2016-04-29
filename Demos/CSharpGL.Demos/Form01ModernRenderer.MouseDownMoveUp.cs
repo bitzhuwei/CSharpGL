@@ -119,6 +119,7 @@ namespace CSharpGL.Demos
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 // move vertex
+                this.dragParam = null;
                 this.rendererDict[this.selectedModel].Highlighter.ClearHighlightIndexes();
             }
         }
