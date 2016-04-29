@@ -10,7 +10,8 @@
     <iconUrl>http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_CSharpGL-text.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Test nuGet.</releaseNotes>
+	<summary>$description$</summary>
+    <releaseNotes>release notes.</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>OpenGL C#</tags>
   </metadata>
