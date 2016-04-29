@@ -10,8 +10,17 @@ namespace CSharpGL.Models
     /// <summary>
     /// 链条。若干个点用直线连接起来。
     /// </summary>
-    class ChainModel : PCIModel
+    class ChainModel
     {
+        public vec3[] Positions { get; protected set; }
+        public vec3[] Colors { get; protected set; }
+        public uint[] Indexes { get; protected set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} vertexes, {1} indexes", Positions.Length, Indexes.Length);
+        }
+
         private Random random = new Random();
 
         /// <summary>

@@ -76,7 +76,6 @@
     <Compile Include="Models\BigDipper.cs" />
     <Compile Include="Models\TetrahedronModel.cs" />
     <Compile Include="Models\CubeModel.cs" />
-    <Compile Include="Models\PCIModel.cs" />
     <Compile Include="Form01ModernRenderer.cs">
       <SubType>Form</SubType>
     </Compile>

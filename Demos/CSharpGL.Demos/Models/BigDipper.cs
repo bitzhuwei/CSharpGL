@@ -10,8 +10,17 @@ namespace CSharpGL.Models
     /// <summary>
     /// 北斗七星
     /// </summary>
-    class BigDipper : PCIModel
+    class BigDipper
     {
+        public vec3[] Positions { get; protected set; }
+        public vec3[] Colors { get; protected set; }
+        public uint[] Indexes { get; protected set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} vertexes, {1} indexes", Positions.Length, Indexes.Length);
+        }
+
         public BigDipper()
         {
             {
