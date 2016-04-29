@@ -47,6 +47,7 @@
     <Content Include="Controls\GLCanvas.ico" />
     <Content Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.png" />
     <Content Include="OpenGLObjects\ColorCodedPicking\readme.txt" />
+    <Content Include="OpenGLObjects\ModernRendering\IBufferables\CubeModel.jpg" />
     <Content Include="readme.txt" />
     <Compile Include="Controls\GLCanvas.cs">
       <SubType>UserControl</SubType>
@@ -76,6 +77,17 @@
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\TrianglesRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\SelectionMode.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\IBufferables\BigDipper.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\IBufferables\Cube.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\IBufferables\Sphere.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\IBufferables\Teapot.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\IBufferables\Tetrahedron.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\IBufferables\BigDipperModel.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\IBufferables\CubeModel.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\IBufferables\SphereModel.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\IBufferables\TeapotLoader.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\IBufferables\TeapotModel.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\IBufferables\TetrahedronModel.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayout.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayoutArgs.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayoutHelper.cs" />
@@ -291,6 +303,7 @@
   <ItemGroup>
     <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Highlight.vert" />
     <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Highlight.frag" />
+    <EmbeddedResource Include="OpenGLObjects\ModernRendering\IBufferables\TeapotModel.obj" />
     <None Include="OpenGLObjects\ModernRendering\ModernRenderer\ModernRenderer.cd" />
     <None Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\PickableModernRenderer.cd" />
     <None Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.cd" />

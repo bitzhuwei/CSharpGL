@@ -55,7 +55,7 @@ namespace System
             }
         }
 
-        private static void GetLocation(string textFileName, int stackIndex, out Assembly executingAssembly, out string location)
+        internal static void GetLocation(string textFileName, int stackIndex, out Assembly executingAssembly, out string location)
         {
             StackTrace stack = new StackTrace();
             StackFrame frame = stack.GetFrame(stackIndex);

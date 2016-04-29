@@ -35,12 +35,19 @@ namespace CSharpGL.Models
 
             internal static TeapotModel Load()
             {
-                using (var reader = new StreamReader(@"Models\TeapotModel.obj"))
-                {
-                    TeapotModel model = LoadModels(reader);
-                    GenNormals(model);
+                Assembly executingAssembly;
+                string location;
+                ManifestResourceLoader.GetLocation(@"OpenGLObjects\ModernRendering\IBufferables\TeapotModel.obj", 1, out executingAssembly, out location);
 
-                    return model;
+                using (Stream stream = executingAssembly.GetManifestResourceStream(location))
+                {
+                    using (var reader = new StreamReader(stream))
+                    {
+                        TeapotModel model = LoadModels(reader);
+                        GenNormals(model);
+
+                        return model;
+                    }
                 }
             }
 

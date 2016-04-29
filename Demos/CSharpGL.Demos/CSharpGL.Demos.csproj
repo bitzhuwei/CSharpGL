@@ -55,9 +55,6 @@
     </Compile>
     <Compile Include="HighlightedPickableRenderer.cs" />
     <Compile Include="IBufferable\ChainModelConverter.cs" />
-    <Compile Include="IBufferable\Tetrahedron.cs" />
-    <Compile Include="IBufferable\Cube.cs" />
-    <Compile Include="IBufferable\Sphere.cs" />
     <Compile Include="FormBulletinBoard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,12 +67,7 @@
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="IBufferable\BigDipper.cs" />
-    <Compile Include="IBufferable\Teapot.cs" />
     <Compile Include="Models\ChainModel.cs" />
-    <Compile Include="Models\BigDipperModel.cs" />
-    <Compile Include="Models\TetrahedronModel.cs" />
-    <Compile Include="Models\CubeModel.cs" />
     <Compile Include="Form01ModernRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,16 +86,8 @@
     <Compile Include="Form00GLCanvas.Designer.cs">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\SphereModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\TeapotLoader.cs" />
-    <Compile Include="Models\TeapotModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Models\TeapotModel.obj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Shaders\Simple.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -162,9 +146,6 @@
       <Project>{115ab8f1-a732-4fad-8f16-f8c9e4da02a1}</Project>
       <Name>CSharpGL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\CubeModel.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

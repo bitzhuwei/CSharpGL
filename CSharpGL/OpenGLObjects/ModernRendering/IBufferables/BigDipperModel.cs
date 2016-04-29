@@ -10,7 +10,7 @@ namespace CSharpGL.Models
     /// <summary>
     /// 北斗七星
     /// </summary>
-    class BigDipperModel
+    internal class BigDipperModel
     {
         internal static readonly vec3[] positions;
         internal static readonly vec3[] colors;
