@@ -14,7 +14,7 @@ namespace CSharpGL
     {
         private AxisModel model;
 
-        public Axis(uint partCount = 4, float radius = 1.0f)
+        public Axis(uint partCount = 24, float radius = 1.0f)
         {
             this.model = new AxisModel(partCount, radius);
         }

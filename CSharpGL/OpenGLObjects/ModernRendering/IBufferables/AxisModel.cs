@@ -97,8 +97,8 @@ namespace CSharpGL
         {
             var positions = new vec3[3 * (3 + 2 * partCount)];
             const float stickLength = 0.75f;
-            const float r1 = 0.2f;
-            const float r2 = 0.4f;
+            const float r1 = 0.08f;
+            const float r2 = 0.16f;
             int index = 0;
             {
                 // x axis
