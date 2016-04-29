@@ -13,12 +13,12 @@ namespace CSharpGL.Models
     /// 一个球体的模型。
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_sphere.jpg
     /// </summary>
-    public class SphereModel
+    internal class SphereModel
     {
-        public vec3[] positions;
-        public vec3[] normals;
-        public vec3[] colors;
-        public uint[] indexes;
+        internal vec3[] positions;
+        internal vec3[] normals;
+        internal vec3[] colors;
+        internal uint[] indexes;
 
         static Random random = new Random();
         static vec3 RandomVec3()
@@ -41,7 +41,7 @@ namespace CSharpGL.Models
         /// <param name="longitudeParts">用经线把地球切割为几块。</param>
         /// <param name="colorGenerator"></param>
         /// <returns></returns>
-        public SphereModel(float radius = 1.0f, int latitudeParts = 10, int longitudeParts = 40, Func<int, int, vec3> colorGenerator = null)
+        internal SphereModel(float radius = 1.0f, int latitudeParts = 10, int longitudeParts = 40, Func<int, int, vec3> colorGenerator = null)
         {
             if (radius <= 0.0f || latitudeParts < 1 || longitudeParts < 3) { throw new Exception(); }
 

@@ -57,7 +57,7 @@
     <Compile Include="IBufferable\ChainModelConverter.cs" />
     <Compile Include="IBufferable\TetrahedronModelConverter.cs" />
     <Compile Include="IBufferable\Cube.cs" />
-    <Compile Include="IBufferable\SphereModelConverter.cs" />
+    <Compile Include="IBufferable\Sphere.cs" />
     <Compile Include="FormBulletinBoard.cs">
       <SubType>Form</SubType>
     </Compile>

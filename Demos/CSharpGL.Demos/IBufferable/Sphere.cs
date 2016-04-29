@@ -15,14 +15,21 @@ namespace CSharpGL.ModelAdapters
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_sphere.jpg
     /// <para>使用<see cref="OneIndexBuffer"/></para>
     /// </summary>
-    public class SphereModelConverter : IBufferable
+    public class Sphere : IBufferable
     {
 
         private SphereModel model;
 
-        public SphereModelConverter(SphereModel model)
+        /// <summary>
+        /// 一个球体的模型。
+        /// </summary>
+        /// <param name="radius"></param>
+        /// <param name="latitudeParts">用纬线把地球切割为几块。</param>
+        /// <param name="longitudeParts">用经线把地球切割为几块。</param>
+        /// <param name="colorGenerator"></param>
+        public Sphere(float radius = 1.0f, int latitudeParts = 10, int longitudeParts = 40, Func<int, int, vec3> colorGenerator = null)
         {
-            this.model = model;
+            this.model = new SphereModel(radius, latitudeParts, longitudeParts, colorGenerator);
         }
 
         public const string strPosition = "position";

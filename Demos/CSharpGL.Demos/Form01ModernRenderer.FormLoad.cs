@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
                     new ChainModelConverter(new ChainModel(random.Next(7, 100), 5, 5)),
                     new TetrahedronModelConverter(new TetrahedronModel(1.0f)),
                     new Cube(),
-                    new SphereModelConverter(new SphereModel(1.0f)),
+                    new Sphere(),
                     new TeapotModelConverter(TeapotModel.GetModel(1.0f)),
                 };
                 var keys = new GeometryModel[] 
