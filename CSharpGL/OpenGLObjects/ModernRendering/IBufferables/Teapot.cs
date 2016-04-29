@@ -1,12 +1,10 @@
-﻿using CSharpGL.Models;
-using GLM;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.ModelAdapters
+namespace CSharpGL
 {
     /// <summary>
     /// 经典的茶壶模型

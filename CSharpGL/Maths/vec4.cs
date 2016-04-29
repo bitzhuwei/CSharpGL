@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
-namespace GLM
+namespace CSharpGL
 {
     /// <summary>
     /// Represents a four dimensional vector.

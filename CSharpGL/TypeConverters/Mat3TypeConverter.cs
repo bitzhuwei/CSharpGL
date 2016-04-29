@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GLM
+namespace CSharpGL
 {
     public class Mat3TypeConverter : TypeConverter
     {

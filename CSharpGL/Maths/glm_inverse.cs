@@ -1,4 +1,4 @@
-﻿namespace GLM
+﻿namespace CSharpGL
 {
     // ReSharper disable InconsistentNaming
     public static partial class glm

@@ -1,7 +1,4 @@
-﻿using CSharpGL.ModelAdapters;
-using CSharpGL.Models;
-using GLM;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

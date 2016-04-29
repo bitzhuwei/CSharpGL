@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 
-namespace GLM
+namespace CSharpGL
 {
     /// <summary>
     /// Represents a 3x3 matrix.

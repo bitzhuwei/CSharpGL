@@ -1,5 +1,4 @@
 ﻿using CSharpGL;
-using GLM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Models
+namespace CSharpGL
 {
     /// <summary>
     /// 一个四面体的模型。
