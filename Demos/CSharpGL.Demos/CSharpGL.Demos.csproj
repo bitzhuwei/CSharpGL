@@ -55,7 +55,7 @@
     </Compile>
     <Compile Include="HighlightedPickableRenderer.cs" />
     <Compile Include="IBufferable\ChainModelConverter.cs" />
-    <Compile Include="IBufferable\TetrahedronModelConverter.cs" />
+    <Compile Include="IBufferable\Tetrahedron.cs" />
     <Compile Include="IBufferable\Cube.cs" />
     <Compile Include="IBufferable\Sphere.cs" />
     <Compile Include="FormBulletinBoard.cs">

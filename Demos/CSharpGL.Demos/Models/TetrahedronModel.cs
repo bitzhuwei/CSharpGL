@@ -13,44 +13,42 @@ namespace CSharpGL.Models
     /// 一个四面体的模型。
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_tetrahedron.jpg
     /// </summary>
-    public class TetrahedronModel
+    internal class TetrahedronModel
     {
-        public vec3[] position = new vec3[] 
-        { 
-            new vec3(0, 0, 1),
-            new vec3((float)Math.Sqrt(3), 0, 0),
-            new vec3(0, 0, -1),
-            new vec3(1.0f / (float)Math.Sqrt(3), (float)Math.Sqrt(8.0 / 3.0), 0),
-        };
+        internal static readonly vec3[] position = new vec3[4];
         static readonly vec3 center =
             new vec3(1.0f / (float)Math.Sqrt(3),
                 (float)Math.Sqrt(8.0 / 3.0) - (float)Math.Sqrt(3.0 / 2.0),
                 0);
-        public vec3[] normal;
+        internal static readonly vec3[] normal = new vec3[4];
 
-        public vec3[] color = new vec3[] 
+        internal static readonly vec3[] color = new vec3[] 
         { 
             new vec3(0, 0, 1),
             new vec3(1, 0, 0),
             new vec3(0, 0, 1),
             new vec3(0, 1, 0),
         };
-        public byte[] index = new byte[] { 0, 1, 3, 0, 2, 3, 1, 2, 3, 0, 1, 2, };
 
-        public TetrahedronModel(float radius = 1.0f)
+        internal static readonly byte[] index = new byte[] { 0, 1, 3, 0, 2, 3, 1, 2, 3, 0, 1, 2, };
+
+        static TetrahedronModel()
         {
-            this.normal = new vec3[this.position.Length];
-            for (int i = 0; i < this.position.Length; i++)
+            position[0] = new vec3(0, 0, 1);
+            position[1] = new vec3((float)Math.Sqrt(3), 0, 0);
+            position[2] = new vec3(0, 0, -1);
+            position[3] = new vec3(1.0f / (float)Math.Sqrt(3), (float)Math.Sqrt(8.0 / 3.0), 0);
+
+            for (int i = 0; i < position.Length; i++)
             {
-                this.normal[i] = (this.position[i] - center).normalize();
+                normal[i] = (position[i] - center).normalize();
             }
 
-            for (int i = 0; i < this.position.Length; i++)
-            {
-                this.position[i] = this.position[i] * radius;
-            }
-
-            this.position = this.position.Move2Center();
+            vec3[] tmp = position.Move2Center();
+            position[0] = tmp[0];
+            position[1] = tmp[1];
+            position[2] = tmp[2];
+            position[3] = tmp[3];
         }
     }
 }

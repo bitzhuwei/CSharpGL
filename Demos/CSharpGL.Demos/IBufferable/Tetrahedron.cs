@@ -15,15 +15,8 @@ namespace CSharpGL.ModelAdapters
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_tetrahedron.jpg
     /// <para>使用<see cref="OneIndexBuffer"/></para>
     /// </summary>
-    public class TetrahedronModelConverter : IBufferable
+    public class Tetrahedron : IBufferable
     {
-
-        private TetrahedronModel model;
-
-        public TetrahedronModelConverter(TetrahedronModel model)
-        {
-            this.model = model;
-        }
 
         public const string strPosition = "position";
         public const string strColor = "color";
@@ -38,13 +31,13 @@ namespace CSharpGL.ModelAdapters
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(this.model.position.Length);
+                        buffer.Alloc(TetrahedronModel.position.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.FirstElement();
-                            for (int i = 0; i < this.model.position.Length; i++)
+                            for (int i = 0; i < TetrahedronModel.position.Length; i++)
                             {
-                                array[i] = this.model.position[i];
+                                array[i] = TetrahedronModel.position[i];
                             }
                         }
 
@@ -59,13 +52,13 @@ namespace CSharpGL.ModelAdapters
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(this.model.color.Length);
+                        buffer.Alloc(TetrahedronModel.color.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.FirstElement();
-                            for (int i = 0; i < this.model.color.Length; i++)
+                            for (int i = 0; i < TetrahedronModel.color.Length; i++)
                             {
-                                array[i] = this.model.color[i];
+                                array[i] = TetrahedronModel.color[i];
                             }
                         }
 
@@ -80,13 +73,13 @@ namespace CSharpGL.ModelAdapters
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(this.model.normal.Length);
+                        buffer.Alloc(TetrahedronModel.normal.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.FirstElement();
-                            for (int i = 0; i < this.model.normal.Length; i++)
+                            for (int i = 0; i < TetrahedronModel.normal.Length; i++)
                             {
-                                array[i] = this.model.normal[i];
+                                array[i] = TetrahedronModel.normal[i];
                             }
                         }
 
@@ -107,13 +100,13 @@ namespace CSharpGL.ModelAdapters
             {
                 using (var buffer = new OneIndexBuffer<byte>(DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    buffer.Alloc(this.model.index.Length);
+                    buffer.Alloc(TetrahedronModel.index.Length);
                     unsafe
                     {
                         var array = (byte*)buffer.FirstElement();
-                        for (int i = 0; i < this.model.index.Length; i++)
+                        for (int i = 0; i < TetrahedronModel.index.Length; i++)
                         {
-                            array[i] = this.model.index[i];
+                            array[i] = TetrahedronModel.index[i];
                         }
                     }
 

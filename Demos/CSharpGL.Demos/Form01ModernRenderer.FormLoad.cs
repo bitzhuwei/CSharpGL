@@ -32,7 +32,7 @@ namespace CSharpGL.Demos
                 var bufferables = new IBufferable[]{
                     new BigDipper(),
                     new ChainModelConverter(new ChainModel(random.Next(7, 100), 5, 5)),
-                    new TetrahedronModelConverter(new TetrahedronModel(1.0f)),
+                    new Tetrahedron(),
                     new Cube(),
                     new Sphere(),
                     new Teapot(),
