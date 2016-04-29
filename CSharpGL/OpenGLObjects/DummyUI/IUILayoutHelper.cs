@@ -30,7 +30,7 @@ namespace CSharpGL
                 //projectionMatrix = glm.ortho((float)args.left, (float)args.right, (float)args.bottom, (float)args.top,
                 // TODO: / 2后与legacy opengl的UI元素显示就完全一致了。为什么？？？
                 projectionMatrix = glm.ortho((float)args.left / 2, (float)args.right / 2, (float)args.bottom / 2, (float)args.top / 2,
-                    uiElement.Param.zNear, uiElement.Param.zFar);
+                    uiElement.zNear, uiElement.zFar);
                 // 下面注释掉的代码是用来测试legacy OpenGL的matrix与GLM库计算的matrix是否相同用的。已经证明了两者完全相同，此处仅作留念+以防万一。
                 //{
                 //    float[] matrix = new float[16];
@@ -48,7 +48,7 @@ namespace CSharpGL
                 //    GL.PopMatrix();
                 //}
                 // 把UI元素移到ortho长方体的最靠近camera的地方，这样就可以把UI元素放到OpenGL最前方。
-                projectionMatrix = glm.translate(projectionMatrix, new vec3(0, 0, uiElement.Param.zFar - max / 2 * maxDepth));
+                projectionMatrix = glm.translate(projectionMatrix, new vec3(0, 0, uiElement.zFar - max / 2 * maxDepth));
             }
             {
                 // UI元素不在三维场景中，所以其Camera可以是null。
@@ -160,65 +160,63 @@ namespace CSharpGL
         /// <param name="args"></param>
         static void CalculateCoords(IUILayout uiElement, int viewportWidth, int viewportHeight, IUILayoutArgs args)
         {
-            IUILayoutParam param = uiElement.Param;
-
-            if ((param.Anchor & leftRightAnchor) == leftRightAnchor)
+            if ((uiElement.Anchor & leftRightAnchor) == leftRightAnchor)
             {
-                args.UIWidth = viewportWidth - param.Margin.Left - param.Margin.Right;
+                args.UIWidth = viewportWidth - uiElement.Margin.Left - uiElement.Margin.Right;
                 if (args.UIWidth < 0) { args.UIWidth = 0; }
             }
             else
             {
-                args.UIWidth = param.Size.Width;
+                args.UIWidth = uiElement.Size.Width;
             }
 
-            if ((param.Anchor & topBottomAnchor) == topBottomAnchor)
+            if ((uiElement.Anchor & topBottomAnchor) == topBottomAnchor)
             {
-                args.UIHeight = viewportHeight - param.Margin.Top - param.Margin.Bottom;
+                args.UIHeight = viewportHeight - uiElement.Margin.Top - uiElement.Margin.Bottom;
                 if (args.UIHeight < 0) { args.UIHeight = 0; }
             }
             else
             {
-                args.UIHeight = param.Size.Height;
+                args.UIHeight = uiElement.Size.Height;
             }
 
-            if ((param.Anchor & leftRightAnchor) == AnchorStyles.None)
+            if ((uiElement.Anchor & leftRightAnchor) == AnchorStyles.None)
             {
                 args.left = -(args.UIWidth / 2
                     + (viewportWidth - args.UIWidth)
-                        * ((double)param.Margin.Left / (double)(param.Margin.Left + param.Margin.Right)));
+                        * ((double)uiElement.Margin.Left / (double)(uiElement.Margin.Left + uiElement.Margin.Right)));
             }
-            else if ((param.Anchor & leftRightAnchor) == AnchorStyles.Left)
+            else if ((uiElement.Anchor & leftRightAnchor) == AnchorStyles.Left)
             {
-                args.left = -(args.UIWidth / 2 + param.Margin.Left);
+                args.left = -(args.UIWidth / 2 + uiElement.Margin.Left);
             }
-            else if ((param.Anchor & leftRightAnchor) == AnchorStyles.Right)
+            else if ((uiElement.Anchor & leftRightAnchor) == AnchorStyles.Right)
             {
-                args.left = -(viewportWidth - args.UIWidth / 2 - param.Margin.Right);
+                args.left = -(viewportWidth - args.UIWidth / 2 - uiElement.Margin.Right);
             }
             else // if ((Anchor & leftRightAnchor) == leftRightAnchor)
             {
-                args.left = -(args.UIWidth / 2 + param.Margin.Left);
+                args.left = -(args.UIWidth / 2 + uiElement.Margin.Left);
             }
 
-            if ((param.Anchor & topBottomAnchor) == AnchorStyles.None)
+            if ((uiElement.Anchor & topBottomAnchor) == AnchorStyles.None)
             {
                 args.bottom = -viewportHeight / 2;
                 args.bottom = -(args.UIHeight / 2
                     + (viewportHeight - args.UIHeight)
-                        * ((double)param.Margin.Bottom / (double)(param.Margin.Bottom + param.Margin.Top)));
+                        * ((double)uiElement.Margin.Bottom / (double)(uiElement.Margin.Bottom + uiElement.Margin.Top)));
             }
-            else if ((param.Anchor & topBottomAnchor) == AnchorStyles.Bottom)
+            else if ((uiElement.Anchor & topBottomAnchor) == AnchorStyles.Bottom)
             {
-                args.bottom = -(args.UIHeight / 2 + param.Margin.Bottom);
+                args.bottom = -(args.UIHeight / 2 + uiElement.Margin.Bottom);
             }
-            else if ((param.Anchor & topBottomAnchor) == AnchorStyles.Top)
+            else if ((uiElement.Anchor & topBottomAnchor) == AnchorStyles.Top)
             {
-                args.bottom = -(viewportHeight - args.UIHeight / 2 - param.Margin.Top);
+                args.bottom = -(viewportHeight - args.UIHeight / 2 - uiElement.Margin.Top);
             }
             else // if ((Anchor & topBottomAnchor) == topBottomAnchor)
             {
-                args.bottom = -(args.UIHeight / 2 + param.Margin.Bottom);
+                args.bottom = -(args.UIHeight / 2 + uiElement.Margin.Bottom);
             }
         }
     }

@@ -202,9 +202,10 @@ namespace CSharpGL.Demos
                         pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
                     }
                     UIModernRenderer uiRenderer = new UIModernRenderer(
-                        new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom,
-                            new Padding(10, 10, 10, 10), new Size(50, 50)),
-                        pickableRenderer);
+                        pickableRenderer, 
+                        AnchorStyles.Left | AnchorStyles.Bottom,
+                        new Padding(10, 10, 10, 10), 
+                        new Size(50, 50));
                     uiRenderer.Initialize();
                     this.uiRenderer = uiRenderer;
                 }

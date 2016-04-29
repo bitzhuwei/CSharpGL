@@ -20,8 +20,6 @@ namespace CSharpGL
             get { return modernRenderer; }
         }
 
-        public IUILayoutParam Param { get; set; }
-
         /// <summary>
         /// 支持"拾取"的渲染器
         /// </summary>
@@ -30,11 +28,21 @@ namespace CSharpGL
         /// <param name="propertyNameMap">关联<see cref="PropertyBufferPtr"/>和<see cref="shaderCode"/>中的属性</param>
         /// <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
         ///<param name="switches"></param>
-        public UIModernRenderer(IUILayoutParam param,
-            ModernRenderer modernRenderer)
+        public UIModernRenderer(
+            ModernRenderer modernRenderer,
+            System.Windows.Forms.AnchorStyles Anchor,
+            System.Windows.Forms.Padding Margin,
+            System.Drawing.Size Size,
+            int zNear = -1000,
+            int zFar = 1000
+            )
         {
-            this.Param = param;
             this.modernRenderer = modernRenderer;
+            this.Anchor = Anchor;
+            this.Margin = Margin;
+            this.Size = Size;
+            this.zNear = zNear;
+            this.zFar = zFar;
         }
 
 
@@ -52,5 +60,15 @@ namespace CSharpGL
         {
             this.modernRenderer.Dispose();
         }
+
+        public System.Windows.Forms.AnchorStyles Anchor { get; set; }
+
+        public System.Windows.Forms.Padding Margin { get; set; }
+
+        public System.Drawing.Size Size { get; set; }
+
+        public int zNear { get; set; }
+
+        public int zFar { get; set; }
     }
 }
