@@ -41,12 +41,13 @@ namespace CSharpGL
 
         public int zFar;
 
-        public IUILayoutParam(AnchorStyles anchorStyle, Padding padding, System.Drawing.Size size,
+        public IUILayoutParam(AnchorStyles anchorStyle, Padding margin,
+            System.Drawing.Size size,
             int zNear = -1000, int zFar = 1000)
         {
             // TODO: Complete member initialization
             this.Anchor = anchorStyle;
-            this.Margin = padding;
+            this.Margin = margin;
             this.Size = size;
             this.zNear = zNear;
             this.zFar = zFar;
