@@ -142,25 +142,48 @@ namespace CSharpGL.Demos
                     PickedGeometry pickedGeometry = this.pickedGeometry;
                     if (pickedGeometry != null)
                     {
-                        string content = string.Format("[index: {0}]", 
+                        string content = string.Format("[index: {0}]",
                             pickedGeometry.Indexes.PrintArray());
                         SizeF size = e.Graphics.MeasureString(content, font);
                         GL.DrawText(this.mousePosition.X - (int)(size.Width / 2),
                             this.glCanvas1.Height - this.mousePosition.Y - 1,
-                            this.TextColor, "Courier New", 14.0f,
+                            this.TextColor, "Courier New", fontSize,
                             content);
                     }
                     else
                     {
                         GL.DrawText(this.mousePosition.X,
                             this.glCanvas1.Height - this.mousePosition.Y - 1,
-                            this.TextColor, "Courier New", 14.0f, "");
+                            this.TextColor, "Courier New", fontSize,
+                            "");
+                    }
+                    {
+                        // Cross cursor shows where the mouse is.
+                        GL.DrawText(this.mousePosition.X - offset.X,
+                            this.glCanvas1.Height - (this.mousePosition.Y + offset.Y) - 1,
+                            Color.Red, "Courier New", 30.0f, "+");
                     }
                 }
             }
         }
 
-        Font font = new Font("Courier New", 14.0f);
+        private float crossCursorSize = 30.0f;
+
+        public float CrossCursorSize
+        {
+            get { return crossCursorSize; }
+            set { crossCursorSize = value; }
+        }
+        private Point offset = new Point(11, 10);
+
+        public Point Offset
+        {
+            get { return offset; }
+            set { offset = value; }
+        }
+
+        const float fontSize = 20.0f;
+        Font font = new Font("Courier New", fontSize);
 
         private void UpdateMVP(HighlightedPickableRenderer renderer)
         {
