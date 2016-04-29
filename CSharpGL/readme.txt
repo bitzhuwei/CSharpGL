@@ -18,3 +18,5 @@ v1.0.0.1:
 4. Draw text using glRasterPos() and CallList.
 5. PolygonOffsetSwitch.
 6. UILayout.
+v1.0.0.2:
+1. add model: BigDipper, Tetrahedron, Cube, Sphere, Teapot.
