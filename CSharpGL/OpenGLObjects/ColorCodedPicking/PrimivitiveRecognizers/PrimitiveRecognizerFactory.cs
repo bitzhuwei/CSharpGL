@@ -34,6 +34,7 @@ namespace CSharpGL
                     recognizer = new TriangleStripRecognizer();
                     break;
                 case DrawMode.TriangleFan:
+                    recognizer = new TriangleFanRecognizer();
                     break;
                 case DrawMode.Triangles:
                     recognizer = new TrianglesRecognizer();

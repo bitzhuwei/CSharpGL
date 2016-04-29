@@ -47,7 +47,9 @@
     <Content Include="Controls\GLCanvas.ico" />
     <Content Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.png" />
     <Content Include="OpenGLObjects\ColorCodedPicking\readme.txt" />
+    <Content Include="OpenGLObjects\ModernRendering\IBufferables\AxisModel.jpg" />
     <Content Include="OpenGLObjects\ModernRendering\IBufferables\CubeModel.jpg" />
+    <Content Include="OpenGLObjects\ModernRendering\IBufferables\SphereModel.jpg" />
     <Content Include="readme.txt" />
     <Compile Include="Controls\GLCanvas.cs">
       <SubType>UserControl</SubType>
@@ -73,10 +75,13 @@
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\LinesRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\QuadStripRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\QuadsRecognizer.cs" />
+    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\TriangleFanRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\TriangleStripRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\TrianglesRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\SelectionMode.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\IBufferables\Axis.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\IBufferables\AxisModel.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\IBufferables\BigDipper.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\IBufferables\Cube.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\IBufferables\Sphere.cs" />

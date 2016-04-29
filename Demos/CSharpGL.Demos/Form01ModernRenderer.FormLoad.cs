@@ -27,6 +27,7 @@ namespace CSharpGL.Demos
             {
                 Random random = new Random();
                 var bufferables = new IBufferable[]{
+                    new Axis(),
                     new BigDipper(),
                     new ChainModelConverter(new ChainModel(random.Next(7, 100), 5, 5)),
                     new Tetrahedron(),
@@ -36,6 +37,7 @@ namespace CSharpGL.Demos
                 };
                 var keys = new GeometryModel[] 
                 { 
+                    GeometryModel.Axis,
                     GeometryModel.BigDipper, 
                     GeometryModel.Chain,
                     GeometryModel.Tetrahedron, 
@@ -54,6 +56,7 @@ namespace CSharpGL.Demos
                 {
                     simpleShader,
                     simpleShader,
+                    simpleShader,
                     emitNormalLineShader,
                     emitNormalLineShader,
                     emitNormalLineShader,
@@ -69,6 +72,7 @@ namespace CSharpGL.Demos
                 {
                     simpleShaderPropertyNameMap,
                     simpleShaderPropertyNameMap,
+                    simpleShaderPropertyNameMap,
                     emitNormalLineShaderPropertyNameMap,
                     emitNormalLineShaderPropertyNameMap,
                     emitNormalLineShaderPropertyNameMap,
@@ -76,6 +80,7 @@ namespace CSharpGL.Demos
                 };
                 var positionNameInIBufferables = new string[]
                 {
+                    "position", 
                     "position", 
                     "position", 
                     "position", 
@@ -91,6 +96,7 @@ namespace CSharpGL.Demos
                 };
                 var uniformVariablesList = new List<List<Tuple<string, ValueType>>>()
                 {
+                    new List<Tuple<string, ValueType>>(),
                     new List<Tuple<string, ValueType>>(),
                     new List<Tuple<string, ValueType>>(),
                     uniformTupleList,
@@ -137,40 +143,33 @@ namespace CSharpGL.Demos
             }
             {
                 var bufferables = new IBufferable[]{
-                    new Cube(),
+                    new Axis(),
                 };
                 var keys = new GeometryModel[] 
                 { 
-                    GeometryModel.Cube, 
+                    GeometryModel.Axis, 
                 };
-                ShaderCode[] emitNormalLineShader = new ShaderCode[3];
-                emitNormalLineShader[0] = new ShaderCode(File.ReadAllText(@"Shaders\EmitNormalLine.vert"), ShaderType.VertexShader);
-                emitNormalLineShader[1] = new ShaderCode(File.ReadAllText(@"Shaders\EmitNormalLine.geom"), ShaderType.GeometryShader);
-                emitNormalLineShader[2] = new ShaderCode(File.ReadAllText(@"Shaders\EmitNormalLine.frag"), ShaderType.FragmentShader);
+                ShaderCode[] simpleShader = new ShaderCode[2];
+                simpleShader[0] = new ShaderCode(File.ReadAllText(@"Shaders\Simple.vert"), ShaderType.VertexShader);
+                simpleShader[1] = new ShaderCode(File.ReadAllText(@"Shaders\Simple.frag"), ShaderType.FragmentShader);
                 var shaderCodesGroup = new ShaderCode[][]
-                {   
-                    emitNormalLineShader,
+                {
+                    simpleShader,
                 };
-                var emitNormalLineShaderPropertyNameMap = new PropertyNameMap();
-                emitNormalLineShaderPropertyNameMap.Add("in_Position", "position");
-                emitNormalLineShaderPropertyNameMap.Add("in_Normal", "normal");
+                var simpleShaderPropertyNameMap = new PropertyNameMap();
+                simpleShaderPropertyNameMap.Add("in_Position", "position");
+                simpleShaderPropertyNameMap.Add("in_Color", "color");
                 var propertyNameMaps = new PropertyNameMap[]
                 {
-                    emitNormalLineShaderPropertyNameMap,
+                    simpleShaderPropertyNameMap,
                 };
                 var positionNameInIBufferables = new string[]
                 {
                     "position", 
                 };
-                var uniformTupleList = new List<Tuple<string, ValueType>>()
-                {
-                    new Tuple<string, ValueType>("normalLength", 0.5f),
-                    new Tuple<string, ValueType>("showModel", true),
-                    new Tuple<string, ValueType>("showNormal", true),
-                };
                 var uniformVariablesList = new List<List<Tuple<string, ValueType>>>()
                 {
-                    uniformTupleList,
+                    new List<Tuple<string, ValueType>>(),
                 };
                 for (int i = 0; i < bufferables.Length; i++)
                 {

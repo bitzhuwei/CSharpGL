@@ -15,6 +15,7 @@ namespace CSharpGL.Demos
     {
         public enum GeometryModel
         {
+            Axis,
             BigDipper,
             Chain,
             Tetrahedron,
