@@ -128,6 +128,7 @@ namespace CSharpGL.Demos
 
                 GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
+                var arg = new RenderEventArgs(RenderMode, this.camera);
                 HighlightedPickableRenderer renderer = this.rendererDict[this.SelectedModel];
                 if (renderer != null)
                 {
@@ -136,34 +137,71 @@ namespace CSharpGL.Demos
                         UpdateMVP(renderer);
                         //cameraUpdated = false;
                     }
-                    var arg = new RenderEventArgs(RenderMode, this.camera);
-                    renderer.Render(arg);
 
-                    PickedGeometry pickedGeometry = this.pickedGeometry;
-                    if (pickedGeometry != null)
+                    renderer.Render(arg);
+                }
+                UIModernRenderer uiRenderer = this.uiRenderer;
+                if (uiRenderer != null)
+                {
+
+                    mat4 projection, view, model;
+                    uiRenderer.GetMatrix(out projection, out view, out model, this.camera);
+                    uiRenderer.ModernRenderer.SetUniformValue("projectionMatrix", projection);
+                    uiRenderer.ModernRenderer.SetUniformValue("viewMatrix", view);
+                    uiRenderer.ModernRenderer.SetUniformValue("modelMatrix", model);
+
+                    uiRenderer.Render(arg);
+
+                    if (this.firstTime)
                     {
-                        string content = string.Format("[index: {0}]",
-                            pickedGeometry.Indexes.PrintArray());
-                        SizeF size = e.Graphics.MeasureString(content, font);
-                        GL.DrawText(this.mousePosition.X - (int)(size.Width / 2),
-                            this.glCanvas1.Height - this.mousePosition.Y - 1,
-                            this.TextColor, "Courier New", fontSize,
-                            content);
+                        this.projection = projection;
+                        this.view = view;
+                        this.model = model;
+                        this.firstTime = false;
                     }
                     else
                     {
-                        GL.DrawText(this.mousePosition.X,
-                            this.glCanvas1.Height - this.mousePosition.Y - 1,
-                            this.TextColor, "Courier New", fontSize,
-                            "");
-                    }
-                    {
-                        // Cross cursor shows where the mouse is.
-                        GL.DrawText(this.mousePosition.X - offset.X,
-                            this.glCanvas1.Height - (this.mousePosition.Y + offset.Y) - 1,
-                            Color.Red, "Courier New", crossCursorSize, "+");
+                        if (this.projection != projection
+                            || this.view != view
+                            || this.model != model)
+                        {
+                            Console.WriteLine("adf");
+                        }
                     }
                 }
+
+                DrawText(e);
+            }
+        }
+
+        mat4 projection, view, model;
+        bool firstTime = true;
+
+        private void DrawText(PaintEventArgs e)
+        {
+            PickedGeometry pickedGeometry = this.pickedGeometry;
+            if (pickedGeometry != null)
+            {
+                string content = string.Format("[index: {0}]",
+                    pickedGeometry.Indexes.PrintArray());
+                SizeF size = e.Graphics.MeasureString(content, font);
+                GL.DrawText(this.mousePosition.X - (int)(size.Width / 2),
+                    this.glCanvas1.Height - this.mousePosition.Y - 1,
+                    this.TextColor, "Courier New", fontSize,
+                    content);
+            }
+            else
+            {
+                GL.DrawText(this.mousePosition.X,
+                    this.glCanvas1.Height - this.mousePosition.Y - 1,
+                    this.TextColor, "Courier New", fontSize,
+                    "");
+            }
+            {
+                // Cross cursor shows where the mouse is.
+                GL.DrawText(this.mousePosition.X - offset.X,
+                    this.glCanvas1.Height - (this.mousePosition.Y + offset.Y) - 1,
+                    Color.Red, "Courier New", crossCursorSize, "+");
             }
         }
 
@@ -181,15 +219,15 @@ namespace CSharpGL.Demos
             mat4 viewMatrix = camera.GetViewMat4();
             mat4 modelMatrix = mat4.identity();
 
+            mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
+
             if (this.RenderMode == RenderModes.ColorCodedPicking
                 || this.RenderMode == RenderModes.ColorCodedPickingPoints)
             {
-                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
                 renderer.PickableRenderer.MVP = mvp;
             }
             else if (this.RenderMode == RenderModes.Render)
             {
-                mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
                 renderer.Highlighter.MVP = mvp;
                 renderer.PickableRenderer.SetUniformValue("projectionMatrix", projectionMatrix);
                 renderer.PickableRenderer.SetUniformValue("viewMatrix", viewMatrix);

@@ -14,6 +14,12 @@ namespace CSharpGL
     public partial class UIModernRenderer : RendererBase, IUILayout
     {
         private ModernRenderer modernRenderer;
+
+        public ModernRenderer ModernRenderer
+        {
+            get { return modernRenderer; }
+        }
+
         public IUILayoutParam Param { get; set; }
 
         /// <summary>

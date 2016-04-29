@@ -16,6 +16,7 @@ namespace CSharpGL.Demos
 {
     public partial class Form01ModernRenderer : Form
     {
+        private UIModernRenderer uiRenderer;
 
         private void Form01ModernRenderer_Load(object sender, EventArgs e)
         {
@@ -136,6 +137,77 @@ namespace CSharpGL.Demos
                     this.rendererDict.Add(key, renderer);
                 }
                 this.SelectedModel = GeometryModel.Cube;
+            }
+            {
+                var bufferables = new IBufferable[]{
+                    new CubeModelConverter(new CubeModel(1.0f)),
+                };
+                var keys = new GeometryModel[] 
+                { 
+                    GeometryModel.Cube, 
+                };
+                ShaderCode[] emitNormalLineShader = new ShaderCode[3];
+                emitNormalLineShader[0] = new ShaderCode(File.ReadAllText(@"Shaders\EmitNormalLine.vert"), ShaderType.VertexShader);
+                emitNormalLineShader[1] = new ShaderCode(File.ReadAllText(@"Shaders\EmitNormalLine.geom"), ShaderType.GeometryShader);
+                emitNormalLineShader[2] = new ShaderCode(File.ReadAllText(@"Shaders\EmitNormalLine.frag"), ShaderType.FragmentShader);
+                var shaderCodesGroup = new ShaderCode[][]
+                {   
+                    emitNormalLineShader,
+                };
+                var emitNormalLineShaderPropertyNameMap = new PropertyNameMap();
+                emitNormalLineShaderPropertyNameMap.Add("in_Position", "position");
+                emitNormalLineShaderPropertyNameMap.Add("in_Normal", "normal");
+                var propertyNameMaps = new PropertyNameMap[]
+                {
+                    emitNormalLineShaderPropertyNameMap,
+                };
+                var positionNameInIBufferables = new string[]
+                {
+                    "position", 
+                };
+                var uniformTupleList = new List<Tuple<string, ValueType>>()
+                {
+                    new Tuple<string, ValueType>("normalLength", 0.5f),
+                    new Tuple<string, ValueType>("showModel", true),
+                    new Tuple<string, ValueType>("showNormal", true),
+                };
+                var uniformVariablesList = new List<List<Tuple<string, ValueType>>>()
+                {
+                    uniformTupleList,
+                };
+                for (int i = 0; i < bufferables.Length; i++)
+                {
+                    GeometryModel key = keys[i];
+                    IBufferable bufferable = bufferables[i];
+                    ShaderCode[] shaders = shaderCodesGroup[i];
+                    var propertyNameMap = propertyNameMaps[i];
+                    string positionNameInIBufferable = positionNameInIBufferables[i];
+                    var pickableRenderer = PickableModernRendererFactory.GetModernRenderer(
+                        bufferable, shaders, propertyNameMap, positionNameInIBufferable);
+                    pickableRenderer.Name = string.Format("Pickable: [{0}]", key);
+                    pickableRenderer.Initialize();
+                    var uniformVariables = uniformVariablesList[i];
+                    foreach (var item in uniformVariables)
+                    {
+                        pickableRenderer.SetUniformValue(item.Item1, item.Item2);
+                    }
+                    {
+                        GLSwitch lineWidthSwitch = new LineWidthSwitch(5);
+                        pickableRenderer.SwitchList.Add(lineWidthSwitch);
+                        GLSwitch pointSizeSwitch = new PointSizeSwitch(10);
+                        pickableRenderer.SwitchList.Add(pointSizeSwitch);
+                        GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
+                        pickableRenderer.SwitchList.Add(polygonModeSwitch);
+                        GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(uint.MaxValue);
+                        pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
+                    }
+                    UIModernRenderer uiRenderer = new UIModernRenderer(
+                        new IUILayoutParam(AnchorStyles.Left | AnchorStyles.Bottom,
+                            new Padding(10, 10, 10, 10), new Size(50, 50)),
+                        pickableRenderer);
+                    uiRenderer.Initialize();
+                    this.uiRenderer = uiRenderer;
+                }
             }
             {
                 var frmBulletinBoard = new FormBulletinBoard();
