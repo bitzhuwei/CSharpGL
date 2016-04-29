@@ -33,7 +33,7 @@ namespace CSharpGL.Demos
                     new BigDipper(),
                     new ChainModelConverter(new ChainModel(random.Next(7, 100), 5, 5)),
                     new TetrahedronModelConverter(new TetrahedronModel(1.0f)),
-                    new CubeModelConverter(new CubeModel(1.0f)),
+                    new Cube(),
                     new SphereModelConverter(new SphereModel(1.0f)),
                     new TeapotModelConverter(TeapotModel.GetModel(1.0f)),
                 };
@@ -140,7 +140,7 @@ namespace CSharpGL.Demos
             }
             {
                 var bufferables = new IBufferable[]{
-                    new CubeModelConverter(new CubeModel(1.0f)),
+                    new Cube(),
                 };
                 var keys = new GeometryModel[] 
                 { 

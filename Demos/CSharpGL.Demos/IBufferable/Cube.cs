@@ -16,15 +16,8 @@ namespace CSharpGL.ModelAdapters
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000062.jpg
     /// <para>使用<see cref="OneIndexBuffer"/></para>
     /// </summary>
-    public class CubeModelConverter : IBufferable
+    public class Cube : IBufferable
     {
-
-        private CubeModel model;
-
-        public CubeModelConverter(CubeModel model)
-        {
-            this.model = model;
-        }
 
         public const string strPosition = "position";
         public const string strColor = "color";
@@ -43,7 +36,7 @@ namespace CSharpGL.ModelAdapters
                         unsafe
                         {
                             var positionArray = (CubeModel.CubePosition*)buffer.FirstElement();
-                            positionArray[0] = this.model.position;
+                            positionArray[0] = CubeModel.position;
 
                         }
 
@@ -62,7 +55,7 @@ namespace CSharpGL.ModelAdapters
                         unsafe
                         {
                             var colorArray = (CubeModel.CubeColor*)buffer.FirstElement();
-                            colorArray[0] = this.model.color;
+                            colorArray[0] = CubeModel.color;
                         }
 
                         propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
@@ -80,7 +73,7 @@ namespace CSharpGL.ModelAdapters
                         unsafe
                         {
                             var normalArray = (CubeModel.CubeNormal*)buffer.FirstElement();
-                            normalArray[0] = this.model.normal;
+                            normalArray[0] = CubeModel.normal;
                         }
 
                         propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
@@ -100,13 +93,13 @@ namespace CSharpGL.ModelAdapters
             {
                 using (var buffer = new OneIndexBuffer<byte>(DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    buffer.Alloc(this.model.index.Length);
+                    buffer.Alloc(CubeModel.index.Length);
                     unsafe
                     {
                         var array = (byte*)buffer.FirstElement();
-                        for (int i = 0; i < this.model.index.Length; i++)
+                        for (int i = 0; i < CubeModel.index.Length; i++)
                         {
-                            array[i] = this.model.index[i];
+                            array[i] = CubeModel.index[i];
                         }
                     }
 

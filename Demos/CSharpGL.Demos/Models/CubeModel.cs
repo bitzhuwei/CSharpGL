@@ -14,7 +14,7 @@ namespace CSharpGL.Models
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000061.jpg
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000062.jpg
     /// </summary>
-    public class CubeModel
+    internal class CubeModel
     {
         static readonly vec3[] eightVertexes = new vec3[] 
         { 
@@ -22,77 +22,45 @@ namespace CSharpGL.Models
             new vec3(-1, -1, 1), new vec3(1, -1, 1), new vec3(1, -1, -1), new vec3(-1, -1, -1), 
         };
 
-        public CubePosition position;
-        public CubeNormal normal;
-        public CubeColor color;
-        public byte[] index;
-
-        public CubeModel(float radius)
+        internal static readonly CubePosition position = new CubePosition()
         {
-            this.position = new CubePosition()
-            {
-                faceX = new SqurePosition() { position0 = eightVertexes[1], position1 = eightVertexes[2], position2 = eightVertexes[6], position3 = eightVertexes[5], },
-                faceNX = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[3], position2 = eightVertexes[7], position3 = eightVertexes[4], },
-                faceY = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[1], position2 = eightVertexes[2], position3 = eightVertexes[3], },
-                faceNY = new SqurePosition() { position0 = eightVertexes[4], position1 = eightVertexes[5], position2 = eightVertexes[6], position3 = eightVertexes[7], },
-                faceZ = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[1], position2 = eightVertexes[5], position3 = eightVertexes[4], },
-                faceNZ = new SqurePosition() { position0 = eightVertexes[3], position1 = eightVertexes[2], position2 = eightVertexes[6], position3 = eightVertexes[7], },
-            };
-            this.position.faceX.position0 *= radius;
-            this.position.faceX.position1 *= radius;
-            this.position.faceX.position2 *= radius;
-            this.position.faceX.position3 *= radius;
-            this.position.faceNX.position0 *= radius;
-            this.position.faceNX.position1 *= radius;
-            this.position.faceNX.position2 *= radius;
-            this.position.faceNX.position3 *= radius;
-            this.position.faceY.position0 *= radius;
-            this.position.faceY.position1 *= radius;
-            this.position.faceY.position2 *= radius;
-            this.position.faceY.position3 *= radius;
-            this.position.faceNY.position0 *= radius;
-            this.position.faceNY.position1 *= radius;
-            this.position.faceNY.position2 *= radius;
-            this.position.faceNY.position3 *= radius;
-            this.position.faceZ.position0 *= radius;
-            this.position.faceZ.position1 *= radius;
-            this.position.faceZ.position2 *= radius;
-            this.position.faceZ.position3 *= radius;
-            this.position.faceNZ.position0 *= radius;
-            this.position.faceNZ.position1 *= radius;
-            this.position.faceNZ.position2 *= radius;
-            this.position.faceNZ.position3 *= radius;
-            this.color = new CubeColor()
-            {
-                faceX = new SqureColor(new vec3(0, 0, 1)),
-                faceNX = new SqureColor(new vec3(0, 1, 0)),
-                faceY = new SqureColor(new vec3(0, 1, 1)),
-                faceNY = new SqureColor(new vec3(1, 0, 0)),
-                faceZ = new SqureColor(new vec3(1, 0, 1)),
-                faceNZ = new SqureColor(new vec3(1, 1, 0)),
-            };
-            this.normal = new CubeNormal()
-            {
-                faceX = new SqureNormal(new vec3(1, 0, 0)),
-                faceNX = new SqureNormal(new vec3(-1, 0, 0)),
-                faceY = new SqureNormal(new vec3(0, 1, 0)),
-                faceNY = new SqureNormal(new vec3(0, -1, 0)),
-                faceZ = new SqureNormal(new vec3(0, 0, 1)),
-                faceNZ = new SqureNormal(new vec3(0, 0, -1)),
-            };
-            this.index = new byte[] 
-            {
-                0, 1, 2, 0, 2, 3, 
-                4, 5, 6, 4, 6, 7, 
-                8, 9, 10, 8, 10, 11,
-                12, 13, 14, 12, 14, 15,
-                16, 17, 18, 16, 18, 19,
-                20, 21, 22, 20, 22, 23 
-            };
-        }
+            faceX = new SqurePosition() { position0 = eightVertexes[1], position1 = eightVertexes[2], position2 = eightVertexes[6], position3 = eightVertexes[5], },
+            faceNX = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[3], position2 = eightVertexes[7], position3 = eightVertexes[4], },
+            faceY = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[1], position2 = eightVertexes[2], position3 = eightVertexes[3], },
+            faceNY = new SqurePosition() { position0 = eightVertexes[4], position1 = eightVertexes[5], position2 = eightVertexes[6], position3 = eightVertexes[7], },
+            faceZ = new SqurePosition() { position0 = eightVertexes[0], position1 = eightVertexes[1], position2 = eightVertexes[5], position3 = eightVertexes[4], },
+            faceNZ = new SqurePosition() { position0 = eightVertexes[3], position1 = eightVertexes[2], position2 = eightVertexes[6], position3 = eightVertexes[7], },
+        };
+        internal static readonly CubeColor color = new CubeColor()
+        {
+            faceX = new SqureColor(new vec3(0, 0, 1)),
+            faceNX = new SqureColor(new vec3(0, 1, 0)),
+            faceY = new SqureColor(new vec3(0, 1, 1)),
+            faceNY = new SqureColor(new vec3(1, 0, 0)),
+            faceZ = new SqureColor(new vec3(1, 0, 1)),
+            faceNZ = new SqureColor(new vec3(1, 1, 0)),
+        };
+        internal static readonly CubeNormal normal = new CubeNormal()
+        {
+            faceX = new SqureNormal(new vec3(1, 0, 0)),
+            faceNX = new SqureNormal(new vec3(-1, 0, 0)),
+            faceY = new SqureNormal(new vec3(0, 1, 0)),
+            faceNY = new SqureNormal(new vec3(0, -1, 0)),
+            faceZ = new SqureNormal(new vec3(0, 0, 1)),
+            faceNZ = new SqureNormal(new vec3(0, 0, -1)),
+        };
+        internal static readonly byte[] index = new byte[] 
+        {
+            0, 1, 2, 0, 2, 3, 
+            4, 5, 6, 4, 6, 7, 
+            8, 9, 10, 8, 10, 11,
+            12, 13, 14, 12, 14, 15,
+            16, 17, 18, 16, 18, 19,
+            20, 21, 22, 20, 22, 23 
+        };
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct CubeColor
+        internal struct CubeColor
         {
             public SqureColor faceX;
             public SqureColor faceNX;
@@ -103,7 +71,7 @@ namespace CSharpGL.Models
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct SqureColor
+        internal struct SqureColor
         {
             public vec3 color0;
             public vec3 color1;
@@ -125,7 +93,7 @@ namespace CSharpGL.Models
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct CubePosition
+        internal struct CubePosition
         {
             public SqurePosition faceX;
             public SqurePosition faceNX;
@@ -136,7 +104,7 @@ namespace CSharpGL.Models
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct SqurePosition
+        internal struct SqurePosition
         {
             public vec3 position0;
             public vec3 position1;
@@ -145,7 +113,7 @@ namespace CSharpGL.Models
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct CubeNormal
+        internal struct CubeNormal
         {
             public SqureNormal faceX;
             public SqureNormal faceNX;
@@ -156,7 +124,7 @@ namespace CSharpGL.Models
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct SqureNormal
+        internal struct SqureNormal
         {
             public vec3 normal0;
             public vec3 normal1;

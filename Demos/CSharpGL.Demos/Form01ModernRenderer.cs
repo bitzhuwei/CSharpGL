@@ -120,57 +120,62 @@ namespace CSharpGL.Demos
         {
             lock (this.synObj)
             {
-                if (this.RenderMode == RenderModes.ColorCodedPicking
-                    || this.renderMode == RenderModes.ColorCodedPickingPoints)
-                { GL.ClearColor(1, 1, 1, 1); }
-                else if (this.RenderMode == RenderModes.Render)
-                { GL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f); }
-
-                GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-
-                var arg = new RenderEventArgs(RenderMode, this.camera);
-                HighlightedPickableRenderer renderer = this.rendererDict[this.SelectedModel];
-                if (renderer != null)
-                {
-                    //if (cameraUpdated)
-                    {
-                        UpdateMVP(renderer);
-                        //cameraUpdated = false;
-                    }
-
-                    renderer.Render(arg);
-                }
-                UIModernRenderer uiRenderer = this.uiRenderer;
-                if (uiRenderer != null)
-                {
-
-                    mat4 projection, view, model;
-                    uiRenderer.GetMatrix(out projection, out view, out model, this.camera);
-                    uiRenderer.ModernRenderer.SetUniformValue("projectionMatrix", projection);
-                    uiRenderer.ModernRenderer.SetUniformValue("viewMatrix", view);
-                    uiRenderer.ModernRenderer.SetUniformValue("modelMatrix", model);
-
-                    uiRenderer.Render(arg);
-
-                    if (this.firstTime)
-                    {
-                        this.projection = projection;
-                        this.view = view;
-                        this.model = model;
-                        this.firstTime = false;
-                    }
-                    else
-                    {
-                        if (this.projection != projection
-                            || this.view != view
-                            || this.model != model)
-                        {
-                            Console.WriteLine("adf");
-                        }
-                    }
-                }
+                RenderersDraw();
 
                 DrawText(e);
+            }
+        }
+
+        private void RenderersDraw()
+        {
+            if (this.RenderMode == RenderModes.ColorCodedPicking
+                || this.renderMode == RenderModes.ColorCodedPickingPoints)
+            { GL.ClearColor(1, 1, 1, 1); }
+            else if (this.RenderMode == RenderModes.Render)
+            { GL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f); }
+
+            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+
+            var arg = new RenderEventArgs(RenderMode, this.camera);
+            HighlightedPickableRenderer renderer = this.rendererDict[this.SelectedModel];
+            if (renderer != null)
+            {
+                //if (cameraUpdated)
+                {
+                    UpdateMVP(renderer);
+                    //cameraUpdated = false;
+                }
+
+                renderer.Render(arg);
+            }
+            UIModernRenderer uiRenderer = this.uiRenderer;
+            if (uiRenderer != null)
+            {
+
+                mat4 projection, view, model;
+                uiRenderer.GetMatrix(out projection, out view, out model, this.camera);
+                uiRenderer.ModernRenderer.SetUniformValue("projectionMatrix", projection);
+                uiRenderer.ModernRenderer.SetUniformValue("viewMatrix", view);
+                uiRenderer.ModernRenderer.SetUniformValue("modelMatrix", model);
+
+                uiRenderer.Render(arg);
+
+                if (this.firstTime)
+                {
+                    this.projection = projection;
+                    this.view = view;
+                    this.model = model;
+                    this.firstTime = false;
+                }
+                else
+                {
+                    if (this.projection != projection
+                        || this.view != view
+                        || this.model != model)
+                    {
+                        Console.WriteLine("adf");
+                    }
+                }
             }
         }
 

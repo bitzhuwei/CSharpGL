@@ -129,8 +129,7 @@ namespace CSharpGL.Demos
             lock (this.synObj)
             {
                 {
-                    this.glCanvas1_OpenGLDraw(this.glCanvas1,
-                        new PaintEventArgs(this.CreateGraphics(), this.glCanvas1.ClientRectangle));
+                    this.RenderersDraw();
                     Color c = GL.ReadPixel(x, this.glCanvas1.Height - y - 1);
                     c = Color.FromArgb(255, c);
                     this.lblColor.BackColor = c;
