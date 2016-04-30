@@ -30,44 +30,44 @@ namespace CSharpGL
 
         private uint[] GenerateIndexes(uint partCount)
         {
-            var indexes = new uint[3 * (3 * (1 + partCount + 1))];
+            var indexes = new uint[3 * (3 * (1 + (partCount + 1) + 1))];
             int index = 0;
             // x axis
             indexes[index++] = 0;
-            for (uint i = 0; i < partCount; i++)
+            for (uint i = 0; i < (partCount + 1); i++)
             {
                 indexes[index++] = i + 1;
             }
             indexes[index++] = uint.MaxValue;
-            indexes[index++] = (uint)(1 + partCount);
-            for (uint i = 0; i < partCount; i++)
+            indexes[index++] = (uint)(1 + (partCount + 1));
+            for (uint i = 0; i < (partCount + 1); i++)
             {
-                indexes[index++] = (uint)(i + 1 + (1 + partCount));
+                indexes[index++] = (uint)(i + 1 + (1 + (partCount + 1)));
             }
             indexes[index++] = uint.MaxValue;
-            indexes[index++] = (uint)((3 + 2 * partCount - 1));
-            for (uint i = 0; i < partCount; i++)
+            indexes[index++] = (uint)((3 + 2 * (partCount + 1) - 1));
+            for (uint i = 0; i < (partCount + 1); i++)
             {
-                indexes[index++] = (uint)(i + 1 + (1 + partCount));
+                indexes[index++] = (uint)(i + 1 + (1 + (partCount + 1)));
             }
             indexes[index++] = uint.MaxValue;
             // y axis
-            for (uint i = 0; i < 3 * (1 + partCount + 1); i++)
+            for (uint i = 0; i < 3 * (1 + (partCount + 1) + 1); i++)
             {
                 uint value = indexes[i];
                 if (value == uint.MaxValue)
                 { indexes[index++] = uint.MaxValue; }
                 else
-                { indexes[index++] = value + 3 + 2 * partCount; }
+                { indexes[index++] = value + 3 + 2 * (partCount + 1); }
             }
             // z axis
-            for (uint i = 0; i < 3 * (1 + partCount + 1); i++)
+            for (uint i = 0; i < 3 * (1 + (partCount + 1) + 1); i++)
             {
                 uint value = indexes[i];
                 if (value == uint.MaxValue)
                 { indexes[index++] = uint.MaxValue; }
                 else
-                { indexes[index++] = value + 3 + 2 * partCount + 3 + 2 * partCount; }
+                { indexes[index++] = value + 3 + 2 * (partCount + 1) + 3 + 2 * (partCount + 1); }
             }
 
             return indexes;
@@ -76,17 +76,17 @@ namespace CSharpGL
         private vec3[] GenrateColors(uint partCount)
         {
             Random r = new Random();
-            var colors = new vec3[3 * (3 + 2 * partCount)];
+            var colors = new vec3[3 * (3 + 2 * (partCount + 1))];
             int index = 0;
-            for (int i = 0; i < 3 + 2 * partCount; i++)
+            for (int i = 0; i < 3 + 2 * (partCount + 1); i++)
             {
                 colors[index++] = new vec3((float)r.NextDouble(), 0, 0);
             }
-            for (int i = 0; i < 3 + 2 * partCount; i++)
+            for (int i = 0; i < 3 + 2 * (partCount + 1); i++)
             {
                 colors[index++] = new vec3(0, (float)r.NextDouble(), 0);
             }
-            for (int i = 0; i < 3 + 2 * partCount; i++)
+            for (int i = 0; i < 3 + 2 * (partCount + 1); i++)
             {
                 colors[index++] = new vec3(0, 0, (float)r.NextDouble());
             }
@@ -95,7 +95,7 @@ namespace CSharpGL
 
         private static vec3[] GeneratePositions(uint partCount)
         {
-            var positions = new vec3[3 * (3 + 2 * partCount)];
+            var positions = new vec3[3 * (3 + 2 * (partCount + 1))];
             const float stickLength = 0.75f;
             const float r1 = 0.08f;
             const float r2 = 0.16f;
@@ -103,7 +103,7 @@ namespace CSharpGL
             {
                 // x axis
                 positions[index++] = new vec3(0, 0, 0);
-                for (int i = 0; i < partCount; i++)
+                for (int i = 0; i < partCount + 1; i++)
                 {
                     double angle = 2 * Math.PI * i / partCount;
                     float cos = r1 * (float)Math.Cos(angle);
@@ -111,7 +111,7 @@ namespace CSharpGL
                     positions[index++] = new vec3(stickLength, cos, sin);
                 }
                 positions[index++] = new vec3(stickLength, 0, 0);
-                for (int i = 0; i < partCount; i++)
+                for (int i = 0; i < partCount + 1; i++)
                 {
                     double angle = 2 * Math.PI * i / partCount;
                     float cos = r2 * (float)Math.Cos(angle);
@@ -123,7 +123,7 @@ namespace CSharpGL
             {
                 // y axis
                 positions[index++] = new vec3(0, 0, 0);
-                for (int i = 0; i < partCount; i++)
+                for (int i = 0; i < partCount + 1; i++)
                 {
                     double angle = 2 * Math.PI * i / partCount;
                     float cos = r1 * (float)Math.Cos(angle);
@@ -131,7 +131,7 @@ namespace CSharpGL
                     positions[index++] = new vec3(cos, stickLength, sin);
                 }
                 positions[index++] = new vec3(0, stickLength, 0);
-                for (int i = 0; i < partCount; i++)
+                for (int i = 0; i < partCount + 1; i++)
                 {
                     double angle = 2 * Math.PI * i / partCount;
                     float cos = r2 * (float)Math.Cos(angle);
@@ -143,7 +143,7 @@ namespace CSharpGL
             {
                 // z axis
                 positions[index++] = new vec3(0, 0, 0);
-                for (int i = 0; i < partCount; i++)
+                for (int i = 0; i < partCount + 1; i++)
                 {
                     double angle = 2 * Math.PI * i / partCount;
                     float cos = r1 * (float)Math.Cos(angle);
@@ -151,7 +151,7 @@ namespace CSharpGL
                     positions[index++] = new vec3(cos, sin, stickLength);
                 }
                 positions[index++] = new vec3(0, 0, stickLength);
-                for (int i = 0; i < partCount; i++)
+                for (int i = 0; i < partCount + 1; i++)
                 {
                     double angle = 2 * Math.PI * i / partCount;
                     float cos = r2 * (float)Math.Cos(angle);
