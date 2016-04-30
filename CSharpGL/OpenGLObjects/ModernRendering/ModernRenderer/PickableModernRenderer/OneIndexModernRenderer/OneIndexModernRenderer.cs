@@ -37,17 +37,6 @@ namespace CSharpGL
             base.DoInitialize();
         }
 
-        protected override void DisposeUnmanagedResources()
-        {
-            if (this.oneIndexBufferPtr != null)
-            {
-                this.oneIndexBufferPtr.Dispose();
-                this.oneIndexBufferPtr = null;
-            }
-
-            base.DisposeUnmanagedResources();
-        }
-
         protected override IndexBufferPtr GetIndexBufferPtr()
         {
             return this.oneIndexBufferPtr;
