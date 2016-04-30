@@ -133,7 +133,7 @@ namespace CSharpGL.Demos
 
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-            var arg = new RenderEventArgs(RenderMode, this.camera, this.PickingPrimitive);
+            var arg = new RenderEventArgs(RenderMode, this.camera, this.PickingGeometryType);
             if (renderScene) { SceneRenderersDraw(arg); }
             if (renderUI) { UIRenderersDraw(arg); }
         }
@@ -280,6 +280,5 @@ namespace CSharpGL.Demos
 
 
 
-        public GeometryType PickingPrimitive { get; set; }
     }
 }
