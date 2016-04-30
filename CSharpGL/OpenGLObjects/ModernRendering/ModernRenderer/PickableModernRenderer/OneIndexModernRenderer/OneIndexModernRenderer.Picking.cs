@@ -101,25 +101,17 @@ namespace CSharpGL
             List<RecognizedPrimitiveIndex> lastIndexIdList,
             int x, int y, int canvasWidth, int canvasHeight)
         {
-            if (lastIndexIdList == null || lastIndexIdList.Count == 0)
-            { return null; }
+            if (lastIndexIdList == null || lastIndexIdList.Count == 0) { return null; }
+
+            bool renderingPoints = false;
+            if (e.RenderMode == RenderModes.Render
+                || e.RenderMode == RenderModes.ColorCodedPicking)
+            { renderingPoints = this.GetIndexBufferPtr().Mode == CSharpGL.DrawMode.Points; }
+            else if (e.RenderMode == RenderModes.ColorCodedPickingPoints)
+            { renderingPoints = true; }
+            else { throw new NotFiniteNumberException(); }
 
             int current = 0;
-            bool renderingPoints = false;
-            switch (e.RenderMode)
-            {
-                case RenderModes.Render:
-                    renderingPoints = this.GetIndexBufferPtr().Mode == CSharpGL.DrawMode.Points;
-                    break;
-                case RenderModes.ColorCodedPicking:
-                    renderingPoints = this.GetIndexBufferPtr().Mode == CSharpGL.DrawMode.Points;
-                    break;
-                case RenderModes.ColorCodedPickingPoints:
-                    renderingPoints = true;
-                    break;
-                default:
-                    throw new NotFiniteNumberException();
-            }
             if (!renderingPoints)
             {
 #if DEBUG
