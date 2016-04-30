@@ -28,10 +28,12 @@ namespace CSharpGL
         /// </summary>
         /// <param name="renderMode">渲染模式</param>
         /// <param name="camera">渲染时所用的camera</param>
-        public RenderEventArgs(RenderModes renderMode, ICamera camera)
+        /// <param name="pickingGeometryType">如果<paramref name="renderMode"/>是<see cref="RenderModes.ColorCodedPicking"/>，那么此值表示想要拾取到的几何图形类型（点、线、三角形、四边形、多边形）。否则此值无意义。</param>
+        public RenderEventArgs(RenderModes renderMode, ICamera camera, GeometryType pickingGeometryType = GeometryType.Point)
         {
             this.RenderMode = renderMode;
             this.Camera = camera;
+            this.PickingGeometryType = pickingGeometryType;
         }
 
         /// <summary>
@@ -44,6 +46,7 @@ namespace CSharpGL
         /// </summary>
         public RenderModes RenderMode { get; private set; }
 
+        public GeometryType PickingGeometryType { get; private set; }
     }
 
     public enum RenderModes

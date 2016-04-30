@@ -8,9 +8,12 @@ namespace CSharpGL
 {
     public partial class PickableModernRenderer : IColorCodedPicking
     {
+        PolygonModeSwitch polygonModeSwitch4Picking = new PolygonModeSwitch();
 
         private void PickingRender(RenderEventArgs e)
         {
+            UpdatePolygonMode(e.PickingGeometryType);
+
             ShaderProgram program = this.PickingShaderProgram;
 
             // 绑定shader
@@ -21,6 +24,7 @@ namespace CSharpGL
             pickingMVP.SetUniform(program);
 
             foreach (var item in switchList) { item.On(); }
+            this.polygonModeSwitch4Picking.On();
 
             if (this.vertexArrayObject4Picking == null)
             {
@@ -35,12 +39,38 @@ namespace CSharpGL
                 this.vertexArrayObject4Picking.Render(e, program);
             }
 
+            this.polygonModeSwitch4Picking.Off();
+
             foreach (var item in switchList) { item.Off(); }
 
             pickingMVP.ResetUniform(program);
 
             // 解绑shader
             program.Unbind();
+        }
+
+        private void UpdatePolygonMode(GeometryType geometryType)
+        {
+            switch (geometryType)
+            {
+                case GeometryType.Point:
+                    polygonModeSwitch4Picking.Mode = PolygonModes.Points;
+                    break;
+                case GeometryType.Line:
+                    polygonModeSwitch4Picking.Mode = PolygonModes.Lines;
+                    break;
+                case GeometryType.Triangle:
+                    polygonModeSwitch4Picking.Mode = PolygonModes.Filled;
+                    break;
+                case GeometryType.Quad:
+                    polygonModeSwitch4Picking.Mode = PolygonModes.Filled;
+                    break;
+                case GeometryType.Polygon:
+                    polygonModeSwitch4Picking.Mode = PolygonModes.Filled;
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
         }
 
     }

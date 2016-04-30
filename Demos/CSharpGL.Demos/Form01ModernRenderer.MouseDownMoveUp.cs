@@ -39,7 +39,7 @@ namespace CSharpGL.Demos
                 // move vertex
                 PickedGeometry pickedGeometry = RunPicking(new RenderEventArgs(
                     RenderModes.ColorCodedPicking,
-                    this.camera), e.X, e.Y);
+                    this.camera, this.PickingGeometryType), e.X, e.Y);
                 if (pickedGeometry != null)
                 {
                     this.rendererDict[this.selectedModel].Highlighter.SetHighlightIndexes(
@@ -89,7 +89,7 @@ namespace CSharpGL.Demos
             {
                 PickedGeometry pickedGeometry = RunPicking(new RenderEventArgs(
                     RenderModes.ColorCodedPicking,
-                    this.camera), e.X, e.Y);
+                    this.camera, this.PickingGeometryType), e.X, e.Y);
                 if (pickedGeometry != null)
                 {
                     this.rendererDict[this.selectedModel].Highlighter.SetHighlightIndexes(
@@ -138,7 +138,7 @@ namespace CSharpGL.Demos
                     IColorCodedPicking pickable = this.rendererDict[this.SelectedModel].PickableRenderer;
                     pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
                     PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
-                        e, this.PickingPrimitive, x, y, this.glCanvas1.Width, this.glCanvas1.Height,
+                        e, x, y, this.glCanvas1.Width, this.glCanvas1.Height,
                         pickable);
                     if (pickedGeometry != null)
                     {
@@ -155,6 +155,6 @@ namespace CSharpGL.Demos
             }
         }
 
-        public GeometryType PickingPrimitive { get; set; }
+        public GeometryType PickingGeometryType { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,9 +9,23 @@ namespace CSharpGL
 {
     public partial class ZeroIndexModernRenderer : PickableModernRenderer
     {
+        static Dictionary<DrawMode, ZeroIndexLineSearcher> lineSearchDict;
+
+        static ZeroIndexLineSearcher GetLineSearcher(DrawMode mode)
+        {
+            if (lineSearchDict == null)
+            {
+                var dict = new Dictionary<DrawMode, ZeroIndexLineSearcher>();
+                dict.Add(DrawMode.Triangles, new ZeroIndexLineInTriangleSearcher());
+                // todo:
+
+            }
+
+            return lineSearchDict[mode];
+        }
 
         public override PickedGeometry Pick(
-            RenderEventArgs e, GeometryType geometryType,
+            RenderEventArgs e, 
             uint stageVertexId,
             int x, int y, int canvasWidth, int canvasHeight)
         {
@@ -20,23 +33,51 @@ namespace CSharpGL
             PickedGeometry pickedGeometry = null;
             if (this.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
             {
-
-                pickedGeometry = new PickedGeometry();
-                pickedGeometry.GeometryType = this.GetIndexBufferPtr().Mode.ToGeometryType();
-                pickedGeometry.StageVertexId = stageVertexId;
-                pickedGeometry.From = this;
-                // Fill primitive's position information.
-                int vertexCount = pickedGeometry.GeometryType.GetVertexCount();
-                if (vertexCount == -1) { vertexCount = this.positionBufferPtr.Length; }
-                if (lastVertexId == 0 && vertexCount == 2)
+                GeometryType geometryType = e.PickingGeometryType;
+                DrawMode mode = this.GetIndexBufferPtr().Mode;
+                if (geometryType == GeometryType.Line)// I want a line
                 {
-                    // This is when mode is GL_LINE_LOOP and picked last line(the loop back one)
-                    PickingLastLineInLineLoop(pickedGeometry);
+                    ZeroIndexLineSearcher searcher = GetLineSearcher(mode);
+                    if (searcher != null)// line is from triangle, quad or polygon
+                    {
+                        pickedGeometry = searcher.Search(x, y, canvasWidth, canvasHeight, lastVertexId, this);
+                        return pickedGeometry;
+                    }
+                }
+
+                if (geometryType == GeometryType.Point)// I want a point
+                {
+                    pickedGeometry = new PickedGeometry();
+                    pickedGeometry.GeometryType = GeometryType.Point;
+                    pickedGeometry.StageVertexId = stageVertexId;
+                    pickedGeometry.From = this;
+                    int vertexCount = 1;
+                    ContinuousBufferRange(lastVertexId, vertexCount, pickedGeometry);
+                    return pickedGeometry;
                 }
                 else
                 {
-                    // Other conditions
-                    ContinuousBufferRange(lastVertexId, vertexCount, pickedGeometry);
+                    GeometryType typeOfMode = mode.ToGeometryType();
+                    if (typeOfMode == geometryType)// I want is what it is
+                    {
+                        pickedGeometry = new PickedGeometry();
+                        pickedGeometry.GeometryType = typeOfMode;
+                        pickedGeometry.StageVertexId = stageVertexId;
+                        pickedGeometry.From = this;
+                        // Fill primitive's position information.
+                        int vertexCount = typeOfMode.GetVertexCount();
+                        if (vertexCount == -1) { vertexCount = this.positionBufferPtr.Length; }
+                        if (lastVertexId == 0 && vertexCount == 2)
+                        {
+                            // This is when mode is GL_LINE_LOOP and picked last line(the loop back one)
+                            PickingLastLineInLineLoop(pickedGeometry);
+                        }
+                        else
+                        {
+                            // Other conditions
+                            ContinuousBufferRange(lastVertexId, vertexCount, pickedGeometry);
+                        }
+                    }
                 }
             }
 

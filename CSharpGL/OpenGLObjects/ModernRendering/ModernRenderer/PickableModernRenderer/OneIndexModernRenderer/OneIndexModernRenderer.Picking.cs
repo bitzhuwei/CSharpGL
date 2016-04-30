@@ -13,7 +13,7 @@ namespace CSharpGL
     {
 
         public override PickedGeometry Pick(
-            RenderEventArgs e, GeometryType geometryType,
+            RenderEventArgs e, 
             uint stageVertexId,
             int x, int y, int canvasWidth, int canvasHeight)
         {
