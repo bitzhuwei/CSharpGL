@@ -353,20 +353,13 @@ namespace CSharpGL
         private List<RecognizedPrimitiveIndex> GetLastIndexIdList(RenderEventArgs e, uint lastVertexId)
         {
             PrimitiveRecognizer recognizer = null;
-            switch (e.RenderMode)
-            {
-                case RenderModes.Render:
-                    recognizer = PrimitiveRecognizerFactory.Create(this.GetIndexBufferPtr().Mode);
-                    break;
-                case RenderModes.ColorCodedPicking:
-                    recognizer = PrimitiveRecognizerFactory.Create(this.GetIndexBufferPtr().Mode);
-                    break;
-                case RenderModes.ColorCodedPickingPoints:
-                    recognizer = PrimitiveRecognizerFactory.Create(DrawMode.Points);
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
+            if (e.RenderMode == RenderModes.ColorCodedPicking
+                || e.RenderMode == RenderModes.Render)
+            { recognizer = PrimitiveRecognizerFactory.Create(this.GetIndexBufferPtr().Mode); }
+            else if (e.RenderMode == RenderModes.ColorCodedPickingPoints)
+            { recognizer = PrimitiveRecognizerFactory.Create(DrawMode.Points); }
+            else { throw new NotImplementedException(); }
+
             PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();
 
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, this.oneIndexBufferPtr.BufferId);
