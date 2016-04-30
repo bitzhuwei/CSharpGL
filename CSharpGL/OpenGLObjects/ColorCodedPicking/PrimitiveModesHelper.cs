@@ -9,44 +9,58 @@ namespace CSharpGL
     static class PrimitiveModesHelper
     {
         /// <summary>
-        /// Convert <see cref="BeginMode"/> to <see cref="GeometryTypes"/>.
+        /// Convert <see cref="BeginMode"/> to <see cref="GeometryType"/>.
         /// </summary>
         /// <param name="mode"></param>
         /// <returns></returns>
-        public static GeometryTypes ToGeometryType(this PrimitiveMode mode)
+        public static GeometryType ToGeometryType(this DrawMode mode)
         {
-            GeometryTypes result = GeometryTypes.Point;
+            GeometryType result = GeometryType.Point;
             switch (mode)
             {
-                case PrimitiveMode.Points:
-                    result = GeometryTypes.Point;
+                case DrawMode.Points:
+                    result = GeometryType.Point;
                     break;
-                case PrimitiveMode.Lines:
-                    result = GeometryTypes.Line;
+                case DrawMode.LineStrip:
+                    result = GeometryType.Line;
                     break;
-                case PrimitiveMode.LineLoop:
-                    result = GeometryTypes.Line;
+                case DrawMode.LineLoop:
+                    result = GeometryType.Line;
                     break;
-                case PrimitiveMode.LineStrip:
-                    result = GeometryTypes.Line;
+                case DrawMode.Lines:
+                    result = GeometryType.Line;
                     break;
-                case PrimitiveMode.Triangles:
-                    result = GeometryTypes.Triangle;
+                case DrawMode.LineStripAdjacency:
+                    result = GeometryType.Line;
                     break;
-                case PrimitiveMode.TriangleStrip:
-                    result = GeometryTypes.Triangle;
+                case DrawMode.LinesAdjacency:
+                    result = GeometryType.Line;
                     break;
-                case PrimitiveMode.TriangleFan:
-                    result = GeometryTypes.Triangle;
+                case DrawMode.TriangleStrip:
+                    result = GeometryType.Triangle;
                     break;
-                case PrimitiveMode.Quads:
-                    result = GeometryTypes.Quad;
+                case DrawMode.TriangleFan:
+                    result = GeometryType.Triangle;
                     break;
-                case PrimitiveMode.QuadStrip:
-                    result = GeometryTypes.Quad;
+                case DrawMode.Triangles:
+                    result = GeometryType.Triangle;
                     break;
-                case PrimitiveMode.Polygon:
-                    result = GeometryTypes.Polygon;
+                case DrawMode.TriangleStripAdjacency:
+                    result = GeometryType.Triangle;
+                    break;
+                case DrawMode.TrianglesAdjacency:
+                    result = GeometryType.Triangle;
+                    break;
+                case DrawMode.Patches:// this is about tessellation shader. I've no idea about it now.
+                    throw new NotImplementedException();
+                case DrawMode.QuadStrip:
+                    result = GeometryType.Quad;
+                    break;
+                case DrawMode.Quads:
+                    result = GeometryType.Quad;
+                    break;
+                case DrawMode.Polygon:
+                    result = GeometryType.Polygon;
                     break;
                 default:
                     throw new NotImplementedException();

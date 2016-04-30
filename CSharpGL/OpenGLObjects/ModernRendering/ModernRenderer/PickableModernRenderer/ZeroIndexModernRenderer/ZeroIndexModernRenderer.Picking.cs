@@ -12,7 +12,7 @@ namespace CSharpGL
     {
 
         public override PickedGeometry Pick(
-            RenderEventArgs e, PickingPrimitiveType pickingPrimitiveType,
+            RenderEventArgs e, GeometryType geometryType,
             uint stageVertexId,
             int x, int y, int canvasWidth, int canvasHeight)
         {
@@ -20,8 +20,9 @@ namespace CSharpGL
             PickedGeometry pickedGeometry = null;
             if (this.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
             {
+
                 pickedGeometry = new PickedGeometry();
-                pickedGeometry.GeometryType = this.GetIndexBufferPtr().Mode.ToPrimitiveMode().ToGeometryType();
+                pickedGeometry.GeometryType = this.GetIndexBufferPtr().Mode.ToGeometryType();
                 pickedGeometry.StageVertexId = stageVertexId;
                 pickedGeometry.From = this;
                 // Fill primitive's position information.

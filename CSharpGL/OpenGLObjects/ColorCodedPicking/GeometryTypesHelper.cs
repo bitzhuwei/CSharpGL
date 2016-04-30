@@ -13,25 +13,25 @@ namespace CSharpGL
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static int GetVertexCount(this GeometryTypes type)
+        public static int GetVertexCount(this GeometryType type)
         {
             int result = -1;
 
             switch (type)
             {
-                case GeometryTypes.Point:
+                case GeometryType.Point:
                     result = 1;
                     break;
-                case GeometryTypes.Line:
+                case GeometryType.Line:
                     result = 2;
                     break;
-                case GeometryTypes.Triangle:
+                case GeometryType.Triangle:
                     result = 3;
                     break;
-                case GeometryTypes.Quad:
+                case GeometryType.Quad:
                     result = 4;
                     break;
-                case GeometryTypes.Polygon:
+                case GeometryType.Polygon:
                     result = -1;
                     break;
                 default:

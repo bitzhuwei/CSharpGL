@@ -43,7 +43,7 @@ namespace CSharpGL.Demos
                 if (pickedGeometry != null)
                 {
                     this.rendererDict[this.selectedModel].Highlighter.SetHighlightIndexes(
-                        // todo: 此处需配合this,PickingPrimitiveType来判定
+                        // todo: 此处需配合this,PickingPrimitive来判定
                         this.rendererDict[this.selectedModel].PickableRenderer.Mode,
                         pickedGeometry.Indexes);
                     var dragParam = new DragParam(
@@ -93,7 +93,7 @@ namespace CSharpGL.Demos
                 if (pickedGeometry != null)
                 {
                     this.rendererDict[this.selectedModel].Highlighter.SetHighlightIndexes(
-                        // todo: 此处需配合this,PickingPrimitiveType来判定
+                        // todo: 此处需配合this,PickingPrimitive来判定
                         this.rendererDict[this.selectedModel].PickableRenderer.Mode,
                         pickedGeometry.Indexes.ToArray());
                 }
@@ -155,6 +155,6 @@ namespace CSharpGL.Demos
             }
         }
 
-        public PickingPrimitiveType PickingPrimitive { get; set; }
+        public GeometryType PickingPrimitive { get; set; }
     }
 }

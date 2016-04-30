@@ -38,7 +38,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="stageVertexId">Refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</param>
         /// <returns></returns>
-        PickedGeometry Pick(RenderEventArgs e, PickingPrimitiveType pickingPrimitiveType, uint stageVertexId, 
+        PickedGeometry Pick(RenderEventArgs e, GeometryType geometryType, uint stageVertexId, 
             int x, int y, int canvasWidth, int canvasHeight);
     }
 }

@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <summary>
         /// Gets or sets primitive's geometry type.
         /// </summary>
-        public GeometryTypes GeometryType { get; set; }
+        public GeometryType GeometryType { get; set; }
 
         /// <summary>
         /// Gets or sets positions of this primitive's vertices.

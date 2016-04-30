@@ -848,9 +848,9 @@ namespace CSharpGL
 
         [Obsolete(fixedPipelineIsNotGood, error)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Begin(PrimitiveMode primitiveMode)
+        public static void Begin(DrawMode mode)
         {
-            GL.Begin((uint)primitiveMode);
+            GL.Begin((uint)mode);
         }
 
         #region Draw vertex array object

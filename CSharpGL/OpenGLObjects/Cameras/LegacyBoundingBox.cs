@@ -100,7 +100,7 @@ namespace CSharpGL
             //QuadsDraw(gl);
 
             //GL.Color(1.0f, 0, 0);
-            GL.Begin(PrimitiveMode.LineLoop);
+            GL.Begin(DrawMode.LineLoop);
             GL.Vertex(MinPosition.x, MinPosition.y, MinPosition.z);
             GL.Vertex(MaxPosition.x, MinPosition.y, MinPosition.z);
             GL.Vertex(MaxPosition.x, MinPosition.y, MaxPosition.z);
@@ -108,7 +108,7 @@ namespace CSharpGL
             GL.End();
 
             //GL.Color(0, 1.0f, 0);
-            GL.Begin(PrimitiveMode.LineLoop);
+            GL.Begin(DrawMode.LineLoop);
             GL.Vertex(MinPosition.x, MaxPosition.y, MinPosition.z);
             GL.Vertex(MaxPosition.x, MaxPosition.y, MinPosition.z);
             GL.Vertex(MaxPosition.x, MaxPosition.y, MaxPosition.z);
@@ -116,7 +116,7 @@ namespace CSharpGL
             GL.End();
 
             //GL.Color(0, 0, 1.0f);
-            GL.Begin(PrimitiveMode.Lines);
+            GL.Begin(DrawMode.Lines);
             GL.Vertex(MinPosition.x, MinPosition.y, MinPosition.z);
             GL.Vertex(MinPosition.x, MaxPosition.y, MinPosition.z);
             GL.Vertex(MaxPosition.x, MinPosition.y, MinPosition.z);
@@ -136,7 +136,7 @@ namespace CSharpGL
         /// <param name="renderMode"></param>
         private void QuadsDraw(RenderModes renderMode)
         {
-            GL.Begin(PrimitiveMode.Quads);
+            GL.Begin(DrawMode.Quads);
             GL.Vertex(maxPosition.x, maxPosition.y, minPosition.z);// Top Right Of The Quad (Top)
             GL.Vertex(minPosition.x, maxPosition.y, minPosition.z);// Top Left Of The Quad (Top)
             GL.Vertex(minPosition.x, maxPosition.y, maxPosition.z);// Bottom Left Of The Quad (Top)

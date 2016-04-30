@@ -93,7 +93,6 @@
     <Compile Include="OpenGLObjects\ModernRendering\IBufferables\TeapotModel.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\IBufferables\TetrahedronModel.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexModernRenderer.GetLastIndexId.cs" />
-    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\PickingPrimitiveType.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayout.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayoutArgs.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayoutHelper.cs" />
@@ -157,14 +156,13 @@
     <Compile Include="UITypeEditors\FormGLSwtichType.Designer.cs">
       <DependentUpon>FormGLSwtichType.cs</DependentUpon>
     </Compile>
-    <Compile Include="OpenGLObjects\ColorCodedPicking\GeometryTypes.cs" />
+    <Compile Include="OpenGLObjects\ColorCodedPicking\GeometryType.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\GeometryTypesHelper.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\IColorCodedPicking.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\IColorCodedPickingHelper.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\IPickedGeometry.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PickedGeometry.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PickingShaderHelper.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\DrawModeHelper.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimitiveModesHelper.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\SharedStageInfo.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PointSpriteSwitch.cs" />
@@ -253,7 +251,6 @@
     <Compile Include="OpenGLAPI\Enumerations\MemoryBarrierFlags.cs" />
     <Compile Include="OpenGLAPI\Enumerations\PatchParameterName.cs" />
     <Compile Include="OpenGLAPI\Enumerations\PolygonMode.cs" />
-    <Compile Include="OpenGLAPI\Enumerations\PrimitiveMode.cs" />
     <Compile Include="OpenGLAPI\Enumerations\ShadeModel.cs" />
     <Compile Include="OpenGLAPI\Enumerations\ShaderType.cs" />
     <Compile Include="OpenGLAPI\Enumerations\TexImage2D.cs" />

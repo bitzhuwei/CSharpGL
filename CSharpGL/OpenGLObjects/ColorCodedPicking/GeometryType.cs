@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// Enumeration for geometry types.
     /// </summary>
-    public enum GeometryTypes
+    public enum GeometryType
     { 
         /// <summary>
         /// a point.

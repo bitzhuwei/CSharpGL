@@ -50,7 +50,7 @@ namespace CSharpGL
         }
 
         public abstract PickedGeometry Pick(
-            RenderEventArgs e, PickingPrimitiveType pickingPrimitiveType, 
+            RenderEventArgs e, GeometryType geometryType, 
             uint stageVertexId,
             int x, int y, int canvasWidth, int canvasHeight);
 
