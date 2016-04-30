@@ -50,6 +50,7 @@
     <Content Include="OpenGLObjects\ModernRendering\IBufferables\AxisModel.jpg" />
     <Content Include="OpenGLObjects\ModernRendering\IBufferables\CubeModel.jpg" />
     <Content Include="OpenGLObjects\ModernRendering\IBufferables\SphereModel.jpg" />
+    <Content Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\PickableModernRenderer.jpg" />
     <Content Include="readme.txt" />
     <Compile Include="Controls\GLCanvas.cs">
       <SubType>UserControl</SubType>
@@ -92,6 +93,7 @@
     <Compile Include="OpenGLObjects\ModernRendering\IBufferables\TeapotModel.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\IBufferables\TetrahedronModel.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexModernRenderer.GetLastIndexId.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\PickingPrimitiveType.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayout.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayoutArgs.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayoutHelper.cs" />
