@@ -124,7 +124,7 @@ namespace CSharpGL.Demos
             }
         }
 
-        private void RenderersDraw()
+        private void RenderersDraw(bool renderScene = true, bool renderUI = true)
         {
             if (this.RenderMode == RenderModes.ColorCodedPicking)
             { GL.ClearColor(1, 1, 1, 1); }
@@ -134,17 +134,12 @@ namespace CSharpGL.Demos
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderMode, this.camera);
-            HighlightedPickableRenderer renderer = this.rendererDict[this.SelectedModel];
-            if (renderer != null)
-            {
-                //if (cameraUpdated)
-                {
-                    UpdateMVP(renderer);
-                    //cameraUpdated = false;
-                }
+            if (renderScene) { SceneRenderersDraw(arg); }
+            if (renderUI) { UIRenderersDraw(arg); }
+        }
 
-                renderer.Render(arg);
-            }
+        private void UIRenderersDraw(RenderEventArgs arg)
+        {
             UIModernRenderer uiRenderer = this.uiRenderer;
             if (uiRenderer != null)
             {
@@ -173,6 +168,21 @@ namespace CSharpGL.Demos
                         Console.WriteLine("adf");
                     }
                 }
+            }
+        }
+
+        private void SceneRenderersDraw(RenderEventArgs arg)
+        {
+            HighlightedPickableRenderer renderer = this.rendererDict[this.SelectedModel];
+            if (renderer != null)
+            {
+                //if (cameraUpdated)
+                {
+                    UpdateMVP(renderer);
+                    //cameraUpdated = false;
+                }
+
+                renderer.Render(arg);
             }
         }
 
