@@ -17,8 +17,13 @@ namespace CSharpGL
             {
                 var dict = new Dictionary<DrawMode, ZeroIndexLineSearcher>();
                 dict.Add(DrawMode.Triangles, new ZeroIndexLineInTriangleSearcher());
-                // todo:
+                dict.Add(DrawMode.TriangleStrip, new ZeroIndexLineInTriangleStripSearcher());
+                dict.Add(DrawMode.TriangleFan, new ZeroIndexLineInTriangleFanSearcher());
+                dict.Add(DrawMode.Quads, new ZeroIndexLineInQuadSearcher());
+                dict.Add(DrawMode.Quads, new ZeroIndexLineInQuadStripSearcher());
+                dict.Add(DrawMode.Polygon, new ZeroIndexLineInPolygonSearcher());
 
+                lineSearchDict = dict;
             }
 
             return lineSearchDict[mode];

@@ -93,6 +93,11 @@
     <Compile Include="OpenGLObjects\ModernRendering\IBufferables\TeapotModel.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\IBufferables\TetrahedronModel.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexModernRenderer.GetLastIndexId.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInPolygonSearcher.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInQuadStripSearcher.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInQuadSearcher.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInTriangleFanSearcher.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInTriangleStripSearcher.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineSearcher.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInTriangleSearcher.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayout.cs" />
