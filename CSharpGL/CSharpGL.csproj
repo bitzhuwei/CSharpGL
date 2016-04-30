@@ -64,9 +64,7 @@
     <Compile Include="OpenGLAPI\Enumerations\PolugonOffset.cs" />
     <Compile Include="OpenGLAPI\FontBitmapEntry.cs" />
     <Compile Include="OpenGLAPI\FontBitmaps.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\HighlightShaderHelper.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\LineLoopRecognizer.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizerFactory.cs" />
@@ -93,6 +91,7 @@
     <Compile Include="OpenGLObjects\ModernRendering\IBufferables\TeapotLoader.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\IBufferables\TeapotModel.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\IBufferables\TetrahedronModel.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexModernRenderer.GetLastIndexId.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayout.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayoutArgs.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayoutHelper.cs" />
