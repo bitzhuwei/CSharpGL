@@ -80,15 +80,15 @@ namespace CSharpGL
             int index = 0;
             for (int i = 0; i < 3 + 2 * (partCount + 1); i++)
             {
-                colors[index++] = new vec3((float)r.NextDouble(), 0, 0);
+                colors[index++] = new vec3(0.5f + (float)r.NextDouble() / 2, 0, 0);
             }
             for (int i = 0; i < 3 + 2 * (partCount + 1); i++)
             {
-                colors[index++] = new vec3(0, (float)r.NextDouble(), 0);
+                colors[index++] = new vec3(0, 0.5f + (float)r.NextDouble() / 2, 0);
             }
             for (int i = 0; i < 3 + 2 * (partCount + 1); i++)
             {
-                colors[index++] = new vec3(0, 0, (float)r.NextDouble());
+                colors[index++] = new vec3(0, 0, 0.5f + (float)r.NextDouble() / 2);
             }
             return colors;
         }
