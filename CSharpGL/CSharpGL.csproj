@@ -171,7 +171,7 @@
     <Compile Include="OpenGLObjects\GLSwitches\GLSwitch.cs" />
     <Compile Include="UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="UITypeEditors\GLSwithListEditor.cs" />
-    <Compile Include="OpenGLObjects\ModernRendering\IBufferable.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\IBufferables\IBufferable.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\ModernRenderer.Property.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\PickableModernRenderer.PickingRender.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\ModernRenderer.DoRender.cs" />
