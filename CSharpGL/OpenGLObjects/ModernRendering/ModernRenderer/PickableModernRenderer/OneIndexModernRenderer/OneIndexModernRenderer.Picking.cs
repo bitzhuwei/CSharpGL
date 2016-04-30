@@ -40,20 +40,7 @@ namespace CSharpGL
             RecognizedPrimitiveIndex lastIndexId, uint stageVertexId)
         {
             var pickedGeometry = new PickedGeometry();
-            switch (e.RenderMode)
-            {
-                case RenderModes.Render:
-                    pickedGeometry.GeometryType = this.GetIndexBufferPtr().Mode.ToPrimitiveMode().ToGeometryType();
-                    break;
-                case RenderModes.ColorCodedPicking:
-                    pickedGeometry.GeometryType = this.GetIndexBufferPtr().Mode.ToPrimitiveMode().ToGeometryType();
-                    break;
-                case RenderModes.ColorCodedPickingPoints:
-                    pickedGeometry.GeometryType = GeometryTypes.Point;
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
+            pickedGeometry.GeometryType = this.GetIndexBufferPtr().Mode.ToPrimitiveMode().ToGeometryType();
             pickedGeometry.StageVertexId = stageVertexId;
             pickedGeometry.From = this;
             pickedGeometry.Indexes = lastIndexId.IndexIdList.ToArray();
@@ -169,13 +156,8 @@ namespace CSharpGL
         /// <returns></returns>
         private List<RecognizedPrimitiveIndex> GetLastIndexIdList(RenderEventArgs e, uint lastVertexId)
         {
-            PrimitiveRecognizer recognizer = null;
-            if (e.RenderMode == RenderModes.ColorCodedPicking
-                || e.RenderMode == RenderModes.Render)
-            { recognizer = PrimitiveRecognizerFactory.Create(this.GetIndexBufferPtr().Mode); }
-            else if (e.RenderMode == RenderModes.ColorCodedPickingPoints)
-            { recognizer = PrimitiveRecognizerFactory.Create(DrawMode.Points); }
-            else { throw new NotImplementedException(); }
+            PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
+                this.GetIndexBufferPtr().Mode);
 
             PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();
 

@@ -42,20 +42,7 @@ namespace CSharpGL
         public override void Render(RenderEventArgs e, ShaderProgram shaderProgram)
         {
             GL.GetDelegateFor<GL.glBindBuffer>()(GL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
-            switch (e.RenderMode)
-            {
-                case RenderModes.Render:
-                    GL.DrawElements(this.Mode, this.ElementCount, (uint)this.Type, IntPtr.Zero);
-                    break;
-                case RenderModes.ColorCodedPicking:
-                    GL.DrawElements(this.Mode, this.ElementCount, (uint)this.Type, IntPtr.Zero);
-                    break;
-                case RenderModes.ColorCodedPickingPoints:
-                    GL.DrawElements(DrawMode.Points, this.ElementCount, (uint)this.Type, IntPtr.Zero);
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
+            GL.DrawElements(this.Mode, this.ElementCount, (uint)this.Type, IntPtr.Zero);
         }
     }
 }

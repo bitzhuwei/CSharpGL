@@ -38,7 +38,7 @@ namespace CSharpGL.Demos
             {
                 // move vertex
                 PickedGeometry pickedGeometry = RunPicking(new RenderEventArgs(
-                    this.PickingMode == SelectionMode.DrawMode ? RenderModes.ColorCodedPicking : RenderModes.ColorCodedPickingPoints,
+                    RenderModes.ColorCodedPicking,
                     this.camera), e.X, e.Y);
                 if (pickedGeometry != null)
                 {
@@ -88,7 +88,7 @@ namespace CSharpGL.Demos
             else
             {
                 PickedGeometry pickedGeometry = RunPicking(new RenderEventArgs(
-                    this.PickingMode == SelectionMode.DrawMode ? RenderModes.ColorCodedPicking : RenderModes.ColorCodedPickingPoints,
+                    RenderModes.ColorCodedPicking,
                     this.camera), e.X, e.Y);
                 if (pickedGeometry != null)
                 {

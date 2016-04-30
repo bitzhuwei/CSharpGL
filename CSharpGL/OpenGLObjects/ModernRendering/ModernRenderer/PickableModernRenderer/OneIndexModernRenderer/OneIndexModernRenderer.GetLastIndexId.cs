@@ -26,38 +26,27 @@ namespace CSharpGL
         {
             if (lastIndexIdList == null || lastIndexIdList.Count == 0) { return null; }
 
-            bool renderingPoints = false;
-            if (e.RenderMode == RenderModes.Render
-                || e.RenderMode == RenderModes.ColorCodedPicking)
-            { renderingPoints = this.GetIndexBufferPtr().Mode == CSharpGL.DrawMode.Points; }
-            else if (e.RenderMode == RenderModes.ColorCodedPickingPoints)
-            { renderingPoints = true; }
-            else { throw new NotFiniteNumberException(); }
-
             int current = 0;
-            if (!renderingPoints)
-            {
 #if DEBUG
-                NoPrimitiveRestartIndex(lastIndexIdList);
+            NoPrimitiveRestartIndex(lastIndexIdList);
 #endif
-                for (int i = 1; i < lastIndexIdList.Count; i++)
-                {
-                    OneIndexBufferPtr twoPrimitivesIndexBufferPtr;
-                    uint lastIndex0, lastIndex1;
-                    AssembleIndexBuffer(
-                        lastIndexIdList[current], lastIndexIdList[i], this.GetIndexBufferPtr().Mode,
-                        out twoPrimitivesIndexBufferPtr, out lastIndex0, out lastIndex1);
-                    uint pickedIndex = Pick(e, twoPrimitivesIndexBufferPtr,
-                        x, y, canvasWidth, canvasHeight);
-                    if (pickedIndex == lastIndex1)
-                    { current = i; }
-                    else if (pickedIndex == lastIndex0)
-                    { /* nothing to do */}
-                    else if (pickedIndex == uint.MaxValue)// 两个候选图元都没有被拾取到
-                    { /* nothing to do */}
-                    else
-                    { throw new Exception("This should not happen!"); }
-                }
+            for (int i = 1; i < lastIndexIdList.Count; i++)
+            {
+                OneIndexBufferPtr twoPrimitivesIndexBufferPtr;
+                uint lastIndex0, lastIndex1;
+                AssembleIndexBuffer(
+                    lastIndexIdList[current], lastIndexIdList[i], this.GetIndexBufferPtr().Mode,
+                    out twoPrimitivesIndexBufferPtr, out lastIndex0, out lastIndex1);
+                uint pickedIndex = Pick(e, twoPrimitivesIndexBufferPtr,
+                    x, y, canvasWidth, canvasHeight);
+                if (pickedIndex == lastIndex1)
+                { current = i; }
+                else if (pickedIndex == lastIndex0)
+                { /* nothing to do */}
+                else if (pickedIndex == uint.MaxValue)// 两个候选图元都没有被拾取到
+                { /* nothing to do */}
+                else
+                { throw new Exception("This should not happen!"); }
             }
 
             return lastIndexIdList[current];

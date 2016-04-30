@@ -126,8 +126,7 @@ namespace CSharpGL.Demos
 
         private void RenderersDraw()
         {
-            if (this.RenderMode == RenderModes.ColorCodedPicking
-                || this.renderMode == RenderModes.ColorCodedPickingPoints)
+            if (this.RenderMode == RenderModes.ColorCodedPicking)
             { GL.ClearColor(1, 1, 1, 1); }
             else if (this.RenderMode == RenderModes.Render)
             { GL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f); }
@@ -226,8 +225,7 @@ namespace CSharpGL.Demos
 
             mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
-            if (this.RenderMode == RenderModes.ColorCodedPicking
-                || this.RenderMode == RenderModes.ColorCodedPickingPoints)
+            if (this.RenderMode == RenderModes.ColorCodedPicking)
             {
                 renderer.PickableRenderer.MVP = mvp;
             }

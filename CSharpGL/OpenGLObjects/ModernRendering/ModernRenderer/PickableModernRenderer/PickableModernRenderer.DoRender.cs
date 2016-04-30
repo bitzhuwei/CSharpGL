@@ -12,8 +12,7 @@ namespace CSharpGL
 
         protected override void DoRender(RenderEventArgs e)
         {
-            if (e.RenderMode == RenderModes.ColorCodedPicking
-                || e.RenderMode == RenderModes.ColorCodedPickingPoints)
+            if (e.RenderMode == RenderModes.ColorCodedPicking)
             {
                 PickingRender(e);
             }
