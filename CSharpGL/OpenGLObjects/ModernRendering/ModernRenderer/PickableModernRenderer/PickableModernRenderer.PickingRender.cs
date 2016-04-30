@@ -40,7 +40,6 @@ namespace CSharpGL
             }
 
             this.polygonModeSwitch4Picking.Off();
-
             foreach (var item in switchList) { item.Off(); }
 
             pickingMVP.ResetUniform(program);
