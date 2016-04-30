@@ -30,7 +30,7 @@ namespace CSharpGL
         }
 
         public override PickedGeometry Pick(
-            RenderEventArgs e, 
+            RenderEventArgs e,
             uint stageVertexId,
             int x, int y, int canvasWidth, int canvasHeight)
         {
@@ -45,7 +45,24 @@ namespace CSharpGL
                     ZeroIndexLineSearcher searcher = GetLineSearcher(mode);
                     if (searcher != null)// line is from triangle, quad or polygon
                     {
-                        pickedGeometry = searcher.Search(x, y, canvasWidth, canvasHeight, lastVertexId, this);
+                        pickedGeometry = new PickedGeometry();
+                        pickedGeometry.From = this;
+                        pickedGeometry.GeometryType = GeometryType.Line;
+                        pickedGeometry.StageVertexId = stageVertexId;
+                        pickedGeometry.Indexes = searcher.Search(e, x, y, canvasWidth, canvasHeight, lastVertexId, this);
+                        GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+                        IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+                        unsafe
+                        {
+                            var array = (vec3*)pointer.ToPointer();
+                            var positions = new vec3[2];
+                            positions[0] = array[pickedGeometry.Indexes[0]];
+                            positions[1] = array[pickedGeometry.Indexes[1]];
+                            pickedGeometry.Positions = positions;
+                        }
+                        GL.UnmapBuffer(BufferTarget.ArrayBuffer);
+                        GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+
                         return pickedGeometry;
                     }
                 }

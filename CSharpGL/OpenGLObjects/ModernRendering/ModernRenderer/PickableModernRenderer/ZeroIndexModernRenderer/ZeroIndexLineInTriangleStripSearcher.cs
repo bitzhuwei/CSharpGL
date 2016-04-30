@@ -7,7 +7,7 @@ namespace CSharpGL
 {
     class ZeroIndexLineInTriangleStripSearcher : ZeroIndexLineSearcher
     {
-        internal override PickedGeometry Search(int x, int y, int canvasWidth, int canvasHeight, uint lastVertexId, CSharpGL.ZeroIndexModernRenderer zeroIndexModernRenderer)
+        internal override uint[] Search(RenderEventArgs e, int x, int y, int canvasWidth, int canvasHeight, uint lastVertexId, CSharpGL.ZeroIndexModernRenderer zeroIndexModernRenderer)
         {
             throw new NotImplementedException();
         }

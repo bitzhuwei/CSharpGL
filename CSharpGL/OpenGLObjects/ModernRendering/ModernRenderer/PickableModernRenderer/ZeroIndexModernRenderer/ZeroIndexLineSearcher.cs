@@ -7,6 +7,6 @@ namespace CSharpGL
 {
     abstract class ZeroIndexLineSearcher
     {
-        internal abstract PickedGeometry Search(int x, int y, int canvasWidth, int canvasHeight, uint lastVertexId, CSharpGL.ZeroIndexModernRenderer zeroIndexModernRenderer);
+        internal abstract uint[] Search(RenderEventArgs e, int x, int y, int canvasWidth, int canvasHeight, uint lastVertexId, CSharpGL.ZeroIndexModernRenderer zeroIndexModernRenderer);
     }
 }

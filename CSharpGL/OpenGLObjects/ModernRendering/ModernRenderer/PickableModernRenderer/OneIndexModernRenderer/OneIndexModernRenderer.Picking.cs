@@ -88,67 +88,6 @@ namespace CSharpGL
             return pickedIndex;
         }
 
-        private static uint ReadPixel(int x, int y, int canvasHeight)
-        {
-            // get coded color.
-            //byte[] codedColor = new byte[4];
-            UnmanagedArray<byte> codedColor = new UnmanagedArray<byte>(4);
-            GL.ReadPixels(x, canvasHeight - y - 1, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, codedColor.Header);
-            if (!
-                // This is when (x, y) is on background and no primitive is picked.
-                (codedColor[0] == byte.MaxValue && codedColor[1] == byte.MaxValue
-                && codedColor[2] == byte.MaxValue && codedColor[3] == byte.MaxValue))
-            {
-                // see http://www.cnblogs.com/bitzhuwei/p/modern-opengl-picking-primitive-in-VBO-2.html
-                uint shiftedR = (uint)codedColor[0];
-                uint shiftedG = (uint)codedColor[1] << 8;
-                uint shiftedB = (uint)codedColor[2] << 16;
-                uint shiftedA = (uint)codedColor[3] << 24;
-                uint stageVertexId = shiftedR + shiftedG + shiftedB + shiftedA;
-
-                return stageVertexId;
-            }
-            else
-            { return uint.MaxValue; }
-        }
-
-        private void Render4Picking(RenderEventArgs e, OneIndexBufferPtr twoPrimitivesIndexBufferPtr)
-        {
-            // 暂存clear color
-            var originalClearColor = new float[4];
-            GL.GetFloat(GetTarget.ColorClearValue, originalClearColor);
-
-            GL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);// 白色意味着没有拾取到任何对象
-            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
-
-            // 恢复clear color
-            GL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
-
-            ShaderProgram program = this.PickingShaderProgram;
-            // 绑定shader
-            program.Bind();
-            program.SetUniform("pickingBaseID", 0u);
-            pickingMVP.SetUniform(program);
-            GL.GetDelegateFor<GL.glPrimitiveRestartIndex>()(uint.MaxValue);
-            GL.Enable(GL.GL_PRIMITIVE_RESTART);
-            foreach (var item in switchList) { item.On(); }
-            {
-                //var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, camera);
-                this.positionBufferPtr.Render(e, program);
-                twoPrimitivesIndexBufferPtr.Render(e, program);
-                GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
-            }
-            GL.Disable(GL.GL_PRIMITIVE_RESTART);
-            foreach (var item in switchList) { item.Off(); }
-
-            pickingMVP.ResetUniform(program);
-
-            // 解绑shader
-            program.Unbind();
-
-            GL.Flush();
-        }
-
         /// <summary>
         /// 遍历以<see cref="lastVerteID"/>为最后一个顶点的图元，
         /// 瞄准每个图元的索引（例如1个三角形有3个索引）中的最后一个索引，
