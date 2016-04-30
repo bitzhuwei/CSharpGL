@@ -243,7 +243,7 @@ namespace CSharpGL
             out uint lastIndex0, out uint lastIndex1)
         {
             List<uint> indexArray = ArrangeIndexes(
-                recognizedPrimitiveIndex0, recognizedPrimitiveIndex1,
+                recognizedPrimitiveIndex0, recognizedPrimitiveIndex1, drawMode,
                 out lastIndex0, out lastIndex1);
             if (indexArray.Count !=
                 recognizedPrimitiveIndex0.IndexIdList.Count
@@ -279,6 +279,7 @@ namespace CSharpGL
         private List<uint> ArrangeIndexes(
             RecognizedPrimitiveIndex recognizedPrimitiveIndex0,
             RecognizedPrimitiveIndex recognizedPrimitiveIndex1,
+            DrawMode drawMode,
             out uint lastIndex0, out uint lastIndex1)
         {
             List<uint> sameIndexList = new List<uint>();
