@@ -49,7 +49,9 @@ namespace CSharpGL
             return vertexCount;
         }
 
-        public abstract PickedGeometry Pick(RenderEventArgs e, uint stageVertexId,
+        public abstract PickedGeometry Pick(
+            RenderEventArgs e, PickingPrimitiveType pickingPrimitiveType, 
+            uint stageVertexId,
             int x, int y, int canvasWidth, int canvasHeight);
 
     }

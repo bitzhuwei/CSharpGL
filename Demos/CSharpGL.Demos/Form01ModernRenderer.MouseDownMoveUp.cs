@@ -43,8 +43,8 @@ namespace CSharpGL.Demos
                 if (pickedGeometry != null)
                 {
                     this.rendererDict[this.selectedModel].Highlighter.SetHighlightIndexes(
-                        this.PickingMode == SelectionMode.DrawMode ?
-                            this.rendererDict[this.selectedModel].PickableRenderer.Mode : DrawMode.Points,
+                        // todo: 此处需配合this,PickingPrimitiveType来判定
+                        this.rendererDict[this.selectedModel].PickableRenderer.Mode,
                         pickedGeometry.Indexes);
                     var dragParam = new DragParam(
                         camera.GetProjectionMat4(),
@@ -93,8 +93,8 @@ namespace CSharpGL.Demos
                 if (pickedGeometry != null)
                 {
                     this.rendererDict[this.selectedModel].Highlighter.SetHighlightIndexes(
-                        this.PickingMode == SelectionMode.DrawMode ?
-                            this.rendererDict[this.selectedModel].PickableRenderer.Mode : DrawMode.Points,
+                        // todo: 此处需配合this,PickingPrimitiveType来判定
+                        this.rendererDict[this.selectedModel].PickableRenderer.Mode,
                         pickedGeometry.Indexes.ToArray());
                 }
                 else
@@ -138,7 +138,7 @@ namespace CSharpGL.Demos
                     IColorCodedPicking pickable = this.rendererDict[this.SelectedModel].PickableRenderer;
                     pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
                     PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
-                        e, x, y, this.glCanvas1.Width, this.glCanvas1.Height,
+                        e, this.PickingPrimitive, x, y, this.glCanvas1.Width, this.glCanvas1.Height,
                         pickable);
                     if (pickedGeometry != null)
                     {
@@ -155,6 +155,6 @@ namespace CSharpGL.Demos
             }
         }
 
-        public SelectionMode PickingMode { get; set; }
+        public PickingPrimitiveType PickingPrimitive { get; set; }
     }
 }

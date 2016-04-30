@@ -12,7 +12,9 @@ namespace CSharpGL
     public partial class OneIndexModernRenderer
     {
 
-        public override PickedGeometry Pick(RenderEventArgs e, uint stageVertexId,
+        public override PickedGeometry Pick(
+            RenderEventArgs e, PickingPrimitiveType pickingPrimitiveType,
+            uint stageVertexId,
             int x, int y, int canvasWidth, int canvasHeight)
         {
             uint lastVertexId;
