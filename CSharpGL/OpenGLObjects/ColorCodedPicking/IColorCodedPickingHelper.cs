@@ -19,7 +19,8 @@ namespace CSharpGL
         /// <param name="stageVertexId"></param>
         /// <param name="lastVertexId"></param>
         /// <returns></returns>
-        public static bool GetLastVertexIdOfPickedGeometry(this IColorCodedPicking element, uint stageVertexId, out uint lastVertexId)
+        public static bool GetLastVertexIdOfPickedGeometry(this IColorCodedPicking element,
+            uint stageVertexId, out uint lastVertexId)
         {
             lastVertexId = uint.MaxValue;
             bool result = false;
