@@ -7,7 +7,9 @@ namespace CSharpGL
 {
     class ZeroIndexLineInQuadStripSearcher : ZeroIndexLineSearcher
     {
-        internal override uint[] Search(RenderEventArgs e, int x, int y, int canvasWidth, int canvasHeight, uint lastVertexId, CSharpGL.ZeroIndexModernRenderer zeroIndexModernRenderer)
+        internal override uint[] Search(RenderEventArgs e,
+            int x, int y, int canvasWidth, int canvasHeight,
+            uint lastVertexId, ZeroIndexModernRenderer modernRenderer)
         {
             throw new NotImplementedException();
         }
