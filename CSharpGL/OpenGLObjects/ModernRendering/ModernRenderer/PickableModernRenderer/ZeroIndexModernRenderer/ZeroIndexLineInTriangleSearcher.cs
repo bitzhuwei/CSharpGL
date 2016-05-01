@@ -9,7 +9,7 @@ namespace CSharpGL
     {
         internal override uint[] Search(RenderEventArgs e,
             int x, int y, int canvasWidth, int canvasHeight,
-            uint lastVertexId, CSharpGL.ZeroIndexModernRenderer zeroIndexModernRenderer)
+            uint lastVertexId, ZeroIndexModernRenderer modernRenderer)
         {
             OneIndexBufferPtr indexBufferPtr = null;
             using (var buffer = new OneIndexBuffer<uint>(DrawMode.Lines, BufferUsage.StaticDraw))
@@ -21,16 +21,15 @@ namespace CSharpGL
                 indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
             }
 
-            zeroIndexModernRenderer.Render4Picking(e, indexBufferPtr);
-            uint id = zeroIndexModernRenderer.ReadPixel(x, y, canvasHeight);
+            modernRenderer.Render4Picking(e, indexBufferPtr);
+            uint id = modernRenderer.ReadPixel(x, y, canvasHeight);
 
             indexBufferPtr.Dispose();
 
-            if (id <= 2)
-            {
-                return new uint[] { lastVertexId - (id + 1) % 3, lastVertexId - id, };
-            }
-            else { throw new Exception(string.Format("this should not happen!")); }
+            if (id + 2 == lastVertexId)
+            { return new uint[] { id + 2, id, }; }
+            else
+            { return new uint[] { id - 1, id, }; }
         }
     }
 }
