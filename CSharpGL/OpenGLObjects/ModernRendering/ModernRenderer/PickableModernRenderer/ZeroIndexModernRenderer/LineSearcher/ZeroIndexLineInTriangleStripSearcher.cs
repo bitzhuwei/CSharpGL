@@ -15,9 +15,13 @@ namespace CSharpGL
             using (var buffer = new OneIndexBuffer<uint>(DrawMode.Lines, BufferUsage.StaticDraw))
             {
                 buffer.Alloc(6);
-                buffer[0] = lastVertexId - 0; buffer[1] = lastVertexId - 2;
-                buffer[2] = lastVertexId - 2; buffer[3] = lastVertexId - 1;
-                buffer[6] = lastVertexId - 1; buffer[7] = lastVertexId - 0;
+                unsafe
+                {
+                    var array = (uint*)buffer.FirstElement();
+                    array[0] = lastVertexId - 0; array[1] = lastVertexId - 2;
+                    array[2] = lastVertexId - 2; array[3] = lastVertexId - 1;
+                    array[4] = lastVertexId - 1; array[5] = lastVertexId - 0;
+                }
                 indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
             }
 
