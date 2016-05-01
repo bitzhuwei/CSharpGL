@@ -40,5 +40,32 @@ namespace CSharpGL
 
             return result;
         }
+
+        public static DrawMode ToDrawMode(this GeometryType type)
+        {
+            DrawMode mode = DrawMode.Points;
+            switch (type)
+            {
+                case GeometryType.Point:
+                    mode = DrawMode.Points;
+                    break;
+                case GeometryType.Line:
+                    mode = DrawMode.Lines;
+                    break;
+                case GeometryType.Triangle:
+                    mode = DrawMode.Triangles;
+                    break;
+                case GeometryType.Quad:
+                    mode = DrawMode.Quads;
+                    break;
+                case GeometryType.Polygon:
+                    mode = DrawMode.Polygon;
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+
+            return mode;
+        }
     }
 }

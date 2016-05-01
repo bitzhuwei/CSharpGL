@@ -91,25 +91,28 @@ namespace CSharpGL
             // 恢复clear color
             GL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
+            UpdatePolygonMode(e.PickingGeometryType);
             ShaderProgram program = this.PickingShaderProgram;
             // 绑定shader
             program.Bind();
-            program.SetUniform("pickingBaseID", 0u);
             pickingMVP.SetUniform(program);
-            primitiveRestartSwitch4Picking.On();
+            program.SetUniform("pickingBaseID", 0u);// special uniform in Picking shader.
+
             foreach (var item in switchList) { item.On(); }
+            this.primitiveRestartSwitch4Picking.On();
+            this.polygonModeSwitch4Picking.On();
             {
                 //var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, camera);
                 this.positionBufferPtr.Render(e, program);
                 indexBufferPtr.Render(e, program);
                 GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
             }
-            primitiveRestartSwitch4Picking.Off();
+            this.polygonModeSwitch4Picking.Off();
+            this.primitiveRestartSwitch4Picking.Off();
             foreach (var item in switchList) { item.Off(); }
 
-            pickingMVP.ResetUniform(program);
-
             // 解绑shader
+            pickingMVP.ResetUniform(program);
             program.Unbind();
 
             GL.Flush();

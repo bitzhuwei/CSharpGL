@@ -170,7 +170,7 @@
       <DependentUpon>FormGLSwtichType.cs</DependentUpon>
     </Compile>
     <Compile Include="OpenGLObjects\ColorCodedPicking\GeometryType.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\GeometryTypesHelper.cs" />
+    <Compile Include="OpenGLObjects\ColorCodedPicking\GeometryTypeHelper.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\IColorCodedPicking.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\IColorCodedPickingHelper.cs" />
     <Compile Include="OpenGLObjects\ColorCodedPicking\IPickedGeometry.cs" />
