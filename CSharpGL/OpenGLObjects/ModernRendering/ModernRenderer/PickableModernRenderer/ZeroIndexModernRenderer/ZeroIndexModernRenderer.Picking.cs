@@ -45,30 +45,37 @@ namespace CSharpGL
             { return null; }
 
             GeometryType geometryType = e.PickingGeometryType;
-            DrawMode mode = this.GetIndexBufferPtr().Mode;
-            if (geometryType == GeometryType.Line)// I want a line
-            {
-                ZeroIndexLineSearcher searcher = GetLineSearcher(mode);
-                if (searcher != null)// line is from triangle, quad or polygon
-                {
-                    return SearchLine(e, stageVertexId, x, y, canvasWidth, canvasHeight, lastVertexId, searcher);
-                }
-            }
 
-            if (geometryType == GeometryType.Point)// I want a point
+            if (geometryType == GeometryType.Point)
             {
                 if (this.OnPrimitiveTest(e, x, y, canvasWidth, canvasHeight))
+                { return PickPoint(stageVertexId, lastVertexId); }
+                else
+                { return null; }
+            }
+            else if (geometryType == GeometryType.Line)
+            {
+                DrawMode mode = this.GetIndexBufferPtr().Mode;
+                GeometryType typeOfMode = mode.ToGeometryType();
+                if (geometryType == typeOfMode)
+                { return PickWhateverItIs(stageVertexId, lastVertexId, mode, typeOfMode); }
+                else
                 {
-                    return PickPoint(stageVertexId, lastVertexId);
+                    ZeroIndexLineSearcher searcher = GetLineSearcher(mode);
+                    if (searcher != null)// line is from triangle, quad or polygon
+                    { return SearchLine(e, stageVertexId, x, y, canvasWidth, canvasHeight, lastVertexId, searcher); }
+                    else
+                    { throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
                 }
             }
             else
             {
+                DrawMode mode = this.GetIndexBufferPtr().Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (typeOfMode == geometryType)// I want what it is
-                {
-                    return PickWhateverItIs(stageVertexId, lastVertexId, mode, typeOfMode);
-                }
+                { return PickWhateverItIs(stageVertexId, lastVertexId, mode, typeOfMode); }
+                else
+                { throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
             }
 
             return null;
