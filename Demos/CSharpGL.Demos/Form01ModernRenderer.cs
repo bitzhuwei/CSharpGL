@@ -135,7 +135,7 @@ namespace CSharpGL.Demos
             else if (this.RenderMode == RenderModes.Render)
             { GL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f); }
 
-            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderMode, this.camera, this.PickingGeometryType);
             if (renderScene) { SceneRenderersDraw(arg); }
