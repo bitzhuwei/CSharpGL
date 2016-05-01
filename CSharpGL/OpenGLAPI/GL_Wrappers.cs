@@ -1472,5 +1472,21 @@ namespace CSharpGL
             x = viewport[0]; y = viewport[1];
             width = viewport[2]; height = viewport[3];
         }
+
+        public static void LineWidthRange(out float min, out float max)
+        {
+            float[] lineWidthRange = new float[2];
+            GL.GetFloat(GetTarget.LineWidthRange, lineWidthRange);
+            min = lineWidthRange[0];
+            max = lineWidthRange[1];
+        }
+
+        public static void PointSizeRange(out float min,out float max)
+        {
+            float[] pointSizeRange = new float[2];
+            GL.GetFloat(GetTarget.PointSizeRange, pointSizeRange);
+            min = pointSizeRange[0];
+            max = pointSizeRange[1];
+        }
     }
 }

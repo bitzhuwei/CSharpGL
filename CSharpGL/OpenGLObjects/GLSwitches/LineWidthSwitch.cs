@@ -13,11 +13,8 @@ namespace CSharpGL
 
         static LineWidthSwitch()
         {
-            float[] lineWidthRange = new float[2];
-            GL.GetFloat(GetTarget.LineWidthRange, lineWidthRange);
-            min = lineWidthRange[0];
-            max = lineWidthRange[1];
-            GL.GetFloat(GetTarget.LineWidthGranularity, lineWidthRange);//TODO: what does LineWidthGranularity mean?
+            GL.LineWidthRange(out min, out max);
+            //GL.GetFloat(GetTarget.LineWidthGranularity, lineWidthRange);//TODO: what does LineWidthGranularity mean?
         }
 
         public float MinLineWidth { get; private set; }

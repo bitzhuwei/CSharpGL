@@ -8,7 +8,6 @@ namespace CSharpGL
 {
     public partial class PickableModernRenderer : IColorCodedPicking
     {
-        PolygonModeSwitch polygonModeSwitch4Picking = new PolygonModeSwitch();
 
         private void PickingRender(RenderEventArgs e)
         {
@@ -23,8 +22,7 @@ namespace CSharpGL
             program.SetUniform("pickingBaseID", picking.PickingBaseID);
             pickingMVP.SetUniform(program);
 
-            SwitchesOn();
-            this.polygonModeSwitch4Picking.On();
+            PickingSwitchesOn();
 
             if (this.vertexArrayObject4Picking == null)
             {
@@ -39,8 +37,7 @@ namespace CSharpGL
                 this.vertexArrayObject4Picking.Render(e, program);
             }
 
-            this.polygonModeSwitch4Picking.Off();
-            SwitchesOff();
+            PickingSwitchesOff();
 
             pickingMVP.ResetUniform(program);
 
@@ -48,14 +45,20 @@ namespace CSharpGL
             program.Unbind();
         }
 
-        private void SwitchesOff()
+        private void PickingSwitchesOff()
         {
-            foreach (var item in switchList) { item.Off(); }
+            foreach (var item in this.switchList4Picking)
+            {
+                item.Off();
+            }
         }
 
-        private void SwitchesOn()
+        private void PickingSwitchesOn()
         {
-            foreach (var item in switchList) { item.On(); }
+            foreach (var item in this.switchList4Picking)
+            {
+                item.On();
+            }
         }
 
         private void UpdatePolygonMode(GeometryType geometryType)

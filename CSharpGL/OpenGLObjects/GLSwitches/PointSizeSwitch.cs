@@ -13,11 +13,8 @@ namespace CSharpGL
 
         static PointSizeSwitch()
         {
-            float[] pointSizeWidthRange = new float[2];
-            GL.GetFloat(GetTarget.PointSizeRange, pointSizeWidthRange);
-            min = pointSizeWidthRange[0];
-            max = pointSizeWidthRange[1];
-            GL.GetFloat(GetTarget.PointSizeGranularity, pointSizeWidthRange);//TODO: what does PointSizeGranularity mean?
+            GL.PointSizeRange(out min, out max);
+            //GL.GetFloat(GetTarget.PointSizeGranularity, pointSizeWidthRange);//TODO: what does PointSizeGranularity mean?
         }
 
         public float MinPointSize { get; private set; }

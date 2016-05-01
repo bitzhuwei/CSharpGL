@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,14 @@ namespace CSharpGL
     /// </summary>
     public abstract partial class PickableModernRenderer : ModernRenderer, IColorCodedPicking
     {
+        PolygonModeSwitch polygonModeSwitch4Picking = new PolygonModeSwitch(PolygonModes.Filled);
+
+        List<GLSwitch> switchList4Picking = new List<GLSwitch>();
+        [Editor(typeof(GLSwithListEditor), typeof(UITypeEditor))]
+        public List<GLSwitch> SwitchList4Picking
+        {
+            get { return switchList4Picking; }
+        }
 
         /// <summary>
         /// 支持"拾取"的渲染器
@@ -26,6 +35,19 @@ namespace CSharpGL
             params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
         {
+            {
+                this.switchList4Picking.Add(polygonModeSwitch4Picking);
+            }
+            {
+                float min, max;
+                GL.LineWidthRange(out min, out max);
+                this.switchList4Picking.Add(new LineWidthSwitch(max));
+            }
+            {
+                float min, max;
+                GL.PointSizeRange(out min, out max);
+                this.switchList4Picking.Add(new PointSizeSwitch(max));
+            }
         }
     }
 }
