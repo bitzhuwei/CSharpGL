@@ -38,10 +38,7 @@ namespace CSharpGL.Demos
                         this.pickableRendererPropertyGrid.DisplayObject(this.rendererDict[value].PickableRenderer);
                         this.highlightRendererPropertyGrid.DisplayObject(this.rendererDict[value].Highlighter);
                     }
-                    {
-                        this.Text = string.Format("{0} {1}", this.Name,
-                            this.rendererDict[this.selectedModel].PickableRenderer.Mode);
-                    }
+
                     //this.cameraUpdated = true;
                     this.UpdateMVP(this.rendererDict[this.selectedModel]);
                 }
@@ -92,6 +89,13 @@ namespace CSharpGL.Demos
             GL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f);
             this.TextColor = Color.White;
 
+            Application.Idle += Application_Idle;
+        }
+
+        void Application_Idle(object sender, EventArgs e)
+        {
+            this.Text = string.Format("{0} {1}", this.Name,
+                this.rendererDict[this.selectedModel].PickableRenderer.Mode);
         }
 
         public Color ClearColor { get; set; }
