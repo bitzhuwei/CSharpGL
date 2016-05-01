@@ -39,7 +39,6 @@ namespace CSharpGL
             int x, int y, int canvasWidth, int canvasHeight)
         {
             uint lastVertexId;
-            PickedGeometry pickedGeometry = null;
             if (this.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
             {
                 GeometryType geometryType = e.PickingGeometryType;
@@ -49,7 +48,7 @@ namespace CSharpGL
                     ZeroIndexLineSearcher searcher = GetLineSearcher(mode);
                     if (searcher != null)// line is from triangle, quad or polygon
                     {
-                        pickedGeometry = new PickedGeometry();
+                        PickedGeometry pickedGeometry = new PickedGeometry();
                         pickedGeometry.From = this;
                         pickedGeometry.GeometryType = GeometryType.Line;
                         pickedGeometry.StageVertexId = stageVertexId;
@@ -74,7 +73,7 @@ namespace CSharpGL
 
                 if (geometryType == GeometryType.Point)// I want a point
                 {
-                    pickedGeometry = new PickedGeometry();
+                    PickedGeometry pickedGeometry = new PickedGeometry();
                     pickedGeometry.GeometryType = GeometryType.Point;
                     pickedGeometry.StageVertexId = stageVertexId;
                     pickedGeometry.From = this;
@@ -85,9 +84,9 @@ namespace CSharpGL
                 else
                 {
                     GeometryType typeOfMode = mode.ToGeometryType();
-                    if (typeOfMode == geometryType)// I want is what it is
+                    if (typeOfMode == geometryType)// I want what it is
                     {
-                        pickedGeometry = new PickedGeometry();
+                        PickedGeometry pickedGeometry = new PickedGeometry();
                         pickedGeometry.GeometryType = typeOfMode;
                         pickedGeometry.StageVertexId = stageVertexId;
                         pickedGeometry.From = this;
@@ -104,12 +103,15 @@ namespace CSharpGL
                             // Other conditions
                             ContinuousBufferRange(lastVertexId, vertexCount, pickedGeometry);
                         }
+
+                        return pickedGeometry;
                     }
                 }
             }
 
-            return pickedGeometry;
+            return null;
         }
+
         private void PickingLastLineInLineLoop(PickedGeometry pickedGeometry)
         {
             //const int lastVertexId = 0;
