@@ -12,7 +12,7 @@ namespace CSharpGL
     public abstract partial class ModernRenderer : RendererBase
     {
         protected string positionNameInIBufferable;
-        protected PropertyBufferPtr positionBufferPtr;
+        internal PropertyBufferPtr positionBufferPtr;
         
         // 算法
         protected ShaderProgram shaderProgram;

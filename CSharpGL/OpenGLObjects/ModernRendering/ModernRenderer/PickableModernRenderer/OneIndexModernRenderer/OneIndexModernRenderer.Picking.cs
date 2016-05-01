@@ -115,17 +115,5 @@ namespace CSharpGL
             return lastIndexIdList;
         }
 
-        private PrimitiveRestartSwitch GetPrimitiveRestartSwitch()
-        {
-            foreach (var item in this.switchList)
-            {
-                if (item is PrimitiveRestartSwitch)
-                {
-                    return item as PrimitiveRestartSwitch;
-                }
-            }
-
-            return null;
-        }
     }
 }

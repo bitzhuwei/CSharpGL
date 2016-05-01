@@ -19,7 +19,7 @@ namespace CSharpGL
         ///<param name="firstVertex">要渲染的第一个顶点的索引</param>
         /// <param name="vertexCount">要渲染多少个顶点？</param>
         internal ZeroIndexBufferPtr(DrawMode mode, int firstVertex, int vertexCount)
-            : base(mode, 0, 0, 0)
+            : base(mode, 0, vertexCount, vertexCount * sizeof(uint))
         {
             this.FirstVertex = firstVertex;
             this.VertexCount = vertexCount;

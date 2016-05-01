@@ -45,11 +45,13 @@ namespace CSharpGL
                     ZeroIndexLineSearcher searcher = GetLineSearcher(mode);
                     if (searcher != null)// line is from triangle, quad or polygon
                     {
+
                         pickedGeometry = new PickedGeometry();
                         pickedGeometry.From = this;
                         pickedGeometry.GeometryType = GeometryType.Line;
                         pickedGeometry.StageVertexId = stageVertexId;
-                        pickedGeometry.Indexes = searcher.Search(e, x, y, canvasWidth, canvasHeight, lastVertexId, this);
+                        pickedGeometry.Indexes = searcher.Search(e, 
+                            x, y, canvasWidth, canvasHeight, lastVertexId, this);
                         GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
                         IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
                         unsafe

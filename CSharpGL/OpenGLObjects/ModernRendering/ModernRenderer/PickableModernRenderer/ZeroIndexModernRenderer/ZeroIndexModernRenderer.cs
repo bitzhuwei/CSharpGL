@@ -39,7 +39,7 @@ namespace CSharpGL
             base.DoInitialize();
         }
 
-        protected override IndexBufferPtr GetIndexBufferPtr()
+        internal override IndexBufferPtr GetIndexBufferPtr()
         {
             return this.zeroIndexBufferPtr;
         }

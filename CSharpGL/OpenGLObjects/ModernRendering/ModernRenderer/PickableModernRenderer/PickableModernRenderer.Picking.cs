@@ -79,7 +79,7 @@ namespace CSharpGL
             { return uint.MaxValue; }
         }
 
-        internal void Render4Picking(RenderEventArgs e, OneIndexBufferPtr indexBufferPtr)
+        internal void Render4Picking(RenderEventArgs e, IndexBufferPtr indexBufferPtr)
         {
             // 暂存clear color
             var originalClearColor = new float[4];
@@ -113,6 +113,19 @@ namespace CSharpGL
             program.Unbind();
 
             GL.Flush();
+        }
+
+        internal PrimitiveRestartSwitch GetPrimitiveRestartSwitch()
+        {
+            foreach (var item in this.switchList)
+            {
+                if (item is PrimitiveRestartSwitch)
+                {
+                    return item as PrimitiveRestartSwitch;
+                }
+            }
+
+            return null;
         }
 
         PrimitiveRestartSwitch primitiveRestartSwitch4Picking = new PrimitiveRestartSwitch(uint.MaxValue);

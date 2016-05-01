@@ -53,6 +53,6 @@ namespace CSharpGL
             program.Unbind();
         }
 
-        protected abstract IndexBufferPtr GetIndexBufferPtr();
+        internal abstract IndexBufferPtr GetIndexBufferPtr();
     }
 }

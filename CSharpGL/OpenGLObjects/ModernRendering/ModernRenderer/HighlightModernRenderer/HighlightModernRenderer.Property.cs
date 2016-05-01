@@ -11,7 +11,7 @@ namespace CSharpGL
     {
         protected OneIndexBufferPtr oneIndexBufferPtr;
 
-        protected override IndexBufferPtr GetIndexBufferPtr()
+        internal override IndexBufferPtr GetIndexBufferPtr()
         {
             return this.oneIndexBufferPtr;
         }

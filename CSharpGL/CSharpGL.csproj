@@ -51,6 +51,9 @@
     <Content Include="OpenGLObjects\ModernRendering\IBufferables\CubeModel.jpg" />
     <Content Include="OpenGLObjects\ModernRendering\IBufferables\SphereModel.jpg" />
     <Content Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\PickableModernRenderer.jpg" />
+    <Content Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInPolygonSearcher.jpg" />
+    <Content Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInQuadSearcher.jpg" />
+    <Content Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInTriangleSearcher.jpg" />
     <Content Include="readme.txt" />
     <Compile Include="Controls\GLCanvas.cs">
       <SubType>UserControl</SubType>
