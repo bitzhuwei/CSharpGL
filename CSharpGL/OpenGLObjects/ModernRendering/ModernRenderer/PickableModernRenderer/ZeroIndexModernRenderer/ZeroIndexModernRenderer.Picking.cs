@@ -17,7 +17,9 @@ namespace CSharpGL
             {
                 var dict = new Dictionary<DrawMode, ZeroIndexLineSearcher>();
                 dict.Add(DrawMode.Triangles, new ZeroIndexLineInTriangleSearcher());
+                dict.Add(DrawMode.TrianglesAdjacency, new ZeroIndexLineInTrianglesAdjacencySearcher());
                 dict.Add(DrawMode.TriangleStrip, new ZeroIndexLineInTriangleStripSearcher());
+                dict.Add(DrawMode.TriangleStripAdjacency, new ZeroIndexLineInTriangleStripAdjacencySearcher());
                 dict.Add(DrawMode.TriangleFan, new ZeroIndexLineInTriangleFanSearcher());
                 dict.Add(DrawMode.Quads, new ZeroIndexLineInQuadSearcher());
                 dict.Add(DrawMode.QuadStrip, new ZeroIndexLineInQuadStripSearcher());
