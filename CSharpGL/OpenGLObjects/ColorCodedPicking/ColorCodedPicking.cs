@@ -23,7 +23,7 @@ namespace CSharpGL
         public static PickedGeometry Pick(
             RenderEventArgs arg,
             int x, int y, int canvasWidth, int canvasHeight,
-            params IColorCodedPicking[] pickableElements)
+            params PickableModernRenderer[] pickableElements)
         {
             if (x < 0 || canvasWidth <= x || y < 0 || canvasHeight <= y) { return null; }
 
@@ -50,7 +50,7 @@ namespace CSharpGL
         public static List<Tuple<Point, PickedGeometry>> Pick(
             RenderEventArgs e,
             int x, int y, int radius, int canvasWidth, int canvasHeight,
-             params IColorCodedPicking[] pickableElements)
+             params PickableModernRenderer[] pickableElements)
         {
             if (x < 0 || canvasWidth <= x || y < 0 || canvasHeight <= y) { return null; }
 
@@ -70,7 +70,7 @@ namespace CSharpGL
         public static List<Tuple<Point, PickedGeometry>> Pick(
             RenderEventArgs arg,
             Rectangle rect, int canvasWidth, int canvasHeight,
-            params IColorCodedPicking[] pickableElements)
+            params PickableModernRenderer[] pickableElements)
         {
             var result = new List<Tuple<Point, PickedGeometry>>();
             if (pickableElements.Length == 0) { return result; }
@@ -101,7 +101,7 @@ namespace CSharpGL
             return result;
         }
 
-        public static void Render4Picking(RenderEventArgs arg, IColorCodedPicking[] pickableElements)
+        public static void Render4Picking(RenderEventArgs arg, params PickableModernRenderer[] pickableElements)
         {
             // 暂存clear color
             var originalClearColor = new float[4];

@@ -157,7 +157,7 @@ namespace CSharpGL.Demos
             lock (this.synObj)
             {
                 // prepare pickable elements
-                IColorCodedPicking pickable = this.rendererDict[this.SelectedModel].PickableRenderer;
+                PickableModernRenderer pickable = this.rendererDict[this.SelectedModel].PickableRenderer;
                 pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
 
                 PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
