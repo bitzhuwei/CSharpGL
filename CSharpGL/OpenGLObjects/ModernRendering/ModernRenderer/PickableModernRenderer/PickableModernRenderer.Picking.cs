@@ -98,7 +98,7 @@ namespace CSharpGL
             pickingMVP.SetUniform(program);
             program.SetUniform("pickingBaseID", 0u);// special uniform in Picking shader.
 
-            foreach (var item in switchList) { item.On(); }
+            SwitchesOn();
             this.primitiveRestartSwitch4Picking.On();
             this.polygonModeSwitch4Picking.On();
             {
@@ -109,7 +109,7 @@ namespace CSharpGL
             }
             this.polygonModeSwitch4Picking.Off();
             this.primitiveRestartSwitch4Picking.Off();
-            foreach (var item in switchList) { item.Off(); }
+            SwitchesOff();
 
             // 解绑shader
             pickingMVP.ResetUniform(program);
