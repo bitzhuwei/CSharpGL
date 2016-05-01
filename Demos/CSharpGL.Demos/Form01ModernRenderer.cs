@@ -197,7 +197,9 @@ namespace CSharpGL.Demos
                 string content = string.Format("[index: {0}]",
                     pickedGeometry.Indexes.PrintArray());
                 SizeF size = e.Graphics.MeasureString(content, font);
-                GL.DrawText(this.mousePosition.X - (int)(size.Width / 2),
+                int x = this.mousePosition.X - (int)(size.Width / 2);
+                if (x < 0) { x = 0; }// make sure the text be displayed.
+                GL.DrawText(x,
                     this.glCanvas1.Height - this.mousePosition.Y - 1,
                     this.TextColor, "Courier New", fontSize,
                     content);
