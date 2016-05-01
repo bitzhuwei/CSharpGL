@@ -20,7 +20,7 @@ namespace CSharpGL
                 indexBufferPtr = buffer.GetBufferPtr() as ZeroIndexBufferPtr;
             }
             modernRenderer.Render4Picking(e, indexBufferPtr);
-            uint id = modernRenderer.ReadPixel(x, y, canvasHeight);
+            uint id = ColorCodedPicking.ReadPixel(x, y, canvasHeight);
 
             indexBufferPtr.Dispose();
 

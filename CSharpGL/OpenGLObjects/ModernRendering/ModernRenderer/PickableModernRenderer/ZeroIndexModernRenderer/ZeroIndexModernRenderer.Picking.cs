@@ -182,7 +182,7 @@ namespace CSharpGL
         {
             var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, e.Camera, GeometryType.Line);
             this.Render4Picking(arg, this.zeroIndexBufferPtr);
-            var stageVertexId = this.ReadPixel(x, y, canvasHeight);
+            var stageVertexId = ColorCodedPicking.ReadPixel(x, y, canvasHeight);
             return stageVertexId != uint.MaxValue;
         }
 

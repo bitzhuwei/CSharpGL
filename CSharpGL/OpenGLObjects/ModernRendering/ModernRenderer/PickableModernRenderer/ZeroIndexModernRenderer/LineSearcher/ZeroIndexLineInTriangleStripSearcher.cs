@@ -26,7 +26,7 @@ namespace CSharpGL
             }
 
             modernRenderer.Render4Picking(e, indexBufferPtr);
-            uint id = modernRenderer.ReadPixel(x, y, canvasHeight);
+            uint id = ColorCodedPicking.ReadPixel(x, y, canvasHeight);
 
             indexBufferPtr.Dispose();
             if (id + 2 == lastVertexId)

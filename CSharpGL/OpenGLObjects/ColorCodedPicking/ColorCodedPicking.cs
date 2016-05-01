@@ -86,8 +86,10 @@ namespace CSharpGL
 
                     if (x < 0 || canvasWidth <= x || y < 0 || canvasHeight <= y) { continue; }
 
-                    PickedGeometry pickedGeometry = ReadPixel(arg,
-                        x, y, canvasWidth, canvasHeight, pickableElements);
+                    uint stageVertexId = ReadPixel(x, y, canvasHeight);
+
+                    PickedGeometry pickedGeometry = PickGeometry(arg,
+                        x, y, canvasWidth, canvasHeight, stageVertexId, pickableElements);
 
                     if (pickedGeometry != null)
                     {
@@ -120,12 +122,40 @@ namespace CSharpGL
             GL.Flush();
         }
 
-        private static PickedGeometry ReadPixel(
-            RenderEventArgs arg,
+
+        /// <summary>
+        /// get picked primitive
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="canvasWidth"></param>
+        /// <param name="canvasHeight"></param>
+        /// <param name="stageVertexId"></param>
+        /// <param name="pickableElements"></param>
+        /// <returns></returns>
+        private static PickedGeometry PickGeometry(RenderEventArgs arg,
             int x, int y, int canvasWidth, int canvasHeight,
+            uint stageVertexId,
             params IColorCodedPicking[] pickableElements)
         {
             PickedGeometry pickedGeometry = null;
+            foreach (var item in pickableElements)
+            {
+                pickedGeometry = item.Pick(arg, stageVertexId,
+                    x, y, canvasWidth, canvasHeight);
+                if (pickedGeometry != null)
+                { break; }
+            }
+
+            return pickedGeometry;
+        }
+
+
+        public static uint ReadPixel(
+            int x, int y, int canvasHeight)
+        {
+            uint stageVertexId = uint.MaxValue;
             // get coded color.
             //byte[] codedColor = new byte[4];
             UnmanagedArray<byte> codedColor = new UnmanagedArray<byte>(4);
@@ -150,19 +180,10 @@ namespace CSharpGL
                 uint shiftedG = (uint)codedColor[1] << 8;
                 uint shiftedB = (uint)codedColor[2] << 16;
                 uint shiftedA = (uint)codedColor[3] << 24;
-                uint stageVertexId = shiftedR + shiftedG + shiftedB + shiftedA;
-
-                // get picked primitive.
-                foreach (var item in pickableElements)
-                {
-                    pickedGeometry = item.Pick(arg, stageVertexId,
-                        x, y, canvasWidth, canvasHeight);
-                    if (pickedGeometry != null)
-                    { break; }
-                }
+                stageVertexId = shiftedR + shiftedG + shiftedB + shiftedA;
             }
 
-            return pickedGeometry;
+            return stageVertexId;
         }
 
     }

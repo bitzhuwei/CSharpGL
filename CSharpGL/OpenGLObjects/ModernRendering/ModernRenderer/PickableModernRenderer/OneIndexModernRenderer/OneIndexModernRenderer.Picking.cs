@@ -83,7 +83,7 @@ namespace CSharpGL
         {
             Render4Picking(e, twoPrimitivesIndexBufferPtr);
 
-            uint pickedIndex = ReadPixel(x, y, canvasHeight);
+            uint pickedIndex = ColorCodedPicking.ReadPixel(x, y, canvasHeight);
 
             return pickedIndex;
         }
