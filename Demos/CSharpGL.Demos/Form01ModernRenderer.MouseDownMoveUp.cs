@@ -37,6 +37,8 @@ namespace CSharpGL.Demos
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 // move vertex
+                UpdateColorInformationAtMouse(e.X, e.Y);
+
                 PickedGeometry pickedGeometry = RunPicking(new RenderEventArgs(
                     RenderModes.ColorCodedPicking,
                     this.camera, this.PickingGeometryType), e.X, e.Y);
@@ -86,6 +88,8 @@ namespace CSharpGL.Demos
             }
             else
             {
+                UpdateColorInformationAtMouse(e.X, e.Y);
+
                 PickedGeometry pickedGeometry = RunPicking(new RenderEventArgs(
                     RenderModes.ColorCodedPicking,
                     this.camera, this.PickingGeometryType), e.X, e.Y);
@@ -119,37 +123,37 @@ namespace CSharpGL.Demos
             }
         }
 
+        private void UpdateColorInformationAtMouse(int x, int y)
+        {
+            this.RenderersDraw(true, false);
+            Color c = GL.ReadPixel(x, this.glCanvas1.Height - y - 1);
+            c = Color.FromArgb(255, c);
+            this.lblColor.BackColor = c;
+            this.lblReadColor.Text = string.Format(
+                "{0} @ {1}", c,
+                new Point(x, this.glCanvas1.Height - y - 1));
+        }
+
         private PickedGeometry RunPicking(RenderEventArgs e, int x, int y)
         {
             lock (this.synObj)
             {
+                IColorCodedPicking pickable = this.rendererDict[this.SelectedModel].PickableRenderer;
+                pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
+                PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
+                    e, x, y, this.glCanvas1.Width, this.glCanvas1.Height,
+                    pickable);
+                if (pickedGeometry != null)
                 {
-                    this.RenderersDraw(true, false);
-                    Color c = GL.ReadPixel(x, this.glCanvas1.Height - y - 1);
-                    c = Color.FromArgb(255, c);
-                    this.lblColor.BackColor = c;
-                    this.lblReadColor.Text = string.Format(
-                        "{0} @ {1}", c,
-                        new Point(x, this.glCanvas1.Height - y - 1));
+                    this.RunPickingBoard.SetContent(pickedGeometry.ToString(
+                        camera.GetProjectionMat4(), camera.GetViewMat4()));
                 }
+                else
                 {
-                    IColorCodedPicking pickable = this.rendererDict[this.SelectedModel].PickableRenderer;
-                    pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
-                    PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
-                        e, x, y, this.glCanvas1.Width, this.glCanvas1.Height,
-                        pickable);
-                    if (pickedGeometry != null)
-                    {
-                        this.RunPickingBoard.SetContent(pickedGeometry.ToString(
-                            camera.GetProjectionMat4(), camera.GetViewMat4()));
-                    }
-                    else
-                    {
-                        this.RunPickingBoard.SetContent("picked nothing.");
-                    }
+                    this.RunPickingBoard.SetContent("picked nothing.");
+                }
 
-                    return pickedGeometry;
-                }
+                return pickedGeometry;
             }
         }
 
