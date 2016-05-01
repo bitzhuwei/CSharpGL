@@ -26,7 +26,11 @@ namespace CSharpGL
                 lineSearchDict = dict;
             }
 
-            return lineSearchDict[mode];
+            ZeroIndexLineSearcher result = null;
+            if (lineSearchDict.TryGetValue(mode, out result))
+            { return result; }
+            else
+            { return null; }
         }
 
         public override PickedGeometry Pick(
@@ -49,7 +53,7 @@ namespace CSharpGL
                         pickedGeometry.From = this;
                         pickedGeometry.GeometryType = GeometryType.Line;
                         pickedGeometry.StageVertexId = stageVertexId;
-                        pickedGeometry.Indexes = searcher.Search(e, 
+                        pickedGeometry.Indexes = searcher.Search(e,
                             x, y, canvasWidth, canvasHeight, lastVertexId, this);
                         GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
                         IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
