@@ -46,13 +46,16 @@ namespace CSharpGL
 
             builder.Append("Positions in World Space:");
             builder.AppendLine();
-            var positions = this.Positions;
+            vec3[] positions = this.Positions;
             if (positions == null) { positions = new vec3[0]; }
+            uint[] indexes = this.Indexes;
+
             for (int i = 0; i < positions.Length; i++)
             {
                 var pos4 = new vec4(positions[i], 1);
-                vec3 worldPos = new vec3(view * pos4);
-                builder.Append(string.Format("[{0}]: {1}", this.Indexes[i], worldPos));
+                var worldPos = new vec3(view * pos4);
+                builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
+                builder.Append(worldPos);
                 builder.AppendLine();
             }
             builder.Append("Positions in Projection Space:");
@@ -60,8 +63,9 @@ namespace CSharpGL
             for (int i = 0; i < positions.Length; i++)
             {
                 var pos4 = new vec4(positions[i], 1);
-                vec3 projectionPos = new vec3(projection * view * pos4);
-                builder.Append(string.Format("[{0}]: {1}", this.Indexes[i], projectionPos));
+                var projectionPos = new vec3(projection * view * pos4);
+                builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
+                builder.Append(projectionPos);
                 builder.AppendLine();
             }
 
@@ -77,38 +81,37 @@ namespace CSharpGL
         private StringBuilder BasicInfo()
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("Geometry Type: {0}", this.GeometryType);
-            builder.AppendLine();
 
-            var positions = this.Positions;
-            if (positions == null) { positions = new vec3[0]; }
-
-            uint stageVertexId = this.StageVertexId;
-            //uint lastVertexId = uint.MaxValue;
-            //string strLastVertexID;
-            //IColorCodedPicking picking = this.From;
-            //if (picking != null)
-            //{
-            //    if (picking.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
-            //    { strLastVertexID = string.Format("{0}", lastVertexId); }
-            //}
-
-            for (int i = 0; i < positions.Length; i++)
-            {
-                //builder.Append(lastVertexId - (positions.Length - 1) + i); 
-                builder.Append('['); builder.Append(Indexes[i]); builder.Append("]: ");
-                builder.AppendLine(positions[i].ToString());
-            }
-
-            builder.AppendFormat("Stage Vertex ID: {0}", stageVertexId);
+            builder.AppendFormat("Stage Vertex ID: {0}", this.StageVertexId);
             builder.AppendLine();
             builder.AppendFormat("From: {0}", this.From);
+            builder.AppendLine();
 
             if (!string.IsNullOrEmpty(this.ErrorInfo))
             {
                 builder.AppendLine("Error:");
                 builder.AppendLine(this.ErrorInfo);
             }
+
+            builder.AppendFormat("Geometry Type: {0}", this.GeometryType);
+            builder.AppendLine();
+
+            vec3[] positions = this.Positions;
+            if (positions == null) { positions = new vec3[0]; }
+            uint[] indexes = this.Indexes;
+
+            builder.Append("Positions in Model Space:");
+            builder.AppendLine();
+            for (int i = 0; i < positions.Length; i++)
+            {
+                builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
+                builder.Append(positions[i]);
+                if (i + 1 < positions.Length)
+                {
+                    builder.AppendLine();
+                }
+            }
+
 
             return builder;
         }
