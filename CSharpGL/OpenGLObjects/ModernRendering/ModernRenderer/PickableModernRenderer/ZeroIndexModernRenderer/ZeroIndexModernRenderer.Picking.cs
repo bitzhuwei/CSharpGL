@@ -73,13 +73,16 @@ namespace CSharpGL
 
                 if (geometryType == GeometryType.Point)// I want a point
                 {
-                    PickedGeometry pickedGeometry = new PickedGeometry();
-                    pickedGeometry.GeometryType = GeometryType.Point;
-                    pickedGeometry.StageVertexId = stageVertexId;
-                    pickedGeometry.From = this;
-                    int vertexCount = 1;
-                    ContinuousBufferRange(lastVertexId, vertexCount, pickedGeometry);
-                    return pickedGeometry;
+                    if (this.OnPrimitiveTest(e, x, y, canvasWidth, canvasHeight))
+                    {
+                        PickedGeometry pickedGeometry = new PickedGeometry();
+                        pickedGeometry.GeometryType = GeometryType.Point;
+                        pickedGeometry.StageVertexId = stageVertexId;
+                        pickedGeometry.From = this;
+                        int vertexCount = 1;
+                        ContinuousBufferRange(lastVertexId, vertexCount, pickedGeometry);
+                        return pickedGeometry;
+                    }
                 }
                 else
                 {
@@ -110,6 +113,26 @@ namespace CSharpGL
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// 现在，已经判定了鼠标在某个点上。
+        /// 我需要判定此点是否出现在图元上。
+        /// now that I know the mouse is picking on some point,
+        /// I need to make sure that point should appear.
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="canvasWidth"></param>
+        /// <param name="canvasHeight"></param>
+        /// <returns></returns>
+        private bool OnPrimitiveTest(RenderEventArgs e, int x, int y, int canvasWidth, int canvasHeight)
+        {
+            var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, e.Camera, GeometryType.Line);
+            this.Render4Picking(arg, this.zeroIndexBufferPtr);
+            var stageVertexId = this.ReadPixel(x, y, canvasHeight);
+            return stageVertexId != uint.MaxValue;
         }
 
         private void PickingLastLineInLineLoop(PickedGeometry pickedGeometry)
