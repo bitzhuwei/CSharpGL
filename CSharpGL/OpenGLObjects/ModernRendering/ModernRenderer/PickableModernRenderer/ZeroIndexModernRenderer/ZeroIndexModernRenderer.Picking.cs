@@ -145,9 +145,9 @@ namespace CSharpGL
 
         private void ContinuousBufferRange(uint lastVertexId, int vertexCount, PickedGeometry pickedGeometry)
         {
+            int offset = (int)((lastVertexId - (vertexCount - 1)) * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
             GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
             //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
-            int offset = (int)((lastVertexId - (vertexCount - 1)) * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
             IntPtr pointer = GL.MapBufferRange(BufferTarget.ArrayBuffer,
                 offset,
                 vertexCount * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength,
@@ -173,6 +173,7 @@ namespace CSharpGL
                     "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId));
             }
             GL.UnmapBuffer(BufferTarget.ArrayBuffer);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
         }
 
     }
