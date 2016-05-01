@@ -72,7 +72,7 @@ namespace CSharpGL.Windows
         public static void DrawPyramid()
         {
             //  Clear the color and depth buffer.
-            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
             //  Load the identity matrix.
             GL.LoadIdentity();
