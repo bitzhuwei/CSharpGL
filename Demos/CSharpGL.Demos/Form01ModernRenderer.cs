@@ -201,26 +201,26 @@ namespace CSharpGL.Demos
                 string content = string.Format("[index: {0}]",
                     pickedGeometry.Indexes.PrintArray());
                 SizeF size = e.Graphics.MeasureString(content, font);
-                int x = this.mousePosition.X - (int)(size.Width / 2);
+                int x = this.lastMousePosition.X - (int)(size.Width / 2);
                 if (x < 0) { x = 0; }// make sure the text be displayed.
                 GL.DrawText(x,
-                    this.glCanvas1.Height - this.mousePosition.Y - 1,
+                    this.glCanvas1.Height - this.lastMousePosition.Y - 1,
                     this.TextColor, "Courier New", fontSize,
                     content);
                 this.lblDrawText.Text = content;
             }
             else
             {
-                GL.DrawText(this.mousePosition.X,
-                    this.glCanvas1.Height - this.mousePosition.Y - 1,
+                GL.DrawText(this.lastMousePosition.X,
+                    this.glCanvas1.Height - this.lastMousePosition.Y - 1,
                     this.TextColor, "Courier New", fontSize,
                     "");
                 this.lblDrawText.Text = "";
             }
             {
                 // Cross cursor shows where the mouse is.
-                GL.DrawText(this.mousePosition.X - offset.X,
-                    this.glCanvas1.Height - (this.mousePosition.Y + offset.Y) - 1,
+                GL.DrawText(this.lastMousePosition.X - offset.X,
+                    this.glCanvas1.Height - (this.lastMousePosition.Y + offset.Y) - 1,
                     Color.Red, "Courier New", crossCursorSize, "+");
             }
         }
