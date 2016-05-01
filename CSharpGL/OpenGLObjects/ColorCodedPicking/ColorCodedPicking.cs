@@ -101,6 +101,11 @@ namespace CSharpGL
             return result;
         }
 
+        /// <summary>
+        /// 在多个buffer中拾取一个图元
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="pickableElements"></param>
         public static void Render4Picking(RenderEventArgs arg, params PickableModernRenderer[] pickableElements)
         {
             // 暂存clear color

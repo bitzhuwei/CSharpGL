@@ -78,7 +78,12 @@ namespace CSharpGL
         //    else
         //    { return uint.MaxValue; }
         //}
-
+        
+        /// <summary>
+        /// 在此Buffer中的图元进行N选1
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="indexBufferPtr"></param>
         internal void Render4Picking(RenderEventArgs e, IndexBufferPtr indexBufferPtr)
         {
             // 暂存clear color
