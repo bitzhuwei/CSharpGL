@@ -11,61 +11,34 @@ namespace CSharpGL
             int x, int y, int canvasWidth, int canvasHeight,
             uint lastVertexId, ZeroIndexModernRenderer modernRenderer)
         {
+            OneIndexBufferPtr indexBufferPtr = null;
+            using (var buffer = new OneIndexBuffer<uint>(DrawMode.Lines, BufferUsage.StaticDraw))
             {
-                uint first = 0;// this is the read triangle in ZeroIndexLineInTriangleFanSearcher.jpg
-                OneIndexBufferPtr indexBufferPtr = null;
-                using (var buffer = new OneIndexBuffer<uint>(DrawMode.Lines, BufferUsage.StaticDraw))
+                buffer.Alloc(6);
+                unsafe
                 {
-                    buffer.Alloc((int)(lastVertexId * 2));
-                    unsafe
-                    {
-                        var array = (uint*)buffer.FirstElement();
-                        for (uint i = 0; i < lastVertexId; i++)
-                        {
-                            array[i * 2 + 0] = first;
-                            array[i * 2 + 1] = first + (i + 1);
-                        }
-                    }
-                    indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
+                    var array = (uint*)buffer.FirstElement();
+                    array[0] = 0; array[1] = lastVertexId - 1;
+                    array[2] = lastVertexId - 1; array[3] = lastVertexId - 0;
+                    array[4] = lastVertexId - 0; array[5] = 0;
                 }
 
-                modernRenderer.Render4Picking(e, indexBufferPtr);
-                uint id = modernRenderer.ReadPixel(x, y, canvasHeight);
-
-                indexBufferPtr.Dispose();
-
-                if (first + 1 <= id && id <= lastVertexId)
-                { return new uint[] { first, id, }; }
+                indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
             }
 
-            {
-                uint first = 0;// this is the read triangle in ZeroIndexLineInTriangleFanSearcher.jpg
-                OneIndexBufferPtr indexBufferPtr = null;
-                using (var buffer = new OneIndexBuffer<uint>(DrawMode.Lines, BufferUsage.StaticDraw))
-                {
-                    buffer.Alloc((int)((lastVertexId - 1) * 2));
-                    unsafe
-                    {
-                        var array = (uint*)buffer.FirstElement();
-                        for (uint i = 0; i < lastVertexId; i++)
-                        {
-                            array[i * 2 + 0] = first + ((i + 1) - 1);
-                            array[i * 2 + 1] = first + (i + 1);
-                        }
-                    }
-                    indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
-                }
+            modernRenderer.Render4Picking(e, indexBufferPtr);
+            uint id = modernRenderer.ReadPixel(x, y, canvasHeight);
 
-                modernRenderer.Render4Picking(e, indexBufferPtr);
-                uint id = modernRenderer.ReadPixel(x, y, canvasHeight);
+            indexBufferPtr.Dispose();
 
-                indexBufferPtr.Dispose();
-
-                if (first + 2 <= id && id <= lastVertexId)
-                { return new uint[] { id - 1, id, }; }
-            }
-
-            throw new Exception("this should not happen!");
+            if (id + 1 == lastVertexId)
+            { return new uint[] { 0, lastVertexId - 1, }; }
+            else if (id == lastVertexId)
+            { return new uint[] { lastVertexId - 1, lastVertexId - 0, }; }
+            else if (id == 0)
+            { return new uint[] { lastVertexId - 0, 0, }; }
+            else
+            { throw new Exception("This should not happen!"); }
         }
     }
 }
