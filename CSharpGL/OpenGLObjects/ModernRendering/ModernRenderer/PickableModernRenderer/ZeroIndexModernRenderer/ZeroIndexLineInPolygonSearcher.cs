@@ -9,17 +9,18 @@ namespace CSharpGL
     {
         internal override uint[] Search(RenderEventArgs e,
             int x, int y, int canvasWidth, int canvasHeight,
-            uint lastVertexId, CSharpGL.ZeroIndexModernRenderer zeroIndexModernRenderer)
+            uint lastVertexId, ZeroIndexModernRenderer modernRenderer)
         {
-            var zeroIndexBufferPtr = zeroIndexModernRenderer.GetIndexBufferPtr() as ZeroIndexBufferPtr;
+            var zeroIndexBufferPtr = modernRenderer.GetIndexBufferPtr() as ZeroIndexBufferPtr;
             ZeroIndexBufferPtr indexBufferPtr = null;
+            // when the temp index buffer could be long, it's no longer needed. (great OpenGL API design)
             using (var buffer = new ZeroIndexBuffer(DrawMode.LineLoop,
                 zeroIndexBufferPtr.FirstVertex, zeroIndexBufferPtr.VertexCount))
             {
                 indexBufferPtr = buffer.GetBufferPtr() as ZeroIndexBufferPtr;
             }
-            zeroIndexModernRenderer.Render4Picking(e, indexBufferPtr);
-            uint id = zeroIndexModernRenderer.ReadPixel(x, y, canvasHeight);
+            modernRenderer.Render4Picking(e, indexBufferPtr);
+            uint id = modernRenderer.ReadPixel(x, y, canvasHeight);
 
             indexBufferPtr.Dispose();
 
