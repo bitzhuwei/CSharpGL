@@ -117,10 +117,10 @@ namespace CSharpGL
                     pickedGeometry.Positions = FillPickedGeometrysPosition(lastVertexId - 3, 4);
                     break;
                 case GeometryType.Polygon:
-                    pickedGeometry.Indexes = new uint[lastVertexId + 1];
-                    for (uint i = 0; i < lastVertexId + 1; i++)
-                    { pickedGeometry.Indexes[i] = i; }
-                    pickedGeometry.Positions = FillPickedGeometrysPosition(0, (int)(lastVertexId + 1));
+                    pickedGeometry.Indexes = new uint[vertexCount];
+                    for (uint i = 0; i < vertexCount; i++)
+                    { pickedGeometry.Indexes[i] = lastVertexId + i; }
+                    pickedGeometry.Positions = FillPickedGeometrysPosition(0, vertexCount);
                     break;
                 default:
                     throw new NotImplementedException();
