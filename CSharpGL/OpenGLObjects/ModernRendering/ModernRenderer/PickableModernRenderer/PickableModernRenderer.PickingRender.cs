@@ -23,7 +23,7 @@ namespace CSharpGL
             program.SetUniform("pickingBaseID", picking.PickingBaseID);
             pickingMVP.SetUniform(program);
 
-            foreach (var item in switchList) { item.On(); }
+            SwitchesOn();
             this.polygonModeSwitch4Picking.On();
 
             if (this.vertexArrayObject4Picking == null)
@@ -40,12 +40,22 @@ namespace CSharpGL
             }
 
             this.polygonModeSwitch4Picking.Off();
-            foreach (var item in switchList) { item.Off(); }
+            SwitchesOff();
 
             pickingMVP.ResetUniform(program);
 
             // 解绑shader
             program.Unbind();
+        }
+
+        private void SwitchesOff()
+        {
+            foreach (var item in switchList) { item.Off(); }
+        }
+
+        private void SwitchesOn()
+        {
+            foreach (var item in switchList) { item.On(); }
         }
 
         private void UpdatePolygonMode(GeometryType geometryType)
