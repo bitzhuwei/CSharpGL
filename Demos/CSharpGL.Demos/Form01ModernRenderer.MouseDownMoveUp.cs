@@ -39,9 +39,11 @@ namespace CSharpGL.Demos
                 // move vertex
                 UpdateColorInformationAtMouse(e.X, e.Y);
 
-                PickedGeometry pickedGeometry = RunPicking(new RenderEventArgs(
-                    RenderModes.ColorCodedPicking,
-                    this.camera, this.PickingGeometryType), e.X, e.Y);
+                PickedGeometry pickedGeometry = RunPicking(
+                    new RenderEventArgs(
+                        RenderModes.ColorCodedPicking,
+                        this.camera, this.PickingGeometryType), 
+                    e.X, e.Y);
                 if (pickedGeometry != null)
                 {
                     this.rendererDict[this.selectedModel].Highlighter.SetHighlightIndexes(
@@ -90,9 +92,11 @@ namespace CSharpGL.Demos
             {
                 UpdateColorInformationAtMouse(e.X, e.Y);
 
-                PickedGeometry pickedGeometry = RunPicking(new RenderEventArgs(
-                    RenderModes.ColorCodedPicking,
-                    this.camera, this.PickingGeometryType), e.X, e.Y);
+                PickedGeometry pickedGeometry = RunPicking(
+                    new RenderEventArgs(
+                        RenderModes.ColorCodedPicking,
+                        this.camera, this.PickingGeometryType),
+                    e.X, e.Y);
                 if (pickedGeometry != null)
                 {
                     this.rendererDict[this.selectedModel].Highlighter.SetHighlightIndexes(
@@ -134,7 +138,7 @@ namespace CSharpGL.Demos
                 new Point(x, this.glCanvas1.Height - y - 1));
         }
 
-        private PickedGeometry RunPicking(RenderEventArgs e, int x, int y)
+        private PickedGeometry RunPicking(RenderEventArgs arg, int x, int y)
         {
             lock (this.synObj)
             {
@@ -143,7 +147,7 @@ namespace CSharpGL.Demos
                 pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
 
                 PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
-                    e, x, y, this.glCanvas1.Width, this.glCanvas1.Height,
+                    arg, x, y, this.glCanvas1.Width, this.glCanvas1.Height,
                     pickable);
 
                 if (pickedGeometry != null)

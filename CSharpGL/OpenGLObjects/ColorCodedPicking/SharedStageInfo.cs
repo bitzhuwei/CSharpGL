@@ -28,14 +28,14 @@ namespace CSharpGL
         /// <param name="pickable"></param>
         /// <param name="gl"></param>
         /// <param name="renderMode"></param>
-        public virtual void RenderForPicking(IColorCodedPicking pickable, RenderEventArgs e)
+        public virtual void RenderForPicking(IColorCodedPicking pickable, RenderEventArgs arg)
         {
             if (pickable != null)
             {
                 pickable.SetPickingBaseID(this.RenderedVertexCount);
 
                 //  render the element.
-                pickable.Render(e);
+                pickable.Render(arg);
 
                 uint rendered = this.RenderedVertexCount + pickable.GetVertexCount();
                 if (this.RenderedVertexCount <= rendered)
