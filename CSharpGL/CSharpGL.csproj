@@ -321,7 +321,6 @@
     <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Highlight.frag" />
     <EmbeddedResource Include="OpenGLObjects\ModernRendering\IBufferables\TeapotModel.obj" />
     <None Include="OpenGLObjects\ModernRendering\ModernRenderer\ModernRenderer.cd" />
-    <None Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\PickableModernRenderer.cd" />
     <None Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.cd" />
     <EmbeddedResource Include="Controls\GLCanvas.resx">
       <DependentUpon>GLCanvas.cs</DependentUpon>
@@ -340,6 +339,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Picking.frag" />
     <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Picking.vert" />
+    <None Include="OpenGLObjects\ModernRendering\ModernRenderers.cd" />
     <None Include="OpenGLObjects\VertexBuffers\VertexBuffer.cd" />
     <None Include="OpenGLObjects\VertexBuffers\VertexBufferPtr.cd" />
   </ItemGroup>
