@@ -18,7 +18,7 @@ namespace CSharpGL
                 buffer[0] = lastVertexId - 1; buffer[1] = lastVertexId - 0;
                 buffer[2] = lastVertexId - 2; buffer[3] = lastVertexId - 1;
                 buffer[4] = lastVertexId - 3; buffer[5] = lastVertexId - 2;
-                buffer[4] = lastVertexId - 0; buffer[5] = lastVertexId - 3;
+                buffer[6] = lastVertexId - 0; buffer[7] = lastVertexId - 3;
                 indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
             }
 
