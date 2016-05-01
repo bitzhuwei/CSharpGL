@@ -98,18 +98,14 @@ namespace CSharpGL
             pickingMVP.SetUniform(program);
             program.SetUniform("pickingBaseID", 0u);// special uniform in Picking shader.
 
-            SwitchesOn();
-            this.primitiveRestartSwitch4Picking.On();
-            this.polygonModeSwitch4Picking.On();
+            PickingSwitchesOn();
             {
                 //var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, camera);
                 this.positionBufferPtr.Render(e, program);
                 indexBufferPtr.Render(e, program);
                 GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
             }
-            this.polygonModeSwitch4Picking.Off();
-            this.primitiveRestartSwitch4Picking.Off();
-            SwitchesOff();
+            PickingSwitchesOff();
 
             // 解绑shader
             pickingMVP.ResetUniform(program);
@@ -130,9 +126,6 @@ namespace CSharpGL
 
             return null;
         }
-
-        PrimitiveRestartSwitch primitiveRestartSwitch4Picking = new PrimitiveRestartSwitch(uint.MaxValue);
-
 
         protected vec3[] FillPickedGeometrysPosition(uint firstIndex, int indexCount)
         {
