@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controls\GLCanvas.ico" />
+    <Content Include="OpenGLAPI\Enumerations\DrawMode.png" />
     <Content Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.png" />
     <Content Include="OpenGLObjects\ColorCodedPicking\readme.txt" />
     <Content Include="OpenGLObjects\ModernRendering\IBufferables\AxisModel.jpg" />
