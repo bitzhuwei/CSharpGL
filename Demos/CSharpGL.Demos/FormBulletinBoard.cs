@@ -25,6 +25,8 @@ namespace CSharpGL.Demos
 
         public void SetContent(string str)
         {
+            if (this.IsDisposed) { return; }
+
             if (!this.Dump)
             {
                 this.textBox1.Text = str;
