@@ -45,7 +45,6 @@ namespace CSharpGL
                     ZeroIndexLineSearcher searcher = GetLineSearcher(mode);
                     if (searcher != null)// line is from triangle, quad or polygon
                     {
-
                         pickedGeometry = new PickedGeometry();
                         pickedGeometry.From = this;
                         pickedGeometry.GeometryType = GeometryType.Line;

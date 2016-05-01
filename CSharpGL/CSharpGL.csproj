@@ -51,9 +51,12 @@
     <Content Include="OpenGLObjects\ModernRendering\IBufferables\CubeModel.jpg" />
     <Content Include="OpenGLObjects\ModernRendering\IBufferables\SphereModel.jpg" />
     <Content Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\PickableModernRenderer.jpg" />
-    <Content Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInPolygonSearcher.jpg" />
-    <Content Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInQuadSearcher.jpg" />
-    <Content Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInTriangleSearcher.jpg" />
+    <Content Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInPolygonSearcher.jpg" />
+    <Content Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInQuadSearcher.jpg" />
+    <Content Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInQuadStripSearcher.jpg" />
+    <Content Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInTriangleFanSearcher.jpg" />
+    <Content Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInTriangleSearcher.jpg" />
+    <Content Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.jpg" />
     <Content Include="readme.txt" />
     <Compile Include="Controls\GLCanvas.cs">
       <SubType>UserControl</SubType>
@@ -96,13 +99,13 @@
     <Compile Include="OpenGLObjects\ModernRendering\IBufferables\TeapotModel.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\IBufferables\TetrahedronModel.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexModernRenderer.GetLastIndexId.cs" />
-    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInPolygonSearcher.cs" />
-    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInQuadStripSearcher.cs" />
-    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInQuadSearcher.cs" />
-    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInTriangleFanSearcher.cs" />
-    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInTriangleStripSearcher.cs" />
-    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineSearcher.cs" />
-    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexLineInTriangleSearcher.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInPolygonSearcher.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInQuadStripSearcher.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInQuadSearcher.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInTriangleFanSearcher.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineSearcher.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInTriangleSearcher.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayout.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayoutArgs.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayoutHelper.cs" />
