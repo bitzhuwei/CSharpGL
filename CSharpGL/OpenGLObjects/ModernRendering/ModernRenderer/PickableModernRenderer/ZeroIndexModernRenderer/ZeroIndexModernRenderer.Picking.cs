@@ -50,7 +50,7 @@ namespace CSharpGL
             {
                 //if (this.OnPrimitiveTest(e, x, y, canvasWidth, canvasHeight))
                 DrawMode mode = this.GetIndexBufferPtr().Mode;
-                if(this.OnPrimitiveTest(lastVertexId, mode))
+                if (this.OnPrimitiveTest(lastVertexId, mode))
                 { return PickPoint(stageVertexId, lastVertexId); }
                 else
                 { return null; }
@@ -79,7 +79,8 @@ namespace CSharpGL
                 if (typeOfMode == geometryType)// I want what it is
                 { return PickWhateverItIs(stageVertexId, lastVertexId, mode, typeOfMode); }
                 else
-                { throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
+                { return null; }
+                //{ throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
             }
         }
 
@@ -153,7 +154,7 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private PickedGeometry SearchLine(RenderEventArgs arg, uint stageVertexId, 
+        private PickedGeometry SearchLine(RenderEventArgs arg, uint stageVertexId,
             int x, int y, uint lastVertexId, ZeroIndexLineSearcher searcher)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
