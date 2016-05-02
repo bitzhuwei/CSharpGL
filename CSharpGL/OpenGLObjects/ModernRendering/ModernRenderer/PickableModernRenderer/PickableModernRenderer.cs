@@ -15,9 +15,9 @@ namespace CSharpGL
     {
         PolygonModeSwitch polygonModeSwitch4Picking = new PolygonModeSwitch(PolygonModes.Filled);
 
-        List<GLSwitch> switchList4Picking = new List<GLSwitch>();
+        protected List<GLSwitch> switchList4Picking = new List<GLSwitch>();
         [Editor(typeof(GLSwithListEditor), typeof(UITypeEditor))]
-        public List<GLSwitch> SwitchList4Picking
+        public IReadOnlyList<GLSwitch> SwitchList4Picking
         {
             get { return switchList4Picking; }
         }

@@ -28,7 +28,7 @@ namespace CSharpGL
             params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
         {
-            this.SwitchList4Picking.Add(primitiveRestartSwitch4Picking);
+            this.switchList4Picking.Add(primitiveRestartSwitch4Picking);
         }
 
         protected override void DoInitialize()
