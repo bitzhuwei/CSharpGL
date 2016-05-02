@@ -84,7 +84,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="e"></param>
         /// <param name="indexBufferPtr"></param>
-        internal void Render4Picking(RenderEventArgs e, IndexBufferPtr indexBufferPtr)
+        internal void Render4SelfPicking(RenderEventArgs e, IndexBufferPtr indexBufferPtr)
         {
             // 暂存clear color
             var originalClearColor = new float[4];
