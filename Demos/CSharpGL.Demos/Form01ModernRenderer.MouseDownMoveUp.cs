@@ -148,8 +148,6 @@ namespace CSharpGL.Demos
             this.RenderersDraw(this.renderMode, true, false);
             Color c = GL.ReadPixel(x, this.glCanvas1.Height - y - 1);
             c = Color.FromArgb(255, c);
-            if (c.G != Color.White.G)
-            { Console.WriteLine("asdf"); }
             this.lblColor.BackColor = c;
             this.lblReadColor.Text = string.Format(
                 "{0} @ {1}", c,
