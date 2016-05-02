@@ -13,7 +13,7 @@ namespace CSharpGL
     {
 
         public override PickedGeometry Pick(
-            RenderEventArgs arg, 
+            RenderEventArgs arg,
             uint stageVertexId,
             int x, int y)
         {
@@ -25,9 +25,12 @@ namespace CSharpGL
                 RecognizedPrimitiveIndex lastIndexId =
                     this.GetLastIndexIdOfPickedGeometry(
                         arg, lastVertexId, x, y);
-                Debug.WriteLineIf(lastIndexId == null, string.Format(
-                    "Got lastVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}] [{3}] [{4}] [{5}] [{6}]",
-                    lastVertexId, arg, stageVertexId, x, y));
+                if (lastIndexId == null)
+                {
+                    Debug.WriteLine(
+                        "Got lastVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}] [{3}] [{4}]",
+                        lastVertexId, arg, stageVertexId, x, y);
+                }
                 if (lastIndexId != null)
                 {
                     // 获取pickedGeometry
