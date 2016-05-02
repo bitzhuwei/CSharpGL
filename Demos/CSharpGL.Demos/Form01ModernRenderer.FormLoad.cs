@@ -139,7 +139,7 @@ namespace CSharpGL.Demos
 
                     this.rendererDict.Add(key, renderer);
                 }
-                this.SelectedModel = GeometryModel.Cube;
+                this.SelectedModel = GeometryModel.BigDipper;
             }
             {
                 var bufferables = new IBufferable[]{
