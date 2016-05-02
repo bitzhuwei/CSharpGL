@@ -13,7 +13,8 @@ namespace CSharpGL
         {
             var zeroIndexBufferPtr = modernRenderer.GetIndexBufferPtr() as ZeroIndexBufferPtr;
             ZeroIndexBufferPtr indexBufferPtr = null;
-            // when the temp index buffer could be long, it's no longer needed. (great OpenGL API design)
+            // when the temp index buffer could be long, it's no longer needed. 
+            // what a great OpenGL API design!
             using (var buffer = new ZeroIndexBuffer(DrawMode.LineLoop,
                 zeroIndexBufferPtr.FirstVertex, zeroIndexBufferPtr.VertexCount))
             {
