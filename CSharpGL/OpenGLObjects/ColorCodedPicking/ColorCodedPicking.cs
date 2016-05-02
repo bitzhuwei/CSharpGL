@@ -165,7 +165,7 @@ namespace CSharpGL
             if (rect.Width <= 0 || rect.Height <= 0) { return result; }
 
             // get coded color.
-            using (var codedColor = new UnmanagedArray<Pixel>(4 * rect.Width * rect.Height))
+            using (var codedColor = new UnmanagedArray<Pixel>(rect.Width * rect.Height))
             {
                 GL.ReadPixels(rect.X, canvasHeight - rect.Y - 1, rect.Width, rect.Height,
                     GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, codedColor.Header);
