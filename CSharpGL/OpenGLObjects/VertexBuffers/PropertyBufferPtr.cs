@@ -76,7 +76,7 @@ namespace CSharpGL
         /// <summary>
         /// 在使用<see cref="VertexArrayObject"/>后，此方法只会执行一次。
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
         public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
         {

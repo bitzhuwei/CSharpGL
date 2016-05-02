@@ -43,7 +43,7 @@ namespace CSharpGL
         /// <summary>
         /// 执行此VBO的渲染操作。
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="arg"></param>
         /// <param name="shaderProgram">此VBO使用的shader program。</param>
         public abstract void Render(RenderEventArgs arg, ShaderProgram shaderProgram);
 

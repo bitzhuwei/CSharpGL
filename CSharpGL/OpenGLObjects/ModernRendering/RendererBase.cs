@@ -70,7 +70,7 @@ namespace CSharpGL
         /// <summary>
         /// 执行渲染操作
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="arg"></param>
         protected abstract void DoRender(RenderEventArgs arg);
 
 

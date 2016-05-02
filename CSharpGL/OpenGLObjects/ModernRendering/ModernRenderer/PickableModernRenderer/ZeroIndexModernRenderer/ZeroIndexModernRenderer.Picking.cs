@@ -172,11 +172,8 @@ namespace CSharpGL
         /// now that I know the mouse is picking on some point,
         /// I need to make sure that point should appear.
         /// </summary>
-        /// <param name="e"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="canvasWidth"></param>
-        /// <param name="canvasHeight"></param>
+        /// <param name="lastVertexId"></param>
+        /// <param name="mode"></param>
         /// <returns></returns>
         private bool OnPrimitiveTest(uint lastVertexId, DrawMode mode)
         {

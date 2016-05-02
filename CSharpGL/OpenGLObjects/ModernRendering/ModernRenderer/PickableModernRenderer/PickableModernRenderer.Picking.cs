@@ -64,7 +64,7 @@ namespace CSharpGL
         /// 在此Buffer中的图元进行N选1
         /// select a line from triangle/quad/polygon in this renderer.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="arg"></param>
         /// <param name="indexBufferPtr">indicates the primitive to pick a line from.</param>
         internal void Render4InnerPicking(RenderEventArgs arg, IndexBufferPtr indexBufferPtr)
         {

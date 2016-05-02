@@ -50,7 +50,7 @@ namespace CSharpGL
         /// 在OpenGL中创建VAO。
         /// 创建的过程就是执行一次渲染的过程。
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
         public void Create(RenderEventArgs arg, ShaderProgram shaderProgram)
         {
@@ -87,7 +87,7 @@ namespace CSharpGL
         /// <summary>
         /// 执行一次渲染的过程。
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
         /// <param name="temporaryIndexBufferPtr">render by a temporary index buffer</param>
         public void Render(RenderEventArgs arg, ShaderProgram shaderProgram, IndexBufferPtr temporaryIndexBufferPtr = null)
