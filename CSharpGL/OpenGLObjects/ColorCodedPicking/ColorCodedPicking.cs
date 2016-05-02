@@ -139,7 +139,7 @@ namespace CSharpGL
         /// <param name="pickableElements"></param>
         /// <returns></returns>
         private static PickedGeometry PickGeometry(RenderEventArgs arg,
-            int x, int y, 
+            int x, int y,
             uint stageVertexId,
             params IColorCodedPicking[] pickableElements)
         {
@@ -177,9 +177,9 @@ namespace CSharpGL
                 var array = (Pixel*)codedColor.FirstElement();
                 int index = 0;
                 var vertexIdList = new List<uint>();
-                for (int y = rect.Height - 1; y >= 0; y--)
+                for (int yOffset = rect.Height - 1; yOffset >= 0; yOffset--)
                 {
-                    for (int x = 0; x < rect.Width; x++)
+                    for (int xOffset = 0; xOffset < rect.Width; xOffset++)
                     {
                         Pixel pixel = array[index++];
                         if (!
@@ -206,7 +206,7 @@ namespace CSharpGL
                             if (!vertexIdList.Contains(vertexId))
                             {
                                 result.Add(new Tuple<Point, uint>(
-                                    new Point(x, y), vertexId));
+                                    new Point(rect.X + xOffset, rect.Y + yOffset), vertexId));
                                 vertexIdList.Add(vertexId);
                             }
                         }
