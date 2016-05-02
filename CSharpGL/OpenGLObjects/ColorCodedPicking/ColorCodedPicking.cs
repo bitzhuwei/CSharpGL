@@ -13,11 +13,9 @@ namespace CSharpGL
         /// <summary>
         /// Color Coded Picking
         /// </summary>
-        /// <param name="camera"></param>
+        /// <param name="arg></param>
         /// <param name="x">鼠标位置</param>
         /// <param name="y">鼠标位置</param>
-        /// <param name="canvasWidth">画布宽度</param>
-        /// <param name="canvasHeight">画布高度</param>
         /// <param name="pickableElements">在哪些对象中执行拾取操作</param>
         /// <returns></returns>
         public static PickedGeometry Pick(
@@ -61,10 +59,8 @@ namespace CSharpGL
         /// <summary>
         /// Color Coded Picking
         /// </summary>
-        /// <param name="camera"></param>
+        /// <param name="arg"></param>
         /// <param name="rect">拾取范围</param>
-        /// <param name="canvasWidth">画布宽度</param>
-        /// <param name="canvasHeight">画布高度</param>
         /// <param name="pickableElements">在哪些对象中执行拾取操作</param>
         /// <returns></returns>
         public static List<Tuple<Point, PickedGeometry>> Pick(
@@ -135,8 +131,6 @@ namespace CSharpGL
         /// <param name="arg"></param>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        /// <param name="canvasWidth"></param>
-        /// <param name="canvasHeight"></param>
         /// <param name="stageVertexId"></param>
         /// <param name="pickableElements"></param>
         /// <returns></returns>

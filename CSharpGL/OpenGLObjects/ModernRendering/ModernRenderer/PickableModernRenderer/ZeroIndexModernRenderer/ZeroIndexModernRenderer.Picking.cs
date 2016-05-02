@@ -23,7 +23,6 @@ namespace CSharpGL
 
             if (geometryType == GeometryType.Point)
             {
-                //if (this.OnPrimitiveTest(e, x, y, canvasWidth, canvasHeight))
                 DrawMode mode = this.GetIndexBufferPtr().Mode;
                 if (this.OnPrimitiveTest(lastVertexId, mode))
                 { return PickPoint(stageVertexId, lastVertexId); }
