@@ -128,7 +128,7 @@ namespace CSharpGL.Demos
             }
         }
 
-        private void RenderersDraw(RenderModes renderMode ,bool renderScene = true, bool renderUI = true)
+        private void RenderersDraw(RenderModes renderMode, bool renderScene = true, bool renderUI = true)
         {
             var arg = new RenderEventArgs(renderMode, this.glCanvas1.ClientRectangle, this.camera, this.PickingGeometryType);
             if (renderMode == RenderModes.ColorCodedPicking)
@@ -208,10 +208,19 @@ namespace CSharpGL.Demos
                 string content = string.Format("[index: {0}]",
                     pickedGeometry.Indexes.PrintArray());
                 SizeF size = e.Graphics.MeasureString(content, font);
-                int x = this.lastMousePosition.X - (int)(size.Width / 2);
-                if (x < 0) { x = 0; }// make sure the text be displayed.
-                GL.DrawText(x,
-                    this.glCanvas1.Height - this.lastMousePosition.Y - 1,
+                // make sure the text be displayed.
+                int x = this.lastMousePosition.X - (int)(size.Width / 2) + 20;
+                if (x + (int)(size.Width) - 20 >= this.glCanvas1.Width)
+                { x = this.glCanvas1.Width - (int)size.Width + 20; }
+                else if (x < 0)
+                { x = 0; }
+                // make sure the text be displayed.
+                int y = this.glCanvas1.Height - this.lastMousePosition.Y - 1;
+                if (y + size.Height + 1 >= this.glCanvas1.Height)
+                { y = this.glCanvas1.Height - 15 - 5; }
+                else if (y < 15) { if (y > 0) { y += 15; } else { y = 15; } }
+                else { y += 15; }
+                GL.DrawText(x, y,
                     this.TextColor, "Courier New", fontSize,
                     content);
                 this.lblDrawText.Text = content;
