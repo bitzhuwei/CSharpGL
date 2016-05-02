@@ -65,6 +65,7 @@ namespace CSharpGL
             pickedGeometry.GeometryType = typeOfMode;
             pickedGeometry.StageVertexId = stageVertexId;
             pickedGeometry.From = this;
+
             // Fill primitive's position information.
             int vertexCount = typeOfMode.GetVertexCount();
             if (vertexCount == -1) { vertexCount = this.positionBufferPtr.Length; }
@@ -122,13 +123,24 @@ namespace CSharpGL
             pickedGeometry.GeometryType = GeometryType.Point;
             pickedGeometry.StageVertexId = stageVertexId;
             pickedGeometry.From = this;
-            //int vertexCount = 1;
             pickedGeometry.Indexes = new uint[] { lastVertexId, };
             pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.Indexes);
-            //ContinuousBufferRange(lastVertexId, vertexCount, pickedGeometry);
+
             return pickedGeometry;
         }
 
+        /// <summary>
+        /// Search line in triangles/triangle_strip/triangle_fan/
+        /// triangles_adjacency/triangle_strip_adjacency/
+        /// quads/quad_strip/polygon
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="stageVertexId"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="lastVertexId"></param>
+        /// <param name="searcher"></param>
+        /// <returns></returns>
         private PickedGeometry SearchLine(RenderEventArgs arg, uint stageVertexId,
             int x, int y, uint lastVertexId, ZeroIndexLineSearcher searcher)
         {
@@ -300,7 +312,6 @@ namespace CSharpGL
 
         private void PickingLastLineInLineLoop(PickedGeometry pickedGeometry)
         {
-            //const int lastVertexId = 0;
             const int vertexCount = 2;
             var offsets = new int[vertexCount] { (this.positionBufferPtr.Length - 1) * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength, 0, };
             pickedGeometry.Positions = new vec3[vertexCount];
@@ -308,23 +319,14 @@ namespace CSharpGL
             for (int i = 0; i < vertexCount; i++)
             {
                 GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
-                //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
                 IntPtr pointer = GL.MapBufferRange(BufferTarget.ArrayBuffer,
                     offsets[i],
                     1 * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength,
                     MapBufferRangeAccess.MapReadBit);
-                if (pointer.ToInt32() != 0)
+                unsafe
                 {
-                    unsafe
-                    {
-                        var array = (vec3*)pointer.ToPointer();
-                        pickedGeometry.Positions[i] = array[0];
-                    }
-                }
-                else
-                {
-                    ErrorCode error = (ErrorCode)GL.GetError();
-                    Debug.WriteLine("Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId);
+                    var array = (vec3*)pointer.ToPointer();
+                    pickedGeometry.Positions[i] = array[0];
                 }
                 GL.UnmapBuffer(BufferTarget.ArrayBuffer);
                 pickedGeometry.Indexes[i] = (uint)offsets[i] / (uint)(this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
