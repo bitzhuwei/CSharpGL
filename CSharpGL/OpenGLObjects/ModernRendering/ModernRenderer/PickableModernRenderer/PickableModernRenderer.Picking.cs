@@ -12,6 +12,9 @@ namespace CSharpGL
         // Color Coded Picking
         protected VertexArrayObject vertexArrayObject4Picking;
 
+        /// <summary>
+        /// uniform mat4 VMP; (in shader)
+        /// </summary>
         protected UniformMat4 pickingMVP = new UniformMat4("MVP");
 
         protected ShaderProgram pickingShaderProgram;
@@ -26,6 +29,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// uniform mat4 VMP; (in shader)
+        /// </summary>
         public mat4 MVP
         {
             get { return pickingMVP.Value; }
@@ -54,43 +60,21 @@ namespace CSharpGL
             uint stageVertexId,
             int x, int y);
 
-
-        //internal uint ReadPixel(int x, int y, int canvasHeight)
-        //{
-        //    // get coded color.
-        //    //byte[] codedColor = new byte[4];
-        //    UnmanagedArray<byte> codedColor = new UnmanagedArray<byte>(4);
-        //    GL.ReadPixels(x, canvasHeight - y - 1, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, codedColor.Header);
-        //    if (!
-        //        // This is when (x, y) is on background and no primitive is picked.
-        //        (codedColor[0] == byte.MaxValue && codedColor[1] == byte.MaxValue
-        //        && codedColor[2] == byte.MaxValue && codedColor[3] == byte.MaxValue))
-        //    {
-        //        // see http://www.cnblogs.com/bitzhuwei/p/modern-opengl-picking-primitive-in-VBO-2.html
-        //        uint shiftedR = (uint)codedColor[0];
-        //        uint shiftedG = (uint)codedColor[1] << 8;
-        //        uint shiftedB = (uint)codedColor[2] << 16;
-        //        uint shiftedA = (uint)codedColor[3] << 24;
-        //        uint stageVertexId = shiftedR + shiftedG + shiftedB + shiftedA;
-
-        //        return stageVertexId;
-        //    }
-        //    else
-        //    { return uint.MaxValue; }
-        //}
-
         /// <summary>
         /// 在此Buffer中的图元进行N选1
+        /// select a line from triangle/quad/polygon in this renderer.
         /// </summary>
         /// <param name="e"></param>
-        /// <param name="indexBufferPtr"></param>
-        internal void Render4SelfPicking(RenderEventArgs arg, IndexBufferPtr indexBufferPtr)
+        /// <param name="indexBufferPtr">indicates the primitive to pick a line from.</param>
+        internal void Render4InnerPicking(RenderEventArgs arg, IndexBufferPtr indexBufferPtr)
         {
             // 暂存clear color
             var originalClearColor = new float[4];
             GL.GetFloat(GetTarget.ColorClearValue, originalClearColor);
 
-            GL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);// 白色意味着没有拾取到任何对象
+            // 白色意味着没有拾取到任何对象
+            // white color: nothing picked.
+            GL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
             // 恢复clear color

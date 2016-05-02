@@ -111,7 +111,9 @@ namespace CSharpGL
             var originalClearColor = new float[4];
             GL.GetFloat(GetTarget.ColorClearValue, originalClearColor);
 
-            GL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);// 白色意味着没有拾取到任何对象
+            // 白色意味着没有拾取到任何对象
+            // white color: nothing picked.
+            GL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
             // 恢复clear color

@@ -19,7 +19,7 @@ namespace CSharpGL
             {
                 indexBufferPtr = buffer.GetBufferPtr() as ZeroIndexBufferPtr;
             }
-            modernRenderer.Render4SelfPicking(arg, indexBufferPtr);
+            modernRenderer.Render4InnerPicking(arg, indexBufferPtr);
             uint id = ColorCodedPicking.ReadPixel(x, y, arg.CanvasRect.Height);
 
             indexBufferPtr.Dispose();
