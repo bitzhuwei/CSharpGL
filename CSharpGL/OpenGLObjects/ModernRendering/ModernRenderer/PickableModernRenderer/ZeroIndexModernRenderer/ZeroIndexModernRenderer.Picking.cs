@@ -266,7 +266,8 @@ namespace CSharpGL
                 case DrawMode.TriangleStripAdjacency:
                     if (vertexCount > 5)
                     {
-                        if (first <= lastVertexId && lastVertexId <= last)
+                        var lastPart = last - (last + 1 - first) % 2;
+                        if (first <= lastVertexId && lastVertexId <= lastPart)
                         {
                             result = (lastVertexId - first) % 2 == 0;
                         }
