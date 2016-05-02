@@ -80,7 +80,7 @@ namespace CSharpGL
             // restore clear color
             GL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
-            this.ColorCodedPickingRender(arg, indexBufferPtr);
+            this.ColorCodedRender(arg, indexBufferPtr);
 
             GL.Flush();
 

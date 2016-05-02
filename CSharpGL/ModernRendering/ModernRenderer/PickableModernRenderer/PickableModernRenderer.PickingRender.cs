@@ -9,7 +9,7 @@ namespace CSharpGL
     public partial class PickableModernRenderer : IColorCodedPicking
     {
 
-        private void ColorCodedPickingRender(RenderEventArgs arg, IndexBufferPtr temporaryIndexBufferPtr = null)
+        private void ColorCodedRender(RenderEventArgs arg, IndexBufferPtr temporaryIndexBufferPtr = null)
         {
             UpdatePolygonMode(arg.PickingGeometryType);
 
