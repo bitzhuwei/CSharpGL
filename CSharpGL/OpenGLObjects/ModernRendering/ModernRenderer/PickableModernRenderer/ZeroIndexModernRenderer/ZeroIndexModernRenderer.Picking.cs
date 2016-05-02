@@ -79,8 +79,6 @@ namespace CSharpGL
                 else
                 { throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
             }
-
-            return null;
         }
 
         private PickedGeometry PickWhateverItIs(uint stageVertexId, uint lastVertexId, DrawMode mode, GeometryType typeOfMode)
