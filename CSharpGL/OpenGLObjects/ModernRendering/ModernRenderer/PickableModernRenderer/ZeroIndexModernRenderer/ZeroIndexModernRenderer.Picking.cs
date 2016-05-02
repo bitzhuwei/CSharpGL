@@ -48,7 +48,9 @@ namespace CSharpGL
 
             if (geometryType == GeometryType.Point)
             {
-                if (this.OnPrimitiveTest(e, x, y, canvasWidth, canvasHeight))
+                //if (this.OnPrimitiveTest(e, x, y, canvasWidth, canvasHeight))
+                DrawMode mode = this.GetIndexBufferPtr().Mode;
+                if(this.OnPrimitiveTest(lastVertexId, mode))
                 { return PickPoint(stageVertexId, lastVertexId); }
                 else
                 { return null; }
@@ -187,13 +189,153 @@ namespace CSharpGL
         /// <param name="canvasWidth"></param>
         /// <param name="canvasHeight"></param>
         /// <returns></returns>
-        private bool OnPrimitiveTest(RenderEventArgs e, int x, int y, int canvasWidth, int canvasHeight)
+        private bool OnPrimitiveTest(uint lastVertexId, DrawMode mode)
         {
-            var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, e.Camera, GeometryType.Line);
-            this.Render4Picking(arg, this.zeroIndexBufferPtr);
-            var stageVertexId = ColorCodedPicking.ReadPixel(x, y, canvasHeight);
-            return stageVertexId != uint.MaxValue;
+            bool result = false;
+            int first = this.zeroIndexBufferPtr.FirstVertex;
+            if (first < 0) { return false; }
+            int vertexCount = this.zeroIndexBufferPtr.VertexCount;
+            if (vertexCount <= 0) { return false; }
+            int last = first + vertexCount - 1;
+            switch (mode)
+            {
+                case DrawMode.Points:
+                    result = true;
+                    break;
+                case DrawMode.LineStrip:
+                    result = vertexCount > 1;
+                    break;
+                case DrawMode.LineLoop:
+                    result = vertexCount > 1;
+                    break;
+                case DrawMode.Lines:
+                    if (vertexCount > 1)
+                    {
+                        if (vertexCount % 2 == 0)
+                        {
+                            result = (first <= lastVertexId && lastVertexId <= last);
+                        }
+                        else
+                        {
+                            result = (first <= lastVertexId && lastVertexId <= last - 1);
+                        }
+                    }
+                    break;
+                case DrawMode.LineStripAdjacency:
+                    if (vertexCount > 3)
+                    {
+                        result = (first < lastVertexId && lastVertexId < last);
+                    }
+                    break;
+                case DrawMode.LinesAdjacency:
+                    if (vertexCount > 3)
+                    {
+                        if (first < lastVertexId && lastVertexId < last)
+                        {
+                            var m = (lastVertexId - first) % 4;
+                            result = (m == 1 || m == 2);
+                        }
+                    }
+                    break;
+                case DrawMode.TriangleStrip:
+                    if (vertexCount > 2)
+                    {
+                        result = vertexCount > 2 && lastVertexId > 1;
+                    }
+                    break;
+                case DrawMode.TriangleFan:
+                    if (vertexCount > 2)
+                    {
+                        result = vertexCount > 2 && lastVertexId > 1;
+                    }
+                    break;
+                case DrawMode.Triangles:
+                    if (vertexCount > 2)
+                    {
+                        if (first <= lastVertexId)
+                        {
+                            result = ((vertexCount % 3 == 0) && (lastVertexId <= last))
+                                || ((vertexCount % 3 == 1) && (lastVertexId < last))
+                                || ((vertexCount % 3 == 2) && (lastVertexId + 1 < last));
+                        }
+                    }
+                    break;
+                case DrawMode.TriangleStripAdjacency:
+                    if (vertexCount > 5)
+                    {
+                        if (first <= lastVertexId && lastVertexId <= last)
+                        {
+                            result = (lastVertexId - first) % 2 == 0;
+                        }
+                    }
+                    break;
+                case DrawMode.TrianglesAdjacency:
+                    if (vertexCount > 5)
+                    {
+                        if (first <= lastVertexId && lastVertexId <= last)
+                        {
+                            result = (lastVertexId - first) % 2 == 0;
+                        }
+                    }
+                    break;
+                case DrawMode.Patches:
+                    // not know what to do for now
+                    break;
+                case DrawMode.QuadStrip:
+                    if (vertexCount > 3)
+                    {
+                        if (first <= lastVertexId && lastVertexId <= last)
+                        {
+                            result = (vertexCount % 2 == 0)
+                                || (lastVertexId < last);
+                        }
+                    }
+                    break;
+                case DrawMode.Quads:
+                    if (vertexCount > 3)
+                    {
+                        if (first <= lastVertexId && lastVertexId <= last)
+                        {
+                            var m = vertexCount % 4;
+                            if (m == 0) { result = true; }
+                            else if (m == 1) { result = lastVertexId + 0 < last; }
+                            else if (m == 2) { result = lastVertexId + 1 < last; }
+                            else if (m == 3) { result = lastVertexId + 2 < last; }
+                            else { throw new Exception("This should never happen!"); }
+                        }
+                    }
+                    break;
+                case DrawMode.Polygon:
+                    if (vertexCount > 2)
+                    {
+                        result = (first <= lastVertexId && lastVertexId <= last);
+                    }
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+
+            return result;
         }
+        ///// <summary>
+        ///// 现在，已经判定了鼠标在某个点上。
+        ///// 我需要判定此点是否出现在图元上。
+        ///// now that I know the mouse is picking on some point,
+        ///// I need to make sure that point should appear.
+        ///// </summary>
+        ///// <param name="e"></param>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="canvasWidth"></param>
+        ///// <param name="canvasHeight"></param>
+        ///// <returns></returns>
+        //private bool OnPrimitiveTest(RenderEventArgs e, int x, int y, int canvasWidth, int canvasHeight)
+        //{
+        //    var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, e.Camera, GeometryType.Line);
+        //    this.Render4SelfPicking(arg, this.zeroIndexBufferPtr);
+        //    var stageVertexId = ColorCodedPicking.ReadPixel(x, y, canvasHeight);
+        //    return stageVertexId != uint.MaxValue;
+        //}
 
         private void PickingLastLineInLineLoop(PickedGeometry pickedGeometry)
         {
