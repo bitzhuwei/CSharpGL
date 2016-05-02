@@ -68,7 +68,7 @@ namespace CSharpGL
         /// <param name="indexBufferPtr">indicates the primitive to pick a line from.</param>
         internal void Render4InnerPicking(RenderEventArgs arg, IndexBufferPtr indexBufferPtr)
         {
-            // 暂存clear color
+            // record clear color
             var originalClearColor = new float[4];
             GL.GetFloat(GetTarget.ColorClearValue, originalClearColor);
 
@@ -77,14 +77,14 @@ namespace CSharpGL
             GL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-            // 恢复clear color
+            // restore clear color
             GL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
             this.ColorCodedPickingRender(arg, indexBufferPtr);
 
             GL.Flush();
 
-            //var filename = string.Format("Render4SelfPicking{0:yyyy-MM-dd_HH-mm-ss.ff}.png", DateTime.Now);
+            //var filename = string.Format("Render4InnerPicking{0:yyyy-MM-dd_HH-mm-ss.ff}.png", DateTime.Now);
             //Save2PictureHelper.Save2Picture(0, 0,
             //    e.CanvasRect.Width, e.CanvasRect.Height, filename);
         }

@@ -103,7 +103,7 @@ namespace CSharpGL
                 throw new ArgumentException();
             }
 
-            // 暂存clear color
+            // record clear color
             var originalClearColor = new float[4];
             GL.GetFloat(GetTarget.ColorClearValue, originalClearColor);
 
@@ -112,7 +112,7 @@ namespace CSharpGL
             GL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-            // 恢复clear color
+            // restore clear color
             GL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
             SharedStageInfo info = new SharedStageInfo();
