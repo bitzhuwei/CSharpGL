@@ -38,7 +38,7 @@ namespace CSharpGL
         public override PickedGeometry Pick(
             RenderEventArgs e,
             uint stageVertexId,
-            int x, int y, int canvasWidth, int canvasHeight)
+            int x, int y)
         {
             uint lastVertexId;
             if (!this.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
@@ -65,7 +65,7 @@ namespace CSharpGL
                 {
                     ZeroIndexLineSearcher searcher = GetLineSearcher(mode);
                     if (searcher != null)// line is from triangle, quad or polygon
-                    { return SearchLine(e, stageVertexId, x, y, canvasWidth, canvasHeight, lastVertexId, searcher); }
+                    { return SearchLine(e, stageVertexId, x, y, lastVertexId, searcher); }
                     else
                     { throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
                 }
@@ -151,14 +151,15 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private PickedGeometry SearchLine(RenderEventArgs e, uint stageVertexId, int x, int y, int canvasWidth, int canvasHeight, uint lastVertexId, ZeroIndexLineSearcher searcher)
+        private PickedGeometry SearchLine(RenderEventArgs arg, uint stageVertexId, 
+            int x, int y, uint lastVertexId, ZeroIndexLineSearcher searcher)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
             pickedGeometry.From = this;
             pickedGeometry.GeometryType = GeometryType.Line;
             pickedGeometry.StageVertexId = stageVertexId;
-            pickedGeometry.Indexes = searcher.Search(e,
-                x, y, canvasWidth, canvasHeight, lastVertexId, this);
+            pickedGeometry.Indexes = searcher.Search(arg,
+                x, y, lastVertexId, this);
             GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
             IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
             unsafe

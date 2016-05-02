@@ -13,9 +13,9 @@ namespace CSharpGL
     {
 
         public override PickedGeometry Pick(
-            RenderEventArgs e, 
+            RenderEventArgs arg, 
             uint stageVertexId,
-            int x, int y, int canvasWidth, int canvasHeight)
+            int x, int y)
         {
             uint lastVertexId;
             PickedGeometry pickedGeometry = null;
@@ -24,14 +24,14 @@ namespace CSharpGL
                 // 找到 lastIndexId
                 RecognizedPrimitiveIndex lastIndexId =
                     this.GetLastIndexIdOfPickedGeometry(
-                        e, lastVertexId, x, y, canvasWidth, canvasHeight);
+                        arg, lastVertexId, x, y);
                 Debug.WriteLineIf(lastIndexId == null, string.Format(
                     "Got lastVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}] [{3}] [{4}] [{5}] [{6}]",
-                    lastVertexId, e, stageVertexId, x, y, canvasWidth, canvasHeight));
+                    lastVertexId, arg, stageVertexId, x, y));
                 if (lastIndexId != null)
                 {
                     // 获取pickedGeometry
-                    pickedGeometry = this.GetGeometry(e, lastIndexId, stageVertexId);
+                    pickedGeometry = this.GetGeometry(arg, lastIndexId, stageVertexId);
                 }
             }
 
@@ -65,25 +65,25 @@ namespace CSharpGL
         }
 
         private RecognizedPrimitiveIndex GetLastIndexIdOfPickedGeometry(
-            RenderEventArgs e,
-            uint lastVertexId, int x, int y, int canvasWidth, int canvasHeight)
+            RenderEventArgs arg,
+            uint lastVertexId, int x, int y)
         {
-            List<RecognizedPrimitiveIndex> lastIndexIdList = GetLastIndexIdList(e, lastVertexId);
+            List<RecognizedPrimitiveIndex> lastIndexIdList = GetLastIndexIdList(arg, lastVertexId);
 
             if (lastIndexIdList.Count == 0) { return null; }
 
             RecognizedPrimitiveIndex lastIndexId = GetLastIndexId(
-                e, lastIndexIdList, x, y, canvasWidth, canvasHeight);
+                arg, lastIndexIdList, x, y);
 
             return lastIndexId;
         }
 
-        private uint Pick(RenderEventArgs e, OneIndexBufferPtr twoPrimitivesIndexBufferPtr,
-            int x, int y, int canvasWidth, int canvasHeight)
+        private uint Pick(RenderEventArgs arg, OneIndexBufferPtr twoPrimitivesIndexBufferPtr,
+            int x, int y)
         {
-            Render4SelfPicking(e, twoPrimitivesIndexBufferPtr);
+            Render4SelfPicking(arg, twoPrimitivesIndexBufferPtr);
 
-            uint pickedIndex = ColorCodedPicking.ReadPixel(x, y, canvasHeight);
+            uint pickedIndex = ColorCodedPicking.ReadPixel(x, y, arg.CanvasRect.Height);
 
             return pickedIndex;
         }

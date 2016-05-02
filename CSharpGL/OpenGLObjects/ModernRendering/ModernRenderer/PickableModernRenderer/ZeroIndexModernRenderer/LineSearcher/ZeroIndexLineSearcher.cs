@@ -7,8 +7,8 @@ namespace CSharpGL
 {
     abstract class ZeroIndexLineSearcher
     {
-        internal abstract uint[] Search(RenderEventArgs e,
-            int x, int y, int canvasWidth, int canvasHeight,
+        internal abstract uint[] Search(RenderEventArgs arg,
+            int x, int y,
             uint lastVertexId, ZeroIndexModernRenderer modernRenderer);
         
     }

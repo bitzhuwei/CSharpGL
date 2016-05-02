@@ -50,9 +50,9 @@ namespace CSharpGL
         }
 
         public abstract PickedGeometry Pick(
-            RenderEventArgs e,  
+            RenderEventArgs e,
             uint stageVertexId,
-            int x, int y, int canvasWidth, int canvasHeight);
+            int x, int y);
 
 
         //internal uint ReadPixel(int x, int y, int canvasHeight)
@@ -78,7 +78,7 @@ namespace CSharpGL
         //    else
         //    { return uint.MaxValue; }
         //}
-        
+
         /// <summary>
         /// 在此Buffer中的图元进行N选1
         /// </summary>
@@ -118,7 +118,9 @@ namespace CSharpGL
 
             GL.Flush();
 
-            //Save2PictureHelper.Save2Picture(0,0
+            var filename = string.Format("Render4SelfPicking{0:yyyy-MM-dd_HH-mm-ss.ff}.png", DateTime.Now);
+            Save2PictureHelper.Save2Picture(0, 0,
+                e.CanvasRect.Width, e.CanvasRect.Height, filename);
         }
 
         internal PrimitiveRestartSwitch GetPrimitiveRestartSwitch()

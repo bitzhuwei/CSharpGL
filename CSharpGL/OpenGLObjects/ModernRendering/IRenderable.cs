@@ -33,7 +33,7 @@ namespace CSharpGL
         public RenderEventArgs(RenderModes renderMode, Rectangle viewport, ICamera camera, GeometryType pickingGeometryType = GeometryType.Point)
         {
             this.RenderMode = renderMode;
-            this.Viewport = viewport;
+            this.CanvasRect = viewport;
             this.Camera = camera;
             this.PickingGeometryType = pickingGeometryType;
         }
@@ -48,7 +48,7 @@ namespace CSharpGL
         /// </summary>
         public RenderModes RenderMode { get; private set; }
 
-        public Rectangle Viewport { get; set; }
+        public Rectangle CanvasRect { get; set; }
 
         public GeometryType PickingGeometryType { get; private set; }
 

@@ -7,8 +7,8 @@ namespace CSharpGL
 {
     class ZeroIndexLineInPolygonSearcher : ZeroIndexLineSearcher
     {
-        internal override uint[] Search(RenderEventArgs e,
-            int x, int y, int canvasWidth, int canvasHeight,
+        internal override uint[] Search(RenderEventArgs arg,
+            int x, int y,
             uint lastVertexId, ZeroIndexModernRenderer modernRenderer)
         {
             var zeroIndexBufferPtr = modernRenderer.GetIndexBufferPtr() as ZeroIndexBufferPtr;
@@ -19,8 +19,8 @@ namespace CSharpGL
             {
                 indexBufferPtr = buffer.GetBufferPtr() as ZeroIndexBufferPtr;
             }
-            modernRenderer.Render4SelfPicking(e, indexBufferPtr);
-            uint id = ColorCodedPicking.ReadPixel(x, y, canvasHeight);
+            modernRenderer.Render4SelfPicking(arg, indexBufferPtr);
+            uint id = ColorCodedPicking.ReadPixel(x, y, arg.CanvasRect.Height);
 
             indexBufferPtr.Dispose();
 

@@ -22,14 +22,14 @@ namespace CSharpGL
         /// <returns></returns>
         public static PickedGeometry Pick(
             RenderEventArgs arg,
-            int x, int y, int canvasWidth, int canvasHeight,
+            int x, int y,
             params PickableModernRenderer[] pickableElements)
         {
-            if (x < 0 || canvasWidth <= x || y < 0 || canvasHeight <= y) { return null; }
+            if (x < 0 || arg.CanvasRect.Width <= x || y < 0 || arg.CanvasRect.Height <= y) { return null; }
 
             Rectangle rect = new Rectangle(x, y, 1, 1);
             List<Tuple<Point, PickedGeometry>> list = Pick(arg,
-                rect, canvasWidth, canvasHeight, pickableElements);
+                rect, pickableElements);
             if (list.Count > 0)
             { return list[0].Item2; }
             else
@@ -48,14 +48,14 @@ namespace CSharpGL
         /// <param name="pickableElements">在哪些对象中执行拾取操作</param>
         /// <returns></returns>
         public static List<Tuple<Point, PickedGeometry>> Pick(
-            RenderEventArgs e,
-            int x, int y, int radius, int canvasWidth, int canvasHeight,
+            RenderEventArgs arg,
+            int x, int y, int radius,
              params PickableModernRenderer[] pickableElements)
         {
-            if (x < 0 || canvasWidth <= x || y < 0 || canvasHeight <= y) { return null; }
+            if (x < 0 || arg.CanvasRect.Width <= x || y < 0 || arg.CanvasRect.Height <= y) { return null; }
 
             Rectangle rect = new Rectangle(x - radius, y - radius, radius * 2, radius * 2);
-            return Pick(e, rect, canvasWidth, canvasHeight, pickableElements);
+            return Pick(arg, rect, pickableElements);
         }
 
         /// <summary>
@@ -69,23 +69,23 @@ namespace CSharpGL
         /// <returns></returns>
         public static List<Tuple<Point, PickedGeometry>> Pick(
             RenderEventArgs arg,
-            Rectangle rect, int canvasWidth, int canvasHeight,
+            Rectangle rect,
             params PickableModernRenderer[] pickableElements)
         {
             var result = new List<Tuple<Point, PickedGeometry>>();
             if (pickableElements.Length == 0) { return result; }
 
             Render4Picking(arg, pickableElements);
-            List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect, canvasHeight);
+            List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect, arg.CanvasRect.Height);
             foreach (var tuple in stageVertexIdList)
             {
                 int x = tuple.Item1.X;
                 int y = tuple.Item1.Y;
-                if (x < 0 || canvasWidth <= x || y < 0 || canvasHeight <= y) { continue; }
+                if (x < 0 || arg.CanvasRect.Width <= x || y < 0 || arg.CanvasRect.Height <= y) { continue; }
 
                 uint stageVertexId = tuple.Item2;
                 PickedGeometry pickedGeometry = PickGeometry(arg,
-                    x, y, canvasWidth, canvasHeight, stageVertexId, pickableElements);
+                    x, y, stageVertexId, pickableElements);
                 if (pickedGeometry != null)
                 {
                     result.Add(new Tuple<Point, PickedGeometry>(new Point(x, y), pickedGeometry));
@@ -102,6 +102,11 @@ namespace CSharpGL
         /// <param name="pickableElements"></param>
         public static void Render4Picking(RenderEventArgs arg, params PickableModernRenderer[] pickableElements)
         {
+            if (arg.RenderMode != RenderModes.ColorCodedPicking)
+            {
+                throw new ArgumentException();
+            }
+
             // 暂存clear color
             var originalClearColor = new float[4];
             GL.GetFloat(GetTarget.ColorClearValue, originalClearColor);
@@ -134,7 +139,7 @@ namespace CSharpGL
         /// <param name="pickableElements"></param>
         /// <returns></returns>
         private static PickedGeometry PickGeometry(RenderEventArgs arg,
-            int x, int y, int canvasWidth, int canvasHeight,
+            int x, int y, 
             uint stageVertexId,
             params IColorCodedPicking[] pickableElements)
         {
@@ -142,7 +147,7 @@ namespace CSharpGL
             foreach (var item in pickableElements)
             {
                 pickedGeometry = item.Pick(arg, stageVertexId,
-                    x, y, canvasWidth, canvasHeight);
+                    x, y);
                 if (pickedGeometry != null)
                 { break; }
             }

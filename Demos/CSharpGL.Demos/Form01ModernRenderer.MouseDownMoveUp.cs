@@ -165,7 +165,7 @@ namespace CSharpGL.Demos
                 pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
 
                 PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
-                    arg, x, y, this.glCanvas1.Width, this.glCanvas1.Height,
+                    arg, x, y, 
                     pickable);
 
                 if (pickedGeometry != null)
