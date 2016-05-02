@@ -81,7 +81,7 @@ namespace CSharpGL
         private uint Pick(RenderEventArgs e, OneIndexBufferPtr twoPrimitivesIndexBufferPtr,
             int x, int y, int canvasWidth, int canvasHeight)
         {
-            Render4Picking(e, twoPrimitivesIndexBufferPtr);
+            Render4SelfPicking(e, twoPrimitivesIndexBufferPtr);
 
             uint pickedIndex = ColorCodedPicking.ReadPixel(x, y, canvasHeight);
 
