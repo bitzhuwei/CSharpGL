@@ -9,7 +9,7 @@ namespace CSharpGL
     public partial class ModernRenderer
     {
 
-        protected override void DoRender(RenderEventArgs e)
+        protected override void DoRender(RenderEventArgs arg)
         {
             ShaderProgram program = this.shaderProgram;
             if (program == null) { return; }
@@ -30,7 +30,7 @@ namespace CSharpGL
                 {
                     var vertexArrayObject = new VertexArrayObject(
                         indexBufferPtr, propertyBufferPtrs);
-                    vertexArrayObject.Create(e, program);
+                    vertexArrayObject.Create(arg, program);
 
                     this.vertexArrayObject = vertexArrayObject;
                 }
@@ -41,7 +41,7 @@ namespace CSharpGL
                 {
                     if (vertexArrayObject.IndexBufferPtr != indexBufferPtr)
                     { vertexArrayObject.IndexBufferPtr = indexBufferPtr; }
-                    vertexArrayObject.Render(e, program);
+                    vertexArrayObject.Render(arg, program);
                 }
             }
 

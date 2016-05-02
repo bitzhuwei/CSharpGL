@@ -39,7 +39,7 @@ namespace CSharpGL
         /// </summary>
         public IndexElementType Type { get; private set; }
 
-        public override void Render(RenderEventArgs e, ShaderProgram shaderProgram)
+        public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
         {
             GL.GetDelegateFor<GL.glBindBuffer>()(GL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
             GL.DrawElements(this.Mode, this.ElementCount, (uint)this.Type, IntPtr.Zero);

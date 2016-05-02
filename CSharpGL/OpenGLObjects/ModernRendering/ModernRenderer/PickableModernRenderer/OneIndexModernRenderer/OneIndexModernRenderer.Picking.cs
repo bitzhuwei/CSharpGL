@@ -41,7 +41,7 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private PickedGeometry GetGeometry(RenderEventArgs e,
+        private PickedGeometry GetGeometry(RenderEventArgs arg,
             RecognizedPrimitiveIndex lastIndexId, uint stageVertexId)
         {
             var pickedGeometry = new PickedGeometry();
@@ -98,7 +98,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="lastVertexId"></param>
         /// <returns></returns>
-        private List<RecognizedPrimitiveIndex> GetLastIndexIdList(RenderEventArgs e, uint lastVertexId)
+        private List<RecognizedPrimitiveIndex> GetLastIndexIdList(RenderEventArgs arg, uint lastVertexId)
         {
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
                 this.GetIndexBufferPtr().Mode);

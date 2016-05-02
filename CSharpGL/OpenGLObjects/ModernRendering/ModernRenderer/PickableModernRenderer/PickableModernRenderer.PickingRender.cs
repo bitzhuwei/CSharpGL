@@ -9,9 +9,9 @@ namespace CSharpGL
     public partial class PickableModernRenderer : IColorCodedPicking
     {
 
-        private void PickingRender(RenderEventArgs e)
+        private void PickingRender(RenderEventArgs arg, IndexBufferPtr temporaryIndexBufferPtr = null)
         {
-            UpdatePolygonMode(e.PickingGeometryType);
+            UpdatePolygonMode(arg.PickingGeometryType);
 
             ShaderProgram program = this.PickingShaderProgram;
 
@@ -28,13 +28,13 @@ namespace CSharpGL
             {
                 var vertexArrayObject4Picking = new VertexArrayObject(
                     this.GetIndexBufferPtr(), this.positionBufferPtr);
-                vertexArrayObject4Picking.Create(e, program);
+                vertexArrayObject4Picking.Create(arg, program);
 
                 this.vertexArrayObject4Picking = vertexArrayObject4Picking;
             }
             //else
             {
-                this.vertexArrayObject4Picking.Render(e, program);
+                this.vertexArrayObject4Picking.Render(arg, program, temporaryIndexBufferPtr);
             }
 
             PickingSwitchesOff();

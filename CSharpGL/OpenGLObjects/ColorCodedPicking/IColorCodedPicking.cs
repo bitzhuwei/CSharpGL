@@ -23,7 +23,7 @@ namespace CSharpGL
         /// </summary>
         uint PickingBaseID { get; }
 
-        void SetPickingBaseID(uint value);
+        //void SetPickingBaseID(uint value);
 
         /// <summary>
         /// Gets vertices' count in this element's VBO representing positions.
@@ -36,9 +36,12 @@ namespace CSharpGL
         /// <para>Note: the <paramref name="stageVertexId"/> refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</para>
         /// <para>You can use <see cref="PickedPrimitiveHelper.TryPick()"/> to simplify your work.</para>
         /// </summary>
+        /// <param name="arg"></param>
         /// <param name="stageVertexId">Refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</param>
+        /// <param name="x">mouse position</param>
+        /// <param name="y">mouse position</param>
         /// <returns></returns>
-        PickedGeometry Pick(RenderEventArgs e, uint stageVertexId, 
+        PickedGeometry Pick(RenderEventArgs arg, uint stageVertexId, 
             int x, int y);
     }
 }

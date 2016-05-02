@@ -52,9 +52,9 @@ namespace CSharpGL
             this.modernRenderer.Initialize();
         }
 
-        protected override void DoRender(RenderEventArgs e)
+        protected override void DoRender(RenderEventArgs arg)
         {
-            this.modernRenderer.Render(e);
+            this.modernRenderer.Render(arg);
         }
 
         protected override void DisposeUnmanagedResources()

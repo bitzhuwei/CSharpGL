@@ -10,15 +10,15 @@ namespace CSharpGL
     public partial class PickableModernRenderer
     {
 
-        protected override void DoRender(RenderEventArgs e)
+        protected override void DoRender(RenderEventArgs arg)
         {
-            if (e.RenderMode == RenderModes.ColorCodedPicking)
+            if (arg.RenderMode == RenderModes.ColorCodedPicking)
             {
-                PickingRender(e);
+                PickingRender(arg);
             }
-            else if (e.RenderMode == RenderModes.Render)
+            else if (arg.RenderMode == RenderModes.Render)
             {
-                base.DoRender(e);
+                base.DoRender(arg);
             }
 
         }

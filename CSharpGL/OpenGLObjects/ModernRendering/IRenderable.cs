@@ -15,8 +15,8 @@ namespace CSharpGL
         /// <summary>
         /// 渲染一个元素。
         /// </summary>
-        /// <param name="e"></param>
-        void Render(RenderEventArgs e);
+        /// <param name="arg"></param>
+        void Render(RenderEventArgs arg);
     }
 
     /// <summary>

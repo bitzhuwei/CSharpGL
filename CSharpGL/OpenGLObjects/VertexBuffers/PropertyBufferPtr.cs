@@ -78,7 +78,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="e"></param>
         /// <param name="shaderProgram"></param>
-        public override void Render(RenderEventArgs e, ShaderProgram shaderProgram)
+        public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
         {
             uint location = shaderProgram.GetAttributeLocation(this.VarNameInVertexShader);
             GL.BindBuffer(BufferTarget.ArrayBuffer, this.BufferId);

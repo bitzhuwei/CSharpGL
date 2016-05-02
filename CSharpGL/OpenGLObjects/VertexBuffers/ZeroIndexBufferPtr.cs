@@ -35,10 +35,10 @@ namespace CSharpGL
         /// </summary>
         public int VertexCount { get; set; }
 
-        public override void Render(RenderEventArgs e, ShaderProgram shaderProgram)
+        public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
         {
-            if (e.RenderMode == RenderModes.ColorCodedPicking
-                && e.PickingGeometryType == GeometryType.Point)
+            if (arg.RenderMode == RenderModes.ColorCodedPicking
+                && arg.PickingGeometryType == GeometryType.Point)
             {
                 // this maybe render points that should not appear. 
                 // so need to select by another picking

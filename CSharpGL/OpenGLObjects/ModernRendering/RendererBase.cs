@@ -60,18 +60,18 @@ namespace CSharpGL
         /// 渲染
         /// </summary>
         /// <param name="renderMode"></param>
-        public void Render(RenderEventArgs e)
+        public void Render(RenderEventArgs arg)
         {
             if (!initialized) { Initialize(); }
 
-            DoRender(e);
+            DoRender(arg);
         }
 
         /// <summary>
         /// 执行渲染操作
         /// </summary>
         /// <param name="e"></param>
-        protected abstract void DoRender(RenderEventArgs e);
+        protected abstract void DoRender(RenderEventArgs arg);
 
 
         #region IDisposable Members

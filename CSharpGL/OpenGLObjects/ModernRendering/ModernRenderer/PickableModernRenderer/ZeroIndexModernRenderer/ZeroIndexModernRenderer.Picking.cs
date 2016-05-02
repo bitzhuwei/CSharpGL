@@ -36,7 +36,7 @@ namespace CSharpGL
         }
 
         public override PickedGeometry Pick(
-            RenderEventArgs e,
+            RenderEventArgs arg,
             uint stageVertexId,
             int x, int y)
         {
@@ -44,7 +44,7 @@ namespace CSharpGL
             if (!this.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
             { return null; }
 
-            GeometryType geometryType = e.PickingGeometryType;
+            GeometryType geometryType = arg.PickingGeometryType;
 
             if (geometryType == GeometryType.Point)
             {
@@ -65,7 +65,7 @@ namespace CSharpGL
                 {
                     ZeroIndexLineSearcher searcher = GetLineSearcher(mode);
                     if (searcher != null)// line is from triangle, quad or polygon
-                    { return SearchLine(e, stageVertexId, x, y, lastVertexId, searcher); }
+                    { return SearchLine(arg, stageVertexId, x, y, lastVertexId, searcher); }
                     else
                     { throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
                 }
@@ -328,7 +328,7 @@ namespace CSharpGL
         ///// <param name="canvasWidth"></param>
         ///// <param name="canvasHeight"></param>
         ///// <returns></returns>
-        //private bool OnPrimitiveTest(RenderEventArgs e, int x, int y, int canvasWidth, int canvasHeight)
+        //private bool OnPrimitiveTest(RenderEventArgs arg, int x, int y, int canvasWidth, int canvasHeight)
         //{
         //    var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, e.Camera, GeometryType.Line);
         //    this.Render4SelfPicking(arg, this.zeroIndexBufferPtr);

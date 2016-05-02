@@ -34,7 +34,7 @@ namespace CSharpGL
 
         public uint PickingBaseID { get; private set; }
 
-        public void SetPickingBaseID(uint value)
+        internal void SetPickingBaseID(uint value)
         {
             this.PickingBaseID = value;
         }
@@ -50,7 +50,7 @@ namespace CSharpGL
         }
 
         public abstract PickedGeometry Pick(
-            RenderEventArgs e,
+            RenderEventArgs arg,
             uint stageVertexId,
             int x, int y);
 
@@ -84,7 +84,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="e"></param>
         /// <param name="indexBufferPtr"></param>
-        internal void Render4SelfPicking(RenderEventArgs e, IndexBufferPtr indexBufferPtr)
+        internal void Render4SelfPicking(RenderEventArgs arg, IndexBufferPtr indexBufferPtr)
         {
             // 暂存clear color
             var originalClearColor = new float[4];
@@ -96,7 +96,7 @@ namespace CSharpGL
             // 恢复clear color
             GL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
-            UpdatePolygonMode(e.PickingGeometryType);
+            UpdatePolygonMode(arg.PickingGeometryType);
             ShaderProgram program = this.PickingShaderProgram;
             // 绑定shader
             program.Bind();
@@ -106,8 +106,8 @@ namespace CSharpGL
             PickingSwitchesOn();
             {
                 //var arg = new RenderEventArgs(RenderModes.ColorCodedPicking, camera);
-                this.positionBufferPtr.Render(e, program);
-                indexBufferPtr.Render(e, program);
+                this.positionBufferPtr.Render(arg, program);
+                indexBufferPtr.Render(arg, program);
                 GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
             }
             PickingSwitchesOff();

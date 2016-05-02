@@ -52,7 +52,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="e"></param>
         /// <param name="shaderProgram"></param>
-        public void Create(RenderEventArgs e, ShaderProgram shaderProgram)
+        public void Create(RenderEventArgs arg, ShaderProgram shaderProgram)
         {
             if (this.ID != 0)
             { throw new Exception(string.Format("ID[{0}] is already generated!", this.ID)); }
@@ -68,7 +68,7 @@ namespace CSharpGL
             {
                 foreach (var item in propertyBufferPtrs)
                 {
-                    item.Render(e, shaderProgram);
+                    item.Render(arg, shaderProgram);
                 }
             }
             this.Unbind();
@@ -89,14 +89,24 @@ namespace CSharpGL
         /// </summary>
         /// <param name="e"></param>
         /// <param name="shaderProgram"></param>
-        public void Render(RenderEventArgs e, ShaderProgram shaderProgram)
+        /// <param name="temporaryIndexBufferPtr">render by a temporary index buffer</param>
+        public void Render(RenderEventArgs arg, ShaderProgram shaderProgram, IndexBufferPtr temporaryIndexBufferPtr = null)
         {
-            IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
-            if (indexBufferPtr != null)
+            if (temporaryIndexBufferPtr != null)
             {
                 this.Bind();
-                indexBufferPtr.Render(e, shaderProgram);
+                temporaryIndexBufferPtr.Render(arg, shaderProgram);
                 this.Unbind();
+            }
+            else
+            {
+                IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
+                if (indexBufferPtr != null)
+                {
+                    this.Bind();
+                    indexBufferPtr.Render(arg, shaderProgram);
+                    this.Unbind();
+                }
             }
         }
 
