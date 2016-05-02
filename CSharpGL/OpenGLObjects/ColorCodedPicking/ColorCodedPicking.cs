@@ -76,25 +76,19 @@ namespace CSharpGL
             if (pickableElements.Length == 0) { return result; }
 
             Render4Picking(arg, pickableElements);
-
-            for (int row = 0; row < rect.Width; row++)
+            List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect, canvasHeight);
+            foreach (var tuple in stageVertexIdList)
             {
-                for (int col = 0; col < rect.Height; col++)
+                int x = tuple.Item1.X;
+                int y = tuple.Item1.Y;
+                if (x < 0 || canvasWidth <= x || y < 0 || canvasHeight <= y) { continue; }
+
+                uint stageVertexId = tuple.Item2;
+                PickedGeometry pickedGeometry = PickGeometry(arg,
+                    x, y, canvasWidth, canvasHeight, stageVertexId, pickableElements);
+                if (pickedGeometry != null)
                 {
-                    int x = rect.X + col;
-                    int y = rect.Y + row;
-
-                    if (x < 0 || canvasWidth <= x || y < 0 || canvasHeight <= y) { continue; }
-
-                    uint stageVertexId = ReadPixel(x, y, canvasHeight);
-
-                    PickedGeometry pickedGeometry = PickGeometry(arg,
-                        x, y, canvasWidth, canvasHeight, stageVertexId, pickableElements);
-
-                    if (pickedGeometry != null)
-                    {
-                        result.Add(new Tuple<Point, PickedGeometry>(new Point(x, y), pickedGeometry));
-                    }
+                    result.Add(new Tuple<Point, PickedGeometry>(new Point(x, y), pickedGeometry));
                 }
             }
 
@@ -156,6 +150,67 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
+        /// <summary>
+        /// 读取指定范围内的像素，获取其代表的VertexId
+        /// <para>Read specified rect and get the VertexIds they represent.</para>
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <param name="canvasHeight"></param>
+        /// <returns></returns>
+        public static unsafe List<Tuple<Point, uint>> ReadPixels(
+            Rectangle rect, int canvasHeight)
+        {
+            var result = new List<Tuple<Point, uint>>();
+            if (rect.Width <= 0 || rect.Height <= 0) { return result; }
+
+            // get coded color.
+            using (var codedColor = new UnmanagedArray<Pixel>(4 * rect.Width * rect.Height))
+            {
+                GL.ReadPixels(rect.X, canvasHeight - rect.Y - 1, rect.Width, rect.Height,
+                    GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, codedColor.Header);
+
+                var array = (Pixel*)codedColor.FirstElement();
+                int index = 0;
+                var vertexIdList = new List<uint>();
+                for (int y = rect.Height - 1; y >= 0; y--)
+                {
+                    for (int x = 0; x < rect.Width; x++)
+                    {
+                        Pixel pixel = array[index++];
+                        if (!
+                            // This is when (x, y) is on background and no primitive is picked.
+                            (pixel.r == byte.MaxValue && pixel.g == byte.MaxValue
+                            && pixel.b == byte.MaxValue && pixel.a == byte.MaxValue))
+                        {
+                            /* // This is how is vertexID coded into color in vertex shader.
+                             * 	int objectID = gl_VertexID;
+                                codedColor = vec4(
+                                    float(objectID & 0xFF), 
+                                    float((objectID >> 8) & 0xFF), 
+                                    float((objectID >> 16) & 0xFF), 
+                                    float((objectID >> 24) & 0xFF));
+                             */
+                            // get vertexID from coded color.
+                            // the vertexID is the last vertex that constructs the primitive.
+                            // see http://www.cnblogs.com/bitzhuwei/p/modern-opengl-picking-primitive-in-VBO-2.html
+                            uint shiftedR = (uint)pixel.r;
+                            uint shiftedG = (uint)pixel.g << 8;
+                            uint shiftedB = (uint)pixel.b << 16;
+                            uint shiftedA = (uint)pixel.a << 24;
+                            var vertexId = shiftedR + shiftedG + shiftedB + shiftedA;
+                            if (!vertexIdList.Contains(vertexId))
+                            {
+                                result.Add(new Tuple<Point, uint>(
+                                    new Point(x, y), vertexId));
+                                vertexIdList.Add(vertexId);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
 
         public static uint ReadPixel(
             int x, int y, int canvasHeight)
