@@ -9,7 +9,7 @@ namespace CSharpGL
     public partial class PickableModernRenderer : IColorCodedPicking
     {
 
-        private void PickingRender(RenderEventArgs arg, IndexBufferPtr temporaryIndexBufferPtr = null)
+        private void ColorCodedPickingRender(RenderEventArgs arg, IndexBufferPtr temporaryIndexBufferPtr = null)
         {
             UpdatePolygonMode(arg.PickingGeometryType);
 
@@ -19,7 +19,8 @@ namespace CSharpGL
             program.Bind();
             var picking = this as IColorCodedPicking;
             // TODO: use uint/int/float or ? use UniformUInt instead
-            program.SetUniform("pickingBaseID", picking.PickingBaseID);
+            program.SetUniform("pickingBaseID", 
+                temporaryIndexBufferPtr == null ? picking.PickingBaseID : 0u);
             pickingMVP.SetUniform(program);
 
             PickingSwitchesOn();
