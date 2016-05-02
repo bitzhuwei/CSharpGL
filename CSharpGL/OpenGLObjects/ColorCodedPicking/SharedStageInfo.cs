@@ -28,7 +28,7 @@ namespace CSharpGL
         /// <param name="pickable"></param>
         /// <param name="gl"></param>
         /// <param name="renderMode"></param>
-        public virtual void RenderForPicking(PickableModernRenderer pickable, RenderEventArgs arg)
+        public virtual void RenderForPicking(PickableRenderer pickable, RenderEventArgs arg)
         {
             if (pickable != null)
             {

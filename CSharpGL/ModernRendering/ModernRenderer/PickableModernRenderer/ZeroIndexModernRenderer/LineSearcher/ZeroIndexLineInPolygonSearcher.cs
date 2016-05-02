@@ -9,7 +9,7 @@ namespace CSharpGL
     {
         internal override uint[] Search(RenderEventArgs arg,
             int x, int y,
-            uint lastVertexId, ZeroIndexModernRenderer modernRenderer)
+            uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
             var zeroIndexBufferPtr = modernRenderer.GetIndexBufferPtr() as ZeroIndexBufferPtr;
             ZeroIndexBufferPtr indexBufferPtr = null;

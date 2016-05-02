@@ -47,12 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DragParam.cs" />
-    <Compile Include="Form01ModernRenderer.FormLoad.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Form01Renderer.cs" />
+    <Compile Include="Form01Renderer.Designer.cs">
+      <DependentUpon>Form01Renderer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form01ModernRenderer.MouseDownMoveUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Form01Renderer.FormLoad.cs" />
+    <Compile Include="Form01Renderer.MouseDownMoveUp.cs" />
     <Compile Include="HighlightedPickableRenderer.cs" />
     <Compile Include="IBufferable\ChainModelConverter.cs" />
     <Compile Include="FormBulletinBoard.cs">
@@ -68,12 +68,6 @@
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ChainModel.cs" />
-    <Compile Include="Form01ModernRenderer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form01ModernRenderer.Designer.cs">
-      <DependentUpon>Form01ModernRenderer.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,11 +88,11 @@
     <None Include="Shaders\Simple.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <EmbeddedResource Include="Form01ModernRenderer.resx">
-      <DependentUpon>Form01ModernRenderer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form00GLCanvas.resx">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form01Renderer.resx">
+      <DependentUpon>Form01Renderer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBulletinBoard.resx">
       <DependentUpon>FormBulletinBoard.cs</DependentUpon>

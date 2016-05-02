@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnForm00GLCanvas = new System.Windows.Forms.Button();
-            this.btnForm01ModernRenderer = new System.Windows.Forms.Button();
+            this.btnForm01Renderer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -43,23 +43,23 @@
             this.btnForm00GLCanvas.UseVisualStyleBackColor = true;
             this.btnForm00GLCanvas.Click += new System.EventHandler(this.btnForm00GLCanvas_Click);
             // 
-            // btnForm01ModernRenderer
+            // btnForm01Renderer
             // 
-            this.btnForm01ModernRenderer.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnForm01ModernRenderer.Location = new System.Drawing.Point(12, 55);
-            this.btnForm01ModernRenderer.Name = "btnForm01ModernRenderer";
-            this.btnForm01ModernRenderer.Size = new System.Drawing.Size(269, 37);
-            this.btnForm01ModernRenderer.TabIndex = 0;
-            this.btnForm01ModernRenderer.Text = "Form01 ModernRenderer";
-            this.btnForm01ModernRenderer.UseVisualStyleBackColor = true;
-            this.btnForm01ModernRenderer.Click += new System.EventHandler(this.btnForm01ModernRenderer_Click);
+            this.btnForm01Renderer.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnForm01Renderer.Location = new System.Drawing.Point(12, 55);
+            this.btnForm01Renderer.Name = "btnForm01Renderer";
+            this.btnForm01Renderer.Size = new System.Drawing.Size(269, 37);
+            this.btnForm01Renderer.TabIndex = 0;
+            this.btnForm01Renderer.Text = "Form01 Renderer";
+            this.btnForm01Renderer.UseVisualStyleBackColor = true;
+            this.btnForm01Renderer.Click += new System.EventHandler(this.btnForm01Renderer_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 545);
-            this.Controls.Add(this.btnForm01ModernRenderer);
+            this.Controls.Add(this.btnForm01Renderer);
             this.Controls.Add(this.btnForm00GLCanvas);
             this.Name = "FormMain";
             this.Text = "CSharpGL Test/Demo Panel - http://bitzhuwei.cnblogs.com";
@@ -70,6 +70,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnForm00GLCanvas;
-        private System.Windows.Forms.Button btnForm01ModernRenderer;
+        private System.Windows.Forms.Button btnForm01Renderer;
     }
 }

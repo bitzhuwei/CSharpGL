@@ -45,13 +45,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controls\GLCanvas.ico" />
+    <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.jpg" />
     <Content Include="OpenGLAPI\Enumerations\DrawMode.png" />
     <Content Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.png" />
     <Content Include="OpenGLObjects\ColorCodedPicking\readme.txt" />
     <Content Include="ModernRendering\IBufferables\AxisModel.jpg" />
     <Content Include="ModernRendering\IBufferables\CubeModel.jpg" />
     <Content Include="ModernRendering\IBufferables\SphereModel.jpg" />
-    <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableModernRenderer.jpg" />
     <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInPolygonSearcher.jpg" />
     <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInQuadsSearcher.jpg" />
     <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInQuadStripSearcher.jpg" />
@@ -69,6 +69,31 @@
     </Compile>
     <Compile Include="Controls\GLCanvasHelper.cs" />
     <Compile Include="Controls\RenderTriggers.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightRenderer.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightRenderer.DoInitialize.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightRenderer.Property.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightRenderer.SetupHighlight.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.GetLastIndexId.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.Picking.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.Property.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.Dispose.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.DoRender.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.Picking.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.PickingRender.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRendererFactory.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexRenderer.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexRenderer.GetLineSearcher.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexRenderer.Picking.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexRenderer.Property.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\Renderer.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\Renderer.Dispose.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\Renderer.DoInitialize.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\Renderer.DoRender.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\Renderer.MovePositions.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\Renderer.Property.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\Renderer.Uniforms.cs" />
     <Compile Include="OpenGLAPI\Enumerations\ErrorCode.cs" />
     <Compile Include="OpenGLAPI\Enumerations\MapBufferRangeAccess.cs" />
     <Compile Include="OpenGLAPI\Enumerations\PolugonOffset.cs" />
@@ -101,7 +126,6 @@
     <Compile Include="ModernRendering\IBufferables\TeapotLoader.cs" />
     <Compile Include="ModernRendering\IBufferables\TeapotModel.cs" />
     <Compile Include="ModernRendering\IBufferables\TetrahedronModel.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexModernRenderer.GetLastIndexId.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInPolygonSearcher.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInQuadStripSearcher.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInQuadsSearcher.cs" />
@@ -111,30 +135,13 @@
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineSearcher.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInTrianglesSearcher.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexModernRenderer.GetLineSearcher.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayout.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayoutArgs.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayoutHelper.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\LineWidthSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PointSizeSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PolygonOffsetSwitch.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightModernRenderer.SetupHighlight.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightModernRenderer.DoInitialize.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightModernRenderer.Property.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightModernRenderer.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\ModernRenderer.Dispose.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\ModernRenderer.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\ModernRenderer.MovePositions.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableModernRenderer.Picking.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableModernRenderer.DoRender.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableModernRendererFactory.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexModernRenderer.Property.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexModernRenderer.Picking.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexModernRenderer.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexModernRenderer.Property.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexModernRenderer.Picking.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexModernRenderer.cs" />
-    <Compile Include="OpenGLObjects\UILayout\UIModernRenderer.cs" />
+    <Compile Include="OpenGLObjects\UILayout\UIRenderer.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformBool.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSampler2D.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformFloat.cs" />
@@ -191,13 +198,6 @@
     <Compile Include="UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="UITypeEditors\GLSwithListEditor.cs" />
     <Compile Include="ModernRendering\IBufferables\IBufferable.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\ModernRenderer.Property.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableModernRenderer.PickingRender.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\ModernRenderer.DoRender.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\ModernRenderer.DoInitialize.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\ModernRenderer.Uniforms.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableModernRenderer.Dispose.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableModernRenderer.cs" />
     <Compile Include="ModernRendering\PropertyNameMap.cs" />
     <Compile Include="ModernRendering\ShaderCode.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformVariable.cs" />
@@ -327,7 +327,7 @@
     <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Highlight.vert" />
     <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Highlight.frag" />
     <EmbeddedResource Include="ModernRendering\IBufferables\TeapotModel.obj" />
-    <None Include="ModernRendering\ModernRenderer\ModernRenderer.cd" />
+    <None Include="ModernRendering\Renderers.cd" />
     <None Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.cd" />
     <EmbeddedResource Include="Controls\GLCanvas.resx">
       <DependentUpon>GLCanvas.cs</DependentUpon>
@@ -346,7 +346,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Picking.frag" />
     <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Picking.vert" />
-    <None Include="ModernRendering\ModernRenderers.cd" />
     <None Include="OpenGLObjects\VertexBuffers\VertexBuffer.cd" />
     <None Include="OpenGLObjects\VertexBuffers\VertexBufferPtr.cd" />
   </ItemGroup>

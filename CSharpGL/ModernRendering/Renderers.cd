@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="CSharpGL.RendererBase" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAADCAgQAEAAAAAgQQAAAAgAAAABAAAgAQAAA=</HashCode>
+      <FileName>ModernRendering\RendererBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CSharpGL.Renderer" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEEABYAAAAwAAAMAAgBAAAABigAAQEgEKAAQYQA=</HashCode>
+      <FileName>ModernRendering\ModernRenderer\Renderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.UIRenderer" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAgAEYAAAAAgAAAAAAgAEAAACAAAAQAAA=</HashCode>
+      <FileName>OpenGLObjects\UILayout\UIRenderer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CSharpGL.PickableRenderer" Collapsed="true">
+    <Position X="2" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAAAAAABAEGgEBEgAABAIAEAAAgAAAhJAAAAEQAAA=</HashCode>
+      <FileName>ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CSharpGL.HighlightRenderer" Collapsed="true">
+    <Position X="5.5" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAEAAAAAAAAAEgAAAAAAAgJAgwgAAAAAAAA=</HashCode>
+      <FileName>ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.OneIndexRenderer" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEEEgAAAAAAAAgAABjAAAAAAAgIAAwAAAhAAAAA=</HashCode>
+      <FileName>ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.ZeroIndexRenderer" Collapsed="true">
+    <Position X="3" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAgAAAAAIAAAAABgEAAAAEAAAgAgIAAAAJAAA=</HashCode>
+      <FileName>ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

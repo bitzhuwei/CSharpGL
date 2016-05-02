@@ -21,7 +21,7 @@ namespace CSharpGL
         public static PickedGeometry Pick(
             RenderEventArgs arg,
             int x, int y,
-            params PickableModernRenderer[] pickableElements)
+            params PickableRenderer[] pickableElements)
         {
             if (x < 0 || arg.CanvasRect.Width <= x || y < 0 || arg.CanvasRect.Height <= y) { return null; }
 
@@ -48,7 +48,7 @@ namespace CSharpGL
         public static List<Tuple<Point, PickedGeometry>> Pick(
             RenderEventArgs arg,
             int x, int y, int radius,
-             params PickableModernRenderer[] pickableElements)
+             params PickableRenderer[] pickableElements)
         {
             if (x < 0 || arg.CanvasRect.Width <= x || y < 0 || arg.CanvasRect.Height <= y) { return null; }
 
@@ -66,7 +66,7 @@ namespace CSharpGL
         public static List<Tuple<Point, PickedGeometry>> Pick(
             RenderEventArgs arg,
             Rectangle rect,
-            params PickableModernRenderer[] pickableElements)
+            params PickableRenderer[] pickableElements)
         {
             var result = new List<Tuple<Point, PickedGeometry>>();
             if (pickableElements.Length == 0) { return result; }
@@ -96,7 +96,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="pickableElements"></param>
-        public static void Render4Picking(RenderEventArgs arg, params PickableModernRenderer[] pickableElements)
+        public static void Render4Picking(RenderEventArgs arg, params PickableRenderer[] pickableElements)
         {
             if (arg.RenderMode != RenderModes.ColorCodedPicking)
             {

@@ -9,7 +9,7 @@ namespace CSharpGL
     {
         internal abstract uint[] Search(RenderEventArgs arg,
             int x, int y,
-            uint lastVertexId, ZeroIndexModernRenderer modernRenderer);
+            uint lastVertexId, ZeroIndexRenderer modernRenderer);
         
     }
 }
