@@ -31,7 +31,7 @@ namespace CSharpGL
                         "Got lastVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}] [{3}] [{4}]",
                         lastVertexId, arg, stageVertexId, x, y);
                 }
-                if (lastIndexId != null)
+                else
                 {
                     // 获取pickedGeometry
                     pickedGeometry = this.GetGeometry(arg, lastIndexId, stageVertexId);
