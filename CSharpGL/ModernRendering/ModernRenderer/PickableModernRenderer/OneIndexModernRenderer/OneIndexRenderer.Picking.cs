@@ -21,21 +21,76 @@ namespace CSharpGL
             if (!this.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
             { return null; }
 
-            PickedGeometry pickedGeometry = null;
-            // 找到 lastIndexId
-            RecognizedPrimitiveIndex lastIndexId = this.GetLastIndexIdOfPickedGeometry(
-                arg, lastVertexId, x, y);
-            if (lastIndexId == null)
+            GeometryType geometryType = arg.PickingGeometryType;
+
+            if (geometryType == GeometryType.Point)
             {
-                Debug.WriteLine(
-                    "Got lastVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}] [{3}] [{4}]",
-                    lastVertexId, arg, stageVertexId, x, y);
+                DrawMode mode = this.GetIndexBufferPtr().Mode;
+                if (this.OnPrimitiveTest(lastVertexId, mode))
+                { return PickPoint(stageVertexId, lastVertexId); }
+                else
+                { return null; }
             }
-            else
-            {
-                // 获取pickedGeometry
-                pickedGeometry = this.GetGeometry(arg, lastIndexId, stageVertexId);
-            }
+            return null;
+            //else if (geometryType == GeometryType.Line)
+            //{
+            //    DrawMode mode = this.GetIndexBufferPtr().Mode;
+            //    GeometryType typeOfMode = mode.ToGeometryType();
+            //    if (geometryType == typeOfMode)
+            //    { return PickWhateverItIs(stageVertexId, lastVertexId, mode, typeOfMode); }
+            //    else
+            //    {
+            //        ZeroIndexLineSearcher searcher = GetLineSearcher(mode);
+            //        if (searcher != null)// line is from triangle, quad or polygon
+            //        { return SearchLine(arg, stageVertexId, x, y, lastVertexId, searcher); }
+            //        else if (mode == DrawMode.Points)
+            //        { return null; }
+            //        else
+            //        { throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
+            //    }
+            //}
+            //else
+            //{
+            //    DrawMode mode = this.GetIndexBufferPtr().Mode;
+            //    GeometryType typeOfMode = mode.ToGeometryType();
+            //    if (typeOfMode == geometryType)// I want what it is
+            //    { return PickWhateverItIs(stageVertexId, lastVertexId, mode, typeOfMode); }
+            //    else
+            //    { return null; }
+            //    //{ throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
+            //}
+            //PickedGeometry pickedGeometry = null;
+            //// 找到 lastIndexId
+            //RecognizedPrimitiveIndex lastIndexId = this.GetLastIndexIdOfPickedGeometry(
+            //    arg, lastVertexId, x, y);
+            //if (lastIndexId == null)
+            //{
+            //    Debug.WriteLine(
+            //        "Got lastVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}] [{3}] [{4}]",
+            //        lastVertexId, arg, stageVertexId, x, y);
+            //}
+            //else
+            //{
+            //    // 获取pickedGeometry
+            //    pickedGeometry = this.GetGeometry(arg, lastIndexId, stageVertexId);
+            //}
+
+            //return pickedGeometry;
+        }
+
+        private bool OnPrimitiveTest(uint lastVertexId, DrawMode mode)
+        {
+            return true;
+        }
+
+        private PickedGeometry PickPoint(uint stageVertexId, uint lastVertexId)
+        {
+            PickedGeometry pickedGeometry = new PickedGeometry();
+            pickedGeometry.GeometryType = GeometryType.Point;
+            pickedGeometry.StageVertexId = stageVertexId;
+            pickedGeometry.From = this;
+            pickedGeometry.Indexes = new uint[] { lastVertexId, };
+            pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.Indexes);
 
             return pickedGeometry;
         }
@@ -43,25 +98,34 @@ namespace CSharpGL
         private PickedGeometry GetGeometry(RenderEventArgs arg,
             RecognizedPrimitiveIndex lastIndexId, uint stageVertexId)
         {
-            var pickedGeometry = new PickedGeometry();
-            pickedGeometry.GeometryType = this.GetIndexBufferPtr().Mode.ToGeometryType();
-            pickedGeometry.StageVertexId = stageVertexId;
-            pickedGeometry.From = this;
-            pickedGeometry.Indexes = lastIndexId.IndexIdList.ToArray();
-            GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
-            IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
-            unsafe
+            GeometryType targetType = arg.PickingGeometryType;
+            PickedGeometry pickedGeometry = null;
+            if (targetType == GeometryType.Point)
             {
-                var array = (vec3*)pointer.ToPointer();
-                List<vec3> list = new List<vec3>();
-                for (int i = 0; i < lastIndexId.IndexIdList.Count; i++)
-                {
-                    list.Add(array[lastIndexId.IndexIdList[i]]);
-                }
-                pickedGeometry.Positions = list.ToArray();
+                pickedGeometry = new PickedGeometry();
+                pickedGeometry.GeometryType = GeometryType.Point;
+                pickedGeometry.StageVertexId = stageVertexId;
+                pickedGeometry.From = this;
+                pickedGeometry.Indexes = new uint[] { lastIndexId.LastIndexId, };
+                pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.Indexes);
             }
-            GL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            else if (targetType == GeometryType.Line)
+            {
+
+            }
+            else
+            {
+                DrawMode mode = this.GetIndexBufferPtr().Mode;
+                if (mode.ToGeometryType() == GeometryType.Triangle)
+                {
+                    pickedGeometry = new PickedGeometry();
+                    pickedGeometry.GeometryType = GeometryType.Triangle;
+                    pickedGeometry.StageVertexId = stageVertexId;
+                    pickedGeometry.From = this;
+                    pickedGeometry.Indexes = lastIndexId.IndexIdList.ToArray();
+                    pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.Indexes);
+                }
+            }
 
             return pickedGeometry;
         }
