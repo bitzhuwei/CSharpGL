@@ -118,9 +118,9 @@ namespace CSharpGL
 
             GL.Flush();
 
-            var filename = string.Format("Render4SelfPicking{0:yyyy-MM-dd_HH-mm-ss.ff}.png", DateTime.Now);
-            Save2PictureHelper.Save2Picture(0, 0,
-                e.CanvasRect.Width, e.CanvasRect.Height, filename);
+            //var filename = string.Format("Render4SelfPicking{0:yyyy-MM-dd_HH-mm-ss.ff}.png", DateTime.Now);
+            //Save2PictureHelper.Save2Picture(0, 0,
+            //    e.CanvasRect.Width, e.CanvasRect.Height, filename);
         }
 
         internal PrimitiveRestartSwitch GetPrimitiveRestartSwitch()
