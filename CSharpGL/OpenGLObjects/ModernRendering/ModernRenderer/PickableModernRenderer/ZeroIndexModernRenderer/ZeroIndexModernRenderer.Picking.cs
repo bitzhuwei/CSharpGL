@@ -248,7 +248,7 @@ namespace CSharpGL
                 case DrawMode.TriangleFan:
                     if (vertexCount > 2)
                     {
-                        result = vertexCount > 2 && lastVertexId > 1;
+                        result = vertexCount > 2;
                     }
                     break;
                 case DrawMode.Triangles:
