@@ -213,19 +213,20 @@ namespace CSharpGL
             return result;
         }
 
-        public static uint ReadPixel(
+        public static unsafe uint ReadPixel(
             int x, int y, int canvasHeight)
         {
             uint stageVertexId = uint.MaxValue;
             // get coded color.
-            //byte[] codedColor = new byte[4];
             using (var codedColor = new UnmanagedArray<byte>(4))
             {
                 GL.ReadPixels(x, canvasHeight - y - 1, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, codedColor.Header);
+                var array = (Pixel*)codedColor.FirstElement();
+                Pixel pixel = array[0];
                 if (!
                     // This is when (x, y) is on background and no primitive is picked.
-                    (codedColor[0] == byte.MaxValue && codedColor[1] == byte.MaxValue
-                    && codedColor[2] == byte.MaxValue && codedColor[3] == byte.MaxValue))
+                    (pixel.r == byte.MaxValue && pixel.g == byte.MaxValue
+                    && pixel.b == byte.MaxValue && pixel.a == byte.MaxValue))
                 {
                     /* // This is how is vertexID coded into color in vertex shader.
                      * 	int objectID = gl_VertexID;
