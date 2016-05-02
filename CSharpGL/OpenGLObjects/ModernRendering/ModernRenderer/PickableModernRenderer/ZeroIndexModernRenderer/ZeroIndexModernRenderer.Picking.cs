@@ -232,8 +232,8 @@ namespace CSharpGL
                 case DrawMode.LinesAdjacency:
                     if (vertexCount > 3)
                     {
-                        var lastPart = last - (last - first) % 4;
-                        if (first < lastVertexId && lastVertexId < lastPart)
+                        var lastPart = last - (last + 1 - first) % 4;
+                        if (first <= lastVertexId && lastVertexId <= lastPart)
                         {
                             var m = (lastVertexId - first) % 4;
                             result = (m == 1 || m == 2);
@@ -275,7 +275,8 @@ namespace CSharpGL
                 case DrawMode.TrianglesAdjacency:
                     if (vertexCount > 5)
                     {
-                        if (first <= lastVertexId && lastVertexId <= last)
+                        var lastPart = last - (last + 1 - first) % 6;
+                        if (first <= lastVertexId && lastVertexId <= lastPart)
                         {
                             result = (lastVertexId - first) % 2 == 0;
                         }
