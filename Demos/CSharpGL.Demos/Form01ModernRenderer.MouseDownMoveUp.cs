@@ -138,6 +138,8 @@ namespace CSharpGL.Demos
                 this.rendererDict[this.selectedModel].Highlighter.ClearHighlightIndexes();
             }
 
+            UpdateColorInformationAtMouse(e.X, e.Y);
+
             this.lastMousePosition = new Point(e.X, e.Y);
         }
 
