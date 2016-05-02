@@ -122,24 +122,31 @@ namespace CSharpGL.Demos
         {
             lock (this.synObj)
             {
-                RenderersDraw();
+                RenderersDraw(this.renderMode);
 
                 DrawText(e);
             }
         }
 
-        private void RenderersDraw(bool renderScene = true, bool renderUI = true)
+        private void RenderersDraw(RenderModes renderMode ,bool renderScene = true, bool renderUI = true)
         {
-            if (this.RenderMode == RenderModes.ColorCodedPicking)
-            { GL.ClearColor(1, 1, 1, 1); }
-            else if (this.RenderMode == RenderModes.Render)
-            { GL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f); }
+            var arg = new RenderEventArgs(renderMode, this.camera, this.PickingGeometryType);
+            if (renderMode == RenderModes.ColorCodedPicking)
+            {
+                if (renderScene)
+                {
+                    ColorCodedPicking.Render4Picking(arg, this.rendererDict[this.selectedModel].PickableRenderer);
+                }
+            }
+            else if (renderMode == RenderModes.Render)
+            {
+                GL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f);
 
-            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+                GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-            var arg = new RenderEventArgs(RenderMode, this.camera, this.PickingGeometryType);
-            if (renderScene) { SceneRenderersDraw(arg); }
-            if (renderUI) { UIRenderersDraw(arg); }
+                if (renderScene) { SceneRenderersDraw(arg); }
+                if (renderUI) { UIRenderersDraw(arg); }
+            }
         }
 
         private void UIRenderersDraw(RenderEventArgs arg)
@@ -260,6 +267,7 @@ namespace CSharpGL.Demos
         {
             camera.MouseWheel(e.Delta);
             //cameraUpdated = true;
+            this.UpdateMVP(this.rendererDict[this.selectedModel]);
         }
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
@@ -281,7 +289,10 @@ namespace CSharpGL.Demos
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
             if (camera != null)
+            {
                 camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
+                this.UpdateMVP(this.rendererDict[this.selectedModel]);
+            }
         }
 
 
