@@ -42,7 +42,17 @@ namespace CSharpGL
         public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
         {
             GL.GetDelegateFor<GL.glBindBuffer>()(GL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
-            GL.DrawElements(this.Mode, this.ElementCount, (uint)this.Type, IntPtr.Zero);
+            if (arg.RenderMode == RenderModes.ColorCodedPicking
+                && arg.PickingGeometryType == GeometryType.Point)
+            {
+                // this maybe render points that should not appear. 
+                // so need to select by another picking
+                GL.DrawElements(DrawMode.Points, this.ElementCount, (uint)this.Type, IntPtr.Zero);
+            }
+            else
+            {
+                GL.DrawElements(this.Mode, this.ElementCount, (uint)this.Type, IntPtr.Zero);
+            }
         }
     }
 }
