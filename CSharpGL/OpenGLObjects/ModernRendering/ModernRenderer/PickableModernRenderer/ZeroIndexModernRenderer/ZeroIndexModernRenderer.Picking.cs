@@ -66,6 +66,8 @@ namespace CSharpGL
                     ZeroIndexLineSearcher searcher = GetLineSearcher(mode);
                     if (searcher != null)// line is from triangle, quad or polygon
                     { return SearchLine(arg, stageVertexId, x, y, lastVertexId, searcher); }
+                    else if (mode == DrawMode.Points)
+                    { return null; }
                     else
                     { throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
                 }
