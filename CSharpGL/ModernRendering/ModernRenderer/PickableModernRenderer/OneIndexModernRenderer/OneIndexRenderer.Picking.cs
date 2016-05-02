@@ -18,24 +18,23 @@ namespace CSharpGL
             int x, int y)
         {
             uint lastVertexId;
+            if (!this.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
+            { return null; }
+
             PickedGeometry pickedGeometry = null;
-            if (this.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
+            // 找到 lastIndexId
+            RecognizedPrimitiveIndex lastIndexId = this.GetLastIndexIdOfPickedGeometry(
+                arg, lastVertexId, x, y);
+            if (lastIndexId == null)
             {
-                // 找到 lastIndexId
-                RecognizedPrimitiveIndex lastIndexId =
-                    this.GetLastIndexIdOfPickedGeometry(
-                        arg, lastVertexId, x, y);
-                if (lastIndexId == null)
-                {
-                    Debug.WriteLine(
-                        "Got lastVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}] [{3}] [{4}]",
-                        lastVertexId, arg, stageVertexId, x, y);
-                }
-                else
-                {
-                    // 获取pickedGeometry
-                    pickedGeometry = this.GetGeometry(arg, lastIndexId, stageVertexId);
-                }
+                Debug.WriteLine(
+                    "Got lastVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}] [{3}] [{4}]",
+                    lastVertexId, arg, stageVertexId, x, y);
+            }
+            else
+            {
+                // 获取pickedGeometry
+                pickedGeometry = this.GetGeometry(arg, lastIndexId, stageVertexId);
             }
 
             return pickedGeometry;
