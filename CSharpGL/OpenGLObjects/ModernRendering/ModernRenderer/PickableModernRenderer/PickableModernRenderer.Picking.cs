@@ -117,6 +117,8 @@ namespace CSharpGL
             program.Unbind();
 
             GL.Flush();
+
+            //Save2PictureHelper.Save2Picture(0,0
         }
 
         internal PrimitiveRestartSwitch GetPrimitiveRestartSwitch()

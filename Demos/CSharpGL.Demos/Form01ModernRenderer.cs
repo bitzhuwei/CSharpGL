@@ -130,7 +130,7 @@ namespace CSharpGL.Demos
 
         private void RenderersDraw(RenderModes renderMode ,bool renderScene = true, bool renderUI = true)
         {
-            var arg = new RenderEventArgs(renderMode, this.camera, this.PickingGeometryType);
+            var arg = new RenderEventArgs(renderMode, this.glCanvas1.ClientRectangle, this.camera, this.PickingGeometryType);
             if (renderMode == RenderModes.ColorCodedPicking)
             {
                 if (renderScene)

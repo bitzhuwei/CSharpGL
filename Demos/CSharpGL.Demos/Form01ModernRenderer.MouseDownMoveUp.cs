@@ -44,6 +44,7 @@ namespace CSharpGL.Demos
                 PickedGeometry pickedGeometry = RunPicking(
                     new RenderEventArgs(
                         RenderModes.ColorCodedPicking,
+                        this.glCanvas1.ClientRectangle,
                         this.camera, this.PickingGeometryType),
                     e.X, e.Y);
                 if (pickedGeometry != null)
@@ -100,6 +101,7 @@ namespace CSharpGL.Demos
                 PickedGeometry pickedGeometry = RunPicking(
                     new RenderEventArgs(
                         RenderModes.ColorCodedPicking,
+                        this.glCanvas1.ClientRectangle,
                         this.camera, this.PickingGeometryType),
                     e.X, e.Y);
                 if (pickedGeometry != null)
