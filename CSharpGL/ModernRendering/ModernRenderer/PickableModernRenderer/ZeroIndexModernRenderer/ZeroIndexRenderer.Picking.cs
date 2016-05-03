@@ -147,8 +147,7 @@ namespace CSharpGL
             pickedGeometry.From = this;
             pickedGeometry.GeometryType = GeometryType.Line;
             pickedGeometry.StageVertexId = stageVertexId;
-            pickedGeometry.Indexes = searcher.Search(arg,
-                x, y, lastVertexId, this);
+            pickedGeometry.Indexes = searcher.Search(arg, x, y, lastVertexId, this);
             GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
             IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
             unsafe
