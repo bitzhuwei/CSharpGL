@@ -81,7 +81,7 @@
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.Dispose.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.DoRender.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.Picking.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.PickingRender.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.ColorCodedRender.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRendererFactory.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexRenderer.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\ZeroIndexRenderer.GetLineSearcher.cs" />

@@ -19,9 +19,11 @@ namespace CSharpGL
             program.Bind();
             var picking = this as IColorCodedPicking;
             // TODO: use uint/int/float or ? use UniformUInt instead
-            program.SetUniform("pickingBaseID", 
-                temporaryIndexBufferPtr == null ? picking.PickingBaseID : 0u);
-            pickingMVP.SetUniform(program);
+            program.SetUniform("pickingBaseId",
+                temporaryIndexBufferPtr == null ? this.PickingBaseId : 0u);
+            UniformMat4 uniformmMVP4Picking = this.uniformmMVP4Picking;
+            bool mvpUpdated = uniformmMVP4Picking.Updated;
+            if (mvpUpdated) { uniformmMVP4Picking.SetUniform(program); }
 
             PickingSwitchesOn();
 
@@ -40,7 +42,8 @@ namespace CSharpGL
 
             PickingSwitchesOff();
 
-            pickingMVP.ResetUniform(program);
+            if (mvpUpdated) { uniformmMVP4Picking.ResetUniform(program); uniformmMVP4Picking.Updated = false; }
+            
 
             // 解绑shader
             program.Unbind();

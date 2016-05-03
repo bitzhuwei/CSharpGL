@@ -15,7 +15,6 @@ namespace CSharpGL
         /// <summary>
         /// uniform mat4 VMP; (in shader)
         /// </summary>
-        protected UniformMat4 pickingMVP = new UniformMat4("MVP");
 
         protected ShaderProgram pickingShaderProgram;
         protected ShaderProgram PickingShaderProgram
@@ -34,16 +33,9 @@ namespace CSharpGL
         /// </summary>
         public mat4 MVP
         {
-            get { return pickingMVP.Value; }
-            set { pickingMVP.Value = value; }
         }
 
-        public uint PickingBaseID { get; private set; }
-
-        internal void SetPickingBaseID(uint value)
-        {
-            this.PickingBaseID = value;
-        }
+        public uint PickingBaseId { get; internal set; }
 
         public uint GetVertexCount()
         {

@@ -27,11 +27,11 @@ namespace CSharpGL
 
             if (element != null)
             {
-                if (stageVertexId < element.PickingBaseID) // ID is in some previous element.
+                if (stageVertexId < element.PickingBaseId) // ID is in some previous element.
                 { return false; }
 
                 uint vertexCount = element.GetVertexCount();
-                uint id = stageVertexId - element.PickingBaseID;
+                uint id = stageVertexId - element.PickingBaseId;
                 if (id < vertexCount)
                 {
                     lastVertexId = id;

@@ -7,7 +7,7 @@ namespace CSharpGL
 {
     /// <summary>
     /// This type's instance is used in <see cref="ColorCodedPickingScene.Draw(RenderMode.HitTest)"/>
-    /// by <see cref="IColorCodedPicking"/> so that sceneElements can get their updated PickingBaseID.
+    /// by <see cref="IColorCodedPicking"/> so that sceneElements can get their updated PickingBaseId.
     /// </summary>
     public class SharedStageInfo
     {
@@ -32,7 +32,7 @@ namespace CSharpGL
         {
             if (pickable != null)
             {
-                pickable.SetPickingBaseID(this.RenderedVertexCount);
+                pickable.PickingBaseId = this.RenderedVertexCount;
 
                 //  render the element.
                 pickable.Render(arg);
