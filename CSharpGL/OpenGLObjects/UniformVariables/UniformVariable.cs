@@ -31,6 +31,7 @@ namespace CSharpGL
         public UniformVariable(string varName)
         {
             this.VarName = varName;
+            this.Updated = true;
         }
 
         /// <summary>
