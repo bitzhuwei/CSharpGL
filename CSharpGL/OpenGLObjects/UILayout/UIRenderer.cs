@@ -13,9 +13,9 @@ namespace CSharpGL
     /// </summary>
     public partial class UIRenderer : RendererBase, IUILayout
     {
-        private Renderer modernRenderer;
+        private RendererBase modernRenderer;
 
-        public Renderer Renderer
+        public RendererBase Renderer
         {
             get { return modernRenderer; }
         }
@@ -30,7 +30,7 @@ namespace CSharpGL
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
         public UIRenderer(
-            Renderer modernRenderer,
+            RendererBase modernRenderer,
             System.Windows.Forms.AnchorStyles Anchor,
             System.Windows.Forms.Padding Margin,
             System.Drawing.Size Size,
