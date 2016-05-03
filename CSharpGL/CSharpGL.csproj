@@ -73,10 +73,12 @@
     <Compile Include="ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightRenderer.DoInitialize.cs" />
     <Compile Include="ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightRenderer.Property.cs" />
     <Compile Include="ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightRenderer.SetupHighlight.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\LineSearcher\OneIndexLineSearcher.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.GetLastIndexId.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.Picking.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.Property.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.GetLineSearcher.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.Dispose.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.DoRender.cs" />
