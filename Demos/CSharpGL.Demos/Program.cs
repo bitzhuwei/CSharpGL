@@ -21,6 +21,13 @@ namespace CSharpGL.Demos
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
+            {
+                ErrorCode error = (ErrorCode)GL.GetError();
+                if (error != ErrorCode.NoError)
+                {
+                    Debug.WriteLine("Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId);
+                }
+            }
             Debug.Close();
             Debug.Listeners.Clear();
         }
