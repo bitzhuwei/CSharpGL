@@ -15,15 +15,18 @@ namespace CSharpGL
         {
             if (lineSearchDict == null)
             {
+                var triangle = new OneIndexLineInTriangleSearcher();
+                var quad = new OneIndexLineInQuadSearcher();
+                var polygon = new OneIndexLineInPolygonSearcher();
                 var dict = new Dictionary<DrawMode, OneIndexLineSearcher>();
-                dict.Add(DrawMode.Triangles, new OneIndexLineInTrianglesSearcher());
-                //dict.Add(DrawMode.TrianglesAdjacency, new ZeroIndexLineInTrianglesAdjacencySearcher());
-                //dict.Add(DrawMode.TriangleStrip, new ZeroIndexLineInTriangleStripSearcher());
-                //dict.Add(DrawMode.TriangleStripAdjacency, new ZeroIndexLineInTriangleStripAdjacencySearcher());
-                //dict.Add(DrawMode.TriangleFan, new ZeroIndexLineInTriangleFanSearcher());
-                //dict.Add(DrawMode.Quads, new ZeroIndexLineInQuadSearcher());
-                //dict.Add(DrawMode.QuadStrip, new ZeroIndexLineInQuadStripSearcher());
-                //dict.Add(DrawMode.Polygon, new ZeroIndexLineInPolygonSearcher());
+                dict.Add(DrawMode.Triangles, triangle);
+                dict.Add(DrawMode.TrianglesAdjacency, triangle);
+                dict.Add(DrawMode.TriangleStrip, triangle);
+                dict.Add(DrawMode.TriangleStripAdjacency, triangle);
+                dict.Add(DrawMode.TriangleFan, triangle);
+                dict.Add(DrawMode.Quads, quad);
+                dict.Add(DrawMode.QuadStrip, quad);
+                dict.Add(DrawMode.Polygon, polygon);
 
                 lineSearchDict = dict;
             }

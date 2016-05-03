@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    class OneIndexLineInTrianglesSearcher : OneIndexLineSearcher
+    class OneIndexLineInTriangleSearcher : OneIndexLineSearcher
     {
         internal override uint[] Search(RenderEventArgs arg,
             int x, int y,
