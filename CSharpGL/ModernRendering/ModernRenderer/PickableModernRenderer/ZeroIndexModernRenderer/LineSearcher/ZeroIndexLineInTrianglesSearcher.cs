@@ -7,10 +7,20 @@ namespace CSharpGL
 {
     class ZeroIndexLineInTriangleSearcher : ZeroIndexLineSearcher
     {
+        /// <summary>
+        /// 在三角形图元中拾取指定位置的Line
+        /// </summary>
+        /// <param name="arg">渲染参数</param>
+        /// <param name="x">指定位置</param>
+        /// <param name="y">指定位置</param>
+        /// <param name="lastVertexId">三角形图元的最后一个顶点</param>
+        /// <param name="modernRenderer">目标Renderer</param>
+        /// <returns></returns>
         internal override uint[] Search(RenderEventArgs arg,
             int x, int y, 
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
+            // 创建临时索引
             OneIndexBufferPtr indexBufferPtr = null;
             using (var buffer = new OneIndexBuffer<uint>(DrawMode.Lines, BufferUsage.StaticDraw))
             {
@@ -26,11 +36,14 @@ namespace CSharpGL
                 indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
             }
 
+            // 用临时索引渲染此三角形图元（仅渲染此三角形图元）
             modernRenderer.Render4InnerPicking(arg, indexBufferPtr);
+            // id是拾取到的Line的Last Vertex Id
             uint id = ColorCodedPicking.ReadPixel(x, y, arg.CanvasRect.Height);
 
             indexBufferPtr.Dispose();
 
+            // 对比临时索引，找到那个Line
             if (id + 2 == lastVertexId)
             { return new uint[] { id + 2, id, }; }
             else
