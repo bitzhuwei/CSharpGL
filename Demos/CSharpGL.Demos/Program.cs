@@ -25,7 +25,7 @@ namespace CSharpGL.Demos
                 ErrorCode error = (ErrorCode)GL.GetError();
                 if (error != ErrorCode.NoError)
                 {
-                    Debug.WriteLine("Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId);
+                    Debug.WriteLine("OpenGL error: {0}", error);
                 }
             }
             Debug.Close();

@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controls\GLCanvas.ico" />
-    <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\LineSearcher\OneIndexLineInTrianglesSearcher.jpg" />
+    <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\LineSearcher\OneIndexLineInTriangle+Searcher.jpg" />
     <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.jpg" />
     <Content Include="OpenGLAPI\Enumerations\DrawMode.png" />
     <Content Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.png" />
@@ -74,8 +74,9 @@
     <Compile Include="ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightRenderer.DoInitialize.cs" />
     <Compile Include="ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightRenderer.Property.cs" />
     <Compile Include="ModernRendering\ModernRenderer\HighlightModernRenderer\HighlightRenderer.SetupHighlight.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\LineSearcher\OneIndexLineInQuad+Searcher.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\LineSearcher\OneIndexLineSearcher.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\LineSearcher\OneIndexLineInTrianglesSearcher.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\LineSearcher\OneIndexLineInTriangle+Searcher.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.GetLastIndexId.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.Picking.cs" />
