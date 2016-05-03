@@ -210,7 +210,7 @@ namespace CSharpGL.Demos
                 var frmBulletinBoard = new FormBulletinBoard();
                 //frmBulletinBoard.Dump = true;
                 frmBulletinBoard.Show();
-                this.RunPickingBoard = frmBulletinBoard;
+                this.pickedGeometryBoard = frmBulletinBoard;
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();

@@ -120,8 +120,10 @@ namespace CSharpGL.Demos
                     this.rendererDict[this.selectedModel].Highlighter.ClearHighlightIndexes();
                 }
 
-                this.pickedGeometry = pickedGeometry;
+                UpdatePickingBoard(pickedGeometry);
             }
+
+            
 
             this.lastMousePosition = new Point(e.X, e.Y);
         }
@@ -143,6 +145,19 @@ namespace CSharpGL.Demos
             UpdateColorInformationAtMouse(e.X, e.Y);
 
             this.lastMousePosition = new Point(e.X, e.Y);
+        }
+
+        private void UpdatePickingBoard(PickedGeometry pickedGeometry)
+        {
+            if (pickedGeometry != null)
+            {
+                this.pickedGeometryBoard.SetContent(pickedGeometry.ToString(
+                    camera.GetProjectionMat4(), camera.GetViewMat4()));
+            }
+            else
+            {
+                this.pickedGeometryBoard.SetContent("picked nothing.");
+            }
         }
 
         private void UpdateColorInformationAtMouse(int x, int y)
@@ -168,15 +183,6 @@ namespace CSharpGL.Demos
                     arg, x, y, 
                     pickable);
 
-                if (pickedGeometry != null)
-                {
-                    this.RunPickingBoard.SetContent(pickedGeometry.ToString(
-                        camera.GetProjectionMat4(), camera.GetViewMat4()));
-                }
-                else
-                {
-                    this.RunPickingBoard.SetContent("picked nothing.");
-                }
                 return pickedGeometry;
             }
         }

@@ -68,7 +68,7 @@ namespace CSharpGL.Demos
         /// </summary>
         Camera camera;
 
-        private FormBulletinBoard RunPickingBoard;
+        private FormBulletinBoard pickedGeometryBoard;
         private FormProperyGrid pickableRendererPropertyGrid;
         private FormProperyGrid highlightRendererPropertyGrid;
         private FormProperyGrid formPropertyGrid;
@@ -125,6 +125,7 @@ namespace CSharpGL.Demos
                 RenderersDraw(this.renderMode);
 
                 DrawText(e);
+
             }
         }
 
