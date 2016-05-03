@@ -21,8 +21,8 @@ namespace CSharpGL
                     if (array[i - 0] == lastVertexId)
                     {
                         var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
-                        item.IndexIdList.Add(array[i - 3]);
                         item.IndexIdList.Add(array[i - 2]);
+                        item.IndexIdList.Add(array[i - 3]);
                         item.IndexIdList.Add(array[i - 1]);
                         item.IndexIdList.Add(array[i - 0]);
                         lastIndexIdList.Add(item);
@@ -42,8 +42,8 @@ namespace CSharpGL
                     if (array[i - 0] == lastVertexId)
                     {
                         var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
-                        item.IndexIdList.Add(array[i - 3]);
                         item.IndexIdList.Add(array[i - 2]);
+                        item.IndexIdList.Add(array[i - 3]);
                         item.IndexIdList.Add(array[i - 1]);
                         item.IndexIdList.Add(array[i - 0]);
                         lastIndexIdList.Add(item);
@@ -63,8 +63,8 @@ namespace CSharpGL
                     if (array[i - 0] == lastVertexId)
                     {
                         var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
-                        item.IndexIdList.Add(array[i - 3]);
                         item.IndexIdList.Add(array[i - 2]);
+                        item.IndexIdList.Add(array[i - 3]);
                         item.IndexIdList.Add(array[i - 1]);
                         item.IndexIdList.Add(array[i - 0]);
                         lastIndexIdList.Add(item);
@@ -88,8 +88,8 @@ namespace CSharpGL
                             && array[i - 1] != primitiveRestartIndex)
                         {
                             var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
-                            item.IndexIdList.Add(array[i - 3]);
                             item.IndexIdList.Add(array[i - 2]);
+                            item.IndexIdList.Add(array[i - 3]);
                             item.IndexIdList.Add(array[i - 1]);
                             item.IndexIdList.Add(array[i - 0]);
                             lastIndexIdList.Add(item);
@@ -114,8 +114,8 @@ namespace CSharpGL
                             && array[i - 1] != primitiveRestartIndex)
                         {
                             var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
-                            item.IndexIdList.Add(array[i - 3]);
                             item.IndexIdList.Add(array[i - 2]);
+                            item.IndexIdList.Add(array[i - 3]);
                             item.IndexIdList.Add(array[i - 1]);
                             item.IndexIdList.Add(array[i - 0]);
                             lastIndexIdList.Add(item);
@@ -140,8 +140,8 @@ namespace CSharpGL
                             && array[i - 1] != primitiveRestartIndex)
                         {
                             var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
-                            item.IndexIdList.Add(array[i - 3]);
                             item.IndexIdList.Add(array[i - 2]);
+                            item.IndexIdList.Add(array[i - 3]);
                             item.IndexIdList.Add(array[i - 1]);
                             item.IndexIdList.Add(array[i - 0]);
                             lastIndexIdList.Add(item);
