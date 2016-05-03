@@ -57,10 +57,7 @@ namespace CSharpGL.Demos
                         camera.GetProjectionMat4(),
                         camera.GetViewMat4(),
                         new Point(e.X, glCanvas1.Height - e.Y - 1));
-                    if (this.rendererDict[this.selectedModel].PickableRenderer.Mode == DrawMode.QuadStrip)
-                    { dragParam.pickedIndexes.AddRange(pickedGeometry.Indexes.Swap4QuadStrip()); }
-                    else
-                    { dragParam.pickedIndexes.AddRange(pickedGeometry.Indexes); }
+                    dragParam.pickedIndexes.AddRange(pickedGeometry.Indexes); 
                     this.dragParam = dragParam;
                 }
 
@@ -107,14 +104,9 @@ namespace CSharpGL.Demos
                     e.X, e.Y);
                 if (pickedGeometry != null)
                 {
-                    uint[] indexes = null;
-                    if (this.rendererDict[this.selectedModel].PickableRenderer.Mode == DrawMode.QuadStrip)
-                    { indexes = pickedGeometry.Indexes.Swap4QuadStrip().ToArray(); }
-                    else
-                    { indexes = pickedGeometry.Indexes; }
                     this.rendererDict[this.selectedModel].Highlighter.SetHighlightIndexes(
                         this.PickingGeometryType.ToDrawMode(),
-                        indexes);
+                        pickedGeometry.Indexes);
                 }
                 else
                 {
