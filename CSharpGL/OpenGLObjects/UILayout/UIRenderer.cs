@@ -13,11 +13,11 @@ namespace CSharpGL
     /// </summary>
     public partial class UIRenderer : RendererBase, IUILayout
     {
-        private Renderer modernRenderer;
+        protected Renderer renderer;
 
         public Renderer Renderer
         {
-            get { return modernRenderer; }
+            get { return renderer; }
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace CSharpGL
             int zFar = 1000
             )
         {
-            this.modernRenderer = modernRenderer;
+            this.renderer = modernRenderer;
             this.Anchor = Anchor;
             this.Margin = Margin;
             this.Size = Size;
@@ -49,17 +49,17 @@ namespace CSharpGL
 
         protected override void DoInitialize()
         {
-            this.modernRenderer.Initialize();
+            this.renderer.Initialize();
         }
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            this.modernRenderer.Render(arg);
+            this.renderer.Render(arg);
         }
 
         protected override void DisposeUnmanagedResources()
         {
-            this.modernRenderer.Dispose();
+            this.renderer.Dispose();
         }
 
         public System.Windows.Forms.AnchorStyles Anchor { get; set; }
