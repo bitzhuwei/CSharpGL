@@ -54,7 +54,7 @@
     <Compile Include="Form01Renderer.FormLoad.cs" />
     <Compile Include="Form01Renderer.MouseDownMoveUp.cs" />
     <Compile Include="HighlightedPickableRenderer.cs" />
-    <Compile Include="IBufferable\ChainModelConverter.cs" />
+    <Compile Include="IBufferable\Chain.cs" />
     <Compile Include="FormBulletinBoard.cs">
       <SubType>Form</SubType>
     </Compile>

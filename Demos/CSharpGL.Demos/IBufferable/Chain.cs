@@ -10,10 +10,10 @@ namespace CSharpGL
     /// 北斗七星
     /// <para>使用<see cref="ZeroIndexBuffer"/></para>
     /// </summary>
-    class ChainModelConverter : IBufferable
+    class Chain : IBufferable
     {
         private ChainModel model;
-        public ChainModelConverter(ChainModel model)
+        public Chain(ChainModel model)
         {
             this.model = model;
         }
