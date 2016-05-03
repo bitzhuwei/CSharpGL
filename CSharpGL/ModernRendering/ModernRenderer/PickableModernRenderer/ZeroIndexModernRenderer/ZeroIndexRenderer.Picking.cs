@@ -10,9 +10,7 @@ namespace CSharpGL
     public partial class ZeroIndexRenderer : PickableRenderer
     {
 
-        public override PickedGeometry Pick(
-            RenderEventArgs arg,
-            uint stageVertexId,
+        public override PickedGeometry Pick(RenderEventArgs arg, uint stageVertexId,
             int x, int y)
         {
             uint lastVertexId;
