@@ -78,6 +78,13 @@ namespace CSharpGL
             //return pickedGeometry;
         }
 
+        /// <summary>
+        /// I don't know how to implement this method in a high effitiency way.
+        /// So keep it like this.
+        /// </summary>
+        /// <param name="lastVertexId"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
         private bool OnPrimitiveTest(uint lastVertexId, DrawMode mode)
         {
             return true;
