@@ -11,6 +11,10 @@ It provides maths class for matrix and vectors.
 It provide useful utilities.
 
 release notes:
+v1.0.0.9:
+1. supports picking of point, line and basic geometry(triangle, quad, polygon) from any kind of OneIndexRenderer or ZeroIndexRenderer.
+2. rename *ModernRenderer*.cs to *Renderer*.cs
+3. fix bug in QuadStripRecoginzer: reorder its vertexs to form a quad.(0 1 2 3 -> 0 1 3 2)
 v1.0.0.2:
 1. add model: BigDipper, Tetrahedron, Cube, Sphere, Teapot.
 v1.0.0.1:
