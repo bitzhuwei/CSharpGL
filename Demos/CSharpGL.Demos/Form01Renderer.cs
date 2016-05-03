@@ -163,23 +163,6 @@ namespace CSharpGL.Demos
                 uiRenderer.Renderer.SetUniformValue("modelMatrix", model);
 
                 uiRenderer.Render(arg);
-
-                if (this.firstTime)
-                {
-                    this.projection = projection;
-                    this.view = view;
-                    this.model = model;
-                    this.firstTime = false;
-                }
-                else
-                {
-                    if (this.projection != projection
-                        || this.view != view
-                        || this.model != model)
-                    {
-                        Console.WriteLine("adf");
-                    }
-                }
             }
         }
 
@@ -197,9 +180,6 @@ namespace CSharpGL.Demos
                 renderer.Render(arg);
             }
         }
-
-        mat4 projection, view, model;
-        bool firstTime = true;
 
         private void DrawText(PaintEventArgs e)
         {

@@ -197,12 +197,16 @@ namespace CSharpGL.Demos
                         GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(uint.MaxValue);
                         pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
                     }
-                    UIRenderer uiRenderer = new UIRenderer(
-                        pickableRenderer,
+                    //UIRenderer uiRenderer = new UIRenderer(
+                    //    pickableRenderer,
+                    //    AnchorStyles.Left | AnchorStyles.Bottom,
+                    //    new Padding(26, 26, 26, 26),
+                    //    new Size(50, 50));
+                    //uiRenderer.Initialize();
+                    var uiRenderer = new UIAxisRenderer(
                         AnchorStyles.Left | AnchorStyles.Bottom,
                         new Padding(26, 26, 26, 26),
                         new Size(50, 50));
-                    uiRenderer.Initialize();
                     this.uiRenderer = uiRenderer;
                 }
             }

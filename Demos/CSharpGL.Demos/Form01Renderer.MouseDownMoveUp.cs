@@ -45,7 +45,8 @@ namespace CSharpGL.Demos
                     new RenderEventArgs(
                         RenderModes.ColorCodedPicking,
                         this.glCanvas1.ClientRectangle,
-                        this.camera, this.PickingGeometryType),
+                        this.camera, 
+                        this.PickingGeometryType),
                     e.X, e.Y);
                 if (pickedGeometry != null)
                 {
@@ -120,6 +121,7 @@ namespace CSharpGL.Demos
                     this.rendererDict[this.selectedModel].Highlighter.ClearHighlightIndexes();
                 }
 
+                this.pickedGeometry = pickedGeometry;
                 UpdatePickingBoard(pickedGeometry);
             }
 
