@@ -15,6 +15,7 @@ namespace CSharpGL
         /// <summary>
         /// uniform mat4 VMP; (in shader)
         /// </summary>
+        protected UniformMat4 uniformmMVP4Picking = new UniformMat4("MVP");
 
         protected ShaderProgram pickingShaderProgram;
         protected ShaderProgram PickingShaderProgram
@@ -33,6 +34,8 @@ namespace CSharpGL
         /// </summary>
         public mat4 MVP
         {
+            get { return uniformmMVP4Picking.Value; }
+            set { uniformmMVP4Picking.Value = value; }
         }
 
         public uint PickingBaseId { get; internal set; }
