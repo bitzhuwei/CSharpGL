@@ -16,7 +16,7 @@ namespace CSharpGL
             if (lineSearchDict == null)
             {
                 var dict = new Dictionary<DrawMode, OneIndexLineSearcher>();
-                //dict.Add(DrawMode.Triangles, new ZeroIndexLineInTriangleSearcher());
+                dict.Add(DrawMode.Triangles, new OneIndexLineInTrianglesSearcher());
                 //dict.Add(DrawMode.TrianglesAdjacency, new ZeroIndexLineInTrianglesAdjacencySearcher());
                 //dict.Add(DrawMode.TriangleStrip, new ZeroIndexLineInTriangleStripSearcher());
                 //dict.Add(DrawMode.TriangleStripAdjacency, new ZeroIndexLineInTriangleStripAdjacencySearcher());
