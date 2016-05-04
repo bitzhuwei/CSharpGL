@@ -45,12 +45,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controls\GLCanvas.ico" />
+    <Content Include="IBufferables\readme.txt" />
+    <Content Include="ModernRendering\ModernRenderer\HighlightModernRenderer\readme.txt" />
     <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\LineSearcher\OneIndexLineInPolygonSearcher.jpg" />
     <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\LineSearcher\OneIndexLineInQuad+Searcher.jpg" />
     <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\LineSearcher\OneIndexLineInTriangle+Searcher.jpg" />
+    <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\readme.txt" />
     <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.jpg" />
+    <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\readme.txt" />
+    <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\readme.txt" />
+    <Content Include="ModernRendering\ModernRenderer\readme.txt" />
+    <Content Include="ModernRendering\readme.txt" />
     <Content Include="OpenGLAPI\Enumerations\DrawMode.png" />
     <Content Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.png" />
+    <Content Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\readme.txt" />
     <Content Include="OpenGLObjects\ColorCodedPicking\readme.txt" />
     <Content Include="IBufferables\AxisModel.jpg" />
     <Content Include="IBufferables\CubeModel.jpg" />
@@ -63,6 +71,11 @@
     <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInTrianglesSearcher.jpg" />
     <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInTriangleStripAdjacencySearcher.jpg" />
     <Content Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.jpg" />
+    <Content Include="OpenGLObjects\GLSwitches\readme.txt" />
+    <Content Include="OpenGLObjects\RenderContexts\readme.txt" />
+    <Content Include="OpenGLObjects\UILayout\readme.txt" />
+    <Content Include="OpenGLObjects\UniformVariables\readme.txt" />
+    <Content Include="OpenGLObjects\VertexBuffers\readme.txt" />
     <Content Include="readme.txt" />
     <Compile Include="Controls\GLCanvas.cs">
       <SubType>UserControl</SubType>
@@ -349,7 +362,8 @@
     <Content Include="Maths\readme.txt" />
     <Content Include="OpenGLObjects\readme.txt" />
     <Content Include="OpenGLAPI\readme.txt" />
-    <Content Include="Utilities\readme.txt" />
+    <Content Include="TypeConverters\readme.txt" />
+    <Content Include="UITypeEditors\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
