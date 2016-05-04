@@ -1,0 +1,4 @@
+﻿PickableRenderer是支持ColorCodedPicking的渲染器。
+PickableRenderer是抽象类。包含ZeroIndexRenderer和OneIndexRenderer两种子类。
+ZeroIndexRenderer是用glDrawArrays()进行渲染的。它没有自定义的索引。
+OneIndexRenderer是用glDrawElements()进行渲染的。它有自定义的索引。

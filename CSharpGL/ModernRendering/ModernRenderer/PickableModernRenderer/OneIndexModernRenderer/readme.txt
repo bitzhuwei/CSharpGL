@@ -1,0 +1,2 @@
+﻿OneIndexRenderer支持拾取图元内的点、线或图元本身。
+但OneIndexRenderer对拾取点的支持并不完美：有的点可能并未参加渲染，当扔能被拾取到。详见（OnPrimitiveTest）

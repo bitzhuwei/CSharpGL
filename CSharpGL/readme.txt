@@ -5,8 +5,8 @@
 提供实用的公用class、扩展方法。
 
 CSharpGL allows you to use OpenGL functions in the Object-Oriented way.
-It wraps OpenGL’s functions and use enum type as parameters instead of ‘uint’ for some functions.
-It abstracts objects in OpenGL and describes them as classes.
+It wraps OpenGL’s functions and use enum type as parameters instead of ‘uint’for some functions.
+It abstracts objects inside OpenGL and describes them as classes.
 It provides maths class for matrix and vectors.
 It provide useful utilities.
 
