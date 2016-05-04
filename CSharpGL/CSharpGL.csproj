@@ -320,9 +320,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="IBufferables\TeapotModel.obj" />
     <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Highlight.vert" />
     <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Highlight.frag" />
-    <EmbeddedResource Include="IBufferables\TeapotModel.obj" />
     <None Include="ModernRendering\Renderers.cd" />
     <None Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.cd" />
     <EmbeddedResource Include="Controls\GLCanvas.resx">
