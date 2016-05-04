@@ -17,7 +17,6 @@ namespace CSharpGL
 
             // 绑定shader
             program.Bind();
-            var picking = this as IColorCodedPicking;
             // TODO: use uint/int/float or ? use UniformUInt instead
             program.SetUniform("pickingBaseId",
                 temporaryIndexBufferPtr == null ? this.PickingBaseId : 0u);
