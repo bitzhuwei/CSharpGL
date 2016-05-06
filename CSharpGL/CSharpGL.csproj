@@ -156,6 +156,7 @@
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineSearcher.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\ZeroIndexModernRenderer\LineSearcher\ZeroIndexLineInTrianglesSearcher.cs" />
+    <Compile Include="OpenGLObjects\GLSwitches\BlendSwitch.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayout.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayoutArgs.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayoutHelper.cs" />
