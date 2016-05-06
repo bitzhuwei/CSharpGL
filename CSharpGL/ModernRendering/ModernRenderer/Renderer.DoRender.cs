@@ -20,7 +20,11 @@ namespace CSharpGL
             var updatedUniforms = (from item in this.uniformVariables where item.Updated select item).ToArray();
             foreach (var item in updatedUniforms) { item.SetUniform(program); }
 
-            SwitchesOn();
+            int count = this.switchList.Count;
+            for (int i = 0; i < count; i++)
+            {
+                this.switchList[i].On();
+            }
 
             IndexBufferPtr indexBufferPtr = this.GetIndexBufferPtr();
             if (this.vertexArrayObject == null)
@@ -45,30 +49,15 @@ namespace CSharpGL
                 }
             }
 
-            SwitchesOff();
+            for (int i = count - 1; i >= 0; i--)
+            {
+                this.switchList[i].Off();
+            }
 
             foreach (var item in updatedUniforms) { item.ResetUniform(program); item.Updated = false; }
 
             // 解绑shader
             program.Unbind();
-        }
-
-        protected void SwitchesOff()
-        {
-            int count = this.switchList.Count;
-            for (int i = count - 1; i >= 0; i--)
-            {
-                this.switchList[i].Off();
-            }
-        }
-
-        protected void SwitchesOn()
-        {
-            int count = this.switchList.Count;
-            for (int i = 0; i < count; i++)
-            {
-                this.switchList[i].On();
-            }
         }
 
         internal abstract IndexBufferPtr GetIndexBufferPtr();
