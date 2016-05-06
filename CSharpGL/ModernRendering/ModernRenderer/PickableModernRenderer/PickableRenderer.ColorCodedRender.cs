@@ -48,19 +48,21 @@ namespace CSharpGL
             program.Unbind();
         }
 
-        private void PickingSwitchesOff()
+        protected void PickingSwitchesOff()
         {
-            foreach (var item in this.switchList4Picking)
+            int count = this.switchList4Picking.Count;
+            for (int i = count - 1; i >= 0; i--)
             {
-                item.Off();
+                this.switchList4Picking[i].Off();
             }
         }
 
-        private void PickingSwitchesOn()
+        protected void PickingSwitchesOn()
         {
-            foreach (var item in this.switchList4Picking)
+            int count = this.switchList4Picking.Count;
+            for (int i = 0; i < count; i++)
             {
-                item.On();
+                this.switchList4Picking[i].On();
             }
         }
 

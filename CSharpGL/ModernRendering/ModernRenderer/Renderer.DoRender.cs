@@ -55,12 +55,20 @@ namespace CSharpGL
 
         protected void SwitchesOff()
         {
-            foreach (var item in switchList) { item.Off(); }
+            int count = this.switchList.Count;
+            for (int i = count - 1; i >= 0; i--)
+            {
+                this.switchList[i].Off();
+            }
         }
 
         protected void SwitchesOn()
         {
-            foreach (var item in switchList) { item.On(); }
+            int count = this.switchList.Count;
+            for (int i = 0; i < count; i++)
+            {
+                this.switchList[i].On();
+            }
         }
 
         internal abstract IndexBufferPtr GetIndexBufferPtr();
