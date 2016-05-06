@@ -1481,7 +1481,7 @@ namespace CSharpGL
             max = lineWidthRange[1];
         }
 
-        public static void PointSizeRange(out float min,out float max)
+        public static void PointSizeRange(out float min, out float max)
         {
             float[] pointSizeRange = new float[2];
             GL.GetFloat(GetTarget.PointSizeRange, pointSizeRange);

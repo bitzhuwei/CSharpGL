@@ -12,6 +12,9 @@ namespace CSharpGL
         ElementArrayBuffer = GL.GL_ELEMENT_ARRAY_BUFFER,
         UniformBuffer = GL.GL_UNIFORM_BUFFER,
         TransformFeedbackBuffer = GL.GL_TRANSFORM_FEEDBACK_BUFFER,
+        PixelUnpackBuffer = GL.GL_PIXEL_UNPACK_BUFFER,
+        AtomicCounterBuffer = GL.GL_ATOMIC_COUNTER_BUFFER,
+        TextureBuffer = GL.GL_TEXTURE_BUFFER,
     }
 
     ///// <summary>

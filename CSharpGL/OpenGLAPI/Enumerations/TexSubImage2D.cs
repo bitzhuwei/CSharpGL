@@ -24,6 +24,7 @@ namespace CSharpGL
         RGBA = GL.GL_RGBA,
         Luminance = GL.GL_LUMINANCE,
         LuminanceAlpha = GL.GL_LUMINANCE_ALPHA,
+        RedInteger = GL.GL_RED_INTEGER,
     }
 
     public enum TexSubImage2DType : uint
@@ -32,5 +33,6 @@ namespace CSharpGL
         UnsignedShort565 = GL.GL_UNSIGNED_SHORT_5_6_5,
         UnsignedShort4444 = GL.GL_UNSIGNED_SHORT_4_4_4_4,
         UnsignedShort5551 = GL.GL_UNSIGNED_SHORT_5_5_5_1,
+        UnsignedInt = GL.GL_UNSIGNED_INT,
     }
 }
