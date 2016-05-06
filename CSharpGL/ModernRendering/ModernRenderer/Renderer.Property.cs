@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class Renderer
+    public abstract partial class Renderer
     {
 
         public DrawMode Mode

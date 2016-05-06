@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class Renderer
+    public abstract partial class Renderer
     {
 
         protected override void DoRender(RenderEventArgs arg)
