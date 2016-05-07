@@ -22,10 +22,24 @@ namespace CSharpGL
             if (geometryType == GeometryType.Point)
             {
                 DrawMode mode = this.GetIndexBufferPtr().Mode;
-                if (this.OnPrimitiveTest(lastVertexId, mode))
-                { return PickPoint(stageVertexId, lastVertexId); }
+                GeometryType typeOfMode = mode.ToGeometryType();
+                if (geometryType == typeOfMode)
+                { return PickWhateverItIs(stageVertexId, lastVertexId, mode, typeOfMode); }
+                else if (typeOfMode == GeometryType.Line)
+                {
+                    if (this.OnPrimitiveTest(lastVertexId, mode))
+                    { return PickPoint(stageVertexId, lastVertexId); }
+                    else
+                    { return null; }
+                }
                 else
-                { return null; }
+                {
+                    ZeroIndexPointSearcher searcher = GetPointSearcher(mode);
+                    if (searcher != null)// point is from triangle, quad or polygon
+                    { return SearchPoint(arg, stageVertexId, x, y, lastVertexId, searcher); }
+                    else
+                    { throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
+                }
             }
             else if (geometryType == GeometryType.Line)
             {
@@ -54,6 +68,18 @@ namespace CSharpGL
                 { return null; }
                 //{ throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
             }
+        }
+
+        private PickedGeometry SearchPoint(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, ZeroIndexPointSearcher searcher)
+        {
+            PickedGeometry pickedGeometry = new PickedGeometry();
+            pickedGeometry.From = this;
+            pickedGeometry.GeometryType = GeometryType.Line;
+            pickedGeometry.StageVertexId = stageVertexId;
+            pickedGeometry.Indexes = new uint[] { searcher.Search(arg, x, y, lastVertexId, this), };
+            pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.Indexes);
+
+            return pickedGeometry;
         }
 
         private PickedGeometry PickWhateverItIs(uint stageVertexId, uint lastVertexId, DrawMode mode, GeometryType typeOfMode)
@@ -146,18 +172,7 @@ namespace CSharpGL
             pickedGeometry.GeometryType = GeometryType.Line;
             pickedGeometry.StageVertexId = stageVertexId;
             pickedGeometry.Indexes = searcher.Search(arg, x, y, lastVertexId, this);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
-            IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
-            unsafe
-            {
-                var array = (vec3*)pointer.ToPointer();
-                var positions = new vec3[2];
-                positions[0] = array[pickedGeometry.Indexes[0]];
-                positions[1] = array[pickedGeometry.Indexes[1]];
-                pickedGeometry.Positions = positions;
-            }
-            GL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            pickedGeometry.Positions = FillPickedGeometrysPosition(pickedGeometry.Indexes);
 
             return pickedGeometry;
         }

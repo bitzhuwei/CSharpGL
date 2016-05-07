@@ -38,7 +38,8 @@ namespace CSharpGL
         public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
         {
             if (arg.RenderMode == RenderModes.ColorCodedPicking
-                && arg.PickingGeometryType == GeometryType.Point)
+                && arg.PickingGeometryType == GeometryType.Point
+                && this.Mode.ToGeometryType() == GeometryType.Line)// picking point from a line
             {
                 // this maybe render points that should not appear. 
                 // so need to select by another picking
