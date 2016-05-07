@@ -218,13 +218,13 @@ namespace CSharpGL.Demos
                 // Cross cursor shows where the mouse is.
                 GL.DrawText(this.lastMousePosition.X - offset.X,
                     this.glCanvas1.Height - (this.lastMousePosition.Y + offset.Y) - 1,
-                    Color.Red, "Courier New", crossCursorSize, "+");
+                    Color.Red, "Courier New", crossCursorSize, "o");
             }
         }
 
         private const float crossCursorSize = 40.0f;
 
-        private Point offset = new Point(13, 13);
+        private Point offset = new Point(13, 11);
 
 
         const float fontSize = 20.0f;
