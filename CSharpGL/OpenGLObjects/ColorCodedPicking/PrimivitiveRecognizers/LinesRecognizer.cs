@@ -15,7 +15,7 @@ namespace CSharpGL
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
-                for (uint i = 1; i < length; i++)
+                for (uint i = 1; i < length; i += 2)
                 {
                     if (array[i - 0] == lastVertexId)
                     {
@@ -34,7 +34,7 @@ namespace CSharpGL
             unsafe
             {
                 var array = (ushort*)pointer.ToPointer();
-                for (uint i = 1; i < length; i++)
+                for (uint i = 1; i < length; i += 2)
                 {
                     if (array[i - 0] == lastVertexId)
                     {
@@ -53,7 +53,7 @@ namespace CSharpGL
             unsafe
             {
                 var array = (byte*)pointer.ToPointer();
-                for (uint i = 1; i < length; i++)
+                for (uint i = 1; i < length; i += 2)
                 {
                     if (array[i - 0] == lastVertexId)
                     {
@@ -72,7 +72,7 @@ namespace CSharpGL
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
-                for (uint i = 1; i < length; i++)
+                for (uint i = 1; i < length; i += 2)
                 {
                     if (array[i - 0] == lastVertexId
                         && array[i - 1] != primitiveRestartIndex)
@@ -92,7 +92,7 @@ namespace CSharpGL
             unsafe
             {
                 var array = (ushort*)pointer.ToPointer();
-                for (uint i = 1; i < length; i++)
+                for (uint i = 1; i < length; i += 2)
                 {
                     if (array[i - 0] == lastVertexId
                         && array[i - 1] != primitiveRestartIndex)
@@ -112,7 +112,7 @@ namespace CSharpGL
             unsafe
             {
                 var array = (byte*)pointer.ToPointer();
-                for (uint i = 1; i < length; i++)
+                for (uint i = 1; i < length; i += 2)
                 {
                     if (array[i - 0] == lastVertexId
                         && array[i - 1] != primitiveRestartIndex)
