@@ -115,7 +115,8 @@ namespace CSharpGL.Demos
         protected override void DoRender(RenderEventArgs arg)
         {
             // TODO: reset states
-            GL.Disable(GL.GL_DEPTH_TEST);
+            this.depthTestSwitch.On();
+            //GL.Disable(GL.GL_DEPTH_TEST);
             GL.Disable(GL.GL_CULL_FACE);
             // Reset atomic counter
             GL.GetDelegateFor<GL.glBindBufferBase>()(GL.GL_ATOMIC_COUNTER_BUFFER, 0, atomic_counter_buffer[0]);
@@ -157,8 +158,9 @@ namespace CSharpGL.Demos
 
             GL.GetDelegateFor<GL.glBindImageTexture>()(1, 0, 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32UI);
             GL.GetDelegateFor<GL.glBindImageTexture>()(0, 0, 0, false, 0, GL.GL_READ_WRITE, GL.GL_R32UI);
-            GL.Enable(GL.GL_DEPTH_TEST);
             GL.Enable(GL.GL_CULL_FACE);
+            this.depthTestSwitch.Off();
+            //GL.Enable(GL.GL_DEPTH_TEST);
           
         }
 
