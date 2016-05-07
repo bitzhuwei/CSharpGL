@@ -30,6 +30,7 @@ namespace CSharpGL.Demos
         private uint[] linked_list_buffer = new uint[1];
         private uint[] linked_list_texture = new uint[1];
         private DepthTestSwitch depthTestSwitch;
+        private CullFaceSwitch cullFaceSwitch;
 
 
         public OrderIndependentTransparencyRenderer(IBufferable model,
@@ -54,6 +55,7 @@ namespace CSharpGL.Demos
             }
             {
                 this.depthTestSwitch = new DepthTestSwitch(false);
+                this.cullFaceSwitch = new CullFaceSwitch(false);
             }
         }
 
@@ -114,10 +116,9 @@ namespace CSharpGL.Demos
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            // TODO: reset states
             this.depthTestSwitch.On();
-            //GL.Disable(GL.GL_DEPTH_TEST);
-            GL.Disable(GL.GL_CULL_FACE);
+            this.cullFaceSwitch.On();
+
             // Reset atomic counter
             GL.GetDelegateFor<GL.glBindBufferBase>()(GL.GL_ATOMIC_COUNTER_BUFFER, 0, atomic_counter_buffer[0]);
             IntPtr data = GL.MapBuffer(BufferTarget.AtomicCounterBuffer, MapBufferAccess.WriteOnly);
@@ -158,10 +159,9 @@ namespace CSharpGL.Demos
 
             GL.GetDelegateFor<GL.glBindImageTexture>()(1, 0, 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32UI);
             GL.GetDelegateFor<GL.glBindImageTexture>()(0, 0, 0, false, 0, GL.GL_READ_WRITE, GL.GL_R32UI);
-            GL.Enable(GL.GL_CULL_FACE);
+
+            this.cullFaceSwitch.Off();
             this.depthTestSwitch.Off();
-            //GL.Enable(GL.GL_DEPTH_TEST);
-          
         }
 
         protected override void DisposeUnmanagedResources()
