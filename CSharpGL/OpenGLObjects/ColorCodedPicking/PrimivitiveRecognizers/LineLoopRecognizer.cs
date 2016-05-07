@@ -15,7 +15,7 @@ namespace CSharpGL
             unsafe
             {
                 var array = (byte*)pointer.ToPointer();
-                for (uint i = 1; i < length; i += 2)
+                for (uint i = 1; i < length; i++)
                 {
                     var value = array[i];
                     if (value == lastVertexId)
@@ -43,7 +43,7 @@ namespace CSharpGL
             unsafe
             {
                 var array = (ushort*)pointer.ToPointer();
-                for (uint i = 1; i < length; i += 2)
+                for (uint i = 1; i < length; i++)
                 {
                     var value = array[i];
                     if (value == lastVertexId)
@@ -72,7 +72,7 @@ namespace CSharpGL
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
-                for (uint i = 1; i < length; i += 2)
+                for (uint i = 1; i < length; i++)
                 {
                     var value = array[i];
                     if (value == lastVertexId)
