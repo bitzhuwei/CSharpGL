@@ -28,6 +28,7 @@ namespace CSharpGL.Demos
             this.glCanvas1.MouseMove += glCanvas1_MouseMove;
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
+            this.glCanvas1.Resize += glCanvas1_Resize;
 
             // 天蓝色背景
             GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
