@@ -239,10 +239,10 @@ namespace CSharpGL
                     // get vertexID from coded color.
                     // the vertexID is the last vertex that constructs the primitive.
                     // see http://www.cnblogs.com/bitzhuwei/p/modern-opengl-picking-primitive-in-VBO-2.html
-                    uint shiftedR = (uint)codedColor[0];
-                    uint shiftedG = (uint)codedColor[1] << 8;
-                    uint shiftedB = (uint)codedColor[2] << 16;
-                    uint shiftedA = (uint)codedColor[3] << 24;
+                    uint shiftedR = (uint)pixel.r;
+                    uint shiftedG = (uint)pixel.g << 8;
+                    uint shiftedB = (uint)pixel.b << 16;
+                    uint shiftedA = (uint)pixel.a << 24;
                     stageVertexId = shiftedR + shiftedG + shiftedB + shiftedA;
                 }
             }
