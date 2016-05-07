@@ -75,15 +75,13 @@ namespace CSharpGL
                 var array = (uint*)pointer.ToPointer();
                 for (uint i = 1; i < length; i++)
                 {
-                    if (array[i - 0] == lastVertexId)
+                    if (array[i - 0] == lastVertexId
+                        && array[i - 1] != primitiveRestartIndex)
                     {
-                        if (array[i - 1] != primitiveRestartIndex)
-                        {
-                            var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
-                            item.IndexIdList.Add(array[i - 1]);
-                            item.IndexIdList.Add(array[i - 0]);
-                            lastIndexIdList.Add(item);
-                        }
+                        var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
+                        item.IndexIdList.Add(array[i - 1]);
+                        item.IndexIdList.Add(array[i - 0]);
+                        lastIndexIdList.Add(item);
                     }
                 }
             }
@@ -97,15 +95,13 @@ namespace CSharpGL
                 var array = (ushort*)pointer.ToPointer();
                 for (uint i = 1; i < length; i++)
                 {
-                    if (array[i - 0] == lastVertexId)
+                    if (array[i - 0] == lastVertexId
+                        && array[i - 1] != primitiveRestartIndex)
                     {
-                        if (array[i - 1] != primitiveRestartIndex)
-                        {
-                            var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
-                            item.IndexIdList.Add(array[i - 1]);
-                            item.IndexIdList.Add(array[i - 0]);
-                            lastIndexIdList.Add(item);
-                        }
+                        var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
+                        item.IndexIdList.Add(array[i - 1]);
+                        item.IndexIdList.Add(array[i - 0]);
+                        lastIndexIdList.Add(item);
                     }
                 }
             }
@@ -119,15 +115,13 @@ namespace CSharpGL
                 var array = (byte*)pointer.ToPointer();
                 for (uint i = 1; i < length; i++)
                 {
-                    if (array[i - 0] == lastVertexId)
+                    if (array[i - 0] == lastVertexId
+                        && array[i - 1] != primitiveRestartIndex)
                     {
-                        if (array[i - 1] != primitiveRestartIndex)
-                        {
-                            var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
-                            item.IndexIdList.Add(array[i - 1]);
-                            item.IndexIdList.Add(array[i - 0]);
-                            lastIndexIdList.Add(item);
-                        }
+                        var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
+                        item.IndexIdList.Add(array[i - 1]);
+                        item.IndexIdList.Add(array[i - 0]);
+                        lastIndexIdList.Add(item);
                     }
                 }
             }
