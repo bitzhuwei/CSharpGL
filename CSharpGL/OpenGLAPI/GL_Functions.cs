@@ -583,6 +583,20 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// This function deletes a set of vertex buffer objects.
+        /// </summary>
+        /// <param name="n">Number of textures to delete.</param>
+        /// <param name="buffers">The array containing the names of the buffers to delete.</param>
+        public static void DeleteBuffers(int n, uint[] buffers)
+        {
+            IntPtr ptr = Win32.wglGetCurrentContext();
+            if (ptr != IntPtr.Zero)
+            {
+                GL.GetDelegateFor<GL.glDeleteBuffers>()(n, buffers);
+            }
+        }
+
+        /// <summary>
         /// This function sets the current depth buffer comparison function, the default it LESS.
         /// </summary>
         /// <param name="func">The comparison function to set.</param>
