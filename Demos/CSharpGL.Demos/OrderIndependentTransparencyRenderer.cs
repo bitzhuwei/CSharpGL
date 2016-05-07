@@ -154,7 +154,9 @@ namespace CSharpGL.Demos
             this.resolve_lists.SetUniformValue("view_matrix", view);
             this.resolve_lists.SetUniformValue("projection_matrix", projection);
 
+            // first pass
             this.buildListsRenderer.Render(arg);
+            // second pass
             this.resolve_lists.Render(arg);
 
             GL.GetDelegateFor<GL.glBindImageTexture>()(1, 0, 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32UI);

@@ -30,5 +30,6 @@ void main(void)
 
     imageStore(list_buffer, int(index), item);
 
-    color = surface_color;
+    //color = surface_color;
+	discard;
 }
