@@ -133,6 +133,11 @@ namespace CSharpGL.Demos
         {
             this.buildListsRenderer.Dispose();
             this.resolve_lists.Dispose();
+
+            GL.DeleteTextures(linked_list_texture.Length, linked_list_texture);
+            GL.DeleteBuffers(linked_list_buffer.Length, linked_list_buffer);
+            GL.DeleteBuffers(atomic_counter_buffer.Length, atomic_counter_buffer);
+            GL.DeleteTextures(head_pointer_texture.Length, head_pointer_texture);
         }
     }
 }
