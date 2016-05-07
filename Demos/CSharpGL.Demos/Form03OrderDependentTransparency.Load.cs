@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form02OrderIndependentTransparency : Form
+    public partial class Form03OrderDependentTransparency : Form
     {
-        private Form03OrderDependentTransparency form03;
+        private FormProperyGrid formPropertyGrid;
 
 
         private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
@@ -29,34 +29,36 @@ namespace CSharpGL.Demos
             }
             {
                 IBufferable bufferable = new Teapot();
-                var OITRenderer = new OrderIndependentTransparencyRenderer(
-                    bufferable, Teapot.strPosition, Teapot.strNormal);
-                OITRenderer.Name = "OIT Renderer";
+                var shaderCodes = new ShaderCode[2];
+                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"Shaders\Transparent.vert"), ShaderType.VertexShader);
+                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"Shaders\Transparent.frag"), ShaderType.FragmentShader);
+                var map = new PropertyNameMap();
+                map.Add("in_Position", "position");
+                map.Add("in_Color", "color");
+                var renderer = PickableRendererFactory.GetRenderer(
+                    bufferable, shaderCodes, map, "position");
+                renderer.Name = "Order-Dependent Transparent Renderer";
                 {
                     GLSwitch lineWidthSwitch = new LineWidthSwitch(5);
-                    OITRenderer.BuildListsRenderer.SwitchList.Add(lineWidthSwitch);
-                    OITRenderer.ResolveListsRenderer.SwitchList.Add(lineWidthSwitch);
+                    renderer.SwitchList.Add(lineWidthSwitch);
                     GLSwitch pointSizeSwitch = new PointSizeSwitch(10);
-                    OITRenderer.BuildListsRenderer.SwitchList.Add(pointSizeSwitch);
-                    OITRenderer.ResolveListsRenderer.SwitchList.Add(pointSizeSwitch);
+                    renderer.SwitchList.Add(pointSizeSwitch);
                     GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
-                    OITRenderer.BuildListsRenderer.SwitchList.Add(polygonModeSwitch);
-                    OITRenderer.ResolveListsRenderer.SwitchList.Add(polygonModeSwitch);
+                    renderer.SwitchList.Add(polygonModeSwitch);
                     GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(uint.MaxValue);
-                    OITRenderer.BuildListsRenderer.SwitchList.Add(primitiveRestartSwitch);
-                    OITRenderer.ResolveListsRenderer.SwitchList.Add(primitiveRestartSwitch);
-               }
-                this.OITRenderer = OITRenderer;
+                    renderer.SwitchList.Add(primitiveRestartSwitch);
+                    GLSwitch blendSwitch = new BlendSwitch();
+                    renderer.SwitchList.Add(blendSwitch);
+                }
+                renderer.Initialize();
+                this.renderer = renderer;
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this.OITRenderer);
+                frmPropertyGrid.DisplayObject(this.renderer);
                 frmPropertyGrid.Show();
                 this.formPropertyGrid = frmPropertyGrid;
             }
-
-            this.form03 = new Form03OrderDependentTransparency(this);
-            this.form03.Show();
         }
     }
 }

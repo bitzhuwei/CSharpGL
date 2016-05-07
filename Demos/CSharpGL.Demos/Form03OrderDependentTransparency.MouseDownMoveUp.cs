@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form02OrderIndependentTransparency : Form
+    public partial class Form03OrderDependentTransparency : Form
     {
 
         private Point lastMousePosition;
@@ -24,9 +24,9 @@ namespace CSharpGL.Demos
             rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
             rotator.MouseDown(e.X, e.Y);
 
-            if (sender == this.glCanvas1)
+            if(sender == this.glCanvas1)
             {
-                this.form03.glCanvas1_MouseDown(sender, e);
+                form02.glCanvas1_MouseDown(sender, e);
             }
         }
 
@@ -41,7 +41,7 @@ namespace CSharpGL.Demos
 
             if (sender == this.glCanvas1)
             {
-                this.form03.glCanvas1_MouseMove(sender, e);
+                form02.glCanvas1_MouseMove(sender, e);
             }
         }
 
@@ -54,7 +54,7 @@ namespace CSharpGL.Demos
 
             if (sender == this.glCanvas1)
             {
-                this.form03.glCanvas1_MouseUp(sender, e);
+                form02.glCanvas1_MouseUp(sender, e);
             }
         }
 

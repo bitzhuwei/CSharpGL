@@ -29,6 +29,7 @@ namespace CSharpGL.Demos
         private uint[] atomic_counter_buffer = new uint[1];
         private uint[] linked_list_buffer = new uint[1];
         private uint[] linked_list_texture = new uint[1];
+        private DepthTestSwitch depthTestSwitch;
 
 
         public OrderIndependentTransparencyRenderer(IBufferable model,
@@ -51,6 +52,9 @@ namespace CSharpGL.Demos
                 resolve_lists[1] = new ShaderCode(File.ReadAllText(@"Shaders\resolve_lists.frag"), ShaderType.FragmentShader);
                 this.resolve_lists = PickableRendererFactory.GetRenderer(model, resolve_lists, map, positionName);
             }
+            {
+                this.depthTestSwitch = new DepthTestSwitch(false);
+            }
         }
 
         protected override void DoInitialize()
@@ -71,10 +75,9 @@ namespace CSharpGL.Demos
 
             // Create buffer for clearing the head pointer texture
             GL.GetDelegateFor<GL.glGenBuffers>()(1, head_pointer_clear_buffer);
-            GL.GetDelegateFor<GL.glBindBuffer>()(GL.GL_PIXEL_UNPACK_BUFFER, head_pointer_clear_buffer[0]);
+            GL.BindBuffer(BufferTarget.PixelUnpackBuffer, head_pointer_clear_buffer[0]);
             GL.GetDelegateFor<GL.glBufferData>()(GL.GL_PIXEL_UNPACK_BUFFER, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * sizeof(uint), IntPtr.Zero, GL.GL_STATIC_DRAW);
             IntPtr data = GL.MapBuffer(BufferTarget.PixelUnpackBuffer, MapBufferAccess.WriteOnly);
-
             unsafe
             {
                 var array = (uint*)data.ToPointer();
@@ -84,11 +87,13 @@ namespace CSharpGL.Demos
                 }
             }
             GL.UnmapBuffer(BufferTarget.PixelUnpackBuffer);
+            GL.BindBuffer(BufferTarget.PixelUnpackBuffer, 0);
 
             // Create the atomic counter buffer
             GL.GetDelegateFor<GL.glGenBuffers>()(1, atomic_counter_buffer);
             GL.BindBuffer(BufferTarget.AtomicCounterBuffer, atomic_counter_buffer[0]);
             GL.GetDelegateFor<GL.glBufferData>()(GL.GL_ATOMIC_COUNTER_BUFFER, sizeof(uint), IntPtr.Zero, GL.GL_DYNAMIC_COPY);
+            GL.BindBuffer(BufferTarget.AtomicCounterBuffer, 0);
 
             // Create the linked list storage buffer
             GL.GetDelegateFor<GL.glGenBuffers>()(1, linked_list_buffer);
@@ -103,8 +108,6 @@ namespace CSharpGL.Demos
             GL.BindTexture(GL.GL_TEXTURE_BUFFER, 0);
 
             GL.GetDelegateFor<GL.glBindImageTexture>()(1, linked_list_texture[0], 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32UI);
-
-
 
             GL.ClearDepth(1.0f);
         }
@@ -123,6 +126,8 @@ namespace CSharpGL.Demos
                 array[0] = 0;
             }
             GL.UnmapBuffer(BufferTarget.AtomicCounterBuffer);
+            GL.GetDelegateFor<GL.glBindBufferBase>()(GL.GL_ATOMIC_COUNTER_BUFFER, 0, 0);
+
             // Clear head-pointer image
             GL.BindBuffer(BufferTarget.PixelUnpackBuffer, head_pointer_clear_buffer[0]);
             GL.BindTexture(GL.GL_TEXTURE_2D, head_pointer_texture[0]);

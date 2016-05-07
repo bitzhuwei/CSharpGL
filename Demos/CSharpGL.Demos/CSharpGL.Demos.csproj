@@ -59,11 +59,23 @@
     <Compile Include="Form01Renderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form03OrderDependentTransparency.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form03OrderDependentTransparency.Designer.cs">
+      <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form02OrderIndependentTransparency.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form02OrderIndependentTransparency.Designer.cs">
       <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form03OrderDependentTransparency.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form03OrderDependentTransparency.MouseDownMoveUp.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form02OrderIndependentTransparency.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
@@ -108,6 +120,12 @@
     <None Include="Shaders\build_lists.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Shaders\Transparent.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Shaders\Transparent.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Shaders\resolve_lists.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -125,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form01Renderer.resx">
       <DependentUpon>Form01Renderer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form03OrderDependentTransparency.resx">
+      <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form02OrderIndependentTransparency.resx">
       <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>

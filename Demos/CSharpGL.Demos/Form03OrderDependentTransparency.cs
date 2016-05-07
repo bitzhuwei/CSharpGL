@@ -10,18 +10,19 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form02OrderIndependentTransparency : Form
+    public partial class Form03OrderDependentTransparency : Form
     {
 
         private Camera camera;
         private SatelliteRotator rotator;
-        private OrderIndependentTransparencyRenderer OITRenderer;
-        private FormProperyGrid formPropertyGrid;
+        private Renderer renderer;
 
 
-        public Form02OrderIndependentTransparency()
+        public Form03OrderDependentTransparency(Form02OrderIndependentTransparency form02)
         {
             InitializeComponent();
+
+            this.form02 = form02;
 
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             this.glCanvas1.MouseDown += glCanvas1_MouseDown;
@@ -39,9 +40,18 @@ namespace CSharpGL.Demos
             GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
             RenderEventArgs arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
-            IRenderable renderer = this.OITRenderer;
+            IRenderable renderer = this.renderer;
             if (renderer != null)
-            { renderer.Render(arg); }
+            {
+                mat4 model = mat4.identity();
+                mat4 view = arg.Camera.GetViewMat4();
+                mat4 projection = arg.Camera.GetProjectionMat4();
+                this.renderer.SetUniformValue("modelMatrix", model);
+                this.renderer.SetUniformValue("viewMatrix", view);
+                this.renderer.SetUniformValue("projectionMatrix", projection);
+
+                renderer.Render(arg);
+            }
 
             // Cross cursor shows where the mouse is.
             GL.DrawText(this.lastMousePosition.X - offset.X,
@@ -53,6 +63,9 @@ namespace CSharpGL.Demos
         private const float crossCursorSize = 40.0f;
 
         private Point offset = new Point(13, 11);
+
+        private Form02OrderIndependentTransparency form02;
+
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
