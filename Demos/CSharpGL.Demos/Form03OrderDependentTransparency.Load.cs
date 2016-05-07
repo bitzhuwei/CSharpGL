@@ -45,7 +45,7 @@ namespace CSharpGL.Demos
                     renderer.SwitchList.Add(pointSizeSwitch);
                     GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
                     renderer.SwitchList.Add(polygonModeSwitch);
-                    GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(uint.MaxValue);
+                    GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(renderer.GetIndexBufferPtr() as OneIndexBufferPtr);
                     renderer.SwitchList.Add(primitiveRestartSwitch);
                     GLSwitch blendSwitch = new BlendSwitch();
                     renderer.SwitchList.Add(blendSwitch);

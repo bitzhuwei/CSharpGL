@@ -25,6 +25,13 @@ namespace CSharpGL
             if (mvpUpdated) { uniformmMVP4Picking.SetUniform(program); }
 
             PickingSwitchesOn();
+            GLSwitch primitiveRestartIndexSwitch = null;
+            var oneIndexBufferPtr = temporaryIndexBufferPtr as OneIndexBufferPtr;
+            if (oneIndexBufferPtr != null)
+            {
+                primitiveRestartIndexSwitch = new PrimitiveRestartSwitch(oneIndexBufferPtr);
+                primitiveRestartIndexSwitch.On();
+            }
 
             if (this.vertexArrayObject4Picking == null)
             {
@@ -39,10 +46,14 @@ namespace CSharpGL
                 this.vertexArrayObject4Picking.Render(arg, program, temporaryIndexBufferPtr);
             }
 
+            if (oneIndexBufferPtr != null)
+            {
+                primitiveRestartIndexSwitch.Off();
+            }
             PickingSwitchesOff();
 
             if (mvpUpdated) { uniformmMVP4Picking.ResetUniform(program); uniformmMVP4Picking.Updated = false; }
-            
+
 
             // 解绑shader
             program.Unbind();

@@ -13,7 +13,7 @@ namespace CSharpGL
     {
         protected OneIndexBufferPtr oneIndexBufferPtr;
 
-        PrimitiveRestartSwitch primitiveRestartSwitch4Picking = new PrimitiveRestartSwitch(uint.MaxValue);
+        PrimitiveRestartSwitch primitiveRestartSwitch4Picking;
 
         /// <summary>
         /// 用glDrawElements进行渲染。
@@ -28,7 +28,7 @@ namespace CSharpGL
             params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
         {
-            this.switchList4Picking.Add(primitiveRestartSwitch4Picking);
+            
         }
 
         protected override void DoInitialize()
@@ -37,10 +37,14 @@ namespace CSharpGL
             this.oneIndexBufferPtr = this.bufferable.GetIndex() as OneIndexBufferPtr;
             if (this.oneIndexBufferPtr == null) { throw new Exception(); }
 
+            var primitiveRestartSwitch4Picking = new PrimitiveRestartSwitch(this.oneIndexBufferPtr);
+            this.primitiveRestartSwitch4Picking = primitiveRestartSwitch4Picking;
+            this.switchList4Picking.Add(primitiveRestartSwitch4Picking);
+
             base.DoInitialize();
         }
 
-        internal override IndexBufferPtr GetIndexBufferPtr()
+        public override IndexBufferPtr GetIndexBufferPtr()
         {
             return this.oneIndexBufferPtr;
         }

@@ -60,6 +60,6 @@ namespace CSharpGL
             program.Unbind();
         }
 
-        internal abstract IndexBufferPtr GetIndexBufferPtr();
+        public abstract IndexBufferPtr GetIndexBufferPtr();
     }
 }

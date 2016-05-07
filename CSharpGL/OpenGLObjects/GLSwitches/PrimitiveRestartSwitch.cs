@@ -8,11 +8,25 @@ namespace CSharpGL
     public class PrimitiveRestartSwitch : GLSwitch
     {
 
-        public PrimitiveRestartSwitch() : this(uint.MaxValue) { }
-
-        public PrimitiveRestartSwitch(uint restartIndex)
+        public PrimitiveRestartSwitch(OneIndexBufferPtr indexBufferPtr)
         {
-            this.RestartIndex = restartIndex;
+            if (indexBufferPtr == null)
+            { throw new ArgumentException(); }
+
+            switch (indexBufferPtr.Type)
+            {
+                case IndexElementType.UnsignedByte:
+                    this.RestartIndex = byte.MaxValue;
+                    break;
+                case IndexElementType.UnsignedShort:
+                    this.RestartIndex = ushort.MaxValue;
+                    break;
+                case IndexElementType.UnsignedInt:
+                    this.RestartIndex = uint.MaxValue;
+                    break;
+                default:
+                    break;
+            }
         }
 
         public override string ToString()

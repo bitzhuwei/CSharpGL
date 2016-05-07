@@ -108,7 +108,7 @@ namespace CSharpGL
         {
             if (indexBufferPtr == null)
             {
-                if (model.indexes.Length < byte.MaxValue)
+                if (model.positions.Length < byte.MaxValue)
                 {
                     using (var buffer = new OneIndexBuffer<byte>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                     {
@@ -118,14 +118,17 @@ namespace CSharpGL
                             var indexArray = (byte*)buffer.FirstElement();
                             for (int i = 0; i < model.indexes.Length; i++)
                             {
-                                indexArray[i] = (byte)model.indexes[i];
+                                if (model.indexes[i] == uint.MaxValue)
+                                { indexArray[i] = byte.MaxValue; }
+                                else
+                                { indexArray[i] = (byte)model.indexes[i]; }
                             }
                         }
 
                         indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
                     }
                 }
-                else if (model.indexes.Length < ushort.MaxValue)
+                else if (model.positions.Length < ushort.MaxValue)
                 {
                     using (var buffer = new OneIndexBuffer<ushort>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                     {
@@ -135,7 +138,10 @@ namespace CSharpGL
                             var indexArray = (ushort*)buffer.FirstElement();
                             for (int i = 0; i < model.indexes.Length; i++)
                             {
-                                indexArray[i] = (ushort)model.indexes[i];
+                                if (model.indexes[i] == uint.MaxValue)
+                                { indexArray[i] = ushort.MaxValue; }
+                                else
+                                { indexArray[i] = (ushort)model.indexes[i]; }
                             }
                         }
 

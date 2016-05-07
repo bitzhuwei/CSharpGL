@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -154,7 +155,7 @@ namespace CSharpGL
                 else
                 {
                     ErrorCode error = (ErrorCode)GL.GetError();
-                    throw new Exception(string.Format(
+                    Debug.WriteLine(string.Format(
                         "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId));
                 }
                 GL.UnmapBuffer(BufferTarget.ArrayBuffer);
