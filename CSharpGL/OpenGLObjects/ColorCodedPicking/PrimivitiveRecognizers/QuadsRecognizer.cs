@@ -15,15 +15,19 @@ namespace CSharpGL
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
-                for (uint i = 3; i < length; i += 4)
+                long nearestRestartIndex = -1;
+                uint i = 0;
+                for (i = i + 3; i < length; i++)
                 {
-                    if (array[i - 0] == lastVertexId)
+                    var value = array[i];
+                    if (value == lastVertexId
+                        && (i - nearestRestartIndex) % 4 == 0)
                     {
-                        var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
+                        var item = new RecognizedPrimitiveIndex(lastVertexId, i);
                         item.IndexIdList.Add(array[i - 3]);
                         item.IndexIdList.Add(array[i - 2]);
                         item.IndexIdList.Add(array[i - 1]);
-                        item.IndexIdList.Add(array[i - 0]);
+                        item.IndexIdList.Add(value);
                         lastIndexIdList.Add(item);
                     }
                 }
@@ -36,15 +40,19 @@ namespace CSharpGL
             unsafe
             {
                 var array = (ushort*)pointer.ToPointer();
-                for (uint i = 3; i < length; i += 4)
+                long nearestRestartIndex = -1;
+                uint i = 0;
+                for (i = i + 3; i < length; i++)
                 {
-                    if (array[i - 0] == lastVertexId)
+                    var value = array[i];
+                    if (value == lastVertexId
+                        && (i - nearestRestartIndex) % 4 == 0)
                     {
-                        var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
+                        var item = new RecognizedPrimitiveIndex(lastVertexId, i);
                         item.IndexIdList.Add(array[i - 3]);
                         item.IndexIdList.Add(array[i - 2]);
                         item.IndexIdList.Add(array[i - 1]);
-                        item.IndexIdList.Add(array[i - 0]);
+                        item.IndexIdList.Add(value);
                         lastIndexIdList.Add(item);
                     }
                 }
@@ -57,15 +65,19 @@ namespace CSharpGL
             unsafe
             {
                 var array = (byte*)pointer.ToPointer();
-                for (uint i = 3; i < length; i += 4)
+                long nearestRestartIndex = -1;
+                uint i = 0;
+                for (i = i + 3; i < length; i++)
                 {
-                    if (array[i - 0] == lastVertexId)
+                    var value = array[i];
+                    if (value == lastVertexId
+                        && (i - nearestRestartIndex) % 4 == 0)
                     {
-                        var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
+                        var item = new RecognizedPrimitiveIndex(lastVertexId, i);
                         item.IndexIdList.Add(array[i - 3]);
                         item.IndexIdList.Add(array[i - 2]);
                         item.IndexIdList.Add(array[i - 1]);
-                        item.IndexIdList.Add(array[i - 0]);
+                        item.IndexIdList.Add(value);
                         lastIndexIdList.Add(item);
                     }
                 }
@@ -78,26 +90,29 @@ namespace CSharpGL
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
+                long nearestRestartIndex = -1;
                 uint i = 0;
-                while (i + 3 < length)
+                while (i < length && array[i] == primitiveRestartIndex)
+                { nearestRestartIndex = i; i++; }
+                for (i = i + 3; i < length; i++)
                 {
-                    if (array[i] == primitiveRestartIndex)
+                    var value = array[i];
+                    if (value == primitiveRestartIndex)
                     {
-                        i++;
+                        nearestRestartIndex = i;
                     }
-                    else
+                    else if (value == lastVertexId
+                        && array[i - 1] != primitiveRestartIndex
+                        && array[i - 2] != primitiveRestartIndex
+                        && array[i - 3] != primitiveRestartIndex
+                        && (i - nearestRestartIndex) % 4 == 0)
                     {
-                        if (array[i + 3] == lastVertexId)
-                        {
-                            var item = new RecognizedPrimitiveIndex(lastVertexId, i + 3);
-                            item.IndexIdList.Add(array[i + 0]);
-                            item.IndexIdList.Add(array[i + 1]);
-                            item.IndexIdList.Add(array[i + 2]);
-                            item.IndexIdList.Add(array[i + 3]);
-                            lastIndexIdList.Add(item);
-                        }
-
-                        i += 4;
+                        var item = new RecognizedPrimitiveIndex(lastVertexId, i);
+                        item.IndexIdList.Add(array[i - 3]);
+                        item.IndexIdList.Add(array[i - 2]);
+                        item.IndexIdList.Add(array[i - 1]);
+                        item.IndexIdList.Add(value);
+                        lastIndexIdList.Add(item);
                     }
                 }
             }
@@ -109,26 +124,29 @@ namespace CSharpGL
             unsafe
             {
                 var array = (ushort*)pointer.ToPointer();
+                long nearestRestartIndex = -1;
                 uint i = 0;
-                while (i + 3 < length)
+                while (i < length && array[i] == primitiveRestartIndex)
+                { nearestRestartIndex = i; i++; }
+                for (i = i + 3; i < length; i++)
                 {
-                    if (array[i] == primitiveRestartIndex)
+                    var value = array[i];
+                    if (value == primitiveRestartIndex)
                     {
-                        i++;
+                        nearestRestartIndex = i;
                     }
-                    else
+                    else if (value == lastVertexId
+                        && array[i - 1] != primitiveRestartIndex
+                        && array[i - 2] != primitiveRestartIndex
+                        && array[i - 3] != primitiveRestartIndex
+                        && (i - nearestRestartIndex) % 4 == 0)
                     {
-                        if (array[i + 3] == lastVertexId)
-                        {
-                            var item = new RecognizedPrimitiveIndex(lastVertexId, i + 3);
-                            item.IndexIdList.Add(array[i + 0]);
-                            item.IndexIdList.Add(array[i + 1]);
-                            item.IndexIdList.Add(array[i + 2]);
-                            item.IndexIdList.Add(array[i + 3]);
-                            lastIndexIdList.Add(item);
-                        }
-
-                        i += 4;
+                        var item = new RecognizedPrimitiveIndex(lastVertexId, i);
+                        item.IndexIdList.Add(array[i - 3]);
+                        item.IndexIdList.Add(array[i - 2]);
+                        item.IndexIdList.Add(array[i - 1]);
+                        item.IndexIdList.Add(value);
+                        lastIndexIdList.Add(item);
                     }
                 }
             }
@@ -140,26 +158,29 @@ namespace CSharpGL
             unsafe
             {
                 var array = (byte*)pointer.ToPointer();
+                long nearestRestartIndex = -1;
                 uint i = 0;
-                while (i + 3 < length)
+                while (i < length && array[i] == primitiveRestartIndex)
+                { nearestRestartIndex = i; i++; }
+                for (i = i + 3; i < length; i++)
                 {
-                    if (array[i] == primitiveRestartIndex)
+                    var value = array[i];
+                    if (value == primitiveRestartIndex)
                     {
-                        i++;
+                        nearestRestartIndex = i;
                     }
-                    else
+                    else if (value == lastVertexId
+                        && array[i - 1] != primitiveRestartIndex
+                        && array[i - 2] != primitiveRestartIndex
+                        && array[i - 3] != primitiveRestartIndex
+                        && (i - nearestRestartIndex) % 4 == 0)
                     {
-                        if (array[i + 3] == lastVertexId)
-                        {
-                            var item = new RecognizedPrimitiveIndex(lastVertexId, i + 3);
-                            item.IndexIdList.Add(array[i + 0]);
-                            item.IndexIdList.Add(array[i + 1]);
-                            item.IndexIdList.Add(array[i + 2]);
-                            item.IndexIdList.Add(array[i + 3]);
-                            lastIndexIdList.Add(item);
-                        }
-
-                        i += 4;
+                        var item = new RecognizedPrimitiveIndex(lastVertexId, i);
+                        item.IndexIdList.Add(array[i - 3]);
+                        item.IndexIdList.Add(array[i - 2]);
+                        item.IndexIdList.Add(array[i - 1]);
+                        item.IndexIdList.Add(value);
+                        lastIndexIdList.Add(item);
                     }
                 }
             }
