@@ -27,7 +27,7 @@ void main(void)
     {
         for (int i = 0; i < gl_in.length(); i++)
         {
-            vertex_out.color = vertex_in[i].normal;
+            vertex_out.color = vec3(inverse(transpose(modelMatrix)) * vec4(vertex_in[i].normal, 1.0f));
             vec4 position = gl_in[i].gl_Position;
             gl_Position = projectionMatrix * viewMatrix * (modelMatrix * position);
             EmitVertex();
