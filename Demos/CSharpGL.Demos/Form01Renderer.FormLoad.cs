@@ -92,7 +92,7 @@ namespace CSharpGL.Demos
                 {
                     new Tuple<string, ValueType>("normalLength", 0.5f),
                     new Tuple<string, ValueType>("showModel", true),
-                    new Tuple<string, ValueType>("showNormal", true),
+                    new Tuple<string, ValueType>("showNormal", false),
                 };
                 var uniformVariablesList = new List<List<Tuple<string, ValueType>>>()
                 {
@@ -133,6 +133,8 @@ namespace CSharpGL.Demos
                         pickableRenderer.SwitchList.Add(polygonModeSwitch);
                         GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(uint.MaxValue);
                         pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
+                        GLSwitch blendSwitch = new BlendSwitch();
+                        pickableRenderer.SwitchList.Add(blendSwitch);
                     }
                     HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
                         highlightRenderer, pickableRenderer);
