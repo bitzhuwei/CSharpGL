@@ -59,6 +59,18 @@
     <Compile Include="Form01Renderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form02OrderIndependentTransparency.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form02OrderIndependentTransparency.Designer.cs">
+      <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form02OrderIndependentTransparency.MouseDownMoveUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form02OrderIndependentTransparency.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HighlightedPickableRenderer.cs" />
     <Compile Include="IBufferable\Chain.cs" />
     <Compile Include="FormBulletinBoard.cs">
@@ -113,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form01Renderer.resx">
       <DependentUpon>Form01Renderer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form02OrderIndependentTransparency.resx">
+      <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBulletinBoard.resx">
       <DependentUpon>FormBulletinBoard.cs</DependentUpon>
