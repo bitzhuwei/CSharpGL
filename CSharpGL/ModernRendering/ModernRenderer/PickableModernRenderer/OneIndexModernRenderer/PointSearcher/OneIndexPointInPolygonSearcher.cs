@@ -5,9 +5,9 @@ using System.Text;
 
 namespace CSharpGL
 {
-    class OneIndexLineInPolygonSearcher : OneIndexLineSearcher
+    class OneIndexPointInPolygonSearcher : OneIndexPointSearcher
     {
-        internal override uint[] Search(RenderEventArgs arg,
+        internal override uint Search(RenderEventArgs arg,
             int x, int y,
             RecognizedPrimitiveIndex lastIndexId,
             OneIndexRenderer modernRenderer)
@@ -16,7 +16,7 @@ namespace CSharpGL
             if (indexList.Count < 3) { throw new ArgumentException(); }
 
             OneIndexBufferPtr indexBufferPtr = null;
-            using (var buffer = new OneIndexBuffer<uint>(DrawMode.LineLoop, BufferUsage.StaticDraw))
+            using (var buffer = new OneIndexBuffer<uint>(DrawMode.Points, BufferUsage.StaticDraw))
             {
                 buffer.Alloc(indexList.Count);
                 unsafe
@@ -36,25 +36,10 @@ namespace CSharpGL
 
             indexBufferPtr.Dispose();
 
-            if (id == indexList[0])
-            { return new uint[] { indexList[indexList.Count - 1], id, }; }
+            if (id != uint.MaxValue)
+            { return id; }
             else
-            {
-                uint[] result = null;
-                for (int i = 1; i < indexList.Count; i++)
-                {
-                    if (id == indexList[i])
-                    {
-                        result = new uint[] { indexList[i - 1], indexList[i], };
-                        break;
-                    }
-                }
-
-                if (result != null)
-                { return result; }
-                else
-                { throw new Exception("This should not happen!"); }
-            }
+            { throw new Exception("This should not happen!"); }
         }
     }
 }

@@ -12,11 +12,12 @@ namespace CSharpGL
             RecognizedPrimitiveIndex lastIndexId,
             OneIndexRenderer modernRenderer)
         {
-            if (lastIndexId.IndexIdList.Count != 3) { throw new ArgumentException(); }
             List<uint> indexList = lastIndexId.IndexIdList;
-            if (indexList[0] == indexList[1]) { return new uint[] { indexList[0], indexList[2], }; }
-            else if (indexList[0] == indexList[2]) { return new uint[] { indexList[0], indexList[1], }; }
-            else if (indexList[1] == indexList[2]) { return new uint[] { indexList[1], indexList[0], }; }
+            if (indexList.Count != 3) { throw new ArgumentException(); }
+
+            //if (indexList[0] == indexList[1]) { return new uint[] { indexList[0], indexList[2], }; }
+            //else if (indexList[0] == indexList[2]) { return new uint[] { indexList[0], indexList[1], }; }
+            //else if (indexList[1] == indexList[2]) { return new uint[] { indexList[1], indexList[0], }; }
 
             OneIndexBufferPtr indexBufferPtr = null;
             using (var buffer = new OneIndexBuffer<uint>(DrawMode.Lines, BufferUsage.StaticDraw))

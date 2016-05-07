@@ -97,7 +97,11 @@
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.GetLastIndexId.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.Picking.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.Property.cs" />
-    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.GetLineSearcher.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\OneIndexRenderer.GetSearcher.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\PointSearcher\OneIndexPointInPolygonSearcher.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\PointSearcher\OneIndexPointInQuad+Searcher.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\PointSearcher\OneIndexPointInTriangle+Searcher.cs" />
+    <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\OneIndexModernRenderer\PointSearcher\OneIndexPointSearcher.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.Dispose.cs" />
     <Compile Include="ModernRendering\ModernRenderer\PickableModernRenderer\PickableRenderer.DoRender.cs" />
