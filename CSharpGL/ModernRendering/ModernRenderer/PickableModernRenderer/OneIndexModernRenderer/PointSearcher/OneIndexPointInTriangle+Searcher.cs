@@ -16,7 +16,7 @@ namespace CSharpGL
             if (indexList.Count != 3) { throw new ArgumentException(); }
 
             OneIndexBufferPtr indexBufferPtr = null;
-            using (var buffer = new OneIndexBuffer<uint>(DrawMode.Lines, BufferUsage.StaticDraw))
+            using (var buffer = new OneIndexBuffer<uint>(DrawMode.Points, BufferUsage.StaticDraw))
             {
                 buffer.Alloc(3);
                 unsafe
