@@ -13,7 +13,11 @@ out vec4 surface_color;
 
 void main(void)
 {
-	vec3 normalized = normalize(normal);
+    vec3 color = normal;
+    if (color.r < 0) { color.r = -color.r; }
+    if (color.g < 0) { color.g = -color.g; }
+    if (color.b < 0) { color.b = -color.b; }
+	vec3 normalized = normalize(color);
 	float variance = (normalized.r - normalized.g) * (normalized.r - normalized.g);
 	variance += (normalized.g - normalized.b) * (normalized.g - normalized.b);
 	variance += (normalized.b - normalized.r) * (normalized.b - normalized.r);
