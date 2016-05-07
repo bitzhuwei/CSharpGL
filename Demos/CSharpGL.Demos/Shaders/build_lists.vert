@@ -7,9 +7,6 @@ uniform mat4 model_matrix;
 uniform mat4 view_matrix;
 uniform mat4 projection_matrix;
 
-uniform float aspect;
-uniform float time;
-
 out gl_PerVertex
 {
     vec4 gl_Position;

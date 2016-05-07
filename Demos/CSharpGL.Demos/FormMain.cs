@@ -27,5 +27,10 @@ namespace CSharpGL.Demos
             (new Form01Renderer()).Show();
         }
 
+        private void btnForm02_Click(object sender, EventArgs e)
+        {
+            (new Form02OrderIndependentTransparency()).Show();
+        }
+
     }
 }
