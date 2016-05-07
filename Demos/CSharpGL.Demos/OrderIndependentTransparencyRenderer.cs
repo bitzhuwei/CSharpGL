@@ -133,6 +133,8 @@ namespace CSharpGL.Demos
             GL.BindTexture(GL.GL_TEXTURE_2D, head_pointer_texture[0]);
             GL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, 0, 0, arg.CanvasRect.Width, arg.CanvasRect.Height, TexSubImage2DFormats.RedInteger, TexSubImage2DType.UnsignedByte, IntPtr.Zero);
             GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+            GL.BindBuffer(BufferTarget.PixelUnpackBuffer, 0);
+            //
 
             // Bind head-pointer image for read-write
             GL.GetDelegateFor<GL.glBindImageTexture>()(0, head_pointer_texture[0], 0, false, 0, GL.GL_READ_WRITE, GL.GL_R32UI);
@@ -152,6 +154,12 @@ namespace CSharpGL.Demos
 
             this.buildListsRenderer.Render(arg);
             this.resolve_lists.Render(arg);
+
+            GL.GetDelegateFor<GL.glBindImageTexture>()(1, 0, 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32UI);
+            GL.GetDelegateFor<GL.glBindImageTexture>()(0, 0, 0, false, 0, GL.GL_READ_WRITE, GL.GL_R32UI);
+            GL.Enable(GL.GL_DEPTH_TEST);
+            GL.Enable(GL.GL_CULL_FACE);
+          
         }
 
         protected override void DisposeUnmanagedResources()
