@@ -23,7 +23,7 @@ namespace CSharpGL
             {
                 DrawMode mode = this.GetIndexBufferPtr().Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
-                if (geometryType == typeOfMode)
+                if (typeOfMode == GeometryType.Point)
                 { return PickWhateverItIs(stageVertexId, lastVertexId, mode, typeOfMode); }
                 else if (typeOfMode == GeometryType.Line)
                 {
