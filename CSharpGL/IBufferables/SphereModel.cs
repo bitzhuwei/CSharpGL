@@ -42,7 +42,7 @@ namespace CSharpGL
         /// <returns></returns>
         internal SphereModel(float radius = 1.0f, int latitudeParts = 10, int longitudeParts = 40, Func<int, int, vec3> colorGenerator = null)
         {
-            if (radius <= 0.0f || latitudeParts < 1 || longitudeParts < 3) { throw new Exception(); }
+            if (radius <= 0.0f || latitudeParts < 2 || longitudeParts < 3) { throw new Exception(); }
 
             if (colorGenerator == null) { colorGenerator = defaultColorGenerator; }
 
