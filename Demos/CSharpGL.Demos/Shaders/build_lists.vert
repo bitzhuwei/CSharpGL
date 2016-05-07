@@ -1,34 +1,25 @@
 #version 330
 
-layout (location = 0) in vec4 position;
+layout (location = 0) in vec3 position;
 layout (location = 1) in vec3 normal;
 
 uniform mat4 model_matrix;
 uniform mat4 view_matrix;
 uniform mat4 projection_matrix;
 
-out gl_PerVertex
-{
-    vec4 gl_Position;
-};
+uniform float minAlpha = 0.5f;
 
 out vec4 surface_color;
-out vec3 frag_position;
-out vec3 frag_normal;
 
 void main(void)
 {
-    vec4 offset = vec4(float(gl_InstanceID & 7) * 2.0,
-                       float((gl_InstanceID >> 3) & 7) * 2.0,
-                       float((gl_InstanceID >> 6) & 7) * 2.0, 0.0) -
-                  vec4(8.0, 8.0, 8.0, 0.0);
+	vec3 normalized = normalize(normal);
+	float variance = (normalized.r - normalized.g) * (normalized.r - normalized.g);
+	variance += (normalized.g - normalized.b) * (normalized.g - normalized.b);
+	variance += (normalized.b - normalized.r) * (normalized.b - normalized.r);
+	variance = variance / 2.0f;// range from 0.0f - 1.0f
+	float a = (0.75f - minAlpha) * (1.0f - variance) + minAlpha;
+    surface_color = vec4(normalized, a);
 
-    surface_color = normalize(offset) * 0.5 + vec4(0.5, 0.5, 0.5, 0.4);
-
-    vec4 object_pos = (position + offset);
-    vec4 world_pos = model_matrix * object_pos;
-    frag_position = world_pos.xyz;
-    frag_normal = mat3(model_matrix * view_matrix) * normal;
-
-    gl_Position = (projection_matrix * view_matrix) * world_pos;
+    gl_Position = projection_matrix * view_matrix * model_matrix * vec4(position, 1.0f);
 }

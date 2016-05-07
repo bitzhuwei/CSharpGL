@@ -20,6 +20,8 @@ namespace CSharpGL.Demos
             {
                 var camera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 camera.Position = new vec3(0, 0, 5);
+                camera.Target = new vec3(0, 0, 0);
+                camera.UpVector = new vec3(0, 1, 0);
                 var rotator = new SatelliteRotator(camera);
                 this.camera = camera;
                 this.rotator = rotator;
@@ -42,7 +44,7 @@ namespace CSharpGL.Demos
                     GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(uint.MaxValue);
                     OITRenderer.BuildListsRenderer.SwitchList.Add(primitiveRestartSwitch);
                     OITRenderer.ResolveListsRenderer.SwitchList.Add(primitiveRestartSwitch);
-                }
+               }
                 this.OITRenderer = OITRenderer;
             }
             {

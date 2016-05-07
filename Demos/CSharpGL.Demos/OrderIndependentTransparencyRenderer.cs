@@ -141,6 +141,9 @@ namespace CSharpGL.Demos
             this.buildListsRenderer.SetUniformValue("model_matrix", model);
             this.buildListsRenderer.SetUniformValue("view_matrix", view);
             this.buildListsRenderer.SetUniformValue("projection_matrix", projection);
+            this.resolve_lists.SetUniformValue("model_matrix", model);
+            this.resolve_lists.SetUniformValue("view_matrix", view);
+            this.resolve_lists.SetUniformValue("projection_matrix", projection);
 
             this.buildListsRenderer.Render(arg);
             this.resolve_lists.Render(arg);
