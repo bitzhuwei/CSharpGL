@@ -70,23 +70,13 @@ namespace CSharpGL
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
-                uint i = 0;
-                while (i + 0 < length)
+                for (uint i = 0; i < length; i++)
                 {
-                    if (array[i] == primitiveRestartIndex)
+                    if (array[i - 0] == lastVertexId)
                     {
-                        i++;
-                    }
-                    else
-                    {
-                        if (array[i + 0] == lastVertexId)
-                        {
-                            var item = new RecognizedPrimitiveIndex(lastVertexId, i + 0);
-                            item.IndexIdList.Add(array[i + 0]);
-                            lastIndexIdList.Add(item);
-                        }
-
-                        i++;
+                        var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
+                        item.IndexIdList.Add(array[i - 0]);
+                        lastIndexIdList.Add(item);
                     }
                 }
             }
@@ -98,23 +88,13 @@ namespace CSharpGL
             unsafe
             {
                 var array = (ushort*)pointer.ToPointer();
-                uint i = 0;
-                while (i + 0 < length)
+                for (uint i = 0; i < length; i++)
                 {
-                    if (array[i] == primitiveRestartIndex)
+                    if (array[i - 0] == lastVertexId)
                     {
-                        i++;
-                    }
-                    else
-                    {
-                        if (array[i + 0] == lastVertexId)
-                        {
-                            var item = new RecognizedPrimitiveIndex(lastVertexId, i + 0);
-                            item.IndexIdList.Add(array[i + 0]);
-                            lastIndexIdList.Add(item);
-                        }
-
-                        i++;
+                        var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
+                        item.IndexIdList.Add(array[i - 0]);
+                        lastIndexIdList.Add(item);
                     }
                 }
             }
@@ -126,23 +106,13 @@ namespace CSharpGL
             unsafe
             {
                 var array = (byte*)pointer.ToPointer();
-                uint i = 0;
-                while (i + 0 < length)
+                for (uint i = 0; i < length; i++)
                 {
-                    if (array[i] == primitiveRestartIndex)
+                    if (array[i - 0] == lastVertexId)
                     {
-                        i++;
-                    }
-                    else
-                    {
-                        if (array[i + 0] == lastVertexId)
-                        {
-                            var item = new RecognizedPrimitiveIndex(lastVertexId, i + 0);
-                            item.IndexIdList.Add(array[i + 0]);
-                            lastIndexIdList.Add(item);
-                        }
-
-                        i++;
+                        var item = new RecognizedPrimitiveIndex(lastVertexId, i - 0);
+                        item.IndexIdList.Add(array[i - 0]);
+                        lastIndexIdList.Add(item);
                     }
                 }
             }
