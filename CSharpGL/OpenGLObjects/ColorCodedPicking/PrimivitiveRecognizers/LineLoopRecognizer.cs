@@ -123,8 +123,7 @@ namespace CSharpGL
                         nearestRestartIndex = i;
                     }
                     else if (value == lastVertexId
-                        && array[i - 1] != primitiveRestartIndex
-                        && (i - nearestRestartIndex) % 2 == 0)
+                        && array[i - 1] != primitiveRestartIndex)
                     {
                         var item = new RecognizedPrimitiveIndex(lastVertexId, i);
                         item.IndexIdList.Add(array[i - 1]);
@@ -172,8 +171,7 @@ namespace CSharpGL
                         nearestRestartIndex = i;
                     }
                     else if (value == lastVertexId
-                        && array[i - 1] != primitiveRestartIndex
-                        && (i - nearestRestartIndex) % 2 == 0)
+                        && array[i - 1] != primitiveRestartIndex)
                     {
                         var item = new RecognizedPrimitiveIndex(lastVertexId, i);
                         item.IndexIdList.Add(array[i - 1]);
@@ -221,8 +219,7 @@ namespace CSharpGL
                         nearestRestartIndex = i;
                     }
                     else if (value == lastVertexId
-                        && array[i - 1] != primitiveRestartIndex
-                        && (i - nearestRestartIndex) % 2 == 0)
+                        && array[i - 1] != primitiveRestartIndex)
                     {
                         var item = new RecognizedPrimitiveIndex(lastVertexId, i);
                         item.IndexIdList.Add(array[i - 1]);
