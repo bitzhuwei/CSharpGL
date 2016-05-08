@@ -32,5 +32,10 @@ namespace CSharpGL.Demos
             (new Form02OrderIndependentTransparency()).Show();
         }
 
+        private void btnForm04SimpleCompute_Click(object sender, EventArgs e)
+        {
+            (new Form04SimpleCompute()).Show();
+        }
+
     }
 }

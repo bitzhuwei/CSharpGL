@@ -11,5 +11,6 @@ namespace CSharpGL
         VertexShader = GL.GL_VERTEX_SHADER,
         GeometryShader = GL.GL_GEOMETRY_SHADER,
         FragmentShader = GL.GL_FRAGMENT_SHADER,
+        ComputeShader = GL.GL_COMPUTE_SHADER,
     }
 }

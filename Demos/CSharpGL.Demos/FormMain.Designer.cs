@@ -31,6 +31,7 @@
             this.btnForm00GLCanvas = new System.Windows.Forms.Button();
             this.btnForm01Renderer = new System.Windows.Forms.Button();
             this.btnForm02 = new System.Windows.Forms.Button();
+            this.btnForm04SimpleCompute = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -72,11 +73,25 @@
             this.btnForm02.UseVisualStyleBackColor = true;
             this.btnForm02.Click += new System.EventHandler(this.btnForm02_Click);
             // 
+            // btnForm04SimpleCompute
+            // 
+            this.btnForm04SimpleCompute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnForm04SimpleCompute.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnForm04SimpleCompute.Location = new System.Drawing.Point(12, 141);
+            this.btnForm04SimpleCompute.Name = "btnForm04SimpleCompute";
+            this.btnForm04SimpleCompute.Size = new System.Drawing.Size(767, 37);
+            this.btnForm04SimpleCompute.TabIndex = 0;
+            this.btnForm04SimpleCompute.Text = "Form04 SimpleCompute";
+            this.btnForm04SimpleCompute.UseVisualStyleBackColor = true;
+            this.btnForm04SimpleCompute.Click += new System.EventHandler(this.btnForm04SimpleCompute_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 545);
+            this.Controls.Add(this.btnForm04SimpleCompute);
             this.Controls.Add(this.btnForm02);
             this.Controls.Add(this.btnForm01Renderer);
             this.Controls.Add(this.btnForm00GLCanvas);
@@ -91,5 +106,6 @@
         private System.Windows.Forms.Button btnForm00GLCanvas;
         private System.Windows.Forms.Button btnForm01Renderer;
         private System.Windows.Forms.Button btnForm02;
+        private System.Windows.Forms.Button btnForm04SimpleCompute;
     }
 }

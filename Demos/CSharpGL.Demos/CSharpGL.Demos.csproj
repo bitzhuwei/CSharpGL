@@ -59,6 +59,12 @@
     <Compile Include="Form01Renderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form04SimpleCompute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form04SimpleCompute.Designer.cs">
+      <DependentUpon>Form04SimpleCompute.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form03OrderDependentTransparency.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,7 +77,13 @@
     <Compile Include="Form02OrderIndependentTransparency.Designer.cs">
       <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form04SimpleCompute.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form03OrderDependentTransparency.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form04SimpleCompute.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form03OrderDependentTransparency.MouseDownMoveUp.cs">
@@ -110,6 +122,7 @@
     <Compile Include="Form00GLCanvas.Designer.cs">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>
     </Compile>
+    <Compile Include="SimpleComputeRenderer.cs" />
     <Compile Include="OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,6 +131,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Shaders\build_lists.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Shaders\compute.comp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Shaders\compute.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Shaders\compute.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Shaders\Transparent.frag">
@@ -143,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form01Renderer.resx">
       <DependentUpon>Form01Renderer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form04SimpleCompute.resx">
+      <DependentUpon>Form04SimpleCompute.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form03OrderDependentTransparency.resx">
       <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>

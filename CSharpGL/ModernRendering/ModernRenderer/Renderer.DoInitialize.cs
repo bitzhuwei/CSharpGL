@@ -13,7 +13,7 @@ namespace CSharpGL
         {
             // init shader program
             ShaderProgram program = new ShaderProgram();
-            var shaders = (from item in shaderCode select item.CreateShader()).ToArray();
+            var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
             program.Create(shaders);
             this.shaderProgram = program;
             foreach (var item in shaders) { item.Delete(); }
@@ -44,7 +44,7 @@ namespace CSharpGL
             this.propertyBufferPtrs = propertyBufferPtrs;
 
             this.bufferable = null;
-            this.shaderCode = null;
+            this.shaderCodes = null;
             this.propertyNameMap = null;
 
         }

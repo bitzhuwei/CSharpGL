@@ -16,6 +16,8 @@ namespace CSharpGL
 
         public void Create(params Shader[] shaders)
         {
+            if (shaders.Length < 1) { throw new ArgumentException(); }
+
             uint program = this.ShaderProgramObject;
 
             foreach (var item in shaders)

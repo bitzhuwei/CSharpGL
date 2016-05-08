@@ -8,21 +8,21 @@ namespace CSharpGL
 
         public static ShaderCode[] GetPickingShaderCode()
         {
-            ShaderCode[] shaders = new ShaderCode[2];
-            shaders[0] = new ShaderCode(GetShaderSource(ShaderType.VertexShader), ShaderType.VertexShader);
-            shaders[1] = new ShaderCode(GetShaderSource(ShaderType.FragmentShader), ShaderType.FragmentShader);
+            var shaderCodes = new ShaderCode[2];
+            shaderCodes[0] = new ShaderCode(GetShaderSource(ShaderType.VertexShader), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(GetShaderSource(ShaderType.FragmentShader), ShaderType.FragmentShader);
 
             return shaders;
         }
 
         public static ShaderProgram GetPickingShaderProgram()
         {
-            ShaderCode[] shaders = new ShaderCode[2];
-            shaders[0] = new ShaderCode(GetShaderSource(ShaderType.VertexShader), ShaderType.VertexShader);
-            shaders[1] = new ShaderCode(GetShaderSource(ShaderType.FragmentShader), ShaderType.FragmentShader);
+            var shaderCodes = new ShaderCode[2];
+            shaderCodes[0] = new ShaderCode(GetShaderSource(ShaderType.VertexShader), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(GetShaderSource(ShaderType.FragmentShader), ShaderType.FragmentShader);
 
             var shaderProgram = new ShaderProgram();
-            shaderProgram.Create((from item in shaders select item.CreateShader()).ToArray());
+            shaderProgram.Create((from item in shaderCodes select item.CreateShader()).ToArray());
 
             return shaderProgram;
         }

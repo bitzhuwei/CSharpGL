@@ -28,7 +28,7 @@ namespace CSharpGL
         /// <summary>
         /// 各种类型的shader代码
         /// </summary>
-        protected ShaderCode[] shaderCode;
+        protected ShaderCode[] shaderCodes;
         /// <summary>
         /// vertex shader中的in变量与<see cref="propertyBufferPointers"/>中的元素名字的对应关系。
         /// </summary>
@@ -40,7 +40,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bufferable">将具体模型转换为可被OpenGL拿来渲染的格式</param>
         /// <param name="shaderCodes">各种类型的shader代码</param>
-        /// <param name="propertyNameMap">关联<see cref="PropertyBufferPtr"/>和<see cref="shaderCode"/>中的属性</param>
+        /// <param name="propertyNameMap">关联<see cref="PropertyBufferPtr"/>和<see cref="shaderCodes"/>中的属性</param>
         /// <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
         ///<param name="switches"></param>
         public Renderer(IBufferable bufferable, ShaderCode[] shaderCodes,
@@ -50,7 +50,7 @@ namespace CSharpGL
             this.Name = this.GetType().Name;
 
             this.bufferable = bufferable;
-            this.shaderCode = shaderCodes;
+            this.shaderCodes = shaderCodes;
             this.propertyNameMap = propertyNameMap;
             this.positionNameInIBufferable = positionNameInIBufferable;
             this.switchList.AddRange(switches);
