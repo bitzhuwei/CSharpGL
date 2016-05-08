@@ -11,7 +11,6 @@ namespace CSharpGL
     /// </summary>
     public partial class ZeroIndexRenderer : PickableRenderer
     {
-        protected ZeroIndexBufferPtr zeroIndexBufferPtr;
 
         /// <summary>
         /// 用glDrarArrays进行渲染。
@@ -30,18 +29,5 @@ namespace CSharpGL
 
         }
 
-        protected override void DoInitialize()
-        {
-            // init index buffer 
-            this.zeroIndexBufferPtr = this.bufferable.GetIndex() as ZeroIndexBufferPtr;
-            if (this.zeroIndexBufferPtr == null) { throw new Exception(); }
-
-            base.DoInitialize();
-        }
-
-        public override IndexBufferPtr GetIndexBufferPtr()
-        {
-            return this.zeroIndexBufferPtr;
-        }
     }
 }

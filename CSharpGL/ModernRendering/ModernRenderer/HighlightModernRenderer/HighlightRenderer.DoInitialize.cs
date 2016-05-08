@@ -51,16 +51,21 @@ namespace CSharpGL
             this.propertyBufferPtrs = propertyBufferPtrs;
 
             // init index buffer 
-            IndexBufferPtr indexBufferPtr = this.bufferable.GetIndex();
-
-            using (var buffer = new OneIndexBuffer<uint>(
-                   indexBufferPtr.Mode, BufferUsage.DynamicDraw))
             {
-                buffer.Alloc(this.positionBufferPtr.ByteLength / (this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength));
-                this.oneIndexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
+                IndexBufferPtr indexBufferPtr = this.bufferable.GetIndex();
+
+                using (var buffer = new OneIndexBuffer<uint>(
+                       indexBufferPtr.Mode, BufferUsage.DynamicDraw))
+                {
+                    buffer.Alloc(this.positionBufferPtr.ByteLength / (this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength));
+                    this.indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                }
             }
-            this.maxElementCount = this.oneIndexBufferPtr.ElementCount;
-            this.oneIndexBufferPtr.ElementCount = 0;// 高亮0个图元
+            {
+                var oneIndexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
+                this.maxElementCount = oneIndexBufferPtr.ElementCount;
+                oneIndexBufferPtr.ElementCount = 0;// 高亮0个图元
+            }
 
             this.bufferable = null;
             this.shaderCodes = null;

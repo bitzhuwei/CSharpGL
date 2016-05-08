@@ -37,16 +37,18 @@ namespace CSharpGL
         {
             get
             {
-                if (this.oneIndexBufferPtr == null)
+                var indexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
+                if (indexBufferPtr == null)
                 { return 0; }
                 else
-                { return this.oneIndexBufferPtr.ElementCount; }
+                { return indexBufferPtr.ElementCount; }
             }
             set
             {
-                if (this.oneIndexBufferPtr != null)
+                var indexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
+                if (indexBufferPtr != null)
                 {
-                    this.oneIndexBufferPtr.ElementCount = value;
+                    indexBufferPtr.ElementCount = value;
                 }
             }
         }
@@ -59,10 +61,11 @@ namespace CSharpGL
         {
             get
             {
-                if (this.oneIndexBufferPtr == null)
+                var indexBufferPtr = this.indexBufferPtr as OneIndexBufferPtr;
+                if (indexBufferPtr == null)
                 { return IndexElementType.UnsignedInt; }
                 else
-                { return this.oneIndexBufferPtr.Type; }
+                { return indexBufferPtr.Type; }
             }
         }
     }

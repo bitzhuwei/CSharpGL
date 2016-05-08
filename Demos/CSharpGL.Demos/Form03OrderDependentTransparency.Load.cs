@@ -38,6 +38,7 @@ namespace CSharpGL.Demos
                 var renderer = PickableRendererFactory.GetRenderer(
                     bufferable, shaderCodes, map, "position");
                 renderer.Name = "Order-Dependent Transparent Renderer";
+                renderer.Initialize();
                 {
                     GLSwitch lineWidthSwitch = new LineWidthSwitch(5);
                     renderer.SwitchList.Add(lineWidthSwitch);
@@ -50,7 +51,6 @@ namespace CSharpGL.Demos
                     GLSwitch blendSwitch = new BlendSwitch();
                     renderer.SwitchList.Add(blendSwitch);
                 }
-                renderer.Initialize();
                 this.renderer = renderer;
             }
             {

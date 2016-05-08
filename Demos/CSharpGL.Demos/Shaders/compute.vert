@@ -1,6 +1,6 @@
 #version 430 core
 
-in vec4 vert;
+in vec3 position;
 
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
@@ -8,5 +8,5 @@ uniform mat4 modelMatrix;
 
 void main(void)
 {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vert;
+	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0f);
 }

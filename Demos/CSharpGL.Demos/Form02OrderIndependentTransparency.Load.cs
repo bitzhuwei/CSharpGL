@@ -32,6 +32,7 @@ namespace CSharpGL.Demos
                 var OITRenderer = new OrderIndependentTransparencyRenderer(
                     bufferable, Teapot.strPosition, Teapot.strNormal);
                 OITRenderer.Name = "OIT Renderer";
+                OITRenderer.Initialize();
                 {
                     GLSwitch lineWidthSwitch = new LineWidthSwitch(5);
                     OITRenderer.BuildListsRenderer.SwitchList.Add(lineWidthSwitch);

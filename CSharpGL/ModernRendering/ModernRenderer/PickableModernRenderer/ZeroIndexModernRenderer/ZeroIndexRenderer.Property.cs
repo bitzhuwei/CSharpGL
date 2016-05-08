@@ -16,16 +16,18 @@ namespace CSharpGL
         {
             get
             {
-                if (this.zeroIndexBufferPtr == null)
+                var indexBufferPtr = this.indexBufferPtr as ZeroIndexBufferPtr;
+                if (indexBufferPtr == null)
                 { return 0; }
-                else 
-                { return this.zeroIndexBufferPtr.FirstVertex; }
+                else
+                { return indexBufferPtr.FirstVertex; }
             }
             set
             {
-                if (this.zeroIndexBufferPtr != null)
+                var indexBufferPtr = this.indexBufferPtr as ZeroIndexBufferPtr;
+                if (indexBufferPtr != null)
                 {
-                    this.zeroIndexBufferPtr.FirstVertex = value;
+                    indexBufferPtr.FirstVertex = value;
                 }
             }
         }
@@ -37,16 +39,18 @@ namespace CSharpGL
         {
             get
             {
-                if (this.zeroIndexBufferPtr == null)
+                var indexBufferPtr = this.indexBufferPtr as ZeroIndexBufferPtr;
+                if (indexBufferPtr == null)
                 { return 0; }
                 else
-                { return this.zeroIndexBufferPtr.VertexCount; }
+                { return indexBufferPtr.VertexCount; }
             }
             set
             {
-                if (this.zeroIndexBufferPtr != null)
+                var indexBufferPtr = this.indexBufferPtr as ZeroIndexBufferPtr;
+                if (indexBufferPtr != null)
                 {
-                    this.zeroIndexBufferPtr.VertexCount = value;
+                    indexBufferPtr.VertexCount = value;
                 }
             }
         }

@@ -8,23 +8,24 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Demos
 {
-    class SimpleComputeRenderer : RendererBase
+
+    class SimpleComputeRenderer : Renderer
     {
         private ShaderProgram computeProgram;
         private uint[] output_image = new uint[1];
-        private ShaderProgram visualProgram;
-        private uint[] render_vao = new uint[1];
-        private uint[] render_vbo = new uint[1];
-
-        static readonly float[] vertsData = new float[]
+        static ShaderCode[] staticShaderCodes;
+        static PropertyNameMap map;
+        static SimpleComputeRenderer()
         {
-            -1.0f, -1.0f, 0.5f, 1.0f,
-             1.0f, -1.0f, 0.5f, 1.0f,
-             1.0f,  1.0f, 0.5f, 1.0f,
-            -1.0f,  1.0f, 0.5f, 1.0f,
-        };
-
-        UnmanagedArray<float> verts = new UnmanagedArray<float>(16);
+            staticShaderCodes = new ShaderCode[2];
+            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"Shaders\compute.vert"), ShaderType.VertexShader);
+            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"Shaders\compute.frag"), ShaderType.FragmentShader);
+            map = new PropertyNameMap();
+            map.Add(SimpleCompute.strPosition, "position");
+        }
+        public SimpleComputeRenderer()
+            : base(new SimpleCompute(), staticShaderCodes, map, SimpleCompute.strPosition)
+        { }
 
         protected override void DoInitialize()
         {
@@ -43,31 +44,8 @@ namespace CSharpGL.Demos
                 GL.BindTexture(GL.GL_TEXTURE_2D, output_image[0]);
                 GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 256, 256);
             }
-            {
-                // Now create a simple program to visualize the result
-                var visualProgram = new ShaderProgram();
-                var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"Shaders\compute.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"Shaders\compute.frag"), ShaderType.FragmentShader);
-                var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
-                visualProgram.Create(shaders);
-                foreach (var item in shaders) { item.Delete(); }
-                this.visualProgram = visualProgram;
-            }
-            {
-                // This is the VAO containing the data to draw the quad (including its associated VBO)
-                GL.GetDelegateFor<GL.glGenVertexArrays>()(1, render_vao);
-                GL.GetDelegateFor<GL.glBindVertexArray>()(render_vao[0]);
-                GL.GetDelegateFor<GL.glEnableVertexAttribArray>()(0);
-                GL.GetDelegateFor<GL.glGenBuffers>()(1, render_vbo);
-                GL.BindBuffer(BufferTarget.ArrayBuffer, render_vbo[0]);
-                for (int i = 0; i < vertsData.Length; i++)
-                {
-                    verts[i] = vertsData[i];
-                }
-                GL.BufferData(BufferTarget.ArrayBuffer, verts, BufferUsage.StaticDraw);
-                GL.GetDelegateFor<GL.glVertexAttribPointer>()(0, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-            }
+
+            base.DoInitialize();
         }
 
         protected override void DoRender(RenderEventArgs arg)
@@ -81,19 +59,14 @@ namespace CSharpGL.Demos
             // Now bind the texture for rendering _from_
             GL.BindTexture(GL.GL_TEXTURE_2D, output_image[0]);
 
-            // Clear, select the rendering program and draw a full screen quad
-            //GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-            visualProgram.Bind();
-
             mat4 model = mat4.identity();
             mat4 view = arg.Camera.GetViewMat4();
             mat4 projection = arg.Camera.GetProjectionMat4();
-            visualProgram.SetUniformMatrix4("modelMatrix", model.to_array());
-            visualProgram.SetUniformMatrix4("viewMatrix", view.to_array());
-            visualProgram.SetUniformMatrix4("projectionMatrix", projection.to_array());
+            this.SetUniformValue("modelMatrix", model);
+            this.SetUniformValue("viewMatrix", view);
+            this.SetUniformValue("projectionMatrix", projection);
 
-            GL.DrawArrays(DrawMode.TriangleFan, 0, 4);
-            visualProgram.Unbind();
+            base.DoRender(arg);
 
             //GL.BindTexture(GL.GL_TEXTURE_2D, 0);
         }
@@ -102,14 +75,68 @@ namespace CSharpGL.Demos
         {
             computeProgram.Delete();
             GL.DeleteTextures(1, output_image);
-            visualProgram.Delete();
-            IntPtr ptr = Win32.wglGetCurrentContext();
-            if (ptr != IntPtr.Zero)
-            {
-                GL.GetDelegateFor<GL.glDeleteVertexArrays>()(1, render_vao);
-            }
-            GL.DeleteBuffers(1, render_vbo);
         }
 
+    }
+
+    class SimpleCompute : IBufferable
+    {
+
+        static readonly vec3[] vertsData = new vec3[]
+        {
+            new vec3(-1.0f, -1.0f, 0.5f),
+            new vec3(1.0f, -1.0f, 0.5f),
+            new vec3(1.0f,  1.0f, 0.5f),
+            new vec3(-1.0f,  1.0f, 0.5f),
+        };
+
+        public const string strPosition = "position";
+        private PropertyBufferPtr positionBufferPtr = null;
+        private IndexBufferPtr indexBufferPtr;
+
+        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        {
+            if (bufferName == strPosition)
+            {
+                if (positionBufferPtr == null)
+                {
+                    using (var buffer = new PropertyBuffer<vec3>(
+                        varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                    {
+                        buffer.Alloc(vertsData.Length);
+                        unsafe
+                        {
+                            var array = (vec3*)buffer.FirstElement();
+                            for (int i = 0; i < vertsData.Length; i++)
+                            {
+                                array[i] = vertsData[i];
+                            }
+                        }
+
+                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                    }
+                }
+
+                return positionBufferPtr;
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
+        }
+
+        public IndexBufferPtr GetIndex()
+        {
+            if (indexBufferPtr == null)
+            {
+                using (var buffer = new ZeroIndexBuffer(
+                  DrawMode.TriangleFan, 0, vertsData.Length))
+                {
+                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
+                }
+            }
+
+            return indexBufferPtr;
+        }
     }
 }

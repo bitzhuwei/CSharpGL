@@ -42,6 +42,8 @@ namespace CSharpGL
                 }
             }
             this.propertyBufferPtrs = propertyBufferPtrs;
+            this.indexBufferPtr = this.bufferable.GetIndex();
+
 
             this.bufferable = null;
             this.shaderCodes = null;

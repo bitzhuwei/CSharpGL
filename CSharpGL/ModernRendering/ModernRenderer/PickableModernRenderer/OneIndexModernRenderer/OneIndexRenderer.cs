@@ -11,7 +11,6 @@ namespace CSharpGL
     /// </summary>
     public partial class OneIndexRenderer : PickableRenderer
     {
-        protected OneIndexBufferPtr oneIndexBufferPtr;
 
         PrimitiveRestartSwitch primitiveRestartSwitch4Picking;
 
@@ -33,21 +32,14 @@ namespace CSharpGL
 
         protected override void DoInitialize()
         {
-            // init index buffer 
-            this.oneIndexBufferPtr = this.bufferable.GetIndex() as OneIndexBufferPtr;
-            if (this.oneIndexBufferPtr == null) { throw new Exception(); }
+            base.DoInitialize();
 
-            var primitiveRestartSwitch4Picking = new PrimitiveRestartSwitch(this.oneIndexBufferPtr);
+            // init index buffer 
+            var primitiveRestartSwitch4Picking = new PrimitiveRestartSwitch(this.indexBufferPtr as OneIndexBufferPtr);
             this.primitiveRestartSwitch4Picking = primitiveRestartSwitch4Picking;
             this.switchList4Picking.Add(primitiveRestartSwitch4Picking);
-
-            base.DoInitialize();
         }
 
-        public override IndexBufferPtr GetIndexBufferPtr()
-        {
-            return this.oneIndexBufferPtr;
-        }
 
     }
 }
