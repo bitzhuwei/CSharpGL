@@ -43,6 +43,7 @@ namespace CSharpGL.Demos
                 GL.GenTextures(1, output_image);
                 GL.BindTexture(GL.GL_TEXTURE_2D, output_image[0]);
                 GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 256, 256);
+                GL.BindTexture(GL.GL_TEXTURE_2D, 0);
             }
 
             base.DoInitialize();
@@ -68,7 +69,7 @@ namespace CSharpGL.Demos
 
             base.DoRender(arg);
 
-            //GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
         }
 
         protected override void DisposeUnmanagedResources()
