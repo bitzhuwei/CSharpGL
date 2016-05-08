@@ -55,7 +55,7 @@ namespace CSharpGL.Demos
             computeProgram.Bind();
             GL.GetDelegateFor<GL.glBindImageTexture>()(0, output_image[0], 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
             GL.GetDelegateFor<GL.glDispatchCompute>()(8, 16, 1);
-            //computeProgram.Unbind();
+            computeProgram.Unbind();
 
             // Now bind the texture for rendering _from_
             GL.BindTexture(GL.GL_TEXTURE_2D, output_image[0]);
