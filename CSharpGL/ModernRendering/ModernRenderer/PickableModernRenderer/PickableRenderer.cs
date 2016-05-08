@@ -49,5 +49,13 @@ namespace CSharpGL
                 this.switchList4Picking.Add(new PointSizeSwitch(max));
             }
         }
+
+        protected override void DoInitialize()
+        {
+            base.DoInitialize();
+
+            if (this.positionBufferPtr.DataSize != 3 || this.positionBufferPtr.DataType != GL.GL_FLOAT)
+            { throw new Exception(string.Format("Position buffer must use a type composed of 3 float as PropertyBuffer<T>'s T!")); }
+        }
     }
 }
