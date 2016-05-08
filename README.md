@@ -75,9 +75,7 @@
 <p>如下图所示，左边是常见的blend方法，右边是OIT渲染的结果。可以看到左边的渲染结果有些诡异，右边的就正常了。</p>
 <p><img src="http://images2015.cnblogs.com/blog/383191/201605/383191-20160507222632796-1377372910.jpg" alt="" /></p>
 <p>网络允许的话可以看一下视频，更直观。</p>
-<p>http://player.youku.com/player.php/sid/XMTU2MTk0OTE0OA==/v.swf</p>
-<p><embed src="http://player.youku.com/player.php/sid/XMTU2MTk0OTE0OA==/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></p>
-<p><iframe height=498 width=510 src="http://player.youku.com/embed/XMTU2MTk0OTE0OA==" frameborder=0 allowfullscreen></iframe></p>
+<p><a href="http://player.youku.com/player.php/sid/XMTU2MTk0OTE0OA==/v.swf" target="_blank">Order-Independent-Transparency</a></p>
 <p>或者也可以看红宝书里的例子：左边是常见的blend方法，右边是OIT渲染的结果。</p>
 <p><img src="http://images2015.cnblogs.com/blog/383191/201605/383191-20160507222640109-1739591473.png" alt="" /></p>
 <h1>总结</h1>
