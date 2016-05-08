@@ -78,12 +78,10 @@ namespace CSharpGL.Demos
             GL.DeleteTextures(1, output_image);
         }
 
-    }
+        class SimpleCompute : IBufferable
+        {
 
-    class SimpleCompute : IBufferable
-    {
-
-        static readonly vec3[] vertsData = new vec3[]
+            static readonly vec3[] vertsData = new vec3[]
         {
             new vec3(-1.0f, -1.0f, 0.5f),
             new vec3(1.0f, -1.0f, 0.5f),
@@ -91,53 +89,54 @@ namespace CSharpGL.Demos
             new vec3(-1.0f,  1.0f, 0.5f),
         };
 
-        public const string strPosition = "position";
-        private PropertyBufferPtr positionBufferPtr = null;
-        private IndexBufferPtr indexBufferPtr;
+            public const string strPosition = "position";
+            private PropertyBufferPtr positionBufferPtr = null;
+            private IndexBufferPtr indexBufferPtr;
 
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
-        {
-            if (bufferName == strPosition)
+            public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
             {
-                if (positionBufferPtr == null)
+                if (bufferName == strPosition)
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(
-                        varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                    if (positionBufferPtr == null)
                     {
-                        buffer.Alloc(vertsData.Length);
-                        unsafe
+                        using (var buffer = new PropertyBuffer<vec3>(
+                            varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
                         {
-                            var array = (vec3*)buffer.FirstElement();
-                            for (int i = 0; i < vertsData.Length; i++)
+                            buffer.Alloc(vertsData.Length);
+                            unsafe
                             {
-                                array[i] = vertsData[i];
+                                var array = (vec3*)buffer.FirstElement();
+                                for (int i = 0; i < vertsData.Length; i++)
+                                {
+                                    array[i] = vertsData[i];
+                                }
                             }
-                        }
 
-                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                            positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        }
+                    }
+
+                    return positionBufferPtr;
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
+            }
+
+            public IndexBufferPtr GetIndex()
+            {
+                if (indexBufferPtr == null)
+                {
+                    using (var buffer = new ZeroIndexBuffer(
+                      DrawMode.TriangleFan, 0, vertsData.Length))
+                    {
+                        indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
                     }
                 }
 
-                return positionBufferPtr;
+                return indexBufferPtr;
             }
-            else
-            {
-                throw new ArgumentException();
-            }
-        }
-
-        public IndexBufferPtr GetIndex()
-        {
-            if (indexBufferPtr == null)
-            {
-                using (var buffer = new ZeroIndexBuffer(
-                  DrawMode.TriangleFan, 0, vertsData.Length))
-                {
-                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
-                }
-            }
-
-            return indexBufferPtr;
         }
     }
 }
