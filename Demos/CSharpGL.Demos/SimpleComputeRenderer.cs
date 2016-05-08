@@ -85,12 +85,12 @@ namespace CSharpGL.Demos
             //GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
             visualProgram.Bind();
 
-            mat4 model = mat4.identity();
-            mat4 view = arg.Camera.GetViewMat4();
-            mat4 projection = arg.Camera.GetProjectionMat4();
-            visualProgram.SetUniformMatrix4("modelMatrix", model.to_array());
-            visualProgram.SetUniformMatrix4("viewMatrix", view.to_array());
-            visualProgram.SetUniformMatrix4("projectionMatrix", projection.to_array());
+            //mat4 model = mat4.identity();
+            //mat4 view = arg.Camera.GetViewMat4();
+            //mat4 projection = arg.Camera.GetProjectionMat4();
+            //visualProgram.SetUniformMatrix4("modelMatrix", model.to_array());
+            //visualProgram.SetUniformMatrix4("viewMatrix", view.to_array());
+            //visualProgram.SetUniformMatrix4("projectionMatrix", projection.to_array());
 
             GL.DrawArrays(DrawMode.TriangleFan, 0, 4);
             visualProgram.Unbind();

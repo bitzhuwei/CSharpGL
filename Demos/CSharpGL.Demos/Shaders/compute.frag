@@ -1,8 +1,10 @@
-#version 150 core
+#version 430 core
 
-in vec4 pass_Color;
-out vec4 out_Color;
+layout (location = 0) out vec4 color;
 
-void main(void) {
-	out_Color = pass_Color;
+uniform sampler2D output_image;
+
+void main(void)
+{
+    color = texture(output_image, vec2(gl_FragCoord.xy) / vec2(textureSize(output_image, 0)));
 }
