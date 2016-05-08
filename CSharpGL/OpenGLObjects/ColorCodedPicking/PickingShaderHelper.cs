@@ -12,7 +12,7 @@ namespace CSharpGL
             shaderCodes[0] = new ShaderCode(GetShaderSource(ShaderType.VertexShader), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(GetShaderSource(ShaderType.FragmentShader), ShaderType.FragmentShader);
 
-            return shaders;
+            return shaderCodes;
         }
 
         public static ShaderProgram GetPickingShaderProgram()
