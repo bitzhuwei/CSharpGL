@@ -70,7 +70,14 @@
 <p><img src="http://images2015.cnblogs.com/blog/383191/201604/383191-20160427023855377-1510998196.png" alt="" width="557" height="465" /></p>
 <p>另外，还可以单点拖拽。</p>
 <p><img src="http://images2015.cnblogs.com/blog/383191/201604/383191-20160427141620955-245791237.jpg" alt="" width="950" height="404" /></p>
-<p>&nbsp;</p>
+<h1>顺序无关的半透明渲染(Order-Independent-Transparency)</h1>
+<p>在&nbsp;<span class="cnblogs_code">GL.Enable(GL_BLEND);</span>&nbsp;后渲染半透明物体时，由于顶点被渲染的顺序固定，渲染出来的结果往往很奇怪。红宝书里提到一个OIT(Order-Independent-Transparency)的渲染方法，很好的解决了这个问题。这个功能太有用了。于是我把这个方法加入CSharpGL中。</p>
+<p>如下图所示，左边是常见的blend方法，右边是OIT渲染的结果。可以看到左边的渲染结果有些诡异，右边的就正常了。</p>
+<p><img src="http://images2015.cnblogs.com/blog/383191/201605/383191-20160507222632796-1377372910.jpg" alt="" /></p>
+<p>网络允许的话可以看一下视频，更直观。</p>
+<p><object width="480" height="400" align="middle" data="http://player.youku.com/player.php/sid/XMTU2MTk0OTE0OA==/v.swf" type="application/x-shockwave-flash"><param name="src" value="http://player.youku.com/player.php/sid/XMTU2MTk0OTE0OA==/v.swf" /><param name="allowfullscreen" value="true" /><param name="quality" value="high" /><param name="allowscriptaccess" value="always" /></object></p>
+<p>或者也可以看红宝书里的例子：左边是常见的blend方法，右边是OIT渲染的结果。</p>
+<p><img src="http://images2015.cnblogs.com/blog/383191/201605/383191-20160507222640109-1739591473.png" alt="" /></p>
 <h1>总结</h1>
-<p>原CSharpGL的其他功能（UI、3ds解析器、TTF2Bmp、CSSL等），我将逐步加入新CSharpGL。</p>
-<p>欢迎对OpenGL有兴趣的同学关注（<a href="https://github.com/bitzhuwei/CSharpGL">https://github.com/bitzhuwei/CSharpGL</a>）</p>
+<p>原CSharpGL的其他功能，我将逐步加入新CSharpGL。</p>
+<p>欢迎对OpenGL有兴趣的同学关注</p>
