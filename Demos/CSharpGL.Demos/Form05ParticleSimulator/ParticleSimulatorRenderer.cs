@@ -87,15 +87,15 @@ namespace CSharpGL.Demos
 
                 GL.GetDelegateFor<GL.glGenBuffers>()(1, attractor_buffer);
                 GL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
-                var attractorArray = new UnmanagedArray<vec4>(32);
-                for (int i = 0; i < 32; i++)
-                {
-                    attractorArray[i] = new vec4(
-                        (float)(random.NextDouble()) * 0.5f + 0.5f,
-                        (float)(random.NextDouble()) * 0.5f + 0.5f,
-                        (float)(random.NextDouble()) * 0.5f + 0.5f,
-                        (float)(random.NextDouble()) * 0.5f + 0.5f);
-                }
+                var attractorArray = new UnmanagedArray<vec4>(64);
+                //for (int i = 0; i < 64; i++)
+                //{
+                //    attractorArray[i] = new vec4(
+                //        (float)(random.NextDouble()) * 0.5f + 0.5f,
+                //        (float)(random.NextDouble()) * 0.5f + 0.5f,
+                //        (float)(random.NextDouble()) * 0.5f + 0.5f,
+                //        (float)(random.NextDouble()) * 0.5f + 0.5f);
+                //}
                 GL.BufferData(BufferTarget.UniformBuffer, attractorArray, BufferUsage.StaticDraw);
                 attractorArray.Dispose();
                 GL.GetDelegateFor<GL.glBindBufferBase>()(GL.GL_UNIFORM_BUFFER, 0, attractor_buffer[0]);
@@ -112,26 +112,26 @@ namespace CSharpGL.Demos
             }
         }
 
-        float tick = 0;
+        float time = 0;
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            float deltaTick = (float)random.NextDouble() * 5;
-            tick += (float)random.NextDouble() * 5;
+            float deltaTime = (float)random.NextDouble() * 5;
+            time += (float)random.NextDouble() * 5;
 
             GL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
             IntPtr attractors = GL.MapBufferRange(BufferTarget.UniformBuffer,
-                0, 32 * sizeof(float) * 4, MapBufferRangeAccess.MapWriteBit | MapBufferRangeAccess.MapInvalidateBufferBit);
+                0, 64 * sizeof(float) * 4, MapBufferRangeAccess.MapWriteBit | MapBufferRangeAccess.MapInvalidateBufferBit);
             unsafe
             {
                 var array = (vec4*)attractors.ToPointer();
-                for (int i = 0; i < 32; i++)
+                for (int i = 0; i < 64; i++)
                 {
                     array[i] = new vec4(
-                        (float)(Math.Sin(tick * (float)(i + 4) * 7.5f * 20.0f)) * 50.0f,
-                        (float)(Math.Cos(tick * (float)(i + 7) * 3.9f * 20.0f)) * 50.0f,
-                        (float)(Math.Sin(tick * (float)(i + 3) * 5.3f * 20.0f))
-                        * (float)(Math.Cos(tick * (float)(i + 5) * 9.1f)) * 100.0f,
+                        (float)(Math.Sin(time * (float)(i + 4) * 7.5f * 20.0f)) * 50.0f,
+                        (float)(Math.Cos(time * (float)(i + 7) * 3.9f * 20.0f)) * 50.0f,
+                        (float)(Math.Sin(time * (float)(i + 3) * 5.3f * 20.0f))
+                        * (float)(Math.Cos(time * (float)(i + 5) * 9.1f)) * 100.0f,
                         ParticleSimulatorCompute.attractor_masses[i]);
                 }
             }
@@ -139,19 +139,12 @@ namespace CSharpGL.Demos
             GL.UnmapBuffer(BufferTarget.UniformBuffer);
             GL.BindBuffer(BufferTarget.UniformBuffer, 0);
 
-            // If dt is too large, the system could explode, so cap it to
-            // some maximum allowed value
-            //if (delta_time >= 2.0f)
-            //{
-            //    delta_time = 2.0f;
-            //}
-
             // Activate the compute program and bind the position and velocity buffers
             computeProgram.Bind();
             GL.GetDelegateFor<GL.glBindImageTexture>()(0, textureBufferVelocity[0], 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
             GL.GetDelegateFor<GL.glBindImageTexture>()(1, textureBufferPosition[0], 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
             // Set delta time
-            computeProgram.SetUniform("dt", deltaTick);
+            computeProgram.SetUniform("dt", deltaTime);
             // Dispatch
             GL.GetDelegateFor<GL.glDispatchCompute>()(ParticleSimulatorCompute.particleGroupCount, 1, 1);
 
@@ -195,7 +188,7 @@ namespace CSharpGL.Demos
             public static readonly float[] attractor_masses = new float[maxAttractor];
 
             public const int particleGroupSize = 128;
-            public const int particleGroupCount = 800;
+            public const int particleGroupCount = 8000;
             public const int particleCount = (particleGroupSize * particleGroupCount);
             public const int maxAttractor = 64;
 
