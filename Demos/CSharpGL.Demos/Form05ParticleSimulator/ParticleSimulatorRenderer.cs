@@ -67,9 +67,9 @@ namespace CSharpGL.Demos
                     for (int i = 0; i < ParticleSimulatorCompute.particleCount; i++)
                     {
                         array[i] = new vec4(
-                            (float)(random.NextDouble() - 0.5) * 2,
-                            (float)(random.NextDouble() - 0.5) * 2,
-                            (float)(random.NextDouble() - 0.5) * 2,
+                            (float)(random.NextDouble() - 0.5) * 0.2f,
+                            (float)(random.NextDouble() - 0.5) * 0.2f,
+                            (float)(random.NextDouble() - 0.5) * 0.2f,
                             0);
                     }
                 }
@@ -116,8 +116,6 @@ namespace CSharpGL.Demos
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            float deltaTick = random.Next(0, 10);
-            tick += (float)random.NextDouble() / 100;
 
             GL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
             IntPtr attractors = GL.MapBufferRange(BufferTarget.UniformBuffer,
@@ -128,9 +126,10 @@ namespace CSharpGL.Demos
                 for (int i = 0; i < 32; i++)
                 {
                     array[i] = new vec4(
-                        (float)(Math.Sin(tick)) * 50.0f,
-                        (float)(Math.Cos(tick)) * 50.0f,
-                        (float)(Math.Sin(tick)) * 50.0f * (float)(Math.Cos(tick)),
+                        (float)(Math.Sin(tick * (float)(i + 4) * 7.5f * 20.0f)) * 50.0f,
+                        (float)(Math.Cos(tick * (float)(i + 7) * 3.9f * 20.0f)) * 50.0f,
+                        (float)(Math.Sin(tick * (float)(i + 3) * 5.3f * 20.0f))
+                        * (float)(Math.Cos(tick * (float)(i + 5) * 9.1f)) * 100.0f,
                         ParticleSimulatorCompute.attractor_masses[i]);
                 }
             }
@@ -156,7 +155,7 @@ namespace CSharpGL.Demos
 
             GL.GetDelegateFor<GL.glMemoryBarrier>()(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
-            
+
             // Clear, select the rendering program and draw a full screen quad
             GL.Disable(GL.GL_DEPTH_TEST);
             visualProgram.Bind();
