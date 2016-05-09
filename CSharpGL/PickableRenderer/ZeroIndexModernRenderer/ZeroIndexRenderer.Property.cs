@@ -10,49 +10,8 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// 要渲染的第一个顶点的索引。
+        /// 此渲染器的索引Buffer。
         /// </summary>
-        public int FirstVertex
-        {
-            get
-            {
-                var indexBufferPtr = this.indexBufferPtr as ZeroIndexBufferPtr;
-                if (indexBufferPtr == null)
-                { return 0; }
-                else
-                { return indexBufferPtr.FirstVertex; }
-            }
-            set
-            {
-                var indexBufferPtr = this.indexBufferPtr as ZeroIndexBufferPtr;
-                if (indexBufferPtr != null)
-                {
-                    indexBufferPtr.FirstVertex = value;
-                }
-            }
-        }
-
-        /// <summary>
-        /// 要渲染多少个顶点。
-        /// </summary>
-        public int VertexCount
-        {
-            get
-            {
-                var indexBufferPtr = this.indexBufferPtr as ZeroIndexBufferPtr;
-                if (indexBufferPtr == null)
-                { return 0; }
-                else
-                { return indexBufferPtr.VertexCount; }
-            }
-            set
-            {
-                var indexBufferPtr = this.indexBufferPtr as ZeroIndexBufferPtr;
-                if (indexBufferPtr != null)
-                {
-                    indexBufferPtr.VertexCount = value;
-                }
-            }
-        }
+        public ZeroIndexBufferPtr IndexBufferPtr { get { return this.indexBufferPtr as ZeroIndexBufferPtr; } }
     }
 }
