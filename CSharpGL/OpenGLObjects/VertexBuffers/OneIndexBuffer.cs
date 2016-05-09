@@ -100,7 +100,7 @@ namespace CSharpGL
             GL.GetDelegateFor<GL.glBufferData>()(GL.GL_ELEMENT_ARRAY_BUFFER, this.ByteLength, this.Header, (uint)this.Usage);
             
             OneIndexBufferPtr bufferPtr = new OneIndexBufferPtr(
-                 buffers[0], this.Mode, this.ElementCount, this.Type, this.Length, this.ByteLength);
+                 buffers[0], this.Mode, 0, this.ElementCount, this.Type, this.Length, this.ByteLength);
 
             return bufferPtr;
         }

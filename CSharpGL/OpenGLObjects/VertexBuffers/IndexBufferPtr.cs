@@ -25,6 +25,7 @@ namespace CSharpGL
         /// <param name="mode"></param>
         /// <param name="bufferID"></param>
         /// <param name="length">此VBO含有多个个元素？</param>
+        /// <param name="byteLength">此VBO占多少字节？</param>
         internal IndexBufferPtr(DrawMode mode, uint bufferID, int length, int byteLength)
             : base(bufferID, length, byteLength)
         {
