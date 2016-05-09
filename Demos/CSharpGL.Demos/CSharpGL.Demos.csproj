@@ -46,69 +46,69 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DragParam.cs" />
-    <Compile Include="Form01Renderer.cs">
+    <Compile Include="01Renderer\DragParam.cs" />
+    <Compile Include="01Renderer\Form01Renderer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form01Renderer.Designer.cs">
+    <Compile Include="01Renderer\Form01Renderer.Designer.cs">
       <DependentUpon>Form01Renderer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form01Renderer.FormLoad.cs">
+    <Compile Include="01Renderer\Form01Renderer.FormLoad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form01Renderer.MouseDownMoveUp.cs">
+    <Compile Include="01Renderer\Form01Renderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form05ParticleSimulator.cs">
+    <Compile Include="Form05ParticleSimulator\Form05ParticleSimulator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form05ParticleSimulator.Designer.cs">
+    <Compile Include="Form05ParticleSimulator\Form05ParticleSimulator.Designer.cs">
       <DependentUpon>Form05ParticleSimulator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form04SimpleCompute.cs">
+    <Compile Include="Form04SimpleCompute\Form04SimpleCompute.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form04SimpleCompute.Designer.cs">
+    <Compile Include="Form04SimpleCompute\Form04SimpleCompute.Designer.cs">
       <DependentUpon>Form04SimpleCompute.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form03OrderDependentTransparency.cs">
+    <Compile Include="Form03OrderDependentTransparency\Form03OrderDependentTransparency.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form03OrderDependentTransparency.Designer.cs">
+    <Compile Include="Form03OrderDependentTransparency\Form03OrderDependentTransparency.Designer.cs">
       <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form02OrderIndependentTransparency.cs">
+    <Compile Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form02OrderIndependentTransparency.Designer.cs">
+    <Compile Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.Designer.cs">
       <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form05ParticleSimulator.Load.cs">
+    <Compile Include="Form05ParticleSimulator\Form05ParticleSimulator.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form04SimpleCompute.Load.cs">
+    <Compile Include="Form04SimpleCompute\Form04SimpleCompute.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form03OrderDependentTransparency.Load.cs">
+    <Compile Include="Form03OrderDependentTransparency\Form03OrderDependentTransparency.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form05ParticleSimulator.MouseDownMoveUp.cs">
+    <Compile Include="Form05ParticleSimulator\Form05ParticleSimulator.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form04SimpleCompute.MouseDownMoveUp.cs">
+    <Compile Include="Form04SimpleCompute\Form04SimpleCompute.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form03OrderDependentTransparency.MouseDownMoveUp.cs">
+    <Compile Include="Form03OrderDependentTransparency\Form03OrderDependentTransparency.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form02OrderIndependentTransparency.MouseDownMoveUp.cs">
+    <Compile Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form02OrderIndependentTransparency.Load.cs">
+    <Compile Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HighlightedPickableRenderer.cs" />
-    <Compile Include="IBufferable\Chain.cs" />
+    <Compile Include="01Renderer\HighlightedPickableRenderer.cs" />
+    <Compile Include="01Renderer\Chain.cs" />
     <Compile Include="FormBulletinBoard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,25 +121,25 @@
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\ChainModel.cs" />
+    <Compile Include="01Renderer\ChainModel.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form00GLCanvas.cs">
+    <Compile Include="00GLCanvas\Form00GLCanvas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form00GLCanvas.Designer.cs">
+    <Compile Include="00GLCanvas\Form00GLCanvas.Designer.cs">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>
     </Compile>
-    <Compile Include="ParticleSimulatorRenderer.cs" />
-    <Compile Include="SimpleComputeRenderer.cs" />
-    <Compile Include="OrderIndependentTransparencyRenderer.cs" />
+    <Compile Include="Form05ParticleSimulator\ParticleSimulatorRenderer.cs" />
+    <Compile Include="Form04SimpleCompute\SimpleComputeRenderer.cs" />
+    <Compile Include="02OrderIndependentTransparency\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UIAxisRenderer.cs" />
+    <Compile Include="01Renderer\UIAxisRenderer.cs" />
     <None Include="Shaders\build_lists.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -182,22 +182,22 @@
     <None Include="Shaders\Simple.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <EmbeddedResource Include="Form00GLCanvas.resx">
+    <EmbeddedResource Include="00GLCanvas\Form00GLCanvas.resx">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form01Renderer.resx">
+    <EmbeddedResource Include="01Renderer\Form01Renderer.resx">
       <DependentUpon>Form01Renderer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form05ParticleSimulator.resx">
+    <EmbeddedResource Include="Form05ParticleSimulator\Form05ParticleSimulator.resx">
       <DependentUpon>Form05ParticleSimulator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form04SimpleCompute.resx">
+    <EmbeddedResource Include="Form04SimpleCompute\Form04SimpleCompute.resx">
       <DependentUpon>Form04SimpleCompute.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form03OrderDependentTransparency.resx">
+    <EmbeddedResource Include="Form03OrderDependentTransparency\Form03OrderDependentTransparency.resx">
       <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form02OrderIndependentTransparency.resx">
+    <EmbeddedResource Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.resx">
       <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBulletinBoard.resx">
