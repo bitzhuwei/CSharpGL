@@ -116,6 +116,8 @@ namespace CSharpGL.Demos
 
         protected override void DoRender(RenderEventArgs arg)
         {
+            float deltaTick = (float)random.NextDouble() * 5;
+            tick += (float)random.NextDouble() * 5;
 
             GL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
             IntPtr attractors = GL.MapBufferRange(BufferTarget.UniformBuffer,
