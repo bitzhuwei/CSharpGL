@@ -25,6 +25,7 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
+                // build several models
                 Random random = new Random();
                 var bufferables = new IBufferable[]{
                     new Axis(),
@@ -148,6 +149,7 @@ namespace CSharpGL.Demos
                 this.SelectedModel = GeometryModel.Tetrahedron;
             }
             {
+                // build the axis
                 var bufferables = new IBufferable[]{
                     new Axis(),
                 };
@@ -206,16 +208,16 @@ namespace CSharpGL.Demos
                             pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
                         }
                     }
-                    //UIRenderer uiRenderer = new UIRenderer(
-                    //    pickableRenderer,
-                    //    AnchorStyles.Left | AnchorStyles.Bottom,
-                    //    new Padding(26, 26, 26, 26),
-                    //    new Size(50, 50));
-                    //uiRenderer.Initialize();
-                    var uiRenderer = new UIAxisRenderer(
+                    var uiRenderer = new UIRenderer(
+                        pickableRenderer,
                         AnchorStyles.Left | AnchorStyles.Bottom,
                         new Padding(26, 26, 26, 26),
                         new Size(50, 50));
+                    uiRenderer.Initialize();
+                    //var uiRenderer = new UIAxisRenderer(
+                    //    AnchorStyles.Left | AnchorStyles.Bottom,
+                    //    new Padding(26, 26, 26, 26),
+                    //    new Size(50, 50));
                     this.uiRenderer = uiRenderer;
                 }
             }
