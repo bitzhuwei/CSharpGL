@@ -59,6 +59,12 @@
     <Compile Include="Form01Renderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form05ParticleSimulator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form05ParticleSimulator.Designer.cs">
+      <DependentUpon>Form05ParticleSimulator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form04SimpleCompute.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,10 +83,16 @@
     <Compile Include="Form02OrderIndependentTransparency.Designer.cs">
       <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form05ParticleSimulator.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form04SimpleCompute.Load.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form03OrderDependentTransparency.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form05ParticleSimulator.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form04SimpleCompute.MouseDownMoveUp.cs">
@@ -122,6 +134,7 @@
     <Compile Include="Form00GLCanvas.Designer.cs">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>
     </Compile>
+    <Compile Include="ParticleSimulatorRenderer.cs" />
     <Compile Include="SimpleComputeRenderer.cs" />
     <Compile Include="OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
@@ -131,6 +144,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Shaders\build_lists.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Shaders\particleSimulator.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Shaders\particleSimulator.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Shaders\particleSimulator.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Shaders\compute.comp">
@@ -165,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form01Renderer.resx">
       <DependentUpon>Form01Renderer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form05ParticleSimulator.resx">
+      <DependentUpon>Form05ParticleSimulator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form04SimpleCompute.resx">
       <DependentUpon>Form04SimpleCompute.cs</DependentUpon>

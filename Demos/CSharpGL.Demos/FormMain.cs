@@ -37,5 +37,10 @@ namespace CSharpGL.Demos
             (new Form04SimpleCompute()).Show();
         }
 
+        private void btnForm05ParticleSimulator_Click(object sender, EventArgs e)
+        {
+            (new Form05ParticleSimulator()).Show();
+        }
+
     }
 }
