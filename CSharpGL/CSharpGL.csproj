@@ -101,6 +101,7 @@
     <Compile Include="PickableRenderer\OneIndexModernRenderer\PointSearcher\OneIndexPointInQuad+Searcher.cs" />
     <Compile Include="PickableRenderer\OneIndexModernRenderer\PointSearcher\OneIndexPointInTriangle+Searcher.cs" />
     <Compile Include="PickableRenderer\OneIndexModernRenderer\PointSearcher\OneIndexPointSearcher.cs" />
+    <Compile Include="PickableRenderer\PickableRenderer.DoInitialize.cs" />
     <Compile Include="PickableRenderer\PickableRenderer.cs" />
     <Compile Include="PickableRenderer\PickableRenderer.Dispose.cs" />
     <Compile Include="PickableRenderer\PickableRenderer.DoRender.cs" />
