@@ -19,6 +19,8 @@ namespace CSharpGL.Demos
         private uint[] textureBufferVelocity = new uint[1];
         private uint[] attractor_buffer = new uint[1];
         private ShaderProgram visualProgram;
+        private float time = 0;
+        private DepthTestSwitch depthTestSwitch = new DepthTestSwitch(false);
 
         Random random = new Random();
 
@@ -87,17 +89,7 @@ namespace CSharpGL.Demos
 
                 GL.GetDelegateFor<GL.glGenBuffers>()(1, attractor_buffer);
                 GL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
-                var attractorArray = new UnmanagedArray<vec4>(64);
-                //for (int i = 0; i < 64; i++)
-                //{
-                //    attractorArray[i] = new vec4(
-                //        (float)(random.NextDouble()) * 0.5f + 0.5f,
-                //        (float)(random.NextDouble()) * 0.5f + 0.5f,
-                //        (float)(random.NextDouble()) * 0.5f + 0.5f,
-                //        (float)(random.NextDouble()) * 0.5f + 0.5f);
-                //}
-                GL.BufferData(BufferTarget.UniformBuffer, attractorArray, BufferUsage.StaticDraw);
-                attractorArray.Dispose();
+                GL.GetDelegateFor<GL.glBufferData>()(GL.GL_UNIFORM_BUFFER, 64 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, GL.GL_DYNAMIC_COPY);
                 GL.GetDelegateFor<GL.glBindBufferBase>()(GL.GL_UNIFORM_BUFFER, 0, attractor_buffer[0]);
             }
             {
@@ -112,7 +104,6 @@ namespace CSharpGL.Demos
             }
         }
 
-        float time = 0;
 
         protected override void DoRender(RenderEventArgs arg)
         {
@@ -121,7 +112,8 @@ namespace CSharpGL.Demos
 
             GL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
             IntPtr attractors = GL.MapBufferRange(BufferTarget.UniformBuffer,
-                0, 64 * sizeof(float) * 4, MapBufferRangeAccess.MapWriteBit | MapBufferRangeAccess.MapInvalidateBufferBit);
+                0, 64 * Marshal.SizeOf(typeof(vec4)),
+                MapBufferRangeAccess.MapWriteBit | MapBufferRangeAccess.MapInvalidateBufferBit);
             unsafe
             {
                 var array = (vec4*)attractors.ToPointer();
@@ -152,7 +144,7 @@ namespace CSharpGL.Demos
 
 
             // Clear, select the rendering program and draw a full screen quad
-            GL.Disable(GL.GL_DEPTH_TEST);
+            depthTestSwitch.On();
             visualProgram.Bind();
             mat4 view = arg.Camera.GetViewMat4();
             mat4 projection = arg.Camera.GetProjectionMat4();
@@ -163,7 +155,7 @@ namespace CSharpGL.Demos
             // glPointSize(2.0f);
             GL.DrawArrays(DrawMode.Points, 0, ParticleSimulatorCompute.particleCount);
             GL.Disable(GL.GL_BLEND);
-            GL.Enable(GL.GL_DEPTH_TEST);
+            depthTestSwitch.Off();
         }
 
         protected override void DisposeUnmanagedResources()
