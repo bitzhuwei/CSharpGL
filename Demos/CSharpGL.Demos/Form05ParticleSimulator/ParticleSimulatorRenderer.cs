@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing.Design;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -21,8 +23,21 @@ namespace CSharpGL.Demos
         private ShaderProgram visualProgram;
         private float time = 0;
         private DepthTestSwitch depthTestSwitch = new DepthTestSwitch(false);
+        private List<GLSwitch> switchList = new List<GLSwitch>();
+
+        [Editor(typeof(GLSwithListEditor), typeof(UITypeEditor))]
+        public List<GLSwitch> SwitchList
+        {
+            get { return switchList; }
+            set { switchList = value; }
+        }
 
         Random random = new Random();
+
+        public ParticleSimulatorRenderer()
+        {
+            this.SwitchList.Add(depthTestSwitch);
+        }
 
         protected override void DoInitialize()
         {
@@ -144,7 +159,7 @@ namespace CSharpGL.Demos
 
 
             // Clear, select the rendering program and draw a full screen quad
-            depthTestSwitch.On();
+            SwitchesOn();
             visualProgram.Bind();
             mat4 view = arg.Camera.GetViewMat4();
             mat4 projection = arg.Camera.GetProjectionMat4();
@@ -155,7 +170,23 @@ namespace CSharpGL.Demos
             // glPointSize(2.0f);
             GL.DrawArrays(DrawMode.Points, 0, ParticleSimulatorCompute.particleCount);
             GL.Disable(GL.GL_BLEND);
-            depthTestSwitch.Off();
+            SwitchesOff();
+        }
+
+        private void SwitchesOff()
+        {
+            for (int i = this.switchList.Count - 1; i >= 0; i--)
+            {
+                this.switchList[i].Off();
+            }
+        }
+
+        private void SwitchesOn()
+        {
+            for (int i = 0; i < this.switchList.Count; i++)
+            {
+                this.switchList[i].On();
+            }
         }
 
         protected override void DisposeUnmanagedResources()
