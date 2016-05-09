@@ -31,7 +31,7 @@ namespace CSharpGL
             }
 
             GeometryType geometryType = arg.PickingGeometryType;
-            DrawMode mode = this.GetIndexBufferPtr().Mode;
+            DrawMode mode = this.indexBufferPtr.Mode;
             GeometryType typeOfMode = mode.ToGeometryType();
 
             if (geometryType == GeometryType.Point)
@@ -185,8 +185,8 @@ namespace CSharpGL
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
                 (arg.RenderMode == RenderModes.ColorCodedPicking
                 && arg.PickingGeometryType == GeometryType.Point
-                && this.Mode.ToGeometryType() == GeometryType.Line) ?
-                DrawMode.Points : this.GetIndexBufferPtr().Mode);
+                && this.indexBufferPtr.Mode.ToGeometryType() == GeometryType.Line) ?
+                DrawMode.Points : this.indexBufferPtr.Mode);
 
             PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();
 

@@ -47,8 +47,11 @@ namespace CSharpGL.Demos
                 pickableRenderer.SwitchList.Add(pointSizeSwitch);
                 GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
                 pickableRenderer.SwitchList.Add(polygonModeSwitch);
-                GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(pickableRenderer.GetIndexBufferPtr() as OneIndexBufferPtr);
-                pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
+                if (pickableRenderer is OneIndexRenderer)
+                {
+                    GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((pickableRenderer as OneIndexRenderer).IndexBufferPtr);
+                    pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
+                }
             }
             this.renderer = pickableRenderer;
 

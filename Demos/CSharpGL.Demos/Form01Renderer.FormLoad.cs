@@ -124,7 +124,7 @@ namespace CSharpGL.Demos
                     {
                         pickableRenderer.SetUniformValue(item.Item1, item.Item2);
                     }
-                  
+
                     HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
                         highlightRenderer, pickableRenderer);
                     renderer.Initialize();
@@ -137,7 +137,7 @@ namespace CSharpGL.Demos
                         pickableRenderer.SwitchList.Add(polygonModeSwitch);
                         if (pickableRenderer is OneIndexRenderer)
                         {
-                            GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(pickableRenderer.GetIndexBufferPtr() as OneIndexBufferPtr);
+                            GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((pickableRenderer as OneIndexRenderer).IndexBufferPtr);
                             pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
                         }
                         GLSwitch blendSwitch = new BlendSwitch();
@@ -200,8 +200,11 @@ namespace CSharpGL.Demos
                         pickableRenderer.SwitchList.Add(pointSizeSwitch);
                         GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
                         pickableRenderer.SwitchList.Add(polygonModeSwitch);
-                        GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(pickableRenderer.GetIndexBufferPtr() as OneIndexBufferPtr);
-                        pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
+                        if (pickableRenderer is OneIndexRenderer)
+                        {
+                            GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((pickableRenderer as OneIndexRenderer).IndexBufferPtr);
+                            pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
+                        }
                     }
                     //UIRenderer uiRenderer = new UIRenderer(
                     //    pickableRenderer,

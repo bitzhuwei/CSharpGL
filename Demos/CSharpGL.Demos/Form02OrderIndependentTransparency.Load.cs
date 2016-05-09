@@ -43,9 +43,12 @@ namespace CSharpGL.Demos
                     GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
                     OITRenderer.BuildListsRenderer.SwitchList.Add(polygonModeSwitch);
                     OITRenderer.ResolveListsRenderer.SwitchList.Add(polygonModeSwitch);
-                    GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(OITRenderer.ResolveListsRenderer.GetIndexBufferPtr() as OneIndexBufferPtr);
-                    OITRenderer.ResolveListsRenderer.SwitchList.Add(primitiveRestartSwitch);
-               }
+                    if (OITRenderer.ResolveListsRenderer is OneIndexRenderer)
+                    {
+                        GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((OITRenderer.ResolveListsRenderer as OneIndexRenderer).IndexBufferPtr);
+                        OITRenderer.ResolveListsRenderer.SwitchList.Add(primitiveRestartSwitch);
+                    }
+                }
                 this.OITRenderer = OITRenderer;
             }
             {

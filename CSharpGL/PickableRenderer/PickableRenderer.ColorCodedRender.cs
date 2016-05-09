@@ -36,7 +36,7 @@ namespace CSharpGL
             if (this.vertexArrayObject4Picking == null)
             {
                 var vertexArrayObject4Picking = new VertexArrayObject(
-                    this.GetIndexBufferPtr(), this.positionBufferPtr);
+                    this.indexBufferPtr, this.positionBufferPtr);
                 vertexArrayObject4Picking.Create(arg, program);
 
                 this.vertexArrayObject4Picking = vertexArrayObject4Picking;

@@ -11,7 +11,7 @@ namespace CSharpGL
             int x, int y,
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {
-            var zeroIndexBufferPtr = modernRenderer.GetIndexBufferPtr() as ZeroIndexBufferPtr;
+            ZeroIndexBufferPtr zeroIndexBufferPtr = modernRenderer.IndexBufferPtr;
             ZeroIndexBufferPtr indexBufferPtr = null;
             // when the temp index buffer could be long, it's no longer needed. 
             // what a great OpenGL API design!

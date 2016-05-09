@@ -21,7 +21,7 @@ namespace CSharpGL
 
             if (geometryType == GeometryType.Point)
             {
-                DrawMode mode = this.GetIndexBufferPtr().Mode;
+                DrawMode mode = this.indexBufferPtr.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (typeOfMode == GeometryType.Point)
                 { return PickWhateverItIs(stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -43,7 +43,7 @@ namespace CSharpGL
             }
             else if (geometryType == GeometryType.Line)
             {
-                DrawMode mode = this.GetIndexBufferPtr().Mode;
+                DrawMode mode = this.indexBufferPtr.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (geometryType == typeOfMode)
                 { return PickWhateverItIs(stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -60,7 +60,7 @@ namespace CSharpGL
             }
             else
             {
-                DrawMode mode = this.GetIndexBufferPtr().Mode;
+                DrawMode mode = this.indexBufferPtr.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (typeOfMode == geometryType)// I want what it is
                 { return PickWhateverItIs(stageVertexId, lastVertexId, mode, typeOfMode); }

@@ -15,74 +15,27 @@ namespace CSharpGL
         {
             get
             {
-                if (this.GetIndexBufferPtr() != null)
+                IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
+                if (indexBufferPtr != null)
                 {
-                    return this.GetIndexBufferPtr().Mode;
+                    return indexBufferPtr.Mode;
                 }
                 else
                 {
-                    return CSharpGL.DrawMode.Points;
+                    throw new Exception("Index Buffer Not Initialized!");
+                    //return CSharpGL.DrawMode.Points;
                 }
             }
             set
             {
-                if (this.GetIndexBufferPtr() != null)
+                IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
+                if (indexBufferPtr != null)
                 {
-                    this.GetIndexBufferPtr().Mode = value;
-                }
-            }
-        }
-
-        /// <summary>
-        /// 用GL.GenBuffers()得到的VBO的ID。
-        /// </summary>
-        public uint BufferId
-        {
-            get
-            {
-                if (this.GetIndexBufferPtr() != null)
-                {
-                    return this.GetIndexBufferPtr().BufferId;
+                    indexBufferPtr.Mode = value;
                 }
                 else
                 {
-                    return 0;
-                }
-            }
-        }
-
-        /// <summary>
-        /// 此VBO含有多个个元素？
-        /// </summary>
-        public int Length
-        {
-            get
-            {
-                if (this.GetIndexBufferPtr() != null)
-                {
-                    return this.GetIndexBufferPtr().Length;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-        }
-
-        /// <summary>
-        /// 此VBO含有多个个字节？
-        /// </summary>
-        public int ByteLength
-        {
-            get
-            {
-                if (this.GetIndexBufferPtr() != null)
-                {
-                    return this.GetIndexBufferPtr().ByteLength;
-                }
-                else
-                {
-                    return 0;
+                    throw new Exception("Index Buffer Not Initialized!");
                 }
             }
         }

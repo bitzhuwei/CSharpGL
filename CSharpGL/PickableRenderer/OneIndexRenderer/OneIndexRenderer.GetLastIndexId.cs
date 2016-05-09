@@ -35,7 +35,7 @@ namespace CSharpGL
                 OneIndexBufferPtr twoPrimitivesIndexBufferPtr;
                 uint lastIndex0, lastIndex1;
                 AssembleIndexBuffer(
-                    lastIndexIdList[current], lastIndexIdList[i], this.GetIndexBufferPtr().Mode,
+                    lastIndexIdList[current], lastIndexIdList[i], this.indexBufferPtr.Mode,
                     out twoPrimitivesIndexBufferPtr, out lastIndex0, out lastIndex1);
                 uint pickedIndex = Pick(arg, twoPrimitivesIndexBufferPtr,
                     x, y);

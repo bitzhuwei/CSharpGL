@@ -26,7 +26,7 @@ namespace CSharpGL
                 this.switchList[i].On();
             }
 
-            IndexBufferPtr indexBufferPtr = this.GetIndexBufferPtr();
+            IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
             if (this.vertexArrayObject == null)
             {
                 PropertyBufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
@@ -60,7 +60,7 @@ namespace CSharpGL
             program.Unbind();
         }
 
-        public IndexBufferPtr GetIndexBufferPtr()
+        protected IndexBufferPtr GetIndexBufferPtr()
         {
             return this.indexBufferPtr;
         }

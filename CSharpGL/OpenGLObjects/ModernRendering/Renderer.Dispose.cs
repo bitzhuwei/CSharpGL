@@ -20,9 +20,10 @@ namespace CSharpGL
                 foreach (var item in this.propertyBufferPtrs) { item.Dispose(); }
                 this.propertyBufferPtrs = null;
             }
-            if (this.GetIndexBufferPtr() != null)
+            if (this.indexBufferPtr != null)
             {
-                this.GetIndexBufferPtr().Dispose();
+                this.indexBufferPtr.Dispose();
+                this.indexBufferPtr = null;
             }
             if (this.shaderProgram != null)
             {
