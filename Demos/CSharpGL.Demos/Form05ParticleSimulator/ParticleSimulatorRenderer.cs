@@ -75,8 +75,8 @@ namespace CSharpGL.Demos
                 }
                 GL.BufferData(BufferTarget.ArrayBuffer, velocities, BufferUsage.DynamicCopy);
                 velocities.Dispose();
-                GL.GetDelegateFor<GL.glVertexAttribPointer>()(0, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-                GL.GetDelegateFor<GL.glEnableVertexAttribArray>()(0);
+                //GL.GetDelegateFor<GL.glVertexAttribPointer>()(0, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+                //GL.GetDelegateFor<GL.glEnableVertexAttribArray>()(0);
                 //
                 GL.GenTextures(1, textureBufferPosition);
                 GL.BindTexture(GL.GL_TEXTURE_BUFFER, textureBufferPosition[0]);
@@ -87,17 +87,17 @@ namespace CSharpGL.Demos
 
                 GL.GetDelegateFor<GL.glGenBuffers>()(1, attractor_buffer);
                 GL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
-                var attractor_massesArray = new UnmanagedArray<vec4>(32);
-                //for (int i = 0; i < 32; i++)
-                //{
-                //    attractor_massesArray[i] = new vec4(
-                //        (float)(random.NextDouble()) * 0.5f + 0.5f,
-                //        (float)(random.NextDouble()) * 0.5f + 0.5f,
-                //        (float)(random.NextDouble()) * 0.5f + 0.5f,
-                //        (float)(random.NextDouble()) * 0.5f + 0.5f);
-                //}
-                GL.BufferData(BufferTarget.UniformBuffer, attractor_massesArray, BufferUsage.StaticDraw);
-                attractor_massesArray.Dispose();
+                var attractorArray = new UnmanagedArray<vec4>(32);
+                for (int i = 0; i < 32; i++)
+                {
+                    attractorArray[i] = new vec4(
+                        (float)(random.NextDouble()) * 0.5f + 0.5f,
+                        (float)(random.NextDouble()) * 0.5f + 0.5f,
+                        (float)(random.NextDouble()) * 0.5f + 0.5f,
+                        (float)(random.NextDouble()) * 0.5f + 0.5f);
+                }
+                GL.BufferData(BufferTarget.UniformBuffer, attractorArray, BufferUsage.StaticDraw);
+                attractorArray.Dispose();
                 GL.GetDelegateFor<GL.glBindBufferBase>()(GL.GL_UNIFORM_BUFFER, 0, attractor_buffer[0]);
             }
             {
@@ -116,8 +116,8 @@ namespace CSharpGL.Demos
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            float deltaTick = random.Next(0, 100);
-            tick += (float)random.NextDouble() / 10;
+            float deltaTick = random.Next(0, 10);
+            tick += (float)random.NextDouble() / 100;
 
             GL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
             IntPtr attractors = GL.MapBufferRange(BufferTarget.UniformBuffer,
@@ -130,7 +130,7 @@ namespace CSharpGL.Demos
                     array[i] = new vec4(
                         (float)(Math.Sin(tick)) * 50.0f,
                         (float)(Math.Cos(tick)) * 50.0f,
-                        (float)(Math.Sin(tick)) * 50.0f,
+                        (float)(Math.Sin(tick)) * 50.0f * (float)(Math.Cos(tick)),
                         ParticleSimulatorCompute.attractor_masses[i]);
                 }
             }
