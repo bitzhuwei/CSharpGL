@@ -55,5 +55,11 @@ namespace CSharpGL
                 GL.DrawElements(this.Mode, this.ElementCount, (uint)this.Type, IntPtr.Zero);
             }
         }
+
+        public override string ToString()
+        {
+            return string.Format("GL.DrawElements({0}, {1}, {2}, IntPtr.Zero)",
+                this.Mode, this.ElementCount, this.Type);
+        }
     }
 }

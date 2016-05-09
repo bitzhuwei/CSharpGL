@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,7 @@ namespace CSharpGL
     /// 只做初始化和渲染这两件事。
     /// 一个<see cref="RendererBase"/>对象对应一个(vertex shader+fragment shader)的shader program。
     /// </summary>
+    [Editor(typeof(RendererBaseEditor), typeof(UITypeEditor))]
     public abstract class RendererBase : IRenderable, IDisposable
     {
 

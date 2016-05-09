@@ -195,6 +195,12 @@
     <Compile Include="TypeConverters\Vec4TypeConverter.cs" />
     <Compile Include="TypeConverters\Vec3TypeConverter.cs" />
     <Compile Include="TypeConverters\Vec2TypeConverter.cs" />
+    <Compile Include="UITypeEditors\FormRendererBaseEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITypeEditors\FormRendererBaseEditor.Designer.cs">
+      <DependentUpon>FormRendererBaseEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="UITypeEditors\FormUniformVariableListEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,6 +238,7 @@
     <Compile Include="OpenGLObjects\GLSwitches\PolygonModeSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PrimitiveRestartSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\GLSwitch.cs" />
+    <Compile Include="UITypeEditors\RendererBaseEditor.cs" />
     <Compile Include="UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="UITypeEditors\GLSwithListEditor.cs" />
     <Compile Include="IBufferables\IBufferable.cs" />
@@ -356,6 +363,9 @@
     <None Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.cd" />
     <EmbeddedResource Include="Controls\GLCanvas.resx">
       <DependentUpon>GLCanvas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITypeEditors\FormRendererBaseEditor.resx">
+      <DependentUpon>FormRendererBaseEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UITypeEditors\FormUniformVariableListEditor.resx">
       <DependentUpon>FormUniformVariableListEditor.cs</DependentUpon>
