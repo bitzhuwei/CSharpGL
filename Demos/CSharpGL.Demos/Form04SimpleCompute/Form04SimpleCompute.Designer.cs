@@ -45,14 +45,14 @@
             this.glCanvas1.Size = new System.Drawing.Size(757, 522);
             this.glCanvas1.TabIndex = 0;
             // 
-            // Form03OrderDependentTransparency
+            // Form04SimpleCompute
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 548);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "Form03OrderDependentTransparency";
-            this.Text = "Form03OrderDependentTransparency";
+            this.Name = "Form04SimpleCompute";
+            this.Text = "Form04SimpleCompute";
             this.Load += new System.EventHandler(this.Form02OrderIndependentTransparency_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);

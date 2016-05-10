@@ -53,7 +53,7 @@
             this.ClientSize = new System.Drawing.Size(783, 548);
             this.Controls.Add(this.glCanvas1);
             this.Name = "Form05ParticleSimulator";
-            this.Text = "Form03OrderDependentTransparency";
+            this.Text = "Form05ParticleSimulator";
             this.Load += new System.EventHandler(this.Form02OrderIndependentTransparency_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
