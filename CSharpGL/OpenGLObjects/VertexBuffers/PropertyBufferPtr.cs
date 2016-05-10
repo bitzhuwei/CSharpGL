@@ -81,8 +81,11 @@ namespace CSharpGL
         public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
         {
             uint location = shaderProgram.GetAttributeLocation(this.VarNameInVertexShader);
+            // 选择 VBO
             GL.BindBuffer(BufferTarget.ArrayBuffer, this.BufferId);
+            // 指定格式
             GL.GetDelegateFor<GL.glVertexAttribPointer>()(location, this.DataSize, this.DataType, false, 0, IntPtr.Zero);
+            // 启用
             GL.GetDelegateFor<GL.glEnableVertexAttribArray>()(location);
         }
 
