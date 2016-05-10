@@ -16,6 +16,7 @@ namespace CSharpGL
         public delegate void glBlendEquation(uint mode);
         public delegate void glDrawRangeElements(uint mode, uint start, uint end, int count, uint type, IntPtr indices);
         public delegate void glTexImage3D(uint target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, IntPtr pixels);
+        public delegate void glTexSubImage2D(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, IntPtr pixels);
         public delegate void glTexSubImage3D(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, uint type, IntPtr pixels);
         public delegate void glCopyTexSubImage3D(uint target, int level, int xoffset, int yoffset, int zoffset, int x, int y, int width, int height);
         public delegate void glColorTable(uint target, uint internalformat, int width, uint format, uint type, IntPtr table);
