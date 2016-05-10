@@ -743,6 +743,7 @@ namespace CSharpGL
         //  Delegates
         public delegate void glDrawArraysInstanced(uint mode, int first, int count, int primcount);
         public delegate void glDrawElementsInstanced(uint mode, int count, uint type, IntPtr indices, int primcount);
+        public delegate void glDrawElementsBaseVertex(uint mode, int count, uint type, IntPtr indices, int baseVertex);
         public delegate void glTexBuffer(uint target, uint internalformat, uint buffer);
         public delegate void glPrimitiveRestartIndex(uint index);
 
