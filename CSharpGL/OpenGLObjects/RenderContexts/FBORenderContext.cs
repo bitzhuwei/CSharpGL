@@ -10,6 +10,38 @@ namespace CSharpGL.Windows
     /// </summary>
     public class FBORenderContext : HiddenWindowRenderContext
     {
+        //static List<WeakReference<FBORenderContext>> renderContextList = new List<WeakReference<FBORenderContext>>();
+        //public FBORenderContext()
+        //{
+        //    renderContextList.Add(new WeakReference<FBORenderContext>(this));
+        //}
+
+        //public override void Destroy()
+        //{
+        //    bool found = false;
+        //    WeakReference<FBORenderContext> target = null;
+        //    for (int index = 0; index < renderContextList.Count; index++)
+        //    {
+        //        target = renderContextList[index];
+        //        FBORenderContext context;
+        //        if (target.TryGetTarget(out context))
+        //        {
+        //            if (context == this)
+        //            { break; }
+        //        }
+        //    }
+        //    if (found)
+        //    {
+        //        renderContextList.Remove(target);
+        //    }
+
+        //    base.Destroy();
+        //}
+        //public static FBORenderContext GetCurrentRenderContext()
+        //{
+        //    IntPtr renderContext = Win32.wglGetCurrentContext();
+
+        //}
 
         /// <summary>
         /// Creates the render context provider. Must also create the OpenGL extensions.
