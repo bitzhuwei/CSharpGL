@@ -17,9 +17,8 @@ namespace CSharpGL
 
             // 绑定shader
             program.Bind();
-            // TODO: use uint/int/float or ? use UniformUInt instead
             program.SetUniform("pickingBaseId",
-                temporaryIndexBufferPtr == null ? this.PickingBaseId : 0u);
+                temporaryIndexBufferPtr == null ? (int)this.PickingBaseId : 0);
             UniformMat4 uniformmMVP4Picking = this.uniformmMVP4Picking;
             bool mvpUpdated = uniformmMVP4Picking.Updated;
             if (mvpUpdated) { uniformmMVP4Picking.SetUniform(program); }
