@@ -266,7 +266,6 @@ namespace CSharpGL
         }
 
 
-        //  TODO: this is actually defined as an extension, put in the right file.
         public static mat4 rotate(float angle, vec3 v)
         {
             return rotate(mat4.identity(), angle, v);
