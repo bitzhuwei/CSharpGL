@@ -135,10 +135,9 @@ namespace CSharpGL.Demos
                 for (int i = 0; i < 64; i++)
                 {
                     array[i] = new vec4(
-                        (float)(Math.Sin(time * (float)(i + 4) * 7.5f * 20.0f)) * 50.0f,
-                        (float)(Math.Cos(time * (float)(i + 7) * 3.9f * 20.0f)) * 50.0f,
-                        (float)(Math.Sin(time * (float)(i + 3) * 5.3f * 20.0f))
-                        * (float)(Math.Cos(time * (float)(i + 5) * 9.1f)) * 100.0f,
+                        (float)(Math.Sin(time)) * 50.0f,
+                        (float)(Math.Cos(time)) * 50.0f,
+                        (float)(Math.Cos(time)) * (float)(Math.Sin(time)) * 5.0f,
                         ParticleSimulatorCompute.attractor_masses[i]);
                 }
             }
