@@ -42,9 +42,9 @@
             // 
             this.trackFirst.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackFirst.Location = new System.Drawing.Point(96, 12);
+            this.trackFirst.Location = new System.Drawing.Point(12, 40);
             this.trackFirst.Name = "trackFirst";
-            this.trackFirst.Size = new System.Drawing.Size(715, 56);
+            this.trackFirst.Size = new System.Drawing.Size(892, 56);
             this.trackFirst.TabIndex = 0;
             this.trackFirst.Scroll += new System.EventHandler(this.trackFirst_Scroll);
             // 
@@ -71,16 +71,16 @@
             // 
             this.trackCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackCount.Location = new System.Drawing.Point(96, 74);
+            this.trackCount.Location = new System.Drawing.Point(12, 131);
             this.trackCount.Name = "trackCount";
-            this.trackCount.Size = new System.Drawing.Size(715, 56);
+            this.trackCount.Size = new System.Drawing.Size(892, 56);
             this.trackCount.TabIndex = 0;
             this.trackCount.Scroll += new System.EventHandler(this.trackCount_Scroll);
             // 
             // lblCount
             // 
             this.lblCount.AutoSize = true;
-            this.lblCount.Location = new System.Drawing.Point(12, 84);
+            this.lblCount.Location = new System.Drawing.Point(9, 99);
             this.lblCount.Name = "lblCount";
             this.lblCount.Size = new System.Drawing.Size(55, 15);
             this.lblCount.TabIndex = 1;
@@ -90,7 +90,7 @@
             // 
             this.lblCountValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCountValue.AutoSize = true;
-            this.lblCountValue.Location = new System.Drawing.Point(817, 84);
+            this.lblCountValue.Location = new System.Drawing.Point(817, 99);
             this.lblCountValue.Name = "lblCountValue";
             this.lblCountValue.Size = new System.Drawing.Size(87, 15);
             this.lblCountValue.TabIndex = 1;
@@ -100,7 +100,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(916, 160);
+            this.ClientSize = new System.Drawing.Size(916, 208);
             this.Controls.Add(this.lblCountValue);
             this.Controls.Add(this.lblFirstValue);
             this.Controls.Add(this.lblCount);
