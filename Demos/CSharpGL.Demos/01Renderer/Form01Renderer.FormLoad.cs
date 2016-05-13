@@ -14,6 +14,7 @@ namespace CSharpGL.Demos
     public partial class Form01Renderer : Form
     {
         private UIRenderer uiRenderer;
+        private FormIndexBufferPtrBoard frmIndexBufferPtrBoard;
 
         private void Form01Renderer_Load(object sender, EventArgs e)
         {
@@ -235,7 +236,7 @@ namespace CSharpGL.Demos
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this.rendererDict[this.SelectedModel].PickableRenderer.IndexBufferPtr);
+                frmPropertyGrid.DisplayObject(this.rendererDict[this.SelectedModel].Highlighter);
                 frmPropertyGrid.Show();
                 this.highlightRendererPropertyGrid = frmPropertyGrid;
             }
@@ -245,7 +246,12 @@ namespace CSharpGL.Demos
                 frmPropertyGrid.Show();
                 this.formPropertyGrid = frmPropertyGrid;
             }
-
+            {
+                var frmIndexBufferPtrBoard = new FormIndexBufferPtrBoard();
+                frmIndexBufferPtrBoard.SetTarget(this.rendererDict[this.SelectedModel].PickableRenderer.IndexBufferPtr);
+                frmIndexBufferPtrBoard.Show();
+                this.frmIndexBufferPtrBoard = frmIndexBufferPtrBoard;
+            }
         }
 
     }

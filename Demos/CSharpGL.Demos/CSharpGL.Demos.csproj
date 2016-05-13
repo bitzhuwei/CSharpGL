@@ -115,6 +115,12 @@
     <Compile Include="FormBulletinBoard.Designer.cs">
       <DependentUpon>FormBulletinBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormIndexBufferPtrBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIndexBufferPtrBoard.Designer.cs">
+      <DependentUpon>FormIndexBufferPtrBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormProperyGrid.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBulletinBoard.resx">
       <DependentUpon>FormBulletinBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormIndexBufferPtrBoard.resx">
+      <DependentUpon>FormIndexBufferPtrBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
