@@ -35,6 +35,6 @@ namespace CSharpGL
         /// <summary>
         /// 此渲染器的索引Buffer。
         /// </summary>
-        public OneIndexBufferPtr IndexBufferPtr { get { return this.indexBufferPtr as OneIndexBufferPtr; } }
+        public new OneIndexBufferPtr IndexBufferPtr { get { return this.indexBufferPtr as OneIndexBufferPtr; } }
     }
 }

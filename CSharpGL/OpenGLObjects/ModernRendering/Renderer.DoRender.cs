@@ -60,9 +60,12 @@ namespace CSharpGL
             program.Unbind();
         }
 
-        protected IndexBufferPtr GetIndexBufferPtr()
+        public IndexBufferPtr IndexBufferPtr
         {
-            return this.indexBufferPtr;
+            get
+            {
+                return this.indexBufferPtr;
+            }
         }
     }
 }

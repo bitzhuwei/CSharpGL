@@ -81,8 +81,23 @@ namespace CSharpGL
 
         public override string ToString()
         {
-            return string.Format("GL.DrawElements({0}, {1}, {2}, IntPtr.Zero)",
-                this.Mode, this.ElementCount, this.Type);
+            string type = string.Empty;
+            switch (this.Type)
+            {
+                case IndexElementType.UnsignedByte:
+                    type = "byte";
+                    break;
+                case IndexElementType.UnsignedShort:
+                    type = "ushort";
+                    break;
+                case IndexElementType.UnsignedInt:
+                    type = "uint";
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+            return string.Format("GL.DrawElements({0}, {1}, {2}, new IntPtr({3} * sizeof({4}))",
+                this.Mode, this.ElementCount, this.Type, this.FirstIndex, type);
         }
     }
 }

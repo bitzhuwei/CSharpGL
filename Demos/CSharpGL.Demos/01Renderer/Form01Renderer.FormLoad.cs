@@ -235,7 +235,7 @@ namespace CSharpGL.Demos
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this.rendererDict[this.SelectedModel].Highlighter);
+                frmPropertyGrid.DisplayObject(this.rendererDict[this.SelectedModel].PickableRenderer.IndexBufferPtr);
                 frmPropertyGrid.Show();
                 this.highlightRendererPropertyGrid = frmPropertyGrid;
             }
