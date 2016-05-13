@@ -11,6 +11,10 @@ It provides maths class for matrix and vectors.
 It provide useful utilities.
 
 release notes:
+v1.0.1.0:
+1. Only pickable Renderer check if position buffer's DataSize is 3.
+2. Adjust camera's default settings.
+3. OneIndexBufferPtr can controls the first element to be rendered.
 v1.0.0.9:
 1. supports picking of point, line and basic geometry(triangle, quad, polygon) from any kind of OneIndexRenderer or ZeroIndexRenderer.
 2. rename *ModernRenderer*.cs to *Renderer*.cs
