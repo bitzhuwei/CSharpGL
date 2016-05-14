@@ -177,13 +177,13 @@
     <None Include="Form04SimpleCompute\computeReset.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Shaders\particleSimulator.frag">
+    <None Include="Form05ParticleSimulator\particleSimulator.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Shaders\particleSimulator.vert">
+    <None Include="Form05ParticleSimulator\particleSimulator.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Shaders\particleSimulator.comp">
+    <None Include="Form05ParticleSimulator\particleSimulator.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Form04SimpleCompute\compute.comp">
