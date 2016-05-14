@@ -117,6 +117,7 @@ namespace CSharpGL.Demos
 
         protected override void DisposeUnmanagedResources()
         {
+            resetProgram.Delete();
             computeProgram.Delete();
             GL.DeleteTextures(1, output_image);
         }
