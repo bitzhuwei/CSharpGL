@@ -63,7 +63,7 @@ namespace CSharpGL.Demos
                     bufferable, simpleShader, propertyNameMap, "position");
                 pickableRenderer.Name = string.Format("Pickable: [ImageProcessingRenderer]");
                 pickableRenderer.Initialize();
-                pickableRenderer.SetUniformValue("output_image", new samplerValue(this.input_image[0], GL.GL_TEXTURE0));
+                pickableRenderer.SetUniformValue("output_image", new samplerValue(this.output_image[0], GL.GL_TEXTURE0));
                 this.renderer = pickableRenderer;
             }
 
