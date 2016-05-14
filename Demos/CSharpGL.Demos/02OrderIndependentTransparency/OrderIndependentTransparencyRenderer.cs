@@ -41,16 +41,16 @@ namespace CSharpGL.Demos
                 map.Add("position", positionName);
                 map.Add("normal", normalName);
                 var build_lists = new ShaderCode[2];
-                build_lists[0] = new ShaderCode(File.ReadAllText(@"Shaders\build_lists.vert"), ShaderType.VertexShader);
-                build_lists[1] = new ShaderCode(File.ReadAllText(@"Shaders\build_lists.frag"), ShaderType.FragmentShader);
+                build_lists[0] = new ShaderCode(File.ReadAllText(@"02OrderIndependentTransparency\build_lists.vert"), ShaderType.VertexShader);
+                build_lists[1] = new ShaderCode(File.ReadAllText(@"02OrderIndependentTransparency\build_lists.frag"), ShaderType.FragmentShader);
                 this.buildListsRenderer = PickableRendererFactory.GetRenderer(model, build_lists, map, positionName);
             }
             {
                 var map = new PropertyNameMap();
                 map.Add("position", positionName);
                 var resolve_lists = new ShaderCode[2];
-                resolve_lists[0] = new ShaderCode(File.ReadAllText(@"Shaders\resolve_lists.vert"), ShaderType.VertexShader);
-                resolve_lists[1] = new ShaderCode(File.ReadAllText(@"Shaders\resolve_lists.frag"), ShaderType.FragmentShader);
+                resolve_lists[0] = new ShaderCode(File.ReadAllText(@"02OrderIndependentTransparency\resolve_lists.vert"), ShaderType.VertexShader);
+                resolve_lists[1] = new ShaderCode(File.ReadAllText(@"02OrderIndependentTransparency\resolve_lists.frag"), ShaderType.FragmentShader);
                 this.resolve_lists = PickableRendererFactory.GetRenderer(model, resolve_lists, map, positionName);
             }
             {

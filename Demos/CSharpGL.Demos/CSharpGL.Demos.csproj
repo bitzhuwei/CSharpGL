@@ -168,10 +168,10 @@
     <None Include="Form06ImageProcessing\ImageProcessing.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Shaders\build_lists.frag">
+    <None Include="02OrderIndependentTransparency\build_lists.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Shaders\build_lists.vert">
+    <None Include="02OrderIndependentTransparency\build_lists.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Shaders\computeReset.comp">
@@ -201,10 +201,10 @@
     <None Include="Shaders\Transparent.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Shaders\resolve_lists.frag">
+    <None Include="02OrderIndependentTransparency\resolve_lists.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Shaders\resolve_lists.vert">
+    <None Include="02OrderIndependentTransparency\resolve_lists.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Shaders\Simple.frag">
