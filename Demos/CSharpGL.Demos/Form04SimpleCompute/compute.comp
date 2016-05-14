@@ -6,6 +6,6 @@ layout (rgba32f) uniform image2D output_image;
 void main(void)
 {
     imageStore(output_image,
-    ivec2(gl_GlobalInvocationID.xy),
-    vec4(vec2(gl_LocalInvocationID.xy) / vec2(gl_WorkGroupSize.xy), 0.0, 0.0));
+		ivec2(gl_GlobalInvocationID.xy),
+		vec4(vec2(gl_LocalInvocationID.xy) / vec2(gl_WorkGroupSize.xy), 0.0, 0.0));
 }
