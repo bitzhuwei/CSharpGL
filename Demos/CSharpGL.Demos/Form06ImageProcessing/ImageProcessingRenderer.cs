@@ -56,6 +56,7 @@ namespace CSharpGL.Demos
                     bufferable, simpleShader, propertyNameMap, "position");
                 pickableRenderer.Name = string.Format("Pickable: [ImageProcessingRenderer]");
                 pickableRenderer.Initialize();
+                pickableRenderer.SetUniformValue("output_image", new samplerValue(this.input_image[0], GL.GL_TEXTURE0));
                 this.renderer = pickableRenderer;
             }
 
@@ -65,22 +66,22 @@ namespace CSharpGL.Demos
         protected override void DoRender(RenderEventArgs arg)
         {
             // Activate the compute program and bind the output texture image
-            computeProgram.Bind();
-            GL.GetDelegateFor<GL.glBindImageTexture>()(0, input_image[0], 0, false, 0, GL.GL_READ_ONLY, GL.GL_RGBA32F);
-            GL.GetDelegateFor<GL.glBindImageTexture>()(1, intermediate_image[0], 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
-            // Dispatch
-            GL.GetDelegateFor<GL.glDispatchCompute>()(512, 1, 1);
+            //computeProgram.Bind();
+            //GL.GetDelegateFor<GL.glBindImageTexture>()(0, input_image[0], 0, false, 0, GL.GL_READ_ONLY, GL.GL_RGBA32F);
+            //GL.GetDelegateFor<GL.glBindImageTexture>()(1, intermediate_image[0], 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
+            //// Dispatch
+            //GL.GetDelegateFor<GL.glDispatchCompute>()(512, 1, 1);
 
-            GL.GetDelegateFor<GL.glMemoryBarrier>()(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+            //GL.GetDelegateFor<GL.glMemoryBarrier>()(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
-            GL.GetDelegateFor<GL.glBindImageTexture>()(0, intermediate_image[0], 0, false, 0, GL.GL_READ_ONLY, GL.GL_RGBA32F);
-            GL.GetDelegateFor<GL.glBindImageTexture>()(1, output_image[0], 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
-            // Dispatch
-            GL.GetDelegateFor<GL.glDispatchCompute>()(512, 1, 1);
+            //GL.GetDelegateFor<GL.glBindImageTexture>()(0, intermediate_image[0], 0, false, 0, GL.GL_READ_ONLY, GL.GL_RGBA32F);
+            //GL.GetDelegateFor<GL.glBindImageTexture>()(1, output_image[0], 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
+            //// Dispatch
+            //GL.GetDelegateFor<GL.glDispatchCompute>()(512, 1, 1);
 
-            // Now bind the texture for rendering _from_
-            GL.GetDelegateFor<GL.glActiveTexture>()(GL.GL_TEXTURE0);
-            GL.BindTexture(GL.GL_TEXTURE_2D, output_image[0]);
+            //// Now bind the texture for rendering _from_
+            //GL.GetDelegateFor<GL.glActiveTexture>()(GL.GL_TEXTURE0);
+            //GL.BindTexture(GL.GL_TEXTURE_2D, output_image[0]);
 
             mat4 view = arg.Camera.GetViewMat4();
             mat4 projection = arg.Camera.GetProjectionMat4();

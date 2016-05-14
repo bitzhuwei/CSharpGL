@@ -31,11 +31,11 @@ namespace CSharpGL
 
         public override void SetUniform(ShaderProgram program)
         {
-            GL.GetDelegateFor<GL.glActiveTexture>()((uint)value.Index);
-            GL.Enable(GL.GL_TEXTURE_2D);
-            GL.BindTexture(GL.GL_TEXTURE_2D, value.Name);
+            GL.GetDelegateFor<GL.glActiveTexture>()((uint)value.ActiveTextureIndex);
+            //GL.Enable(GL.GL_TEXTURE_2D);
+            GL.BindTexture(GL.GL_TEXTURE_2D, value.TextureId);
             //program.SetUniform(VarName, (int)((uint)value.Index - GL.GL_TEXTURE0));
-            program.SetUniform(VarName, (int)(value.Index));
+            program.SetUniform(VarName, (int)(value.TextureId));
         }
 
         public override void ResetUniform(ShaderProgram program)
@@ -74,25 +74,25 @@ namespace CSharpGL
     [TypeConverter(typeof(SamplerValueTypeConverter))]
     public struct samplerValue
     {
-        private uint name;
+        private uint textureId;
 
-        public uint Name
+        public uint TextureId
         {
-            get { return name; }
-            set { name = value; }
+            get { return textureId; }
+            set { textureId = value; }
         }
-        private uint index;
+        private uint activeTextureIndex;
 
-        public uint Index
+        public uint ActiveTextureIndex
         {
-            get { return index; }
-            set { index = value; }
+            get { return activeTextureIndex; }
+            set { activeTextureIndex = value; }
         }
 
-        public samplerValue(uint name, uint index)
+        public samplerValue(uint textureId, uint activeTextureIndex)
         {
-            this.name = name;
-            this.index = index;
+            this.textureId = textureId;
+            this.activeTextureIndex = activeTextureIndex;
         }
 
         static readonly char[] separator = new char[] { '[', ']', };
@@ -108,7 +108,7 @@ namespace CSharpGL
 
         public override string ToString()
         {
-            return string.Format("name:[{0}] index:[{1}]", name, index);
+            return string.Format("texture id:[{0}] active texture index:[{1}]", textureId, activeTextureIndex);
         }
 
         public static bool operator ==(samplerValue left, samplerValue right)
@@ -137,7 +137,7 @@ namespace CSharpGL
             var p = (samplerValue)obj;
 
             //return this.HashCode == p.HashCode;
-            return (this.index == p.index && this.name == p.name);
+            return (this.activeTextureIndex == p.activeTextureIndex && this.textureId == p.textureId);
         }
 
         public override int GetHashCode()
