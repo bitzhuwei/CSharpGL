@@ -33,6 +33,7 @@
             this.btnForm02 = new System.Windows.Forms.Button();
             this.btnForm04SimpleCompute = new System.Windows.Forms.Button();
             this.btnForm05ParticleSimulator = new System.Windows.Forms.Button();
+            this.btnForm06ImageProcessing = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -100,11 +101,25 @@
             this.btnForm05ParticleSimulator.UseVisualStyleBackColor = true;
             this.btnForm05ParticleSimulator.Click += new System.EventHandler(this.btnForm05ParticleSimulator_Click);
             // 
+            // btnForm06ImageProcessing
+            // 
+            this.btnForm06ImageProcessing.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnForm06ImageProcessing.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnForm06ImageProcessing.Location = new System.Drawing.Point(12, 227);
+            this.btnForm06ImageProcessing.Name = "btnForm06ImageProcessing";
+            this.btnForm06ImageProcessing.Size = new System.Drawing.Size(767, 37);
+            this.btnForm06ImageProcessing.TabIndex = 0;
+            this.btnForm06ImageProcessing.Text = "Form06 ImageProcessing";
+            this.btnForm06ImageProcessing.UseVisualStyleBackColor = true;
+            this.btnForm06ImageProcessing.Click += new System.EventHandler(this.btnForm06ImageProcessing_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 545);
+            this.Controls.Add(this.btnForm06ImageProcessing);
             this.Controls.Add(this.btnForm05ParticleSimulator);
             this.Controls.Add(this.btnForm04SimpleCompute);
             this.Controls.Add(this.btnForm02);
@@ -123,5 +138,6 @@
         private System.Windows.Forms.Button btnForm02;
         private System.Windows.Forms.Button btnForm04SimpleCompute;
         private System.Windows.Forms.Button btnForm05ParticleSimulator;
+        private System.Windows.Forms.Button btnForm06ImageProcessing;
     }
 }

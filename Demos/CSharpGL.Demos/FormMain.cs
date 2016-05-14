@@ -42,5 +42,10 @@ namespace CSharpGL.Demos
             (new Form05ParticleSimulator()).Show();
         }
 
+        private void btnForm06ImageProcessing_Click(object sender, EventArgs e)
+        {
+            (new Form06ImageProcessing()).Show();
+        }
+
     }
 }

@@ -28,7 +28,7 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
-                var renderer = new ParticleSimulatorRenderer();
+                var renderer = new ImageProcessingRenderer();
                 this.renderer = renderer;
             }
             {
