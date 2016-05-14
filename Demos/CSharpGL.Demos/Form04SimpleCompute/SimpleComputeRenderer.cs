@@ -62,6 +62,8 @@ namespace CSharpGL.Demos
                 this.GroupZ = 1;
             }
             base.DoInitialize();
+            this.SetUniformValue("output_image", new samplerValue(this.output_image[0], GL.GL_TEXTURE0));
+
         }
 
         private uint maxX;
@@ -91,7 +93,7 @@ namespace CSharpGL.Demos
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            // rest image
+            // reset image
             resetProgram.Bind();
             GL.GetDelegateFor<GL.glBindImageTexture>()(0, output_image[0], 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
             GL.GetDelegateFor<GL.glDispatchCompute>()(maxX, maxY, maxZ);
@@ -103,9 +105,6 @@ namespace CSharpGL.Demos
             GL.GetDelegateFor<GL.glDispatchCompute>()(GroupX, GroupY, GroupZ);
             computeProgram.Unbind();
 
-            // Now bind the texture for rendering _from_
-            GL.BindTexture(GL.GL_TEXTURE_2D, output_image[0]);
-
             mat4 model = mat4.identity();
             mat4 view = arg.Camera.GetViewMat4();
             mat4 projection = arg.Camera.GetProjectionMat4();
@@ -114,8 +113,6 @@ namespace CSharpGL.Demos
             this.SetUniformValue("projectionMatrix", projection);
 
             base.DoRender(arg);
-
-            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
         }
 
         protected override void DisposeUnmanagedResources()
