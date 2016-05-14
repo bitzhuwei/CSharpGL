@@ -195,10 +195,10 @@
     <None Include="Shaders\compute.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Shaders\Transparent.frag">
+    <None Include="Form03OrderDependentTransparency\Transparent.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Shaders\Transparent.vert">
+    <None Include="Form03OrderDependentTransparency\Transparent.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="02OrderIndependentTransparency\resolve_lists.frag">

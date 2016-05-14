@@ -30,8 +30,8 @@ namespace CSharpGL.Demos
             {
                 IBufferable bufferable = new Teapot();
                 var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"Shaders\Transparent.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"Shaders\Transparent.frag"), ShaderType.FragmentShader);
+                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"Form03OrderDependentTransparency\Transparent.vert"), ShaderType.VertexShader);
+                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"Form03OrderDependentTransparency\Transparent.frag"), ShaderType.FragmentShader);
                 var map = new PropertyNameMap();
                 map.Add("in_Position", "position");
                 map.Add("in_Color", "color");
