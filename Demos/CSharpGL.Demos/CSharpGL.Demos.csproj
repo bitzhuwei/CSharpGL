@@ -174,7 +174,7 @@
     <None Include="02OrderIndependentTransparency\build_lists.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Shaders\computeReset.comp">
+    <None Include="Form04SimpleCompute\computeReset.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Shaders\particleSimulator.frag">
@@ -186,13 +186,13 @@
     <None Include="Shaders\particleSimulator.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Shaders\compute.comp">
+    <None Include="Form04SimpleCompute\compute.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Shaders\compute.frag">
+    <None Include="Form04SimpleCompute\compute.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Shaders\compute.vert">
+    <None Include="Form04SimpleCompute\compute.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Form03OrderDependentTransparency\Transparent.frag">

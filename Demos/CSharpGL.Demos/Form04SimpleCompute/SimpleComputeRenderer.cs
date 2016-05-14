@@ -20,8 +20,8 @@ namespace CSharpGL.Demos
         static SimpleComputeRenderer()
         {
             staticShaderCodes = new ShaderCode[2];
-            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"Shaders\compute.vert"), ShaderType.VertexShader);
-            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"Shaders\compute.frag"), ShaderType.FragmentShader);
+            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"Form04SimpleCompute\compute.vert"), ShaderType.VertexShader);
+            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"Form04SimpleCompute\compute.frag"), ShaderType.FragmentShader);
             map = new PropertyNameMap();
             map.Add(SimpleCompute.strPosition, "position");
         }
@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
             {
                 // Initialize our compute program
                 var computeProgram = new ShaderProgram();
-                var shaderCode = new ShaderCode(File.ReadAllText(@"Shaders\compute.comp"), ShaderType.ComputeShader);
+                var shaderCode = new ShaderCode(File.ReadAllText(@"Form04SimpleCompute\compute.comp"), ShaderType.ComputeShader);
                 Shader shader = shaderCode.CreateShader();
                 computeProgram.Create(shader);
                 shader.Delete();
@@ -43,7 +43,7 @@ namespace CSharpGL.Demos
             {
                 // Initialize our resetProgram 
                 var resetProgram = new ShaderProgram();
-                var shaderCode = new ShaderCode(File.ReadAllText(@"Shaders\computeReset.comp"), ShaderType.ComputeShader);
+                var shaderCode = new ShaderCode(File.ReadAllText(@"Form04SimpleCompute\computeReset.comp"), ShaderType.ComputeShader);
                 Shader shader = shaderCode.CreateShader();
                 resetProgram.Create(shader);
                 shader.Delete();
