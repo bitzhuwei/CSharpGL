@@ -59,6 +59,19 @@
     <Compile Include="01Renderer\Form01Renderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form06ImageProcessing\Form06ImageProcessing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form06ImageProcessing\Form06ImageProcessing.Designer.cs">
+      <DependentUpon>Form06ImageProcessing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form06ImageProcessing\Form06ImageProcessing.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form06ImageProcessing\Form06ImageProcessing.MouseDownMoveUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form06ImageProcessing\ImageProcessingRenderer.cs" />
     <Compile Include="Form05ParticleSimulator\Form05ParticleSimulator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +159,15 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="01Renderer\UIAxisRenderer.cs" />
+    <None Include="Form06ImageProcessing\ImageProcessing.comp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Form06ImageProcessing\ImageProcessing.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Form06ImageProcessing\ImageProcessing.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Shaders\build_lists.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -196,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="01Renderer\Form01Renderer.resx">
       <DependentUpon>Form01Renderer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form06ImageProcessing\Form06ImageProcessing.resx">
+      <DependentUpon>Form06ImageProcessing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form05ParticleSimulator\Form05ParticleSimulator.resx">
       <DependentUpon>Form05ParticleSimulator.cs</DependentUpon>
