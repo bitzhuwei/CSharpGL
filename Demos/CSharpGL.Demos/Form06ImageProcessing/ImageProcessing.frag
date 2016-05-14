@@ -2,9 +2,9 @@
 
 layout (location = 0) out vec4 color;
 
-in float intensity;
+layout (binding = 0) uniform sampler2D output_image;
 
 void main(void)
 {
-    color = vec4(0.0f, 0.2f, 1.0f, 1.0f) * intensity + vec4(0.2f, 0.05f, 0.0f, 1.0f) * (1.0f - intensity);
+    color = abs(texture(output_image, vec2(1.0, -1.0) * vec2(gl_FragCoord.xy) / vec2(textureSize(output_image, 0)))) * 1.0;
 }
