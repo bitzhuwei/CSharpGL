@@ -31,25 +31,25 @@ namespace CSharpGL.Demos
             }
             {
                 sampler2D texture = new sampler2D();
-                texture.Initialize(new System.Drawing.Bitmap(@"Form06ImageProcessing\teapot.bmp"));
+                texture.Initialize(new System.Drawing.Bitmap(@"Form06ImageProcessing\box.bmp"));
                 this.input_image[0] = texture.Id;
             }
             {
-                sampler2D texture = new sampler2D();
-                texture.Initialize(new System.Drawing.Bitmap(@"Form06ImageProcessing\teapot.bmp"));
-                this.intermediate_image[0] = texture.Id;
-                //GL.GenTextures(1, intermediate_image);
-                //GL.BindTexture(GL.GL_TEXTURE_2D, intermediate_image[0]);
-                //GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 512, 512);
+                //sampler2D texture = new sampler2D();
+                //texture.Initialize(new System.Drawing.Bitmap(@"Form06ImageProcessing\teapot.bmp"));
+                //this.intermediate_image[0] = texture.Id;
+                GL.GenTextures(1, intermediate_image);
+                GL.BindTexture(GL.GL_TEXTURE_2D, intermediate_image[0]);
+                GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 512, 512);
             }
             {
-                sampler2D texture = new sampler2D();
-                texture.Initialize(new System.Drawing.Bitmap(@"Form06ImageProcessing\teapot.bmp"));
-                this.output_image[0] = texture.Id;
-                //// This is the texture that the compute program will write into
-                //GL.GenTextures(1, output_image);
-                //GL.BindTexture(GL.GL_TEXTURE_2D, output_image[0]);
-                //GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 512, 512);
+                //sampler2D texture = new sampler2D();
+                //texture.Initialize(new System.Drawing.Bitmap(@"Form06ImageProcessing\teapot.bmp"));
+                //this.output_image[0] = texture.Id;
+                // This is the texture that the compute program will write into
+                GL.GenTextures(1, output_image);
+                GL.BindTexture(GL.GL_TEXTURE_2D, output_image[0]);
+                GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 512, 512);
             }
             {
                 var bufferable = new ImageProcessingModel();
@@ -85,6 +85,7 @@ namespace CSharpGL.Demos
             GL.GetDelegateFor<GL.glBindImageTexture>()(1, output_image[0], 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
             // Dispatch
             GL.GetDelegateFor<GL.glDispatchCompute>()(1, 512, 1);
+            GL.GetDelegateFor<GL.glMemoryBarrier>()(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
             //// Now bind the texture for rendering _from_
             //GL.GetDelegateFor<GL.glActiveTexture>()(GL.GL_TEXTURE0);
