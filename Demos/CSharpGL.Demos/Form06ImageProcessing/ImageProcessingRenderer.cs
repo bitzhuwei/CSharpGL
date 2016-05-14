@@ -17,9 +17,7 @@ namespace CSharpGL.Demos
         private uint[] input_image = new uint[1];
         private uint[] intermediate_image = new uint[1];
         private uint[] output_image = new uint[1];
-        private ShaderProgram visualProgram;
-        private uint[] render_vao = new uint[1];
-        private uint[] render_vbo = new uint[1];
+        private PickableRenderer renderer;
 
         protected override void DoInitialize()
         {
@@ -47,34 +45,18 @@ namespace CSharpGL.Demos
                 GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 512, 512);
             }
             {
-                var visualProgram = new ShaderProgram();
-                var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"Form06ImageProcessing\ImageProcessing.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"Form06ImageProcessing\ImageProcessing.frag"), ShaderType.FragmentShader);
-                var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
-                visualProgram.Create(shaders);
-                foreach (var item in shaders) { item.Delete(); }
-                this.visualProgram = visualProgram;
-            }
-            {
-                GL.GetDelegateFor<GL.glGenVertexArrays>()(1, render_vao);
-                GL.GetDelegateFor<GL.glBindVertexArray>()(render_vao[0]);
-                GL.GetDelegateFor<GL.glEnableVertexAttribArray>()(0);
-                // position
-                GL.GetDelegateFor<GL.glGenBuffers>()(1, render_vbo);
-                GL.BindBuffer(BufferTarget.ArrayBuffer, render_vbo[0]);
-                var positions = new UnmanagedArray<vec4>(4);
-                unsafe
-                {
-                    var array = (vec4*)positions.FirstElement();
-                    array[0] = new vec4(-1.0f, -1.0f, 0.5f, 1.0f);
-                    array[1] = new vec4(1.0f, -1.0f, 0.5f, 1.0f);
-                    array[2] = new vec4(1.0f, 1.0f, 0.5f, 1.0f);
-                    array[3] = new vec4(-1.0f, 1.0f, 0.5f, 1.0f);
-                }
-                GL.BufferData(BufferTarget.ArrayBuffer, positions, BufferUsage.StaticDraw);
-                positions.Dispose();
-                GL.GetDelegateFor<GL.glVertexAttribPointer>()(0, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
+                var bufferable = new ImageProcessingModel();
+                ShaderCode[] simpleShader = new ShaderCode[2];
+                simpleShader[0] = new ShaderCode(File.ReadAllText(@"Form06ImageProcessing\ImageProcessing.vert"), ShaderType.VertexShader);
+                simpleShader[1] = new ShaderCode(File.ReadAllText(@"Form06ImageProcessing\ImageProcessing.frag"), ShaderType.FragmentShader);
+                var propertyNameMap = new PropertyNameMap();
+                propertyNameMap.Add("vert", "position");
+                propertyNameMap.Add("uv", "uv");
+                var pickableRenderer = PickableRendererFactory.GetRenderer(
+                    bufferable, simpleShader, propertyNameMap, "position");
+                pickableRenderer.Name = string.Format("Pickable: [ImageProcessingRenderer]");
+                pickableRenderer.Initialize();
+                this.renderer = pickableRenderer;
             }
 
         }
@@ -100,15 +82,10 @@ namespace CSharpGL.Demos
             GL.GetDelegateFor<GL.glActiveTexture>()(GL.GL_TEXTURE0);
             GL.BindTexture(GL.GL_TEXTURE_2D, output_image[0]);
 
-            // Clear, select the rendering program and draw a full screen quad
-            visualProgram.Bind();
             mat4 view = arg.Camera.GetViewMat4();
             mat4 projection = arg.Camera.GetProjectionMat4();
-            visualProgram.SetUniformMatrix4("mvp", (projection * view).to_array());
-            GL.GetDelegateFor<GL.glBindVertexArray>()(render_vao[0]);
-            // glPointSize(2.0f);
-            GL.DrawArrays(DrawMode.TriangleFan, 0, 4);
-            visualProgram.Unbind();
+            this.renderer.SetUniformValue("mvp", projection * view);
+            this.renderer.Render(arg);
         }
 
         protected override void DisposeUnmanagedResources()
@@ -117,15 +94,74 @@ namespace CSharpGL.Demos
             GL.DeleteTextures(1, input_image);
             GL.DeleteTextures(1, intermediate_image);
             GL.DeleteTextures(1, output_image);
-            IntPtr ptr = Win32.wglGetCurrentContext();
-            if (ptr != IntPtr.Zero)
-            {
-                GL.GetDelegateFor<GL.glDeleteVertexArrays>()(1, render_vao);
-            }
-            GL.DeleteBuffers(1, render_vbo);
-            visualProgram.Delete();
+            this.renderer.Dispose();
         }
 
+        class ImageProcessingModel : IBufferable
+        {
+            public const string strposition = "position";
+            public const string struv = "uv";
+            PropertyBufferPtr positionBufferPtr;
+            PropertyBufferPtr uvBufferPtr;
+            ZeroIndexBufferPtr indexBufferPtr;
 
+            public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+            {
+                if (bufferName == strposition)
+                {
+                    if (positionBufferPtr == null)
+                    {
+                        using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                        {
+                            buffer.Alloc(4);
+                            unsafe
+                            {
+                                var array = (vec3*)buffer.FirstElement();
+                                array[0] = new vec3(-1.0f, -1.0f, 0.5f);
+                                array[1] = new vec3(1.0f, -1.0f, 0.5f);
+                                array[2] = new vec3(1.0f, 1.0f, 0.5f);
+                                array[3] = new vec3(-1.0f, 1.0f, 0.5f);
+                            }
+                            positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        }
+                    }
+                    return positionBufferPtr;
+                }
+                else if (bufferName == struv)
+                {
+                    if (uvBufferPtr == null)
+                    {
+                        using (var buffer = new PropertyBuffer<vec2>(varNameInShader, 2, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                        {
+                            buffer.Alloc(4);
+                            unsafe
+                            {
+                                var array = (vec2*)buffer.FirstElement();
+                                array[0] = new vec2(0, 0);
+                                array[1] = new vec2(0, 1);
+                                array[2] = new vec2(1, 1);
+                                array[3] = new vec2(1, 0);
+                            }
+                            uvBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                        }
+                    }
+                    return uvBufferPtr;
+                }
+                else
+                { throw new NotImplementedException(); }
+            }
+
+            public IndexBufferPtr GetIndex()
+            {
+                if (indexBufferPtr == null)
+                {
+                    using (var buffer = new ZeroIndexBuffer(DrawMode.TriangleFan, 0, 4))
+                    {
+                        indexBufferPtr = buffer.GetBufferPtr() as ZeroIndexBufferPtr;
+                    }
+                }
+                return indexBufferPtr;
+            }
+        }
     }
 }

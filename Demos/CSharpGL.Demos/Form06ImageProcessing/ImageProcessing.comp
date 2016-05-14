@@ -12,5 +12,5 @@ void main(void)
     ivec2 pos = ivec2(gl_GlobalInvocationID.xy);
     scanline[pos.x] = imageLoad(input_image, pos);
     barrier();
-    imageStore(output_image, pos.yx, scanline[min(pos.x + 1, 1023)] - scanline[max(pos.x - 1, 0)]);
+    imageStore(output_image, pos.yx, scanline[min(pos.x + 1, 511)] - scanline[max(pos.x - 1, 0)]);
 }
