@@ -31,11 +31,10 @@ namespace CSharpGL
 
         public override void SetUniform(ShaderProgram program)
         {
-            GL.GetDelegateFor<GL.glActiveTexture>()((uint)value.ActiveTextureIndex);
-            //GL.Enable(GL.GL_TEXTURE_2D);
+            GL.GetDelegateFor<GL.glActiveTexture>()(value.ActiveTextureIndex);
+            GL.Enable(GL.GL_TEXTURE_2D);
             GL.BindTexture(GL.GL_TEXTURE_2D, value.TextureId);
-            //program.SetUniform(VarName, (int)((uint)value.Index - GL.GL_TEXTURE0));
-            program.SetUniform(VarName, (int)(value.TextureId));
+            program.SetUniform(VarName, (int)((uint)value.ActiveTextureIndex - GL.GL_TEXTURE0));
         }
 
         public override void ResetUniform(ShaderProgram program)
@@ -100,10 +99,10 @@ namespace CSharpGL
         public static samplerValue Parse(string value)
         {
             string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            uint name = uint.Parse(parts[1]);
-            uint index = uint.Parse(parts[3]);
+            uint textureId = uint.Parse(parts[1]);
+            uint activeTextureIndex = uint.Parse(parts[3]);
 
-            return new samplerValue(name, index);
+            return new samplerValue(textureId, activeTextureIndex);
         }
 
         public override string ToString()

@@ -48,7 +48,13 @@ namespace CSharpGL
         /// <param name="program"></param>
         public abstract void SetUniform(ShaderProgram program);
 
-        public virtual void ResetUniform(ShaderProgram program) { }
+        /// <summary>
+        /// 默认重置Updated = false;
+        /// <para>以避免重复设置。</para>
+        /// <para>某些类型的uniform可能需要重复调用SetUniform()（例如纹理类型的uniform sampler2D）</para>
+        /// </summary>
+        /// <param name="program"></param>
+        public virtual void ResetUniform(ShaderProgram program) { this.Updated = false; }
 
         public override string ToString()
         {

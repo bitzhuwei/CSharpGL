@@ -51,7 +51,7 @@ namespace CSharpGL
             }
             PickingSwitchesOff();
 
-            if (mvpUpdated) { uniformmMVP4Picking.ResetUniform(program); uniformmMVP4Picking.Updated = false; }
+            if (mvpUpdated) { uniformmMVP4Picking.ResetUniform(program); }
 
 
             // 解绑shader

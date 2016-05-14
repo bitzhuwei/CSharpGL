@@ -54,7 +54,7 @@ namespace CSharpGL
                 this.switchList[i].Off();
             }
 
-            foreach (var item in updatedUniforms) { item.ResetUniform(program); item.Updated = false; }
+            foreach (var item in updatedUniforms) { item.ResetUniform(program); }
 
             // 解绑shader
             program.Unbind();
