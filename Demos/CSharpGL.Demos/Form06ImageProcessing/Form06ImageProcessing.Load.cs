@@ -29,6 +29,7 @@ namespace CSharpGL.Demos
             }
             {
                 var renderer = new ImageProcessingRenderer();
+                renderer.Initialize();
                 this.renderer = renderer;
             }
             {

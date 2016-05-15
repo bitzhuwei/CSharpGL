@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.glCanvas1 = new CSharpGL.Windows.GLCanvas();
+            this.openTextureDlg = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +46,11 @@
             this.glCanvas1.Size = new System.Drawing.Size(757, 522);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.TimerTriggerInterval = 20;
+            this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
+            // 
+            // openTextureDlg
+            // 
+            this.openTextureDlg.Filter = "*.bmp|*.bmp|*.jpg|*.jpg|*.png|*.png";
             // 
             // Form06ImageProcessing
             // 
@@ -63,5 +69,6 @@
         #endregion
 
         private Windows.GLCanvas glCanvas1;
+        private System.Windows.Forms.OpenFileDialog openTextureDlg;
     }
 }

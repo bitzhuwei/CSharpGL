@@ -20,6 +20,12 @@ namespace CSharpGL.Demos
         private uint[] intermediate_image = new uint[1];
         private uint[] output_image = new uint[1];
         private PickableRenderer renderer;
+        private string textureFilename;
+
+        public ImageProcessingRenderer(string textureFilename = @"Form06ImageProcessing\teapot.bmp")
+        {
+            this.textureFilename = textureFilename;
+        }
 
         protected override void DoInitialize()
         {
@@ -32,8 +38,12 @@ namespace CSharpGL.Demos
                 shader.Delete();
                 this.computeProgram = computeProgram;
             }
+            Bitmap bitmap = new System.Drawing.Bitmap(this.textureFilename);
+            if (bitmap.Width != 512 || bitmap.Height != 512)
             {
-                var bitmap = new System.Drawing.Bitmap(@"Form06ImageProcessing\teapot.bmp");
+                bitmap = (Bitmap)bitmap.GetThumbnailImage(512, 512, null, IntPtr.Zero);
+            }
+            {
                 //  Lock the image bits (so that we can pass them to OGL).
                 BitmapData bitmapData = bitmap.LockBits(
                     new Rectangle(0, 0, bitmap.Width, bitmap.Height),
@@ -54,10 +64,8 @@ namespace CSharpGL.Demos
                 /* Linear filtering usually looks best for text */
                 GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
                 GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
-                bitmap.Dispose();
             }
             {
-                var bitmap = new System.Drawing.Bitmap(@"Form06ImageProcessing\teapot.bmp");
                 //  Lock the image bits (so that we can pass them to OGL).
                 BitmapData bitmapData = bitmap.LockBits(
                     new Rectangle(0, 0, bitmap.Width, bitmap.Height),
@@ -78,11 +86,9 @@ namespace CSharpGL.Demos
                 /* Linear filtering usually looks best for text */
                 GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
                 GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
-                bitmap.Dispose();
             }
             {
                 // This is the texture that the compute program will write into
-                var bitmap = new System.Drawing.Bitmap(@"Form06ImageProcessing\teapot.bmp");
                 //  Lock the image bits (so that we can pass them to OGL).
                 BitmapData bitmapData = bitmap.LockBits(
                     new Rectangle(0, 0, bitmap.Width, bitmap.Height),
@@ -103,8 +109,8 @@ namespace CSharpGL.Demos
                 /* Linear filtering usually looks best for text */
                 GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
                 GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
-                bitmap.Dispose();
             }
+            bitmap.Dispose();
             {
                 var bufferable = new ImageProcessingModel();
                 ShaderCode[] simpleShader = new ShaderCode[2];
@@ -230,6 +236,39 @@ namespace CSharpGL.Demos
                 }
                 return indexBufferPtr;
             }
+        }
+
+        internal void SwitchDisplayImage()
+        {
+            switch (this.currentDisplay)
+            {
+                case CurrentDisplayImage.Input:
+                    this.renderer.SetUniformValue("output_image",
+                        new samplerValue(this.intermediate_image[0], GL.GL_TEXTURE0));
+                    this.currentDisplay = CurrentDisplayImage.Intermediate;
+                    break;
+                case CurrentDisplayImage.Intermediate:
+                    this.renderer.SetUniformValue("output_image",
+                        new samplerValue(this.output_image[0], GL.GL_TEXTURE0));
+                    this.currentDisplay = CurrentDisplayImage.Output;
+                    break;
+                case CurrentDisplayImage.Output:
+                    this.renderer.SetUniformValue("output_image",
+                        new samplerValue(this.input_image[0], GL.GL_TEXTURE0));
+                    this.currentDisplay = CurrentDisplayImage.Input;
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        CurrentDisplayImage currentDisplay = CurrentDisplayImage.Output;
+
+        enum CurrentDisplayImage
+        {
+            Input,
+            Intermediate,
+            Output,
         }
     }
 }

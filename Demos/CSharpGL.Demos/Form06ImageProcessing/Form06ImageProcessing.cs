@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
 
         private Camera camera;
         private SatelliteRotator rotator;
-        private RendererBase renderer;
+        private ImageProcessingRenderer renderer;
 
         public Form06ImageProcessing()
         {
@@ -68,6 +68,23 @@ namespace CSharpGL.Demos
             if (camera != null)
             {
                 camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
+            }
+        }
+
+        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 'o')
+            {
+                if (this.openTextureDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    var renderer = new ImageProcessingRenderer(this.openTextureDlg.FileName);
+                    renderer.Initialize();
+                    this.renderer = renderer;
+                }
+            }
+            else if (e.KeyChar == 'c')
+            {
+                this.renderer.SwitchDisplayImage();
             }
         }
 
