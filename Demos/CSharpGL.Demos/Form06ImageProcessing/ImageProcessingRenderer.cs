@@ -25,14 +25,15 @@ namespace CSharpGL.Demos
         {
             {
                 var computeProgram = new ShaderProgram();
-                var shaderCode = new ShaderCode(File.ReadAllText(@"Form06ImageProcessing\ImageProcessing.comp"), ShaderType.ComputeShader);
+                var shaderCode = new ShaderCode(File.ReadAllText(
+                    @"Form06ImageProcessing\ImageProcessing.comp"), ShaderType.ComputeShader);
                 var shader = shaderCode.CreateShader();
                 computeProgram.Create(shader);
                 shader.Delete();
                 this.computeProgram = computeProgram;
             }
             {
-                var bitmap = new System.Drawing.Bitmap(@"Form06ImageProcessing\box.bmp");
+                var bitmap = new System.Drawing.Bitmap(@"Form06ImageProcessing\teapot.bmp");
                 //  Lock the image bits (so that we can pass them to OGL).
                 BitmapData bitmapData = bitmap.LockBits(
                     new Rectangle(0, 0, bitmap.Width, bitmap.Height),
@@ -56,7 +57,7 @@ namespace CSharpGL.Demos
                 bitmap.Dispose();
             }
             {
-                var bitmap = new System.Drawing.Bitmap(@"Form06ImageProcessing\box.bmp");
+                var bitmap = new System.Drawing.Bitmap(@"Form06ImageProcessing\teapot.bmp");
                 //  Lock the image bits (so that we can pass them to OGL).
                 BitmapData bitmapData = bitmap.LockBits(
                     new Rectangle(0, 0, bitmap.Width, bitmap.Height),
@@ -81,7 +82,7 @@ namespace CSharpGL.Demos
             }
             {
                 // This is the texture that the compute program will write into
-                var bitmap = new System.Drawing.Bitmap(@"Form06ImageProcessing\box.bmp");
+                var bitmap = new System.Drawing.Bitmap(@"Form06ImageProcessing\teapot.bmp");
                 //  Lock the image bits (so that we can pass them to OGL).
                 BitmapData bitmapData = bitmap.LockBits(
                     new Rectangle(0, 0, bitmap.Width, bitmap.Height),
