@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Drawing.Design;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -30,26 +32,77 @@ namespace CSharpGL.Demos
                 this.computeProgram = computeProgram;
             }
             {
-                sampler2D texture = new sampler2D();
-                texture.Initialize(new System.Drawing.Bitmap(@"Form06ImageProcessing\box.bmp"));
-                this.input_image[0] = texture.Id;
+                var bitmap = new System.Drawing.Bitmap(@"Form06ImageProcessing\box.bmp");
+                //  Lock the image bits (so that we can pass them to OGL).
+                BitmapData bitmapData = bitmap.LockBits(
+                    new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                    ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+                //GL.ActiveTexture(GL.GL_TEXTURE0);
+                GL.GenTextures(1, this.input_image);
+                GL.BindTexture(GL.GL_TEXTURE_2D, this.input_image[0]);
+                GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA32F,
+                    bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
+                    bitmapData.Scan0);
+                //  Unlock the image.
+                bitmap.UnlockBits(bitmapData);
+                /* We require 1 byte alignment when uploading texture data */
+                //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
+                /* Clamping to edges is important to prevent artifacts when scaling */
+                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
+                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
+                /* Linear filtering usually looks best for text */
+                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
+                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
+                bitmap.Dispose();
             }
             {
-                //sampler2D texture = new sampler2D();
-                //texture.Initialize(new System.Drawing.Bitmap(@"Form06ImageProcessing\teapot.bmp"));
-                //this.intermediate_image[0] = texture.Id;
-                GL.GenTextures(1, intermediate_image);
-                GL.BindTexture(GL.GL_TEXTURE_2D, intermediate_image[0]);
-                GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 512, 512);
+                var bitmap = new System.Drawing.Bitmap(@"Form06ImageProcessing\box.bmp");
+                //  Lock the image bits (so that we can pass them to OGL).
+                BitmapData bitmapData = bitmap.LockBits(
+                    new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                    ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+                //GL.ActiveTexture(GL.GL_TEXTURE0);
+                GL.GenTextures(1, this.intermediate_image);
+                GL.BindTexture(GL.GL_TEXTURE_2D, this.intermediate_image[0]);
+                GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA32F,
+                    bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
+                    bitmapData.Scan0);
+                //  Unlock the image.
+                bitmap.UnlockBits(bitmapData);
+                /* We require 1 byte alignment when uploading texture data */
+                //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
+                /* Clamping to edges is important to prevent artifacts when scaling */
+                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
+                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
+                /* Linear filtering usually looks best for text */
+                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
+                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
+                bitmap.Dispose();
             }
             {
-                //sampler2D texture = new sampler2D();
-                //texture.Initialize(new System.Drawing.Bitmap(@"Form06ImageProcessing\teapot.bmp"));
-                //this.output_image[0] = texture.Id;
                 // This is the texture that the compute program will write into
-                GL.GenTextures(1, output_image);
-                GL.BindTexture(GL.GL_TEXTURE_2D, output_image[0]);
-                GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 512, 512);
+                var bitmap = new System.Drawing.Bitmap(@"Form06ImageProcessing\box.bmp");
+                //  Lock the image bits (so that we can pass them to OGL).
+                BitmapData bitmapData = bitmap.LockBits(
+                    new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                    ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+                //GL.ActiveTexture(GL.GL_TEXTURE0);
+                GL.GenTextures(1, this.output_image);
+                GL.BindTexture(GL.GL_TEXTURE_2D, this.output_image[0]);
+                GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA32F,
+                    bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
+                    bitmapData.Scan0);
+                //  Unlock the image.
+                bitmap.UnlockBits(bitmapData);
+                /* We require 1 byte alignment when uploading texture data */
+                //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
+                /* Clamping to edges is important to prevent artifacts when scaling */
+                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
+                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
+                /* Linear filtering usually looks best for text */
+                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
+                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
+                bitmap.Dispose();
             }
             {
                 var bufferable = new ImageProcessingModel();
@@ -63,7 +116,8 @@ namespace CSharpGL.Demos
                     bufferable, simpleShader, propertyNameMap, "position");
                 pickableRenderer.Name = string.Format("Pickable: [ImageProcessingRenderer]");
                 pickableRenderer.Initialize();
-                pickableRenderer.SetUniformValue("output_image", new samplerValue(this.output_image[0], GL.GL_TEXTURE0));
+                pickableRenderer.SetUniformValue("output_image",
+                    new samplerValue(this.output_image[0], GL.GL_TEXTURE0));
                 this.renderer = pickableRenderer;
             }
 
@@ -74,15 +128,19 @@ namespace CSharpGL.Demos
         {
             // Activate the compute program and bind the output texture image
             computeProgram.Bind();
-            GL.GetDelegateFor<GL.glBindImageTexture>()(0, input_image[0], 0, false, 0, GL.GL_READ_ONLY, GL.GL_RGBA32F);
-            GL.GetDelegateFor<GL.glBindImageTexture>()(1, intermediate_image[0], 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
+            GL.GetDelegateFor<GL.glBindImageTexture>()(
+                (uint)computeProgram.GetUniformLocation("input_image"), input_image[0], 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
+            GL.GetDelegateFor<GL.glBindImageTexture>()(
+                (uint)computeProgram.GetUniformLocation("output_image"), intermediate_image[0], 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
             // Dispatch
             GL.GetDelegateFor<GL.glDispatchCompute>()(1, 512, 1);
 
             GL.GetDelegateFor<GL.glMemoryBarrier>()(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
-            GL.GetDelegateFor<GL.glBindImageTexture>()(0, intermediate_image[0], 0, false, 0, GL.GL_READ_ONLY, GL.GL_RGBA32F);
-            GL.GetDelegateFor<GL.glBindImageTexture>()(1, output_image[0], 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
+            GL.GetDelegateFor<GL.glBindImageTexture>()(
+                (uint)computeProgram.GetUniformLocation("input_image"), intermediate_image[0], 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
+            GL.GetDelegateFor<GL.glBindImageTexture>()(
+                (uint)computeProgram.GetUniformLocation("output_image"), output_image[0], 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
             // Dispatch
             GL.GetDelegateFor<GL.glDispatchCompute>()(1, 512, 1);
             GL.GetDelegateFor<GL.glMemoryBarrier>()(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
