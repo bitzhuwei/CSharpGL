@@ -38,19 +38,19 @@ namespace CSharpGL.Demos
                 shader.Delete();
                 this.computeProgram = computeProgram;
             }
-            Bitmap bitmap = new System.Drawing.Bitmap(this.textureFilename);
-            if (bitmap.Width != 512 || bitmap.Height != 512)
             {
-                bitmap = (Bitmap)bitmap.GetThumbnailImage(512, 512, null, IntPtr.Zero);
-            }
-            {
+                Bitmap bitmap = new System.Drawing.Bitmap(this.textureFilename);
+                if (bitmap.Width != 512 || bitmap.Height != 512)
+                {
+                    bitmap = (Bitmap)bitmap.GetThumbnailImage(512, 512, null, IntPtr.Zero);
+                }
+                GL.GenTextures(1, this.input_image);
+                GL.BindTexture(GL.GL_TEXTURE_2D, this.input_image[0]);
                 //  Lock the image bits (so that we can pass them to OGL).
                 BitmapData bitmapData = bitmap.LockBits(
                     new Rectangle(0, 0, bitmap.Width, bitmap.Height),
                     ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
                 //GL.ActiveTexture(GL.GL_TEXTURE0);
-                GL.GenTextures(1, this.input_image);
-                GL.BindTexture(GL.GL_TEXTURE_2D, this.input_image[0]);
                 GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA32F,
                     bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
                     bitmapData.Scan0);
@@ -64,53 +64,21 @@ namespace CSharpGL.Demos
                 /* Linear filtering usually looks best for text */
                 GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
                 GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
+                bitmap.Dispose();
             }
             {
-                //  Lock the image bits (so that we can pass them to OGL).
-                BitmapData bitmapData = bitmap.LockBits(
-                    new Rectangle(0, 0, bitmap.Width, bitmap.Height),
-                    ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
                 //GL.ActiveTexture(GL.GL_TEXTURE0);
                 GL.GenTextures(1, this.intermediate_image);
                 GL.BindTexture(GL.GL_TEXTURE_2D, this.intermediate_image[0]);
-                GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA32F,
-                    bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
-                    bitmapData.Scan0);
-                //  Unlock the image.
-                bitmap.UnlockBits(bitmapData);
-                /* We require 1 byte alignment when uploading texture data */
-                //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
-                /* Clamping to edges is important to prevent artifacts when scaling */
-                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
-                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
-                /* Linear filtering usually looks best for text */
-                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
-                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
+                GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 512, 512);
             }
             {
                 // This is the texture that the compute program will write into
-                //  Lock the image bits (so that we can pass them to OGL).
-                BitmapData bitmapData = bitmap.LockBits(
-                    new Rectangle(0, 0, bitmap.Width, bitmap.Height),
-                    ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
                 //GL.ActiveTexture(GL.GL_TEXTURE0);
                 GL.GenTextures(1, this.output_image);
                 GL.BindTexture(GL.GL_TEXTURE_2D, this.output_image[0]);
-                GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA32F,
-                    bitmap.Width, bitmap.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
-                    bitmapData.Scan0);
-                //  Unlock the image.
-                bitmap.UnlockBits(bitmapData);
-                /* We require 1 byte alignment when uploading texture data */
-                //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
-                /* Clamping to edges is important to prevent artifacts when scaling */
-                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
-                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
-                /* Linear filtering usually looks best for text */
-                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
-                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
+                GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 512, 512);
             }
-            bitmap.Dispose();
             {
                 var bufferable = new ImageProcessingModel();
                 ShaderCode[] simpleShader = new ShaderCode[2];
