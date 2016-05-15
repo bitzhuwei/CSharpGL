@@ -205,9 +205,9 @@ namespace CSharpGL.Demos
                             unsafe
                             {
                                 var array = (vec2*)buffer.FirstElement();
-                                array[0] = new vec2(0, 0);
+                                array[0] = new vec2(1, 1);
                                 array[1] = new vec2(0, 1);
-                                array[2] = new vec2(1, 1);
+                                array[2] = new vec2(0, 0);
                                 array[3] = new vec2(1, 0);
                             }
                             uvBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;

@@ -288,8 +288,11 @@
     <Content Include="Form06ImageProcessing\box.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Form06ImageProcessing\Martian.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Form06ImageProcessing\teapot.bmp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Form06ImageProcessing\teapot.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
