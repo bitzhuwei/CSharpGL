@@ -46,14 +46,14 @@
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.TimerTriggerInterval = 20;
             // 
-            // Form05ParticleSimulator
+            // Form06ImageProcessing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 548);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "Form05ParticleSimulator";
-            this.Text = "Form05ParticleSimulator";
+            this.Name = "Form06ImageProcessing";
+            this.Text = "Form06ImageProcessing";
             this.Load += new System.EventHandler(this.Form02OrderIndependentTransparency_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
