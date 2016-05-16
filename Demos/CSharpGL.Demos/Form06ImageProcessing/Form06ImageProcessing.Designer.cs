@@ -51,7 +51,7 @@
             // 
             // openTextureDlg
             // 
-            this.openTextureDlg.Filter = "*.bmp|*.bmp|*.jpg|*.jpg|*.png|*.png";
+            this.openTextureDlg.Filter = "Image File(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
             // 
             // label1
             // 
