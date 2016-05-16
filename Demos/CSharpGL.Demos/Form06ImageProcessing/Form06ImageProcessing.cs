@@ -84,7 +84,11 @@ namespace CSharpGL.Demos
             }
             else if (e.KeyChar == 'c')
             {
-                this.renderer.SwitchDisplayImage();
+                this.renderer.SwitchDisplayImage(true);
+            }
+            else if (e.KeyChar == 'x')
+            {
+                this.renderer.SwitchDisplayImage(false);
             }
         }
 

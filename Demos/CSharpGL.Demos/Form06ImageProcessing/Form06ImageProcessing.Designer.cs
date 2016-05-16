@@ -59,9 +59,9 @@
             this.label1.Font = new System.Drawing.Font("宋体", 12F);
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(609, 20);
+            this.label1.Size = new System.Drawing.Size(629, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Press \'o\' to select image. Press \'c\' to select display mode.";
+            this.label1.Text = "Press \'o\' to select image. Press \'c/x\' to select display mode.";
             // 
             // Form06ImageProcessing
             // 

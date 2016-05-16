@@ -206,27 +206,53 @@ namespace CSharpGL.Demos
             }
         }
 
-        internal void SwitchDisplayImage()
+        internal void SwitchDisplayImage(bool forward)
         {
-            switch (this.currentDisplay)
+            if (forward)
             {
-                case CurrentDisplayImage.Input:
-                    this.renderer.SetUniformValue("output_image",
-                        new samplerValue(this.intermediate_image[0], GL.GL_TEXTURE0));
-                    this.currentDisplay = CurrentDisplayImage.Intermediate;
-                    break;
-                case CurrentDisplayImage.Intermediate:
-                    this.renderer.SetUniformValue("output_image",
-                        new samplerValue(this.output_image[0], GL.GL_TEXTURE0));
-                    this.currentDisplay = CurrentDisplayImage.Output;
-                    break;
-                case CurrentDisplayImage.Output:
-                    this.renderer.SetUniformValue("output_image",
-                        new samplerValue(this.input_image[0], GL.GL_TEXTURE0));
-                    this.currentDisplay = CurrentDisplayImage.Input;
-                    break;
-                default:
-                    throw new NotImplementedException();
+                switch (this.currentDisplay)
+                {
+                    case CurrentDisplayImage.Input:
+                        this.renderer.SetUniformValue("output_image",
+                            new samplerValue(this.intermediate_image[0], GL.GL_TEXTURE0));
+                        this.currentDisplay = CurrentDisplayImage.Intermediate;
+                        break;
+                    case CurrentDisplayImage.Intermediate:
+                        this.renderer.SetUniformValue("output_image",
+                            new samplerValue(this.output_image[0], GL.GL_TEXTURE0));
+                        this.currentDisplay = CurrentDisplayImage.Output;
+                        break;
+                    case CurrentDisplayImage.Output:
+                        this.renderer.SetUniformValue("output_image",
+                            new samplerValue(this.input_image[0], GL.GL_TEXTURE0));
+                        this.currentDisplay = CurrentDisplayImage.Input;
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
+            else
+            {
+                switch (this.currentDisplay)
+                {
+                    case CurrentDisplayImage.Input:
+                        this.renderer.SetUniformValue("output_image",
+                            new samplerValue(this.output_image[0], GL.GL_TEXTURE0));
+                        this.currentDisplay = CurrentDisplayImage.Output;
+                        break;
+                    case CurrentDisplayImage.Intermediate:
+                        this.renderer.SetUniformValue("output_image",
+                            new samplerValue(this.input_image[0], GL.GL_TEXTURE0));
+                        this.currentDisplay = CurrentDisplayImage.Input;
+                        break;
+                    case CurrentDisplayImage.Output:
+                        this.renderer.SetUniformValue("output_image",
+                            new samplerValue(this.intermediate_image[0], GL.GL_TEXTURE0));
+                        this.currentDisplay = CurrentDisplayImage.Intermediate;
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
             }
         }
 
