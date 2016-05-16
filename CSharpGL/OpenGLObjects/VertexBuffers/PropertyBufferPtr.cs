@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// 在渲染时此VBO要执行绑定自己、指明数据结构和启用此VBO等操作。
     /// </summary>
-    public class PropertyBufferPtr : VertexBufferPtr
+    public class PropertyBufferPtr : BufferPtr
     {
         /// <summary>
         /// 在渲染时此VBO要执行绑定自己、指明数据结构和启用此VBO等操作。

@@ -10,7 +10,7 @@ namespace CSharpGL
     /// 用于存储索引的VBO。
     /// </summary>
     /// <typeparam name="T">此buffer存储的是哪种struct的数据？</typeparam>
-    public abstract class IndexBuffer<T> : VertexBuffer<T> where T : struct
+    public abstract class IndexBuffer<T> : Buffer<T> where T : struct
     {
         /// <summary>
         /// 用于存储索引的VBO。

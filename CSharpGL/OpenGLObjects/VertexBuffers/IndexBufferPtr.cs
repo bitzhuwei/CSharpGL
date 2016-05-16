@@ -11,7 +11,7 @@ namespace CSharpGL
     /// 索引buffer渲染器的基类。
     /// </summary>
     [Browsable(true)]
-    public abstract class IndexBufferPtr : VertexBufferPtr
+    public abstract class IndexBufferPtr : BufferPtr
     {
 
         /// <summary>

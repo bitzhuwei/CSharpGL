@@ -289,7 +289,7 @@
     <Compile Include="OpenGLObjects\Textures\sampler1D.cs" />
     <Compile Include="OpenGLObjects\Textures\sampler2D.cs" />
     <Compile Include="OpenGLObjects\Textures\sampler3D.cs" />
-    <Compile Include="OpenGLObjects\VertexBuffers\VertexBufferPtr.cs" />
+    <Compile Include="OpenGLObjects\VertexBuffers\BufferPtr.cs" />
     <Compile Include="OpenGLObjects\VertexBuffers\OneIndexBuffer.cs" />
     <Compile Include="OpenGLObjects\VertexBuffers\IndexBuffer.cs" />
     <Compile Include="OpenGLObjects\VertexBuffers\OneIndexBufferPtr.cs" />
@@ -297,7 +297,7 @@
     <Compile Include="OpenGLObjects\VertexBuffers\PropertyBuffer.cs" />
     <Compile Include="OpenGLObjects\VertexBuffers\PropertyBufferPtr.cs" />
     <Compile Include="OpenGLObjects\VertexBuffers\VertexArrayObject.cs" />
-    <Compile Include="OpenGLObjects\VertexBuffers\VertexBuffer.cs" />
+    <Compile Include="OpenGLObjects\VertexBuffers\Buffer.cs" />
     <Compile Include="OpenGLObjects\VertexBuffers\ZeroIndexBuffer.cs" />
     <Compile Include="OpenGLObjects\VertexBuffers\ZeroIndexBufferPtr.cs" />
     <Compile Include="OpenGLAPI\Enumerations\ActiveTextureIndex.cs" />
@@ -381,8 +381,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Picking.frag" />
     <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Picking.vert" />
-    <None Include="OpenGLObjects\VertexBuffers\VertexBuffer.cd" />
-    <None Include="OpenGLObjects\VertexBuffers\VertexBufferPtr.cd" />
+    <None Include="OpenGLObjects\VertexBuffers\Buffer.cd" />
+    <None Include="OpenGLObjects\VertexBuffers\BufferPtr.cd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Maths\readme.txt" />

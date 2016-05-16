@@ -11,7 +11,7 @@ namespace CSharpGL
     /// 顶点缓存（VBO）
     /// </summary>
     /// <typeparam name="T">此buffer存储的是哪种struct的数据？</typeparam>
-    public abstract class VertexBuffer<T> : IDisposable where T : struct
+    public abstract class Buffer<T> : IDisposable where T : struct
     {
         private UnmanagedArray<T> array = null;
 
@@ -63,7 +63,7 @@ namespace CSharpGL
         /// 顶点缓存（VBO）
         /// </summary>
         /// <param name="usage"></param>
-        public VertexBuffer(BufferUsage usage)
+        public Buffer(BufferUsage usage)
         {
             this.Usage = usage;
         }
@@ -138,7 +138,7 @@ namespace CSharpGL
             GC.SuppressFinalize(this);
         }
 
-        ~VertexBuffer()
+        ~Buffer()
         {
             this.Dispose(false);
         }
@@ -172,15 +172,15 @@ namespace CSharpGL
         /// 获取一个可渲染此VBO的渲染器。
         /// </summary>
         /// <returns></returns>
-        protected abstract VertexBufferPtr Upload2GPU();
+        protected abstract BufferPtr Upload2GPU();
 
-        private VertexBufferPtr bufferPtr = null;
+        private BufferPtr bufferPtr = null;
 
         /// <summary>
         /// 获取一个可渲染此VBO的渲染器。
         /// </summary>
         /// <returns></returns>
-        public VertexBufferPtr GetBufferPtr()
+        public BufferPtr GetBufferPtr()
         {
             if (bufferPtr == null)
             {

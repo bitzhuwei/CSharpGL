@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// 将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
     /// </summary>
-    public abstract class VertexBufferPtr : IDisposable
+    public abstract class BufferPtr : IDisposable
     {
         private bool disposedValue = false;
 
@@ -33,7 +33,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bufferID">用GL.GenBuffers()得到的VBO的ID。</param>
         /// <param name="length">此VBO含有多个个元素？</param>
-        internal VertexBufferPtr(uint bufferID, int length, int byteLength)
+        internal BufferPtr(uint bufferID, int length, int byteLength)
         {
             this.BufferId = bufferID;
             this.Length = length;
@@ -53,7 +53,7 @@ namespace CSharpGL
             GC.SuppressFinalize(this);
         }
 
-        ~VertexBufferPtr()
+        ~BufferPtr()
         {
             this.Dispose(false);
         }

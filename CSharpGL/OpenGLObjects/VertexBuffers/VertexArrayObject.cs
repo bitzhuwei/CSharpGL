@@ -12,7 +12,7 @@ namespace CSharpGL
     /// </summary>
     public sealed class VertexArrayObject : IDisposable
     {
-        private VertexBufferPtr[] propertyBufferPtrs;
+        private BufferPtr[] propertyBufferPtrs;
         private IndexBufferPtr indexBufferPtr;
 
         public IndexBufferPtr IndexBufferPtr
@@ -31,7 +31,7 @@ namespace CSharpGL
         /// <para>VAO是用来管理VBO的。可以进一步减少DrawCall。</para>
         /// </summary>
         /// <param name="propertyBufferPtrs">给出此VAO要管理的所有VBO。</param>
-        public VertexArrayObject(IndexBufferPtr indexBufferPtr, params VertexBufferPtr[] propertyBufferPtrs)
+        public VertexArrayObject(IndexBufferPtr indexBufferPtr, params BufferPtr[] propertyBufferPtrs)
         {
             if (indexBufferPtr == null)
             {
@@ -63,7 +63,7 @@ namespace CSharpGL
             this.ID = buffers[0];
 
             this.Bind();
-            VertexBufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
+            BufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
             if (propertyBufferPtrs != null)
             {
                 foreach (var item in propertyBufferPtrs)
@@ -147,7 +147,7 @@ namespace CSharpGL
                     GL.GetDelegateFor<GL.glDeleteVertexArrays>()(1, new uint[] { this.ID });
                 }
                 {
-                    VertexBufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
+                    BufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
                     foreach (var item in propertyBufferPtrs)
                     {
                         item.Dispose();
