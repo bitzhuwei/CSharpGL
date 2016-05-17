@@ -122,6 +122,19 @@
     </Compile>
     <Compile Include="01Renderer\HighlightedPickableRenderer.cs" />
     <Compile Include="01Renderer\Chain.cs" />
+    <Compile Include="Form08AnalyzedBillboard\AnalyzedBillboardRenderer.cs" />
+    <Compile Include="Form08AnalyzedBillboard\Form08AnalyzedBillboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form08AnalyzedBillboard\Form08AnalyzedBillboard.Designer.cs">
+      <DependentUpon>Form08AnalyzedBillboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form08AnalyzedBillboard\Form08AnalyzedBillboard.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form08AnalyzedBillboard\Form08AnalyzedBillboard.MouseDownMoveUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form07Billboard\Form07Billboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,6 +263,9 @@
     <EmbeddedResource Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.resx">
       <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form08AnalyzedBillboard\Form08AnalyzedBillboard.resx">
+      <DependentUpon>Form08AnalyzedBillboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form07Billboard\Form07Billboard.resx">
       <DependentUpon>Form07Billboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -275,6 +291,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Form08AnalyzedBillboard\AnalyzedBillboard.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Form08AnalyzedBillboard\AnalyzedBillboard.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Form07Billboard\Billboard.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -52,5 +52,10 @@ namespace CSharpGL.Demos
             (new Form07Billboard()).Show();
         }
 
+        private void btnForm08AnalyzedBillboard_Click(object sender, EventArgs e)
+        {
+            (new Form08AnalyzedBillboard()).Show();
+        }
+
     }
 }
