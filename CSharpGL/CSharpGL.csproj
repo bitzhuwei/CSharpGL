@@ -45,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controls\GLCanvas.ico" />
+    <EmbeddedResource Include="GlyphTextures\LucidaTypewriterRegular.ttf.png" />
+    <EmbeddedResource Include="GlyphTextures\LucidaTypewriterRegular.ttf.xml" />
+    <Content Include="GlyphTextures\readme.txt" />
     <Content Include="IBufferables\readme.txt" />
     <Content Include="HighlightRenderer\readme.txt" />
     <Content Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInPolygonSearcher.jpg" />
@@ -84,6 +87,12 @@
     </Compile>
     <Compile Include="Controls\GLCanvasHelper.cs" />
     <Compile Include="Controls\RenderTriggers.cs" />
+    <Compile Include="GlyphTextures\CharacterInfo.cs" />
+    <Compile Include="GlyphTextures\CharacterInfoDictHelper.cs" />
+    <Compile Include="GlyphTextures\CharacterInfoHelper.cs" />
+    <Compile Include="GlyphTextures\FontResource.cs" />
+    <Compile Include="GlyphTextures\FontTexture.cs" />
+    <Compile Include="GlyphTextures\KeyValuePairHelper.cs" />
     <Compile Include="HighlightRenderer\HighlightRenderer.cs" />
     <Compile Include="HighlightRenderer\HighlightRenderer.DoInitialize.cs" />
     <Compile Include="HighlightRenderer\HighlightRenderer.Property.cs" />
@@ -188,6 +197,29 @@
     <Compile Include="OpenGLObjects\UniformVariables\UniformVec4.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformVec3.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformVec2.cs" />
+    <Compile Include="SharpFont\FontCollection.cs" />
+    <Compile Include="SharpFont\FontFace.cs" />
+    <Compile Include="SharpFont\Internal\BinPacker.cs" />
+    <Compile Include="SharpFont\Internal\CharacterMap.cs" />
+    <Compile Include="SharpFont\Internal\DataReader.cs" />
+    <Compile Include="SharpFont\Internal\Geometry.cs" />
+    <Compile Include="SharpFont\Internal\Interpreter.cs" />
+    <Compile Include="SharpFont\Internal\KerningTable.cs" />
+    <Compile Include="SharpFont\Internal\Renderer.cs" />
+    <Compile Include="SharpFont\Internal\SbitTable.cs" />
+    <Compile Include="SharpFont\Internal\SfntTables.cs" />
+    <Compile Include="SharpFont\InvalidFontException.cs" />
+    <Compile Include="SharpFont\Metrics.cs" />
+    <Compile Include="SharpFont\System.Numerics\ConstantHelper.cs" />
+    <Compile Include="SharpFont\System.Numerics\HashCodeHelper.cs" />
+    <Compile Include="SharpFont\System.Numerics\JitIntrinsicAttribute.cs" />
+    <Compile Include="SharpFont\System.Numerics\Matrix3x2.cs" />
+    <Compile Include="SharpFont\System.Numerics\Register.cs" />
+    <Compile Include="SharpFont\System.Numerics\Vector.cs" />
+    <Compile Include="SharpFont\System.Numerics\Vector2.cs" />
+    <Compile Include="SharpFont\TextAnalyzer.cs" />
+    <Compile Include="SharpFont\TextFormat.cs" />
+    <Compile Include="SharpFont\TextLayout.cs" />
     <Compile Include="TypeConverters\Mat2TypeConverter.cs" />
     <Compile Include="TypeConverters\Mat3TypeConverter.cs" />
     <Compile Include="TypeConverters\Mat4TypeConverter.cs" />
@@ -343,6 +375,7 @@
     <Compile Include="OpenGLAPI\Win32API\WindowStylesEx.cs" />
     <Compile Include="OpenGLAPI\Win32API\WNDCLASSEX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\FullDictionary.cs" />
     <Compile Include="Utilities\RectangleHelper.cs" />
     <Compile Include="Utilities\Save2Picture.cs" />
     <Compile Include="Utilities\ArrayHelper.cs" />
@@ -388,6 +421,7 @@
     <Content Include="Maths\readme.txt" />
     <Content Include="OpenGLObjects\readme.txt" />
     <Content Include="OpenGLAPI\readme.txt" />
+    <Content Include="SharpFont\readme.txt" />
     <Content Include="TypeConverters\readme.txt" />
     <Content Include="UITypeEditors\readme.txt" />
   </ItemGroup>
