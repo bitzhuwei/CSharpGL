@@ -1,0 +1,40 @@
+#version 430 core
+// check out this for fountain effect
+// http://www.cnblogs.com/bitzhuwei/p/CSharpGL-23-a-particle-simulator-from-Compute-Shader.html#_label4
+layout (std140, binding = 0) uniform attractor_block
+{
+    vec4 attractor[64]; // xyz = position, w = mass
+};
+
+layout (local_size_x = 128) in;
+
+layout (rgba32f, binding = 0) uniform imageBuffer velocity_buffer;
+layout (rgba32f, binding = 1) uniform imageBuffer position_buffer;
+
+uniform float dt = 1.0;
+
+void main(void)
+{
+    vec4 vel = imageLoad(velocity_buffer, int(gl_GlobalInvocationID.x));
+    vec4 pos = imageLoad(position_buffer, int(gl_GlobalInvocationID.x));
+
+    int i;
+	float factor = 0.05f;
+    pos.xyz += vel.xyz * dt;
+    pos.w -= factor * 0.025f * dt;
+
+	vel.xyz += vec3(0, factor * -0.02f, 0);
+
+    if (pos.w <= 0.0)
+    {
+        pos.xyz = -pos.xyz * 0.01;
+        vel.x = factor * sin(gl_GlobalInvocationID.x);
+        vel.y = factor * 3f;
+        vel.z = factor * cos(gl_GlobalInvocationID.x);
+        pos.w += 1.0f;
+    }
+
+    imageStore(position_buffer, int(gl_GlobalInvocationID.x), pos);
+    imageStore(velocity_buffer, int(gl_GlobalInvocationID.x), vel);
+}
+ 

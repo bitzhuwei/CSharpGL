@@ -159,6 +159,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="01Renderer\UIAxisRenderer.cs" />
+    <None Include="Form05ParticleSimulator\particleSimulator-fountain.comp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Form06ImageProcessing\ImageProcessing.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
