@@ -34,6 +34,7 @@
             this.btnForm04SimpleCompute = new System.Windows.Forms.Button();
             this.btnForm05ParticleSimulator = new System.Windows.Forms.Button();
             this.btnForm06ImageProcessing = new System.Windows.Forms.Button();
+            this.btnForm07Billboard = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -114,11 +115,25 @@
             this.btnForm06ImageProcessing.UseVisualStyleBackColor = true;
             this.btnForm06ImageProcessing.Click += new System.EventHandler(this.btnForm06ImageProcessing_Click);
             // 
+            // btnForm07Billboard
+            // 
+            this.btnForm07Billboard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnForm07Billboard.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnForm07Billboard.Location = new System.Drawing.Point(12, 270);
+            this.btnForm07Billboard.Name = "btnForm07Billboard";
+            this.btnForm07Billboard.Size = new System.Drawing.Size(767, 37);
+            this.btnForm07Billboard.TabIndex = 0;
+            this.btnForm07Billboard.Text = "Form07 Billboard";
+            this.btnForm07Billboard.UseVisualStyleBackColor = true;
+            this.btnForm07Billboard.Click += new System.EventHandler(this.btnForm07Billboard_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 545);
+            this.Controls.Add(this.btnForm07Billboard);
             this.Controls.Add(this.btnForm06ImageProcessing);
             this.Controls.Add(this.btnForm05ParticleSimulator);
             this.Controls.Add(this.btnForm04SimpleCompute);
@@ -139,5 +154,6 @@
         private System.Windows.Forms.Button btnForm04SimpleCompute;
         private System.Windows.Forms.Button btnForm05ParticleSimulator;
         private System.Windows.Forms.Button btnForm06ImageProcessing;
+        private System.Windows.Forms.Button btnForm07Billboard;
     }
 }

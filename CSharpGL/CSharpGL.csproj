@@ -205,7 +205,7 @@
     <Compile Include="SharpFont\Internal\Geometry.cs" />
     <Compile Include="SharpFont\Internal\Interpreter.cs" />
     <Compile Include="SharpFont\Internal\KerningTable.cs" />
-    <Compile Include="SharpFont\Internal\Renderer.cs" />
+    <Compile Include="SharpFont\Internal\SharpFontRenderer.cs" />
     <Compile Include="SharpFont\Internal\SbitTable.cs" />
     <Compile Include="SharpFont\Internal\SfntTables.cs" />
     <Compile Include="SharpFont\InvalidFontException.cs" />

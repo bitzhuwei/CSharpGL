@@ -47,5 +47,10 @@ namespace CSharpGL.Demos
             (new Form06ImageProcessing()).Show();
         }
 
+        private void btnForm07Billboard_Click(object sender, EventArgs e)
+        {
+            (new Form07Billboard()).Show();
+        }
+
     }
 }

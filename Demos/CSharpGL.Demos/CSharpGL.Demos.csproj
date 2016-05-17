@@ -122,6 +122,19 @@
     </Compile>
     <Compile Include="01Renderer\HighlightedPickableRenderer.cs" />
     <Compile Include="01Renderer\Chain.cs" />
+    <Compile Include="Form07Billboard\Form07Billboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form07Billboard\Form07Billboard.Designer.cs">
+      <DependentUpon>Form07Billboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form07Billboard\Form07Billboard.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form07Billboard\Form07Billboard.MouseDownMoveUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form07Billboard\BillboardRenderer.cs" />
     <Compile Include="FormBulletinBoard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +250,9 @@
     <EmbeddedResource Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.resx">
       <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form07Billboard\Form07Billboard.resx">
+      <DependentUpon>Form07Billboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBulletinBoard.resx">
       <DependentUpon>FormBulletinBoard.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,6 +275,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Form07Billboard\Billboard.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Form07Billboard\Billboard.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -300,7 +322,11 @@
     <Content Include="Form06ImageProcessing\teapot.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Form07Billboard\star.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
