@@ -11,7 +11,7 @@ namespace SharpFont
     /// </summary>
     public sealed class FontFace
     {
-        readonly Renderer renderer = new Renderer();
+        readonly SharpFontRenderer renderer = new SharpFontRenderer();
         readonly Interpreter interpreter;
         readonly BaseGlyph[] glyphs;
         readonly MetricsEntry[] hmetrics;
@@ -373,7 +373,7 @@ namespace SharpFont
     /// </summary>
     public sealed class Glyph
     {
-        readonly Renderer renderer;
+        readonly SharpFontRenderer renderer;
         readonly PointF[] points;
         readonly int[] contours;
 
@@ -407,7 +407,7 @@ namespace SharpFont
         /// </summary>
         public readonly GlyphMetrics VerticalMetrics;
 
-        internal Glyph(Renderer renderer, PointF[] points, int[] contours, float linearHorizontalAdvance)
+        internal Glyph(SharpFontRenderer renderer, PointF[] points, int[] contours, float linearHorizontalAdvance)
         {
             this.renderer = renderer;
             this.points = points;

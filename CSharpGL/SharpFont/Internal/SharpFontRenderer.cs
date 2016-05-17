@@ -5,7 +5,7 @@ namespace SharpFont
 {
     // handles rasterizing curves to a bitmap
     // the algorithm is heavily inspired by the FreeType2 renderer; thanks guys!
-    unsafe class Renderer
+    unsafe class SharpFontRenderer
     {
         Surface surface;                // the surface we're currently rendering to
         int[] scanlines;                // one scanline per Y, points into cell buffer

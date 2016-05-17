@@ -173,7 +173,7 @@ namespace SharpFont
             }
         }
 
-        public static void DecomposeContour(Renderer renderer, int firstIndex, int lastIndex, PointF[] points)
+        public static void DecomposeContour(SharpFontRenderer renderer, int firstIndex, int lastIndex, PointF[] points)
         {
             var pointIndex = firstIndex;
             var start = points[pointIndex];
