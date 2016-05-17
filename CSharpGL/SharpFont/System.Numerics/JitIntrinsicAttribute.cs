@@ -3,7 +3,7 @@ using System;
 namespace System.Numerics
 {
     //[AttributeUsage]
-	internal class JitIntrinsicAttribute : Attribute
-	{
-	}
+    internal class JitIntrinsicAttribute : Attribute
+    {
+    }
 }
