@@ -5,14 +5,13 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public class BlendSwitch : GLSwitch
+    public class BlendSwitch : EnableSwitch
     {
-
-        byte originalEnabled;
 
         public BlendSwitch() : this(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha) { }
 
         public BlendSwitch(BlendingSourceFactor sourceFactor, BlendingDestinationFactor destFactor)
+            : base(GL.GL_BLEND, true)
         {
             this.SourceFactor = sourceFactor;
             this.DestFactor = destFactor;
@@ -20,24 +19,26 @@ namespace CSharpGL
 
         public override string ToString()
         {
-            return string.Format("Blend: {0} {1}",
-                this.SourceFactor, this.DestFactor);
+            if (this.EnableCap)
+            {
+                return string.Format("Blend: {0} {1}",
+                    this.SourceFactor, this.DestFactor);
+            }
+            else
+            {
+                return string.Format("Disabled Blend: {0} {1}",
+                    this.SourceFactor, this.DestFactor);
+            }
         }
 
-        public override void On()
+        protected override void SwitchOn()
         {
-            this.originalEnabled = GL.IsEnabled(GL.GL_BLEND);
+            base.SwitchOn();
 
-            if (this.originalEnabled == 0)
-            { GL.Enable(GL.GL_BLEND); }
-
-            GL.BlendFunc(this.SourceFactor, this.DestFactor);
-        }
-
-        public override void Off()
-        {
-            if (this.originalEnabled == 0)
-            { GL.Disable(GL.GL_BLEND); }
+            if (this.EnableCap)
+            {
+                GL.BlendFunc(this.SourceFactor, this.DestFactor);
+            }
         }
 
         public BlendingSourceFactor SourceFactor { get; set; }

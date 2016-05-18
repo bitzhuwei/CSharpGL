@@ -5,41 +5,35 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public class PolygonOffsetSwitch : GLSwitch
+    public class PolygonOffsetSwitch : EnableSwitch
     {
         byte originalEnabled;
 
         public PolygonOffsetSwitch() : this(PolugonOffset.Fill, true) { }
 
         public PolygonOffsetSwitch(PolugonOffset mode, bool pullNear)
+            :base((uint)mode, true)
         {
-            this.Mode = mode; this.PullNear = pullNear; 
+            this.PullNear = pullNear; 
         }
 
         public override string ToString()
         {
-            return string.Format("Polygon Offset: {0} {1}", this.Mode,
+            return string.Format("Polygon Offset: {0} {1}", 
+                (PolugonOffset)this.Cap,
                 this.PullNear ? "Near" : "Far");
         }
 
-        public override void On()
+        protected override void SwitchOn()
         {
-            this.originalEnabled = GL.IsEnabled((uint)this.Mode);
+            base.SwitchOn();
 
-            if (this.originalEnabled == 0)
-            { GL.Enable((uint)this.Mode); }
-
-            float value = this.PullNear ? -1.0f : 1.0f;
-            GL.PolygonOffset(value, value);
+            if (this.EnableCap)
+            {
+                float value = this.PullNear ? -1.0f : 1.0f;
+                GL.PolygonOffset(value, value);
+            }
         }
-
-        public override void Off()
-        {
-            if (this.originalEnabled == 0)
-            { GL.Disable((uint)this.Mode); }
-        }
-
-        public PolugonOffset Mode { get; set; }
 
         public bool PullNear { get; set; }
     }

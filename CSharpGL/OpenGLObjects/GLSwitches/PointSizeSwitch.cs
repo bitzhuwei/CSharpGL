@@ -38,14 +38,14 @@ namespace CSharpGL
             return string.Format("Point Size: {0}", PointSize);
         }
 
-        public override void On()
+        protected override void SwitchOn()
         {
             GL.GetFloat(GetTarget.PointSize, original);
 
             GL.PointSize(PointSize);
         }
 
-        public override void Off()
+        protected override void SwitchOff()
         {
             GL.PointSize(original[0]);
         }

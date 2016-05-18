@@ -5,10 +5,11 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public class PrimitiveRestartSwitch : GLSwitch
+    public class PrimitiveRestartSwitch : EnableSwitch
     {
 
         public PrimitiveRestartSwitch(OneIndexBufferPtr indexBufferPtr)
+            : base(GL.GL_PRIMITIVE_RESTART, true)
         {
             if (indexBufferPtr == null)
             { throw new ArgumentException(); }
@@ -34,15 +35,14 @@ namespace CSharpGL
             return string.Format("Restart Index: {0}", RestartIndex);
         }
 
-        public override void On()
+        protected override void SwitchOn()
         {
-            GL.Enable(GL.GL_PRIMITIVE_RESTART);
-            GL.GetDelegateFor<GL.glPrimitiveRestartIndex>()(RestartIndex);
-        }
+            base.SwitchOn();
 
-        public override void Off()
-        {
-            GL.Disable(GL.GL_PRIMITIVE_RESTART);
+            if (this.EnableCap)
+            {
+                GL.GetDelegateFor<GL.glPrimitiveRestartIndex>()(RestartIndex);
+            }
         }
 
         public uint RestartIndex { get; set; }

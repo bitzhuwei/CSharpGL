@@ -22,14 +22,14 @@ namespace CSharpGL
             return string.Format("Polygon Mode: {0}", Mode);
         }
 
-        public override void On()
+        protected override void SwitchOn()
         {
             GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
 
             GL.PolygonMode(PolygonModeFaces.FrontAndBack, Mode);
         }
 
-        public override void Off()
+        protected override void SwitchOff()
         {
             if (originalPolygonMode[0] == originalPolygonMode[1])
             {

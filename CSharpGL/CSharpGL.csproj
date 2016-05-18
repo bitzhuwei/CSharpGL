@@ -97,6 +97,7 @@
     <Compile Include="HighlightRenderer\HighlightRenderer.DoInitialize.cs" />
     <Compile Include="HighlightRenderer\HighlightRenderer.Property.cs" />
     <Compile Include="HighlightRenderer\HighlightRenderer.SetupHighlight.cs" />
+    <Compile Include="OpenGLObjects\GLSwitches\EnableSwitch.cs" />
     <Compile Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInQuad+Searcher.cs" />
     <Compile Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineSearcher.cs" />
     <Compile Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInTriangle+Searcher.cs" />
@@ -178,8 +179,6 @@
     <Compile Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.cs" />
     <Compile Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineSearcher.cs" />
     <Compile Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTrianglesSearcher.cs" />
-    <Compile Include="OpenGLObjects\GLSwitches\CullFaceSwitch.cs" />
-    <Compile Include="OpenGLObjects\GLSwitches\DepthTestSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\BlendSwitch.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayout.cs" />
     <Compile Include="OpenGLObjects\UILayout\IUILayoutArgs.cs" />

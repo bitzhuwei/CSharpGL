@@ -38,14 +38,14 @@ namespace CSharpGL
             return string.Format("Line Width: {0}", LineWidth);
         }
 
-        public override void On()
+        protected override void SwitchOn()
         {
             GL.GetFloat(GetTarget.LineWidth, original);
 
             GL.LineWidth(LineWidth);
         }
 
-        public override void Off()
+        protected override void SwitchOff()
         {
             GL.LineWidth(original[0]);
         }
