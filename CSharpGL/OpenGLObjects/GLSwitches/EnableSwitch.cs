@@ -80,12 +80,14 @@ namespace CSharpGL
 
     public class CullFaceSwitch : EnableSwitch
     {
+        public CullFaceSwitch(bool enableCap)
             : base(GL.GL_CULL_FACE, enableCap)
         { }
     }
 
     public class DepthTestSwitch: EnableSwitch
     {
+        public DepthTestSwitch(bool enableCap)
             : base(GL.GL_DEPTH_TEST, enableCap)
         { }
     }
