@@ -80,15 +80,61 @@ namespace CSharpGL
 
     public class CullFaceSwitch : EnableSwitch
     {
-        public CullFaceSwitch(bool enableCap)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="enableCap">true for enable, false for disable</param>
+        public CullFaceSwitch(bool enableCap = true)
             : base(GL.GL_CULL_FACE, enableCap)
         { }
+
+        public override string ToString()
+        {
+            if (this.EnableCap)
+            { return "GL.Enable(GL_CULL_FACE);"; }
+            else
+            { return "GL.Disable(GL_CULL_FACE);"; }
+        }
+
     }
 
-    public class DepthTestSwitch: EnableSwitch
+    public class DepthTestSwitch : EnableSwitch
     {
-        public DepthTestSwitch(bool enableCap)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="enableCap">true for enable, false for disable</param>
+        public DepthTestSwitch(bool enableCap = true)
             : base(GL.GL_DEPTH_TEST, enableCap)
         { }
+
+        public override string ToString()
+        {
+            if (this.EnableCap)
+            { return "GL.Enable(GL_DEPTH_TEST);"; }
+            else
+            { return "GL.Disable(GL_DEPTH_TEST);"; }
+        }
+
+    }
+
+    public class PointSmoothSwitch : EnableSwitch
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="enableCap">true for enable, false for disable</param>
+        public PointSmoothSwitch(bool enableCap = true)
+            : base(GL.GL_POINT_SMOOTH, enableCap)
+        { }
+
+        public override string ToString()
+        {
+            if (this.EnableCap)
+            { return "GL.Enable(GL_POINT_SMOOTH);"; }
+            else
+            { return "GL.Disable(GL_POINT_SMOOTH);"; }
+        }
+
     }
 }

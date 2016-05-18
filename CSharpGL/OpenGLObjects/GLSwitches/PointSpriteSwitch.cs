@@ -10,11 +10,11 @@ namespace CSharpGL
         public PointSpriteSwitch()
         {
             this.SwitchList = new List<GLSwitch>();
-            this.SwitchList.Add(new EnableSwitch(GL.GL_POINT_SMOOTH));
+            this.SwitchList.Add(new PointSmoothSwitch());
+            this.SwitchList.Add(new DepthTestSwitch());
             this.SwitchList.Add(new BlendSwitch(
                 BlendingSourceFactor.SourceAlpha,
                 BlendingDestinationFactor.OneMinusSourceAlpha));
-            this.SwitchList.Add(new EnableSwitch(GL.GL_DEPTH_TEST));
         }
 
         int m_ParticleSize = 30;
@@ -27,11 +27,8 @@ namespace CSharpGL
             GL.Enable(GL.GL_POINT_SPRITE_ARB);
             GL.TexEnv(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);
             GL.Hint(GL.GL_POINT_SMOOTH_HINT, GL.GL_NICEST);
-            //GL.Enable(GL.GL_BLEND);
-            //GL.BlendFunc(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One);
             //GL.GetDelegateFor<GL.glBlendEquation>()(GL.GL_FUNC_ADD_EXT);
             //GL.GetDelegateFor<GL.glBlendFuncSeparate>()(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
-            GL.Disable(GL.GL_DEPTH_TEST);
 
             //float[] quadratic = { 1.0f, 0, 0, 1.0f };
             //GL.PointParameter(GL.GL_POINT_DISTANCE_ATTENUATION_ARB, quadratic);
@@ -45,8 +42,6 @@ namespace CSharpGL
 
         protected override void SwitchOff()
         {
-            GL.Enable(GL.GL_DEPTH_TEST);
-            //GL.Disable(GL.GL_BLEND);
             GL.Disable(GL.GL_POINT_SPRITE_ARB);
             GL.Disable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
 
