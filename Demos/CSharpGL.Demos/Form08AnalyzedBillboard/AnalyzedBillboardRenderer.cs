@@ -105,10 +105,22 @@ namespace CSharpGL.Demos
                                 var array = (vec3*)buffer.FirstElement();
                                 for (int i = 0; i < particleCount; i++)
                                 {
-                                    array[i] = new vec3(
-                                        (float)(random.NextDouble() * 2 - 1) * factor,
-                                        (float)(random.NextDouble() * 2 - 1) * factor,
-                                        (float)(random.NextDouble() * 2 - 1) * factor);
+                                    if (i % 2 == 0)
+                                    {
+                                        array[i] = new vec3(
+                                            (float)(random.NextDouble() * 2 - 1) * factor,
+                                            (float)(random.NextDouble() * 2 - 1) * factor,
+                                            (float)(random.NextDouble() * 2 - 1) * factor);
+                                    }
+                                    else
+                                    {
+                                        double theta = random.NextDouble() * 2 * Math.PI - Math.PI;
+                                        double alpha = random.NextDouble() * 2 * Math.PI - Math.PI;
+                                        array[i] = new vec3(
+                                            (float)(Math.Sin(theta) * Math.Cos(alpha)) * factor,
+                                            (float)(Math.Sin(theta) * Math.Sin(alpha)) * factor,
+                                            (float)(Math.Cos(theta)) * factor);
+                                    }
                                 }
                             }
 

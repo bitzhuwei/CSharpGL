@@ -28,7 +28,7 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
-                var renderer = new BillboardRenderer(1000);
+                var renderer = new BillboardRenderer(10000);
                 renderer.Initialize();
                 this.renderer = renderer;
             }
