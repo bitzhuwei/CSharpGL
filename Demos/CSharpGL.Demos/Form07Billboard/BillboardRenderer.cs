@@ -41,8 +41,7 @@ namespace CSharpGL.Demos
         public BillboardRenderer(int particleCount)
             : base(new BillboardModel(particleCount), staticShaderCodes, map, BillboardModel.strPosition)
         {
-            var pointSpriteSwitch = new PointSpriteSwitch();
-            this.SwitchList.Add(pointSpriteSwitch);
+            this.SwitchList.Add(new PointSpriteSwitch());
         }
 
         protected override void DoInitialize()

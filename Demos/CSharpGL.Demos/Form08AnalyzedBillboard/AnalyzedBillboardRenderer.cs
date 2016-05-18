@@ -39,7 +39,9 @@ namespace CSharpGL.Demos
         }
         public AnalyzedBillboardRenderer(int particleCount)
             : base(new BillboardModel(particleCount), staticShaderCodes, map, BillboardModel.strPosition)
-        { }
+        {
+            this.SwitchList.Add(new PointSpriteSwitch());
+        }
 
         protected override void DoInitialize()
         {
@@ -55,23 +57,23 @@ namespace CSharpGL.Demos
             mat4 projection = arg.Camera.GetProjectionMat4();
             this.SetUniformValue("mvp", projection * view * model);
 
-            GL.Enable(GL.GL_POINT_SMOOTH);
-            GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
-            GL.Enable(GL.GL_POINT_SPRITE_ARB);
-            //GL.TexEnv(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);//TODO: test TexEnvi()
-            GL.TexEnvf(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);
             //GL.Enable(GL.GL_POINT_SMOOTH);
-            //GL.Hint(GL.GL_POINT_SMOOTH_HINT, GL.GL_NICEST);
-            GL.Enable(GL.GL_BLEND);
-            GL.GetDelegateFor<GL.glBlendEquation>()(GL.GL_FUNC_ADD_EXT);
-            GL.GetDelegateFor<GL.glBlendFuncSeparate>()(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
+            //GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
+            //GL.Enable(GL.GL_POINT_SPRITE_ARB);
+            ////GL.TexEnv(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);//TODO: test TexEnvi()
+            //GL.TexEnvf(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);
+            ////GL.Enable(GL.GL_POINT_SMOOTH);
+            ////GL.Hint(GL.GL_POINT_SMOOTH_HINT, GL.GL_NICEST);
+            //GL.Enable(GL.GL_BLEND);
+            //GL.GetDelegateFor<GL.glBlendEquation>()(GL.GL_FUNC_ADD_EXT);
+            //GL.GetDelegateFor<GL.glBlendFuncSeparate>()(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
 
             base.DoRender(arg);
 
-            GL.Disable(GL.GL_BLEND);
-            GL.Disable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
-            GL.Disable(GL.GL_POINT_SPRITE_ARB);
-            GL.Disable(GL.GL_POINT_SMOOTH);
+            //GL.Disable(GL.GL_BLEND);
+            //GL.Disable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
+            //GL.Disable(GL.GL_POINT_SPRITE_ARB);
+            //GL.Disable(GL.GL_POINT_SMOOTH);
         }
 
         class BillboardModel : IBufferable
