@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// GL.Enable(cap); or GL.Disable(cap);
     /// </summary>
-    public class EnableSwitch : GLSwitch
+    public abstract class EnableSwitch : GLSwitch
     {
 
         byte originalEnabled;
