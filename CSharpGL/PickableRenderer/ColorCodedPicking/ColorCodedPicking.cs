@@ -115,10 +115,25 @@ namespace CSharpGL
             // restore clear color
             GL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
-            SharedStageInfo info = new SharedStageInfo();
+            uint renderedVertexCount = 0;
             foreach (var pickable in pickableElements)
             {
-                info.RenderForPicking(pickable, arg);
+                if (pickable == null) { continue; }
+
+                pickable.PickingBaseId = renderedVertexCount;
+
+                //  render the element for picking.
+                pickable.Render(arg);
+
+                uint rendered = renderedVertexCount + pickable.GetVertexCount();
+                if (renderedVertexCount <= rendered)
+                {
+                    renderedVertexCount = rendered;
+                }
+                else
+                {
+                            renderedVertexCount, pickable.GetVertexCount(), uint.MaxValue));
+                }
             }
 
             GL.Flush();

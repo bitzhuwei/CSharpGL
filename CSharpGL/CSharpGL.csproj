@@ -156,7 +156,6 @@
     <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\TriangleStripRecognizer.cs" />
     <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\TrianglesRecognizer.cs" />
     <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizer.cs" />
-    <Compile Include="PickableRenderer\ColorCodedPicking\SelectionMode.cs" />
     <Compile Include="IBufferables\Axis.cs" />
     <Compile Include="IBufferables\AxisModel.cs" />
     <Compile Include="IBufferables\BigDipper.cs" />
@@ -264,7 +263,6 @@
     <Compile Include="PickableRenderer\ColorCodedPicking\PickedGeometry.cs" />
     <Compile Include="PickableRenderer\ColorCodedPicking\PickingShaderHelper.cs" />
     <Compile Include="PickableRenderer\ColorCodedPicking\PrimitiveModesHelper.cs" />
-    <Compile Include="PickableRenderer\ColorCodedPicking\SharedStageInfo.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PointSpriteSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PolygonModeSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PrimitiveRestartSwitch.cs" />
