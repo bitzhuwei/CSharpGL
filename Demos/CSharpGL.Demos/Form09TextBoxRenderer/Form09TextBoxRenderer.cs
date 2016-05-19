@@ -41,11 +41,26 @@ namespace CSharpGL.Demos
             if (renderer != null)
             {
                 mat4 projection, view, model;
-                //this.renderer.GetMatrix(out projection, out view, out model);
-                projection = arg.Camera.GetProjectionMat4();
-                view = arg.Camera.GetViewMat4();
-                model = mat4.identity();
-                this.renderer.SetUniformValue("mvp", projection * view * model);
+                {
+                    this.uiRenderer.GetMatrix(out projection, out view, out model, arg.Camera);
+                    this.uiRenderer.Renderer.SetUniformValue("projectionMatrix", projection);
+                    this.uiRenderer.Renderer.SetUniformValue("viewMatrix", view);
+                    this.uiRenderer.Renderer.SetUniformValue("modelMatrix", model);
+                    this.uiRenderer.Render(arg);
+                }
+
+                if (this.useUILayout)
+                {
+                    this.renderer.GetMatrix(out projection, out view, out model, arg.Camera);
+                    this.renderer.SetUniformValue("mvp", projection * view * model);
+                }
+                else
+                {
+                    projection = arg.Camera.GetProjectionMat4();
+                    view = arg.Camera.GetViewMat4();
+                    model = mat4.identity();
+                    this.renderer.SetUniformValue("mvp", projection * view * model);
+                }
 
                 renderer.Render(arg);
             }
@@ -60,6 +75,7 @@ namespace CSharpGL.Demos
         private const float crossCursorSize = 40.0f;
 
         private Point offset = new Point(13, 11);
+        private bool useUILayout;
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -75,6 +91,14 @@ namespace CSharpGL.Demos
             if (camera != null)
             {
                 camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
+            }
+        }
+
+        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 'c')
+            {
+                this.useUILayout = !this.useUILayout;
             }
         }
 
