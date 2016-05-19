@@ -57,9 +57,9 @@ namespace CSharpGL.Demos
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            mat4 projection, view, model;
-            this.GetMatrix(out projection, out view, out model);
-            this.SetUniformValue("mvp", projection * view * model);
+            //mat4 projection, view, model;
+            //this.GetMatrix(out projection, out view, out model);
+            //this.SetUniformValue("mvp", projection * view * model);
 
             base.DoRender(arg);
         }
@@ -155,14 +155,14 @@ namespace CSharpGL.Demos
                 GlyphPosition position = array[i];
 
                 const int factor = 1;
-                //position.leftUp.x -= currentWidth / 2;
-                ////position.leftUp.x /= currentWidth / factor;
-                //position.leftDown.x -= currentWidth / 2;
-                ////position.leftDown.x /= currentWidth / factor;
-                //position.rightUp.x -= currentWidth / 2;
-                ////position.rightUp.x /= currentWidth / factor;
-                //position.rightDown.x -= currentWidth / 2;
-                ////position.rightDown.x /= currentWidth / factor;
+                position.leftUp.x -= currentWidth / 2;
+                //position.leftUp.x /= currentWidth / factor;
+                position.leftDown.x -= currentWidth / 2;
+                //position.leftDown.x /= currentWidth / factor;
+                position.rightUp.x -= currentWidth / 2;
+                //position.rightUp.x /= currentWidth / factor;
+                position.rightDown.x -= currentWidth / 2;
+                //position.rightDown.x /= currentWidth / factor;
                 position.leftUp.y -= (currentHeight + fontResource.FontHeight) / 2;
                 position.leftDown.y -= (currentHeight + fontResource.FontHeight) / 2;
                 position.rightUp.y -= (currentHeight + fontResource.FontHeight) / 2;

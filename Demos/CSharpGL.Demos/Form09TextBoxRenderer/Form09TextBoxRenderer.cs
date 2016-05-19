@@ -40,6 +40,13 @@ namespace CSharpGL.Demos
             IRenderable renderer = this.renderer;
             if (renderer != null)
             {
+                mat4 projection, view, model;
+                //this.renderer.GetMatrix(out projection, out view, out model);
+                projection = arg.Camera.GetProjectionMat4();
+                view = arg.Camera.GetViewMat4();
+                model = mat4.identity();
+                this.renderer.SetUniformValue("mvp", projection * view * model);
+
                 renderer.Render(arg);
             }
 
