@@ -52,7 +52,7 @@ namespace CSharpGL
                     if (vertexShader == null)
                     {
                         vertexShader = ManifestResourceLoader.LoadTextFile(
-                            @"PickableRenderer.ColorCodedPicking.Highlight.vert");
+                            @"HighlightRenderer.Highlight.vert");
                     }
                     result = vertexShader;
                     break;
@@ -60,7 +60,7 @@ namespace CSharpGL
                     if (fragmentShader == null)
                     {
                         fragmentShader = ManifestResourceLoader.LoadTextFile(
-                            @"PickableRenderer.ColorCodedPicking.Highlight.frag");
+                            @"HighlightRenderer.Highlight.frag");
                     }
                     result = fragmentShader;
                     break;

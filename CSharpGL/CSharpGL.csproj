@@ -144,7 +144,7 @@
     <Compile Include="OpenGLAPI\FontBitmapEntry.cs" />
     <Compile Include="OpenGLAPI\FontBitmaps.cs" />
     <Compile Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.cs" />
-    <Compile Include="PickableRenderer\ColorCodedPicking\HighlightShaderHelper.cs" />
+    <Compile Include="HighlightRenderer\HighlightShaderHelper.cs" />
     <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\LineLoopRecognizer.cs" />
     <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizerFactory.cs" />
     <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\PointsRecognizer.cs" />
@@ -389,8 +389,8 @@
   <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="IBufferables\TeapotModel.obj" />
-    <EmbeddedResource Include="PickableRenderer\ColorCodedPicking\Highlight.vert" />
-    <EmbeddedResource Include="PickableRenderer\ColorCodedPicking\Highlight.frag" />
+    <EmbeddedResource Include="HighlightRenderer\Highlight.vert" />
+    <EmbeddedResource Include="HighlightRenderer\Highlight.frag" />
     <None Include="OpenGLObjects\ModernRendering\Renderers.cd" />
     <None Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.cd" />
     <EmbeddedResource Include="Controls\GLCanvas.resx">
