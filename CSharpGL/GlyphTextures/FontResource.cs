@@ -27,17 +27,12 @@ namespace CSharpGL
 
         private FontResource()
         {
-            var textureIds = new uint[1];
-            GL.GenTextures(1, textureIds);
-            GL.BindTexture(GL.GL_TEXTURE_2D, textureIds[0]);
-            GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 256, 256);
-            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
             var texture = new sampler2D();
             var bitmap = ManifestResourceLoader.LoadBitmap(@"GlyphTextures\LucidaTypewriterRegular.ttf.png");
             texture.Initialize(bitmap);
             this.TextureSize = bitmap.Size;
             bitmap.Dispose();
-            this.FontTextureId = textureIds[0];
+            this.FontTextureId = texture.Id;
 
             string xmlContent = ManifestResourceLoader.LoadTextFile(@"GlyphTextures\LucidaTypewriterRegular.ttf.xml");
             XElement xElement = XElement.Parse(xmlContent, LoadOptions.None);

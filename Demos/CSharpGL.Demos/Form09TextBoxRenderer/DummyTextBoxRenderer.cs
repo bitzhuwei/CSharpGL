@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
             System.Drawing.Size Size,
             int zNear = -1000,
             int zFar = 1000,
-            int macCharCount = 1000)
+            int macCharCount = 100)
             : base(new TextBoxModel(macCharCount), staticShaderCodes, map)
         {
             this.Anchor = Anchor;
@@ -86,7 +86,7 @@ namespace CSharpGL.Demos
         unsafe private void SetupGlyphTexCoord(string content, FontResource fontResource)
         {
             FullDictionary<char, CharacterInfo> charInfoDict = fontResource.CharInfoDict;
-            GL.BindBuffer(BufferTarget.ArrayBuffer, this.model.positionBufferPtr.BufferId);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, this.model.uvBufferPtr.BufferId);
             IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.WriteOnly);
             var array = (GlyphTexCoord*)pointer.ToPointer();
             int currentWidth = 0; int currentHeight = 0;
@@ -107,6 +107,10 @@ namespace CSharpGL.Demos
                 CharacterInfo info = fontResource.CharInfoDict[ch];
                 const int shrimp = 2;
                 array[i] = new GlyphTexCoord(
+                    //new vec2(0, 0),
+                    //new vec2(0, 1),
+                    //new vec2(1, 1),
+                    //new vec2(1, 0)
                     new vec2((float)(info.xoffset + shrimp) / (float)width, (float)(currentHeight) / (float)height),
                     new vec2((float)(info.xoffset + shrimp) / (float)width, (float)(currentHeight + fontResource.FontHeight) / (float)height),
                     new vec2((float)(info.xoffset - shrimp + info.width) / (float)width, (float)(currentHeight + fontResource.FontHeight) / (float)height),
@@ -122,11 +126,11 @@ namespace CSharpGL.Demos
         {
             FullDictionary<char, CharacterInfo> charInfoDict = fontResource.CharInfoDict;
             GL.BindBuffer(BufferTarget.ArrayBuffer, this.model.positionBufferPtr.BufferId);
-            IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.WriteOnly);
+            IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
             var array = (GlyphPosition*)pointer.ToPointer();
             int currentWidth = 0; int currentHeight = 0;
             /*
-             * 0     3  4     6 8     11 12   15
+             * 0     3  4     7 8     11 12   15
              * -------  ------- -------  -------
              * |     |  |     | |     |  |     |
              * |     |  |     | |     |  |     |
@@ -150,10 +154,15 @@ namespace CSharpGL.Demos
             {
                 GlyphPosition position = array[i];
 
-                position.leftUp.x -= currentWidth / 2;
-                position.leftDown.x -= currentWidth / 2;
-                position.rightUp.x -= currentWidth / 2;
-                position.rightDown.x -= currentWidth / 2;
+                const int factor = 1;
+                //position.leftUp.x -= currentWidth / 2;
+                ////position.leftUp.x /= currentWidth / factor;
+                //position.leftDown.x -= currentWidth / 2;
+                ////position.leftDown.x /= currentWidth / factor;
+                //position.rightUp.x -= currentWidth / 2;
+                ////position.rightUp.x /= currentWidth / factor;
+                //position.rightDown.x -= currentWidth / 2;
+                ////position.rightDown.x /= currentWidth / factor;
                 position.leftUp.y -= (currentHeight + fontResource.FontHeight) / 2;
                 position.leftDown.y -= (currentHeight + fontResource.FontHeight) / 2;
                 position.rightUp.y -= (currentHeight + fontResource.FontHeight) / 2;

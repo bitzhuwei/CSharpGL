@@ -29,11 +29,11 @@ namespace CSharpGL.Demos
             }
             {
                 var renderer = new DummyTextBoxRenderer(
-                     AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right,
+                     AnchorStyles.Left | AnchorStyles.Top,
                         new Padding(26, 26, 26, 26),
                         new Size(50, 50));
                 renderer.Initialize();
-                renderer.SetText("Hello CSharpGL!");
+                renderer.SetText("CSharpGL2.0");
                 this.renderer = renderer;
             }
             {
