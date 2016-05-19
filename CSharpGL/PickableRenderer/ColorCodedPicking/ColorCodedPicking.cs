@@ -132,6 +132,8 @@ namespace CSharpGL
                 }
                 else
                 {
+                    throw new Exception(string.Format(
+                        "Too many geometries({0} + {1} > {2}) for color coded picking.",
                             renderedVertexCount, pickable.GetVertexCount(), uint.MaxValue));
                 }
             }
