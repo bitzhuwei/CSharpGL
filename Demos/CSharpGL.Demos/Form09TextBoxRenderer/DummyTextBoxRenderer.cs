@@ -33,7 +33,7 @@ namespace CSharpGL.Demos
             int zNear = -1000,
             int zFar = 1000,
             int particleCount = 1000)
-            : base(new BillboardModel(particleCount), staticShaderCodes, map)
+            : base(new TextBoxModel(particleCount), staticShaderCodes, map)
         {
             this.Anchor = Anchor;
             this.Margin = Margin;
@@ -60,10 +60,10 @@ namespace CSharpGL.Demos
             base.DoRender(arg);
         }
 
-        class BillboardModel : IBufferable
+        class TextBoxModel : IBufferable
         {
 
-            public BillboardModel(int charCount)
+            public TextBoxModel(int charCount)
             {
                 this.charCount = charCount;
             }
