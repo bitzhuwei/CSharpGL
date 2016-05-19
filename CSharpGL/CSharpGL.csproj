@@ -135,7 +135,7 @@
     <Compile Include="OpenGLObjects\ModernRendering\Renderer.Dispose.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\Renderer.DoInitialize.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\Renderer.DoRender.cs" />
-    <Compile Include="OpenGLObjects\ModernRendering\Renderer.MovePositions.cs" />
+    <Compile Include="PickableRenderer\PickableRenderer.MovePositions.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\Renderer.Property.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\Renderer.Uniforms.cs" />
     <Compile Include="OpenGLAPI\Enumerations\ErrorCode.cs" />

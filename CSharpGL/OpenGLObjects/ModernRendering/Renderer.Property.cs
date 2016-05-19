@@ -11,6 +11,8 @@ namespace CSharpGL
     public abstract partial class Renderer
     {
 
+        string positionNameInIBufferable;
+
         public DrawMode Mode
         {
             get

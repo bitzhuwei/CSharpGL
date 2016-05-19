@@ -19,6 +19,25 @@ namespace CSharpGL
         {
             base.DoInitialize();
 
+            foreach (var item in propertyNameMap)
+            {
+                PropertyBufferPtr bufferPtr = this.bufferable.GetProperty(
+                    item.nameInIBufferable, item.VarNameInShader);
+                if (bufferPtr == null) { throw new Exception(); }
+
+                if (item.nameInIBufferable == positionNameInIBufferable)
+                {
+                    this.positionBufferPtr = new PropertyBufferPtr(
+                        "in_Position",// in_Postion same with in the PickingShader.vert shader
+                        bufferPtr.BufferId,
+                        bufferPtr.DataSize,
+                        bufferPtr.DataType,
+                        bufferPtr.Length,
+                        bufferPtr.ByteLength);
+                    break;
+                }
+            }
+
             // init index buffer 
             {
                 //IndexBufferPtr indexBufferPtr = this.bufferable.GetIndex();
@@ -35,10 +54,10 @@ namespace CSharpGL
                 this.maxElementCount = oneIndexBufferPtr.ElementCount;
                 oneIndexBufferPtr.ElementCount = 0;// 高亮0个图元
             }
-
-            this.bufferable = null;
-            this.shaderCodes = null;
-            this.propertyNameMap = null;
+            
+            //this.bufferable = null;
+            //this.shaderCodes = null;
+            //this.propertyNameMap = null;
         }
 
 

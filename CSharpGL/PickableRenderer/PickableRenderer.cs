@@ -13,6 +13,9 @@ namespace CSharpGL
     /// </summary>
     public abstract partial class PickableRenderer : Renderer, IColorCodedPicking
     {
+        protected string positionNameInIBufferable;
+        internal PropertyBufferPtr positionBufferPtr;
+
         PolygonModeSwitch polygonModeSwitch4Picking = new PolygonModeSwitch(PolygonModes.Filled);
 
         protected List<GLSwitch> switchList4Picking = new List<GLSwitch>();
@@ -33,8 +36,11 @@ namespace CSharpGL
         internal PickableRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, string positionNameInIBufferable,
             params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
+            : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
+            {
+                this.positionNameInIBufferable = positionNameInIBufferable;
+            }
             {
                 this.switchList4Picking.Add(polygonModeSwitch4Picking);
             }

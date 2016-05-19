@@ -33,7 +33,7 @@ namespace CSharpGL.Demos
             int zNear = -1000,
             int zFar = 1000,
             int particleCount = 1000)
-            : base(new BillboardModel(particleCount), staticShaderCodes, map, BillboardModel.strPosition)
+            : base(new BillboardModel(particleCount), staticShaderCodes, map)
         {
             this.Anchor = Anchor;
             this.Margin = Margin;

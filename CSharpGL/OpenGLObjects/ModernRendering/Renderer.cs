@@ -11,8 +11,6 @@ namespace CSharpGL
     /// </summary>
     public abstract partial class Renderer : RendererBase
     {
-        protected string positionNameInIBufferable;
-        internal PropertyBufferPtr positionBufferPtr;
         
         // 算法
         protected ShaderProgram shaderProgram;
@@ -45,15 +43,13 @@ namespace CSharpGL
         /// <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
         ///<param name="switches"></param>
         public Renderer(IBufferable bufferable, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, string positionNameInIBufferable,
-            params GLSwitch[] switches)
+            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
         {
             this.Name = this.GetType().Name;
 
             this.bufferable = bufferable;
             this.shaderCodes = shaderCodes;
             this.propertyNameMap = propertyNameMap;
-            this.positionNameInIBufferable = positionNameInIBufferable;
             this.switchList.AddRange(switches);
         }
 

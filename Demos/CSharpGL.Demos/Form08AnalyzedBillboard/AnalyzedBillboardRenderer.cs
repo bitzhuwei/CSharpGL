@@ -38,7 +38,7 @@ namespace CSharpGL.Demos
             map.Add("position", "position");
         }
         public AnalyzedBillboardRenderer(int particleCount)
-            : base(new BillboardModel(particleCount), staticShaderCodes, map, BillboardModel.strPosition)
+            : base(new BillboardModel(particleCount), staticShaderCodes, map)
         {
             this.SwitchList.Add(new PointSpriteSwitch());
         }

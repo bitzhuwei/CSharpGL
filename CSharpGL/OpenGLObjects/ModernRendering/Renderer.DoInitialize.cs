@@ -27,25 +27,10 @@ namespace CSharpGL
                     item.nameInIBufferable, item.VarNameInShader);
                 if (bufferPtr == null) { throw new Exception(); }
                 propertyBufferPtrs[index++] = bufferPtr;
-
-                if (item.nameInIBufferable == positionNameInIBufferable)
-                {
-                    this.positionBufferPtr = new PropertyBufferPtr(
-                        "in_Position",// in_Postion same with in the PickingShader.vert shader
-                        bufferPtr.BufferId,
-                        bufferPtr.DataSize,
-                        bufferPtr.DataType,
-                        bufferPtr.Length,
-                        bufferPtr.ByteLength);
-                }
             }
+
             this.propertyBufferPtrs = propertyBufferPtrs;
             this.indexBufferPtr = this.bufferable.GetIndex();
-
-
-            this.bufferable = null;
-            this.shaderCodes = null;
-            this.propertyNameMap = null;
 
         }
 

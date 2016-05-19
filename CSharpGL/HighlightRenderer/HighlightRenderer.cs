@@ -13,6 +13,9 @@ namespace CSharpGL
     public partial class HighlightRenderer : Renderer
     {
 
+        protected string positionNameInIBufferable;
+        internal PropertyBufferPtr positionBufferPtr;
+
         /// <summary>
         /// 高亮显示指定的图元。
         /// </summary>
@@ -26,10 +29,11 @@ namespace CSharpGL
             params GLSwitch[] switches)
             : base(bufferable, HighlightShaderHelper.GetHighlightShaderCode(),
                 new PropertyNameMap("in_Position", positionNameInIBufferable),
-                positionNameInIBufferable, switches)
+                switches)
         {
             this.Name = this.GetType().Name;
 
+            this.positionNameInIBufferable = positionNameInIBufferable;
             var uniformHighlightColor = new UniformVec4("highlightColor");
             //another way: uniform.SetValue(new vec4(1, 1, 1, 1));
             uniformHighlightColor.Value = new vec4(1, 1, 1, 1);

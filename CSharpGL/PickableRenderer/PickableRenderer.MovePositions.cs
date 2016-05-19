@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public abstract partial class Renderer
+    public abstract partial class PickableRenderer
     {
+
         /// <summary>
         /// 根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。
         /// </summary>

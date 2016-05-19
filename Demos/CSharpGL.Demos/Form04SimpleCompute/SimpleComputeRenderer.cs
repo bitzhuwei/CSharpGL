@@ -26,7 +26,7 @@ namespace CSharpGL.Demos
             map.Add(SimpleCompute.strPosition, "position");
         }
         public SimpleComputeRenderer()
-            : base(new SimpleCompute(), staticShaderCodes, map, SimpleCompute.strPosition)
+            : base(new SimpleCompute(), staticShaderCodes, map)
         { }
 
         protected override void DoInitialize()

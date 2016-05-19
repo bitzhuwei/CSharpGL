@@ -148,7 +148,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form07Billboard\BillboardRenderer.cs" />
-    <Compile Include="Form09TextBoxRenderer\TextBoxRenderer.cs" />
+    <Compile Include="Form09TextBoxRenderer\DummyTextBoxRenderer.cs" />
     <Compile Include="Form09TextBoxRenderer\Form09TextBoxRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
