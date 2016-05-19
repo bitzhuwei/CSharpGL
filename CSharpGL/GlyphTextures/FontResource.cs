@@ -70,7 +70,7 @@ namespace CSharpGL
         public Size TextureSize { get; set; }
 
         /// <summary>
-        ///// 含有各个字形的贴图的Id。
+        /// 含有各个字形的贴图的Id。
         /// </summary>
         public uint FontTextureId { get; set; }
 
