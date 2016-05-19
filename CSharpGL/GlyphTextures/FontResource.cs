@@ -35,6 +35,7 @@ namespace CSharpGL
             var texture = new sampler2D();
             var bitmap = ManifestResourceLoader.LoadBitmap(@"GlyphTextures\LucidaTypewriterRegular.ttf.png");
             texture.Initialize(bitmap);
+            this.TextureSize = bitmap.Size;
             bitmap.Dispose();
             this.FontTextureId = textureIds[0];
 
@@ -66,6 +67,7 @@ namespace CSharpGL
         ///// 含有各个字形的贴图。
         ///// </summary>
         //private System.Drawing.Bitmap FontBitmap;
+        public Size TextureSize { get; set; }
 
         /// <summary>
         ///// 含有各个字形的贴图的Id。

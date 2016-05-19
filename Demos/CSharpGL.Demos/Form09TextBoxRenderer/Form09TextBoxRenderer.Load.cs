@@ -28,8 +28,12 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
-                var renderer = new BillboardRenderer(10000);
+                var renderer = new DummyTextBoxRenderer(
+                     AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right,
+                        new Padding(26, 26, 26, 26),
+                        new Size(50, 50));
                 renderer.Initialize();
+                renderer.SetText("Hello CSharpGL!");
                 this.renderer = renderer;
             }
             {

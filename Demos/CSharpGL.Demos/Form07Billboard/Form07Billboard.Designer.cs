@@ -70,7 +70,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.glCanvas1);
             this.Name = "Form07Billboard";
-            this.Text = "Form03OrderDependentTransparency";
+            this.Text = "Form07Billboard";
             this.Load += new System.EventHandler(this.Form02OrderIndependentTransparency_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);

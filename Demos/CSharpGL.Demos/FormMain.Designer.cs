@@ -36,6 +36,7 @@
             this.btnForm06ImageProcessing = new System.Windows.Forms.Button();
             this.btnForm07Billboard = new System.Windows.Forms.Button();
             this.btnForm08AnalyzedBillboard = new System.Windows.Forms.Button();
+            this.btnForm09TextBoxRenderer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -142,11 +143,25 @@
             this.btnForm08AnalyzedBillboard.UseVisualStyleBackColor = true;
             this.btnForm08AnalyzedBillboard.Click += new System.EventHandler(this.btnForm08AnalyzedBillboard_Click);
             // 
+            // btnForm09TextBoxRenderer
+            // 
+            this.btnForm09TextBoxRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnForm09TextBoxRenderer.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnForm09TextBoxRenderer.Location = new System.Drawing.Point(12, 356);
+            this.btnForm09TextBoxRenderer.Name = "btnForm09TextBoxRenderer";
+            this.btnForm09TextBoxRenderer.Size = new System.Drawing.Size(767, 37);
+            this.btnForm09TextBoxRenderer.TabIndex = 0;
+            this.btnForm09TextBoxRenderer.Text = "Form09 TextBoxRenderer";
+            this.btnForm09TextBoxRenderer.UseVisualStyleBackColor = true;
+            this.btnForm09TextBoxRenderer.Click += new System.EventHandler(this.btnForm09TextBoxRenderer_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 545);
+            this.Controls.Add(this.btnForm09TextBoxRenderer);
             this.Controls.Add(this.btnForm08AnalyzedBillboard);
             this.Controls.Add(this.btnForm07Billboard);
             this.Controls.Add(this.btnForm06ImageProcessing);
@@ -171,5 +186,6 @@
         private System.Windows.Forms.Button btnForm06ImageProcessing;
         private System.Windows.Forms.Button btnForm07Billboard;
         private System.Windows.Forms.Button btnForm08AnalyzedBillboard;
+        private System.Windows.Forms.Button btnForm09TextBoxRenderer;
     }
 }

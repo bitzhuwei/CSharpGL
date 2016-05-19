@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
 
         private Camera camera;
         private SatelliteRotator rotator;
-        private BillboardRenderer renderer;
+        private DummyTextBoxRenderer renderer;
 
 
         public Form09TextBoxRenderer()
@@ -29,7 +29,7 @@ namespace CSharpGL.Demos
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.Resize += glCanvas1_Resize;
 
-            GL.ClearColor(0, 0, 0, 0);
+            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
         }
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -68,17 +68,6 @@ namespace CSharpGL.Demos
             if (camera != null)
             {
                 camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
-            }
-        }
-
-        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 'o')
-            {
-                if (this.openTextureDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    this.renderer.UpdateTexture(this.openTextureDlg.FileName);
-                }
             }
         }
 

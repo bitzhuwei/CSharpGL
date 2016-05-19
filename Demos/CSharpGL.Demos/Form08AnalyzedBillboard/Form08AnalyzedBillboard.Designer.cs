@@ -61,15 +61,15 @@
             // 
             this.openTextureDlg.Filter = "Image File(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
             // 
-            // Form07Billboard
+            // Form08AnalyzedBillboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 548);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "Form07Billboard";
-            this.Text = "Form03OrderDependentTransparency";
+            this.Name = "Form08AnalyzedBillboard";
+            this.Text = "Form08AnalyzedBillboard";
             this.Load += new System.EventHandler(this.Form02OrderIndependentTransparency_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);

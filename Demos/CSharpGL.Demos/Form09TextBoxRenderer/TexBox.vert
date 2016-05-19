@@ -1,8 +1,11 @@
 #version 150 core
 
 in vec2 position;
+in vec2 uv;
 uniform mat4 mvp;
 uniform float lackAxis = 2.0f;
+
+out vec2 passUV;
 
 void main(void)
 {
@@ -12,4 +15,6 @@ void main(void)
 	{ gl_Position = mvp * vec4(position.x, 0.0f, position.y, 1.0f); }
 	else // if (lackAxis == 2.0f)
 	{ gl_Position = mvp * vec4(position.x, position.y, 0.0f, 1.0f); }
+
+	passUV = uv;
 }
