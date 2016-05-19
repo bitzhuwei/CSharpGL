@@ -59,9 +59,9 @@
     <Content Include="PickableRenderer\ZeroIndexRenderer\readme.txt" />
     <Content Include="OpenGLObjects\ModernRendering\readme.txt" />
     <Content Include="OpenGLAPI\Enumerations\DrawMode.png" />
-    <Content Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.png" />
-    <Content Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\readme.txt" />
-    <Content Include="OpenGLObjects\ColorCodedPicking\readme.txt" />
+    <Content Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.png" />
+    <Content Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\readme.txt" />
+    <Content Include="PickableRenderer\ColorCodedPicking\readme.txt" />
     <Content Include="IBufferables\AxisModel.jpg" />
     <Content Include="IBufferables\CubeModel.jpg" />
     <Content Include="IBufferables\SphereModel.jpg" />
@@ -143,20 +143,20 @@
     <Compile Include="OpenGLAPI\Enumerations\PolugonOffset.cs" />
     <Compile Include="OpenGLAPI\FontBitmapEntry.cs" />
     <Compile Include="OpenGLAPI\FontBitmaps.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\HighlightShaderHelper.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\LineLoopRecognizer.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizerFactory.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PointsRecognizer.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\LineStripRecognizer.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\LinesRecognizer.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\QuadStripRecognizer.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\QuadsRecognizer.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\TriangleFanRecognizer.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\TriangleStripRecognizer.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\TrianglesRecognizer.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizer.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\SelectionMode.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\HighlightShaderHelper.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\LineLoopRecognizer.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizerFactory.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\PointsRecognizer.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\LineStripRecognizer.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\LinesRecognizer.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\QuadStripRecognizer.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\QuadsRecognizer.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\TriangleFanRecognizer.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\TriangleStripRecognizer.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\TrianglesRecognizer.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizer.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\SelectionMode.cs" />
     <Compile Include="IBufferables\Axis.cs" />
     <Compile Include="IBufferables\AxisModel.cs" />
     <Compile Include="IBufferables\BigDipper.cs" />
@@ -256,15 +256,15 @@
     <Compile Include="UITypeEditors\FormGLSwtichType.Designer.cs">
       <DependentUpon>FormGLSwtichType.cs</DependentUpon>
     </Compile>
-    <Compile Include="OpenGLObjects\ColorCodedPicking\GeometryType.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\GeometryTypeHelper.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\IColorCodedPicking.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\IColorCodedPickingHelper.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\IPickedGeometry.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\PickedGeometry.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\PickingShaderHelper.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\PrimitiveModesHelper.cs" />
-    <Compile Include="OpenGLObjects\ColorCodedPicking\SharedStageInfo.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\GeometryType.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\GeometryTypeHelper.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\IColorCodedPicking.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\IColorCodedPickingHelper.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\IPickedGeometry.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\PickedGeometry.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\PickingShaderHelper.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\PrimitiveModesHelper.cs" />
+    <Compile Include="PickableRenderer\ColorCodedPicking\SharedStageInfo.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PointSpriteSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PolygonModeSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PrimitiveRestartSwitch.cs" />
@@ -389,10 +389,10 @@
   <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="IBufferables\TeapotModel.obj" />
-    <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Highlight.vert" />
-    <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Highlight.frag" />
+    <EmbeddedResource Include="PickableRenderer\ColorCodedPicking\Highlight.vert" />
+    <EmbeddedResource Include="PickableRenderer\ColorCodedPicking\Highlight.frag" />
     <None Include="OpenGLObjects\ModernRendering\Renderers.cd" />
-    <None Include="OpenGLObjects\ColorCodedPicking\ColorCodedPicking.cd" />
+    <None Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.cd" />
     <EmbeddedResource Include="Controls\GLCanvas.resx">
       <DependentUpon>GLCanvas.cs</DependentUpon>
     </EmbeddedResource>
@@ -411,8 +411,8 @@
     <EmbeddedResource Include="UITypeEditors\FormGLSwtichType.resx">
       <DependentUpon>FormGLSwtichType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Picking.frag" />
-    <EmbeddedResource Include="OpenGLObjects\ColorCodedPicking\Picking.vert" />
+    <EmbeddedResource Include="PickableRenderer\ColorCodedPicking\Picking.frag" />
+    <EmbeddedResource Include="PickableRenderer\ColorCodedPicking\Picking.vert" />
     <None Include="OpenGLObjects\VertexBuffers\Buffer.cd" />
     <None Include="OpenGLObjects\VertexBuffers\BufferPtr.cd" />
   </ItemGroup>

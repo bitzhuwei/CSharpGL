@@ -27,9 +27,18 @@ namespace CSharpGL
 
         private FontResource()
         {
-            this.FontBitmap = ManifestResourceLoader.LoadBitmap("LucidaTypewriterRegular.ttf.png");
+            var textureIds = new uint[1];
+            GL.GenTextures(1, textureIds);
+            GL.BindTexture(GL.GL_TEXTURE_2D, textureIds[0]);
+            GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 256, 256);
+            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+            var texture = new sampler2D();
+            var bitmap = ManifestResourceLoader.LoadBitmap(@"GlyphTextures\LucidaTypewriterRegular.ttf.png");
+            texture.Initialize(bitmap);
+            bitmap.Dispose();
+            this.FontTextureId = textureIds[0];
 
-            string xmlContent = ManifestResourceLoader.LoadTextFile("LucidaTypewriterRegular.ttf.xml");
+            string xmlContent = ManifestResourceLoader.LoadTextFile(@"GlyphTextures\LucidaTypewriterRegular.ttf.xml");
             XElement xElement = XElement.Parse(xmlContent, LoadOptions.None);
             this.FontHeight = int.Parse(xElement.Attribute(strFontHeight).Value);
             this.FirstChar = (char)int.Parse(xElement.Attribute(strFirstChar).Value);
@@ -53,10 +62,15 @@ namespace CSharpGL
         /// </summary>
         public char LastChar { get; set; }
 
+        ///// <summary>
+        ///// 含有各个字形的贴图。
+        ///// </summary>
+        //private System.Drawing.Bitmap FontBitmap;
+
         /// <summary>
-        /// 含有各个字形的贴图。
+        ///// 含有各个字形的贴图的Id。
         /// </summary>
-        public System.Drawing.Bitmap FontBitmap { get; private set; }
+        public uint FontTextureId { get; set; }
 
         /// <summary>
         /// 记录每个字符在<see cref="FontBitmap"/>里的偏移量及其字形的宽高。
@@ -91,13 +105,8 @@ namespace CSharpGL
                 //Managed cleanup code here, while managed refs still valid
             }
             //Unmanaged cleanup code here
-            System.Drawing.Bitmap bmp = this.FontBitmap;
-            if (bmp != null)
-            {
-                this.FontBitmap = null;
-                //this.CharInfoDict.Clear();
-                bmp.Dispose();
-            }
+            var ids = new uint[] { FontTextureId, };
+            GL.DeleteTextures(ids.Length, ids);
 
             disposed = true;
         }
