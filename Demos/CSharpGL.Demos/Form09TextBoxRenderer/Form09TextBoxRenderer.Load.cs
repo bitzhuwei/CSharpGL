@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
                         new Padding(26, 26, 26, 26),
                         new Size(50, 50));
                 renderer.Initialize();
-                renderer.SetText("CSharpGL2.0");
+                renderer.SetText("CSharpGL");
                 this.renderer = renderer;
             }
             {
