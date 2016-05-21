@@ -1,5 +1,4 @@
-﻿using CSharpGL.Windows;
-namespace CSharpGL.Demos
+﻿namespace CSharpGL.Demos
 {
     partial class Form00GLCanvas
     {
@@ -30,7 +29,7 @@ namespace CSharpGL.Demos
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.glCanvas1 = new CSharpGL.Windows.GLCanvas();
+            this.glCanvas1 = new CSharpGL.GLCanvas();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,8 +41,8 @@ namespace CSharpGL.Demos
             this.glCanvas1.Location = new System.Drawing.Point(13, 13);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.glCanvas1.Name = "glCanvas1";
-            this.glCanvas1.OpenGLVersion = CSharpGL.Windows.GLVersion.OpenGL2_1;
-            this.glCanvas1.RenderTrigger = CSharpGL.Windows.RenderTriggers.TimerBased;
+            this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
+            this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(705, 508);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.OpenGLDraw += new System.EventHandler<System.Windows.Forms.PaintEventArgs>(this.glCanvas1_OpenGLDraw);

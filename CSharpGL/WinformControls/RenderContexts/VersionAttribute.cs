@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Windows
+namespace CSharpGL
 {
     /// <summary>
     /// Allows a version to be specified as metadata on a field.

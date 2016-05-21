@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Windows
+namespace CSharpGL
 {
     public class HiddenWindowRenderContext : RenderContext
     {

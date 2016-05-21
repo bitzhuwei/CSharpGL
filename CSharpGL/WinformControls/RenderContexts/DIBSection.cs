@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace CSharpGL.Windows
+namespace CSharpGL
 {
     /// <summary>
     /// device-independent bitmap

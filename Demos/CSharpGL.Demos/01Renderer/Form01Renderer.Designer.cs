@@ -1,5 +1,4 @@
-﻿using CSharpGL.Windows;
-namespace CSharpGL.Demos
+﻿namespace CSharpGL.Demos
 {
     partial class Form01Renderer
     {
@@ -32,7 +31,7 @@ namespace CSharpGL.Demos
             this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.lblReadColor = new System.Windows.Forms.Label();
             this.lblColor = new System.Windows.Forms.Label();
-            this.glCanvas1 = new CSharpGL.Windows.GLCanvas();
+            this.glCanvas1 = new CSharpGL.GLCanvas();
             this.lblDrawText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
@@ -71,8 +70,8 @@ namespace CSharpGL.Demos
             this.glCanvas1.Location = new System.Drawing.Point(13, 56);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.glCanvas1.Name = "glCanvas1";
-            this.glCanvas1.OpenGLVersion = CSharpGL.Windows.GLVersion.OpenGL2_1;
-            this.glCanvas1.RenderTrigger = CSharpGL.Windows.RenderTriggers.TimerBased;
+            this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
+            this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(720, 416);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.glCanvas1_KeyDown);

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Windows
+namespace CSharpGL
 {
     public static class GLCanvasHelper
     {

@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Controls\GLCanvas.ico" />
+    <Content Include="WinformControls\GLCanvas.ico" />
     <EmbeddedResource Include="GlyphTextures\LucidaTypewriterRegular.ttf.png" />
     <EmbeddedResource Include="GlyphTextures\LucidaTypewriterRegular.ttf.xml" />
     <Content Include="GlyphTextures\readme.txt" />
@@ -74,19 +74,20 @@
     <Content Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripAdjacencySearcher.jpg" />
     <Content Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.jpg" />
     <Content Include="OpenGLObjects\GLSwitches\readme.txt" />
-    <Content Include="OpenGLObjects\RenderContexts\readme.txt" />
+    <Content Include="WinformControls\RenderContexts\readme.txt" />
     <Content Include="DummyUILayout\readme.txt" />
     <Content Include="OpenGLObjects\UniformVariables\readme.txt" />
     <Content Include="OpenGLObjects\VertexBuffers\readme.txt" />
     <Content Include="readme.txt" />
-    <Compile Include="Controls\GLCanvas.cs">
+    <Compile Include="UILayout\GLControls\GLLabel.cs" />
+    <Compile Include="WinformControls\GLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\GLCanvas.Designer.cs">
+    <Compile Include="WinformControls\GLCanvas.Designer.cs">
       <DependentUpon>GLCanvas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\GLCanvasHelper.cs" />
-    <Compile Include="Controls\RenderTriggers.cs" />
+    <Compile Include="WinformControls\GLCanvasHelper.cs" />
+    <Compile Include="WinformControls\RenderTriggers.cs" />
     <Compile Include="GlyphTextures\CharacterInfo.cs" />
     <Compile Include="GlyphTextures\CharacterInfoDictHelper.cs" />
     <Compile Include="GlyphTextures\CharacterInfoHelper.cs" />
@@ -309,12 +310,12 @@
     <Compile Include="OpenGLObjects\Cameras\SatelliteRotator.cs" />
     <Compile Include="OpenGLObjects\Cameras\ViewTypes.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\IRenderable.cs" />
-    <Compile Include="OpenGLObjects\RenderContexts\DIBSection.cs" />
-    <Compile Include="OpenGLObjects\RenderContexts\FBORenderContext.cs" />
-    <Compile Include="OpenGLObjects\RenderContexts\GLVersion.cs" />
-    <Compile Include="OpenGLObjects\RenderContexts\HiddenWindowRenderContext.cs" />
-    <Compile Include="OpenGLObjects\RenderContexts\RenderContext.cs" />
-    <Compile Include="OpenGLObjects\RenderContexts\VersionAttribute.cs" />
+    <Compile Include="WinformControls\RenderContexts\DIBSection.cs" />
+    <Compile Include="WinformControls\RenderContexts\FBORenderContext.cs" />
+    <Compile Include="WinformControls\RenderContexts\GLVersion.cs" />
+    <Compile Include="WinformControls\RenderContexts\HiddenWindowRenderContext.cs" />
+    <Compile Include="WinformControls\RenderContexts\RenderContext.cs" />
+    <Compile Include="WinformControls\RenderContexts\VersionAttribute.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\RendererBase.cs" />
     <Compile Include="OpenGLObjects\Shaders\Shader.cs" />
     <Compile Include="OpenGLObjects\Shaders\ShaderCompilationException.cs" />
@@ -395,7 +396,7 @@
     <EmbeddedResource Include="HighlightRenderer\Highlight.frag" />
     <None Include="OpenGLObjects\ModernRendering\Renderers.cd" />
     <None Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.cd" />
-    <EmbeddedResource Include="Controls\GLCanvas.resx">
+    <EmbeddedResource Include="WinformControls\GLCanvas.resx">
       <DependentUpon>GLCanvas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UITypeEditors\FormRendererBaseEditor.resx">

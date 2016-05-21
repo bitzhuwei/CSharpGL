@@ -1,4 +1,4 @@
-﻿namespace CSharpGL.Windows
+﻿namespace CSharpGL
 {
     partial class GLCanvas
     {

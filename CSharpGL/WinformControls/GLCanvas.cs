@@ -11,7 +11,7 @@ using System.Threading;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 
-namespace CSharpGL.Windows
+namespace CSharpGL
 {
     /// <summary>
     /// 可执行OpenGL渲染的控件。
