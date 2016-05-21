@@ -27,11 +27,11 @@ namespace CSharpGL
         /// <summary>
         /// 相对于<see cref="Container"/>左下角的位置(Left Down location)
         /// </summary>
-        protected System.Drawing.Point realLocation;
+        protected System.Drawing.Point realLocation = new System.Drawing.Point();
         /// <summary>
         /// 实际大小
         /// </summary>
-        protected System.Drawing.Size realSize;
+        protected System.Drawing.Size realSize = new System.Drawing.Size();
 
         public GLControl(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
