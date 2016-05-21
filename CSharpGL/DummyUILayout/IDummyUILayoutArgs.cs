@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// pass viewport and UI's rect information.
     /// </summary>
-    public class IUILayoutArgs
+    public class IDummyUILayoutArgs
     {
         /// <summary>
         /// viewport's width.

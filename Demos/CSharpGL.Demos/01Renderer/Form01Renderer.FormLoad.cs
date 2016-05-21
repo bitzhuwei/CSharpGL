@@ -13,7 +13,7 @@ namespace CSharpGL.Demos
 {
     public partial class Form01Renderer : Form
     {
-        private UIRenderer uiRenderer;
+        private DummyUIRenderer uiRenderer;
         private FormIndexBufferPtrBoard frmIndexBufferPtrBoard;
 
         private void Form01Renderer_Load(object sender, EventArgs e)
@@ -209,7 +209,7 @@ namespace CSharpGL.Demos
                             pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
                         }
                     }
-                    var uiRenderer = new UIRenderer(
+                    var uiRenderer = new DummyUIRenderer(
                         pickableRenderer,
                         AnchorStyles.Left | AnchorStyles.Bottom,
                         new Padding(26, 26, 26, 26),

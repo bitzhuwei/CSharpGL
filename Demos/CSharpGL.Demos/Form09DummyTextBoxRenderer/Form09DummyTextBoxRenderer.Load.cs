@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
     public partial class Form09DummyTextBoxRenderer : Form
     {
         private FormProperyGrid formPropertyGrid;
-        private UIRenderer uiRenderer;
+        private DummyUIRenderer uiRenderer;
 
 
         private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace CSharpGL.Demos
                         pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
                     }
                 }
-                var uiRenderer = new UIRenderer(
+                var uiRenderer = new DummyUIRenderer(
                     pickableRenderer,
                     AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(26, 26, 26, 26),

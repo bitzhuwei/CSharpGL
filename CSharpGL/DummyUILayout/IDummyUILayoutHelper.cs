@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
-    public static class IUILayoutHelper
+    public static class IDummyUILayoutHelper
     {
         /// <summary>
         /// 获取此UI元素的投影矩阵、视图矩阵和模型矩阵
@@ -18,11 +18,11 @@ namespace CSharpGL
         /// <param name="modelMatrix"></param>
         /// <param name="camera">如果为null，会以glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0))计算默认值。</param>
         /// <param name="maxDepth">UI元素的外接球半径的倍数。</param>
-        public static void GetMatrix(this IUILayout uiElement,
+        public static void GetMatrix(this IDummyUILayout uiElement,
             out mat4 projectionMatrix, out mat4 viewMatrix, out mat4 modelMatrix,
             IViewCamera camera = null, float maxDepth = 2.0f)
         {
-            IUILayoutArgs args = uiElement.GetArgs();
+            IDummyUILayoutArgs args = uiElement.GetArgs();
             float max = (float)Math.Max(args.UIWidth, args.UIHeight);
 
             {
@@ -127,9 +127,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="uiElement"></param>
         /// <returns></returns>
-        public static IUILayoutArgs GetArgs(this IUILayout uiElement)
+        public static IDummyUILayoutArgs GetArgs(this IDummyUILayout uiElement)
         {
-            var args = new IUILayoutArgs();
+            var args = new IDummyUILayoutArgs();
 
             CalculateViewport(args);
 
@@ -142,7 +142,7 @@ namespace CSharpGL
         /// 计算opengl画布的大小。
         /// </summary>
         /// <param name="args"></param>
-        static void CalculateViewport(IUILayoutArgs args)
+        static void CalculateViewport(IDummyUILayoutArgs args)
         {
             int[] viewport = new int[4];
             GL.GetInteger(GetTarget.Viewport, viewport);
@@ -157,7 +157,7 @@ namespace CSharpGL
         /// <param name="viewportWidth"></param>
         /// <param name="viewportHeight"></param>
         /// <param name="args"></param>
-        static void CalculateCoords(IUILayout uiElement, int viewportWidth, int viewportHeight, IUILayoutArgs args)
+        static void CalculateCoords(IDummyUILayout uiElement, int viewportWidth, int viewportHeight, IDummyUILayoutArgs args)
         {
             if ((uiElement.Anchor & leftRightAnchor) == leftRightAnchor)
             {

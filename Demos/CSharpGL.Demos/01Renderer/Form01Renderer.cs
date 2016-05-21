@@ -153,7 +153,7 @@ namespace CSharpGL.Demos
 
         private void UIRenderersDraw(RenderEventArgs arg)
         {
-            UIRenderer uiRenderer = this.uiRenderer;
+            DummyUIRenderer uiRenderer = this.uiRenderer;
             if (uiRenderer != null)
             {
 

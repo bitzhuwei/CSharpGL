@@ -11,7 +11,7 @@ namespace CSharpGL.Demos
     /// <summary>
     /// 不要用这个，因为DrawText会带来意想不到的“惊喜”
     /// </summary>
-    class UIAxisRenderer : UIRenderer
+    class UIAxisRenderer : DummyUIRenderer
     {
 
         /// <summary>

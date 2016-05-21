@@ -11,7 +11,7 @@ namespace CSharpGL
     /// <summary>
     /// 支持UI布局的渲染器
     /// </summary>
-    public partial class UIRenderer : RendererBase, IUILayout
+    public partial class DummyUIRenderer : RendererBase, IDummyUILayout
     {
         protected Renderer renderer;
 
@@ -29,7 +29,7 @@ namespace CSharpGL
         /// <param name="Size">UI大小</param>
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
-        public UIRenderer(
+        public DummyUIRenderer(
             Renderer modernRenderer,
             System.Windows.Forms.AnchorStyles Anchor,
             System.Windows.Forms.Padding Margin,

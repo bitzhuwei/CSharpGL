@@ -75,7 +75,7 @@
     <Content Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.jpg" />
     <Content Include="OpenGLObjects\GLSwitches\readme.txt" />
     <Content Include="OpenGLObjects\RenderContexts\readme.txt" />
-    <Content Include="OpenGLObjects\UILayout\readme.txt" />
+    <Content Include="DummyUILayout\readme.txt" />
     <Content Include="OpenGLObjects\UniformVariables\readme.txt" />
     <Content Include="OpenGLObjects\VertexBuffers\readme.txt" />
     <Content Include="readme.txt" />
@@ -179,13 +179,13 @@
     <Compile Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineSearcher.cs" />
     <Compile Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTrianglesSearcher.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\BlendSwitch.cs" />
-    <Compile Include="OpenGLObjects\UILayout\IUILayout.cs" />
-    <Compile Include="OpenGLObjects\UILayout\IUILayoutArgs.cs" />
-    <Compile Include="OpenGLObjects\UILayout\IUILayoutHelper.cs" />
+    <Compile Include="DummyUILayout\IDummyUILayout.cs" />
+    <Compile Include="DummyUILayout\IDummyUILayoutArgs.cs" />
+    <Compile Include="DummyUILayout\IDummyUILayoutHelper.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\LineWidthSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PointSizeSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PolygonOffsetSwitch.cs" />
-    <Compile Include="OpenGLObjects\UILayout\UIRenderer.cs" />
+    <Compile Include="DummyUILayout\DummyUIRenderer.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformBool.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSampler2D.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformFloat.cs" />
@@ -384,7 +384,9 @@
     <Compile Include="Utilities\UnmanagedArrayFastAccessHelper.cs" />
     <Compile Include="Utilities\UnmanagedArrayHelper.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UILayout\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="IBufferables\TeapotModel.obj" />
     <EmbeddedResource Include="HighlightRenderer\Highlight.vert" />

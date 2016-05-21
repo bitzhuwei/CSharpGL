@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// 实现在OpenGL窗口中的UI布局
     /// </summary>
-    public interface IUILayout
+    public interface IDummyUILayout
     {
 
         /// <summary>
