@@ -225,6 +225,9 @@
     <Compile Include="TypeConverters\Vec4TypeConverter.cs" />
     <Compile Include="TypeConverters\Vec3TypeConverter.cs" />
     <Compile Include="TypeConverters\Vec2TypeConverter.cs" />
+    <Compile Include="UILayout\GLContainer.cs" />
+    <Compile Include="UILayout\GLControl.cs" />
+    <Compile Include="UILayout\IUILayout.cs" />
     <Compile Include="UITypeEditors\FormRendererBaseEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -384,9 +387,7 @@
     <Compile Include="Utilities\UnmanagedArrayFastAccessHelper.cs" />
     <Compile Include="Utilities\UnmanagedArrayHelper.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UILayout\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="IBufferables\TeapotModel.obj" />
     <EmbeddedResource Include="HighlightRenderer\Highlight.vert" />
