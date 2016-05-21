@@ -12,7 +12,7 @@ namespace CSharpGL
     /// </summary>
     public interface IUILayout
     {
-        public GLContainer Container { get; set; }
+        GLContainer Container { get; set; }
 
         /// <summary>
         /// the edges of the <see cref="GLCanvas"/> to which a UI’s rect is bound and determines how it is resized with its parent.

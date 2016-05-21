@@ -13,7 +13,10 @@ namespace CSharpGL
     {
         public List<GLControl> Controls { get; private set; }
 
-        public GLContainer()
+        public GLContainer(
+            System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
+            System.Drawing.Size size, int zNear, int zFar)
+            : base(anchor, margin, size, zNear, zFar)
         {
             this.Controls = new List<GLControl>();
         }

@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// 像Winform窗口里的控件一样的控件。
     /// </summary>
-    public abstract class GLControl : IUILayout
+    public class GLControl : IUILayout
     {
         public GLContainer Container { get; set; }
 
@@ -19,8 +19,26 @@ namespace CSharpGL
 
         public System.Drawing.Size Size { get; set; }
 
+        protected System.Drawing.Size realSize;
+
         public int zNear { get; set; }
 
         public int zFar { get; set; }
+
+        public GLControl(
+            System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
+            System.Drawing.Size size, int zNear, int zFar)
+        {
+            this.Anchor = anchor; this.Margin = margin;
+            this.Size = size; this.zNear = zNear; this.zFar = zFar;
+            this.realSize = size;
+        }
+
+
+        public virtual void Layout()
+        {
+            if (this.Container == null) { return; }
+
+        }
     }
 }
