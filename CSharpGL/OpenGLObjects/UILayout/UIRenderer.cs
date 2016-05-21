@@ -23,7 +23,7 @@ namespace CSharpGL
         /// <summary>
         /// 支持UI布局的渲染器
         /// </summary>
-        /// <param name="modernRenderer">要渲染的对象</param>
+        /// <param name="modernRenderer">要渲染的对象，确保其顶点范围在(-1, -1, -1)和(1, 1, 1)之间。</param>
         /// <param name="Anchor">绑定到窗口的哪些边？</param>
         /// <param name="Margin">到绑定边的距离</param>
         /// <param name="Size">UI大小</param>
