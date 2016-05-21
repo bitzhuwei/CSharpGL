@@ -225,6 +225,7 @@
     <Compile Include="TypeConverters\Vec4TypeConverter.cs" />
     <Compile Include="TypeConverters\Vec3TypeConverter.cs" />
     <Compile Include="TypeConverters\Vec2TypeConverter.cs" />
+    <Compile Include="UILayout\GLControlCollection.cs" />
     <Compile Include="UILayout\GLContainer.cs" />
     <Compile Include="UILayout\GLControl.cs" />
     <Compile Include="UILayout\IUILayout.cs" />

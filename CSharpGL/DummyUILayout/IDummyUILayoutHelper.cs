@@ -200,7 +200,6 @@ namespace CSharpGL
 
             if ((uiElement.Anchor & topBottomAnchor) == AnchorStyles.None)
             {
-                args.bottom = -viewportHeight / 2;
                 args.bottom = -(args.UIHeight / 2
                     + (viewportHeight - args.UIHeight)
                         * ((double)uiElement.Margin.Bottom / (double)(uiElement.Margin.Bottom + uiElement.Margin.Top)));

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CSharpGL.UILayout;
 
 namespace CSharpGL
 {
@@ -11,14 +12,24 @@ namespace CSharpGL
     /// </summary>
     public abstract class GLContainer : GLControl
     {
-        public List<GLControl> Controls { get; private set; }
+        public GLControlCollection Controls { get; private set; }
 
         public GLContainer(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
             : base(anchor, margin, size, zNear, zFar)
         {
-            this.Controls = new List<GLControl>();
+            this.Controls = new GLControlCollection(this);
+        }
+
+        protected override void NonRootNodeLayout(GLContainer container)
+        {
+            base.NonRootNodeLayout(container);
+
+            foreach (var control in this.Controls)
+            {
+                control.Layout();
+            }
         }
     }
 }
