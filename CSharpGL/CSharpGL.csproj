@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="WinformControls\GLCanvas.ico" />
+    <EmbeddedResource Include="WinformControls\GLCanvas.ico" />
     <EmbeddedResource Include="GlyphTextures\LucidaTypewriterRegular.ttf.png" />
     <EmbeddedResource Include="GlyphTextures\LucidaTypewriterRegular.ttf.xml" />
     <Content Include="GlyphTextures\readme.txt" />

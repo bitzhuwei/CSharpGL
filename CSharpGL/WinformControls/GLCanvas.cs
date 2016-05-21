@@ -16,8 +16,10 @@ namespace CSharpGL
     /// <summary>
     /// 可执行OpenGL渲染的控件。
     /// </summary>
-    [ToolboxBitmap(typeof(GLCanvas), "GLCanvas.ico")]
+    [DefaultProperty("Text")]
     [DefaultEvent("OpenGLDraw")]
+    [Description("A canvas for OpenGL rendering.")]
+    [ToolboxBitmap(typeof(GLCanvas), @"CSharpGL.WinformControls.GLCanvas.ico")]
     public partial class GLCanvas : UserControl, ISupportInitialize
     {
         private Stopwatch stopWatch = new Stopwatch();
