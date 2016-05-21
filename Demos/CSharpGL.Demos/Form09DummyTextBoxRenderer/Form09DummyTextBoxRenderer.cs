@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form09TextBoxRenderer : Form
+    public partial class Form09DummyTextBoxRenderer : Form
     {
 
         private Camera camera;
@@ -18,7 +18,7 @@ namespace CSharpGL.Demos
         private DummyTextBoxRenderer renderer;
 
 
-        public Form09TextBoxRenderer()
+        public Form09DummyTextBoxRenderer()
         {
             InitializeComponent();
 
@@ -49,17 +49,24 @@ namespace CSharpGL.Demos
                     this.uiRenderer.Render(arg);
                 }
 
-                if (this.useUILayout)
+                switch (this.layoutType)
                 {
-                    this.renderer.GetMatrix(out projection, out view, out model, arg.Camera);
-                    this.renderer.SetUniformValue("mvp", projection * view * model);
-                }
-                else
-                {
-                    projection = arg.Camera.GetProjectionMat4();
-                    view = arg.Camera.GetViewMat4();
-                    model = mat4.identity();
-                    this.renderer.SetUniformValue("mvp", projection * view * model);
+                    case LayoutType.UILayout:
+                        this.renderer.GetMatrix(out projection, out view, out model);
+                        this.renderer.SetUniformValue("mvp", projection * view * model);
+                        break;
+                    case LayoutType.CameraUILayout:
+                        this.renderer.GetMatrix(out projection, out view, out model, arg.Camera);
+                        this.renderer.SetUniformValue("mvp", projection * view * model);
+                        break;
+                    case LayoutType.MVPLayout:
+                        projection = arg.Camera.GetProjectionMat4();
+                        view = arg.Camera.GetViewMat4();
+                        model = mat4.identity();
+                        this.renderer.SetUniformValue("mvp", projection * view * model);
+                        break;
+                    default:
+                        throw new NotImplementedException();
                 }
 
                 renderer.Render(arg);
@@ -75,7 +82,7 @@ namespace CSharpGL.Demos
         private const float crossCursorSize = 40.0f;
 
         private Point offset = new Point(13, 11);
-        private bool useUILayout;
+        private LayoutType layoutType;
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -98,9 +105,29 @@ namespace CSharpGL.Demos
         {
             if (e.KeyChar == 'c')
             {
-                this.useUILayout = !this.useUILayout;
+                switch (this.layoutType)
+                {
+                    case LayoutType.UILayout:
+                        this.layoutType = LayoutType.CameraUILayout;
+                        break;
+                    case LayoutType.CameraUILayout:
+                        this.layoutType = LayoutType.MVPLayout;
+                        break;
+                    case LayoutType.MVPLayout:
+                        this.layoutType = LayoutType.UILayout;
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
             }
         }
 
+    }
+
+    enum LayoutType
+    {
+        UILayout,
+        CameraUILayout,
+        MVPLayout,
     }
 }

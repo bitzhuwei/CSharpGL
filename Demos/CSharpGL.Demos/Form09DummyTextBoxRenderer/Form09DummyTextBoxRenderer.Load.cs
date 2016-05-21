@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form09TextBoxRenderer : Form
+    public partial class Form09DummyTextBoxRenderer : Form
     {
         private FormProperyGrid formPropertyGrid;
         private UIRenderer uiRenderer;
@@ -31,7 +31,7 @@ namespace CSharpGL.Demos
             {
                 var renderer = new DummyTextBoxRenderer(
                      AnchorStyles.Left | AnchorStyles.Top,
-                        new Padding(26, 26, 26, 26),
+                        new Padding(100, 26, 26, 26),
                         new Size(50, 50));
                 renderer.Initialize();
                 renderer.SetText("CSharpGL");

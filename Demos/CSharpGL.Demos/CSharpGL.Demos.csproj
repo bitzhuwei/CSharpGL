@@ -148,17 +148,17 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form07Billboard\BillboardRenderer.cs" />
-    <Compile Include="Form09TextBoxRenderer\DummyTextBoxRenderer.cs" />
-    <Compile Include="Form09TextBoxRenderer\Form09TextBoxRenderer.cs">
+    <Compile Include="Form09DummyTextBoxRenderer\DummyTextBoxRenderer.cs" />
+    <Compile Include="Form09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form09TextBoxRenderer\Form09TextBoxRenderer.Designer.cs">
-      <DependentUpon>Form09TextBoxRenderer.cs</DependentUpon>
+    <Compile Include="Form09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.Designer.cs">
+      <DependentUpon>Form09DummyTextBoxRenderer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form09TextBoxRenderer\Form09TextBoxRenderer.Load.cs">
+    <Compile Include="Form09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form09TextBoxRenderer\Form09TextBoxRenderer.MouseDownMoveUp.cs">
+    <Compile Include="Form09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBulletinBoard.cs">
@@ -282,8 +282,8 @@
     <EmbeddedResource Include="Form07Billboard\Form07Billboard.resx">
       <DependentUpon>Form07Billboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form09TextBoxRenderer\Form09TextBoxRenderer.resx">
-      <DependentUpon>Form09TextBoxRenderer.cs</DependentUpon>
+    <EmbeddedResource Include="Form09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.resx">
+      <DependentUpon>Form09DummyTextBoxRenderer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBulletinBoard.resx">
       <DependentUpon>FormBulletinBoard.cs</DependentUpon>
@@ -319,10 +319,10 @@
     <None Include="Form07Billboard\Billboard.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form09TextBoxRenderer\TexBox.frag">
+    <None Include="Form09DummyTextBoxRenderer\TexBox.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form09TextBoxRenderer\TexBox.vert">
+    <None Include="Form09DummyTextBoxRenderer\TexBox.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">

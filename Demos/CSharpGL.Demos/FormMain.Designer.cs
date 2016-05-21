@@ -152,9 +152,9 @@
             this.btnForm09TextBoxRenderer.Name = "btnForm09TextBoxRenderer";
             this.btnForm09TextBoxRenderer.Size = new System.Drawing.Size(767, 37);
             this.btnForm09TextBoxRenderer.TabIndex = 0;
-            this.btnForm09TextBoxRenderer.Text = "Form09 TextBoxRenderer";
+            this.btnForm09TextBoxRenderer.Text = "Form09 DummyTextBoxRenderer";
             this.btnForm09TextBoxRenderer.UseVisualStyleBackColor = true;
-            this.btnForm09TextBoxRenderer.Click += new System.EventHandler(this.btnForm09TextBoxRenderer_Click);
+            this.btnForm09TextBoxRenderer.Click += new System.EventHandler(this.btnForm09DummyTextBoxRenderer_Click);
             // 
             // FormMain
             // 
