@@ -6,6 +6,9 @@ using System.Text;
 
 namespace CSharpGL.UILayout
 {
+    /// <summary>
+    /// 用<see cref="Add(item)"/>时自动实现双向绑定。
+    /// </summary>
     public class GLControlCollection : ICollection<GLControl>
     {
         private GLContainer container;

@@ -139,7 +139,7 @@ namespace CSharpGL
 
         protected void RootNodeLayout()
         {
-            this.realLocation = new System.Drawing.Point();
+            this.realLocation = new System.Drawing.Point(0, 0);
             this.realSize = this.Size;
         }
     }
