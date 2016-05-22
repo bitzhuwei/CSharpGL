@@ -7,36 +7,34 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public class GLAxis : GLControl, IRenderable
+    public class GLAxis : UIRenderer
     {
+        //private PickableRenderer renderer;
+
         public GLAxis(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
-            : base(anchor, margin, size, zNear, zFar)
+            : base(null, anchor, margin, size, zNear, zFar)
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"UILayout\GLControls.vert"), ShaderType.VertexShader);
+@"UILayout.GLControls.GLAxis.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"UILayout\GLControls.frag"), ShaderType.FragmentShader);
+@"UILayout.GLControls.GLAxis.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("in_Position", "position");
             map.Add("in_Color", "color");
-            this.Renderer = (new Axis()).GetRenderer(shaderCodes, map, "position");
-            this.Renderer.Name = "GLAxis";
-            this.Renderer.Initialize();
+            PickableRenderer renderer = (new Axis()).GetRenderer(shaderCodes, map, "position");
+            renderer.Name = "GLAxis";
             {
-                if (this.Renderer is OneIndexRenderer)
+                if (renderer is OneIndexRenderer)
                 {
-                    GLSwitch glSwitch = new PrimitiveRestartSwitch((this.Renderer as OneIndexRenderer).IndexBufferPtr);
-                    this.Renderer.SwitchList.Add(glSwitch);
+                    GLSwitch glSwitch = new PrimitiveRestartSwitch((renderer as OneIndexRenderer).IndexBufferPtr);
+                    renderer.SwitchList.Add(glSwitch);
                 }
             }
+            this.renderer = renderer;
         }
 
-        public void Render(RenderEventArgs arg)
-        {
-            this.Renderer.Render(arg);
-        }
     }
 }

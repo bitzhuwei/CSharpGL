@@ -10,9 +10,17 @@ namespace CSharpGL
     /// <summary>
     /// 实现在OpenGL窗口中的UI布局
     /// </summary>
-    public interface IUILayout
+    public interface ILayout
     {
-        GLContainer Container { get; }
+        /// <summary>
+        /// parent node
+        /// </summary>
+        ILayout Container { get; set; }
+
+        /// <summary>
+        /// children nodes
+        /// </summary>
+        ICollection<ILayout> Controls { get; }
 
         /// <summary>
         /// the edges of the <see cref="GLCanvas"/> to which a UI’s rect is bound and determines how it is resized with its parent.
@@ -24,6 +32,11 @@ namespace CSharpGL
         /// Gets or sets the space between viewport and SimpleRect.
         /// </summary>
         System.Windows.Forms.Padding Margin { get; set; }
+
+        /// <summary>
+        /// 相对于<see cref="Container"/>左下角的位置(Left Down location)
+        /// </summary>
+        System.Drawing.Point Location { get; set; }
 
         /// <summary>
         /// Stores width when <see cref="OpenGLUIRect.Anchor"/>.Left &amp; <see cref="OpenGLUIRect.Anchor"/>.Right is <see cref="OpenGLUIRect.Anchor"/>.None.

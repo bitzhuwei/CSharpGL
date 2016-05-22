@@ -23,16 +23,6 @@ namespace CSharpGL
         /// </summary>
         protected System.Drawing.Size realSize = new System.Drawing.Size();
 
-        public GLControl(
-            System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
-            System.Drawing.Size size, int zNear, int zFar)
-        {
-            this.Anchor = anchor; this.Margin = margin;
-            this.Size = size; this.zNear = zNear; this.zFar = zFar;
-            this.realSize = size;
-        }
-
-
         public virtual void Layout()
         {
             if (this.Container == null)
