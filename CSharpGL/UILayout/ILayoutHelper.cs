@@ -14,6 +14,14 @@ namespace CSharpGL
     /// </summary>
     public static class ILayoutHelper
     {
+        public static mat4 GetOrthoProjection(this ILayout uiRenderer)
+        {
+            return glm.ortho(
+                uiRenderer.Location.X, uiRenderer.Location.X + uiRenderer.Size.Width,
+                uiRenderer.Location.Y, uiRenderer.Location.Y + uiRenderer.Size.Height, 
+                uiRenderer.zNear, uiRenderer.zFar);
+        }
+
         /// <summary>
         /// 实现在OpenGL窗口中的UI布局
         /// </summary>
