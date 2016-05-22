@@ -13,20 +13,6 @@ namespace CSharpGL
     /// </summary>
     public partial class GLControl
     {
-        /// <summary>
-        /// parent node.
-        /// </summary>
-        public GLContainer Container { get; set; }
-
-        public System.Windows.Forms.AnchorStyles Anchor { get; set; }
-
-        public System.Windows.Forms.Padding Margin { get; set; }
-
-        public System.Drawing.Size Size { get; set; }
-
-        public int zNear { get; set; }
-
-        public int zFar { get; set; }
 
         /// <summary>
         /// 相对于<see cref="Container"/>左下角的位置(Left Down location)

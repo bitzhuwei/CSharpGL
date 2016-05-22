@@ -79,6 +79,7 @@
     <Content Include="OpenGLObjects\UniformVariables\readme.txt" />
     <Content Include="OpenGLObjects\VertexBuffers\readme.txt" />
     <Content Include="readme.txt" />
+    <Compile Include="UILayout\GLContainer.Layout.cs" />
     <Compile Include="UILayout\GLControl.Layout.cs" />
     <Compile Include="UILayout\GLControls\GLLabel.cs" />
     <Compile Include="WinformControls\GLCanvas.cs">

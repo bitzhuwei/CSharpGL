@@ -14,5 +14,20 @@ namespace CSharpGL
     {
 
         public Renderer Renderer { get; protected set; }
+
+        /// <summary>
+        /// parent node.
+        /// </summary>
+        public GLContainer Container { get; set; }
+
+        public System.Windows.Forms.AnchorStyles Anchor { get; set; }
+
+        public System.Windows.Forms.Padding Margin { get; set; }
+
+        public System.Drawing.Size Size { get; set; }
+
+        public int zNear { get; set; }
+
+        public int zFar { get; set; }
     }
 }
