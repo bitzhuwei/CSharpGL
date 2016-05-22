@@ -81,7 +81,7 @@
     <Content Include="readme.txt" />
     <Compile Include="UILayout\GLContainer.Layout.cs" />
     <Compile Include="UILayout\GLControl.Layout.cs" />
-    <Compile Include="UILayout\GLControls\GLLabel.cs" />
+    <Compile Include="UILayout\GLControls\GLAxis.cs" />
     <Compile Include="WinformControls\GLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -419,6 +419,12 @@
     <EmbeddedResource Include="PickableRenderer\ColorCodedPicking\Picking.vert" />
     <None Include="OpenGLObjects\VertexBuffers\Buffer.cd" />
     <None Include="OpenGLObjects\VertexBuffers\BufferPtr.cd" />
+    <None Include="UILayout\GLControls\GLAxis.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="UILayout\GLControls\GLAxis.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Maths\readme.txt" />
