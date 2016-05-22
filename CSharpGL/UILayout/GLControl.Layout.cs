@@ -56,7 +56,7 @@ namespace CSharpGL
         /// </summary>
         protected const AnchorStyles topBottomAnchor = (AnchorStyles.Top | AnchorStyles.Bottom);
 
-        protected void NonRootNodeLayout(GLContainer container)
+        private void NonRootNodeLayout(GLContainer container)
         {
             int x, y, width, height;
             if ((this.Anchor & leftRightAnchor) == leftRightAnchor)
@@ -127,7 +127,7 @@ namespace CSharpGL
             this.realSize.Height = height;
         }
 
-        protected void RootNodeLayout()
+        private void RootNodeLayout()
         {
             this.realLocation = new System.Drawing.Point(0, 0);
             this.realSize = this.Size;
