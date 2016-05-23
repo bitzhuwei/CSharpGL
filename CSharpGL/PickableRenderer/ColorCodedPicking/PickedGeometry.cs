@@ -53,7 +53,7 @@ namespace CSharpGL
             for (int i = 0; i < positions.Length; i++)
             {
                 var pos4 = new vec4(positions[i], 1);
-                var worldPos = new vec3(view * pos4);
+                var worldPos = view * pos4;
                 builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
                 builder.Append(worldPos);
                 builder.AppendLine();
@@ -63,9 +63,40 @@ namespace CSharpGL
             for (int i = 0; i < positions.Length; i++)
             {
                 var pos4 = new vec4(positions[i], 1);
-                var projectionPos = new vec3(projection * view * pos4);
+                var projectionPos = projection * view * pos4;
                 builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
                 builder.Append(projectionPos);
+                builder.AppendLine();
+            }
+            builder.Append("Positions in Normalized Space:");
+            builder.AppendLine();
+            for (int i = 0; i < positions.Length; i++)
+            {
+                var pos4 = new vec4(positions[i], 1);
+                var projectionPos = projection * view * pos4;
+                builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
+                vec3 normalizedPos = new vec3(projectionPos / projectionPos.w);
+                builder.Append(normalizedPos);
+                builder.AppendLine();
+            }
+            builder.Append("Positions in Screen Space:");
+            builder.AppendLine();
+            int x, y, width, height;
+            GL.GetViewport(out x, out y, out width, out height);
+            float near, far;
+            GL.GetDepthRange(out near, out far);
+            for (int i = 0; i < positions.Length; i++)
+            {
+                var pos4 = new vec4(positions[i], 1);
+                var projectionPos = projection * view * pos4;
+                builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
+                vec3 normalizedPos = new vec3(projectionPos / projectionPos.w);
+                vec3 screenPos = new vec3(
+                    normalizedPos.x * width / 2 + (x + width / 2),
+                    normalizedPos.y * height / 2 + (y + height / 2),
+                    normalizedPos.z * (far - near) / 2 + ((far + near) / 2)
+                    );
+                builder.Append(screenPos);
                 builder.AppendLine();
             }
 
