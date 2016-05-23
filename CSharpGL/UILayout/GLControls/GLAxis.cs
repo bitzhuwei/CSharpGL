@@ -26,14 +26,21 @@ namespace CSharpGL
             map.Add("in_Color", "color");
             PickableRenderer renderer = (new Axis()).GetRenderer(shaderCodes, map, "position");
             renderer.Name = "GLAxis";
+          
+            this.Renderer = renderer;
+        }
+
+        protected override void DoInitialize()
+        {
+            base.DoInitialize();
+
             {
-                if (renderer is OneIndexRenderer)
+                if (this.Renderer is OneIndexRenderer)
                 {
-                    GLSwitch glSwitch = new PrimitiveRestartSwitch((renderer as OneIndexRenderer).IndexBufferPtr);
-                    renderer.SwitchList.Add(glSwitch);
+                    GLSwitch glSwitch = new PrimitiveRestartSwitch((this.Renderer as OneIndexRenderer).IndexBufferPtr);
+                    this.Renderer.SwitchList.Add(glSwitch);
                 }
             }
-            this.renderer = renderer;
         }
 
     }
