@@ -44,39 +44,41 @@ namespace CSharpGL
             StringBuilder builder = BasicInfo();
             builder.AppendLine();
 
-            builder.Append("Positions in World Space:");
-            builder.AppendLine();
             vec3[] positions = this.Positions;
             if (positions == null) { positions = new vec3[0]; }
             uint[] indexes = this.Indexes;
+            var worldPos = new vec4[positions.Length];
+            var projectionPos = new vec4[positions.Length];
+            var normalizedPos = new vec3[positions.Length];
+            var screenPos = new vec3[positions.Length];
+
+            builder.Append("Positions in World Space:");
+            builder.AppendLine();
 
             for (int i = 0; i < positions.Length; i++)
             {
                 var pos4 = new vec4(positions[i], 1);
-                var worldPos = view * pos4;
+                worldPos[i] = view * pos4;
                 builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
-                builder.Append(worldPos);
+                builder.Append(worldPos[i]);
                 builder.AppendLine();
             }
             builder.Append("Positions in Projection Space:");
             builder.AppendLine();
             for (int i = 0; i < positions.Length; i++)
             {
-                var pos4 = new vec4(positions[i], 1);
-                var projectionPos = projection * view * pos4;
+                projectionPos[i] = projection * worldPos[i];
                 builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
-                builder.Append(projectionPos);
+                builder.Append(projectionPos[i]);
                 builder.AppendLine();
             }
             builder.Append("Positions in Normalized Space:");
             builder.AppendLine();
             for (int i = 0; i < positions.Length; i++)
             {
-                var pos4 = new vec4(positions[i], 1);
-                var projectionPos = projection * view * pos4;
                 builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
-                vec3 normalizedPos = new vec3(projectionPos / projectionPos.w);
-                builder.Append(normalizedPos);
+                normalizedPos[i] = new vec3(projectionPos[i] / projectionPos[i].w);
+                builder.Append(normalizedPos[i]);
                 builder.AppendLine();
             }
             builder.Append("Positions in Screen Space:");
@@ -87,14 +89,11 @@ namespace CSharpGL
             GL.GetDepthRange(out near, out far);
             for (int i = 0; i < positions.Length; i++)
             {
-                var pos4 = new vec4(positions[i], 1);
-                var projectionPos = projection * view * pos4;
                 builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
-                vec3 normalizedPos = new vec3(projectionPos / projectionPos.w);
-                vec3 screenPos = new vec3(
-                    normalizedPos.x * width / 2 + (x + width / 2),
-                    normalizedPos.y * height / 2 + (y + height / 2),
-                    normalizedPos.z * (far - near) / 2 + ((far + near) / 2)
+                screenPos[i] = new vec3(
+                    normalizedPos[i].x * width / 2 + (x + width / 2),
+                    normalizedPos[i].y * height / 2 + (y + height / 2),
+                    normalizedPos[i].z * (far - near) / 2 + ((far + near) / 2)
                     );
                 builder.Append(screenPos);
                 builder.AppendLine();
