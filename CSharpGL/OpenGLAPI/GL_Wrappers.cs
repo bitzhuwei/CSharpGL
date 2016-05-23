@@ -1473,6 +1473,14 @@ namespace CSharpGL
             width = viewport[2]; height = viewport[3];
         }
 
+        public static void GetDepthRange(out float near, out float far)
+        {
+            var depthRange = new float[2];
+            GL.GetFloat(GetTarget.DepthRange, depthRange);
+
+            near = depthRange[0]; far = depthRange[1];
+        }
+
         public static void LineWidthRange(out float min, out float max)
         {
             float[] lineWidthRange = new float[2];
