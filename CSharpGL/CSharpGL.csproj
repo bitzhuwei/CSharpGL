@@ -422,8 +422,8 @@
     <EmbeddedResource Include="PickableRenderer\ColorCodedPicking\Picking.vert" />
     <None Include="OpenGLObjects\VertexBuffers\Buffer.cd" />
     <None Include="OpenGLObjects\VertexBuffers\BufferPtr.cd" />
-    <None Include="UILayout\GLControls\GLAxis.frag" />
-    <None Include="UILayout\GLControls\GLAxis.vert" />
+    <EmbeddedResource Include="UILayout\GLControls\GLAxis.frag" />
+    <EmbeddedResource Include="UILayout\GLControls\GLAxis.vert" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Maths\readme.txt" />

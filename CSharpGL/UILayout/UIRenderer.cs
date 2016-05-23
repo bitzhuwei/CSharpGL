@@ -11,7 +11,13 @@ namespace CSharpGL
     /// </summary>
     public class UIRenderer : RendererBase, ILayout
     {
-        protected Renderer renderer;
+        Renderer renderer;
+
+        public Renderer Renderer
+        {
+            get { return renderer; }
+            set { renderer = value; }
+        }
 
         public UIRenderer(Renderer renderer,
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
@@ -67,6 +73,10 @@ namespace CSharpGL
             }
         }
 
-
+        public virtual vec3 MoveModel()
+        {
+            return new vec3(this.Location.X + this.Size.Width / 2,
+                this.Location.Y + this.Size.Height / 2, 0);
+        }
     }
 }
