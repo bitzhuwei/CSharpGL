@@ -15,6 +15,8 @@ namespace CSharpGL.Demos
     {
         private DummyUIRenderer uiRenderer;
         private FormIndexBufferPtrBoard frmIndexBufferPtrBoard;
+        private GLAxis glAxis;
+        private GLRoot uiRoot;
 
         private void Form01Renderer_Load(object sender, EventArgs e)
         {
@@ -234,6 +236,18 @@ namespace CSharpGL.Demos
                 //frmBulletinBoard.Dump = true;
                 frmBulletinBoard.Show();
                 this.pickedGeometryBoard = frmBulletinBoard;
+            }
+            {
+                var UIRoot = new GLRoot(this.glCanvas1.Size, -100, 100);
+                UIRoot.Initialize();
+                this.uiRoot = UIRoot;
+
+                var glAxis = new GLAxis(AnchorStyles.Left | AnchorStyles.Bottom,
+                    new Padding(26, 26, 26, 26), new Size(50, 50), -100, 100);
+                glAxis.Initialize();
+                this.glAxis = glAxis;
+
+                UIRoot.Controls.Add(glAxis);
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();

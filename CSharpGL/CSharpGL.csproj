@@ -79,6 +79,7 @@
     <Content Include="OpenGLObjects\UniformVariables\readme.txt" />
     <Content Include="OpenGLObjects\VertexBuffers\readme.txt" />
     <Content Include="readme.txt" />
+    <Compile Include="UILayout\GLControls\GLRoot.cs" />
     <Compile Include="UILayout\ILayoutHelper.cs" />
     <Compile Include="UILayout\ILayoutCollection.cs" />
     <Compile Include="UILayout\GLControls\GLAxis.cs">
@@ -424,6 +425,8 @@
     <None Include="OpenGLObjects\VertexBuffers\BufferPtr.cd" />
     <EmbeddedResource Include="UILayout\GLControls\GLAxis.frag" />
     <EmbeddedResource Include="UILayout\GLControls\GLAxis.vert" />
+    <EmbeddedResource Include="UILayout\GLControls\GLRoot.vert" />
+    <EmbeddedResource Include="UILayout\GLControls\GLRoot.frag" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Maths\readme.txt" />
