@@ -11,7 +11,7 @@ namespace CSharpGL
         private bool switchOn = false;
 
         /// <summary>
-        /// You want to enable or disable this switch?
+        /// You want to use this switch?
         /// </summary>
         public bool Enable { get; set; }
 
