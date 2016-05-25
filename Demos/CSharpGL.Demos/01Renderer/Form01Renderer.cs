@@ -123,6 +123,9 @@ namespace CSharpGL.Demos
         {
             lock (this.synObj)
             {
+                //GL.Enable(GL.GL_SCISSOR_TEST);
+                //GL.Scissor(0, 0, this.glCanvas1.Width, this.glCanvas1.Height);
+
                 RenderersDraw(this.renderMode);
 
                 DrawText(e);
@@ -153,17 +156,47 @@ namespace CSharpGL.Demos
 
         private void UIRenderersDraw(RenderEventArgs arg)
         {
-            DummyUIRenderer uiRenderer = this.uiRenderer;
-            if (uiRenderer != null)
             {
+                DummyUIRenderer uiRenderer = this.uiRenderer;
+                if (uiRenderer != null)
+                {
+                    mat4 projection, view, model;
+                    uiRenderer.GetMatrix(out projection, out view, out model, this.camera);
+                    uiRenderer.Renderer.SetUniformValue("projectionMatrix", projection);
+                    uiRenderer.Renderer.SetUniformValue("viewMatrix", view);
+                    uiRenderer.Renderer.SetUniformValue("modelMatrix", model);
 
-                mat4 projection, view, model;
-                uiRenderer.GetMatrix(out projection, out view, out model, this.camera);
-                uiRenderer.Renderer.SetUniformValue("projectionMatrix", projection);
-                uiRenderer.Renderer.SetUniformValue("viewMatrix", view);
-                uiRenderer.Renderer.SetUniformValue("modelMatrix", model);
+                    uiRenderer.Render(arg);
+                }
+            }
+            {
+                GLRoot uiRoot = this.uiRoot;
+                if (uiRoot != null)
+                {
+                    uiRoot.Layout();
+                    mat4 projection, view, model;
+                    projection = glm.ortho(
+                        -glAxis.Size.Width / 2,
+                        glAxis.Size.Width / 2,
+                        -glAxis.Size.Height / 2,
+                        glAxis.Size.Height / 2, glAxis.zNear,glAxis.zFar);
+                    vec3 position = (this.camera.Position - this.camera.Target).normalize();
+                    view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
+                    model = glm.scale(mat4.identity(), new vec3(glAxis.Size.Width / 2, glAxis.Size.Height/ 2,
+                        Math.Max(glAxis.Size.Width,glAxis.Size.Height) / 2));
+                    glAxis.Renderer.SetUniformValue("projectionMatrix", projection);
+                    glAxis.Renderer.SetUniformValue("viewMatrix", view);
+                    glAxis.Renderer.SetUniformValue("modelMatrix", model);
 
-                uiRenderer.Render(arg);
+                    GL.Enable(GL.GL_SCISSOR_TEST);
+                    GL.Scissor(glAxis.Location.X, glAxis.Location.Y, glAxis.Size.Width, glAxis.Size.Height);
+                    GL.Viewport(glAxis.Location.X, glAxis.Location.Y, glAxis.Size.Width, glAxis.Size.Height);
+                    GL.Clear(GL.GL_DEPTH_BUFFER_BIT);
+                    glAxis.Render(arg);
+                    GL.Viewport(0, 0, this.glCanvas1.Width, this.glCanvas1.Height);
+                    GL.Scissor(0, 0, this.glCanvas1.Width, this.glCanvas1.Height);
+                    GL.Disable(GL.GL_SCISSOR_TEST);
+                }
             }
         }
 
@@ -283,6 +316,8 @@ namespace CSharpGL.Demos
             {
                 camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
                 this.UpdateMVP(this.rendererDict[this.selectedModel]);
+
+                this.uiRoot.Size = this.glCanvas1.Size;
             }
         }
 
