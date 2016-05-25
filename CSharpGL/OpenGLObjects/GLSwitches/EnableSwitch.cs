@@ -11,7 +11,8 @@ namespace CSharpGL
     public abstract class EnableSwitch : GLSwitch
     {
 
-        byte originalEnabled;
+        private byte originalEnabled;
+        private bool lastEnableCap;
         private uint cap;
 
         public uint Cap
@@ -50,7 +51,8 @@ namespace CSharpGL
         {
             this.originalEnabled = GL.IsEnabled(cap);
 
-            if (this.EnableCap)
+            this.lastEnableCap = this.EnableCap;
+            if (this.lastEnableCap)
             {
                 if (this.originalEnabled == 0)
                 { GL.Enable(cap); }
@@ -64,7 +66,7 @@ namespace CSharpGL
 
         protected override void SwitchOff()
         {
-            if (this.EnableCap)
+            if (this.lastEnableCap)
             {
                 if (this.originalEnabled == 0)
                 { GL.Disable(cap); }
