@@ -11,6 +11,8 @@ namespace CSharpGL
         static float min;
         static float max;
 
+        private float originalPointSize;
+
         static PointSizeSwitch()
         {
             GL.PointSizeRange(out min, out max);
@@ -26,28 +28,37 @@ namespace CSharpGL
 
         public PointSizeSwitch(float pointSize)
         {
-            this.PointSize = pointSize;
+            var original = new float[1];
+            GL.GetFloat(GetTarget.PointSize, original);
+            this.Init(pointSize, original[0]);
+        }
+
+        public PointSizeSwitch(float targetPointSize, float currentPointSize)
+        {
+            this.Init(targetPointSize, currentPointSize);
+        }
+
+        private void Init(float targetPointSize, float currentPointSize)
+        {
+            this.PointSize = targetPointSize;
+            this.originalPointSize = currentPointSize;
             this.MinPointSize = min;
             this.MaxPointSize = max;
         }
 
-        float[] original = new float[1];
-
         public override string ToString()
         {
-            return string.Format("Point Size: {0}", PointSize);
+            return string.Format("Point Size: {0}/{1}", PointSize, originalPointSize);
         }
 
         protected override void SwitchOn()
         {
-            GL.GetFloat(GetTarget.PointSize, original);
-
             GL.PointSize(PointSize);
         }
 
         protected override void SwitchOff()
         {
-            GL.PointSize(original[0]);
+            GL.PointSize(originalPointSize);
         }
     }
 }
