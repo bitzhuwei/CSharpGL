@@ -28,7 +28,7 @@ namespace CSharpGL
 
         public LineWidthSwitch(float lineWidth)
         {
-            float[] original = new float[1];
+            var original = new float[1];
             GL.GetFloat(GetTarget.LineWidth, original);
             this.Init(lineWidth, original[0]);
         }
