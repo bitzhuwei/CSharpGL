@@ -84,9 +84,9 @@ namespace CSharpGL
             builder.Append("Positions in Screen Space:");
             builder.AppendLine();
             int x, y, width, height;
-            GL.GetViewport(out x, out y, out width, out height);
+            OpenGL.GetViewport(out x, out y, out width, out height);
             float near, far;
-            GL.GetDepthRange(out near, out far);
+            OpenGL.GetDepthRange(out near, out far);
             for (int i = 0; i < positions.Length; i++)
             {
                 builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");

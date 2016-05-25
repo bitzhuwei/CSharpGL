@@ -28,13 +28,13 @@ namespace CSharpGL.Demos
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.Resize += glCanvas1_Resize;
 
-            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+            OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             //GL.ClearColor(0, 0, 0, 0);
         }
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
             RenderEventArgs arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
             IRenderable renderer = this.renderer;

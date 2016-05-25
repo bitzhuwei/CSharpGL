@@ -95,9 +95,9 @@ namespace CSharpGL
         protected override BufferPtr Upload2GPU()
         {
             uint[] buffers = new uint[1];
-            GL.GetDelegateFor<GL.glGenBuffers>()(1, buffers);
-            GL.GetDelegateFor<GL.glBindBuffer>()(GL.GL_ELEMENT_ARRAY_BUFFER, buffers[0]);
-            GL.GetDelegateFor<GL.glBufferData>()(GL.GL_ELEMENT_ARRAY_BUFFER, this.ByteLength, this.Header, (uint)this.Usage);
+            OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, buffers);
+            OpenGL.GetDelegateFor<OpenGL.glBindBuffer>()(OpenGL.GL_ELEMENT_ARRAY_BUFFER, buffers[0]);
+            OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.ByteLength, this.Header, (uint)this.Usage);
             
             OneIndexBufferPtr bufferPtr = new OneIndexBufferPtr(
                  buffers[0], this.Mode, 0, this.ElementCount, this.Type, this.Length, this.ByteLength);
@@ -108,8 +108,8 @@ namespace CSharpGL
 
     public enum IndexElementType : uint
     {
-        UnsignedByte = GL.GL_UNSIGNED_BYTE,
-        UnsignedShort = GL.GL_UNSIGNED_SHORT,
-        UnsignedInt = GL.GL_UNSIGNED_INT,
+        UnsignedByte = OpenGL.GL_UNSIGNED_BYTE,
+        UnsignedShort = OpenGL.GL_UNSIGNED_SHORT,
+        UnsignedInt = OpenGL.GL_UNSIGNED_INT,
     }
 }

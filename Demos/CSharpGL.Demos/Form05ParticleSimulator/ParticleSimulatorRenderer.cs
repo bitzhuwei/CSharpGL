@@ -51,11 +51,11 @@ namespace CSharpGL.Demos
             }
             {
                 //var bufferable = new ParticleSimulatorCompute();
-                GL.GetDelegateFor<GL.glGenVertexArrays>()(1, render_vao);
-                GL.GetDelegateFor<GL.glBindVertexArray>()(render_vao[0]);
+                OpenGL.GetDelegateFor<OpenGL.glGenVertexArrays>()(1, render_vao);
+                OpenGL.GetDelegateFor<OpenGL.glBindVertexArray>()(render_vao[0]);
                 // position
-                GL.GetDelegateFor<GL.glGenBuffers>()(1, position_buffer);
-                GL.BindBuffer(BufferTarget.ArrayBuffer, position_buffer[0]);
+                OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, position_buffer);
+                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, position_buffer[0]);
                 var positions = new UnmanagedArray<vec4>(ParticleSimulatorCompute.particleCount);
                 unsafe
                 {
@@ -70,13 +70,13 @@ namespace CSharpGL.Demos
                             );
                     }
                 }
-                GL.BufferData(BufferTarget.ArrayBuffer, positions, BufferUsage.DynamicCopy);
+                OpenGL.BufferData(BufferTarget.ArrayBuffer, positions, BufferUsage.DynamicCopy);
                 positions.Dispose();
-                GL.GetDelegateFor<GL.glVertexAttribPointer>()(0, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-                GL.GetDelegateFor<GL.glEnableVertexAttribArray>()(0);
+                OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>()(0, 4, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);
+                OpenGL.GetDelegateFor<OpenGL.glEnableVertexAttribArray>()(0);
                 // velocity
-                GL.GetDelegateFor<GL.glGenBuffers>()(1, velocity_buffer);
-                GL.BindBuffer(BufferTarget.ArrayBuffer, velocity_buffer[0]);
+                OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, velocity_buffer);
+                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, velocity_buffer[0]);
                 var velocities = new UnmanagedArray<vec4>(ParticleSimulatorCompute.particleCount);
                 unsafe
                 {
@@ -90,22 +90,22 @@ namespace CSharpGL.Demos
                             0);
                     }
                 }
-                GL.BufferData(BufferTarget.ArrayBuffer, velocities, BufferUsage.DynamicCopy);
+                OpenGL.BufferData(BufferTarget.ArrayBuffer, velocities, BufferUsage.DynamicCopy);
                 velocities.Dispose();
                 //GL.GetDelegateFor<GL.glVertexAttribPointer>()(0, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                 //GL.GetDelegateFor<GL.glEnableVertexAttribArray>()(0);
                 //
-                GL.GenTextures(1, textureBufferPosition);
-                GL.BindTexture(GL.GL_TEXTURE_BUFFER, textureBufferPosition[0]);
-                GL.GetDelegateFor<GL.glTexBuffer>()(GL.GL_TEXTURE_BUFFER, GL.GL_RGBA32F, position_buffer[0]);
-                GL.GenTextures(1, textureBufferVelocity);
-                GL.BindTexture(GL.GL_TEXTURE_BUFFER, textureBufferVelocity[0]);
-                GL.GetDelegateFor<GL.glTexBuffer>()(GL.GL_TEXTURE_BUFFER, GL.GL_RGBA32F, velocity_buffer[0]);
+                OpenGL.GenTextures(1, textureBufferPosition);
+                OpenGL.BindTexture(OpenGL.GL_TEXTURE_BUFFER, textureBufferPosition[0]);
+                OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, OpenGL.GL_RGBA32F, position_buffer[0]);
+                OpenGL.GenTextures(1, textureBufferVelocity);
+                OpenGL.BindTexture(OpenGL.GL_TEXTURE_BUFFER, textureBufferVelocity[0]);
+                OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, OpenGL.GL_RGBA32F, velocity_buffer[0]);
 
-                GL.GetDelegateFor<GL.glGenBuffers>()(1, attractor_buffer);
-                GL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
-                GL.GetDelegateFor<GL.glBufferData>()(GL.GL_UNIFORM_BUFFER, 64 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, GL.GL_DYNAMIC_COPY);
-                GL.GetDelegateFor<GL.glBindBufferBase>()(GL.GL_UNIFORM_BUFFER, 0, attractor_buffer[0]);
+                OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, attractor_buffer);
+                OpenGL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
+                OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_UNIFORM_BUFFER, 64 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
+                OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>()(OpenGL.GL_UNIFORM_BUFFER, 0, attractor_buffer[0]);
             }
             {
                 var visualProgram = new ShaderProgram();
@@ -125,8 +125,8 @@ namespace CSharpGL.Demos
             float deltaTime = (float)random.NextDouble() * 5;
             time += (float)random.NextDouble() * 5;
 
-            GL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
-            IntPtr attractors = GL.MapBufferRange(BufferTarget.UniformBuffer,
+            OpenGL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
+            IntPtr attractors = OpenGL.MapBufferRange(BufferTarget.UniformBuffer,
                 0, 64 * Marshal.SizeOf(typeof(vec4)),
                 MapBufferRangeAccess.MapWriteBit | MapBufferRangeAccess.MapInvalidateBufferBit);
             unsafe
@@ -142,19 +142,19 @@ namespace CSharpGL.Demos
                 }
             }
 
-            GL.UnmapBuffer(BufferTarget.UniformBuffer);
-            GL.BindBuffer(BufferTarget.UniformBuffer, 0);
+            OpenGL.UnmapBuffer(BufferTarget.UniformBuffer);
+            OpenGL.BindBuffer(BufferTarget.UniformBuffer, 0);
 
             // Activate the compute program and bind the position and velocity buffers
             computeProgram.Bind();
-            GL.GetDelegateFor<GL.glBindImageTexture>()(0, textureBufferVelocity[0], 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
-            GL.GetDelegateFor<GL.glBindImageTexture>()(1, textureBufferPosition[0], 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, textureBufferVelocity[0], 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, textureBufferPosition[0], 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_RGBA32F);
             // Set delta time
             computeProgram.SetUniform("dt", deltaTime);
             // Dispatch
-            GL.GetDelegateFor<GL.glDispatchCompute>()(ParticleSimulatorCompute.particleGroupCount, 1, 1);
+            OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(ParticleSimulatorCompute.particleGroupCount, 1, 1);
 
-            GL.GetDelegateFor<GL.glMemoryBarrier>()(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+            OpenGL.GetDelegateFor<OpenGL.glMemoryBarrier>()(OpenGL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
 
             // Clear, select the rendering program and draw a full screen quad
@@ -163,12 +163,12 @@ namespace CSharpGL.Demos
             mat4 view = arg.Camera.GetViewMat4();
             mat4 projection = arg.Camera.GetProjectionMat4();
             visualProgram.SetUniformMatrix4("mvp", (projection * view).to_array());
-            GL.GetDelegateFor<GL.glBindVertexArray>()(render_vao[0]);
-            GL.Enable(GL.GL_BLEND);
-            GL.BlendFunc(GL.GL_ONE, GL.GL_ONE);
+            OpenGL.GetDelegateFor<OpenGL.glBindVertexArray>()(render_vao[0]);
+            OpenGL.Enable(OpenGL.GL_BLEND);
+            OpenGL.BlendFunc(OpenGL.GL_ONE, OpenGL.GL_ONE);
             // glPointSize(2.0f);
-            GL.DrawArrays(DrawMode.Points, 0, ParticleSimulatorCompute.particleCount);
-            GL.Disable(GL.GL_BLEND);
+            OpenGL.DrawArrays(DrawMode.Points, 0, ParticleSimulatorCompute.particleCount);
+            OpenGL.Disable(OpenGL.GL_BLEND);
             SwitchesOff();
         }
 
@@ -194,13 +194,13 @@ namespace CSharpGL.Demos
             IntPtr ptr = Win32.wglGetCurrentContext();
             if (ptr != IntPtr.Zero)
             {
-                GL.GetDelegateFor<GL.glDeleteVertexArrays>()(1, render_vao);
+                OpenGL.GetDelegateFor<OpenGL.glDeleteVertexArrays>()(1, render_vao);
             }
-            GL.DeleteBuffers(1, position_buffer);
-            GL.DeleteBuffers(1, velocity_buffer);
-            GL.DeleteBuffers(1, textureBufferPosition);
-            GL.DeleteBuffers(1, textureBufferVelocity);
-            GL.DeleteBuffers(1, attractor_buffer);
+            OpenGL.DeleteBuffers(1, position_buffer);
+            OpenGL.DeleteBuffers(1, velocity_buffer);
+            OpenGL.DeleteBuffers(1, textureBufferPosition);
+            OpenGL.DeleteBuffers(1, textureBufferVelocity);
+            OpenGL.DeleteBuffers(1, attractor_buffer);
             visualProgram.Delete();
         }
 
@@ -237,7 +237,7 @@ namespace CSharpGL.Demos
                     if (positionBufferPtr == null)
                     {
                         using (var buffer = new PropertyBuffer<vec4>(
-                            varNameInShader, 4, GL.GL_FLOAT, BufferUsage.DynamicCopy))
+                            varNameInShader, 4, OpenGL.GL_FLOAT, BufferUsage.DynamicCopy))
                         {
                             buffer.Alloc(particleCount);
                             unsafe
@@ -265,7 +265,7 @@ namespace CSharpGL.Demos
                     if (velocityBufferPtr == null)
                     {
                         using (var buffer = new PropertyBuffer<vec4>(
-                            varNameInShader, 4, GL.GL_FLOAT, BufferUsage.DynamicCopy))
+                            varNameInShader, 4, OpenGL.GL_FLOAT, BufferUsage.DynamicCopy))
                         {
                             buffer.Alloc(particleCount);
                             unsafe

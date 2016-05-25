@@ -71,13 +71,13 @@ namespace CSharpGL
             renderContext.MakeCurrent();
 
             //  Set the most basic OpenGL styles.
-            GL.ShadeModel(GL.GL_SMOOTH);
+            OpenGL.ShadeModel(OpenGL.GL_SMOOTH);
             // 天蓝色背景
-            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
-            GL.ClearDepth(1.0f);
-            GL.Enable(GL.GL_DEPTH_TEST);
-            GL.DepthFunc(GL.GL_LEQUAL);
-            GL.Hint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
+            OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+            OpenGL.ClearDepth(1.0f);
+            OpenGL.Enable(OpenGL.GL_DEPTH_TEST);
+            OpenGL.DepthFunc(OpenGL.GL_LEQUAL);
+            OpenGL.Hint(OpenGL.GL_PERSPECTIVE_CORRECTION_HINT, OpenGL.GL_NICEST);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -97,7 +97,7 @@ namespace CSharpGL
             if (this.designMode)
             {
                 // 天蓝色背景
-                GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+                OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
 
                 GLCanvasHelper.ResizeGL(this.Width, this.Height);
 
@@ -142,7 +142,7 @@ namespace CSharpGL
 
                 renderContext.SetDimensions(this.Width, this.Height);
 
-                GL.Viewport(0, 0, this.Width, this.Height);
+                OpenGL.Viewport(0, 0, this.Width, this.Height);
 
                 this.Invalidate();
             }

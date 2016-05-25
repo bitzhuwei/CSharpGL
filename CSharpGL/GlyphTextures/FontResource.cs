@@ -103,7 +103,7 @@ namespace CSharpGL
             }
             //Unmanaged cleanup code here
             var ids = new uint[] { FontTextureId, };
-            GL.DeleteTextures(ids.Length, ids);
+            OpenGL.DeleteTextures(ids.Length, ids);
 
             disposed = true;
         }

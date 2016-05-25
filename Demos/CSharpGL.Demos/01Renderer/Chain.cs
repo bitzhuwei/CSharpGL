@@ -29,7 +29,7 @@ namespace CSharpGL
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
                     using (var buffer = new PropertyBuffer<vec3>(
-                        varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                        varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Alloc(model.Positions.Length);
                         unsafe
@@ -51,7 +51,7 @@ namespace CSharpGL
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
                     using (var buffer = new PropertyBuffer<vec3>(
-                        varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                        varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Alloc(model.Colors.Length);
                         unsafe

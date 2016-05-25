@@ -8,9 +8,9 @@ namespace CSharpGL
 {
     public enum ShaderType : uint
     {
-        VertexShader = GL.GL_VERTEX_SHADER,
-        GeometryShader = GL.GL_GEOMETRY_SHADER,
-        FragmentShader = GL.GL_FRAGMENT_SHADER,
-        ComputeShader = GL.GL_COMPUTE_SHADER,
+        VertexShader = OpenGL.GL_VERTEX_SHADER,
+        GeometryShader = OpenGL.GL_GEOMETRY_SHADER,
+        FragmentShader = OpenGL.GL_FRAGMENT_SHADER,
+        ComputeShader = OpenGL.GL_COMPUTE_SHADER,
     }
 }

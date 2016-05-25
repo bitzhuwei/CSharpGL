@@ -8,29 +8,29 @@ namespace CSharpGL
 {
     public enum GetTexImageTargets : uint
     {
-        Texture1D = GL.GL_TEXTURE_1D,
-        Texture2D = GL.GL_TEXTURE_2D,
-        Texture3D = GL.GL_TEXTURE_3D,
-        TextureCubeMapPositiveX = GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X,
-        TextureCubeMapNegativeX = GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
-        TextureCubeMapPositiveY = GL.GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
-        TextureCubeMapNegativeY = GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,
-        TextureCubeMapPositiveZ = GL.GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
-        TextureCubeMapNegativeZ = GL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,
+        Texture1D = OpenGL.GL_TEXTURE_1D,
+        Texture2D = OpenGL.GL_TEXTURE_2D,
+        Texture3D = OpenGL.GL_TEXTURE_3D,
+        TextureCubeMapPositiveX = OpenGL.GL_TEXTURE_CUBE_MAP_POSITIVE_X,
+        TextureCubeMapNegativeX = OpenGL.GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
+        TextureCubeMapPositiveY = OpenGL.GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
+        TextureCubeMapNegativeY = OpenGL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,
+        TextureCubeMapPositiveZ = OpenGL.GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
+        TextureCubeMapNegativeZ = OpenGL.GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,
     }
 
     public enum GetTexImageFormats : uint
     {
-        Red = GL.GL_RED,
-        Green = GL.GL_GREEN,
-        Blue = GL.GL_BLUE,
-        Alpha = GL.GL_ALPHA,
-        RGB = GL.GL_RGB,
-        BGR = GL.GL_BGR,
-        RGBA = GL.GL_RGBA,
-        BGRA = GL.GL_BGRA,
-        Luminance = GL.GL_LUMINANCE,
-        LuminanceAlpha = GL.GL_LUMINANCE_ALPHA,
+        Red = OpenGL.GL_RED,
+        Green = OpenGL.GL_GREEN,
+        Blue = OpenGL.GL_BLUE,
+        Alpha = OpenGL.GL_ALPHA,
+        RGB = OpenGL.GL_RGB,
+        BGR = OpenGL.GL_BGR,
+        RGBA = OpenGL.GL_RGBA,
+        BGRA = OpenGL.GL_BGRA,
+        Luminance = OpenGL.GL_LUMINANCE,
+        LuminanceAlpha = OpenGL.GL_LUMINANCE_ALPHA,
     }
 
     /// <summary>
@@ -40,9 +40,9 @@ namespace CSharpGL
     /// </summary>
     public enum GetTexImageTypes : uint
     {
-        UnsignedByte = GL.GL_UNSIGNED_BYTE,
-        UnsignedShort565 = GL.GL_UNSIGNED_SHORT_5_6_5,
-        UnsignedShort4444 = GL.GL_UNSIGNED_SHORT_4_4_4_4,
-        UnsignedShort5551 = GL.GL_UNSIGNED_SHORT_5_5_5_1,
+        UnsignedByte = OpenGL.GL_UNSIGNED_BYTE,
+        UnsignedShort565 = OpenGL.GL_UNSIGNED_SHORT_5_6_5,
+        UnsignedShort4444 = OpenGL.GL_UNSIGNED_SHORT_4_4_4_4,
+        UnsignedShort5551 = OpenGL.GL_UNSIGNED_SHORT_5_5_5_1,
     }
 }

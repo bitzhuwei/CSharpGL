@@ -15,7 +15,7 @@ namespace CSharpGL
 
         static PointSizeSwitch()
         {
-            GL.PointSizeRange(out min, out max);
+            OpenGL.PointSizeRange(out min, out max);
             //GL.GetFloat(GetTarget.PointSizeGranularity, pointSizeWidthRange);//TODO: what does PointSizeGranularity mean?
         }
 
@@ -29,7 +29,7 @@ namespace CSharpGL
         public PointSizeSwitch(float pointSize)
         {
             var original = new float[1];
-            GL.GetFloat(GetTarget.PointSize, original);
+            OpenGL.GetFloat(GetTarget.PointSize, original);
             this.Init(pointSize, original[0]);
         }
 
@@ -53,12 +53,12 @@ namespace CSharpGL
 
         protected override void SwitchOn()
         {
-            GL.PointSize(PointSize);
+            OpenGL.PointSize(PointSize);
         }
 
         protected override void SwitchOff()
         {
-            GL.PointSize(originalPointSize);
+            OpenGL.PointSize(originalPointSize);
         }
     }
 }

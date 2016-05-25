@@ -19,7 +19,7 @@ namespace CSharpGL
         public PolygonModeSwitch(PolygonModeFaces faces, PolygonModes mode)
         {
             var originalPolygonMode = new int[2];
-            GL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
+            OpenGL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
 
             this.Init(faces, mode, (PolygonModes)originalPolygonMode[0], (PolygonModes)originalPolygonMode[1]);
         }
@@ -46,7 +46,7 @@ namespace CSharpGL
         protected override void SwitchOn()
         {
             this.lastFace = this.Faces;
-            GL.PolygonMode(this.lastFace, Mode);
+            OpenGL.PolygonMode(this.lastFace, Mode);
         }
 
         protected override void SwitchOff()
@@ -54,20 +54,20 @@ namespace CSharpGL
             switch (this.lastFace)
             {
                 case PolygonModeFaces.Front:
-                    GL.PolygonMode(PolygonModeFaces.Front, this.originalFrontMode);
+                    OpenGL.PolygonMode(PolygonModeFaces.Front, this.originalFrontMode);
                     break;
                 case PolygonModeFaces.Back:
-                    GL.PolygonMode(PolygonModeFaces.Back, this.originalBackMode);
+                    OpenGL.PolygonMode(PolygonModeFaces.Back, this.originalBackMode);
                     break;
                 case PolygonModeFaces.FrontAndBack:
                     if (this.originalFrontMode == this.originalBackMode)
                     {
-                        GL.PolygonMode(PolygonModeFaces.FrontAndBack, this.originalFrontMode);
+                        OpenGL.PolygonMode(PolygonModeFaces.FrontAndBack, this.originalFrontMode);
                     }
                     else
                     {
-                        GL.PolygonMode(PolygonModeFaces.Front, this.originalFrontMode);
-                        GL.PolygonMode(PolygonModeFaces.Back, this.originalBackMode);
+                        OpenGL.PolygonMode(PolygonModeFaces.Front, this.originalFrontMode);
+                        OpenGL.PolygonMode(PolygonModeFaces.Back, this.originalBackMode);
                     }
                     break;
                 default:

@@ -27,7 +27,7 @@ namespace CSharpGL
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    using (var buffer = new PropertyBuffer<CubeModel.CubePosition>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new PropertyBuffer<CubeModel.CubePosition>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Alloc(1);
                         unsafe
@@ -46,7 +46,7 @@ namespace CSharpGL
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    using (var buffer = new PropertyBuffer<CubeModel.CubeColor>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new PropertyBuffer<CubeModel.CubeColor>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Alloc(1);
                         unsafe
@@ -64,7 +64,7 @@ namespace CSharpGL
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    using (var buffer = new PropertyBuffer<CubeModel.CubeNormal>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new PropertyBuffer<CubeModel.CubeNormal>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Alloc(1);
                         unsafe

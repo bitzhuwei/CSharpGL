@@ -8,7 +8,7 @@ namespace CSharpGL
 {
     public enum TransformFeedbackTarget : uint
     {
-        TransformFeedback = GL.GL_TRANSFORM_FEEDBACK,
+        TransformFeedback = OpenGL.GL_TRANSFORM_FEEDBACK,
     }
 
 }

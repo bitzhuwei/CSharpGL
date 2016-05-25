@@ -49,18 +49,18 @@ namespace CSharpGL
 
         protected override void SwitchOn()
         {
-            this.originalEnabled = GL.IsEnabled(cap);
+            this.originalEnabled = OpenGL.IsEnabled(cap);
 
             this.lastEnableCap = this.EnableCap;
             if (this.lastEnableCap)
             {
                 if (this.originalEnabled == 0)
-                { GL.Enable(cap); }
+                { OpenGL.Enable(cap); }
             }
             else
             {
                 if (this.originalEnabled != 0)
-                { GL.Disable(cap); }
+                { OpenGL.Disable(cap); }
             }
         }
 
@@ -69,12 +69,12 @@ namespace CSharpGL
             if (this.lastEnableCap)
             {
                 if (this.originalEnabled == 0)
-                { GL.Disable(cap); }
+                { OpenGL.Disable(cap); }
             }
             else
             {
                 if (this.originalEnabled != 0)
-                { GL.Enable(cap); }
+                { OpenGL.Enable(cap); }
             }
         }
 
@@ -87,7 +87,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="enableCap">true for enable, false for disable</param>
         public CullFaceSwitch(bool enableCap = true)
-            : base(GL.GL_CULL_FACE, enableCap)
+            : base(OpenGL.GL_CULL_FACE, enableCap)
         { }
 
         public override string ToString()
@@ -107,7 +107,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="enableCap">true for enable, false for disable</param>
         public DepthTestSwitch(bool enableCap = true)
-            : base(GL.GL_DEPTH_TEST, enableCap)
+            : base(OpenGL.GL_DEPTH_TEST, enableCap)
         { }
 
         public override string ToString()
@@ -127,7 +127,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="enableCap">true for enable, false for disable</param>
         public PointSmoothSwitch(bool enableCap = true)
-            : base(GL.GL_POINT_SMOOTH, enableCap)
+            : base(OpenGL.GL_POINT_SMOOTH, enableCap)
         { }
 
         public override string ToString()

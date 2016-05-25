@@ -13,10 +13,10 @@ namespace CSharpGL
     /// </summary>
     public enum TransformFeedbackBufferTarget : uint
     {
-        AtomicCounterBuffer = GL.GL_ATOMIC_COUNTER_BUFFER,
-        TransformFeedbackBuffer = GL.GL_TRANSFORM_FEEDBACK_BUFFER,
-        UniformBuffer = GL.GL_UNIFORM_BUFFER,
-        ShaderStorageBuffer = GL.GL_SHADER_STORAGE_BUFFER,
+        AtomicCounterBuffer = OpenGL.GL_ATOMIC_COUNTER_BUFFER,
+        TransformFeedbackBuffer = OpenGL.GL_TRANSFORM_FEEDBACK_BUFFER,
+        UniformBuffer = OpenGL.GL_UNIFORM_BUFFER,
+        ShaderStorageBuffer = OpenGL.GL_SHADER_STORAGE_BUFFER,
     }
 
 }

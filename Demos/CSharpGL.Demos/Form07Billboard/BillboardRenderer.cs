@@ -22,7 +22,7 @@ namespace CSharpGL.Demos
                 if (value != clearColor)
                 {
                     clearColor = value;
-                    GL.ClearColor(value.R / 255.0f, value.G / 255.0f, value.B / 255.0f, value.A / 255.0f);
+                    OpenGL.ClearColor(value.R / 255.0f, value.G / 255.0f, value.B / 255.0f, value.A / 255.0f);
                 }
             }
         }
@@ -48,10 +48,10 @@ namespace CSharpGL.Demos
         {
             {
                 // This is the texture that the compute program will write into
-                GL.GenTextures(1, sprite_texture);
-                GL.BindTexture(GL.GL_TEXTURE_2D, sprite_texture[0]);
-                GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 256, 256);
-                GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+                OpenGL.GenTextures(1, sprite_texture);
+                OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, sprite_texture[0]);
+                OpenGL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, OpenGL.GL_RGBA32F, 256, 256);
+                OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
                 sampler2D texture = new sampler2D();
                 var bitmap = new System.Drawing.Bitmap(@"Form07Billboard\star.png");
                 texture.Initialize(bitmap);
@@ -59,7 +59,7 @@ namespace CSharpGL.Demos
                 bitmap.Dispose();
             }
             base.DoInitialize();
-            this.SetUniformValue("sprite_texture", new samplerValue(this.sprite_texture[0], GL.GL_TEXTURE0));
+            this.SetUniformValue("sprite_texture", new samplerValue(this.sprite_texture[0], OpenGL.GL_TEXTURE0));
             this.SetUniformValue("factor", 100.0f);
         }
 
@@ -91,7 +91,7 @@ namespace CSharpGL.Demos
 
         protected override void DisposeUnmanagedResources()
         {
-            GL.DeleteTextures(1, sprite_texture);
+            OpenGL.DeleteTextures(1, sprite_texture);
         }
 
         class BillboardModel : IBufferable
@@ -115,7 +115,7 @@ namespace CSharpGL.Demos
                     if (positionBufferPtr == null)
                     {
                         using (var buffer = new PropertyBuffer<vec3>(
-                            varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                            varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                         {
                             buffer.Alloc(particleCount);
                             unsafe
@@ -172,19 +172,19 @@ namespace CSharpGL.Demos
         internal void UpdateTexture(string filename)
         {
             // This is the texture that the compute program will write into
-            GL.GenTextures(1, sprite_texture);
-            GL.BindTexture(GL.GL_TEXTURE_2D, sprite_texture[0]);
-            GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 256, 256);
-            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+            OpenGL.GenTextures(1, sprite_texture);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, sprite_texture[0]);
+            OpenGL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, OpenGL.GL_RGBA32F, 256, 256);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
             sampler2D texture = new sampler2D();
             var bitmap = new System.Drawing.Bitmap(filename);
             texture.Initialize(bitmap);
             var old = new uint[1];
             old[0] = this.sprite_texture[0];
             this.sprite_texture[0] = texture.Id;
-            this.SetUniformValue("sprite_texture", new samplerValue(this.sprite_texture[0], GL.GL_TEXTURE0));
+            this.SetUniformValue("sprite_texture", new samplerValue(this.sprite_texture[0], OpenGL.GL_TEXTURE0));
 
-            GL.DeleteTextures(1, old);
+            OpenGL.DeleteTextures(1, old);
             bitmap.Dispose();
         }
     }

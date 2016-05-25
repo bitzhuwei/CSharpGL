@@ -22,7 +22,7 @@ namespace CSharpGL.Demos
                 if (value != clearColor)
                 {
                     clearColor = value;
-                    GL.ClearColor(value.R / 255.0f,value.G / 255.0f,value.B / 255.0f,value.A / 255.0f);
+                    OpenGL.ClearColor(value.R / 255.0f,value.G / 255.0f,value.B / 255.0f,value.A / 255.0f);
                 }
             }
         }
@@ -97,7 +97,7 @@ namespace CSharpGL.Demos
                     if (positionBufferPtr == null)
                     {
                         using (var buffer = new PropertyBuffer<vec3>(
-                            varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                            varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                         {
                             buffer.Alloc(particleCount);
                             unsafe

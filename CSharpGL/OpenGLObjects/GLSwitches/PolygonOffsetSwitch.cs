@@ -31,7 +31,7 @@ namespace CSharpGL
             if (this.EnableCap)
             {
                 float value = this.PullNear ? -1.0f : 1.0f;
-                GL.PolygonOffset(value, value);
+                OpenGL.PolygonOffset(value, value);
             }
         }
 

@@ -80,7 +80,7 @@ namespace CSharpGL
             IntPtr context = Win32.wglGetCurrentContext();
             if (context != IntPtr.Zero)
             {
-                GL.GetDelegateFor<GL.glDeleteBuffers>()(1, new uint[] { this.BufferId });
+                OpenGL.GetDelegateFor<OpenGL.glDeleteBuffers>()(1, new uint[] { this.BufferId });
             }
 
             this.BufferId = 0;

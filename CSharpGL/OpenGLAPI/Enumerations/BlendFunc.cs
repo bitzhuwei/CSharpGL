@@ -14,14 +14,14 @@ namespace CSharpGL
     /// </summary>
     public enum BlendingDestinationFactor : uint
     {
-        Zero = GL.GL_ZERO,
-        One = GL.GL_ONE,
-        SourceColor = GL.GL_SRC_COLOR,
-        OneMinusSourceColor = GL.GL_ONE_MINUS_SRC_COLOR,
-        SourceAlpha = GL.GL_SRC_ALPHA,
-        OneMinusSourceAlpha = GL.GL_ONE_MINUS_SRC_ALPHA,
-        DestinationAlpha = GL.GL_DST_ALPHA,
-        OneMinusDestinationAlpha = GL.GL_ONE_MINUS_DST_ALPHA,
+        Zero = OpenGL.GL_ZERO,
+        One = OpenGL.GL_ONE,
+        SourceColor = OpenGL.GL_SRC_COLOR,
+        OneMinusSourceColor = OpenGL.GL_ONE_MINUS_SRC_COLOR,
+        SourceAlpha = OpenGL.GL_SRC_ALPHA,
+        OneMinusSourceAlpha = OpenGL.GL_ONE_MINUS_SRC_ALPHA,
+        DestinationAlpha = OpenGL.GL_DST_ALPHA,
+        OneMinusDestinationAlpha = OpenGL.GL_ONE_MINUS_DST_ALPHA,
     }
 
     /// <summary>
@@ -29,9 +29,9 @@ namespace CSharpGL
     /// </summary>
     public enum BlendingSourceFactor : uint
     {
-        DestinationColor = GL.GL_DST_COLOR,
-        OneMinusDestinationColor = GL.GL_ONE_MINUS_DST_COLOR,
-        SourceAlphaSaturate = GL.GL_SRC_ALPHA_SATURATE,
-        SourceAlpha = GL.GL_SRC_ALPHA
+        DestinationColor = OpenGL.GL_DST_COLOR,
+        OneMinusDestinationColor = OpenGL.GL_ONE_MINUS_DST_COLOR,
+        SourceAlphaSaturate = OpenGL.GL_SRC_ALPHA_SATURATE,
+        SourceAlpha = OpenGL.GL_SRC_ALPHA
     }
 }

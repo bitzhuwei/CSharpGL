@@ -31,15 +31,15 @@ namespace CSharpGL
 
         public override void SetUniform(ShaderProgram program)
         {
-            GL.GetDelegateFor<GL.glActiveTexture>()(value.ActiveTextureIndex);
-            GL.Enable(GL.GL_TEXTURE_2D);
-            GL.BindTexture(GL.GL_TEXTURE_2D, value.TextureId);
-            program.SetUniform(VarName, (int)((uint)value.ActiveTextureIndex - GL.GL_TEXTURE0));
+            OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(value.ActiveTextureIndex);
+            OpenGL.Enable(OpenGL.GL_TEXTURE_2D);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, value.TextureId);
+            program.SetUniform(VarName, (int)((uint)value.ActiveTextureIndex - OpenGL.GL_TEXTURE0));
         }
 
         public override void ResetUniform(ShaderProgram program)
         {
-            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
         }
 
         internal override bool SetValue(ValueType value)

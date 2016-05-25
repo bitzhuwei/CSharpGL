@@ -98,7 +98,7 @@ using System.Text;namespace CSharpGL{
 
             {
                 int[] viewport = new int[4];
-                GL.GetInteger(GetTarget.Viewport, viewport);
+                OpenGL.GetInteger(GetTarget.Viewport, viewport);
                 int width = viewport[2]; int height = viewport[3];
 
                 camera.FieldOfView = 60;
@@ -136,7 +136,7 @@ using System.Text;namespace CSharpGL{
 
             {
                 int[] viewport = new int[4];
-                GL.GetInteger(GetTarget.Viewport, viewport);
+                OpenGL.GetInteger(GetTarget.Viewport, viewport);
                 int width = viewport[2]; int height = viewport[3];
 
                 if (width > height)
@@ -203,7 +203,7 @@ using System.Text;namespace CSharpGL{
 
             {
                 int[] viewport = new int[4];
-                GL.GetInteger(GetTarget.Viewport, viewport);
+                OpenGL.GetInteger(GetTarget.Viewport, viewport);
                 int width = viewport[2]; int height = viewport[3];
 
                 IPerspectiveCamera perspectiveCamera = camera;
@@ -259,7 +259,7 @@ using System.Text;namespace CSharpGL{
 
             {
                 int[] viewport = new int[4];
-                GL.GetInteger(GetTarget.Viewport, viewport);
+                OpenGL.GetInteger(GetTarget.Viewport, viewport);
                 int width = viewport[2]; int height = viewport[3];
 
                 IOrthoCamera orthoCamera = camera;
@@ -329,31 +329,31 @@ using System.Text;namespace CSharpGL{
         public static void LegacyGLProjection(this ICamera camera)
         {
             //	Load the projection identity matrix.
-            GL.MatrixMode(GL.GL_PROJECTION);
-            GL.LoadIdentity();
+            OpenGL.MatrixMode(OpenGL.GL_PROJECTION);
+            OpenGL.LoadIdentity();
 
             //	Perform the projection.
             switch (camera.CameraType)
             {
                 case CameraType.Perspecitive:
                     IPerspectiveCamera perspectiveCamera = camera;
-                    GL.gluPerspective(perspectiveCamera.FieldOfView, perspectiveCamera.AspectRatio, perspectiveCamera.Near, perspectiveCamera.Far);
+                    OpenGL.gluPerspective(perspectiveCamera.FieldOfView, perspectiveCamera.AspectRatio, perspectiveCamera.Near, perspectiveCamera.Far);
                     break;
                 case CameraType.Ortho:
                     IOrthoCamera orthoCamera = camera;
-                    GL.Ortho(orthoCamera.Left, orthoCamera.Right, orthoCamera.Bottom, orthoCamera.Top, orthoCamera.Near, orthoCamera.Far);
+                    OpenGL.Ortho(orthoCamera.Left, orthoCamera.Right, orthoCamera.Bottom, orthoCamera.Top, orthoCamera.Near, orthoCamera.Far);
                     break;
                 default:
                     break;
             }
 
             //  Perform the look at transformation.
-            GL.gluLookAt((double)camera.Position.x, (double)camera.Position.y, (double)camera.Position.z,
+            OpenGL.gluLookAt((double)camera.Position.x, (double)camera.Position.y, (double)camera.Position.z,
                 (double)camera.Target.x, (double)camera.Target.y, (double)camera.Target.z,
                 (double)camera.UpVector.x, (double)camera.UpVector.y, (double)camera.UpVector.z);
 
             //	Back to the modelview matrix.
-            GL.MatrixMode(GL.GL_MODELVIEW);
+            OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);
         }
 
     }

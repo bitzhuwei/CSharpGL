@@ -98,15 +98,15 @@ namespace CSharpGL
             {
                 int[] attributes = 
                 {
-                    GL.WGL_CONTEXT_MAJOR_VERSION_ARB, requestedVersionNumber.Major,  
-                    GL.WGL_CONTEXT_MINOR_VERSION_ARB, requestedVersionNumber.Minor,
-                    GL.WGL_CONTEXT_FLAGS_ARB, GL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,// compatible profile
+                    OpenGL.WGL_CONTEXT_MAJOR_VERSION_ARB, requestedVersionNumber.Major,  
+                    OpenGL.WGL_CONTEXT_MINOR_VERSION_ARB, requestedVersionNumber.Minor,
+                    OpenGL.WGL_CONTEXT_FLAGS_ARB, OpenGL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,// compatible profile
 #if DEBUG
-                    GL.WGL_CONTEXT_FLAGS_ARB, GL.WGL_CONTEXT_DEBUG_BIT_ARB,// this is a debug context
+                    OpenGL.WGL_CONTEXT_FLAGS_ARB, OpenGL.WGL_CONTEXT_DEBUG_BIT_ARB,// this is a debug context
 #endif
                     0
                 };
-                IntPtr hrc = GL.GetDelegateFor<GL.wglCreateContextAttribsARB>()(this.DeviceContextHandle, IntPtr.Zero, attributes);
+                IntPtr hrc = OpenGL.GetDelegateFor<OpenGL.wglCreateContextAttribsARB>()(this.DeviceContextHandle, IntPtr.Zero, attributes);
                 Win32.wglMakeCurrent(IntPtr.Zero, IntPtr.Zero);
                 Win32.wglDeleteContext(RenderContextHandle);
                 Win32.wglMakeCurrent(DeviceContextHandle, hrc);

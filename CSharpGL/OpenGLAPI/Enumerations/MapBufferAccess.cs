@@ -8,8 +8,8 @@ namespace CSharpGL
 {
     public enum MapBufferAccess : uint
     {
-        ReadOnly = GL.GL_READ_ONLY,
-        WriteOnly = GL.GL_WRITE_ONLY,
-        ReadWrite = GL.GL_READ_WRITE,
+        ReadOnly = OpenGL.GL_READ_ONLY,
+        WriteOnly = OpenGL.GL_WRITE_ONLY,
+        ReadWrite = OpenGL.GL_READ_WRITE,
     }
 }

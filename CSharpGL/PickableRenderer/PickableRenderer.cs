@@ -46,12 +46,12 @@ namespace CSharpGL
             }
             {
                 float min, max;
-                GL.LineWidthRange(out min, out max);
+                OpenGL.LineWidthRange(out min, out max);
                 this.switchList4Picking.Add(new LineWidthSwitch(max));
             }
             {
                 float min, max;
-                GL.PointSizeRange(out min, out max);
+                OpenGL.PointSizeRange(out min, out max);
                 this.switchList4Picking.Add(new PointSizeSwitch(max));
             }
         }

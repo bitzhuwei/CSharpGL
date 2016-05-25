@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// The OpenGL class wraps Sun's OpenGL 3D library.
     /// </summary>
-    public static partial class GL
+    public static partial class OpenGL
     {
 
         // https://msdn.microsoft.com/zh-cn/library/ms379564(VS.80).aspx

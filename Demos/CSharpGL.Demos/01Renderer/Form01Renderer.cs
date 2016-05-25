@@ -87,7 +87,7 @@ namespace CSharpGL.Demos
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             // 天蓝色背景
             //GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
-            GL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f);
+            OpenGL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f);
             this.TextColor = Color.White;
 
             Application.Idle += Application_Idle;
@@ -145,9 +145,9 @@ namespace CSharpGL.Demos
             }
             else if (renderMode == RenderModes.Render)
             {
-                GL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f);
+                OpenGL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f);
 
-                GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+                OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
                 if (renderScene) { SceneRenderersDraw(arg); }
                 if (renderUI) { UIRenderersDraw(arg); }
@@ -188,14 +188,14 @@ namespace CSharpGL.Demos
                     glAxis.Renderer.SetUniformValue("viewMatrix", view);
                     glAxis.Renderer.SetUniformValue("modelMatrix", model);
 
-                    GL.Enable(GL.GL_SCISSOR_TEST);
-                    GL.Scissor(glAxis.Location.X, glAxis.Location.Y, glAxis.Size.Width, glAxis.Size.Height);
-                    GL.Viewport(glAxis.Location.X, glAxis.Location.Y, glAxis.Size.Width, glAxis.Size.Height);
-                    GL.Clear(GL.GL_DEPTH_BUFFER_BIT);
+                    OpenGL.Enable(OpenGL.GL_SCISSOR_TEST);
+                    OpenGL.Scissor(glAxis.Location.X, glAxis.Location.Y, glAxis.Size.Width, glAxis.Size.Height);
+                    OpenGL.Viewport(glAxis.Location.X, glAxis.Location.Y, glAxis.Size.Width, glAxis.Size.Height);
+                    OpenGL.Clear(OpenGL.GL_DEPTH_BUFFER_BIT);
                     glAxis.Render(arg);
-                    GL.Viewport(0, 0, this.glCanvas1.Width, this.glCanvas1.Height);
-                    GL.Scissor(0, 0, this.glCanvas1.Width, this.glCanvas1.Height);
-                    GL.Disable(GL.GL_SCISSOR_TEST);
+                    OpenGL.Viewport(0, 0, this.glCanvas1.Width, this.glCanvas1.Height);
+                    OpenGL.Scissor(0, 0, this.glCanvas1.Width, this.glCanvas1.Height);
+                    OpenGL.Disable(OpenGL.GL_SCISSOR_TEST);
                 }
             }
         }
@@ -235,14 +235,14 @@ namespace CSharpGL.Demos
                 { y = this.glCanvas1.Height - 15 - 5; }
                 else if (y < 15) { if (y > 0) { y += 15; } else { y = 15; } }
                 else { y += 15; }
-                GL.DrawText(x, y,
+                OpenGL.DrawText(x, y,
                     this.TextColor, "Courier New", fontSize,
                     content);
                 this.lblDrawText.Text = content;
             }
             else
             {
-                GL.DrawText(this.lastMousePosition.X,
+                OpenGL.DrawText(this.lastMousePosition.X,
                     this.glCanvas1.Height - this.lastMousePosition.Y - 1,
                     this.TextColor, "Courier New", fontSize,
                     "");
@@ -250,7 +250,7 @@ namespace CSharpGL.Demos
             }
             {
                 // Cross cursor shows where the mouse is.
-                GL.DrawText(this.lastMousePosition.X - offset.X,
+                OpenGL.DrawText(this.lastMousePosition.X - offset.X,
                     this.glCanvas1.Height - (this.lastMousePosition.Y + offset.Y) - 1,
                     Color.Red, "Courier New", crossCursorSize, "o");
             }

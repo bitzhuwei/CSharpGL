@@ -50,7 +50,7 @@ namespace CSharpGL
                 var bitmapRect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
                 var lockMode = System.Drawing.Imaging.ImageLockMode.WriteOnly;
                 System.Drawing.Imaging.BitmapData bmpData = bitmap.LockBits(bitmapRect, lockMode, format);
-                GL.ReadPixels(x, y, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, bmpData.Scan0);
+                OpenGL.ReadPixels(x, y, width, height, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE, bmpData.Scan0);
                 bitmap.UnlockBits(bmpData);
                 bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
 

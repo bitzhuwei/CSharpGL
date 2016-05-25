@@ -105,15 +105,15 @@ namespace CSharpGL
 
             // record clear color
             var originalClearColor = new float[4];
-            GL.GetFloat(GetTarget.ColorClearValue, originalClearColor);
+            OpenGL.GetFloat(GetTarget.ColorClearValue, originalClearColor);
 
             // 白色意味着没有拾取到任何对象
             // white color: nothing picked.
-            GL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+            OpenGL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
             // restore clear color
-            GL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
+            OpenGL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
             uint renderedVertexCount = 0;
             foreach (var pickable in pickableElements)
@@ -138,7 +138,7 @@ namespace CSharpGL
                 }
             }
 
-            GL.Flush();
+            OpenGL.Flush();
         }
 
 
@@ -184,8 +184,8 @@ namespace CSharpGL
             // get coded color.
             using (var codedColor = new UnmanagedArray<Pixel>(rect.Width * rect.Height))
             {
-                GL.ReadPixels(rect.X, canvasHeight - rect.Y - 1, rect.Width, rect.Height,
-                    GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, codedColor.Header);
+                OpenGL.ReadPixels(rect.X, canvasHeight - rect.Y - 1, rect.Width, rect.Height,
+                    OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
 
                 var array = (Pixel*)codedColor.FirstElement();
                 int index = 0;
@@ -237,7 +237,7 @@ namespace CSharpGL
             // get coded color.
             using (var codedColor = new UnmanagedArray<byte>(4))
             {
-                GL.ReadPixels(x, canvasHeight - y - 1, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, codedColor.Header);
+                OpenGL.ReadPixels(x, canvasHeight - y - 1, 1, 1, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
                 var array = (Pixel*)codedColor.FirstElement();
                 Pixel pixel = array[0];
                 if (!

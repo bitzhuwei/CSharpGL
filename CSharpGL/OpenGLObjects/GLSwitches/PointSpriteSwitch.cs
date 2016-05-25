@@ -23,10 +23,10 @@ namespace CSharpGL
             int count = this.SwitchList.Count;
             for (int i = 0; i < count; i++) { this.SwitchList[i].On(); }
 
-            GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
-            GL.Enable(GL.GL_POINT_SPRITE_ARB);
-            GL.TexEnv(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);
-            GL.Hint(GL.GL_POINT_SMOOTH_HINT, GL.GL_NICEST);
+            OpenGL.Enable(OpenGL.GL_VERTEX_PROGRAM_POINT_SIZE);
+            OpenGL.Enable(OpenGL.GL_POINT_SPRITE_ARB);
+            OpenGL.TexEnv(OpenGL.GL_POINT_SPRITE_ARB, OpenGL.GL_COORD_REPLACE_ARB, OpenGL.GL_TRUE);
+            OpenGL.Hint(OpenGL.GL_POINT_SMOOTH_HINT, OpenGL.GL_NICEST);
             //GL.GetDelegateFor<GL.glBlendEquation>()(GL.GL_FUNC_ADD_EXT);
             //GL.GetDelegateFor<GL.glBlendFuncSeparate>()(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
 
@@ -42,8 +42,8 @@ namespace CSharpGL
 
         protected override void SwitchOff()
         {
-            GL.Disable(GL.GL_POINT_SPRITE_ARB);
-            GL.Disable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
+            OpenGL.Disable(OpenGL.GL_POINT_SPRITE_ARB);
+            OpenGL.Disable(OpenGL.GL_VERTEX_PROGRAM_POINT_SIZE);
 
             int count = this.SwitchList.Count;
             for (int i = count - 1; i >= 0; i--) { this.SwitchList[i].Off(); }

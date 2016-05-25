@@ -65,21 +65,21 @@ namespace CSharpGL.Demos
             this.resolve_lists.Initialize();
 
             // Create head pointer texture
-            GL.GetDelegateFor<GL.glActiveTexture>()(GL.GL_TEXTURE0);
-            GL.GenTextures(1, head_pointer_texture);
-            GL.BindTexture(GL.GL_TEXTURE_2D, head_pointer_texture[0]);
-            GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_NEAREST);
-            GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_NEAREST);
-            GL.TexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_R32UI, MAX_FRAMEBUFFER_WIDTH, MAX_FRAMEBUFFER_HEIGHT, 0, GL.GL_RED_INTEGER, GL.GL_UNSIGNED_INT, IntPtr.Zero);
-            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+            OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
+            OpenGL.GenTextures(1, head_pointer_texture);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, head_pointer_texture[0]);
+            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, (int)OpenGL.GL_NEAREST);
+            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, (int)OpenGL.GL_NEAREST);
+            OpenGL.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_R32UI, MAX_FRAMEBUFFER_WIDTH, MAX_FRAMEBUFFER_HEIGHT, 0, OpenGL.GL_RED_INTEGER, OpenGL.GL_UNSIGNED_INT, IntPtr.Zero);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
 
-            GL.GetDelegateFor<GL.glBindImageTexture>()(0, head_pointer_texture[0], 0, true, 0, GL.GL_READ_WRITE, GL.GL_R32UI);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, head_pointer_texture[0], 0, true, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
 
             // Create buffer for clearing the head pointer texture
-            GL.GetDelegateFor<GL.glGenBuffers>()(1, head_pointer_clear_buffer);
-            GL.BindBuffer(BufferTarget.PixelUnpackBuffer, head_pointer_clear_buffer[0]);
-            GL.GetDelegateFor<GL.glBufferData>()(GL.GL_PIXEL_UNPACK_BUFFER, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * sizeof(uint), IntPtr.Zero, GL.GL_STATIC_DRAW);
-            IntPtr data = GL.MapBuffer(BufferTarget.PixelUnpackBuffer, MapBufferAccess.WriteOnly);
+            OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, head_pointer_clear_buffer);
+            OpenGL.BindBuffer(BufferTarget.PixelUnpackBuffer, head_pointer_clear_buffer[0]);
+            OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_PIXEL_UNPACK_BUFFER, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * sizeof(uint), IntPtr.Zero, OpenGL.GL_STATIC_DRAW);
+            IntPtr data = OpenGL.MapBuffer(BufferTarget.PixelUnpackBuffer, MapBufferAccess.WriteOnly);
             unsafe
             {
                 var array = (uint*)data.ToPointer();
@@ -88,30 +88,30 @@ namespace CSharpGL.Demos
                     array[i] = 0;
                 }
             }
-            GL.UnmapBuffer(BufferTarget.PixelUnpackBuffer);
-            GL.BindBuffer(BufferTarget.PixelUnpackBuffer, 0);
+            OpenGL.UnmapBuffer(BufferTarget.PixelUnpackBuffer);
+            OpenGL.BindBuffer(BufferTarget.PixelUnpackBuffer, 0);
 
             // Create the atomic counter buffer
-            GL.GetDelegateFor<GL.glGenBuffers>()(1, atomic_counter_buffer);
-            GL.BindBuffer(BufferTarget.AtomicCounterBuffer, atomic_counter_buffer[0]);
-            GL.GetDelegateFor<GL.glBufferData>()(GL.GL_ATOMIC_COUNTER_BUFFER, sizeof(uint), IntPtr.Zero, GL.GL_DYNAMIC_COPY);
-            GL.BindBuffer(BufferTarget.AtomicCounterBuffer, 0);
+            OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, atomic_counter_buffer);
+            OpenGL.BindBuffer(BufferTarget.AtomicCounterBuffer, atomic_counter_buffer[0]);
+            OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_ATOMIC_COUNTER_BUFFER, sizeof(uint), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
+            OpenGL.BindBuffer(BufferTarget.AtomicCounterBuffer, 0);
 
             // Create the linked list storage buffer
-            GL.GetDelegateFor<GL.glGenBuffers>()(1, linked_list_buffer);
-            GL.BindBuffer(BufferTarget.TextureBuffer, linked_list_buffer[0]);
-            GL.GetDelegateFor<GL.glBufferData>()(GL.GL_TEXTURE_BUFFER, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, GL.GL_DYNAMIC_COPY);
-            GL.BindBuffer(BufferTarget.TextureBuffer, 0);
+            OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, linked_list_buffer);
+            OpenGL.BindBuffer(BufferTarget.TextureBuffer, linked_list_buffer[0]);
+            OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_TEXTURE_BUFFER, MAX_FRAMEBUFFER_WIDTH * MAX_FRAMEBUFFER_HEIGHT * 3 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
+            OpenGL.BindBuffer(BufferTarget.TextureBuffer, 0);
 
             // Bind it to a texture (for use as a TBO)
-            GL.GenTextures(1, linked_list_texture);
-            GL.BindTexture(GL.GL_TEXTURE_BUFFER, linked_list_texture[0]);
-            GL.GetDelegateFor<GL.glTexBuffer>()(GL.GL_TEXTURE_BUFFER, GL.GL_RGBA32UI, linked_list_buffer[0]);
-            GL.BindTexture(GL.GL_TEXTURE_BUFFER, 0);
+            OpenGL.GenTextures(1, linked_list_texture);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_BUFFER, linked_list_texture[0]);
+            OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, OpenGL.GL_RGBA32UI, linked_list_buffer[0]);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_BUFFER, 0);
 
-            GL.GetDelegateFor<GL.glBindImageTexture>()(1, linked_list_texture[0], 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32UI);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, linked_list_texture[0], 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
 
-            GL.ClearDepth(1.0f);
+            OpenGL.ClearDepth(1.0f);
         }
 
         protected override void DoRender(RenderEventArgs arg)
@@ -120,29 +120,29 @@ namespace CSharpGL.Demos
             this.cullFaceSwitch.On();
 
             // Reset atomic counter
-            GL.GetDelegateFor<GL.glBindBufferBase>()(GL.GL_ATOMIC_COUNTER_BUFFER, 0, atomic_counter_buffer[0]);
-            IntPtr data = GL.MapBuffer(BufferTarget.AtomicCounterBuffer, MapBufferAccess.WriteOnly);
+            OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>()(OpenGL.GL_ATOMIC_COUNTER_BUFFER, 0, atomic_counter_buffer[0]);
+            IntPtr data = OpenGL.MapBuffer(BufferTarget.AtomicCounterBuffer, MapBufferAccess.WriteOnly);
             unsafe
             {
                 var array = (uint*)data.ToPointer();
                 array[0] = 0;
             }
-            GL.UnmapBuffer(BufferTarget.AtomicCounterBuffer);
-            GL.GetDelegateFor<GL.glBindBufferBase>()(GL.GL_ATOMIC_COUNTER_BUFFER, 0, 0);
+            OpenGL.UnmapBuffer(BufferTarget.AtomicCounterBuffer);
+            OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>()(OpenGL.GL_ATOMIC_COUNTER_BUFFER, 0, 0);
 
             // Clear head-pointer image
-            GL.BindBuffer(BufferTarget.PixelUnpackBuffer, head_pointer_clear_buffer[0]);
-            GL.BindTexture(GL.GL_TEXTURE_2D, head_pointer_texture[0]);
-            GL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, 0, 0, arg.CanvasRect.Width, arg.CanvasRect.Height, TexSubImage2DFormats.RedInteger, TexSubImage2DType.UnsignedByte, IntPtr.Zero);
-            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
-            GL.BindBuffer(BufferTarget.PixelUnpackBuffer, 0);
+            OpenGL.BindBuffer(BufferTarget.PixelUnpackBuffer, head_pointer_clear_buffer[0]);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, head_pointer_texture[0]);
+            OpenGL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, 0, 0, arg.CanvasRect.Width, arg.CanvasRect.Height, TexSubImage2DFormats.RedInteger, TexSubImage2DType.UnsignedByte, IntPtr.Zero);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
+            OpenGL.BindBuffer(BufferTarget.PixelUnpackBuffer, 0);
             //
 
             // Bind head-pointer image for read-write
-            GL.GetDelegateFor<GL.glBindImageTexture>()(0, head_pointer_texture[0], 0, false, 0, GL.GL_READ_WRITE, GL.GL_R32UI);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, head_pointer_texture[0], 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
 
             // Bind linked-list buffer for write
-            GL.GetDelegateFor<GL.glBindImageTexture>()(1, linked_list_texture[0], 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32UI);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, linked_list_texture[0], 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
 
             mat4 model = mat4.identity();
             mat4 view = arg.Camera.GetViewMat4();
@@ -159,8 +159,8 @@ namespace CSharpGL.Demos
             // second pass
             this.resolve_lists.Render(arg);
 
-            GL.GetDelegateFor<GL.glBindImageTexture>()(1, 0, 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32UI);
-            GL.GetDelegateFor<GL.glBindImageTexture>()(0, 0, 0, false, 0, GL.GL_READ_WRITE, GL.GL_R32UI);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(1, 0, 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32UI);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, 0, 0, false, 0, OpenGL.GL_READ_WRITE, OpenGL.GL_R32UI);
 
             this.cullFaceSwitch.Off();
             this.depthTestSwitch.Off();
@@ -171,10 +171,10 @@ namespace CSharpGL.Demos
             this.buildListsRenderer.Dispose();
             this.resolve_lists.Dispose();
 
-            GL.DeleteTextures(linked_list_texture.Length, linked_list_texture);
-            GL.DeleteBuffers(linked_list_buffer.Length, linked_list_buffer);
-            GL.DeleteBuffers(atomic_counter_buffer.Length, atomic_counter_buffer);
-            GL.DeleteTextures(head_pointer_texture.Length, head_pointer_texture);
+            OpenGL.DeleteTextures(linked_list_texture.Length, linked_list_texture);
+            OpenGL.DeleteBuffers(linked_list_buffer.Length, linked_list_buffer);
+            OpenGL.DeleteBuffers(atomic_counter_buffer.Length, atomic_counter_buffer);
+            OpenGL.DeleteTextures(head_pointer_texture.Length, head_pointer_texture);
         }
     }
 }

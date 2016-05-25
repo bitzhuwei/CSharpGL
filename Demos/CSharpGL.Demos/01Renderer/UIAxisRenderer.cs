@@ -70,7 +70,7 @@ namespace CSharpGL.Demos
             foreach (var item in this.textList)
             {
                 vec3 screenPos = glm.project(item.Item1, view * model, projection, arg.CanvasRect.ToViewport());
-                GL.DrawText((int)(screenPos.x - fontSize / 3), (int)(screenPos.y - fontSize / 3), item.Item4, item.Item3.Name, item.Item3.Size, item.Item2);
+                OpenGL.DrawText((int)(screenPos.x - fontSize / 3), (int)(screenPos.y - fontSize / 3), item.Item4, item.Item3.Name, item.Item3.Size, item.Item2);
             }
             base.DoRender(arg);
         }

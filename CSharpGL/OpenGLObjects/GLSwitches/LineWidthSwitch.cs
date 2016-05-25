@@ -15,7 +15,7 @@ namespace CSharpGL
 
         static LineWidthSwitch()
         {
-            GL.LineWidthRange(out min, out max);
+            OpenGL.LineWidthRange(out min, out max);
             //GL.GetFloat(GetTarget.LineWidthGranularity, lineWidthRange);//TODO: what does LineWidthGranularity mean?
         }
 
@@ -29,7 +29,7 @@ namespace CSharpGL
         public LineWidthSwitch(float lineWidth)
         {
             var original = new float[1];
-            GL.GetFloat(GetTarget.LineWidth, original);
+            OpenGL.GetFloat(GetTarget.LineWidth, original);
             this.Init(lineWidth, original[0]);
         }
 
@@ -53,12 +53,12 @@ namespace CSharpGL
 
         protected override void SwitchOn()
         {
-            GL.LineWidth(LineWidth);
+            OpenGL.LineWidth(LineWidth);
         }
 
         protected override void SwitchOff()
         {
-            GL.LineWidth(originalLineWidth);
+            OpenGL.LineWidth(originalLineWidth);
         }
     }
 }

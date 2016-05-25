@@ -23,7 +23,7 @@ namespace CSharpGL.Demos
             this.projectionMatrix = projectionMatrix;
             this.viewMatrix = viewMatrix;
             this.lastMousePositionOnScreen = lastMousePositionOnScreen;
-            var viewport = new int[4]; GL.GetInteger(GetTarget.Viewport, viewport);
+            var viewport = new int[4]; OpenGL.GetInteger(GetTarget.Viewport, viewport);
             this.viewport = new vec4(viewport[0], viewport[1], viewport[2], viewport[3]);
         }
 

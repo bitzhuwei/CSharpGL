@@ -24,19 +24,19 @@ namespace CSharpGL
         public static void ResizeGL(double width, double height)
         {
             //  Set the projection matrix.
-            GL.MatrixMode(GL.GL_PROJECTION);
+            OpenGL.MatrixMode(OpenGL.GL_PROJECTION);
 
             //  Load the identity.
-            GL.LoadIdentity();
+            OpenGL.LoadIdentity();
 
             //  Create a perspective transformation.
-            GL.gluPerspective(60.0f, width / height, 0.01, 100.0);
+            OpenGL.gluPerspective(60.0f, width / height, 0.01, 100.0);
 
             //  Use the 'look at' helper function to position and aim the camera.
-            GL.gluLookAt(-5, 5, -5, 0, 0, 0, 0, 1, 0);
+            OpenGL.gluLookAt(-5, 5, -5, 0, 0, 0, 0, 1, 0);
 
             //  Set the modelview matrix.
-            GL.MatrixMode(GL.GL_MODELVIEW);
+            OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);
         }
 
         static readonly List<vec3> pyramidPosition = new List<vec3>();
@@ -72,24 +72,24 @@ namespace CSharpGL
         public static void DrawPyramid()
         {
             //  Clear the color and depth buffer.
-            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
             //  Load the identity matrix.
-            GL.LoadIdentity();
+            OpenGL.LoadIdentity();
 
             //  Rotate around the Y axis.
-            GL.Rotate(rotation, 0.0f, 1.0f, 0.0f);
+            OpenGL.Rotate(rotation, 0.0f, 1.0f, 0.0f);
 
             //  Draw a coloured pyramid.
-            GL.Begin(GL.GL_TRIANGLES);
+            OpenGL.Begin(OpenGL.GL_TRIANGLES);
             for (int i = 0; i < pyramidPosition.Count; i++)
             {
                 vec3 color = pyramidColor[i];
-                GL.Color(color.x, color.y, color.z);
+                OpenGL.Color(color.x, color.y, color.z);
                 vec3 position = pyramidPosition[i];
-                GL.Vertex(position.x, position.y, position.z);
+                OpenGL.Vertex(position.x, position.y, position.z);
             }
-            GL.End();
+            OpenGL.End();
 
             rotation += 3.0f;
         }

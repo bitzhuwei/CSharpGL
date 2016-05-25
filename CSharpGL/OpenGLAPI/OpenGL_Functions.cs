@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
-    public static partial class GL
+    public static partial class OpenGL
     {
 
         #region The OpenGL DLL Functions (Exactly the same naming).
@@ -592,7 +592,7 @@ namespace CSharpGL
             IntPtr ptr = Win32.wglGetCurrentContext();
             if (ptr != IntPtr.Zero)
             {
-                GL.GetDelegateFor<GL.glDeleteBuffers>()(n, buffers);
+                OpenGL.GetDelegateFor<OpenGL.glDeleteBuffers>()(n, buffers);
             }
         }
 

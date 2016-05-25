@@ -38,8 +38,8 @@ namespace CSharpGL
                 this.maxElementCount = indexesLength;
             }
 
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, indexBufferPtr.BufferId);
-            IntPtr pointer = GL.MapBuffer(BufferTarget.ElementArrayBuffer, MapBufferAccess.WriteOnly);
+            OpenGL.BindBuffer(BufferTarget.ElementArrayBuffer, indexBufferPtr.BufferId);
+            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ElementArrayBuffer, MapBufferAccess.WriteOnly);
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
@@ -48,8 +48,8 @@ namespace CSharpGL
                     array[i] = indexes[i];
                 }
             }
-            GL.UnmapBuffer(BufferTarget.ElementArrayBuffer);
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
+            OpenGL.UnmapBuffer(BufferTarget.ElementArrayBuffer);
+            OpenGL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
 
             indexBufferPtr.Mode = mode;
             indexBufferPtr.ElementCount = indexesLength;

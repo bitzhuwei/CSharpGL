@@ -8,13 +8,13 @@ namespace CSharpGL
 {
     public enum BufferTarget : uint
     {
-        ArrayBuffer = GL.GL_ARRAY_BUFFER,
-        ElementArrayBuffer = GL.GL_ELEMENT_ARRAY_BUFFER,
-        UniformBuffer = GL.GL_UNIFORM_BUFFER,
-        TransformFeedbackBuffer = GL.GL_TRANSFORM_FEEDBACK_BUFFER,
-        PixelUnpackBuffer = GL.GL_PIXEL_UNPACK_BUFFER,
-        AtomicCounterBuffer = GL.GL_ATOMIC_COUNTER_BUFFER,
-        TextureBuffer = GL.GL_TEXTURE_BUFFER,
+        ArrayBuffer = OpenGL.GL_ARRAY_BUFFER,
+        ElementArrayBuffer = OpenGL.GL_ELEMENT_ARRAY_BUFFER,
+        UniformBuffer = OpenGL.GL_UNIFORM_BUFFER,
+        TransformFeedbackBuffer = OpenGL.GL_TRANSFORM_FEEDBACK_BUFFER,
+        PixelUnpackBuffer = OpenGL.GL_PIXEL_UNPACK_BUFFER,
+        AtomicCounterBuffer = OpenGL.GL_ATOMIC_COUNTER_BUFFER,
+        TextureBuffer = OpenGL.GL_TEXTURE_BUFFER,
     }
 
     ///// <summary>
@@ -32,14 +32,14 @@ namespace CSharpGL
     /// </summary>
     public enum BufferUsage : uint
     {
-        StreamDraw = GL.GL_STREAM_DRAW,//= 0x88E0,
-        StreamRead = GL.GL_STREAM_READ,//= 0x88E1,
-        StreamCopy = GL.GL_STREAM_COPY,//= 0x88E2,
-        StaticDraw = GL.GL_STATIC_DRAW,//= 0x88E4,
-        StaticRead = GL.GL_STATIC_READ,//= 0x88E5,
-        StaticCopy = GL.GL_STATIC_COPY,//= 0x88E6,
-        DynamicDraw = GL.GL_DYNAMIC_DRAW,//= 0x88E8,
-        DynamicRead = GL.GL_DYNAMIC_READ,//= 0x88E9,
-        DynamicCopy = GL.GL_DYNAMIC_COPY,//= 0x88EA,
+        StreamDraw = OpenGL.GL_STREAM_DRAW,//= 0x88E0,
+        StreamRead = OpenGL.GL_STREAM_READ,//= 0x88E1,
+        StreamCopy = OpenGL.GL_STREAM_COPY,//= 0x88E2,
+        StaticDraw = OpenGL.GL_STATIC_DRAW,//= 0x88E4,
+        StaticRead = OpenGL.GL_STATIC_READ,//= 0x88E5,
+        StaticCopy = OpenGL.GL_STATIC_COPY,//= 0x88E6,
+        DynamicDraw = OpenGL.GL_DYNAMIC_DRAW,//= 0x88E8,
+        DynamicRead = OpenGL.GL_DYNAMIC_READ,//= 0x88E9,
+        DynamicCopy = OpenGL.GL_DYNAMIC_COPY,//= 0x88EA,
     }
 }

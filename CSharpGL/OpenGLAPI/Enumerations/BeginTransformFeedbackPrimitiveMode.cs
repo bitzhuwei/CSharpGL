@@ -8,9 +8,9 @@ namespace CSharpGL
 {
     public enum BeginTransformFeedbackPrimitiveMode : uint
     {
-        Points = GL.GL_POINTS,
-        Lines = GL.GL_LINES,
-        Triangles = GL.GL_TRIANGLES,
+        Points = OpenGL.GL_POINTS,
+        Lines = OpenGL.GL_LINES,
+        Triangles = OpenGL.GL_TRIANGLES,
     }
 
 }

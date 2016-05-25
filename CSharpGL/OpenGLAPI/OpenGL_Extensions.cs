@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
-    public static partial class GL
+    public static partial class OpenGL
     {
 
         #region OpenGL 1.2

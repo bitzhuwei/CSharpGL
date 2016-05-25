@@ -66,19 +66,19 @@ namespace CSharpGL
         {
             // record clear color
             var originalClearColor = new float[4];
-            GL.GetFloat(GetTarget.ColorClearValue, originalClearColor);
+            OpenGL.GetFloat(GetTarget.ColorClearValue, originalClearColor);
 
             // 白色意味着没有拾取到任何对象
             // white color: nothing picked.
-            GL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+            OpenGL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
             // restore clear color
-            GL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
+            OpenGL.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
             this.ColorCodedRender(arg, indexBufferPtr);
 
-            GL.Flush();
+            OpenGL.Flush();
 
             //var filename = string.Format("Render4InnerPicking{0:yyyy-MM-dd_HH-mm-ss.ff}.png", DateTime.Now);
             //Save2PictureHelper.Save2Picture(0, 0,
@@ -101,9 +101,9 @@ namespace CSharpGL
         protected vec3[] FillPickedGeometrysPosition(uint firstIndex, int indexCount)
         {
             int offset = (int)(firstIndex * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
             //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
-            IntPtr pointer = GL.MapBufferRange(BufferTarget.ArrayBuffer,
+            IntPtr pointer = OpenGL.MapBufferRange(BufferTarget.ArrayBuffer,
                 offset,
                 indexCount * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength,
                 MapBufferRangeAccess.MapReadBit);
@@ -121,12 +121,12 @@ namespace CSharpGL
             }
             else
             {
-                ErrorCode error = (ErrorCode)GL.GetError();
+                ErrorCode error = (ErrorCode)OpenGL.GetError();
                 throw new Exception(string.Format(
                     "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId));
             }
-            GL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
             return positions;
         }
@@ -135,12 +135,12 @@ namespace CSharpGL
         {
             var positions = new vec3[indexes.Length];
 
-            GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
             for (int i = 0; i < indexes.Length; i++)
             {
                 int offset = (int)(indexes[i] * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
                 //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
-                IntPtr pointer = GL.MapBufferRange(BufferTarget.ArrayBuffer,
+                IntPtr pointer = OpenGL.MapBufferRange(BufferTarget.ArrayBuffer,
                     offset,
                     1 * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength,
                     MapBufferRangeAccess.MapReadBit);
@@ -154,14 +154,14 @@ namespace CSharpGL
                 }
                 else
                 {
-                    ErrorCode error = (ErrorCode)GL.GetError();
+                    ErrorCode error = (ErrorCode)OpenGL.GetError();
                     Debug.WriteLine(string.Format(
                         "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId));
                 }
-                GL.UnmapBuffer(BufferTarget.ArrayBuffer);
+                OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
             }
 
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
             return positions;
         }

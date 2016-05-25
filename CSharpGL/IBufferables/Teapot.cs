@@ -30,7 +30,7 @@ namespace CSharpGL
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Alloc(model.positions.Count);
                         unsafe
@@ -50,7 +50,7 @@ namespace CSharpGL
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Alloc(model.normals.Count);
                         unsafe
@@ -70,7 +70,7 @@ namespace CSharpGL
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Alloc(model.normals.Count);
                         unsafe

@@ -21,7 +21,7 @@ namespace CSharpGL.Demos
 
             this.glCanvas1.MouseMove += glCanvas1_MouseMove;
             // 天蓝色背景
-            GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+            OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
         }
 
         void glCanvas1_MouseMove(object sender, MouseEventArgs e)
@@ -31,9 +31,9 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            GL.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
-            GL.DrawText(this.mousePosition.X,
+            OpenGL.DrawText(this.mousePosition.X,
                 this.glCanvas1.Height - this.mousePosition.Y - 1, Color.Red, "Courier New",
                 14.0f, string.Format("Mouse Position: {0}", this.mousePosition));
         }

@@ -22,7 +22,7 @@ namespace CSharpGL.Demos
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
             {
-                ErrorCode error = (ErrorCode)GL.GetError();
+                ErrorCode error = (ErrorCode)OpenGL.GetError();
                 if (error != ErrorCode.NoError)
                 {
                     Debug.WriteLine("OpenGL error: {0}", error);

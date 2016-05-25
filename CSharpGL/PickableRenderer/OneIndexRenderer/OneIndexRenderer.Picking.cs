@@ -190,15 +190,15 @@ namespace CSharpGL
 
             PrimitiveRestartSwitch glSwitch = GetPrimitiveRestartSwitch();
 
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, this.indexBufferPtr.BufferId);
-            IntPtr pointer = GL.MapBuffer(BufferTarget.ElementArrayBuffer, MapBufferAccess.ReadOnly);
+            OpenGL.BindBuffer(BufferTarget.ElementArrayBuffer, this.indexBufferPtr.BufferId);
+            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ElementArrayBuffer, MapBufferAccess.ReadOnly);
             List<RecognizedPrimitiveIndex> lastIndexIdList = null;
             if (glSwitch == null)
             { lastIndexIdList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr as OneIndexBufferPtr); }
             else
             { lastIndexIdList = recognizer.Recognize(lastVertexId, pointer, this.indexBufferPtr as OneIndexBufferPtr, glSwitch.RestartIndex); }
-            GL.UnmapBuffer(BufferTarget.ElementArrayBuffer);
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
+            OpenGL.UnmapBuffer(BufferTarget.ElementArrayBuffer);
+            OpenGL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
 
             return lastIndexIdList;
         }

@@ -26,8 +26,8 @@ namespace CSharpGL
             if (positionIndexes == null) { return; }
             if (positionIndexes.Count() == 0) { return; }
 
-            GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
-            IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
             unsafe
             {
                 var array = (vec3*)pointer.ToPointer();
@@ -41,8 +41,8 @@ namespace CSharpGL
                         viewMatrix, projectionMatrix, viewport);
                 }
             }
-            GL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
         }
 
         /// <summary>
@@ -59,8 +59,8 @@ namespace CSharpGL
             if (positionIndexes == null) { return; }
             if (positionIndexes.Length == 0) { return; }
 
-            GL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
-            IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
             unsafe
             {
                 var array = (vec3*)pointer.ToPointer();
@@ -74,8 +74,8 @@ namespace CSharpGL
                         viewMatrix, projectionMatrix, viewport);
                 }
             }
-            GL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
         }
 
     }

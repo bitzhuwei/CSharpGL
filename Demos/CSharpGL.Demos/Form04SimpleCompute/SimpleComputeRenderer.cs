@@ -51,10 +51,10 @@ namespace CSharpGL.Demos
             }
             {
                 // This is the texture that the compute program will write into
-                GL.GenTextures(1, output_image);
-                GL.BindTexture(GL.GL_TEXTURE_2D, output_image[0]);
-                GL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, GL.GL_RGBA32F, 256, 256);
-                GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+                OpenGL.GenTextures(1, output_image);
+                OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, output_image[0]);
+                OpenGL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, OpenGL.GL_RGBA32F, 256, 256);
+                OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
             }
             {
                 this.GroupX = 1;
@@ -62,7 +62,7 @@ namespace CSharpGL.Demos
                 this.GroupZ = 1;
             }
             base.DoInitialize();
-            this.SetUniformValue("output_image", new samplerValue(this.output_image[0], GL.GL_TEXTURE0));
+            this.SetUniformValue("output_image", new samplerValue(this.output_image[0], OpenGL.GL_TEXTURE0));
 
         }
 
@@ -95,14 +95,14 @@ namespace CSharpGL.Demos
         {
             // reset image
             resetProgram.Bind();
-            GL.GetDelegateFor<GL.glBindImageTexture>()(0, output_image[0], 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
-            GL.GetDelegateFor<GL.glDispatchCompute>()(maxX, maxY, maxZ);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, output_image[0], 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32F);
+            OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(maxX, maxY, maxZ);
             resetProgram.Unbind();
 
             // Activate the compute program and bind the output texture image
             computeProgram.Bind();
-            GL.GetDelegateFor<GL.glBindImageTexture>()(0, output_image[0], 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
-            GL.GetDelegateFor<GL.glDispatchCompute>()(GroupX, GroupY, GroupZ);
+            OpenGL.GetDelegateFor<OpenGL.glBindImageTexture>()(0, output_image[0], 0, false, 0, OpenGL.GL_WRITE_ONLY, OpenGL.GL_RGBA32F);
+            OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(GroupX, GroupY, GroupZ);
             computeProgram.Unbind();
 
             mat4 model = mat4.identity();
@@ -119,7 +119,7 @@ namespace CSharpGL.Demos
         {
             resetProgram.Delete();
             computeProgram.Delete();
-            GL.DeleteTextures(1, output_image);
+            OpenGL.DeleteTextures(1, output_image);
         }
 
         class SimpleCompute : IBufferable
@@ -144,7 +144,7 @@ namespace CSharpGL.Demos
                     if (positionBufferPtr == null)
                     {
                         using (var buffer = new PropertyBuffer<vec3>(
-                            varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                            varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                         {
                             buffer.Alloc(vertsData.Length);
                             unsafe

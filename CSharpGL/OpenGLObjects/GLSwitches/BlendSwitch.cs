@@ -11,7 +11,7 @@ namespace CSharpGL
         public BlendSwitch() : this(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha) { }
 
         public BlendSwitch(BlendingSourceFactor sourceFactor, BlendingDestinationFactor destFactor)
-            : base(GL.GL_BLEND, true)
+            : base(OpenGL.GL_BLEND, true)
         {
             this.SourceFactor = sourceFactor;
             this.DestFactor = destFactor;
@@ -37,7 +37,7 @@ namespace CSharpGL
 
             if (this.EnableCap)
             {
-                GL.BlendFunc(this.SourceFactor, this.DestFactor);
+                OpenGL.BlendFunc(this.SourceFactor, this.DestFactor);
             }
         }
 

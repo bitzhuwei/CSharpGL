@@ -145,7 +145,7 @@ namespace CSharpGL
         static void CalculateViewport(IDummyUILayoutArgs args)
         {
             int[] viewport = new int[4];
-            GL.GetInteger(GetTarget.Viewport, viewport);
+            OpenGL.GetInteger(GetTarget.Viewport, viewport);
             args.viewportWidth = viewport[2];
             args.viewportHeight = viewport[3];
         }

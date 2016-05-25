@@ -52,7 +52,7 @@ namespace CSharpGL.Demos
             base.DoInitialize();
 
             this.SetUniformValue("fontTexture",
-                new samplerValue(FontResource.Default.FontTextureId, GL.GL_TEXTURE0));
+                new samplerValue(FontResource.Default.FontTextureId, OpenGL.GL_TEXTURE0));
         }
 
         protected override void DoRender(RenderEventArgs arg)
@@ -86,8 +86,8 @@ namespace CSharpGL.Demos
         unsafe private void SetupGlyphTexCoord(string content, FontResource fontResource)
         {
             FullDictionary<char, CharacterInfo> charInfoDict = fontResource.CharInfoDict;
-            GL.BindBuffer(BufferTarget.ArrayBuffer, this.model.uvBufferPtr.BufferId);
-            IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.WriteOnly);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.model.uvBufferPtr.BufferId);
+            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.WriteOnly);
             var array = (GlyphTexCoord*)pointer.ToPointer();
             int currentWidth = 0; int currentHeight = 0;
             int width = fontResource.TextureSize.Width;
@@ -118,15 +118,15 @@ namespace CSharpGL.Demos
                     );
                 currentWidth += info.width + 10;
             }
-            GL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
         }
 
         unsafe private void SetupGlyphPositions(string content, FontResource fontResource)
         {
             FullDictionary<char, CharacterInfo> charInfoDict = fontResource.CharInfoDict;
-            GL.BindBuffer(BufferTarget.ArrayBuffer, this.model.positionBufferPtr.BufferId);
-            IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.model.positionBufferPtr.BufferId);
+            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
             var array = (GlyphPosition*)pointer.ToPointer();
             int currentWidth = 0; int currentHeight = 0;
             /*
@@ -178,8 +178,8 @@ namespace CSharpGL.Demos
                 position.rightDown.y /= (currentHeight + fontResource.FontHeight);
                 array[i] = position;
             }
-            GL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
         }
 
         class TextBoxModel : IBufferable
@@ -291,14 +291,14 @@ namespace CSharpGL.Demos
         class PositionBuffer : PropertyBuffer<GlyphPosition>
         {
             public PositionBuffer(string varNameInShader)
-                : base(varNameInShader, 2, GL.GL_FLOAT, BufferUsage.DynamicDraw)
+                : base(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.DynamicDraw)
             { }
         }
 
         class UVBuffer : PropertyBuffer<GlyphTexCoord>
         {
             public UVBuffer(string varNameInShader)
-                : base(varNameInShader, 2, GL.GL_FLOAT, BufferUsage.DynamicDraw)
+                : base(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.DynamicDraw)
             { }
         }
 

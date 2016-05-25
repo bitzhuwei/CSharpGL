@@ -11,12 +11,12 @@ namespace CSharpGL
     /// </summary>
     public enum ErrorCode : uint
     {
-        NoError = GL.GL_NO_ERROR,
-        InvalidEnum = GL.GL_INVALID_ENUM,
-        InvalidValue = GL.GL_INVALID_VALUE,
-        InvalidOperation = GL.GL_INVALID_OPERATION,
-        StackOverflow = GL.GL_STACK_OVERFLOW,
-        StackUnderflow = GL.GL_STACK_UNDERFLOW,
-        OutOfMemory = GL.GL_OUT_OF_MEMORY
+        NoError = OpenGL.GL_NO_ERROR,
+        InvalidEnum = OpenGL.GL_INVALID_ENUM,
+        InvalidValue = OpenGL.GL_INVALID_VALUE,
+        InvalidOperation = OpenGL.GL_INVALID_OPERATION,
+        StackOverflow = OpenGL.GL_STACK_OVERFLOW,
+        StackUnderflow = OpenGL.GL_STACK_UNDERFLOW,
+        OutOfMemory = OpenGL.GL_OUT_OF_MEMORY
     }
 }

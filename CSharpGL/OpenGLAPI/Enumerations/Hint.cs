@@ -11,12 +11,12 @@ namespace CSharpGL
     /// </summary>
     public enum HintMode : uint
     {
-        DontCare = GL.GL_DONT_CARE,
-        Fastest = GL.GL_FASTEST,
+        DontCare = OpenGL.GL_DONT_CARE,
+        Fastest = OpenGL.GL_FASTEST,
         /// <summary>
         /// The 
         /// </summary>
-        Nicest = GL.GL_NICEST
+        Nicest = OpenGL.GL_NICEST
     }
 
     /// <summary>
@@ -24,10 +24,10 @@ namespace CSharpGL
     /// </summary>
     public enum HintTarget : uint
     {
-        PerspectiveCorrection = GL.GL_PERSPECTIVE_CORRECTION_HINT,
-        PointSmooth = GL.GL_POINT_SMOOTH_HINT,
-        LineSmooth = GL.GL_LINE_SMOOTH_HINT,
-        PolygonSmooth = GL.GL_POLYGON_SMOOTH_HINT,
-        Fog = GL.GL_FOG_HINT
+        PerspectiveCorrection = OpenGL.GL_PERSPECTIVE_CORRECTION_HINT,
+        PointSmooth = OpenGL.GL_POINT_SMOOTH_HINT,
+        LineSmooth = OpenGL.GL_LINE_SMOOTH_HINT,
+        PolygonSmooth = OpenGL.GL_POLYGON_SMOOTH_HINT,
+        Fog = OpenGL.GL_FOG_HINT
     }
 }

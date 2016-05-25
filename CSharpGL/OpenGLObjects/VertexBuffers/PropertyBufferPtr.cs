@@ -52,15 +52,15 @@ namespace CSharpGL
         {
             get
             {
-                if (DataType == GL.GL_FLOAT)
+                if (DataType == OpenGL.GL_FLOAT)
                 { return sizeof(float); }
-                else if (DataType == GL.GL_BYTE)
+                else if (DataType == OpenGL.GL_BYTE)
                 { return sizeof(byte); }
-                else if (DataType == GL.GL_UNSIGNED_BYTE)
+                else if (DataType == OpenGL.GL_UNSIGNED_BYTE)
                 { return sizeof(byte); }
-                else if (DataType == GL.GL_SHORT)
+                else if (DataType == OpenGL.GL_SHORT)
                 { return sizeof(short); }
-                else if (DataType == GL.GL_UNSIGNED_SHORT)
+                else if (DataType == OpenGL.GL_UNSIGNED_SHORT)
                 { return sizeof(ushort); }
                 else
                 { throw new NotImplementedException(); }
@@ -82,11 +82,11 @@ namespace CSharpGL
         {
             uint location = shaderProgram.GetAttributeLocation(this.VarNameInVertexShader);
             // 选择 VBO
-            GL.BindBuffer(BufferTarget.ArrayBuffer, this.BufferId);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.BufferId);
             // 指定格式
-            GL.GetDelegateFor<GL.glVertexAttribPointer>()(location, this.DataSize, this.DataType, false, 0, IntPtr.Zero);
+            OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>()(location, this.DataSize, this.DataType, false, 0, IntPtr.Zero);
             // 启用
-            GL.GetDelegateFor<GL.glEnableVertexAttribArray>()(location);
+            OpenGL.GetDelegateFor<OpenGL.glEnableVertexAttribArray>()(location);
         }
 
     }

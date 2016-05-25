@@ -43,11 +43,11 @@ namespace CSharpGL
             {
                 // this maybe render points that should not appear. 
                 // so need to select by another picking
-                GL.DrawArrays(DrawMode.Points, this.FirstVertex, this.VertexCount);
+                OpenGL.DrawArrays(DrawMode.Points, this.FirstVertex, this.VertexCount);
             }
             else
             {
-                GL.DrawArrays(this.Mode, this.FirstVertex, this.VertexCount);
+                OpenGL.DrawArrays(this.Mode, this.FirstVertex, this.VertexCount);
             }
         }
 

@@ -157,7 +157,7 @@ namespace CSharpGL.Demos
         private void UpdateColorInformationAtMouse(int x, int y)
         {
             this.RenderersDraw(this.renderMode, true, false);
-            Color c = GL.ReadPixel(x, this.glCanvas1.Height - y - 1);
+            Color c = OpenGL.ReadPixel(x, this.glCanvas1.Height - y - 1);
             c = Color.FromArgb(255, c);
             this.lblColor.BackColor = c;
             this.lblReadColor.Text = string.Format(

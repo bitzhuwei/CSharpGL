@@ -27,7 +27,7 @@ namespace CSharpGL
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Alloc(TetrahedronModel.position.Length);
                         unsafe
@@ -48,7 +48,7 @@ namespace CSharpGL
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Alloc(TetrahedronModel.color.Length);
                         unsafe
@@ -69,7 +69,7 @@ namespace CSharpGL
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, GL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Alloc(TetrahedronModel.normal.Length);
                         unsafe

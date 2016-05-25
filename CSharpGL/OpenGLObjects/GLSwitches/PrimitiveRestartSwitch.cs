@@ -9,7 +9,7 @@ namespace CSharpGL
     {
 
         public PrimitiveRestartSwitch(OneIndexBufferPtr indexBufferPtr)
-            : base(GL.GL_PRIMITIVE_RESTART, true)
+            : base(OpenGL.GL_PRIMITIVE_RESTART, true)
         {
             if (indexBufferPtr == null)
             { throw new ArgumentException(); }
@@ -41,7 +41,7 @@ namespace CSharpGL
 
             if (this.EnableCap)
             {
-                GL.GetDelegateFor<GL.glPrimitiveRestartIndex>()(RestartIndex);
+                OpenGL.GetDelegateFor<OpenGL.glPrimitiveRestartIndex>()(RestartIndex);
             }
         }
 

@@ -39,7 +39,7 @@ namespace CSharpGL
             {
                 //	Get the maximum texture size supported by OpenGL.
                 int[] textureMaxSize = { 0 };
-                GL.GetInteger(GetTarget.MaxTextureSize, textureMaxSize);
+                OpenGL.GetInteger(GetTarget.MaxTextureSize, textureMaxSize);
 
                 //	Find the target width and height sizes, which is just the highest
                 //	posible power of two that'll fit into the image.
@@ -88,21 +88,21 @@ namespace CSharpGL
                 BitmapData bitmapData = targetImage.LockBits(new Rectangle(0, 0, targetImage.Width, targetImage.Height),
                     ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
                 //GL.ActiveTexture(GL.GL_TEXTURE0);
-                GL.GenTextures(1, id);
-                GL.BindTexture(GL.GL_TEXTURE_2D, id[0]);
-                GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA,
-                    targetImage.Width, targetImage.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
+                OpenGL.GenTextures(1, id);
+                OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, id[0]);
+                OpenGL.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, (int)OpenGL.GL_RGBA,
+                    targetImage.Width, targetImage.Height, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE,
                     bitmapData.Scan0);
                 //  Unlock the image.
                 targetImage.UnlockBits(bitmapData);
                 /* We require 1 byte alignment when uploading texture data */
                 //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
                 /* Clamping to edges is important to prevent artifacts when scaling */
-                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
-                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
+                OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_S, (int)OpenGL.GL_CLAMP_TO_EDGE);
+                OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_T, (int)OpenGL.GL_CLAMP_TO_EDGE);
                 /* Linear filtering usually looks best for text */
-                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
-                GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
+                OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, (int)OpenGL.GL_LINEAR);
+                OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, (int)OpenGL.GL_LINEAR);
             }
 
             // release temp image.
@@ -151,7 +151,7 @@ namespace CSharpGL
                 } // end if
 
                 // TODO: Dispose unmanaged resources.
-                GL.DeleteTextures(this.id.Length, this.id);
+                OpenGL.DeleteTextures(this.id.Length, this.id);
                 this.id[0] = 0;
 
             } // end if
@@ -163,12 +163,12 @@ namespace CSharpGL
 
         public void Bind()
         {
-            GL.BindTexture(GL.GL_TEXTURE_2D, this.id[0]);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, this.id[0]);
         }
 
         public void Unbind()
         {
-            GL.BindTexture(GL.GL_TEXTURE_2D, 0);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
         }
     }
 }
