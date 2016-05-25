@@ -2238,6 +2238,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Define the scissor box.
+        /// https://www.khronos.org/opengles/sdk/docs/man/xhtml/glScissor.xml
         /// </summary>
         /// <param name="x">Specify the lower left corner of the scissor box. Initially (0, 0).</param>
         /// <param name="y">Specify the lower left corner of the scissor box. Initially (0, 0).</param>
