@@ -69,11 +69,6 @@ namespace CSharpGL.Demos
         /// </summary>
         Camera camera;
 
-        /// <summary>
-        /// UI Camera.
-        /// </summary>
-        Camera uiCamera;
-
         private FormBulletinBoard pickedGeometryBoard;
         private FormProperyGrid pickableRendererPropertyGrid;
         private FormProperyGrid highlightRendererPropertyGrid;

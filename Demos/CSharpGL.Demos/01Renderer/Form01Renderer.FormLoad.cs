@@ -28,13 +28,6 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
-                var camera = new Camera(CameraType.Ortho, this.glCanvas1.Width, this.glCanvas1.Height);
-                camera.Position = new vec3(this.glCanvas1.Width / 2, this.glCanvas1.Height / 2, 5);
-                camera.Target = new vec3(this.glCanvas1.Width / 2, this.glCanvas1.Height / 2, 0);
-                camera.UpVector = new vec3(0, 1, 0);
-                this.uiCamera = camera;
-            }
-            {
                 // build several models
                 Random random = new Random();
                 var bufferables = new IBufferable[]{
