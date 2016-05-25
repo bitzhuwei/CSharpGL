@@ -23,7 +23,7 @@ namespace CSharpGL
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
         {
-            this.Controls = new ILayoutCollection(this);
+            this.Controls = new GLControlCollection(this);
 
             this.renderer = renderer;
             this.Anchor = anchor; this.Margin = margin;

@@ -11,12 +11,12 @@ namespace CSharpGL
     /// <summary>
     /// 用<see cref="Add(item)"/>时自动实现双向绑定。
     /// </summary>
-    class ILayoutCollection : ICollection<ILayout>
+    class GLControlCollection : ICollection<ILayout>
     {
         private ILayout container;
         ICollection<ILayout> collection = new Collection<ILayout>();
 
-        public ILayoutCollection(ILayout container)
+        public GLControlCollection(ILayout container)
         {
             this.container = container;
         }
