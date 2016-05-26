@@ -7,48 +7,28 @@ namespace CSharpGL
 {
     public class ViewportSwitch : GLSwitch
     {
-        private int originalX;
-        private int originalY;
-        private int originalWidth;
-        private int originalHeight;
+        private int[] original = new int[4];
 
         public ViewportSwitch()
         {
             int[] viewport = OpenGL.GetViewport();
-            this.Init(viewport[0], viewport[1], viewport[2], viewport[3],
-                viewport[0], viewport[1], viewport[2], viewport[3]);
+
+            this.Init(viewport[0], viewport[1], viewport[2], viewport[3]);
         }
-      
+
         public ViewportSwitch(int x, int y, int width, int height)
         {
-            int[] viewport = OpenGL.GetViewport();
-
-            this.Init(x, y, width, height,
-                viewport[0], viewport[1], viewport[2], viewport[3]);
+            this.Init(x, y, width, height);
         }
 
-        public ViewportSwitch(int x, int y, int width, int height,
-            int originalX, int originalY, int originalWidth, int originalHeight)
+        public ViewportSwitch(int[] viewport)
         {
-            this.Init(x, y, width, height,
-                originalX, originalY, originalWidth, originalHeight);
+            this.Init(viewport[0], viewport[1], viewport[2], viewport[3]);
         }
 
-        public ViewportSwitch(int[] viewport, int[] originalViewport)
-        {
-            this.Init(viewport[0], viewport[1], viewport[2], viewport[3],
-                originalViewport[0], originalViewport[1], 
-                originalViewport[2], originalViewport[3]);
-        }
-
-        private void Init(int x, int y, int width, int height,
-          int originalX, int originalY, int originalWidth, int originalHeight)
+        private void Init(int x, int y, int width, int height)
         {
             this.X = x; this.Y = y; this.Width = width; this.Height = height;
-            this.originalX = originalX;
-            this.originalY = originalY;
-            this.originalWidth = originalWidth;
-            this.originalHeight = originalHeight;
         }
 
         public override string ToString()
@@ -59,12 +39,14 @@ namespace CSharpGL
 
         protected override void SwitchOn()
         {
+            OpenGL.GetInteger(GetTarget.Viewport, original);
+
             OpenGL.Viewport(X, Y, Width, Height);
         }
 
         protected override void SwitchOff()
         {
-            OpenGL.Viewport(originalX, originalY, originalWidth, originalHeight);
+            OpenGL.Viewport(original[0], original[1], original[2], original[3]);
         }
 
         public int X { get; set; }
