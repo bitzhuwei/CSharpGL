@@ -72,11 +72,5 @@ namespace CSharpGL
                 renderer.Dispose();
             }
         }
-
-        public virtual vec3 MoveModel()
-        {
-            return new vec3(this.Location.X + this.Size.Width / 2,
-                this.Location.Y + this.Size.Height / 2, 0);
-        }
     }
 }

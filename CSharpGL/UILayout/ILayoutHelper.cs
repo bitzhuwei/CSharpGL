@@ -17,9 +17,10 @@ namespace CSharpGL
         public static mat4 GetOrthoProjection(this ILayout uiRenderer)
         {
             return glm.ortho(
-                uiRenderer.Location.X, uiRenderer.Location.X + uiRenderer.Size.Width,
-                uiRenderer.Location.Y, uiRenderer.Location.Y + uiRenderer.Size.Height, 
-                uiRenderer.zNear, uiRenderer.zFar);
+                -uiRenderer.Size.Width / 2,
+                uiRenderer.Size.Width / 2,
+                -uiRenderer.Size.Height / 2,
+                uiRenderer.Size.Height / 2, uiRenderer.zNear, uiRenderer.zFar);
         }
 
         /// <summary>

@@ -175,11 +175,7 @@ namespace CSharpGL.Demos
                 {
                     uiRoot.Layout();
                     mat4 projection, view, model;
-                    projection = glm.ortho(
-                        -glAxis.Size.Width / 2,
-                        glAxis.Size.Width / 2,
-                        -glAxis.Size.Height / 2,
-                        glAxis.Size.Height / 2, glAxis.zNear,glAxis.zFar);
+                    projection = glAxis.GetOrthoProjection();
                     vec3 position = (this.camera.Position - this.camera.Target).normalize();
                     view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
                     model = glm.scale(mat4.identity(), new vec3(glAxis.Size.Width / 2, glAxis.Size.Height/ 2,
