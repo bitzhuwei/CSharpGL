@@ -11,6 +11,9 @@ namespace CSharpGL
     /// </summary>
     public class UIRenderer : RendererBase, ILayout
     {
+        private ViewportSwitch viewportSwitch;
+        private ScissorTestSwitch scissorTestSwitch;
+
         Renderer renderer;
 
         public Renderer Renderer
@@ -53,6 +56,10 @@ namespace CSharpGL
             {
                 renderer.Initialize();
             }
+
+            this.viewportSwitch = new ViewportSwitch();
+            this.scissorTestSwitch = new ScissorTestSwitch();
+
         }
 
         protected override void DoRender(RenderEventArgs arg)
@@ -60,7 +67,25 @@ namespace CSharpGL
             Renderer renderer = this.renderer;
             if (renderer != null)
             {
+                this.viewportSwitch.X = this.Location.X;
+                this.viewportSwitch.Y = this.Location.Y;
+                this.viewportSwitch.Width = this.Size.Width;
+                this.viewportSwitch.Height = this.Size.Height;
+                this.scissorTestSwitch.X = this.Location.X;
+                this.scissorTestSwitch.Y = this.Location.Y;
+                this.scissorTestSwitch.Width = this.Size.Width;
+                this.scissorTestSwitch.Height = this.Size.Height;
+
+                this.scissorTestSwitch.On();
+                this.viewportSwitch.On();
+
+                // 把所有在此之前渲染的内容都推到最远。
+                OpenGL.Clear(OpenGL.GL_DEPTH_BUFFER_BIT);
+
                 renderer.Render(arg);
+
+                this.viewportSwitch.Off();
+                this.scissorTestSwitch.Off();
             }
         }
 
