@@ -34,6 +34,13 @@ namespace CSharpGL
                 originalX, originalY, originalWidth, originalHeight);
         }
 
+        public ViewportSwitch(int[] viewport, int[] originalViewport)
+        {
+            this.Init(viewport[0], viewport[1], viewport[2], viewport[3],
+                originalViewport[0], originalViewport[1], 
+                originalViewport[2], originalViewport[3]);
+        }
+
         private void Init(int x, int y, int width, int height,
           int originalX, int originalY, int originalWidth, int originalHeight)
         {
