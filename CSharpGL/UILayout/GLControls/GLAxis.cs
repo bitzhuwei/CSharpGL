@@ -12,8 +12,6 @@ namespace CSharpGL
     /// </summary>
     public class GLAxis : UIRenderer
     {
-        private ViewportSwitch viewportSwitch;
-        private ScissorTestSwitch scissorTestSwitch;
 
         /// <summary>
         /// opengl UI for Axis
@@ -38,7 +36,7 @@ namespace CSharpGL
             map.Add("in_Position", "position");
             map.Add("in_Color", "color");
             PickableRenderer renderer = (new Axis()).GetRenderer(shaderCodes, map, "position");
-          
+
             this.Renderer = renderer;
         }
 
@@ -46,39 +44,12 @@ namespace CSharpGL
         {
             base.DoInitialize();
 
+            if (this.Renderer is OneIndexRenderer)
             {
-                this.viewportSwitch = new ViewportSwitch();
-                this.scissorTestSwitch = new ScissorTestSwitch();
-
-                if (this.Renderer is OneIndexRenderer)
-                {
-                    GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((this.Renderer as OneIndexRenderer).IndexBufferPtr);
-                    this.Renderer.SwitchList.Add(primitiveRestartSwitch);
-                }
+                GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((this.Renderer as OneIndexRenderer).IndexBufferPtr);
+                this.Renderer.SwitchList.Add(primitiveRestartSwitch);
             }
         }
 
-        protected override void DoRender(RenderEventArgs arg)
-        {
-            this.viewportSwitch.X = this.Location.X;
-            this.viewportSwitch.Y = this.Location.Y;
-            this.viewportSwitch.Width = this.Size.Width;
-            this.viewportSwitch.Height = this.Size.Height;
-            this.scissorTestSwitch.X = this.Location.X;
-            this.scissorTestSwitch.Y = this.Location.Y;
-            this.scissorTestSwitch.Width = this.Size.Width;
-            this.scissorTestSwitch.Height = this.Size.Height;
-
-            this.scissorTestSwitch.On();
-            this.viewportSwitch.On();
-
-            // 把所有在此之前渲染的内容都推到最远。
-            OpenGL.Clear(OpenGL.GL_DEPTH_BUFFER_BIT);
-
-            base.DoRender(arg);
-
-            this.viewportSwitch.Off();
-            this.scissorTestSwitch.Off();
-        }
     }
 }
