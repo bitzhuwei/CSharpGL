@@ -11,17 +11,8 @@ namespace CSharpGL.Demos
     class OrderIndependentTransparencyRenderer : RendererBase
     {
         private PickableRenderer buildListsRenderer;
-
-        public PickableRenderer BuildListsRenderer
-        {
-            get { return buildListsRenderer; }
-        }
         private PickableRenderer resolve_lists;
 
-        public PickableRenderer ResolveListsRenderer
-        {
-            get { return resolve_lists; }
-        }
         private uint[] head_pointer_texture = new uint[1];
         private const int MAX_FRAMEBUFFER_WIDTH = 2048;
         private const int MAX_FRAMEBUFFER_HEIGHT = 2048;
