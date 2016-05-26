@@ -11,12 +11,10 @@ namespace CSharpGL
         static float min;
         static float max;
 
-        private float originalLineWidth ;
-
         static LineWidthSwitch()
         {
             OpenGL.LineWidthRange(out min, out max);
-            //GL.GetFloat(GetTarget.LineWidthGranularity, lineWidthRange);//TODO: what does LineWidthGranularity mean?
+            //OpenGL.GetFloat(GetTarget.LineWidthGranularity, lineWidthRange);//TODO: what does LineWidthGranularity mean?
         }
 
         public float MinLineWidth { get; private set; }
@@ -28,37 +26,28 @@ namespace CSharpGL
 
         public LineWidthSwitch(float lineWidth)
         {
-            var original = new float[1];
-            OpenGL.GetFloat(GetTarget.LineWidth, original);
-            this.Init(lineWidth, original[0]);
-        }
-
-        public LineWidthSwitch(float targetLineWidth, float currentLineWidth)
-        {
-            this.Init(targetLineWidth, currentLineWidth);
-        }
-
-        private void Init(float targetLineWidth, float currentLineWidth)
-        {
-            this.LineWidth = targetLineWidth;
-            this.originalLineWidth = currentLineWidth;
+            this.LineWidth = lineWidth;
             this.MinLineWidth = min;
             this.MaxLineWidth = max;
         }
 
+        float[] original = new float[1];
+
         public override string ToString()
         {
-            return string.Format("Line Width: {0}/{1}", LineWidth, originalLineWidth);
+            return string.Format("Line Width: {0}", LineWidth);
         }
 
         protected override void SwitchOn()
         {
+            OpenGL.GetFloat(GetTarget.LineWidth, original);
+
             OpenGL.LineWidth(LineWidth);
         }
 
         protected override void SwitchOff()
         {
-            OpenGL.LineWidth(originalLineWidth);
+            OpenGL.LineWidth(original[0]);
         }
     }
 }
