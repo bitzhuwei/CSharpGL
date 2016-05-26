@@ -71,8 +71,9 @@ namespace CSharpGL
 
             this.scissorTestSwitch.On();
             this.viewportSwitch.On();
+
+            // 把所有在此之前渲染的内容都推到最远。
             OpenGL.Clear(OpenGL.GL_DEPTH_BUFFER_BIT);
-            //OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT);
 
             base.DoRender(arg);
 
