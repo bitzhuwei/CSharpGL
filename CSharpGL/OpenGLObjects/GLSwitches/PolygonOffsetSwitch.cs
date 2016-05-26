@@ -28,7 +28,7 @@ namespace CSharpGL
         {
             base.SwitchOn();
 
-            if (this.EnableCapacity)
+            if (this.enableCapacityWhenSwitchOn)
             {
                 float value = this.PullNear ? -1.0f : 1.0f;
                 OpenGL.PolygonOffset(value, value);
