@@ -51,15 +51,14 @@ namespace CSharpGL
 
         protected override void DoInitialize()
         {
+            this.viewportSwitch = new ViewportSwitch();
+            this.scissorTestSwitch = new ScissorTestSwitch();
+
             Renderer renderer = this.renderer;
             if (renderer != null)
             {
                 renderer.Initialize();
             }
-
-            this.viewportSwitch = new ViewportSwitch();
-            this.scissorTestSwitch = new ScissorTestSwitch();
-
         }
 
         protected override void DoRender(RenderEventArgs arg)
