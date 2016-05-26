@@ -12,6 +12,8 @@ namespace CSharpGL
     /// </summary>
     public class GLAxis : UIRenderer
     {
+        private ViewportSwitch viewportSwitch;
+        private ScissorTestSwitch scissorTestSwitch;
 
         /// <summary>
         /// opengl UI for Axis
@@ -45,13 +47,37 @@ namespace CSharpGL
             base.DoInitialize();
 
             {
+                this.viewportSwitch = new ViewportSwitch();
+                this.scissorTestSwitch = new ScissorTestSwitch();
+
                 if (this.Renderer is OneIndexRenderer)
                 {
-                    GLSwitch glSwitch = new PrimitiveRestartSwitch((this.Renderer as OneIndexRenderer).IndexBufferPtr);
-                    this.Renderer.SwitchList.Add(glSwitch);
+                    GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((this.Renderer as OneIndexRenderer).IndexBufferPtr);
+                    this.Renderer.SwitchList.Add(primitiveRestartSwitch);
                 }
             }
         }
 
+        protected override void DoRender(RenderEventArgs arg)
+        {
+            this.viewportSwitch.X = this.Location.X;
+            this.viewportSwitch.Y = this.Location.Y;
+            this.viewportSwitch.Width = this.Size.Width;
+            this.viewportSwitch.Height = this.Size.Height;
+            this.scissorTestSwitch.X = this.Location.X;
+            this.scissorTestSwitch.Y = this.Location.Y;
+            this.scissorTestSwitch.Width = this.Size.Width;
+            this.scissorTestSwitch.Height = this.Size.Height;
+
+            this.scissorTestSwitch.On();
+            this.viewportSwitch.On();
+            OpenGL.Clear(OpenGL.GL_DEPTH_BUFFER_BIT);
+            //OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT);
+
+            base.DoRender(arg);
+
+            this.viewportSwitch.Off();
+            this.scissorTestSwitch.Off();
+        }
     }
 }

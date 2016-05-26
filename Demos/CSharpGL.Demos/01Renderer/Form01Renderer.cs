@@ -188,14 +188,7 @@ namespace CSharpGL.Demos
                     glAxis.Renderer.SetUniformValue("viewMatrix", view);
                     glAxis.Renderer.SetUniformValue("modelMatrix", model);
 
-                    OpenGL.Enable(OpenGL.GL_SCISSOR_TEST);
-                    OpenGL.Scissor(glAxis.Location.X, glAxis.Location.Y, glAxis.Size.Width, glAxis.Size.Height);
-                    OpenGL.Viewport(glAxis.Location.X, glAxis.Location.Y, glAxis.Size.Width, glAxis.Size.Height);
-                    OpenGL.Clear(OpenGL.GL_DEPTH_BUFFER_BIT);
                     glAxis.Render(arg);
-                    OpenGL.Viewport(0, 0, this.glCanvas1.Width, this.glCanvas1.Height);
-                    OpenGL.Scissor(0, 0, this.glCanvas1.Width, this.glCanvas1.Height);
-                    OpenGL.Disable(OpenGL.GL_SCISSOR_TEST);
                 }
             }
         }

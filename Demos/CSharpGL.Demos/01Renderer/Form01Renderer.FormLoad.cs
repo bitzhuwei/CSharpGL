@@ -236,7 +236,7 @@ namespace CSharpGL.Demos
                 this.uiRoot = UIRoot;
 
                 var glAxis = new GLAxis(AnchorStyles.Right | AnchorStyles.Bottom,
-                    new Padding(26, 26, 26, 26), new Size(50, 50), -100, 100);
+                    new Padding(3, 3, 3, 3), new Size(70, 70), -100, 100);
                 glAxis.Initialize();
                 this.glAxis = glAxis;
 
