@@ -11,70 +11,82 @@ namespace CSharpGL
     public abstract class EnableSwitch : GLSwitch
     {
 
-        private byte originalEnabled;
-        private bool lastEnableCap;
-        private uint cap;
+        protected bool enableCapacityWhenSwitchOn;
 
-        public uint Cap
+        /// <summary>
+        /// GL.Enable(capacity);
+        /// </summary>
+        public uint Capacity { get; private set; }
+
+        /// <summary>
+        /// GL.Enable(capacity); or GL.Disable(capacity);
+        /// </summary>
+        public bool EnableCapacity { get; set; }
+        private bool originalEnableCapacity;
+
+        /// <summary>
+        /// GL.Enable(capacity);
+        /// </summary>
+        /// <param name="capacity"></param>
+        public EnableSwitch(uint capacity) : this(capacity, true) { }
+
+        /// <summary>
+        /// GL.Enable(capacity); or GL.Disable(capacity);
+        /// </summary>
+        /// <param name="capacity"></param>
+        /// <param name="enableCapacity"></param>
+        public EnableSwitch(uint capacity, bool enableCapacity)
         {
-            get { return cap; }
+            byte original = OpenGL.IsEnabled(capacity);
+
+            this.Init(capacity, enableCapacity, original != 0);
         }
 
-        public bool EnableCap { get; set; }
-
-        /// <summary>
-        /// GL.Enable(cap);
-        /// </summary>
-        /// <param name="cap"></param>
-        public EnableSwitch(uint cap) : this(cap, true) { }
-
-        /// <summary>
-        /// GL.Enable(cap); or GL.Disable(cap);
-        /// </summary>
-        /// <param name="cap"></param>
-        /// <param name="enableCap"></param>
-        public EnableSwitch(uint cap, bool enableCap)
+        public EnableSwitch(uint capacity, bool enableCapacity, bool originalEnableCapacity)
         {
-            this.cap = cap;
-            this.EnableCap = enableCap;
+            this.Init(capacity, enableCapacity, originalEnableCapacity);
+        }
+
+        private void Init(uint capacity, bool enableCapacity, bool originalEnableCapacity)
+        {
+            this.Capacity = capacity; this.EnableCapacity = enableCapacity;
+            this.originalEnableCapacity = originalEnableCapacity;
         }
 
         public override string ToString()
         {
-            if (this.EnableCap)
-            { return string.Format("GL.Enable({0});", cap); }
+            if (this.EnableCapacity)
+            { return string.Format("GL.Enable({0});", Capacity); }
             else
-            { return string.Format("GL.Disable({0});", cap); }
+            { return string.Format("GL.Disable({0});", Capacity); }
         }
 
         protected override void SwitchOn()
         {
-            this.originalEnabled = OpenGL.IsEnabled(cap);
-
-            this.lastEnableCap = this.EnableCap;
-            if (this.lastEnableCap)
+            this.enableCapacityWhenSwitchOn = this.EnableCapacity;
+            if (this.enableCapacityWhenSwitchOn)
             {
-                if (this.originalEnabled == 0)
-                { OpenGL.Enable(cap); }
+                if (!this.originalEnableCapacity)
+                { OpenGL.Enable(Capacity); }
             }
             else
             {
-                if (this.originalEnabled != 0)
-                { OpenGL.Disable(cap); }
+                if (this.originalEnableCapacity)
+                { OpenGL.Disable(Capacity); }
             }
         }
 
         protected override void SwitchOff()
         {
-            if (this.lastEnableCap)
+            if (this.enableCapacityWhenSwitchOn)
             {
-                if (this.originalEnabled == 0)
-                { OpenGL.Disable(cap); }
+                if (!this.originalEnableCapacity)
+                { OpenGL.Disable(Capacity); }
             }
             else
             {
-                if (this.originalEnabled != 0)
-                { OpenGL.Enable(cap); }
+                if (this.originalEnableCapacity)
+                { OpenGL.Enable(Capacity); }
             }
         }
 
@@ -85,14 +97,14 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="enableCap">true for enable, false for disable</param>
-        public CullFaceSwitch(bool enableCap = true)
-            : base(OpenGL.GL_CULL_FACE, enableCap)
+        /// <param name="enableCapacity">true for enable, false for disable</param>
+        public CullFaceSwitch(bool enableCapacity = true)
+            : base(OpenGL.GL_CULL_FACE, enableCapacity)
         { }
 
         public override string ToString()
         {
-            if (this.EnableCap)
+            if (this.EnableCapacity)
             { return "GL.Enable(GL_CULL_FACE);"; }
             else
             { return "GL.Disable(GL_CULL_FACE);"; }
@@ -105,14 +117,14 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="enableCap">true for enable, false for disable</param>
-        public DepthTestSwitch(bool enableCap = true)
-            : base(OpenGL.GL_DEPTH_TEST, enableCap)
+        /// <param name="enableCapacity">true for enable, false for disable</param>
+        public DepthTestSwitch(bool enableCapacity = true)
+            : base(OpenGL.GL_DEPTH_TEST, enableCapacity)
         { }
 
         public override string ToString()
         {
-            if (this.EnableCap)
+            if (this.EnableCapacity)
             { return "GL.Enable(GL_DEPTH_TEST);"; }
             else
             { return "GL.Disable(GL_DEPTH_TEST);"; }
@@ -125,14 +137,14 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="enableCap">true for enable, false for disable</param>
-        public PointSmoothSwitch(bool enableCap = true)
-            : base(OpenGL.GL_POINT_SMOOTH, enableCap)
+        /// <param name="enableCapacity">true for enable, false for disable</param>
+        public PointSmoothSwitch(bool enableCapacity = true)
+            : base(OpenGL.GL_POINT_SMOOTH, enableCapacity)
         { }
 
         public override string ToString()
         {
-            if (this.EnableCap)
+            if (this.EnableCapacity)
             { return "GL.Enable(GL_POINT_SMOOTH);"; }
             else
             { return "GL.Disable(GL_POINT_SMOOTH);"; }

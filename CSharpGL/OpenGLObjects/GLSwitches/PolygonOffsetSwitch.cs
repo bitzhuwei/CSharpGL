@@ -20,7 +20,7 @@ namespace CSharpGL
         public override string ToString()
         {
             return string.Format("Polygon Offset: {0} {1}", 
-                (PolugonOffset)this.Cap,
+                (PolugonOffset)this.Capacity,
                 this.PullNear ? "Near" : "Far");
         }
 
@@ -28,7 +28,7 @@ namespace CSharpGL
         {
             base.SwitchOn();
 
-            if (this.EnableCap)
+            if (this.EnableCapacity)
             {
                 float value = this.PullNear ? -1.0f : 1.0f;
                 OpenGL.PolygonOffset(value, value);

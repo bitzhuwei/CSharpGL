@@ -19,7 +19,7 @@ namespace CSharpGL
 
         public override string ToString()
         {
-            if (this.EnableCap)
+            if (this.EnableCapacity)
             {
                 return string.Format("Blend: {0} {1}",
                     this.SourceFactor, this.DestFactor);
@@ -35,7 +35,7 @@ namespace CSharpGL
         {
             base.SwitchOn();
 
-            if (this.EnableCap)
+            if (this.enableCapacityWhenSwitchOn)
             {
                 OpenGL.BlendFunc(this.SourceFactor, this.DestFactor);
             }

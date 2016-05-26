@@ -8,33 +8,33 @@ namespace CSharpGL
     public abstract class GLSwitch
     {
 
-        private bool switchOn = false;
+        private bool inUse = false;
 
         /// <summary>
         /// You want to use this switch?
         /// </summary>
-        public bool Enable { get; set; }
+        public bool InUse { get; set; }
 
 
         public GLSwitch()
         {
-            this.Enable = true;
+            this.InUse = true;
         }
 
         public void On()
         {
-            if (this.Enable)
+            if (this.InUse)
             {
-                this.switchOn = true;
+                this.inUse = true;
                 this.SwitchOn();
             }
         }
 
         public void Off()
         {
-            if (this.switchOn)
+            if (this.inUse)
             {
-                this.switchOn = false;
+                this.inUse = false;
                 this.SwitchOff();
             }
         }

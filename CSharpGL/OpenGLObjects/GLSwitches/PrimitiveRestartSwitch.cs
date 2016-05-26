@@ -39,7 +39,7 @@ namespace CSharpGL
         {
             base.SwitchOn();
 
-            if (this.EnableCap)
+            if (this.enableCapacityWhenSwitchOn)
             {
                 OpenGL.GetDelegateFor<OpenGL.glPrimitiveRestartIndex>()(RestartIndex);
             }

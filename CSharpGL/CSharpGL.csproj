@@ -79,6 +79,8 @@
     <Content Include="OpenGLObjects\UniformVariables\readme.txt" />
     <Content Include="OpenGLObjects\VertexBuffers\readme.txt" />
     <Content Include="readme.txt" />
+    <Compile Include="OpenGLObjects\GLSwitches\ViewportSwitch.cs" />
+    <Compile Include="OpenGLObjects\GLSwitches\ScissorTestSwitch.cs" />
     <Compile Include="UILayout\GLControls\GLRoot.cs" />
     <Compile Include="UILayout\ILayoutHelper.cs" />
     <Compile Include="UILayout\GLControlCollection.cs" />
