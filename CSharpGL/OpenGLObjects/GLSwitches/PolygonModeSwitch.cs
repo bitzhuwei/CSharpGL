@@ -8,34 +8,13 @@ namespace CSharpGL
     public class PolygonModeSwitch : GLSwitch
     {
 
-        private PolygonModes originalFrontMode;
-        private PolygonModes originalBackMode;
-        private PolygonModeFaces lastFace;
+        int[] originalPolygonMode = new int[2];
 
-        public PolygonModeSwitch() : this(PolygonModeFaces.FrontAndBack, PolygonModes.Filled) { }
+        public PolygonModeSwitch() : this(PolygonModes.Filled) { }
 
-        public PolygonModeSwitch(PolygonModes mode) : this(PolygonModeFaces.FrontAndBack, mode) { }
-
-        public PolygonModeSwitch(PolygonModeFaces faces, PolygonModes mode)
+        public PolygonModeSwitch(PolygonModes mode)
         {
-            var originalPolygonMode = new int[2];
-            OpenGL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
-
-            this.Init(faces, mode, (PolygonModes)originalPolygonMode[0], (PolygonModes)originalPolygonMode[1]);
-        }
-
-        public PolygonModeSwitch(PolygonModeFaces faces, PolygonModes mode,
-          PolygonModes originalFrontMode, PolygonModes originalBackMode)
-        {
-            this.Init(faces, mode, originalFrontMode, originalBackMode);
-        }
-
-        private void Init(PolygonModeFaces faces, PolygonModes mode,
-            PolygonModes originalFrontMode, PolygonModes originalBackMode)
-        {
-            this.Faces = faces; this.Mode = mode;
-            this.originalFrontMode = originalFrontMode;
-            this.originalBackMode = originalBackMode;
+            this.Mode = mode;
         }
 
         public override string ToString()
@@ -45,37 +24,27 @@ namespace CSharpGL
 
         protected override void SwitchOn()
         {
-            this.lastFace = this.Faces;
-            OpenGL.PolygonMode(this.lastFace, Mode);
+            OpenGL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
+
+            OpenGL.PolygonMode(PolygonModeFaces.FrontAndBack, Mode);
+
         }
 
         protected override void SwitchOff()
         {
-            switch (this.lastFace)
+            if (originalPolygonMode[0] == originalPolygonMode[1])
             {
-                case PolygonModeFaces.Front:
-                    OpenGL.PolygonMode(PolygonModeFaces.Front, this.originalFrontMode);
-                    break;
-                case PolygonModeFaces.Back:
-                    OpenGL.PolygonMode(PolygonModeFaces.Back, this.originalBackMode);
-                    break;
-                case PolygonModeFaces.FrontAndBack:
-                    if (this.originalFrontMode == this.originalBackMode)
-                    {
-                        OpenGL.PolygonMode(PolygonModeFaces.FrontAndBack, this.originalFrontMode);
-                    }
-                    else
-                    {
-                        OpenGL.PolygonMode(PolygonModeFaces.Front, this.originalFrontMode);
-                        OpenGL.PolygonMode(PolygonModeFaces.Back, this.originalBackMode);
-                    }
-                    break;
-                default:
-                    throw new NotImplementedException();
+                OpenGL.PolygonMode(PolygonModeFaces.FrontAndBack, (PolygonModes)(originalPolygonMode[0]));
+            }
+            else
+            {
+                //TODO: not tested yet
+                OpenGL.PolygonMode(PolygonModeFaces.Front, (PolygonModes)originalPolygonMode[0]);
+                OpenGL.PolygonMode(PolygonModeFaces.Back, (PolygonModes)originalPolygonMode[1]);
+
             }
         }
 
-        public PolygonModeFaces Faces { get; set; }
         public PolygonModes Mode { get; set; }
     }
 
