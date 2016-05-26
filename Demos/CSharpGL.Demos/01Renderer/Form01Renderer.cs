@@ -178,9 +178,9 @@ namespace CSharpGL.Demos
                     projection = glAxis.GetOrthoProjection();
                     vec3 position = (this.camera.Position - this.camera.Target).normalize();
                     view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
-                    model = glm.scale(mat4.identity(), 
-                        new vec3(glAxis.Size.Width / 2, glAxis.Size.Height/ 2,
-                        Math.Max(glAxis.Size.Width,glAxis.Size.Height) / 2));
+                    float length = Math.Max(glAxis.Size.Width, glAxis.Size.Height) / 2;
+                    model = glm.scale(mat4.identity(),
+                        new vec3(length, length, length));
                     glAxis.Renderer.SetUniformValue("projectionMatrix", projection);
                     glAxis.Renderer.SetUniformValue("viewMatrix", view);
                     glAxis.Renderer.SetUniformValue("modelMatrix", model);

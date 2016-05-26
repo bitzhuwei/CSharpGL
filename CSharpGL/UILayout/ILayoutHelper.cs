@@ -16,11 +16,15 @@ namespace CSharpGL
     {
         public static mat4 GetOrthoProjection(this ILayout uiRenderer)
         {
+            float length = Math.Max(uiRenderer.Size.Width, uiRenderer.Size.Height) / 2;
             return glm.ortho(
                 -uiRenderer.Size.Width / 2,
                 uiRenderer.Size.Width / 2,
                 -uiRenderer.Size.Height / 2,
-                uiRenderer.Size.Height / 2, uiRenderer.zNear, uiRenderer.zFar);
+                uiRenderer.Size.Height / 2,
+                -length,
+                length);
+                //uiRenderer.zNear, uiRenderer.zFar);
         }
 
         /// <summary>
