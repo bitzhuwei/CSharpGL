@@ -33,22 +33,7 @@ namespace CSharpGL.Demos
                     bufferable, Teapot.strPosition, Teapot.strNormal);
                 OITRenderer.Name = "OIT Renderer";
                 OITRenderer.Initialize();
-                {
-                    GLSwitch lineWidthSwitch = new LineWidthSwitch(5);
-                    OITRenderer.BuildListsRenderer.SwitchList.Add(lineWidthSwitch);
-                    OITRenderer.ResolveListsRenderer.SwitchList.Add(lineWidthSwitch);
-                    GLSwitch pointSizeSwitch = new PointSizeSwitch(10);
-                    OITRenderer.BuildListsRenderer.SwitchList.Add(pointSizeSwitch);
-                    OITRenderer.ResolveListsRenderer.SwitchList.Add(pointSizeSwitch);
-                    GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
-                    OITRenderer.BuildListsRenderer.SwitchList.Add(polygonModeSwitch);
-                    OITRenderer.ResolveListsRenderer.SwitchList.Add(polygonModeSwitch);
-                    if (OITRenderer.ResolveListsRenderer is OneIndexRenderer)
-                    {
-                        GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((OITRenderer.ResolveListsRenderer as OneIndexRenderer).IndexBufferPtr);
-                        OITRenderer.ResolveListsRenderer.SwitchList.Add(primitiveRestartSwitch);
-                    }
-                }
+                
                 this.OITRenderer = OITRenderer;
             }
             {

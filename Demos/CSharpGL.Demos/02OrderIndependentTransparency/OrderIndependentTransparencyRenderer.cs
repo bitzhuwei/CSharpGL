@@ -63,7 +63,22 @@ namespace CSharpGL.Demos
         {
             this.buildListsRenderer.Initialize();
             this.resolve_lists.Initialize();
-
+            {
+                GLSwitch lineWidthSwitch = new LineWidthSwitch(5);
+                this.buildListsRenderer.SwitchList.Add(lineWidthSwitch);
+                this.resolve_lists.SwitchList.Add(lineWidthSwitch);
+                GLSwitch pointSizeSwitch = new PointSizeSwitch(10);
+                this.buildListsRenderer.SwitchList.Add(pointSizeSwitch);
+                this.resolve_lists.SwitchList.Add(pointSizeSwitch);
+                GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
+                this.buildListsRenderer.SwitchList.Add(polygonModeSwitch);
+                this.resolve_lists.SwitchList.Add(polygonModeSwitch);
+                if (this.resolve_lists is OneIndexRenderer)
+                {
+                    GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((this.resolve_lists as OneIndexRenderer).IndexBufferPtr);
+                    this.resolve_lists.SwitchList.Add(primitiveRestartSwitch);
+                }
+            }
             // Create head pointer texture
             OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
             OpenGL.GenTextures(1, head_pointer_texture);
