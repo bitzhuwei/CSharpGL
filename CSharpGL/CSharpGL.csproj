@@ -80,7 +80,7 @@
     <Content Include="OpenGLObjects\VertexBuffers\readme.txt" />
     <Content Include="readme.txt" />
     <Compile Include="OpenGLObjects\GLSwitches\ViewportSwitch.cs" />
-    <Compile Include="OpenGLObjects\GLSwitches\ScissorTestSwitch.cs" />
+    <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\ScissorTestSwitch.cs" />
     <Compile Include="UILayout\GLControls\GLRoot.cs" />
     <Compile Include="UILayout\ILayoutHelper.cs" />
     <Compile Include="UILayout\GLControlCollection.cs" />
@@ -109,7 +109,7 @@
     <Compile Include="HighlightRenderer\HighlightRenderer.DoInitialize.cs" />
     <Compile Include="HighlightRenderer\HighlightRenderer.Property.cs" />
     <Compile Include="HighlightRenderer\HighlightRenderer.SetupHighlight.cs" />
-    <Compile Include="OpenGLObjects\GLSwitches\EnableSwitch.cs" />
+    <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\EnableSwitch.cs" />
     <Compile Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInQuad+Searcher.cs" />
     <Compile Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineSearcher.cs" />
     <Compile Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInTriangle+Searcher.cs" />
@@ -190,13 +190,13 @@
     <Compile Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.cs" />
     <Compile Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineSearcher.cs" />
     <Compile Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTrianglesSearcher.cs" />
-    <Compile Include="OpenGLObjects\GLSwitches\BlendSwitch.cs" />
+    <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\BlendSwitch.cs" />
     <Compile Include="DummyUILayout\IDummyUILayout.cs" />
     <Compile Include="DummyUILayout\IDummyUILayoutArgs.cs" />
     <Compile Include="DummyUILayout\IDummyUILayoutHelper.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\LineWidthSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PointSizeSwitch.cs" />
-    <Compile Include="OpenGLObjects\GLSwitches\PolygonOffsetSwitch.cs" />
+    <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PolygonOffsetSwitch.cs" />
     <Compile Include="DummyUILayout\DummyUIRenderer.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformBool.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSampler2D.cs" />
@@ -277,7 +277,7 @@
     <Compile Include="PickableRenderer\ColorCodedPicking\PrimitiveModesHelper.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PointSpriteSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PolygonModeSwitch.cs" />
-    <Compile Include="OpenGLObjects\GLSwitches\PrimitiveRestartSwitch.cs" />
+    <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PrimitiveRestartSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\GLSwitch.cs" />
     <Compile Include="UITypeEditors\RendererBaseEditor.cs" />
     <Compile Include="UITypeEditors\UniformVariableListEditor.cs" />
