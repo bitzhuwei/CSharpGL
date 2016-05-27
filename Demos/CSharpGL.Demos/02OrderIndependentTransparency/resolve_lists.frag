@@ -63,8 +63,8 @@ void main(void)
     for (uint i = 0; i < fragment_count; i++)
     {
         vec4 modulator = unpackUnorm4x8(fragment_list[i].y);
-
-        final_color = mix(final_color, modulator, modulator.a + fragment_list[i].w / 255);
+        //final_color = mix(final_color, modulator, modulator.a);
+		final_color = final_color * (1.0f - modulator.a) + modulator * modulator.a;
     }
 
     color = final_color;
