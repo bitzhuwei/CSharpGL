@@ -35,34 +35,32 @@ void main(void)
         fragment_count++;
     }
 
-    uint i, j;
-
-    if (fragment_count > 1)
-    {
-
-        for (i = 0; i < fragment_count - 1; i++)
-        {
-            for (j = i + 1; j < fragment_count; j++)
-            {
-                uvec4 fragment1 = fragment_list[i];
-                uvec4 fragment2 = fragment_list[j];
-
-                float depth1 = uintBitsToFloat(fragment1.z);
-                float depth2 = uintBitsToFloat(fragment2.z);
-
-                if (depth1 < depth2)
-                {
-                    fragment_list[i] = fragment2;
-                    fragment_list[j] = fragment1;
-                }
-            }
-        }
-
-    }
+	if (fragment_count > 1)
+	{
+		for (uint i = 0; i < fragment_count - 1; i++)
+		{
+			uint p = i;
+			uint depth1 = (fragment_list[p].z);
+			for (uint j = i + 1; j < fragment_count; j++)
+			{
+				uint depth2 = (fragment_list[j].z);
+				if (depth1 < depth2)
+				{
+					p = j; depth1 = depth2;
+				}
+			}
+			if (p != i)
+			{
+				uvec4 tmp = fragment_list[p];
+				fragment_list[p] = fragment_list[i];
+				fragment_list[i] = tmp;
+			}
+		}
+	}
 
     vec4 final_color = vec4(0.0);
 
-    for (i = 0; i < fragment_count; i++)
+    for (uint i = 0; i < fragment_count; i++)
     {
         vec4 modulator = unpackUnorm4x8(fragment_list[i].y);
 
