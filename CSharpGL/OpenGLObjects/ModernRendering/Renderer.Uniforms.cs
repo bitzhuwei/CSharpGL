@@ -89,7 +89,7 @@ namespace CSharpGL
             variableDict.Add(typeof(mat2), typeof(UniformMat2));
             variableDict.Add(typeof(mat3), typeof(UniformMat3));
             variableDict.Add(typeof(mat4), typeof(UniformMat4));
-            variableDict.Add(typeof(samplerValue), typeof(UniformSampler2D));
+            variableDict.Add(typeof(samplerValue), typeof(UniformSampler));
         }
 
     }

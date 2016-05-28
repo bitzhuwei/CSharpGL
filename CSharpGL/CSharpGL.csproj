@@ -199,7 +199,7 @@
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PolygonOffsetSwitch.cs" />
     <Compile Include="DummyUILayout\DummyUIRenderer.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformBool.cs" />
-    <Compile Include="OpenGLObjects\UniformVariables\UniformSampler2D.cs" />
+    <Compile Include="OpenGLObjects\UniformVariables\UniformSamplerXD.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformFloat.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformMat2.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformMat3.cs" />

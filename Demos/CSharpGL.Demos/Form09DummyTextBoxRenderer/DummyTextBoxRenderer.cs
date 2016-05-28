@@ -52,7 +52,10 @@ namespace CSharpGL.Demos
             base.DoInitialize();
 
             this.SetUniform("fontTexture",
-                new samplerValue(FontResource.Default.FontTextureId, OpenGL.GL_TEXTURE0));
+                new samplerValue(
+                    BindTextureTarget.Texture2D, 
+                    FontResource.Default.FontTextureId, 
+                    OpenGL.GL_TEXTURE0));
         }
 
         protected override void DoRender(RenderEventArgs arg)

@@ -92,7 +92,8 @@ namespace CSharpGL.Demos
                 pickableRenderer.Name = string.Format("Pickable: [ImageProcessingRenderer]");
                 pickableRenderer.Initialize();
                 pickableRenderer.SetUniform("output_image",
-                    new samplerValue(this.output_image[0], OpenGL.GL_TEXTURE0));
+                    new samplerValue(
+                        BindTextureTarget.Texture2D, this.output_image[0], OpenGL.GL_TEXTURE0));
                 this.renderer = pickableRenderer;
             }
 
@@ -214,17 +215,20 @@ namespace CSharpGL.Demos
                 {
                     case CurrentDisplayImage.Input:
                         this.renderer.SetUniform("output_image",
-                            new samplerValue(this.intermediate_image[0], OpenGL.GL_TEXTURE0));
+                            new samplerValue(
+                                BindTextureTarget.Texture2D, this.intermediate_image[0], OpenGL.GL_TEXTURE0));
                         this.currentDisplay = CurrentDisplayImage.Intermediate;
                         break;
                     case CurrentDisplayImage.Intermediate:
                         this.renderer.SetUniform("output_image",
-                            new samplerValue(this.output_image[0], OpenGL.GL_TEXTURE0));
+                            new samplerValue(
+                                BindTextureTarget.Texture2D, this.output_image[0], OpenGL.GL_TEXTURE0));
                         this.currentDisplay = CurrentDisplayImage.Output;
                         break;
                     case CurrentDisplayImage.Output:
                         this.renderer.SetUniform("output_image",
-                            new samplerValue(this.input_image[0], OpenGL.GL_TEXTURE0));
+                            new samplerValue(
+                                BindTextureTarget.Texture2D, this.input_image[0], OpenGL.GL_TEXTURE0));
                         this.currentDisplay = CurrentDisplayImage.Input;
                         break;
                     default:
@@ -237,17 +241,20 @@ namespace CSharpGL.Demos
                 {
                     case CurrentDisplayImage.Input:
                         this.renderer.SetUniform("output_image",
-                            new samplerValue(this.output_image[0], OpenGL.GL_TEXTURE0));
+                            new samplerValue(
+                                BindTextureTarget.Texture2D, this.output_image[0], OpenGL.GL_TEXTURE0));
                         this.currentDisplay = CurrentDisplayImage.Output;
                         break;
                     case CurrentDisplayImage.Intermediate:
                         this.renderer.SetUniform("output_image",
-                            new samplerValue(this.input_image[0], OpenGL.GL_TEXTURE0));
+                            new samplerValue(
+                                BindTextureTarget.Texture2D, this.input_image[0], OpenGL.GL_TEXTURE0));
                         this.currentDisplay = CurrentDisplayImage.Input;
                         break;
                     case CurrentDisplayImage.Output:
                         this.renderer.SetUniform("output_image",
-                            new samplerValue(this.intermediate_image[0], OpenGL.GL_TEXTURE0));
+                            new samplerValue(
+                                BindTextureTarget.Texture2D, this.intermediate_image[0], OpenGL.GL_TEXTURE0));
                         this.currentDisplay = CurrentDisplayImage.Intermediate;
                         break;
                     default:

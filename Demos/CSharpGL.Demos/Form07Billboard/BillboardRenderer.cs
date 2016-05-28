@@ -59,7 +59,8 @@ namespace CSharpGL.Demos
                 bitmap.Dispose();
             }
             base.DoInitialize();
-            this.SetUniform("sprite_texture", new samplerValue(this.sprite_texture[0], OpenGL.GL_TEXTURE0));
+            this.SetUniform("sprite_texture", new samplerValue(
+                  BindTextureTarget.Texture2D, this.sprite_texture[0], OpenGL.GL_TEXTURE0));
             this.SetUniform("factor", 100.0f);
         }
 
@@ -182,7 +183,8 @@ namespace CSharpGL.Demos
             var old = new uint[1];
             old[0] = this.sprite_texture[0];
             this.sprite_texture[0] = texture.Id;
-            this.SetUniform("sprite_texture", new samplerValue(this.sprite_texture[0], OpenGL.GL_TEXTURE0));
+            this.SetUniform("sprite_texture", new samplerValue(
+                BindTextureTarget.Texture2D, this.sprite_texture[0], OpenGL.GL_TEXTURE0));
 
             OpenGL.DeleteTextures(1, old);
             bitmap.Dispose();

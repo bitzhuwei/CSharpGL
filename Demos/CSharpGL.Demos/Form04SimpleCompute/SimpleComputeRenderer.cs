@@ -62,7 +62,8 @@ namespace CSharpGL.Demos
                 this.GroupZ = 1;
             }
             base.DoInitialize();
-            this.SetUniform("output_image", new samplerValue(this.output_image[0], OpenGL.GL_TEXTURE0));
+            this.SetUniform("output_image", new samplerValue(
+                BindTextureTarget.Texture2D, this.output_image[0], OpenGL.GL_TEXTURE0));
 
         }
 
