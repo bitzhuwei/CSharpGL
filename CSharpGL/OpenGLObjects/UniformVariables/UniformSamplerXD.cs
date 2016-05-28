@@ -39,7 +39,7 @@ namespace CSharpGL
 
         public override void ResetUniform(ShaderProgram program)
         {
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
+            //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
             OpenGL.BindTexture(value.target, 0);
         }
 
@@ -130,16 +130,16 @@ namespace CSharpGL
 
         public static bool operator ==(samplerValue left, samplerValue right)
         {
-            object leftObj = left, rightObj = right;
-            if (leftObj == null)
-            {
-                if (rightObj == null) { return true; }
-                else { return false; }
-            }
-            else
-            {
-                if (rightObj == null) { return false; }
-            }
+            //object leftObj = left, rightObj = right;
+            //if (leftObj == null)
+            //{
+            //    if (rightObj == null) { return true; }
+            //    else { return false; }
+            //}
+            //else
+            //{
+            //    if (rightObj == null) { return false; }
+            //}
 
             return left.Equals(right);
         }
@@ -153,8 +153,10 @@ namespace CSharpGL
         {
             var p = (samplerValue)obj;
 
-            //return this.HashCode == p.HashCode;
-            return (this.activeTextureIndex == p.activeTextureIndex && this.textureId == p.textureId);
+            return (
+                this.target == p.target
+                && this.activeTextureIndex == p.activeTextureIndex
+                && this.textureId == p.textureId);
         }
 
         public override int GetHashCode()
