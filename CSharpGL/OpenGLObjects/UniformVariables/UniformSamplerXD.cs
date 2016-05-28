@@ -29,12 +29,16 @@ namespace CSharpGL
 
         public UniformSampler(string varName) : base(varName) { }
 
+        static OpenGL.glActiveTexture ActiveTexture = null;
+
         public override void SetUniform(ShaderProgram program)
         {
-            OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(value.ActiveTextureIndex);
+            program.SetUniform(VarName, (int)((uint)value.ActiveTextureIndex - OpenGL.GL_TEXTURE0));
+            if (ActiveTexture == null) 
+            { ActiveTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
+            ActiveTexture(value.ActiveTextureIndex);
             //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, value.TextureId);
             OpenGL.BindTexture(value.target, value.TextureId);
-            program.SetUniform(VarName, (int)((uint)value.ActiveTextureIndex - OpenGL.GL_TEXTURE0));
         }
 
         public override void ResetUniform(ShaderProgram program)
