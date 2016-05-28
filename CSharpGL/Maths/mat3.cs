@@ -271,7 +271,6 @@ namespace CSharpGL
         {
             var p = (mat3)obj;
 
-            //return this.HashCode == p.HashCode;
             return (this.col0 == p.col0 && this.col1 == p.col1
                 && this.col2 == p.col2);
         }
