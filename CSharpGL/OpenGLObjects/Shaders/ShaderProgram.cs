@@ -9,9 +9,62 @@ namespace CSharpGL
     public class ShaderProgram
     {
 
+        static OpenGL.glCreateProgram glCreateProgram;
+        static OpenGL.glAttachShader glAttachShader;
+        static OpenGL.glLinkProgram glLinkProgram;
+        static OpenGL.glDetachShader glDetachShader;
+        static OpenGL.glDeleteProgram glDeleteProgram;
+        static OpenGL.glGetAttribLocation glGetAttribLocation;
+        static OpenGL.glUseProgram glUseProgram;
+        static OpenGL.glGetProgramiv glGetProgramiv;
+        static OpenGL.glUniform1ui glUniform1ui;
+        static OpenGL.glUniform2ui glUniform2ui;
+        static OpenGL.glUniform3ui glUniform3ui;
+        static OpenGL.glUniform4ui glUniform4ui;
+        static OpenGL.glUniform1i glUniform1i;
+        static OpenGL.glUniform2i glUniform2i;
+        static OpenGL.glUniform3i glUniform3i;
+        static OpenGL.glUniform4i glUniform4i;
+        static OpenGL.glUniform1f glUniform1f;
+        static OpenGL.glUniform2f glUniform2f;
+        static OpenGL.glUniform3f glUniform3f;
+        static OpenGL.glUniform4f glUniform4f;
+        static OpenGL.glUniformMatrix2fv glUniformMatrix2fv;
+        static OpenGL.glUniformMatrix3fv glUniformMatrix3fv;
+        static OpenGL.glUniformMatrix4fv glUniformMatrix4fv;
+        static OpenGL.glGetUniformLocation glGetUniformLocation;
+
         public ShaderProgram()
         {
-            this.ShaderProgramObject = OpenGL.GetDelegateFor<OpenGL.glCreateProgram>()();
+            if (glCreateProgram == null)
+            {
+                glCreateProgram = OpenGL.GetDelegateFor<OpenGL.glCreateProgram>();
+                glAttachShader = OpenGL.GetDelegateFor<OpenGL.glAttachShader>();
+                glLinkProgram = OpenGL.GetDelegateFor<OpenGL.glLinkProgram>();
+                glDetachShader = OpenGL.GetDelegateFor<OpenGL.glDetachShader>();
+                glDeleteProgram = OpenGL.GetDelegateFor<OpenGL.glDeleteProgram>();
+                glGetAttribLocation = OpenGL.GetDelegateFor<OpenGL.glGetAttribLocation>();
+                glUseProgram = OpenGL.GetDelegateFor<OpenGL.glUseProgram>();
+                glGetProgramiv = OpenGL.GetDelegateFor<OpenGL.glGetProgramiv>();
+                glUniform1ui = OpenGL.GetDelegateFor<OpenGL.glUniform1ui>();
+                glUniform2ui = OpenGL.GetDelegateFor<OpenGL.glUniform2ui>();
+                glUniform3ui = OpenGL.GetDelegateFor<OpenGL.glUniform3ui>();
+                glUniform4ui = OpenGL.GetDelegateFor<OpenGL.glUniform4ui>();
+                glUniform1i = OpenGL.GetDelegateFor<OpenGL.glUniform1i>();
+                glUniform2i = OpenGL.GetDelegateFor<OpenGL.glUniform2i>();
+                glUniform3i = OpenGL.GetDelegateFor<OpenGL.glUniform3i>();
+                glUniform4i = OpenGL.GetDelegateFor<OpenGL.glUniform4i>();
+                glUniform1f = OpenGL.GetDelegateFor<OpenGL.glUniform1f>();
+                glUniform2f = OpenGL.GetDelegateFor<OpenGL.glUniform2f>();
+                glUniform3f = OpenGL.GetDelegateFor<OpenGL.glUniform3f>();
+                glUniform4f = OpenGL.GetDelegateFor<OpenGL.glUniform4f>();
+                glUniformMatrix2fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix2fv>();
+                glUniformMatrix3fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix3fv>();
+                glUniformMatrix4fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix4fv>();
+                glGetUniformLocation = OpenGL.GetDelegateFor<OpenGL.glGetUniformLocation>();
+            }
+
+            this.ShaderProgramObject = glCreateProgram();
         }
 
         public void Create(params Shader[] shaders)
@@ -22,10 +75,10 @@ namespace CSharpGL
 
             foreach (var item in shaders)
             {
-                OpenGL.GetDelegateFor<OpenGL.glAttachShader>()(program, item.ShaderObject);
+                glAttachShader(program, item.ShaderObject);
             }
 
-            OpenGL.GetDelegateFor<OpenGL.glLinkProgram>()(program);
+            glLinkProgram(program);
 
             if (this.GetLinkStatus() == false)
             {
@@ -46,7 +99,7 @@ namespace CSharpGL
 
             foreach (var item in shaders)
             {
-                OpenGL.GetDelegateFor<OpenGL.glDetachShader>()(program, item.ShaderObject);
+                glDetachShader(program, item.ShaderObject);
             }
         }
 
@@ -55,7 +108,7 @@ namespace CSharpGL
             IntPtr ptr = Win32.wglGetCurrentContext();
             if (ptr != IntPtr.Zero)
             {
-                OpenGL.GetDelegateFor<OpenGL.glDeleteProgram>()(this.ShaderProgramObject);
+                glDeleteProgram(this.ShaderProgramObject);
             }
             this.ShaderProgramObject = 0;
         }
@@ -66,7 +119,7 @@ namespace CSharpGL
             //  location and add it.
             if (attributeNamesToLocations.ContainsKey(attributeName) == false)
             {
-                int location = OpenGL.GetDelegateFor<OpenGL.glGetAttribLocation>()(ShaderProgramObject, attributeName);
+                int location = glGetAttribLocation(this.ShaderProgramObject, attributeName);
                 if (location < 0) { throw new Exception(); }
 
                 attributeNamesToLocations[attributeName] = (uint)location;
@@ -78,18 +131,18 @@ namespace CSharpGL
 
         public void Bind()
         {
-            OpenGL.GetDelegateFor<OpenGL.glUseProgram>()(ShaderProgramObject);
+            glUseProgram(this.ShaderProgramObject);
         }
 
         public void Unbind()
         {
-            OpenGL.GetDelegateFor<OpenGL.glUseProgram>()(0);
+            glUseProgram(0);
         }
 
         private bool GetLinkStatus()
         {
             int[] parameters = new int[] { 0 };
-            OpenGL.GetDelegateFor<OpenGL.glGetProgramiv>()(ShaderProgramObject, OpenGL.GL_LINK_STATUS, parameters);
+            glGetProgramiv(this.ShaderProgramObject, OpenGL.GL_LINK_STATUS, parameters);
             return parameters[0] == OpenGL.GL_TRUE;
         }
 
@@ -97,12 +150,12 @@ namespace CSharpGL
         {
             //  Get the info log length.
             int[] infoLength = new int[] { 0 };
-            OpenGL.GetDelegateFor<OpenGL.glGetProgramiv>()(ShaderProgramObject, OpenGL.GL_INFO_LOG_LENGTH, infoLength);
+            glGetProgramiv(this.ShaderProgramObject, OpenGL.GL_INFO_LOG_LENGTH, infoLength);
             int bufSize = infoLength[0];
 
             //  Get the compile info.
             StringBuilder il = new StringBuilder(bufSize);
-            OpenGL.GetDelegateFor<OpenGL.glGetProgramInfoLog>()(ShaderProgramObject, bufSize, IntPtr.Zero, il);
+            OpenGL.GetDelegateFor<OpenGL.glGetProgramInfoLog>()(this.ShaderProgramObject, bufSize, IntPtr.Zero, il);
 
             string log = il.ToString();
             return log;
@@ -115,7 +168,7 @@ namespace CSharpGL
         /// <param name="v0"></param>
         public void SetUniform(string uniformName, uint v0)
         {
-            OpenGL.GetDelegateFor<OpenGL.glUniform1ui>()(GetUniformLocation(uniformName), v0);
+            glUniform1ui(GetUniformLocation(uniformName), v0);
         }
 
         /// <summary>
@@ -126,7 +179,7 @@ namespace CSharpGL
         /// <param name="v1"></param>
         public void SetUniform(string uniformName, uint v0, uint v1)
         {
-            OpenGL.GetDelegateFor<OpenGL.glUniform2ui>()(GetUniformLocation(uniformName), v0, v1);
+            glUniform2ui(GetUniformLocation(uniformName), v0, v1);
         }
 
         /// <summary>
@@ -138,7 +191,7 @@ namespace CSharpGL
         /// <param name="v2"></param>
         public void SetUniform(string uniformName, uint v0, uint v1, uint v2)
         {
-            OpenGL.GetDelegateFor<OpenGL.glUniform3ui>()(GetUniformLocation(uniformName), v0, v1, v2);
+            glUniform3ui(GetUniformLocation(uniformName), v0, v1, v2);
         }
 
         /// <summary>
@@ -151,7 +204,7 @@ namespace CSharpGL
         /// <param name="v3"></param>
         public void SetUniform(string uniformName, uint v0, uint v1, uint v2, uint v3)
         {
-            OpenGL.GetDelegateFor<OpenGL.glUniform4ui>()(GetUniformLocation(uniformName), v0, v1, v2, v3);
+            glUniform4ui(GetUniformLocation(uniformName), v0, v1, v2, v3);
         }
 
         /// <summary>
@@ -161,7 +214,7 @@ namespace CSharpGL
         /// <param name="v0"></param>
         public void SetUniform(string uniformName, int v0)
         {
-            OpenGL.GetDelegateFor<OpenGL.glUniform1i>()(GetUniformLocation(uniformName), v0);
+            glUniform1i(GetUniformLocation(uniformName), v0);
         }
 
         /// <summary>
@@ -172,7 +225,7 @@ namespace CSharpGL
         /// <param name="v1"></param>
         public void SetUniform(string uniformName, int v0, int v1)
         {
-            OpenGL.GetDelegateFor<OpenGL.glUniform2i>()(GetUniformLocation(uniformName), v0, v1);
+            glUniform2i(GetUniformLocation(uniformName), v0, v1);
         }
 
         /// <summary>
@@ -184,7 +237,7 @@ namespace CSharpGL
         /// <param name="v2"></param>
         public void SetUniform(string uniformName, int v0, int v1, int v2)
         {
-            OpenGL.GetDelegateFor<OpenGL.glUniform3i>()(GetUniformLocation(uniformName), v0, v1, v2);
+            glUniform3i(GetUniformLocation(uniformName), v0, v1, v2);
         }
 
         /// <summary>
@@ -197,7 +250,7 @@ namespace CSharpGL
         /// <param name="v3"></param>
         public void SetUniform(string uniformName, int v0, int v1, int v2, int v3)
         {
-            OpenGL.GetDelegateFor<OpenGL.glUniform4i>()(GetUniformLocation(uniformName), v0, v1, v2, v3);
+            glUniform4i(GetUniformLocation(uniformName), v0, v1, v2, v3);
         }
 
         /// <summary>
@@ -207,7 +260,7 @@ namespace CSharpGL
         /// <param name="v0"></param>
         public void SetUniform(string uniformName, float v0)
         {
-            OpenGL.GetDelegateFor<OpenGL.glUniform1f>()(GetUniformLocation(uniformName), v0);
+            glUniform1f(GetUniformLocation(uniformName), v0);
         }
 
         /// <summary>
@@ -218,7 +271,7 @@ namespace CSharpGL
         /// <param name="v1"></param>
         public void SetUniform(string uniformName, float v0, float v1)
         {
-            OpenGL.GetDelegateFor<OpenGL.glUniform2f>()(GetUniformLocation(uniformName), v0, v1);
+            glUniform2f(GetUniformLocation(uniformName), v0, v1);
         }
 
         /// <summary>
@@ -230,7 +283,7 @@ namespace CSharpGL
         /// <param name="v2"></param>
         public void SetUniform(string uniformName, float v0, float v1, float v2)
         {
-            OpenGL.GetDelegateFor<OpenGL.glUniform3f>()(GetUniformLocation(uniformName), v0, v1, v2);
+            glUniform3f(GetUniformLocation(uniformName), v0, v1, v2);
         }
 
         /// <summary>
@@ -243,7 +296,7 @@ namespace CSharpGL
         /// <param name="v3"></param>
         public void SetUniform(string uniformName, float v0, float v1, float v2, float v3)
         {
-            OpenGL.GetDelegateFor<OpenGL.glUniform4f>()(GetUniformLocation(uniformName), v0, v1, v2, v3);
+            glUniform4f(GetUniformLocation(uniformName), v0, v1, v2, v3);
         }
 
         /// <summary>
@@ -253,7 +306,7 @@ namespace CSharpGL
         /// <param name="m"></param>
         public void SetUniformMatrix2(string uniformName, float[] m)
         {
-            OpenGL.GetDelegateFor<OpenGL.glUniformMatrix2fv>()(GetUniformLocation(uniformName), 1, false, m);
+            glUniformMatrix2fv(GetUniformLocation(uniformName), 1, false, m);
         }
 
         /// <summary>
@@ -263,7 +316,7 @@ namespace CSharpGL
         /// <param name="m"></param>
         public void SetUniformMatrix3(string uniformName, float[] m)
         {
-            OpenGL.GetDelegateFor<OpenGL.glUniformMatrix3fv>()(GetUniformLocation(uniformName), 1, false, m);
+            glUniformMatrix3fv(GetUniformLocation(uniformName), 1, false, m);
         }
 
         /// <summary>
@@ -273,7 +326,7 @@ namespace CSharpGL
         /// <param name="m"></param>
         public void SetUniformMatrix4(string uniformName, float[] m)
         {
-            OpenGL.GetDelegateFor<OpenGL.glUniformMatrix4fv>()(GetUniformLocation(uniformName), 1, false, m);
+            glUniformMatrix4fv(GetUniformLocation(uniformName), 1, false, m);
         }
 
         public int GetUniformLocation(string uniformName)
@@ -282,7 +335,7 @@ namespace CSharpGL
             //  location and add it.
             if (uniformNamesToLocations.ContainsKey(uniformName) == false)
             {
-                int location = OpenGL.GetDelegateFor<OpenGL.glGetUniformLocation>()(ShaderProgramObject, uniformName);
+                int location = glGetUniformLocation(this.ShaderProgramObject, uniformName);
                 if (location < 0)
                 { throw new Exception(string.Format("No uniform found for the name [{0}]", uniformName)); }
 
