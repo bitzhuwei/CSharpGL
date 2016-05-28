@@ -21,7 +21,17 @@ namespace CSharpGL.Demos
         private uint[] linked_list_buffer = new uint[1];
         private uint[] linked_list_texture = new uint[1];
         private DepthTestSwitch depthTestSwitch;
+
+        public DepthTestSwitch DepthTestSwitch
+        {
+            get { return depthTestSwitch; }
+        }
         private CullFaceSwitch cullFaceSwitch;
+
+        public CullFaceSwitch CullFaceSwitch
+        {
+            get { return cullFaceSwitch; }
+        }
 
 
         public OrderIndependentTransparencyRenderer(IBufferable model,
