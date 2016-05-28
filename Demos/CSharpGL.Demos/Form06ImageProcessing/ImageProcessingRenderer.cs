@@ -91,7 +91,7 @@ namespace CSharpGL.Demos
                     bufferable, simpleShader, propertyNameMap, "position");
                 pickableRenderer.Name = string.Format("Pickable: [ImageProcessingRenderer]");
                 pickableRenderer.Initialize();
-                pickableRenderer.SetUniformValue("output_image",
+                pickableRenderer.SetUniform("output_image",
                     new samplerValue(this.output_image[0], OpenGL.GL_TEXTURE0));
                 this.renderer = pickableRenderer;
             }
@@ -126,7 +126,7 @@ namespace CSharpGL.Demos
 
             mat4 view = arg.Camera.GetViewMat4();
             mat4 projection = arg.Camera.GetProjectionMat4();
-            this.renderer.SetUniformValue("mvp", projection * view);
+            this.renderer.SetUniform("mvp", projection * view);
             this.renderer.Render(arg);
         }
 
@@ -213,17 +213,17 @@ namespace CSharpGL.Demos
                 switch (this.currentDisplay)
                 {
                     case CurrentDisplayImage.Input:
-                        this.renderer.SetUniformValue("output_image",
+                        this.renderer.SetUniform("output_image",
                             new samplerValue(this.intermediate_image[0], OpenGL.GL_TEXTURE0));
                         this.currentDisplay = CurrentDisplayImage.Intermediate;
                         break;
                     case CurrentDisplayImage.Intermediate:
-                        this.renderer.SetUniformValue("output_image",
+                        this.renderer.SetUniform("output_image",
                             new samplerValue(this.output_image[0], OpenGL.GL_TEXTURE0));
                         this.currentDisplay = CurrentDisplayImage.Output;
                         break;
                     case CurrentDisplayImage.Output:
-                        this.renderer.SetUniformValue("output_image",
+                        this.renderer.SetUniform("output_image",
                             new samplerValue(this.input_image[0], OpenGL.GL_TEXTURE0));
                         this.currentDisplay = CurrentDisplayImage.Input;
                         break;
@@ -236,17 +236,17 @@ namespace CSharpGL.Demos
                 switch (this.currentDisplay)
                 {
                     case CurrentDisplayImage.Input:
-                        this.renderer.SetUniformValue("output_image",
+                        this.renderer.SetUniform("output_image",
                             new samplerValue(this.output_image[0], OpenGL.GL_TEXTURE0));
                         this.currentDisplay = CurrentDisplayImage.Output;
                         break;
                     case CurrentDisplayImage.Intermediate:
-                        this.renderer.SetUniformValue("output_image",
+                        this.renderer.SetUniform("output_image",
                             new samplerValue(this.input_image[0], OpenGL.GL_TEXTURE0));
                         this.currentDisplay = CurrentDisplayImage.Input;
                         break;
                     case CurrentDisplayImage.Output:
-                        this.renderer.SetUniformValue("output_image",
+                        this.renderer.SetUniform("output_image",
                             new samplerValue(this.intermediate_image[0], OpenGL.GL_TEXTURE0));
                         this.currentDisplay = CurrentDisplayImage.Intermediate;
                         break;

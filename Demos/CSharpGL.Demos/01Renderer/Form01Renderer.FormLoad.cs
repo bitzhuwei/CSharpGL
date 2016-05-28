@@ -126,7 +126,7 @@ namespace CSharpGL.Demos
                     var uniformVariables = uniformVariablesList[i];
                     foreach (var item in uniformVariables)
                     {
-                        pickableRenderer.SetUniformValue(item.Item1, item.Item2);
+                        pickableRenderer.SetUniform(item.Item1, item.Item2);
                     }
 
                     HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
@@ -196,7 +196,7 @@ namespace CSharpGL.Demos
                     var uniformVariables = uniformVariablesList[i];
                     foreach (var item in uniformVariables)
                     {
-                        pickableRenderer.SetUniformValue(item.Item1, item.Item2);
+                        pickableRenderer.SetUniform(item.Item1, item.Item2);
                     }
                     {
                         GLSwitch lineWidthSwitch = new LineWidthSwitch(5);

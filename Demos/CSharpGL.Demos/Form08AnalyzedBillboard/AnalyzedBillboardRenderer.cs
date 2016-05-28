@@ -47,7 +47,7 @@ namespace CSharpGL.Demos
         {
             base.DoInitialize();
 
-            this.SetUniformValue("factor", 100.0f);
+            this.SetUniform("factor", 100.0f);
         }
 
         protected override void DoRender(RenderEventArgs arg)
@@ -55,7 +55,7 @@ namespace CSharpGL.Demos
             mat4 model = mat4.identity();
             mat4 view = arg.Camera.GetViewMat4();
             mat4 projection = arg.Camera.GetProjectionMat4();
-            this.SetUniformValue("mvp", projection * view * model);
+            this.SetUniform("mvp", projection * view * model);
 
             //GL.Enable(GL.GL_POINT_SMOOTH);
             //GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);

@@ -162,9 +162,9 @@ namespace CSharpGL.Demos
                 {
                     mat4 projection, view, model;
                     uiRenderer.GetMatrix(out projection, out view, out model, this.camera);
-                    uiRenderer.Renderer.SetUniformValue("projectionMatrix", projection);
-                    uiRenderer.Renderer.SetUniformValue("viewMatrix", view);
-                    uiRenderer.Renderer.SetUniformValue("modelMatrix", model);
+                    uiRenderer.Renderer.SetUniform("projectionMatrix", projection);
+                    uiRenderer.Renderer.SetUniform("viewMatrix", view);
+                    uiRenderer.Renderer.SetUniform("modelMatrix", model);
 
                     uiRenderer.Render(arg);
                 }
@@ -181,9 +181,9 @@ namespace CSharpGL.Demos
                     float length = Math.Max(glAxis.Size.Width, glAxis.Size.Height) / 2;
                     model = glm.scale(mat4.identity(),
                         new vec3(length, length, length));
-                    glAxis.Renderer.SetUniformValue("projectionMatrix", projection);
-                    glAxis.Renderer.SetUniformValue("viewMatrix", view);
-                    glAxis.Renderer.SetUniformValue("modelMatrix", model);
+                    glAxis.Renderer.SetUniform("projectionMatrix", projection);
+                    glAxis.Renderer.SetUniform("viewMatrix", view);
+                    glAxis.Renderer.SetUniform("modelMatrix", model);
 
                     glAxis.Render(arg);
                 }
@@ -269,9 +269,9 @@ namespace CSharpGL.Demos
             else if (this.RenderMode == RenderModes.Render)
             {
                 renderer.Highlighter.MVP = mvp;
-                renderer.PickableRenderer.SetUniformValue("projectionMatrix", projectionMatrix);
-                renderer.PickableRenderer.SetUniformValue("viewMatrix", viewMatrix);
-                renderer.PickableRenderer.SetUniformValue("modelMatrix", modelMatrix);
+                renderer.PickableRenderer.SetUniform("projectionMatrix", projectionMatrix);
+                renderer.PickableRenderer.SetUniform("viewMatrix", viewMatrix);
+                renderer.PickableRenderer.SetUniform("modelMatrix", modelMatrix);
             }
             else
             { throw new NotImplementedException(); }

@@ -51,7 +51,7 @@ namespace CSharpGL.Demos
         {
             base.DoInitialize();
 
-            this.SetUniformValue("fontTexture",
+            this.SetUniform("fontTexture",
                 new samplerValue(FontResource.Default.FontTextureId, OpenGL.GL_TEXTURE0));
         }
 

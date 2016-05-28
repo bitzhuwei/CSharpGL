@@ -29,7 +29,7 @@ namespace CSharpGL
             return gotUniform;
         }
 
-        public bool SetUniformValue(string varNameInShader, ValueType value)
+        public bool SetUniform(string varNameInShader, ValueType value)
         {
             bool gotUniform = false;
             bool updated = false;

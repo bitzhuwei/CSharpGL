@@ -43,9 +43,9 @@ namespace CSharpGL.Demos
                 mat4 projection, view, model;
                 {
                     this.uiRenderer.GetMatrix(out projection, out view, out model, arg.Camera);
-                    this.uiRenderer.Renderer.SetUniformValue("projectionMatrix", projection);
-                    this.uiRenderer.Renderer.SetUniformValue("viewMatrix", view);
-                    this.uiRenderer.Renderer.SetUniformValue("modelMatrix", model);
+                    this.uiRenderer.Renderer.SetUniform("projectionMatrix", projection);
+                    this.uiRenderer.Renderer.SetUniform("viewMatrix", view);
+                    this.uiRenderer.Renderer.SetUniform("modelMatrix", model);
                     this.uiRenderer.Render(arg);
                 }
 
@@ -53,17 +53,17 @@ namespace CSharpGL.Demos
                 {
                     case LayoutType.UILayout:
                         this.renderer.GetMatrix(out projection, out view, out model);
-                        this.renderer.SetUniformValue("mvp", projection * view * model);
+                        this.renderer.SetUniform("mvp", projection * view * model);
                         break;
                     case LayoutType.CameraUILayout:
                         this.renderer.GetMatrix(out projection, out view, out model, arg.Camera);
-                        this.renderer.SetUniformValue("mvp", projection * view * model);
+                        this.renderer.SetUniform("mvp", projection * view * model);
                         break;
                     case LayoutType.MVPLayout:
                         projection = arg.Camera.GetProjectionMat4();
                         view = arg.Camera.GetViewMat4();
                         model = mat4.identity();
-                        this.renderer.SetUniformValue("mvp", projection * view * model);
+                        this.renderer.SetUniform("mvp", projection * view * model);
                         break;
                     default:
                         throw new NotImplementedException();

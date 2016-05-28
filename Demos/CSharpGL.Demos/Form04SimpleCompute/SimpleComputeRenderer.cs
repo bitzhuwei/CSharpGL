@@ -62,7 +62,7 @@ namespace CSharpGL.Demos
                 this.GroupZ = 1;
             }
             base.DoInitialize();
-            this.SetUniformValue("output_image", new samplerValue(this.output_image[0], OpenGL.GL_TEXTURE0));
+            this.SetUniform("output_image", new samplerValue(this.output_image[0], OpenGL.GL_TEXTURE0));
 
         }
 
@@ -108,9 +108,9 @@ namespace CSharpGL.Demos
             mat4 model = mat4.identity();
             mat4 view = arg.Camera.GetViewMat4();
             mat4 projection = arg.Camera.GetProjectionMat4();
-            this.SetUniformValue("modelMatrix", model);
-            this.SetUniformValue("viewMatrix", view);
-            this.SetUniformValue("projectionMatrix", projection);
+            this.SetUniform("modelMatrix", model);
+            this.SetUniform("viewMatrix", view);
+            this.SetUniform("projectionMatrix", projection);
 
             base.DoRender(arg);
         }
