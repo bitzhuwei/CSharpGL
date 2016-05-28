@@ -83,9 +83,9 @@ namespace CSharpGL
             if (this.GetLinkStatus() == false)
             {
                 string log = this.GetInfoLog();
-                throw new ShaderCompilationException(
-                    string.Format("Failed to link shader program with ID {0}.", program),
-                    log);
+                throw new Exception(
+                    string.Format("Failed to compile shader with ID {0}.{1}{2}", 
+                        this.ShaderProgramObject, Environment.NewLine, log));
             }
 
             foreach (var item in shaders)

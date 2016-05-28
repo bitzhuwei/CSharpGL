@@ -12,36 +12,53 @@ namespace CSharpGL
     /// </summary>
     public class Shader
     {
+        static OpenGL.glCreateShader glCreateShader;
+        static OpenGL.glShaderSource glShaderSource;
+        static OpenGL.glCompileShader glCompileShader;
+        static OpenGL.glDeleteShader glDeleteShader;
+        static OpenGL.glGetShaderiv glGetShaderiv;
+
+        internal Shader()
+        {
+            if (glCreateShader == null)
+            {
+                glCreateShader = OpenGL.GetDelegateFor<OpenGL.glCreateShader>();
+                glShaderSource = OpenGL.GetDelegateFor<OpenGL.glShaderSource>();
+                glCompileShader = OpenGL.GetDelegateFor<OpenGL.glCompileShader>();
+                glDeleteShader = OpenGL.GetDelegateFor<OpenGL.glDeleteShader>();
+                glGetShaderiv = OpenGL.GetDelegateFor<OpenGL.glGetShaderiv>();
+            }
+        }
         public void Create(uint shaderType, string source)
         {
             //  Create the OpenGL shader object.
-            ShaderObject = OpenGL.GetDelegateFor<OpenGL.glCreateShader>()(shaderType);
+            ShaderObject = glCreateShader(shaderType);
 
             //  Set the shader source.
-            OpenGL.GetDelegateFor<OpenGL.glShaderSource>()(ShaderObject, 1, new[] { source }, new[] { source.Length });
+            glShaderSource(ShaderObject, 1, new[] { source }, new[] { source.Length });
             //  Compile the shader object.
-            OpenGL.GetDelegateFor<OpenGL.glCompileShader>()(ShaderObject);
+            glCompileShader(ShaderObject);
 
             //  Now that we've compiled the shader, check it's compilation status. If it's not compiled properly, we're
             //  going to throw an exception.
             if (GetCompileStatus() == false)
             {
-                string log = GetInfoLog();
-                throw new ShaderCompilationException(
-                    string.Format("Failed to compile shader with ID {0}.{1}{2}", ShaderObject, Environment.NewLine, log), log);
+                string log = this.GetInfoLog();
+                throw new Exception(
+                    string.Format("Failed to compile shader with ID {0}.{1}{2}", ShaderObject, Environment.NewLine, log));
             }
         }
 
         public void Delete()
         {
-            OpenGL.GetDelegateFor<OpenGL.glDeleteShader>()(ShaderObject);
+            glDeleteShader(ShaderObject);
             ShaderObject = 0;
         }
 
         public bool GetCompileStatus()
         {
             int[] parameters = new int[] { 0 };
-            OpenGL.GetDelegateFor<OpenGL.glGetShaderiv>()(ShaderObject, OpenGL.GL_COMPILE_STATUS, parameters);
+            glGetShaderiv(ShaderObject, OpenGL.GL_COMPILE_STATUS, parameters);
             return parameters[0] == OpenGL.GL_TRUE;
         }
 
@@ -49,7 +66,7 @@ namespace CSharpGL
         {
             //  Get the info log length.
             int[] infoLength = new int[] { 0 };
-            OpenGL.GetDelegateFor<OpenGL.glGetShaderiv>()(ShaderObject, OpenGL.GL_INFO_LOG_LENGTH, infoLength);
+            glGetShaderiv(ShaderObject, OpenGL.GL_INFO_LOG_LENGTH, infoLength);
             int bufSize = infoLength[0];
 
             //  Get the compile info.

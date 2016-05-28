@@ -336,7 +336,6 @@
     <Compile Include="WinformControls\RenderContexts\VersionAttribute.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\RendererBase.cs" />
     <Compile Include="OpenGLObjects\Shaders\Shader.cs" />
-    <Compile Include="OpenGLObjects\Shaders\ShaderCompilationException.cs" />
     <Compile Include="OpenGLObjects\Shaders\ShaderProgram.cs" />
     <Compile Include="OpenGLObjects\Textures\sampler1D.cs" />
     <Compile Include="OpenGLObjects\Textures\sampler2D.cs" />
