@@ -33,8 +33,8 @@ namespace CSharpGL
 
         public override void SetUniform(ShaderProgram program)
         {
-            program.SetUniform(VarName, (int)((uint)value.ActiveTextureIndex - OpenGL.GL_TEXTURE0));
-            if (glActiveTexture == null) 
+            program.SetUniform(VarName, value.activeTextureIndex);
+            if (glActiveTexture == null)
             { glActiveTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
             glActiveTexture(value.ActiveTextureIndex);
             //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, value.TextureId);
@@ -94,12 +94,12 @@ namespace CSharpGL
             set { textureId = value; }
         }
 
-        private uint activeTextureIndex;
+        internal uint activeTextureIndex;
 
         public uint ActiveTextureIndex
         {
-            get { return activeTextureIndex; }
-            set { activeTextureIndex = value; }
+            get { return (activeTextureIndex + OpenGL.GL_TEXTURE0); }
+            set { activeTextureIndex = (value - OpenGL.GL_TEXTURE0); }
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace CSharpGL
         {
             this.target = (uint)target;
             this.textureId = textureId;
-            this.activeTextureIndex = activeTextureIndex;
+            this.activeTextureIndex = (activeTextureIndex - OpenGL.GL_TEXTURE0);
         }
 
         static readonly char[] separator = new char[] { '[', ']', };

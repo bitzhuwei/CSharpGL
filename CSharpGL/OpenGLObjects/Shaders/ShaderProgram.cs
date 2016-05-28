@@ -113,6 +113,52 @@ namespace CSharpGL
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
+        public void SetUniform(string uniformName, uint v0)
+        {
+            OpenGL.GetDelegateFor<OpenGL.glUniform1ui>()(GetUniformLocation(uniformName), v0);
+        }
+
+        /// <summary>
+        /// 请注意你的数据类型最终将转换为int还是float
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="v0"></param>
+        /// <param name="v1"></param>
+        public void SetUniform(string uniformName, uint v0, uint v1)
+        {
+            OpenGL.GetDelegateFor<OpenGL.glUniform2ui>()(GetUniformLocation(uniformName), v0, v1);
+        }
+
+        /// <summary>
+        /// 请注意你的数据类型最终将转换为int还是float
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="v0"></param>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        public void SetUniform(string uniformName, uint v0, uint v1, uint v2)
+        {
+            OpenGL.GetDelegateFor<OpenGL.glUniform3ui>()(GetUniformLocation(uniformName), v0, v1, v2);
+        }
+
+        /// <summary>
+        /// 请注意你的数据类型最终将转换为int还是float
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="v0"></param>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <param name="v3"></param>
+        public void SetUniform(string uniformName, uint v0, uint v1, uint v2, uint v3)
+        {
+            OpenGL.GetDelegateFor<OpenGL.glUniform4ui>()(GetUniformLocation(uniformName), v0, v1, v2, v3);
+        }
+
+        /// <summary>
+        /// 请注意你的数据类型最终将转换为int还是float
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="v0"></param>
         public void SetUniform(string uniformName, int v0)
         {
             OpenGL.GetDelegateFor<OpenGL.glUniform1i>()(GetUniformLocation(uniformName), v0);
