@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="UITypeEditors\FormGLSwitchEditor.resx">
+      <DependentUpon>FormGLSwitchEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinformControls\GLCanvas.ico" />
     <EmbeddedResource Include="GlyphTextures\LucidaTypewriterRegular.ttf.png" />
     <EmbeddedResource Include="GlyphTextures\LucidaTypewriterRegular.ttf.xml" />
@@ -79,6 +82,7 @@
     <Content Include="OpenGLObjects\UniformVariables\readme.txt" />
     <Content Include="OpenGLObjects\VertexBuffers\readme.txt" />
     <Content Include="readme.txt" />
+    <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\CullFaceSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\ViewportSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\ScissorTestSwitch.cs" />
     <Compile Include="UILayout\GLControls\GLRoot.cs" />
@@ -91,6 +95,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UILayout\UIRenderer.cs" />
+    <Compile Include="UITypeEditors\FormGLSwitchEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITypeEditors\FormGLSwitchEditor.Designer.cs">
+      <DependentUpon>FormGLSwitchEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITypeEditors\GLSwithEditor.cs" />
     <Compile Include="WinformControls\GLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>

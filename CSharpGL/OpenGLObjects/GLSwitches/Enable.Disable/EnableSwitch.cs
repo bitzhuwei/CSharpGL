@@ -92,25 +92,25 @@ namespace CSharpGL
 
     }
 
-    public class CullFaceSwitch : EnableSwitch
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="enableCapacity">true for enable, false for disable</param>
-        public CullFaceSwitch(bool enableCapacity = true)
-            : base(OpenGL.GL_CULL_FACE, enableCapacity)
-        { }
+    //public class CullFaceSwitch : EnableSwitch
+    //{
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    /// <param name="enableCapacity">true for enable, false for disable</param>
+    //    public CullFaceSwitch(bool enableCapacity = true)
+    //        : base(OpenGL.GL_CULL_FACE, enableCapacity)
+    //    { }
 
-        public override string ToString()
-        {
-            if (this.EnableCapacity)
-            { return "GL.Enable(GL_CULL_FACE);"; }
-            else
-            { return "GL.Disable(GL_CULL_FACE);"; }
-        }
+    //    public override string ToString()
+    //    {
+    //        if (this.EnableCapacity)
+    //        { return "GL.Enable(GL_CULL_FACE);"; }
+    //        else
+    //        { return "GL.Disable(GL_CULL_FACE);"; }
+    //    }
 
-    }
+    //}
 
     public class DepthTestSwitch : EnableSwitch
     {

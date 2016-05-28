@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 
 namespace CSharpGL
 {
+    [Editor(typeof(GLSwithEditor), typeof(UITypeEditor))]
     public abstract class GLSwitch
     {
 
