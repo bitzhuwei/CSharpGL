@@ -1429,8 +1429,12 @@ namespace CSharpGL
             using (var pdata = new UnmanagedArray<Pixel>(1))
             {
                 OpenGL.ReadPixels(x, y, 1, 1, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, pdata.Header);
-                Color c = pdata[0].ToColor();
-                return c;
+                unsafe
+                {
+                    var array = (Pixel*)pdata.Header.ToPointer();
+                    Color c = array[0].ToColor();
+                    return c;
+                }
             }
         }
 

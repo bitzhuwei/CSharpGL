@@ -38,35 +38,36 @@ namespace System
             UnmanagedArray<T>.thisTypeAllocatedCount++;
         }
 
-        /// <summary>
-        /// 获取或设置索引为<paramref name="index"/>的元素。
-        /// <para>如果要处理的元素数目较大，请使用unsafe方式(<see cref="UnmanagedArrayFastAccessHelper"/>)。</para>
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public unsafe T this[int index]
-        {
-            get
-            {
-                if (index < 0 || index >= this.Length)
-                    throw new IndexOutOfRangeException("index of UnmanagedArray is out of range");
+        // 既然要用OpenGL，就不要试图才用低效的方式了。
+        ///// <summary>
+        ///// 获取或设置索引为<paramref name="index"/>的元素。
+        ///// <para>如果要处理的元素数目较大，请使用unsafe方式(<see cref="UnmanagedArrayFastAccessHelper"/>)。</para>
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <returns></returns>
+        //public unsafe T this[int index]
+        //{
+        //    get
+        //    {
+        //        if (index < 0 || index >= this.Length)
+        //            throw new IndexOutOfRangeException("index of UnmanagedArray is out of range");
 
-                var pItem = this.Header + (index * elementSize);
-                var obj = Marshal.PtrToStructure(pItem, typeof(T));
-                T result = (T)obj;
-                //T result = Marshal.PtrToStructure<T>(pItem);// works in .net 4.5.1
-                return result;
-            }
-            set
-            {
-                if (index < 0 || index >= this.Length)
-                    throw new IndexOutOfRangeException("index of UnmanagedArray is out of range");
+        //        var pItem = this.Header + (index * elementSize);
+        //        var obj = Marshal.PtrToStructure(pItem, typeof(T));
+        //        T result = (T)obj;
+        //        //T result = Marshal.PtrToStructure<T>(pItem);// works in .net 4.5.1
+        //        return result;
+        //    }
+        //    set
+        //    {
+        //        if (index < 0 || index >= this.Length)
+        //            throw new IndexOutOfRangeException("index of UnmanagedArray is out of range");
 
-                var pItem = this.Header + (index * elementSize);
-                Marshal.StructureToPtr(value, pItem, true);
-                //Marshal.StructureToPtr<T>(value, pItem, true);// works in .net 4.5.1
-            }
-        }
+        //        var pItem = this.Header + (index * elementSize);
+        //        Marshal.StructureToPtr(value, pItem, true);
+        //        //Marshal.StructureToPtr<T>(value, pItem, true);// works in .net 4.5.1
+        //    }
+        //}
 
         protected override void DisposeUnmanagedResources()
         {
