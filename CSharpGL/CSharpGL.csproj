@@ -403,8 +403,6 @@
     <Compile Include="Utilities\ManifestResourceLoader.cs" />
     <Compile Include="Utilities\PositionHelper.cs" />
     <Compile Include="Utilities\UnmanagedArray.cs" />
-    <Compile Include="Utilities\UnmanagedArrayFastAccessHelper.cs" />
-    <Compile Include="Utilities\UnmanagedArrayHelper.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

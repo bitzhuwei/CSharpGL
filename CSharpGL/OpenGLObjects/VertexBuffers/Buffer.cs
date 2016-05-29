@@ -37,7 +37,7 @@ namespace CSharpGL
             if (array == null) { return (void*)0; }
             else
             {
-                return array.FirstElement();
+                return array.Header.ToPointer();
             }
         }
 

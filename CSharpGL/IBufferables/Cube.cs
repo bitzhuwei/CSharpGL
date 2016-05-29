@@ -32,7 +32,7 @@ namespace CSharpGL
                         buffer.Alloc(1);
                         unsafe
                         {
-                            var positionArray = (CubeModel.CubePosition*)buffer.FirstElement();
+                            var positionArray = (CubeModel.CubePosition*)buffer.Header.ToPointer();
                             positionArray[0] = CubeModel.position;
 
                         }
@@ -51,7 +51,7 @@ namespace CSharpGL
                         buffer.Alloc(1);
                         unsafe
                         {
-                            var colorArray = (CubeModel.CubeColor*)buffer.FirstElement();
+                            var colorArray = (CubeModel.CubeColor*)buffer.Header.ToPointer();
                             colorArray[0] = CubeModel.color;
                         }
 
@@ -69,7 +69,7 @@ namespace CSharpGL
                         buffer.Alloc(1);
                         unsafe
                         {
-                            var normalArray = (CubeModel.CubeNormal*)buffer.FirstElement();
+                            var normalArray = (CubeModel.CubeNormal*)buffer.Header.ToPointer();
                             normalArray[0] = CubeModel.normal;
                         }
 
@@ -93,7 +93,7 @@ namespace CSharpGL
                     buffer.Alloc(CubeModel.index.Length);
                     unsafe
                     {
-                        var array = (byte*)buffer.FirstElement();
+                        var array = (byte*)buffer.Header.ToPointer();
                         for (int i = 0; i < CubeModel.index.Length; i++)
                         {
                             array[i] = CubeModel.index[i];

@@ -46,7 +46,7 @@ namespace CSharpGL
                         buffer.Alloc(model.positions.Length);
                         unsafe
                         {
-                            var array = (vec3*)buffer.FirstElement();
+                            var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < model.positions.Length; i++)
                             {
                                 array[i] = model.positions[i];
@@ -66,7 +66,7 @@ namespace CSharpGL
                         buffer.Alloc(model.colors.Length);
                         unsafe
                         {
-                            var array = (vec3*)buffer.FirstElement();
+                            var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < model.colors.Length; i++)
                             {
                                 array[i] = model.colors[i];
@@ -86,7 +86,7 @@ namespace CSharpGL
                         buffer.Alloc(model.normals.Length);
                         unsafe
                         {
-                            var array = (vec3*)buffer.FirstElement();
+                            var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < model.normals.Length; i++)
                             {
                                 array[i] = model.normals[i];
@@ -115,7 +115,7 @@ namespace CSharpGL
                         buffer.Alloc(model.indexes.Length);
                         unsafe
                         {
-                            var indexArray = (byte*)buffer.FirstElement();
+                            var indexArray = (byte*)buffer.Header.ToPointer();
                             for (int i = 0; i < model.indexes.Length; i++)
                             {
                                 if (model.indexes[i] == uint.MaxValue)
@@ -135,7 +135,7 @@ namespace CSharpGL
                         buffer.Alloc(model.indexes.Length);
                         unsafe
                         {
-                            var indexArray = (ushort*)buffer.FirstElement();
+                            var indexArray = (ushort*)buffer.Header.ToPointer();
                             for (int i = 0; i < model.indexes.Length; i++)
                             {
                                 if (model.indexes[i] == uint.MaxValue)
@@ -155,7 +155,7 @@ namespace CSharpGL
                         buffer.Alloc(model.indexes.Length);
                         unsafe
                         {
-                            var indexArray = (uint*)buffer.FirstElement();
+                            var indexArray = (uint*)buffer.Header.ToPointer();
                             for (int i = 0; i < model.indexes.Length; i++)
                             {
                                 indexArray[i] = model.indexes[i];

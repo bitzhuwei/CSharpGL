@@ -59,7 +59,7 @@ namespace CSharpGL.Demos
                 var positions = new UnmanagedArray<vec4>(ParticleSimulatorCompute.particleCount);
                 unsafe
                 {
-                    var array = (vec4*)positions.FirstElement();
+                    var array = (vec4*)positions.Header.ToPointer();
                     for (int i = 0; i < ParticleSimulatorCompute.particleCount; i++)
                     {
                         array[i] = new vec4(
@@ -80,7 +80,7 @@ namespace CSharpGL.Demos
                 var velocities = new UnmanagedArray<vec4>(ParticleSimulatorCompute.particleCount);
                 unsafe
                 {
-                    var array = (vec4*)velocities.FirstElement();
+                    var array = (vec4*)velocities.Header.ToPointer();
                     for (int i = 0; i < ParticleSimulatorCompute.particleCount; i++)
                     {
                         array[i] = new vec4(
@@ -242,7 +242,7 @@ namespace CSharpGL.Demos
                             buffer.Alloc(particleCount);
                             unsafe
                             {
-                                var array = (vec4*)buffer.FirstElement();
+                                var array = (vec4*)buffer.Header.ToPointer();
                                 for (int i = 0; i < particleCount; i++)
                                 {
                                     array[i] = new vec4(
@@ -270,7 +270,7 @@ namespace CSharpGL.Demos
                             buffer.Alloc(particleCount);
                             unsafe
                             {
-                                var array = (vec4*)buffer.FirstElement();
+                                var array = (vec4*)buffer.Header.ToPointer();
                                 for (int i = 0; i < particleCount; i++)
                                 {
                                     array[i] = new vec4(

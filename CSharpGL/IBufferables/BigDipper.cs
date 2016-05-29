@@ -29,7 +29,7 @@ namespace CSharpGL
                         buffer.Alloc(BigDipperModel.positions.Length);
                         unsafe
                         {
-                            var array = (vec3*)buffer.FirstElement();
+                            var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < BigDipperModel.positions.Length; i++)
                             {
                                 array[i] = BigDipperModel.positions[i];
@@ -51,7 +51,7 @@ namespace CSharpGL
                         buffer.Alloc(BigDipperModel.colors.Length);
                         unsafe
                         {
-                            var array = (vec3*)buffer.FirstElement();
+                            var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < BigDipperModel.colors.Length; i++)
                             {
                                 array[i] = BigDipperModel.colors[i];
@@ -84,7 +84,7 @@ namespace CSharpGL
                 //    buffer.Alloc(BigDipperModel.positions.Length);
                 //    unsafe
                 //    {
-                //        var array = (uint*)buffer.FirstElement();
+                //        var array = (uint*)buffer.Header.ToPointer();
                 //        for (uint i = 0; i < BigDipperModel.positions.Length; i++)
                 //        {
                 //            array[i] = i;

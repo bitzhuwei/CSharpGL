@@ -100,7 +100,7 @@ namespace CSharpGL
                     + recognizedPrimitiveIndex1.IndexIdList.Count);
                 unsafe
                 {
-                    var array = (uint*)indexBuffer.FirstElement();
+                    var array = (uint*)indexBuffer.Header.ToPointer();
                     for (int i = 0; i < indexArray.Count; i++)
                     {
                         array[i] = indexArray[i];

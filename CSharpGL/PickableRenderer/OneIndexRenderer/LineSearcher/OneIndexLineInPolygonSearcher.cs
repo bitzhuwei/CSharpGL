@@ -21,7 +21,7 @@ namespace CSharpGL
                 buffer.Alloc(indexList.Count);
                 unsafe
                 {
-                    var array = (uint*)buffer.FirstElement();
+                    var array = (uint*)buffer.Header.ToPointer();
                     for (int i = 0; i < indexList.Count; i++)
                     {
                         array[i] = indexList[i];

@@ -35,7 +35,7 @@ namespace CSharpGL
                         buffer.Alloc(model.positions.Count);
                         unsafe
                         {
-                            var array = (vec3*)buffer.FirstElement();
+                            var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < model.positions.Count; i++)
                             {
                                 array[i] = model.positions[i];
@@ -55,7 +55,7 @@ namespace CSharpGL
                         buffer.Alloc(model.normals.Count);
                         unsafe
                         {
-                            var array = (vec3*)buffer.FirstElement();
+                            var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < model.normals.Count; i++)
                             {
                                 array[i] = model.normals[i];
@@ -75,7 +75,7 @@ namespace CSharpGL
                         buffer.Alloc(model.normals.Count);
                         unsafe
                         {
-                            var array = (vec3*)buffer.FirstElement();
+                            var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < model.normals.Count; i++)
                             {
                                 array[i] = model.normals[i];
@@ -101,7 +101,7 @@ namespace CSharpGL
                     buffer.Alloc(model.faces.Count * 3);
                     unsafe
                     {
-                        var array = (ushort*)buffer.FirstElement();
+                        var array = (ushort*)buffer.Header.ToPointer();
                         for (int i = 0; i < model.faces.Count; i++)
                         {
                             array[i * 3 + 0] = (ushort)(model.faces[i].Item1 - 1);

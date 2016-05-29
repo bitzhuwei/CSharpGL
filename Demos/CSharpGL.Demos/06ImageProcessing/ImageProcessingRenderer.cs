@@ -159,7 +159,7 @@ namespace CSharpGL.Demos
                             buffer.Alloc(4);
                             unsafe
                             {
-                                var array = (vec3*)buffer.FirstElement();
+                                var array = (vec3*)buffer.Header.ToPointer();
                                 array[0] = new vec3(-1.0f, -1.0f, 0.5f);
                                 array[1] = new vec3(1.0f, -1.0f, 0.5f);
                                 array[2] = new vec3(1.0f, 1.0f, 0.5f);
@@ -179,7 +179,7 @@ namespace CSharpGL.Demos
                             buffer.Alloc(4);
                             unsafe
                             {
-                                var array = (vec2*)buffer.FirstElement();
+                                var array = (vec2*)buffer.Header.ToPointer();
                                 array[0] = new vec2(1, 1);
                                 array[1] = new vec2(0, 1);
                                 array[2] = new vec2(0, 0);

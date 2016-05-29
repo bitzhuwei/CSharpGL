@@ -59,7 +59,7 @@ namespace CSharpGL.Demos
                         buffer.Alloc(vertices.Length);
                         unsafe
                         {
-                            var array = (float*)buffer.FirstElement();
+                            var array = (float*)buffer.Header.ToPointer();
                             for (int i = 0; i < vertices.Length; i++)
                             {
                                 array[i] = vertices[i];
@@ -85,7 +85,7 @@ namespace CSharpGL.Demos
                     buffer.Alloc(indices.Length);
                     unsafe
                     {
-                        var array = (uint*)buffer.FirstElement();
+                        var array = (uint*)buffer.Header.ToPointer();
                         for (int i = 0; i < indices.Length; i++)
                         {
                             array[i] = indices[i];

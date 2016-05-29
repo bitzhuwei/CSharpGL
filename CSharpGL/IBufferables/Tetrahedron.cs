@@ -32,7 +32,7 @@ namespace CSharpGL
                         buffer.Alloc(TetrahedronModel.position.Length);
                         unsafe
                         {
-                            var array = (vec3*)buffer.FirstElement();
+                            var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < TetrahedronModel.position.Length; i++)
                             {
                                 array[i] = TetrahedronModel.position[i];
@@ -53,7 +53,7 @@ namespace CSharpGL
                         buffer.Alloc(TetrahedronModel.color.Length);
                         unsafe
                         {
-                            var array = (vec3*)buffer.FirstElement();
+                            var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < TetrahedronModel.color.Length; i++)
                             {
                                 array[i] = TetrahedronModel.color[i];
@@ -74,7 +74,7 @@ namespace CSharpGL
                         buffer.Alloc(TetrahedronModel.normal.Length);
                         unsafe
                         {
-                            var array = (vec3*)buffer.FirstElement();
+                            var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < TetrahedronModel.normal.Length; i++)
                             {
                                 array[i] = TetrahedronModel.normal[i];
@@ -101,7 +101,7 @@ namespace CSharpGL
                     buffer.Alloc(TetrahedronModel.index.Length);
                     unsafe
                     {
-                        var array = (byte*)buffer.FirstElement();
+                        var array = (byte*)buffer.Header.ToPointer();
                         for (int i = 0; i < TetrahedronModel.index.Length; i++)
                         {
                             array[i] = TetrahedronModel.index[i];

@@ -102,7 +102,7 @@ namespace CSharpGL.Demos
                             buffer.Alloc(particleCount);
                             unsafe
                             {
-                                var array = (vec3*)buffer.FirstElement();
+                                var array = (vec3*)buffer.Header.ToPointer();
                                 for (int i = 0; i < particleCount; i++)
                                 {
                                     if (i % 2 == 0)

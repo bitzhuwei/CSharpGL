@@ -117,7 +117,7 @@ namespace CSharpGL
                 y = currentNode.Margin.Bottom;
             }
             else
-            { throw new Exception("uiRenderer should not happen!"); }
+            { throw new Exception("This should not happen!"); }
 
             currentNode.Location = new System.Drawing.Point(x, y);
             currentNode.Size = new Size(width, height);

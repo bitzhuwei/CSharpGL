@@ -187,7 +187,7 @@ namespace CSharpGL
                 OpenGL.ReadPixels(rect.X, canvasHeight - rect.Y - 1, rect.Width, rect.Height,
                     OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
 
-                var array = (Pixel*)codedColor.FirstElement();
+                var array = (Pixel*)codedColor.Header.ToPointer();
                 int index = 0;
                 var vertexIdList = new List<uint>();
                 for (int yOffset = rect.Height - 1; yOffset >= 0; yOffset--)
@@ -238,7 +238,7 @@ namespace CSharpGL
             using (var codedColor = new UnmanagedArray<byte>(4))
             {
                 OpenGL.ReadPixels(x, canvasHeight - y - 1, 1, 1, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
-                var array = (Pixel*)codedColor.FirstElement();
+                var array = (Pixel*)codedColor.Header.ToPointer();
                 Pixel pixel = array[0];
                 if (!
                     // This is when (x, y) is on background and no primitive is picked.

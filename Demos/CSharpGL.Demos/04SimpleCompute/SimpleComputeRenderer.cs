@@ -150,7 +150,7 @@ namespace CSharpGL.Demos
                             buffer.Alloc(vertsData.Length);
                             unsafe
                             {
-                                var array = (vec3*)buffer.FirstElement();
+                                var array = (vec3*)buffer.Header.ToPointer();
                                 for (int i = 0; i < vertsData.Length; i++)
                                 {
                                     array[i] = vertsData[i];

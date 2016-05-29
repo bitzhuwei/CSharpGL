@@ -34,7 +34,7 @@ namespace CSharpGL
                         buffer.Alloc(model.Positions.Length);
                         unsafe
                         {
-                            var array = (vec3*)buffer.FirstElement();
+                            var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < model.Positions.Length; i++)
                             {
                                 array[i] = model.Positions[i];
@@ -56,7 +56,7 @@ namespace CSharpGL
                         buffer.Alloc(model.Colors.Length);
                         unsafe
                         {
-                            var array = (vec3*)buffer.FirstElement();
+                            var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < model.Colors.Length; i++)
                             {
                                 array[i] = model.Colors[i];

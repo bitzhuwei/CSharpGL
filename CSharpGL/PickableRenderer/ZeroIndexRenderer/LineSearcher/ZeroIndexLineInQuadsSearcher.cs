@@ -17,7 +17,7 @@ namespace CSharpGL
                 buffer.Alloc(8);
                 unsafe
                 {
-                    var array = (uint*)buffer.FirstElement();
+                    var array = (uint*)buffer.Header.ToPointer();
                     array[0] = lastVertexId - 1; array[1] = lastVertexId - 0;
                     array[2] = lastVertexId - 2; array[3] = lastVertexId - 1;
                     array[4] = lastVertexId - 3; array[5] = lastVertexId - 2;
