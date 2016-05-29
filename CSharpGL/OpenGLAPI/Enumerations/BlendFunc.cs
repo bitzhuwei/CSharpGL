@@ -29,8 +29,11 @@ namespace CSharpGL
     /// </summary>
     public enum BlendingSourceFactor : uint
     {
-        Zero = OpenGL.GL_ZERO,
+        /// <summary>
+        /// The initial value is GL_ONE
+        /// </summary>
         One = OpenGL.GL_ONE,
+        Zero = OpenGL.GL_ZERO,
         SourceColor = OpenGL.GL_SRC_COLOR,
         OneMinusSourceColor = OpenGL.GL_ONE_MINUS_SRC_COLOR,
         DestinationColor = OpenGL.GL_DST_COLOR,
