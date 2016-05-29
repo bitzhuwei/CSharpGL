@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CSharpGL.Demos
 {
 
-    class AnalyzedBillboardRenderer : Renderer
+    class BillboardRenderer : Renderer
     {
 
         private Color clearColor = Color.Black;
@@ -22,22 +22,23 @@ namespace CSharpGL.Demos
                 if (value != clearColor)
                 {
                     clearColor = value;
-                    OpenGL.ClearColor(value.R / 255.0f,value.G / 255.0f,value.B / 255.0f,value.A / 255.0f);
+                    OpenGL.ClearColor(value.R / 255.0f, value.G / 255.0f, value.B / 255.0f, value.A / 255.0f);
                 }
             }
         }
 
+        private uint[] sprite_texture = new uint[1];
         static ShaderCode[] staticShaderCodes;
         static PropertyNameMap map;
-        static AnalyzedBillboardRenderer()
+        static BillboardRenderer()
         {
             staticShaderCodes = new ShaderCode[2];
-            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"Form08AnalyzedBillboard\AnalyzedBillboard.vert"), ShaderType.VertexShader);
-            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"Form08AnalyzedBillboard\AnalyzedBillboard.frag"), ShaderType.FragmentShader);
+            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"07Billboard\Billboard.vert"), ShaderType.VertexShader);
+            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"07Billboard\Billboard.frag"), ShaderType.FragmentShader);
             map = new PropertyNameMap();
             map.Add("position", "position");
         }
-        public AnalyzedBillboardRenderer(int particleCount)
+        public BillboardRenderer(int particleCount)
             : base(new BillboardModel(particleCount), staticShaderCodes, map)
         {
             this.SwitchList.Add(new PointSpriteSwitch());
@@ -45,8 +46,21 @@ namespace CSharpGL.Demos
 
         protected override void DoInitialize()
         {
+            {
+                // This is the texture that the compute program will write into
+                OpenGL.GenTextures(1, sprite_texture);
+                OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, sprite_texture[0]);
+                OpenGL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, OpenGL.GL_RGBA32F, 256, 256);
+                OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
+                sampler2D texture = new sampler2D();
+                var bitmap = new System.Drawing.Bitmap(@"07Billboard\star.png");
+                texture.Initialize(bitmap);
+                this.sprite_texture[0] = texture.Id;
+                bitmap.Dispose();
+            }
             base.DoInitialize();
-
+            this.SetUniform("sprite_texture", new samplerValue(
+                  BindTextureTarget.Texture2D, this.sprite_texture[0], OpenGL.GL_TEXTURE0));
             this.SetUniform("factor", 100.0f);
         }
 
@@ -74,6 +88,11 @@ namespace CSharpGL.Demos
             //GL.Disable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
             //GL.Disable(GL.GL_POINT_SPRITE_ARB);
             //GL.Disable(GL.GL_POINT_SMOOTH);
+        }
+
+        protected override void DisposeUnmanagedResources()
+        {
+            OpenGL.DeleteTextures(1, sprite_texture);
         }
 
         class BillboardModel : IBufferable
@@ -151,5 +170,24 @@ namespace CSharpGL.Demos
             }
         }
 
+        internal void UpdateTexture(string filename)
+        {
+            // This is the texture that the compute program will write into
+            OpenGL.GenTextures(1, sprite_texture);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, sprite_texture[0]);
+            OpenGL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, OpenGL.GL_RGBA32F, 256, 256);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
+            sampler2D texture = new sampler2D();
+            var bitmap = new System.Drawing.Bitmap(filename);
+            texture.Initialize(bitmap);
+            var old = new uint[1];
+            old[0] = this.sprite_texture[0];
+            this.sprite_texture[0] = texture.Id;
+            this.SetUniform("sprite_texture", new samplerValue(
+                BindTextureTarget.Texture2D, this.sprite_texture[0], OpenGL.GL_TEXTURE0));
+
+            OpenGL.DeleteTextures(1, old);
+            bitmap.Dispose();
+        }
     }
 }

@@ -59,35 +59,35 @@
     <Compile Include="01Renderer\Form01Renderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form06ImageProcessing\Form06ImageProcessing.cs">
+    <Compile Include="06ImageProcessing\Form06ImageProcessing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form06ImageProcessing\Form06ImageProcessing.Designer.cs">
+    <Compile Include="06ImageProcessing\Form06ImageProcessing.Designer.cs">
       <DependentUpon>Form06ImageProcessing.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form06ImageProcessing\Form06ImageProcessing.Load.cs">
+    <Compile Include="06ImageProcessing\Form06ImageProcessing.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form06ImageProcessing\Form06ImageProcessing.MouseDownMoveUp.cs">
+    <Compile Include="06ImageProcessing\Form06ImageProcessing.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form06ImageProcessing\ImageProcessingRenderer.cs" />
-    <Compile Include="Form05ParticleSimulator\Form05ParticleSimulator.cs">
+    <Compile Include="06ImageProcessing\ImageProcessingRenderer.cs" />
+    <Compile Include="05ParticleSimulator\Form05ParticleSimulator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form05ParticleSimulator\Form05ParticleSimulator.Designer.cs">
+    <Compile Include="05ParticleSimulator\Form05ParticleSimulator.Designer.cs">
       <DependentUpon>Form05ParticleSimulator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form04SimpleCompute\Form04SimpleCompute.cs">
+    <Compile Include="04SimpleCompute\Form04SimpleCompute.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form04SimpleCompute\Form04SimpleCompute.Designer.cs">
+    <Compile Include="04SimpleCompute\Form04SimpleCompute.Designer.cs">
       <DependentUpon>Form04SimpleCompute.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form03OrderDependentTransparency\Form03OrderDependentTransparency.cs">
+    <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form03OrderDependentTransparency\Form03OrderDependentTransparency.Designer.cs">
+    <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.Designer.cs">
       <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
     </Compile>
     <Compile Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.cs">
@@ -96,22 +96,22 @@
     <Compile Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.Designer.cs">
       <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form05ParticleSimulator\Form05ParticleSimulator.Load.cs">
+    <Compile Include="05ParticleSimulator\Form05ParticleSimulator.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form04SimpleCompute\Form04SimpleCompute.Load.cs">
+    <Compile Include="04SimpleCompute\Form04SimpleCompute.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form03OrderDependentTransparency\Form03OrderDependentTransparency.Load.cs">
+    <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form05ParticleSimulator\Form05ParticleSimulator.MouseDownMoveUp.cs">
+    <Compile Include="05ParticleSimulator\Form05ParticleSimulator.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form04SimpleCompute\Form04SimpleCompute.MouseDownMoveUp.cs">
+    <Compile Include="04SimpleCompute\Form04SimpleCompute.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form03OrderDependentTransparency\Form03OrderDependentTransparency.MouseDownMoveUp.cs">
+    <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.MouseDownMoveUp.cs">
@@ -122,56 +122,56 @@
     </Compile>
     <Compile Include="01Renderer\HighlightedPickableRenderer.cs" />
     <Compile Include="01Renderer\Chain.cs" />
-    <Compile Include="Form08AnalyzedBillboard\AnalyzedBillboardRenderer.cs" />
-    <Compile Include="Form08AnalyzedBillboard\Form08AnalyzedBillboard.cs">
+    <Compile Include="08AnalyzedBillboard\AnalyzedBillboardRenderer.cs" />
+    <Compile Include="08AnalyzedBillboard\Form08AnalyzedBillboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form08AnalyzedBillboard\Form08AnalyzedBillboard.Designer.cs">
+    <Compile Include="08AnalyzedBillboard\Form08AnalyzedBillboard.Designer.cs">
       <DependentUpon>Form08AnalyzedBillboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form08AnalyzedBillboard\Form08AnalyzedBillboard.Load.cs">
+    <Compile Include="08AnalyzedBillboard\Form08AnalyzedBillboard.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form08AnalyzedBillboard\Form08AnalyzedBillboard.MouseDownMoveUp.cs">
+    <Compile Include="08AnalyzedBillboard\Form08AnalyzedBillboard.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form07Billboard\Form07Billboard.cs">
+    <Compile Include="07Billboard\Form07Billboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form07Billboard\Form07Billboard.Designer.cs">
+    <Compile Include="07Billboard\Form07Billboard.Designer.cs">
       <DependentUpon>Form07Billboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form07Billboard\Form07Billboard.Load.cs">
+    <Compile Include="07Billboard\Form07Billboard.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form07Billboard\Form07Billboard.MouseDownMoveUp.cs">
+    <Compile Include="07Billboard\Form07Billboard.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form07Billboard\BillboardRenderer.cs" />
-    <Compile Include="Form09DummyTextBoxRenderer\DummyTextBoxRenderer.cs" />
-    <Compile Include="Form09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.cs">
+    <Compile Include="07Billboard\BillboardRenderer.cs" />
+    <Compile Include="09DummyTextBoxRenderer\DummyTextBoxRenderer.cs" />
+    <Compile Include="09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.Designer.cs">
+    <Compile Include="09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.Designer.cs">
       <DependentUpon>Form09DummyTextBoxRenderer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.Load.cs">
+    <Compile Include="09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.MouseDownMoveUp.cs">
+    <Compile Include="09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form10RaycastVolumeRender\RaycastVolumeRender.cs" />
-    <Compile Include="Form10RaycastVolumeRender\Form10RaycastVolumeRender.cs">
+    <Compile Include="10RaycastVolumeRender\RaycastVolumeRender.cs" />
+    <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRender.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form10RaycastVolumeRender\Form10RaycastVolumeRender.Designer.cs">
+    <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRender.Designer.cs">
       <DependentUpon>Form10RaycastVolumeRender.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form10RaycastVolumeRender\Form10RaycastVolumeRender.Load.cs">
+    <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRender.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form10RaycastVolumeRender\Form10RaycastVolumeRender.MouseDownMoveUp.cs">
+    <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRender.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBulletinBoard.cs">
@@ -205,22 +205,22 @@
     <Compile Include="00GLCanvas\Form00GLCanvas.Designer.cs">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form05ParticleSimulator\ParticleSimulatorRenderer.cs" />
-    <Compile Include="Form04SimpleCompute\SimpleComputeRenderer.cs" />
+    <Compile Include="05ParticleSimulator\ParticleSimulatorRenderer.cs" />
+    <Compile Include="04SimpleCompute\SimpleComputeRenderer.cs" />
     <Compile Include="02OrderIndependentTransparency\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="01Renderer\UIAxisRenderer.cs" />
-    <None Include="Form05ParticleSimulator\particleSimulator-fountain.comp">
+    <None Include="05ParticleSimulator\particleSimulator-fountain.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form06ImageProcessing\ImageProcessing.comp">
+    <None Include="06ImageProcessing\ImageProcessing.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form06ImageProcessing\ImageProcessing.frag">
+    <None Include="06ImageProcessing\ImageProcessing.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form06ImageProcessing\ImageProcessing.vert">
+    <None Include="06ImageProcessing\ImageProcessing.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="02OrderIndependentTransparency\build_lists.frag">
@@ -229,31 +229,31 @@
     <None Include="02OrderIndependentTransparency\build_lists.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form04SimpleCompute\computeReset.comp">
+    <None Include="04SimpleCompute\computeReset.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form05ParticleSimulator\particleSimulator.frag">
+    <None Include="05ParticleSimulator\particleSimulator.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form05ParticleSimulator\particleSimulator.vert">
+    <None Include="05ParticleSimulator\particleSimulator.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form05ParticleSimulator\particleSimulator.comp">
+    <None Include="05ParticleSimulator\particleSimulator.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form04SimpleCompute\compute.comp">
+    <None Include="04SimpleCompute\compute.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form04SimpleCompute\compute.frag">
+    <None Include="04SimpleCompute\compute.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form04SimpleCompute\compute.vert">
+    <None Include="04SimpleCompute\compute.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form03OrderDependentTransparency\Transparent.frag">
+    <None Include="03OrderDependentTransparency\Transparent.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form03OrderDependentTransparency\Transparent.vert">
+    <None Include="03OrderDependentTransparency\Transparent.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="02OrderIndependentTransparency\resolve_lists.frag">
@@ -274,31 +274,31 @@
     <EmbeddedResource Include="01Renderer\Form01Renderer.resx">
       <DependentUpon>Form01Renderer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form06ImageProcessing\Form06ImageProcessing.resx">
+    <EmbeddedResource Include="06ImageProcessing\Form06ImageProcessing.resx">
       <DependentUpon>Form06ImageProcessing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form05ParticleSimulator\Form05ParticleSimulator.resx">
+    <EmbeddedResource Include="05ParticleSimulator\Form05ParticleSimulator.resx">
       <DependentUpon>Form05ParticleSimulator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form04SimpleCompute\Form04SimpleCompute.resx">
+    <EmbeddedResource Include="04SimpleCompute\Form04SimpleCompute.resx">
       <DependentUpon>Form04SimpleCompute.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form03OrderDependentTransparency\Form03OrderDependentTransparency.resx">
+    <EmbeddedResource Include="03OrderDependentTransparency\Form03OrderDependentTransparency.resx">
       <DependentUpon>Form03OrderDependentTransparency.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.resx">
       <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form08AnalyzedBillboard\Form08AnalyzedBillboard.resx">
+    <EmbeddedResource Include="08AnalyzedBillboard\Form08AnalyzedBillboard.resx">
       <DependentUpon>Form08AnalyzedBillboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form07Billboard\Form07Billboard.resx">
+    <EmbeddedResource Include="07Billboard\Form07Billboard.resx">
       <DependentUpon>Form07Billboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.resx">
+    <EmbeddedResource Include="09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.resx">
       <DependentUpon>Form09DummyTextBoxRenderer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form10RaycastVolumeRender\Form10RaycastVolumeRender.resx">
+    <EmbeddedResource Include="10RaycastVolumeRender\Form10RaycastVolumeRender.resx">
       <DependentUpon>Form10RaycastVolumeRender.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBulletinBoard.resx">
@@ -323,34 +323,34 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Form08AnalyzedBillboard\AnalyzedBillboard.frag">
+    <None Include="08AnalyzedBillboard\AnalyzedBillboard.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form08AnalyzedBillboard\AnalyzedBillboard.vert">
+    <None Include="08AnalyzedBillboard\AnalyzedBillboard.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form07Billboard\Billboard.frag">
+    <None Include="07Billboard\Billboard.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form07Billboard\Billboard.vert">
+    <None Include="07Billboard\Billboard.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form09DummyTextBoxRenderer\TexBox.frag">
+    <None Include="09DummyTextBoxRenderer\TexBox.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form09DummyTextBoxRenderer\TexBox.vert">
+    <None Include="09DummyTextBoxRenderer\TexBox.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form10RaycastVolumeRender\raycasting.frag">
+    <None Include="10RaycastVolumeRender\raycasting.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form10RaycastVolumeRender\raycasting.vert">
+    <None Include="10RaycastVolumeRender\raycasting.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form10RaycastVolumeRender\backface.frag">
+    <None Include="10RaycastVolumeRender\backface.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Form10RaycastVolumeRender\backface.vert">
+    <None Include="10RaycastVolumeRender\backface.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
@@ -382,19 +382,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Form06ImageProcessing\box.bmp">
+    <Content Include="06ImageProcessing\box.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Form06ImageProcessing\Martian.bmp">
+    <Content Include="06ImageProcessing\Martian.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Form06ImageProcessing\teapot.bmp">
+    <Content Include="06ImageProcessing\teapot.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Form06ImageProcessing\teapot.png">
+    <Content Include="06ImageProcessing\teapot.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Form07Billboard\star.png">
+    <Content Include="07Billboard\star.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

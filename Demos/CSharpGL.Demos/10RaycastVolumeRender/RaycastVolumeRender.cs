@@ -20,8 +20,8 @@ namespace CSharpGL.Demos
         static RaycastVolumeRender()
         {
             staticShaderCodes = new ShaderCode[2];
-            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"Form09DummyTextBoxRenderer\TexBox.vert"), ShaderType.VertexShader);
-            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"Form09DummyTextBoxRenderer\TexBox.frag"), ShaderType.FragmentShader);
+            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"09DummyTextBoxRenderer\TexBox.vert"), ShaderType.VertexShader);
+            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"09DummyTextBoxRenderer\TexBox.frag"), ShaderType.FragmentShader);
             map = new PropertyNameMap();
             map.Add("position", "position");
             map.Add("uv", "uv");

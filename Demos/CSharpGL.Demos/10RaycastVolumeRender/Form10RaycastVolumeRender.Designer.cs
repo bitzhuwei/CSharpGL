@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.glCanvas1 = new CSharpGL.GLCanvas();
-            this.openTextureDlg = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
@@ -48,10 +47,6 @@
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
             // 
-            // openTextureDlg
-            // 
-            this.openTextureDlg.Filter = "Image File(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -62,15 +57,15 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Press \'c\' to switch camera/ui layout.";
             // 
-            // Form09TextBoxRenderer
+            // Form10RaycastVolumeRender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 548);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "Form09TextBoxRenderer";
-            this.Text = "Form09TextBoxRenderer";
+            this.Name = "Form10RaycastVolumeRender";
+            this.Text = "Form10RaycastVolumeRender";
             this.Load += new System.EventHandler(this.Form02OrderIndependentTransparency_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
@@ -81,7 +76,6 @@
         #endregion
 
         private GLCanvas glCanvas1;
-        private System.Windows.Forms.OpenFileDialog openTextureDlg;
         private System.Windows.Forms.Label label1;
     }
 }

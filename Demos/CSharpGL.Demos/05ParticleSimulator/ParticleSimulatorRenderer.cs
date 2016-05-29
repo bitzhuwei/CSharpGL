@@ -43,7 +43,7 @@ namespace CSharpGL.Demos
         {
             {
                 var computeProgram = new ShaderProgram();
-                var shaderCode = new ShaderCode(File.ReadAllText(@"Form05ParticleSimulator\particleSimulator.comp"), ShaderType.ComputeShader);
+                var shaderCode = new ShaderCode(File.ReadAllText(@"05ParticleSimulator\particleSimulator.comp"), ShaderType.ComputeShader);
                 var shader = shaderCode.CreateShader();
                 computeProgram.Create(shader);
                 shader.Delete();
@@ -110,8 +110,8 @@ namespace CSharpGL.Demos
             {
                 var visualProgram = new ShaderProgram();
                 var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"Form05ParticleSimulator\particleSimulator.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"Form05ParticleSimulator\particleSimulator.frag"), ShaderType.FragmentShader);
+                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"05ParticleSimulator\particleSimulator.vert"), ShaderType.VertexShader);
+                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"05ParticleSimulator\particleSimulator.frag"), ShaderType.FragmentShader);
                 var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
                 visualProgram.Create(shaders);
                 foreach (var item in shaders) { item.Delete(); }
