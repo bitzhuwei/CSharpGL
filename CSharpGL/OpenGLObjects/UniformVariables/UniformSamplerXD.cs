@@ -33,12 +33,12 @@ namespace CSharpGL
 
         public override void SetUniform(ShaderProgram program)
         {
-            program.SetUniform(VarName, value.activeTextureIndex);
             if (glActiveTexture == null)
             { glActiveTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
             glActiveTexture(value.ActiveTextureIndex);
             //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, value.TextureId);
             OpenGL.BindTexture(value.target, value.TextureId);
+            program.SetUniform(VarName, value.activeTextureIndex);
         }
 
         public override void ResetUniform(ShaderProgram program)
