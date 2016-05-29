@@ -19,8 +19,11 @@ namespace CSharpGL.Demos
 
         public void DisplayObject(object obj)
         {
-            this.propertyGrid1.SelectedObject = obj;
-            this.Text = string.Format("{0}", obj);
+            if (!this.IsDisposed)
+            {
+                this.propertyGrid1.SelectedObject = obj;
+                this.Text = string.Format("{0}", obj);
+            }
         }
     }
 }

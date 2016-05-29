@@ -92,43 +92,6 @@ namespace CSharpGL
 
     }
 
-    public class DepthTestSwitch : EnableSwitch
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="enableCapacity">true for enable, false for disable</param>
-        public DepthTestSwitch(bool enableCapacity = true)
-            : base(OpenGL.GL_DEPTH_TEST, enableCapacity)
-        { }
+   
 
-        public override string ToString()
-        {
-            if (this.EnableCapacity)
-            { return "OpenGL.Enable(GL_DEPTH_TEST);"; }
-            else
-            { return "OpenGL.Disable(GL_DEPTH_TEST);"; }
-        }
-
-    }
-
-    public class PointSmoothSwitch : EnableSwitch
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="enableCapacity">true for enable, false for disable</param>
-        public PointSmoothSwitch(bool enableCapacity = true)
-            : base(OpenGL.GL_POINT_SMOOTH, enableCapacity)
-        { }
-
-        public override string ToString()
-        {
-            if (this.EnableCapacity)
-            { return "OpenGL.Enable(GL_POINT_SMOOTH);"; }
-            else
-            { return "OpenGL.Disable(GL_POINT_SMOOTH);"; }
-        }
-
-    }
 }

@@ -8,7 +8,7 @@ namespace CSharpGL
     public class BlendSwitch : EnableSwitch
     {
 
-        public BlendSwitch() : this(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha) { }
+        public BlendSwitch() : this(BlendingSourceFactor.One, BlendingDestinationFactor.DestinationAlpha) { }
 
         public BlendSwitch(BlendingSourceFactor sourceFactor, BlendingDestinationFactor destFactor)
             : base(OpenGL.GL_BLEND, true)

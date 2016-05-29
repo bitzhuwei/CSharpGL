@@ -82,6 +82,8 @@
     <Content Include="OpenGLObjects\UniformVariables\readme.txt" />
     <Content Include="OpenGLObjects\VertexBuffers\readme.txt" />
     <Content Include="readme.txt" />
+    <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PointSmoothSwitch.cs" />
+    <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\DepthTestSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\CullFaceSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\ViewportSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\ScissorTestSwitch.cs" />

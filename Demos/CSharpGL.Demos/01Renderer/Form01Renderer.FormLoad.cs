@@ -144,8 +144,8 @@ namespace CSharpGL.Demos
                             GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((pickableRenderer as OneIndexRenderer).IndexBufferPtr);
                             pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
                         }
-                        GLSwitch blendSwitch = new BlendSwitch();
-                        pickableRenderer.SwitchList.Add(blendSwitch);
+                        //GLSwitch blendSwitch = new BlendSwitch();
+                        //pickableRenderer.SwitchList.Add(blendSwitch);
                     }
                     this.rendererDict.Add(key, renderer);
                 }
