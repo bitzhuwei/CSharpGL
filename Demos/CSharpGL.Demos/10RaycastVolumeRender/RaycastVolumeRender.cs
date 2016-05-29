@@ -26,6 +26,12 @@ namespace CSharpGL.Demos
         private static readonly IBufferable model = new RaycastModel();
         private float g_stepSize = 0.001f;
 
+        public void SetMVP(mat4 mvp)
+        {
+            this.backfaceRenderer.SetUniform("MVP", mvp);
+            this.raycastRenderer.SetUniform("MVP", mvp);
+        }
+
         protected override void DoInitialize()
         {
             InitBackfaceRenderer();

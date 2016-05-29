@@ -15,6 +15,8 @@ namespace CSharpGL.Demos
     {
         private FormProperyGrid formPropertyGrid;
         private DummyUIRenderer uiRenderer;
+        private GLRoot uiRoot;
+        private GLAxis glAxis;
 
 
         private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
@@ -29,13 +31,21 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
-                var renderer = new DummyTextBoxRenderer(
-                     AnchorStyles.Left | AnchorStyles.Top,
-                        new Padding(100, 26, 26, 26),
-                        new Size(50, 50));
+                var renderer = new RaycastVolumeRender();
                 renderer.Initialize();
-                renderer.SetText("CSharpGL");
                 this.renderer = renderer;
+            }
+            {
+                var UIRoot = new GLRoot(this.glCanvas1.Size, -100, 100);
+                UIRoot.Initialize();
+                this.uiRoot = UIRoot;
+
+                var glAxis = new GLAxis(AnchorStyles.Right | AnchorStyles.Bottom,
+                    new Padding(3, 3, 3, 3), new Size(70, 70), -100, 100);
+                glAxis.Initialize();
+                this.glAxis = glAxis;
+
+                UIRoot.Controls.Add(glAxis);
             }
             {
                 // build the axis

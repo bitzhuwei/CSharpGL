@@ -30,13 +30,14 @@
         {
             this.btnForm00GLCanvas = new System.Windows.Forms.Button();
             this.btnForm01Renderer = new System.Windows.Forms.Button();
-            this.btnForm02 = new System.Windows.Forms.Button();
+            this.btn02OriderIndependentTransparency = new System.Windows.Forms.Button();
             this.btnForm04SimpleCompute = new System.Windows.Forms.Button();
             this.btnForm05ParticleSimulator = new System.Windows.Forms.Button();
             this.btnForm06ImageProcessing = new System.Windows.Forms.Button();
             this.btnForm07Billboard = new System.Windows.Forms.Button();
             this.btnForm08AnalyzedBillboard = new System.Windows.Forms.Button();
             this.btnForm09TextBoxRenderer = new System.Windows.Forms.Button();
+            this.btn10RaycastVolumeRender = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -50,7 +51,7 @@
             this.btnForm00GLCanvas.TabIndex = 0;
             this.btnForm00GLCanvas.Text = "Form00 GLCanvas";
             this.btnForm00GLCanvas.UseVisualStyleBackColor = true;
-            this.btnForm00GLCanvas.Click += new System.EventHandler(this.btnForm00GLCanvas_Click);
+            this.btnForm00GLCanvas.Click += new System.EventHandler(this.btn00GLCanvas_Click);
             // 
             // btnForm01Renderer
             // 
@@ -63,20 +64,20 @@
             this.btnForm01Renderer.TabIndex = 0;
             this.btnForm01Renderer.Text = "Form01 Renderer";
             this.btnForm01Renderer.UseVisualStyleBackColor = true;
-            this.btnForm01Renderer.Click += new System.EventHandler(this.btnForm01Renderer_Click);
+            this.btnForm01Renderer.Click += new System.EventHandler(this.btn01Renderer_Click);
             // 
-            // btnForm02
+            // btn02OriderIndependentTransparency
             // 
-            this.btnForm02.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn02OriderIndependentTransparency.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnForm02.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnForm02.Location = new System.Drawing.Point(12, 98);
-            this.btnForm02.Name = "btnForm02";
-            this.btnForm02.Size = new System.Drawing.Size(767, 37);
-            this.btnForm02.TabIndex = 0;
-            this.btnForm02.Text = "Form02 Orider-Independent Transparency";
-            this.btnForm02.UseVisualStyleBackColor = true;
-            this.btnForm02.Click += new System.EventHandler(this.btnForm02_Click);
+            this.btn02OriderIndependentTransparency.Font = new System.Drawing.Font("宋体", 12F);
+            this.btn02OriderIndependentTransparency.Location = new System.Drawing.Point(12, 98);
+            this.btn02OriderIndependentTransparency.Name = "btn02OriderIndependentTransparency";
+            this.btn02OriderIndependentTransparency.Size = new System.Drawing.Size(767, 37);
+            this.btn02OriderIndependentTransparency.TabIndex = 0;
+            this.btn02OriderIndependentTransparency.Text = "Form02 Orider-Independent Transparency";
+            this.btn02OriderIndependentTransparency.UseVisualStyleBackColor = true;
+            this.btn02OriderIndependentTransparency.Click += new System.EventHandler(this.btn02OrderIndependentTransparency_Click);
             // 
             // btnForm04SimpleCompute
             // 
@@ -89,7 +90,7 @@
             this.btnForm04SimpleCompute.TabIndex = 0;
             this.btnForm04SimpleCompute.Text = "Form04 SimpleCompute";
             this.btnForm04SimpleCompute.UseVisualStyleBackColor = true;
-            this.btnForm04SimpleCompute.Click += new System.EventHandler(this.btnForm04SimpleCompute_Click);
+            this.btnForm04SimpleCompute.Click += new System.EventHandler(this.btn04SimpleCompute_Click);
             // 
             // btnForm05ParticleSimulator
             // 
@@ -102,7 +103,7 @@
             this.btnForm05ParticleSimulator.TabIndex = 0;
             this.btnForm05ParticleSimulator.Text = "Form05 ParticleSimulator";
             this.btnForm05ParticleSimulator.UseVisualStyleBackColor = true;
-            this.btnForm05ParticleSimulator.Click += new System.EventHandler(this.btnForm05ParticleSimulator_Click);
+            this.btnForm05ParticleSimulator.Click += new System.EventHandler(this.btn05ParticleSimulator_Click);
             // 
             // btnForm06ImageProcessing
             // 
@@ -115,7 +116,7 @@
             this.btnForm06ImageProcessing.TabIndex = 0;
             this.btnForm06ImageProcessing.Text = "Form06 ImageProcessing";
             this.btnForm06ImageProcessing.UseVisualStyleBackColor = true;
-            this.btnForm06ImageProcessing.Click += new System.EventHandler(this.btnForm06ImageProcessing_Click);
+            this.btnForm06ImageProcessing.Click += new System.EventHandler(this.btn06ImageProcessing_Click);
             // 
             // btnForm07Billboard
             // 
@@ -128,7 +129,7 @@
             this.btnForm07Billboard.TabIndex = 0;
             this.btnForm07Billboard.Text = "Form07 Billboard";
             this.btnForm07Billboard.UseVisualStyleBackColor = true;
-            this.btnForm07Billboard.Click += new System.EventHandler(this.btnForm07Billboard_Click);
+            this.btnForm07Billboard.Click += new System.EventHandler(this.btn07Billboard_Click);
             // 
             // btnForm08AnalyzedBillboard
             // 
@@ -141,7 +142,7 @@
             this.btnForm08AnalyzedBillboard.TabIndex = 0;
             this.btnForm08AnalyzedBillboard.Text = "Form08 AnalyzedBillboard";
             this.btnForm08AnalyzedBillboard.UseVisualStyleBackColor = true;
-            this.btnForm08AnalyzedBillboard.Click += new System.EventHandler(this.btnForm08AnalyzedBillboard_Click);
+            this.btnForm08AnalyzedBillboard.Click += new System.EventHandler(this.btn08AnalyzedBillboard_Click);
             // 
             // btnForm09TextBoxRenderer
             // 
@@ -154,20 +155,34 @@
             this.btnForm09TextBoxRenderer.TabIndex = 0;
             this.btnForm09TextBoxRenderer.Text = "Form09 DummyTextBoxRenderer";
             this.btnForm09TextBoxRenderer.UseVisualStyleBackColor = true;
-            this.btnForm09TextBoxRenderer.Click += new System.EventHandler(this.btnForm09DummyTextBoxRenderer_Click);
+            this.btnForm09TextBoxRenderer.Click += new System.EventHandler(this.btn09DummyTextBoxRenderer_Click);
+            // 
+            // btn10RaycastVolumeRender
+            // 
+            this.btn10RaycastVolumeRender.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn10RaycastVolumeRender.Font = new System.Drawing.Font("宋体", 12F);
+            this.btn10RaycastVolumeRender.Location = new System.Drawing.Point(12, 399);
+            this.btn10RaycastVolumeRender.Name = "btn10RaycastVolumeRender";
+            this.btn10RaycastVolumeRender.Size = new System.Drawing.Size(767, 37);
+            this.btn10RaycastVolumeRender.TabIndex = 0;
+            this.btn10RaycastVolumeRender.Text = "10 RaycastVolumeRender";
+            this.btn10RaycastVolumeRender.UseVisualStyleBackColor = true;
+            this.btn10RaycastVolumeRender.Click += new System.EventHandler(this.btn10RaycastVolumeRender_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 545);
+            this.Controls.Add(this.btn10RaycastVolumeRender);
             this.Controls.Add(this.btnForm09TextBoxRenderer);
             this.Controls.Add(this.btnForm08AnalyzedBillboard);
             this.Controls.Add(this.btnForm07Billboard);
             this.Controls.Add(this.btnForm06ImageProcessing);
             this.Controls.Add(this.btnForm05ParticleSimulator);
             this.Controls.Add(this.btnForm04SimpleCompute);
-            this.Controls.Add(this.btnForm02);
+            this.Controls.Add(this.btn02OriderIndependentTransparency);
             this.Controls.Add(this.btnForm01Renderer);
             this.Controls.Add(this.btnForm00GLCanvas);
             this.Name = "FormMain";
@@ -180,12 +195,13 @@
 
         private System.Windows.Forms.Button btnForm00GLCanvas;
         private System.Windows.Forms.Button btnForm01Renderer;
-        private System.Windows.Forms.Button btnForm02;
+        private System.Windows.Forms.Button btn02OriderIndependentTransparency;
         private System.Windows.Forms.Button btnForm04SimpleCompute;
         private System.Windows.Forms.Button btnForm05ParticleSimulator;
         private System.Windows.Forms.Button btnForm06ImageProcessing;
         private System.Windows.Forms.Button btnForm07Billboard;
         private System.Windows.Forms.Button btnForm08AnalyzedBillboard;
         private System.Windows.Forms.Button btnForm09TextBoxRenderer;
+        private System.Windows.Forms.Button btn10RaycastVolumeRender;
     }
 }

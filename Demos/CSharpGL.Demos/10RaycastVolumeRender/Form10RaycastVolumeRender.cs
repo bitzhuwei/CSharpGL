@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
 
         private Camera camera;
         private SatelliteRotator rotator;
-        private DummyTextBoxRenderer renderer;
+        private RaycastVolumeRender renderer;
 
 
         public Form10RaycastVolumeRender()
@@ -38,39 +38,9 @@ namespace CSharpGL.Demos
 
             RenderEventArgs arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
             IRenderable renderer = this.renderer;
-            if (renderer != null)
-            {
-                mat4 projection, view, model;
-                {
-                    this.uiRenderer.GetMatrix(out projection, out view, out model, arg.Camera);
-                    this.uiRenderer.Renderer.SetUniform("projectionMatrix", projection);
-                    this.uiRenderer.Renderer.SetUniform("viewMatrix", view);
-                    this.uiRenderer.Renderer.SetUniform("modelMatrix", model);
-                    this.uiRenderer.Render(arg);
-                }
+            RendererDraw(arg);
 
-                switch (this.layoutType)
-                {
-                    case LayoutType.UILayout:
-                        this.renderer.GetMatrix(out projection, out view, out model);
-                        this.renderer.SetUniform("mvp", projection * view * model);
-                        break;
-                    case LayoutType.CameraUILayout:
-                        this.renderer.GetMatrix(out projection, out view, out model, arg.Camera);
-                        this.renderer.SetUniform("mvp", projection * view * model);
-                        break;
-                    case LayoutType.MVPLayout:
-                        projection = arg.Camera.GetProjectionMat4();
-                        view = arg.Camera.GetViewMat4();
-                        model = mat4.identity();
-                        this.renderer.SetUniform("mvp", projection * view * model);
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-
-                renderer.Render(arg);
-            }
+            UIRenderersDraw(arg);
 
             // Cross cursor shows where the mouse is.
             OpenGL.DrawText(this.lastMousePosition.X - offset.X,
@@ -78,11 +48,57 @@ namespace CSharpGL.Demos
                 Color.Red, "Courier New", crossCursorSize, "o");
         }
 
+        private void RendererDraw(RenderEventArgs arg)
+        {
+            RaycastVolumeRender renderer = this.renderer;
+            if (renderer != null)
+            {
+                mat4 mvp = arg.Camera.GetProjectionMat4() * arg.Camera.GetViewMat4();
+                renderer.SetMVP(mvp);
+                renderer.Render(arg);
+            }
+        }
+
 
         private const float crossCursorSize = 40.0f;
 
         private Point offset = new Point(13, 11);
-        private LayoutType layoutType;
+
+        private void UIRenderersDraw(RenderEventArgs arg)
+        {
+            {
+                DummyUIRenderer uiRenderer = this.uiRenderer;
+                if (uiRenderer != null)
+                {
+                    mat4 projection, view, model;
+                    uiRenderer.GetMatrix(out projection, out view, out model, this.camera);
+                    uiRenderer.Renderer.SetUniform("projectionMatrix", projection);
+                    uiRenderer.Renderer.SetUniform("viewMatrix", view);
+                    uiRenderer.Renderer.SetUniform("modelMatrix", model);
+
+                    uiRenderer.Render(arg);
+                }
+            }
+            {
+                GLRoot uiRoot = this.uiRoot;
+                if (uiRoot != null)
+                {
+                    uiRoot.Layout();
+                    mat4 projection, view, model;
+                    projection = glAxis.GetOrthoProjection();
+                    vec3 position = (this.camera.Position - this.camera.Target).normalize();
+                    view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
+                    float length = Math.Max(glAxis.Size.Width, glAxis.Size.Height) / 2;
+                    model = glm.scale(mat4.identity(),
+                        new vec3(length, length, length));
+                    glAxis.Renderer.SetUniform("projectionMatrix", projection);
+                    glAxis.Renderer.SetUniform("viewMatrix", view);
+                    glAxis.Renderer.SetUniform("modelMatrix", model);
+
+                    glAxis.Render(arg);
+                }
+            }
+        }
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
