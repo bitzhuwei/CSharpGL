@@ -1088,6 +1088,11 @@ namespace CSharpGL
             OpenGL.GetTexImage((uint)target, level, (uint)format, (uint)type, pixels.Header);
         }
 
+        public static void TexImage3D(uint target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, IntPtr pixels)
+        {
+            OpenGL.GetDelegateFor<OpenGL.glTexImage3D>()(target, level, internalformat, width, height, depth, border, format, type, pixels);
+        }
+
         /// <summary>
         /// This sets the current drawing mode of polygons (points, lines, filled).
         /// </summary>
