@@ -53,6 +53,7 @@
     <Content Include="GlyphTextures\readme.txt" />
     <Content Include="IBufferables\readme.txt" />
     <Content Include="HighlightRenderer\readme.txt" />
+    <None Include="OpenGLAPI\glext.h" />
     <Content Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInPolygonSearcher.jpg" />
     <Content Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInQuad+Searcher.jpg" />
     <Content Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInTriangle+Searcher.jpg" />
