@@ -12,6 +12,7 @@ namespace CSharpGL.Demos
     class RaycastModel : IBufferable
     {
         public const string strPosition = "position";
+        public const string strColor = "color";
         Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
         // draw the six faces of the boundbox by drawwing triangles
         // draw it contra-clockwise
@@ -50,7 +51,7 @@ namespace CSharpGL.Demos
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
-            if (bufferName == strPosition)
+            if (bufferName == strPosition || bufferName == strColor)
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {

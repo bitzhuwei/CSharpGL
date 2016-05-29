@@ -2,16 +2,16 @@
 #version 400
 
 layout(location = 0) in vec3 position;
-//layout(location = 1) in vec3 VerClr;
+layout(location = 1) in vec3 color;
 
-out vec3 Color;
+out vec3 passColor;
 
 uniform mat4 MVP;
 
 
 void main()
 {
-    //Color = VerClr;
-	Color = vec4(1, 1, 1, 1);
+    passColor = color;
+	//passColor = vec4(1, 1, 1, 1);
     gl_Position = MVP * vec4(position, 1.0);
 }

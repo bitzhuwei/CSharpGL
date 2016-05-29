@@ -35,6 +35,7 @@ namespace CSharpGL.Demos
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"10RaycastVolumeRender\raycasting.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("position", "position");
+            map.Add("color", "color");
             this.raycastRenderer = new Renderer(model, shaderCodes, map);
             this.raycastRenderer.Initialize();
         }
@@ -46,6 +47,7 @@ namespace CSharpGL.Demos
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"10RaycastVolumeRender\backface.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("position", "position");
+            map.Add("color", "color");
             this.backfaceRenderer = new Renderer(model, shaderCodes, map);
             this.backfaceRenderer.Initialize();
         }
