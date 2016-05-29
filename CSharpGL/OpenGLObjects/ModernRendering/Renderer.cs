@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// 用Shader+VBO(VAO)进行渲染。
     /// </summary>
-    public abstract partial class Renderer : RendererBase
+    public partial class Renderer : RendererBase
     {
         
         // 算法

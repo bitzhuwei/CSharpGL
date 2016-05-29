@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public abstract partial class Renderer
+    public partial class Renderer
     {
-
-        string positionNameInIBufferable;
 
         public DrawMode Mode
         {

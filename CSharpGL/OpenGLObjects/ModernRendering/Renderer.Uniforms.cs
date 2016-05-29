@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public abstract partial class Renderer
+    public partial class Renderer
     {
         protected List<UniformVariable> uniformVariables = new List<UniformVariable>();
 
