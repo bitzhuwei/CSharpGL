@@ -161,6 +161,7 @@
     <Compile Include="09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="10RaycastVolumeRender\RaycastModel.cs" />
     <Compile Include="10RaycastVolumeRender\RaycastVolumeRender.cs" />
     <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRender.cs">
       <SubType>Form</SubType>
