@@ -18,10 +18,10 @@ namespace CSharpGL
                 unsafe
                 {
                     var array = (uint*)buffer.FirstElement();
-                    buffer[0] = lastVertexId - 1; buffer[1] = lastVertexId - 0;
-                    buffer[2] = lastVertexId - 2; buffer[3] = lastVertexId - 1;
-                    buffer[4] = lastVertexId - 3; buffer[5] = lastVertexId - 2;
-                    buffer[6] = lastVertexId - 0; buffer[7] = lastVertexId - 3;
+                    array[0] = lastVertexId - 1; array[1] = lastVertexId - 0;
+                    array[2] = lastVertexId - 2; array[3] = lastVertexId - 1;
+                    array[4] = lastVertexId - 3; array[5] = lastVertexId - 2;
+                    array[6] = lastVertexId - 0; array[7] = lastVertexId - 3;
                 }
 
                 indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;

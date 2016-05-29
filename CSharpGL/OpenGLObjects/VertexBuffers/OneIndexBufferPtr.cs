@@ -64,7 +64,7 @@ namespace CSharpGL
                 default:
                     throw new NotImplementedException();
             }
-            OpenGL.GetDelegateFor<OpenGL.glBindBuffer>()(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
+            glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.BufferId);
             if (arg.RenderMode == RenderModes.ColorCodedPicking
                 && arg.PickingGeometryType == GeometryType.Point
                 && this.Mode.ToGeometryType() == GeometryType.Line)// picking point from a line

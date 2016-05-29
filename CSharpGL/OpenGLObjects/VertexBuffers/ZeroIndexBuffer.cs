@@ -34,7 +34,7 @@ namespace CSharpGL
         /// </summary>
         public int VertexCount { get; private set; }
 
-        protected override UnmanagedArray<byte> CreateElements(int elementCount)
+        protected override UnmanagedArrayBase CreateElements(int elementCount)
         {
             return null;
         }

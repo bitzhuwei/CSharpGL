@@ -10,10 +10,14 @@ namespace CSharpGL
     /// <summary>
     /// 顶点缓存（VBO）
     /// </summary>
-    /// <typeparam name="T">此buffer存储的是哪种struct的数据？</typeparam>
-    public abstract class Buffer<T> : IDisposable where T : struct
+    ///// <typeparam name="T">此buffer存储的是哪种struct的数据？</typeparam>
+    public abstract class Buffer : IDisposable //where T : struct
     {
-        private UnmanagedArray<T> array = null;
+        protected static OpenGL.glGenBuffers glGenBuffers;
+        protected static OpenGL.glBindBuffer glBindBuffer;
+        protected static OpenGL.glBufferData glBufferData;
+
+        private UnmanagedArrayBase array = null;
 
         /// <summary>
         /// 此VBO中的数据在内存中的起始地址
@@ -65,6 +69,13 @@ namespace CSharpGL
         /// <param name="usage"></param>
         public Buffer(BufferUsage usage)
         {
+            if (glGenBuffers == null)
+            {
+                glGenBuffers = OpenGL.GetDelegateFor<OpenGL.glGenBuffers>();
+                glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>();
+                glBufferData = OpenGL.GetDelegateFor<OpenGL.glBufferData>();
+            }
+
             this.Usage = usage;
         }
 
@@ -82,46 +93,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="elementCount">数组元素的数目。</param>
         /// <returns></returns>
-        protected virtual UnmanagedArray<T> CreateElements(int elementCount)
-        {
-            return new UnmanagedArray<T>(elementCount);
-        }
-
-        /// <summary>
-        /// 填充此buffer的数据。
-        /// <para>此方法较慢，如果数据量大，请用<see cref="this.FirstElement()"/></para>
-        /// </summary>
-        /// <param name="dataProvider"></param>
-        /// <param name="startIndex"></param>
-        public void FillData(Func<IEnumerable<T>> dataProvider, int startIndex = 0)
-        {
-            int elementSize = this.array.ByteLength / this.array.Length;
-            IntPtr current = this.Header + startIndex;
-            foreach (var item in dataProvider())
-            {
-                System.Runtime.InteropServices.Marshal.StructureToPtr(item, current, true);
-                //System.Runtime.InteropServices.Marshal.StructureToPtr<T>(item, current, true);// works in .net 4.5.1
-                current += elementSize;
-            }
-        }
-
-        /// <summary>
-        /// 获取或设置索引为<paramref name="index"/>的元素。
-        /// <para>此方法较慢，如果数据量大，请用<see cref="this.FirstElement()"/></para>
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public T this[int index]
-        {
-            get
-            {
-                return this.array[index];
-            }
-            set
-            {
-                this.array[index] = value;
-            }
-        }
+        protected abstract UnmanagedArrayBase CreateElements(int elementCount);
 
         /// <summary>
         /// 申请指定长度的非托管数组。
@@ -156,7 +128,7 @@ namespace CSharpGL
                 }
 
                 // Dispose unmanaged resources.
-                UnmanagedArray<T> array = this.array;
+                UnmanagedArrayBase array = this.array;
                 this.array = null;
                 if (array != null)
                 {

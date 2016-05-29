@@ -11,6 +11,9 @@ namespace CSharpGL
     /// </summary>
     public class PropertyBufferPtr : BufferPtr
     {
+        protected static OpenGL.glVertexAttribPointer glVertexAttribPointer;
+        protected static OpenGL.glEnableVertexAttribArray glEnableVertexAttribArray;
+
         /// <summary>
         /// 在渲染时此VBO要执行绑定自己、指明数据结构和启用此VBO等操作。
         /// </summary>
@@ -27,6 +30,11 @@ namespace CSharpGL
             uint bufferID, int dataSize, uint dataType, int length, int byteLength)
             : base(bufferID, length, byteLength)
         {
+            if (glVertexAttribPointer == null)
+            {
+                glVertexAttribPointer = OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>();
+                glEnableVertexAttribArray = OpenGL.GetDelegateFor<OpenGL.glEnableVertexAttribArray>();
+            }
             this.VarNameInVertexShader = varNameInVertexShader;
             this.DataSize = dataSize;
             this.DataType = dataType;
@@ -82,11 +90,11 @@ namespace CSharpGL
         {
             uint location = shaderProgram.GetAttributeLocation(this.VarNameInVertexShader);
             // 选择 VBO
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.BufferId);
+            glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
             // 指定格式
-            OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>()(location, this.DataSize, this.DataType, false, 0, IntPtr.Zero);
+            glVertexAttribPointer(location, this.DataSize, this.DataType, false, 0, IntPtr.Zero);
             // 启用
-            OpenGL.GetDelegateFor<OpenGL.glEnableVertexAttribArray>()(location);
+            glEnableVertexAttribArray(location);
         }
 
     }

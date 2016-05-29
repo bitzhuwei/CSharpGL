@@ -10,7 +10,7 @@ namespace CSharpGL
     /// 用于存储索引的VBO。
     /// </summary>
     /// <typeparam name="T">此buffer存储的是哪种struct的数据？</typeparam>
-    public abstract class IndexBuffer<T> : Buffer<T> where T : struct
+    public abstract class IndexBuffer<T> : Buffer where T : struct
     {
         /// <summary>
         /// 用于存储索引的VBO。
@@ -27,6 +27,12 @@ namespace CSharpGL
         /// 用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）
         /// </summary>
         public DrawMode Mode { get; private set; }
+
+
+        protected override UnmanagedArrayBase CreateElements(int elementCount)
+        {
+            return new UnmanagedArray<T>(elementCount);
+        }
 
     }
 

@@ -28,6 +28,9 @@ namespace CSharpGL
         /// </summary>
         public int ByteLength { get; private set; }
 
+        protected static OpenGL.glBindBuffer glBindBuffer;
+        protected static OpenGL.glDeleteBuffers glDeleteBuffers;
+
         /// <summary>
         /// 为给定VBO执行渲染时所需的操作。
         /// </summary>
@@ -35,6 +38,12 @@ namespace CSharpGL
         /// <param name="length">此VBO含有多个个元素？</param>
         internal BufferPtr(uint bufferID, int length, int byteLength)
         {
+            if (glBindBuffer == null)
+            {
+                glBindBuffer = OpenGL.GetDelegateFor<OpenGL.glBindBuffer>();
+                glDeleteBuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteBuffers>();
+            }
+
             this.BufferId = bufferID;
             this.Length = length;
             this.ByteLength = byteLength;
@@ -80,7 +89,7 @@ namespace CSharpGL
             IntPtr context = Win32.wglGetCurrentContext();
             if (context != IntPtr.Zero)
             {
-                OpenGL.GetDelegateFor<OpenGL.glDeleteBuffers>()(1, new uint[] { this.BufferId });
+                glDeleteBuffers(1, new uint[] { this.BufferId });
             }
 
             this.BufferId = 0;

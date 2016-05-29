@@ -12,7 +12,7 @@ namespace CSharpGL
     /// <para>每个<see cref="PropertyBuffer"/>仅描述其中一个属性。</para>
     /// </summary>
     /// <typeparam name="T">此buffer存储的是哪种struct的数据？</typeparam>
-    public class PropertyBuffer<T> : Buffer<T> where T : struct
+    public class PropertyBuffer<T> : Buffer where T : struct
     {
 
         /// <summary>
@@ -61,14 +61,19 @@ namespace CSharpGL
         protected override BufferPtr Upload2GPU()
         {
             uint[] buffers = new uint[1];
-            OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, buffers);
-            OpenGL.GetDelegateFor<OpenGL.glBindBuffer>()(OpenGL.GL_ARRAY_BUFFER, buffers[0]);
-            OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_ARRAY_BUFFER, this.ByteLength, this.Header, (uint)this.Usage);
+            glGenBuffers(1, buffers);
+            glBindBuffer(OpenGL.GL_ARRAY_BUFFER, buffers[0]);
+            glBufferData(OpenGL.GL_ARRAY_BUFFER, this.ByteLength, this.Header, (uint)this.Usage);
 
             PropertyBufferPtr bufferPtr = new PropertyBufferPtr(
                 this.VarNameInVertexShader, buffers[0], this.DataSize, this.DataType, this.Length, this.ByteLength);
 
             return bufferPtr;
+        }
+
+        protected override UnmanagedArrayBase CreateElements(int elementCount)
+        {
+            return new UnmanagedArray<T>(elementCount);
         }
     }
 }
