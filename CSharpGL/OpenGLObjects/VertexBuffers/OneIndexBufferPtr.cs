@@ -96,7 +96,7 @@ namespace CSharpGL
                 default:
                     throw new NotImplementedException();
             }
-            return string.Format("GL.DrawElements({0}, {1}, {2}, new IntPtr({3} * sizeof({4}))",
+            return string.Format("OpenGL.DrawElements({0}, {1}, {2}, new IntPtr({3} * sizeof({4}))",
                 this.Mode, this.ElementCount, this.Type, this.FirstIndex, type);
         }
     }

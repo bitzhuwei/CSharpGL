@@ -56,9 +56,9 @@ namespace CSharpGL
         public override string ToString()
         {
             if (this.EnableCapacity)
-            { return string.Format("GL.Enable({0});", Capacity); }
+            { return string.Format("OpenGL.Enable({0});", Capacity); }
             else
-            { return string.Format("GL.Disable({0});", Capacity); }
+            { return string.Format("OpenGL.Disable({0});", Capacity); }
         }
 
         protected override void SwitchOn()
@@ -92,26 +92,6 @@ namespace CSharpGL
 
     }
 
-    //public class CullFaceSwitch : EnableSwitch
-    //{
-    //    /// <summary>
-    //    /// 
-    //    /// </summary>
-    //    /// <param name="enableCapacity">true for enable, false for disable</param>
-    //    public CullFaceSwitch(bool enableCapacity = true)
-    //        : base(OpenGL.GL_CULL_FACE, enableCapacity)
-    //    { }
-
-    //    public override string ToString()
-    //    {
-    //        if (this.EnableCapacity)
-    //        { return "GL.Enable(GL_CULL_FACE);"; }
-    //        else
-    //        { return "GL.Disable(GL_CULL_FACE);"; }
-    //    }
-
-    //}
-
     public class DepthTestSwitch : EnableSwitch
     {
         /// <summary>
@@ -125,9 +105,9 @@ namespace CSharpGL
         public override string ToString()
         {
             if (this.EnableCapacity)
-            { return "GL.Enable(GL_DEPTH_TEST);"; }
+            { return "OpenGL.Enable(GL_DEPTH_TEST);"; }
             else
-            { return "GL.Disable(GL_DEPTH_TEST);"; }
+            { return "OpenGL.Disable(GL_DEPTH_TEST);"; }
         }
 
     }
@@ -145,9 +125,9 @@ namespace CSharpGL
         public override string ToString()
         {
             if (this.EnableCapacity)
-            { return "GL.Enable(GL_POINT_SMOOTH);"; }
+            { return "OpenGL.Enable(GL_POINT_SMOOTH);"; }
             else
-            { return "GL.Disable(GL_POINT_SMOOTH);"; }
+            { return "OpenGL.Disable(GL_POINT_SMOOTH);"; }
         }
 
     }

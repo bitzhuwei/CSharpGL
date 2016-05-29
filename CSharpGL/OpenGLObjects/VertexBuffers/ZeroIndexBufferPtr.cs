@@ -53,7 +53,7 @@ namespace CSharpGL
 
         public override string ToString()
         {
-            return string.Format("GL.DrawArrays({0}, {1}, {2})",
+            return string.Format("OpenGL.DrawArrays({0}, {1}, {2})",
                 this.Mode, this.FirstVertex, this.VertexCount);
         }
     }
