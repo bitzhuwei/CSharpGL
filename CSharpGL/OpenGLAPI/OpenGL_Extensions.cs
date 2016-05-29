@@ -1969,6 +1969,7 @@ namespace CSharpGL
         public const uint GL_RENDERBUFFER_ALPHA_SIZE_EXT = 0x8D53;
         public const uint GL_RENDERBUFFER_DEPTH_SIZE_EXT = 0x8D54;
         public const uint GL_RENDERBUFFER_STENCIL_SIZE_EXT = 0x8D55;
+        public const uint GL_DRAW_FRAMEBUFFER = 0x8CA9;
 
         #endregion
 
