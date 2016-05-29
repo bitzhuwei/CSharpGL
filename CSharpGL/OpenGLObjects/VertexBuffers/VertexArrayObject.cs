@@ -26,6 +26,10 @@ namespace CSharpGL
         /// </summary>
         public uint ID { get; private set; }
 
+        static OpenGL.glGenVertexArrays glGenVertexArrays;
+        static OpenGL.glBindVertexArray glBindVertexArray;
+        static OpenGL.glDeleteVertexArrays glDeleteVertexArrays;
+
         /// <summary>
         /// 一个vertex array object。（即VAO）
         /// <para>VAO是用来管理VBO的。可以进一步减少DrawCall。</para>
@@ -40,6 +44,13 @@ namespace CSharpGL
             if (propertyBufferPtrs == null || propertyBufferPtrs.Length == 0)
             {
                 throw new ArgumentNullException("propertyBuffers");
+            }
+
+            if (glGenVertexArrays == null)
+            {
+                glGenVertexArrays = OpenGL.GetDelegateFor<OpenGL.glGenVertexArrays>();
+                glBindVertexArray = OpenGL.GetDelegateFor<OpenGL.glBindVertexArray>();
+                glDeleteVertexArrays = OpenGL.GetDelegateFor<OpenGL.glDeleteVertexArrays>();
             }
 
             this.indexBufferPtr = indexBufferPtr;
@@ -58,7 +69,7 @@ namespace CSharpGL
             { throw new Exception(string.Format("ID[{0}] is already generated!", this.ID)); }
 
             uint[] buffers = new uint[1];
-            OpenGL.GetDelegateFor<OpenGL.glGenVertexArrays>()(1, buffers);
+            glGenVertexArrays(1, buffers);
 
             this.ID = buffers[0];
 
@@ -76,12 +87,12 @@ namespace CSharpGL
 
         private void Bind()
         {
-            OpenGL.GetDelegateFor<OpenGL.glBindVertexArray>()(this.ID);
+            glBindVertexArray(this.ID);
         }
 
         private void Unbind()
         {
-            OpenGL.GetDelegateFor<OpenGL.glBindVertexArray>()(0);
+            glBindVertexArray(0);
         }
 
         /// <summary>
@@ -144,7 +155,7 @@ namespace CSharpGL
                 IntPtr ptr = Win32.wglGetCurrentContext();
                 if (ptr != IntPtr.Zero)
                 {
-                    OpenGL.GetDelegateFor<OpenGL.glDeleteVertexArrays>()(1, new uint[] { this.ID });
+                    glDeleteVertexArrays(1, new uint[] { this.ID });
                 }
                 {
                     BufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
@@ -152,12 +163,10 @@ namespace CSharpGL
                     {
                         item.Dispose();
                     }
-                    this.propertyBufferPtrs = null;
                 }
                 {
                     IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
                     indexBufferPtr.Dispose();
-                    this.indexBufferPtr = null;
                 }
             }
 

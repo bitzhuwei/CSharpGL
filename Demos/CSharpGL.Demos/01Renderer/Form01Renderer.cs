@@ -311,6 +311,14 @@ namespace CSharpGL.Demos
             }
         }
 
+        private void Form01Renderer_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            foreach (var item in this.rendererDict)
+            {
+                item.Value.Dispose();
+            }
+        }
+
 
 
     }
