@@ -119,6 +119,10 @@ namespace CSharpGL
         public const uint GL_DST_COLOR = 0x0306;
         public const uint GL_ONE_MINUS_DST_COLOR = 0x0307;
         public const uint GL_SRC_ALPHA_SATURATE = 0x0308;
+        public const uint GL_CONSTANT_COLOR = 0x8001;
+        public const uint GL_ONE_MINUS_CONSTANT_COLOR = 0x8002;
+        public const uint GL_CONSTANT_ALPHA = 0x8003;
+        public const uint GL_ONE_MINUS_CONSTANT_ALPHA = 0x8004;
 
         //   Boolean
         public const uint GL_TRUE = 1;
