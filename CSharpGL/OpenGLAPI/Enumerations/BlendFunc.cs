@@ -14,16 +14,25 @@ namespace CSharpGL
     /// </summary>
     public enum BlendingDestinationFactor : uint
     {
+        /// <summary>
+        /// The initial value is GL_ZERO
+        /// </summary>
         Zero = OpenGL.GL_ZERO,
         One = OpenGL.GL_ONE,
         SourceColor = OpenGL.GL_SRC_COLOR,
         OneMinusSourceColor = OpenGL.GL_ONE_MINUS_SRC_COLOR,
+        DstColor = OpenGL.GL_DST_COLOR,
+        OneMinusDestinationColor = OpenGL.GL_ONE_MINUS_DST_COLOR,
         SourceAlpha = OpenGL.GL_SRC_ALPHA,
         OneMinusSourceAlpha = OpenGL.GL_ONE_MINUS_SRC_ALPHA,
-        DestinationAlpha = OpenGL.GL_DST_ALPHA,
+        DstAlpha = OpenGL.GL_DST_ALPHA,
         OneMinusDestinationAlpha = OpenGL.GL_ONE_MINUS_DST_ALPHA,
+        ConstantColor = OpenGL.GL_CONSTANT_COLOR,
+        OneMinus_constantColor = OpenGL.GL_ONE_MINUS_CONSTANT_COLOR,
+        ConstantAlpha = OpenGL.GL_CONSTANT_ALPHA,
+        OneMinus_constantAlpha = OpenGL.GL_ONE_MINUS_CONSTANT_ALPHA,
     }
-  
+
     /// <summary>
     /// The blending source factor.
     /// </summary>
