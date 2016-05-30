@@ -8,13 +8,13 @@ uniform sampler3D VolumeTex;
 uniform sampler1D TransferFunc;  
 uniform float     StepSize;
 uniform vec2      ScreenSize;
-uniform vec4      backgroundColor = vec4(1, 1, 1, 0);
+uniform vec4      backgroundColor = vec4(0, 0, 0, 0);// value in glClearColor(value);
 layout (location = 0) out vec4 FragColor;
 
 void main()
 {
     // ExitPointCoord is normalized device coordinate
-    vec3 exitPoint = texture(ExitPoints, gl_FragCoord.st/ScreenSize).xyz;
+    vec3 exitPoint = texture(ExitPoints, gl_FragCoord.st / ScreenSize).xyz;
     // that will actually give you clip-space coordinates rather than
     // normalised device coordinates, since you're not performing the perspective
     // division which happens during the rasterisation process (between the vertex
@@ -35,7 +35,6 @@ void main()
     float lengthAcum = 0.0;
     vec4 colorSample; // The src color 
     float alphaSample; // The src alpha
-    // backgroundColor
  
     for(int i = 0; i < 1600; i++)
     {
@@ -47,7 +46,7 @@ void main()
     	// front-to-back integration
     	if (colorSample.a > 0.0) {
     	    // accomodate for variable sampling rates (base interval defined by mod_compositing.frag)
-    	    colorSample.a = 1.0 - pow(1.0 - colorSample.a, StepSize*200.0f);
+    	    colorSample.a = 1.0 - pow(1.0 - colorSample.a, StepSize * 200.0f);
     	    colorAcum.rgb += (1.0 - colorAcum.a) * colorSample.rgb * colorSample.a;
     	    colorAcum.a += (1.0 - colorAcum.a) * colorSample.a;
     	}
