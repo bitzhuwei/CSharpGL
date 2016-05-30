@@ -35,13 +35,13 @@ namespace CSharpGL
             wndClass.hCursor = IntPtr.Zero;
             wndClass.hbrBackground = IntPtr.Zero;
             wndClass.lpszMenuName = null;
-            wndClass.lpszClassName = "SharpGLRenderWindow";
+            wndClass.lpszClassName = "CSharpGLRenderWindow";
             wndClass.hIconSm = IntPtr.Zero;
             Win32.RegisterClassEx(ref wndClass);
 
             //	Create the window. Position and size it.
             windowHandle = Win32.CreateWindowEx(0,
-                          "SharpGLRenderWindow",
+                          "CSharpGLRenderWindow",
                           "",
                           WindowStyles.WS_CLIPCHILDREN | WindowStyles.WS_CLIPSIBLINGS | WindowStyles.WS_POPUP,
                           0, 0, width, height,
