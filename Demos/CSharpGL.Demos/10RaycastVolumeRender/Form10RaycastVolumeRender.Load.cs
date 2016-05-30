@@ -31,7 +31,7 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
-                var renderer = new RaycastVolumeRender();
+                var renderer = new RaycastVolumeRenderer();
                 renderer.Initialize();
                 this.renderer = renderer;
             }

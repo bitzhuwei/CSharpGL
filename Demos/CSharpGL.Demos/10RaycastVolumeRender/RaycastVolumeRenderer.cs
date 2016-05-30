@@ -12,7 +12,7 @@ namespace CSharpGL.Demos
     /// <summary>
     /// 使用Default字体在一块区域渲染文字。
     /// </summary>
-    class RaycastVolumeRender : RendererBase
+    class RaycastVolumeRenderer : RendererBase
     {
         private Renderer backfaceRenderer;
         private Renderer raycastRenderer;

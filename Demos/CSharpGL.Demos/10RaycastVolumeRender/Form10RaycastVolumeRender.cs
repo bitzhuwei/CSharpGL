@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
 
         private Camera camera;
         private SatelliteRotator rotator;
-        private RaycastVolumeRender renderer;
+        private RaycastVolumeRenderer renderer;
 
 
         public Form10RaycastVolumeRender()
@@ -50,7 +50,7 @@ namespace CSharpGL.Demos
 
         private void RendererDraw(RenderEventArgs arg)
         {
-            RaycastVolumeRender renderer = this.renderer;
+            RaycastVolumeRenderer renderer = this.renderer;
             if (renderer != null)
             {
                 mat4 mvp = arg.Camera.GetProjectionMat4() * arg.Camera.GetViewMat4();
