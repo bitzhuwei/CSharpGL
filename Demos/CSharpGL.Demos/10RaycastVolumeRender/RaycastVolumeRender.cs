@@ -97,18 +97,25 @@ namespace CSharpGL.Demos
             unsafe
             {
                 int index = 0;
+                int readCount = 0;
                 byte* array = (byte*)data.Header.ToPointer();
                 using (var fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
                 using (var br = new BinaryReader(fs))
                 {
+                    int unReadCount = (int)fs.Length;
                     const int cacheSize = 1024 * 1024;
-                    var cache = new byte[cacheSize];
-                    int count = br.Read(cache, index, cacheSize);
-                    for (int i = 0; i < count; i++)
+                    do
                     {
-                        array[i + index] = cache[i];
-                    }
-                    index += count;
+                        int min = Math.Min(cacheSize, unReadCount);
+                        var cache = new byte[min];
+                        readCount = br.Read(cache, 0, min);
+                        for (int i = 0; i < readCount; i++)
+                        {
+                            array[i + index] = cache[i];
+                        }
+                        index += readCount;
+                        unReadCount -= readCount;
+                    } while (readCount > 0);
                 }
             }
 
