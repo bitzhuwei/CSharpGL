@@ -21,7 +21,7 @@ namespace CSharpGL.Demos
         private uint[] vol3DTexObj = new uint[1];
         private uint[] frameBuffer = new uint[1];
 
-        private DepthTestSwitch depthTest;
+        //private DepthTestSwitch depthTest;
 
         private static readonly IBufferable model = new RaycastModel();
         private float g_stepSize = 0.001f;
@@ -44,7 +44,7 @@ namespace CSharpGL.Demos
             initVol3DTex(@"10RaycastVolumeRender\head256.raw", 256, 256, 225);
             initFrameBuffer(viewport[2], viewport[3]);
 
-            this.depthTest = new DepthTestSwitch();
+            //this.depthTest = new DepthTestSwitch(false);
 
             RaycastingSetupUniforms();
         }
@@ -167,7 +167,7 @@ namespace CSharpGL.Demos
             map.Add("color", "color");
             this.raycastRenderer = new Renderer(model, shaderCodes, map);
             this.raycastRenderer.Initialize();
-            this.backfaceRenderer.SwitchList.Add(new CullFaceSwitch(CullFaceMode.Back, true));
+            this.raycastRenderer.SwitchList.Add(new CullFaceSwitch(CullFaceMode.Back, true));
         }
 
         private void InitBackfaceRenderer()
@@ -185,12 +185,15 @@ namespace CSharpGL.Demos
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            this.depthTest.On();
+            //this.depthTest.On();
+
             // render to texture
             OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_DRAW_FRAMEBUFFER, frameBuffer[0]);
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             this.backfaceRenderer.Render(arg);
             OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_DRAW_FRAMEBUFFER, 0);
 
+            //OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             this.raycastRenderer.Render(arg);
             // need or need not to resume the state of only one active texture unit?
             // glActiveTexture(GL_TEXTURE1);
@@ -216,7 +219,7 @@ namespace CSharpGL.Demos
             // 		      g_winWidth, g_winHeight, GL_COLOR_BUFFER_BIT, GL_NEAREST);
             // glBindFramebuffer(GL_FRAMEBUFFER, 0);
             // GL_ERROR();
-            this.depthTest.Off();
+            //this.depthTest.Off();
         }
 
         protected override void DisposeUnmanagedResources()
