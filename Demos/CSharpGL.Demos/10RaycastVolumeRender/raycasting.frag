@@ -21,9 +21,10 @@ void main()
     // shader and fragment shader
     // vec2 exitFragCoord = (ExitPointCoord.xy / ExitPointCoord.w + 1.0)/2.0;
     // vec3 exitPoint  = texture(ExitPoints, exitFragCoord).xyz;
-    if (EntryPoint == exitPoint)
-        //background need no raycasting
-        discard;
+
+    //background need no raycasting
+    if (EntryPoint == exitPoint) { discard; }
+
     vec3 dir = exitPoint - EntryPoint;
     float len = length(dir); // the length from front to back is calculated and used to terminate the ray
     vec3 deltaDir = normalize(dir) * StepSize;
