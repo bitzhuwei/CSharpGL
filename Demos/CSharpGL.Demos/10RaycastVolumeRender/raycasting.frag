@@ -22,47 +22,48 @@ void main()
     // vec2 exitFragCoord = (ExitPointCoord.xy / ExitPointCoord.w + 1.0)/2.0;
     // vec3 exitPoint  = texture(ExitPoints, exitFragCoord).xyz;
     if (EntryPoint == exitPoint)
-    	//background need no raycasting
-    	discard;
+        //background need no raycasting
+        discard;
     vec3 dir = exitPoint - EntryPoint;
     float len = length(dir); // the length from front to back is calculated and used to terminate the ray
     vec3 deltaDir = normalize(dir) * StepSize;
     float deltaDirLen = length(deltaDir);
     vec3 voxelCoord = EntryPoint;
-    vec4 colorAcum = vec4(0.0); // The dest color
+    vec3 colorAccumulator = vec3(0.0); // The dest color
+    float alphaAccumulator = 0.0f;
     float intensity;
     float lengthAcum = 0.0;
     vec4 colorSample; // The src color 
  
     for(int i = 0; i < 1600; i++)
     {
-		// get scaler value in the volume data
-    	intensity =  texture(VolumeTex, voxelCoord).x;
-		// get mapped color from 1-D texture
-    	colorSample = texture(TransferFunc, intensity);
-    	// modulate the value of colorSample.a
-    	// front-to-back integration
-    	if (colorSample.a > 0.0) {
-    	    // accomodate for variable sampling rates (base interval defined by mod_compositing.frag)
-    	    colorSample.a = 1.0 - pow(1.0 - colorSample.a, StepSize * 200.0f);
-    	    colorAcum.rgb += (1.0 - colorAcum.a) * colorSample.rgb * colorSample.a;
-    	    colorAcum.a += (1.0 - colorAcum.a) * colorSample.a;
-    	}
-    	voxelCoord += deltaDir;
-    	lengthAcum += deltaDirLen;
-    	if (lengthAcum >= len )
-    	{	
-    	    colorAcum.rgb = colorAcum.rgb * colorAcum.a 
-				+ (1 - colorAcum.a) * backgroundColor.rgb;
-    	    break;  // terminate if opacity > 1 or the ray is outside the volume	
-    	}	
-    	else if (colorAcum.a > 1.0)
-    	{
-    	    colorAcum.a = 1.0;
-    	    break;
-    	}
+        // get scaler value in the volume data
+        intensity =  texture(VolumeTex, voxelCoord).x;
+        // get mapped color from 1-D texture
+        colorSample = texture(TransferFunc, intensity);
+        // modulate the value of colorSample.a
+        // front-to-back integration
+        if (colorSample.a > 0.0) {
+            // accomodate for variable sampling rates (base interval defined by mod_compositing.frag)
+            colorSample.a = 1.0 - pow(1.0 - colorSample.a, StepSize * 200.0f);
+            colorAccumulator += (1.0 - alphaAccumulator) * colorSample.rgb * colorSample.a;
+            alphaAccumulator += (1.0 - alphaAccumulator) * colorSample.a;
+        }
+        voxelCoord += deltaDir;
+        lengthAcum += deltaDirLen;
+        if (lengthAcum >= len )
+        {    
+            colorAccumulator = colorAccumulator * alphaAccumulator 
+                + (1 - alphaAccumulator) * backgroundColor.rgb;
+            break;  // terminate if opacity > 1 or the ray is outside the volume
+        }    
+        else if (alphaAccumulator > 1.0)
+        {
+            alphaAccumulator = 1.0;
+            break;
+        }
     }
-    FragColor = colorAcum;
+    FragColor = vec4(colorAccumulator, alphaAccumulator);
     // for test
     // FragColor = vec4(EntryPoint, 1.0);
     // FragColor = vec4(exitPoint, 1.0);
