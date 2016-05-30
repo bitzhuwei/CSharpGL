@@ -6,7 +6,7 @@ in vec4 ExitPointCoord;
 uniform sampler2D ExitPoints;
 uniform sampler3D VolumeTex;
 uniform sampler1D TransferFunc;  
-uniform float     StepSize;
+uniform float     StepSize = 0.001f;
 uniform vec2      ScreenSize;
 uniform vec4      backgroundColor = vec4(0, 0, 0, 0);// value in glClearColor(value);
 layout (location = 0) out vec4 FragColor;
@@ -28,12 +28,12 @@ void main()
     vec3 direction = exitPoint - EntryPoint;
     float directionLength = length(direction); // the length from front to back is calculated and used to terminate the ray
     vec3 deltaDirection = direction * (StepSize / directionLength);
-    float deltaDirectionLength = length(deltaDirection);
+
     vec3 voxelCoord = EntryPoint;
     vec3 colorAccumulator = vec3(0.0); // The dest color
     float alphaAccumulator = 0.0f;
-    float intensity;
     float lengthAccumulator = 0.0;
+    float intensity;
     vec4 colorSample; // The src color 
  
     for(int i = 0; i < 1600; i++)
@@ -51,7 +51,7 @@ void main()
             alphaAccumulator += (1.0 - alphaAccumulator) * colorSample.a;
         }
         voxelCoord += deltaDirection;
-        lengthAccumulator += deltaDirectionLength;
+        lengthAccumulator += StepSize;
         if (lengthAccumulator >= directionLength)
         {    
             colorAccumulator = colorAccumulator * alphaAccumulator 
