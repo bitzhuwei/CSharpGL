@@ -21,7 +21,7 @@ namespace CSharpGL.Demos
         private uint[] vol3DTexObj = new uint[1];
         private uint[] frameBuffer = new uint[1];
 
-        private DepthTestSwitch depthTest;
+        //private DepthTestSwitch depthTest;
 
         private static readonly IBufferable model = new RaycastModel();
         private float g_stepSize = 0.001f;
@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            this.depthTest.On();
+            //this.depthTest.On();
 
             // render to texture
             OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, frameBuffer[0]);
@@ -67,7 +67,7 @@ namespace CSharpGL.Demos
             // 		      g_winWidth, g_winHeight, GL_COLOR_BUFFER_BIT, GL_NEAREST);
             // glBindFramebuffer(GL_FRAMEBUFFER, 0);
             // GL_ERROR();
-            this.depthTest.Off();
+            //this.depthTest.Off();
         }
 
         protected override void DisposeUnmanagedResources()

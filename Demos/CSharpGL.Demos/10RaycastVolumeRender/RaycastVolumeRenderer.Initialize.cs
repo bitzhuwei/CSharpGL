@@ -24,7 +24,7 @@ namespace CSharpGL.Demos
             initVol3DTex(@"10RaycastVolumeRender\head256.raw", 256, 256, 225);
             initFrameBuffer(viewport[2], viewport[3]);
 
-            this.depthTest = new DepthTestSwitch();
+            //this.depthTest = new DepthTestSwitch();
 
             RaycastingSetupUniforms();
         }
