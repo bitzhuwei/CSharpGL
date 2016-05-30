@@ -25,10 +25,10 @@ void main()
     //background need no raycasting
     if (EntryPoint == exitPoint) { discard; }
 
-    vec3 dir = exitPoint - EntryPoint;
-    float len = length(dir); // the length from front to back is calculated and used to terminate the ray
-    vec3 deltaDir = normalize(dir) * StepSize;
-    float deltaDirLen = length(deltaDir);
+    vec3 direction = exitPoint - EntryPoint;
+    float directionLength = length(direction); // the length from front to back is calculated and used to terminate the ray
+    vec3 deltaDirection = direction * (StepSize / directionLength);
+    float deltaDirectionLen = length(deltaDirection);
     vec3 voxelCoord = EntryPoint;
     vec3 colorAccumulator = vec3(0.0); // The dest color
     float alphaAccumulator = 0.0f;
@@ -50,9 +50,9 @@ void main()
             colorAccumulator += (1.0 - alphaAccumulator) * colorSample.rgb * colorSample.a;
             alphaAccumulator += (1.0 - alphaAccumulator) * colorSample.a;
         }
-        voxelCoord += deltaDir;
-        lengthAcum += deltaDirLen;
-        if (lengthAcum >= len )
+        voxelCoord += deltaDirection;
+        lengthAcum += deltaDirectionLen;
+        if (lengthAcum >= directionLength)
         {    
             colorAccumulator = colorAccumulator * alphaAccumulator 
                 + (1 - alphaAccumulator) * backgroundColor.rgb;
