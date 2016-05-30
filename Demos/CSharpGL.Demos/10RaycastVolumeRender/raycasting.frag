@@ -8,6 +8,7 @@ uniform sampler3D VolumeTex;
 uniform sampler1D TransferFunc;  
 uniform float     StepSize;
 uniform vec2      ScreenSize;
+uniform vec4      backgroundColor = vec4(1, 1, 1, 0);
 layout (location = 0) out vec4 FragColor;
 
 void main()
@@ -35,7 +36,6 @@ void main()
     vec4 colorSample; // The src color 
     float alphaSample; // The src alpha
     // backgroundColor
-    vec4 bgColor = vec4(1.0, 1.0, 1.0, 0.0);
  
     for(int i = 0; i < 1600; i++)
     {
@@ -55,7 +55,8 @@ void main()
     	lengthAcum += deltaDirLen;
     	if (lengthAcum >= len )
     	{	
-    	    colorAcum.rgb = colorAcum.rgb*colorAcum.a + (1 - colorAcum.a)*bgColor.rgb;		
+    	    colorAcum.rgb = colorAcum.rgb * colorAcum.a 
+				+ (1 - colorAcum.a) * backgroundColor.rgb;
     	    break;  // terminate if opacity > 1 or the ray is outside the volume	
     	}	
     	else if (colorAcum.a > 1.0)

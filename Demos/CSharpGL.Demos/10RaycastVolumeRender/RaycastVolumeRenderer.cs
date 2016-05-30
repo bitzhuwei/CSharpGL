@@ -63,6 +63,9 @@ namespace CSharpGL.Demos
             this.raycastRenderer.SetUniform("TransferFunc", new samplerValue(BindTextureTarget.Texture1D, transferFunc1DTexObj[0], OpenGL.GL_TEXTURE0));
             this.raycastRenderer.SetUniform("ExitPoints", new samplerValue(BindTextureTarget.Texture2D, backface2DTexObj[0], OpenGL.GL_TEXTURE1));
             this.raycastRenderer.SetUniform("VolumeTex", new samplerValue(BindTextureTarget.Texture3D, vol3DTexObj[0], OpenGL.GL_TEXTURE2));
+            var clearColor = new float[4];
+            OpenGL.GetFloat(GetTarget.ColorClearValue, clearColor);
+            this.raycastRenderer.SetUniform("backgroundColor", clearColor.ToVec4());
         }
 
         private void initFrameBuffer(int texWidth, int texHeight)
