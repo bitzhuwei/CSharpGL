@@ -51,7 +51,27 @@ namespace CSharpGL.Demos
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
-            if (bufferName == strPosition || bufferName == strColor)
+            if (bufferName == strPosition)
+            {
+                if (!propertyBufferPtrDict.ContainsKey(bufferName))
+                {
+                    using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    {
+                        buffer.Alloc(vertices.Length);
+                        unsafe
+                        {
+                            var array = (float*)buffer.Header.ToPointer();
+                            for (int i = 0; i < vertices.Length; i++)
+                            {
+                                array[i] = vertices[i] - 0.5f;
+                            }
+                        }
+                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                    }
+                }
+                return propertyBufferPtrDict[bufferName];
+            }
+            else if (bufferName == strColor)
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
