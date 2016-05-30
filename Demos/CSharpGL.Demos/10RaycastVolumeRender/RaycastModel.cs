@@ -23,31 +23,31 @@ namespace CSharpGL.Demos
         // up:    2 3 7 6
         // down:  1 0 4 5
         static readonly float[] vertices = 
-            {
-				0.0f, 0.0f, 0.0f,
-				0.0f, 0.0f, 1.0f,
-				0.0f, 1.0f, 0.0f,
-				0.0f, 1.0f, 1.0f,
-				1.0f, 0.0f, 0.0f,
-				1.0f, 0.0f, 1.0f,
-				1.0f, 1.0f, 0.0f,
-				1.0f, 1.0f, 1.0f,
-            };
+        {
+			0.0f, 0.0f, 0.0f,
+			0.0f, 0.0f, 1.0f,
+			0.0f, 1.0f, 0.0f,
+			0.0f, 1.0f, 1.0f,
+			1.0f, 0.0f, 0.0f,
+			1.0f, 0.0f, 1.0f,
+			1.0f, 1.0f, 0.0f,
+			1.0f, 1.0f, 1.0f,
+        };
         static readonly uint[] indices = 
-            {
-				1,5,7,
-				7,3,1,
-				0,2,6,
-				6,4,0,
-				0,1,3,
-				3,2,0,
-				7,5,4,
-				4,6,7,
-				2,3,7,
-				7,6,2,
-				1,0,4,
-				4,5,1,
-            };
+        {
+			1,5,7,
+			7,3,1,
+			0,2,6,
+			6,4,0,
+			0,1,3,
+			3,2,0,
+			7,5,4,
+			4,6,7,
+			2,3,7,
+			7,6,2,
+			1,0,4,
+			4,5,1,
+        };
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
