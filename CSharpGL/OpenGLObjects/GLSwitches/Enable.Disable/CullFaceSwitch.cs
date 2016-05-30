@@ -17,8 +17,12 @@ namespace CSharpGL
             this.Init(CullFaceMode.Back);
         }
 
-        public CullFaceSwitch(bool enableCap)
-            : base(OpenGL.GL_CULL_FACE, enableCap)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
+        public CullFaceSwitch(bool enableCapacity)
+            : base(OpenGL.GL_CULL_FACE, enableCapacity)
         {
             this.Init(CullFaceMode.Back);
         }
@@ -29,8 +33,13 @@ namespace CSharpGL
             this.Init(mode);
         }
 
-        public CullFaceSwitch(CullFaceMode mode, bool enableCap)
-            : base(OpenGL.GL_CULL_FACE, enableCap)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
+        public CullFaceSwitch(CullFaceMode mode, bool enableCapacity)
+            : base(OpenGL.GL_CULL_FACE, enableCapacity)
         {
             this.Init(mode);
         }

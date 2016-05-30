@@ -16,8 +16,12 @@ namespace CSharpGL
             this.Init(x, y, width, height);
         }
 
-        public ScissorTestSwitch(bool enableCap)
-            : base(OpenGL.GL_SCISSOR_TEST, enableCap)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
+        public ScissorTestSwitch(bool enableCapacity)
+            : base(OpenGL.GL_SCISSOR_TEST, enableCapacity)
         {
             int x, y, width, height;
             OpenGL.GetViewport(out x, out y, out width, out height);
@@ -30,8 +34,16 @@ namespace CSharpGL
             this.Init(x, y, width, height);
         }
 
-        public ScissorTestSwitch(int x, int y, int width, int height, bool enableCap)
-            : base(OpenGL.GL_SCISSOR_TEST, enableCap)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
+        public ScissorTestSwitch(int x, int y, int width, int height, bool enableCapacity)
+            : base(OpenGL.GL_SCISSOR_TEST, enableCapacity)
         {
             this.Init(x, y, width, height);
         }

@@ -34,23 +34,17 @@ namespace CSharpGL
         /// GL.Enable(capacity); or GL.Disable(capacity);
         /// </summary>
         /// <param name="capacity"></param>
-        /// <param name="enableCapacity"></param>
+        /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
         public EnableSwitch(uint capacity, bool enableCapacity)
         {
             byte original = OpenGL.IsEnabled(capacity);
 
-            this.Init(capacity, enableCapacity, original != 0);
+            this.Init(capacity, enableCapacity);
         }
 
-        public EnableSwitch(uint capacity, bool enableCapacity, bool originalEnableCapacity)
-        {
-            this.Init(capacity, enableCapacity, originalEnableCapacity);
-        }
-
-        private void Init(uint capacity, bool enableCapacity, bool originalEnableCapacity)
+        private void Init(uint capacity, bool enableCapacity)
         {
             this.Capacity = capacity; this.EnableCapacity = enableCapacity;
-            this.originalEnableCapacity = originalEnableCapacity;
         }
 
         public override string ToString()
@@ -64,6 +58,7 @@ namespace CSharpGL
         protected override void SwitchOn()
         {
             this.enableCapacityWhenSwitchOn = this.EnableCapacity;
+            this.originalEnableCapacity = OpenGL.IsEnabled(this.Capacity) != 0;
             if (this.enableCapacityWhenSwitchOn)
             {
                 if (!this.originalEnableCapacity)
