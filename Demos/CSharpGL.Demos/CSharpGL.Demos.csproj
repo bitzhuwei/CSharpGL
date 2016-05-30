@@ -161,8 +161,22 @@
     <Compile Include="09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="11RenderToTexture\Form11RenderToTexture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="11RenderToTexture\Form11RenderToTexture.Designer.cs">
+      <DependentUpon>Form11RenderToTexture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11RenderToTexture\Form11RenderToTexture.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="11RenderToTexture\Form11RenderToTexture.MouseDownMoveUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="11RenderToTexture\RenderToTextureModel.cs" />
+    <Compile Include="11RenderToTexture\RenderToTextureRenderer.cs" />
     <Compile Include="10RaycastVolumeRender\RaycastModel.cs" />
-    <Compile Include="10RaycastVolumeRender\RaycastVolumeRender.cs" />
+    <Compile Include="10RaycastVolumeRender\RaycastVolumeRenderer.cs" />
     <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRender.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,6 +313,9 @@
     <EmbeddedResource Include="09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.resx">
       <DependentUpon>Form09DummyTextBoxRenderer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="11RenderToTexture\Form11RenderToTexture.resx">
+      <DependentUpon>Form11RenderToTexture.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="10RaycastVolumeRender\Form10RaycastVolumeRender.resx">
       <DependentUpon>Form10RaycastVolumeRender.cs</DependentUpon>
     </EmbeddedResource>
@@ -340,6 +357,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="09DummyTextBoxRenderer\TexBox.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="11RenderToTexture\backface.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="11RenderToTexture\backface.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="11RenderToTexture\raycasting.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="11RenderToTexture\raycasting.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="10RaycastVolumeRender\raycasting.frag">
