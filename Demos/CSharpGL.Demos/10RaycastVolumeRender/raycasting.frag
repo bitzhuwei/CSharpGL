@@ -28,12 +28,12 @@ void main()
     vec3 direction = exitPoint - EntryPoint;
     float directionLength = length(direction); // the length from front to back is calculated and used to terminate the ray
     vec3 deltaDirection = direction * (StepSize / directionLength);
-    float deltaDirectionLen = length(deltaDirection);
+    float deltaDirectionLength = length(deltaDirection);
     vec3 voxelCoord = EntryPoint;
     vec3 colorAccumulator = vec3(0.0); // The dest color
     float alphaAccumulator = 0.0f;
     float intensity;
-    float lengthAcum = 0.0;
+    float lengthAccumulator = 0.0;
     vec4 colorSample; // The src color 
  
     for(int i = 0; i < 1600; i++)
@@ -51,8 +51,8 @@ void main()
             alphaAccumulator += (1.0 - alphaAccumulator) * colorSample.a;
         }
         voxelCoord += deltaDirection;
-        lengthAcum += deltaDirectionLen;
-        if (lengthAcum >= directionLength)
+        lengthAccumulator += deltaDirectionLength;
+        if (lengthAccumulator >= directionLength)
         {    
             colorAccumulator = colorAccumulator * alphaAccumulator 
                 + (1 - alphaAccumulator) * backgroundColor.rgb;
