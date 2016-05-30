@@ -34,7 +34,6 @@ void main()
     float intensity;
     float lengthAcum = 0.0;
     vec4 colorSample; // The src color 
-    float alphaSample; // The src alpha
  
     for(int i = 0; i < 1600; i++)
     {
