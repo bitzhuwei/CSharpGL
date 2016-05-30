@@ -31,7 +31,7 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
-                var renderer = new RaycastVolumeRenderer();
+                var renderer = new RenderToTextureRenderer();
                 renderer.Initialize();
                 this.renderer = renderer;
             }

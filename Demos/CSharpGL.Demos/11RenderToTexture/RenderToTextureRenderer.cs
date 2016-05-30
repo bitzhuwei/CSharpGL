@@ -38,10 +38,10 @@ namespace CSharpGL.Demos
 
             InitRaycastRenderer();
 
-            initTFF1DTex(@"10RaycastVolumeRender\tff.dat");
+            initTFF1DTex(@"11RenderToTexture\tff.dat");
             int[] viewport = OpenGL.GetViewport();
             initFace2DTex(viewport[2], viewport[3]);
-            initVol3DTex(@"10RaycastVolumeRender\head256.raw", 256, 256, 225);
+            initVol3DTex(@"11RenderToTexture\head256.raw", 256, 256, 225);
             initFrameBuffer(viewport[2], viewport[3]);
 
             //this.depthTest = new DepthTestSwitch(false);
@@ -161,8 +161,8 @@ namespace CSharpGL.Demos
         private void InitRaycastRenderer()
         {
             var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"10RaycastVolumeRender\raycasting.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"10RaycastVolumeRender\raycasting.frag"), ShaderType.FragmentShader);
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"11RenderToTexture\raycasting.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"11RenderToTexture\raycasting.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("position", "position");
             map.Add("color", "color");
@@ -174,8 +174,8 @@ namespace CSharpGL.Demos
         private void InitBackfaceRenderer()
         {
             var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"10RaycastVolumeRender\backface.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"10RaycastVolumeRender\backface.frag"), ShaderType.FragmentShader);
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"11RenderToTexture\backface.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"11RenderToTexture\backface.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("position", "position");
             map.Add("color", "color");
