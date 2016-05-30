@@ -13,7 +13,8 @@ namespace CSharpGL.Demos
     {
         public const string strPosition = "position";
         public const string strColor = "color";
-        Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
+        PropertyBufferPtr positionBuffer;
+        PropertyBufferPtr colorBuffer;
         // draw the six faces of the boundbox by drawwing triangles
         // draw it contra-clockwise
         // front: 1 5 7 3
@@ -53,7 +54,7 @@ namespace CSharpGL.Demos
         {
             if (bufferName == strPosition)
             {
-                if (!propertyBufferPtrDict.ContainsKey(bufferName))
+                if (positionBuffer == null)
                 {
                     using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
@@ -66,14 +67,14 @@ namespace CSharpGL.Demos
                                 array[i] = vertices[i] - 0.5f;
                             }
                         }
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                        positionBuffer = buffer.GetBufferPtr() as PropertyBufferPtr;
                     }
                 }
-                return propertyBufferPtrDict[bufferName];
+                return positionBuffer;
             }
             else if (bufferName == strColor)
             {
-                if (!propertyBufferPtrDict.ContainsKey(bufferName))
+                if (colorBuffer == null)
                 {
                     using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
@@ -86,10 +87,10 @@ namespace CSharpGL.Demos
                                 array[i] = vertices[i];
                             }
                         }
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                        colorBuffer = buffer.GetBufferPtr() as PropertyBufferPtr;
                     }
                 }
-                return propertyBufferPtrDict[bufferName];
+                return colorBuffer;
             }
             else
             {
