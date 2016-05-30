@@ -109,11 +109,13 @@ namespace CSharpGL.Demos
                         int min = Math.Min(cacheSize, unReadCount);
                         var cache = new byte[min];
                         readCount = br.Read(cache, 0, min);
+                        if (readCount != min)
+                        { throw new Exception(); }
+
                         for (int i = 0; i < readCount; i++)
                         {
-                            array[i + index] = cache[i];
+                            array[index++] = cache[i];
                         }
-                        index += readCount;
                         unReadCount -= readCount;
                     } while (readCount > 0);
                 }
