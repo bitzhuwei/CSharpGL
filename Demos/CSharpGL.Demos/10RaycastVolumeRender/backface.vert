@@ -12,6 +12,5 @@ uniform mat4 MVP;
 void main()
 {
     passExitPoint = color;
-	//passExitPoint = vec4(1, 1, 1, 1);
     gl_Position = MVP * vec4(position, 1.0);
 }
