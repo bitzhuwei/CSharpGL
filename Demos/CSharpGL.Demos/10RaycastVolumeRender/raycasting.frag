@@ -1,7 +1,6 @@
 #version 400
 
 in vec3 EntryPoint;
-in vec4 ExitPointCoord;
 
 uniform sampler2D ExitPoints;
 uniform sampler3D VolumeTex;

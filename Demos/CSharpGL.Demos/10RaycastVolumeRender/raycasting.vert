@@ -7,7 +7,6 @@ layout (location = 1) in vec3 color;
 
 
 out vec3 EntryPoint;
-out vec4 ExitPointCoord;
 
 uniform mat4 MVP;
 
@@ -15,5 +14,4 @@ void main()
 {
     EntryPoint = color;
     gl_Position = MVP * vec4(position, 1.0);
-    ExitPointCoord = gl_Position;  
 }
