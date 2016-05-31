@@ -156,7 +156,7 @@ namespace CSharpGL.Demos
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"10RaycastVolumeRender\raycasting.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add(RaycastModel.strPosition, RaycastModel.strPosition);
-            map.Add("color", "color");
+            map.Add(RaycastModel.strBoundingBox, RaycastModel.strBoundingBox);
             this.raycastRenderer = new Renderer(model, shaderCodes, map);
             this.raycastRenderer.Initialize();
             this.raycastRenderer.SwitchList.Add(new CullFaceSwitch(CullFaceMode.Back, true));
@@ -169,7 +169,7 @@ namespace CSharpGL.Demos
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"10RaycastVolumeRender\backface.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add(RaycastModel.strPosition, RaycastModel.strPosition);
-            map.Add("color", "color");
+            map.Add(RaycastModel.strBoundingBox, RaycastModel.strBoundingBox);
             this.backfaceRenderer = new Renderer(model, shaderCodes, map);
             this.backfaceRenderer.Initialize();
             this.backfaceRenderer.SwitchList.Add(new CullFaceSwitch(CullFaceMode.Front, true));

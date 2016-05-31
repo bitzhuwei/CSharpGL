@@ -12,7 +12,7 @@ namespace CSharpGL.Demos
     class RaycastModel : IBufferable
     {
         public const string strPosition = "position";
-        public const string strColor = "color";
+        public const string strBoundingBox = "boundingBox";
         PropertyBufferPtr positionBuffer;
         PropertyBufferPtr colorBuffer;
         // draw the six faces of the boundbox by drawwing triangles
@@ -23,7 +23,7 @@ namespace CSharpGL.Demos
         // right: 7 5 4 6    
         // up:    2 3 7 6
         // down:  1 0 4 5
-        static readonly float[] vertices = 
+        static readonly float[] boundingBox = 
         {
 			0.0f, 0.0f, 0.0f,
 			0.0f, 0.0f, 1.0f,
@@ -58,13 +58,13 @@ namespace CSharpGL.Demos
                 {
                     using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(vertices.Length);
+                        buffer.Alloc(boundingBox.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
-                            for (int i = 0; i < vertices.Length; i++)
+                            for (int i = 0; i < boundingBox.Length; i++)
                             {
-                                array[i] = vertices[i] - 0.5f;
+                                array[i] = boundingBox[i] - 0.5f;
                             }
                         }
                         positionBuffer = buffer.GetBufferPtr() as PropertyBufferPtr;
@@ -72,19 +72,19 @@ namespace CSharpGL.Demos
                 }
                 return positionBuffer;
             }
-            else if (bufferName == strColor)
+            else if (bufferName == strBoundingBox)
             {
                 if (colorBuffer == null)
                 {
                     using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(vertices.Length);
+                        buffer.Alloc(boundingBox.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
-                            for (int i = 0; i < vertices.Length; i++)
+                            for (int i = 0; i < boundingBox.Length; i++)
                             {
-                                array[i] = vertices[i];
+                                array[i] = boundingBox[i];
                             }
                         }
                         colorBuffer = buffer.GetBufferPtr() as PropertyBufferPtr;
