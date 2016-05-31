@@ -1,6 +1,6 @@
 #version 400
 
-in vec3 EntryPoint;
+in vec3 passEntryPoint;
 
 uniform sampler2D ExitPoints;
 uniform sampler3D VolumeTex;
@@ -22,13 +22,13 @@ void main()
     // vec3 exitPoint  = texture(ExitPoints, exitFragCoord).xyz;
 
     //background need no raycasting
-    if (EntryPoint == exitPoint) { discard; }
+    if (passEntryPoint == exitPoint) { discard; }
 
-    vec3 direction = exitPoint - EntryPoint;
+    vec3 direction = exitPoint - passEntryPoint;
     float directionLength = length(direction); // the length from front to back is calculated and used to terminate the ray
     vec3 deltaDirection = direction * (StepSize / directionLength);
 
-    vec3 voxelCoord = EntryPoint;
+    vec3 voxelCoord = passEntryPoint;
     vec3 colorAccumulator = vec3(0.0); // The dest color
     float alphaAccumulator = 0.0f;
     float lengthAccumulator = 0.0;
@@ -65,7 +65,7 @@ void main()
     }
     FragColor = vec4(colorAccumulator, alphaAccumulator);
     // for test
-    // FragColor = vec4(EntryPoint, 1.0);
+    // FragColor = vec4(passEntryPoint, 1.0);
     // FragColor = vec4(exitPoint, 1.0);
    
 }
