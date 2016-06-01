@@ -37,7 +37,7 @@
             this.btnForm07Billboard = new System.Windows.Forms.Button();
             this.btnForm08AnalyzedBillboard = new System.Windows.Forms.Button();
             this.btnForm09TextBoxRenderer = new System.Windows.Forms.Button();
-            this.btn10RaycastVolumeRender = new System.Windows.Forms.Button();
+            this.btn10RaycastVolumeRenderer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -157,25 +157,25 @@
             this.btnForm09TextBoxRenderer.UseVisualStyleBackColor = true;
             this.btnForm09TextBoxRenderer.Click += new System.EventHandler(this.btn09DummyTextBoxRenderer_Click);
             // 
-            // btn10RaycastVolumeRender
+            // btn10RaycastVolumeRenderer
             // 
-            this.btn10RaycastVolumeRender.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn10RaycastVolumeRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn10RaycastVolumeRender.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn10RaycastVolumeRender.Location = new System.Drawing.Point(12, 399);
-            this.btn10RaycastVolumeRender.Name = "btn10RaycastVolumeRender";
-            this.btn10RaycastVolumeRender.Size = new System.Drawing.Size(767, 37);
-            this.btn10RaycastVolumeRender.TabIndex = 0;
-            this.btn10RaycastVolumeRender.Text = "10 RaycastVolumeRender";
-            this.btn10RaycastVolumeRender.UseVisualStyleBackColor = true;
-            this.btn10RaycastVolumeRender.Click += new System.EventHandler(this.btn10RaycastVolumeRender_Click);
+            this.btn10RaycastVolumeRenderer.Font = new System.Drawing.Font("宋体", 12F);
+            this.btn10RaycastVolumeRenderer.Location = new System.Drawing.Point(12, 399);
+            this.btn10RaycastVolumeRenderer.Name = "btn10RaycastVolumeRenderer";
+            this.btn10RaycastVolumeRenderer.Size = new System.Drawing.Size(767, 37);
+            this.btn10RaycastVolumeRenderer.TabIndex = 0;
+            this.btn10RaycastVolumeRenderer.Text = "10 RaycastVolumeRenderer";
+            this.btn10RaycastVolumeRenderer.UseVisualStyleBackColor = true;
+            this.btn10RaycastVolumeRenderer.Click += new System.EventHandler(this.btn10RaycastVolumeRenderer_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 545);
-            this.Controls.Add(this.btn10RaycastVolumeRender);
+            this.Controls.Add(this.btn10RaycastVolumeRenderer);
             this.Controls.Add(this.btnForm09TextBoxRenderer);
             this.Controls.Add(this.btnForm08AnalyzedBillboard);
             this.Controls.Add(this.btnForm07Billboard);
@@ -202,6 +202,6 @@
         private System.Windows.Forms.Button btnForm07Billboard;
         private System.Windows.Forms.Button btnForm08AnalyzedBillboard;
         private System.Windows.Forms.Button btnForm09TextBoxRenderer;
-        private System.Windows.Forms.Button btn10RaycastVolumeRender;
+        private System.Windows.Forms.Button btn10RaycastVolumeRenderer;
     }
 }

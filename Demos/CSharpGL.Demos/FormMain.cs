@@ -62,9 +62,9 @@ namespace CSharpGL.Demos
             (new Form09DummyTextBoxRenderer()).Show();
         }
 
-        private void btn10RaycastVolumeRender_Click(object sender, EventArgs e)
+        private void btn10RaycastVolumeRenderer_Click(object sender, EventArgs e)
         {
-            (new Form10RaycastVolumeRender()).Show();
+            (new Form10RaycastVolumeRenderer()).Show();
         }
 
     }

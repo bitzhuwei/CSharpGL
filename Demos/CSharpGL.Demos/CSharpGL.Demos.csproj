@@ -164,16 +164,16 @@
     <Compile Include="10RaycastVolumeRender\RaycastVolumeRenderer.Initialize.cs" />
     <Compile Include="10RaycastVolumeRender\RaycastModel.cs" />
     <Compile Include="10RaycastVolumeRender\RaycastVolumeRenderer.cs" />
-    <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRender.cs">
+    <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRender.Designer.cs">
-      <DependentUpon>Form10RaycastVolumeRender.cs</DependentUpon>
+    <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRenderer.Designer.cs">
+      <DependentUpon>Form10RaycastVolumeRenderer.cs</DependentUpon>
     </Compile>
-    <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRender.Load.cs">
+    <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRenderer.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRender.MouseDownMoveUp.cs">
+    <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRenderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBulletinBoard.cs">
@@ -300,8 +300,8 @@
     <EmbeddedResource Include="09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.resx">
       <DependentUpon>Form09DummyTextBoxRenderer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="10RaycastVolumeRender\Form10RaycastVolumeRender.resx">
-      <DependentUpon>Form10RaycastVolumeRender.cs</DependentUpon>
+    <EmbeddedResource Include="10RaycastVolumeRender\Form10RaycastVolumeRenderer.resx">
+      <DependentUpon>Form10RaycastVolumeRenderer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBulletinBoard.resx">
       <DependentUpon>FormBulletinBoard.cs</DependentUpon>
