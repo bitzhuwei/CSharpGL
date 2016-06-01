@@ -27,7 +27,6 @@ namespace CSharpGL.Demos
             this.glCanvas1.MouseMove += glCanvas1_MouseMove;
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
-            this.glCanvas1.Resize += glCanvas1_Resize;
 
             OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
         }
@@ -37,10 +36,14 @@ namespace CSharpGL.Demos
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
             RenderEventArgs arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
-            IRenderable renderer = this.renderer;
-            RendererDraw(arg);
+            RaycastVolumeRenderer renderer = this.renderer;
+            if (renderer != null)
+            {
+                mat4 mvp = arg.Camera.GetProjectionMat4() * arg.Camera.GetViewMat4();
+                renderer.SetMVP(mvp);
 
-            UIRenderersDraw(arg);
+                renderer.Render(arg);
+            }
 
             // Cross cursor shows where the mouse is.
             OpenGL.DrawText(this.lastMousePosition.X - offset.X,
@@ -48,56 +51,9 @@ namespace CSharpGL.Demos
                 Color.Red, "Courier New", crossCursorSize, "o");
         }
 
-        private void RendererDraw(RenderEventArgs arg)
-        {
-            RaycastVolumeRenderer renderer = this.renderer;
-            if (renderer != null)
-            {
-                mat4 mvp = arg.Camera.GetProjectionMat4() * arg.Camera.GetViewMat4();
-                renderer.SetMVP(mvp);
-                renderer.Render(arg);
-            }
-        }
-
-
         private const float crossCursorSize = 40.0f;
 
         private Point offset = new Point(13, 11);
-
-        private void UIRenderersDraw(RenderEventArgs arg)
-        {
-            GLRoot uiRoot = this.uiRoot;
-            if (uiRoot != null)
-            {
-                uiRoot.Layout();
-                mat4 projection, view, model;
-                {
-                    projection = glAxis.GetOrthoProjection();
-                    vec3 position = (this.camera.Position - this.camera.Target).normalize();
-                    view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
-                    float length = Math.Max(glAxis.Size.Width, glAxis.Size.Height) / 2;
-                    model = glm.scale(mat4.identity(),
-                        new vec3(length, length, length));
-                    glAxis.Renderer.SetUniform("projectionMatrix", projection);
-                    glAxis.Renderer.SetUniform("viewMatrix", view);
-                    glAxis.Renderer.SetUniform("modelMatrix", model);
-
-                    glAxis.Render(arg);
-                }
-                {
-                    projection = glText.GetOrthoProjection();
-                    //vec3 position = (this.camera.Position - this.camera.Target).normalize();
-                    view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
-                    //float length = Math.Max(glText.Size.Width, glText.Size.Height) / 2;
-                    float length = glText.Size.Height / 2;
-                    model = glm.scale(mat4.identity(), new vec3(length, length, length));
-                    //model = mat4.identity();
-                    glText.Renderer.SetUniform("mvp", projection * view * model);
-
-                    glText.Render(arg);
-                }
-            }
-        }
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -114,12 +70,6 @@ namespace CSharpGL.Demos
             {
                 camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
             }
-
-            this.uiRoot.Size = this.glCanvas1.Size;
-        }
-
-        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
-        {
         }
 
     }

@@ -44,7 +44,6 @@
             this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(757, 522);
             this.glCanvas1.TabIndex = 0;
-            this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
             // 
             // Form10RaycastVolumeRender
             // 

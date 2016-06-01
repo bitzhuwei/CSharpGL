@@ -14,7 +14,9 @@ namespace CSharpGL.Demos
     public partial class Form09UIRenderer : Form
     {
         private FormProperyGrid formPropertyGrid;
-
+        private GLRoot uiRoot;
+        private GLAxis glAxis;
+        private GLText glText;
 
         private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
         {
@@ -28,46 +30,31 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
-                //var renderer = new DummyTextBoxRenderer(
-                //     AnchorStyles.Left | AnchorStyles.Top,
-                //        new Padding(100, 26, 26, 26),
-                //        new Size(50, 50));
-                //renderer.Initialize();
-                //renderer.SetText("CSharpGL");
-                //this.renderer = renderer;
+                var UIRoot = new GLRoot(this.glCanvas1.Size, -100, 100);
+                UIRoot.Initialize();
+                this.uiRoot = UIRoot;
+
+                var glAxis = new GLAxis(AnchorStyles.Right | AnchorStyles.Bottom,
+                    new Padding(3, 3, 3, 3), new Size(70, 70), -100, 100);
+                glAxis.Initialize();
+                this.glAxis = glAxis;
+
+                UIRoot.Controls.Add(glAxis);
+
+                var glText = new GLText(AnchorStyles.Left | AnchorStyles.Top,
+                    new Padding(3, 3, 3, 3), new Size(300, 70), -100, 100);
+                glText.Initialize();
+                glText.SetText("Hello GLText!");
+                this.glText = glText;
+
+                uiRoot.Controls.Add(glText);
             }
             {
-                // build the axis
-                ShaderCode[] shaders = new ShaderCode[2];
-                shaders[0] = new ShaderCode(File.ReadAllText(@"01Renderer\Simple.vert"), ShaderType.VertexShader);
-                shaders[1] = new ShaderCode(File.ReadAllText(@"01Renderer\Simple.frag"), ShaderType.FragmentShader);
-                var propertyNameMap = new PropertyNameMap();
-                propertyNameMap.Add("in_Position", "position");
-                propertyNameMap.Add("in_Color", "color");
-                var pickableRenderer = PickableRendererFactory.GetRenderer(
-                    new Axis(), shaders, propertyNameMap, "position");
-                pickableRenderer.Name = string.Format("Pickable: [{0}]", "Axis");
-                pickableRenderer.Initialize();
-                {
-                    GLSwitch lineWidthSwitch = new LineWidthSwitch(5);
-                    pickableRenderer.SwitchList.Add(lineWidthSwitch);
-                    GLSwitch pointSizeSwitch = new PointSizeSwitch(10);
-                    pickableRenderer.SwitchList.Add(pointSizeSwitch);
-                    GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
-                    pickableRenderer.SwitchList.Add(polygonModeSwitch);
-                    if (pickableRenderer is OneIndexRenderer)
-                    {
-                        GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((pickableRenderer as OneIndexRenderer).IndexBufferPtr);
-                        pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
-                    }
-                }
+                var frmPropertyGrid = new FormProperyGrid();
+                frmPropertyGrid.DisplayObject(this.glText);
+                frmPropertyGrid.Show();
+                this.formPropertyGrid = frmPropertyGrid;
             }
-            //{
-            //    var frmPropertyGrid = new FormProperyGrid();
-            //    frmPropertyGrid.DisplayObject(this.renderer);
-            //    frmPropertyGrid.Show();
-            //    this.formPropertyGrid = frmPropertyGrid;
-            //}
         }
     }
 }
