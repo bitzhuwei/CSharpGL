@@ -25,7 +25,8 @@ namespace CSharpGL.Demos
 
             int count = content.Length;
             if (count > this.model.maxCharCount)
-            { count = this.model.maxCharCount; }
+            { throw new ArgumentException(); }
+            //{ count = this.model.maxCharCount; }
 
             FontResource fontResource = FontResource.Default;
             SetupGlyphPositions(content, fontResource);
