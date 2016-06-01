@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Demos
 {
-    class TextBoxModel : IBufferable
+    class TextModel : IBufferable
     {
 
-        public TextBoxModel(int maxCharCount)
+        public TextModel(int maxCharCount)
         {
             this.maxCharCount = maxCharCount;
         }

@@ -14,13 +14,7 @@ namespace CSharpGL
         private ViewportSwitch viewportSwitch;
         private ScissorTestSwitch scissorTestSwitch;
 
-        Renderer renderer;
-
-        public Renderer Renderer
-        {
-            get { return renderer; }
-            set { renderer = value; }
-        }
+        public Renderer Renderer { get; protected set; }
 
         public UIRenderer(Renderer renderer,
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
@@ -28,7 +22,7 @@ namespace CSharpGL
         {
             this.Controls = new GLControlCollection(this);
 
-            this.renderer = renderer;
+            this.Renderer = renderer;
             this.Anchor = anchor; this.Margin = margin;
             this.Size = size; this.zNear = zNear; this.zFar = zFar;
         }
@@ -54,7 +48,7 @@ namespace CSharpGL
             this.viewportSwitch = new ViewportSwitch();
             this.scissorTestSwitch = new ScissorTestSwitch();
 
-            Renderer renderer = this.renderer;
+            Renderer renderer = this.Renderer;
             if (renderer != null)
             {
                 renderer.Initialize();
@@ -63,7 +57,7 @@ namespace CSharpGL
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            Renderer renderer = this.renderer;
+            Renderer renderer = this.Renderer;
             if (renderer != null)
             {
                 this.viewportSwitch.X = this.Location.X;
@@ -90,7 +84,7 @@ namespace CSharpGL
 
         protected override void DisposeUnmanagedResources()
         {
-            Renderer renderer = this.renderer;
+            Renderer renderer = this.Renderer;
             if (renderer != null)
             {
                 renderer.Dispose();

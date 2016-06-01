@@ -11,12 +11,13 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form10RaycastVolumeRender : Form
+    public partial class Form10RaycastVolumeRenderer : Form
     {
         private FormProperyGrid formPropertyGrid;
         private DummyUIRenderer uiRenderer;
         private GLRoot uiRoot;
         private GLAxis glAxis;
+        private GLText glText;
 
 
         private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
@@ -46,6 +47,14 @@ namespace CSharpGL.Demos
                 this.glAxis = glAxis;
 
                 UIRoot.Controls.Add(glAxis);
+
+                var glText = new GLText(AnchorStyles.Left| AnchorStyles.Top,
+                    new Padding(3, 3, 3, 3), new Size(300, 70), -100, 100);
+                glText.Initialize();
+                glText.SetText("Hello GLText!");
+                this.glText = glText;
+
+                uiRoot.Controls.Add(glText);
             }
             {
                 // build the axis

@@ -88,6 +88,7 @@ namespace CSharpGL
                 BitmapData bitmapData = targetImage.LockBits(new Rectangle(0, 0, targetImage.Width, targetImage.Height),
                     ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
                 //GL.ActiveTexture(GL.GL_TEXTURE0);
+                OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
                 OpenGL.GenTextures(1, id);
                 OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, id[0]);
                 OpenGL.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, (int)OpenGL.GL_RGBA,
@@ -103,6 +104,7 @@ namespace CSharpGL
                 /* Linear filtering usually looks best for text */
                 OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, (int)OpenGL.GL_LINEAR);
                 OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, (int)OpenGL.GL_LINEAR);
+                OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
             }
 
             // release temp image.

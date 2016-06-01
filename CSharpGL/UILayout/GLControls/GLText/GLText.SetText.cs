@@ -9,10 +9,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Demos
 {
-    /// <summary>
-    /// 使用Default字体在一块区域渲染文字。
-    /// </summary>
-    public partial class TextRenderer : Renderer, ILayout
+    public partial class GLText
     {
 
         public unsafe void SetText(string content)

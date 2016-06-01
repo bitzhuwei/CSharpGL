@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Demos
 {
-    partial class Form10RaycastVolumeRender
+    partial class Form10RaycastVolumeRenderer
     {
         /// <summary>
         /// Required designer variable.

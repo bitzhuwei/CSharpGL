@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form10RaycastVolumeRender : Form
+    public partial class Form10RaycastVolumeRenderer : Form
     {
 
         private Point lastMousePosition;

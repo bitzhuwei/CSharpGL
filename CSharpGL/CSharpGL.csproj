@@ -77,7 +77,7 @@
     <Content Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripAdjacencySearcher.jpg" />
     <Content Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.jpg" />
     <Content Include="OpenGLObjects\GLSwitches\readme.txt" />
-    <Content Include="TextRenderer\readme.txt" />
+    <Content Include="UILayout\GLControls\GLText\readme.txt" />
     <Content Include="WinformControls\RenderContexts\readme.txt" />
     <Content Include="DummyUILayout\readme.txt" />
     <Content Include="OpenGLObjects\UniformVariables\readme.txt" />
@@ -88,9 +88,9 @@
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\CullFaceSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\ViewportSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\ScissorTestSwitch.cs" />
-    <Compile Include="TextRenderer\TextModel.cs" />
-    <Compile Include="TextRenderer\TextRenderer.SetText.cs" />
-    <Compile Include="TextRenderer\TextRenderer.cs" />
+    <Compile Include="UILayout\GLControls\GLText\TextModel.cs" />
+    <Compile Include="UILayout\GLControls\GLText\GLText.SetText.cs" />
+    <Compile Include="UILayout\GLControls\GLText\GLText.cs" />
     <Compile Include="UILayout\GLControls\GLRoot.cs" />
     <Compile Include="UILayout\ILayoutHelper.cs" />
     <Compile Include="UILayout\GLControlCollection.cs" />
@@ -443,12 +443,8 @@
     <EmbeddedResource Include="UILayout\GLControls\GLAxis.vert" />
     <EmbeddedResource Include="UILayout\GLControls\GLRoot.vert" />
     <EmbeddedResource Include="UILayout\GLControls\GLRoot.frag" />
-    <None Include="TextRenderer\Text.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TextRenderer\Text.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <EmbeddedResource Include="UILayout\GLControls\GLText\Text.frag" />
+    <EmbeddedResource Include="UILayout\GLControls\GLText\Text.vert" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Maths\readme.txt" />
