@@ -2,9 +2,10 @@
 
 in vec3 passEntryPoint;
 
+uniform sampler1D TransferFunc;
 uniform sampler2D ExitPoints;
 uniform sampler3D VolumeTex;
-uniform sampler1D TransferFunc;  
+
 uniform float     StepSize = 0.001f;
 uniform vec2      ScreenSize;
 uniform vec4      backgroundColor = vec4(0, 0, 0, 0);// value in glClearColor(value);
