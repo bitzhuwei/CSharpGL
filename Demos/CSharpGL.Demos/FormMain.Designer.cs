@@ -150,12 +150,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnForm09TextBoxRenderer.Font = new System.Drawing.Font("宋体", 12F);
             this.btnForm09TextBoxRenderer.Location = new System.Drawing.Point(12, 356);
-            this.btnForm09TextBoxRenderer.Name = "btnForm09TextBoxRenderer";
+            this.btnForm09TextBoxRenderer.Name = "btnForm09UIRenderer";
             this.btnForm09TextBoxRenderer.Size = new System.Drawing.Size(767, 37);
             this.btnForm09TextBoxRenderer.TabIndex = 0;
-            this.btnForm09TextBoxRenderer.Text = "Form09 DummyTextBoxRenderer";
+            this.btnForm09TextBoxRenderer.Text = "Form09 UIRenderer";
             this.btnForm09TextBoxRenderer.UseVisualStyleBackColor = true;
-            this.btnForm09TextBoxRenderer.Click += new System.EventHandler(this.btn09DummyTextBoxRenderer_Click);
+            this.btnForm09TextBoxRenderer.Click += new System.EventHandler(this.btn09UIRenderer_Click);
             // 
             // btn10RaycastVolumeRenderer
             // 

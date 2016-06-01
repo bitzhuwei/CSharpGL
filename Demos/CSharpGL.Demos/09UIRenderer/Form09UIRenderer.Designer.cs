@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Demos
 {
-    partial class Form09DummyTextBoxRenderer
+    partial class Form09UIRenderer
     {
         /// <summary>
         /// Required designer variable.

@@ -66,50 +66,35 @@ namespace CSharpGL.Demos
 
         private void UIRenderersDraw(RenderEventArgs arg)
         {
+            GLRoot uiRoot = this.uiRoot;
+            if (uiRoot != null)
             {
-                DummyUIRenderer uiRenderer = this.uiRenderer;
-                if (uiRenderer != null)
+                uiRoot.Layout();
+                mat4 projection, view, model;
                 {
-                    mat4 projection, view, model;
-                    uiRenderer.GetMatrix(out projection, out view, out model, this.camera);
-                    uiRenderer.Renderer.SetUniform("projectionMatrix", projection);
-                    uiRenderer.Renderer.SetUniform("viewMatrix", view);
-                    uiRenderer.Renderer.SetUniform("modelMatrix", model);
+                    projection = glAxis.GetOrthoProjection();
+                    vec3 position = (this.camera.Position - this.camera.Target).normalize();
+                    view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
+                    float length = Math.Max(glAxis.Size.Width, glAxis.Size.Height) / 2;
+                    model = glm.scale(mat4.identity(),
+                        new vec3(length, length, length));
+                    glAxis.Renderer.SetUniform("projectionMatrix", projection);
+                    glAxis.Renderer.SetUniform("viewMatrix", view);
+                    glAxis.Renderer.SetUniform("modelMatrix", model);
 
-                    uiRenderer.Render(arg);
+                    glAxis.Render(arg);
                 }
-            }
-            {
-                GLRoot uiRoot = this.uiRoot;
-                if (uiRoot != null)
                 {
-                    uiRoot.Layout();
-                    mat4 projection, view, model;
-                    {
-                        projection = glAxis.GetOrthoProjection();
-                        vec3 position = (this.camera.Position - this.camera.Target).normalize();
-                        view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
-                        float length = Math.Max(glAxis.Size.Width, glAxis.Size.Height) / 2;
-                        model = glm.scale(mat4.identity(),
-                            new vec3(length, length, length));
-                        glAxis.Renderer.SetUniform("projectionMatrix", projection);
-                        glAxis.Renderer.SetUniform("viewMatrix", view);
-                        glAxis.Renderer.SetUniform("modelMatrix", model);
+                    projection = glText.GetOrthoProjection();
+                    //vec3 position = (this.camera.Position - this.camera.Target).normalize();
+                    view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
+                    //float length = Math.Max(glText.Size.Width, glText.Size.Height) / 2;
+                    float length = glText.Size.Height / 2;
+                    model = glm.scale(mat4.identity(), new vec3(length, length, length));
+                    //model = mat4.identity();
+                    glText.Renderer.SetUniform("mvp", projection * view * model);
 
-                        glAxis.Render(arg);
-                    }
-                    {
-                        projection = glText.GetOrthoProjection();
-                        //vec3 position = (this.camera.Position - this.camera.Target).normalize();
-                        view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
-                        //float length = Math.Max(glText.Size.Width, glText.Size.Height) / 2;
-                        float length = glText.Size.Height / 2;
-                        model = glm.scale(mat4.identity(), new vec3(length, length, length));
-                        //model = mat4.identity();
-                        glText.Renderer.SetUniform("mvp", projection * view * model);
-
-                        glText.Render(arg);
-                    }
+                    glText.Render(arg);
                 }
             }
         }

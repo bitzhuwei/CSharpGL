@@ -13,7 +13,6 @@ namespace CSharpGL.Demos
 {
     public partial class Form01Renderer : Form
     {
-        private DummyUIRenderer uiRenderer;
         private FormIndexBufferPtrBoard frmIndexBufferPtrBoard;
         private GLAxis glAxis;
         private GLRoot uiRoot;
@@ -211,17 +210,6 @@ namespace CSharpGL.Demos
                             pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
                         }
                     }
-                    var uiRenderer = new DummyUIRenderer(
-                        pickableRenderer,
-                        AnchorStyles.Left | AnchorStyles.Bottom,
-                        new Padding(26, 26, 26, 26),
-                        new Size(50, 50));
-                    uiRenderer.Initialize();
-                    //var uiRenderer = new UIAxisRenderer(
-                    //    AnchorStyles.Left | AnchorStyles.Bottom,
-                    //    new Padding(26, 26, 26, 26),
-                    //    new Size(50, 50));
-                    this.uiRenderer = uiRenderer;
                 }
             }
             {

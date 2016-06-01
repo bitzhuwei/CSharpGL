@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form09DummyTextBoxRenderer : Form
+    public partial class Form09UIRenderer : Form
     {
 
         private Point lastMousePosition;

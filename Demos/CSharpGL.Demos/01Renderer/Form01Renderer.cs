@@ -156,37 +156,22 @@ namespace CSharpGL.Demos
 
         private void UIRenderersDraw(RenderEventArgs arg)
         {
+            GLRoot uiRoot = this.uiRoot;
+            if (uiRoot != null)
             {
-                DummyUIRenderer uiRenderer = this.uiRenderer;
-                if (uiRenderer != null)
-                {
-                    mat4 projection, view, model;
-                    uiRenderer.GetMatrix(out projection, out view, out model, this.camera);
-                    uiRenderer.Renderer.SetUniform("projectionMatrix", projection);
-                    uiRenderer.Renderer.SetUniform("viewMatrix", view);
-                    uiRenderer.Renderer.SetUniform("modelMatrix", model);
+                uiRoot.Layout();
+                mat4 projection, view, model;
+                projection = glAxis.GetOrthoProjection();
+                vec3 position = (this.camera.Position - this.camera.Target).normalize();
+                view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
+                float length = Math.Max(glAxis.Size.Width, glAxis.Size.Height) / 2;
+                model = glm.scale(mat4.identity(),
+                    new vec3(length, length, length));
+                glAxis.Renderer.SetUniform("projectionMatrix", projection);
+                glAxis.Renderer.SetUniform("viewMatrix", view);
+                glAxis.Renderer.SetUniform("modelMatrix", model);
 
-                    uiRenderer.Render(arg);
-                }
-            }
-            {
-                GLRoot uiRoot = this.uiRoot;
-                if (uiRoot != null)
-                {
-                    uiRoot.Layout();
-                    mat4 projection, view, model;
-                    projection = glAxis.GetOrthoProjection();
-                    vec3 position = (this.camera.Position - this.camera.Target).normalize();
-                    view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
-                    float length = Math.Max(glAxis.Size.Width, glAxis.Size.Height) / 2;
-                    model = glm.scale(mat4.identity(),
-                        new vec3(length, length, length));
-                    glAxis.Renderer.SetUniform("projectionMatrix", projection);
-                    glAxis.Renderer.SetUniform("viewMatrix", view);
-                    glAxis.Renderer.SetUniform("modelMatrix", model);
-
-                    glAxis.Render(arg);
-                }
+                glAxis.Render(arg);
             }
         }
 

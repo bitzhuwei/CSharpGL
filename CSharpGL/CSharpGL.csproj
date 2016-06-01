@@ -50,6 +50,7 @@
     <EmbeddedResource Include="WinformControls\GLCanvas.ico" />
     <EmbeddedResource Include="GlyphTextures\LucidaTypewriterRegular.ttf.png" />
     <EmbeddedResource Include="GlyphTextures\LucidaTypewriterRegular.ttf.xml" />
+    <Content Include="GLControls\GLRoot\readme.txt" />
     <Content Include="GlyphTextures\readme.txt" />
     <Content Include="IBufferables\readme.txt" />
     <Content Include="HighlightRenderer\readme.txt" />
@@ -79,7 +80,6 @@
     <Content Include="OpenGLObjects\GLSwitches\readme.txt" />
     <Content Include="GLControls\GLText\readme.txt" />
     <Content Include="WinformControls\RenderContexts\readme.txt" />
-    <Content Include="DummyUILayout\readme.txt" />
     <Content Include="OpenGLObjects\UniformVariables\readme.txt" />
     <Content Include="OpenGLObjects\VertexBuffers\readme.txt" />
     <Content Include="readme.txt" />
@@ -208,13 +208,9 @@
     <Compile Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineSearcher.cs" />
     <Compile Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTrianglesSearcher.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\BlendSwitch.cs" />
-    <Compile Include="DummyUILayout\IDummyUILayout.cs" />
-    <Compile Include="DummyUILayout\IDummyUILayoutArgs.cs" />
-    <Compile Include="DummyUILayout\IDummyUILayoutHelper.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\LineWidthSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\PointSizeSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PolygonOffsetSwitch.cs" />
-    <Compile Include="DummyUILayout\DummyUIRenderer.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformBool.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSamplerXD.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformFloat.cs" />

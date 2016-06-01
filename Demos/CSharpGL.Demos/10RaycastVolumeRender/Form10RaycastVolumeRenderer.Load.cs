@@ -14,7 +14,6 @@ namespace CSharpGL.Demos
     public partial class Form10RaycastVolumeRenderer : Form
     {
         private FormProperyGrid formPropertyGrid;
-        private DummyUIRenderer uiRenderer;
         private GLRoot uiRoot;
         private GLAxis glAxis;
         private GLText glText;
@@ -81,13 +80,6 @@ namespace CSharpGL.Demos
                         pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
                     }
                 }
-                var uiRenderer = new DummyUIRenderer(
-                    pickableRenderer,
-                    AnchorStyles.Left | AnchorStyles.Bottom,
-                    new Padding(26, 26, 26, 26),
-                    new Size(50, 50));
-                uiRenderer.Initialize();
-                this.uiRenderer = uiRenderer;
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();

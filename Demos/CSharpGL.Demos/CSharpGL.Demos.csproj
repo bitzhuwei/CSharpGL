@@ -148,17 +148,16 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="07Billboard\BillboardRenderer.cs" />
-    <Compile Include="09DummyTextBoxRenderer\DummyTextBoxRenderer.cs" />
-    <Compile Include="09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.cs">
+    <Compile Include="09UIRenderer\Form09UIRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.Designer.cs">
-      <DependentUpon>Form09DummyTextBoxRenderer.cs</DependentUpon>
+    <Compile Include="09UIRenderer\Form09UIRenderer.Designer.cs">
+      <DependentUpon>Form09UIRenderer.cs</DependentUpon>
     </Compile>
-    <Compile Include="09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.Load.cs">
+    <Compile Include="09UIRenderer\Form09UIRenderer.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.MouseDownMoveUp.cs">
+    <Compile Include="09UIRenderer\09UIRenderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="10RaycastVolumeRender\RaycastVolumeRenderer.Initialize.cs" />
@@ -212,7 +211,6 @@
     <Compile Include="02OrderIndependentTransparency\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="01Renderer\UIAxisRenderer.cs" />
     <None Include="05ParticleSimulator\particleSimulator-fountain.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -297,8 +295,8 @@
     <EmbeddedResource Include="07Billboard\Form07Billboard.resx">
       <DependentUpon>Form07Billboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="09DummyTextBoxRenderer\Form09DummyTextBoxRenderer.resx">
-      <DependentUpon>Form09DummyTextBoxRenderer.cs</DependentUpon>
+    <EmbeddedResource Include="09UIRenderer\Form09UIRenderer.resx">
+      <DependentUpon>Form09UIRenderer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="10RaycastVolumeRender\Form10RaycastVolumeRenderer.resx">
       <DependentUpon>Form10RaycastVolumeRenderer.cs</DependentUpon>
@@ -335,12 +333,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="07Billboard\Billboard.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="09DummyTextBoxRenderer\TexBox.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="09DummyTextBoxRenderer\TexBox.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="10RaycastVolumeRender\raycasting.frag">

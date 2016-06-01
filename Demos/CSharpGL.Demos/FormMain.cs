@@ -57,9 +57,9 @@ namespace CSharpGL.Demos
             (new Form08AnalyzedBillboard()).Show();
         }
 
-        private void btn09DummyTextBoxRenderer_Click(object sender, EventArgs e)
+        private void btn09UIRenderer_Click(object sender, EventArgs e)
         {
-            (new Form09DummyTextBoxRenderer()).Show();
+            (new Form09UIRenderer()).Show();
         }
 
         private void btn10RaycastVolumeRenderer_Click(object sender, EventArgs e)

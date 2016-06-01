@@ -11,10 +11,9 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form09DummyTextBoxRenderer : Form
+    public partial class Form09UIRenderer : Form
     {
         private FormProperyGrid formPropertyGrid;
-        private DummyUIRenderer uiRenderer;
 
 
         private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
@@ -29,13 +28,13 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
-                var renderer = new DummyTextBoxRenderer(
-                     AnchorStyles.Left | AnchorStyles.Top,
-                        new Padding(100, 26, 26, 26),
-                        new Size(50, 50));
-                renderer.Initialize();
-                renderer.SetText("CSharpGL");
-                this.renderer = renderer;
+                //var renderer = new DummyTextBoxRenderer(
+                //     AnchorStyles.Left | AnchorStyles.Top,
+                //        new Padding(100, 26, 26, 26),
+                //        new Size(50, 50));
+                //renderer.Initialize();
+                //renderer.SetText("CSharpGL");
+                //this.renderer = renderer;
             }
             {
                 // build the axis
@@ -62,20 +61,13 @@ namespace CSharpGL.Demos
                         pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
                     }
                 }
-                var uiRenderer = new DummyUIRenderer(
-                    pickableRenderer,
-                    AnchorStyles.Left | AnchorStyles.Bottom,
-                    new Padding(26, 26, 26, 26),
-                    new Size(50, 50));
-                uiRenderer.Initialize();
-                this.uiRenderer = uiRenderer;
             }
-            {
-                var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this.renderer);
-                frmPropertyGrid.Show();
-                this.formPropertyGrid = frmPropertyGrid;
-            }
+            //{
+            //    var frmPropertyGrid = new FormProperyGrid();
+            //    frmPropertyGrid.DisplayObject(this.renderer);
+            //    frmPropertyGrid.Show();
+            //    this.formPropertyGrid = frmPropertyGrid;
+            //}
         }
     }
 }
