@@ -40,9 +40,9 @@ namespace CSharpGL.Demos
             int[] viewport = OpenGL.GetViewport();
             this.raycastRenderer.SetUniform("ScreenSize", new vec2(viewport[2], viewport[3]));
             this.raycastRenderer.SetUniform("StepSize", g_stepSize);
-            this.raycastRenderer.SetUniform("TransferFunc", new samplerValue(BindTextureTarget.Texture1D, transferFunc1DTexObj[0], OpenGL.GL_TEXTURE1));
-            this.raycastRenderer.SetUniform("ExitPoints", new samplerValue(BindTextureTarget.Texture2D, backface2DTexObj[0], OpenGL.GL_TEXTURE1));
-            this.raycastRenderer.SetUniform("VolumeTex", new samplerValue(BindTextureTarget.Texture3D, vol3DTexObj[0], OpenGL.GL_TEXTURE1));
+            this.raycastRenderer.SetUniform("TransferFunc", new samplerValue(BindTextureTarget.Texture1D, transferFunc1DTexObj[0], OpenGL.GL_TEXTURE0));
+            this.raycastRenderer.SetUniform("ExitPoints", new samplerValue(BindTextureTarget.Texture2D, backface2DTexObj[0], OpenGL.GL_TEXTURE0));
+            this.raycastRenderer.SetUniform("VolumeTex", new samplerValue(BindTextureTarget.Texture3D, vol3DTexObj[0], OpenGL.GL_TEXTURE0));
             var clearColor = new float[4];
             OpenGL.GetFloat(GetTarget.ColorClearValue, clearColor);
             this.raycastRenderer.SetUniform("backgroundColor", clearColor.ToVec4());
@@ -118,6 +118,7 @@ namespace CSharpGL.Demos
                 width, height, depth, 0,
                 OpenGL.GL_LUMINANCE, OpenGL.GL_UNSIGNED_BYTE, data.Header);
             data.Dispose();
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_3D, 0);
         }
 
         private void initFace2DTex(int width, int height)
@@ -129,6 +130,7 @@ namespace CSharpGL.Demos
             OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, (int)OpenGL.GL_NEAREST);
             OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, (int)OpenGL.GL_NEAREST);
             OpenGL.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_RGBA16F, width, height, 0, OpenGL.GL_RGBA, OpenGL.GL_FLOAT, IntPtr.Zero);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
         }
 
         private void initTFF1DTex(string filename)
@@ -147,6 +149,7 @@ namespace CSharpGL.Demos
             OpenGL.TexParameteri(OpenGL.GL_TEXTURE_1D, OpenGL.GL_TEXTURE_MAG_FILTER, (int)OpenGL.GL_NEAREST);
             OpenGL.PixelStorei(OpenGL.GL_UNPACK_ALIGNMENT, 1);
             OpenGL.TexImage1D(OpenGL.GL_TEXTURE_1D, 0, OpenGL.GL_RGBA8, 256, 0, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, tff);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_1D, 0);
         }
 
         private void InitRaycastRenderer()
