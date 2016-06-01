@@ -29,9 +29,9 @@ namespace CSharpGL
             this.Name = "GLAxis";
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"UILayout.GLControls.GLAxis.vert"), ShaderType.VertexShader);
+@"GLControls.GLAxis.GLAxis.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"UILayout.GLControls.GLAxis.frag"), ShaderType.FragmentShader);
+@"GLControls.GLAxis.GLAxis.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("in_Position", "position");
             map.Add("in_Color", "color");

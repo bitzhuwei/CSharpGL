@@ -31,9 +31,9 @@ namespace CSharpGL
             this.Name = "GLRoot";
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"UILayout.GLControls.GLRoot.vert"), ShaderType.VertexShader);
+@"GLControls.GLRoot.GLRoot.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"UILayout.GLControls.GLRoot.frag"), ShaderType.FragmentShader);
+@"GLControls.GLRoot.GLRoot.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("in_Position", "position");
             map.Add("in_Color", "color");
