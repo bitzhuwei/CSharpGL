@@ -11,6 +11,10 @@ It provides maths class for matrix and vectors.
 It provide useful utilities.
 
 release notes:
+v1.0.2.0:
+1. GLControls allows for control-style objects.
+2. A GLAxis and GLText control.
+3. More OpenGL switches and uniforms.
 v1.0.1.0:
 1. Only pickable Renderer check if position buffer's DataSize is 3.
 2. Adjust camera's default settings.
