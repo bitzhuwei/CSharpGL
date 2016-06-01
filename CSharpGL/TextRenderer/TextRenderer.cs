@@ -21,8 +21,8 @@ namespace CSharpGL.Demos
         static TextRenderer()
         {
             staticShaderCodes = new ShaderCode[2];
-            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"TextRednerer\Text.vert"), ShaderType.VertexShader);
-            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"TextRednerer\Text.frag"), ShaderType.FragmentShader);
+            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"TextRenderer\Text.vert"), ShaderType.VertexShader);
+            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"TextRenderer\Text.frag"), ShaderType.FragmentShader);
             map = new PropertyNameMap();
             map.Add("position", "position");
             map.Add("uv", "uv");
