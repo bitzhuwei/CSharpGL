@@ -34,8 +34,12 @@ namespace CSharpGL.Demos
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            //this.depthTest.On();
-
+            int[] viewport = OpenGL.GetViewport();
+            if (this.width != viewport[2] || this.height != viewport[3])
+            {
+                Resize(viewport[2], viewport[3]);
+            }
+          
             // render to texture
             OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, frameBuffer[0]);
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
@@ -77,7 +81,7 @@ namespace CSharpGL.Demos
             OpenGL.DeleteTextures(1, transferFunc1DTexObj);
             OpenGL.DeleteTextures(1, backface2DTexObj);
             OpenGL.DeleteTextures(1, vol3DTexObj);
-            OpenGL.DeleteTextures(1, frameBuffer);
+            OpenGL.DeleteFrameBuffers(1, frameBuffer);
         }
 
 

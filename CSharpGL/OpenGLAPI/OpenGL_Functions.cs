@@ -583,6 +583,20 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// This function deletes a set of Texture objects.
+        /// </summary>
+        /// <param name="n">Number of textures to delete.</param>
+        /// <param name="framebuffers">The array containing the names of the textures to delete.</param>
+        public static void DeleteFrameBuffers(uint n, uint[] framebuffers)
+        {
+            IntPtr ptr = Win32.wglGetCurrentContext();
+            if (ptr != IntPtr.Zero)
+            {
+                OpenGL.GetDelegateFor<OpenGL.glDeleteFramebuffersEXT>()(n, framebuffers);
+            }
+        }
+
+        /// <summary>
         /// This function deletes a set of vertex buffer objects.
         /// </summary>
         /// <param name="n">Number of textures to delete.</param>

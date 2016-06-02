@@ -11,6 +11,7 @@ namespace CSharpGL.Demos
 {
     partial class RaycastVolumeRenderer 
     {
+        int width, height;
 
         protected override void DoInitialize()
         {
@@ -19,12 +20,21 @@ namespace CSharpGL.Demos
             InitRaycastRenderer();
 
             initTFF1DTex(@"10RaycastVolumeRender\tff.dat");
-            int[] viewport = OpenGL.GetViewport();
-            initFace2DTex(viewport[2], viewport[3]);
             initVol3DTex(@"10RaycastVolumeRender\head256.raw", 256, 256, 225);
-            initFrameBuffer(viewport[2], viewport[3]);
 
-            //this.depthTest = new DepthTestSwitch();
+            int[] viewport = OpenGL.GetViewport();
+            Resize(viewport[2], viewport[3]);
+          
+        }
+
+        private void Resize(int width, int height)
+        {
+            OpenGL.DeleteTextures(1, backface2DTexObj);
+            OpenGL.DeleteFrameBuffers(1, frameBuffer);
+
+            this.width = width; this.height = height;
+            initFace2DTex(width, height);
+            initFrameBuffer(width, height);
 
             RaycastingSetupUniforms();
         }
@@ -123,6 +133,7 @@ namespace CSharpGL.Demos
 
         private void initFace2DTex(int width, int height)
         {
+            OpenGL.DeleteTextures(1, backface2DTexObj);
             OpenGL.GenTextures(1, backface2DTexObj);
             OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, backface2DTexObj[0]);
             OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_S, (int)OpenGL.GL_REPEAT);
