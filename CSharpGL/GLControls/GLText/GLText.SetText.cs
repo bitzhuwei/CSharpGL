@@ -54,7 +54,7 @@ namespace CSharpGL.Demos
             {
                 char ch = content[i];
                 CharacterInfo info = fontResource.CharInfoDict[ch];
-                const int shrimp = 2;
+                const int shrimp = 1;
                 array[i] = new GlyphTexCoord(
                     //new vec2(0, 0),
                     //new vec2(0, 1),
