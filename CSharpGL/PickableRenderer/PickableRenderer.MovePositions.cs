@@ -26,23 +26,7 @@ namespace CSharpGL
             if (positionIndexes == null) { return; }
             if (positionIndexes.Count() == 0) { return; }
 
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
-            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
-            unsafe
-            {
-                var array = (vec3*)pointer.ToPointer();
-                foreach (var index in positionIndexes)
-                {
-                    vec3 projected = glm.project(array[index],
-                        viewMatrix, projectionMatrix, viewport);
-                    vec3 newProjected = new vec3(projected.x + differenceOnScreen.X,
-                        projected.y + differenceOnScreen.Y, projected.z);
-                    array[index] = glm.unProject(newProjected,
-                        viewMatrix, projectionMatrix, viewport);
-                }
-            }
-            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            this.innerPickableRenderer.MovePositions(differenceOnScreen, viewMatrix, projectionMatrix, viewport, positionIndexes);
         }
 
         /// <summary>
@@ -59,23 +43,7 @@ namespace CSharpGL
             if (positionIndexes == null) { return; }
             if (positionIndexes.Length == 0) { return; }
 
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
-            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
-            unsafe
-            {
-                var array = (vec3*)pointer.ToPointer();
-                foreach (var index in positionIndexes)
-                {
-                    vec3 projected = glm.project(array[index],
-                        viewMatrix, projectionMatrix, viewport);
-                    vec3 newProjected = new vec3(projected.x + differenceOnScreen.X,
-                        projected.y + differenceOnScreen.Y, projected.z);
-                    array[index] = glm.unProject(newProjected,
-                        viewMatrix, projectionMatrix, viewport);
-                }
-            }
-            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            this.innerPickableRenderer.MovePositions(differenceOnScreen, viewMatrix, projectionMatrix, viewport, positionIndexes);
         }
 
     }

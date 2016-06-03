@@ -17,10 +17,6 @@ namespace CSharpGL
                 this.vertexArrayObject4Picking.Dispose();
                 this.vertexArrayObject4Picking = null;
             }
-            if (this.positionBufferPtr != null)
-            {
-                this.positionBufferPtr = null;// will be disposed in propertyBufferPtrs
-            }
             if (this.pickingShaderProgram != null)
             {
                 this.pickingShaderProgram.Delete();

@@ -35,20 +35,47 @@ namespace CSharpGL
         /// </summary>
         public mat4 MVP
         {
-            get { return uniformmMVP4Picking.Value; }
-            set { uniformmMVP4Picking.Value = value; }
+            get
+            {
+                InnerPickableRenderer renderer = this.innerPickableRenderer;
+                if (renderer != null)
+                { return this.innerPickableRenderer.MVP; }
+                else
+                { return mat4.identity(); }
+            }
+            set
+            {
+                InnerPickableRenderer renderer = this.innerPickableRenderer;
+                if (renderer != null)
+                { this.innerPickableRenderer.MVP = value; }
+            }
         }
 
-        public uint PickingBaseId { get; internal set; }
+        public uint PickingBaseId
+        {
+            get
+            {
+                InnerPickableRenderer renderer = this.innerPickableRenderer;
+                if (renderer != null)
+                { return this.innerPickableRenderer.PickingBaseId; }
+                else
+                { return 0; }
+            }
+            internal set
+            {
+                InnerPickableRenderer renderer = this.innerPickableRenderer;
+                if (renderer != null)
+                { this.innerPickableRenderer.PickingBaseId = value; }
+            }
+        }
 
         public uint GetVertexCount()
         {
-            PropertyBufferPtr positionBufferPtr = this.positionBufferPtr;
-            if (positionBufferPtr == null) { return 0; }
-            int byteLength = positionBufferPtr.ByteLength;
-            int vertexLength = positionBufferPtr.DataSize * positionBufferPtr.DataTypeByteLength;
-            uint vertexCount = (uint)(byteLength / vertexLength);
-            return vertexCount;
+            InnerPickableRenderer renderer = this.innerPickableRenderer;
+            if (renderer != null)
+            { return this.innerPickableRenderer.GetVertexCount(); }
+            else
+            { return 0; }
         }
 
         public PickedGeometry Pick(
@@ -56,7 +83,11 @@ namespace CSharpGL
             uint stageVertexId,
             int x, int y)
         {
-            return this.innerPickableRenderer.Pick(arg, stageVertexId, x, y);
+            InnerPickableRenderer renderer = this.innerPickableRenderer;
+            if (renderer != null)
+            { return this.innerPickableRenderer.Pick(arg, stageVertexId, x, y); }
+            else
+            { return null; }
         }
 
     }

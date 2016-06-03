@@ -15,8 +15,6 @@ namespace CSharpGL
     {
         InnerPickableRenderer innerPickableRenderer;
 
-        internal PropertyBufferPtr positionBufferPtr;
-
         protected List<GLSwitch> switchList4Picking = new List<GLSwitch>();
         [Editor(typeof(GLSwithListEditor), typeof(UITypeEditor))]
         public IReadOnlyList<GLSwitch> SwitchList4Picking
