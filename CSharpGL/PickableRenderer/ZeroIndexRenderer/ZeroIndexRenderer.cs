@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// 用glDrarArrays进行渲染。
     /// </summary>
-    public partial class ZeroIndexRenderer : PickableRenderer
+    public partial class ZeroIndexRenderer : InnerPickableRenderer
     {
 
         /// <summary>

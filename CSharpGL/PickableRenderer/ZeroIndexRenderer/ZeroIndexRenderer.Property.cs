@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class ZeroIndexRenderer : PickableRenderer
+    public partial class ZeroIndexRenderer
     {
 
         /// <summary>

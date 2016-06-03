@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public abstract partial class InnerPickableRenderer
+    public partial class InnerPickableRenderer
     {
 
         /// <summary>

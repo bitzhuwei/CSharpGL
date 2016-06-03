@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public abstract partial class InnerPickableRenderer
+    public partial class InnerPickableRenderer
     {
         protected override void DoInitialize()
         {

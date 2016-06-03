@@ -37,9 +37,10 @@ namespace CSharpGL
             var map = new PropertyNameMap();
             map.Add("in_Position", "position");
             map.Add("in_Color", "color");
-            PickableRenderer renderer = (new Axis()).GetRenderer(shaderCodes, map, "position");
+            // todo: recover this
+            //PickableRenderer renderer = (new Axis()).GetRenderer(shaderCodes, map, "position");
 
-            this.Renderer = renderer;
+            //this.Renderer = renderer;
         }
 
         protected override void DoInitialize()

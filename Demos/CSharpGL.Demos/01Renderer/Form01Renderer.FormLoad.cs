@@ -118,35 +118,36 @@ namespace CSharpGL.Demos
                         bufferable, positionNameInIBufferable);
                     highlightRenderer.Name = string.Format("Highlight: [{0}]", key);
                     highlightRenderer.Initialize();
-                    var pickableRenderer = PickableRendererFactory.GetRenderer(
-                        bufferable, shaders, propertyNameMap, positionNameInIBufferable);
-                    pickableRenderer.Name = string.Format("Pickable: [{0}]", key);
-                    pickableRenderer.Initialize();
-                    var uniformVariables = uniformVariablesList[i];
-                    foreach (var item in uniformVariables)
-                    {
-                        pickableRenderer.SetUniform(item.Item1, item.Item2);
-                    }
+                    // todo: recover this
+                    //var pickableRenderer = PickableRendererFactory.GetRenderer(
+                    //    bufferable, shaders, propertyNameMap, positionNameInIBufferable);
+                    //pickableRenderer.Name = string.Format("Pickable: [{0}]", key);
+                    //pickableRenderer.Initialize();
+                    //var uniformVariables = uniformVariablesList[i];
+                    //foreach (var item in uniformVariables)
+                    //{
+                    //    pickableRenderer.SetUniform(item.Item1, item.Item2);
+                    //}
 
-                    HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
-                        highlightRenderer, pickableRenderer);
-                    renderer.Initialize();
-                    {
-                        GLSwitch lineWidthSwitch = new LineWidthSwitch(5);
-                        pickableRenderer.SwitchList.Add(lineWidthSwitch);
-                        GLSwitch pointSizeSwitch = new PointSizeSwitch(10);
-                        pickableRenderer.SwitchList.Add(pointSizeSwitch);
-                        GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
-                        pickableRenderer.SwitchList.Add(polygonModeSwitch);
-                        if (pickableRenderer is OneIndexRenderer)
-                        {
-                            GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((pickableRenderer as OneIndexRenderer).IndexBufferPtr);
-                            pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
-                        }
-                        //GLSwitch blendSwitch = new BlendSwitch();
-                        //pickableRenderer.SwitchList.Add(blendSwitch);
-                    }
-                    this.rendererDict.Add(key, renderer);
+                    //HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
+                    //    highlightRenderer, pickableRenderer);
+                    //renderer.Initialize();
+                    //{
+                    //    GLSwitch lineWidthSwitch = new LineWidthSwitch(5);
+                    //    pickableRenderer.SwitchList.Add(lineWidthSwitch);
+                    //    GLSwitch pointSizeSwitch = new PointSizeSwitch(10);
+                    //    pickableRenderer.SwitchList.Add(pointSizeSwitch);
+                    //    GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
+                    //    pickableRenderer.SwitchList.Add(polygonModeSwitch);
+                    //    if (pickableRenderer is OneIndexRenderer)
+                    //    {
+                    //        GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((pickableRenderer as OneIndexRenderer).IndexBufferPtr);
+                    //        pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
+                    //    }
+                    //    //GLSwitch blendSwitch = new BlendSwitch();
+                    //    //pickableRenderer.SwitchList.Add(blendSwitch);
+                    //}
+                    //this.rendererDict.Add(key, renderer);
                 }
                 this.SelectedModel = GeometryModel.Tetrahedron;
             }
@@ -188,8 +189,10 @@ namespace CSharpGL.Demos
                     ShaderCode[] shaders = shaderCodesGroup[i];
                     var propertyNameMap = propertyNameMaps[i];
                     string positionNameInIBufferable = positionNameInIBufferables[i];
-                    var pickableRenderer = PickableRendererFactory.GetRenderer(
-                        bufferable, shaders, propertyNameMap, positionNameInIBufferable);
+                    // todo: recover this
+                    //var pickableRenderer = PickableRendererFactory.GetRenderer(
+                    //    bufferable, shaders, propertyNameMap, positionNameInIBufferable);
+                    var pickableRenderer=new Renderer(null,null,null);
                     pickableRenderer.Name = string.Format("Pickable: [{0}]", key);
                     pickableRenderer.Initialize();
                     var uniformVariables = uniformVariablesList[i];

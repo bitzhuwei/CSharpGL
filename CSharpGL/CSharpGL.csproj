@@ -107,6 +107,7 @@
     <Compile Include="PickableRenderer\InnerPickableRenderer.DoRender.cs" />
     <Compile Include="PickableRenderer\InnerPickableRenderer.MovePositions.cs" />
     <Compile Include="PickableRenderer\InnerPickableRenderer.Picking.cs" />
+    <Compile Include="PickableRenderer\InnerPickableRendererFactory.cs" />
     <Compile Include="UITypeEditors\FormGLSwitchEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,8 +152,6 @@
     <Compile Include="PickableRenderer\PickableRenderer.Dispose.cs" />
     <Compile Include="PickableRenderer\PickableRenderer.DoRender.cs" />
     <Compile Include="PickableRenderer\PickableRenderer.Picking.cs" />
-    <Compile Include="PickableRenderer\PickableRenderer.ColorCodedRender.cs" />
-    <Compile Include="PickableRenderer\PickableRendererFactory.cs" />
     <Compile Include="PickableRenderer\ZeroIndexRenderer\PointSearcher\ZeroIndexPointInPolygonSearcher.cs" />
     <Compile Include="PickableRenderer\ZeroIndexRenderer\PointSearcher\ZeroIndexPointInQuadsSearcher.cs" />
     <Compile Include="PickableRenderer\ZeroIndexRenderer\PointSearcher\ZeroIndexPointInQuadStripSearcher.cs" />

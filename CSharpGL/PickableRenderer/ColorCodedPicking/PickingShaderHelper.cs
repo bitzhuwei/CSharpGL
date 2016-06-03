@@ -39,6 +39,14 @@ namespace CSharpGL
         /// </summary>
         static string fragmentShader = null;
 
+        public static ShaderCode[] GetShaderCodes()
+        {
+            var shaderCodes = new ShaderCode[2];
+            shaderCodes[0] = new ShaderCode(GetShaderSource(ShaderType.VertexShader), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(GetShaderSource(ShaderType.FragmentShader), ShaderType.FragmentShader);
+
+            return shaderCodes;
+        }
         /// <summary>
         /// Gets shader's source code for color coded picking.
         /// </summary>
