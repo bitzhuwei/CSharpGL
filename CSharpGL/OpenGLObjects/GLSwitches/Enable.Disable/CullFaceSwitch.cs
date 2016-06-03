@@ -90,6 +90,6 @@ namespace CSharpGL
     {
         Front = OpenGL.GL_FRONT,
         Back = OpenGL.GL_BACK,
-        FrontAndBack=OpenGL.GL_FRONT_AND_BACK ,
+        FrontAndBack = OpenGL.GL_FRONT_AND_BACK,
     }
 }
