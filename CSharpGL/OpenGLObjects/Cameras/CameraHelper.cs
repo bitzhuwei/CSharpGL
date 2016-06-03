@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;namespace CSharpGL{
+using System.Text;
+namespace CSharpGL
+{
     /// <summary>
     /// TODO:摄像机的perspective和ortho视角，是否应该同时变化？
     /// </summary>
@@ -321,7 +323,7 @@ using System.Text;namespace CSharpGL{
             }
         }
 
-        
+
         /// <summary>
         /// 实施传统方式的投影
         /// </summary>
