@@ -44,8 +44,7 @@ namespace CSharpGL.Demos
                 var build_lists = new ShaderCode[2];
                 build_lists[0] = new ShaderCode(File.ReadAllText(@"02OrderIndependentTransparency\build_lists.vert"), ShaderType.VertexShader);
                 build_lists[1] = new ShaderCode(File.ReadAllText(@"02OrderIndependentTransparency\build_lists.frag"), ShaderType.FragmentShader);
-                // todo: recover this
-                //this.buildListsRenderer = PickableRendererFactory.GetRenderer(model, build_lists, map, positionName);
+                this.buildListsRenderer =new PickableRenderer(model, build_lists, map, positionName);
             }
             {
                 var map = new PropertyNameMap();
@@ -53,8 +52,7 @@ namespace CSharpGL.Demos
                 var resolve_lists = new ShaderCode[2];
                 resolve_lists[0] = new ShaderCode(File.ReadAllText(@"02OrderIndependentTransparency\resolve_lists.vert"), ShaderType.VertexShader);
                 resolve_lists[1] = new ShaderCode(File.ReadAllText(@"02OrderIndependentTransparency\resolve_lists.frag"), ShaderType.FragmentShader);
-                // todo: recover this
-                //this.resolve_lists = PickableRendererFactory.GetRenderer(model, resolve_lists, map, positionName);
+                this.resolve_lists = new PickableRenderer(model, resolve_lists, map, positionName);
             }
             {
                 this.depthTestSwitch = new DepthTestSwitch(false);
@@ -66,23 +64,6 @@ namespace CSharpGL.Demos
         {
             this.buildListsRenderer.Initialize();
             this.resolve_lists.Initialize();
-            {
-                GLSwitch lineWidthSwitch = new LineWidthSwitch(5);
-                this.buildListsRenderer.SwitchList.Add(lineWidthSwitch);
-                this.resolve_lists.SwitchList.Add(lineWidthSwitch);
-                GLSwitch pointSizeSwitch = new PointSizeSwitch(10);
-                this.buildListsRenderer.SwitchList.Add(pointSizeSwitch);
-                this.resolve_lists.SwitchList.Add(pointSizeSwitch);
-                GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
-                this.buildListsRenderer.SwitchList.Add(polygonModeSwitch);
-                this.resolve_lists.SwitchList.Add(polygonModeSwitch);
-                // todo: recover this
-                //if (this.resolve_lists is OneIndexRenderer)
-                //{
-                //    GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((this.resolve_lists as OneIndexRenderer).IndexBufferPtr);
-                //    this.resolve_lists.SwitchList.Add(primitiveRestartSwitch);
-                //}
-            }
             // Create head pointer texture
             OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
             OpenGL.GenTextures(1, head_pointer_texture);

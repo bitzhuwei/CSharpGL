@@ -11,7 +11,7 @@ namespace CSharpGL
     /// <summary>
     /// 支持"拾取"的渲染器
     /// </summary>
-    public abstract partial class PickableRenderer : Renderer, IColorCodedPicking
+    public partial class PickableRenderer : Renderer, IColorCodedPicking
     {
 
         InnerPickableRenderer innerPickableRenderer;
@@ -24,7 +24,7 @@ namespace CSharpGL
         /// <param name="propertyNameMap">关联<see cref="PropertyBufferPtr"/>和<see cref="shaderCode"/>中的属性</param>
         /// <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
         ///<param name="switches"></param>
-        internal PickableRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
+        public PickableRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, string positionNameInIBufferable,
             params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)

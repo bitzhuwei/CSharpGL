@@ -35,13 +35,17 @@ namespace CSharpGL
             return string.Format("Restart Index: {0}", RestartIndex);
         }
 
+        static OpenGL.glPrimitiveRestartIndex glPrimitiveRestartIndex;
         protected override void SwitchOn()
         {
             base.SwitchOn();
 
             if (this.enableCapacityWhenSwitchOn)
             {
-                OpenGL.GetDelegateFor<OpenGL.glPrimitiveRestartIndex>()(RestartIndex);
+                if (glPrimitiveRestartIndex == null)
+                { glPrimitiveRestartIndex = OpenGL.GetDelegateFor<OpenGL.glPrimitiveRestartIndex>(); }
+
+                glPrimitiveRestartIndex(RestartIndex);
             }
         }
 

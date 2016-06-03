@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public abstract partial class PickableRenderer
+    public partial class PickableRenderer
     {
 
         /// <summary>

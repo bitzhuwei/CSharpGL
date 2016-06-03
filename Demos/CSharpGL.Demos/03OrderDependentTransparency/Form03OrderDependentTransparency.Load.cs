@@ -35,22 +35,10 @@ namespace CSharpGL.Demos
                 var map = new PropertyNameMap();
                 map.Add("in_Position", "position");
                 map.Add("in_Color", "color");
-                // todo: recover this
-                //var renderer = PickableRendererFactory.GetRenderer(
-                //    bufferable, shaderCodes, map, "position") as OneIndexRenderer;
-                var renderer = new Renderer(null, null, null);
+                var renderer = new PickableRenderer(bufferable, shaderCodes, map, "position");
                 renderer.Name = "Order-Dependent Transparent Renderer";
                 renderer.Initialize();
                 {
-                    GLSwitch lineWidthSwitch = new LineWidthSwitch(5);
-                    renderer.SwitchList.Add(lineWidthSwitch);
-                    GLSwitch pointSizeSwitch = new PointSizeSwitch(10);
-                    renderer.SwitchList.Add(pointSizeSwitch);
-                    GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
-                    renderer.SwitchList.Add(polygonModeSwitch);
-                    // todo: recover this
-                    //GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(renderer.IndexBufferPtr);
-                    //renderer.SwitchList.Add(primitiveRestartSwitch);
                     GLSwitch blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
                     renderer.SwitchList.Add(blendSwitch);
                 }

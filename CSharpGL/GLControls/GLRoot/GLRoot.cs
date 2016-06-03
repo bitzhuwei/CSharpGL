@@ -29,30 +29,14 @@ namespace CSharpGL
             new System.Windows.Forms.Padding(), size, zNear, zFar)
         {
             this.Name = "GLRoot";
-            var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"GLControls.GLRoot.GLRoot.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"GLControls.GLRoot.GLRoot.frag"), ShaderType.FragmentShader);
-            var map = new PropertyNameMap();
-            map.Add("in_Position", "position");
-            map.Add("in_Color", "color");
-            // todo: recover this
-            //PickableRenderer renderer = (new Axis()).GetRenderer(shaderCodes, map, "position");
-
-            //this.Renderer = renderer;
         }
 
         protected override void DoInitialize()
         {
-            base.DoInitialize();
+        }
 
-            var renderer = this.Renderer as OneIndexRenderer;
-            if (renderer != null)
-            {
-                GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(renderer.IndexBufferPtr);
-                renderer.SwitchList.Add(primitiveRestartSwitch);
-            }
+        protected override void DoRender(RenderEventArgs arg)
+        {
         }
 
     }

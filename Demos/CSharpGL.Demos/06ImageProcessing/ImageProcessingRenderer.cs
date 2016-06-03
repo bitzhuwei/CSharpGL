@@ -87,15 +87,14 @@ namespace CSharpGL.Demos
                 var propertyNameMap = new PropertyNameMap();
                 propertyNameMap.Add("vert", "position");
                 propertyNameMap.Add("uv", "uv");
-                // todo: recover this
-                //var pickableRenderer = PickableRendererFactory.GetRenderer(
-                //    bufferable, simpleShader, propertyNameMap, "position");
-                //pickableRenderer.Name = string.Format("Pickable: [ImageProcessingRenderer]");
-                //pickableRenderer.Initialize();
-                //pickableRenderer.SetUniform("output_image",
-                //    new samplerValue(
-                //        BindTextureTarget.Texture2D, this.output_image[0], OpenGL.GL_TEXTURE0));
-                //this.renderer = pickableRenderer;
+                var pickableRenderer = new PickableRenderer(
+                    bufferable, simpleShader, propertyNameMap, "position");
+                pickableRenderer.Name = string.Format("Pickable: [ImageProcessingRenderer]");
+                pickableRenderer.Initialize();
+                pickableRenderer.SetUniform("output_image",
+                    new samplerValue(
+                        BindTextureTarget.Texture2D, this.output_image[0], OpenGL.GL_TEXTURE0));
+                this.renderer = pickableRenderer;
             }
 
         }
