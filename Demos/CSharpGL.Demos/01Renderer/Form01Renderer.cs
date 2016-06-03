@@ -156,7 +156,7 @@ namespace CSharpGL.Demos
 
         private void UIRenderersDraw(RenderEventArgs arg)
         {
-            GLRoot uiRoot = this.uiRoot;
+            GLControl uiRoot = this.uiRoot;
             if (uiRoot != null)
             {
                 uiRoot.Layout();

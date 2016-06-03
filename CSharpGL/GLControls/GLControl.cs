@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// root UI for opengl.
     /// </summary>
-    public class GLRoot : UIRenderer
+    public class GLControl : UIRenderer
     {
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace CSharpGL
         /// <param name="size">opengl canvas' size</param>
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
-        public GLRoot(
+        public GLControl(
             System.Drawing.Size size, int zNear, int zFar)
             : base(null,
             System.Windows.Forms.AnchorStyles.Left |

@@ -50,7 +50,11 @@
     <EmbeddedResource Include="WinformControls\GLCanvas.ico" />
     <EmbeddedResource Include="GlyphTextures\LucidaTypewriterRegular.ttf.png" />
     <EmbeddedResource Include="GlyphTextures\LucidaTypewriterRegular.ttf.xml" />
-    <Content Include="GLControls\GLRoot\readme.txt" />
+    <Content Include="GLControls\readme.txt" />
+    <EmbeddedResource Include="GlyphTextures\ALGER.TTF.png" />
+    <EmbeddedResource Include="GlyphTextures\ALGER.TTF.xml" />
+    <EmbeddedResource Include="GlyphTextures\ariali.ttf.png" />
+    <EmbeddedResource Include="GlyphTextures\ariali.ttf.xml" />
     <Content Include="GlyphTextures\readme.txt" />
     <Content Include="IBufferables\readme.txt" />
     <Content Include="HighlightRenderer\readme.txt" />
@@ -91,9 +95,9 @@
     <Compile Include="GLControls\GLText\TextModel.cs" />
     <Compile Include="GLControls\GLText\GLText.SetText.cs" />
     <Compile Include="GLControls\GLText\GLText.cs" />
-    <Compile Include="GLControls\GLRoot\GLRoot.cs" />
+    <Compile Include="GLControls\GLControl.cs" />
     <Compile Include="GLControls\ILayoutHelper.cs" />
-    <Compile Include="GLControls\GLControlCollection.cs" />
+    <Compile Include="GLControls\ILayoutCollection.cs" />
     <Compile Include="GLControls\GLAxis\GLAxis.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -416,6 +420,8 @@
     <EmbeddedResource Include="IBufferables\TeapotModel.obj" />
     <EmbeddedResource Include="HighlightRenderer\Highlight.vert" />
     <EmbeddedResource Include="HighlightRenderer\Highlight.frag" />
+    <None Include="GlyphTextures\ALGER.TTF" />
+    <None Include="GlyphTextures\ariali.ttf" />
     <None Include="OpenGLObjects\ModernRendering\Renderers.cd" />
     <None Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.cd" />
     <EmbeddedResource Include="WinformControls\GLCanvas.resx">
@@ -442,8 +448,6 @@
     <None Include="OpenGLObjects\VertexBuffers\BufferPtr.cd" />
     <EmbeddedResource Include="GLControls\GLAxis\GLAxis.frag" />
     <EmbeddedResource Include="GLControls\GLAxis\GLAxis.vert" />
-    <EmbeddedResource Include="GLControls\GLRoot\GLRoot.vert" />
-    <EmbeddedResource Include="GLControls\GLRoot\GLRoot.frag" />
     <EmbeddedResource Include="GLControls\GLText\GLText.frag" />
     <EmbeddedResource Include="GLControls\GLText\GLText.vert" />
   </ItemGroup>

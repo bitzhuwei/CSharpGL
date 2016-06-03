@@ -51,7 +51,7 @@ namespace CSharpGL.Demos
         private Point offset = new Point(13, 11);
         private void UIRenderersDraw(RenderEventArgs arg)
         {
-            GLRoot uiRoot = this.uiRoot;
+            GLControl uiRoot = this.uiRoot;
             if (uiRoot != null)
             {
                 uiRoot.Layout();
