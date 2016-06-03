@@ -1,42 +1,76 @@
-<!doctype html>
-<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
-<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on https://github.com/jonrohan -->
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>CSharpGL by bitzhuwei</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">CSharpGL</h1>
+      <h2 class="project-tagline">Objected-Oriented Modern OpenGL in C#</h2>
+      <a href="https://github.com/bitzhuwei/CSharpGL" class="btn">View on GitHub</a>
+      <a href="https://github.com/bitzhuwei/CSharpGL/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/bitzhuwei/CSharpGL/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
-  <link rel="stylesheet" href="stylesheets/github-dark.css">
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="javascripts/script.js"></script>
+    <section class="main-content">
+      <h3>
+<a id="welcome-to-csharpgl-github-pages" class="anchor" href="#welcome-to-csharpgl-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to CSharpGL GitHub Pages.</h3>
 
-  <title>CSharpGL</title>
-  <meta name="description" content="Objected-Oriented OpenGL in C#.">
+<p>CSharpGL is a pure C# project that allows for modern OpenGL rendering using Objected-Oriented way. It supports common requirements in rendering such as:</p>
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+<h2>
+<a id="modern-rendering" class="anchor" href="#modern-rendering" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Modern Rendering</h2>
 
-</head>
+<p>Objected-Oriented modern rendering using GLSL shaders and vertex buffer objects.</p>
 
-<body>
+<h2>
+<a id="uniform" class="anchor" href="#uniform" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Uniform</h2>
 
-  <div class="wrapper">
-    <header>
-      <h1 class="title">CSharpGL</h1>
-    </header>
-    <div id="container">
-      <p class="tagline">Objected-Oriented OpenGL in C#.</p>
-      <div id="main" role="main">
-        <div class="download-bar">
-        <div class="inner">
-          <a href="https://github.com/bitzhuwei/CSharpGL/tarball/master" class="download-button tar"><span>Download</span></a>
-          <a href="https://github.com/bitzhuwei/CSharpGL/zipball/master" class="download-button zip"><span>Download</span></a>
-          <a href="https://github.com/bitzhuwei/CSharpGL" class="code">View CSharpGL on GitHub</a>
-        </div>
-        <span class="blc"></span><span class="trc"></span>
-        </div>
-        <article class="markdown-body">
-          <h3>
+<p>structs support setting values for uniform variables in GLSL shader.</p>
+
+<h2>
+<a id="color-coded-picking" class="anchor" href="#color-coded-picking" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Color-Coded Picking</h2>
+
+<p>PickableRenderer supports picking primitives in multiple vertex buffer objects using Mouse.</p>
+
+<h2>
+<a id="glcanvas" class="anchor" href="#glcanvas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GLCanvas</h2>
+
+<p>A winform control that supports drag-drop and wraps initialization of creating OpenGL context.</p>
+
+<h2>
+<a id="controls" class="anchor" href="#controls" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Controls</h2>
+
+<p>Rendering 'Control' at fixed position with fixed size. For example, an Axis at left bottom corner.
+'Control' binding to specified border just like winform-control.</p>
+
+<h2>
+<a id="text" class="anchor" href="#text" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Text</h2>
+
+<p>Rendering text using glRasterPos() and CallList.
+Rendering text using GLText(a special control)</p>
+
+<h2>
+<a id="some-models" class="anchor" href="#some-models" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Some Models</h2>
+
+<p>A Cube, Sphere, Teapot and some other models.</p>
+
+<h2>
+<a id="glswitch" class="anchor" href="#glswitch" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GLSwitch</h2>
+
+<p>Wraps OpenGL commands like </p>
+
+<pre><code>glEnable(GL_BLEND);
+glBlendFunc(GL_SOURCE_ALPHA, GL_ONE_MINUS_DST_ALPHA);
+</code></pre>
+
+<h3>
 <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
 
 <p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
@@ -60,26 +94,15 @@
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
 
 <p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
-        </article>
-      </div>
-    </div>
-    <footer>
-      <div class="owner">
-      <p><a href="https://github.com/bitzhuwei" class="avatar"><img src="https://avatars1.githubusercontent.com/u/5483320?v=3&amp;s=60" width="48" height="48"></a> <a href="https://github.com/bitzhuwei">bitzhuwei</a> maintains <a href="https://github.com/bitzhuwei/CSharpGL">CSharpGL</a></p>
 
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/bitzhuwei/CSharpGL">CSharpGL</a> is maintained by <a href="https://github.com/bitzhuwei">bitzhuwei</a>.</span>
 
-      </div>
-      <div class="creds">
-        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
-      </div>
-    </footer>
-  </div>
-  <div class="current-section">
-    <a href="#top">Scroll to top</a>
-    <a href="https://github.com/bitzhuwei/CSharpGL/tarball/master" class="tar">tar</a><a href="https://github.com/bitzhuwei/CSharpGL/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
-    <p class="name"></p>
-  </div>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
 
   
-</body>
+  </body>
 </html>
