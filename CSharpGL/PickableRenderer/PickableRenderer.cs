@@ -13,6 +13,7 @@ namespace CSharpGL
     /// </summary>
     public abstract partial class PickableRenderer : Renderer, IColorCodedPicking
     {
+
         InnerPickableRenderer innerPickableRenderer;
 
         /// <summary>
