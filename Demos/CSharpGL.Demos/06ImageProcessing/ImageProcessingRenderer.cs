@@ -87,7 +87,7 @@ namespace CSharpGL.Demos
                 var propertyNameMap = new PropertyNameMap();
                 propertyNameMap.Add("vert", "position");
                 propertyNameMap.Add("uv", "uv");
-                var pickableRenderer = PickableRendererFactory.GetRenderer(
+                var pickableRenderer = new PickableRenderer(
                     bufferable, simpleShader, propertyNameMap, "position");
                 pickableRenderer.Name = string.Format("Pickable: [ImageProcessingRenderer]");
                 pickableRenderer.Initialize();

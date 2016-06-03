@@ -118,7 +118,7 @@ namespace CSharpGL.Demos
                         bufferable, positionNameInIBufferable);
                     highlightRenderer.Name = string.Format("Highlight: [{0}]", key);
                     highlightRenderer.Initialize();
-                    var pickableRenderer = PickableRendererFactory.GetRenderer(
+                    var pickableRenderer = new PickableRenderer(
                         bufferable, shaders, propertyNameMap, positionNameInIBufferable);
                     pickableRenderer.Name = string.Format("Pickable: [{0}]", key);
                     pickableRenderer.Initialize();
@@ -138,11 +138,6 @@ namespace CSharpGL.Demos
                         pickableRenderer.SwitchList.Add(pointSizeSwitch);
                         GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
                         pickableRenderer.SwitchList.Add(polygonModeSwitch);
-                        if (pickableRenderer is OneIndexRenderer)
-                        {
-                            GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((pickableRenderer as OneIndexRenderer).IndexBufferPtr);
-                            pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
-                        }
                         //GLSwitch blendSwitch = new BlendSwitch();
                         //pickableRenderer.SwitchList.Add(blendSwitch);
                     }
@@ -188,7 +183,7 @@ namespace CSharpGL.Demos
                     ShaderCode[] shaders = shaderCodesGroup[i];
                     var propertyNameMap = propertyNameMaps[i];
                     string positionNameInIBufferable = positionNameInIBufferables[i];
-                    var pickableRenderer = PickableRendererFactory.GetRenderer(
+                    var pickableRenderer =new PickableRenderer(
                         bufferable, shaders, propertyNameMap, positionNameInIBufferable);
                     pickableRenderer.Name = string.Format("Pickable: [{0}]", key);
                     pickableRenderer.Initialize();
@@ -196,19 +191,6 @@ namespace CSharpGL.Demos
                     foreach (var item in uniformVariables)
                     {
                         pickableRenderer.SetUniform(item.Item1, item.Item2);
-                    }
-                    {
-                        GLSwitch lineWidthSwitch = new LineWidthSwitch(5);
-                        pickableRenderer.SwitchList.Add(lineWidthSwitch);
-                        GLSwitch pointSizeSwitch = new PointSizeSwitch(10);
-                        pickableRenderer.SwitchList.Add(pointSizeSwitch);
-                        GLSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
-                        pickableRenderer.SwitchList.Add(polygonModeSwitch);
-                        if (pickableRenderer is OneIndexRenderer)
-                        {
-                            GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch((pickableRenderer as OneIndexRenderer).IndexBufferPtr);
-                            pickableRenderer.SwitchList.Add(primitiveRestartSwitch);
-                        }
                     }
                 }
             }

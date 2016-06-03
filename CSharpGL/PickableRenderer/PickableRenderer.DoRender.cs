@@ -14,7 +14,7 @@ namespace CSharpGL
         {
             if (arg.RenderMode == RenderModes.ColorCodedPicking)
             {
-                ColorCodedRender(arg);
+                this.innerPickableRenderer.Render(arg);
             }
             else if (arg.RenderMode == RenderModes.Render)
             {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class OneIndexRenderer : PickableRenderer
+    public partial class OneIndexRenderer
     {
 
         // TODO: 将来优化时以此作为分段操作的界限。

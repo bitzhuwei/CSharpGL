@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class ZeroIndexRenderer : PickableRenderer
+    public partial class ZeroIndexRenderer
     {
 
         public override PickedGeometry Pick(RenderEventArgs arg, uint stageVertexId,

@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// 用glDrawElements进行渲染。
     /// </summary>
-    public partial class OneIndexRenderer : PickableRenderer
+    public partial class OneIndexRenderer : InnerPickableRenderer
     {
 
         PrimitiveRestartSwitch primitiveRestartSwitch4Picking;
@@ -37,7 +37,7 @@ namespace CSharpGL
             // init index buffer 
             var primitiveRestartSwitch4Picking = new PrimitiveRestartSwitch(this.indexBufferPtr as OneIndexBufferPtr);
             this.primitiveRestartSwitch4Picking = primitiveRestartSwitch4Picking;
-            this.switchList4Picking.Add(primitiveRestartSwitch4Picking);
+            this.switchList.Add(primitiveRestartSwitch4Picking);
         }
 
 
