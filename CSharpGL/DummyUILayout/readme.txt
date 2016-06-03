@@ -1,2 +1,0 @@
-﻿用IUILayout接口和IUILayoutHelper实现UI布局。
-DummyUILayout文件夹下的内容已废弃，新的GLControls已经取代了它的功能，且更好用。
