@@ -15,13 +15,6 @@ namespace CSharpGL
     {
         InnerPickableRenderer innerPickableRenderer;
 
-        protected List<GLSwitch> switchList4Picking = new List<GLSwitch>();
-        [Editor(typeof(GLSwithListEditor), typeof(UITypeEditor))]
-        public IReadOnlyList<GLSwitch> SwitchList4Picking
-        {
-            get { return switchList4Picking; }
-        }
-
         /// <summary>
         /// 支持"拾取"的渲染器
         /// </summary>
@@ -37,6 +30,7 @@ namespace CSharpGL
         {
             var innerPickableRenderer = InnerPickableRendererFactory.GetRenderer(
                 bufferable, propertyNameMap, positionNameInIBufferable);
+            this.innerPickableRenderer = innerPickableRenderer;
         }
 
     }
