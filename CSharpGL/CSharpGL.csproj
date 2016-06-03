@@ -101,6 +101,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GLControls\UIRenderer.cs" />
+    <Compile Include="PickableRenderer\InnerPickableRenderer.cs" />
+    <Compile Include="PickableRenderer\InnerPickableRenderer.ColorCodedRender.cs" />
+    <Compile Include="PickableRenderer\InnerPickableRenderer.DoInitialize.cs" />
+    <Compile Include="PickableRenderer\InnerPickableRenderer.DoRender.cs" />
+    <Compile Include="PickableRenderer\InnerPickableRenderer.MovePositions.cs" />
+    <Compile Include="PickableRenderer\InnerPickableRenderer.Picking.cs" />
     <Compile Include="UITypeEditors\FormGLSwitchEditor.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -46,12 +46,11 @@ namespace CSharpGL
         {
             base.DoInitialize();
 
+            var renderer = this.Renderer as OneIndexRenderer;
+            if (renderer != null)
             {
-                if (this.Renderer is OneIndexRenderer)
-                {
-                    GLSwitch glSwitch = new PrimitiveRestartSwitch((this.Renderer as OneIndexRenderer).IndexBufferPtr);
-                    this.Renderer.SwitchList.Add(glSwitch);
-                }
+                GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(renderer.IndexBufferPtr);
+                renderer.SwitchList.Add(primitiveRestartSwitch);
             }
         }
 

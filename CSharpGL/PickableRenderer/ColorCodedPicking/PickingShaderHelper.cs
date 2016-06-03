@@ -21,10 +21,12 @@ namespace CSharpGL
             shaderCodes[0] = new ShaderCode(GetShaderSource(ShaderType.VertexShader), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(GetShaderSource(ShaderType.FragmentShader), ShaderType.FragmentShader);
 
-            var shaderProgram = new ShaderProgram();
-            shaderProgram.Create((from item in shaderCodes select item.CreateShader()).ToArray());
+            ShaderProgram program = new ShaderProgram();
+            var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
+            program.Create(shaders);
+            foreach (var item in shaders) { item.Delete(); }
 
-            return shaderProgram;
+            return program;
         }
 
         /// <summary>
