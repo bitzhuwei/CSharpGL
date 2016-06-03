@@ -16,6 +16,7 @@ namespace CSharpGL.Demos
     {
 
         private TextModel model;
+        private BlendSwitch blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
 
         public GLText(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
@@ -55,7 +56,11 @@ namespace CSharpGL.Demos
             //this.GetMatrix(out projection, out view, out model);
             //this.SetUniformValue("mvp", projection * view * model);
 
+            blendSwitch.On();
+
             base.DoRender(arg);
+
+            blendSwitch.Off();
         }
 
     }

@@ -157,7 +157,7 @@
     <Compile Include="09UIRenderer\Form09UIRenderer.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="09UIRenderer\09UIRenderer.MouseDownMoveUp.cs">
+    <Compile Include="09UIRenderer\Form09UIRenderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="10RaycastVolumeRender\RaycastVolumeRenderer.Initialize.cs" />
