@@ -32,6 +32,12 @@ namespace CSharpGL
             this.propertyBufferPtrs = propertyBufferPtrs;
             this.indexBufferPtr = this.bufferable.GetIndex();
 
+            var ptr = this.indexBufferPtr as OneIndexBufferPtr;
+            if (ptr != null)
+            {
+                var glSwitch = new PrimitiveRestartSwitch(ptr);
+                this.switchList.Add(glSwitch);
+            }
         }
 
     }
