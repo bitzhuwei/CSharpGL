@@ -20,7 +20,7 @@ namespace CSharpGL.Demos
 
         public GLText(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
-            System.Drawing.Size size, int zNear, int zFar,int maxCharCount = 100)
+            System.Drawing.Size size, int zNear, int zFar, int maxCharCount = 100)
             : base(null, anchor, margin, size, zNear, zFar)
         {
             this.Name = "GLAxis";
@@ -30,9 +30,9 @@ namespace CSharpGL.Demos
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"GLControls.GLText.GLText.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
-           map.Add("position", "position");
+            map.Add("position", "position");
             map.Add("uv", "uv");
-            var model=new TextModel(maxCharCount);
+            var model = new TextModel(maxCharCount);
             Renderer renderer = new Renderer(model, shaderCodes, map);
 
             this.model = model;
@@ -44,10 +44,7 @@ namespace CSharpGL.Demos
             base.DoInitialize();
 
             this.Renderer.SetUniform("fontTexture",
-                new samplerValue(
-                    BindTextureTarget.Texture2D,
-                    FontResource.Default.FontTextureId,
-                    OpenGL.GL_TEXTURE0));
+                FontResource.Default.GetSamplerValue());
         }
 
         protected override void DoRender(RenderEventArgs arg)
