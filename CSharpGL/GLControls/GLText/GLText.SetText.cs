@@ -104,18 +104,18 @@ namespace CSharpGL.Demos
                 GlyphPosition position = array[i];
 
                 const int factor = 1;
-                position.leftUp.x -= currentWidth / 2;
+                position.leftUp.x -= currentWidth / 2.0f;
                 //position.leftUp.x /= currentWidth / factor;
-                position.leftDown.x -= currentWidth / 2;
+                position.leftDown.x -= currentWidth / 2.0f;
                 //position.leftDown.x /= currentWidth / factor;
-                position.rightUp.x -= currentWidth / 2;
+                position.rightUp.x -= currentWidth / 2.0f;
                 //position.rightUp.x /= currentWidth / factor;
-                position.rightDown.x -= currentWidth / 2;
+                position.rightDown.x -= currentWidth / 2.0f;
                 //position.rightDown.x /= currentWidth / factor;
-                position.leftUp.y -= (currentHeight + fontResource.FontHeight) / 2;
-                position.leftDown.y -= (currentHeight + fontResource.FontHeight) / 2;
-                position.rightUp.y -= (currentHeight + fontResource.FontHeight) / 2;
-                position.rightDown.y -= (currentHeight + fontResource.FontHeight) / 2;
+                position.leftUp.y -= (currentHeight + fontResource.FontHeight) / 2.0f;
+                position.leftDown.y -= (currentHeight + fontResource.FontHeight) / 2.0f;
+                position.rightUp.y -= (currentHeight + fontResource.FontHeight) / 2.0f;
+                position.rightDown.y -= (currentHeight + fontResource.FontHeight) / 2.0f;
 
                 position.leftUp.x /= (currentHeight + fontResource.FontHeight);
                 position.leftDown.x /= (currentHeight + fontResource.FontHeight);
