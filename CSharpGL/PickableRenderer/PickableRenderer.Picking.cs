@@ -10,25 +10,6 @@ namespace CSharpGL
 {
     public partial class PickableRenderer : IColorCodedPicking
     {
-        // Color Coded Picking
-        protected VertexArrayObject vertexArrayObject4Picking;
-
-        /// <summary>
-        /// uniform mat4 VMP; (in shader)
-        /// </summary>
-        protected UniformMat4 uniformmMVP4Picking = new UniformMat4("MVP");
-
-        protected ShaderProgram pickingShaderProgram;
-        protected ShaderProgram PickingShaderProgram
-        {
-            get
-            {
-                if (pickingShaderProgram == null)
-                { pickingShaderProgram = PickingShaderHelper.GetPickingShaderProgram(); }
-
-                return pickingShaderProgram;
-            }
-        }
 
         /// <summary>
         /// uniform mat4 VMP; (in shader)

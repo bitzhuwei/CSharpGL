@@ -12,16 +12,8 @@ namespace CSharpGL
         protected override void DisposeUnmanagedResources()
         {
             // dispose picking resources
-            if (this.vertexArrayObject4Picking != null)
-            {
-                this.vertexArrayObject4Picking.Dispose();
-                this.vertexArrayObject4Picking = null;
-            }
-            if (this.pickingShaderProgram != null)
-            {
-                this.pickingShaderProgram.Delete();
-                this.pickingShaderProgram = null;
-            }
+            InnerPickableRenderer renderer = this.innerPickableRenderer;
+            renderer.Dispose();
 
             base.DisposeUnmanagedResources();
         }
