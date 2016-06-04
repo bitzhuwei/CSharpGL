@@ -12,7 +12,7 @@ namespace CSharpGL
     public sealed partial class FontResource
     {
 
-        public FontResource Load(string ttfFilename)
+        public static FontResource Load(string ttfFilename)
         {
             Bitmap bitmap;
             XElement config;
@@ -22,7 +22,7 @@ namespace CSharpGL
             return result;
         }
 
-        private void Load(string ttfFilename, out Bitmap bitmap, out XElement config)
+        private static void Load(string ttfFilename, out Bitmap bitmap, out XElement config)
         {
             throw new NotImplementedException();
         }
