@@ -30,7 +30,9 @@ namespace CSharpGL.Demos
 
                 string ttfFilename = this.openFileDialog1.FileName;
                 var fileInfo = new FileInfo(ttfFilename);
-                FontResource.Load(ttfFilename, ' ', (char)126);
+                //var fontResource = FontResource.Load(ttfFilename, ' ', (char)126);
+                //fontResource.CharInfoDict.ToXElement().Save(
+                //    Path.Combine(fileInfo.DirectoryName, string.Format("{0}.xml", fileInfo.Name)));
                 using (FileStream file = File.OpenRead(ttfFilename))
                 {
                     var typeface = new FontFace(file);
