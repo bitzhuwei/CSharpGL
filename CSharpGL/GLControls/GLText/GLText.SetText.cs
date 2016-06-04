@@ -12,11 +12,14 @@ namespace CSharpGL.Demos
     public partial class GLText
     {
 
+        private string content = string.Empty;
+
         public unsafe void SetText(string content)
         {
             if (string.IsNullOrEmpty(content))
             {
                 this.model.indexBufferPtr.VertexCount = 0;
+                this.content = string.Empty;
                 return;
             }
 
@@ -38,7 +41,6 @@ namespace CSharpGL.Demos
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.model.uvBufferPtr.BufferId);
             IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.WriteOnly);
             var array = (GlyphTexCoord*)pointer.ToPointer();
-            int currentWidth = 0; int currentHeight = 0;
             int width = fontResource.TextureSize.Width;
             int height = fontResource.TextureSize.Height;
             /*
@@ -54,18 +56,17 @@ namespace CSharpGL.Demos
             {
                 char ch = content[i];
                 CharacterInfo info = fontResource.CharInfoDict[ch];
-                const int shrimp = 1;
+                const int shrimp = 0;
                 array[i] = new GlyphTexCoord(
                     //new vec2(0, 0),
                     //new vec2(0, 1),
                     //new vec2(1, 1),
                     //new vec2(1, 0)
-                    new vec2((float)(info.xoffset + shrimp) / (float)width, (float)(currentHeight) / (float)height),
-                    new vec2((float)(info.xoffset + shrimp) / (float)width, (float)(currentHeight + fontResource.FontHeight) / (float)height),
-                    new vec2((float)(info.xoffset - shrimp + info.width) / (float)width, (float)(currentHeight + fontResource.FontHeight) / (float)height),
-                    new vec2((float)(info.xoffset - shrimp + info.width) / (float)width, (float)(currentHeight) / (float)height)
+                    new vec2((float)(info.xoffset + shrimp) / (float)width, (float)(info.yoffset) / (float)height),
+                    new vec2((float)(info.xoffset + shrimp) / (float)width, (float)(info.yoffset + fontResource.FontHeight - 1) / (float)height),
+                    new vec2((float)(info.xoffset - shrimp + info.width) / (float)width, (float)(info.yoffset + fontResource.FontHeight - 1) / (float)height),
+                    new vec2((float)(info.xoffset - shrimp + info.width) / (float)width, (float)(info.yoffset) / (float)height)
                     );
-                currentWidth += info.width + 10;
             }
             OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);

@@ -23,7 +23,7 @@ namespace CSharpGL.Demos
             System.Drawing.Size size, int zNear, int zFar, int maxCharCount = 100)
             : base(null, anchor, margin, size, zNear, zFar)
         {
-            this.Name = "GLAxis";
+            this.Name = "GLText";
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"GLControls.GLText.GLText.vert"), ShaderType.VertexShader);
