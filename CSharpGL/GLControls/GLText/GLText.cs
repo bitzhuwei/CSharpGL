@@ -18,6 +18,11 @@ namespace CSharpGL.Demos
         private TextModel model;
         private BlendSwitch blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
 
+        public BlendSwitch BlendSwitch
+        {
+            get { return blendSwitch; }
+        }
+
         public GLText(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar, int maxCharCount = 100)
