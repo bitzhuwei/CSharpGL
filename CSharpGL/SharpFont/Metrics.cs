@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using System.Runtime.InteropServices;
 
 namespace SharpFont
 {
@@ -121,7 +122,7 @@ namespace SharpFont
     /// <summary>
     /// Represents an image surface in memory.
     /// </summary>
-    public struct Surface
+    public struct Surface : IDisposable
     {
         /// <summary>
         /// A pointer to the image data.
@@ -142,6 +143,11 @@ namespace SharpFont
         /// The width of a row of pixels, in bytes.
         /// </summary>
         public int Pitch { get; set; }
+
+        public void Dispose()
+        {
+            Marshal.FreeHGlobal(this.Bits);
+        }
     }
 
     /// <summary>
