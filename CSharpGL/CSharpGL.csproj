@@ -247,9 +247,6 @@
     <Compile Include="SharpFont\System.Numerics\Register.cs" />
     <Compile Include="SharpFont\System.Numerics\Vector.cs" />
     <Compile Include="SharpFont\System.Numerics\Vector2.cs" />
-    <Compile Include="SharpFont\TextAnalyzer.cs" />
-    <Compile Include="SharpFont\TextFormat.cs" />
-    <Compile Include="SharpFont\TextLayout.cs" />
     <Compile Include="TypeConverters\Mat2TypeConverter.cs" />
     <Compile Include="TypeConverters\Mat3TypeConverter.cs" />
     <Compile Include="TypeConverters\Mat4TypeConverter.cs" />

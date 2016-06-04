@@ -40,7 +40,7 @@ namespace SharpFont
             Execute(new InstructionStream(instructions), false, true);
         }
 
-        public void SetControlValueTable(FUnit[] cvt, float scale, float ppem, byte[] cvProgram)
+        public void SetControlValueTable(FUnit[] cvt, float scale, int ppem, byte[] cvProgram)
         {
             if (this.scale == scale || cvt == null)
                 return;
@@ -51,7 +51,7 @@ namespace SharpFont
                 controlValueTable[i] = cvt[i] * scale;
 
             this.scale = scale;
-            this.ppem = (int)Math.Round(ppem);
+            this.ppem = ppem;// (int)Math.Round(ppem);
             zp0 = zp1 = zp2 = points;
             state.Reset();
             stack.Clear();

@@ -250,7 +250,7 @@ namespace SharpFont
         /// </summary>
         /// <param name="pixelSize">The size of the font, in pixels.</param>
         /// <returns>The font's face metrics.</returns>
-        public FaceMetrics GetFaceMetrics(float pixelSize)
+        public FaceMetrics GetFaceMetrics(int pixelSize)
         {
             var scale = ComputeScale(pixelSize);
             return new FaceMetrics(
@@ -272,7 +272,7 @@ namespace SharpFont
         /// <param name="codePoint">The Unicode codepoint for which to retrieve glyph data.</param>
         /// <param name="pixelSize">The desired size of the font, in pixels.</param>
         /// <returns>The glyph data if the font supports the given character; otherwise, <c>null</c>.</returns>
-        public Glyph GetGlyph(CodePoint codePoint, float pixelSize)
+        public Glyph GetGlyph(CodePoint codePoint, int pixelSize)
         {
             var glyphIndex = charMap.Lookup(codePoint);
             if (glyphIndex < 0)
@@ -337,7 +337,7 @@ namespace SharpFont
         /// <param name="right">The right character.</param>
         /// <param name="pixelSize">The size of the font, in pixels.</param>
         /// <returns>The amount of kerning to apply, if any.</returns>
-        public float GetKerning(CodePoint left, CodePoint right, float pixelSize)
+        public float GetKerning(CodePoint left, CodePoint right, int pixelSize)
         {
             if (kernTable == null)
                 return 0.0f;
@@ -360,11 +360,11 @@ namespace SharpFont
             return FullName;
         }
 
-        float ComputeScale(float pixelSize)
+        float ComputeScale(int pixelSize)
         {
-            if (integerPpems)
-                pixelSize = (float)Math.Round(pixelSize);
-            return pixelSize / unitsPerEm;
+            //if (integerPpems)
+                //pixelSize = (float)Math.Round(pixelSize);
+            return (float)pixelSize / (float)unitsPerEm;
         }
     }
 
