@@ -242,7 +242,6 @@
     <Compile Include="SharpFont\System.Numerics\HashCodeHelper.cs" />
     <Compile Include="SharpFont\System.Numerics\Matrix3x2.cs" />
     <Compile Include="SharpFont\System.Numerics\Register.cs" />
-    <Compile Include="SharpFont\System.Numerics\Vector.cs" />
     <Compile Include="SharpFont\System.Numerics\Vector2.cs" />
     <Compile Include="TypeConverters\Mat2TypeConverter.cs" />
     <Compile Include="TypeConverters\Mat3TypeConverter.cs" />

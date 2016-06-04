@@ -116,11 +116,11 @@ namespace System.Numerics
         [MethodImpl(256)]
         public static float DistanceSquared(Vector2 value1, Vector2 value2)
         {
-            if (Vector.IsHardwareAccelerated)
-            {
-                Vector2 expr_0E = value1 - value2;
-                return Vector2.Dot(expr_0E, expr_0E);
-            }
+            //if (Vector.IsHardwareAccelerated)
+            //{
+            //    Vector2 expr_0E = value1 - value2;
+            //    return Vector2.Dot(expr_0E, expr_0E);
+            //}
             float arg_30_0 = value1.X - value2.X;
             float num = value1.Y - value2.Y;
             float arg_35_0 = arg_30_0 * arg_30_0;
@@ -131,11 +131,11 @@ namespace System.Numerics
         [MethodImpl(256)]
         public static Vector2 Normalize(Vector2 value)
         {
-            if (Vector.IsHardwareAccelerated)
-            {
-                float value2 = value.Length();
-                return value / value2;
-            }
+            //if (Vector.IsHardwareAccelerated)
+            //{
+            //    float value2 = value.Length();
+            //    return value / value2;
+            //}
             float num = value.X * value.X + value.Y * value.Y;
             float num2 = 1f / (float)Math.Sqrt((double)num);
             return new Vector2(value.X * num2, value.Y * num2);
@@ -144,11 +144,11 @@ namespace System.Numerics
         [MethodImpl(256)]
         public static Vector2 Reflect(Vector2 vector, Vector2 normal)
         {
-            if (Vector.IsHardwareAccelerated)
-            {
-                float num = Vector2.Dot(vector, normal);
-                return vector - 2f * num * normal;
-            }
+            //if (Vector.IsHardwareAccelerated)
+            //{
+            //    float num = Vector2.Dot(vector, normal);
+            //    return vector - 2f * num * normal;
+            //}
             float num2 = vector.X * normal.X + vector.Y * normal.Y;
             return new Vector2(vector.X - 2f * num2 * normal.X, vector.Y - 2f * num2 * normal.Y);
         }
