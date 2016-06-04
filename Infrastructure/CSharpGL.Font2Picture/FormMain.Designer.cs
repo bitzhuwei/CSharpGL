@@ -60,14 +60,14 @@
             this.gbFirstUnicode.SuspendLayout();
             this.gbLastUnicode.SuspendLayout();
             this.SuspendLayout();
-            //
+            // 
             // openTTFFileDlg
-            //
+            // 
             this.openTTFFileDlg.Filter = "(字体文件 *.ttf;*.ttc)|*.ttf;*.ttc|(字体文件 *.*)|*.*";
             this.openTTFFileDlg.Multiselect = true;
-            //
+            // 
             // btnBrowseTTFFile
-            //
+            // 
             this.btnBrowseTTFFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBrowseTTFFile.Location = new System.Drawing.Point(1019, 12);
             this.btnBrowseTTFFile.Margin = new System.Windows.Forms.Padding(4);
@@ -77,10 +77,10 @@
             this.btnBrowseTTFFile.Text = "Browse...";
             this.btnBrowseTTFFile.UseVisualStyleBackColor = true;
             this.btnBrowseTTFFile.Click += new System.EventHandler(this.btnBrowseTTFFile_Click);
-            //
+            // 
             // txtTTFFullname
-            //
-            this.txtTTFFullname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.txtTTFFullname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTTFFullname.Location = new System.Drawing.Point(110, 15);
             this.txtTTFFullname.Margin = new System.Windows.Forms.Padding(4);
@@ -88,9 +88,9 @@
             this.txtTTFFullname.ReadOnly = true;
             this.txtTTFFullname.Size = new System.Drawing.Size(900, 25);
             this.txtTTFFullname.TabIndex = 1;
-            //
+            // 
             // label1
-            //
+            // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(16, 21);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -98,9 +98,9 @@
             this.label1.Size = new System.Drawing.Size(79, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "TTF file:";
-            //
+            // 
             // btnStart
-            //
+            // 
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.Location = new System.Drawing.Point(1019, 124);
             this.btnStart.Margin = new System.Windows.Forms.Padding(4);
@@ -110,9 +110,9 @@
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            //
+            // 
             // label3
-            //
+            // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(16, 54);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -120,9 +120,9 @@
             this.label3.Size = new System.Drawing.Size(63, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "height:";
-            //
+            // 
             // numFontHeight
-            //
+            // 
             this.numFontHeight.Location = new System.Drawing.Point(110, 48);
             this.numFontHeight.Maximum = new decimal(new int[] {
             10000,
@@ -138,23 +138,23 @@
             this.numFontHeight.Size = new System.Drawing.Size(94, 25);
             this.numFontHeight.TabIndex = 3;
             this.numFontHeight.Value = new decimal(new int[] {
-            30,
+            32,
             0,
             0,
             0});
-            //
+            // 
             // txtFirstChar
-            //
+            // 
             this.txtFirstChar.Location = new System.Drawing.Point(137, 25);
             this.txtFirstChar.Margin = new System.Windows.Forms.Padding(4);
             this.txtFirstChar.Name = "txtFirstChar";
             this.txtFirstChar.Size = new System.Drawing.Size(57, 25);
             this.txtFirstChar.TabIndex = 4;
-            this.txtFirstChar.Text = "!";
+            this.txtFirstChar.Text = " ";
             this.txtFirstChar.TextChanged += new System.EventHandler(this.txtFirstChar_TextChanged);
-            //
+            // 
             // txtLastChar
-            //
+            // 
             this.txtLastChar.Location = new System.Drawing.Point(129, 25);
             this.txtLastChar.Margin = new System.Windows.Forms.Padding(4);
             this.txtLastChar.Name = "txtLastChar";
@@ -162,9 +162,9 @@
             this.txtLastChar.TabIndex = 4;
             this.txtLastChar.Text = "龟";
             this.txtLastChar.TextChanged += new System.EventHandler(this.txtLastChar_TextChanged);
-            //
+            // 
             // numMaxTexturWidth
-            //
+            // 
             this.numMaxTexturWidth.Location = new System.Drawing.Point(110, 79);
             this.numMaxTexturWidth.Maximum = new decimal(new int[] {
             1000000,
@@ -184,9 +184,9 @@
             0,
             0,
             0});
-            //
+            // 
             // label6
-            //
+            // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(16, 81);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -194,20 +194,20 @@
             this.label6.Size = new System.Drawing.Size(87, 15);
             this.label6.TabIndex = 2;
             this.label6.Text = "max width:";
-            //
+            // 
             // txtFirstIndex
-            //
+            // 
             this.txtFirstIndex.Location = new System.Drawing.Point(137, 58);
             this.txtFirstIndex.Margin = new System.Windows.Forms.Padding(4);
             this.txtFirstIndex.Name = "txtFirstIndex";
             this.txtFirstIndex.ReadOnly = true;
             this.txtFirstIndex.Size = new System.Drawing.Size(57, 25);
             this.txtFirstIndex.TabIndex = 4;
-            this.txtFirstIndex.Text = "33";
+            this.txtFirstIndex.Text = "32";
             this.txtFirstIndex.TextChanged += new System.EventHandler(this.txtFirstIndex_TextChanged);
-            //
+            // 
             // txtLastIndex
-            //
+            // 
             this.txtLastIndex.Location = new System.Drawing.Point(129, 58);
             this.txtLastIndex.Margin = new System.Windows.Forms.Padding(4);
             this.txtLastIndex.Name = "txtLastIndex";
@@ -216,9 +216,9 @@
             this.txtLastIndex.TabIndex = 4;
             this.txtLastIndex.Text = "126";
             this.txtLastIndex.TextChanged += new System.EventHandler(this.txtLastIndex_TextChanged);
-            //
+            // 
             // rdoFirstChar
-            //
+            // 
             this.rdoFirstChar.AutoSize = true;
             this.rdoFirstChar.Checked = true;
             this.rdoFirstChar.Location = new System.Drawing.Point(6, 29);
@@ -229,9 +229,9 @@
             this.rdoFirstChar.Text = "first char:";
             this.rdoFirstChar.UseVisualStyleBackColor = true;
             this.rdoFirstChar.CheckedChanged += new System.EventHandler(this.rdoFirstChar_CheckedChanged);
-            //
+            // 
             // rdoFirstIndex
-            //
+            // 
             this.rdoFirstIndex.AutoSize = true;
             this.rdoFirstIndex.Location = new System.Drawing.Point(6, 59);
             this.rdoFirstIndex.Name = "rdoFirstIndex";
@@ -240,9 +240,9 @@
             this.rdoFirstIndex.Text = "first index:";
             this.rdoFirstIndex.UseVisualStyleBackColor = true;
             this.rdoFirstIndex.CheckedChanged += new System.EventHandler(this.rdoFirstIndex_CheckedChanged);
-            //
+            // 
             // rdoLastChar
-            //
+            // 
             this.rdoLastChar.AutoSize = true;
             this.rdoLastChar.Checked = true;
             this.rdoLastChar.Location = new System.Drawing.Point(6, 29);
@@ -253,9 +253,9 @@
             this.rdoLastChar.Text = "last char:";
             this.rdoLastChar.UseVisualStyleBackColor = true;
             this.rdoLastChar.CheckedChanged += new System.EventHandler(this.rdoLastChar_CheckedChanged);
-            //
+            // 
             // rdoLastIndex
-            //
+            // 
             this.rdoLastIndex.AutoSize = true;
             this.rdoLastIndex.Location = new System.Drawing.Point(6, 59);
             this.rdoLastIndex.Name = "rdoLastIndex";
@@ -264,9 +264,9 @@
             this.rdoLastIndex.Text = "last index:";
             this.rdoLastIndex.UseVisualStyleBackColor = true;
             this.rdoLastIndex.CheckedChanged += new System.EventHandler(this.rdoLastIndex_CheckedChanged);
-            //
+            // 
             // gbFirstUnicode
-            //
+            // 
             this.gbFirstUnicode.Controls.Add(this.rdoFirstChar);
             this.gbFirstUnicode.Controls.Add(this.txtFirstChar);
             this.gbFirstUnicode.Controls.Add(this.rdoFirstIndex);
@@ -277,9 +277,9 @@
             this.gbFirstUnicode.TabIndex = 7;
             this.gbFirstUnicode.TabStop = false;
             this.gbFirstUnicode.Text = "first unicode";
-            //
+            // 
             // gbLastUnicode
-            //
+            // 
             this.gbLastUnicode.Controls.Add(this.rdoLastChar);
             this.gbLastUnicode.Controls.Add(this.txtLastChar);
             this.gbLastUnicode.Controls.Add(this.rdoLastIndex);
@@ -290,36 +290,36 @@
             this.gbLastUnicode.TabIndex = 8;
             this.gbLastUnicode.TabStop = false;
             this.gbLastUnicode.Text = "last unicode";
-            //
+            // 
             // pgbProgress
-            //
-            this.pgbProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.pgbProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pgbProgress.Location = new System.Drawing.Point(650, 124);
             this.pgbProgress.Name = "pgbProgress";
             this.pgbProgress.Size = new System.Drawing.Size(469, 29);
             this.pgbProgress.TabIndex = 9;
             this.pgbProgress.Visible = false;
-            //
+            // 
             // bgWorker
-            //
+            // 
             this.bgWorker.WorkerReportsProgress = true;
             this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
             this.bgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorker_ProgressChanged);
             this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
-            //
+            // 
             // pgbSingleFileProgress
-            //
-            this.pgbSingleFileProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.pgbSingleFileProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pgbSingleFileProgress.Location = new System.Drawing.Point(650, 74);
             this.pgbSingleFileProgress.Name = "pgbSingleFileProgress";
             this.pgbSingleFileProgress.Size = new System.Drawing.Size(469, 29);
             this.pgbSingleFileProgress.TabIndex = 9;
             this.pgbSingleFileProgress.Visible = false;
-            //
+            // 
             // chkDumpGlyphList
-            //
+            // 
             this.chkDumpGlyphList.AutoSize = true;
             this.chkDumpGlyphList.Location = new System.Drawing.Point(19, 110);
             this.chkDumpGlyphList.Name = "chkDumpGlyphList";
@@ -327,10 +327,10 @@
             this.chkDumpGlyphList.TabIndex = 10;
             this.chkDumpGlyphList.Text = "Dump glyph list";
             this.chkDumpGlyphList.UseVisualStyleBackColor = true;
-            //
+            // 
             // lblSingleFileProgress
-            //
-            this.lblSingleFileProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.lblSingleFileProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSingleFileProgress.AutoSize = true;
             this.lblSingleFileProgress.BackColor = System.Drawing.SystemColors.Control;
@@ -340,22 +340,20 @@
             this.lblSingleFileProgress.Size = new System.Drawing.Size(151, 15);
             this.lblSingleFileProgress.TabIndex = 2;
             this.lblSingleFileProgress.Text = "singleFileProgress";
-            //
+            // 
             // chkDrawBBox
-            //
+            // 
             this.chkDrawBBox.AutoSize = true;
-            this.chkDrawBBox.Checked = true;
-            this.chkDrawBBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDrawBBox.Location = new System.Drawing.Point(19, 135);
             this.chkDrawBBox.Name = "chkDrawBBox";
             this.chkDrawBBox.Size = new System.Drawing.Size(101, 19);
             this.chkDrawBBox.TabIndex = 10;
             this.chkDrawBBox.Text = "Draw BBox";
             this.chkDrawBBox.UseVisualStyleBackColor = true;
-            //
+            // 
             // lblTotal
-            //
-            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotal.AutoSize = true;
             this.lblTotal.Location = new System.Drawing.Point(647, 106);
@@ -364,9 +362,9 @@
             this.lblTotal.Size = new System.Drawing.Size(127, 15);
             this.lblTotal.TabIndex = 2;
             this.lblTotal.Text = "Working on: {0}";
-            //
+            // 
             // FormMain
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1135, 167);
