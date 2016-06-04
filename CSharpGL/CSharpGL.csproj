@@ -83,6 +83,8 @@
     <Content Include="OpenGLObjects\UniformVariables\readme.txt" />
     <Content Include="OpenGLObjects\VertexBuffers\readme.txt" />
     <Content Include="readme.txt" />
+    <Compile Include="GlyphTextures\FontResource.Default.cs" />
+    <Compile Include="GlyphTextures\FontResource.FromTTF.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PointSmoothSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\DepthTestSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\CullFaceSwitch.cs" />
