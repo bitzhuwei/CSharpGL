@@ -11,6 +11,9 @@ It provides maths class for matrix and vectors.
 It provide useful utilities.
 
 release notes:
+v1.0.3.0:
+1. Get a Font Resource from TTF files.
+2. Font Resource supports rendering text.
 v1.0.2.0:
 1. GLControls allows for control-style objects.
 2. A GLAxis and GLText control.
