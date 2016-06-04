@@ -103,6 +103,8 @@ namespace CSharpGL
                         //SaveSurface(surface, comparisonFile);
                         surface.Dispose();
                     }
+
+                    if (c == char.MaxValue) { break; }
                 }
             }
             g.Dispose();
