@@ -20,7 +20,7 @@ namespace SharpFont
             // load each strike table
             var count = reader.ReadInt32BE();
             if (count > MaxBitmapStrikes)
-                throw new InvalidFontException("Too many bitmap strikes in font.");
+                throw new Exception("Too many bitmap strikes in font.");
 
             var sizeTableHeaders = stackalloc BitmapSizeTable[count];
             for (int i = 0; i < count; i++)

@@ -100,7 +100,7 @@ namespace SharpFont
             if (string.IsNullOrEmpty(metadata.Family))
             {
                 if (throwOnError)
-                    throw new InvalidFontException("Font does not contain any name metadata.");
+                    throw new Exception("Font does not contain any name metadata.");
                 else
                     return;
             }

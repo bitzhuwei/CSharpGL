@@ -24,7 +24,7 @@ namespace SharpFont
             reader.Skip(4);     // version number
             var count = reader.ReadUInt32BE();
             if (count == 0 || count > MaxFontsInCollection)
-                throw new InvalidFontException("Invalid TTC header");
+                throw new Exception("Invalid TTC header");
 
             var offsets = new uint[count];
             for (int i = 0; i < count; i++)
@@ -37,7 +37,7 @@ namespace SharpFont
         {
             var tag = reader.ReadUInt32BE();
             if (tag != TTFv1 && tag != TTFv2 && tag != FourCC.True)
-                throw new InvalidFontException("Unknown or unsupported sfnt version.");
+                throw new Exception("Unknown or unsupported sfnt version.");
 
             var tableCount = reader.ReadUInt16BE();
             reader.Skip(6); // skip the rest of the header
@@ -72,7 +72,7 @@ namespace SharpFont
                 UnitsPerEm = reader.ReadUInt16BE()
             };
             if (header.UnitsPerEm == 0)
-                throw new InvalidFontException("Invalid 'head' table.");
+                throw new Exception("Invalid 'head' table.");
 
             // skip over created and modified times, bounding box,
             // deprecated style bits, direction hints, and size hints
@@ -86,11 +86,11 @@ namespace SharpFont
             SeekToTable(reader, tables, FourCC.Maxp, required: true);
 
             if (reader.ReadInt32BE() != 0x00010000)
-                throw new InvalidFontException("Font contains an old style maxp table.");
+                throw new Exception("Font contains an old style maxp table.");
 
             header.GlyphCount = reader.ReadUInt16BE();
             if (header.GlyphCount > MaxGlyphs)
-                throw new InvalidFontException("Font contains too many glyphs.");
+                throw new Exception("Font contains too many glyphs.");
 
             // skip maxPoints, maxContours, maxCompositePoints, maxCompositeContours, maxZones
             reader.Skip(sizeof(short) * 5);
@@ -105,7 +105,7 @@ namespace SharpFont
             if (header.MaxTwilightPoints > MaxTwilightPoints || header.MaxStorageLocations > MaxStorageLocations ||
                 header.MaxFunctionDefs > MaxFunctionDefs || header.MaxInstructionDefs > MaxFunctionDefs ||
                 header.MaxStackSize > MaxStackSize)
-                throw new InvalidFontException("Font programs have limits that are larger than built-in sanity checks.");
+                throw new Exception("Font programs have limits that are larger than built-in sanity checks.");
         }
 
         public static MetricsHeader ReadMetricsHeader(DataReader reader)
@@ -346,8 +346,8 @@ namespace SharpFont
             if (index == -1 || tables[index].Length == 0)
             {
                 if (required)
-                    //throw new InvalidFontException($"Missing or empty '{tag}' table.");
-                    throw new InvalidFontException(string.Format(
+                    //throw new Exception($"Missing or empty '{tag}' table.");
+                    throw new Exception(string.Format(
                         "Missing or empty '{0}' table.", tag));
                 return false;
             }
@@ -369,7 +369,7 @@ namespace SharpFont
 
             // prevent bad font data from causing infinite recursion
             if (recursionDepth > MaxRecursion)
-                throw new InvalidFontException("Bad font data; infinite composite recursion.");
+                throw new Exception("Bad font data; infinite composite recursion.");
 
             // check if this glyph doesn't have any actual data
             GlyphHeader header;
@@ -393,7 +393,7 @@ namespace SharpFont
                 };
 
                 if (header.ContourCount < -1 || header.ContourCount > MaxContours)
-                    throw new InvalidFontException("Invalid number of contours for glyph.");
+                    throw new Exception("Invalid number of contours for glyph.");
             }
 
             if (header.ContourCount > 0)
@@ -442,7 +442,7 @@ namespace SharpFont
                 var endpoint = reader.ReadUInt16BE();
                 contours[i] = endpoint;
                 if (contours[i] <= lastEndpoint)
-                    throw new InvalidFontException("Glyph contour endpoints are unordered.");
+                    throw new Exception("Glyph contour endpoints are unordered.");
 
                 lastEndpoint = endpoint;
             }

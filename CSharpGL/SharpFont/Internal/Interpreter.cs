@@ -777,7 +777,7 @@ namespace SharpFont
                         {
                             var b = stack.Pop();
                             if (b == 0)
-                                throw new InvalidFontException("Division by zero.");
+                                throw new Exception("Division by zero.");
 
                             var a = stack.Pop();
                             var result = ((long)a << 6) / b;
@@ -803,7 +803,7 @@ namespace SharpFont
                     case OpCode.FDEF:
                         {
                             if (!allowFunctionDefs || inFunction)
-                                throw new InvalidFontException("Can't define functions here.");
+                                throw new Exception("Can't define functions here.");
 
                             functions[stack.Pop()] = stream;
                             while (SkipNext(ref stream) != OpCode.ENDF) ;
@@ -812,7 +812,7 @@ namespace SharpFont
                     case OpCode.IDEF:
                         {
                             if (!allowFunctionDefs || inFunction)
-                                throw new InvalidFontException("Can't define functions here.");
+                                throw new Exception("Can't define functions here.");
 
                             instructionDefs[stack.Pop()] = stream;
                             while (SkipNext(ref stream) != OpCode.ENDF) ;
@@ -821,7 +821,7 @@ namespace SharpFont
                     case OpCode.ENDF:
                         {
                             if (!inFunction)
-                                throw new InvalidFontException("Found invalid ENDF marker outside of a function definition.");
+                                throw new Exception("Found invalid ENDF marker outside of a function definition.");
                             return;
                         }
                     case OpCode.CALL:
@@ -829,7 +829,7 @@ namespace SharpFont
                         {
                             callStackSize++;
                             if (callStackSize > MaxCallStack)
-                                throw new InvalidFontException("Stack overflow; infinite recursion?");
+                                throw new Exception("Stack overflow; infinite recursion?");
 
                             var function = functions[stack.Pop()];
                             var count = opcode == OpCode.LOOPCALL ? stack.Pop() : 1;
@@ -953,11 +953,11 @@ namespace SharpFont
                             // check if this is a runtime-defined opcode
                             var index = (int)opcode;
                             if (index > instructionDefs.Length || !instructionDefs[index].IsValid)
-                                throw new InvalidFontException("Unknown opcode in font program.");
+                                throw new Exception("Unknown opcode in font program.");
 
                             callStackSize++;
                             if (callStackSize > MaxCallStack)
-                                throw new InvalidFontException("Stack overflow; infinite recursion?");
+                                throw new Exception("Stack overflow; infinite recursion?");
 
                             Execute(instructionDefs[index], true, false);
                             callStackSize--;
@@ -970,7 +970,7 @@ namespace SharpFont
         int CheckIndex(int index, int length)
         {
             if (index < 0 || index >= length)
-                throw new InvalidFontException();
+                throw new Exception();
             return index;
         }
 
@@ -1068,7 +1068,7 @@ namespace SharpFont
             {
                 case 0: return twilight;
                 case 1: return points;
-                default: throw new InvalidFontException("Invalid zone pointer.");
+                default: throw new Exception("Invalid zone pointer.");
             }
         }
 
@@ -1082,7 +1082,7 @@ namespace SharpFont
                 case 0: roundPeriod = period / 2; break;
                 case 0x40: roundPeriod = period; break;
                 case 0x80: roundPeriod = period * 2; break;
-                default: throw new InvalidFontException("Unknown rounding period multiplier.");
+                default: throw new Exception("Unknown rounding period multiplier.");
             }
 
             // bits 5-4 are the phase
@@ -1432,7 +1432,7 @@ namespace SharpFont
             public int NextByte()
             {
                 if (Done)
-                    throw new InvalidFontException();
+                    throw new Exception();
                 return instructions[ip++];
             }
 
@@ -1574,7 +1574,7 @@ namespace SharpFont
             public void Swap()
             {
                 if (count < 2)
-                    throw new InvalidFontException();
+                    throw new Exception();
 
                 var tmp = s[count - 1];
                 s[count - 1] = s[count - 2];
@@ -1584,21 +1584,21 @@ namespace SharpFont
             public void Push(int value)
             {
                 if (count == s.Length)
-                    throw new InvalidFontException();
+                    throw new Exception();
                 s[count++] = value;
             }
 
             public int Pop()
             {
                 if (count == 0)
-                    throw new InvalidFontException();
+                    throw new Exception();
                 return s[--count];
             }
 
             public int Peek(int index)
             {
                 if (index < 0 || index >= count)
-                    throw new InvalidFontException();
+                    throw new Exception();
                 return s[count - index - 1];
             }
         }

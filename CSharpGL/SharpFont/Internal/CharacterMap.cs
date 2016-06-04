@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SharpFont
 {
@@ -75,7 +76,7 @@ namespace SharpFont
 
             // no unicode support at all is an error
             if (chosenSubtableOffset == 0)
-                throw new InvalidFontException("Font does not support Unicode.");
+                throw new Exception("Font does not support Unicode.");
 
             // jump to our chosen table and find out what format it's in
             reader.Seek(cmapOffset + chosenSubtableOffset);
@@ -83,7 +84,7 @@ namespace SharpFont
             switch (format)
             {
                 case 4: return ReadCmapFormat4(reader);
-                default: throw new InvalidFontException("Unsupported cmap format.");
+                default: throw new Exception("Unsupported cmap format.");
             }
         }
 
@@ -95,7 +96,7 @@ namespace SharpFont
             // figure out how many segments we have
             var segmentCount = reader.ReadUInt16BE() / 2;
             if (segmentCount > MaxSegments)
-                throw new InvalidFontException("Too many cmap segments.");
+                throw new Exception("Too many cmap segments.");
 
             // skip over searchRange, entrySelector, and rangeShift
             reader.Skip(sizeof(short) * 3);

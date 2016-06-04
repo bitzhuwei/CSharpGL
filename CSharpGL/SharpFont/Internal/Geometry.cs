@@ -181,7 +181,7 @@ namespace SharpFont
             var control = start;
 
             if (start.Type == PointType.Cubic)
-                throw new InvalidFontException("Contours can't start with a cubic control point.");
+                throw new Exception("Contours can't start with a cubic control point.");
 
             if (start.Type == PointType.Quadratic)
             {
@@ -226,7 +226,7 @@ namespace SharpFont
                             }
 
                             if (next.Type != PointType.Quadratic)
-                                throw new InvalidFontException("Bad outline data.");
+                                throw new Exception("Bad outline data.");
 
                             renderer.QuadraticCurveTo(control, (control.P + next.P) / 2);
                             control = next;
