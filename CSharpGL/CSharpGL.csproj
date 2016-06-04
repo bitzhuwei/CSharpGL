@@ -227,7 +227,6 @@
     <Compile Include="OpenGLObjects\UniformVariables\UniformVec4.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformVec3.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformVec2.cs" />
-    <Compile Include="SharpFont\FontCollection.cs" />
     <Compile Include="SharpFont\FontFace.cs" />
     <Compile Include="SharpFont\Internal\BinPacker.cs" />
     <Compile Include="SharpFont\Internal\CharacterMap.cs" />
