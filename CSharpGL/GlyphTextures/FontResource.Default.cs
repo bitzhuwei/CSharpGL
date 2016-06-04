@@ -31,7 +31,11 @@ namespace CSharpGL
             }
             else
             {
+                if (bitmap == null || config == null)
+                { throw new ArgumentException(); }
+
                 InitTexture(bitmap);
+                InitConfig(config);
             }
         }
 
@@ -45,12 +49,17 @@ namespace CSharpGL
             {
                 string xmlContent = ManifestResourceLoader.LoadTextFile(config);
                 XElement xElement = XElement.Parse(xmlContent, LoadOptions.None);
-                this.FontHeight = int.Parse(xElement.Attribute(strFontHeight).Value);
-                this.FirstChar = (char)int.Parse(xElement.Attribute(strFirstChar).Value);
-                this.LastChar = (char)int.Parse(xElement.Attribute(strLastChar).Value);
-                this.CharInfoDict = CharacterInfoDictHelper.Parse(
-                    xElement.Element(CharacterInfoDictHelper.strCharacterInfoDict));
+                InitConfig(xElement);
             }
+        }
+
+        private void InitConfig(XElement config)
+        {
+            this.FontHeight = int.Parse(config.Attribute(strFontHeight).Value);
+            this.FirstChar = (char)int.Parse(config.Attribute(strFirstChar).Value);
+            this.LastChar = (char)int.Parse(config.Attribute(strLastChar).Value);
+            this.CharInfoDict = CharacterInfoDictHelper.Parse(
+                config.Element(CharacterInfoDictHelper.strCharacterInfoDict));
         }
 
         private void InitTexture(Bitmap bitmap)
