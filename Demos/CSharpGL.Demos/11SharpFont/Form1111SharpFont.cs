@@ -38,8 +38,8 @@ namespace CSharpGL.Demos
                     {
                         string glyphFilename = Path.Combine(fileInfo.DirectoryName, 
                             string.Format("{0}.{1}.bmp", fileInfo.Name, (int)c));
-                        Surface surface;
-                        if (RenderGlyph(typeface, (char)c, 32, out surface))
+                        Surface surface; Glyph glyph;
+                        if (RenderGlyph(typeface, (char)c, 32, out surface, out glyph))
                         {
                             SaveSurface(surface, glyphFilename);
                             surface.Dispose();
@@ -51,11 +51,11 @@ namespace CSharpGL.Demos
             }
         }
 
-        private static unsafe bool RenderGlyph(FontFace typeface, char c, int pixelSize, out Surface surface)
+        private static unsafe bool RenderGlyph(FontFace typeface, char c, int pixelSize, out Surface surface, out Glyph glyph)
         {
             bool result = false;
 
-            Glyph glyph = typeface.GetGlyph(c, pixelSize);
+            glyph = typeface.GetGlyph(c, pixelSize);
             if (glyph != null && glyph.RenderWidth > 0 && glyph.RenderHeight > 0)
             {
                 surface = new Surface
