@@ -239,7 +239,6 @@
     <Compile Include="SharpFont\Internal\SfntTables.cs" />
     <Compile Include="SharpFont\Metrics.cs" />
     <Compile Include="SharpFont\System.Numerics\ConstantHelper.cs" />
-    <Compile Include="SharpFont\System.Numerics\HashCodeHelper.cs" />
     <Compile Include="SharpFont\System.Numerics\Matrix3x2.cs" />
     <Compile Include="SharpFont\System.Numerics\Register.cs" />
     <Compile Include="SharpFont\System.Numerics\Vector2.cs" />

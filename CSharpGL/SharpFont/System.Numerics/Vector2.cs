@@ -46,7 +46,9 @@ namespace System.Numerics
 
         public override int GetHashCode()
         {
-            return HashCodeHelper.CombineHashCodes(this.X.GetHashCode(), this.Y.GetHashCode());
+            int h1 = this.X.GetHashCode();
+            int h2 = this.Y.GetHashCode();
+            return (h1 << 5) + h1 ^ h2;
         }
 
         [MethodImpl(256)]
