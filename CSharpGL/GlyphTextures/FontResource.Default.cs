@@ -11,33 +11,31 @@ namespace CSharpGL
     /// </summary>
     public sealed partial class FontResource
     {
-        private static FontResource defaultInstance = new FontResource();
+        private static FontResource defaultInstance = null;
+        private static readonly object synObj = new object();
 
         public static FontResource Default
         {
             get
             {
+                if (defaultInstance == null)
+                {
+                    lock (synObj)
+                    {
+                        if (defaultInstance == null)
+                        {
+                            defaultInstance = new FontResource();
+                            defaultInstance.InitDefault(
+                                @"GlyphTextures\ANTQUAI.TTF.png",
+                                @"GlyphTextures\ANTQUAI.TTF.xml");
+                        }
+                    }
+                }
                 return defaultInstance;
             }
         }
 
-        private FontResource(Bitmap bitmap = null, XElement config = null)
-        {
-            if (bitmap == null && config == null)
-            {
-                InitDefault(
-                    @"GlyphTextures\ANTQUAI.TTF.png",
-                    @"GlyphTextures\ANTQUAI.TTF.xml");
-            }
-            else
-            {
-                if (bitmap == null || config == null)
-                { throw new ArgumentException(); }
-
-                InitTexture(bitmap);
-                InitConfig(config);
-            }
-        }
+        private FontResource() { }
 
         private void InitDefault(string filename, string config)
         {
@@ -56,8 +54,8 @@ namespace CSharpGL
         private void InitConfig(XElement config)
         {
             this.FontHeight = int.Parse(config.Attribute(strFontHeight).Value);
-            this.FirstChar = (char)int.Parse(config.Attribute(strFirstChar).Value);
-            this.LastChar = (char)int.Parse(config.Attribute(strLastChar).Value);
+            //this.FirstChar = (char)int.Parse(config.Attribute(strFirstChar).Value);
+            //this.LastChar = (char)int.Parse(config.Attribute(strLastChar).Value);
             this.CharInfoDict = CharacterInfoDictHelper.Parse(
                 config.Element(CharacterInfoDictHelper.strCharacterInfoDict));
         }
@@ -67,7 +65,7 @@ namespace CSharpGL
             // generate texture.
             //  Lock the image bits (so that we can pass them to OGL).
             BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
-                ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+                ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
             //GL.ActiveTexture(GL.GL_TEXTURE0);
             OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
             var ids = new uint[1];
@@ -82,7 +80,7 @@ namespace CSharpGL
             /* Linear filtering usually looks best for text */
             OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, (int)OpenGL.GL_LINEAR);
             OpenGL.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, (int)OpenGL.GL_RED,
-                bitmap.Width, bitmap.Height, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE,
+                bitmap.Width, bitmap.Height, 0, OpenGL.GL_RGB, OpenGL.GL_UNSIGNED_BYTE,
                 bitmapData.Scan0);
             //  Unlock the image.
             bitmap.UnlockBits(bitmapData);

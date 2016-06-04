@@ -10,7 +10,7 @@ namespace CSharpGL
     /// </summary>
     public class CharacterInfo
     {
-        public static readonly CharacterInfo Default = new CharacterInfo() { yoffset = 0, xoffset = 0, height = 0, width = 0, };
+        public static readonly CharacterInfo Default = new CharacterInfo(0, 0, 0, 0);
 
         /// <summary>
         /// 此字符的字形在纹理的横向偏移量
@@ -31,6 +31,17 @@ namespace CSharpGL
         /// 此字符的字形高度
         /// </summary>
         public int height;
+
+        public CharacterInfo(int xoffset, int yoffset, int width, int height)
+        {
+            this.xoffset = xoffset;
+            this.yoffset = yoffset;
+            this.width = width;
+            this.height = height;
+        }
+
+        public CharacterInfo() { }
+
 
         public override string ToString()
         {

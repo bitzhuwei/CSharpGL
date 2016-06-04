@@ -20,25 +20,26 @@ namespace CSharpGL
                 OpenGL.GL_TEXTURE0);
         }
 
-        public const string strTTFTexture = "TTFTexture";
+        //public const string strTTFTexture = "TTFTexture";
+        public const string strFontResource = "FontResource";
         public const string strFontHeight = "FontHeight";
-        public const string strFirstChar = "FirstChar";
-        public const string strLastChar = "LastChar";
+        //public const string strFirstChar = "FirstChar";
+        //public const string strLastChar = "LastChar";
 
         /// <summary>
         /// 字形高度
         /// </summary>
         public int FontHeight { get; set; }
 
-        /// <summary>
-        /// 第一个字符
-        /// </summary>
-        public char FirstChar { get; set; }
+        ///// <summary>
+        ///// 第一个字符
+        ///// </summary>
+        //public char FirstChar { get; set; }
 
-        /// <summary>
-        /// 最后一个字符
-        /// </summary>
-        public char LastChar { get; set; }
+        ///// <summary>
+        ///// 最后一个字符
+        ///// </summary>
+        //public char LastChar { get; set; }
 
         ///// <summary>
         ///// 含有各个字形的贴图。
