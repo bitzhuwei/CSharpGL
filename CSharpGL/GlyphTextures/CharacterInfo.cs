@@ -13,12 +13,12 @@ namespace CSharpGL
         public static readonly CharacterInfo Default = new CharacterInfo(0, 0, 0, 0);
 
         /// <summary>
-        /// 此字符的字形在纹理的横向偏移量
+        /// 此字符的字形在纹理的横向偏移量（左上角）
         /// </summary>
         public int xoffset;
 
         /// <summary>
-        /// 此字符的字形在纹理的纵向偏移量
+        /// 此字符的字形在纹理的纵向偏移量（左上角）
         /// </summary>
         public int yoffset;
 
