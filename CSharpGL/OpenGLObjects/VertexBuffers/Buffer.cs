@@ -27,19 +27,19 @@ namespace CSharpGL
             get { return (this.array == null) ? IntPtr.Zero : this.array.Header; }
         }
 
-        /// <summary>
-        /// 获取此VBO的内存首地址。用于快速读写。
-        /// </summary>
-        /// <returns></returns>
-        public unsafe void* FirstElement()
-        {
-            UnmanagedArrayBase array = this.array;
-            if (array == null) { return (void*)0; }
-            else
-            {
-                return array.Header.ToPointer();
-            }
-        }
+        ///// <summary>
+        ///// 获取此VBO的内存首地址。用于快速读写。
+        ///// </summary>
+        ///// <returns></returns>
+        //public unsafe void* FirstElement()
+        //{
+        //    UnmanagedArrayBase array = this.array;
+        //    if (array == null) { return (void*)0; }
+        //    else
+        //    {
+        //        return array.Header.ToPointer();
+        //    }
+        //}
 
         /// <summary>
         /// 此VBO中的数据在内存中占用多少个字节？
