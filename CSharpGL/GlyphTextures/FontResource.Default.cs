@@ -25,7 +25,7 @@ namespace CSharpGL
                         if (defaultInstance == null)
                         {
                             defaultInstance = new FontResource();
-                            defaultInstance.InitDefault(
+                            defaultInstance.InitFromBitmapAndConfig(
                                 @"GlyphTextures\ANTQUAI.TTF.png",
                                 @"GlyphTextures\ANTQUAI.TTF.xml");
                         }
@@ -37,7 +37,13 @@ namespace CSharpGL
 
         private FontResource() { }
 
-        private void InitDefault(string filename, string config)
+        public FontResource Load(string filename, string config)
+        {
+            var result = new FontResource();
+            result.InitFromBitmapAndConfig(filename, config);
+            return result;
+        }
+        private void InitFromBitmapAndConfig(string filename, string config)
         {
             {
                 var bitmap = ManifestResourceLoader.LoadBitmap(filename);
