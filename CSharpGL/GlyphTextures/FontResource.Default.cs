@@ -25,9 +25,12 @@ namespace CSharpGL
                         if (defaultInstance == null)
                         {
                             defaultInstance = new FontResource();
-                            defaultInstance.InitFromBitmapAndConfig(
-                                @"GlyphTextures\ANTQUAI.TTF.png",
-                                @"GlyphTextures\ANTQUAI.TTF.xml");
+                            var bitmap = ManifestResourceLoader.LoadBitmap(@"GlyphTextures\ANTQUAI.TTF.png");
+                            defaultInstance.InitTexture(bitmap);
+                            bitmap.Dispose();
+                            string xmlContent = ManifestResourceLoader.LoadTextFile(@"GlyphTextures\ANTQUAI.TTF.xml");
+                            XElement xElement = XElement.Parse(xmlContent, LoadOptions.None);
+                            defaultInstance.InitConfig(xElement);
                         }
                     }
                 }
@@ -40,21 +43,15 @@ namespace CSharpGL
         public FontResource Load(string filename, string config)
         {
             var result = new FontResource();
-            result.InitFromBitmapAndConfig(filename, config);
+
+            var bitmap = new Bitmap(filename);
+            result.InitTexture(bitmap);
+            bitmap.Dispose();
+
+            XElement xElement = XElement.Load(config, LoadOptions.None);
+            result.InitConfig(xElement);
+
             return result;
-        }
-        private void InitFromBitmapAndConfig(string filename, string config)
-        {
-            {
-                var bitmap = ManifestResourceLoader.LoadBitmap(filename);
-                InitTexture(bitmap);
-                bitmap.Dispose();
-            }
-            {
-                string xmlContent = ManifestResourceLoader.LoadTextFile(config);
-                XElement xElement = XElement.Parse(xmlContent, LoadOptions.None);
-                InitConfig(xElement);
-            }
         }
 
         private void InitConfig(XElement config)

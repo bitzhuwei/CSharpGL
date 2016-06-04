@@ -152,7 +152,7 @@ namespace CSharpGL
             var g = Graphics.FromImage(finalBitmap);
             g.DrawImage(bitmap, 0, 0);
             g.Dispose();
-            finalBitmap.Save("Test.bmp");
+            //finalBitmap.Save("Test.bmp");
             fontResource.InitTexture(finalBitmap);
             finalBitmap.Dispose();
         }
