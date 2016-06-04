@@ -19,7 +19,7 @@ namespace System.Numerics
 
         private static readonly Vector<T> allOnes = new Vector<T>(Vector<T>.GetAllBitsSetValue());
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public static int Count
         {
             get
@@ -33,7 +33,7 @@ namespace System.Numerics
             }
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public static Vector<T> Zero
         {
             get
@@ -42,7 +42,7 @@ namespace System.Numerics
             }
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public static Vector<T> One
         {
             get
@@ -59,7 +59,7 @@ namespace System.Numerics
             }
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public unsafe T this[int index]
         {
             get
@@ -159,7 +159,7 @@ namespace System.Numerics
             throw new NotSupportedException();
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public unsafe Vector(T value)
         {
             this = default(Vector<T>);
@@ -386,7 +386,7 @@ namespace System.Numerics
             }
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public Vector(T[] values)
         {
             this = new Vector<T>(values, 0);
@@ -792,13 +792,13 @@ namespace System.Numerics
             this.register = existingRegister;
         }
 
-        //[JitIntrinsic]
+        ////[JitIntrinsic]
         //public void CopyTo(T[] destination)
         //{
         //    this.CopyTo(destination, 0);
         //}
 
-        //[JitIntrinsic]
+        ////[JitIntrinsic]
         //public unsafe void CopyTo(T[] destination, int startIndex)
         //{
         //    if (destination == null)
@@ -1072,7 +1072,7 @@ namespace System.Numerics
             return obj is Vector<T> && this.Equals((Vector<T>)obj);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public bool Equals(Vector<T> other)
         {
             if (Vector.IsHardwareAccelerated)
@@ -2347,7 +2347,7 @@ namespace System.Numerics
         //    return Vector<T>.Zero - value;
         //}
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public unsafe static Vector<T> operator &(Vector<T> left, Vector<T> right)
         {
             Vector<T> result = default(Vector<T>);
@@ -2369,7 +2369,7 @@ namespace System.Numerics
             return result;
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public unsafe static Vector<T> operator |(Vector<T> left, Vector<T> right)
         {
             Vector<T> result = default(Vector<T>);
@@ -2391,7 +2391,7 @@ namespace System.Numerics
             return result;
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public unsafe static Vector<T> operator ^(Vector<T> left, Vector<T> right)
         {
             Vector<T> result = default(Vector<T>);
@@ -2431,67 +2431,67 @@ namespace System.Numerics
             return !(left == right);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public static explicit operator Vector<byte>(Vector<T> value)
         {
             return new Vector<byte>(ref value.register);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public static explicit operator Vector<sbyte>(Vector<T> value)
         {
             return new Vector<sbyte>(ref value.register);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public static explicit operator Vector<ushort>(Vector<T> value)
         {
             return new Vector<ushort>(ref value.register);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public static explicit operator Vector<short>(Vector<T> value)
         {
             return new Vector<short>(ref value.register);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public static explicit operator Vector<uint>(Vector<T> value)
         {
             return new Vector<uint>(ref value.register);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public static explicit operator Vector<int>(Vector<T> value)
         {
             return new Vector<int>(ref value.register);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public static explicit operator Vector<ulong>(Vector<T> value)
         {
             return new Vector<ulong>(ref value.register);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public static explicit operator Vector<long>(Vector<T> value)
         {
             return new Vector<long>(ref value.register);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public static explicit operator Vector<float>(Vector<T> value)
         {
             return new Vector<float>(ref value.register);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public static explicit operator Vector<double>(Vector<T> value)
         {
             return new Vector<double>(ref value.register);
         }
 
-        //[JitIntrinsic]
+        ////[JitIntrinsic]
         //[MethodImpl(256)]
         //internal unsafe static Vector<T> Equals(Vector<T> left, Vector<T> right)
         //{
@@ -2702,7 +2702,7 @@ namespace System.Numerics
         //    }
         //}
 
-        //[JitIntrinsic]
+        ////[JitIntrinsic]
         //[MethodImpl(256)]
         //internal unsafe static Vector<T> LessThan(Vector<T> left, Vector<T> right)
         //{
@@ -2913,7 +2913,7 @@ namespace System.Numerics
         //    }
         //}
 
-        //[JitIntrinsic]
+        ////[JitIntrinsic]
         //[MethodImpl(256)]
         //internal unsafe static Vector<T> GreaterThan(Vector<T> left, Vector<T> right)
         //{
@@ -3124,25 +3124,25 @@ namespace System.Numerics
         //    }
         //}
 
-        //[JitIntrinsic]
+        ////[JitIntrinsic]
         //internal static Vector<T> GreaterThanOrEqual(Vector<T> left, Vector<T> right)
         //{
         //    return Vector<T>.Equals(left, right) | Vector<T>.GreaterThan(left, right);
         //}
 
-        //[JitIntrinsic]
+        ////[JitIntrinsic]
         //internal static Vector<T> LessThanOrEqual(Vector<T> left, Vector<T> right)
         //{
         //    return Vector<T>.Equals(left, right) | Vector<T>.LessThan(left, right);
         //}
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         internal static Vector<T> ConditionalSelect(Vector<T> condition, Vector<T> left, Vector<T> right)
         {
             return (left & condition) | Vector.AndNot<T>(right, condition);
         }
 
-        //[JitIntrinsic]
+        ////[JitIntrinsic]
         //internal unsafe static Vector<T> Abs(Vector<T> value)
         //{
         //    if (typeof(T) == typeof(byte))
@@ -3285,7 +3285,7 @@ namespace System.Numerics
         //    }
         //}
 
-        //[JitIntrinsic]
+        ////[JitIntrinsic]
         //internal unsafe static Vector<T> Min(Vector<T> left, Vector<T> right)
         //{
         //    if (Vector.IsHardwareAccelerated)
@@ -3495,7 +3495,7 @@ namespace System.Numerics
         //    }
         //}
 
-        //[JitIntrinsic]
+        ////[JitIntrinsic]
         //internal unsafe static Vector<T> Max(Vector<T> left, Vector<T> right)
         //{
         //    if (Vector.IsHardwareAccelerated)
@@ -3705,7 +3705,7 @@ namespace System.Numerics
         //    }
         //}
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         internal static T DotProduct(Vector<T> left, Vector<T> right)
         {
             if (Vector.IsHardwareAccelerated)
@@ -3760,7 +3760,7 @@ namespace System.Numerics
             throw new NotSupportedException();
         }
 
-        //[JitIntrinsic]
+        ////[JitIntrinsic]
         //internal unsafe static Vector<T> SquareRoot(Vector<T> value)
         //{
         //    if (Vector.IsHardwareAccelerated)
@@ -4431,7 +4431,7 @@ namespace System.Numerics
     }
     public static class Vector
     {
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public static bool IsHardwareAccelerated
         {
             get

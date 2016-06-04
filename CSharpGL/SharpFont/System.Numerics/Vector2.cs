@@ -257,13 +257,13 @@ namespace System.Numerics
             return -value;
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public Vector2(float value)
         {
             this = new Vector2(value, value);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public Vector2(float x, float y)
         {
             this.X = x;
@@ -296,90 +296,90 @@ namespace System.Numerics
             array[index + 1] = this.Y;
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         public bool Equals(Vector2 other)
         {
             return this.X == other.X && this.Y == other.Y;
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         [MethodImpl(256)]
         public static float Dot(Vector2 value1, Vector2 value2)
         {
             return value1.X * value2.X + value1.Y * value2.Y;
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 Min(Vector2 value1, Vector2 value2)
         {
             return new Vector2((value1.X < value2.X) ? value1.X : value2.X, (value1.Y < value2.Y) ? value1.Y : value2.Y);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 Max(Vector2 value1, Vector2 value2)
         {
             return new Vector2((value1.X > value2.X) ? value1.X : value2.X, (value1.Y > value2.Y) ? value1.Y : value2.Y);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 Abs(Vector2 value)
         {
             return new Vector2(Math.Abs(value.X), Math.Abs(value.Y));
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 SquareRoot(Vector2 value)
         {
             return new Vector2((float)Math.Sqrt((double)value.X), (float)Math.Sqrt((double)value.Y));
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 operator +(Vector2 left, Vector2 right)
         {
             return new Vector2(left.X + right.X, left.Y + right.Y);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 operator -(Vector2 left, Vector2 right)
         {
             return new Vector2(left.X - right.X, left.Y - right.Y);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 operator *(Vector2 left, Vector2 right)
         {
             return new Vector2(left.X * right.X, left.Y * right.Y);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 operator *(float left, Vector2 right)
         {
             return new Vector2(left, left) * right;
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 operator *(Vector2 left, float right)
         {
             return left * new Vector2(right, right);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 operator /(Vector2 left, Vector2 right)
         {
             return new Vector2(left.X / right.X, left.Y / right.Y);
         }
 
-        [JitIntrinsic]
+        //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 operator /(Vector2 value1, float value2)
         {
