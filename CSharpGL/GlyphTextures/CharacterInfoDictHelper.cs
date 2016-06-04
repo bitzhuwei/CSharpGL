@@ -23,7 +23,7 @@ namespace CSharpGL
         public static FullDictionary<char, CharacterInfo> Parse(XElement xElement)
         {
             FullDictionary<char, CharacterInfo> result = new FullDictionary<char, CharacterInfo>(
-                new CharacterInfo() { width = 0, height = 0, xoffset = 0, yoffset = 0, });
+                CharacterInfo.Default);
 
             foreach (var item in xElement.Elements(KeyValuePairHelper.strKeyValuePair))
             {
