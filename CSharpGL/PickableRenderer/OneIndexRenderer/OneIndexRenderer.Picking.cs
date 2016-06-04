@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CSharpGL
 {
     // check http://www.cnblogs.com/bitzhuwei/p/CSharpGL-18-Picking-of-OneIndexBuffer.html
-    public partial class OneIndexRenderer
+    partial class OneIndexRenderer
     {
 
         public override PickedGeometry Pick(RenderEventArgs arg, uint stageVertexId,

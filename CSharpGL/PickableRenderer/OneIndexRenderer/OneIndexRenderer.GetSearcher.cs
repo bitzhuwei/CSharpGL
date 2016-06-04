@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class OneIndexRenderer
+    partial class OneIndexRenderer
     {
         static Dictionary<DrawMode, OneIndexLineSearcher> lineSearcherDict;
         static Dictionary<DrawMode, OneIndexPointSearcher> pointSearcherDict;

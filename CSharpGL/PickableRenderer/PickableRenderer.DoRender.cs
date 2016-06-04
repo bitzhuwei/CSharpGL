@@ -16,7 +16,7 @@ namespace CSharpGL
             {
                 this.innerPickableRenderer.Render(arg);
             }
-            else if (arg.RenderMode == RenderModes.Render)
+            else// if (arg.RenderMode == RenderModes.Render)
             {
                 base.DoRender(arg);
             }

@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// 用glDrawElements进行渲染。
     /// </summary>
-    public partial class OneIndexRenderer : InnerPickableRenderer
+    partial class OneIndexRenderer : InnerPickableRenderer
     {
 
         PrimitiveRestartSwitch primitiveRestartSwitch4Picking;

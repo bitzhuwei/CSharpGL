@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class InnerPickableRenderer : IColorCodedPicking
+    partial class InnerPickableRenderer : IColorCodedPicking
     {
 
         private void ColorCodedRender(RenderEventArgs arg, IndexBufferPtr temporaryIndexBufferPtr = null)

@@ -11,7 +11,7 @@ namespace CSharpGL
     /// <summary>
     /// 支持"拾取"的渲染器
     /// </summary>
-    public abstract partial class InnerPickableRenderer : Renderer, IColorCodedPicking
+    abstract partial class InnerPickableRenderer : Renderer, IColorCodedPicking
     {
         protected string positionNameInIBufferable;
         internal PropertyBufferPtr positionBufferPtr;

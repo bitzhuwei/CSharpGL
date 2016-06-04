@@ -58,7 +58,7 @@
     <Content Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInQuad+Searcher.jpg" />
     <Content Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInTriangle+Searcher.jpg" />
     <Content Include="PickableRenderer\OneIndexRenderer\readme.txt" />
-    <Content Include="PickableRenderer\PickableRenderer.jpg" />
+    <Content Include="PickableRenderer\InnerPickableRenderer.jpg" />
     <Content Include="PickableRenderer\readme.txt" />
     <Content Include="PickableRenderer\ZeroIndexRenderer\readme.txt" />
     <Content Include="OpenGLObjects\ModernRendering\readme.txt" />

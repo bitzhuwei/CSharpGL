@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// 根据<see cref="IndexBufferPtr"/>的具体类型获取一个<see cref="PickableRenderer"/>
     /// </summary>
-    public static class InnerPickableRendererFactory
+    static class InnerPickableRendererFactory
     {
         /// <summary>
         /// 根据<see cref="IndexBufferPtr"/>的具体类型获取一个<see cref="PickableRenderer"/>

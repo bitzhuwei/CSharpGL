@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class InnerPickableRenderer
+    partial class InnerPickableRenderer
     {
 
         /// <summary>
@@ -23,9 +23,6 @@ namespace CSharpGL
         public void MovePositions(Point differenceOnScreen,
             mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, IEnumerable<uint> positionIndexes)
         {
-            if (positionIndexes == null) { return; }
-            if (positionIndexes.Count() == 0) { return; }
-
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
             IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
             unsafe
@@ -56,9 +53,6 @@ namespace CSharpGL
         public void MovePositions(Point differenceOnScreen,
             mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, params uint[] positionIndexes)
         {
-            if (positionIndexes == null) { return; }
-            if (positionIndexes.Length == 0) { return; }
-
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
             IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
             unsafe
