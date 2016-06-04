@@ -21,7 +21,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ttfFilename"></param>
+        /// <param name="ttfFilename">".ttf", or ".otf"</param>
         /// <param name="pixelSize">The desired size of the font, in pixels.</param>
         /// <returns></returns>
         public static FontResource Load(string ttfFilename,
@@ -39,7 +39,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ttfFilename"></param>
+        /// <param name="ttfFilename">".ttf", or ".otf"</param>
         /// <param name="pixelSize">The desired size of the font, in pixels.</param>
         /// <returns></returns>
         public static FontResource Load(string ttfFilename,
@@ -94,7 +94,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ttfFilename"></param>
+        /// <param name="ttfFilename">".ttf", or ".otf"</param>
         /// <param name="pixelSize">The desired size of the font, in pixels.</param>
         /// <returns></returns>
         public static FontResource Load(string ttfFilename,
@@ -231,7 +231,7 @@ namespace CSharpGL
         }
 
 
-        static unsafe Bitmap GetGlyphBitmap(Surface surface)
+        private static unsafe Bitmap GetGlyphBitmap(Surface surface)
         {
             if (surface.Width > 0 && surface.Height > 0)
             {
