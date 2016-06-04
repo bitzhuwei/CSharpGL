@@ -33,15 +33,16 @@ namespace CSharpGL.Demos
                 using (FileStream file = File.OpenRead(ttfFilename))
                 {
                     var typeface = new FontFace(file);
-
+                    int pixelSize = 32;
                     for (int c = 0; c <= char.MaxValue; c++)
                     {
-                        string glyphFilename = Path.Combine(fileInfo.DirectoryName, 
-                            string.Format("{0}.{1}.bmp", fileInfo.Name, (int)c));
                         Surface surface; Glyph glyph;
-                        if (RenderGlyph(typeface, (char)c, 32, out surface, out glyph))
+                        if (RenderGlyph(typeface, (char)c, pixelSize, out surface, out glyph))
                         {
-                            SaveSurface(surface, glyphFilename);
+                            string glyphFilename = Path.Combine(fileInfo.DirectoryName,
+                                string.Format("{0}.{1}.bmp", fileInfo.Name, (int)c));
+                            SaveSurface(surface, glyph, pixelSize, glyphFilename);
+
                             surface.Dispose();
                         }
                     }
@@ -82,30 +83,41 @@ namespace CSharpGL.Demos
             return result;
         }
 
-        static unsafe void SaveSurface(Surface surface, string fileName)
+        static unsafe void SaveSurface(Surface surface, Glyph glyph, int pixelSize, string fileName)
         {
             if (surface.Width > 0 && surface.Height > 0)
             {
-                var bitmap = new Bitmap(surface.Width, surface.Height, PixelFormat.Format24bppRgb);
-                var bitmapData = bitmap.LockBits(new Rectangle(0, 0, surface.Width, surface.Height), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
-                for (int y = 0; y < surface.Height; y++)
-                {
-                    var dest = (byte*)bitmapData.Scan0 + y * bitmapData.Stride;
-                    var src = (byte*)surface.Bits + y * surface.Pitch;
+                var surfaceBitmap = GetSurfaceBitmap(ref surface);
+                var bitmap = new Bitmap(surface.Width, pixelSize);
+                Graphics g = Graphics.FromImage(bitmap);
+                g.DrawImage(surfaceBitmap, 0, pixelSize * 3 / 4 - glyph.HorizontalMetrics.Bearing.Y);
+                g.Dispose();
+                surfaceBitmap.Dispose();
 
-                    for (int x = 0; x < surface.Width; x++)
-                    {
-                        var b = *src++;
-                        *dest++ = b;
-                        *dest++ = b;
-                        *dest++ = b;
-                    }
-                }
-
-                bitmap.UnlockBits(bitmapData);
                 bitmap.Save(fileName);
                 bitmap.Dispose();
             }
+        }
+
+        unsafe private static Bitmap GetSurfaceBitmap(ref Surface surface)
+        {
+            var bitmap = new Bitmap(surface.Width, surface.Height, PixelFormat.Format24bppRgb);
+            var bitmapData = bitmap.LockBits(new Rectangle(0, 0, surface.Width, surface.Height), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
+            for (int y = 0; y < surface.Height; y++)
+            {
+                var dest = (byte*)bitmapData.Scan0 + y * bitmapData.Stride;
+                var src = (byte*)surface.Bits + y * surface.Pitch;
+
+                for (int x = 0; x < surface.Width; x++)
+                {
+                    var b = *src++;
+                    *dest++ = b;
+                    *dest++ = b;
+                    *dest++ = b;
+                }
+            }
+            bitmap.UnlockBits(bitmapData);
+            return bitmap;
         }
     }
 
