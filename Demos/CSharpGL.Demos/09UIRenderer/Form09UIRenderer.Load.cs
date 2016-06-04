@@ -17,6 +17,7 @@ namespace CSharpGL.Demos
         private GLControl uiRoot;
         private GLAxis glAxis;
         private GLText glText;
+        private CSharpGL.TestHelpers.BlendFactorHelper blendFactorHelper = new TestHelpers.BlendFactorHelper();
 
         private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
         {
@@ -48,6 +49,8 @@ namespace CSharpGL.Demos
                 this.glText = glText;
 
                 uiRoot.Controls.Add(glText);
+
+                this.UpdateLabel();
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();
@@ -55,6 +58,13 @@ namespace CSharpGL.Demos
                 frmPropertyGrid.Show();
                 this.formPropertyGrid = frmPropertyGrid;
             }
+        }
+
+        private void UpdateLabel()
+        {
+            this.lblCurrentBlend.Text = string.Format("glBlend({0}, {1});",
+                this.glText.BlendSwitch.SourceFactor,
+                this.glText.BlendSwitch.DestFactor);
         }
     }
 }

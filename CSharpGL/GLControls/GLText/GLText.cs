@@ -16,7 +16,7 @@ namespace CSharpGL.Demos
     {
 
         private TextModel model;
-        private BlendSwitch blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
+        private BlendSwitch blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One);
 
         public BlendSwitch BlendSwitch
         {
