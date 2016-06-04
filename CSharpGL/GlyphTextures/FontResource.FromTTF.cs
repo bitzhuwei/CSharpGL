@@ -81,26 +81,45 @@ namespace CSharpGL
 
                 for (char c = firstChar; c <= lastChar; c++)
                 {
-                    //Console.WriteLine("Dump {0}: {1}", (int)c, c);
-                    //var comparisonFile = Path.Combine(ComparisonPath, (int)c + ".png");
-                    Surface surface; Glyph glyph;
-                    if (RenderGlyph(typeface, c, pixelSize, out surface, out glyph))
+                    if (c == ' ')
                     {
-                        if (currentX + surface.Width >= maxWidth)
+                        int width = pixelSize / 4;
+                        if (currentX + width >= maxWidth)
                         {
                             currentX = 0;
                             currentY += pixelSize;
                             if (currentY + pixelSize >= maxWidth)
                             { throw new Exception("Texture Size not big enough for reuqired characters."); }
                         }
-                        Bitmap glyphBitmap = GetGlyphBitmap(surface);
+                        Bitmap glyphBitmap = new Bitmap(width, pixelSize);
                         //float yoffset = pixelSize * 3 / 4 - glyph.HorizontalMetrics.Bearing.Y;
-                        g.DrawImage(glyphBitmap, currentX, pixelSize * 3 / 4 - glyph.HorizontalMetrics.Bearing.Y);
-                        CharacterInfo info = new CharacterInfo(currentX, currentY, surface.Width, surface.Height);
+                        g.DrawImage(glyphBitmap, currentX, currentY);
+                        CharacterInfo info = new CharacterInfo(currentX, currentY, width, pixelSize);
                         dict.Add(c, info);
                         glyphBitmap.Dispose();
-                        currentX += surface.Width;
-                        //SaveSurface(surface, comparisonFile);
+                        currentX += width;
+                    }
+                    else
+                    {
+                        Surface surface; Glyph glyph;
+                        if (RenderGlyph(typeface, c, pixelSize, out surface, out glyph))
+                        {
+                            if (currentX + surface.Width >= maxWidth)
+                            {
+                                currentX = 0;
+                                currentY += pixelSize;
+                                if (currentY + pixelSize >= maxWidth)
+                                { throw new Exception("Texture Size not big enough for reuqired characters."); }
+                            }
+                            Bitmap glyphBitmap = GetGlyphBitmap(surface);
+                            //float yoffset = pixelSize * 3 / 4 - glyph.HorizontalMetrics.Bearing.Y;
+                            g.DrawImage(glyphBitmap, currentX, pixelSize * 3 / 4 - glyph.HorizontalMetrics.Bearing.Y);
+                            CharacterInfo info = new CharacterInfo(currentX, currentY, surface.Width, surface.Height);
+                            dict.Add(c, info);
+                            glyphBitmap.Dispose();
+                            currentX += surface.Width;
+                        }
+
                         surface.Dispose();
                     }
 
