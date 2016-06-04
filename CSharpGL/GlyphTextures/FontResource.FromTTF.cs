@@ -20,6 +20,40 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="ttfFilename"></param>
+        /// <param name="characters"></param>
+        /// <param name="pixelSize">The desired size of the font, in pixels.</param>
+        /// <returns></returns>
+        private static FontResource Load(string ttfFilename, char[] characters, float pixelSize = 32)
+        {
+            Bitmap bitmap;
+            XElement config;
+            Load(ttfFilename, characters, pixelSize, out bitmap, out config);
+            var result = new FontResource(bitmap, config);
+            bitmap.Dispose();
+            return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ttfFilename"></param>
+        /// <param name="characters"></param>
+        /// <param name="pixelSize">The desired size of the font, in pixels.</param>
+        /// <returns></returns>
+        private static FontResource Load(string ttfFilename, string characters, float pixelSize = 32)
+        {
+            Bitmap bitmap;
+            XElement config;
+            Load(ttfFilename, characters, pixelSize, out bitmap, out config);
+            var result = new FontResource(bitmap, config);
+            bitmap.Dispose();
+            return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ttfFilename"></param>
         /// <param name="pixelSize">The desired size of the font, in pixels.</param>
         /// <returns></returns>
         public static FontResource Load(string ttfFilename,
