@@ -23,11 +23,91 @@ namespace CSharpGL
         /// <param name="pixelSize">The desired size of the font, in pixels.</param>
         /// <returns></returns>
         public static FontResource Load(string ttfFilename,
+            char[] content, int pixelSize = 32)
+        {
+            FontResource fontResource;
+            Load(ttfFilename, content, pixelSize, out fontResource);
+            return fontResource;
+        }
+
+        private static void Load(string ttfFilename, char[] content, int pixelSize, out FontResource fontResource)
+        {
+            InitStandardWidths();
+
+            var targets = (from item in content select item).Distinct();
+
+            fontResource = LoadFromSomeChars(ttfFilename, pixelSize, targets);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ttfFilename"></param>
+        /// <param name="pixelSize">The desired size of the font, in pixels.</param>
+        /// <returns></returns>
+        public static FontResource Load(string ttfFilename,
+            string content, int pixelSize = 32)
+        {
+            FontResource fontResource;
+            Load(ttfFilename, content, pixelSize, out fontResource);
+            return fontResource;
+        }
+
+        private static void Load(string ttfFilename, string content, int pixelSize, out FontResource fontResource)
+        {
+            InitStandardWidths();
+
+            var targets = (from item in content select item).Distinct();
+
+            fontResource = LoadFromSomeChars(ttfFilename, pixelSize, targets);
+        }
+
+        private static FontResource LoadFromSomeChars(string ttfFilename, int pixelSize, IEnumerable<char> targets)
+        {
+            FontResource fontResource;
+
+            int count = targets.Count();
+            int maxWidth = GetMaxWidth(pixelSize, count);
+
+            fontResource = new FontResource();
+            fontResource.FontHeight = pixelSize;
+            var dict = new FullDictionary<char, CharacterInfo>(CharacterInfo.Default);
+            fontResource.CharInfoDict = dict;
+            var bitmap = new Bitmap(maxWidth, maxWidth, PixelFormat.Format24bppRgb);
+            int currentX = 0, currentY = 0;
+            Graphics g = Graphics.FromImage(bitmap);
+            /*
+            this.FontHeight = int.Parse(config.Attribute(strFontHeight).Value);
+            this.CharInfoDict = CharacterInfoDictHelper.Parse(
+                config.Element(CharacterInfoDictHelper.strCharacterInfoDict));
+             */
+            using (var file = File.OpenRead(ttfFilename))
+            {
+                var typeface = new FontFace(file);
+
+                foreach (char c in targets)
+                {
+                    BlitCharacter(pixelSize, maxWidth, dict, ref currentX, ref currentY, g, typeface, c);
+                }
+            }
+            g.Dispose();
+            ShortenBitmap(pixelSize, fontResource, maxWidth, bitmap, currentY);
+            bitmap.Dispose();
+            return fontResource;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ttfFilename"></param>
+        /// <param name="pixelSize">The desired size of the font, in pixels.</param>
+        /// <returns></returns>
+        public static FontResource Load(string ttfFilename,
             char firstChar, char lastChar, int pixelSize = 32)
         {
-            FontResource result;
-            Load(ttfFilename, firstChar, lastChar, pixelSize, out result);
-            return result;
+            FontResource fontResource;
+            Load(ttfFilename, firstChar, lastChar, pixelSize, out fontResource);
+            return fontResource;
         }
 
         static int[] standardWidths;
@@ -62,10 +142,16 @@ namespace CSharpGL
                 }
             }
             g.Dispose();
-            var finalBitmap = new Bitmap(maxWidth, currentY + pixelSize + (pixelSize / 10 > 1 ? pixelSize / 10 : 1));
-            g = Graphics.FromImage(finalBitmap);
-            g.DrawImage(bitmap, 0, 0);
+            ShortenBitmap(pixelSize, fontResource, maxWidth, bitmap, currentY);
             bitmap.Dispose();
+        }
+
+        private static void ShortenBitmap(int pixelSize, FontResource fontResource, int maxWidth, Bitmap bitmap, int currentY)
+        {
+            var finalBitmap = new Bitmap(maxWidth, currentY + pixelSize + (pixelSize / 10 > 1 ? pixelSize / 10 : 1));
+            var g = Graphics.FromImage(finalBitmap);
+            g.DrawImage(bitmap, 0, 0);
+            g.Dispose();
             finalBitmap.Save("Test.bmp");
             fontResource.InitTexture(finalBitmap);
             finalBitmap.Dispose();
