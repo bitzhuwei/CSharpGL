@@ -37,7 +37,7 @@ namespace CSharpGL
         private FontResource()
         {
             {
-                var bitmap = ManifestResourceLoader.LoadBitmap(@"GlyphTextures\LucidaTypewriterRegular.ttf.png");
+                var bitmap = ManifestResourceLoader.LoadBitmap(@"GlyphTextures\ANTQUAI.TTF.png");
                 // generate texture.
                 //  Lock the image bits (so that we can pass them to OGL).
                 BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
@@ -66,7 +66,7 @@ namespace CSharpGL
                 bitmap.Dispose();
             }
             {
-                string xmlContent = ManifestResourceLoader.LoadTextFile(@"GlyphTextures\LucidaTypewriterRegular.ttf.xml");
+                string xmlContent = ManifestResourceLoader.LoadTextFile(@"GlyphTextures\ANTQUAI.TTF.xml");
                 XElement xElement = XElement.Parse(xmlContent, LoadOptions.None);
                 this.FontHeight = int.Parse(xElement.Attribute(strFontHeight).Value);
                 this.FirstChar = (char)int.Parse(xElement.Attribute(strFirstChar).Value);

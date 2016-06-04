@@ -48,13 +48,9 @@
       <DependentUpon>FormGLSwitchEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinformControls\GLCanvas.ico" />
-    <EmbeddedResource Include="GlyphTextures\LucidaTypewriterRegular.ttf.png" />
-    <EmbeddedResource Include="GlyphTextures\LucidaTypewriterRegular.ttf.xml" />
     <Content Include="GLControls\readme.txt" />
-    <EmbeddedResource Include="GlyphTextures\ALGER.TTF.png" />
-    <EmbeddedResource Include="GlyphTextures\ALGER.TTF.xml" />
-    <EmbeddedResource Include="GlyphTextures\ariali.ttf.png" />
-    <EmbeddedResource Include="GlyphTextures\ariali.ttf.xml" />
+    <EmbeddedResource Include="GlyphTextures\ANTQUAI.TTF.png" />
+    <EmbeddedResource Include="GlyphTextures\ANTQUAI.TTF.xml" />
     <Content Include="GlyphTextures\readme.txt" />
     <Content Include="IBufferables\readme.txt" />
     <Content Include="HighlightRenderer\readme.txt" />
@@ -420,8 +416,7 @@
     <EmbeddedResource Include="IBufferables\TeapotModel.obj" />
     <EmbeddedResource Include="HighlightRenderer\Highlight.vert" />
     <EmbeddedResource Include="HighlightRenderer\Highlight.frag" />
-    <None Include="GlyphTextures\ALGER.TTF" />
-    <None Include="GlyphTextures\ariali.ttf" />
+    <None Include="GlyphTextures\ANTQUAI.TTF" />
     <None Include="OpenGLObjects\ModernRendering\Renderers.cd" />
     <None Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.cd" />
     <EmbeddedResource Include="WinformControls\GLCanvas.resx">

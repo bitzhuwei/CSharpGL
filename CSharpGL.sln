@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Demos", "Demos\CSh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Font2Picture", "Infrastructure\CSharpGL.Font2Picture\CSharpGL.Font2Picture.csproj", "{AD455ED6-331C-4D94-81D9-8D3B7177D4E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.TestHelpers", "Infrastructure\CSharpGL.TestHelpers\CSharpGL.TestHelpers.csproj", "{2E22168C-14FB-4B53-BC21-2183A4A40955}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{AD455ED6-331C-4D94-81D9-8D3B7177D4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD455ED6-331C-4D94-81D9-8D3B7177D4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD455ED6-331C-4D94-81D9-8D3B7177D4E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E22168C-14FB-4B53-BC21-2183A4A40955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E22168C-14FB-4B53-BC21-2183A4A40955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E22168C-14FB-4B53-BC21-2183A4A40955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E22168C-14FB-4B53-BC21-2183A4A40955}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,5 +44,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0DACF739-1C40-4C52-86F4-159B6B8B6968} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{AD455ED6-331C-4D94-81D9-8D3B7177D4E3} = {E800BE67-00FE-4C05-9F0F-640DC7134E7D}
+		{2E22168C-14FB-4B53-BC21-2183A4A40955} = {E800BE67-00FE-4C05-9F0F-640DC7134E7D}
 	EndGlobalSection
 EndGlobal
