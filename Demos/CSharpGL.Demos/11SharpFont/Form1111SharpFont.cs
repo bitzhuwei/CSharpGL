@@ -36,7 +36,8 @@ namespace CSharpGL.Demos
 
                     for (int c = 0; c <= char.MaxValue; c++)
                     {
-                        string glyphFilename = Path.Combine(fileInfo.DirectoryName, (int)c + ".bmp");
+                        string glyphFilename = Path.Combine(fileInfo.DirectoryName, 
+                            string.Format("{0}.{1}.bmp", fileInfo.Name, (int)c));
                         Surface surface;
                         if (RenderGlyph(typeface, (char)c, 32, out surface))
                         {
