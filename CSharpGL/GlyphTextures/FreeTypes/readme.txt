@@ -1,1 +1,0 @@
-﻿留着FreeTypes作为将来整合SharpFont的参考资料。
