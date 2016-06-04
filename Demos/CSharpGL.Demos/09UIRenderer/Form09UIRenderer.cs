@@ -104,6 +104,15 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if(e.KeyChar=='b')
+            {
+                BlendingSourceFactor source;
+                BlendingDestinationFactor dest;
+                this.blendFactorHelper.GetNext(out source, out dest);
+                this.glText.BlendSwitch.SourceFactor = source;
+                this.glText.BlendSwitch.DestFactor = dest;
+                this.UpdateLabel();
+            }
         }
 
     }
