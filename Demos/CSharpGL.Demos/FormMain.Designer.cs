@@ -38,6 +38,7 @@
             this.btnForm08AnalyzedBillboard = new System.Windows.Forms.Button();
             this.btnForm09TextBoxRenderer = new System.Windows.Forms.Button();
             this.btn10RaycastVolumeRenderer = new System.Windows.Forms.Button();
+            this.btn11SharpFont = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -150,7 +151,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnForm09TextBoxRenderer.Font = new System.Drawing.Font("宋体", 12F);
             this.btnForm09TextBoxRenderer.Location = new System.Drawing.Point(12, 356);
-            this.btnForm09TextBoxRenderer.Name = "btnForm09UIRenderer";
+            this.btnForm09TextBoxRenderer.Name = "btnForm09TextBoxRenderer";
             this.btnForm09TextBoxRenderer.Size = new System.Drawing.Size(767, 37);
             this.btnForm09TextBoxRenderer.TabIndex = 0;
             this.btnForm09TextBoxRenderer.Text = "Form09 UIRenderer";
@@ -170,11 +171,25 @@
             this.btn10RaycastVolumeRenderer.UseVisualStyleBackColor = true;
             this.btn10RaycastVolumeRenderer.Click += new System.EventHandler(this.btn10RaycastVolumeRenderer_Click);
             // 
+            // btn11SharpFont
+            // 
+            this.btn11SharpFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn11SharpFont.Font = new System.Drawing.Font("宋体", 12F);
+            this.btn11SharpFont.Location = new System.Drawing.Point(12, 442);
+            this.btn11SharpFont.Name = "btn11SharpFont";
+            this.btn11SharpFont.Size = new System.Drawing.Size(767, 37);
+            this.btn11SharpFont.TabIndex = 0;
+            this.btn11SharpFont.Text = "11 SharpFont";
+            this.btn11SharpFont.UseVisualStyleBackColor = true;
+            this.btn11SharpFont.Click += new System.EventHandler(this.btn11SharpFont_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 545);
+            this.Controls.Add(this.btn11SharpFont);
             this.Controls.Add(this.btn10RaycastVolumeRenderer);
             this.Controls.Add(this.btnForm09TextBoxRenderer);
             this.Controls.Add(this.btnForm08AnalyzedBillboard);
@@ -203,5 +218,6 @@
         private System.Windows.Forms.Button btnForm08AnalyzedBillboard;
         private System.Windows.Forms.Button btnForm09TextBoxRenderer;
         private System.Windows.Forms.Button btn10RaycastVolumeRenderer;
+        private System.Windows.Forms.Button btn11SharpFont;
     }
 }
