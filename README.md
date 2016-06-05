@@ -18,6 +18,8 @@
 <p style="text-align: left;"><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_teapot.gif" alt="" width="618" height="587" /></p>
 <h1 style="text-align: left;">volume rendering</h1>
 <p style="text-align: left;"><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_vr.gif" alt="" width="588" height="469" /></p>
+<h1 style="text-align: left;">GLText</h1>
+<p style="text-align: left;"><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_GLText.gif" alt="" width="588" height="469" /></p>
 <p style="text-align: left;">&nbsp;</p>
 <p style="text-align: left;">&nbsp;</p>
 <p style="text-align: left;">&nbsp;</p>
