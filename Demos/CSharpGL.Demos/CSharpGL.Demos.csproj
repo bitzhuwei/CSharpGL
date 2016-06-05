@@ -135,19 +135,19 @@
     <Compile Include="08AnalyzedBillboard\Form08AnalyzedBillboard.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="07Billboard\Form07Billboard.cs">
+    <Compile Include="07PiontSprite\Form07PointSprite.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="07Billboard\Form07Billboard.Designer.cs">
-      <DependentUpon>Form07Billboard.cs</DependentUpon>
+    <Compile Include="07PiontSprite\Form07PointSprite.Designer.cs">
+      <DependentUpon>Form07PointSprite.cs</DependentUpon>
     </Compile>
-    <Compile Include="07Billboard\Form07Billboard.Load.cs">
+    <Compile Include="07PiontSprite\Form07PointSprite.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="07Billboard\Form07Billboard.MouseDownMoveUp.cs">
+    <Compile Include="07PiontSprite\Form07PointSprite.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="07Billboard\BillboardRenderer.cs" />
+    <Compile Include="07PiontSprite\PointSpriteRenderer.cs" />
     <Compile Include="12Billboard\Form12Billboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -311,8 +311,8 @@
     <EmbeddedResource Include="08AnalyzedBillboard\Form08AnalyzedBillboard.resx">
       <DependentUpon>Form08AnalyzedBillboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="07Billboard\Form07Billboard.resx">
-      <DependentUpon>Form07Billboard.cs</DependentUpon>
+    <EmbeddedResource Include="07PiontSprite\Form07PointSprite.resx">
+      <DependentUpon>Form07PointSprite.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="12Billboard\Form12Billboard.resx">
       <DependentUpon>Form12Billboard.cs</DependentUpon>
@@ -354,10 +354,10 @@
     <None Include="08AnalyzedBillboard\AnalyzedBillboard.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="07Billboard\Billboard.frag">
+    <None Include="07PiontSprite\PointSprite.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="07Billboard\Billboard.vert">
+    <None Include="07PiontSprite\PointSprite.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="10RaycastVolumeRender\raycasting.frag">
@@ -432,7 +432,7 @@
     <Content Include="06ImageProcessing\teapot.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="07Billboard\star.png">
+    <Content Include="07PiontSprite\star.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="10RaycastVolumeRender\head256.raw">

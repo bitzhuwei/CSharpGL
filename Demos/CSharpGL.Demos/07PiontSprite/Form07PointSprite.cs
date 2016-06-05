@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form07Billboard : Form
+    public partial class Form07PointSprite : Form
     {
 
         private Camera camera;
@@ -18,7 +18,7 @@ namespace CSharpGL.Demos
         private BillboardRenderer renderer;
 
 
-        public Form07Billboard()
+        public Form07PointSprite()
         {
             InitializeComponent();
 

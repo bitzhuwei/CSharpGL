@@ -33,8 +33,8 @@ namespace CSharpGL.Demos
         static BillboardRenderer()
         {
             staticShaderCodes = new ShaderCode[2];
-            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"07Billboard\Billboard.vert"), ShaderType.VertexShader);
-            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"07Billboard\Billboard.frag"), ShaderType.FragmentShader);
+            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"07PiontSprite\PointSprite.vert"), ShaderType.VertexShader);
+            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"07PiontSprite\PointSprite.frag"), ShaderType.FragmentShader);
             map = new PropertyNameMap();
             map.Add("position", "position");
         }
@@ -53,7 +53,7 @@ namespace CSharpGL.Demos
                 OpenGL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, OpenGL.GL_RGBA32F, 256, 256);
                 OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
                 sampler2D texture = new sampler2D();
-                var bitmap = new System.Drawing.Bitmap(@"07Billboard\star.png");
+                var bitmap = new System.Drawing.Bitmap(@"07PiontSprite\star.png");
                 texture.Initialize(bitmap);
                 this.sprite_texture[0] = texture.Id;
                 bitmap.Dispose();
@@ -71,23 +71,7 @@ namespace CSharpGL.Demos
             mat4 projection = arg.Camera.GetProjectionMat4();
             this.SetUniform("mvp", projection * view * model);
 
-            //GL.Enable(GL.GL_POINT_SMOOTH);
-            //GL.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
-            //GL.Enable(GL.GL_POINT_SPRITE_ARB);
-            ////GL.TexEnv(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);//TODO: test TexEnvi()
-            //GL.TexEnvf(GL.GL_POINT_SPRITE_ARB, GL.GL_COORD_REPLACE_ARB, GL.GL_TRUE);
-            ////GL.Enable(GL.GL_POINT_SMOOTH);
-            ////GL.Hint(GL.GL_POINT_SMOOTH_HINT, GL.GL_NICEST);
-            //GL.Enable(GL.GL_BLEND);
-            //GL.GetDelegateFor<GL.glBlendEquation>()(GL.GL_FUNC_ADD_EXT);
-            //GL.GetDelegateFor<GL.glBlendFuncSeparate>()(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
-
             base.DoRender(arg);
-
-            //GL.Disable(GL.GL_BLEND);
-            //GL.Disable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
-            //GL.Disable(GL.GL_POINT_SPRITE_ARB);
-            //GL.Disable(GL.GL_POINT_SMOOTH);
         }
 
         protected override void DisposeUnmanagedResources()

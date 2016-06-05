@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Demos
 {
-    partial class Form07Billboard
+    partial class Form07PointSprite
     {
         /// <summary>
         /// Required designer variable.

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form07Billboard : Form
+    public partial class Form07PointSprite : Form
     {
         private FormProperyGrid formPropertyGrid;
 

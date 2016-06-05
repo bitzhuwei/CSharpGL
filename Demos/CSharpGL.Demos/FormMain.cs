@@ -47,9 +47,9 @@ namespace CSharpGL.Demos
             (new Form06ImageProcessing()).Show();
         }
 
-        private void btn07Billboard_Click(object sender, EventArgs e)
+        private void btn07PointSprite_Click(object sender, EventArgs e)
         {
-            (new Form07Billboard()).Show();
+            (new Form07PointSprite()).Show();
         }
 
         private void btn08AnalyzedBillboard_Click(object sender, EventArgs e)
