@@ -49,7 +49,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinformControls\GLCanvas.ico" />
     <Content Include="GLControls\readme.txt" />
-    <Content Include="GlyphTextures\readme.txt" />
+    <Content Include="FontResource\readme.txt" />
     <Content Include="IBufferables\readme.txt" />
     <Content Include="HighlightRenderer\readme.txt" />
     <Content Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInPolygonSearcher.jpg" />
@@ -81,8 +81,8 @@
     <Content Include="OpenGLObjects\UniformVariables\readme.txt" />
     <Content Include="OpenGLObjects\VertexBuffers\readme.txt" />
     <Content Include="readme.txt" />
-    <Compile Include="GlyphTextures\FontResource.Default.cs" />
-    <Compile Include="GlyphTextures\FontResource.FromTTF.cs" />
+    <Compile Include="FontResource\FontResource.Default.cs" />
+    <Compile Include="FontResource\FontResource.FromTTF.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PointSmoothSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\DepthTestSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\CullFaceSwitch.cs" />
@@ -124,12 +124,12 @@
     </Compile>
     <Compile Include="WinformControls\GLCanvasHelper.cs" />
     <Compile Include="WinformControls\RenderTriggers.cs" />
-    <Compile Include="GlyphTextures\CharacterInfo.cs" />
-    <Compile Include="GlyphTextures\CharacterInfoDictHelper.cs" />
-    <Compile Include="GlyphTextures\CharacterInfoHelper.cs" />
-    <Compile Include="GlyphTextures\FontResource.cs" />
-    <Compile Include="GlyphTextures\FontTexture.cs" />
-    <Compile Include="GlyphTextures\KeyValuePairHelper.cs" />
+    <Compile Include="FontResource\CharacterInfo.cs" />
+    <Compile Include="FontResource\CharacterInfoDictHelper.cs" />
+    <Compile Include="FontResource\CharacterInfoHelper.cs" />
+    <Compile Include="FontResource\FontResource.cs" />
+    <Compile Include="FontResource\FontTexture.cs" />
+    <Compile Include="FontResource\KeyValuePairHelper.cs" />
     <Compile Include="HighlightRenderer\HighlightRenderer.cs" />
     <Compile Include="HighlightRenderer\HighlightRenderer.DoInitialize.cs" />
     <Compile Include="HighlightRenderer\HighlightRenderer.Property.cs" />
@@ -226,20 +226,20 @@
     <Compile Include="OpenGLObjects\UniformVariables\UniformVec4.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformVec3.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformVec2.cs" />
-    <Compile Include="GlyphTextures\SharpFont\FontFace.cs" />
-    <Compile Include="GlyphTextures\SharpFont\Internal\BinPacker.cs" />
-    <Compile Include="GlyphTextures\SharpFont\Internal\CharacterMap.cs" />
-    <Compile Include="GlyphTextures\SharpFont\Internal\DataReader.cs" />
-    <Compile Include="GlyphTextures\SharpFont\Internal\Geometry.cs" />
-    <Compile Include="GlyphTextures\SharpFont\Internal\Interpreter.cs" />
-    <Compile Include="GlyphTextures\SharpFont\Internal\KerningTable.cs" />
-    <Compile Include="GlyphTextures\SharpFont\Internal\SharpFontRenderer.cs" />
-    <Compile Include="GlyphTextures\SharpFont\Internal\SbitTable.cs" />
-    <Compile Include="GlyphTextures\SharpFont\Internal\SfntTables.cs" />
-    <Compile Include="GlyphTextures\SharpFont\Metrics.cs" />
-    <Compile Include="GlyphTextures\SharpFont\System.Numerics\Matrix3x2.cs" />
-    <Compile Include="GlyphTextures\SharpFont\System.Numerics\Register.cs" />
-    <Compile Include="GlyphTextures\SharpFont\System.Numerics\Vector2.cs" />
+    <Compile Include="FontResource\SharpFont\FontFace.cs" />
+    <Compile Include="FontResource\SharpFont\Internal\BinPacker.cs" />
+    <Compile Include="FontResource\SharpFont\Internal\CharacterMap.cs" />
+    <Compile Include="FontResource\SharpFont\Internal\DataReader.cs" />
+    <Compile Include="FontResource\SharpFont\Internal\Geometry.cs" />
+    <Compile Include="FontResource\SharpFont\Internal\Interpreter.cs" />
+    <Compile Include="FontResource\SharpFont\Internal\KerningTable.cs" />
+    <Compile Include="FontResource\SharpFont\Internal\SharpFontRenderer.cs" />
+    <Compile Include="FontResource\SharpFont\Internal\SbitTable.cs" />
+    <Compile Include="FontResource\SharpFont\Internal\SfntTables.cs" />
+    <Compile Include="FontResource\SharpFont\Metrics.cs" />
+    <Compile Include="FontResource\SharpFont\System.Numerics\Matrix3x2.cs" />
+    <Compile Include="FontResource\SharpFont\System.Numerics\Register.cs" />
+    <Compile Include="FontResource\SharpFont\System.Numerics\Vector2.cs" />
     <Compile Include="TypeConverters\Mat2TypeConverter.cs" />
     <Compile Include="TypeConverters\Mat3TypeConverter.cs" />
     <Compile Include="TypeConverters\Mat4TypeConverter.cs" />
@@ -408,7 +408,7 @@
     <EmbeddedResource Include="IBufferables\TeapotModel.obj" />
     <EmbeddedResource Include="HighlightRenderer\Highlight.vert" />
     <EmbeddedResource Include="HighlightRenderer\Highlight.frag" />
-    <EmbeddedResource Include="GlyphTextures\ANTQUAI.TTF" />
+    <EmbeddedResource Include="FontResource\ANTQUAI.TTF" />
     <None Include="OpenGLObjects\ModernRendering\Renderers.cd" />
     <None Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.cd" />
     <EmbeddedResource Include="WinformControls\GLCanvas.resx">
@@ -442,7 +442,7 @@
     <Content Include="Maths\readme.txt" />
     <Content Include="OpenGLObjects\readme.txt" />
     <Content Include="OpenGLAPI\readme.txt" />
-    <Content Include="GlyphTextures\SharpFont\readme.txt" />
+    <Content Include="FontResource\SharpFont\readme.txt" />
     <Content Include="TypeConverters\readme.txt" />
     <Content Include="UITypeEditors\readme.txt" />
   </ItemGroup>
