@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Demos
+namespace CSharpGL
 {
     /// <summary>
     /// 使用Default字体在一块区域渲染文字。

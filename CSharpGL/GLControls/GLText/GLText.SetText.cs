@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpGL.Demos
+namespace CSharpGL
 {
     public partial class GLText
     {
