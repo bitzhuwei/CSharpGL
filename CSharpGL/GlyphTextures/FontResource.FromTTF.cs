@@ -86,7 +86,7 @@ namespace CSharpGL
             int maxWidth = GetMaxWidth(pixelSize, count);
 
             fontResource = new FontResource();
-            fontResource.FontHeight = pixelSize;
+            fontResource.FontHeight = pixelSize + yInterval;
             var dict = new FullDictionary<char, CharacterInfo>(CharacterInfo.Default);
             fontResource.CharInfoDict = dict;
             var bitmap = new Bitmap(maxWidth, maxWidth, PixelFormat.Format24bppRgb);
@@ -145,7 +145,7 @@ namespace CSharpGL
             int maxWidth = GetMaxWidth(pixelSize, count);
 
             var fontResource = new FontResource();
-            fontResource.FontHeight = pixelSize;
+            fontResource.FontHeight = pixelSize + yInterval;
             var dict = new FullDictionary<char, CharacterInfo>(CharacterInfo.Default);
             fontResource.CharInfoDict = dict;
             var bitmap = new Bitmap(maxWidth, maxWidth, PixelFormat.Format24bppRgb);

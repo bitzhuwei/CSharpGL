@@ -14,14 +14,18 @@ namespace CSharpGL.Demos
 
         private string content = string.Empty;
 
+        public string Text { get { return content; } set { this.SetText(value); } }
         public unsafe void SetText(string content)
         {
             if (string.IsNullOrEmpty(content))
             {
-                this.model.indexBufferPtr.VertexCount = 0;
+                if (this.model != null && this.model.indexBufferPtr != null)
+                { this.model.indexBufferPtr.VertexCount = 0; }
                 this.content = string.Empty;
                 return;
             }
+
+            this.content = content;
 
             int count = content.Length;
             if (count > this.model.maxCharCount)
@@ -97,7 +101,7 @@ namespace CSharpGL.Demos
                     new vec2(currentWidth, currentHeight),
                     new vec2(currentWidth + info.width, currentHeight),
                     new vec2(currentWidth + info.width, currentHeight + fontResource.FontHeight));
-                currentWidth += info.width + 10;
+                currentWidth += info.width + fontResource.FontHeight / 10;
             }
             // move to center
             for (int i = 0; i < content.Length; i++)
