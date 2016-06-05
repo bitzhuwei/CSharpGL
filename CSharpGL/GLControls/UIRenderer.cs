@@ -13,6 +13,12 @@ namespace CSharpGL
     {
         private ViewportSwitch viewportSwitch;
         private ScissorTestSwitch scissorTestSwitch;
+        private List<GLSwitch> switchList = new List<GLSwitch>();
+
+        public List<GLSwitch> SwitchList
+        {
+            get { return switchList; }
+        }
 
         public Renderer Renderer { get; protected set; }
 
@@ -48,6 +54,8 @@ namespace CSharpGL
         {
             this.viewportSwitch = new ViewportSwitch();
             this.scissorTestSwitch = new ScissorTestSwitch();
+            this.switchList.Add(this.viewportSwitch);
+            this.switchList.Add(this.scissorTestSwitch);
 
             Renderer renderer = this.Renderer;
             if (renderer != null)
@@ -70,17 +78,15 @@ namespace CSharpGL
                 this.scissorTestSwitch.Width = this.Size.Width;
                 this.scissorTestSwitch.Height = this.Size.Height;
 
-                this.scissorTestSwitch.On();
-                this.viewportSwitch.On();
+                int count = this.switchList.Count;
+                for (int i = 0; i < count; i++) { this.switchList[i].On(); }
 
                 // 把所有在此之前渲染的内容都推到最远。
                 OpenGL.Clear(OpenGL.GL_DEPTH_BUFFER_BIT);
-                OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT);
 
                 renderer.Render(arg);
 
-                this.viewportSwitch.Off();
-                this.scissorTestSwitch.Off();
+                for (int i = count - 1; i >= 0; i--) { this.switchList[i].Off(); }
             }
         }
 

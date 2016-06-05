@@ -45,6 +45,7 @@ namespace CSharpGL.Demos
                 var glText = new GLText(AnchorStyles.Left | AnchorStyles.Top,
                     new Padding(3, 3, 3, 3), new Size(500, 50), -100, 100);
                 glText.Initialize();
+                glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
                 glText.SetText("The quick brown fox jumps over the lazy dog!");
                 this.glText = glText;
 

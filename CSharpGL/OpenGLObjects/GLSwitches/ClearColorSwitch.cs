@@ -10,6 +10,14 @@ namespace CSharpGL
     public class ClearColorSwitch : GLSwitch
     {
 
+        private bool clearColorWhenOn;
+
+        public bool ClearColorWhenOn
+        {
+            get { return clearColorWhenOn; }
+            set { clearColorWhenOn = value; }
+        }
+
         vec4 clearColor = new vec4();
 
         static ClearColorSwitch()
@@ -35,11 +43,12 @@ namespace CSharpGL
             }
         }
 
-        public ClearColorSwitch() : this(Color.Black) { }
+        public ClearColorSwitch() : this(Color.Black, true) { }
 
-        public ClearColorSwitch(Color clearColor)
+        public ClearColorSwitch(Color clearColor, bool clearColorWhenOn)
         {
             this.ClearColor = clearColor;
+            this.clearColorWhenOn = clearColorWhenOn;
         }
 
         float[] original = new float[4];
@@ -55,6 +64,7 @@ namespace CSharpGL
             OpenGL.GetFloat(GetTarget.ColorClearValue, original);
 
             OpenGL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT);
         }
 
         protected override void SwitchOff()
