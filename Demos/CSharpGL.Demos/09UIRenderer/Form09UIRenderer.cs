@@ -127,6 +127,8 @@ namespace CSharpGL.Demos
                     this.glText = glText;
 
                     uiRoot.Controls.Add(glText);
+
+                    this.formPropertyGrid.DisplayObject(glText);
                 }
             }
         }
