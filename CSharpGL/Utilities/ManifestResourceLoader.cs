@@ -17,6 +17,21 @@ namespace System
         /// </summary>
         /// <param name="textFileName"></param>
         /// <returns></returns>
+        public static Stream GetStream(string textFileName, int stackIndex = 2)
+        {
+            Assembly executingAssembly;
+            string location;
+            GetLocation(textFileName, stackIndex, out executingAssembly, out location);
+
+            var stream = executingAssembly.GetManifestResourceStream(location);
+
+            return stream;
+        }
+        /// <summary>
+        /// Loads the named manifest resource and returns each line in order.
+        /// </summary>
+        /// <param name="textFileName"></param>
+        /// <returns></returns>
         public static IEnumerable<string> GetLines(string textFileName, int stackIndex = 2)
         {
             Assembly executingAssembly;
