@@ -153,10 +153,6 @@ namespace CSharpGL.Demos
         internal void UpdateTexture(string filename)
         {
             // This is the texture that the compute program will write into
-            OpenGL.GenTextures(1, sprite_texture);
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, sprite_texture[0]);
-            OpenGL.TexStorage2D(TexStorage2DTarget.Texture2D, 8, OpenGL.GL_RGBA32F, 256, 256);
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
             sampler2D texture = new sampler2D();
             var bitmap = new System.Drawing.Bitmap(filename);
             texture.Initialize(bitmap);
