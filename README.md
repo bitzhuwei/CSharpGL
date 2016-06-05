@@ -1,5 +1,5 @@
 <p style="text-align: center;">Introduction to CSharpGL</p>
-<p style="text-align: left;"><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_CSharpGL-text.png" alt="" width="164" height="43" /></p>
+<p style="text-align: left;"><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_small-CSharpGL-text.png" alt="" width="164" height="43" /></p>
 <h1 style="text-align: left;">teapot</h1>
 <p style="text-align: left;"><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000092.jpg" alt="" width="687" height="574" /></p>
 <h1 style="text-align: left;">selection and switches</h1>
