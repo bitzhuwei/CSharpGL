@@ -104,7 +104,7 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar=='b')
+            if (e.KeyChar == 'b')
             {
                 BlendingSourceFactor source;
                 BlendingDestinationFactor dest;
@@ -112,6 +112,22 @@ namespace CSharpGL.Demos
                 this.glText.BlendSwitch.SourceFactor = source;
                 this.glText.BlendSwitch.DestFactor = dest;
                 this.UpdateLabel();
+            }
+            else if (e.KeyChar == 'o')
+            {
+                if (this.openTextureDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    string ttfFilename = this.openTextureDlg.FileName;
+                    this.glText.Dispose();
+                    FontResource fontResouce = FontResource.Load(ttfFilename, ' ', (char)126);
+                    var glText = new GLText(AnchorStyles.Left | AnchorStyles.Top,
+                        new Padding(3, 3, 3, 3), new Size(850, 50), -100, 100, fontResouce);
+                    glText.Initialize();
+                    glText.SetText("The quick brown fox jumps over the lazy dog!");
+                    this.glText = glText;
+
+                    uiRoot.Controls.Add(glText);
+                }
             }
         }
 

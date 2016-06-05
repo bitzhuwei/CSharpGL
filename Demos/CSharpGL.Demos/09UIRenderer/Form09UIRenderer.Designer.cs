@@ -28,12 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.glCanvas1 = new CSharpGL.GLCanvas();
             this.openTextureDlg = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.lblCurrentBlend = new System.Windows.Forms.Label();
+            this.glCanvas1 = new CSharpGL.GLCanvas();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // openTextureDlg
+            // 
+            this.openTextureDlg.Filter = "Image File(*.TTF;*.OTF)|*.TTF;*.OTF";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("宋体", 12F);
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(599, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Press \'b\' to switch blend factors. Press \'o\' to select TTF.";
+            // 
+            // lblCurrentBlend
+            // 
+            this.lblCurrentBlend.AutoSize = true;
+            this.lblCurrentBlend.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblCurrentBlend.Location = new System.Drawing.Point(12, 39);
+            this.lblCurrentBlend.Name = "lblCurrentBlend";
+            this.lblCurrentBlend.Size = new System.Drawing.Size(149, 20);
+            this.lblCurrentBlend.TabIndex = 4;
+            this.lblCurrentBlend.Text = "glBlendFunc();";
             // 
             // glCanvas1
             // 
@@ -48,30 +72,6 @@
             this.glCanvas1.Size = new System.Drawing.Size(757, 472);
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
-            // 
-            // openTextureDlg
-            // 
-            this.openTextureDlg.Filter = "Image File(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("宋体", 12F);
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(349, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Press \'b\' to switch blend factors.";
-            // 
-            // lblCurrentBlend
-            // 
-            this.lblCurrentBlend.AutoSize = true;
-            this.lblCurrentBlend.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblCurrentBlend.Location = new System.Drawing.Point(12, 39);
-            this.lblCurrentBlend.Name = "lblCurrentBlend";
-            this.lblCurrentBlend.Size = new System.Drawing.Size(149, 20);
-            this.lblCurrentBlend.TabIndex = 4;
-            this.lblCurrentBlend.Text = "glBlendFunc();";
             // 
             // Form09UIRenderer
             // 

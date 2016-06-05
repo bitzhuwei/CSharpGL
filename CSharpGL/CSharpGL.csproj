@@ -49,8 +49,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinformControls\GLCanvas.ico" />
     <Content Include="GLControls\readme.txt" />
-    <EmbeddedResource Include="GlyphTextures\ANTQUAI.TTF.png" />
-    <EmbeddedResource Include="GlyphTextures\ANTQUAI.TTF.xml" />
     <Content Include="GlyphTextures\readme.txt" />
     <Content Include="IBufferables\readme.txt" />
     <Content Include="HighlightRenderer\readme.txt" />
@@ -409,7 +407,7 @@
     <EmbeddedResource Include="IBufferables\TeapotModel.obj" />
     <EmbeddedResource Include="HighlightRenderer\Highlight.vert" />
     <EmbeddedResource Include="HighlightRenderer\Highlight.frag" />
-    <None Include="GlyphTextures\ANTQUAI.TTF" />
+    <EmbeddedResource Include="GlyphTextures\ANTQUAI.TTF" />
     <None Include="OpenGLObjects\ModernRendering\Renderers.cd" />
     <None Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.cd" />
     <EmbeddedResource Include="WinformControls\GLCanvas.resx">
