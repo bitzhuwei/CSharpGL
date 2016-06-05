@@ -41,13 +41,27 @@ namespace CSharpGL.Demos
             {
                 mat4 projection = arg.Camera.GetProjectionMat4();
                 mat4 view = arg.Camera.GetViewMat4();
-                mat4 model = mat4.identity();
+                mat4 model = glm.scale(mat4.identity(), new vec3(0.3f, 0.3f, 0.3f));
                 this.cubeRenderer.SetUniform("projectionMatrix", projection);
                 this.cubeRenderer.SetUniform("viewMatrix", view);
                 this.cubeRenderer.SetUniform("modelMatrix", model);
                 this.cubeRenderer.Render(arg);
             }
-
+            {
+                mat4 projection = arg.Camera.GetProjectionMat4();
+                mat4 view = arg.Camera.GetViewMat4();
+                mat4 model = mat4.identity();
+                this.billboardRenderer.SetUniform("CameraRight_worldspace", new vec3(
+                    view[0][0], view[1][0], view[2][0]));
+                this.billboardRenderer.SetUniform("CameraUp_worldspace", new vec3(
+                    view[0][1], view[1][1], view[2][1]));
+                this.billboardRenderer.SetUniform("BillboardPos", new vec3(0.0f, 1f, 0.0f));
+                this.billboardRenderer.SetUniform("BillboardSize", new vec2(1.0f, 0.125f));
+                float lifeLevel = (float)(Math.Sin(currentTime) * 0.1 + 0.7); currentTime += 1f;
+                this.billboardRenderer.SetUniform("LifeLevel", lifeLevel);
+                this.billboardRenderer.SetUniform("VP", projection * view);
+                this.billboardRenderer.Render(arg);
+            }
             UIRenderersDraw(arg);
 
             // Cross cursor shows where the mouse is.
@@ -55,6 +69,8 @@ namespace CSharpGL.Demos
                 this.glCanvas1.Height - (this.lastMousePosition.Y + offset.Y) - 1,
                 Color.Red, "Courier New", crossCursorSize, "o");
         }
+
+        float currentTime = 0;
 
 
         private const float crossCursorSize = 40.0f;

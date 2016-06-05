@@ -17,6 +17,7 @@ namespace CSharpGL.Demos
         private GLControl uiRoot;
         private GLAxis glAxis;
         private PickableRenderer cubeRenderer;
+        private Renderer billboardRenderer;
 
         private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
         {
@@ -41,7 +42,20 @@ namespace CSharpGL.Demos
                 this.cubeRenderer = cubeRenderer;
             }
             {
+                var shaderCodes = new ShaderCode[2];
+                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"12Billboard\billboard.vert"), ShaderType.VertexShader);
+                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"12Billboard\billboard.frag"), ShaderType.FragmentShader);
+                var map = new PropertyNameMap();
+                map.Add("squareVertices", "position");
+                var billboardRenderer = new Renderer(new BillboardModel(), shaderCodes, map);
+                billboardRenderer.Initialize();
+                var texture = new sampler2D();
+                var bitmap = new Bitmap(@"12Billboard\ExampleBillboard.png");
+                texture.Initialize(bitmap);
+                bitmap.Dispose();
+                billboardRenderer.SetUniform("myTextureSampler", new samplerValue(BindTextureTarget.Texture2D, texture.Id, OpenGL.GL_TEXTURE0));
 
+                this.billboardRenderer = billboardRenderer;
             }
             {
                 var UIRoot = new GLControl(this.glCanvas1.Size, -100, 100);
