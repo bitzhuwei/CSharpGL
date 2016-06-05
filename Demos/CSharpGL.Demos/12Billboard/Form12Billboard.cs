@@ -38,6 +38,16 @@ namespace CSharpGL.Demos
 
             RenderEventArgs arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
 
+            {
+                mat4 projection = arg.Camera.GetProjectionMat4();
+                mat4 view = arg.Camera.GetViewMat4();
+                mat4 model = mat4.identity();
+                this.cubeRenderer.SetUniform("projectionMatrix", projection);
+                this.cubeRenderer.SetUniform("viewMatrix", view);
+                this.cubeRenderer.SetUniform("modelMatrix", model);
+                this.cubeRenderer.Render(arg);
+            }
+
             UIRenderersDraw(arg);
 
             // Cross cursor shows where the mouse is.

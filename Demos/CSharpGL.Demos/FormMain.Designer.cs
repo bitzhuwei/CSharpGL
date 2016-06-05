@@ -39,6 +39,7 @@
             this.btnForm09TextBoxRenderer = new System.Windows.Forms.Button();
             this.btn10RaycastVolumeRenderer = new System.Windows.Forms.Button();
             this.btn11SharpFont = new System.Windows.Forms.Button();
+            this.btn12Billboard = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -184,11 +185,25 @@
             this.btn11SharpFont.UseVisualStyleBackColor = true;
             this.btn11SharpFont.Click += new System.EventHandler(this.btn11SharpFont_Click);
             // 
+            // btn12Billboard
+            // 
+            this.btn12Billboard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn12Billboard.Font = new System.Drawing.Font("宋体", 12F);
+            this.btn12Billboard.Location = new System.Drawing.Point(12, 485);
+            this.btn12Billboard.Name = "btn12Billboard";
+            this.btn12Billboard.Size = new System.Drawing.Size(767, 37);
+            this.btn12Billboard.TabIndex = 0;
+            this.btn12Billboard.Text = "12 Billboard";
+            this.btn12Billboard.UseVisualStyleBackColor = true;
+            this.btn12Billboard.Click += new System.EventHandler(this.btn12Billboard_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(791, 545);
+            this.ClientSize = new System.Drawing.Size(791, 632);
+            this.Controls.Add(this.btn12Billboard);
             this.Controls.Add(this.btn11SharpFont);
             this.Controls.Add(this.btn10RaycastVolumeRenderer);
             this.Controls.Add(this.btnForm09TextBoxRenderer);
@@ -219,5 +234,6 @@
         private System.Windows.Forms.Button btnForm09TextBoxRenderer;
         private System.Windows.Forms.Button btn10RaycastVolumeRenderer;
         private System.Windows.Forms.Button btn11SharpFont;
+        private System.Windows.Forms.Button btn12Billboard;
     }
 }

@@ -193,6 +193,7 @@
     <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRenderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="12Billboard\BillboardModel.cs" />
     <Compile Include="FormBulletinBoard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -378,6 +379,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="12Billboard\billboard.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="12Billboard\Cube.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="12Billboard\Cube.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
