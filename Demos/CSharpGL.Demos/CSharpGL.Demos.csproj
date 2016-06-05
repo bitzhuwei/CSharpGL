@@ -148,6 +148,18 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="07Billboard\BillboardRenderer.cs" />
+    <Compile Include="12Billboard\Form12Billboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="12Billboard\Form12Billboard.Designer.cs">
+      <DependentUpon>Form12Billboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12Billboard\Form12Billboard.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="12Billboard\Form12Billboard.MouseDownMoveUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="09UIRenderer\Form09UIRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -300,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="07Billboard\Form07Billboard.resx">
       <DependentUpon>Form07Billboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12Billboard\Form12Billboard.resx">
+      <DependentUpon>Form12Billboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="09UIRenderer\Form09UIRenderer.resx">
       <DependentUpon>Form09UIRenderer.cs</DependentUpon>
