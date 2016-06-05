@@ -35,7 +35,7 @@ namespace CSharpGL.Demos
                             var array = (float*)buffer.Header.ToPointer();
                             for (int i = 0; i < positions.Length; i++)
                             {
-                                array[i] = positions[i] - 0.5f;
+                                array[i] = positions[i];
                             }
                         }
                         positionBuffer = buffer.GetBufferPtr() as PropertyBufferPtr;

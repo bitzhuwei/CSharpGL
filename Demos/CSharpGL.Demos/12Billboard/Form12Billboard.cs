@@ -57,7 +57,7 @@ namespace CSharpGL.Demos
                     view[0][1], view[1][1], view[2][1]));
                 this.billboardRenderer.SetUniform("BillboardPos", new vec3(0.0f, 1f, 0.0f));
                 this.billboardRenderer.SetUniform("BillboardSize", new vec2(1.0f, 0.125f));
-                float lifeLevel = (float)(Math.Sin(currentTime) * 0.1 + 0.7); currentTime += 1f;
+                float lifeLevel = (float)(Math.Sin(currentTime) * 0.1 + 0.7); currentTime += 0.1f;
                 this.billboardRenderer.SetUniform("LifeLevel", lifeLevel);
                 this.billboardRenderer.SetUniform("VP", projection * view);
                 this.billboardRenderer.Render(arg);
