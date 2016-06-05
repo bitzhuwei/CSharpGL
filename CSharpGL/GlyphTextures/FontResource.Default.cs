@@ -77,7 +77,7 @@ namespace CSharpGL
         private void InitTexture(Bitmap bitmap)
         {
 #if DEBUG
-            var filename = string.Format("FontResource{0:yyyy-MM-dd_HH-mm-ss.ff}FontResource.bmp", DateTime.Now);
+            var filename = string.Format("FontResource{0:yyyy-MM-dd_HH-mm-ss.ff}FontResource.log.bmp", DateTime.Now);
             bitmap.Save(filename);
 #endif
             // generate texture.
