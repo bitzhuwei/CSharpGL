@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Text;
 using System.Xml.Linq;
 
 namespace CSharpGL
@@ -24,13 +26,22 @@ namespace CSharpGL
                     {
                         if (defaultInstance == null)
                         {
-                            defaultInstance = new FontResource();
-                            var bitmap = ManifestResourceLoader.LoadBitmap(@"GlyphTextures\ANTQUAI.TTF.png");
-                            defaultInstance.InitTexture(bitmap);
-                            bitmap.Dispose();
-                            string xmlContent = ManifestResourceLoader.LoadTextFile(@"GlyphTextures\ANTQUAI.TTF.xml");
-                            XElement xElement = XElement.Parse(xmlContent, LoadOptions.None);
-                            defaultInstance.InitConfig(xElement);
+                            //defaultInstance = new FontResource();
+                            //var bitmap = ManifestResourceLoader.LoadBitmap(@"GlyphTextures\ANTQUAI.TTF.png");
+                            //defaultInstance.InitTexture(bitmap);
+                            //bitmap.Dispose();
+                            //string xmlContent = ManifestResourceLoader.LoadTextFile(@"GlyphTextures\ANTQUAI.TTF.xml");
+                            //XElement xElement = XElement.Parse(xmlContent, LoadOptions.None);
+                            //defaultInstance.InitConfig(xElement);
+                            var builder = new StringBuilder();
+                            for (int i = 32; i < 127; i++)
+                            {
+                                builder.Append((char)i);
+                            }
+                            using (Stream stream = ManifestResourceLoader.GetStream(@"GlyphTextures\ANTQUAI.TTF"))
+                            {
+                                defaultInstance = FontResource.Load(stream, builder.ToString(), 32);
+                            }
                         }
                     }
                 }
@@ -65,6 +76,7 @@ namespace CSharpGL
 
         private void InitTexture(Bitmap bitmap)
         {
+            bitmap.Save("Test2.bmp");
             // generate texture.
             //  Lock the image bits (so that we can pass them to OGL).
             BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),

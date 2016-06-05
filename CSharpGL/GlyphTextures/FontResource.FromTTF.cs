@@ -31,9 +31,12 @@ namespace CSharpGL
 
             var targets = (from item in content select item).Distinct();
 
-            FontResource fontResource = LoadFromSomeChars(ttfFilename, pixelSize, targets);
+            using (FileStream stream = File.OpenRead(ttfFilename))
+            {
+                FontResource fontResource = LoadFromSomeChars(stream, pixelSize, targets);
 
-            return fontResource;
+                return fontResource;
+            }
         }
 
         /// <summary>
@@ -49,12 +52,33 @@ namespace CSharpGL
 
             var targets = (from item in content select item).Distinct();
 
-            FontResource fontResource = LoadFromSomeChars(ttfFilename, pixelSize, targets);
+            using (FileStream stream = File.OpenRead(ttfFilename))
+            {
+                FontResource fontResource = LoadFromSomeChars(stream, pixelSize, targets);
+
+                return fontResource;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ttfFilename">".ttf", or ".otf"</param>
+        /// <param name="pixelSize">The desired size of the font, in pixels.</param>
+        /// <returns></returns>
+        public static FontResource Load(Stream stream,
+            string content, int pixelSize = 32)
+        {
+            InitStandardWidths();
+
+            var targets = (from item in content select item).Distinct();
+
+            FontResource fontResource = LoadFromSomeChars(stream, pixelSize, targets);
 
             return fontResource;
         }
 
-        private static FontResource LoadFromSomeChars(string ttfFilename, int pixelSize, IEnumerable<char> targets)
+        private static FontResource LoadFromSomeChars(Stream stream, int pixelSize, IEnumerable<char> targets)
         {
             FontResource fontResource;
 
@@ -73,9 +97,8 @@ namespace CSharpGL
             this.CharInfoDict = CharacterInfoDictHelper.Parse(
                 config.Element(CharacterInfoDictHelper.strCharacterInfoDict));
              */
-            using (var file = File.OpenRead(ttfFilename))
             {
-                var typeface = new FontFace(file);
+                var typeface = new FontFace(stream);
 
                 foreach (char c in targets)
                 {
@@ -100,6 +123,22 @@ namespace CSharpGL
         public static FontResource Load(string ttfFilename,
             char firstChar, char lastChar, int pixelSize = 32)
         {
+            using (FileStream stream = File.OpenRead(ttfFilename))
+            {
+                FontResource fontResource = Load(stream, firstChar, lastChar, pixelSize);
+                return fontResource;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream">".ttf", or ".otf"</param>
+        /// <param name="pixelSize">The desired size of the font, in pixels.</param>
+        /// <returns></returns>
+        private static FontResource Load(Stream stream,
+            char firstChar, char lastChar, int pixelSize = 32)
+        {
             InitStandardWidths();
 
             int count = lastChar - firstChar + 1;
@@ -117,9 +156,9 @@ namespace CSharpGL
             this.CharInfoDict = CharacterInfoDictHelper.Parse(
                 config.Element(CharacterInfoDictHelper.strCharacterInfoDict));
              */
-            using (var file = File.OpenRead(ttfFilename))
+            //using (var file = File.OpenRead(ttfFilename))
             {
-                var typeface = new FontFace(file);
+                var typeface = new FontFace(stream);
 
                 for (char c = firstChar; c <= lastChar; c++)
                 {
