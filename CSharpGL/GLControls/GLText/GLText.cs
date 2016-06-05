@@ -17,6 +17,7 @@ namespace CSharpGL
 
         private TextModel model;
         private BlendSwitch blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One);
+        private ClearColorSwitch clearColorSwitch = new ClearColorSwitch();
 
         private FontResource fontResource;
 
@@ -65,9 +66,11 @@ namespace CSharpGL
             //this.SetUniformValue("mvp", projection * view * model);
 
             blendSwitch.On();
+            clearColorSwitch.On();
 
             base.DoRender(arg);
 
+            clearColorSwitch.Off();
             blendSwitch.Off();
         }
 

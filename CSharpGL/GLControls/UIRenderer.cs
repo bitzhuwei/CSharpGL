@@ -38,6 +38,7 @@ namespace CSharpGL
         public System.Drawing.Point Location { get; set; }
 
         public System.Drawing.Size Size { get; set; }
+        public System.Drawing.Size ParentLastSize { get; set; }
 
         public int zNear { get; set; }
 
@@ -74,6 +75,7 @@ namespace CSharpGL
 
                 // 把所有在此之前渲染的内容都推到最远。
                 OpenGL.Clear(OpenGL.GL_DEPTH_BUFFER_BIT);
+                OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT);
 
                 renderer.Render(arg);
 

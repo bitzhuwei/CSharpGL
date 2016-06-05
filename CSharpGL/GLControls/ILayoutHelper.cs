@@ -24,7 +24,7 @@ namespace CSharpGL
                 uiRenderer.Size.Height / 2,
                 -length,
                 length);
-                //uiRenderer.zNear, uiRenderer.zFar);
+            //uiRenderer.zNear, uiRenderer.zFar);
         }
 
         /// <summary>
@@ -33,14 +33,20 @@ namespace CSharpGL
         /// <param name="uiRenderer"></param>
         public static void Layout(this ILayout uiRenderer)
         {
-            if (uiRenderer.Container != null)
+            ILayout parent = uiRenderer.Container;
+            if (parent != null)
             {
-                NonRootNodeLayout(uiRenderer, uiRenderer.Container);
+                NonRootNodeLayout(uiRenderer, parent);
             }
 
             foreach (var item in uiRenderer.Controls)
             {
                 item.Layout();
+            }
+
+            if (parent != null)
+            {
+                uiRenderer.ParentLastSize = parent.Size;
             }
         }
 
@@ -59,7 +65,8 @@ namespace CSharpGL
             int x, y, width, height;
             if ((currentNode.Anchor & leftRightAnchor) == leftRightAnchor)
             {
-                width = parent.Size.Width - currentNode.Margin.Left - currentNode.Margin.Right;
+                //width = parent.Size.Width - currentNode.Margin.Left - currentNode.Margin.Right;
+                width = currentNode.Size.Width + (parent.Size.Width - currentNode.ParentLastSize.Width);
                 if (width < 0) { width = 0; }
             }
             else
@@ -69,7 +76,8 @@ namespace CSharpGL
 
             if ((currentNode.Anchor & topBottomAnchor) == topBottomAnchor)
             {
-                height = parent.Size.Height - currentNode.Margin.Top - currentNode.Margin.Bottom;
+                //height = parent.Size.Height - currentNode.Margin.Top - currentNode.Margin.Bottom;
+                height = currentNode.Size.Height + (parent.Size.Height - currentNode.ParentLastSize.Height);
                 if (height < 0) { height = 0; }
             }
             else
@@ -93,7 +101,7 @@ namespace CSharpGL
             }
             else if ((currentNode.Anchor & leftRightAnchor) == leftRightAnchor)
             {
-                x = currentNode.Margin.Left;
+                x = currentNode.Location.X;
             }
             else
             { throw new Exception("uiRenderer should not happen!"); }
@@ -114,7 +122,7 @@ namespace CSharpGL
             }
             else if ((currentNode.Anchor & topBottomAnchor) == topBottomAnchor)
             {
-                y = currentNode.Margin.Bottom;
+                y = currentNode.Location.Y;
             }
             else
             { throw new Exception("This should not happen!"); }

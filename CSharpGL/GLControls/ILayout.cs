@@ -44,6 +44,8 @@ namespace CSharpGL
         /// </summary>
         System.Drawing.Size Size { get; set; }
 
+        System.Drawing.Size ParentLastSize { get; set; }
+
         int zNear { get; set; }
 
         int zFar { get; set; }

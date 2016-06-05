@@ -23,6 +23,7 @@ namespace CSharpGL
         public void Add(ILayout item)
         {
             item.Container = this.container;
+            item.ParentLastSize = this.container.Size;
             this.collection.Add(item);
         }
 
