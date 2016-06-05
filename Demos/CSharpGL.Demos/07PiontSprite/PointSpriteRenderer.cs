@@ -39,7 +39,7 @@ namespace CSharpGL.Demos
             map.Add("position", "position");
         }
         public BillboardRenderer(int particleCount)
-            : base(new BillboardModel(particleCount), staticShaderCodes, map)
+            : base(new PointSpriteModel(particleCount), staticShaderCodes, map)
         {
             this.SwitchList.Add(new PointSpriteSwitch());
         }
@@ -79,10 +79,10 @@ namespace CSharpGL.Demos
             OpenGL.DeleteTextures(1, sprite_texture);
         }
 
-        class BillboardModel : IBufferable
+        class PointSpriteModel : IBufferable
         {
 
-            public BillboardModel(int particleCount)
+            public PointSpriteModel(int particleCount)
             {
                 this.particleCount = particleCount;
             }
