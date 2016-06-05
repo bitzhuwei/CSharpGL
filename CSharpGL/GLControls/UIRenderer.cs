@@ -54,8 +54,6 @@ namespace CSharpGL
         {
             this.viewportSwitch = new ViewportSwitch();
             this.scissorTestSwitch = new ScissorTestSwitch();
-            this.switchList.Add(this.viewportSwitch);
-            this.switchList.Add(this.scissorTestSwitch);
 
             Renderer renderer = this.Renderer;
             if (renderer != null)
@@ -78,6 +76,8 @@ namespace CSharpGL
                 this.scissorTestSwitch.Width = this.Size.Width;
                 this.scissorTestSwitch.Height = this.Size.Height;
 
+                this.viewportSwitch.On();
+                this.scissorTestSwitch.On();
                 int count = this.switchList.Count;
                 for (int i = 0; i < count; i++) { this.switchList[i].On(); }
 
@@ -87,6 +87,8 @@ namespace CSharpGL
                 renderer.Render(arg);
 
                 for (int i = count - 1; i >= 0; i--) { this.switchList[i].Off(); }
+                this.scissorTestSwitch.Off();
+                this.viewportSwitch.Off();
             }
         }
 
