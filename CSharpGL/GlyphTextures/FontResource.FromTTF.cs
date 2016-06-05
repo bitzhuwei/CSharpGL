@@ -107,7 +107,7 @@ namespace CSharpGL
             }
 
             g.Dispose();
-            Bitmap finalBitmap = ShortenBitmap(bitmap, maxWidth, currentY + pixelSize + (pixelSize / 10 > 1 ? pixelSize / 10 : 1));
+            Bitmap finalBitmap = ShortenBitmap(bitmap, maxWidth, currentY + yInterval + pixelSize + (pixelSize / 10 > 1 ? pixelSize / 10 : 1));
             bitmap.Dispose();
             fontResource.InitTexture(finalBitmap);
             finalBitmap.Dispose();
@@ -169,7 +169,7 @@ namespace CSharpGL
             }
 
             g.Dispose();
-            Bitmap finalBitmap = ShortenBitmap(bitmap, maxWidth, currentY + pixelSize + (pixelSize / 10 > 1 ? pixelSize / 10 : 1));
+            Bitmap finalBitmap = ShortenBitmap(bitmap, maxWidth, currentY + yInterval + pixelSize + (pixelSize / 10 > 1 ? pixelSize / 10 : 1));
             bitmap.Dispose();
             fontResource.InitTexture(finalBitmap);
             finalBitmap.Dispose();
@@ -188,7 +188,7 @@ namespace CSharpGL
         }
 
         const int xInterval = 1;
-        const int yInterval = 1;
+        const int yInterval = 10;
 
         private static void BlitCharacter(int pixelSize, int maxWidth, FullDictionary<char, CharacterInfo> dict, ref int currentX, ref int currentY, Graphics g, FontFace typeface, char c)
         {
@@ -202,10 +202,10 @@ namespace CSharpGL
                     if (currentY + yInterval + pixelSize >= maxWidth)
                     { throw new Exception("Texture Size not big enough for reuqired characters."); }
                 }
-                Bitmap glyphBitmap = new Bitmap(width, pixelSize);
+                Bitmap glyphBitmap = new Bitmap(width + xInterval, pixelSize + yInterval);
                 //float yoffset = pixelSize * 3 / 4 - glyph.HorizontalMetrics.Bearing.Y;
                 g.DrawImage(glyphBitmap, currentX + xInterval, currentY + yInterval);
-                CharacterInfo info = new CharacterInfo(currentX + xInterval, currentY + yInterval, width, pixelSize);
+                CharacterInfo info = new CharacterInfo(currentX, currentY, width + xInterval, pixelSize + yInterval);
                 dict.Add(c, info);
                 glyphBitmap.Dispose();
                 currentX += width;
@@ -223,9 +223,20 @@ namespace CSharpGL
                         { throw new Exception("Texture Size not big enough for reuqired characters."); }
                     }
                     Bitmap glyphBitmap = GetGlyphBitmap(surface);
-                    //float yoffset = pixelSize * 3 / 4 - glyph.HorizontalMetrics.Bearing.Y;
-                    g.DrawImage(glyphBitmap, currentX + xInterval, currentY + yInterval + pixelSize * 3 / 4 - glyph.HorizontalMetrics.Bearing.Y);
-                    CharacterInfo info = new CharacterInfo(currentX + xInterval, currentY + yInterval, surface.Width, surface.Height);
+                    const int a = 5;
+                    const int b = 8;
+                    //float yoffset = pixelSize * a / b - glyph.HorizontalMetrics.Bearing.Y;
+                    //if (state % 4 == 0)
+                    {
+                        g.DrawRectangle(redPen, currentX + xInterval, currentY + yInterval + pixelSize * a / b - glyph.HorizontalMetrics.Bearing.Y, glyphBitmap.Width, glyphBitmap.Height);
+                    }
+                    //else if (state % 4 == 2)
+                    {
+                        g.DrawRectangle(greenPen, currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
+                    }
+                    //state++;
+                    g.DrawImage(glyphBitmap, currentX + xInterval, currentY + yInterval + pixelSize * a / b - glyph.HorizontalMetrics.Bearing.Y, glyphBitmap.Width, glyphBitmap.Height);
+                    CharacterInfo info = new CharacterInfo(currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
                     dict.Add(c, info);
                     glyphBitmap.Dispose();
                     currentX += xInterval + surface.Width;
@@ -234,6 +245,11 @@ namespace CSharpGL
                 surface.Dispose();
             }
         }
+
+        static int state = 0;
+
+        static Pen redPen = new Pen(Color.Red);
+        static Pen greenPen = new Pen(Color.Green);
 
         private static int GetMaxWidth(int pixelSize, int count)
         {

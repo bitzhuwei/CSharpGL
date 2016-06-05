@@ -63,8 +63,8 @@ namespace CSharpGL.Demos
                     //new vec2(1, 1),
                     //new vec2(1, 0)
                     new vec2((float)(info.xoffset + shrimp) / (float)width, (float)(info.yoffset) / (float)height),
-                    new vec2((float)(info.xoffset + shrimp) / (float)width, (float)(info.yoffset + fontResource.FontHeight - 1) / (float)height),
-                    new vec2((float)(info.xoffset - shrimp + info.width) / (float)width, (float)(info.yoffset + fontResource.FontHeight - 1) / (float)height),
+                    new vec2((float)(info.xoffset + shrimp) / (float)width, (float)(info.yoffset + info.height) / (float)height),
+                    new vec2((float)(info.xoffset - shrimp + info.width) / (float)width, (float)(info.yoffset + info.height) / (float)height),
                     new vec2((float)(info.xoffset - shrimp + info.width) / (float)width, (float)(info.yoffset) / (float)height)
                     );
             }
