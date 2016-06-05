@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CSharpGL.Demos
 {
 
-    class BillboardRenderer : Renderer
+    class PointSpriteRenderer : Renderer
     {
 
         private Color clearColor = Color.Black;
@@ -30,7 +30,7 @@ namespace CSharpGL.Demos
         private uint[] sprite_texture = new uint[1];
         static ShaderCode[] staticShaderCodes;
         static PropertyNameMap map;
-        static BillboardRenderer()
+        static PointSpriteRenderer()
         {
             staticShaderCodes = new ShaderCode[2];
             staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"07PiontSprite\PointSprite.vert"), ShaderType.VertexShader);
@@ -38,7 +38,7 @@ namespace CSharpGL.Demos
             map = new PropertyNameMap();
             map.Add("position", "position");
         }
-        public BillboardRenderer(int particleCount)
+        public PointSpriteRenderer(int particleCount)
             : base(new PointSpriteModel(particleCount), staticShaderCodes, map)
         {
             this.SwitchList.Add(new PointSpriteSwitch());

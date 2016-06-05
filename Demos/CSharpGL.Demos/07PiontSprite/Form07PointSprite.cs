@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
 
         private Camera camera;
         private SatelliteRotator rotator;
-        private BillboardRenderer renderer;
+        private PointSpriteRenderer renderer;
 
 
         public Form07PointSprite()
