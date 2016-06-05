@@ -76,7 +76,10 @@ namespace CSharpGL
 
         private void InitTexture(Bitmap bitmap)
         {
-            bitmap.Save("Test2.bmp");
+#if DEBUG
+            var filename = string.Format("FontResource{0:yyyy-MM-dd_HH-mm-ss.ff}FontResource.bmp", DateTime.Now);
+            bitmap.Save(filename);
+#endif
             // generate texture.
             //  Lock the image bits (so that we can pass them to OGL).
             BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
