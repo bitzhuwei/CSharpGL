@@ -28,7 +28,7 @@ namespace CSharpGL.Demos
             { throw new ArgumentException(); }
             //{ count = this.model.maxCharCount; }
 
-            FontResource fontResource = FontResource.Default;
+            FontResource fontResource = this.fontResource;
             SetupGlyphPositions(content, fontResource);
             SetupGlyphTexCoord(content, fontResource);
             this.model.indexBufferPtr.VertexCount = count * 4;

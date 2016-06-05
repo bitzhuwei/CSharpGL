@@ -18,6 +18,8 @@ namespace CSharpGL.Demos
         private TextModel model;
         private BlendSwitch blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One);
 
+        private FontResource fontResource;
+
         public BlendSwitch BlendSwitch
         {
             get { return blendSwitch; }
@@ -25,9 +27,14 @@ namespace CSharpGL.Demos
 
         public GLText(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
-            System.Drawing.Size size, int zNear, int zFar, int maxCharCount = 100)
+            System.Drawing.Size size, int zNear, int zFar, FontResource fontResource = null, int maxCharCount = 100)
             : base(null, anchor, margin, size, zNear, zFar)
         {
+            if (fontResource == null)
+            { this.fontResource = FontResource.Default; }
+            else
+            { this.fontResource = fontResource; }
+
             this.Name = "GLText";
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
@@ -48,8 +55,7 @@ namespace CSharpGL.Demos
         {
             base.DoInitialize();
 
-            this.Renderer.SetUniform("fontTexture",
-                FontResource.Default.GetSamplerValue());
+            this.Renderer.SetUniform("fontTexture", this.fontResource.GetSamplerValue());
         }
 
         protected override void DoRender(RenderEventArgs arg)
