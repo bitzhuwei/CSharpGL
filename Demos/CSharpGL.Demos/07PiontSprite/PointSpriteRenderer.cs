@@ -51,8 +51,8 @@ namespace CSharpGL.Demos
                 sampler2D texture = new sampler2D();
                 var bitmap = new System.Drawing.Bitmap(@"07PiontSprite\star.png");
                 texture.Initialize(bitmap);
-                this.sprite_texture[0] = texture.Id;
                 bitmap.Dispose();
+                this.sprite_texture[0] = texture.Id;
             }
             base.DoInitialize();
             this.SetUniform("sprite_texture", new samplerValue(
@@ -156,6 +156,7 @@ namespace CSharpGL.Demos
             sampler2D texture = new sampler2D();
             var bitmap = new System.Drawing.Bitmap(filename);
             texture.Initialize(bitmap);
+            bitmap.Dispose();
             var old = new uint[1];
             old[0] = this.sprite_texture[0];
             this.sprite_texture[0] = texture.Id;
@@ -163,7 +164,6 @@ namespace CSharpGL.Demos
                 BindTextureTarget.Texture2D, this.sprite_texture[0], OpenGL.GL_TEXTURE0));
 
             OpenGL.DeleteTextures(1, old);
-            bitmap.Dispose();
         }
     }
 }
