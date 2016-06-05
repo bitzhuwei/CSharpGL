@@ -226,15 +226,10 @@ namespace CSharpGL
                     const int a = 5;
                     const int b = 8;
                     //float yoffset = pixelSize * a / b - glyph.HorizontalMetrics.Bearing.Y;
-                    //if (state % 4 == 0)
-                    {
-                        g.DrawRectangle(redPen, currentX + xInterval, currentY + yInterval + pixelSize * a / b - glyph.HorizontalMetrics.Bearing.Y, glyphBitmap.Width, glyphBitmap.Height);
-                    }
-                    //else if (state % 4 == 2)
-                    {
-                        g.DrawRectangle(greenPen, currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
-                    }
-                    //state++;
+#if DEBUG
+                    g.DrawRectangle(redPen, currentX + xInterval, currentY + yInterval + pixelSize * a / b - glyph.HorizontalMetrics.Bearing.Y, glyphBitmap.Width, glyphBitmap.Height);
+                    g.DrawRectangle(greenPen, currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
+#endif
                     g.DrawImage(glyphBitmap, currentX + xInterval, currentY + yInterval + pixelSize * a / b - glyph.HorizontalMetrics.Bearing.Y, glyphBitmap.Width, glyphBitmap.Height);
                     CharacterInfo info = new CharacterInfo(currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
                     dict.Add(c, info);
@@ -246,10 +241,10 @@ namespace CSharpGL
             }
         }
 
-        static int state = 0;
-
+#if DEBUG
         static Pen redPen = new Pen(Color.Red);
         static Pen greenPen = new Pen(Color.Green);
+#endif
 
         private static int GetMaxWidth(int pixelSize, int count)
         {
