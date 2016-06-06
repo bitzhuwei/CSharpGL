@@ -33,7 +33,6 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
             RenderEventArgs arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
@@ -58,6 +57,18 @@ namespace CSharpGL.Demos
                 uiRoot.Layout();
                 mat4 projection, view, model;
                 {
+                    projection = glText.GetOrthoProjection();
+                    //vec3 position = (this.camera.Position - this.camera.Target).normalize();
+                    view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
+                    //float length = Math.Max(glText.Size.Width, glText.Size.Height) / 2;
+                    float length = glText.Size.Height / 2;
+                    model = glm.scale(mat4.identity(), new vec3(length, length, length));
+                    //model = mat4.identity();
+                    glText.Renderer.SetUniform("mvp", projection * view * model);
+
+                    glText.Render(arg);
+                }
+                {
                     projection = glAxis.GetOrthoProjection();
                     vec3 position = (this.camera.Position - this.camera.Target).normalize();
                     view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
@@ -69,18 +80,6 @@ namespace CSharpGL.Demos
                     glAxis.Renderer.SetUniform("modelMatrix", model);
 
                     glAxis.Render(arg);
-                }
-                {
-                    projection = glText.GetOrthoProjection();
-                    //vec3 position = (this.camera.Position - this.camera.Target).normalize();
-                    view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
-                    //float length = Math.Max(glText.Size.Width, glText.Size.Height) / 2;
-                    float length = glText.Size.Height / 2;
-                    model = glm.scale(mat4.identity(), new vec3(length, length, length));
-                    //model = mat4.identity();
-                    glText.Renderer.SetUniform("mvp", projection * view * model);
-
-                    glText.Render(arg);
                 }
             }
         }

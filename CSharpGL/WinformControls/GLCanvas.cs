@@ -96,9 +96,6 @@ namespace CSharpGL
 
             if (this.designMode)
             {
-                // 天蓝色背景
-                OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
-
                 GLCanvasHelper.ResizeGL(this.Width, this.Height);
 
                 GLCanvasHelper.DrawPyramid();
