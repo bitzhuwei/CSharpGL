@@ -32,9 +32,9 @@ namespace CSharpGL.EarthMoonSystem
             0f
             );
         /// <summary>
-        /// 地球半径：(赤道半径 + 极半径) / 2，单位：千米
+        /// 地球半径（单位：千米）
         /// </summary>
-        public const double radius = (6378137 + 6356752) / 2;
+        public const double radius = 6371.393;
 
         /// <summary>
         /// 当前的自转角度
