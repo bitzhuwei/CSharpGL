@@ -1,26 +1,55 @@
-<p style="text-align: center;">Introduction to CSharpGL</p>
-<p style="text-align: left;"><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_small-CSharpGL-text.png" alt="" width="164" height="43" /></p>
-<h1 style="text-align: left;">teapot</h1>
-<p style="text-align: left;"><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000092.jpg" alt="" /></p>
-<h1 style="text-align: left;">selection and switches</h1>
-<p style="text-align: left;"><img src="http://images2015.cnblogs.com/blog/383191/201604/383191-20160428234148517-1790935880.jpg" alt="" /></p>
-<h1 style="text-align: left;">picking point\line\shape</h1>
-<p style="text-align: left;"><img src="http://images2015.cnblogs.com/blog/383191/201605/383191-20160503190757388-426586642.gif" alt="" /></p>
-<p style="text-align: left;"><img src="http://images2015.cnblogs.com/blog/383191/201605/383191-20160503191252216-839969378.gif" alt="" /></p>
-<p style="text-align: left;"><img src="http://images2015.cnblogs.com/blog/383191/201605/383191-20160503191610388-117673971.gif" alt="" /></p>
-<h1 style="text-align: left;">order independent transparency</h1>
-<p style="text-align: left;"><img src="http://images2015.cnblogs.com/blog/383191/201605/383191-20160507222632796-1377372910.jpg" alt="" /></p>
-<p style="text-align: left;"><object width="320" height="240" data="http://player.youku.com/player.php/sid/XMTU2MTk0OTE0OA==/v.swf" type="application/x-shockwave-flash"><param name="src" value="http://player.youku.com/player.php/sid/XMTU2MTk0OTE0OA==/v.swf" /></object></p>
-<h1 style="text-align: left;">particle simulator by compute shader</h1>
-<p style="text-align: left;"><object width="320" height="240" data="http://player.youku.com/player.php/sid/XMTU2NDM1NTg5Ng==/v.swf" type="application/x-shockwave-flash"><param name="src" value="http://player.youku.com/player.php/sid/XMTU2NDM1NTg5Ng==/v.swf" /></object></p>
-<p style="text-align: left;"><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_penquan2.gif" alt="" /></p>
-<h1 style="text-align: left;">image edge detection by compute shader</h1>
-<p style="text-align: left;"><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_teapot.gif" alt="" /></p>
-<h1 style="text-align: left;">volume rendering</h1>
-<p style="text-align: left;"><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_vr.gif" alt="" /></p>
-<h1 style="text-align: left;">GLText</h1>
-<p style="text-align: left;"><img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_GLText.gif" alt="" /></p>
-<p style="text-align: left;">&nbsp;</p>
-<p style="text-align: left;">&nbsp;</p>
-<p style="text-align: left;">&nbsp;</p>
-<p style="text-align: left;">&nbsp;</p>
+# :art:Welcome to CSharpGL
+[CSharpGL](https://github.com/bitzhuwei/CSharpGL) is a pure C# project that allows for modern OpenGL rendering in a Objected-Oriented way. It meets common requirements in OpenGL rendering such as:
+## :rocket:Modern Rendering
+Objected-Oriented modern rendering using GLSL shaders and vertex buffer objects.
+![modern-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/modern-rendering.jpg?raw=true)
+## :stars:GLCanvas
+A winform control that supports drag-drop and wraps initialization of creating OpenGL context.
+![raycast-volume-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLCanvas.gif?raw=true)
+## :car:Uniform Variables
+structs support setting values for uniform variables in GLSL shader.
+![edit-uniform-value](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/edit-uniform-value.jpg?raw=true)
+## :cancer:GLSwitch
+Wraps OpenGL commands like 
+```
+glEnable(GL_BLEND);
+glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_DST_ALPHA);
+...
+glDisable(GL_BLEND);
+```
+or
+``glLineWidth(2.0f);``
+![GLSwitch](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLSwitch.jpg?raw=true)
+## :movie_camera:Camera and Rotator
+Get projection and view matrix by moving or rotating camera.
+## :pushpin:Color-Coded Picking
+PickableRenderer supports picking primitives in multiple vertex buffer objects using Mouse.  
+![pick and move primitive](http://images2015.cnblogs.com/blog/383191/201605/383191-20160503191610388-117673971.gif)
+## :slot_machine:GLControl
+Rendering 'Control' at fixed position with fixed size. For example, GLAxis renders an axis at left bottom corner.
+'Control' binding to specified border just like winform-control.
+## :abcd::curly_loop::ideograph_advantage:Text
+Rendering text using ``glRasterPos()`` and ``CallList()``.
+Rendering text using GLText(a special GLControl).
+Load True Type Font File(*.ttf or *.otf) to build a texture filled with glyphs, which then could be used to render text.
+The project CSharpGL.Font2Picture in :open_file_folder:`Infrastructure` is a quick tool converting TTF files to pictures along with a xml config file.
+![export-glyph-texture-from-TTF](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/glyph-texture.png?raw=true)
+## :tea:Some Models
+A Cube, Sphere, Teapot and some other models.
+![cube](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/cube.png?raw=true)
+![sphere](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/sphere.png?raw=true)
+![teapot](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/teapot.png?raw=true)
+![axis](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/axis.png?raw=true)
+# Some Cool Demos
+## Image processing using compute shader.
+![compute-shader-image-processing](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-edge-detection.gif?raw=true)
+## Raycast volume rendering.
+![raycast-volume-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/raycast-volume-render.gif?raw=true)
+## Particle simulator using compute shader.
+![compute-shader-particles](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-particles.gif?raw=true)
+## Order-independent transparency VS Order-denpendent transparency.
+![order-independent-transparency](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/order-independent-transparency.jpg?raw=true)
+## Point sprite.
+![point-sprite](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/point-sprite.jpg?raw=true)
+# :question:Support or Contact
+Check my blog [here](http://www.cnblogs.com/bitzhuwei/) if you are familiar with Chinese.
