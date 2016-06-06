@@ -40,7 +40,7 @@ A Cube, Sphere, Teapot and some other models.
 ![sphere](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/sphere.png?raw=true)
 ![teapot](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/teapot.png?raw=true)
 ![axis](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/axis.png?raw=true)
-# Some Cool Demos
+# :gem:Some Cool Demos
 ## Image processing using compute shader.
 ![compute-shader-image-processing](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-edge-detection.gif?raw=true)
 ## Raycast volume rendering.
