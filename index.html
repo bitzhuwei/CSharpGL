@@ -1,34 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <meta charset="UTF-8">
+    <title>CSharpGL by bitzhuwei</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <title>CSharpGL by bitzhuwei</title>
   </head>
-
   <body>
-    <header>
-      <div class="inner">
-        <h1>CSharpGL</h1>
-        <h2>Objected-Oriented Modern OpenGL in C#</h2>
-        <a href="https://github.com/bitzhuwei/CSharpGL" class="button"><small>View project on</small> GitHub</a>
-      </div>
-    </header>
+    <section class="page-header">
+      <h1 class="project-name">CSharpGL</h1>
+      <h2 class="project-tagline">Objected-Oriented Modern OpenGL in C#</h2>
+      <a href="https://github.com/bitzhuwei/CSharpGL" class="btn">View on GitHub</a>
+      <a href="https://github.com/bitzhuwei/CSharpGL/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/bitzhuwei/CSharpGL/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>
+    <section class="main-content">
+      <h1>
 <a id="artwelcome-to-csharpgl" class="anchor" href="#artwelcome-to-csharpgl" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="art" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f3a8.png">🎨</g-emoji>Welcome to CSharpGL</h1>
 
 <p><a href="https://github.com/bitzhuwei/CSharpGL">CSharpGL</a> is a pure C# project that allows for modern OpenGL rendering in a Objected-Oriented way. It meets common requirements in OpenGL rendering such as:</p>
@@ -36,22 +27,26 @@
 <h2>
 <a id="rocketmodern-rendering" class="anchor" href="#rocketmodern-rendering" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="rocket" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f680.png">🚀</g-emoji>Modern Rendering</h2>
 
-<p>Objected-Oriented modern rendering using GLSL shaders and vertex buffer objects.</p>
+<p>Objected-Oriented modern rendering using GLSL shaders and vertex buffer objects.
+<img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_bitzhuwei.cnblogs.com000000092.jpg" alt="teapot"></p>
 
 <h2>
 <a id="caruniform-variables" class="anchor" href="#caruniform-variables" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="car" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f697.png">🚗</g-emoji>Uniform Variables</h2>
 
-<p>structs support setting values for uniform variables in GLSL shader.</p>
+<p>structs support setting values for uniform variables in GLSL shader.
+<img src="http://images2015.cnblogs.com/blog/383191/201604/383191-20160422030922929-1238191723.png" alt="setup uniform value"></p>
 
 <h2>
 <a id="movie_cameracamera-and-rotator" class="anchor" href="#movie_cameracamera-and-rotator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="movie_camera" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f3a5.png">🎥</g-emoji>Camera and Rotator</h2>
 
-<p>move or rotate camera to get projection and view matrix.</p>
+<p>move or rotate camera to get projection and view matrix.
+<img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/482613/o_earth.gif" alt="rotate camera"></p>
 
 <h2>
 <a id="pushpincolor-coded-picking" class="anchor" href="#pushpincolor-coded-picking" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="pushpin" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4cc.png">📌</g-emoji>Color-Coded Picking</h2>
 
-<p>PickableRenderer supports picking primitives in multiple vertex buffer objects using Mouse.</p>
+<p>PickableRenderer supports picking primitives in multiple vertex buffer objects using Mouse.
+<img src="http://images2015.cnblogs.com/blog/383191/201605/383191-20160503191610388-117673971.gif" alt="pick and move primitive"></p>
 
 <h2>
 <a id="starsglcanvas" class="anchor" href="#starsglcanvas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="stars" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f320.png">🌠</g-emoji>GLCanvas</h2>
@@ -62,7 +57,8 @@
 <a id="slot_machineglcontrol" class="anchor" href="#slot_machineglcontrol" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="slot_machine" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f3b0.png">🎰</g-emoji>GLControl</h2>
 
 <p>Rendering 'Control' at fixed position with fixed size. For example, GLAxis renders an axis at left bottom corner.
-'Control' binding to specified border just like winform-control.</p>
+'Control' binding to specified border just like winform-control.
+<img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_GLText.gif" alt="GLControl"></p>
 
 <h2>
 <a id="abcdtext" class="anchor" href="#abcdtext" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="abcd" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f521.png">🔡</g-emoji>Text</h2>
@@ -73,7 +69,8 @@ Rendering text using GLText(a special GLControl).</p>
 <h2>
 <a id="teasome-models" class="anchor" href="#teasome-models" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="tea" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f375.png">🍵</g-emoji>Some Models</h2>
 
-<p>A Cube, Sphere, Teapot and some other models.</p>
+<p>A Cube, Sphere, Teapot and some other models.
+<img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_c.png" alt="teapot"></p>
 
 <h2>
 <a id="cancerglswitch" class="anchor" href="#cancerglswitch" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="cancer" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/264b.png">♋</g-emoji>GLSwitch</h2>
@@ -91,6 +88,8 @@ glDisable(GL_BLEND);
 <pre><code>glLineWidth(2.0f);
 </code></pre>
 
+<p><img src="http://images2015.cnblogs.com/blog/383191/201604/383191-20160422030921304-1011157742.png" alt="GLSwitch"></p>
+
 <h2>
 <a id="curly_loopload-true-type-font-file" class="anchor" href="#curly_loopload-true-type-font-file" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="curly_loop" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/27b0.png">➰</g-emoji>Load True Type Font File</h2>
 
@@ -99,30 +98,27 @@ glDisable(GL_BLEND);
 <h2>
 <a id="ideograph_advantageconverting-ttf-file-to-picture" class="anchor" href="#ideograph_advantageconverting-ttf-file-to-picture" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="ideograph_advantage" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f250.png">🉐</g-emoji>Converting TTF file to picture</h2>
 
-<p>The project CSharpGL.Font2Picture in <g-emoji alias="open_file_folder" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji><code>Infrastructure</code> is a quick tool converting TTF files to pictures along with a xml config file.</p>
+<p>The project CSharpGL.Font2Picture in <g-emoji alias="open_file_folder" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji><code>Infrastructure</code> is a quick tool converting TTF files to pictures along with a xml config file.
+<img src="http://images2015.cnblogs.com/blog/383191/201606/383191-20160605143700258-489110969.png" alt="export-glyph-texture-from-TTF"></p>
+
+<h1>
+<a id="raycast-volume-render" class="anchor" href="#raycast-volume-render" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Raycast Volume Render</h1>
+
+<p>Some cool demos.
+<img src="http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_vr.gif" alt="rotate camera"></p>
 
 <h1>
 <a id="questionsupport-or-contact" class="anchor" href="#questionsupport-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="question" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2753.png">❓</g-emoji>Support or Contact</h1>
 
 <p>Check my blog <a href="http://www.cnblogs.com/bitzhuwei/">here</a> if you are familiar with Chinese.</p>
-        </section>
 
-        <aside id="sidebar">
-          <a href="https://github.com/bitzhuwei/CSharpGL/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/bitzhuwei/CSharpGL/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/bitzhuwei/CSharpGL">CSharpGL</a> is maintained by <a href="https://github.com/bitzhuwei">bitzhuwei</a>.</span>
 
-          <p class="repo-owner"><a href="https://github.com/bitzhuwei/CSharpGL"></a> is maintained by <a href="https://github.com/bitzhuwei">bitzhuwei</a>.</p>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
 
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
+    </section>
 
   
   </body>
