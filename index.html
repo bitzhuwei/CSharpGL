@@ -39,7 +39,7 @@
 <h2>
 <a id="movie_cameracamera-and-rotator" class="anchor" href="#movie_cameracamera-and-rotator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="movie_camera" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f3a5.png">🎥</g-emoji>Camera and Rotator</h2>
 
-<p>move or rotate camera to get projection and view matrix.</p>
+<p>Get projection and view matrix by moving or rotating camera.</p>
 
 <h2>
 <a id="pushpincolor-coded-picking" class="anchor" href="#pushpincolor-coded-picking" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="pushpin" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4cc.png">📌</g-emoji>Color-Coded Picking</h2>
@@ -60,10 +60,13 @@
 'Control' binding to specified border just like winform-control.</p>
 
 <h2>
-<a id="abcdtext" class="anchor" href="#abcdtext" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="abcd" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f521.png">🔡</g-emoji>Text</h2>
+<a id="abcdcurly_loopideograph_advantagetext" class="anchor" href="#abcdcurly_loopideograph_advantagetext" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="abcd" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f521.png">🔡</g-emoji><g-emoji alias="curly_loop" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/27b0.png">➰</g-emoji><g-emoji alias="ideograph_advantage" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f250.png">🉐</g-emoji>Text</h2>
 
-<p>Rendering text using <code>glRasterPos()</code> and CallList.
-Rendering text using GLText(a special GLControl).</p>
+<p>Rendering text using <code>glRasterPos()</code> and <code>CallList()</code>.
+Rendering text using GLText(a special GLControl).
+Load True Type Font File(*.ttf or *.otf) to build a texture filled with glyphs, which then could be used to render text.
+<img src="http://images2015.cnblogs.com/blog/383191/201606/383191-20160605143700258-489110969.png" alt="export-glyph-texture-from-TTF">
+The project CSharpGL.Font2Picture in <g-emoji alias="open_file_folder" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji><code>Infrastructure</code> is a quick tool converting TTF files to pictures along with a xml config file.</p>
 
 <h2>
 <a id="teasome-models" class="anchor" href="#teasome-models" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="tea" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f375.png">🍵</g-emoji>Some Models</h2>
@@ -92,24 +95,18 @@ glDisable(GL_BLEND);
 
 <p><img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLSwitch.jpg?raw=true" alt="GLSwitch"></p>
 
-<h2>
-<a id="curly_loopload-true-type-font-file" class="anchor" href="#curly_loopload-true-type-font-file" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="curly_loop" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/27b0.png">➰</g-emoji>Load True Type Font File</h2>
-
-<p>Load True Type Font File(*.ttf or *.otf) to build a texture filled with glyphs, which then could be used to render text.</p>
-
-<h2>
-<a id="ideograph_advantageconverting-ttf-file-to-picture" class="anchor" href="#ideograph_advantageconverting-ttf-file-to-picture" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="ideograph_advantage" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f250.png">🉐</g-emoji>Converting TTF file to picture</h2>
-
-<p>The project CSharpGL.Font2Picture in <g-emoji alias="open_file_folder" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji><code>Infrastructure</code> is a quick tool converting TTF files to pictures along with a xml config file.<br>
-<img src="http://images2015.cnblogs.com/blog/383191/201606/383191-20160605143700258-489110969.png" alt="export-glyph-texture-from-TTF"></p>
-
 <h1>
-<a id="some-cool-demoe" class="anchor" href="#some-cool-demoe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Some Cool Demoe</h1>
+<a id="some-cool-demos" class="anchor" href="#some-cool-demos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Some Cool Demos</h1>
 
-<p><img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-edge-detection.gif?raw=true" alt="compute-shader-image-processing">
+<p>Image processing using compute shader.
+<img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-edge-detection.gif?raw=true" alt="compute-shader-image-processing">
+Raycast volume rendering.
 <img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/raycast-volume-render.gif?raw=true" alt="raycast-volume-rendering">
+Particle simulator using compute shader.
 <img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-particles.gif?raw=true" alt="compute-shader-particles">
+Order-independent transparency VS Order-denpendent transparency.
 <img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/order-independent-transparency.jpg?raw=true" alt="order-independent-transparency">
+Point sprite.
 <img src="https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/point-sprite.jpg?raw=true" alt="point-sprite"></p>
 
 <h1>
