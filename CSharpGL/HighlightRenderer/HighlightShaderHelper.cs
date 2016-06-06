@@ -51,16 +51,14 @@ namespace CSharpGL
                 case ShaderType.VertexShader:
                     if (vertexShader == null)
                     {
-                        vertexShader = ManifestResourceLoader.LoadTextFile(
-                            @"HighlightRenderer.Highlight.vert");
+                        vertexShader = ManifestResourceLoader.LoadTextFile(@"Resources.Highlight.vert");
                     }
                     result = vertexShader;
                     break;
                 case ShaderType.FragmentShader:
                     if (fragmentShader == null)
                     {
-                        fragmentShader = ManifestResourceLoader.LoadTextFile(
-                            @"HighlightRenderer.Highlight.frag");
+                        fragmentShader = ManifestResourceLoader.LoadTextFile(@"Resources.Highlight.frag");
                     }
                     result = fragmentShader;
                     break;

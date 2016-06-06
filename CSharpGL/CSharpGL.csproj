@@ -406,8 +406,8 @@
   <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="IBufferables\TeapotModel.obj" />
-    <EmbeddedResource Include="HighlightRenderer\Highlight.vert" />
-    <EmbeddedResource Include="HighlightRenderer\Highlight.frag" />
+    <EmbeddedResource Include="Resources\Highlight.vert" />
+    <EmbeddedResource Include="Resources\Highlight.frag" />
     <EmbeddedResource Include="Resources\ANTQUAI.TTF" />
     <None Include="OpenGLObjects\ModernRendering\Renderers.cd" />
     <None Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.cd" />
