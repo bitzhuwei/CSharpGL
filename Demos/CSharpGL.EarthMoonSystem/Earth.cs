@@ -8,24 +8,41 @@ namespace CSharpGL.EarthMoonSystem
 {
     class Earth : ITimeElapse
     {
-        public const double singleRotationSpeed = 360.0 / 24 / 60 / 60 / 1000;// X°每毫秒
+        /// <summary>
+        /// 自转角速度（单位： X°每毫秒）
+        /// </summary>
+        public const double singleRotationSpeed = 360.0 / 24 / 60 / 60 / 1000;//
         // 每秒自转1周。用于测试应该用角度还是弧度（结果是应该用弧度）。
         //public const double singleRotationSpeed = 360.0 / 3000.0;//°每毫秒
 
+        /// <summary>
+        /// 自转轴（地轴）倾斜角度66.34°
+        /// </summary>
         public const double singleRotationAxisAngle = 66.0 + 34.0 / 60.0;//66.34°
+        /// <summary>
+        /// 自转轴（地轴）倾斜弧度
+        /// </summary>
         public const double singleRotationAxisRadian = singleRotationAxisAngle * Math.PI / 180.0;
+        /// <summary>
+        /// 自转轴（地轴）
+        /// </summary>
         public static readonly vec3 singleRotationAxis = new vec3(
             (float)Math.Cos(singleRotationAxisRadian),
             (float)Math.Sin(singleRotationAxisRadian),
             0f
             );
         /// <summary>
-        /// 自转角度
+        /// 地球半径：(赤道半径 + 极半径) / 2，单位：千米
+        /// </summary>
+        public const double radius = (6378137 + 6356752) / 2;
+
+        /// <summary>
+        /// 当前的自转角度
         /// </summary>
         public double SingleRotationAngle { get; private set; }
 
         /// <summary>
-        /// 自转弧度
+        /// 当前的自转弧度
         /// </summary>
         public double SingleRotationRadian
         {
