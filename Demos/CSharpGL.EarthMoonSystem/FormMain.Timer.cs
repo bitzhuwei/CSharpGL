@@ -26,7 +26,7 @@ namespace CSharpGL.EarthMoonSystem
             lastTime = now;
             for (int i = 0; i < this.thingList.Count; i++)
             {
-                this.thingList[i].Elapse(elasped.TotalMilliseconds);
+                this.thingList[i].Elapse(elasped.TotalMilliseconds * this.TimeSpeed);
             }
         }
     }

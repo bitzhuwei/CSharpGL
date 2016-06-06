@@ -22,10 +22,17 @@ namespace CSharpGL.EarthMoonSystem
         List<ITimeElapse> thingList = new List<ITimeElapse>();
         private Earth earth;
 
+        /// <summary>
+        /// 时间流逝的速度。1为物理世界的流逝速度。
+        /// </summary>
+        public double TimeSpeed { get; set; }
+
+
         public FormMain()
         {
             InitializeComponent();
 
+            this.TimeSpeed = 1;
 
             this.Load += FormMain_Load;
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
@@ -41,7 +48,7 @@ namespace CSharpGL.EarthMoonSystem
         void Application_Idle(object sender, EventArgs e)
         {
             this.lblInfo.Text = string.Format("Elapsed: {0}, Earth: {1}",
-                DateTime.Now.Subtract(startTime),
+                new TimeSpan((long)(DateTime.Now.Subtract(startTime).Ticks * this.TimeSpeed)),
                 this.earth);
         }
 
