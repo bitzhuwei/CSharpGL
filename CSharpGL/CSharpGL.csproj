@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UITypeEditors\FormGLSwitchEditor.resx">
+    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormGLSwitchEditor.resx">
       <DependentUpon>FormGLSwitchEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinformControls\GLCanvas.ico" />
@@ -109,13 +109,13 @@
     <Compile Include="PickableRenderer\InnerPickableRenderer.MovePositions.cs" />
     <Compile Include="PickableRenderer\InnerPickableRenderer.Picking.cs" />
     <Compile Include="PickableRenderer\InnerPickableRendererFactory.cs" />
-    <Compile Include="UITypeEditors\FormGLSwitchEditor.cs">
+    <Compile Include="4PropertyGrid\UITypeEditors\FormGLSwitchEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UITypeEditors\FormGLSwitchEditor.Designer.cs">
+    <Compile Include="4PropertyGrid\UITypeEditors\FormGLSwitchEditor.Designer.cs">
       <DependentUpon>FormGLSwitchEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UITypeEditors\GLSwithEditor.cs" />
+    <Compile Include="4PropertyGrid\UITypeEditors\GLSwithEditor.cs" />
     <Compile Include="WinformControls\GLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -240,41 +240,41 @@
     <Compile Include="FontResource\SharpFont\System.Numerics\Matrix3x2.cs" />
     <Compile Include="FontResource\SharpFont\System.Numerics\Register.cs" />
     <Compile Include="FontResource\SharpFont\System.Numerics\Vector2.cs" />
-    <Compile Include="TypeConverters\Mat2TypeConverter.cs" />
-    <Compile Include="TypeConverters\Mat3TypeConverter.cs" />
-    <Compile Include="TypeConverters\Mat4TypeConverter.cs" />
-    <Compile Include="TypeConverters\SamplerValueTypeConverter.cs" />
-    <Compile Include="TypeConverters\Vec4TypeConverter.cs" />
-    <Compile Include="TypeConverters\Vec3TypeConverter.cs" />
-    <Compile Include="TypeConverters\Vec2TypeConverter.cs" />
-    <Compile Include="UITypeEditors\FormRendererBaseEditor.cs">
+    <Compile Include="4PropertyGrid\TypeConverters\Mat2TypeConverter.cs" />
+    <Compile Include="4PropertyGrid\TypeConverters\Mat3TypeConverter.cs" />
+    <Compile Include="4PropertyGrid\TypeConverters\Mat4TypeConverter.cs" />
+    <Compile Include="4PropertyGrid\TypeConverters\SamplerValueTypeConverter.cs" />
+    <Compile Include="4PropertyGrid\TypeConverters\Vec4TypeConverter.cs" />
+    <Compile Include="4PropertyGrid\TypeConverters\Vec3TypeConverter.cs" />
+    <Compile Include="4PropertyGrid\TypeConverters\Vec2TypeConverter.cs" />
+    <Compile Include="4PropertyGrid\UITypeEditors\FormRendererBaseEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UITypeEditors\FormRendererBaseEditor.Designer.cs">
+    <Compile Include="4PropertyGrid\UITypeEditors\FormRendererBaseEditor.Designer.cs">
       <DependentUpon>FormRendererBaseEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UITypeEditors\FormUniformVariableListEditor.cs">
+    <Compile Include="4PropertyGrid\UITypeEditors\FormUniformVariableListEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UITypeEditors\FormUniformVariableListEditor.Designer.cs">
+    <Compile Include="4PropertyGrid\UITypeEditors\FormUniformVariableListEditor.Designer.cs">
       <DependentUpon>FormUniformVariableListEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UITypeEditors\FormGLSwitchListEditor.cs">
+    <Compile Include="4PropertyGrid\UITypeEditors\FormGLSwitchListEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UITypeEditors\FormGLSwitchListEditor.Designer.cs">
+    <Compile Include="4PropertyGrid\UITypeEditors\FormGLSwitchListEditor.Designer.cs">
       <DependentUpon>FormGLSwitchListEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UITypeEditors\FormUniformVariableType.cs">
+    <Compile Include="4PropertyGrid\UITypeEditors\FormUniformVariableType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UITypeEditors\FormUniformVariableType.Designer.cs">
+    <Compile Include="4PropertyGrid\UITypeEditors\FormUniformVariableType.Designer.cs">
       <DependentUpon>FormUniformVariableType.cs</DependentUpon>
     </Compile>
-    <Compile Include="UITypeEditors\FormGLSwtichType.cs">
+    <Compile Include="4PropertyGrid\UITypeEditors\FormGLSwtichType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UITypeEditors\FormGLSwtichType.Designer.cs">
+    <Compile Include="4PropertyGrid\UITypeEditors\FormGLSwtichType.Designer.cs">
       <DependentUpon>FormGLSwtichType.cs</DependentUpon>
     </Compile>
     <Compile Include="PickableRenderer\ColorCodedPicking\GeometryType.cs" />
@@ -289,9 +289,9 @@
     <Compile Include="OpenGLObjects\GLSwitches\PolygonModeSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PrimitiveRestartSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\GLSwitch.cs" />
-    <Compile Include="UITypeEditors\RendererBaseEditor.cs" />
-    <Compile Include="UITypeEditors\UniformVariableListEditor.cs" />
-    <Compile Include="UITypeEditors\GLSwithListEditor.cs" />
+    <Compile Include="4PropertyGrid\UITypeEditors\RendererBaseEditor.cs" />
+    <Compile Include="4PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
+    <Compile Include="4PropertyGrid\UITypeEditors\GLSwithListEditor.cs" />
     <Compile Include="IBufferables\IBufferable.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\PropertyNameMap.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\ShaderCode.cs" />
@@ -381,17 +381,17 @@
     <Compile Include="OpenGLAPI\OpenGL_Extensions.cs" />
     <Compile Include="OpenGLAPI\OpenGL_Functions.cs" />
     <Compile Include="OpenGLAPI\OpenGL_Wrappers.cs" />
-    <Compile Include="Win32API\BITMAPINFO.cs" />
-    <Compile Include="Win32API\ClassStyles.cs" />
-    <Compile Include="Win32API\Delegates.cs" />
-    <Compile Include="Win32API\GLYPHMETRICSFLOAT.cs" />
-    <Compile Include="Win32API\PIXELFORMATDESCRIPTOR.cs" />
-    <Compile Include="Win32API\POINTFLOAT.cs" />
-    <Compile Include="Win32API\SetWindowPosFlags.cs" />
-    <Compile Include="Win32API\Win32.cs" />
-    <Compile Include="Win32API\WindowStyles.cs" />
-    <Compile Include="Win32API\WindowStylesEx.cs" />
-    <Compile Include="Win32API\WNDCLASSEX.cs" />
+    <Compile Include="WinformControls\Win32API\BITMAPINFO.cs" />
+    <Compile Include="WinformControls\Win32API\ClassStyles.cs" />
+    <Compile Include="WinformControls\Win32API\Delegates.cs" />
+    <Compile Include="WinformControls\Win32API\GLYPHMETRICSFLOAT.cs" />
+    <Compile Include="WinformControls\Win32API\PIXELFORMATDESCRIPTOR.cs" />
+    <Compile Include="WinformControls\Win32API\POINTFLOAT.cs" />
+    <Compile Include="WinformControls\Win32API\SetWindowPosFlags.cs" />
+    <Compile Include="WinformControls\Win32API\Win32.cs" />
+    <Compile Include="WinformControls\Win32API\WindowStyles.cs" />
+    <Compile Include="WinformControls\Win32API\WindowStylesEx.cs" />
+    <Compile Include="WinformControls\Win32API\WNDCLASSEX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\FullDictionary.cs" />
     <Compile Include="Utilities\RectangleHelper.cs" />
@@ -414,19 +414,19 @@
     <EmbeddedResource Include="WinformControls\GLCanvas.resx">
       <DependentUpon>GLCanvas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UITypeEditors\FormRendererBaseEditor.resx">
+    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormRendererBaseEditor.resx">
       <DependentUpon>FormRendererBaseEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UITypeEditors\FormUniformVariableListEditor.resx">
+    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormUniformVariableListEditor.resx">
       <DependentUpon>FormUniformVariableListEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UITypeEditors\FormGLSwitchListEditor.resx">
+    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormGLSwitchListEditor.resx">
       <DependentUpon>FormGLSwitchListEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UITypeEditors\FormUniformVariableType.resx">
+    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormUniformVariableType.resx">
       <DependentUpon>FormUniformVariableType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UITypeEditors\FormGLSwtichType.resx">
+    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormGLSwtichType.resx">
       <DependentUpon>FormGLSwtichType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PickableRenderer\ColorCodedPicking\Picking.frag" />
@@ -443,8 +443,8 @@
     <Content Include="OpenGLObjects\readme.txt" />
     <Content Include="OpenGLAPI\readme.txt" />
     <Content Include="FontResource\SharpFont\readme.txt" />
-    <Content Include="TypeConverters\readme.txt" />
-    <Content Include="UITypeEditors\readme.txt" />
+    <Content Include="4PropertyGrid\TypeConverters\readme.txt" />
+    <Content Include="4PropertyGrid\UITypeEditors\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
