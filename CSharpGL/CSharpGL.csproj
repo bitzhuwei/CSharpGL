@@ -408,7 +408,7 @@
     <EmbeddedResource Include="IBufferables\TeapotModel.obj" />
     <EmbeddedResource Include="HighlightRenderer\Highlight.vert" />
     <EmbeddedResource Include="HighlightRenderer\Highlight.frag" />
-    <EmbeddedResource Include="FontResource\ANTQUAI.TTF" />
+    <EmbeddedResource Include="Resources\ANTQUAI.TTF" />
     <None Include="OpenGLObjects\ModernRendering\Renderers.cd" />
     <None Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.cd" />
     <EmbeddedResource Include="WinformControls\GLCanvas.resx">

@@ -27,10 +27,10 @@ namespace CSharpGL
                         if (defaultInstance == null)
                         {
                             //defaultInstance = new FontResource();
-                            //var bitmap = ManifestResourceLoader.LoadBitmap(@"GlyphTextures\ANTQUAI.TTF.png");
+                            //var bitmap = ManifestResourceLoader.LoadBitmap(@"Resources\ANTQUAI.TTF.png");
                             //defaultInstance.InitTexture(bitmap);
                             //bitmap.Dispose();
-                            //string xmlContent = ManifestResourceLoader.LoadTextFile(@"GlyphTextures\ANTQUAI.TTF.xml");
+                            //string xmlContent = ManifestResourceLoader.LoadTextFile(@"Resources\ANTQUAI.TTF.xml");
                             //XElement xElement = XElement.Parse(xmlContent, LoadOptions.None);
                             //defaultInstance.InitConfig(xElement);
                             var builder = new StringBuilder();
@@ -38,7 +38,7 @@ namespace CSharpGL
                             {
                                 builder.Append((char)i);
                             }
-                            using (Stream stream = ManifestResourceLoader.GetStream(@"FontResource\ANTQUAI.TTF"))
+                            using (Stream stream = ManifestResourceLoader.GetStream(@"Resources\ANTQUAI.TTF"))
                             {
                                 defaultInstance = FontResource.Load(stream, builder.ToString(), 32);
                             }
