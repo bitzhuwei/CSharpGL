@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblCurrentBlend = new System.Windows.Forms.Label();
             this.glCanvas1 = new CSharpGL.GLCanvas();
+            this.lblCubePosition = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,15 +74,26 @@
             this.glCanvas1.TabIndex = 0;
             this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
             // 
-            // Form09UIRenderer
+            // lblCubePosition
+            // 
+            this.lblCubePosition.AutoSize = true;
+            this.lblCubePosition.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblCubePosition.Location = new System.Drawing.Point(167, 39);
+            this.lblCubePosition.Name = "lblCubePosition";
+            this.lblCubePosition.Size = new System.Drawing.Size(179, 20);
+            this.lblCubePosition.TabIndex = 4;
+            this.lblCubePosition.Text = "Cube Pos: x, y, z";
+            // 
+            // Form12Billboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 548);
+            this.Controls.Add(this.lblCubePosition);
             this.Controls.Add(this.lblCurrentBlend);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "Form09UIRenderer";
+            this.Name = "Form12Billboard";
             this.Text = "Form09TextBoxRenderer";
             this.Load += new System.EventHandler(this.Form02OrderIndependentTransparency_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
@@ -96,5 +108,6 @@
         private System.Windows.Forms.OpenFileDialog openTextureDlg;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblCurrentBlend;
+        private System.Windows.Forms.Label lblCubePosition;
     }
 }

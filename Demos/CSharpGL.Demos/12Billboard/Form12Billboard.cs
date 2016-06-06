@@ -40,7 +40,7 @@ namespace CSharpGL.Demos
             {
                 mat4 projection = arg.Camera.GetProjectionMat4();
                 mat4 view = arg.Camera.GetViewMat4();
-                mat4 model = glm.scale(mat4.identity(), new vec3(0.3f, 0.3f, 0.3f));
+                mat4 model = glm.translate(glm.scale(mat4.identity(), new vec3(0.3f, 0.3f, 0.3f)), position);
                 this.cubeRenderer.SetUniform("projectionMatrix", projection);
                 this.cubeRenderer.SetUniform("viewMatrix", view);
                 this.cubeRenderer.SetUniform("modelMatrix", model);
@@ -54,7 +54,8 @@ namespace CSharpGL.Demos
                     view[0][0], view[1][0], view[2][0]));
                 this.billboardRenderer.SetUniform("CameraUp_worldspace", new vec3(
                     view[0][1], view[1][1], view[2][1]));
-                this.billboardRenderer.SetUniform("BillboardPos", new vec3(0.0f, 1f, 0.0f));
+                this.billboardRenderer.SetUniform("BillboardPos", new vec3(
+                    (float)Math.Cos(currentTime), 1f, (float)Math.Sin(currentTime)));
                 this.billboardRenderer.SetUniform("BillboardSize", new vec2(1.0f, 0.125f));
                 float lifeLevel = (float)(Math.Sin(currentTime) * 0.4 + 0.5); currentTime += 0.1f;
                 this.billboardRenderer.SetUniform("LifeLevel", lifeLevel);
@@ -70,6 +71,7 @@ namespace CSharpGL.Demos
         }
 
         float currentTime = 0;
+        vec3 position = new vec3(0, 0, 0);
 
 
         private const float crossCursorSize = 40.0f;
@@ -116,9 +118,35 @@ namespace CSharpGL.Demos
             this.uiRoot.Size = this.glCanvas1.Size;
         }
 
+
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
+            const float deltaDistance = 0.1f;
+
+            if (e.KeyChar == 'w')
+            {
+                this.position.z += deltaDistance;
+            }
+            else if (e.KeyChar == 's')
+            {
+                this.position.z -= deltaDistance;
+            }
+            else if (e.KeyChar == 'a')
+            {
+                this.position.x -= deltaDistance;
+            }
+            else if (e.KeyChar == 'd')
+            {
+                this.position.x += deltaDistance;
+            }
+            else if(e.KeyChar=='r')
+            {
+                this.position = new vec3(0, 0, 0);
+            }
+
+            this.lblCubePosition.Text = string.Format("Cube Pos: {0}", this.position);
         }
+
     }
 
 }
