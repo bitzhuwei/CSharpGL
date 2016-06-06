@@ -19,6 +19,9 @@ namespace CSharpGL.EarthMoonSystem
         private sampler2D earthColorTexture;
         public Color ClearColor { get; set; }
 
+        List<ITimeElapse> thingList = new List<ITimeElapse>();
+        private Earth earth;
+
         public FormMain()
         {
             InitializeComponent();
@@ -31,6 +34,13 @@ namespace CSharpGL.EarthMoonSystem
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.Resize += glCanvas1_Resize;
+
+            Application.Idle += Application_Idle;
+        }
+
+        void Application_Idle(object sender, EventArgs e)
+        {
+            this.lblInfo.Text = string.Format("Earth: {0}", this.earth);
         }
 
         void glCanvas1_Resize(object sender, EventArgs e)
@@ -54,12 +64,13 @@ namespace CSharpGL.EarthMoonSystem
 
             mat4 projection = this.camera.GetProjectionMat4();
             mat4 view = this.camera.GetViewMat4();
-            mat4 model = new mat4(1.0f);
+            mat4 model = glm.rotate((float)this.earth.SingleRotationRadian, new vec3(0, 1, 0));
             this.earthRenderer.SetUniform("projectionMatrix", projection);
             this.earthRenderer.SetUniform("viewMatrix", view);
             this.earthRenderer.SetUniform("modelMatrix", model);
             this.earthRenderer.Render(arg);
         }
+
 
     }
 }

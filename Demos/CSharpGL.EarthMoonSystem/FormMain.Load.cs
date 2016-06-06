@@ -57,6 +57,11 @@ namespace CSharpGL.EarthMoonSystem
                 frmPropertyGrid.DisplayObject(this);
                 frmPropertyGrid.Show();
             }
+            {
+                var earth = new Earth();
+                this.earth = earth;
+                this.thingList.Add(earth);
+            }
         }
     }
 }
