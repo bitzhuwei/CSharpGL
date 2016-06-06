@@ -1,5 +1,5 @@
 # :art:Welcome to CSharpGL
-[CSharpGL](https://github.com/bitzhuwei/CSharpGL) is a pure C# project that allows for modern OpenGL rendering in a Objected-Oriented way. It meets common requirements in OpenGL rendering such as:
+[CSharpGL](https://github.com/bitzhuwei/CSharpGL) is a pure C# project that allows for modern OpenGL rendering in a Object-Oriented way. It meets common requirements in OpenGL rendering such as:
 ## :rocket:Modern Rendering
 Objected-Oriented modern rendering using GLSL shaders and vertex buffer objects.
 ![modern-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/modern-rendering.jpg?raw=true)
