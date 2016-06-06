@@ -37,6 +37,11 @@ namespace CSharpGL.EarthMoonSystem
         public const double radius = 6371.393;
 
         /// <summary>
+        ///  地球公转半径（单位：千米）
+        /// </summary>
+        public const double revolutionRadius = 149600000;
+
+        /// <summary>
         /// 当前的自转角度
         /// </summary>
         public double SingleRotationAngle { get; private set; }
