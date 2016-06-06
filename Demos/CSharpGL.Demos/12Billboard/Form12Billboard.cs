@@ -40,7 +40,7 @@ namespace CSharpGL.Demos
             {
                 mat4 projection = arg.Camera.GetProjectionMat4();
                 mat4 view = arg.Camera.GetViewMat4();
-                mat4 model = glm.translate(glm.scale(mat4.identity(), new vec3(0.3f, 0.3f, 0.3f)), position);
+                mat4 model = mat4.identity();
                 this.cubeRenderer.SetUniform("projectionMatrix", projection);
                 this.cubeRenderer.SetUniform("viewMatrix", view);
                 this.cubeRenderer.SetUniform("modelMatrix", model);
