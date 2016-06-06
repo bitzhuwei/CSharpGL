@@ -74,15 +74,19 @@ namespace CSharpGL
             vec3 standardUp = right.cross(forward);
 
             mat4 Result = new mat4(1);
+            // Left (X) Axis
             Result[0, 0] = right.x;
-            Result[1, 0] = right.y;
-            Result[2, 0] = right.z;
             Result[0, 1] = standardUp.x;
-            Result[1, 1] = standardUp.y;
-            Result[2, 1] = standardUp.z;
             Result[0, 2] = -forward.x;
+            // Up (Y) Axis
+            Result[1, 0] = right.y;
+            Result[1, 1] = standardUp.y;
             Result[1, 2] = -forward.y;
+            // Forward (Z) Axis
+            Result[2, 0] = right.z;
+            Result[2, 1] = standardUp.z;
             Result[2, 2] = -forward.z;
+            // Translation
             Result[3, 0] = -right.dot(eye);// dot(s, eye);
             Result[3, 1] = -standardUp.dot(eye);// dot(u, eye);
             Result[3, 2] = forward.dot(eye);// dot(f, eye);
