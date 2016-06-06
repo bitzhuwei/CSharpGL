@@ -36,7 +36,7 @@ namespace CSharpGL
             {
                 Assembly executingAssembly;
                 string location;
-                ManifestResourceLoader.GetLocation(@"IBufferables\TeapotModel.obj", 1, out executingAssembly, out location);
+                ManifestResourceLoader.GetLocation(@"Resources\TeapotModel.obj", 1, out executingAssembly, out location);
 
                 using (Stream stream = executingAssembly.GetManifestResourceStream(location))
                 {

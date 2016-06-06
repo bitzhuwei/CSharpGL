@@ -405,7 +405,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="IBufferables\TeapotModel.obj" />
+    <EmbeddedResource Include="Resources\TeapotModel.obj" />
     <EmbeddedResource Include="Resources\Highlight.vert" />
     <EmbeddedResource Include="Resources\Highlight.frag" />
     <EmbeddedResource Include="Resources\ANTQUAI.TTF" />
