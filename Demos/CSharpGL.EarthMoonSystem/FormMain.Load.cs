@@ -53,14 +53,20 @@ namespace CSharpGL.EarthMoonSystem
                 this.earthRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.earthColorTexture.Id, OpenGL.GL_TEXTURE0));
             }
             {
+                var earth = new Earth();
+                this.earth = earth;
+                this.thingList.Add(earth);
+            }
+
+            {
                 var frmPropertyGrid = new FormProperyGrid();
                 frmPropertyGrid.DisplayObject(this);
                 frmPropertyGrid.Show();
             }
             {
-                var earth = new Earth();
-                this.earth = earth;
-                this.thingList.Add(earth);
+                var frmPropertyGrid = new FormProperyGrid();
+                frmPropertyGrid.DisplayObject(this.earthRenderer);
+                frmPropertyGrid.Show();
             }
         }
     }
