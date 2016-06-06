@@ -14,9 +14,13 @@ namespace CSharpGL.EarthMoonSystem
     public partial class FormMain
     {
 
-        DateTime lastTime = new DateTime();
+        bool started = false;
+        DateTime startTime;
+        DateTime lastTime;
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (!started) { lastTime = DateTime.Now; startTime = lastTime; ; started = true; }
+
             var now = DateTime.Now;
             var elasped = now.Subtract(lastTime);
             lastTime = now;

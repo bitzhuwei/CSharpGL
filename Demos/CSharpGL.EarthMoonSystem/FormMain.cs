@@ -40,7 +40,9 @@ namespace CSharpGL.EarthMoonSystem
 
         void Application_Idle(object sender, EventArgs e)
         {
-            this.lblInfo.Text = string.Format("Earth: {0}", this.earth);
+            this.lblInfo.Text = string.Format("Elapsed: {0}, Earth: {1}",
+                DateTime.Now.Subtract(startTime),
+                this.earth);
         }
 
         void glCanvas1_Resize(object sender, EventArgs e)

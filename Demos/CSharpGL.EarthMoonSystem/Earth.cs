@@ -8,7 +8,7 @@ namespace CSharpGL.EarthMoonSystem
 {
     class Earth : ITimeElapse
     {
-        const double singleRotationSpeed = 360 / 24 / 60 / 60 / 1000;// X°每毫秒
+        const double singleRotationSpeed = 360.0 / 24 / 60 / 60 / 1000;// X°每毫秒
         // 每秒自转1周。用于测试应该用角度还是弧度（结果是应该用弧度）。
         //const double singleRotationSpeed = 360.0 / 1000.0;//°每毫秒
 
