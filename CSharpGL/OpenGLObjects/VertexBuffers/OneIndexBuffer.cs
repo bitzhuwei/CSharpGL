@@ -41,28 +41,25 @@ namespace CSharpGL
         /// <summary>
         /// 索引数组中有多少个元素。
         /// </summary>
-        public int ElementCount
+        public int GetElementCount()
         {
-            get
+            int result = 0;
+            switch (this.Type)
             {
-                int result = 0;
-                switch (this.Type)
-                {
-                    case IndexElementType.UnsignedByte:
-                        result = base.ByteLength / sizeof(byte);
-                        break;
-                    case IndexElementType.UnsignedShort:
-                        result = base.ByteLength / sizeof(ushort);
-                        break;
-                    case IndexElementType.UnsignedInt:
-                        result = base.ByteLength / sizeof(uint);
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-
-                return result;
+                case IndexElementType.UnsignedByte:
+                    result = base.ByteLength / sizeof(byte);
+                    break;
+                case IndexElementType.UnsignedShort:
+                    result = base.ByteLength / sizeof(ushort);
+                    break;
+                case IndexElementType.UnsignedInt:
+                    result = base.ByteLength / sizeof(uint);
+                    break;
+                default:
+                    throw new NotImplementedException();
             }
+
+            return result;
         }
 
         /// <summary>
@@ -99,9 +96,9 @@ namespace CSharpGL
             glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, buffers[0]);
             glBufferData(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.ByteLength, this.Header, (uint)this.Usage);
             glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
-            
+
             OneIndexBufferPtr bufferPtr = new OneIndexBufferPtr(
-                 buffers[0], this.Mode, 0, this.ElementCount, this.Type, this.Length, this.ByteLength);
+                 buffers[0], this.Mode, 0, this.GetElementCount(), this.Type, this.Length, this.ByteLength);
 
             return bufferPtr;
         }
