@@ -117,6 +117,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Creates a matrix for projecting two-dimensional coordinates onto the screen.
+        /// <para>this equals ortho(left, right, bottom, top, -1, 1)</para>
         /// </summary>
         /// <param name="left">The left.</param>
         /// <param name="right">The right.</param>
@@ -148,9 +149,9 @@ namespace CSharpGL
             float height = zNear * tangent;
             float width = height * aspect;
 
-            float l = -width, r = width, b = -height, t = height, n = zNear, f = zFar;
+            float left = -width, right = width, bottom = -height, top = height, near = zNear, far = zFar;
 
-            mat4 result = frustum(l, r, b, t, n, f);
+            mat4 result = frustum(left, right, bottom, top, near, far);
 
             return result;
         }
