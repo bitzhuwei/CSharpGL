@@ -50,6 +50,7 @@ A Cube, Sphere, Teapot and some other models.
 ## Order-independent transparency VS Order-denpendent transparency.
 ![order-independent-transparency](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/order-independent-transparency.jpg?raw=true)
 ## Point sprite.
+10000 particles with a sphere insied a cube.
 ![point-sprite](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/point-sprite.jpg?raw=true)
 ## earth.
 An earth model that singly rotate same as real earth. It's composed of 65341 positions, normals and uvs and 130140 indexes and a 10800x5400 texture.
