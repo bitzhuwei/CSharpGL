@@ -32,6 +32,7 @@ namespace CSharpGL
             this.propertyBufferPtrs = propertyBufferPtrs;
             this.indexBufferPtr = this.bufferable.GetIndex();
 
+            // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
             var ptr = this.indexBufferPtr as OneIndexBufferPtr;
             if (ptr != null)
             {
