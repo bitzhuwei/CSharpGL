@@ -19,7 +19,7 @@ namespace CSharpGL
     [DefaultProperty("Text")]
     [DefaultEvent("OpenGLDraw")]
     [Description("A canvas for OpenGL rendering.")]
-    [ToolboxBitmap(typeof(GLCanvas), @"CSharpGL.WinformControls.GLCanvas.ico")]
+    //[ToolboxBitmap(typeof(GLCanvas), @"CSharpGL.WinformControls.GLCanvas.ico")]
     public partial class GLCanvas : UserControl, ISupportInitialize
     {
         private Stopwatch stopWatch = new Stopwatch();

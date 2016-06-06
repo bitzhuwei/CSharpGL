@@ -47,7 +47,6 @@
     <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormGLSwitchEditor.resx">
       <DependentUpon>FormGLSwitchEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WinformControls\GLCanvas.ico" />
     <Content Include="GLControls\readme.txt" />
     <Content Include="FontResource\readme.txt" />
     <Content Include="IBufferables\readme.txt" />
