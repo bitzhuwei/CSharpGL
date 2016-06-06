@@ -9,7 +9,7 @@ namespace CSharpGL.EarthMoonSystem
     /// <summary>
     /// 天体（星球）
     /// </summary>
-    class CelestialBodyModel 
+    class CelestialBodyModel
     {
         internal vec3[] positions;
         internal vec3[] normals;
@@ -52,7 +52,8 @@ namespace CSharpGL.EarthMoonSystem
 
                     this.normals[index] = position.normalize();
 
-                    this.uv[index] = new vec2((float)i / (float)latitudeParts, (float)j / (float)longitudeParts);
+                    //this.uv[index] = new vec2((float)i / (float)latitudeParts, (float)j / (float)longitudeParts);
+                    this.uv[index] = new vec2((float)j / (float)(longitudeParts - 1), (float)i / (float)latitudeParts);
 
                     index++;
                 }

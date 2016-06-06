@@ -47,6 +47,12 @@
   <ItemGroup>
     <Compile Include="CelestialBodyModel.cs" />
     <Compile Include="CelestialBody.cs" />
+    <Compile Include="FormMain.Mouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,6 +61,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="shaders\CelestialBody.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\CelestialBody.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
