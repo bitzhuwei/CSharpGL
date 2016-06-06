@@ -66,7 +66,7 @@ namespace CSharpGL.EarthMoonSystem
 
             mat4 projection = this.camera.GetProjectionMat4();
             mat4 view = this.camera.GetViewMat4();
-            mat4 model = glm.rotate((float)this.earth.SingleRotationRadian, new vec3(0, 1, 0));
+            mat4 model = this.earth.GetModelRotationMatrix();
             this.earthRenderer.SetUniform("projectionMatrix", projection);
             this.earthRenderer.SetUniform("viewMatrix", view);
             this.earthRenderer.SetUniform("modelMatrix", model);
