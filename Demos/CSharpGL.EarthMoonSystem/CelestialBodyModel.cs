@@ -38,6 +38,28 @@ namespace CSharpGL.EarthMoonSystem
 
             int index = 0;
 
+            // 把星球平铺在一个平面上
+            //for (int i = 0; i < latitudeParts + 1; i++)
+            //{
+            //    double theta = (latitudeParts - i * 2) * Math.PI / 2 / latitudeParts;
+            //    double y = radius * Math.Sin(theta);
+            //    for (int j = 0; j < longitudeParts + 1; j++)
+            //    {
+            //        double x = radius * (i - latitudeParts / 2);
+            //        double z = radius * (j - longitudeParts / 2);
+
+            //        vec3 position = new vec3((float)x, (float)y, (float)z);
+            //        this.positions[index] = position;
+
+            //        this.normals[index] = position.normalize();
+
+            //        //this.uv[index] = new vec2((float)i / (float)latitudeParts, (float)j / (float)longitudeParts);
+            //        this.uv[index] = new vec2((float)j / (float)longitudeParts, (float)i / (float)latitudeParts);
+
+            //        index++;
+            //    }
+            //}
+
             for (int i = 0; i < latitudeParts + 1; i++)
             {
                 double theta = (latitudeParts - i * 2) * Math.PI / 2 / latitudeParts;
@@ -63,15 +85,15 @@ namespace CSharpGL.EarthMoonSystem
             index = 0;
             for (int i = 0; i < latitudeParts; i++)
             {
-                for (int j = 0; j < (longitudeParts); j++)
+                for (int j = 0; j < longitudeParts + 1; j++)
                 {
-                    this.indexes[index++] = (uint)((longitudeParts) * (i + 0) + j);
-                    this.indexes[index++] = (uint)((longitudeParts) * (i + 1) + j);
+                    this.indexes[index++] = (uint)((longitudeParts + 1) * (i + 0) + j);
+                    this.indexes[index++] = (uint)((longitudeParts + 1) * (i + 1) + j);
                 }
-                {
-                    this.indexes[index++] = (uint)((longitudeParts) * (i + 0) + longitudeParts);
-                    this.indexes[index++] = (uint)((longitudeParts) * (i + 1) + longitudeParts);
-                }
+                //{
+                //    this.indexes[index++] = (uint)((longitudeParts) * (i + 0) + longitudeParts);
+                //    this.indexes[index++] = (uint)((longitudeParts) * (i + 1) + longitudeParts);
+                //}
                 // use 
                 // GL.Enable(GL.GL_PRIMITIVE_RESTART); 
                 // GL.PrimitiveRestartIndex(uint.MaxValue); 

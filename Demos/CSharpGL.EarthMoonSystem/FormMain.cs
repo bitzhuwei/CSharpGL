@@ -17,13 +17,12 @@ namespace CSharpGL.EarthMoonSystem
         private SatelliteRotator rotator;
         private PickableRenderer earthRenderer;
         private sampler2D earthColorTexture;
+        public Color ClearColor { get; set; }
 
         public FormMain()
         {
             InitializeComponent();
 
-            // set background color to black.
-            OpenGL.ClearColor(0f, 0f, 0f, 0f);
 
             this.Load += FormMain_Load;
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
@@ -46,6 +45,9 @@ namespace CSharpGL.EarthMoonSystem
 
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
+            // set background color.
+            OpenGL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f);
+
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
             var arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);

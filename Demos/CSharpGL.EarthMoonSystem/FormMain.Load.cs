@@ -27,7 +27,11 @@ namespace CSharpGL.EarthMoonSystem
                 this.rotator = rotator;
             }
             {
-                IBufferable bufferable = new CelestialBody(1, 10, 8);
+                const int latitude = 180;//从南到北，纬度共有180°
+                const int hour = 24;//24小时，24个时区
+                const int longitudePerHour = 15;// 每个时区占有的经度为15°
+                const int longitude = hour * longitudePerHour;// 从东到西，经度共有360°
+                IBufferable bufferable = new CelestialBody(1, latitude, longitude);
                 var shaderCodes = new ShaderCode[2];
                 shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\CelestialBody.vert"), ShaderType.VertexShader);
                 shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\CelestialBody.frag"), ShaderType.FragmentShader);
@@ -47,6 +51,11 @@ namespace CSharpGL.EarthMoonSystem
             }
             {
                 this.earthRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.earthColorTexture.Id, OpenGL.GL_TEXTURE0));
+            }
+            {
+                var frmPropertyGrid = new FormProperyGrid();
+                frmPropertyGrid.DisplayObject(this);
+                frmPropertyGrid.Show();
             }
         }
     }
