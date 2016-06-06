@@ -96,6 +96,8 @@ namespace SharpFont
         /// </remarks>
         public FontFace(Stream stream)
         {
+            if (stream == null) { throw new ArgumentNullException("stream", "Empty stream for FontFace!"); }
+
             // read the face header and table records
             using (var reader = new DataReader(stream))
             {
@@ -363,7 +365,7 @@ namespace SharpFont
         float ComputeScale(int pixelSize)
         {
             //if (integerPpems)
-                //pixelSize = (float)Math.Round(pixelSize);
+            //pixelSize = (float)Math.Round(pixelSize);
             return (float)pixelSize / (float)unitsPerEm;
         }
     }
