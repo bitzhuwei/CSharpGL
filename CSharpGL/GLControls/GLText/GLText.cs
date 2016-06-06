@@ -38,9 +38,9 @@ namespace CSharpGL
             this.Name = "GLText";
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"GLControls.GLText.GLText.vert"), ShaderType.VertexShader);
+@"Resources.GLText.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"GLControls.GLText.GLText.frag"), ShaderType.FragmentShader);
+@"Resources.GLText.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("position", "position");
             map.Add("uv", "uv");
