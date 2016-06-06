@@ -429,8 +429,8 @@
     <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormGLSwtichType.resx">
       <DependentUpon>FormGLSwtichType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PickableRenderer\ColorCodedPicking\Picking.frag" />
-    <EmbeddedResource Include="PickableRenderer\ColorCodedPicking\Picking.vert" />
+    <EmbeddedResource Include="Resources\Picking.frag" />
+    <EmbeddedResource Include="Resources\Picking.vert" />
     <None Include="OpenGLObjects\VertexBuffers\Buffer.cd" />
     <None Include="OpenGLObjects\VertexBuffers\BufferPtr.cd" />
     <EmbeddedResource Include="Resources\GLAxis.frag" />
