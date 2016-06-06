@@ -2,3 +2,4 @@
 Microsoft Win32 to Microsoft .NET Framework API Map: https://msdn.microsoft.com/en-us/library/Aa302340
 2016-01-22
 本项目添加了对Linux平台上的.NET的支持。
+glex.h用于查询OpenGL常量值。
