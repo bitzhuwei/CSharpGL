@@ -38,7 +38,7 @@ namespace CSharpGL
                             {
                                 builder.Append((char)i);
                             }
-                            using (Stream stream = ManifestResourceLoader.GetStream(@"GlyphTextures\ANTQUAI.TTF"))
+                            using (Stream stream = ManifestResourceLoader.GetStream(@"FontResource\ANTQUAI.TTF"))
                             {
                                 defaultInstance = FontResource.Load(stream, builder.ToString(), 32);
                             }
