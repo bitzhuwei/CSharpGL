@@ -433,8 +433,8 @@
     <EmbeddedResource Include="PickableRenderer\ColorCodedPicking\Picking.vert" />
     <None Include="OpenGLObjects\VertexBuffers\Buffer.cd" />
     <None Include="OpenGLObjects\VertexBuffers\BufferPtr.cd" />
-    <EmbeddedResource Include="GLControls\GLAxis\GLAxis.frag" />
-    <EmbeddedResource Include="GLControls\GLAxis\GLAxis.vert" />
+    <EmbeddedResource Include="Resources\GLAxis.frag" />
+    <EmbeddedResource Include="Resources\GLAxis.vert" />
     <EmbeddedResource Include="GLControls\GLText\GLText.frag" />
     <EmbeddedResource Include="GLControls\GLText\GLText.vert" />
   </ItemGroup>
