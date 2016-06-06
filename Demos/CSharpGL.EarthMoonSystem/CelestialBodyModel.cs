@@ -28,7 +28,7 @@ namespace CSharpGL.EarthMoonSystem
         {
             if (radius <= 0.0f || latitudeParts < 2 || longitudeParts < 3) { throw new Exception(); }
 
-            int vertexCount = (latitudeParts + 1) * (longitudeParts);
+            int vertexCount = (latitudeParts + 1) * (longitudeParts + 1);
             this.positions = new vec3[vertexCount];
             this.normals = new vec3[vertexCount];
             this.uv = new vec2[vertexCount];
@@ -42,7 +42,7 @@ namespace CSharpGL.EarthMoonSystem
             {
                 double theta = (latitudeParts - i * 2) * Math.PI / 2 / latitudeParts;
                 double y = radius * Math.Sin(theta);
-                for (int j = 0; j < longitudeParts; j++)
+                for (int j = 0; j < longitudeParts + 1; j++)
                 {
                     double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 2 / longitudeParts);
                     double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 2 / longitudeParts);
@@ -53,7 +53,7 @@ namespace CSharpGL.EarthMoonSystem
                     this.normals[index] = position.normalize();
 
                     //this.uv[index] = new vec2((float)i / (float)latitudeParts, (float)j / (float)longitudeParts);
-                    this.uv[index] = new vec2((float)j / (float)(longitudeParts - 1), (float)i / (float)latitudeParts);
+                    this.uv[index] = new vec2((float)j / (float)longitudeParts, (float)i / (float)latitudeParts);
 
                     index++;
                 }
@@ -69,8 +69,8 @@ namespace CSharpGL.EarthMoonSystem
                     this.indexes[index++] = (uint)((longitudeParts) * (i + 1) + j);
                 }
                 {
-                    this.indexes[index++] = (uint)((longitudeParts) * (i + 0) + 0);
-                    this.indexes[index++] = (uint)((longitudeParts) * (i + 1) + 0);
+                    this.indexes[index++] = (uint)((longitudeParts) * (i + 0) + longitudeParts);
+                    this.indexes[index++] = (uint)((longitudeParts) * (i + 1) + longitudeParts);
                 }
                 // use 
                 // GL.Enable(GL.GL_PRIMITIVE_RESTART); 
