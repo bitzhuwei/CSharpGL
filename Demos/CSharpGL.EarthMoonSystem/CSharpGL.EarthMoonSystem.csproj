@@ -48,6 +48,9 @@
     <Compile Include="CelestialBodyModel.cs" />
     <Compile Include="CelestialBody.cs" />
     <Compile Include="Earth.cs" />
+    <Compile Include="FormMain.Misc.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMain.Timer.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -45,23 +45,6 @@ namespace CSharpGL.EarthMoonSystem
             Application.Idle += Application_Idle;
         }
 
-        void Application_Idle(object sender, EventArgs e)
-        {
-            this.lblInfo.Text = string.Format("Elapsed: {0}, Earth: {1}",
-                new TimeSpan((long)(DateTime.Now.Subtract(startTime).Ticks * this.TimeSpeed)),
-                this.earth);
-        }
-
-        void glCanvas1_Resize(object sender, EventArgs e)
-        {
-            Camera camera = this.camera;
-            Control control = sender as Control;
-            if (camera != null)
-            {
-                camera.Resize(control.Width, control.Height);
-            }
-        }
-
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             // set background color.

@@ -14,7 +14,6 @@ namespace CSharpGL.EarthMoonSystem
     public partial class FormMain
     {
 
-
         void FormMain_Load(object sender, EventArgs e)
         {
             {
