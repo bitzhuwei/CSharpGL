@@ -210,21 +210,22 @@ namespace CSharpGL
         /// <summary>
         /// Map the specified object coordinates (obj.x, obj.y, obj.z) into window coordinates.
         /// </summary>
-        /// <param name="obj">The object.</param>
-        /// <param name="model">The model.</param>
+        /// <param name="modelPosition">The object.</param>
+        /// <param name="view">The view.</param>
         /// <param name="proj">The proj.</param>
         /// <param name="viewport">The viewport.</param>
         /// <returns></returns>
-        public static vec3 project(vec3 obj, mat4 model, mat4 proj, vec4 viewport)
+        public static vec3 project(vec3 modelPosition, mat4 view, mat4 proj, vec4 viewport)
         {
-            vec4 tmp = new vec4(obj, (1f));
-            tmp = model * tmp;
-            tmp = proj * tmp;
+            vec4 tmp = new vec4(modelPosition, (1f));
+            tmp = view * tmp;
+            tmp = proj * tmp;// this is gl_Position
 
-            tmp /= tmp.w;
+            tmp /= tmp.w;// after this, tmp is normalized device coordinate.
+
             tmp = tmp * 0.5f + new vec4(0.5f, 0.5f, 0.5f, 0.5f);
             tmp[0] = tmp[0] * viewport[2] + viewport[0];
-            tmp[1] = tmp[1] * viewport[3] + viewport[1];
+            tmp[1] = tmp[1] * viewport[3] + viewport[1];// after this, tmp is window coordinate.
 
             return new vec3(tmp.x, tmp.y, tmp.z);
         }
@@ -329,22 +330,22 @@ namespace CSharpGL
         /// <summary>
         /// Map the specified window coordinates (win.x, win.y, win.z) into object coordinates.
         /// </summary>
-        /// <param name="win">The win.</param>
-        /// <param name="model">The model.</param>
+        /// <param name="windowPos">The win.</param>
+        /// <param name="view">The view.</param>
         /// <param name="proj">The proj.</param>
         /// <param name="viewport">The viewport.</param>
         /// <returns></returns>
-        public static vec3 unProject(vec3 win, mat4 model, mat4 proj, vec4 viewport)
+        public static vec3 unProject(vec3 windowPos, mat4 view, mat4 proj, vec4 viewport)
         {
-            mat4 Inverse = glm.inverse(proj * model);
+            mat4 Inverse = glm.inverse(proj * view);
 
-            vec4 tmp = new vec4(win, (1f));
+            vec4 tmp = new vec4(windowPos, (1f));
             tmp.x = (tmp.x - (viewport[0])) / (viewport[2]);
             tmp.y = (tmp.y - (viewport[1])) / (viewport[3]);
-            tmp = tmp * (2f) - new vec4(1, 1, 1, 1);
+            tmp = tmp * (2f) - new vec4(1, 1, 1, 1);// after this, tmp is normalized device coordinate.
 
             vec4 obj = Inverse * tmp;
-            obj /= obj.w;
+            obj /= obj.w;// after this, tmp is model coordinate.
 
             return new vec3(obj);
         }

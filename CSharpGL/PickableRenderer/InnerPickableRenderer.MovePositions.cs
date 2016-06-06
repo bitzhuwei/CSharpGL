@@ -13,14 +13,14 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// 根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。
+        /// 根据<paramref name="differenceOnWindow"/>来修改指定索引处的顶点位置。
         /// </summary>
-        /// <param name="differenceOnScreen"></param>
+        /// <param name="differenceOnWindow"></param>
         /// <param name="viewMatrix"></param>
         /// <param name="projectionMatrix"></param>
         /// <param name="viewport"></param>
         /// <param name="positionIndexes"></param>
-        public void MovePositions(Point differenceOnScreen,
+        public void MovePositions(Point differenceOnWindow,
             mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, IEnumerable<uint> positionIndexes)
         {
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
@@ -30,11 +30,11 @@ namespace CSharpGL
                 var array = (vec3*)pointer.ToPointer();
                 foreach (var index in positionIndexes)
                 {
-                    vec3 projected = glm.project(array[index],
+                    vec3 windowPos = glm.project(array[index],
                         viewMatrix, projectionMatrix, viewport);
-                    vec3 newProjected = new vec3(projected.x + differenceOnScreen.X,
-                        projected.y + differenceOnScreen.Y, projected.z);
-                    array[index] = glm.unProject(newProjected,
+                    vec3 newWindowPos = new vec3(windowPos.x + differenceOnWindow.X,
+                        windowPos.y + differenceOnWindow.Y, windowPos.z);
+                    array[index] = glm.unProject(newWindowPos,
                         viewMatrix, projectionMatrix, viewport);
                 }
             }
@@ -43,14 +43,14 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 根据<paramref name="differenceOnScreen"/>来修改指定索引处的顶点位置。
+        /// 根据<paramref name="differenceOnWindow"/>来修改指定索引处的顶点位置。
         /// </summary>
-        /// <param name="differenceOnScreen"></param>
+        /// <param name="differenceOnWindow"></param>
         /// <param name="viewMatrix"></param>
         /// <param name="projectionMatrix"></param>
         /// <param name="viewport"></param>
         /// <param name="positionIndexes"></param>
-        public void MovePositions(Point differenceOnScreen,
+        public void MovePositions(Point differenceOnWindow,
             mat4 viewMatrix, mat4 projectionMatrix, vec4 viewport, params uint[] positionIndexes)
         {
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
@@ -60,11 +60,11 @@ namespace CSharpGL
                 var array = (vec3*)pointer.ToPointer();
                 foreach (var index in positionIndexes)
                 {
-                    vec3 projected = glm.project(array[index],
+                    vec3 windowPos = glm.project(array[index],
                         viewMatrix, projectionMatrix, viewport);
-                    vec3 newProjected = new vec3(projected.x + differenceOnScreen.X,
-                        projected.y + differenceOnScreen.Y, projected.z);
-                    array[index] = glm.unProject(newProjected,
+                    vec3 newWindowPos = new vec3(windowPos.x + differenceOnWindow.X,
+                        windowPos.y + differenceOnWindow.Y, windowPos.z);
+                    array[index] = glm.unProject(newWindowPos,
                         viewMatrix, projectionMatrix, viewport);
                 }
             }
