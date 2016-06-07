@@ -11,7 +11,7 @@ EarthMoonSystem能够展示地月系统的运行过程，也是个综合性地�
 * 可设置观察者的位置、移动轨迹。（Camera）
 * 可加速、减速、倒流时间流逝。
 
-# EarthMoonSystem
+# :telescope:EarthMoonSystem
 The EarthMoonSystem shows how earth and moon moves in space. It's also an integrated example showing how to use CSharpGL.
 ## :mushroom:Functions
 According to data and formulas in physics world, EarthMoonSystem wants to implement functions listed below:
