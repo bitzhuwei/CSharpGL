@@ -103,10 +103,12 @@ namespace CSharpGL.EarthMoonSystem
         {
             mat4 view = camera.GetViewMat4();
             //vec4 last = view[3];
-            //last.x += (float)(revolutionRadius * Math.Cos(RevolutionRotationRadian));
-            //last.y += 0;
-            //last.z += (float)(revolutionRadius * Math.Sin(RevolutionRotationRadian));
+            vec3 last=new vec3();
+            last.x = (float)(revolutionRadius * Math.Cos(RevolutionRotationRadian));
+            last.y = 0;
+            last.z = (float)(revolutionRadius * Math.Sin(RevolutionRotationRadian));
             //view[3] = last;
+            view = glm.translate(view, last);
             return view;
         }
         
@@ -119,7 +121,7 @@ namespace CSharpGL.EarthMoonSystem
 
         public override string ToString()
         {
-            return string.Format("Single Rotation: {0}°, Revolution Rotation: {1}", this.SingleRotationAngle, this.RevolutionRotationAngle);
+            return string.Format("Single Rotation: {0}°, Revolution Rotation: {1}", this.SingleRotationAngle.ToShortString(), this.RevolutionRotationAngle.ToShortString());
         }
     }
 }
