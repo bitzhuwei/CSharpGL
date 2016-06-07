@@ -27,22 +27,13 @@ namespace CSharpGL.EarthMoonSystem
         private GLAxis glAxis;
         private GLControl uiRoot;
 
-        private BlendSwitch blendSwitch;
-
         public Color ClearColor { get; set; }
 
-        private float earthScale = 1000.0f;
-        public float EarthScale
+        private float celestialBodyScale = 100f;
+        public float CelestialBodyScale
         {
-            get { return earthScale; }
-            set { earthScale = value; }
-        }
-
-        private float sunScale = 1000.0f;
-        public float SunScale
-        {
-            get { return sunScale; }
-            set { sunScale = value; }
+            get { return celestialBodyScale; }
+            set { celestialBodyScale = value; }
         }
 
         List<ITimeElapse> thingList = new List<ITimeElapse>();
@@ -79,15 +70,13 @@ namespace CSharpGL.EarthMoonSystem
 
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
-            this.blendSwitch.On();
-
             var arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
 
             {
                 mat4 projection = this.camera.GetProjectionMat4();
                 //mat4 view = this.camera.GetViewMat4();
                 mat4 view = this.earth.GetViewMatrix(this.camera);
-                mat4 model = this.earth.GetModelRotationMatrix(this.EarthScale);
+                mat4 model = this.earth.GetModelRotationMatrix(this.celestialBodyScale);
                 this.earthRenderer.SetUniform("projectionMatrix", projection);
                 this.earthRenderer.SetUniform("viewMatrix", view);
                 this.earthRenderer.SetUniform("modelMatrix", model);
@@ -96,7 +85,7 @@ namespace CSharpGL.EarthMoonSystem
             {
                 mat4 projection = this.camera.GetProjectionMat4();
                 mat4 view = this.camera.GetViewMat4();
-                mat4 model = this.sun.GetModelRotationMatrix(this.SunScale);
+                mat4 model = this.sun.GetModelRotationMatrix(this.celestialBodyScale);
                 this.sunRenderer.SetUniform("projectionMatrix", projection);
                 this.sunRenderer.SetUniform("viewMatrix", view);
                 this.sunRenderer.SetUniform("modelMatrix", model);
@@ -112,8 +101,6 @@ namespace CSharpGL.EarthMoonSystem
                 this.eclipticRenderer.SetUniform("modelMatrix", model);
                 this.eclipticRenderer.Render(arg);
             }
-
-            this.blendSwitch.Off();
 
             {
                 this.uiRoot.Layout();

@@ -14,7 +14,7 @@ namespace CSharpGL.EarthMoonSystem
 
         private CircleModel model;
 
-        public Circle(float radius = 1.0f, int sliceParts = 360)
+        public Circle(float radius = 1.0f, int sliceParts = 360 * 10)
         {
             this.model = new CircleModel(radius, sliceParts);
         }

@@ -47,7 +47,7 @@ namespace CSharpGL.EarthMoonSystem
             }
             {
                 // Ecliptic: 黄道
-                IBufferable bufferable = new Circle((float)Earth.revolutionRadius, 360);
+                IBufferable bufferable = new Circle((float)Earth.revolutionRadius);
                 var shaderCodes = new ShaderCode[2];
                 shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Circle.vert"), ShaderType.VertexShader);
                 shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Circle.frag"), ShaderType.FragmentShader);
@@ -111,7 +111,7 @@ namespace CSharpGL.EarthMoonSystem
                 this.earthRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.earthColorTexture.Id, OpenGL.GL_TEXTURE0));
                 this.earthRenderer.SwitchList.Add(new CullFaceSwitch());
                 this.sunRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.sunColorTexture.Id, OpenGL.GL_TEXTURE0));
-                //this.sunRenderer.SwitchList.Add(new CullFaceSwitch());
+                this.sunRenderer.SwitchList.Add(new CullFaceSwitch());
             }
             {
                 var earth = new Earth();
@@ -122,10 +122,6 @@ namespace CSharpGL.EarthMoonSystem
                 var sun = new Sun();
                 this.sun = sun;
                 this.thingList.Add(sun);
-            }
-            {
-                var blendSwitch = new BlendSwitch();
-                this.blendSwitch = blendSwitch;
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();
