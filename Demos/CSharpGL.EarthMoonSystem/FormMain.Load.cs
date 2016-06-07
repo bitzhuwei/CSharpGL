@@ -40,9 +40,10 @@ namespace CSharpGL.EarthMoonSystem
                 var map = new PropertyNameMap();
                 map.Add("inPosition", CelestialBody.strPosition);
                 map.Add("inUV", CelestialBody.strUV);
-                var cubeRenderer = new PickableRenderer(bufferable, shaderCodes, map, CelestialBody.strPosition);
-                cubeRenderer.Initialize();
-                this.earthRenderer = cubeRenderer;
+                var earthRenderer = new PickableRenderer(bufferable, shaderCodes, map, CelestialBody.strPosition);
+                earthRenderer.Initialize();
+                earthRenderer.Name = "Earth 地球"; 
+                this.earthRenderer = earthRenderer;
             }
             {
                 // Ecliptic: 黄道
@@ -54,6 +55,7 @@ namespace CSharpGL.EarthMoonSystem
                 map.Add("inPosition", Circle.strPosition);
                 var eclipticRenderer = new Renderer(bufferable, shaderCodes, map);
                 eclipticRenderer.Initialize();
+                eclipticRenderer.Name = "Ecliptic 黄道";
                 this.eclipticRenderer = eclipticRenderer;
             }
             {
@@ -78,7 +80,8 @@ namespace CSharpGL.EarthMoonSystem
                 this.earthColorTexture = earthColorTexture;
             }
             {
-                this.eclipticRenderer.SetUniform("color", new vec4(1.0f, 1.0f, 0.0f, 0.01f));
+                this.eclipticRenderer.SetUniform("color", new vec4(1.0f, 1.0f, 0.0f, 0.1f));
+                this.eclipticRenderer.SwitchList.Add(new PolygonModeSwitch(PolygonModes.Lines));
             }
             {
                 this.earthRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.earthColorTexture.Id, OpenGL.GL_TEXTURE0));
@@ -101,6 +104,11 @@ namespace CSharpGL.EarthMoonSystem
             {
                 var frmPropertyGrid = new FormProperyGrid();
                 frmPropertyGrid.DisplayObject(this.earthRenderer);
+                frmPropertyGrid.Show();
+            }
+            {
+                var frmPropertyGrid = new FormProperyGrid();
+                frmPropertyGrid.DisplayObject(this.eclipticRenderer);
                 frmPropertyGrid.Show();
             }
             {
