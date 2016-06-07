@@ -1,6 +1,6 @@
 ﻿# :telescope:EarthMoonSystem
 EarthMoonSystem能够展示地月系统的运行过程，也是个综合性地使用CSharpGL的例子。
-## :pray::mushroom:功能
+## :mushroom:功能
 根据物理世界的数据和公式，EarthMoonSystem要实现下列功能：
 * 展示地球、月球的自转、公转。（VBO，Shader，Texture，Matrix，Camera）
 * 展示阳光、月光、星光的效果。（Light）
@@ -13,7 +13,7 @@ EarthMoonSystem能够展示地月系统的运行过程，也是个综合性地�
 
 # EarthMoonSystem
 The EarthMoonSystem shows how earth and moon moves in space. It's also an integrated example showing how to use CSharpGL.
-## :pray::mushroom:Functions
+## :mushroom:Functions
 According to data and formulas in physics world, EarthMoonSystem wants to implement functions listed below:
 * shows single rotation and revolution of earth and moon.(VBO，Shader，Texture，Matrix，Camera)
 * shows sunshine, moon light effects.(Light)
