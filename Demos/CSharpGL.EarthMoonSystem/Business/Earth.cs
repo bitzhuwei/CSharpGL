@@ -11,9 +11,7 @@ namespace CSharpGL.EarthMoonSystem
         /// <summary>
         /// 自转角速度（单位： X°每毫秒）
         /// </summary>
-        public const double singleRotationSpeed = 360.0 / 24 / 60 / 60 / 1000;//
-        // 每秒自转1周。用于测试应该用角度还是弧度（结果是应该用弧度）。
-        //public const double singleRotationSpeed = 360.0 / 3000.0;//°每毫秒
+        public const double singleRotationSpeed = 360.0 / 24 / 60 / 60 / 1000;
 
         /// <summary>
         /// 自转轴（地轴）倾斜角度66.34°
@@ -23,6 +21,7 @@ namespace CSharpGL.EarthMoonSystem
         /// 自转轴（地轴）倾斜弧度
         /// </summary>
         public const double singleRotationAxisRadian = singleRotationAxisAngle * Math.PI / 180.0;
+
         /// <summary>
         /// 自转轴（地轴）
         /// </summary>
@@ -32,12 +31,17 @@ namespace CSharpGL.EarthMoonSystem
             0f
             );
         /// <summary>
-        /// 地球半径（单位：千米）
+        /// 半径（单位：千米）
         /// </summary>
         public const double radius = 6371.393;
 
         /// <summary>
-        ///  地球公转半径（单位：千米）
+        /// 公转角速度（单位： X°每毫秒）
+        /// </summary>
+        public const double revolutionRotationSpeed = 360.0 / 365 / 24 / 60 / 60 / 1000;//
+
+        /// <summary>
+        /// 公转半径（单位：千米）
         /// </summary>
         public const double revolutionRadius = 149600000;
 
@@ -57,15 +61,42 @@ namespace CSharpGL.EarthMoonSystem
             }
         }
 
+        /// <summary>
+        /// 当前的公转角度
+        /// </summary>
+        public double RevolutionRotationAngle { get; private set; }
+
+        /// <summary>
+        /// 当前的公转弧度
+        /// </summary>
+        public double RevolutionRotationRadian
+        {
+            get
+            {
+                return this.RevolutionRotationAngle * Math.PI / 180.0;
+            }
+        }
+
         public void Elapse(double interval)
         {
-            double angle = this.SingleRotationAngle + singleRotationSpeed * interval;
-            if (360 < angle)
             {
-                angle = angle % 360;
-            }
+                double angle = this.SingleRotationAngle + singleRotationSpeed * interval;
+                if (360 < angle)
+                {
+                    angle = angle % 360;
+                }
 
-            this.SingleRotationAngle = angle;
+                this.SingleRotationAngle = angle;
+            }
+            {
+                double angle = this.RevolutionRotationAngle + revolutionRotationSpeed * interval;
+                if (360 < angle)
+                {
+                    angle = angle % 360;
+                }
+
+                this.RevolutionRotationAngle = angle;
+            }
         }
 
         public mat4 GetModelRotationMatrix()
@@ -77,7 +108,7 @@ namespace CSharpGL.EarthMoonSystem
 
         public override string ToString()
         {
-            return string.Format("Single Rotation: {0}°", this.SingleRotationAngle);
+            return string.Format("Single Rotation: {0}°, Revolution Rotation: {1}", this.SingleRotationAngle, this.RevolutionRotationAngle);
         }
     }
 }
