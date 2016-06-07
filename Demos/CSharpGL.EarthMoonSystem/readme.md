@@ -23,3 +23,4 @@ According to data and formulas in physics world, EarthMoonSystem wants to implem
 * shows process of launching a satellite.(Particles)
 * allows to decide observer's location or how it moves.(Camera)
 * speed up, down or back time.
+![earth](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/earth.gif?raw=true)
