@@ -26,6 +26,14 @@ namespace CSharpGL.EarthMoonSystem
 
         public Color ClearColor { get; set; }
 
+        private float earthScale = 1000.0f;
+
+        public float EarthScale
+        {
+            get { return earthScale; }
+            set { earthScale = value; }
+        }
+
         List<ITimeElapse> thingList = new List<ITimeElapse>();
         private Earth earth;
 
@@ -67,7 +75,7 @@ namespace CSharpGL.EarthMoonSystem
                 mat4 projection = this.camera.GetProjectionMat4();
                 //mat4 view = this.camera.GetViewMat4();
                 mat4 view = this.earth.GetViewMatrix(this.camera);
-                mat4 model = this.earth.GetModelRotationMatrix();
+                mat4 model = this.earth.GetModelRotationMatrix(this.EarthScale);
                 this.earthRenderer.SetUniform("projectionMatrix", projection);
                 this.earthRenderer.SetUniform("viewMatrix", view);
                 this.earthRenderer.SetUniform("modelMatrix", model);

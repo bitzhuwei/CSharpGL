@@ -18,12 +18,12 @@ namespace CSharpGL.EarthMoonSystem
         {
             {
                 var camera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
-                camera.Position = new vec3(0, 0, 5);
+                camera.Position = new vec3(0, 0, (float)(Earth.revolutionRadius * 1.1));
                 camera.Target = new vec3(0, 0, 0);
                 camera.UpVector = new vec3(0, 1, 0);
                 IPerspectiveViewCamera perspecitve = camera;
-                //perspecitve.Near = 1;
-                //perspecitve.Far = Earth.revolutionRadius * 2;
+                perspecitve.Near = 1;
+                perspecitve.Far = Earth.revolutionRadius * 2;
                 var rotator = new SatelliteRotator(camera);
                 this.camera = camera;
                 this.rotator = rotator;
@@ -42,7 +42,7 @@ namespace CSharpGL.EarthMoonSystem
                 map.Add("inUV", CelestialBody.strUV);
                 var earthRenderer = new PickableRenderer(bufferable, shaderCodes, map, CelestialBody.strPosition);
                 earthRenderer.Initialize();
-                earthRenderer.Name = "Earth 地球"; 
+                earthRenderer.Name = "Earth 地球";
                 this.earthRenderer = earthRenderer;
             }
             {
