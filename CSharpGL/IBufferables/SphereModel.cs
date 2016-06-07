@@ -46,7 +46,7 @@ namespace CSharpGL
 
             if (colorGenerator == null) { colorGenerator = defaultColorGenerator; }
 
-            int vertexCount = (latitudeParts + 1) * (longitudeParts);
+            int vertexCount = (latitudeParts + 1) * (longitudeParts + 1);
             this.positions = new vec3[vertexCount];
             this.normals = new vec3[vertexCount];
             this.colors = new vec3[vertexCount];
@@ -56,11 +56,32 @@ namespace CSharpGL
 
             int index = 0;
 
+            //// 把星球平铺在一个平面上
+            //for (int i = 0; i < latitudeParts + 1; i++)
+            //{
+            //    double theta = (latitudeParts - i * 2) * Math.PI / 2 / latitudeParts;
+            //    double y = radius * Math.Sin(theta);
+            //    for (int j = 0; j < longitudeParts + 1; j++)
+            //    {
+            //        double x = radius * (i - latitudeParts / 2);
+            //        double z = radius * (j - longitudeParts / 2);
+
+            //        vec3 position = new vec3((float)x, (float)y, (float)z);
+            //        this.positions[index] = position;
+
+            //        this.normals[index] = position.normalize();
+
+            //        this.colors[index] = colorGenerator(i, j);
+
+            //        index++;
+            //    }
+            //}
+
             for (int i = 0; i < latitudeParts + 1; i++)
             {
                 double theta = (latitudeParts - i * 2) * Math.PI / 2 / latitudeParts;
                 double y = radius * Math.Sin(theta);
-                for (int j = 0; j < longitudeParts; j++)
+                for (int j = 0; j < longitudeParts + 1; j++)
                 {
                     double x = radius * Math.Cos(theta) * Math.Sin(j * Math.PI * 2 / longitudeParts);
                     double z = radius * Math.Cos(theta) * Math.Cos(j * Math.PI * 2 / longitudeParts);
@@ -80,14 +101,10 @@ namespace CSharpGL
             index = 0;
             for (int i = 0; i < latitudeParts; i++)
             {
-                for (int j = 0; j < (longitudeParts); j++)
+                for (int j = 0; j < longitudeParts + 1; j++)
                 {
-                    this.indexes[index++] = (uint)((longitudeParts) * (i + 0) + j);
-                    this.indexes[index++] = (uint)((longitudeParts) * (i + 1) + j);
-                }
-                {
-                    this.indexes[index++] = (uint)((longitudeParts) * (i + 0) + 0);
-                    this.indexes[index++] = (uint)((longitudeParts) * (i + 1) + 0);
+                    this.indexes[index++] = (uint)((longitudeParts + 1) * (i + 0) + j);
+                    this.indexes[index++] = (uint)((longitudeParts + 1) * (i + 1) + j);
                 }
                 // use 
                 // GL.Enable(GL.GL_PRIMITIVE_RESTART); 
