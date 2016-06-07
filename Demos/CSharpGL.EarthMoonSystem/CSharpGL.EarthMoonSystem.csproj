@@ -45,9 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\Sun.cs" />
     <Compile Include="CelestialBodyModel.cs" />
     <Compile Include="CelestialBody.cs" />
-    <Compile Include="Earth.cs" />
+    <Compile Include="Business\Earth.cs" />
     <Compile Include="FormMain.Misc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,7 +73,7 @@
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="ITimeElapse.cs" />
+    <Compile Include="Business\ITimeElapse.cs" />
     <None Include="readme.md" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,6 +143,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

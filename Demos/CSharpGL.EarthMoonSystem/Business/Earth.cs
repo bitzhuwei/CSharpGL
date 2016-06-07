@@ -74,6 +74,7 @@ namespace CSharpGL.EarthMoonSystem
             model = glm.rotate((float)(Math.PI / 2 - Earth.singleRotationAxisRadian), new vec3(0, 0, -1)) * model;
             return model;
         }
+
         public override string ToString()
         {
             return string.Format("Single Rotation: {0}°", this.SingleRotationAngle);
