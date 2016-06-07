@@ -121,7 +121,7 @@ namespace CSharpGL.EarthMoonSystem
 
         public override string ToString()
         {
-            return string.Format("Single Rotation: {0}°, Revolution Rotation: {1}", this.SingleRotationAngle.ToShortString(), this.RevolutionRotationAngle.ToShortString());
+            return string.Format("Single Rotation: {0}°, Revolution Rotation: {1}°", this.SingleRotationAngle.ToShortString(), this.RevolutionRotationAngle.ToShortString());
         }
     }
 }
