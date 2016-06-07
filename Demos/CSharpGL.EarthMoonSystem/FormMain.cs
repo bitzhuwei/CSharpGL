@@ -15,8 +15,13 @@ namespace CSharpGL.EarthMoonSystem
 
         private Camera camera;
         private SatelliteRotator rotator;
+
         private PickableRenderer earthRenderer;
         private sampler2D earthColorTexture;
+
+        private PickableRenderer sunRenderer;
+        private sampler2D sunColorTexture;
+
         private Renderer eclipticRenderer;
 
         private GLAxis glAxis;
@@ -27,15 +32,22 @@ namespace CSharpGL.EarthMoonSystem
         public Color ClearColor { get; set; }
 
         private float earthScale = 1000.0f;
-
         public float EarthScale
         {
             get { return earthScale; }
             set { earthScale = value; }
         }
 
+        private float sunScale = 1000.0f;
+        public float SunScale
+        {
+            get { return sunScale; }
+            set { sunScale = value; }
+        }
+
         List<ITimeElapse> thingList = new List<ITimeElapse>();
         private Earth earth;
+        private Sun sun;
 
         /// <summary>
         /// 时间流逝的速度。1为物理世界的流逝速度。
@@ -80,6 +92,16 @@ namespace CSharpGL.EarthMoonSystem
                 this.earthRenderer.SetUniform("viewMatrix", view);
                 this.earthRenderer.SetUniform("modelMatrix", model);
                 this.earthRenderer.Render(arg);
+            }
+            {
+                mat4 projection = this.camera.GetProjectionMat4();
+                mat4 view = this.camera.GetViewMat4();
+                mat4 model = this.sun.GetModelRotationMatrix(this.SunScale);
+                this.sunRenderer.SetUniform("projectionMatrix", projection);
+                this.sunRenderer.SetUniform("viewMatrix", view);
+                this.sunRenderer.SetUniform("modelMatrix", model);
+                //this.sunRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.sunColorTexture.Id, OpenGL.GL_TEXTURE0));
+                this.sunRenderer.Render(arg);
             }
             {
                 mat4 projection = this.camera.GetProjectionMat4();

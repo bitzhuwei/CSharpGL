@@ -11,15 +11,15 @@ namespace CSharpGL.EarthMoonSystem
         /// <summary>
         /// 半径（单位：千米）
         /// </summary>
-        public const double radius = 695000;
+        public const double radius = 1200.0 / 3.0;
 
         public void Elapse(double interval)
         {
         }
 
-        public mat4 GetModelRotationMatrix()
+        public mat4 GetModelRotationMatrix(float scale)
         {
-            return mat4.identity();
+            return glm.scale(mat4.identity(), new vec3(scale, scale, scale));
         }
 
         public override string ToString()

@@ -59,6 +59,23 @@ namespace CSharpGL.EarthMoonSystem
                 this.eclipticRenderer = eclipticRenderer;
             }
             {
+                const int latitude = 180;//从南到北，纬度共有180°
+                const int hour = 24;//24小时，24个时区
+                const int longitudePerHour = 15;// 每个时区占有的经度为15°
+                const int longitude = hour * longitudePerHour;// 从东到西，经度共有360°
+                IBufferable bufferable = new CelestialBody((float)Sun.radius, latitude, longitude);
+                var shaderCodes = new ShaderCode[2];
+                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\CelestialBody.vert"), ShaderType.VertexShader);
+                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\CelestialBody.frag"), ShaderType.FragmentShader);
+                var map = new PropertyNameMap();
+                map.Add("inPosition", CelestialBody.strPosition);
+                map.Add("inUV", CelestialBody.strUV);
+                var sunRenderer = new PickableRenderer(bufferable, shaderCodes, map, CelestialBody.strPosition);
+                sunRenderer.Initialize();
+                sunRenderer.Name = "Sun 太阳";
+                this.sunRenderer = sunRenderer;
+            }
+            {
                 var glAxis = new GLAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(5, 5, 5, 5), new Size(100, 100), -100, 100);
                 glAxis.Initialize();
@@ -80,17 +97,31 @@ namespace CSharpGL.EarthMoonSystem
                 this.earthColorTexture = earthColorTexture;
             }
             {
+                var sunColorTexture = new sampler2D();
+                var bitmap = new Bitmap(@"Images\sun-4096-2048.png");
+                sunColorTexture.Initialize(bitmap);
+                bitmap.Dispose();
+                this.sunColorTexture = sunColorTexture;
+            }
+            {
                 this.eclipticRenderer.SetUniform("color", new vec4(1.0f, 1.0f, 0.0f, 0.1f));
-                this.eclipticRenderer.SwitchList.Add(new PolygonModeSwitch(PolygonModes.Lines));
+                this.eclipticRenderer.SwitchList.Add(new PolygonModeSwitch(PolygonModes.Points));
             }
             {
                 this.earthRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.earthColorTexture.Id, OpenGL.GL_TEXTURE0));
                 this.earthRenderer.SwitchList.Add(new CullFaceSwitch());
+                this.sunRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.sunColorTexture.Id, OpenGL.GL_TEXTURE0));
+                //this.sunRenderer.SwitchList.Add(new CullFaceSwitch());
             }
             {
                 var earth = new Earth();
                 this.earth = earth;
                 this.thingList.Add(earth);
+            }
+            {
+                var sun = new Sun();
+                this.sun = sun;
+                this.thingList.Add(sun);
             }
             {
                 var blendSwitch = new BlendSwitch();
