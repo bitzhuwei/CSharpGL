@@ -23,7 +23,7 @@ namespace CSharpGL.EarthMoonSystem
                 camera.UpVector = new vec3(0, 1, 0);
                 IPerspectiveViewCamera perspecitve = camera;
                 perspecitve.Near = 1;
-                perspecitve.Far = Earth.revolutionRadius * 2;
+                perspecitve.Far = Earth.revolutionRadius * 5;
                 var rotator = new SatelliteRotator(camera);
                 this.camera = camera;
                 this.rotator = rotator;
