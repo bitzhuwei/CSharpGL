@@ -99,6 +99,17 @@ namespace CSharpGL.EarthMoonSystem
             }
         }
 
+        public mat4 GetViewMatrix(ICamera camera)
+        {
+            mat4 view = camera.GetViewMat4();
+            vec4 last = view[3];
+            last.x += (float)(revolutionRadius * Math.Cos(RevolutionRotationRadian));
+            last.y += 0;
+            last.z += (float)(revolutionRadius * Math.Sin(RevolutionRotationRadian));
+            view[3] = last;
+            return view;
+        }
+        
         public mat4 GetModelRotationMatrix()
         {
             mat4 model = glm.rotate((float)this.SingleRotationRadian, new vec3(0, 1, 0));
