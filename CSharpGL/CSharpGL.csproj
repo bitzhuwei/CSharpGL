@@ -47,22 +47,22 @@
     <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormGLSwitchEditor.resx">
       <DependentUpon>FormGLSwitchEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <Content Include="GLControls\readme.txt" />
-    <Content Include="FontResource\readme.txt" />
-    <Content Include="IBufferables\readme.txt" />
-    <Content Include="HighlightRenderer\readme.txt" />
+    <Content Include="GLControls\readme.md" />
+    <Content Include="FontResource\readme.md" />
+    <Content Include="IBufferables\readme.md" />
+    <Content Include="HighlightRenderer\readme.md" />
     <Content Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInPolygonSearcher.jpg" />
     <Content Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInQuad+Searcher.jpg" />
     <Content Include="PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInTriangle+Searcher.jpg" />
-    <Content Include="PickableRenderer\OneIndexRenderer\readme.txt" />
+    <Content Include="PickableRenderer\OneIndexRenderer\readme.md" />
     <Content Include="PickableRenderer\InnerPickableRenderer.jpg" />
-    <Content Include="PickableRenderer\readme.txt" />
-    <Content Include="PickableRenderer\ZeroIndexRenderer\readme.txt" />
-    <Content Include="OpenGLObjects\ModernRendering\readme.txt" />
+    <Content Include="PickableRenderer\readme.md" />
+    <Content Include="PickableRenderer\ZeroIndexRenderer\readme.md" />
+    <Content Include="OpenGLObjects\ModernRendering\readme.md" />
     <Content Include="OpenGLAPI\Enumerations\DrawMode.png" />
     <Content Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.png" />
-    <Content Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\readme.txt" />
-    <Content Include="PickableRenderer\ColorCodedPicking\readme.txt" />
+    <Content Include="PickableRenderer\ColorCodedPicking\PrimivitiveRecognizers\readme.md" />
+    <Content Include="PickableRenderer\ColorCodedPicking\readme.md" />
     <Content Include="IBufferables\AxisModel.jpg" />
     <Content Include="IBufferables\CubeModel.jpg" />
     <Content Include="IBufferables\SphereModel.jpg" />
@@ -74,12 +74,12 @@
     <Content Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTrianglesSearcher.jpg" />
     <Content Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripAdjacencySearcher.jpg" />
     <Content Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.jpg" />
-    <Content Include="OpenGLObjects\GLSwitches\readme.txt" />
-    <Content Include="GLControls\GLText\readme.txt" />
-    <Content Include="WinformControls\RenderContexts\readme.txt" />
-    <Content Include="OpenGLObjects\UniformVariables\readme.txt" />
-    <Content Include="OpenGLObjects\VertexBuffers\readme.txt" />
-    <Content Include="readme.txt" />
+    <Content Include="OpenGLObjects\GLSwitches\readme.md" />
+    <Content Include="GLControls\GLText\readme.md" />
+    <Content Include="WinformControls\RenderContexts\readme.md" />
+    <Content Include="OpenGLObjects\UniformVariables\readme.md" />
+    <Content Include="OpenGLObjects\VertexBuffers\readme.md" />
+    <Content Include="readme.md" />
     <Compile Include="FontResource\FontResource.Default.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PointSmoothSwitch.cs" />
@@ -438,12 +438,12 @@
     <EmbeddedResource Include="Resources\GLText.vert" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Maths\readme.txt" />
-    <Content Include="OpenGLObjects\readme.txt" />
-    <Content Include="OpenGLAPI\readme.txt" />
-    <Content Include="FontResource\SharpFont\readme.txt" />
-    <Content Include="4PropertyGrid\TypeConverters\readme.txt" />
-    <Content Include="4PropertyGrid\UITypeEditors\readme.txt" />
+    <Content Include="Maths\readme.md" />
+    <Content Include="OpenGLObjects\readme.md" />
+    <Content Include="OpenGLAPI\readme.md" />
+    <Content Include="FontResource\SharpFont\readme.md" />
+    <Content Include="4PropertyGrid\TypeConverters\readme.md" />
+    <Content Include="4PropertyGrid\UITypeEditors\readme.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
