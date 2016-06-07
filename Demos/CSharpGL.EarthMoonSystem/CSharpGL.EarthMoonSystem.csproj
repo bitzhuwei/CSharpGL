@@ -73,6 +73,7 @@
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="ITimeElapse.cs" />
+    <None Include="readme.md" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="shaders\CelestialBody.frag">
