@@ -21,6 +21,9 @@ namespace CSharpGL.EarthMoonSystem
                 camera.Position = new vec3(0, 0, 5);
                 camera.Target = new vec3(0, 0, 0);
                 camera.UpVector = new vec3(0, 1, 0);
+                IPerspectiveViewCamera perspecitve = camera;
+                //perspecitve.Near = 1;
+                //perspecitve.Far = Earth.revolutionRadius * 2;
                 var rotator = new SatelliteRotator(camera);
                 this.camera = camera;
                 this.rotator = rotator;
@@ -30,7 +33,7 @@ namespace CSharpGL.EarthMoonSystem
                 const int hour = 24;//24小时，24个时区
                 const int longitudePerHour = 15;// 每个时区占有的经度为15°
                 const int longitude = hour * longitudePerHour;// 从东到西，经度共有360°
-                IBufferable bufferable = new CelestialBody(1, latitude, longitude);
+                IBufferable bufferable = new CelestialBody((float)Earth.radius, latitude, longitude);
                 var shaderCodes = new ShaderCode[2];
                 shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\CelestialBody.vert"), ShaderType.VertexShader);
                 shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\CelestialBody.frag"), ShaderType.FragmentShader);
