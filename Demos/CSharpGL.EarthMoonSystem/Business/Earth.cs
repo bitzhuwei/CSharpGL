@@ -33,7 +33,7 @@ namespace CSharpGL.EarthMoonSystem
         /// <summary>
         /// 半径（单位：千米）
         /// </summary>
-        public const double radius = 6371.393;
+        public const double radius = 1;
 
         /// <summary>
         /// 公转角速度（单位： X°每毫秒）
@@ -43,7 +43,7 @@ namespace CSharpGL.EarthMoonSystem
         /// <summary>
         /// 公转半径（单位：千米）
         /// </summary>
-        public const double revolutionRadius = 149600000;
+        public const double revolutionRadius = 4;
 
         /// <summary>
         /// 当前的自转角度
@@ -102,11 +102,11 @@ namespace CSharpGL.EarthMoonSystem
         public mat4 GetViewMatrix(ICamera camera)
         {
             mat4 view = camera.GetViewMat4();
-            vec4 last = view[3];
-            last.x += (float)(revolutionRadius * Math.Cos(RevolutionRotationRadian));
-            last.y += 0;
-            last.z += (float)(revolutionRadius * Math.Sin(RevolutionRotationRadian));
-            view[3] = last;
+            //vec4 last = view[3];
+            //last.x += (float)(revolutionRadius * Math.Cos(RevolutionRotationRadian));
+            //last.y += 0;
+            //last.z += (float)(revolutionRadius * Math.Sin(RevolutionRotationRadian));
+            //view[3] = last;
             return view;
         }
         

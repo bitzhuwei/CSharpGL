@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\Sun.cs" />
+    <Compile Include="Circle.cs" />
+    <Compile Include="CircleModel.cs" />
     <Compile Include="CelestialBodyModel.cs" />
     <Compile Include="CelestialBody.cs" />
     <Compile Include="Business\Earth.cs" />
@@ -77,6 +79,12 @@
     <None Include="readme.md" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="shaders\Circle.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\Circle.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="shaders\CelestialBody.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

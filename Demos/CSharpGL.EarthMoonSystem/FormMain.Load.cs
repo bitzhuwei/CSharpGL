@@ -13,6 +13,8 @@ namespace CSharpGL.EarthMoonSystem
 {
     public partial class FormMain
     {
+        private GLAxis glAxis;
+        private GLControl uiRoot;
 
         void FormMain_Load(object sender, EventArgs e)
         {
@@ -45,11 +47,40 @@ namespace CSharpGL.EarthMoonSystem
                 this.earthRenderer = cubeRenderer;
             }
             {
+                // Ecliptic: 黄道
+                IBufferable bufferable = new Circle((float)Earth.revolutionRadius, 360);
+                var shaderCodes = new ShaderCode[2];
+                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Circle.vert"), ShaderType.VertexShader);
+                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Circle.frag"), ShaderType.FragmentShader);
+                var map = new PropertyNameMap();
+                map.Add("inPosition", Circle.strPosition);
+                var eclipticRenderer = new Renderer(bufferable, shaderCodes, map);
+                eclipticRenderer.Initialize();
+                this.eclipticRenderer = eclipticRenderer;
+            }
+            {
+                var glAxis = new GLAxis(AnchorStyles.Left | AnchorStyles.Bottom,
+                    new Padding(5, 5, 5, 5), new Size(100, 100), -100, 100);
+                glAxis.Initialize();
+                this.glAxis = glAxis;
+            }
+            {
+                var uiRoot = new GLControl(this.glCanvas1.Size, -100, 100);
+                uiRoot.Initialize();
+                this.uiRoot = uiRoot;
+            }
+            {
+                this.uiRoot.Controls.Add(this.glAxis);
+            }
+            {
                 var earthColorTexture = new sampler2D();
                 var bitmap = new Bitmap(@"Images\earth-color-map-10800-5400.jpg");
                 earthColorTexture.Initialize(bitmap);
                 bitmap.Dispose();
                 this.earthColorTexture = earthColorTexture;
+            }
+            {
+                this.eclipticRenderer.SetUniform("color", new vec4(1.0f, 1.0f, 0.0f, 0.5f));
             }
             {
                 this.earthRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.earthColorTexture.Id, OpenGL.GL_TEXTURE0));

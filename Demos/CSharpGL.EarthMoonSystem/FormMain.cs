@@ -17,6 +17,8 @@ namespace CSharpGL.EarthMoonSystem
         private SatelliteRotator rotator;
         private PickableRenderer earthRenderer;
         private sampler2D earthColorTexture;
+        private Renderer eclipticRenderer;
+
         public Color ClearColor { get; set; }
 
         List<ITimeElapse> thingList = new List<ITimeElapse>();
@@ -54,14 +56,42 @@ namespace CSharpGL.EarthMoonSystem
 
             var arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
 
-            mat4 projection = this.camera.GetProjectionMat4();
-            //mat4 view = this.camera.GetViewMat4();
-            mat4 view = this.earth.GetViewMatrix(this.camera);
-            mat4 model = this.earth.GetModelRotationMatrix();
-            this.earthRenderer.SetUniform("projectionMatrix", projection);
-            this.earthRenderer.SetUniform("viewMatrix", view);
-            this.earthRenderer.SetUniform("modelMatrix", model);
-            this.earthRenderer.Render(arg);
+            {
+                mat4 projection = this.camera.GetProjectionMat4();
+                //mat4 view = this.camera.GetViewMat4();
+                mat4 view = this.earth.GetViewMatrix(this.camera);
+                mat4 model = this.earth.GetModelRotationMatrix();
+                this.earthRenderer.SetUniform("projectionMatrix", projection);
+                this.earthRenderer.SetUniform("viewMatrix", view);
+                this.earthRenderer.SetUniform("modelMatrix", model);
+                this.earthRenderer.Render(arg);
+            }
+            {
+                mat4 projection = this.camera.GetProjectionMat4();
+                mat4 view = this.camera.GetViewMat4();
+                mat4 model = mat4.identity();
+                this.eclipticRenderer.SetUniform("projectionMatrix", projection);
+                this.eclipticRenderer.SetUniform("viewMatrix", view);
+                this.eclipticRenderer.SetUniform("modelMatrix", model);
+                this.eclipticRenderer.Render(arg);
+            }
+            {
+                this.uiRoot.Layout();
+                mat4 projection, view, model;
+                {
+                    projection = glAxis.GetOrthoProjection();
+                    vec3 position = (this.camera.Position - this.camera.Target).normalize();
+                    view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
+                    float length = Math.Max(glAxis.Size.Width, glAxis.Size.Height) / 2;
+                    model = glm.scale(mat4.identity(),
+                        new vec3(length, length, length));
+                    glAxis.Renderer.SetUniform("projectionMatrix", projection);
+                    glAxis.Renderer.SetUniform("viewMatrix", view);
+                    glAxis.Renderer.SetUniform("modelMatrix", model);
+
+                    glAxis.Render(arg);
+                }
+            }
         }
 
 

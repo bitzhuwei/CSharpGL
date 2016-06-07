@@ -29,6 +29,12 @@ namespace CSharpGL.EarthMoonSystem
             {
                 camera.Resize(control.Width, control.Height);
             }
+
+            GLControl uiRoot = this.uiRoot;
+            if (uiRoot != null)
+            {
+                uiRoot.Size = control.Size;
+            }
         }
 
     }
