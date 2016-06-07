@@ -35,6 +35,7 @@ namespace CSharpGL
             Assembly asm = Assembly.GetAssembly(type);
             var result = (from item in asm.ExportedTypes
                           where type.IsAssignableFrom(item) && (!item.IsAbstract)
+                          orderby item.FullName
                           select item).ToList();
             return result;
         }
