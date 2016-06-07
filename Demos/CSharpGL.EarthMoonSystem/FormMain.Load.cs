@@ -13,8 +13,6 @@ namespace CSharpGL.EarthMoonSystem
 {
     public partial class FormMain
     {
-        private GLAxis glAxis;
-        private GLControl uiRoot;
 
         void FormMain_Load(object sender, EventArgs e)
         {
@@ -80,17 +78,21 @@ namespace CSharpGL.EarthMoonSystem
                 this.earthColorTexture = earthColorTexture;
             }
             {
-                this.eclipticRenderer.SetUniform("color", new vec4(1.0f, 1.0f, 0.0f, 0.5f));
+                this.eclipticRenderer.SetUniform("color", new vec4(1.0f, 1.0f, 0.0f, 0.01f));
             }
             {
                 this.earthRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.earthColorTexture.Id, OpenGL.GL_TEXTURE0));
+                this.earthRenderer.SwitchList.Add(new CullFaceSwitch());
             }
             {
                 var earth = new Earth();
                 this.earth = earth;
                 this.thingList.Add(earth);
             }
-
+            {
+                var blendSwitch = new BlendSwitch();
+                this.blendSwitch = blendSwitch;
+            }
             {
                 var frmPropertyGrid = new FormProperyGrid();
                 frmPropertyGrid.DisplayObject(this);
@@ -100,6 +102,9 @@ namespace CSharpGL.EarthMoonSystem
                 var frmPropertyGrid = new FormProperyGrid();
                 frmPropertyGrid.DisplayObject(this.earthRenderer);
                 frmPropertyGrid.Show();
+            }
+            {
+                this.TimeSpeed = 14400;
             }
         }
     }

@@ -19,6 +19,11 @@ namespace CSharpGL.EarthMoonSystem
         private sampler2D earthColorTexture;
         private Renderer eclipticRenderer;
 
+        private GLAxis glAxis;
+        private GLControl uiRoot;
+
+        private BlendSwitch blendSwitch;
+
         public Color ClearColor { get; set; }
 
         List<ITimeElapse> thingList = new List<ITimeElapse>();
@@ -54,6 +59,8 @@ namespace CSharpGL.EarthMoonSystem
 
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
+            this.blendSwitch.On();
+
             var arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
 
             {
@@ -75,6 +82,9 @@ namespace CSharpGL.EarthMoonSystem
                 this.eclipticRenderer.SetUniform("modelMatrix", model);
                 this.eclipticRenderer.Render(arg);
             }
+
+            this.blendSwitch.Off();
+
             {
                 this.uiRoot.Layout();
                 mat4 projection, view, model;
