@@ -175,6 +175,8 @@ namespace CSharpGL.Demos
             // glPointSize(2.0f);
             OpenGL.DrawArrays(DrawMode.Points, 0, ParticleModel.particleCount);
             OpenGL.Disable(OpenGL.GL_BLEND);
+            OpenGL.GetDelegateFor<OpenGL.glBindVertexArray>()(0);
+            visualProgram.Unbind();
             SwitchesOff();
         }
 
