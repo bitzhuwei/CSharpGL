@@ -98,6 +98,8 @@ namespace CSharpGL.Demos
                 //GL.GetDelegateFor<GL.glVertexAttribPointer>()(0, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
                 //GL.GetDelegateFor<GL.glEnableVertexAttribArray>()(0);
                 //
+                OpenGL.GetDelegateFor<OpenGL.glBindVertexArray>()(0);
+
                 OpenGL.GenTextures(1, textureBufferPosition);
                 OpenGL.BindTexture(OpenGL.GL_TEXTURE_BUFFER, textureBufferPosition[0]);
                 OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, OpenGL.GL_RGBA32F, position_buffer[0]);
