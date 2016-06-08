@@ -15,32 +15,14 @@ namespace CSharpGL.Demos
     {
         private ShaderProgram computeProgram;
 
-        private uint[] render_vao = new uint[1];
-        private uint[] position_buffer = new uint[1];
-        private uint[] velocity_buffer = new uint[1];
-        private ShaderProgram visualProgram;
-        private DepthTestSwitch depthTestSwitch = new DepthTestSwitch(false);
+        ParticleRenderer particleRenderer;
 
         private uint[] textureBufferPosition = new uint[1];
         private uint[] textureBufferVelocity = new uint[1];
         private uint[] attractor_buffer = new uint[1];
         private float time = 0;
 
-        private List<GLSwitch> switchList = new List<GLSwitch>();
-
-        [Editor(typeof(GLSwithListEditor), typeof(UITypeEditor))]
-        public List<GLSwitch> SwitchList
-        {
-            get { return switchList; }
-            set { switchList = value; }
-        }
-
         Random random = new Random();
-
-        public ParticleSimulatorRenderer()
-        {
-            this.SwitchList.Add(depthTestSwitch);
-        }
 
         protected override void DoInitialize()
         {
@@ -53,77 +35,31 @@ namespace CSharpGL.Demos
                 this.computeProgram = computeProgram;
             }
             {
-                //var bufferable = new ParticleSimulatorCompute();
-                OpenGL.GetDelegateFor<OpenGL.glGenVertexArrays>()(1, render_vao);
-                OpenGL.GetDelegateFor<OpenGL.glBindVertexArray>()(render_vao[0]);
-                // position
-                OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, position_buffer);
-                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, position_buffer[0]);
-                var positions = new UnmanagedArray<vec4>(ParticleModel.particleCount);
-                unsafe
-                {
-                    var array = (vec4*)positions.Header.ToPointer();
-                    for (int i = 0; i < ParticleModel.particleCount; i++)
-                    {
-                        array[i] = new vec4(
-                            (float)(random.NextDouble() - 0.5) * 20,
-                            (float)(random.NextDouble() - 0.5) * 20,
-                            (float)(random.NextDouble() - 0.5) * 20,
-                            (float)(random.NextDouble())
-                            );
-                    }
-                }
-                OpenGL.BufferData(BufferTarget.ArrayBuffer, positions, BufferUsage.DynamicCopy);
-                positions.Dispose();
-                OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>()(0, 4, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);
-                OpenGL.GetDelegateFor<OpenGL.glEnableVertexAttribArray>()(0);
-                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
-                // velocity
-                OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, velocity_buffer);
-                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, velocity_buffer[0]);
-                var velocities = new UnmanagedArray<vec4>(ParticleModel.particleCount);
-                unsafe
-                {
-                    var array = (vec4*)velocities.Header.ToPointer();
-                    for (int i = 0; i < ParticleModel.particleCount; i++)
-                    {
-                        array[i] = new vec4(
-                            (float)(random.NextDouble() - 0.5) * 0.2f,
-                            (float)(random.NextDouble() - 0.5) * 0.2f,
-                            (float)(random.NextDouble() - 0.5) * 0.2f,
-                            0);
-                    }
-                }
-                OpenGL.BufferData(BufferTarget.ArrayBuffer, velocities, BufferUsage.DynamicCopy);
-                velocities.Dispose();
-                //GL.GetDelegateFor<GL.glVertexAttribPointer>()(0, 4, GL.GL_FLOAT, false, 0, IntPtr.Zero);
-                //GL.GetDelegateFor<GL.glEnableVertexAttribArray>()(0);
-                //
-                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
-                OpenGL.GetDelegateFor<OpenGL.glBindVertexArray>()(0);
+                IBufferable bufferable = new ParticleModel();
+                var shaderCodes = new ShaderCode[2];
+                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"05ParticleSimulator\particleSimulator.vert"), ShaderType.VertexShader);
+                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"05ParticleSimulator\particleSimulator.frag"), ShaderType.FragmentShader);
+                var map = new PropertyNameMap();
+                map.Add("position", ParticleModel.strPosition);
+                var particleRenderer = new ParticleRenderer(bufferable, shaderCodes, map, new DepthTestSwitch(false), new BlendSwitch(BlendingSourceFactor.One, BlendingDestinationFactor.One));
+                particleRenderer.Initialize();
+                this.particleRenderer = particleRenderer;
+            }
+            {
 
                 OpenGL.GenTextures(1, textureBufferPosition);
                 OpenGL.BindTexture(OpenGL.GL_TEXTURE_BUFFER, textureBufferPosition[0]);
-                OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, OpenGL.GL_RGBA32F, position_buffer[0]);
+                OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, OpenGL.GL_RGBA32F, this.particleRenderer.PositionBufferPtr.BufferId);
                 OpenGL.GenTextures(1, textureBufferVelocity);
                 OpenGL.BindTexture(OpenGL.GL_TEXTURE_BUFFER, textureBufferVelocity[0]);
-                OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, OpenGL.GL_RGBA32F, velocity_buffer[0]);
+                OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, OpenGL.GL_RGBA32F, this.particleRenderer.VelocityBufferPtrId);
 
                 OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, attractor_buffer);
                 OpenGL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
                 OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_UNIFORM_BUFFER, 64 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
                 OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>()(OpenGL.GL_UNIFORM_BUFFER, 0, attractor_buffer[0]);
             }
-            {
-                var visualProgram = new ShaderProgram();
-                var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"05ParticleSimulator\particleSimulator.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"05ParticleSimulator\particleSimulator.frag"), ShaderType.FragmentShader);
-                var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
-                visualProgram.Create(shaders);
-                foreach (var item in shaders) { item.Delete(); }
-                this.visualProgram = visualProgram;
-            }
+
         }
 
 
@@ -165,52 +101,19 @@ namespace CSharpGL.Demos
 
 
             // Clear, select the rendering program and draw a full screen quad
-            SwitchesOn();
-            visualProgram.Bind();
             mat4 view = arg.Camera.GetViewMat4();
             mat4 projection = arg.Camera.GetProjectionMat4();
-            visualProgram.SetUniformMatrix4("mvp", (projection * view).to_array());
-            OpenGL.GetDelegateFor<OpenGL.glBindVertexArray>()(render_vao[0]);
-            OpenGL.Enable(OpenGL.GL_BLEND);
-            OpenGL.BlendFunc(OpenGL.GL_ONE, OpenGL.GL_ONE);
-            // glPointSize(2.0f);
-            OpenGL.DrawArrays(DrawMode.Points, 0, ParticleModel.particleCount);
-            OpenGL.Disable(OpenGL.GL_BLEND);
-            OpenGL.GetDelegateFor<OpenGL.glBindVertexArray>()(0);
-            visualProgram.Unbind();
-            SwitchesOff();
-        }
-
-        private void SwitchesOff()
-        {
-            for (int i = this.switchList.Count - 1; i >= 0; i--)
-            {
-                this.switchList[i].Off();
-            }
-        }
-
-        private void SwitchesOn()
-        {
-            for (int i = 0; i < this.switchList.Count; i++)
-            {
-                this.switchList[i].On();
-            }
+            this.particleRenderer.SetUniform("mvp", projection * view);
+            this.particleRenderer.Render(arg);
         }
 
         protected override void DisposeUnmanagedResources()
         {
             computeProgram.Delete();
-            IntPtr ptr = Win32.wglGetCurrentContext();
-            if (ptr != IntPtr.Zero)
-            {
-                OpenGL.GetDelegateFor<OpenGL.glDeleteVertexArrays>()(1, render_vao);
-            }
-            OpenGL.DeleteBuffers(1, position_buffer);
-            OpenGL.DeleteBuffers(1, velocity_buffer);
+            this.particleRenderer.Dispose();
             OpenGL.DeleteBuffers(1, textureBufferPosition);
             OpenGL.DeleteBuffers(1, textureBufferVelocity);
             OpenGL.DeleteBuffers(1, attractor_buffer);
-            visualProgram.Delete();
         }
 
     }
