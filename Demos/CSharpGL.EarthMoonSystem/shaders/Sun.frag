@@ -159,7 +159,7 @@ void main(void)
     vec2 p = -1.0 + 2.0 * q;
     vec2 qq;
     vec2 r;
-	float randomColor = pattern2(p,qq,r,time[0]);
+	float randomColor = pattern2(p,qq,r,time[1]);
 
 	vec2 uv = passUV + vec2(randomColor, randomColor);
 	if (uv.x >= 1) { uv.x -= 1; }
