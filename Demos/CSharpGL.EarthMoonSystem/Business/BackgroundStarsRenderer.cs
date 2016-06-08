@@ -35,7 +35,7 @@ namespace CSharpGL.EarthMoonSystem
             {
                 // This is the texture that the compute program will write into
                 sampler2D texture = new sampler2D();
-                var bitmap = new System.Drawing.Bitmap(@"Images\star1.png");
+                var bitmap = new System.Drawing.Bitmap(@"Images\star.png");
                 texture.Initialize(bitmap);
                 bitmap.Dispose();
                 this.sprite_texture[0] = texture.Id;

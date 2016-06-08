@@ -77,7 +77,7 @@ namespace CSharpGL.EarthMoonSystem
                 this.sunRenderer = sunRenderer;
             }
             {
-                var backgroundStars = new BackgroundStarsRenderer(1000, Earth.revolutionRadius);
+                var backgroundStars = new BackgroundStarsRenderer(2000, Earth.revolutionRadius);
                 backgroundStars.Initialize();
                 backgroundStars.Name = "stars 星星";
                 this.backgroundStars = backgroundStars;
