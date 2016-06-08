@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Demos
 {
-    class ParticleSimulatorCompute : IBufferable
+    class ParticleModel : IBufferable
     {
         public static readonly float[] attractor_masses = new float[maxAttractor];
 
@@ -26,7 +26,7 @@ namespace CSharpGL.Demos
         private IndexBufferPtr indexBufferPtr;
         Random random = new Random();
 
-        static ParticleSimulatorCompute()
+        static ParticleModel()
         {
             Random random = new Random();
             for (int i = 0; i < maxAttractor; i++)
@@ -79,9 +79,9 @@ namespace CSharpGL.Demos
                             for (int i = 0; i < particleCount; i++)
                             {
                                 array[i] = new vec4(
-                                    (float)(random.NextDouble() - 0.5) * 2,
-                                    (float)(random.NextDouble() - 0.5) * 2,
-                                    (float)(random.NextDouble() - 0.5) * 2,
+                                    (float)(random.NextDouble() - 0.5) * 0.2f,
+                                    (float)(random.NextDouble() - 0.5) * 0.2f,
+                                    (float)(random.NextDouble() - 0.5) * 0.2f,
                                     0
                                     );
                             }

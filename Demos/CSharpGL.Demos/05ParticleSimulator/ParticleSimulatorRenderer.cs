@@ -14,15 +14,18 @@ namespace CSharpGL.Demos
     class ParticleSimulatorRenderer : RendererBase
     {
         private ShaderProgram computeProgram;
+
         private uint[] render_vao = new uint[1];
         private uint[] position_buffer = new uint[1];
         private uint[] velocity_buffer = new uint[1];
+        private ShaderProgram visualProgram;
+        private DepthTestSwitch depthTestSwitch = new DepthTestSwitch(false);
+
         private uint[] textureBufferPosition = new uint[1];
         private uint[] textureBufferVelocity = new uint[1];
         private uint[] attractor_buffer = new uint[1];
-        private ShaderProgram visualProgram;
         private float time = 0;
-        private DepthTestSwitch depthTestSwitch = new DepthTestSwitch(false);
+
         private List<GLSwitch> switchList = new List<GLSwitch>();
 
         [Editor(typeof(GLSwithListEditor), typeof(UITypeEditor))]
@@ -56,11 +59,11 @@ namespace CSharpGL.Demos
                 // position
                 OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, position_buffer);
                 OpenGL.BindBuffer(BufferTarget.ArrayBuffer, position_buffer[0]);
-                var positions = new UnmanagedArray<vec4>(ParticleSimulatorCompute.particleCount);
+                var positions = new UnmanagedArray<vec4>(ParticleModel.particleCount);
                 unsafe
                 {
                     var array = (vec4*)positions.Header.ToPointer();
-                    for (int i = 0; i < ParticleSimulatorCompute.particleCount; i++)
+                    for (int i = 0; i < ParticleModel.particleCount; i++)
                     {
                         array[i] = new vec4(
                             (float)(random.NextDouble() - 0.5) * 20,
@@ -77,11 +80,11 @@ namespace CSharpGL.Demos
                 // velocity
                 OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, velocity_buffer);
                 OpenGL.BindBuffer(BufferTarget.ArrayBuffer, velocity_buffer[0]);
-                var velocities = new UnmanagedArray<vec4>(ParticleSimulatorCompute.particleCount);
+                var velocities = new UnmanagedArray<vec4>(ParticleModel.particleCount);
                 unsafe
                 {
                     var array = (vec4*)velocities.Header.ToPointer();
-                    for (int i = 0; i < ParticleSimulatorCompute.particleCount; i++)
+                    for (int i = 0; i < ParticleModel.particleCount; i++)
                     {
                         array[i] = new vec4(
                             (float)(random.NextDouble() - 0.5) * 0.2f,
@@ -138,7 +141,7 @@ namespace CSharpGL.Demos
                         (float)(Math.Sin(time)) * 50.0f,
                         (float)(Math.Cos(time)) * 50.0f,
                         (float)(Math.Cos(time)) * (float)(Math.Sin(time)) * 5.0f,
-                        ParticleSimulatorCompute.attractor_masses[i]);
+                        ParticleModel.attractor_masses[i]);
                 }
             }
 
@@ -152,7 +155,7 @@ namespace CSharpGL.Demos
             // Set delta time
             computeProgram.SetUniform("dt", deltaTime);
             // Dispatch
-            OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(ParticleSimulatorCompute.particleGroupCount, 1, 1);
+            OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(ParticleModel.particleGroupCount, 1, 1);
 
             OpenGL.GetDelegateFor<OpenGL.glMemoryBarrier>()(OpenGL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
@@ -167,7 +170,7 @@ namespace CSharpGL.Demos
             OpenGL.Enable(OpenGL.GL_BLEND);
             OpenGL.BlendFunc(OpenGL.GL_ONE, OpenGL.GL_ONE);
             // glPointSize(2.0f);
-            OpenGL.DrawArrays(DrawMode.Points, 0, ParticleSimulatorCompute.particleCount);
+            OpenGL.DrawArrays(DrawMode.Points, 0, ParticleModel.particleCount);
             OpenGL.Disable(OpenGL.GL_BLEND);
             SwitchesOff();
         }
