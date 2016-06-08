@@ -6,6 +6,7 @@ in vec2 inUV;
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
+uniform vec4 nuclears[10];
 
 out vec2 passUV;
 

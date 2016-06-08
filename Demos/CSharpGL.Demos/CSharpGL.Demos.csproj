@@ -59,6 +59,7 @@
     <Compile Include="01Renderer\Form01Renderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="05ParticleSimulator\ParticleSimulatorModel.cs" />
     <Compile Include="06ImageProcessing\Form06ImageProcessing.cs">
       <SubType>Form</SubType>
     </Compile>

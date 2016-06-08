@@ -147,6 +147,11 @@ namespace CSharpGL.EarthMoonSystem
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();
+                frmPropertyGrid.DisplayObject(this.sunRenderer);
+                frmPropertyGrid.Show();
+            }
+            {
+                var frmPropertyGrid = new FormProperyGrid();
                 frmPropertyGrid.DisplayObject(this.eclipticRenderer);
                 frmPropertyGrid.Show();
             }
