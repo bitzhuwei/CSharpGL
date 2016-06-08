@@ -1,4 +1,4 @@
-﻿@ versions
+﻿# versions
 CSharpGL允许你以面向对象的方式使用OpenGL的功能。
 封装了OpenGL的函数，用枚举代替部分uint参数。
 提取出OpenGL中隐含的对象，用class描述他们。
