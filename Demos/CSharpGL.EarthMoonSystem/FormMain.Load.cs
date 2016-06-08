@@ -66,8 +66,8 @@ namespace CSharpGL.EarthMoonSystem
                 const int longitude = hour * longitudePerHour;// 从东到西，经度共有360°
                 IBufferable bufferable = new CelestialBody((float)Sun.radius, latitude, longitude);
                 var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\CelestialBody.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\CelestialBody.frag"), ShaderType.FragmentShader);
+                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Sun.vert"), ShaderType.VertexShader);
+                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Sun.frag"), ShaderType.FragmentShader);
                 var map = new PropertyNameMap();
                 map.Add("inPosition", CelestialBody.strPosition);
                 map.Add("inUV", CelestialBody.strUV);
