@@ -43,7 +43,7 @@ namespace CSharpGL.EarthMoonSystem
             base.DoInitialize();
             this.SetUniform("sprite_texture", new samplerValue(
                   BindTextureTarget.Texture2D, this.sprite_texture[0], OpenGL.GL_TEXTURE0));
-            this.SetUniform("factor", 20000.0f);
+            this.SetUniform("factor", 25000.0f);
         }
 
         protected override void DoRender(RenderEventArgs arg)
