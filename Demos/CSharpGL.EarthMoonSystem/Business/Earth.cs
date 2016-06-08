@@ -102,9 +102,9 @@ namespace CSharpGL.EarthMoonSystem
         public vec3 GetPosition()
         {
             vec3 position = new vec3();
-            position.x = (float)(revolutionRadius * Math.Cos(RevolutionRotationRadian));
+            position.x = (float)(revolutionRadius * Math.Cos(-RevolutionRotationRadian));
             position.y = 0;
-            position.z = (float)(revolutionRadius * Math.Sin(RevolutionRotationRadian));
+            position.z = (float)(revolutionRadius * Math.Sin(-RevolutionRotationRadian));
             return position;
         }
 
@@ -112,7 +112,7 @@ namespace CSharpGL.EarthMoonSystem
         {
             mat4 view = camera.GetViewMat4();
             vec3 position = this.GetPosition();
-            view = glm.translate(view, position);
+            view = glm.translate(view,position);
             return view;
         }
 
