@@ -14,6 +14,12 @@ namespace CSharpGL
         
         // 算法
         protected ShaderProgram shaderProgram;
+
+        public ShaderProgram ShaderProgram
+        {
+            get { return shaderProgram; }
+        }
+
         // 数据结构
         protected VertexArrayObject vertexArrayObject;
         protected PropertyBufferPtr[] propertyBufferPtrs;
