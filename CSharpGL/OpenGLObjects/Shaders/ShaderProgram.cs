@@ -29,6 +29,10 @@ namespace CSharpGL
         static OpenGL.glUniform2f glUniform2f;
         static OpenGL.glUniform3f glUniform3f;
         static OpenGL.glUniform4f glUniform4f;
+        static OpenGL.glUniform1fv glUniform1fv;
+        static OpenGL.glUniform2fv glUniform2fv;
+        static OpenGL.glUniform3fv glUniform3fv;
+        static OpenGL.glUniform4fv glUniform4fv;
         static OpenGL.glUniformMatrix2fv glUniformMatrix2fv;
         static OpenGL.glUniformMatrix3fv glUniformMatrix3fv;
         static OpenGL.glUniformMatrix4fv glUniformMatrix4fv;
@@ -58,6 +62,10 @@ namespace CSharpGL
                 glUniform2f = OpenGL.GetDelegateFor<OpenGL.glUniform2f>();
                 glUniform3f = OpenGL.GetDelegateFor<OpenGL.glUniform3f>();
                 glUniform4f = OpenGL.GetDelegateFor<OpenGL.glUniform4f>();
+                glUniform1fv = OpenGL.GetDelegateFor<OpenGL.glUniform1fv>();
+                glUniform2fv = OpenGL.GetDelegateFor<OpenGL.glUniform2fv>();
+                glUniform3fv = OpenGL.GetDelegateFor<OpenGL.glUniform3fv>();
+                glUniform4fv = OpenGL.GetDelegateFor<OpenGL.glUniform4fv>();
                 glUniformMatrix2fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix2fv>();
                 glUniformMatrix3fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix3fv>();
                 glUniformMatrix4fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix4fv>();
@@ -84,7 +92,7 @@ namespace CSharpGL
             {
                 string log = this.GetInfoLog();
                 throw new Exception(
-                    string.Format("Failed to compile shader with ID {0}: {1}", 
+                    string.Format("Failed to compile shader with ID {0}: {1}",
                         this.ShaderProgramObject, log));
             }
 
@@ -159,6 +167,53 @@ namespace CSharpGL
 
             string log = il.ToString();
             return log;
+        }
+
+        public void SetUniformArray(string uniformName, float[] values)
+        {
+            glUniform1fv(GetUniformLocation(uniformName), values.Length, values);
+        }
+
+        public void SetUniformArray(string uniformName, vec2[] values)
+        {
+            int count = values.Length;
+            float[] value = new float[count * 2];
+            int index = 0;
+            for (int i = 0; i < value.Length; i++)
+            {
+                value[index++] = values[i].x;
+                value[index++] = values[i].y;
+            }
+            glUniform2fv(GetUniformLocation(uniformName), count, value);
+        }
+
+        public void SetUniformArray(string uniformName, vec3[] values)
+        {
+            int count = values.Length;
+            float[] value = new float[count * 3];
+            int index = 0;
+            for (int i = 0; i < value.Length; i++)
+            {
+                value[index++] = values[i].x;
+                value[index++] = values[i].y;
+                value[index++] = values[i].z;
+            }
+            glUniform3fv(GetUniformLocation(uniformName), count, value);
+        }
+
+        public void SetUniformArray(string uniformName, vec4[] values)
+        {
+            int count = values.Length;
+            float[] value = new float[count * 4];
+            int index = 0;
+            for (int i = 0; i < value.Length; i++)
+            {
+                value[index++] = values[i].x;
+                value[index++] = values[i].y;
+                value[index++] = values[i].z;
+                value[index++] = values[i].w;
+            }
+            glUniform4fv(GetUniformLocation(uniformName), count, value);
         }
 
         /// <summary>
