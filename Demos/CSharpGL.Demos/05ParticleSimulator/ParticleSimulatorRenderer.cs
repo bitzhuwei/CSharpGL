@@ -77,6 +77,7 @@ namespace CSharpGL.Demos
                 positions.Dispose();
                 OpenGL.GetDelegateFor<OpenGL.glVertexAttribPointer>()(0, 4, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);
                 OpenGL.GetDelegateFor<OpenGL.glEnableVertexAttribArray>()(0);
+                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
                 // velocity
                 OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, velocity_buffer);
                 OpenGL.BindBuffer(BufferTarget.ArrayBuffer, velocity_buffer[0]);
