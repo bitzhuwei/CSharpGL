@@ -13,6 +13,7 @@ namespace CSharpGL.EarthMoonSystem
 {
     public partial class FormMain
     {
+        private CameraTracer tracer;
 
         void FormMain_Load(object sender, EventArgs e)
         {
@@ -124,6 +125,11 @@ namespace CSharpGL.EarthMoonSystem
                 this.thingList.Add(sun);
             }
             {
+                var tracer = new CameraTracer(this.camera, this.earth, this.sun);
+                this.tracer = tracer;
+                this.thingList.Add(tracer);
+            }
+            {
                 var frmPropertyGrid = new FormProperyGrid();
                 frmPropertyGrid.DisplayObject(this);
                 frmPropertyGrid.Show();
@@ -136,6 +142,11 @@ namespace CSharpGL.EarthMoonSystem
             {
                 var frmPropertyGrid = new FormProperyGrid();
                 frmPropertyGrid.DisplayObject(this.eclipticRenderer);
+                frmPropertyGrid.Show();
+            }
+            {
+                var frmPropertyGrid = new FormProperyGrid();
+                frmPropertyGrid.DisplayObject(this.tracer);
                 frmPropertyGrid.Show();
             }
             {

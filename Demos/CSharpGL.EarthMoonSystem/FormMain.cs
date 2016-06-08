@@ -70,13 +70,16 @@ namespace CSharpGL.EarthMoonSystem
 
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
+            this.earth.ScaleFactor = this.CelestialBodyScale;
+            this.sun.ScaleFactor = this.celestialBodyScale;
+
             var arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
 
             {
                 mat4 projection = this.camera.GetProjectionMat4();
                 //mat4 view = this.camera.GetViewMat4();
                 mat4 view = this.earth.GetViewMatrix(this.camera);
-                mat4 model = this.earth.GetModelRotationMatrix(this.celestialBodyScale);
+                mat4 model = this.earth.GetModelRotationMatrix();
                 this.earthRenderer.SetUniform("projectionMatrix", projection);
                 this.earthRenderer.SetUniform("viewMatrix", view);
                 this.earthRenderer.SetUniform("modelMatrix", model);
@@ -85,7 +88,7 @@ namespace CSharpGL.EarthMoonSystem
             {
                 mat4 projection = this.camera.GetProjectionMat4();
                 mat4 view = this.camera.GetViewMat4();
-                mat4 model = this.sun.GetModelRotationMatrix(this.celestialBodyScale);
+                mat4 model = this.sun.GetModelRotationMatrix();
                 this.sunRenderer.SetUniform("projectionMatrix", projection);
                 this.sunRenderer.SetUniform("viewMatrix", view);
                 this.sunRenderer.SetUniform("modelMatrix", model);

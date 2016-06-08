@@ -17,11 +17,23 @@ namespace CSharpGL.EarthMoonSystem
         {
         }
 
-        public mat4 GetModelRotationMatrix(float scale)
+        public vec3 GetPosition()
         {
-            return glm.scale(mat4.identity(), new vec3(scale, scale, scale));
+            return new vec3();
         }
 
+        public mat4 GetModelRotationMatrix()
+        {
+            return glm.scale(mat4.identity(), new vec3(scaleFactor, scaleFactor, scaleFactor));
+        }
+
+        private float scaleFactor = 1.0f;
+
+        public float ScaleFactor
+        {
+            get { return scaleFactor; }
+            set { scaleFactor = value; }
+        }
         public override string ToString()
         {
             return string.Format("Sun");
