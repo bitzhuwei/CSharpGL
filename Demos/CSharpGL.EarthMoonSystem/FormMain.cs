@@ -16,6 +16,8 @@ namespace CSharpGL.EarthMoonSystem
         private Camera camera;
         private SatelliteRotator rotator;
 
+        private BackgroundStarsRenderer backgroundStars;
+
         private PickableRenderer earthRenderer;
         private sampler2D earthColorTexture;
 
@@ -75,6 +77,9 @@ namespace CSharpGL.EarthMoonSystem
 
             var arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
 
+            {
+                this.backgroundStars.Render(arg);
+            }
             {
                 mat4 projection = this.camera.GetProjectionMat4();
                 //mat4 view = this.camera.GetViewMat4();
