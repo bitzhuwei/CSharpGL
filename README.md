@@ -31,8 +31,7 @@ Rendering 'Control' at fixed position with fixed size. For example, GLAxis rende
 ## :abcd::curly_loop::ideograph_advantage:Text
 Rendering text using ``glRasterPos()`` and ``CallList()``.
 Rendering text using GLText(a special GLControl).
-![GLText and GLAxis](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLText-GLAxis.jpg?raw=true)
-
+![GLText and GLAxis](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLText-GLAxis.jpg?raw=true)  
 Load True Type Font File(*.ttf or *.otf) to build a texture filled with glyphs, which then could be used to render text.
 The project CSharpGL.Font2Picture in :open_file_folder:`Infrastructure` is a quick tool converting TTF files to pictures along with a xml config file.
 ![export-glyph-texture-from-TTF](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/glyph-texture.png?raw=true)
