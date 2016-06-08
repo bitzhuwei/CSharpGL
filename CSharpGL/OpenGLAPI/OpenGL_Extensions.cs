@@ -383,6 +383,7 @@ namespace CSharpGL
         public delegate void glUniform2i(int location, int v0, int v1);
         public delegate void glUniform3i(int location, int v0, int v1, int v2);
         public delegate void glUniform4i(int location, int v0, int v1, int v2, int v3);
+        // TODO: public delegate void glUniform1fv(int location, int count, IntPtr value); is also available.
         public delegate void glUniform1fv(int location, int count, float[] value);
         public delegate void glUniform2fv(int location, int count, float[] value);
         public delegate void glUniform3fv(int location, int count, float[] value);
