@@ -25,6 +25,10 @@ namespace CSharpGL
         static OpenGL.glUniform2i glUniform2i;
         static OpenGL.glUniform3i glUniform3i;
         static OpenGL.glUniform4i glUniform4i;
+        static OpenGL.glUniform1iv glUniform1iv;
+        static OpenGL.glUniform2iv glUniform2iv;
+        static OpenGL.glUniform3iv glUniform3iv;
+        static OpenGL.glUniform4iv glUniform4iv;
         static OpenGL.glUniform1f glUniform1f;
         static OpenGL.glUniform2f glUniform2f;
         static OpenGL.glUniform3f glUniform3f;
@@ -58,6 +62,10 @@ namespace CSharpGL
                 glUniform2i = OpenGL.GetDelegateFor<OpenGL.glUniform2i>();
                 glUniform3i = OpenGL.GetDelegateFor<OpenGL.glUniform3i>();
                 glUniform4i = OpenGL.GetDelegateFor<OpenGL.glUniform4i>();
+                glUniform1iv = OpenGL.GetDelegateFor<OpenGL.glUniform1iv>();
+                glUniform2iv = OpenGL.GetDelegateFor<OpenGL.glUniform2iv>();
+                glUniform3iv = OpenGL.GetDelegateFor<OpenGL.glUniform3iv>();
+                glUniform4iv = OpenGL.GetDelegateFor<OpenGL.glUniform4iv>();
                 glUniform1f = OpenGL.GetDelegateFor<OpenGL.glUniform1f>();
                 glUniform2f = OpenGL.GetDelegateFor<OpenGL.glUniform2f>();
                 glUniform3f = OpenGL.GetDelegateFor<OpenGL.glUniform3f>();
@@ -169,12 +177,12 @@ namespace CSharpGL
             return log;
         }
 
-        public void SetUniformArray(string uniformName, float[] values)
+        public void SetUniform(string uniformName, float[] values)
         {
             glUniform1fv(GetUniformLocation(uniformName), values.Length, values);
         }
 
-        public void SetUniformArray(string uniformName, vec2[] values)
+        public void SetUniform(string uniformName, vec2[] values)
         {
             int count = values.Length;
             float[] value = new float[count * 2];
@@ -187,7 +195,7 @@ namespace CSharpGL
             glUniform2fv(GetUniformLocation(uniformName), count, value);
         }
 
-        public void SetUniformArray(string uniformName, vec3[] values)
+        public void SetUniform(string uniformName, vec3[] values)
         {
             int count = values.Length;
             float[] value = new float[count * 3];
@@ -201,7 +209,7 @@ namespace CSharpGL
             glUniform3fv(GetUniformLocation(uniformName), count, value);
         }
 
-        public void SetUniformArray(string uniformName, vec4[] values)
+        public void SetUniform(string uniformName, vec4[] values)
         {
             int count = values.Length;
             float[] value = new float[count * 4];
@@ -214,6 +222,32 @@ namespace CSharpGL
                 value[index++] = values[i].w;
             }
             glUniform4fv(GetUniformLocation(uniformName), count, value);
+        }
+
+        /// <summary>
+        /// 请注意你的数据类型最终将转换为int还是float
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="v0"></param>
+        public void SetUniform(string uniformName, bool v0)
+        {
+            glUniform1i(GetUniformLocation(uniformName), v0 ? 1 : 0);
+        }
+
+        /// <summary>
+        /// 请注意你的数据类型最终将转换为int还是float
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="v0"></param>
+        public void SetUniform(string uniformName, bool[] v0)
+        {
+            //TODO: note tested yet.
+            var values = new int[v0.Length];
+            for (int i = 0; i < values.Length; i++)
+            {
+                values[i] = v0[i] ? 1 : 0;
+            }
+            glUniform1iv(GetUniformLocation(uniformName), values.Length, values);
         }
 
         /// <summary>
@@ -354,6 +388,64 @@ namespace CSharpGL
             glUniform4f(GetUniformLocation(uniformName), v0, v1, v2, v3);
         }
 
+
+        /// <summary>
+        /// 请注意你的数据类型最终将转换为int还是float
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="m"></param>
+        public void SetUniformMatrix2(string uniformName, mat2[] m)
+        {
+            var values = new float[m.Length * 4];
+            for (int index = 0, i = 0; i < m.Length; i++)
+            {
+                float[] array = m[i].to_array();
+                for (int j = 0; j < 4; j++)
+                {
+                    values[index++] = array[j];
+                }
+            }
+            glUniformMatrix2fv(GetUniformLocation(uniformName), m.Length / 4, false, values);
+        }
+
+        /// <summary>
+        /// 请注意你的数据类型最终将转换为int还是float
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="m"></param>
+        public void SetUniformMatrix3(string uniformName, mat3[] m)
+        {
+            var values = new float[m.Length * 9];
+            for (int index = 0, i = 0; i < m.Length; i++)
+            {
+                float[] array = m[i].to_array();
+                for (int j = 0; j < 9; j++)
+                {
+                    values[index++] = array[j];
+                }
+            }
+            glUniformMatrix3fv(GetUniformLocation(uniformName), m.Length / 9, false, values);
+        }
+
+        /// <summary>
+        /// 请注意你的数据类型最终将转换为int还是float
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="m"></param>
+        public void SetUniformMatrix4(string uniformName, mat4[] m)
+        {
+            var values = new float[m.Length * 16];
+            for (int index = 0, i = 0; i < m.Length; i++)
+            {
+                float[] array = m[i].to_array();
+                for (int j = 0; j < 16; j++)
+                {
+                    values[index++] = array[j];
+                }
+            }
+            glUniformMatrix4fv(GetUniformLocation(uniformName), m.Length / 16, false, values);
+        }
+
         /// <summary>
         /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
@@ -361,7 +453,7 @@ namespace CSharpGL
         /// <param name="m"></param>
         public void SetUniformMatrix2(string uniformName, float[] m)
         {
-            glUniformMatrix2fv(GetUniformLocation(uniformName), 1, false, m);
+            glUniformMatrix2fv(GetUniformLocation(uniformName), m.Length / 4, false, m);
         }
 
         /// <summary>
@@ -371,7 +463,7 @@ namespace CSharpGL
         /// <param name="m"></param>
         public void SetUniformMatrix3(string uniformName, float[] m)
         {
-            glUniformMatrix3fv(GetUniformLocation(uniformName), 1, false, m);
+            glUniformMatrix3fv(GetUniformLocation(uniformName), m.Length / 9, false, m);
         }
 
         /// <summary>
@@ -381,7 +473,7 @@ namespace CSharpGL
         /// <param name="m"></param>
         public void SetUniformMatrix4(string uniformName, float[] m)
         {
-            glUniformMatrix4fv(GetUniformLocation(uniformName), 1, false, m);
+            glUniformMatrix4fv(GetUniformLocation(uniformName), m.Length / 16, false, m);
         }
 
         public int GetUniformLocation(string uniformName)

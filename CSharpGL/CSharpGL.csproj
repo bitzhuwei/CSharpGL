@@ -101,6 +101,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GLControls\UIRenderer.cs" />
+    <Compile Include="OpenGLObjects\ModernRendering\Renderer.UniformArrays.cs" />
+    <Compile Include="OpenGLObjects\UniformArrayVariables\UniformArrayVariable.cs" />
+    <Compile Include="OpenGLObjects\UniformArrayVariables\UniformBoolArray.cs" />
+    <Compile Include="OpenGLObjects\UniformArrayVariables\UniformFloatArray.cs" />
+    <Compile Include="OpenGLObjects\UniformArrayVariables\UniformMat2Array.cs" />
+    <Compile Include="OpenGLObjects\UniformArrayVariables\UniformMat3Array.cs" />
+    <Compile Include="OpenGLObjects\UniformArrayVariables\UniformMat4Array.cs" />
+    <Compile Include="OpenGLObjects\UniformArrayVariables\UniformSamplerXDArray.cs" />
+    <Compile Include="OpenGLObjects\UniformArrayVariables\UniformVec2Array.cs" />
+    <Compile Include="OpenGLObjects\UniformArrayVariables\UniformVec3Array.cs" />
+    <Compile Include="OpenGLObjects\UniformArrayVariables\UniformVec4Array.cs" />
     <Compile Include="PickableRenderer\InnerPickableRenderer.cs" />
     <Compile Include="PickableRenderer\InnerPickableRenderer.ColorCodedRender.cs" />
     <Compile Include="PickableRenderer\InnerPickableRenderer.DoInitialize.cs" />
@@ -410,6 +421,7 @@
     <EmbeddedResource Include="Resources\Highlight.frag" />
     <EmbeddedResource Include="Resources\ANTQUAI.TTF" />
     <None Include="OpenGLObjects\ModernRendering\Renderers.cd" />
+    <Content Include="OpenGLObjects\UniformArrayVariables\readme.md" />
     <None Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.cd" />
     <EmbeddedResource Include="WinformControls\GLCanvas.resx">
       <DependentUpon>GLCanvas.cs</DependentUpon>

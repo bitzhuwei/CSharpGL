@@ -3,7 +3,7 @@
 in vec2 passUV;
 
 uniform sampler2D colorTexture;
-uniform float time;
+uniform float time[2];
     
 vec4 mod289(vec4 x)
 {
@@ -159,7 +159,7 @@ void main(void)
     vec2 p = -1.0 + 2.0 * q;
     vec2 qq;
     vec2 r;
-	float randomColor = pattern2(p,qq,r,time);
+	float randomColor = pattern2(p,qq,r,time[0]);
 
 	vec2 uv = passUV + vec2(randomColor, randomColor);
 	if (uv.x >= 1) { uv.x -= 1; }

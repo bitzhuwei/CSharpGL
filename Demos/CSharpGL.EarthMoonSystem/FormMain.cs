@@ -101,7 +101,11 @@ namespace CSharpGL.EarthMoonSystem
                 this.sunRenderer.SetUniform("viewMatrix", view);
                 this.sunRenderer.SetUniform("modelMatrix", model);
                 randomTime += (float)random.NextDouble() / 1000.0f;
-                this.sunRenderer.SetUniform("time",randomTime);
+                //this.sunRenderer.SetUniform("time",randomTime);
+                //this.sunRenderer.ShaderProgram.Bind();
+                //this.sunRenderer.ShaderProgram.SetUniform("time", new float[] { randomTime, randomTime });
+                //this.sunRenderer.ShaderProgram.Unbind();
+                this.sunRenderer.SetUniform("time", new float[] { randomTime, randomTime });
                 //this.sunRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.sunColorTexture.Id, OpenGL.GL_TEXTURE0));
                 this.sunRenderer.Render(arg);
             }
