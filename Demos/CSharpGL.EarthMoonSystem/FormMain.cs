@@ -65,6 +65,9 @@ namespace CSharpGL.EarthMoonSystem
             Application.Idle += Application_Idle;
         }
 
+        Random random = new Random();
+        float randomTime = 0.0f;
+
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             // set background color.
@@ -97,6 +100,8 @@ namespace CSharpGL.EarthMoonSystem
                 this.sunRenderer.SetUniform("projectionMatrix", projection);
                 this.sunRenderer.SetUniform("viewMatrix", view);
                 this.sunRenderer.SetUniform("modelMatrix", model);
+                randomTime += (float)random.NextDouble() / 1000.0f;
+                this.sunRenderer.SetUniform("time",randomTime);
                 //this.sunRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.sunColorTexture.Id, OpenGL.GL_TEXTURE0));
                 this.sunRenderer.Render(arg);
             }
