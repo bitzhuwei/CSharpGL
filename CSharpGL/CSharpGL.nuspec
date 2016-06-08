@@ -7,7 +7,7 @@
     <authors>$author$</authors>
     <owners>$author$</owners>
     <projectUrl>https://github.com/bitzhuwei/CSharpGL</projectUrl>
-    <iconUrl>http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_CSharpGL-text.png</iconUrl>
+    <iconUrl>https://github.com/bitzhuwei/CSharpGL/blob/master/Assets/CSharpGL-text.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
 	<summary>$description$</summary>
