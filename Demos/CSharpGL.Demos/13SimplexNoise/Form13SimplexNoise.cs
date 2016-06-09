@@ -47,10 +47,10 @@ namespace CSharpGL.Demos
                 mat4 projectionMatrix = arg.Camera.GetProjectionMat4();
                 mat4 viewMatrix = arg.Camera.GetViewMat4();
                 mat4 modelMatrix = mat4.identity();
-                this.targetRenderer.SetUniform("projectionMatrix", projectionMatrix);
-                this.targetRenderer.SetUniform("viewMatrix", viewMatrix);
-                this.targetRenderer.SetUniform("modelMatrix", modelMatrix);
-                this.targetRenderer.Render(arg);
+                this.simplexNoiseRenderer.SetUniform("projectionMatrix", projectionMatrix);
+                this.simplexNoiseRenderer.SetUniform("viewMatrix", viewMatrix);
+                this.simplexNoiseRenderer.SetUniform("modelMatrix", modelMatrix);
+                this.simplexNoiseRenderer.Render(arg);
             }
             GLControl uiRoot = this.uiRoot;
             if (uiRoot != null)

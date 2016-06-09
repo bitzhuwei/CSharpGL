@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
     {
         private GLAxis glAxis;
         private GLControl uiRoot;
-        private PickableRenderer targetRenderer;
+        private SimplexNoiseRenderer simplexNoiseRenderer;
 
         private void Form01Renderer_Load(object sender, EventArgs e)
         {
@@ -27,20 +27,10 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
-                // build several models
-                var bufferable = new Sphere();
-                var shaders = new ShaderCode[2];
-                shaders[0] = new ShaderCode(File.ReadAllText(@"13SimplexNoise\SimplexNoise.vert"), ShaderType.VertexShader);
-                shaders[1] = new ShaderCode(File.ReadAllText(@"13SimplexNoise\SimplexNoise.frag"), ShaderType.FragmentShader);
-                var propertyNameMap = new PropertyNameMap();
-                propertyNameMap.Add("in_Position", "position");
-                propertyNameMap.Add("in_Color", "color");
-                var positionNameInIBufferable = "position";
-                var pickableRenderer = new PickableRenderer(
-                    bufferable, shaders, propertyNameMap, positionNameInIBufferable);
-                pickableRenderer.Name = string.Format("Pickable: [{0}]", "Sphere");
-                pickableRenderer.Initialize();
-                this.targetRenderer = pickableRenderer;
+                var simplexNoiseRenderer = new SimplexNoiseRenderer();
+                simplexNoiseRenderer.Name = string.Format("Pickable: [{0}]", "Sphere");
+                simplexNoiseRenderer.Initialize();
+                this.simplexNoiseRenderer = simplexNoiseRenderer;
             }
             {
                 var UIRoot = new GLControl(this.glCanvas1.Size, -100, 100);

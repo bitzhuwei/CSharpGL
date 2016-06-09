@@ -16,7 +16,7 @@ namespace CSharpGL.Demos
             new ShaderCode(File.ReadAllText(@"13SimplexNoise\SimplexNoise.frag"), ShaderType.FragmentShader),
         };
         static readonly PropertyNameMap staticPropertyNameMap = new PropertyNameMap(
-            new string[] { "position", "color", },
+            new string[] { "in_Position", "in_Color", },
             new string[] { Sphere.strPosition, Sphere.strColor });
 
         public SimplexNoiseRenderer()
