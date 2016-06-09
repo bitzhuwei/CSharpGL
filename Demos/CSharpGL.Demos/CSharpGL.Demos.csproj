@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="13SimplexNoise\Form13SimplexNoise.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="13SimplexNoise\Form13SimplexNoise.Designer.cs">
+      <DependentUpon>Form13SimplexNoise.cs</DependentUpon>
+    </Compile>
+    <Compile Include="13SimplexNoise\Form13SimplexNoise.FormLoad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="13SimplexNoise\Form13SimplexNoise.MouseDownMoveUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="01Renderer\DragParam.cs" />
     <Compile Include="01Renderer\Form01Renderer.cs">
       <SubType>Form</SubType>
@@ -233,6 +245,13 @@
     <Compile Include="02OrderIndependentTransparency\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="13SimplexNoise\readme.md" />
+    <None Include="13SimplexNoise\Simple.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="13SimplexNoise\Simple.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="05ParticleSimulator\particleSimulator-fountain.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -292,6 +311,9 @@
     </None>
     <EmbeddedResource Include="00GLCanvas\Form00GLCanvas.resx">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="13SimplexNoise\Form13SimplexNoise.resx">
+      <DependentUpon>Form13SimplexNoise.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="01Renderer\Form01Renderer.resx">
       <DependentUpon>Form01Renderer.cs</DependentUpon>

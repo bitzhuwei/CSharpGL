@@ -40,6 +40,7 @@
             this.btn10RaycastVolumeRenderer = new System.Windows.Forms.Button();
             this.btn11SharpFont = new System.Windows.Forms.Button();
             this.btn12Billboard = new System.Windows.Forms.Button();
+            this.btn13SimplexNoise = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -198,11 +199,25 @@
             this.btn12Billboard.UseVisualStyleBackColor = true;
             this.btn12Billboard.Click += new System.EventHandler(this.btn12Billboard_Click);
             // 
+            // btn13SimplexNoise
+            // 
+            this.btn13SimplexNoise.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn13SimplexNoise.Font = new System.Drawing.Font("宋体", 12F);
+            this.btn13SimplexNoise.Location = new System.Drawing.Point(12, 528);
+            this.btn13SimplexNoise.Name = "btn13SimplexNoise";
+            this.btn13SimplexNoise.Size = new System.Drawing.Size(767, 37);
+            this.btn13SimplexNoise.TabIndex = 0;
+            this.btn13SimplexNoise.Text = "13 SimplexNoise";
+            this.btn13SimplexNoise.UseVisualStyleBackColor = true;
+            this.btn13SimplexNoise.Click += new System.EventHandler(this.btn13SimplexNoise_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 632);
+            this.Controls.Add(this.btn13SimplexNoise);
             this.Controls.Add(this.btn12Billboard);
             this.Controls.Add(this.btn11SharpFont);
             this.Controls.Add(this.btn10RaycastVolumeRenderer);
@@ -235,5 +250,6 @@
         private System.Windows.Forms.Button btn10RaycastVolumeRenderer;
         private System.Windows.Forms.Button btn11SharpFont;
         private System.Windows.Forms.Button btn12Billboard;
+        private System.Windows.Forms.Button btn13SimplexNoise;
     }
 }
