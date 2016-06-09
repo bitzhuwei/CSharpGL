@@ -6,7 +6,12 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("CSharpGL")]
-[assembly: AssemblyDescription(@"CSharpGL is a pure C# project that allows for modern OpenGL rendering in a Object-Oriented way.")]
+[assembly: AssemblyDescription(
+@"CSharpGL allows you to use OpenGL functions in the Object-Oriented way.
+It wraps OpenGL’s functions and use enum type as parameters instead of ‘uint’for some functions.
+It abstracts objects inside OpenGL and describes them as classes.
+It provides maths class for matrix and vectors.
+It provide useful utilities.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("bitzhuwei")]
 [assembly: AssemblyProduct("CSharpGL")]
@@ -32,5 +37,5 @@ using System.Runtime.InteropServices;
 // 可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”: 
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.4.0")]
-[assembly: AssemblyFileVersion("1.0.4.0")]
+[assembly: AssemblyVersion("1.0.4.1")]
+[assembly: AssemblyFileVersion("1.0.4.1")]
