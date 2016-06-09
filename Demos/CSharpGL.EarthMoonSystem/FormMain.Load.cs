@@ -34,7 +34,7 @@ namespace CSharpGL.EarthMoonSystem
                 const int hour = 24;//24小时，24个时区
                 const int longitudePerHour = 15;// 每个时区占有的经度为15°
                 const int longitude = hour * longitudePerHour;// 从东到西，经度共有360°
-                IBufferable bufferable = new CelestialBody((float)Earth.radius, latitude, longitude);
+                IBufferable bufferable = new CelestialBody(1, latitude, longitude);
                 var shaderCodes = new ShaderCode[2];
                 shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\CelestialBody.vert"), ShaderType.VertexShader);
                 shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\CelestialBody.frag"), ShaderType.FragmentShader);
@@ -77,6 +77,10 @@ namespace CSharpGL.EarthMoonSystem
                 this.sunRenderer = sunRenderer;
             }
             {
+                var sunshineRenderer = new SunshineRenderer();
+                this.sunshineRenderer = sunshineRenderer;
+            }
+            {
                 var backgroundStars = new BackgroundStarsRenderer(2000, Earth.revolutionRadius);
                 backgroundStars.Initialize();
                 backgroundStars.Name = "stars 星星";
@@ -116,9 +120,9 @@ namespace CSharpGL.EarthMoonSystem
             }
             {
                 this.earthRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.earthColorTexture.Id, OpenGL.GL_TEXTURE0));
-                this.earthRenderer.SwitchList.Add(new CullFaceSwitch());
+                //this.earthRenderer.SwitchList.Add(new CullFaceSwitch());
                 this.sunRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.sunColorTexture.Id, OpenGL.GL_TEXTURE0));
-                this.sunRenderer.SwitchList.Add(new CullFaceSwitch());
+                //this.sunRenderer.SwitchList.Add(new CullFaceSwitch());
             }
             {
                 var earth = new Earth();

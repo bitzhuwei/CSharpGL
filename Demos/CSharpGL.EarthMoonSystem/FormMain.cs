@@ -16,6 +16,8 @@ namespace CSharpGL.EarthMoonSystem
         private Camera camera;
         private SatelliteRotator rotator;
 
+        // backgrounds : stars, sunshines
+        private SunshineRenderer sunshineRenderer;
         private BackgroundStarsRenderer backgroundStars;
 
         private PickableRenderer earthRenderer;
@@ -68,6 +70,8 @@ namespace CSharpGL.EarthMoonSystem
         Random random = new Random();
         //float randomTime = 0.0f;
 
+        public bool RenderSun { get; set; }
+
         void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             // set background color.
@@ -82,6 +86,14 @@ namespace CSharpGL.EarthMoonSystem
 
             {
                 this.backgroundStars.Render(arg);
+            }
+            {
+                mat4 projection = this.camera.GetProjectionMat4();
+                mat4 view = this.camera.GetViewMat4();
+                mat4 model = glm.scale(mat4.identity(), (float)(Sun.radius) * new vec3(
+                    this.celestialBodyScale, this.celestialBodyScale, this.celestialBodyScale));
+                this.sunshineRenderer.SetMVP(projection * view * model);
+                this.sunshineRenderer.Render(arg);
             }
             {
                 mat4 projection = this.camera.GetProjectionMat4();
@@ -107,7 +119,10 @@ namespace CSharpGL.EarthMoonSystem
                 //this.sunRenderer.ShaderProgram.Unbind();
                 //this.sunRenderer.SetUniform("time", new float[] { randomTime, randomTime });
                 //this.sunRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.sunColorTexture.Id, OpenGL.GL_TEXTURE0));
-                this.sunRenderer.Render(arg);
+                if (this.RenderSun)
+                {
+                    this.sunRenderer.Render(arg);
+                }
             }
             {
                 mat4 projection = this.camera.GetProjectionMat4();
