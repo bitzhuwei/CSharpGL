@@ -49,8 +49,10 @@ namespace CSharpGL.Demos
             {
                 OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, attractor_buffer);
                 OpenGL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
-                OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_UNIFORM_BUFFER, 64 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
-                OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>()(OpenGL.GL_UNIFORM_BUFFER, 0, attractor_buffer[0]);
+                OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_UNIFORM_BUFFER,
+                    64 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
+                OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>()(OpenGL.GL_UNIFORM_BUFFER,
+                    0, attractor_buffer[0]);
             }
         }
 
