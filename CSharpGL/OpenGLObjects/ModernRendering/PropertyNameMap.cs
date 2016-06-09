@@ -45,6 +45,28 @@ namespace CSharpGL
             this.Add(nameInShader, nameInIBufferable);
         }
 
+        /// <summary>
+        /// 持有从<see cref="IBufferable"/>到GLSL中in/uniform变量名的对应关系。
+        /// 每个<see cref="IBufferable"/>和每个GLSL的代表（Renderer）都有一个Map关系。
+        /// 这里存储的内容需要OpenGL开发者和APP开发者协商对接。
+        /// 策略A：如果没有，或者map中有的名字不存在，就默认为两者使用的名字相同。
+        /// 策略B：如果没有，或者map中有的名字不存在， 就说明此map不完整，即OpenGL开发者和APP开发者没有完全协商。
+        /// 现在选择策略A。
+        /// </summary>
+        /// <param name="nameInShaders"></param>
+        /// <param name="nameInIBufferables"></param>
+        public PropertyNameMap(string[] nameInShaders, string[] nameInIBufferables)
+        {
+            if (nameInShaders == null || nameInIBufferables == null
+                || nameInShaders.Length != nameInIBufferables.Length)
+            { throw new ArgumentException(); }
+
+            for (int i = 0; i < nameInShaders.Length; i++)
+            {
+                this.Add(nameInShaders[i], nameInIBufferables[i]);
+            }
+        }
+
         public void Add(string nameInShader, string nameInIBufferable)
         {
             this.namesInShader.Add(nameInShader);

@@ -209,6 +209,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="12Billboard\BillboardModel.cs" />
+    <Compile Include="13SimplexNoise\SimplexNoiseRenderer.cs" />
     <Compile Include="FormBulletinBoard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,10 +247,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="13SimplexNoise\readme.md" />
-    <None Include="13SimplexNoise\Simple.frag">
+    <None Include="13SimplexNoise\SimplexNoise.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="13SimplexNoise\Simple.vert">
+    <None Include="13SimplexNoise\SimplexNoise.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="05ParticleSimulator\particleSimulator-fountain.comp">
