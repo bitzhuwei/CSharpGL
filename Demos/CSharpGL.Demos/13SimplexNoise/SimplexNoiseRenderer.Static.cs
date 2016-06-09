@@ -19,7 +19,7 @@ namespace CSharpGL.Demos
             new string[] { "in_Position", "in_Color", },
             new string[] { Sphere.strPosition, Sphere.strColor });
 
-        static int[] perm = new int[256] {151,160,137,91,90,15,
+        static readonly int[] perm = new int[256] {151,160,137,91,90,15,
   131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,99,37,240,21,10,23,
   190, 6,148,247,120,234,75,0,26,197,62,94,252,219,203,117,35,11,32,57,177,33,
   88,237,149,56,87,174,20,125,136,171,168, 68,175,74,165,71,134,139,48,27,166,
@@ -39,7 +39,7 @@ namespace CSharpGL.Demos
        If only the "proper" first 12 gradients are used, they can be extracted
        from the grad4[][] array: grad3[i][j] == grad4[i*2][j], 0<=i<=11, j=0,1,2
     */
-        static int[][] grad3 = new int[16][]
+        static readonly int[][] grad3 = new int[16][]
         {
             new int[3]{0,1,1},new int[3]{0,1,-1},new int[3]{0,-1,1},new int[3]{0,-1,-1},
             new int[3]{1,0,1},new int[3]{1,0,-1},new int[3]{-1,0,1},new int[3]{-1,0,-1},
@@ -51,7 +51,7 @@ namespace CSharpGL.Demos
            of the midpoints of each of the 32 edges of a tesseract, just like the 3D
            noise gradients are the midpoints of the 12 edges of a cube.
         */
-        int[][] grad4 = new int[32][]
+        static readonly int[][] grad4 = new int[32][]
         {
             new int[4]{0,1,1,1}, new int[4]{0,1,1,-1}, new int[4]{0,1,-1,1}, new int[4]{0,1,-1,-1}, // 32 tesseract edges
             new int[4]{0,-1,1,1}, new int[4]{0,-1,1,-1}, new int[4]{0,-1,-1,1}, new int[4]{0,-1,-1,-1},
@@ -62,6 +62,25 @@ namespace CSharpGL.Demos
             new int[4]{1,1,1,0}, new int[4]{1,1,-1,0}, new int[4]{1,-1,1,0}, new int[4]{1,-1,-1,0},
             new int[4]{-1,1,1,0}, new int[4]{-1,1,-1,0}, new int[4]{-1,-1,1,0}, new int[4]{-1,-1,-1,0}
         };
+
+        static readonly byte[][] simplex4 = new byte[][]
+        {
+            new byte[]{0,64,128,192},new byte[]{0,64,192,128},new byte[]{0,0,0,0},
+            new byte[]{0,128,192,64},new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{64,128,192,0},
+  new byte[]{0,128,64,192},new byte[]{0,0,0,0},new byte[]{0,192,64,128},new byte[]{0,192,128,64},
+  new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{64,192,128,0},
+  new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{0,0,0,0},
+  new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{0,0,0,0},
+  new byte[]{64,128,0,192},new byte[]{0,0,0,0},new byte[]{64,192,0,128},new byte[]{0,0,0,0},
+  new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{128,192,0,64},new byte[]{128,192,64,0},
+  new byte[]{64,0,128,192},new byte[]{64,0,192,128},new byte[]{0,0,0,0},new byte[]{0,0,0,0},
+  new byte[]{0,0,0,0},new byte[]{128,0,192,64},new byte[]{0,0,0,0},new byte[]{128,64,192,0},
+  new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{0,0,0,0},
+  new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{0,0,0,0},
+  new byte[]{128,0,64,192},new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{0,0,0,0},
+  new byte[]{192,0,64,128},new byte[]{192,0,128,64},new byte[]{0,0,0,0},new byte[]{192,64,128,0},
+  new byte[]{128,64,0,192},new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{0,0,0,0},
+  new byte[]{192,64,0,128},new byte[]{0,0,0,0},new byte[]{192,128,0,64},new byte[]{192,128,64,0}};
 
 
     }
