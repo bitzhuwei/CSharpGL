@@ -7,18 +7,8 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Demos
 {
-    class SimplexNoiseRenderer : Renderer
+    partial class SimplexNoiseRenderer : Renderer
     {
-        static readonly IBufferable staticBufferable = new Sphere();
-        static readonly ShaderCode[] staticShaderCodes = new ShaderCode[]
-        {
-            new ShaderCode(File.ReadAllText(@"13SimplexNoise\SimplexNoise.vert"), ShaderType.VertexShader),
-            new ShaderCode(File.ReadAllText(@"13SimplexNoise\SimplexNoise.frag"), ShaderType.FragmentShader),
-        };
-        static readonly PropertyNameMap staticPropertyNameMap = new PropertyNameMap(
-            new string[] { "in_Position", "in_Color", },
-            new string[] { Sphere.strPosition, Sphere.strColor });
-
         public SimplexNoiseRenderer()
             : base(staticBufferable, staticShaderCodes, staticPropertyNameMap) { }
 
