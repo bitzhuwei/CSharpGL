@@ -31,7 +31,7 @@ namespace CSharpGL
 
         private List<Type> InitializeTypeList()
         {
-            Type type = typeof(UniformVariable);
+            Type type = typeof(UniformVariableBase);
             Assembly asm = Assembly.GetAssembly(type);
             var result = (from item in asm.ExportedTypes
                           where type.IsAssignableFrom(item) && (!item.IsAbstract)

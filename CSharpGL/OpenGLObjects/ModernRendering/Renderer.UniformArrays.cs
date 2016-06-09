@@ -8,27 +8,17 @@ namespace CSharpGL
 {
     public partial class Renderer
     {
-        protected List<UniformBoolArray> uniformBoolArrayVariables;
-        protected List<UniformFloatArray> uniformFloatArrayVariables;
-        protected List<UniformVec2Array> uniformVec2ArrayVariables;
-        protected List<UniformVec3Array> uniformVec3ArrayVariables;
-        protected List<UniformVec4Array> uniformVec4ArrayVariables;
-        protected List<UniformMat2Array> uniformMat2ArrayVariables;
-        protected List<UniformMat3Array> uniformMat3ArrayVariables;
-        protected List<UniformMat4Array> uniformMat4ArrayVariables;
-        protected List<UniformSamplerArray> uniformSamplerArrayVariables;
 
         public bool GetUniformBoolArrayValue(string varNameInShader, out bool[] value)
         {
             value = null;
             bool gotUniform = false;
-            if (this.uniformBoolArrayVariables == null) { return gotUniform; }
 
-            foreach (var item in this.uniformBoolArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = item.Value;
+                    value = (item as UniformBoolArray).Value;
                     gotUniform = true;
                     break;
                 }
@@ -40,13 +30,12 @@ namespace CSharpGL
         {
             value = null;
             bool gotUniform = false;
-            if (this.uniformFloatArrayVariables == null) { return gotUniform; }
 
-            foreach (var item in this.uniformFloatArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = item.Value;
+                    value = (item as UniformFloatArray).Value;
                     gotUniform = true;
                     break;
                 }
@@ -58,13 +47,12 @@ namespace CSharpGL
         {
             value = null;
             bool gotUniform = false;
-            if (this.uniformVec2ArrayVariables == null) { return gotUniform; }
 
-            foreach (var item in this.uniformVec2ArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = item.Value;
+                    value = (item as UniformVec2Array).Value;
                     gotUniform = true;
                     break;
                 }
@@ -76,13 +64,12 @@ namespace CSharpGL
         {
             value = null;
             bool gotUniform = false;
-            if (this.uniformVec3ArrayVariables == null) { return gotUniform; }
 
-            foreach (var item in this.uniformVec3ArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = item.Value;
+                    value = (item as UniformVec3Array).Value;
                     gotUniform = true;
                     break;
                 }
@@ -94,13 +81,12 @@ namespace CSharpGL
         {
             value = null;
             bool gotUniform = false;
-            if (this.uniformVec4ArrayVariables == null) { return gotUniform; }
 
-            foreach (var item in this.uniformVec4ArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = item.Value;
+                    value = (item as UniformVec4Array).Value;
                     gotUniform = true;
                     break;
                 }
@@ -112,13 +98,12 @@ namespace CSharpGL
         {
             value = null;
             bool gotUniform = false;
-            if (this.uniformMat2ArrayVariables == null) { return gotUniform; }
 
-            foreach (var item in this.uniformMat2ArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = item.Value;
+                    value = (item as UniformMat2Array).Value;
                     gotUniform = true;
                     break;
                 }
@@ -130,13 +115,12 @@ namespace CSharpGL
         {
             value = null;
             bool gotUniform = false;
-            if (this.uniformMat3ArrayVariables == null) { return gotUniform; }
 
-            foreach (var item in this.uniformMat3ArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = item.Value;
+                    value = (item as UniformMat3Array).Value;
                     gotUniform = true;
                     break;
                 }
@@ -148,13 +132,12 @@ namespace CSharpGL
         {
             value = null;
             bool gotUniform = false;
-            if (this.uniformMat4ArrayVariables == null) { return gotUniform; }
 
-            foreach (var item in this.uniformMat4ArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = item.Value;
+                    value = (item as UniformMat4Array).Value;
                     gotUniform = true;
                     break;
                 }
@@ -166,13 +149,12 @@ namespace CSharpGL
         {
             value = null;
             bool gotUniform = false;
-            if (this.uniformSamplerArrayVariables == null) { return gotUniform; }
 
-            foreach (var item in this.uniformSamplerArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = item.Value;
+                    value = (item as UniformSamplerArray).Value;
                     gotUniform = true;
                     break;
                 }
@@ -187,14 +169,11 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            if (this.uniformBoolArrayVariables == null)
-            { this.uniformBoolArrayVariables = new List<UniformBoolArray>(); }
-
-            foreach (var item in this.uniformBoolArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    item.Value = value;
+                    (item as UniformBoolArray).Value = value;
                     updated = true;
                     gotUniform = true;
                     break;
@@ -212,7 +191,7 @@ namespace CSharpGL
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformBoolArray;
                 variable.Value = value;
-                this.uniformBoolArrayVariables.Add(variable);
+                this.uniformVariables.Add(variable);
                 updated = true;
             }
 
@@ -225,14 +204,11 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            if (this.uniformFloatArrayVariables == null)
-            { this.uniformFloatArrayVariables = new List<UniformFloatArray>(); }
-
-            foreach (var item in this.uniformFloatArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    item.Value = value;
+                    (item as UniformFloatArray).Value = value;
                     updated = true;
                     gotUniform = true;
                     break;
@@ -250,7 +226,7 @@ namespace CSharpGL
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformFloatArray;
                 variable.Value = value;
-                this.uniformFloatArrayVariables.Add(variable);
+                this.uniformVariables.Add(variable);
                 updated = true;
             }
 
@@ -263,14 +239,11 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            if (this.uniformVec2ArrayVariables == null)
-            { this.uniformVec2ArrayVariables = new List<UniformVec2Array>(); }
-
-            foreach (var item in this.uniformVec2ArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    item.Value = value;
+                    (item as UniformVec2Array).Value = value;
                     updated = true;
                     gotUniform = true;
                     break;
@@ -288,27 +261,24 @@ namespace CSharpGL
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformVec2Array;
                 variable.Value = value;
-                this.uniformVec2ArrayVariables.Add(variable);
+                this.uniformVariables.Add(variable);
                 updated = true;
             }
 
             return updated;
         }
-
+        
         public bool SetUniform(string varNameInShader, vec3[] value)
         {
             bool gotUniform = false;
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            if (this.uniformVec3ArrayVariables == null)
-            { this.uniformVec3ArrayVariables = new List<UniformVec3Array>(); }
-
-            foreach (var item in this.uniformVec3ArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    item.Value = value;
+                    (item as UniformVec3Array).Value = value;
                     updated = true;
                     gotUniform = true;
                     break;
@@ -326,7 +296,42 @@ namespace CSharpGL
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformVec3Array;
                 variable.Value = value;
-                this.uniformVec3ArrayVariables.Add(variable);
+                this.uniformVariables.Add(variable);
+                updated = true;
+            }
+
+            return updated;
+        }
+
+        public bool SetUniform(string varNameInShader, vec4[] value)
+        {
+            bool gotUniform = false;
+            bool updated = false;
+            if (value.Length <= 0) { return updated; }
+
+            foreach (var item in this.uniformVariables)
+            {
+                if (item.VarName == varNameInShader)
+                {
+                    (item as UniformVec4Array).Value = value;
+                    updated = true;
+                    gotUniform = true;
+                    break;
+                }
+            }
+
+            if (!gotUniform)
+            {
+                int location = shaderProgram.GetUniformLocation(varNameInShader);
+                if (location < 0)
+                {
+                    throw new Exception(string.Format(
+                        "uniform variable [{0}] not exists!", varNameInShader));
+                }
+
+                var variable = GetVariableArray(value, varNameInShader) as UniformVec4Array;
+                variable.Value = value;
+                this.uniformVariables.Add(variable);
                 updated = true;
             }
 
@@ -339,14 +344,11 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            if (this.uniformMat2ArrayVariables == null)
-            { this.uniformMat2ArrayVariables = new List<UniformMat2Array>(); }
-
-            foreach (var item in this.uniformMat2ArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    item.Value = value;
+                    (item as UniformMat2Array).Value = value;
                     updated = true;
                     gotUniform = true;
                     break;
@@ -364,7 +366,7 @@ namespace CSharpGL
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformMat2Array;
                 variable.Value = value;
-                this.uniformMat2ArrayVariables.Add(variable);
+                this.uniformVariables.Add(variable);
                 updated = true;
             }
 
@@ -377,14 +379,11 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            if (this.uniformMat3ArrayVariables == null)
-            { this.uniformMat3ArrayVariables = new List<UniformMat3Array>(); }
-
-            foreach (var item in this.uniformMat3ArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    item.Value = value;
+                    (item as UniformMat3Array).Value = value;
                     updated = true;
                     gotUniform = true;
                     break;
@@ -402,7 +401,7 @@ namespace CSharpGL
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformMat3Array;
                 variable.Value = value;
-                this.uniformMat3ArrayVariables.Add(variable);
+                this.uniformVariables.Add(variable);
                 updated = true;
             }
 
@@ -415,14 +414,11 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            if (this.uniformMat4ArrayVariables == null)
-            { this.uniformMat4ArrayVariables = new List<UniformMat4Array>(); }
-
-            foreach (var item in this.uniformMat4ArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    item.Value = value;
+                    (item as UniformMat4Array).Value = value;
                     updated = true;
                     gotUniform = true;
                     break;
@@ -440,7 +436,7 @@ namespace CSharpGL
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformMat4Array;
                 variable.Value = value;
-                this.uniformMat4ArrayVariables.Add(variable);
+                this.uniformVariables.Add(variable);
                 updated = true;
             }
 
@@ -453,14 +449,11 @@ namespace CSharpGL
             bool updated = false;
             if (value.Length <= 0) { return updated; }
 
-            if (this.uniformSamplerArrayVariables == null) 
-            { this.uniformSamplerArrayVariables = new List<UniformSamplerArray>(); }
-
-            foreach (var item in this.uniformSamplerArrayVariables)
+            foreach (var item in this.uniformVariables)
             {
                 if (item.VarName == varNameInShader)
                 {
-                    item.Value = value;
+                    (item as UniformSamplerArray).Value = value;
                     updated = true;
                     gotUniform = true;
                     break;
@@ -478,7 +471,7 @@ namespace CSharpGL
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformSamplerArray;
                 variable.Value = value;
-                this.uniformSamplerArrayVariables.Add(variable);
+                this.uniformVariables.Add(variable);
                 updated = true;
             }
 

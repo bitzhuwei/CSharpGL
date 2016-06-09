@@ -8,7 +8,7 @@ namespace CSharpGL
 {
     public partial class Renderer
     {
-        protected List<UniformVariable> uniformVariables = new List<UniformVariable>();
+        protected List<UniformVariableBase> uniformVariables = new List<UniformVariableBase>();
 
         //protected OrderedCollection<string> uniformVariableNames = new OrderedCollection<string>(", ");
 
@@ -20,7 +20,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = (T)item.GetValue();
+                    value = (T)(item as UniformVariable).GetValue();
                     gotUniform = true;
                     break;
                 }
@@ -37,7 +37,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    updated = item.SetValue(value);
+                    updated = (item as UniformVariable).SetValue(value);
                     gotUniform = true;
                     break;
                 }

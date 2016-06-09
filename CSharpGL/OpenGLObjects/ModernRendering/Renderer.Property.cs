@@ -47,7 +47,7 @@ namespace CSharpGL
         }
 
         [Editor(typeof(UniformVariableListEditor), typeof(UITypeEditor))]
-        public List<UniformVariable> UniformVariables
+        public List<UniformVariableBase> UniformVariables
         {
             get { return uniformVariables; }
         }

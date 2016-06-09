@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// shader中的一个uniform变量。
     /// </summary>
-    public abstract class UniformVariable
+    public abstract class UniformVariableBase
     {
 
         /// <summary>
@@ -28,19 +28,11 @@ namespace CSharpGL
         /// shader中的一个uniform变量。
         /// </summary>
         /// <param name="varName"></param>
-        public UniformVariable(string varName)
+        public UniformVariableBase(string varName)
         {
             this.VarName = varName;
             this.Updated = true;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        internal abstract bool SetValue(ValueType value);
-
-        internal abstract ValueType GetValue();
 
         /// <summary>
         /// 
@@ -58,7 +50,7 @@ namespace CSharpGL
 
         public override string ToString()
         {
-            return string.Format("{0}: {1}", this.VarName, this.GetValue());
+            return string.Format("{0}: {1}", this.GetType(), this.VarName);
         }
 
     }
