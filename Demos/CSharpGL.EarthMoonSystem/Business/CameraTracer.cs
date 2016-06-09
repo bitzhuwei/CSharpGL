@@ -9,6 +9,13 @@ namespace CSharpGL.EarthMoonSystem
     class CameraTracer : ITimeElapse
     {
 
+        private bool eanbled = true;
+
+        public bool Eanbled
+        {
+            get { return eanbled; }
+            set { eanbled = value; }
+        }
         private ICamera camera;
         private Earth earth;
         private Sun sun;
@@ -32,6 +39,8 @@ namespace CSharpGL.EarthMoonSystem
 
         public void Elapse(double interval)
         {
+            if (!this.eanbled) { return; }
+
             float earthRadius = this.earth.GetRadius();
             vec3 position = this.earth.GetPosition() - this.sun.GetPosition();
             position *= (1.0f + (earthRadius *5 / position.Magnitude()));
