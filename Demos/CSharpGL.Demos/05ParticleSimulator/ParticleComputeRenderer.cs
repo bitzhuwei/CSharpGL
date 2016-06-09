@@ -10,19 +10,22 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Demos
 {
-
-    class ParticleSimulatorRenderer : RendererBase
+    class ParticleComputeRenderer : RendererBase
     {
         private ShaderProgram computeProgram;
         private uint[] textureBufferPosition = new uint[1];
         private uint[] textureBufferVelocity = new uint[1];
         private uint[] attractor_buffer = new uint[1];
+        private uint positionBufferPtrId;
+        private uint velocityBufferPtrId;
         private float time = 0;
-
         Random random = new Random();
 
-        ParticleRenderer particleRenderer;
-
+        public ParticleComputeRenderer(uint positionBufferPtrId, uint velocityBufferPtrId)
+        {
+            this.positionBufferPtrId = positionBufferPtrId;
+            this.velocityBufferPtrId = velocityBufferPtrId;
+        }
         protected override void DoInitialize()
         {
             {
@@ -34,33 +37,22 @@ namespace CSharpGL.Demos
                 this.computeProgram = computeProgram;
             }
             {
-                IBufferable bufferable = new ParticleModel();
-                var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"05ParticleSimulator\particleSimulator.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"05ParticleSimulator\particleSimulator.frag"), ShaderType.FragmentShader);
-                var map = new PropertyNameMap();
-                map.Add("position", ParticleModel.strPosition);
-                var particleRenderer = new ParticleRenderer(bufferable, shaderCodes, map, new DepthTestSwitch(false), new BlendSwitch(BlendingSourceFactor.One, BlendingDestinationFactor.One));
-                particleRenderer.Initialize();
-                this.particleRenderer = particleRenderer;
-            }
-            {
-
                 OpenGL.GenTextures(1, textureBufferPosition);
                 OpenGL.BindTexture(OpenGL.GL_TEXTURE_BUFFER, textureBufferPosition[0]);
-                OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, OpenGL.GL_RGBA32F, this.particleRenderer.PositionBufferPtr.BufferId);
+                OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER,
+                    OpenGL.GL_RGBA32F, this.positionBufferPtrId);
                 OpenGL.GenTextures(1, textureBufferVelocity);
                 OpenGL.BindTexture(OpenGL.GL_TEXTURE_BUFFER, textureBufferVelocity[0]);
-                OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER, OpenGL.GL_RGBA32F, this.particleRenderer.VelocityBufferPtrId);
-
+                OpenGL.GetDelegateFor<OpenGL.glTexBuffer>()(OpenGL.GL_TEXTURE_BUFFER,
+                    OpenGL.GL_RGBA32F, this.velocityBufferPtrId);
+            }
+            {
                 OpenGL.GetDelegateFor<OpenGL.glGenBuffers>()(1, attractor_buffer);
                 OpenGL.BindBuffer(BufferTarget.UniformBuffer, attractor_buffer[0]);
                 OpenGL.GetDelegateFor<OpenGL.glBufferData>()(OpenGL.GL_UNIFORM_BUFFER, 64 * Marshal.SizeOf(typeof(vec4)), IntPtr.Zero, OpenGL.GL_DYNAMIC_COPY);
                 OpenGL.GetDelegateFor<OpenGL.glBindBufferBase>()(OpenGL.GL_UNIFORM_BUFFER, 0, attractor_buffer[0]);
             }
-
         }
-
 
         protected override void DoRender(RenderEventArgs arg)
         {
@@ -96,24 +88,14 @@ namespace CSharpGL.Demos
             // Dispatch
             OpenGL.GetDelegateFor<OpenGL.glDispatchCompute>()(ParticleModel.particleGroupCount, 1, 1);
 
-            OpenGL.GetDelegateFor<OpenGL.glMemoryBarrier>()(OpenGL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
-
-
-            // Clear, select the rendering program and draw a full screen quad
-            mat4 view = arg.Camera.GetViewMat4();
-            mat4 projection = arg.Camera.GetProjectionMat4();
-            this.particleRenderer.SetUniform("mvp", projection * view);
-            this.particleRenderer.Render(arg);
         }
 
         protected override void DisposeUnmanagedResources()
         {
-            computeProgram.Delete();
-            this.particleRenderer.Dispose();
+            this.computeProgram.Delete();
             OpenGL.DeleteBuffers(1, textureBufferPosition);
             OpenGL.DeleteBuffers(1, textureBufferVelocity);
             OpenGL.DeleteBuffers(1, attractor_buffer);
         }
-
     }
 }
