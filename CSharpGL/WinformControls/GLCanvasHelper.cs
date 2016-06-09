@@ -33,7 +33,7 @@ namespace CSharpGL
             OpenGL.gluPerspective(60.0f, width / height, 0.01, 100.0);
 
             //  Use the 'look at' helper function to position and aim the camera.
-            OpenGL.gluLookAt(-5, 5, -5, 0, 0, 0, 0, 1, 0);
+            OpenGL.gluLookAt(-2, 2, -2, 0, 0, 0, 0, 1, 0);
 
             //  Set the modelview matrix.
             OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);
