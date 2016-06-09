@@ -19,7 +19,7 @@ namespace CSharpGL
         public string VarName { get; private set; }
 
         /// <summary>
-        /// 已更新（需要在render时提交到GPU）
+        /// 标识此uniform变量是否已更新（若为true，则需要在render前一刻提交到GPU）
         /// </summary>
         [Browsable(false)]
         public bool Updated { get; set; }
