@@ -52,10 +52,19 @@ namespace CSharpGL.Demos
                             for (int i = 0; i < particleCount; i++)
                             {
                                 array[i] = new vec4(
-                                    (float)(random.NextDouble() * (maxRadius - minRadius) + minRadius),
-                                    (float)(random.NextDouble() * (maxRadius - minRadius) + minRadius),
-                                    (float)(random.NextDouble() * (maxRadius - minRadius) + minRadius),
-                                    (float)(random.NextDouble())
+                                    (float)(
+                                    (random.NextDouble() - 0.5) * 2 
+                                        * ((random.NextDouble() * (maxRadius - minRadius) + minRadius))
+                                    ),
+                                   (float)(
+                                    (random.NextDouble() - 0.5) * 2
+                                        * ((random.NextDouble() * (maxRadius - minRadius) + minRadius))
+                                    ),
+                                   (float)(
+                                    (random.NextDouble() - 0.5) * 2
+                                        * ((random.NextDouble() * (maxRadius - minRadius) + minRadius))
+                                    ),
+                                   (float)(random.NextDouble())
                                     );
                             }
                         }

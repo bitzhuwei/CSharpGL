@@ -20,7 +20,7 @@ namespace CSharpGL.Demos
         protected override void DoInitialize()
         {
             {
-                IBufferable bufferable = new ParticleModel();
+                IBufferable bufferable = new SunshineParticleModel();
                 var shaderCodes = new ShaderCode[2];
                 shaderCodes[0] = new ShaderCode(File.ReadAllText(@"13Sunshine\SunshineParticle.vert"), ShaderType.VertexShader);
                 shaderCodes[1] = new ShaderCode(File.ReadAllText(@"13Sunshine\SunshineParticle.frag"), ShaderType.FragmentShader);
