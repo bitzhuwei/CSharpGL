@@ -20,9 +20,7 @@ namespace CSharpGL.Demos
         public const int maxAttractor = 64;
 
         public const string strPosition = "position";
-        public const string strVelocity = "velocity";
         private PropertyBufferPtr positionBufferPtr = null;
-        private PropertyBufferPtr velocityBufferPtr = null;
         private IndexBufferPtr indexBufferPtr;
         Random random = new Random();
 
@@ -34,6 +32,9 @@ namespace CSharpGL.Demos
                 attractor_masses[i] = 0.5f + (float)random.NextDouble() * 0.5f;
             }
         }
+
+        const double minRadius = 0.8;
+        const double maxRadius = 1.2;
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
@@ -51,9 +52,9 @@ namespace CSharpGL.Demos
                             for (int i = 0; i < particleCount; i++)
                             {
                                 array[i] = new vec4(
-                                    (float)(random.NextDouble() - 0.5) * 20,
-                                    (float)(random.NextDouble() - 0.5) * 20,
-                                    (float)(random.NextDouble() - 0.5) * 20,
+                                    (float)(random.NextDouble() * (maxRadius - minRadius) + minRadius),
+                                    (float)(random.NextDouble() * (maxRadius - minRadius) + minRadius),
+                                    (float)(random.NextDouble() * (maxRadius - minRadius) + minRadius),
                                     (float)(random.NextDouble())
                                     );
                             }
@@ -64,34 +65,6 @@ namespace CSharpGL.Demos
                 }
 
                 return positionBufferPtr;
-            }
-            else if (bufferName == strVelocity)
-            {
-                if (velocityBufferPtr == null)
-                {
-                    using (var buffer = new PropertyBuffer<vec4>(
-                        varNameInShader, 4, OpenGL.GL_FLOAT, BufferUsage.DynamicCopy))
-                    {
-                        buffer.Alloc(particleCount);
-                        unsafe
-                        {
-                            var array = (vec4*)buffer.Header.ToPointer();
-                            for (int i = 0; i < particleCount; i++)
-                            {
-                                array[i] = new vec4(
-                                    (float)(random.NextDouble() - 0.5) * 0.2f,
-                                    (float)(random.NextDouble() - 0.5) * 0.2f,
-                                    (float)(random.NextDouble() - 0.5) * 0.2f,
-                                    0
-                                    );
-                            }
-                        }
-
-                        velocityBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
-                    }
-                }
-
-                return velocityBufferPtr;
             }
             else
             {

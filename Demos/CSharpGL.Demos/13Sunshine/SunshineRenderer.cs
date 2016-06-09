@@ -32,8 +32,7 @@ namespace CSharpGL.Demos
             }
             {
                 var sunshineComputeRenderer = new SunshineComputeRenderer(
-                    this.particleRenderer.PositionBufferPtr.BufferId, 
-                    this.particleRenderer.VelocityBufferPtrId);
+                    this.particleRenderer.PositionBufferPtr.BufferId);
                 sunshineComputeRenderer.Initialize();
                 this.particleComputeRenderer = sunshineComputeRenderer;
             }
