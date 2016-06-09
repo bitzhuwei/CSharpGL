@@ -33,7 +33,7 @@ namespace CSharpGL.Demos
             }
         }
 
-        const double minRadius = 0.8;
+        const double minRadius = 1.0;
         const double maxRadius = 1.2;
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
