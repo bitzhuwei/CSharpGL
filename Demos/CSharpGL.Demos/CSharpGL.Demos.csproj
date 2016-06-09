@@ -59,22 +59,6 @@
     <Compile Include="01Renderer\Form01Renderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="13Sunshine\Form13Sunshine.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="13Sunshine\Form13Sunshine.Designer.cs">
-      <DependentUpon>Form13Sunshine.cs</DependentUpon>
-    </Compile>
-    <Compile Include="13Sunshine\Form13Sunshine.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="13Sunshine\Form13Sunshine.MouseDownMoveUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="13Sunshine\SunshineComputeRenderer.cs" />
-    <Compile Include="13Sunshine\SunshineParticleModel.cs" />
-    <Compile Include="13Sunshine\SunshineParticleRenderer.cs" />
-    <Compile Include="13Sunshine\SunshineRenderer.cs" />
     <Compile Include="05ParticleSimulator\ParticleComputeRenderer.cs" />
     <Compile Include="05ParticleSimulator\ParticleRenderer.cs" />
     <Compile Include="05ParticleSimulator\ParticleModel.cs" />
@@ -249,15 +233,6 @@
     <Compile Include="02OrderIndependentTransparency\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="13Sunshine\SunshineCompute.comp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="13Sunshine\SunshineParticle.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="13Sunshine\SunshineParticle.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="05ParticleSimulator\particleSimulator-fountain.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -320,9 +295,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="01Renderer\Form01Renderer.resx">
       <DependentUpon>Form01Renderer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="13Sunshine\Form13Sunshine.resx">
-      <DependentUpon>Form13Sunshine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="06ImageProcessing\Form06ImageProcessing.resx">
       <DependentUpon>Form06ImageProcessing.cs</DependentUpon>
