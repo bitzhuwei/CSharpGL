@@ -8,10 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("CSharpGL")]
 [assembly: AssemblyDescription(
 @"CSharpGL allows you to use OpenGL functions in the Object-Oriented way.
-It wraps OpenGL’s functions and use enum type as parameters instead of ‘uint’for some functions.
-It abstracts objects inside OpenGL and describes them as classes.
-It provides maths class for matrix and vectors.
-It provide useful utilities.")]
+For more information please check (http://bitzhuwei.github.io/CSharpGL/)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("bitzhuwei")]
 [assembly: AssemblyProduct("CSharpGL")]
