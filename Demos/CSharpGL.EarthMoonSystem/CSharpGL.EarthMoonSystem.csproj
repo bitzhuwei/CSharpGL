@@ -48,10 +48,10 @@
     <Compile Include="Business\CameraTracer.cs" />
     <Compile Include="Business\BackgroundStarsRenderer.cs" />
     <Compile Include="Business\Sun.cs" />
-    <Compile Include="Circle.cs" />
-    <Compile Include="CircleModel.cs" />
-    <Compile Include="CelestialBodyModel.cs" />
-    <Compile Include="CelestialBody.cs" />
+    <Compile Include="Renderers\Circle.cs" />
+    <Compile Include="Models\CircleModel.cs" />
+    <Compile Include="Models\CelestialBodyModel.cs" />
+    <Compile Include="Renderers\CelestialBody.cs" />
     <Compile Include="Business\Earth.cs" />
     <Compile Include="FormMain.Misc.cs">
       <SubType>Form</SubType>
@@ -78,6 +78,10 @@
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="Business\ITimeElapse.cs" />
+    <Compile Include="Renderers\SunshineComputeRenderer.cs" />
+    <Compile Include="Models\SunshineParticleModel.cs" />
+    <Compile Include="Renderers\SunshineParticleRenderer.cs" />
+    <Compile Include="Renderers\SunshineRenderer.cs" />
     <None Include="readme.md" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,6 +131,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\PointSprite.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\SunshineCompute.comp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\SunshineParticle.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\SunshineParticle.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
