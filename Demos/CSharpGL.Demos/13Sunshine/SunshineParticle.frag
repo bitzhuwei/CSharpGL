@@ -6,5 +6,5 @@ in float intensity;
 
 void main(void)
 {
-    color = vec4(0.0f, 0.2f, 1.0f, 1.0f) * intensity + vec4(0.2f, 0.05f, 0.0f, 1.0f) * (1.0f - intensity);
+    color = vec4(1.0f, 0.2f, 0.0f, 1.0f) * intensity + vec4(0.2f, 0.05f, 0.0f, 1.0f) * (1.0f - intensity);
 }
