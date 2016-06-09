@@ -11,7 +11,7 @@ namespace CSharpGL
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct WNDCLASSEX
+    struct WNDCLASSEX
     {
         /// <summary>
         /// 

@@ -7,7 +7,7 @@ namespace CSharpGL
     /// <summary>
     /// Useful functions imported from the Win32 SDK.
     /// </summary>
-    public sealed class Win32
+    sealed class Win32
     {
 
         private Win32() { }
@@ -130,21 +130,21 @@ namespace CSharpGL
         [DllImport(OpenGL32, SetLastError = true)]
         public static extern bool wglUseFontBitmaps(IntPtr hDC, uint first, uint count, uint listBase);
 
-        /// <summary>
-        /// The wglUseFontOutlines function creates a set of display lists, one for each glyph of the currently selected outline font of a device context, for use with the current rendering context.
-        /// </summary>
-        /// <param name="hDC">The h DC.</param>
-        /// <param name="first">The first.</param>
-        /// <param name="count">The count.</param>
-        /// <param name="listBase">The list base.</param>
-        /// <param name="deviation">The deviation.</param>
-        /// <param name="extrusion">The extrusion.</param>
-        /// <param name="format">The format.</param>
-        /// <param name="lpgmf">The LPGMF.</param>
-        /// <returns></returns>
-        [DllImport(OpenGL32, SetLastError = true)]
-        public static extern bool wglUseFontOutlines(IntPtr hDC, uint first, uint count, uint listBase,
-            float deviation, float extrusion, int format, [Out, MarshalAs(UnmanagedType.LPArray)] GLYPHMETRICSFLOAT[] lpgmf);
+        ///// <summary>
+        ///// The wglUseFontOutlines function creates a set of display lists, one for each glyph of the currently selected outline font of a device context, for use with the current rendering context.
+        ///// </summary>
+        ///// <param name="hDC">The h DC.</param>
+        ///// <param name="first">The first.</param>
+        ///// <param name="count">The count.</param>
+        ///// <param name="listBase">The list base.</param>
+        ///// <param name="deviation">The deviation.</param>
+        ///// <param name="extrusion">The extrusion.</param>
+        ///// <param name="format">The format.</param>
+        ///// <param name="lpgmf">The LPGMF.</param>
+        ///// <returns></returns>
+        //[DllImport(OpenGL32, SetLastError = true)]
+        //public static extern bool wglUseFontOutlines(IntPtr hDC, uint first, uint count, uint listBase,
+        //    float deviation, float extrusion, int format, [Out, MarshalAs(UnmanagedType.LPArray)] GLYPHMETRICSFLOAT[] lpgmf);
 
         /// <summary>
         /// Link two render contexts so they share lists (buffer IDs, etc.)

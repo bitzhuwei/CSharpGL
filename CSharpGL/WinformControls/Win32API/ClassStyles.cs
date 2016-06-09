@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CSharpGL
 {
     [Flags]
-    public enum ClassStyles : uint
+    enum ClassStyles : uint
     {
         ByteAlignClient = 0x1000,
         ByteAlignWindow = 0x2000,

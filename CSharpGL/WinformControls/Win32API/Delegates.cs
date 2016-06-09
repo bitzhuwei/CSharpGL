@@ -15,6 +15,6 @@ namespace CSharpGL
     /// <param name="wParam"></param>
     /// <param name="lParam"></param>
     /// <returns></returns>
-    public delegate IntPtr WndProc(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
+    delegate IntPtr WndProc(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
 
 }

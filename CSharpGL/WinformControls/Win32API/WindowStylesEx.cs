@@ -10,7 +10,7 @@ namespace CSharpGL
     /// 
     /// </summary>
     [Flags]
-    public enum WindowStylesEx : uint
+    enum WindowStylesEx : uint
     {
         /// <summary>
         /// Specifies that a window created with this style accepts drag-drop files.

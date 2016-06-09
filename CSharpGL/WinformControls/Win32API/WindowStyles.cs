@@ -10,7 +10,7 @@ namespace CSharpGL
     /// 
     /// </summary>
     [Flags()]
-    public enum WindowStyles : uint
+    enum WindowStyles : uint
     {
         /// <summary>The window has a thin-line border.</summary>
         WS_BORDER = 0x800000,

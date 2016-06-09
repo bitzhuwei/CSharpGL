@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// Point structure used in Win32 interop.
     /// </summary>
-    public struct POINTFLOAT
+    struct POINTFLOAT
     {
         /// <summary>
         /// The x coord value.
