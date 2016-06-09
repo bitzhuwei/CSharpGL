@@ -88,13 +88,17 @@ namespace CSharpGL
         /// <param name="shaderProgram"></param>
         public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
         {
-            uint location = shaderProgram.GetAttributeLocation(this.VarNameInVertexShader);
-            // 选择 VBO
-            glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
-            // 指定格式
-            glVertexAttribPointer(location, this.DataSize, this.DataType, false, 0, IntPtr.Zero);
-            // 启用
-            glEnableVertexAttribArray(location);
+            int location = shaderProgram.GetAttributeLocation(this.VarNameInVertexShader);
+            if (location >= 0)
+            {
+                uint loc = (uint)location;
+                // 选择 VBO
+                glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
+                // 指定格式
+                glVertexAttribPointer(loc, this.DataSize, this.DataType, false, 0, IntPtr.Zero);
+                // 启用
+                glEnableVertexAttribArray(loc);
+            }
         }
 
     }

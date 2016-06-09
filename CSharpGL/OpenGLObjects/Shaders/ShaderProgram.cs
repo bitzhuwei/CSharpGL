@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -129,16 +130,19 @@ namespace CSharpGL
             this.ShaderProgramObject = 0;
         }
 
-        public uint GetAttributeLocation(string attributeName)
+        public int GetAttributeLocation(string attributeName)
         {
             //  If we don't have the attribute name in the dictionary, get it's
             //  location and add it.
             if (attributeNamesToLocations.ContainsKey(attributeName) == false)
             {
                 int location = glGetAttribLocation(this.ShaderProgramObject, attributeName);
-                if (location < 0) { throw new Exception(); }
+                if (location < 0)
+                {
+                    Debug.WriteLine(string.Format("Failed to getAttribLocation for [{0}]", attributeName));
+                }
 
-                attributeNamesToLocations[attributeName] = (uint)location;
+                attributeNamesToLocations[attributeName] = location;
             }
 
             //  Return the attribute location.
@@ -484,7 +488,7 @@ namespace CSharpGL
             {
                 int location = glGetUniformLocation(this.ShaderProgramObject, uniformName);
                 if (location < 0)
-                { throw new Exception(string.Format("No uniform found for the name [{0}]", uniformName)); }
+                { Debug.WriteLine(string.Format("No uniform found for the name [{0}]", uniformName)); }
 
                 uniformNamesToLocations[uniformName] = location;
             }
@@ -512,6 +516,6 @@ namespace CSharpGL
         /// A mapping of attribute names to locations. This allows us to very easily specify
         /// attribute data by name, quickly looking up the location first if needed.
         /// </summary>
-        private readonly Dictionary<string, uint> attributeNamesToLocations = new Dictionary<string, uint>();
+        private readonly Dictionary<string, int> attributeNamesToLocations = new Dictionary<string, int>();
     }
 }
