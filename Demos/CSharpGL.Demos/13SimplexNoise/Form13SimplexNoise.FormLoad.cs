@@ -30,8 +30,8 @@ namespace CSharpGL.Demos
                 // build several models
                 var bufferable = new Sphere();
                 var shaders = new ShaderCode[2];
-                shaders[0] = new ShaderCode(File.ReadAllText(@"01Renderer\Simple.vert"), ShaderType.VertexShader);
-                shaders[1] = new ShaderCode(File.ReadAllText(@"01Renderer\Simple.frag"), ShaderType.FragmentShader);
+                shaders[0] = new ShaderCode(File.ReadAllText(@"13SimplexNoise\SimplexNoise.vert"), ShaderType.VertexShader);
+                shaders[1] = new ShaderCode(File.ReadAllText(@"13SimplexNoise\SimplexNoise.frag"), ShaderType.FragmentShader);
                 var propertyNameMap = new PropertyNameMap();
                 propertyNameMap.Add("in_Position", "position");
                 propertyNameMap.Add("in_Color", "color");
