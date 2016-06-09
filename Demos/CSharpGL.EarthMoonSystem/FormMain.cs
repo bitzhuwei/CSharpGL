@@ -65,6 +65,7 @@ namespace CSharpGL.EarthMoonSystem
             this.glCanvas1.Resize += glCanvas1_Resize;
 
             Application.Idle += Application_Idle;
+            this.RenderSun = true;
         }
 
         Random random = new Random();
