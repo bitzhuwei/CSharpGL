@@ -40,6 +40,7 @@
             this.btn10RaycastVolumeRenderer = new System.Windows.Forms.Button();
             this.btn11SharpFont = new System.Windows.Forms.Button();
             this.btn12Billboard = new System.Windows.Forms.Button();
+            this.btn13Sunshine = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -120,7 +121,7 @@
             this.btnForm06ImageProcessing.UseVisualStyleBackColor = true;
             this.btnForm06ImageProcessing.Click += new System.EventHandler(this.btn06ImageProcessing_Click);
             // 
-            // btnForm07Billboard
+            // btnForm07PointSprite
             // 
             this.btnForm07PointSprite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -198,11 +199,25 @@
             this.btn12Billboard.UseVisualStyleBackColor = true;
             this.btn12Billboard.Click += new System.EventHandler(this.btn12Billboard_Click);
             // 
+            // btn13Sunshine
+            // 
+            this.btn13Sunshine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn13Sunshine.Font = new System.Drawing.Font("宋体", 12F);
+            this.btn13Sunshine.Location = new System.Drawing.Point(12, 528);
+            this.btn13Sunshine.Name = "btn13Sunshine";
+            this.btn13Sunshine.Size = new System.Drawing.Size(767, 37);
+            this.btn13Sunshine.TabIndex = 0;
+            this.btn13Sunshine.Text = "13 Sunshine";
+            this.btn13Sunshine.UseVisualStyleBackColor = true;
+            this.btn13Sunshine.Click += new System.EventHandler(this.btn13Sunshine_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 632);
+            this.Controls.Add(this.btn13Sunshine);
             this.Controls.Add(this.btn12Billboard);
             this.Controls.Add(this.btn11SharpFont);
             this.Controls.Add(this.btn10RaycastVolumeRenderer);
@@ -235,5 +250,6 @@
         private System.Windows.Forms.Button btn10RaycastVolumeRenderer;
         private System.Windows.Forms.Button btn11SharpFont;
         private System.Windows.Forms.Button btn12Billboard;
+        private System.Windows.Forms.Button btn13Sunshine;
     }
 }

@@ -77,5 +77,10 @@ namespace CSharpGL.Demos
             (new Form12Billboard()).Show();
         }
 
+        private void btn13Sunshine_Click(object sender, EventArgs e)
+        {
+            (new Form13Sunshine()).Show();
+        }
+
     }
 }
