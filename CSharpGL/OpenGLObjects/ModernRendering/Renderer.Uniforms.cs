@@ -8,7 +8,7 @@ namespace CSharpGL
 {
     public partial class Renderer
     {
-        protected List<UniformVariableBase> uniformVariables = new List<UniformVariableBase>();
+        protected List<UniformVariable> uniformVariables = new List<UniformVariable>();
 
         //protected OrderedCollection<string> uniformVariableNames = new OrderedCollection<string>(", ");
 
@@ -20,7 +20,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = (T)(item as UniformVariable).GetValue();
+                    value = (T)(item as UniformSingleVariable).GetValue();
                     gotUniform = true;
                     break;
                 }
@@ -37,7 +37,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    updated = (item as UniformVariable).SetValue(value);
+                    updated = (item as UniformSingleVariable).SetValue(value);
                     gotUniform = true;
                     break;
                 }
@@ -52,7 +52,7 @@ namespace CSharpGL
                         "uniform variable [{0}] not exists!", varNameInShader));
                 }
 
-                UniformVariable variable = GetVariable(value, varNameInShader);
+                UniformSingleVariable variable = GetVariable(value, varNameInShader);
                 variable.SetValue(value);
                 this.uniformVariables.Add(variable);
                 updated = true;
@@ -61,7 +61,7 @@ namespace CSharpGL
             return updated;
         }
 
-        private UniformVariable GetVariable(ValueType value, string varNameInShader)
+        private UniformSingleVariable GetVariable(ValueType value, string varNameInShader)
         {
             Type t = value.GetType();
             Type varType;
@@ -83,7 +83,7 @@ namespace CSharpGL
             if (variableDict.TryGetValue(t, out varType))
             {
                 object variable = Activator.CreateInstance(varType, varNameInShader);
-                return variable as UniformVariable;
+                return variable as UniformSingleVariable;
             }
             else
             {

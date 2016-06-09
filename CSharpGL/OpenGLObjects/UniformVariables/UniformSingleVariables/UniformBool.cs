@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public class UniformVec4 : UniformVariable
+    /// <summary>
+    /// 由于未知的原因，shader对bool没反应，所以内部用float的1.0f和0.0f代替bool的true和false。
+    /// </summary>
+    public class UniformBool : UniformSingleVariable
     {
 
-        private vec4 value;
+        private bool value;
 
-        public vec4 Value
+        public bool Value
         {
             get { return this.value; }
             set
@@ -26,23 +29,22 @@ namespace CSharpGL
             }
         }
 
-        public UniformVec4(string varName) : base(varName) { }
+        public UniformBool(string varName) : base(varName) { }
 
         public override void SetUniform(ShaderProgram program)
         {
-            vec4 value = this.value;
-            program.SetUniform(VarName, value.x, value.y, value.z, value.w);
+            program.SetUniform(VarName, value ? 1.0f : 0.0f);
         }
 
         internal override bool SetValue(ValueType value)
         {
-            if (value.GetType() != typeof(vec4))
+            if (value.GetType() != typeof(bool))
             {
                 throw new ArgumentException(string.Format("[{0}] not match [{1}]'s value.",
                     value.GetType().Name, this.GetType().Name));
             }
 
-            var v = (vec4)value;
+            var v = (bool)value;
             if (v != this.value)
             {
                 this.value = v;
@@ -61,4 +63,5 @@ namespace CSharpGL
         }
 
     }
+
 }

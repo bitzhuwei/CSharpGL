@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public class UniformVec3 : UniformVariable
+    public class UniformMat4 : UniformSingleVariable
     {
 
-        private vec3 value;
+        private mat4 value;
 
-        public vec3 Value
+        public mat4 Value
         {
             get { return this.value; }
             set
@@ -26,23 +26,22 @@ namespace CSharpGL
             }
         }
 
-        public UniformVec3(string varName) : base(varName) { }
+        public UniformMat4(string varName) : base(varName) { }
 
         public override void SetUniform(ShaderProgram program)
         {
-            vec3 value = this.value;
-            program.SetUniform(VarName, value.x, value.y, value.z);
+            program.SetUniformMatrix4(VarName, this.value.to_array());
         }
 
         internal override bool SetValue(ValueType value)
         {
-            if (value.GetType() != typeof(vec3))
+            if (value.GetType() != typeof(mat4))
             {
                 throw new ArgumentException(string.Format("[{0}] not match [{1}]'s value.",
                     value.GetType().Name, this.GetType().Name));
             }
 
-            var v = (vec3)value;
+            var v = (mat4)value;
             if (v != this.value)
             {
                 this.value = v;
@@ -61,5 +60,4 @@ namespace CSharpGL
         }
 
     }
-
 }

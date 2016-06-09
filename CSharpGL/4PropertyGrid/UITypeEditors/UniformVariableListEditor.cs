@@ -22,10 +22,10 @@ namespace CSharpGL
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             //打开属性编辑器修改数据 
-            var frmGLSwitchListEditor = new FormUniformVariableListEditor(value as List<UniformVariableBase>);
+            var frmGLSwitchListEditor = new FormUniformVariableListEditor(value as List<UniformVariable>);
             if (frmGLSwitchListEditor.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                var list = value as IList<UniformVariableBase>;
+                var list = value as IList<UniformVariable>;
                 list.Clear();
                 foreach (var item in frmGLSwitchListEditor.UniformVariableList)
                 {

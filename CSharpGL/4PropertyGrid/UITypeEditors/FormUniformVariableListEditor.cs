@@ -13,7 +13,7 @@ namespace CSharpGL
     public partial class FormUniformVariableListEditor : Form
     {
 
-        public FormUniformVariableListEditor(List<UniformVariableBase> list)
+        public FormUniformVariableListEditor(List<UniformVariable> list)
         {
             InitializeComponent();
 
@@ -54,8 +54,8 @@ namespace CSharpGL
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            var list = new List<UniformVariableBase>();
-            foreach (UniformVariableBase item in this.lstMember.Items)
+            var list = new List<UniformVariable>();
+            foreach (UniformVariable item in this.lstMember.Items)
             {
                 list.Add(item);
             }
@@ -65,7 +65,7 @@ namespace CSharpGL
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 
-        public List<UniformVariableBase> UniformVariableList { get; set; }
+        public List<UniformVariable> UniformVariableList { get; set; }
 
         private void lstMember_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -10,7 +10,7 @@ namespace CSharpGL
     public partial class Renderer
     {
 
-        private Stack<UniformVariableBase> uniformVariableStack = new Stack<UniformVariableBase>();
+        private Stack<UniformVariable> uniformVariableStack = new Stack<UniformVariable>();
         //private Stack<UniformArrayVariable> uniformArrayVariableStack = new Stack<UniformArrayVariable>();
 
         protected override void DoRender(RenderEventArgs arg)
@@ -87,7 +87,7 @@ namespace CSharpGL
 
             while (uniformVariableStack.Count > 0)
             {
-                UniformVariableBase item = uniformVariableStack.Pop();
+                UniformVariable item = uniformVariableStack.Pop();
                 item.ResetUniform(program);
             }
         }

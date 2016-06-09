@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CSharpGL
 {
 
-    public class UniformSampler : UniformVariable
+    public class UniformSampler : UniformSingleVariable
     {
 
         private samplerValue value;
