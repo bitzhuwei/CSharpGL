@@ -64,7 +64,7 @@ namespace CSharpGL.Demos
             new int[4]{-1,1,1,0}, new int[4]{-1,1,-1,0}, new int[4]{-1,-1,1,0}, new int[4]{-1,-1,-1,0}
         };
 
-        static readonly byte[] simplex4 = new byte[]
+        static readonly byte[] simplex4 = new byte[4 * 4 * 16]
         {
             0,64,128,192, 0,64,192,128, 0,0,0,0, 0,128,192,64, 
             0,0,0,0, 0,0,0,0, 0,0,0,0, 64,128,192,0, 
