@@ -2680,8 +2680,6 @@ namespace CSharpGL
         /// <param name="pixels">The actual pixel data.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glTexImage1D", SetLastError = true)]
         public static extern void TexImage1D(uint target, int level, uint internalformat, int width, int border, uint format, uint type, byte[] pixels);
-        [DllImport(Win32.OpenGL32, EntryPoint = "glTexImage1D", SetLastError = true)]
-        public static extern void TexImage1D(uint target, int level, uint internalformat, int width, int border, uint format, uint type, byte[][] pixels);
 
         /// <summary>
         /// This function sets the image for the currently binded texture.
