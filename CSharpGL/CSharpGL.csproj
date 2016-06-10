@@ -401,7 +401,6 @@
     <Compile Include="WinformControls\Win32API\BITMAPINFO.cs" />
     <Compile Include="WinformControls\Win32API\ClassStyles.cs" />
     <Compile Include="WinformControls\Win32API\Delegates.cs" />
-    <Compile Include="WinformControls\Win32API\GLYPHMETRICSFLOAT.cs" />
     <Compile Include="WinformControls\Win32API\PIXELFORMATDESCRIPTOR.cs" />
     <Compile Include="WinformControls\Win32API\SetWindowPosFlags.cs" />
     <Compile Include="WinformControls\Win32API\Win32.cs" />
