@@ -29,12 +29,12 @@ namespace CSharpGL
         };
 
         private uint[] m_fbo = new uint[1];
-        private List<Texture> m_color;
-        private Texture m_depth;
+        private List<FrameBufferTexture> m_color = new List<FrameBufferTexture>();
+        private FrameBufferTexture m_depth;
         private int m_width;
         private int m_height;
 
-        private void setup(Texture color0, bool depth)
+        private void setup(FrameBufferTexture color0, bool depth)
         {
             m_width = color0.width();
             m_height = color0.height();
@@ -42,7 +42,7 @@ namespace CSharpGL
             /* Create render buffer object for depth buffering */
             if (depth)
             {
-                m_depth = new Texture();
+                m_depth = new FrameBufferTexture();
                 m_depth.setFormat(OpenGL.GL_DEPTH_COMPONENT24, m_width, m_height, OpenGL.GL_DEPTH_COMPONENT, false, false);
             }
             else
@@ -77,7 +77,7 @@ namespace CSharpGL
             OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, 0);
         }
 
-        public FrameBuffer(List<Texture> color, bool depth)
+        public FrameBuffer(List<FrameBufferTexture> color, bool depth)
         {
             setup(color[0], depth);
             for (int i = 1; i < color.Count; ++i)
@@ -86,19 +86,19 @@ namespace CSharpGL
             }
         }
 
-        public FrameBuffer(Texture color0, bool depth)
+        public FrameBuffer(FrameBufferTexture color0, bool depth)
         {
             setup(color0, depth);
         }
         public FrameBuffer(int width, int height, bool depth, bool interpol)
         {
-            Texture texture = new Texture();
+            FrameBufferTexture texture = new FrameBufferTexture();
             texture.setFormat(OpenGL.GL_RGBA16F, width, height, OpenGL.GL_RGBA, false, interpol);
 
             setup(texture, depth);
         }
 
-        public void addColorAttachment(Texture tex)
+        public void addColorAttachment(FrameBufferTexture tex)
         {
             OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, m_fbo[0]);
             OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>()(OpenGL.GL_FRAMEBUFFER_EXT,
@@ -120,7 +120,7 @@ namespace CSharpGL
 
         public void addColorAttachment(uint internalfmt, uint format, bool mipmap, bool interpol)
         {
-            Texture texture = new Texture();
+            FrameBufferTexture texture = new FrameBufferTexture();
 
             texture.setFormat(internalfmt, m_width, m_height, format, mipmap, interpol);
 
@@ -129,7 +129,7 @@ namespace CSharpGL
 
         public void swapColorAttachment(FrameBuffer other, int index)
         {
-            Texture tmp = m_color[index];
+            FrameBufferTexture tmp = m_color[index];
             m_color[index] = other.m_color[index];
             other.m_color[index] = tmp;
 
@@ -189,12 +189,12 @@ namespace CSharpGL
             OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_READ_FRAMEBUFFER, 0);
         }
 
-        public Texture color(int i)
+        public FrameBufferTexture color(int i)
         {
             return m_color[i];
         }
 
-        public Texture depth() { return m_depth; }
+        public FrameBufferTexture depth() { return m_depth; }
 
         public void resize(int width, int height)
         {
