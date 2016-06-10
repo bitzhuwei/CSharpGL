@@ -149,5 +149,48 @@ namespace CSharpGL.Demos
             OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
         }
 
+        /*
+ * initGradTexture(GLuint *texID) - create and load a 2D texture
+ * for a 4D gradient lookup table. This is used for 4D noise only.
+ */
+        void initGradTexture(uint[] texID)
+        {
+            // Activate a different texture unit (unit 2)
+            OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE2);
+
+            // Generate a unique texture ID
+            OpenGL.GenTextures(1, texID);
+            // Bind the texture to texture unit 2
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, texID[0]);
+            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, (int)OpenGL.GL_NEAREST);
+            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, (int)OpenGL.GL_NEAREST);
+
+            var pixels = new UnmanagedArray<byte>(256 * 256 * 4);
+            unsafe
+            {
+                var array = (byte*)pixels.Header.ToPointer();
+                for (int i = 0; i < 256; i++)
+                {
+                    for (int j = 0; j < 256; j++)
+                    {
+                        int offset = (i * 256 + j) * 4;
+                        int value = (perm[(j + perm[i]) & 0xFF]);
+                        array[offset] = (byte)(grad4[value & 0x1F][0] * 64 + 64);   // Gradient x
+                        array[offset + 1] = (byte)(grad4[value & 0x1F][1] * 64 + 64); // Gradient y
+                        array[offset + 2] = (byte)(grad4[value & 0x1F][2] * 64 + 64); // Gradient z
+                        array[offset + 3] = (byte)(grad4[value & 0x1F][3] * 64 + 64); // Gradient z
+                    }
+                }
+            }
+
+            // GLFW texture loading functions won't work here - we need GL_NEAREST lookup.
+            OpenGL.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_RGBA,
+                256, 256, 0, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, pixels.Header);
+            pixels.Dispose();
+
+            // Switch active texture unit back to 0 again
+            OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
+        }
+
     }
 }
