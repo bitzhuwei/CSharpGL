@@ -13,7 +13,11 @@ namespace CSharpGL.Demos
         protected override void DoRender(RenderEventArgs arg)
         {
             // setup uniforms
-
+            var now = DateTime.Now;
+            time = (float)now.Subtract(this.lastTime).TotalMilliseconds;
+            this.lastTime = now;
+            this.SetUniform("time", time);
+           
             base.DoRender(arg);
         }
     }
