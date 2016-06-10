@@ -84,6 +84,11 @@ namespace CSharpGL.Demos
             new byte[]{192,64,0,128},new byte[]{0,0,0,0},new byte[]{192,128,0,64},new byte[]{192,128,64,0}
         };
 
+        /*
+ * initPermTexture(GLuint *texID) - create and load a 2D texture for
+ * a combined index permutation and gradient lookup table.
+ * This texture is used for 2D and 3D noise, both classic and simplex.
+ */
         void initPermTexture(uint[] texID)
         {
             OpenGL.GenTextures(1, texID);
@@ -97,9 +102,9 @@ namespace CSharpGL.Demos
             {
                 var array = (byte*)pixels.Header.ToPointer();
                 for (int i = 0; i < 256; i++)
+                {
                     for (int j = 0; j < 256; j++)
                     {
-
                         int offset = (i * 256 + j) * 4;
                         byte value = (byte)(perm[(j + perm[i]) & 0xFF]);
                         array[offset] = (byte)(grad3[value & 0x0F][0] * 64 + 64);   // Gradient x
@@ -107,6 +112,7 @@ namespace CSharpGL.Demos
                         array[offset + 2] = (byte)(grad3[value & 0x0F][2] * 64 + 64); // Gradient z
                         array[offset + 3] = value;                     // Permuted index
                     }
+                }
             }
 
             // GLFW texture loading functions won't work here - we need GL_NEAREST lookup.
@@ -115,5 +121,7 @@ namespace CSharpGL.Demos
             OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
             pixels.Dispose();
         }
+
+
     }
 }
