@@ -118,10 +118,36 @@ namespace CSharpGL.Demos
             // GLFW texture loading functions won't work here - we need GL_NEAREST lookup.
             OpenGL.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_RGBA,
                 256, 256, 0, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, pixels.Header);
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
+            //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
             pixels.Dispose();
         }
 
+
+        /*
+         * initSimplexTexture(GLuint *texID) - create and load a 1D texture for a
+         * simplex traversal order lookup table. This is used for simplex noise only,
+         * and only for 3D and 4D noise where there are more than 2 simplices.
+         * (3D simplex noise has 6 cases to sort out, 4D simplex noise has 24 cases.)
+         */
+        void initSimplexTexture(uint[] texID)
+        {
+            // Activate a different texture unit (unit 1)
+            OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE1);
+
+            // Generate a unique texture ID
+            OpenGL.GenTextures(1, texID);
+            // Bind the texture to texture unit 1
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_1D, texID[0]);
+
+            // GLFW texture loading functions won't work here - we need GL_NEAREST lookup.
+            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_1D, OpenGL.GL_TEXTURE_MIN_FILTER, (int)OpenGL.GL_NEAREST);
+            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_1D, OpenGL.GL_TEXTURE_MAG_FILTER, (int)OpenGL.GL_NEAREST);
+            OpenGL.TexImage1D(OpenGL.GL_TEXTURE_1D, 0, OpenGL.GL_RGBA,
+                64, 0, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, simplex4);
+
+            // Switch active texture unit back to 0 again
+            OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
+        }
 
     }
 }
