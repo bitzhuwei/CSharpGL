@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// 专为FrameBuffer服务的Texture类型。
     /// </summary>
-    public class FrameBufferTexture
+    public class FramebufferTexture
     {
         private uint[] m_texture_id = new uint[1];
         private uint m_texture_target;

@@ -82,10 +82,10 @@
     <Content Include="readme.md" />
     <Compile Include="FontResource\FontResource.Default.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.cs" />
-    <Compile Include="OpenGLObjects\FrameBuffer\FrameBuffer.cs">
+    <Compile Include="OpenGLObjects\Framebuffer\Framebuffer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="OpenGLObjects\FrameBuffer\FrameBufferTexture.cs" />
+    <Compile Include="OpenGLObjects\Framebuffer\FramebufferTexture.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PointSmoothSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\DepthTestSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\CullFaceSwitch.cs" />
