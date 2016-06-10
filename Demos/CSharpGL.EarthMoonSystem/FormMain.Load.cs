@@ -18,10 +18,12 @@ namespace CSharpGL.EarthMoonSystem
         void FormMain_Load(object sender, EventArgs e)
         {
             {
-                var camera = new Camera(CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
-                camera.Position = new vec3(0, 0, (float)(Earth.revolutionRadius * 1.1));
-                camera.Target = new vec3(0, 0, 0);
-                camera.UpVector = new vec3(0, 1, 0);
+                var camera = new Camera(
+                    new vec3(0, 0, (float)(Earth.revolutionRadius * 1.1)),
+                    new vec3(0, 0, 0),
+                    new vec3(0, 1, 0),
+                    CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
+
                 IPerspectiveViewCamera perspecitve = camera;
                 perspecitve.Near = 1;
                 perspecitve.Far = Earth.revolutionRadius * 5;
