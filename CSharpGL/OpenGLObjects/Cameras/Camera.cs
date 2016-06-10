@@ -12,20 +12,20 @@ namespace CSharpGL
         IPerspectiveViewCamera, IOrthoViewCamera,
         IViewCamera, IPerspectiveCamera, IOrthoCamera
     {
-        /// <summary>
-        /// 默认目标为vec3(0, 0, 0)
-        /// </summary>
-        public static readonly vec3 defaultTarget = new vec3(0, 0, 0);
+        ///// <summary>
+        ///// 默认目标为vec3(0, 0, 0)
+        ///// </summary>
+        //public static readonly vec3 defaultTarget = new vec3(0, 0, -1);
 
-        /// <summary>
-        /// 默认位置为vec3(0, 0, 1)
-        /// </summary>
-        public static readonly vec3 defaultPosition = new vec3(0, 0, 1);
+        ///// <summary>
+        ///// 默认位置为vec3(0, 0, 1)
+        ///// </summary>
+        //public static readonly vec3 defaultPosition = new vec3(0, 0, 0);
 
-        /// <summary>
-        /// 默认上方为vec3(0, 1, 0)
-        /// </summary>
-        public static readonly vec3 defaultUpVector = new vec3(0, 1, 0);
+        ///// <summary>
+        ///// 默认上方为vec3(0, 1, 0)
+        ///// </summary>
+        //public static readonly vec3 defaultUpVector = new vec3(0, 1, 0);
 
         internal Camera() { }
 
@@ -35,8 +35,12 @@ namespace CSharpGL
         /// <param name="cameraType">类型</param>
         /// <param name="width">OpenGL窗口的宽度</param>
         /// <param name="height">OpenGL窗口的高度</param>
-        public Camera(CameraType cameraType, double width, double height)
+        public Camera(vec3 position, vec3 target, vec3 up, CameraType cameraType, double width, double height)
         {
+            this.Position = position;
+            this.Target = target;
+            this.UpVector = up;
+
             this.lastWidth = width;
             this.lastHeight = height;
 
@@ -54,10 +58,6 @@ namespace CSharpGL
             orthoCamera.Top = height / 2 / factor;
             orthoCamera.Near = -1000;
             orthoCamera.Far = 1000;
-
-            this.Target = defaultTarget;
-            this.Position = defaultPosition;
-            this.UpVector = defaultUpVector;
 
             this.CameraType = cameraType;
         }
@@ -109,51 +109,28 @@ namespace CSharpGL
         double lastHeight;
 
         /// <summary>
-        /// Gets or sets the target.
+        /// Gets or sets world coordinate of the camera's target.
         /// </summary>
-        /// <value>
-        /// The target.
-        /// </value>
-        [Description("The target of the camera (the point it's looking at)"), Category("Camera")]
+        [Description("world coordinate of the camera's target(the point it's looking at)."), Category("Camera")]
         public vec3 Target { get; set; }
 
         /// <summary>
-        /// Gets or sets up vector.
+        /// Gets or sets world coordinate of the camera's up vector.
         /// </summary>
         /// <value>
         /// Up vector.
         /// </value>
-        [Description("The up direction, relative to camera. (Controls tilt)."), Category("Camera")]
+        [Description("world coordinate of the camera's up vector."), Category("Camera")]
         public vec3 UpVector { get; set; }
 
         /// <summary>
-        /// The camera position.
-        /// </summary>
-        private vec3 position = new vec3(0, 0, 0);
-
-        /// <summary>
-        /// Every time a camera is used to project, the projection matrix calculated
-        /// and stored here.
-        /// </summary>
-        private mat4 projectionMatrix = mat4.identity();
-
-        ///// <summary>
-        ///// The screen aspect ratio.
-        ///// </summary>
-        //private double aspectRatio = 1.0f;
-
-        /// <summary>
-        /// Gets or sets the position.
+        /// Gets or sets world coordinate of the camera 's position.
         /// </summary>
         /// <value>
         /// The position.
         /// </value>
-        [Description("The position of the camera"), Category("Camera")]
-        public vec3 Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
+        [Description("world coordinate of the camera 's position."), Category("Camera")]
+        public vec3 Position { get; set; }
 
         /// <summary>
         /// camera's perspective type.
