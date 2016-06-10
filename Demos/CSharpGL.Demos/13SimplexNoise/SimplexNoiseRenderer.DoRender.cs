@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CSharpGL.Demos
+{
+    partial class SimplexNoiseRenderer 
+    {
+
+        protected override void DoRender(RenderEventArgs arg)
+        {
+            // setup uniforms
+
+            base.DoRender(arg);
+        }
+    }
+}

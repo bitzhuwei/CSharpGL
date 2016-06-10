@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace CSharpGL.Demos
 {
-    partial class SimplexNoiseRenderer : Renderer
+    partial class SimplexNoiseRenderer 
     {
 
-        public SimplexNoiseRenderer()
-            : base(staticBufferable, staticShaderCodes, staticPropertyNameMap) { }
+        protected override void DisposeUnmanagedResources()
+        {
+            base.DisposeUnmanagedResources();
+        }
 
     }
 }
