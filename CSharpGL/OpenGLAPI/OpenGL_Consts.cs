@@ -571,6 +571,7 @@ namespace CSharpGL
         public const uint GL_TEXTURE_MIN_FILTER = 0x2801;
         public const uint GL_TEXTURE_WRAP_S = 0x2802;
         public const uint GL_TEXTURE_WRAP_T = 0x2803;
+        public const uint GL_GENERATE_MIPMAP = 0x8191;
 
         //   TextureWrapMode
         public const uint GL_CLAMP = 0x2900;
