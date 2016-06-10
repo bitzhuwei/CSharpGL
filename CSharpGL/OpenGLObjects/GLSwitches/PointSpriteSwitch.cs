@@ -17,7 +17,7 @@ namespace CSharpGL
                 BlendingDestinationFactor.OneMinusSourceAlpha));
         }
 
-        int m_ParticleSize = 30;
+        //int m_ParticleSize = 30;
         protected override void SwitchOn()
         {
             int count = this.SwitchList.Count;

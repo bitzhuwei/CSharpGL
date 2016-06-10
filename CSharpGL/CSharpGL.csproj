@@ -82,6 +82,10 @@
     <Content Include="readme.md" />
     <Compile Include="FontResource\FontResource.Default.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.cs" />
+    <Compile Include="OpenGLObjects\FrameBuffer\FrameBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OpenGLObjects\FrameBuffer\FrameBufferTexture.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PointSmoothSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\DepthTestSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\CullFaceSwitch.cs" />
@@ -398,7 +402,6 @@
     <Compile Include="WinformControls\Win32API\Delegates.cs" />
     <Compile Include="WinformControls\Win32API\GLYPHMETRICSFLOAT.cs" />
     <Compile Include="WinformControls\Win32API\PIXELFORMATDESCRIPTOR.cs" />
-    <Compile Include="WinformControls\Win32API\POINTFLOAT.cs" />
     <Compile Include="WinformControls\Win32API\SetWindowPosFlags.cs" />
     <Compile Include="WinformControls\Win32API\Win32.cs" />
     <Compile Include="WinformControls\Win32API\WindowStyles.cs" />
