@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public class Framebuffer
+    /// <summary>
+    /// Create, update and delete a framebuffer object.
+    /// </summary>
+    public partial class Framebuffer : IDisposable
     {
         private static readonly uint[] attachment_id =
         {
@@ -28,11 +31,31 @@ namespace CSharpGL
 			OpenGL.GL_COLOR_ATTACHMENT15_EXT,
         };
 
-        private uint[] m_fbo = new uint[1];
+        private uint[] framebufferId = new uint[1];
+        public uint FramebufferId
+        {
+            get { return framebufferId[0]; }
+        }
+
         private List<FramebufferTexture> m_color = new List<FramebufferTexture>();
         private FramebufferTexture m_depth;
         private int m_width;
         private int m_height;
+
+        private static OpenGL.glGenFramebuffersEXT glGenFramebuffers;
+        private static OpenGL.glBindFramebufferEXT glBindFramebuffer;
+        private static OpenGL.glFramebufferTexture2DEXT glFramebufferTexture2D;
+        private static OpenGL.glCheckFramebufferStatusEXT glCheckFramebufferStatus;
+        private static OpenGL.glDeleteFramebuffersEXT glDeleteFramebuffers;
+
+        static Framebuffer()
+        {
+            glGenFramebuffers = OpenGL.GetDelegateFor<OpenGL.glGenFramebuffersEXT>();
+            glBindFramebuffer = OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>();
+            glFramebufferTexture2D = OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>();
+            glCheckFramebufferStatus = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>();
+            glDeleteFramebuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteFramebuffersEXT>();
+        }
 
         private void setup(FramebufferTexture color0, bool depth)
         {
@@ -51,20 +74,20 @@ namespace CSharpGL
             }
 
             /* Create and bind new FBO */
-            OpenGL.GetDelegateFor<OpenGL.glGenFramebuffersEXT>()(1, m_fbo);
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, m_fbo[0]);
+            glGenFramebuffers(1, framebufferId);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, framebufferId[0]);
 
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>()(OpenGL.GL_FRAMEBUFFER_EXT,
+            glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER_EXT,
                 attachment_id[m_color.Count], OpenGL.GL_TEXTURE_2D, color0.glID(), 0);
             m_color.Add(color0);
 
             if (m_depth != null)
             {
-                OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>()(OpenGL.GL_FRAMEBUFFER_EXT,
+                glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER_EXT,
                     OpenGL.GL_DEPTH_ATTACHMENT_EXT, OpenGL.GL_TEXTURE_2D, m_depth.glID(), 0);
             }
 
-            uint result = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>()(OpenGL.GL_FRAMEBUFFER_EXT);
+            uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER_EXT);
 
             if (result != OpenGL.GL_FRAMEBUFFER_COMPLETE_EXT)
             {
@@ -74,7 +97,7 @@ namespace CSharpGL
             useAllAttachments();
 
             /* Uibind FBO */
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, 0);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, 0);
         }
 
         public Framebuffer(List<FramebufferTexture> color, bool depth)
@@ -100,11 +123,11 @@ namespace CSharpGL
 
         public void addColorAttachment(FramebufferTexture tex)
         {
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, m_fbo[0]);
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>()(OpenGL.GL_FRAMEBUFFER_EXT,
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, framebufferId[0]);
+            glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER_EXT,
                 attachment_id[m_color.Count], tex.glTarget(), tex.glID(), 0);
-            uint result = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>()(OpenGL.GL_FRAMEBUFFER_EXT);
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, 0);
+            uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER_EXT);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, 0);
 
             if (result != OpenGL.GL_FRAMEBUFFER_COMPLETE_EXT)
             {
@@ -113,9 +136,9 @@ namespace CSharpGL
 
             m_color.Add(tex);
 
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, m_fbo[0]);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, framebufferId[0]);
             useAllAttachments();
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, 0);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, 0);
         }
 
         public void addColorAttachment(uint internalfmt, uint format, bool mipmap, bool interpol)
@@ -133,15 +156,15 @@ namespace CSharpGL
             m_color[index] = other.m_color[index];
             other.m_color[index] = tmp;
 
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, m_fbo[0]);
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>()(OpenGL.GL_FRAMEBUFFER_EXT,
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, framebufferId[0]);
+            glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER_EXT,
                 attachment_id[index], m_color[index].glTarget(), m_color[index].glID(), 0);
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, 0);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, 0);
 
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT,other. m_fbo[0]);
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>()(OpenGL.GL_FRAMEBUFFER_EXT,
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, other.framebufferId[0]);
+            glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER_EXT,
                 attachment_id[index], other.m_color[index].glTarget(), other.m_color[index].glID(), 0);
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, 0);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, 0);
 
             ErrorCode error = (ErrorCode)OpenGL.GetError();
             if (error != ErrorCode.NoError)
@@ -157,11 +180,11 @@ namespace CSharpGL
 
         public void bind()
         {
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, m_fbo[0]);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, framebufferId[0]);
         }
         public void release()
         {
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, 0);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, 0);
         }
 
         public void clear(uint bits)
@@ -173,20 +196,20 @@ namespace CSharpGL
 
         public void bindDraw()
         {
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_DRAW_FRAMEBUFFER, m_fbo[0]);
+            glBindFramebuffer(OpenGL.GL_DRAW_FRAMEBUFFER, framebufferId[0]);
         }
         public void releaseDraw()
         {
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_DRAW_FRAMEBUFFER, 0);
+            glBindFramebuffer(OpenGL.GL_DRAW_FRAMEBUFFER, 0);
         }
 
         public void bindRead()
         {
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_READ_FRAMEBUFFER, m_fbo[0]);
+            glBindFramebuffer(OpenGL.GL_READ_FRAMEBUFFER, framebufferId[0]);
         }
         public void releaseRead()
         {
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_READ_FRAMEBUFFER, 0);
+            glBindFramebuffer(OpenGL.GL_READ_FRAMEBUFFER, 0);
         }
 
         public FramebufferTexture color(int i)
@@ -211,27 +234,27 @@ namespace CSharpGL
             }
 
             // rebind the textures
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, m_fbo[0]);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, framebufferId[0]);
             for (int i = 0; i < m_color.Count; ++i)
             {
-                OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>()(OpenGL.GL_FRAMEBUFFER_EXT,
+                glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER_EXT,
                    attachment_id[i], OpenGL.GL_TEXTURE_2D, m_color[i].glID(), 0);
             }
             if (m_depth != null)
             {
-                OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>()(OpenGL.GL_FRAMEBUFFER_EXT,
+                glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER_EXT,
                    OpenGL.GL_DEPTH_ATTACHMENT_EXT, OpenGL.GL_TEXTURE_2D, m_depth.glID(), 0);
             }
             // check status
-            uint result = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>()(OpenGL.GL_FRAMEBUFFER_EXT);
+            uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER_EXT);
             if (result != OpenGL.GL_FRAMEBUFFER_COMPLETE_EXT)
             {
                 throw new Exception("Failed to create frame buffer object!");
             }
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, 0);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, 0);
         }
 
-        public uint glID() { return m_fbo[0]; }
+        public uint glID() { return framebufferId[0]; }
         public int width() { return m_width; }
         public int height() { return m_height; }
     }
