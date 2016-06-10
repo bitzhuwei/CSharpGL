@@ -6,7 +6,7 @@ uniform sampler2D permTexture;
 uniform sampler1D simplexTexture;
 uniform sampler2D gradTexture;
 uniform float time; // Used for texture animation
-
+uniform float partsFactor = 5.0f;
 out vec4 out_Color;
 
 /*
@@ -478,10 +478,10 @@ void main(void)
    */
   //float n = noise(v_texCoord2D * 32.0 + 240.0);
   //float n = snoise(v_texCoord2D * 16.0);
-  //float n = noise(vec3(4.0 * v_texCoord3D.xyz * (2.0 + sin(0.5 * time))));
-  //float n = snoise(vec3(2.0 * v_texCoord3D.xyz * (2.0 + sin(0.5 * time))));
-  //float n = noise(vec4(8.0 * v_texCoord3D.xyz, 0.5 * time));
-  float n = snoise(vec4(5.0 * v_texCoord3D.xyz, 0.5 * time));
+  //float n = noise(vec3(4.0 * v_texCoord3D.xyz * (2.0 + sin(time))));
+  //float n = snoise(vec3(2.0 * v_texCoord3D.xyz * (2.0 + sin(time))));
+  //float n = noise(vec4(8.0 * v_texCoord3D.xyz, time));
+  float n = snoise(vec4(5.0 * v_texCoord3D.xyz, time));
 
   n = n * 0.25 + 0.75;
   out_Color = vec4(n, n, n, 1.0);
