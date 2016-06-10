@@ -62,6 +62,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Build a look at view matrix.
+        /// transform object's coordinate from world's space to camera's space.
         /// </summary>
         /// <param name="eye">The eye.</param>
         /// <param name="center">The center.</param>
