@@ -47,7 +47,7 @@ namespace CSharpGL.Demos
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this);
+                frmPropertyGrid.DisplayObject(this.simplexNoiseRenderer);
                 frmPropertyGrid.Show();
             }
         }
