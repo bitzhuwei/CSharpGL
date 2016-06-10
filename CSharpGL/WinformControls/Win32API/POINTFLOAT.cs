@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 namespace CSharpGL
 {
 
-    /// <summary>
-    /// Point structure used in Win32 interop.
-    /// </summary>
-    struct POINTFLOAT
-    {
-        /// <summary>
-        /// The x coord value.
-        /// </summary>
-        public float x;
+    ///// <summary>
+    ///// Point structure used in Win32 interop.
+    ///// </summary>
+    //struct POINTFLOAT
+    //{
+    //    /// <summary>
+    //    /// The x coord value.
+    //    /// </summary>
+    //    public float x;
 
-        /// <summary>
-        /// The y coord value.
-        /// </summary>
-        public float y;
+    //    /// <summary>
+    //    /// The y coord value.
+    //    /// </summary>
+    //    public float y;
 
-    }
+    //}
 }

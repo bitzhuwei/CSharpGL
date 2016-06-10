@@ -15,7 +15,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="errCode">Specifies a GL or GLU error code.</param>
         /// <returns>The OpenGL/GLU error string.</returns>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         private static unsafe extern sbyte* gluErrorString(uint errCode);
 
@@ -24,11 +24,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="name">Specifies a symbolic constant, one of OpenGL.VERSION, or OpenGL.EXTENSIONS.</param>
         /// <returns>The GLU string.</returns>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         private static unsafe extern sbyte* gluGetString(int name);
 
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluOrtho2D(double left, double right, double bottom, double top);
 
@@ -40,7 +40,7 @@ namespace CSharpGL
         /// <param name="aspect">Apsect Ratio (width of screen divided by height of screen).</param>
         /// <param name="zNear">Near clipping plane (normally 1).</param>
         /// <param name="zFar">Far clipping plane.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluPerspective(double fovy, double aspect, double zNear, double zFar);
 
@@ -53,7 +53,7 @@ namespace CSharpGL
         /// <param name="width">Width of point to test (4 is normal).</param>
         /// <param name="height">Height of point to test (4 is normal).</param>
         /// <param name="viewport">The current viewport.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluPickMatrix(double x, double y, double width, double height, int[] viewport);
 
@@ -70,7 +70,7 @@ namespace CSharpGL
         /// <param name="upx">'Up' Vector X Component.</param>
         /// <param name="upy">'Up' Vector Y Component.</param>
         /// <param name="upz">'Up' Vector Z Component.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluLookAt(double eyex, double eyey, double eyez, double centerx, double centery, double centerz, double upx, double upy, double upz);
 
@@ -86,7 +86,7 @@ namespace CSharpGL
         /// <param name="winx">The window x coord.</param>
         /// <param name="winy">The Window y coord.</param>
         /// <param name="winz">The Window z coord.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluProject(double objx, double objy, double objz, double[] modelMatrix, double[] projMatrix, int[] viewport, double[] winx, double[] winy, double[] winz);
 
@@ -102,7 +102,7 @@ namespace CSharpGL
         /// <param name="objx">The world coordinate.</param>
         /// <param name="objy">The world coordinate.</param>
         /// <param name="objz">The world coordinate.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluUnProject(double winx, double winy, double winz, double[] modelMatrix, double[] projMatrix, int[] viewport, ref double objx, ref double objy, ref double objz);
 
@@ -118,7 +118,7 @@ namespace CSharpGL
         /// <param name="heightout">Specify the height of the destination image.</param>
         /// <param name="typeout">Specifies the data type for dataOut.</param>
         /// <param name="dataout">Specifies a pointer to the destination image.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluScaleImage(int format, int widthin, int heightin, int typein, int[] datain, int widthout, int heightout, int typeout, int[] dataout);
 
@@ -131,7 +131,7 @@ namespace CSharpGL
         /// <param name="format">Specifies the format of the pixel data.</param>
         /// <param name="type">Specifies the data type for data.</param>
         /// <param name="data">Specifies a pointer to the image data in memory.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluBuild1DMipmaps(uint target, uint components, int width, uint format, uint type, IntPtr data);
 
@@ -145,7 +145,7 @@ namespace CSharpGL
         /// <param name="format">Specifies the format of the pixel data.</param>
         /// <param name="type">Specifies the data type for data.</param>
         /// <param name="data">Specifies a pointer to the image data in memory.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluBuild2DMipmaps(uint target, uint components, int width, int height, uint format, uint type, IntPtr data);
 
@@ -153,7 +153,7 @@ namespace CSharpGL
         /// This function creates a new OpenGL Quadric Object.
         /// </summary>
         /// <returns>The pointer to the Quadric Object.</returns>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern IntPtr gluNewQuadric();
 
@@ -161,7 +161,7 @@ namespace CSharpGL
         /// Call this function to delete an OpenGL Quadric object.
         /// </summary>
         /// <param name="quadric"></param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluDeleteQuadric(IntPtr state);
 
@@ -170,7 +170,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="quadricObject">The quadric object.</param>
         /// <param name="normals">The type of normals to generate.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluQuadricNormals(IntPtr quadObject, uint normals);
 
@@ -180,7 +180,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="quadricObject">The quadric object.</param>
         /// <param name="textureCoords">The type of coordinates to generate.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluQuadricTexture(IntPtr quadObject, int textureCoords);
 
@@ -189,7 +189,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="quadricObject">The quadric object.</param>
         /// <param name="orientation">The orientation.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluQuadricOrientation(IntPtr quadObject, int orientation);
 
@@ -198,7 +198,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="quadObject">The quadric object.</param>
         /// <param name="drawStyle">The draw style.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluQuadricDrawStyle(IntPtr quadObject, uint drawStyle);
 
@@ -211,7 +211,7 @@ namespace CSharpGL
         /// <param name="height">Height of cylinder.</param>
         /// <param name="slices">Cylinder slices.</param>
         /// <param name="stacks">Cylinder stacks.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluCylinder(IntPtr qobj, double baseRadius, double topRadius, double height, int slices, int stacks);
 
@@ -223,7 +223,7 @@ namespace CSharpGL
         /// <param name="outerRadius">Specifies the	outer radius of	the disk.</param>
         /// <param name="slices">Specifies the	number of subdivisions around the z axis.</param>
         /// <param name="loops">Specifies the	number of concentric rings about the origin into which the disk is subdivided.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluDisk(IntPtr qobj, double innerRadius, double outerRadius, int slices, int loops);
 
@@ -237,7 +237,7 @@ namespace CSharpGL
         /// <param name="loops">The loops.</param>
         /// <param name="startAngle">Starting angle.</param>
         /// <param name="sweepAngle">Sweep angle.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluPartialDisk(IntPtr qobj, double innerRadius, double outerRadius, int slices, int loops, double startAngle, double sweepAngle);
 
@@ -248,7 +248,7 @@ namespace CSharpGL
         /// <param name="radius">Sphere radius.</param>
         /// <param name="slices">Slices of the sphere.</param>
         /// <param name="stacks">Stakcs of the sphere.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluSphere(IntPtr qobj, double radius, int slices, int stacks);
 
@@ -256,7 +256,7 @@ namespace CSharpGL
         /// Create a tessellation object.
         /// </summary>
         /// <returns>A new GLUtesselator poiner.</returns>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern IntPtr gluNewTess();
 
@@ -264,7 +264,7 @@ namespace CSharpGL
         /// Delete a tesselator object.
         /// </summary>
         /// <param name="tess">The tesselator pointer.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluDeleteTess(IntPtr tess);
 
@@ -273,7 +273,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="tess">Specifies the tessellation object (created with gluNewTess).</param>
         /// <param name="polygonData">Specifies a pointer to user polygon data.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluTessBeginPolygon(IntPtr tess, IntPtr polygonData);
 
@@ -281,7 +281,7 @@ namespace CSharpGL
         /// Delimit a contour description.
         /// </summary>
         /// <param name="tess">Specifies the tessellation object (created with gluNewTess).</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluTessBeginContour(IntPtr tess);
 
@@ -291,7 +291,7 @@ namespace CSharpGL
         /// <param name="tess">Specifies the tessellation object (created with gluNewTess).</param>
         /// <param name="coords">Specifies the location of the vertex.</param>
         /// <param name="data">Specifies an opaque	pointer	passed back to the program with the vertex callback (as specified by gluTessCallback).</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluTessVertex(IntPtr tess, double[] coords, double[] data);
 
@@ -299,7 +299,7 @@ namespace CSharpGL
         /// Delimit a contour description.
         /// </summary>
         /// <param name="tess">Specifies the tessellation object (created with gluNewTess).</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluTessEndContour(IntPtr tess);
 
@@ -307,7 +307,7 @@ namespace CSharpGL
         /// Delimit a polygon description.
         /// </summary>
         /// <param name="tess">Specifies the tessellation object (created with gluNewTess).</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluTessEndPolygon(IntPtr tess);
 
@@ -317,7 +317,7 @@ namespace CSharpGL
         /// <param name="tess">Specifies the tessellation object (created with gluNewTess).</param>
         /// <param name="which">Specifies the property to be set.</param>
         /// <param name="value">Specifies the value of	the indicated property.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluTessProperty(IntPtr tess, int which, double value);
 
@@ -328,7 +328,7 @@ namespace CSharpGL
         /// <param name="x">Specifies the first component of the normal.</param>
         /// <param name="y">Specifies the second component of the normal.</param>
         /// <param name="z">Specifies the third component of the normal.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluTessNormal(IntPtr tess, double x, double y, double z);
         //		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpGL.Delegates.Tesselators.Begin callback);
@@ -350,7 +350,7 @@ namespace CSharpGL
         /// <param name="tess">Specifies the tessellation object (created with gluNewTess).</param>
         /// <param name="which">Specifies the property	to be set.</param>
         /// <param name="value">Specifies the value of	the indicated property.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluGetTessProperty(IntPtr tess, int which, double value);
 
@@ -358,7 +358,7 @@ namespace CSharpGL
         /// This function creates a new glu NURBS renderer object.
         /// </summary>
         /// <returns>A Pointer to the NURBS renderer.</returns>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern IntPtr gluNewNurbsRenderer();
 
@@ -366,7 +366,7 @@ namespace CSharpGL
         /// This function deletes the underlying glu nurbs renderer.
         /// </summary>
         /// <param name="nurbsObject">The pointer to the nurbs object.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluDeleteNurbsRenderer(IntPtr nobj);
 
@@ -374,7 +374,7 @@ namespace CSharpGL
         /// This function begins drawing a NURBS surface.
         /// </summary>
         /// <param name="nurbsObject">The NURBS object.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluBeginSurface(IntPtr nobj);
 
@@ -382,7 +382,7 @@ namespace CSharpGL
         /// This function begins drawing a NURBS curve.
         /// </summary>
         /// <param name="nurbsObject">The NURBS object.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluBeginCurve(IntPtr nobj);
 
@@ -390,7 +390,7 @@ namespace CSharpGL
         /// This function ends the drawing of a NURBS curve.
         /// </summary>
         /// <param name="nurbsObject">The nurbs object.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluEndCurve(IntPtr nobj);
 
@@ -399,7 +399,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="nurbsObject">The nurbs object.</param>
 
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluEndSurface(IntPtr nobj);
 
@@ -407,7 +407,7 @@ namespace CSharpGL
         /// Delimit a NURBS trimming loop definition.
         /// </summary>
         /// <param name="nobj">Specifies the NURBS object (created with gluNewNurbsRenderer).</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluBeginTrim(IntPtr nobj);
 
@@ -415,7 +415,7 @@ namespace CSharpGL
         /// Delimit a NURBS trimming loop definition.
         /// </summary>
         /// <param name="nobj">Specifies the NURBS object (created with gluNewNurbsRenderer).</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluEndTrim(IntPtr nobj);
 
@@ -427,7 +427,7 @@ namespace CSharpGL
         /// <param name="array">Specifies an array containing the curve points.</param>
         /// <param name="stride">Specifies the offset (a number of single-precision floating-point values) between points on the curve.</param>
         /// <param name="type">Specifies the type of curve. Must be either OpenGL.MAP1_TRIM_2 or OpenGL.MAP1_TRIM_3.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluPwlCurve(IntPtr nobj, int count, float array, int stride, uint type);
 
@@ -442,7 +442,7 @@ namespace CSharpGL
         /// <param name="controlPointsArray">The array of control points.</param>
         /// <param name="order">The order of the polynomial.</param>
         /// <param name="type">The type of data to generate.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluNurbsCurve(IntPtr nobj, int nknots, float[] knot, int stride, float[] ctlarray, int order, uint type);
 
@@ -460,7 +460,7 @@ namespace CSharpGL
         /// <param name="sOrder">The order of the s polynomial.</param>
         /// <param name="tOrder">The order of the t polynomial.</param>
         /// <param name="type">The type of data to generate.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluNurbsSurface(IntPtr nobj, int sknot_count, float[] sknot, int tknot_count, float[] tknot, int s_stride, int t_stride, float[] ctlarray, int sorder, int torder, uint type);
 
@@ -471,7 +471,7 @@ namespace CSharpGL
         /// <param name="modelMatrix">Specifies a modelview matrix (as from a glGetFloatv call).</param>
         /// <param name="projMatrix">Specifies a projection matrix (as from a glGetFloatv call).</param>
         /// <param name="viewport">Specifies a viewport (as from a glGetIntegerv call).</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluLoadSamplingMatrices(IntPtr nobj, float[] modelMatrix, float[] projMatrix, int[] viewport);
 
@@ -481,7 +481,7 @@ namespace CSharpGL
         /// <param name="nurbsObject">The object to set the property for.</param>
         /// <param name="property">The property to set.</param>
         /// <param name="value">The new value of the property.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluNurbsProperty(IntPtr nobj, int property, float value);
 
@@ -491,10 +491,10 @@ namespace CSharpGL
         /// <param name="nobj">Specifies the NURBS object (created with gluNewNurbsRenderer).</param>
         /// <param name="property">Specifies the property whose value is to be fetched.</param>
         /// <param name="value">Specifies a pointer to the location into which the value of the named property is written.</param>
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluGetNurbsProperty(IntPtr nobj, int property, float value);
-        [Obsolete(obsoleteGluDll, error)]
+        //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void IntPtrCallback(IntPtr nobj, int which, IntPtr Callback);
 
