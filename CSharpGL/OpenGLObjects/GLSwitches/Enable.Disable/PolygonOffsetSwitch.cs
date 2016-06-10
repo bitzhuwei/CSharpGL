@@ -7,7 +7,6 @@ namespace CSharpGL
 {
     public class PolygonOffsetSwitch : EnableSwitch
     {
-        byte originalEnabled;
 
         public PolygonOffsetSwitch() : this(PolugonOffset.Fill, true) { }
 
