@@ -108,8 +108,11 @@ namespace CSharpGL
             else
             {
                 ErrorCode error = (ErrorCode)OpenGL.GetError();
-                throw new Exception(string.Format(
-                    "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId));
+                if (error != ErrorCode.NoError)
+                {
+                    throw new Exception(string.Format(
+                        "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId));
+                }
             }
             OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
@@ -141,8 +144,11 @@ namespace CSharpGL
                 else
                 {
                     ErrorCode error = (ErrorCode)OpenGL.GetError();
-                    Debug.WriteLine(string.Format(
-                        "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId));
+                    if (error != ErrorCode.NoError)
+                    {
+                        Debug.WriteLine(string.Format(
+                            "Error:[{0}] MapBufferRange failed: buffer ID: [{1}]", error, this.positionBufferPtr.BufferId));
+                    }
                 }
                 OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
             }
