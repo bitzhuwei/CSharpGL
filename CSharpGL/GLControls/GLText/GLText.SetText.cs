@@ -108,7 +108,6 @@ namespace CSharpGL
             {
                 GlyphPosition position = array[i];
 
-                const int factor = 1;
                 position.leftUp.x -= currentWidth / 2.0f;
                 //position.leftUp.x /= currentWidth / factor;
                 position.leftDown.x -= currentWidth / 2.0f;
