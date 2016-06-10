@@ -82,6 +82,36 @@ namespace CSharpGL.Demos
   new byte[]{128,64,0,192},new byte[]{0,0,0,0},new byte[]{0,0,0,0},new byte[]{0,0,0,0},
   new byte[]{192,64,0,128},new byte[]{0,0,0,0},new byte[]{192,128,0,64},new byte[]{192,128,64,0}};
 
+        void initPermTexture(uint[] texID)
+        {
+            OpenGL.GenTextures(1, texID);
+            // Bind the texture to texture unit 0
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, texID[0]);
+            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, (int)OpenGL.GL_NEAREST);
+            OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, (int)OpenGL.GL_NEAREST);
 
+            var pixels = new UnmanagedArray<byte>(256 * 256 * 4);
+            unsafe
+            {
+                var array = (byte*)pixels.Header.ToPointer();
+                for (int i = 0; i < 256; i++)
+                    for (int j = 0; j < 256; j++)
+                    {
+
+                        int offset = (i * 256 + j) * 4;
+                        byte value = (byte)(perm[(j + perm[i]) & 0xFF]);
+                        array[offset] = (byte)(grad3[value & 0x0F][0] * 64 + 64);   // Gradient x
+                        array[offset + 1] = (byte)(grad3[value & 0x0F][1] * 64 + 64); // Gradient y
+                        array[offset + 2] = (byte)(grad3[value & 0x0F][2] * 64 + 64); // Gradient z
+                        array[offset + 3] = value;                     // Permuted index
+                    }
+            }
+
+            // GLFW texture loading functions won't work here - we need GL_NEAREST lookup.
+            OpenGL.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_RGBA,
+                256, 256, 0, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, pixels.Header);
+            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
+            pixels.Dispose();
+        }
     }
 }
