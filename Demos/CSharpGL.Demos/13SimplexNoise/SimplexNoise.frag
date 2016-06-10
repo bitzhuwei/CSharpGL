@@ -478,10 +478,10 @@ void main(void)
    */
   //float n = noise(v_texCoord2D * 32.0 + 240.0);
   //float n = snoise(v_texCoord2D * 16.0);
-  //float n = noise(vec3(4.0 * v_texCoord3D.xyz * (2.0 + sin(time))));
-  //float n = snoise(vec3(2.0 * v_texCoord3D.xyz * (2.0 + sin(time))));
-  //float n = noise(vec4(8.0 * v_texCoord3D.xyz, time));
-  float n = snoise(vec4(5.0 * v_texCoord3D.xyz, time));
+  //float n = noise(vec3(partsFactor * v_texCoord3D.xyz * (2.0 + sin(time))));
+  //float n = snoise(vec3(partsFactor * v_texCoord3D.xyz * (2.0 + sin(time))));
+  //float n = noise(vec4(partsFactor * v_texCoord3D.xyz, time));
+  float n = snoise(vec4(partsFactor * v_texCoord3D.xyz, time));
 
   n = n * 0.25 + 0.75;
   out_Color = vec4(n, n, n, 1.0);
