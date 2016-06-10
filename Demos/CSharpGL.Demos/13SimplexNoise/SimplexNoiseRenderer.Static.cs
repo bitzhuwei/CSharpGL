@@ -16,8 +16,8 @@ namespace CSharpGL.Demos
             new ShaderCode(File.ReadAllText(@"13SimplexNoise\SimplexNoise.frag"), ShaderType.FragmentShader),
         };
         static readonly PropertyNameMap staticPropertyNameMap = new PropertyNameMap(
-            new string[] { "in_Position", "in_Color", },
-            new string[] { Sphere.strPosition, Sphere.strColor });
+            new string[] { "in_Position", },
+            new string[] { Sphere.strPosition, });
 
         static readonly int[] perm = new int[256] {151,160,137,91,90,15,
             131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,99,37,240,21,10,23,
