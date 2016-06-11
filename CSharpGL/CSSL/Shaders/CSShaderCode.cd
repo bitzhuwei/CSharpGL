@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="CSharpGL.CSSL.CSShaderCode" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAABIIRAwEAAEAIAIAAAAAAAgAACACAIAAAAAQ=</HashCode>
+      <FileName>CSSL\Shaders\CSShaderCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.CSSL.FragmentCSShaderCode" Collapsed="true">
+    <Position X="3" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAgAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CSSL\Shaders\FragmentCSShaderCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.CSSL.DemoFrag" Collapsed="true">
+    <Position X="3" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAICAAgAAAEAAAAAAAAAAAAAAAAAAIAAAAAAAAAAQ=</HashCode>
+      <FileName>CSSL\Shaders\FragmentCSShaderCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.CSSL.GeometryCSShaderCode" Collapsed="true">
+    <Position X="5.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAQAAAAAAAAAACAAQEAAAQAAAAAAAQA=</HashCode>
+      <FileName>CSSL\Shaders\GeometryCSShaderCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.CSSL.VertexCSShaderCode" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAAAAAAAA=</HashCode>
+      <FileName>CSSL\Shaders\VertexCSShaderCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSharpGL.CSSL.DemoVert" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAgCAAAAAAAAQAAgAAAQAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>CSSL\Shaders\VertexCSShaderCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

@@ -21,6 +21,8 @@ It provides maths class for matrix and vectors.
 It provide useful utilities.
 
 # release notes:
+## v1.0.5.0:
+1. CSSL(C-Sharp-Shading-Language) supports coding GLSL shader in C#.
 ## v1.0.4.1:
 1. integrate all uniform variables and array variables inheriting from UniformVariable.
 ## v1.0.4.0:
