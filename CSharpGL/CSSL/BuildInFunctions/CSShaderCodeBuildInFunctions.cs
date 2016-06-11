@@ -96,20 +96,20 @@ namespace CSharpGL.CSSL
         #region others
 
 
-        public vec4 texture1D(sampler1D simplexTexture, double sindex) { return null; }
-        public vec4 texture2D(sampler2D simplexTexture, vec2 sindex) { return null; }
-        public vec4 texture3D(sampler3D simplexTexture, vec3 sindex) { return null; }
-        public float step(double value, double offsets) { return 0.0f; }
-        public vec2 step(double value, vec2 offsets) { return null; }
-        public vec3 step(double value, vec3 offsets) { return null; }
-        public vec4 step(double value, vec4 offsets) { return null; }
-        public vec2 fract(vec2 value) { return null; }
-        public vec3 fract(vec3 value) { return null; }
-        public vec4 fract(vec4 value) { return null; }
-        public float floor(double value) { return 0.0f; }
-        public vec2 floor(vec2 value) { return null; }
-        public vec3 floor(vec3 value) { return null; }
-        public vec4 floor(vec4 value) { return null; }
+        public static vec4 texture1D(sampler1D simplexTexture, double sindex) { return null; }
+        public static vec4 texture2D(sampler2D simplexTexture, vec2 sindex) { return null; }
+        public static vec4 texture3D(sampler3D simplexTexture, vec3 sindex) { return null; }
+        public static float step(double value, double offsets) { return 0.0f; }
+        public static vec2 step(double value, vec2 offsets) { return null; }
+        public static vec3 step(double value, vec3 offsets) { return null; }
+        public static vec4 step(double value, vec4 offsets) { return null; }
+        public static vec2 fract(vec2 value) { return null; }
+        public static vec3 fract(vec3 value) { return null; }
+        public static vec4 fract(vec4 value) { return null; }
+        public static float floor(double value) { return 0.0f; }
+        public static vec2 floor(vec2 value) { return null; }
+        public static vec3 floor(vec3 value) { return null; }
+        public static vec4 floor(vec4 value) { return null; }
         public static float mix(double x, double y, double a) { return 0.0f; }
         public static vec2 mix(vec2 x, vec2 y, float a) { return null; }
         public static vec3 mix(vec3 x, vec3 y, float a) { return null; }
