@@ -185,6 +185,39 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 asin(vec4 radians) { return null; }
 
+        /// <summary>
+        /// Arc cosine. Returns an angle whose cosine is x.
+        /// The range of values returned by this function is
+        /// [0, π]. Results are undefined if |x| > 1.
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static float acos(double radians) { return 0.0f; }
+        /// <summary>
+        /// Arc cosine. Returns an angle whose cosine is x.
+        /// The range of values returned by this function is
+        /// [0, π]. Results are undefined if |x| > 1.
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static vec2 acos(vec2 radians) { return null; }
+        /// <summary>
+        /// Arc cosine. Returns an angle whose cosine is x.
+        /// The range of values returned by this function is
+        /// [0, π]. Results are undefined if |x| > 1.
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static vec3 acos(vec3 radians) { return null; }
+        /// <summary>
+        /// Arc cosine. Returns an angle whose cosine is x.
+        /// The range of values returned by this function is
+        /// [0, π]. Results are undefined if |x| > 1.
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static vec4 acos(vec4 radians) { return null; }
+
 
     }
 }
