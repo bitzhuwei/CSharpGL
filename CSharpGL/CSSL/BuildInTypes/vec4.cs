@@ -10,10 +10,10 @@ namespace CSharpGL.CSSL
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]
     public class vec4
     {
-        internal float a0;
-        internal float a1;
-        internal float a2;
-        internal float a3;
+        internal double a0;
+        internal double a1;
+        internal double a2;
+        internal double a3;
 
         #region compositions
 
@@ -1074,12 +1074,12 @@ namespace CSharpGL.CSSL
             return null;
         }
 
-        public static vec4 operator +(vec4 lhs, float rhs)
+        public static vec4 operator +(vec4 lhs, double rhs)
         {
             return null;
         }
 
-        public static vec4 operator -(vec4 lhs, float rhs)
+        public static vec4 operator -(vec4 lhs, double rhs)
         {
             return null;
         }
@@ -1089,12 +1089,12 @@ namespace CSharpGL.CSSL
             return null;
         }
 
-        public static vec4 operator *(vec4 self, float s)
+        public static vec4 operator *(vec4 self, double s)
         {
             return null;
         }
 
-        public static vec4 operator *(float lhs, vec4 rhs)
+        public static vec4 operator *(double lhs, vec4 rhs)
         {
             return null;
         }
@@ -1104,7 +1104,7 @@ namespace CSharpGL.CSSL
             return null;
         }
 
-        public static vec4 operator /(vec4 lhs, float rhs)
+        public static vec4 operator /(vec4 lhs, double rhs)
         {
             return null;
         }

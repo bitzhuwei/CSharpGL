@@ -85,7 +85,7 @@ namespace CSharpGL.CSSL
             return null;
         }
 
-        public static mat2 operator *(mat2 lhs, float s)
+        public static mat2 operator *(mat2 lhs, double s)
         {
             return null;
         }

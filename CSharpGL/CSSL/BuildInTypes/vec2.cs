@@ -9,8 +9,8 @@ namespace CSharpGL.CSSL
     /// </summary>
     public class vec2
     {
-        internal float a0;
-        internal float a1;
+        //internal double a0;
+        //internal double a1;
 
         #region compositions
 
@@ -63,7 +63,7 @@ namespace CSharpGL.CSSL
             return null;
         }
 
-        public static vec2 operator +(vec2 lhs, float rhs)
+        public static vec2 operator +(vec2 lhs, double rhs)
         {
             return null;
         }
@@ -73,17 +73,17 @@ namespace CSharpGL.CSSL
             return null;
         }
 
-        public static vec2 operator -(vec2 lhs, float rhs)
+        public static vec2 operator -(vec2 lhs, double rhs)
         {
             return null;
         }
 
-        public static vec2 operator *(vec2 self, float s)
+        public static vec2 operator *(vec2 self, double s)
         {
             return null;
         }
 
-        public static vec2 operator *(float lhs, vec2 rhs)
+        public static vec2 operator *(double lhs, vec2 rhs)
         {
             return null;
         }
@@ -93,7 +93,7 @@ namespace CSharpGL.CSSL
             return null;
         }
 
-        public static vec2 operator /(vec2 lhs, float rhs)
+        public static vec2 operator /(vec2 lhs, double rhs)
         {
             return null;
         }
