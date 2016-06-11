@@ -26,6 +26,10 @@ namespace CSharpShadingLanguage.SimplexNoise
 
         public override void main()
         {
+            float n = snoise(vec4(partsFactor * v_texCoord3D.xyz, time));
+
+            n = n * 0.25f + 0.75f;
+            out_Color = vec4(n, n, n, 1.0);
         }
 
         /*
