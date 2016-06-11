@@ -454,6 +454,5 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 atanh(vec4 x) { return null; }
 
-
     }
 }
