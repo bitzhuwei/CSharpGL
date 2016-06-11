@@ -73,5 +73,38 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 exp(vec4 x) { return null; }
 
+        /// <summary>
+        /// Returns the natural logarithm of x, i.e., returns
+        /// the value y, which satisfies the equation x = e^y.
+        /// Results are undefined if x <= 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float log(double x) { return 0.0f; }
+        /// <summary>
+        /// Returns the natural logarithm of x, i.e., returns
+        /// the value y, which satisfies the equation x = e^y.
+        /// Results are undefined if x <= 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 log(vec2 x) { return null; }
+        /// <summary>
+        /// Returns the natural logarithm of x, i.e., returns
+        /// the value y, which satisfies the equation x = e^y.
+        /// Results are undefined if x <= 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 log(vec3 x) { return null; }
+        /// <summary>
+        /// Returns the natural logarithm of x, i.e., returns
+        /// the value y, which satisfies the equation x = e^y.
+        /// Results are undefined if x <= 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 log(vec4 x) { return null; }
+
     }
 }
