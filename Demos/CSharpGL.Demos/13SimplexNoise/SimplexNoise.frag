@@ -5,7 +5,9 @@ in vec3 v_texCoord3D;
 uniform sampler2D permTexture;
 uniform sampler1D simplexTexture;
 uniform sampler2D gradTexture;
-uniform float time; // Used for texture animation
+uniform float time;
+uniform float rainDrop = 1.0f;
+
 out vec4 out_Color;
 
 //
@@ -115,7 +117,7 @@ float snoise(vec3 v)
 void main(void)
 {
   // Perturb the texcoords with three components of noise
-  vec3 uvw = v_texCoord3D + 0.1*vec3(snoise(v_texCoord3D + vec3(0.0, 0.0, time)),
+  vec3 uvw = v_texCoord3D + 0.1*vec3(snoise(v_texCoord3D * rainDrop + vec3(0.0, 0.0, time)),
     snoise(v_texCoord3D + vec3(43.0, 17.0, time)),
 	snoise(v_texCoord3D + vec3(-17.0, -43.0, time)));
   // Six components of noise in a fractal sum

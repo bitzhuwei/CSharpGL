@@ -9,14 +9,28 @@ namespace CSharpGL.Demos
 {
     partial class SimplexNoiseRenderer 
     {
-        private float timeSpeed = 1.0f;
-        public float TimeSpeed
+        private float timeElapsingSpeed = 1.0f;
+        public float TimeElapsingSpeed
         {
-            get { return timeSpeed; }
-            set { timeSpeed = value; }
+            get { return timeElapsingSpeed; }
+            set { timeElapsingSpeed = value; }
         }
 
-        float time;
+        private float rainDrop = 1.0f;
+        public float RainDrop
+        {
+            get { return rainDrop; }
+            set { rainDrop = value; }
+        }
+
+        private float granularity = 1.0f;
+        public float Granularity
+        {
+            get { return granularity; }
+            set { granularity = value; }
+        }
+
+        private float time;
 
         protected override void DoRender(RenderEventArgs arg)
         {
@@ -25,7 +39,9 @@ namespace CSharpGL.Demos
             //float time = (float)now.Subtract(this.lastTime).TotalMilliseconds;
             this.lastTime = now;
             time += 0.005f;
-            this.SetUniform("time", time * timeSpeed);
+            this.SetUniform("time", time * timeElapsingSpeed);
+            this.SetUniform("rainDrop", this.rainDrop);
+            this.SetUniform("granularity", this.granularity);
 
             mat4 projection = arg.Camera.GetProjectionMat4();
             mat4 view = arg.Camera.GetViewMat4();
