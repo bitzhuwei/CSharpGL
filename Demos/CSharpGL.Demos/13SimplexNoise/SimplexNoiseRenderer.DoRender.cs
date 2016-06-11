@@ -24,7 +24,7 @@ namespace CSharpGL.Demos
             var now = DateTime.Now;
             //float time = (float)now.Subtract(this.lastTime).TotalMilliseconds;
             this.lastTime = now;
-            time += 0.1f;
+            time += 0.02f;
             this.SetUniform("time", time * timeSpeed);
 
             mat4 projection = arg.Camera.GetProjectionMat4();
