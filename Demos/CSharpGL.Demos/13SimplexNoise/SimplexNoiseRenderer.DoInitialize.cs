@@ -19,17 +19,17 @@ namespace CSharpGL.Demos
         {
             base.DoInitialize();
 
-            initPermTexture(this.permTextureID);
-            initSimplexTexture(this.simplexTextureID);
-            initGradTexture(this.gradTextureID);
+            //initPermTexture(this.permTextureID);
+            //initSimplexTexture(this.simplexTextureID);
+            //initGradTexture(this.gradTextureID);
 
-            lastTime = DateTime.Now;
-            this.SetUniform("permTexture", new samplerValue(
-                BindTextureTarget.Texture2D, permTextureID[0], OpenGL.GL_TEXTURE0));
-            this.SetUniform("simplexTexture", new samplerValue(
-                BindTextureTarget.Texture1D, simplexTextureID[0], OpenGL.GL_TEXTURE1));
-            this.SetUniform("gradTexture", new samplerValue(
-                BindTextureTarget.Texture2D, gradTextureID[0], OpenGL.GL_TEXTURE2));
+            //lastTime = DateTime.Now;
+            //this.SetUniform("permTexture", new samplerValue(
+            //    BindTextureTarget.Texture2D, permTextureID[0], OpenGL.GL_TEXTURE0));
+            //this.SetUniform("simplexTexture", new samplerValue(
+            //    BindTextureTarget.Texture1D, simplexTextureID[0], OpenGL.GL_TEXTURE1));
+            //this.SetUniform("gradTexture", new samplerValue(
+            //    BindTextureTarget.Texture2D, gradTextureID[0], OpenGL.GL_TEXTURE2));
 
         }
 
