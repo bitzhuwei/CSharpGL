@@ -164,5 +164,34 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 log2(vec4 x) { return null; }
 
+        /// <summary>
+        /// Returns the positive square root of x. Results
+        /// are undefined if x < 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float sqrt(double x) { return 0.0f; }
+        /// <summary>
+        /// Returns the positive square root of x. Results
+        /// are undefined if x < 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 sqrt(vec2 x) { return null; }
+        /// <summary>
+        /// Returns the positive square root of x. Results
+        /// are undefined if x < 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 sqrt(vec3 x) { return null; }
+        /// <summary>
+        /// Returns the positive square root of x. Results
+        /// are undefined if x < 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 sqrt(vec4 x) { return null; }
+
     }
 }
