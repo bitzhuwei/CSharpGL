@@ -126,5 +126,32 @@ namespace CSharpGL.CSSL
         /// <param name="radians"></param>
         /// <returns></returns>
         public static vec4 cos(vec4 radians) { return null; }
+
+        /// <summary>
+        /// The standard trigonometric tangent function.
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static float tan(double radians) { return 0.0f; }
+        /// <summary>
+        /// The standard trigonometric tangent function.
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static vec2 tan(vec2 radians) { return null; }
+        /// <summary>
+        /// The standard trigonometric tangent function.
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static vec3 tan(vec3 radians) { return null; }
+        /// <summary>
+        /// The standard trigonometric tangent function.
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static vec4 tan(vec4 radians) { return null; }
+
+
     }
 }
