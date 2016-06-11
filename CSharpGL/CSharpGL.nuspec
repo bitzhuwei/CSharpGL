@@ -13,6 +13,6 @@
 	<summary>$description$</summary>
     <releaseNotes>release notes.</releaseNotes>
     <copyright>Copyright 2016</copyright>
-    <tags>OpenGL C#</tags>
+    <tags>OpenGL C# GLSL Shader 3D WinForms Graphics glm UI PropertyGrid TTF</tags>
   </metadata>
 </package>
