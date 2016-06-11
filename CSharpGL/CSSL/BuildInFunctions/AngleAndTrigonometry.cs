@@ -152,6 +152,39 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 tan(vec4 radians) { return null; }
 
+        /// <summary>
+        /// Arc sine. Returns an angle whose sine is x.
+        /// The range of values returned by this function
+        /// is [-π / 2, π / 2]. Results are undefined if |x| > 1.
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static float asin(double radians) { return 0.0f; }
+        /// <summary>
+        /// Arc sine. Returns an angle whose sine is x.
+        /// The range of values returned by this function
+        /// is [-π / 2, π / 2]. Results are undefined if |x| > 1.
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static vec2 asin(vec2 radians) { return null; }
+        /// <summary>
+        /// Arc sine. Returns an angle whose sine is x.
+        /// The range of values returned by this function
+        /// is [-π / 2, π / 2]. Results are undefined if |x| > 1.
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static vec3 asin(vec3 radians) { return null; }
+        /// <summary>
+        /// Arc sine. Returns an angle whose sine is x.
+        /// The range of values returned by this function
+        /// is [-π / 2, π / 2]. Results are undefined if |x| > 1.
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static vec4 asin(vec4 radians) { return null; }
+
 
     }
 }
