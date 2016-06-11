@@ -5,7 +5,7 @@ in vec3 in_Position;
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
-uniform float granularity = 1.0f;
+uniform float granularity = 4.0f;
 
 out vec3 v_texCoord3D;
 
