@@ -8,7 +8,7 @@ GLSL是类似C语言的。我发现几乎所有的GLSL里出现的语法形式�
 在:open_file_folder:CSSL定义的类型基础上，你就可以直接用C#来写GLSL代码了。（只有很少的几点不同，到时候你会立即明白的。）
 # 规定
 为了便于使用和懒化开发，我设计了如下几条规定：
-GLSL文件名以*.cssl.cs为扩展名。这样方便System.IO.File识别。
+GLSL文件名以".cssl.cs"或".main.cs"扩展名。这样方便System.IO.File识别。
 
 # Dilemma
 There is no good dev-environment for coding GLSL shader. No IntelliSense, no Code Completion, no Automatic Composing, nothing. I usually write GLSL in notepad++. It's a difficult task which is why I don't like writing GLSL.
