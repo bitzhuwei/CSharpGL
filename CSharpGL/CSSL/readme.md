@@ -5,7 +5,7 @@ CSSL是C-Sharp-Shading-Language的缩写。
 CSSL的目的：使开发者可以直接用C#书写GLSL代码。  
 # 如何使用
 GLSL是类似C语言的。我发现几乎所有的GLSL里出现的语法形式都可以用C#以相同的方式写出来。那么用C#来写“GLSL代码”，之后再自动地转换为纯粹的GLSL代码，岂非一大快事？！
-在open_file_folder:CSSL定义的类型基础上，你就可以直接用C#来写GLSL代码了。（只有很少的几点不同，到时候你会立即明白的。）
+在:open_file_folder:CSSL定义的类型基础上，你就可以直接用C#来写GLSL代码了。（只有很少的几点不同，到时候你会立即明白的。）
 # 规定
 为了便于使用和懒化开发，我设计了如下几条规定：
 GLSL文件名以*.cssl.cs为扩展名。这样方便System.IO.File识别。
