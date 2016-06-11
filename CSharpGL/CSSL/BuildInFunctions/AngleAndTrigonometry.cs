@@ -263,5 +263,39 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 atan(vec4 y, vec4 x) { return null; }
 
+        /// <summary>
+        /// Arc tangent. Returns an angle whose tangent is
+        /// y_over_x. The range of values returned by this
+        /// function is [-π / 2, π / 2]
+        /// </summary>
+        /// <param name="y_over_x"></param>
+        /// <returns></returns>
+        public static float atan(double y_over_x) { return 0.0f; }
+        /// <summary>
+        /// Arc tangent. Returns an angle whose tangent is
+        /// y_over_x. The range of values returned by this
+        /// function is [-π / 2, π / 2]
+        /// </summary>
+        /// <param name="y_over_x"></param>
+        /// <returns></returns>
+        public static vec2 atan(vec2 y_over_x) { return null; }
+        /// <summary>
+        /// Arc tangent. Returns an angle whose tangent is
+        /// y_over_x. The range of values returned by this
+        /// function is [-π / 2, π / 2]
+        /// </summary>
+        /// <param name="y_over_x"></param>
+        /// <returns></returns>
+        public static vec3 atan(vec3 y_over_x) { return null; }
+        /// <summary>
+        /// Arc tangent. Returns an angle whose tangent is
+        /// y_over_x. The range of values returned by this
+        /// function is [-π / 2, π / 2]
+        /// </summary>
+        /// <param name="y_over_x"></param>
+        /// <returns></returns>
+        public static vec4 atan(vec4 y_over_x) { return null; }
+
+
     }
 }
