@@ -396,6 +396,35 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 asinh(vec4 x) { return null; }
 
+        /// <summary>
+        /// Arc hyperbolic cosine. Returns the non-negative
+        /// inverse of cosh. Results are undefined if x < 1.0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float acosh(double x) { return 0.0f; }
+        /// <summary>
+        /// Arc hyperbolic cosine. Returns the non-negative
+        /// inverse of cosh. Results are undefined if x < 1.0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 acosh(vec2 x) { return null; }
+        /// <summary>
+        /// Arc hyperbolic cosine. Returns the non-negative
+        /// inverse of cosh. Results are undefined if x < 1.0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 acosh(vec3 x) { return null; }
+        /// <summary>
+        /// Arc hyperbolic cosine. Returns the non-negative
+        /// inverse of cosh. Results are undefined if x < 1.0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 acosh(vec4 x) { return null; }
+
 
     }
 }
