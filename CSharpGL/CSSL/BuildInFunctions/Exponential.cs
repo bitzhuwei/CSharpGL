@@ -193,5 +193,34 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 sqrt(vec4 x) { return null; }
 
+        /// <summary>
+        /// Returns the reciprocal of the positive square
+        /// root of x. Results are undefined if x <= 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float inversesqrt(double x) { return 0.0f; }
+        /// <summary>
+        /// Returns the reciprocal of the positive square
+        /// root of x. Results are undefined if x <= 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 inversesqrt(vec2 x) { return null; }
+        /// <summary>
+        /// Returns the reciprocal of the positive square
+        /// root of x. Results are undefined if x <= 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 inversesqrt(vec3 x) { return null; }
+        /// <summary>
+        /// Returns the reciprocal of the positive square
+        /// root of x. Results are undefined if x <= 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 inversesqrt(vec4 x) { return null; }
+
     }
 }
