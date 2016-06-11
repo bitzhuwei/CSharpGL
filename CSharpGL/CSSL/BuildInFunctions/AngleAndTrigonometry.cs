@@ -371,6 +371,31 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 tanh(vec4 x) { return null; }
 
+        /// <summary>
+        /// Arc hyperbolic sine. Returns the inverse of sinh.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float asinh(double x) { return 0.0f; }
+        /// <summary>
+        /// Arc hyperbolic sine. Returns the inverse of sinh.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 asinh(vec2 x) { return null; }
+        /// <summary>
+        /// Arc hyperbolic sine. Returns the inverse of sinh.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 asinh(vec3 x) { return null; }
+        /// <summary>
+        /// Arc hyperbolic sine. Returns the inverse of sinh.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 asinh(vec4 x) { return null; }
+
 
     }
 }
