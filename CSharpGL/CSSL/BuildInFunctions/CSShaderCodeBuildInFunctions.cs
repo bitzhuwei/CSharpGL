@@ -14,29 +14,29 @@ namespace CSharpGL.CSSL
 
         #region build-in functions
 
-        public static vec2 vec2(float v0) { return null; }
-        public static vec2 vec2(float v1, float v2) { return null; }
+        public static vec2 vec2(double v0) { return null; }
+        public static vec2 vec2(double v1, double v2) { return null; }
         public static vec2 vec2(vec2 v1) { return null; }
         public static vec2 vec2(vec3 v1) { return null; }
         public static vec2 vec2(vec4 v1) { return null; }
-        public static vec3 vec3(float v0) { return null; }
-        public static vec3 vec3(float v1, float v2, float v3) { return null; }
-        public static vec3 vec3(vec2 v1, float v2) { return null; }
-        public static vec3 vec3(float v1, vec2 v2) { return null; }
+        public static vec3 vec3(double v0) { return null; }
+        public static vec3 vec3(double v1, double v2, double v3) { return null; }
+        public static vec3 vec3(vec2 v1, double v2) { return null; }
+        public static vec3 vec3(double v1, vec2 v2) { return null; }
         public static vec3 vec3(vec3 v1) { return null; }
         public static vec3 vec3(vec4 v1) { return null; }
-        public static vec4 vec4(float v0) { return null; }
-        public static vec4 vec4(float v1, float v2, float v3, float v4) { return null; }
-        public static vec4 vec4(vec2 v2, float v3, float v4) { return null; }
+        public static vec4 vec4(double v0) { return null; }
+        public static vec4 vec4(double v1, double v2, double v3, double v4) { return null; }
+        public static vec4 vec4(vec2 v2, double v3, double v4) { return null; }
         public static vec4 vec4(vec2 v2, vec2 v4) { return null; }
-        public static vec4 vec4(float v1, vec2 v3, float v4) { return null; }
-        public static vec4 vec4(float v1, float v2, vec2 v4) { return null; }
-        public static vec4 vec4(vec3 v3, float v4) { return null; }
-        public static vec4 vec4(float v1, vec3 v4) { return null; }
+        public static vec4 vec4(double v1, vec2 v3, double v4) { return null; }
+        public static vec4 vec4(double v1, double v2, vec2 v4) { return null; }
+        public static vec4 vec4(vec3 v3, double v4) { return null; }
+        public static vec4 vec4(double v1, vec3 v4) { return null; }
         public static vec4 vec4(vec4 v1) { return null; }
 
 
-        public static vec4 texture(sampler1D texture, float uv) { return null; }
+        public static vec4 texture(sampler1D texture, double uv) { return null; }
         public static vec4 texture(sampler2D texture, vec2 uv) { return null; }
         public static vec4 texture(sampler3D texture, vec3 uv) { return null; }
 
@@ -48,9 +48,9 @@ namespace CSharpGL.CSSL
         public static float dot(vec3 v1, vec3 v2) { return 0.0f; }
         public static float dot(vec4 v1, vec4 v2) { return 0.0f; }
 
-        public static float max(float a, float b) { return 0.0f; }
+        public static float max(double a, double b) { return 0.0f; }
 
-        public static float pow(float a, float b) { return 0.0f; }
+        public static float pow(double a, double b) { return 0.0f; }
 
         #endregion
 
@@ -71,7 +71,7 @@ namespace CSharpGL.CSSL
         /// <param name="value"></param>
         /// <returns></returns>
         [BuildInFunction("float")]
-        public static float float__(float value) { return 0.0f; }
+        public static float float__(double value) { return 0.0f; }
 
         /// <summary>
         /// int()
@@ -79,7 +79,7 @@ namespace CSharpGL.CSSL
         /// <param name="value"></param>
         /// <returns></returns>
         [BuildInFunction("int")]
-        public static float int__(float value) { return 0; }
+        public static float int__(double value) { return 0; }
 
         /// <summary>
         /// uint()
@@ -87,9 +87,9 @@ namespace CSharpGL.CSSL
         /// <param name="value"></param>
         /// <returns></returns>
         [BuildInFunction("uint")]
-        public static float uint__(float value) { return 0; }
+        public static float uint__(double value) { return 0; }
 
-        public static mat4 mat4(float value) { return null; }
+        public static mat4 mat4(double value) { return null; }
 
         #endregion matrix functions
 
@@ -111,9 +111,9 @@ namespace CSharpGL.CSSL
         public static vec3 floor(vec3 value) { return null; }
         public static vec4 floor(vec4 value) { return null; }
         public static float mix(double x, double y, double a) { return 0.0f; }
-        public static vec2 mix(vec2 x, vec2 y, float a) { return null; }
-        public static vec3 mix(vec3 x, vec3 y, float a) { return null; }
-        public static vec4 mix(vec4 x, vec4 y, float a) { return null; }
+        public static vec2 mix(vec2 x, vec2 y, double a) { return null; }
+        public static vec3 mix(vec3 x, vec3 y, double a) { return null; }
+        public static vec4 mix(vec4 x, vec4 y, double a) { return null; }
 
         public static float clamp(double x, double minVal, double maxVal) { return 0.0f; }
         public static vec2 clamp(vec2 x, double minVal, double maxVal) { return null; }
