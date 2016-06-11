@@ -24,7 +24,6 @@ namespace CSharpGL.EarthMoonSystem
         private sampler2D earthColorTexture;
 
         private PickableRenderer sunRenderer;
-        private sampler2D sunColorTexture;
 
         private Renderer eclipticRenderer;
 
@@ -69,6 +68,7 @@ namespace CSharpGL.EarthMoonSystem
         }
 
         Random random = new Random();
+        private float sunTimeElapsed;
         //float randomTime = 0.0f;
 
         public bool RenderSun { get; set; }
@@ -113,6 +113,8 @@ namespace CSharpGL.EarthMoonSystem
                 this.sunRenderer.SetUniform("projectionMatrix", projection);
                 this.sunRenderer.SetUniform("viewMatrix", view);
                 this.sunRenderer.SetUniform("modelMatrix", model);
+                this.sunRenderer.SetUniform("time", sunTimeElapsed);
+                sunTimeElapsed += 0.01f;
                 //randomTime += (float)random.NextDouble() / 1000.0f;
                 //this.sunRenderer.SetUniform("time",randomTime);
                 //this.sunRenderer.ShaderProgram.Bind();

@@ -72,7 +72,6 @@ namespace CSharpGL.EarthMoonSystem
                 shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Sun.frag"), ShaderType.FragmentShader);
                 var map = new PropertyNameMap();
                 map.Add("inPosition", CelestialBody.strPosition);
-                map.Add("inUV", CelestialBody.strUV);
                 var sunRenderer = new PickableRenderer(bufferable, shaderCodes, map, CelestialBody.strPosition);
                 sunRenderer.Initialize();
                 sunRenderer.Name = "Sun 太阳";
@@ -110,20 +109,12 @@ namespace CSharpGL.EarthMoonSystem
                 this.earthColorTexture = earthColorTexture;
             }
             {
-                var sunColorTexture = new sampler2D();
-                var bitmap = new Bitmap(@"Images\sun-4096-2048.png");
-                sunColorTexture.Initialize(bitmap);
-                bitmap.Dispose();
-                this.sunColorTexture = sunColorTexture;
-            }
-            {
                 this.eclipticRenderer.SetUniform("color", new vec4(1.0f, 1.0f, 0.0f, 0.1f));
                 this.eclipticRenderer.SwitchList.Add(new PolygonModeSwitch(PolygonModes.Points));
             }
             {
                 this.earthRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.earthColorTexture.Id, OpenGL.GL_TEXTURE0));
                 //this.earthRenderer.SwitchList.Add(new CullFaceSwitch());
-                this.sunRenderer.SetUniform("colorTexture", new samplerValue(BindTextureTarget.Texture2D, this.sunColorTexture.Id, OpenGL.GL_TEXTURE0));
                 //this.sunRenderer.SwitchList.Add(new CullFaceSwitch());
             }
             {
