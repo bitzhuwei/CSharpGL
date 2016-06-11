@@ -39,15 +39,14 @@ namespace CSharpGL.Demos
             set { granularity = value; }
         }
 
-        private float time;
+        DateTime lastTime;
+        //private float time;
 
         protected override void DoRender(RenderEventArgs arg)
         {
             // setup uniforms
             var now = DateTime.Now;
-            //float time = (float)now.Subtract(this.lastTime).TotalMilliseconds;
-            this.lastTime = now;
-            time += 0.005f;
+            float time = (float)now.Subtract(this.lastTime).TotalMilliseconds * 0.001f;
             this.SetUniform("time", time * timeElapsingSpeed);
             this.SetUniform("rainDrop", this.rainDrop);
             this.SetUniform("granularity", this.granularity);
