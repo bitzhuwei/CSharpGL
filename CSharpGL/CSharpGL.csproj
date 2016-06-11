@@ -83,6 +83,7 @@
     <Content Include="readme.md" />
     <Compile Include="CSSL\BuildInFunction.cs" />
     <Compile Include="CSSL\BuildInFunctions\AngleAndTrigonometry.cs" />
+    <Compile Include="CSSL\BuildInFunctions\Exponential.cs" />
     <Compile Include="CSSL\Dump2FileAttribute.cs" />
     <Compile Include="CSSL\GLSLVersionAttribute.cs" />
     <Compile Include="CSSL\BuildInTypes\mat2.cs" />
