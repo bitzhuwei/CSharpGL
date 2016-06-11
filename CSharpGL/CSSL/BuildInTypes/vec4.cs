@@ -1074,15 +1074,15 @@ namespace CSharpGL.CSSL
             return null;
         }
 
-        //public static vec4 operator +(vec4 lhs, float rhs)
-        //{
-        //    return new vec4(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs, lhs.w + rhs);
-        //}
+        public static vec4 operator +(vec4 lhs, float rhs)
+        {
+            return null;
+        }
 
-        //public static vec4 operator -(vec4 lhs, float rhs)
-        //{
-        //    return new vec4(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs, lhs.w - rhs);
-        //}
+        public static vec4 operator -(vec4 lhs, float rhs)
+        {
+            return null;
+        }
 
         public static vec4 operator -(vec4 lhs, vec4 rhs)
         {

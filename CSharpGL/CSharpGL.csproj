@@ -151,6 +151,7 @@
     </Compile>
     <Compile Include="4PropertyGrid\UITypeEditors\GLSwithEditor.cs" />
     <Compile Include="Utilities\DoubleHelper.cs" />
+    <Compile Include="Utilities\OpenFolderHelper.cs" />
     <Compile Include="WinformControls\GLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>

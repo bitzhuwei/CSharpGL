@@ -166,20 +166,20 @@ namespace CSharpGL.CSSL
             return null;
         }
 
-        //public static vec3 operator +(vec3 lhs, float rhs)
-        //{
-        //    return new vec3(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs);
-        //}
+        public static vec3 operator +(vec3 lhs, float rhs)
+        {
+            return null;
+        }
 
         public static vec3 operator -(vec3 lhs, vec3 rhs)
         {
             return null;
         }
 
-        //public static vec3 operator -(vec3 lhs, float rhs)
-        //{
-        //    return new vec3(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs);
-        //}
+        public static vec3 operator -(vec3 lhs, float rhs)
+        {
+            return null;
+        }
 
         public static vec3 operator *(vec3 self, float s)
         {

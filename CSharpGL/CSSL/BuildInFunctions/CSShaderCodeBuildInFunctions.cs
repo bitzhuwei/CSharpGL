@@ -14,15 +14,18 @@ namespace CSharpGL.CSSL
 
         #region build-in functions
 
+        public static vec2 vec2(float v0) { return null; }
         public static vec2 vec2(float v1, float v2) { return null; }
         public static vec2 vec2(vec2 v1) { return null; }
         public static vec2 vec2(vec3 v1) { return null; }
         public static vec2 vec2(vec4 v1) { return null; }
+        public static vec3 vec3(float v0) { return null; }
         public static vec3 vec3(float v1, float v2, float v3) { return null; }
         public static vec3 vec3(vec2 v1, float v2) { return null; }
         public static vec3 vec3(float v1, vec2 v2) { return null; }
         public static vec3 vec3(vec3 v1) { return null; }
         public static vec3 vec3(vec4 v1) { return null; }
+        public static vec4 vec4(float v0) { return null; }
         public static vec4 vec4(float v1, float v2, float v3, float v4) { return null; }
         public static vec4 vec4(vec2 v2, float v3, float v4) { return null; }
         public static vec4 vec4(vec2 v2, vec2 v4) { return null; }
@@ -92,15 +95,30 @@ namespace CSharpGL.CSSL
 
         #region others
 
-        public static float mix(float x, float y, float a) { return 0.0f; }
+
+        public vec4 texture1D(sampler1D simplexTexture, double sindex) { return null; }
+        public vec4 texture2D(sampler2D simplexTexture, vec2 sindex) { return null; }
+        public vec4 texture3D(sampler3D simplexTexture, vec3 sindex) { return null; }
+        public float step(double value, double offsets) { return 0.0f; }
+        public vec2 step(double value, vec2 offsets) { return null; }
+        public vec3 step(double value, vec3 offsets) { return null; }
+        public vec4 step(double value, vec4 offsets) { return null; }
+        public vec2 fract(vec2 value) { return null; }
+        public vec3 fract(vec3 value) { return null; }
+        public vec4 fract(vec4 value) { return null; }
+        public float floor(double value) { return 0.0f; }
+        public vec2 floor(vec2 value) { return null; }
+        public vec3 floor(vec3 value) { return null; }
+        public vec4 floor(vec4 value) { return null; }
+        public static float mix(double x, double y, double a) { return 0.0f; }
         public static vec2 mix(vec2 x, vec2 y, float a) { return null; }
         public static vec3 mix(vec3 x, vec3 y, float a) { return null; }
         public static vec4 mix(vec4 x, vec4 y, float a) { return null; }
 
-        public static float clamp(float x, float minVal, float maxVal){ return 0.0f; }
-        public static vec2 clamp(vec2 x, float minVal, float maxVal) { return null; }
-        public static vec3 clamp(vec3 x, float minVal, float maxVal) { return null; }
-        public static vec4 clamp(vec4 x, float minVal, float maxVal) { return null; }
+        public static float clamp(double x, double minVal, double maxVal) { return 0.0f; }
+        public static vec2 clamp(vec2 x, double minVal, double maxVal) { return null; }
+        public static vec3 clamp(vec3 x, double minVal, double maxVal) { return null; }
+        public static vec4 clamp(vec4 x, double minVal, double maxVal) { return null; }
 
         public static float length(vec2 v) { return 0.0f; }
         public static float length(vec3 v) { return 0.0f; }
