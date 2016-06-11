@@ -12,5 +12,5 @@ out vec3 v_texCoord3D;
 void main(void) {
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0);
 
-	v_texCoord3D = in_Position * granularity;
+	v_texCoord3D = normalize(in_Position) * granularity;
 }
