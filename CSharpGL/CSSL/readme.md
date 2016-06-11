@@ -20,4 +20,4 @@ GLSL is similar to C. I find it that almost every grammar format in GLSL appears
 You can write GLSL in C# using types and machamism provided in :open_file_folder:CSSL. (Only a few differences which are easy to understand.)
 # Rules
 Some rules are suggested here for future convenience.
-* CSSL files uses ".css.cs" as extension name, which is easy for file filter.
+* CSSL files uses ".cssl.cs" or ".main.cs" as extension name, which is easy for file filter.
