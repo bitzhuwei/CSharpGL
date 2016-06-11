@@ -82,8 +82,15 @@
     <Content Include="OpenGLObjects\VertexBufferObjects\readme.md" />
     <Content Include="readme.md" />
     <Compile Include="CSSL\BuildInFunction.cs" />
-    <Compile Include="CSSL\BuildInFunctions\AngleAndTrigonometry.cs" />
-    <Compile Include="CSSL\BuildInFunctions\Exponential.cs" />
+    <Compile Include="CSSL\BuildInFunctions\AngleAndTrigonometryFunctions.cs" />
+    <Compile Include="CSSL\BuildInFunctions\NoiseFunctions.cs" />
+    <Compile Include="CSSL\BuildInFunctions\FragmentProcessingFunctions.cs" />
+    <Compile Include="CSSL\BuildInFunctions\TextureAccessFunctions.cs" />
+    <Compile Include="CSSL\BuildInFunctions\VectorRelationalFunctions.cs" />
+    <Compile Include="CSSL\BuildInFunctions\MatrixFunctions.cs" />
+    <Compile Include="CSSL\BuildInFunctions\GeometricFunctions.cs" />
+    <Compile Include="CSSL\BuildInFunctions\CommonFunctions.cs" />
+    <Compile Include="CSSL\BuildInFunctions\ExponentialFunctions.cs" />
     <Compile Include="CSSL\Dump2FileAttribute.cs" />
     <Compile Include="CSSL\GLSLVersionAttribute.cs" />
     <Compile Include="CSSL\BuildInTypes\mat2.cs" />

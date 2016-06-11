@@ -11,7 +11,7 @@ namespace CSharpGL.CSSL
     /// fragment shader共有的内容。
     /// 想写一个fragment shader，就继承此类型吧。
     /// </summary>
-    public abstract class FragmentCSShaderCode : CSShaderCode
+    public abstract partial class FragmentCSShaderCode : CSShaderCode
     {
 
         protected vec4 gl_FragCoord { get { return null; } private set { } }

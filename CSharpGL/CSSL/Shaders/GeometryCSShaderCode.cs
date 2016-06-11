@@ -10,7 +10,7 @@ namespace CSharpGL.CSSL
     /// Geometry shader invocations take a single Primitive as input and may output zero or more primitives.
     /// Geometry shader输入：一个primitive，输出：0或多个primitive。
     /// </summary>
-    public abstract class GeometryCSShaderCode : CSShaderCode
+    public abstract partial class GeometryCSShaderCode : CSShaderCode
     {
 
         protected class gl_inElement
