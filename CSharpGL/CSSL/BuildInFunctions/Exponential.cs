@@ -106,5 +106,63 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 log(vec4 x) { return null; }
 
+        /// <summary>
+        /// Returns 2 raised to the x power, i.e., 2^x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float exp2(double x) { return 0.0f; }
+        /// <summary>
+        /// Returns 2 raised to the x power, i.e., 2^x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 exp2(vec2 x) { return null; }
+        /// <summary>
+        /// Returns 2 raised to the x power, i.e., 2^x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 exp2(vec3 x) { return null; }
+        /// <summary>
+        /// Returns 2 raised to the x power, i.e., 2^x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 exp2(vec4 x) { return null; }
+
+        /// <summary>
+        /// Returns the base 2 log of x, i.e., returns the
+        /// value y, which satisfies the equation x = 2^y.
+        /// Results are undefined if x <= 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float log2(double x) { return 0.0f; }
+        /// <summary>
+        /// Returns the base 2 log of x, i.e., returns the
+        /// value y, which satisfies the equation x = 2^y.
+        /// Results are undefined if x <= 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 log2(vec2 x) { return null; }
+        /// <summary>
+        /// Returns the base 2 log of x, i.e., returns the
+        /// value y, which satisfies the equation x = 2^y.
+        /// Results are undefined if x <= 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 log2(vec3 x) { return null; }
+        /// <summary>
+        /// Returns the base 2 log of x, i.e., returns the
+        /// value y, which satisfies the equation x = 2^y.
+        /// Results are undefined if x <= 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 log2(vec4 x) { return null; }
+
     }
 }
