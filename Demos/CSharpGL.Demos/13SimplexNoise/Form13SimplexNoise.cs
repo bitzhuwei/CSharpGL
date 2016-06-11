@@ -34,7 +34,8 @@ namespace CSharpGL.Demos
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
             // 天蓝色背景
-            OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+            //OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+            OpenGL.ClearColor(0, 0, 0, 0);
         }
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

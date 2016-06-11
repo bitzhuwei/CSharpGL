@@ -61,7 +61,7 @@
             this.ClientSize = new System.Drawing.Size(746, 485);
             this.Controls.Add(this.glCanvas1);
             this.Name = "Form13SimplexNoise";
-            this.Text = "Form01Simple";
+            this.Text = "Form13SimplexNoise";
             this.Load += new System.EventHandler(this.Form01Renderer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
