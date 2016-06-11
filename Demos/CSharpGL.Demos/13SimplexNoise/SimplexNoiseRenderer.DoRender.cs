@@ -39,6 +39,13 @@ namespace CSharpGL.Demos
             set { granularity = value; }
         }
 
+        private float brightness = 1.0f;
+        public float Brightness
+        {
+            get { return brightness; }
+            set { brightness = value; }
+        }
+
         DateTime lastTime;
         //private float time;
 
@@ -50,6 +57,7 @@ namespace CSharpGL.Demos
             this.SetUniform("time", time * timeElapsingSpeed);
             this.SetUniform("rainDrop", this.rainDrop);
             this.SetUniform("granularity", this.granularity);
+            this.SetUniform("brightness", this.brightness);
 
             mat4 projection = arg.Camera.GetProjectionMat4();
             mat4 view = arg.Camera.GetViewMat4();
