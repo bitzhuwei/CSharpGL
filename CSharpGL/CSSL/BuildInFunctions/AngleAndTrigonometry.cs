@@ -322,29 +322,54 @@ namespace CSharpGL.CSSL
         public static vec4 sinh(vec4 x) { return null; }
 
         /// <summary>
-        /// Hyperbolic cosine.. Returns (e^x + e^(-x)) / 2.
+        /// Hyperbolic cosine. Returns (e^x + e^(-x)) / 2.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static float cosh(double x) { return 0.0f; }
         /// <summary>
-        /// Hyperbolic cosine.. Returns (e^x + e^(-x)) / 2.
+        /// Hyperbolic cosine. Returns (e^x + e^(-x)) / 2.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec2 cosh(vec2 x) { return null; }
         /// <summary>
-        /// Hyperbolic cosine.. Returns (e^x + e^(-x)) / 2.
+        /// Hyperbolic cosine. Returns (e^x + e^(-x)) / 2.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec3 cosh(vec3 x) { return null; }
         /// <summary>
-        /// Hyperbolic cosine.. Returns (e^x + e^(-x)) / 2.
+        /// Hyperbolic cosine. Returns (e^x + e^(-x)) / 2.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec4 cosh(vec4 x) { return null; }
+
+        /// <summary>
+        /// Hyperbolic tangent. Returns (e^x - e^(-x)) / (e^x + e^(-x)).
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float tanh(double x) { return 0.0f; }
+        /// <summary>
+        /// Hyperbolic tangent. Returns (e^x - e^(-x)) / (e^x + e^(-x)).
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 tanh(vec2 x) { return null; }
+        /// <summary>
+        /// Hyperbolic tangent. Returns (e^x - e^(-x)) / (e^x + e^(-x)).
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 tanh(vec3 x) { return null; }
+        /// <summary>
+        /// Hyperbolic tangent. Returns (e^x - e^(-x)) / (e^x + e^(-x)).
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 tanh(vec4 x) { return null; }
 
 
     }
