@@ -11,5 +11,6 @@ namespace CSharpGL.CSSL
     /// </summary>
     public abstract partial class FragmentCSShaderCode
     {
+        //TODO: add build in functions
     }
 }
