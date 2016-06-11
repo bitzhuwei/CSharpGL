@@ -50,8 +50,6 @@ namespace CSharpGL.CSSL
 
         public static float max(double a, double b) { return 0.0f; }
 
-        public static float pow(double a, double b) { return 0.0f; }
-
         #endregion
 
         #region matrix functions
