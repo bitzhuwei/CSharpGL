@@ -69,6 +69,35 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 degrees(vec4 radians) { return null; }
 
+        /// <summary>
+        /// The standard trigonometric sine function.
+        /// The values returned by this function are in the range [–1,1].
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static float sin(double radians) { return 0.0f; }
+        /// <summary>
+        /// The standard trigonometric sine function.
+        /// The values returned by this function are in the range [–1,1].
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static vec2 sin(vec2 radians) { return null; }
+        /// <summary>
+        /// The standard trigonometric sine function.
+        /// The values returned by this function are in the range [–1,1].
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static vec3 sin(vec3 radians) { return null; }
+        /// <summary>
+        /// The standard trigonometric sine function.
+        /// The values returned by this function are in the range [–1,1].
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static vec4 sin(vec4 radians) { return null; }
+
 
     }
 }
