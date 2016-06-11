@@ -320,5 +320,32 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec4 sinh(vec4 x) { return null; }
+
+        /// <summary>
+        /// Hyperbolic cosine.. Returns (e^x + e^(-x)) / 2.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float cosh(double x) { return 0.0f; }
+        /// <summary>
+        /// Hyperbolic cosine.. Returns (e^x + e^(-x)) / 2.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 cosh(vec2 x) { return null; }
+        /// <summary>
+        /// Hyperbolic cosine.. Returns (e^x + e^(-x)) / 2.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 cosh(vec3 x) { return null; }
+        /// <summary>
+        /// Hyperbolic cosine.. Returns (e^x + e^(-x)) / 2.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 cosh(vec4 x) { return null; }
+
+
     }
 }
