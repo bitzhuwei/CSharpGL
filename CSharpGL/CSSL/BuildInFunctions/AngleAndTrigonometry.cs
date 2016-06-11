@@ -218,6 +218,50 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 acos(vec4 radians) { return null; }
 
+        /// <summary>
+        /// Arc tangent. Returns an angle whose tangent is
+        /// y/x. The signs of x and y determine what
+        /// quadrant the angle is in. The range of values
+        /// returned by this function is [-π, π]. Results are
+        /// undefined if x and y are both 0.
+        /// </summary>
+        /// <param name="y"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float atan(double y, double x) { return 0.0f; }
+        /// <summary>
+        /// Arc tangent. Returns an angle whose tangent is
+        /// y/x. The signs of x and y determine what
+        /// quadrant the angle is in. The range of values
+        /// returned by this function is [-π, π]. Results are
+        /// undefined if x and y are both 0.
+        /// </summary>
+        /// <param name="y"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 atan(vec2 y, vec2 x) { return null; }
+        /// <summary>
+        /// Arc tangent. Returns an angle whose tangent is
+        /// y/x. The signs of x and y determine what
+        /// quadrant the angle is in. The range of values
+        /// returned by this function is [-π, π]. Results are
+        /// undefined if x and y are both 0.
+        /// </summary>
+        /// <param name="y"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 atan(vec3 y, vec3 x) { return null; }
+        /// <summary>
+        /// Arc tangent. Returns an angle whose tangent is
+        /// y/x. The signs of x and y determine what
+        /// quadrant the angle is in. The range of values
+        /// returned by this function is [-π, π]. Results are
+        /// undefined if x and y are both 0.
+        /// </summary>
+        /// <param name="y"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 atan(vec4 y, vec4 x) { return null; }
 
     }
 }
