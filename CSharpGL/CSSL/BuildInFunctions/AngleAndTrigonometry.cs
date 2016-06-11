@@ -296,6 +296,29 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 atan(vec4 y_over_x) { return null; }
 
-
+        /// <summary>
+        /// Hyperbolic sine. Returns (e^x - e^(-x)) / 2.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float sinh(double x) { return 0.0f; }
+        /// <summary>
+        /// Hyperbolic sine. Returns (e^x - e^(-x)) / 2.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 sinh(vec2 x) { return null; }
+        /// <summary>
+        /// Hyperbolic sine. Returns (e^x - e^(-x)) / 2.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 sinh(vec3 x) { return null; }
+        /// <summary>
+        /// Hyperbolic sine. Returns (e^x - e^(-x)) / 2.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 sinh(vec4 x) { return null; }
     }
 }
