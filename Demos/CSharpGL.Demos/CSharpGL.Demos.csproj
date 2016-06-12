@@ -274,10 +274,10 @@
     <None Include="06ImageProcessing\ImageProcessing.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="02OrderIndependentTransparency\build_lists.frag">
+    <None Include="shaders\build_lists.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="02OrderIndependentTransparency\build_lists.vert">
+    <None Include="shaders\build_lists.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="04SimpleCompute\computeReset.comp">
@@ -307,10 +307,10 @@
     <None Include="03OrderDependentTransparency\Transparent.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="02OrderIndependentTransparency\resolve_lists.frag">
+    <None Include="shaders\resolve_lists.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="02OrderIndependentTransparency\resolve_lists.vert">
+    <None Include="shaders\resolve_lists.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\Simple.frag">
