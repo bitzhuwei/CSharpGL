@@ -46,6 +46,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="14ShaderToy\Form14ShaderToy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="14ShaderToy\Form14ShaderToy.Designer.cs">
+      <DependentUpon>Form14ShaderToy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="14ShaderToy\Form14ShaderToy.FormLoad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="14ShaderToy\Form14ShaderToy.MouseDownMoveUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="14ShaderToy\ShaderToy.cssl.cs" />
+    <Compile Include="14ShaderToy\ShaderToy.main.cs" />
+    <Compile Include="14ShaderToy\ShaderToyRenderer.cs" />
+    <Compile Include="14ShaderToy\ShaderToyRenderer.Dispose.cs" />
+    <Compile Include="14ShaderToy\ShaderToyRenderer.DoInitialize.cs" />
+    <Compile Include="14ShaderToy\ShaderToyRenderer.DoRender.cs" />
+    <Compile Include="14ShaderToy\ShaderToyRenderer.Static.cs" />
     <Compile Include="shaders\Simple.cssl.cs" />
     <Compile Include="shaders\Simple.main.cs" />
     <Compile Include="13SimplexNoise\Form13SimplexNoise.cs">
@@ -254,6 +273,13 @@
     <Compile Include="02OrderIndependentTransparency\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="14ShaderToy\readme.md" />
+    <None Include="14ShaderToy\ShaderToy.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="14ShaderToy\ShaderToy.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="shaders\Simple.config" />
     <None Include="13SimplexNoise\readme.md" />
     <None Include="13SimplexNoise\SimplexNoise.frag">
@@ -321,6 +347,9 @@
     </None>
     <EmbeddedResource Include="00GLCanvas\Form00GLCanvas.resx">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="14ShaderToy\Form14ShaderToy.resx">
+      <DependentUpon>Form14ShaderToy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="13SimplexNoise\Form13SimplexNoise.resx">
       <DependentUpon>Form13SimplexNoise.cs</DependentUpon>
