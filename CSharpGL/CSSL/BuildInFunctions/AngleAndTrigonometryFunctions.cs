@@ -71,28 +71,28 @@ namespace CSharpGL.CSSL
 
         /// <summary>
         /// The standard trigonometric sine function.
-        /// The values returned by this function are in the range [–1,1].
+        /// The values returned by this function are in the range [-1,1].
         /// </summary>
         /// <param name="radians"></param>
         /// <returns></returns>
         public static float sin(double radians) { return 0.0f; }
         /// <summary>
         /// The standard trigonometric sine function.
-        /// The values returned by this function are in the range [–1,1].
+        /// The values returned by this function are in the range [-1,1].
         /// </summary>
         /// <param name="radians"></param>
         /// <returns></returns>
         public static vec2 sin(vec2 radians) { return null; }
         /// <summary>
         /// The standard trigonometric sine function.
-        /// The values returned by this function are in the range [–1,1].
+        /// The values returned by this function are in the range [-1,1].
         /// </summary>
         /// <param name="radians"></param>
         /// <returns></returns>
         public static vec3 sin(vec3 radians) { return null; }
         /// <summary>
         /// The standard trigonometric sine function.
-        /// The values returned by this function are in the range [–1,1].
+        /// The values returned by this function are in the range [-1,1].
         /// </summary>
         /// <param name="radians"></param>
         /// <returns></returns>
@@ -100,28 +100,28 @@ namespace CSharpGL.CSSL
 
         /// <summary>
         /// The standard trigonometric cosine function.
-        /// The values returned by this function are in the range [–1,1].
+        /// The values returned by this function are in the range [-1,1].
         /// </summary>
         /// <param name="radians"></param>
         /// <returns></returns>
         public static float cos(double radians) { return 0.0f; }
         /// <summary>
         /// The standard trigonometric cosine function.
-        /// The values returned by this function are in the range [–1,1].
+        /// The values returned by this function are in the range [-1,1].
         /// </summary>
         /// <param name="radians"></param>
         /// <returns></returns>
         public static vec2 cos(vec2 radians) { return null; }
         /// <summary>
         /// The standard trigonometric cosine function.
-        /// The values returned by this function are in the range [–1,1].
+        /// The values returned by this function are in the range [-1,1].
         /// </summary>
         /// <param name="radians"></param>
         /// <returns></returns>
         public static vec3 cos(vec3 radians) { return null; }
         /// <summary>
         /// The standard trigonometric cosine function.
-        /// The values returned by this function are in the range [–1,1].
+        /// The values returned by this function are in the range [-1,1].
         /// </summary>
         /// <param name="radians"></param>
         /// <returns></returns>

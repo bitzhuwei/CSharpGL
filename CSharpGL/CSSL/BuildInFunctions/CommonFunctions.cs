@@ -11,32 +11,31 @@ namespace CSharpGL.CSSL
     /// </summary>
     public abstract partial class CSShaderCode
     {
-        //TODO: add build in functions
-        //TODO: replace – with -
+        //TODO: replace - with -
         /// <summary>
         /// Returns x if x >= 0; otherwise, it
-        /// returns –x.
+        /// returns -x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static float abs(double x) { return 0.0f; }
         /// <summary>
         /// Returns x if x >= 0; otherwise, it
-        /// returns –x.
+        /// returns -x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec2 abs(vec2 x) { return null; }
         /// <summary>
         /// Returns x if x >= 0; otherwise, it
-        /// returns –x.
+        /// returns -x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec3 abs(vec3 x) { return null; }
         /// <summary>
         /// Returns x if x >= 0; otherwise, it
-        /// returns –x.
+        /// returns -x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
@@ -44,28 +43,28 @@ namespace CSharpGL.CSSL
 
         /// <summary>
         /// Returns x if x >= 0; otherwise, it
-        /// returns –x.
+        /// returns -x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static int abs(int x) { return 0; }
         /// <summary>
         /// Returns x if x >= 0; otherwise, it
-        /// returns –x.
+        /// returns -x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static ivec2 abs(ivec2 x) { return null; }
         /// <summary>
         /// Returns x if x >= 0; otherwise, it
-        /// returns –x.
+        /// returns -x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static ivec3 abs(ivec3 x) { return null; }
         /// <summary>
         /// Returns x if x >= 0; otherwise, it
-        /// returns –x.
+        /// returns -x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
@@ -306,32 +305,32 @@ namespace CSharpGL.CSSL
         public static vec4 ceil(vec4 x) { return null; }
 
         /// <summary>
-        /// Returns x – floor (x).
+        /// Returns x - floor (x).
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static float fract(double x) { return 0.0f; }
         /// <summary>
-        /// Returns x – floor (x).
+        /// Returns x - floor (x).
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec2 fract(vec2 x) { return null; }
         /// <summary>
-        /// Returns x – floor (x).
+        /// Returns x - floor (x).
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec3 fract(vec3 x) { return null; }
         /// <summary>
-        /// Returns x – floor (x).
+        /// Returns x - floor (x).
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec4 fract(vec4 x) { return null; }
 
         /// <summary>
-        /// Modulus. Returns x – y 􀀍 floor (x/y)
+        /// Modulus. Returns x - y 􀀍 floor (x/y)
         /// for each component in x using the
         /// floating-point value y.
         /// </summary>
@@ -340,7 +339,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static float mod(double x, double y) { return 0.0f; }
         /// <summary>
-        /// Modulus. Returns x – y 􀀍 floor (x/y)
+        /// Modulus. Returns x - y 􀀍 floor (x/y)
         /// for each component in x using the
         /// floating-point value y.
         /// </summary>
@@ -349,7 +348,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec2 mod(vec2 x, double y) { return null; }
         /// <summary>
-        /// Modulus. Returns x – y 􀀍 floor (x/y)
+        /// Modulus. Returns x - y 􀀍 floor (x/y)
         /// for each component in x using the
         /// floating-point value y.
         /// </summary>
@@ -358,7 +357,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec3 mod(vec3 x, double y) { return null; }
         /// <summary>
-        /// Modulus. Returns x – y 􀀍 floor (x/y)
+        /// Modulus. Returns x - y 􀀍 floor (x/y)
         /// for each component in x using the
         /// floating-point value y.
         /// </summary>
@@ -368,7 +367,7 @@ namespace CSharpGL.CSSL
         public static vec4 mod(vec4 x, double y) { return null; }
 
         /// <summary>
-        /// Modulus. Returns x – y 􀀍 floor (x/y)
+        /// Modulus. Returns x - y 􀀍 floor (x/y)
         /// for each component in x using the
         /// corresponding component of y.
         /// </summary>
@@ -377,7 +376,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec2 mod(vec2 x, vec2 y) { return null; }
         /// <summary>
-        /// Modulus. Returns x – y 􀀍 floor (x/y)
+        /// Modulus. Returns x - y 􀀍 floor (x/y)
         /// for each component in x using the
         /// corresponding component of y.
         /// </summary>
@@ -386,7 +385,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec3 mod(vec3 x, vec3 y) { return null; }
         /// <summary>
-        /// Modulus. Returns x – y 􀀍 floor (x/y)
+        /// Modulus. Returns x - y 􀀍 floor (x/y)
         /// for each component in x using the
         /// corresponding component of y.
         /// </summary>
@@ -1006,7 +1005,7 @@ namespace CSharpGL.CSSL
         public static uvec4 clamp(uvec4 x, uvec4 minVal, uvec4 maxVal) { return null; }
 
         /// <summary>
-        /// Returns x 􀀍􀀃(1.0 – a) + y 􀀍􀀃a, i.e., the
+        /// Returns x 􀀍􀀃(1.0 - a) + y 􀀍􀀃a, i.e., the
         /// linear blend of x and y using the
         /// floating-point value a. The value for
         /// a is not restricted to the range [0,1].
@@ -1017,7 +1016,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static float mix(double x, double y, double a) { return 0.0f; }
         /// <summary>
-        /// Returns x 􀀍􀀃(1.0 – a) + y 􀀍􀀃a, i.e., the
+        /// Returns x 􀀍􀀃(1.0 - a) + y 􀀍􀀃a, i.e., the
         /// linear blend of x and y using the
         /// floating-point value a. The value for
         /// a is not restricted to the range [0,1].
@@ -1028,7 +1027,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec2 mix(vec2 x, vec2 y, double a) { return null; }
         /// <summary>
-        /// Returns x 􀀍􀀃(1.0 – a) + y 􀀍􀀃a, i.e., the
+        /// Returns x 􀀍􀀃(1.0 - a) + y 􀀍􀀃a, i.e., the
         /// linear blend of x and y using the
         /// floating-point value a. The value for
         /// a is not restricted to the range [0,1].
@@ -1039,7 +1038,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec3 mix(vec3 x, vec3 y, double a) { return null; }
         /// <summary>
-        /// Returns x 􀀍􀀃(1.0 – a) + y 􀀍􀀃a, i.e., the
+        /// Returns x 􀀍􀀃(1.0 - a) + y 􀀍􀀃a, i.e., the
         /// linear blend of x and y using the
         /// floating-point value a. The value for
         /// a is not restricted to the range [0,1].
@@ -1052,7 +1051,7 @@ namespace CSharpGL.CSSL
 
         /// <summary>
         /// Returns the component-wise result
-        /// of x * (1.0 – a) + y * a, i.e., the linear
+        /// of x * (1.0 - a) + y * a, i.e., the linear
         /// blend of vectors x and y using the
         /// vector a. The value for a is not
         /// restricted to the range [0,1].
@@ -1064,7 +1063,7 @@ namespace CSharpGL.CSSL
         public static vec2 mix(vec2 x, vec2 y, vec2 a) { return null; }
         /// <summary>
         /// Returns the component-wise result
-        /// of x * (1.0 – a) + y * a, i.e., the linear
+        /// of x * (1.0 - a) + y * a, i.e., the linear
         /// blend of vectors x and y using the
         /// vector a. The value for a is not
         /// restricted to the range [0,1].
@@ -1076,7 +1075,7 @@ namespace CSharpGL.CSSL
         public static vec3 mix(vec3 x, vec3 y, vec3 a) { return null; }
         /// <summary>
         /// Returns the component-wise result
-        /// of x * (1.0 – a) + y * a, i.e., the linear
+        /// of x * (1.0 - a) + y * a, i.e., the linear
         /// blend of vectors x and y using the
         /// vector a. The value for a is not
         /// restricted to the range [0,1].
