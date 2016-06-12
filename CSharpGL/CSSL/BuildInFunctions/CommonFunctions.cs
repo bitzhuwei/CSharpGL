@@ -760,6 +760,151 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static uvec4 max(uvec4 x, uint y) { return null; }
 
+        /// <summary>
+        /// Returns min (max (x, minVal ),
+        /// maxVal) for each component in x
+        /// using the scalar values minVal and
+        /// maxVal. Results are undefined if
+        /// minVal > maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static float clamp(double x, double minVal, double maxVal) { return 0.0f; }
+        /// <summary>
+        /// Returns min (max (x, minVal ),
+        /// maxVal) for each component in x
+        /// using the scalar values minVal and
+        /// maxVal. Results are undefined if
+        /// minVal > maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static vec2 clamp(vec2 x, double minVal, double maxVal) { return null; }
+        /// <summary>
+        /// Returns min (max (x, minVal ),
+        /// maxVal) for each component in x
+        /// using the scalar values minVal and
+        /// maxVal. Results are undefined if
+        /// minVal > maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static vec3 clamp(vec3 x, double minVal, double maxVal) { return null; }
+        /// <summary>
+        /// Returns min (max (x, minVal ),
+        /// maxVal) for each component in x
+        /// using the scalar values minVal and
+        /// maxVal. Results are undefined if
+        /// minVal > maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static vec4 clamp(vec4 x, double minVal, double maxVal) { return null; }
+        /// <summary>
+        /// Returns min (max (x, minVal ),
+        /// maxVal) for each component in x
+        /// using the scalar values minVal and
+        /// maxVal. Results are undefined if
+        /// minVal > maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static int clamp(int x, int minVal, int maxVal) { return 0; }
+        /// <summary>
+        /// Returns min (max (x, minVal ),
+        /// maxVal) for each component in x
+        /// using the scalar values minVal and
+        /// maxVal. Results are undefined if
+        /// minVal > maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static ivec2 clamp(ivec2 x, int minVal, int maxVal) { return null; }
+        /// <summary>
+        /// Returns min (max (x, minVal ),
+        /// maxVal) for each component in x
+        /// using the scalar values minVal and
+        /// maxVal. Results are undefined if
+        /// minVal > maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static ivec3 clamp(ivec3 x, int minVal, int maxVal) { return null; }
+        /// <summary>
+        /// Returns min (max (x, minVal ),
+        /// maxVal) for each component in x
+        /// using the scalar values minVal and
+        /// maxVal. Results are undefined if
+        /// minVal > maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static ivec4 clamp(ivec4 x, int minVal, int maxVal) { return null; }
+        /// <summary>
+        /// Returns min (max (x, minVal ),
+        /// maxVal) for each component in x
+        /// using the scalar values minVal and
+        /// maxVal. Results are undefined if
+        /// minVal > maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static uint clamp(uint x, uint minVal, uint maxVal) { return 0u; }
+        /// <summary>
+        /// Returns min (max (x, minVal ),
+        /// maxVal) for each component in x
+        /// using the scalar values minVal and
+        /// maxVal. Results are undefined if
+        /// minVal > maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static uvec2 clamp(uvec2 x, uint minVal, uint maxVal) { return null; }
+        /// <summary>
+        /// Returns min (max (x, minVal ),
+        /// maxVal) for each component in x
+        /// using the scalar values minVal and
+        /// maxVal. Results are undefined if
+        /// minVal > maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static uvec3 clamp(uvec3 x, uint minVal, uint maxVal) { return null; }
+        /// <summary>
+        /// Returns min (max (x, minVal ),
+        /// maxVal) for each component in x
+        /// using the scalar values minVal and
+        /// maxVal. Results are undefined if
+        /// minVal > maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static uvec4 clamp(uvec4 x, uint minVal, uint maxVal) { return null; }
+
 
     }
 }

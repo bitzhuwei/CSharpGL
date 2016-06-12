@@ -48,8 +48,6 @@ namespace CSharpGL.CSSL
         public static float dot(vec3 v1, vec3 v2) { return 0.0f; }
         public static float dot(vec4 v1, vec4 v2) { return 0.0f; }
 
-        public static float max(double a, double b) { return 0.0f; }
-
         #endregion
 
         #region matrix functions
@@ -101,22 +99,10 @@ namespace CSharpGL.CSSL
         public static vec2 step(double value, vec2 offsets) { return null; }
         public static vec3 step(double value, vec3 offsets) { return null; }
         public static vec4 step(double value, vec4 offsets) { return null; }
-        public static vec2 fract(vec2 value) { return null; }
-        public static vec3 fract(vec3 value) { return null; }
-        public static vec4 fract(vec4 value) { return null; }
-        public static float floor(double value) { return 0.0f; }
-        public static vec2 floor(vec2 value) { return null; }
-        public static vec3 floor(vec3 value) { return null; }
-        public static vec4 floor(vec4 value) { return null; }
         public static float mix(double x, double y, double a) { return 0.0f; }
         public static vec2 mix(vec2 x, vec2 y, double a) { return null; }
         public static vec3 mix(vec3 x, vec3 y, double a) { return null; }
         public static vec4 mix(vec4 x, vec4 y, double a) { return null; }
-
-        public static float clamp(double x, double minVal, double maxVal) { return 0.0f; }
-        public static vec2 clamp(vec2 x, double minVal, double maxVal) { return null; }
-        public static vec3 clamp(vec3 x, double minVal, double maxVal) { return null; }
-        public static vec4 clamp(vec4 x, double minVal, double maxVal) { return null; }
 
         public static float length(vec2 v) { return 0.0f; }
         public static float length(vec3 v) { return 0.0f; }
