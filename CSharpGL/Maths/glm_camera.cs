@@ -70,27 +70,27 @@ namespace CSharpGL
         /// <returns></returns>
         public static mat4 lookAt(vec3 eye, vec3 center, vec3 up)
         {
-            vec3 forward = (center - eye).normalize();
-            vec3 right = forward.cross(up).normalize();
-            vec3 standardUp = right.cross(forward);
+            vec3 back = (eye - center).normalize();
+            vec3 right = up.cross(back).normalize();
+            vec3 standardUp = back.cross(right);
 
             mat4 Result = new mat4(1);
             // Left (X) Axis
             Result[0, 0] = right.x;
             Result[0, 1] = standardUp.x;
-            Result[0, 2] = -forward.x;
+            Result[0, 2] = back.x;
             // Up (Y) Axis
             Result[1, 0] = right.y;
             Result[1, 1] = standardUp.y;
-            Result[1, 2] = -forward.y;
+            Result[1, 2] = back.y;
             // Forward (Z) Axis
             Result[2, 0] = right.z;
             Result[2, 1] = standardUp.z;
-            Result[2, 2] = -forward.z;
+            Result[2, 2] = back.z;
             // Translation
             Result[3, 0] = -right.dot(eye);// dot(s, eye);
             Result[3, 1] = -standardUp.dot(eye);// dot(u, eye);
-            Result[3, 2] = forward.dot(eye);// dot(f, eye);
+            Result[3, 2] = -back.dot(eye);// dot(f, eye);
             return Result;
         }
 
