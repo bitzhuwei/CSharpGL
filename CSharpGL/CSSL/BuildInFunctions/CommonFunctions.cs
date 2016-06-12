@@ -574,6 +574,110 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static uvec4 min(uvec4 x, uint y) { return null; }
 
+        /// <summary>
+        /// Returns y if x &lt; y; otherwise, it
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static float max(double x, double y) { return 0.0f; }
+        /// <summary>
+        /// Returns y if x &lt; y; otherwise, it
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static vec2 max(vec2 x, vec2 y) { return null; }
+        /// <summary>
+        /// Returns y if x &lt; y; otherwise, it
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static vec3 max(vec3 x, vec3 y) { return null; }
+        /// <summary>
+        /// Returns y if x &lt; y; otherwise, it
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static vec4 max(vec4 x, vec4 y) { return null; }
+        /// <summary>
+        /// Returns y if x &lt; y; otherwise, it
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static int max(int x, int y) { return null; }
+        /// <summary>
+        /// Returns y if x &lt; y; otherwise, it
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static ivec2 max(ivec2 x, ivec2 y) { return null; }
+        /// <summary>
+        /// Returns y if x &lt; y; otherwise, it
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static ivec3 max(ivec3 x, ivec3 y) { return null; }
+        /// <summary>
+        /// Returns y if x &lt; y; otherwise, it
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static ivec4 max(ivec4 x, ivec4 y) { return null; }
+        /// <summary>
+        /// Returns y if x &lt; y; otherwise, it
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static uint max(uint x, uint y) { return null; }
+        /// <summary>
+        /// Returns y if x &lt; y; otherwise, it
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        /// <summary>
+        /// Returns y if x &lt; y; otherwise, it
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static uvec2 max(uvec2 x, uvec2 y) { return null; }
+        /// <summary>
+        /// Returns y if x &lt; y; otherwise, it
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static uvec3 max(uvec3 x, uvec3 y) { return null; }
+        /// <summary>
+        /// Returns y if x &lt; y; otherwise, it
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static uvec4 max(uvec4 x, uvec4 y) { return null; }
+
 
     }
 }
