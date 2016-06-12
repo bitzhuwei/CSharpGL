@@ -12,6 +12,7 @@ namespace CSharpGL.CSSL
     public abstract partial class CSShaderCode
     {
         //TODO: add build in functions
+        //TODO: replace – with -
         /// <summary>
         /// Returns x if x >= 0; otherwise, it
         /// returns –x.
@@ -69,6 +70,63 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static ivec4 abs(ivec4 x) { return null; }
+
+        /// <summary>
+        /// Returns 1.0 if x > 0, 0.0 if x = 0,
+        /// or -1.0 if x < 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float sign(float x) { return 0; }
+        /// <summary>
+        /// Returns 1.0 if x > 0, 0.0 if x = 0,
+        /// or -1.0 if x < 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 sign(vec2 x) { return null; }
+        /// <summary>
+        /// Returns 1.0 if x > 0, 0.0 if x = 0,
+        /// or -1.0 if x < 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 sign(vec3 x) { return null; }
+        /// <summary>
+        /// Returns 1.0 if x > 0, 0.0 if x = 0,
+        /// or -1.0 if x < 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 sign(vec4 x) { return null; }
+        /// <summary>
+        /// Returns 1.0 if x > 0, 0.0 if x = 0,
+        /// or -1.0 if x < 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static int sign(int x) { return 0; }
+        /// <summary>
+        /// Returns 1.0 if x > 0, 0.0 if x = 0,
+        /// or -1.0 if x < 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static ivec2 sign(ivec2 x) { return null; }
+        /// <summary>
+        /// Returns 1.0 if x > 0, 0.0 if x = 0,
+        /// or -1.0 if x < 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static ivec3 sign(ivec3 x) { return null; }
+        /// <summary>
+        /// Returns 1.0 if x > 0, 0.0 if x = 0,
+        /// or -1.0 if x < 0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static ivec4 sign(ivec4 x) { return null; }
 
 
     }
