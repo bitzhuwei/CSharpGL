@@ -180,5 +180,103 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 texelFetchOffset(sampler1D sampler, int coord, int lod, int offset) { return null; }
 
+        /// <summary>
+        /// Use the texture coordinate coord to access the
+        /// 1D texture currently specified by sampler:
+        /// Combinations of the suffixes Proj, Lod,
+        /// Grad, and Offset are as described earlier.
+        /// </summary>
+        /// <param name="sampler"></param>
+        /// <param name="coord"></param>
+        /// <param name="lod"></param>
+        /// <returns></returns>
+        public static vec4 textureProjLod(sampler1D sampler, vec2 coord, double lod) { return null; }
+        /// <summary>
+        /// Use the texture coordinate coord to access the
+        /// 1D texture currently specified by sampler:
+        /// Combinations of the suffixes Proj, Lod,
+        /// Grad, and Offset are as described earlier.
+        /// </summary>
+        /// <param name="sampler"></param>
+        /// <param name="coord"></param>
+        /// <param name="lod"></param>
+        /// <returns></returns>
+        public static vec4 textureProjLod(sampler1D sampler, vec4 coord, double lod) { return null; }
+        /// <summary>
+        /// Use the texture coordinate coord to access the
+        /// 1D texture currently specified by sampler:
+        /// Combinations of the suffixes Proj, Lod,
+        /// Grad, and Offset are as described earlier.
+        /// </summary>
+        /// <param name="sampler"></param>
+        /// <param name="coord"></param>
+        /// <param name="dPdx"></param>
+        /// <param name="dPdy"></param>
+        /// <returns></returns>
+        public static vec4 textureProjGrad(sampler1D sampler, vec2 coord, double dPdx, double dPdy) { return null; }
+        /// <summary>
+        /// Use the texture coordinate coord to access the
+        /// 1D texture currently specified by sampler:
+        /// Combinations of the suffixes Proj, Lod,
+        /// Grad, and Offset are as described earlier.
+        /// </summary>
+        /// <param name="sampler"></param>
+        /// <param name="coord"></param>
+        /// <param name="dPdx"></param>
+        /// <param name="dPdy"></param>
+        /// <returns></returns>
+        public static vec4 textureProjGrad(sampler1D sampler, vec4 coord, double dPdx, double dPdy) { return null; }
+        /// <summary>
+        /// Use the texture coordinate coord to access the
+        /// 1D texture currently specified by sampler:
+        /// Combinations of the suffixes Proj, Lod,
+        /// Grad, and Offset are as described earlier.
+        /// </summary>
+        /// <param name="sampler"></param>
+        /// <param name="coord"></param>
+        /// <param name="offset"></param>
+        /// <param name="bias"></param>
+        /// <returns></returns>
+        public static vec4 textureProjOffset(sampler1D sampler, vec2 coord, int offset, double bias = 0.0) { return null; }
+        /// <summary>
+        /// Use the texture coordinate coord to access the
+        /// 1D texture currently specified by sampler:
+        /// Combinations of the suffixes Proj, Lod,
+        /// Grad, and Offset are as described earlier.
+        /// </summary>
+        /// <param name="sampler"></param>
+        /// <param name="coord"></param>
+        /// <param name="offset"></param>
+        /// <param name="bias"></param>
+        /// <returns></returns>
+        public static vec4 textureProjOffset(sampler1D sampler, vec4 coord, int offset, double bias = 0.0) { return null; }
+        /// <summary>
+        /// Use the texture coordinate coord to access the
+        /// 1D texture currently specified by sampler:
+        /// Combinations of the suffixes Proj, Lod,
+        /// Grad, and Offset are as described earlier.
+        /// </summary>
+        /// <param name="sampler"></param>
+        /// <param name="coord"></param>
+        /// <param name="lod"></param>
+        /// <param name="offset"></param>
+        /// <returns></returns>
+        public static vec4 textureLodOffset(sampler1D sampler, double coord, double lod, int offset) { return null; }
+        /// <summary>
+        /// Use the texture coordinate coord to access the
+        /// 1D texture currently specified by sampler:
+        /// Combinations of the suffixes Proj, Lod,
+        /// Grad, and Offset are as described earlier.
+        /// </summary>
+        /// <param name="sampler"></param>
+        /// <param name="coord"></param>
+        /// <param name="dPdx"></param>
+        /// <param name="dPdy"></param>
+        /// <param name="offset"></param>
+        /// <returns></returns>
+        public static vec4 textureGradOffset(sampler1D sampler, double coord, double dPdx, double dPdy, int offset) { return null; }
+
+
+
     }
 }
