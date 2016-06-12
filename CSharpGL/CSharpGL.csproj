@@ -47,7 +47,6 @@
     <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormGLSwitchEditor.resx">
       <DependentUpon>FormGLSwitchEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="CSSL\readme.md" />
     <Content Include="GLControls\readme.md" />
     <Content Include="FontResource\readme.md" />
     <Content Include="IBufferables\readme.md" />
@@ -81,41 +80,6 @@
     <Content Include="OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="OpenGLObjects\VertexBufferObjects\readme.md" />
     <Content Include="readme.md" />
-    <Compile Include="CSSL\BuildInFunction.cs" />
-    <Compile Include="CSSL\BuildInFunctions\AngleAndTrigonometryFunctions.cs" />
-    <Compile Include="CSSL\BuildInFunctions\NoiseFunctions.cs" />
-    <Compile Include="CSSL\BuildInFunctions\FragmentProcessingFunctions.cs" />
-    <Compile Include="CSSL\BuildInFunctions\TextureAccessFunctions.cs" />
-    <Compile Include="CSSL\BuildInFunctions\VectorRelationalFunctions.cs" />
-    <Compile Include="CSSL\BuildInFunctions\MatrixFunctions.cs" />
-    <Compile Include="CSSL\BuildInFunctions\GeometricFunctions.cs" />
-    <Compile Include="CSSL\BuildInFunctions\CommonFunctions.cs" />
-    <Compile Include="CSSL\BuildInFunctions\ExponentialFunctions.cs" />
-    <Compile Include="CSSL\BuildInTypes\bvec2.cs" />
-    <Compile Include="CSSL\BuildInTypes\bvec3.cs" />
-    <Compile Include="CSSL\BuildInTypes\bvec4.cs" />
-    <Compile Include="CSSL\BuildInTypes\uvec4.cs" />
-    <Compile Include="CSSL\BuildInTypes\uvec3.cs" />
-    <Compile Include="CSSL\BuildInTypes\uvec2.cs" />
-    <Compile Include="CSSL\BuildInTypes\ivec2.cs" />
-    <Compile Include="CSSL\BuildInTypes\ivec3.cs" />
-    <Compile Include="CSSL\BuildInTypes\ivec4.cs" />
-    <Compile Include="CSSL\Dump2FileAttribute.cs" />
-    <Compile Include="CSSL\GLSLVersionAttribute.cs" />
-    <Compile Include="CSSL\BuildInTypes\mat2.cs" />
-    <Compile Include="CSSL\BuildInTypes\mat3.cs" />
-    <Compile Include="CSSL\BuildInTypes\mat4.cs" />
-    <Compile Include="CSSL\Qualifiers.cs" />
-    <Compile Include="CSSL\BuildInTypes\sampler.cs" />
-    <Compile Include="CSSL\BuildInTypes\vec2.cs" />
-    <Compile Include="CSSL\BuildInTypes\vec3.cs" />
-    <Compile Include="CSSL\BuildInTypes\vec4.cs" />
-    <Compile Include="CSSL\Shaders\CSShaderCode.cs" />
-    <Compile Include="CSSL\BuildInFunctions\CSShaderCodeBuildInFunctions.cs" />
-    <Compile Include="CSSL\BuldInVariables\CSShaderCodeBuildInVars.cs" />
-    <Compile Include="CSSL\Shaders\FragmentCSShaderCode.cs" />
-    <Compile Include="CSSL\Shaders\GeometryCSShaderCode.cs" />
-    <Compile Include="CSSL\Shaders\VertexCSShaderCode.cs" />
     <Compile Include="FontResource\FontResource.Default.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.cs" />
     <Compile Include="OpenGLObjects\Framebuffer\Framebuffer.Dispose.cs" />
@@ -169,7 +133,6 @@
     </Compile>
     <Compile Include="4PropertyGrid\UITypeEditors\GLSwithEditor.cs" />
     <Compile Include="Utilities\DoubleHelper.cs" />
-    <Compile Include="Utilities\OpenFolderHelper.cs" />
     <Compile Include="WinformControls\GLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -461,7 +424,6 @@
     <EmbeddedResource Include="Resources\Highlight.vert" />
     <EmbeddedResource Include="Resources\Highlight.frag" />
     <EmbeddedResource Include="Resources\ANTQUAI.TTF" />
-    <None Include="CSSL\Shaders\CSShaderCode.cd" />
     <None Include="OpenGLObjects\ModernRendering\Renderers.cd" />
     <Content Include="OpenGLObjects\UniformVariables\UniformArrayVariables\readme.md" />
     <None Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.cd" />

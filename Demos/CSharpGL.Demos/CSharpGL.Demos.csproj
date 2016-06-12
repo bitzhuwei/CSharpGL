@@ -447,6 +447,10 @@
       <Project>{115ab8f1-a732-4fad-8f16-f8c9e4da02a1}</Project>
       <Name>CSharpGL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\CSharpGL.CSSL\CSharpGL.CSSL.csproj">
+      <Project>{3b520e1d-aab3-440a-b112-4b310e7c94df}</Project>
+      <Name>CSharpGL.CSSL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\CSharpGL.TestHelpers\CSharpGL.TestHelpers.csproj">
       <Project>{2e22168c-14fb-4b53-bc21-2183a4a40955}</Project>
       <Name>CSharpGL.TestHelpers</Name>
