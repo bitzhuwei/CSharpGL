@@ -40,13 +40,6 @@ namespace CSharpGL.CSSL
         public static vec4 texture(sampler2D texture, vec2 uv) { return null; }
         public static vec4 texture(sampler3D texture, vec3 uv) { return null; }
 
-        public static vec2 normalize(vec2 v) { return null; }
-        public static vec3 normalize(vec3 v) { return null; }
-        public static vec4 normalize(vec4 v) { return null; }
-
-        public static float dot(vec2 v1, vec2 v2) { return 0.0f; }
-        public static float dot(vec3 v1, vec3 v2) { return 0.0f; }
-        public static float dot(vec4 v1, vec4 v2) { return 0.0f; }
 
         #endregion
 
@@ -96,9 +89,6 @@ namespace CSharpGL.CSSL
         public static vec4 texture2D(sampler2D simplexTexture, vec2 sindex) { return null; }
         public static vec4 texture3D(sampler3D simplexTexture, vec3 sindex) { return null; }
 
-        public static float length(vec2 v) { return 0.0f; }
-        public static float length(vec3 v) { return 0.0f; }
-        public static float length(vec4 v) { return 0.0f; }
 
         #endregion others
     }
