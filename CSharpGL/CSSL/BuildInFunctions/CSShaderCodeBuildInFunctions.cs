@@ -99,10 +99,6 @@ namespace CSharpGL.CSSL
         public static vec2 step(double value, vec2 offsets) { return null; }
         public static vec3 step(double value, vec3 offsets) { return null; }
         public static vec4 step(double value, vec4 offsets) { return null; }
-        public static float mix(double x, double y, double a) { return 0.0f; }
-        public static vec2 mix(vec2 x, vec2 y, double a) { return null; }
-        public static vec3 mix(vec3 x, vec3 y, double a) { return null; }
-        public static vec4 mix(vec4 x, vec4 y, double a) { return null; }
 
         public static float length(vec2 v) { return 0.0f; }
         public static float length(vec3 v) { return 0.0f; }
