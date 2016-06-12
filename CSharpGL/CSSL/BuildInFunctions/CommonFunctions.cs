@@ -330,5 +330,43 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 fract(vec4 x) { return null; }
 
+        /// <summary>
+        /// Modulus. Returns x – y 􀀍 floor (x/y)
+        /// for each component in x using the
+        /// floating-point value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static float mod(double x, double y) { return 0.0of; }
+        /// <summary>
+        /// Modulus. Returns x – y 􀀍 floor (x/y)
+        /// for each component in x using the
+        /// floating-point value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static vec2 mod(vec2 x, double y) { return null; }
+        /// <summary>
+        /// Modulus. Returns x – y 􀀍 floor (x/y)
+        /// for each component in x using the
+        /// floating-point value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static vec3 mod(vec3 x, double y) { return null; }
+        /// <summary>
+        /// Modulus. Returns x – y 􀀍 floor (x/y)
+        /// for each component in x using the
+        /// floating-point value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static vec4 mod(vec4 x, double y) { return null; }
+
+
     }
 }
