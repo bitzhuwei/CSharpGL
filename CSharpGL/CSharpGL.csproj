@@ -93,6 +93,7 @@
     <Compile Include="CSSL\BuildInFunctions\ExponentialFunctions.cs" />
     <Compile Include="CSSL\BuildInTypes\ivec2.cs" />
     <Compile Include="CSSL\BuildInTypes\ivec3.cs" />
+    <Compile Include="CSSL\BuildInTypes\ivec4.cs" />
     <Compile Include="CSSL\Dump2FileAttribute.cs" />
     <Compile Include="CSSL\GLSLVersionAttribute.cs" />
     <Compile Include="CSSL\BuildInTypes\mat2.cs" />
