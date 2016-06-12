@@ -217,8 +217,8 @@ namespace CSharpGL
 
         #endregion
 
-        private vec2 col0;
-        private vec2 col1;
+        internal vec2 col0;
+        internal vec2 col1;
 
         public static bool operator ==(mat2 left, mat2 right)
         {
