@@ -194,6 +194,43 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 trunc(vec4 x) { return null; }
 
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer of x. A fractional part of 0.5
+        /// will round in an implementation
+        /// direction.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float round(double x) { return 0.0f; }
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer of x. A fractional part of 0.5
+        /// will round in an implementation
+        /// direction.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 round(vec2 x) { return null; }
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer of x. A fractional part of 0.5
+        /// will round in an implementation
+        /// direction.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 round(vec3 x) { return null; }
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer of x. A fractional part of 0.5
+        /// will round in an implementation
+        /// direction.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 round(vec4 x) { return null; }
+
 
     }
 }
