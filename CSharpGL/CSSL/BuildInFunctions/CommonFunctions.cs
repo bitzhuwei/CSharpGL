@@ -338,7 +338,7 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static float mod(double x, double y) { return 0.0of; }
+        public static float mod(double x, double y) { return 0.0f; }
         /// <summary>
         /// Modulus. Returns x – y 􀀍 floor (x/y)
         /// for each component in x using the
@@ -613,7 +613,7 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static int max(int x, int y) { return null; }
+        public static int max(int x, int y) { return 0; }
         /// <summary>
         /// Returns y if x &lt; y; otherwise, it
         /// returns x.
@@ -645,7 +645,7 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static uint max(uint x, uint y) { return null; }
+        public static uint max(uint x, uint y) { return 0u; }
         /// <summary>
         /// Returns y if x &lt; y; otherwise, it
         /// returns x.
@@ -677,6 +677,88 @@ namespace CSharpGL.CSSL
         /// <param name="y"></param>
         /// <returns></returns>
         public static uvec4 max(uvec4 x, uvec4 y) { return null; }
+
+        /// <summary>
+        /// Returns maximum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static vec2 max(vec2 x, double y) { return null; }
+        /// <summary>
+        /// Returns maximum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static vec3 max(vec3 x, double y) { return null; }
+        /// <summary>
+        /// Returns maximum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static vec4 max(vec4 x, double y) { return null; }
+        /// <summary>
+        /// Returns maximum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static ivec2 max(ivec2 x, int y) { return null; }
+        /// <summary>
+        /// Returns maximum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static ivec3 max(ivec3 x, int y) { return null; }
+        /// <summary>
+        /// Returns maximum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static ivec4 max(ivec4 x, int y) { return null; }
+        /// <summary>
+        /// Returns maximum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static uvec2 max(uvec2 x, uint y) { return null; }
+        /// <summary>
+        /// Returns maximum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static uvec3 max(uvec3 x, uint y) { return null; }
+        /// <summary>
+        /// Returns maximum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static uvec4 max(uvec4 x, uint y) { return null; }
 
 
     }
