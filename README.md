@@ -63,3 +63,4 @@ Check my blog [here](http://www.cnblogs.com/bitzhuwei/) if you are familiar with
 * billboard: fixed size, float size.
 * Realistic sun with flame.
 * rewrite all shaders in CSSL.
+* rewrite FontResource's layout algorithm.
