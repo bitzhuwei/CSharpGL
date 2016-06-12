@@ -1150,6 +1150,59 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 step(double edge, vec4 x) { return null; }
 
+        /// <summary>
+        /// Returns 0.0 if x &lt;= edge0 and 1.0 if x
+        /// &gt;= edge1 and performs smooth
+        /// Hermite interpolation between 0.0
+        /// and 1.0 when edge0 &lt; x &lt; edge1.
+        /// Results are undefined if edge0 &gt;=
+        /// edge1.
+        /// </summary>
+        /// <param name="edge0"></param>
+        /// <param name="edge1"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float smoothstep(double edge0, double edge1, double x) { return 0.0f; }
+        /// <summary>
+        /// Returns 0.0 if x &lt;= edge0 and 1.0 if x
+        /// &gt;= edge1 and performs smooth
+        /// Hermite interpolation between 0.0
+        /// and 1.0 when edge0 &lt; x &lt; edge1.
+        /// Results are undefined if edge0 &gt;=
+        /// edge1.
+        /// </summary>
+        /// <param name="edge0"></param>
+        /// <param name="edge1"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 smoothstep(vec2 edge0, vec2 edge1, vec2 x) { return null; }
+        /// <summary>
+        /// Returns 0.0 if x &lt;= edge0 and 1.0 if x
+        /// &gt;= edge1 and performs smooth
+        /// Hermite interpolation between 0.0
+        /// and 1.0 when edge0 &lt; x &lt; edge1.
+        /// Results are undefined if edge0 &gt;=
+        /// edge1.
+        /// </summary>
+        /// <param name="edge0"></param>
+        /// <param name="edge1"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 smoothstep(vec3 edge0, vec3 edge1, vec3 x) { return null; }
+        /// <summary>
+        /// Returns 0.0 if x &lt;= edge0 and 1.0 if x
+        /// &gt;= edge1 and performs smooth
+        /// Hermite interpolation between 0.0
+        /// and 1.0 when edge0 &lt; x &lt; edge1.
+        /// Results are undefined if edge0 &gt;=
+        /// edge1.
+        /// </summary>
+        /// <param name="edge0"></param>
+        /// <param name="edge1"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 smoothstep(vec4 edge0, vec4 edge1, vec4 x) { return null; }
+
 
     }
 }
