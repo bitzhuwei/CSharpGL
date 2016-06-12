@@ -11,7 +11,7 @@ namespace CSharpGL.CSSL
     /// </summary>
     public abstract partial class CSShaderCode
     {
-        //TODO: add build in functions
+
         /// <summary>
         /// Returns the width of level lod of the 1D
         /// texture currently specified by sampler.

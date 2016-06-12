@@ -11,7 +11,7 @@ namespace CSharpGL.CSSL
     /// </summary>
     public abstract partial class CSShaderCode
     {
-        //TODO: add build in functions
+
         /// <summary>
         /// Returns the component-wise
         /// compare of x &lt; y.

@@ -11,7 +11,7 @@ namespace CSharpGL.CSSL
     /// </summary>
     public abstract partial class CSShaderCode
     {
-        //TODO: add build in functions
+
         /// <summary>
         /// Multiply matrix x by matrix y
         /// component-wise, i.e., result[i][j] is the
