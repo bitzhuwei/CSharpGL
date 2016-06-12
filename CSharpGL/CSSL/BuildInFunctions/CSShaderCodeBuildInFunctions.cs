@@ -95,10 +95,6 @@ namespace CSharpGL.CSSL
         public static vec4 texture1D(sampler1D simplexTexture, double sindex) { return null; }
         public static vec4 texture2D(sampler2D simplexTexture, vec2 sindex) { return null; }
         public static vec4 texture3D(sampler3D simplexTexture, vec3 sindex) { return null; }
-        public static float step(double value, double offsets) { return 0.0f; }
-        public static vec2 step(double value, vec2 offsets) { return null; }
-        public static vec3 step(double value, vec3 offsets) { return null; }
-        public static vec4 step(double value, vec4 offsets) { return null; }
 
         public static float length(vec2 v) { return 0.0f; }
         public static float length(vec3 v) { return 0.0f; }

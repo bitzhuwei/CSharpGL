@@ -1087,6 +1087,69 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 mix(vec4 x, vec4 y, vec4 a) { return null; }
 
+        /// <summary>
+        /// Returns 0.0 if x < edge; otherwise, it
+        /// returns 1.0.
+        /// </summary>
+        /// <param name="edge"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float step(double edge, double x) { return 0.0f; }
+        /// <summary>
+        /// Returns 0.0 if x < edge; otherwise, it
+        /// returns 1.0.
+        /// </summary>
+        /// <param name="edge"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 step(vec2 edge, vec2 x) { return null; }
+        /// <summary>
+        /// Returns 0.0 if x < edge; otherwise, it
+        /// returns 1.0.
+        /// </summary>
+        /// <param name="edge"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 step(vec3 edge, vec3 x) { return null; }
+        /// <summary>
+        /// Returns 0.0 if x < edge; otherwise, it
+        /// returns 1.0.
+        /// </summary>
+        /// <param name="edge"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 step(vec4 edge, vec4 x) { return null; }
+
+        //public static float step(double edge, double x) { return 0.0f; }
+
+        /// <summary>
+        /// Returns 0.0 for each component in x
+        /// if x &lt; the scalar edge; otherwise, it
+        /// returns 1.0.
+        /// </summary>
+        /// <param name="edge"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 step(double edge, vec2 x) { return null; }
+        /// <summary>
+        /// Returns 0.0 for each component in x
+        /// if x &lt; the scalar edge; otherwise, it
+        /// returns 1.0.
+        /// </summary>
+        /// <param name="edge"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 step(double edge, vec3 x) { return null; }
+        /// <summary>
+        /// Returns 0.0 for each component in x
+        /// if x &lt; the scalar edge; otherwise, it
+        /// returns 1.0.
+        /// </summary>
+        /// <param name="edge"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 step(double edge, vec4 x) { return null; }
+
 
     }
 }
