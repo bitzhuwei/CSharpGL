@@ -301,10 +301,10 @@
     <None Include="04SimpleCompute\compute.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="03OrderDependentTransparency\Transparent.frag">
+    <None Include="shaders\Transparent.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="03OrderDependentTransparency\Transparent.vert">
+    <None Include="shaders\Transparent.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\resolve_lists.frag">
