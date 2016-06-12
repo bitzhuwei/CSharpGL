@@ -1050,6 +1050,43 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 mix(vec4 x, vec4 y, double a) { return null; }
 
+        /// <summary>
+        /// Returns the component-wise result
+        /// of x * (1.0 – a) + y * a, i.e., the linear
+        /// blend of vectors x and y using the
+        /// vector a. The value for a is not
+        /// restricted to the range [0,1].
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="a"></param>
+        /// <returns></returns>
+        public static vec2 mix(vec2 x, vec2 y, vec2 a) { return null; }
+        /// <summary>
+        /// Returns the component-wise result
+        /// of x * (1.0 – a) + y * a, i.e., the linear
+        /// blend of vectors x and y using the
+        /// vector a. The value for a is not
+        /// restricted to the range [0,1].
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="a"></param>
+        /// <returns></returns>
+        public static vec3 mix(vec3 x, vec3 y, vec3 a) { return null; }
+        /// <summary>
+        /// Returns the component-wise result
+        /// of x * (1.0 – a) + y * a, i.e., the linear
+        /// blend of vectors x and y using the
+        /// vector a. The value for a is not
+        /// restricted to the range [0,1].
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="a"></param>
+        /// <returns></returns>
+        public static vec4 mix(vec4 x, vec4 y, vec4 a) { return null; }
+
 
     }
 }
