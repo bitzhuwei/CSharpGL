@@ -1246,6 +1246,43 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 smoothstep(double edge0, double edge1, vec4 x) { return null; }
 
+        /// <summary>
+        /// Returns true if x holds a NaN (not a
+        /// number), false otherwise.
+        /// (Implementations that do not
+        /// support NaN always return false.)
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static bool isnan(double x) { return null; }
+        /// <summary>
+        /// Returns true if x holds a NaN (not a
+        /// number), false otherwise.
+        /// (Implementations that do not
+        /// support NaN always return false.)
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static bvec2 isnan(vec2 x) { return null; }
+        /// <summary>
+        /// Returns true if x holds a NaN (not a
+        /// number), false otherwise.
+        /// (Implementations that do not
+        /// support NaN always return false.)
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static bvec3 isnan(vec3 x) { return null; }
+        /// <summary>
+        /// Returns true if x holds a NaN (not a
+        /// number), false otherwise.
+        /// (Implementations that do not
+        /// support NaN always return false.)
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static bvec4 isnan(vec4 x) { return null; }
+
 
     }
 }
