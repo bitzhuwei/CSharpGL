@@ -7,7 +7,7 @@ uniform sampler1D simplexTexture;
 uniform sampler2D gradTexture;
 uniform float time;
 uniform float rainDrop = 1.0f;
-uniform float brightness = 1.0f;
+uniform sampler2D sunColor;
 
 out vec4 out_Color;
 
@@ -128,7 +128,10 @@ void main(void)
   n += 0.125 * snoise(uvw * 8.0 - vec3(0.0, 0.0, time*2.8)); 
   n += 0.0625 * snoise(uvw * 16.0 - vec3(0.0, 0.0, time*4.0)); 
   n += 0.03125 * snoise(uvw * 32.0 - vec3(0.0, 0.0, time*5.6)); 
-  n = n * 0.7;
+  float minimum = -(0.5 + 0.25 + 0.125 + 0.0625 + 0.03125);
+  float maximum = (0.5 + 0.25 + 0.125 + 0.0625 + 0.03125);
+  n = n / (maximum - minimum) - minimum;// make n to (0 ~ 1)
+  // n = n * 0.7;
   // A "hot" colormap - cheesy but effective 
-  out_Color = vec4(brightness * vec3(1.0, 0.5, 0.0) + vec3(n, n, n), 1.0);
+  out_Color = texture(sunColor, vec2(n, 0.5));
 }
