@@ -91,6 +91,7 @@
     <Compile Include="CSSL\BuildInFunctions\GeometricFunctions.cs" />
     <Compile Include="CSSL\BuildInFunctions\CommonFunctions.cs" />
     <Compile Include="CSSL\BuildInFunctions\ExponentialFunctions.cs" />
+    <Compile Include="CSSL\BuildInTypes\uvec2.cs" />
     <Compile Include="CSSL\BuildInTypes\ivec2.cs" />
     <Compile Include="CSSL\BuildInTypes\ivec3.cs" />
     <Compile Include="CSSL\BuildInTypes\ivec4.cs" />
