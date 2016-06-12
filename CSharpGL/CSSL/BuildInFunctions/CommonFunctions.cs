@@ -41,5 +41,35 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 abs(vec4 x) { return null; }
 
+        /// <summary>
+        /// Returns x if x >= 0; otherwise, it
+        /// returns –x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static int abs(int x) { return 0; }
+        /// <summary>
+        /// Returns x if x >= 0; otherwise, it
+        /// returns –x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static ivec2 abs(ivec2 x) { return null; }
+        /// <summary>
+        /// Returns x if x >= 0; otherwise, it
+        /// returns –x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static ivec3 abs(ivec3 x) { return null; }
+        /// <summary>
+        /// Returns x if x >= 0; otherwise, it
+        /// returns –x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static ivec4 abs(ivec4 x) { return null; }
+
+
     }
 }
