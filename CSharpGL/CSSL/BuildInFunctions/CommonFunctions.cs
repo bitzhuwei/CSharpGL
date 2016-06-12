@@ -395,6 +395,103 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 mod(vec4 x, vec4 y) { return null; }
 
+        /// <summary>
+        /// Returns y if y &lt; x; otherwise, it 
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static float min(double x, double y) { return 0.0f; }
+        /// <summary>
+        /// Returns y if y &lt; x; otherwise, it 
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static vec2 min(vec2 x, vec2 y) { return null; }
+        /// <summary>
+        /// Returns y if y &lt; x; otherwise, it 
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static vec3 min(vec3 x, vec3 y) { return null; }
+        /// <summary>
+        /// Returns y if y &lt; x; otherwise, it 
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static vec4 min(vec4 x, vec4 y) { return null; }
+        /// <summary>
+        /// Returns y if y &lt; x; otherwise, it 
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static int min(int x, int y) { return 0; }
+        /// <summary>
+        /// Returns y if y &lt; x; otherwise, it 
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static ivec2 min(ivec2 x, ivec2 y) { return null; }
+        /// <summary>
+        /// Returns y if y &lt; x; otherwise, it 
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static ivec3 min(ivec3 x, ivec3 y) { return null; }
+        /// <summary>
+        /// Returns y if y &lt; x; otherwise, it 
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static ivec4 min(ivec4 x, ivec4 y) { return null; }
+        /// <summary>
+        /// Returns y if y &lt; x; otherwise, it 
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static uint min(uint x, uint y) { return 0u; }
+        /// <summary>
+        /// Returns y if y &lt; x; otherwise, it 
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static uvec2 min(uvec2 x, uvec2 y) { return null; }
+        /// <summary>
+        /// Returns y if y &lt; x; otherwise, it 
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static uvec3 min(uvec3 x, uvec3 y) { return null; }
+        /// <summary>
+        /// Returns y if y &lt; x; otherwise, it 
+        /// returns x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static uvec4 min(uvec4 x, uvec4 y) { return null; }
+
 
     }
 }
