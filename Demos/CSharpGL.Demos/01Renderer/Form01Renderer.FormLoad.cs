@@ -50,12 +50,12 @@ namespace CSharpGL.Demos
                     GeometryModel.Teapot, 
                 };
                 ShaderCode[] simpleShader = new ShaderCode[2];
-                simpleShader[0] = new ShaderCode(File.ReadAllText(@"01Renderer\Simple.vert"), ShaderType.VertexShader);
-                simpleShader[1] = new ShaderCode(File.ReadAllText(@"01Renderer\Simple.frag"), ShaderType.FragmentShader);
+                simpleShader[0] = new ShaderCode(File.ReadAllText(@"shaders\Simple.vert"), ShaderType.VertexShader);
+                simpleShader[1] = new ShaderCode(File.ReadAllText(@"shaders\Simple.frag"), ShaderType.FragmentShader);
                 ShaderCode[] emitNormalLineShader = new ShaderCode[3];
-                emitNormalLineShader[0] = new ShaderCode(File.ReadAllText(@"01Renderer\EmitNormalLine.vert"), ShaderType.VertexShader);
-                emitNormalLineShader[1] = new ShaderCode(File.ReadAllText(@"01Renderer\EmitNormalLine.geom"), ShaderType.GeometryShader);
-                emitNormalLineShader[2] = new ShaderCode(File.ReadAllText(@"01Renderer\EmitNormalLine.frag"), ShaderType.FragmentShader);
+                emitNormalLineShader[0] = new ShaderCode(File.ReadAllText(@"shaders\EmitNormalLine.vert"), ShaderType.VertexShader);
+                emitNormalLineShader[1] = new ShaderCode(File.ReadAllText(@"shaders\EmitNormalLine.geom"), ShaderType.GeometryShader);
+                emitNormalLineShader[2] = new ShaderCode(File.ReadAllText(@"shaders\EmitNormalLine.frag"), ShaderType.FragmentShader);
                 var shaderCodesGroup = new ShaderCode[][]
                 {
                     simpleShader,
@@ -156,8 +156,8 @@ namespace CSharpGL.Demos
                     GeometryModel.Axis, 
                 };
                 ShaderCode[] simpleShader = new ShaderCode[2];
-                simpleShader[0] = new ShaderCode(File.ReadAllText(@"01Renderer\Simple.vert"), ShaderType.VertexShader);
-                simpleShader[1] = new ShaderCode(File.ReadAllText(@"01Renderer\Simple.frag"), ShaderType.FragmentShader);
+                simpleShader[0] = new ShaderCode(File.ReadAllText(@"shaders\Simple.vert"), ShaderType.VertexShader);
+                simpleShader[1] = new ShaderCode(File.ReadAllText(@"shaders\Simple.frag"), ShaderType.FragmentShader);
                 var shaderCodesGroup = new ShaderCode[][]
                 {
                     simpleShader,

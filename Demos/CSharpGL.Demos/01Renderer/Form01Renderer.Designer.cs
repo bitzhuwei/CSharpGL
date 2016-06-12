@@ -99,7 +99,7 @@
             this.Controls.Add(this.lblReadColor);
             this.Controls.Add(this.glCanvas1);
             this.Name = "Form01Renderer";
-            this.Text = "Form01Simple";
+            this.Text = "Form01Renderer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form01Renderer_FormClosed);
             this.Load += new System.EventHandler(this.Form01Renderer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();

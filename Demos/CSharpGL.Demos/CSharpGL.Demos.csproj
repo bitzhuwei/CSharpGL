@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="shaders\Simple.cssl.cs" />
+    <Compile Include="shaders\Simple.main.cs" />
     <Compile Include="13SimplexNoise\Form13SimplexNoise.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,6 +254,7 @@
     <Compile Include="02OrderIndependentTransparency\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="shaders\Simple.config" />
     <None Include="13SimplexNoise\readme.md" />
     <None Include="13SimplexNoise\SimplexNoise.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -310,10 +313,10 @@
     <None Include="02OrderIndependentTransparency\resolve_lists.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="01Renderer\Simple.frag">
+    <None Include="shaders\Simple.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="01Renderer\Simple.vert">
+    <None Include="shaders\Simple.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="00GLCanvas\Form00GLCanvas.resx">
@@ -429,13 +432,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="01Renderer\EmitNormalLine.frag">
+    <None Include="shaders\EmitNormalLine.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="01Renderer\EmitNormalLine.geom">
+    <None Include="shaders\EmitNormalLine.geom">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="01Renderer\EmitNormalLine.vert">
+    <None Include="shaders\EmitNormalLine.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -457,6 +460,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="shaders\Simple.PropertyNameMap.xml" />
     <Content Include="06ImageProcessing\box.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
