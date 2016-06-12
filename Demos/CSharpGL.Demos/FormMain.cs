@@ -82,5 +82,10 @@ namespace CSharpGL.Demos
             (new Form13SimplexNoise()).Show();
         }
 
+        private void btn14ShaderToy_Click(object sender, EventArgs e)
+        {
+            (new Form14ShaderToy()).Show();
+        }
+
     }
 }
