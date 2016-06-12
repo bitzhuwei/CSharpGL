@@ -330,7 +330,7 @@ namespace CSharpGL.CSSL
         public static vec4 fract(vec4 x) { return null; }
 
         /// <summary>
-        /// Modulus. Returns x - y 􀀍 floor (x/y)
+        /// Modulus. Returns x - y * floor (x/y)
         /// for each component in x using the
         /// floating-point value y.
         /// </summary>
@@ -339,7 +339,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static float mod(double x, double y) { return 0.0f; }
         /// <summary>
-        /// Modulus. Returns x - y 􀀍 floor (x/y)
+        /// Modulus. Returns x - y * floor (x/y)
         /// for each component in x using the
         /// floating-point value y.
         /// </summary>
@@ -348,7 +348,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec2 mod(vec2 x, double y) { return null; }
         /// <summary>
-        /// Modulus. Returns x - y 􀀍 floor (x/y)
+        /// Modulus. Returns x - y * floor (x/y)
         /// for each component in x using the
         /// floating-point value y.
         /// </summary>
@@ -357,7 +357,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec3 mod(vec3 x, double y) { return null; }
         /// <summary>
-        /// Modulus. Returns x - y 􀀍 floor (x/y)
+        /// Modulus. Returns x - y * floor (x/y)
         /// for each component in x using the
         /// floating-point value y.
         /// </summary>
@@ -367,7 +367,7 @@ namespace CSharpGL.CSSL
         public static vec4 mod(vec4 x, double y) { return null; }
 
         /// <summary>
-        /// Modulus. Returns x - y 􀀍 floor (x/y)
+        /// Modulus. Returns x - y * floor (x/y)
         /// for each component in x using the
         /// corresponding component of y.
         /// </summary>
@@ -376,7 +376,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec2 mod(vec2 x, vec2 y) { return null; }
         /// <summary>
-        /// Modulus. Returns x - y 􀀍 floor (x/y)
+        /// Modulus. Returns x - y * floor (x/y)
         /// for each component in x using the
         /// corresponding component of y.
         /// </summary>
@@ -385,7 +385,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec3 mod(vec3 x, vec3 y) { return null; }
         /// <summary>
-        /// Modulus. Returns x - y 􀀍 floor (x/y)
+        /// Modulus. Returns x - y * floor (x/y)
         /// for each component in x using the
         /// corresponding component of y.
         /// </summary>
@@ -1005,7 +1005,7 @@ namespace CSharpGL.CSSL
         public static uvec4 clamp(uvec4 x, uvec4 minVal, uvec4 maxVal) { return null; }
 
         /// <summary>
-        /// Returns x 􀀍􀀃(1.0 - a) + y 􀀍􀀃a, i.e., the
+        /// Returns x *􀀃(1.0 - a) + y *􀀃a, i.e., the
         /// linear blend of x and y using the
         /// floating-point value a. The value for
         /// a is not restricted to the range [0,1].
@@ -1016,7 +1016,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static float mix(double x, double y, double a) { return 0.0f; }
         /// <summary>
-        /// Returns x 􀀍􀀃(1.0 - a) + y 􀀍􀀃a, i.e., the
+        /// Returns x *􀀃(1.0 - a) + y *􀀃a, i.e., the
         /// linear blend of x and y using the
         /// floating-point value a. The value for
         /// a is not restricted to the range [0,1].
@@ -1027,7 +1027,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec2 mix(vec2 x, vec2 y, double a) { return null; }
         /// <summary>
-        /// Returns x 􀀍􀀃(1.0 - a) + y 􀀍􀀃a, i.e., the
+        /// Returns x *􀀃(1.0 - a) + y *􀀃a, i.e., the
         /// linear blend of x and y using the
         /// floating-point value a. The value for
         /// a is not restricted to the range [0,1].
@@ -1038,7 +1038,7 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec3 mix(vec3 x, vec3 y, double a) { return null; }
         /// <summary>
-        /// Returns x 􀀍􀀃(1.0 - a) + y 􀀍􀀃a, i.e., the
+        /// Returns x *􀀃(1.0 - a) + y *􀀃a, i.e., the
         /// linear blend of x and y using the
         /// floating-point value a. The value for
         /// a is not restricted to the range [0,1].
