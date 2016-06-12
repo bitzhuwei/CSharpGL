@@ -77,7 +77,7 @@ namespace CSharpGL.CSSL
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        public static float sign(float x) { return 0; }
+        public static float sign(double x) { return 0; }
         /// <summary>
         /// Returns 1.0 if x > 0, 0.0 if x = 0,
         /// or -1.0 if x < 0.
@@ -128,6 +128,34 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static ivec4 sign(ivec4 x) { return null; }
 
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer that is less than or equal to x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float floor(double x) { return 0.0f; }
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer that is less than or equal to x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 floor(vec2 x) { return null; }
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer that is less than or equal to x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 floor(vec3 x) { return null; }
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer that is less than or equal to x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 floor(vec4 x) { return null; }
 
     }
 }
