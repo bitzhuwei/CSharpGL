@@ -427,28 +427,28 @@ namespace CSharpGL.CSSL
 
         /// <summary>
         /// Arc hyperbolic tangent. Returns the inverse of
-        /// tanh. Results are undefined if |x| >= 1.0.
+        /// tanh. Results are undefined if |x| &gt;= 1.0.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static float atanh(double x) { return 0.0f; }
         /// <summary>
         /// Arc hyperbolic tangent. Returns the inverse of
-        /// tanh. Results are undefined if |x| >= 1.0.
+        /// tanh. Results are undefined if |x| &gt;= 1.0.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec2 atanh(vec2 x) { return null; }
         /// <summary>
         /// Arc hyperbolic tangent. Returns the inverse of
-        /// tanh. Results are undefined if |x| >= 1.0.
+        /// tanh. Results are undefined if |x| &gt;= 1.0.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec3 atanh(vec3 x) { return null; }
         /// <summary>
         /// Arc hyperbolic tangent. Returns the inverse of
-        /// tanh. Results are undefined if |x| >= 1.0.
+        /// tanh. Results are undefined if |x| &gt;= 1.0.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>

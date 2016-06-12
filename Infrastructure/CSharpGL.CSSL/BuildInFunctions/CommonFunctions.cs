@@ -11,30 +11,29 @@ namespace CSharpGL.CSSL
     /// </summary>
     public abstract partial class CSShaderCode
     {
-        //TODO: replace - with -
         /// <summary>
-        /// Returns x if x >= 0; otherwise, it
+        /// Returns x if x &gt;= 0; otherwise, it
         /// returns -x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static float abs(double x) { return 0.0f; }
         /// <summary>
-        /// Returns x if x >= 0; otherwise, it
+        /// Returns x if x &gt;= 0; otherwise, it
         /// returns -x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec2 abs(vec2 x) { return null; }
         /// <summary>
-        /// Returns x if x >= 0; otherwise, it
+        /// Returns x if x &gt;= 0; otherwise, it
         /// returns -x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static vec3 abs(vec3 x) { return null; }
         /// <summary>
-        /// Returns x if x >= 0; otherwise, it
+        /// Returns x if x &gt;= 0; otherwise, it
         /// returns -x.
         /// </summary>
         /// <param name="x"></param>
@@ -42,28 +41,28 @@ namespace CSharpGL.CSSL
         public static vec4 abs(vec4 x) { return null; }
 
         /// <summary>
-        /// Returns x if x >= 0; otherwise, it
+        /// Returns x if x &gt;= 0; otherwise, it
         /// returns -x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static int abs(int x) { return 0; }
         /// <summary>
-        /// Returns x if x >= 0; otherwise, it
+        /// Returns x if x &gt;= 0; otherwise, it
         /// returns -x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static ivec2 abs(ivec2 x) { return null; }
         /// <summary>
-        /// Returns x if x >= 0; otherwise, it
+        /// Returns x if x &gt;= 0; otherwise, it
         /// returns -x.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static ivec3 abs(ivec3 x) { return null; }
         /// <summary>
-        /// Returns x if x >= 0; otherwise, it
+        /// Returns x if x &gt;= 0; otherwise, it
         /// returns -x.
         /// </summary>
         /// <param name="x"></param>
