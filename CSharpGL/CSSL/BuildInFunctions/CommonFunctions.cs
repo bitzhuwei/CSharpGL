@@ -1254,7 +1254,7 @@ namespace CSharpGL.CSSL
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        public static bool isnan(double x) { return null; }
+        public static bool isnan(double x) { return false; }
         /// <summary>
         /// Returns true if x holds a NaN (not a
         /// number), false otherwise.
@@ -1282,6 +1282,43 @@ namespace CSharpGL.CSSL
         /// <param name="x"></param>
         /// <returns></returns>
         public static bvec4 isnan(vec4 x) { return null; }
+
+        /// <summary>
+        /// Returns true if x holds an INF
+        /// (infinity, positive or negative), false
+        /// otherwise. (Implementations that do
+        /// not support INF always return false.)
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static bool isinf(double x) { return false; }
+        /// <summary>
+        /// Returns true if x holds an INF
+        /// (infinity, positive or negative), false
+        /// otherwise. (Implementations that do
+        /// not support INF always return false.)
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static bvec2 isinf(vec2 x) { return null; }
+        /// <summary>
+        /// Returns true if x holds an INF
+        /// (infinity, positive or negative), false
+        /// otherwise. (Implementations that do
+        /// not support INF always return false.)
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static bvec3 isinf(vec3 x) { return null; }
+        /// <summary>
+        /// Returns true if x holds an INF
+        /// (infinity, positive or negative), false
+        /// otherwise. (Implementations that do
+        /// not support INF always return false.)
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static bvec4 isinf(vec4 x) { return null; }
 
 
     }
