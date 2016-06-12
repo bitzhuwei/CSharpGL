@@ -1203,6 +1203,49 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 smoothstep(vec4 edge0, vec4 edge1, vec4 x) { return null; }
 
+        /// <summary>
+        /// Returns 0.0 for each component in x
+        /// if x &lt;= the scalar edge0 and 1.0 if x &gt;=
+        /// the scalar edge1 and performs
+        /// smooth Hermite interpolation
+        /// between 0.0 and 1.0 when edge0 &lt; x
+        /// &lt; edge1. Results are undefined if
+        /// edge0 &gt;= edge1.
+        /// </summary>
+        /// <param name="edge0"></param>
+        /// <param name="edge1"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 smoothstep(double edge0, double edge1, vec2 x) { return null; }
+        /// <summary>
+        /// Returns 0.0 for each component in x
+        /// if x &lt;= the scalar edge0 and 1.0 if x &gt;=
+        /// the scalar edge1 and performs
+        /// smooth Hermite interpolation
+        /// between 0.0 and 1.0 when edge0 &lt; x
+        /// &lt; edge1. Results are undefined if
+        /// edge0 &gt;= edge1.
+        /// </summary>
+        /// <param name="edge0"></param>
+        /// <param name="edge1"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 smoothstep(double edge0, double edge1, vec3 x) { return null; }
+        /// <summary>
+        /// Returns 0.0 for each component in x
+        /// if x &lt;= the scalar edge0 and 1.0 if x &gt;=
+        /// the scalar edge1 and performs
+        /// smooth Hermite interpolation
+        /// between 0.0 and 1.0 when edge0 &lt; x
+        /// &lt; edge1. Results are undefined if
+        /// edge0 &gt;= edge1.
+        /// </summary>
+        /// <param name="edge0"></param>
+        /// <param name="edge1"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 smoothstep(double edge0, double edge1, vec4 x) { return null; }
+
 
     }
 }
