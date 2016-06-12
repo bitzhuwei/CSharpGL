@@ -7,7 +7,6 @@ namespace CSharpGL.CSSL
     /// 专用于CSSL。不可用于数学计算。
     /// <para>Specially designed for CSSL. Not for glm.</para>
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]
     public class ivec4
     {
         internal double a0;
