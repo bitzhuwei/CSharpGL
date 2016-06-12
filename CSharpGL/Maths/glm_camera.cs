@@ -70,20 +70,20 @@ namespace CSharpGL
         /// <returns></returns>
         public static mat4 lookAt(vec3 eye, vec3 center, vec3 up)
         {
+            // camera's back in world space coordinate system
             vec3 back = (eye - center).normalize();
+            // camera's right in world space coordinate system
             vec3 right = up.cross(back).normalize();
+            // camera's up in world space coordinate system
             vec3 standardUp = back.cross(right);
 
             mat4 viewMatrix = new mat4(1);
-            // camera's right in world space coordinate system
             viewMatrix.col0.x = right.x;
             viewMatrix.col1.x = right.y;
             viewMatrix.col2.x = right.z;
-            // camera's up in world space coordinate system
             viewMatrix.col0.y = standardUp.x;
             viewMatrix.col1.y = standardUp.y;
             viewMatrix.col2.y = standardUp.z;
-            // camera's back in world space coordinate system
             viewMatrix.col0.z = back.x;
             viewMatrix.col1.z = back.y;
             viewMatrix.col2.z = back.z;
