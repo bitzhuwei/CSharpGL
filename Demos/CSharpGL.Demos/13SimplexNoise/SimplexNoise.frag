@@ -7,7 +7,7 @@ uniform sampler1D simplexTexture;
 uniform sampler2D gradTexture;
 uniform float time;
 uniform float rainDrop = 1.0f;
-uniform sampler2D sunColor;
+uniform sampler1D sunColor;
 
 out vec4 out_Color;
 
@@ -133,5 +133,5 @@ void main(void)
   n = n / (maximum - minimum) - minimum;// make n to (0 ~ 1)
   // n = n * 0.7;
   // A "hot" colormap - cheesy but effective 
-  out_Color = texture(sunColor, vec2(n, 0.5));
+  out_Color = texture(sunColor, n);
 }
