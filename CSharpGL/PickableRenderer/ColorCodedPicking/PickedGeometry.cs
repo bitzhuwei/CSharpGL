@@ -95,7 +95,7 @@ namespace CSharpGL
                     normalizedPos[i].y * height / 2 + (y + height / 2),
                     normalizedPos[i].z * (far - near) / 2 + ((far + near) / 2)
                     );
-                builder.Append(screenPos);
+                builder.Append(screenPos[i]);
                 builder.AppendLine();
             }
 
