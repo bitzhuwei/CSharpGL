@@ -170,7 +170,7 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
-        public static vec3 operator +(vec3 lhs, float rhs)
+        public static vec3 operator +(double lhs, vec3 rhs)
         {
             return null;
         }
@@ -184,7 +184,7 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
-        public static vec3 operator -(vec3 lhs, float rhs)
+        public static vec3 operator -(double lhs, vec3 rhs)
         {
             return null;
         }
@@ -193,25 +193,13 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
-        public static vec3 operator *(vec3 self, float s)
-        {
-            return null;
-        }
       
         public static vec3 operator *(double lhs, vec3 rhs)
         {
             return null;
         }
-        public static vec3 operator *(float lhs, vec3 rhs)
-        {
-            return null;
-        }
 
         public static vec3 operator /(vec3 lhs, double rhs)
-        {
-            return null;
-        }
-        public static vec3 operator /(vec3 lhs, float rhs)
         {
             return null;
         }

@@ -67,7 +67,7 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
-        public static vec2 operator +(vec2 lhs, float rhs)
+        public static vec2 operator +(double lhs, vec2 rhs)
         {
             return null;
         }
@@ -81,25 +81,12 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
-        public static vec2 operator -(vec2 lhs, float rhs)
-        {
-            return null;
-        }
 
         public static vec2 operator *(vec2 self, double s)
         {
             return null;
         }
-        public static vec2 operator *(vec2 self, float s)
-        {
-            return null;
-        }
-
-        public static vec2 operator *(double lhs, vec2 rhs)
-        {
-            return null;
-        }
-        public static vec2 operator *(float lhs, vec2 rhs)
+        public static vec2 operator *(double self, vec2 s)
         {
             return null;
         }
@@ -110,10 +97,6 @@ namespace CSharpGL.CSSL
         }
 
         public static vec2 operator /(vec2 lhs, double rhs)
-        {
-            return null;
-        }
-        public static vec2 operator /(vec2 lhs, float rhs)
         {
             return null;
         }

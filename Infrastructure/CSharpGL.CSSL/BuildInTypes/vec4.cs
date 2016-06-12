@@ -1077,16 +1077,12 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
-        public static vec4 operator +(vec4 lhs, float rhs)
+        public static vec4 operator +(double lhs, vec4 rhs)
         {
             return null;
         }
-
+    
         public static vec4 operator -(vec4 lhs, double rhs)
-        {
-            return null;
-        }
-        public static vec4 operator -(vec4 lhs, float rhs)
         {
             return null;
         }
@@ -1100,16 +1096,8 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
-        public static vec4 operator *(vec4 self, float s)
-        {
-            return null;
-        }
 
         public static vec4 operator *(double lhs, vec4 rhs)
-        {
-            return null;
-        }
-        public static vec4 operator *(float lhs, vec4 rhs)
         {
             return null;
         }
@@ -1120,10 +1108,6 @@ namespace CSharpGL.CSSL
         }
 
         public static vec4 operator /(vec4 lhs, double rhs)
-        {
-            return null;
-        }
-        public static vec4 operator /(vec4 lhs, float rhs)
         {
             return null;
         }
