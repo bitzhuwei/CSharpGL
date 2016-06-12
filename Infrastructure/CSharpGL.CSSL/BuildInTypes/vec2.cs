@@ -95,6 +95,10 @@ namespace CSharpGL.CSSL
         {
             return null;
         }
+        public static vec2 operator /(vec2 lhs, vec2 rhs)
+        {
+            return null;
+        }
 
         public static vec2 operator /(vec2 lhs, double rhs)
         {

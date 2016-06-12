@@ -199,6 +199,10 @@ namespace CSharpGL.CSSL
             return null;
         }
 
+        public static vec3 operator /(vec3 lhs, vec3 rhs)
+        {
+            return null;
+        }
         public static vec3 operator /(vec3 lhs, double rhs)
         {
             return null;

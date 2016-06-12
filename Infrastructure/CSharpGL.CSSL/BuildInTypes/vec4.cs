@@ -1107,6 +1107,10 @@ namespace CSharpGL.CSSL
             return null;
         }
 
+        public static vec4 operator /(vec4 lhs, vec4 rhs)
+        {
+            return null;
+        }
         public static vec4 operator /(vec4 lhs, double rhs)
         {
             return null;
