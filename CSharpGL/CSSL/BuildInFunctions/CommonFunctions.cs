@@ -905,6 +905,106 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static uvec4 clamp(uvec4 x, uint minVal, uint maxVal) { return null; }
 
+        /// <summary>
+        /// Returns the component-wise result
+        /// of min (max (x, minVal ), maxVal).
+        /// Results are undefined if minVal &gt;
+        /// maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static vec2 clamp(vec2 x, vec2 minVal, vec2 maxVal) { return null; }
+        /// <summary>
+        /// Returns the component-wise result
+        /// of min (max (x, minVal ), maxVal).
+        /// Results are undefined if minVal &gt;
+        /// maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static vec3 clamp(vec3 x, vec3 minVal, vec3 maxVal) { return null; }
+        /// <summary>
+        /// Returns the component-wise result
+        /// of min (max (x, minVal ), maxVal).
+        /// Results are undefined if minVal &gt;
+        /// maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static vec4 clamp(vec4 x, vec4 minVal, vec4 maxVal) { return null; }
+        /// <summary>
+        /// Returns the component-wise result
+        /// of min (max (x, minVal ), maxVal).
+        /// Results are undefined if minVal &gt;
+        /// maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static ivec2 clamp(ivec2 x, ivec2 minVal, ivec2 maxVal) { return null; }
+        /// <summary>
+        /// Returns the component-wise result
+        /// of min (max (x, minVal ), maxVal).
+        /// Results are undefined if minVal &gt;
+        /// maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static ivec3 clamp(ivec3 x, ivec3 minVal, ivec3 maxVal) { return null; }
+        /// <summary>
+        /// Returns the component-wise result
+        /// of min (max (x, minVal ), maxVal).
+        /// Results are undefined if minVal &gt;
+        /// maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static ivec4 clamp(ivec4 x, ivec4 minVal, ivec4 maxVal) { return null; }
+        /// <summary>
+        /// Returns the component-wise result
+        /// of min (max (x, minVal ), maxVal).
+        /// Results are undefined if minVal &gt;
+        /// maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static uvec2 clamp(uvec2 x, uvec2 minVal, uvec2 maxVal) { return null; }
+        /// <summary>
+        /// Returns the component-wise result
+        /// of min (max (x, minVal ), maxVal).
+        /// Results are undefined if minVal &gt;
+        /// maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static uvec3 clamp(uvec3 x, uvec3 minVal, uvec3 maxVal) { return null; }
+        /// <summary>
+        /// Returns the component-wise result
+        /// of min (max (x, minVal ), maxVal).
+        /// Results are undefined if minVal &gt;
+        /// maxVal.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="minVal"></param>
+        /// <param name="maxVal"></param>
+        /// <returns></returns>
+        public static uvec4 clamp(uvec4 x, uvec4 minVal, uvec4 maxVal) { return null; }
+
 
     }
 }
