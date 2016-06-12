@@ -39,7 +39,7 @@ namespace CSharpGL
         /// </summary>
         public virtual IColorCodedPicking From { get; set; }
 
-        public string ToString(mat4 projection, mat4 view)
+        public string ToString(mat4 projection, mat4 view, mat4 model)
         {
             StringBuilder builder = BasicInfo();
             builder.AppendLine();
@@ -48,6 +48,7 @@ namespace CSharpGL
             if (positions == null) { positions = new vec3[0]; }
             uint[] indexes = this.Indexes;
             var worldPos = new vec4[positions.Length];
+            var viewPos = new vec4[positions.Length];
             var projectionPos = new vec4[positions.Length];
             var normalizedPos = new vec3[positions.Length];
             var screenPos = new vec3[positions.Length];
@@ -58,16 +59,28 @@ namespace CSharpGL
             for (int i = 0; i < positions.Length; i++)
             {
                 var pos4 = new vec4(positions[i], 1);
-                worldPos[i] = view * pos4;
+                worldPos[i] = model * pos4;
                 builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
                 builder.Append(worldPos[i]);
+                builder.AppendLine();
+            }
+
+            builder.Append("Positions in Camera/View Space:");
+            builder.AppendLine();
+
+            for (int i = 0; i < positions.Length; i++)
+            {
+                var pos4 = new vec4(positions[i], 1);
+                viewPos[i] = view * worldPos[i];
+                builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
+                builder.Append(viewPos[i]);
                 builder.AppendLine();
             }
             builder.Append("Positions in Projection Space:");
             builder.AppendLine();
             for (int i = 0; i < positions.Length; i++)
             {
-                projectionPos[i] = projection * worldPos[i];
+                projectionPos[i] = projection * viewPos[i];
                 builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
                 builder.Append(projectionPos[i]);
                 builder.AppendLine();

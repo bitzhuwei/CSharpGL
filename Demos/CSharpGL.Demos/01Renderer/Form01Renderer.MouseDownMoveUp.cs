@@ -146,7 +146,7 @@ namespace CSharpGL.Demos
             if (pickedGeometry != null)
             {
                 this.pickedGeometryBoard.SetContent(pickedGeometry.ToString(
-                    camera.GetProjectionMat4(), camera.GetViewMat4()));
+                    camera.GetProjectionMat4(), camera.GetViewMat4(), mat4.identity()));
             }
             else
             {
