@@ -59,3 +59,7 @@ An earth model that singly rotate same as real earth. It's composed of 65341 pos
 ![earth](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/earth.gif?raw=true)
 # :question:Support or Contact
 Check my blog [here](http://www.cnblogs.com/bitzhuwei/) if you are familiar with Chinese.
+# TODO list
+* billboard: fixed size, float size.
+* Realistic sun with flame.
+* rewrite all shaders in CSSL.
