@@ -59,7 +59,7 @@ namespace CSharpGL.Demos
                     view[0][0], view[1][0], view[2][0]));
                 this.billboardRenderer.SetUniform("CameraUp_worldspace", new vec3(
                     view[0][1], view[1][1], view[2][1]));
-                this.billboardRenderer.SetUniform("BillboardPos", new vec3(
+                this.billboardRenderer.SetUniform("particleCenter_wordspace", new vec3(
                     (float)Math.Cos(currentTime), 1f, (float)Math.Sin(currentTime)));
                 this.billboardRenderer.SetUniform("BillboardSize", new vec2(1.0f, 0.125f));
                 float lifeLevel = (float)(Math.Sin(currentTime) * 0.4 + 0.5); currentTime += 0.1f;
