@@ -157,5 +157,43 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 floor(vec4 x) { return null; }
 
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer to x whose absolute value is
+        /// not larger than the absolute value
+        /// of x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float trunc(double x) { return 0.0f; }
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer to x whose absolute value is
+        /// not larger than the absolute value
+        /// of x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 trunc(vec2 x) { return null; }
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer to x whose absolute value is
+        /// not larger than the absolute value
+        /// of x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 trunc(vec3 x) { return null; }
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer to x whose absolute value is
+        /// not larger than the absolute value
+        /// of x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 trunc(vec4 x) { return null; }
+
+
     }
 }
