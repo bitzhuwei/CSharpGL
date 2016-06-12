@@ -492,6 +492,88 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static uvec4 min(uvec4 x, uvec4 y) { return null; }
 
+        /// <summary>
+        /// Returns minimum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static vec2 min(vec2 x, double y) { return null; }
+        /// <summary>
+        /// Returns minimum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static vec3 min(vec3 x, double y) { return null; }
+        /// <summary>
+        /// Returns minimum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static vec4 min(vec4 x, double y) { return null; }
+        /// <summary>
+        /// Returns minimum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static ivec2 min(ivec2 x, int y) { return null; }
+        /// <summary>
+        /// Returns minimum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static ivec3 min(ivec3 x, int y) { return null; }
+        /// <summary>
+        /// Returns minimum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static ivec4 min(ivec4 x, int y) { return null; }
+        /// <summary>
+        /// Returns minimum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static uvec2 min(uvec2 x, uint y) { return null; }
+        /// <summary>
+        /// Returns minimum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static uvec3 min(uvec3 x, uint y) { return null; }
+        /// <summary>
+        /// Returns minimum for each
+        /// component of x compared with the
+        /// scalar value y.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static uvec4 min(uvec4 x, uint y) { return null; }
+
 
     }
 }
