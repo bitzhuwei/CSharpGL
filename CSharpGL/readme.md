@@ -15,10 +15,6 @@
 * Write GLSL shade in C#.  
 
 # release notes:
-## v1.0.5.0:
-1. CSSL(C-Sharp-Shading-Language) supports coding GLSL shader in C#.
-2. Build-in functions and variables availabe for CSSL.
-
 ## v1.0.4.1:
 1. integrate all uniform variables and array variables inheriting from UniformVariable.
 
