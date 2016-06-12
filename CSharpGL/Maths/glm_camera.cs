@@ -74,24 +74,26 @@ namespace CSharpGL
             vec3 right = up.cross(back).normalize();
             vec3 standardUp = back.cross(right);
 
-            mat4 Result = new mat4(1);
-            // Left (X) Axis
-            Result[0, 0] = right.x;
-            Result[0, 1] = standardUp.x;
-            Result[0, 2] = back.x;
-            // Up (Y) Axis
-            Result[1, 0] = right.y;
-            Result[1, 1] = standardUp.y;
-            Result[1, 2] = back.y;
-            // Forward (Z) Axis
-            Result[2, 0] = right.z;
-            Result[2, 1] = standardUp.z;
-            Result[2, 2] = back.z;
-            // Translation
-            Result[3, 0] = -right.dot(eye);// dot(s, eye);
-            Result[3, 1] = -standardUp.dot(eye);// dot(u, eye);
-            Result[3, 2] = -back.dot(eye);// dot(f, eye);
-            return Result;
+            mat4 viewMatrix = new mat4(1);
+            // camera's right in world space coordinate system
+            viewMatrix.col0.x = right.x;
+            viewMatrix.col1.x = right.y;
+            viewMatrix.col2.x = right.z;
+            // camera's up in world space coordinate system
+            viewMatrix.col0.y = standardUp.x;
+            viewMatrix.col1.y = standardUp.y;
+            viewMatrix.col2.y = standardUp.z;
+            // camera's back in world space coordinate system
+            viewMatrix.col0.z = back.x;
+            viewMatrix.col1.z = back.y;
+            viewMatrix.col2.z = back.z;
+
+            // Translation in world space coordinate system
+            viewMatrix.col3.x = -eye.dot(right);
+            viewMatrix.col3.y = -eye.dot(standardUp);
+            viewMatrix.col3.z = -eye.dot(back);
+
+            return viewMatrix;
         }
 
         /// <summary>
