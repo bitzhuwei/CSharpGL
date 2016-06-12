@@ -231,6 +231,104 @@ namespace CSharpGL.CSSL
         /// <returns></returns>
         public static vec4 round(vec4 x) { return null; }
 
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer to x. A fractional part of 0.5
+        /// will round toward the nearest even
+        /// integer. (Example: Both 3.5 and 4.5
+        /// for x will return 4.0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float roundEven(double x) { return 0.0f; }
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer to x. A fractional part of 0.5
+        /// will round toward the nearest even
+        /// integer. (Example: Both 3.5 and 4.5
+        /// for x will return 4.0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 roundEven(vec2 x) { return null; }
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer to x. A fractional part of 0.5
+        /// will round toward the nearest even
+        /// integer. (Example: Both 3.5 and 4.5
+        /// for x will return 4.0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 roundEven(vec3 x) { return null; }
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer to x. A fractional part of 0.5
+        /// will round toward the nearest even
+        /// integer. (Example: Both 3.5 and 4.5
+        /// for x will return 4.0.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 roundEven(vec4 x) { return null; }
+
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer that is greater than or equal
+        /// to x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float ceil(double x) { return 0.0f; }
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer that is greater than or equal
+        /// to x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 ceil(vec2 x) { return null; }
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer that is greater than or equal
+        /// to x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 ceil(vec3 x) { return null; }
+        /// <summary>
+        /// Returns a value equal to the nearest
+        /// integer that is greater than or equal
+        /// to x.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 ceil(vec4 x) { return null; }
+
+        /// <summary>
+        /// Returns x – floor (x).
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static float fract(double x) { return 0.0f; }
+        /// <summary>
+        /// Returns x – floor (x).
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec2 fract(vec2 x) { return null; }
+        /// <summary>
+        /// Returns x – floor (x).
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec3 fract(vec3 x) { return null; }
+        /// <summary>
+        /// Returns x – floor (x).
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static vec4 fract(vec4 x) { return null; }
 
     }
 }
