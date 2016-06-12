@@ -56,6 +56,12 @@
     <Compile Include="BuildInTypes\ivec2.cs" />
     <Compile Include="BuildInTypes\ivec3.cs" />
     <Compile Include="BuildInTypes\ivec4.cs" />
+    <Compile Include="BuildInTypes\mat3x2.cs" />
+    <Compile Include="BuildInTypes\mat2x4.cs" />
+    <Compile Include="BuildInTypes\mat4x2.cs" />
+    <Compile Include="BuildInTypes\mat3x4.cs" />
+    <Compile Include="BuildInTypes\mat4x3.cs" />
+    <Compile Include="BuildInTypes\mat2x3.cs" />
     <Compile Include="BuildInTypes\mat2.cs" />
     <Compile Include="BuildInTypes\mat3.cs" />
     <Compile Include="BuildInTypes\mat4.cs" />

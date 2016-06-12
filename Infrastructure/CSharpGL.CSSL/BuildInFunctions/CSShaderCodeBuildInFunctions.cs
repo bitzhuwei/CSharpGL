@@ -45,13 +45,7 @@ namespace CSharpGL.CSSL
 
         #region matrix functions
 
-        public static mat2 inverse(mat2 matrix) { return null; }
-        public static mat3 inverse(mat3 matrix) { return null; }
-        public static mat4 inverse(mat4 matrix) { return null; }
 
-        public static mat2 transpose(mat2 matrix) { return null; }
-        public static mat3 transpose(mat3 matrix) { return null; }
-        public static mat4 transpose(mat4 matrix) { return null; }
 
 
         /// <summary>
