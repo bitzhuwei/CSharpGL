@@ -30,10 +30,10 @@ namespace CSharpGL.Demos
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
-            this.Offset = new vec3(0, 1.2f, 0);
+            this.Offset = new vec3(0, 0.4f, 0);
             this.Width = 1.0f; this.Height = 0.125f;
             this.WidthPercentage = 0.2f; this.HeightPercentage = 0.05f;
-            this.WidthInPixelSize = 100; this.HeightInPixelSize = 20;
+            this.WidthInPixelSize = 100; this.HeightInPixelSize = 10;
         }
 
         protected override void DoInitialize()
@@ -75,8 +75,8 @@ namespace CSharpGL.Demos
 
     enum BillboardType
     {
-        Physical = 0,
-        Percentage = 1,
-        Pixel = 2,
+        Pixel = 0,
+        Physical = 1,
+        Percentage = 2,
     }
 }

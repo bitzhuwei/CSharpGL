@@ -13,7 +13,7 @@ void main(){
 	if (color.r <= 0.1f) discard;
 	
 	// Hardcoded life level, should be in a separate texture.
-	if (UV.x < LifeLevel && UV.y > 0.3 && UV.y < 0.7 && UV.x > 0.04 )
+	if (UV.x < LifeLevel && UV.y > 0.2 && UV.y < 0.8 && UV.x > 0.04 )
 	{ 
 		gl_FragColor = vec4(0.2, 0.8, 0.2, 1.0); // Opaque green
 	}

@@ -50,7 +50,7 @@ namespace CSharpGL.Demos
                 var map = new PropertyNameMap();
                 map.Add("in_Position", "position");
                 map.Add("in_Color", "color");
-                var movableRenderer = new MovableRenderer(new Cube(), shaderCodes, map, "position");
+                var movableRenderer = new MovableRenderer(new Teapot(0.1f), shaderCodes, map, "position");
                 movableRenderer.Initialize();
                 this.movableRenderer = movableRenderer;
             }

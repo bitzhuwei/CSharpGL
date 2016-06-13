@@ -16,7 +16,16 @@ uniform mat4 view;
 uniform float billboardType = 0.0f;
 void main()
 {
-    if (billboardType == 0.0f)
+	if (billboardType == 0.0f)// fixed pixel size
+	{
+		// Or, if BillboardSize is in pixels :
+		//Same thing, just use (ScreenSizeInPixels / BillboardSizeInPixels) instead of BillboardSizeInScreenPercentage.
+		gl_Position = projection * view * vec4(billboardCenter_worldspace, 1.0f); // Get the screen-space position of the particle's center
+		gl_Position /= gl_Position.w; // Here we have to do the perspective division ourselves.
+		gl_Position.xy += in_Positions.xy * BillboardSizeInPixelSize / ScreenSizeinPixelSize * 2; // Move the vertex in directly screen space. No need for CameraUp/Right_worlspace here.
+
+	}
+    else if (billboardType == 1.0f)// fixed physical size
 	{
 		vec3 vertexPosition_worldspace =
 			billboardCenter_worldspace
@@ -25,21 +34,12 @@ void main()
 
 		gl_Position = projection * view * vec4(vertexPosition_worldspace, 1.0f);
 	}
-	else if (billboardType == 1.0f)
+	else// if (billboardType == 2.0f)// percentage size of screen
 	{
 		// Or, if BillboardSize is in percentage of the screen size (vec2(1, 1) for fullscreen) :
 		gl_Position = projection * view * vec4(billboardCenter_worldspace, 1.0f); // Get the screen-space position of the particle's center
 		gl_Position /= gl_Position.w; // Here we have to do the perspective division ourselves.
 		gl_Position.xy += in_Positions.xy * BillboardSizeInPercentage * 2; // Move the vertex in directly screen space. No need for CameraUp/Right_worlspace here.
-	}
-	else
-	{
-		// Or, if BillboardSize is in pixels :
-		//Same thing, just use (ScreenSizeInPixels / BillboardSizeInPixels) instead of BillboardSizeInScreenPercentage.
-		gl_Position = projection * view * vec4(billboardCenter_worldspace, 1.0f); // Get the screen-space position of the particle's center
-		gl_Position /= gl_Position.w; // Here we have to do the perspective division ourselves.
-		gl_Position.xy += in_Positions.xy * BillboardSizeInPixelSize / ScreenSizeinPixelSize * 2; // Move the vertex in directly screen space. No need for CameraUp/Right_worlspace here.
-
 	}
 
 
