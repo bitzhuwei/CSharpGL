@@ -51,28 +51,28 @@ namespace CSharpGL
 
         private FontResource() { }
 
-        public FontResource Load(string filename, string config)
-        {
-            var result = new FontResource();
+        //public FontResource Load(string filename, string config)
+        //{
+        //    var result = new FontResource();
 
-            var bitmap = new Bitmap(filename);
-            result.InitTexture(bitmap);
-            bitmap.Dispose();
+        //    var bitmap = new Bitmap(filename);
+        //    result.InitTexture(bitmap);
+        //    bitmap.Dispose();
 
-            XElement xElement = XElement.Load(config, LoadOptions.None);
-            result.InitConfig(xElement);
+        //    XElement xElement = XElement.Load(config, LoadOptions.None);
+        //    result.InitConfig(xElement);
 
-            return result;
-        }
+        //    return result;
+        //}
 
-        private void InitConfig(XElement config)
-        {
-            this.FontHeight = int.Parse(config.Attribute(strFontHeight).Value);
-            //this.FirstChar = (char)int.Parse(config.Attribute(strFirstChar).Value);
-            //this.LastChar = (char)int.Parse(config.Attribute(strLastChar).Value);
-            this.CharInfoDict = CharacterInfoDictHelper.Parse(
-                config.Element(CharacterInfoDictHelper.strCharacterInfoDict));
-        }
+        //private void InitConfig(XElement config)
+        //{
+        //    this.FontHeight = int.Parse(config.Attribute(strFontHeight).Value);
+        //    //this.FirstChar = (char)int.Parse(config.Attribute(strFirstChar).Value);
+        //    //this.LastChar = (char)int.Parse(config.Attribute(strLastChar).Value);
+        //    this.CharInfoDict = CharacterInfoDictHelper.Parse(
+        //        config.Element(CharacterInfoDictHelper.strCharacterInfoDict));
+        //}
 
         private void InitTexture(Bitmap bitmap)
         {
