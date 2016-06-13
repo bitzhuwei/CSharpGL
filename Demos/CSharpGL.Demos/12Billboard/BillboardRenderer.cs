@@ -15,6 +15,7 @@ namespace CSharpGL.Demos
         private double currentTime;
 
         public MovableRenderer TargetRenderer { get; set; }
+
         public vec3 Offset { get; set; }
 
         public float Width { get; set; }
@@ -22,8 +23,10 @@ namespace CSharpGL.Demos
 
         public float WidthPercentage { get; set; }
         public float HeightPercentage { get; set; }
+
         public int WidthInPixelSize { get; set; }
         public int HeightInPixelSize { get; set; }
+
         public BillboardType Type { get; set; }
 
         public BillboardRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
