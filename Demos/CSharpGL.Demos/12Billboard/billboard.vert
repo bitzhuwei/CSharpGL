@@ -1,10 +1,8 @@
 #version 120
 
-// Input vertex data, different for all executions of this shader.
 in vec3 in_Positions;
 
-// Output data ; will be interpolated for each fragment.
-varying vec2 UV;
+out vec2 UV;
 
 // Values that stay constant for the whole mesh.
 uniform vec3 CameraRight_worldspace;

@@ -1,7 +1,7 @@
 #version 120
 
 // Interpolated values from the vertex shaders
-varying vec2 UV;
+in vec2 UV;
 
 uniform sampler2D myTextureSampler;
 
