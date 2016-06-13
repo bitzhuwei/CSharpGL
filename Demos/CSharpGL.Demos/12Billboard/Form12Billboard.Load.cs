@@ -59,7 +59,7 @@ namespace CSharpGL.Demos
                 shaderCodes[0] = new ShaderCode(File.ReadAllText(@"12Billboard\billboard.vert"), ShaderType.VertexShader);
                 shaderCodes[1] = new ShaderCode(File.ReadAllText(@"12Billboard\billboard.frag"), ShaderType.FragmentShader);
                 var map = new PropertyNameMap();
-                map.Add("squareVertices", "position");
+                map.Add("in_Positions", BillboardModel.strPosition);
                 var billboardRenderer = new Renderer(new BillboardModel(), shaderCodes, map);
                 billboardRenderer.Initialize();
                 var texture = new sampler2D();
