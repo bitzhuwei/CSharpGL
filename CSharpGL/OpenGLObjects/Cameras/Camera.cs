@@ -27,6 +27,48 @@ namespace CSharpGL
         ///// </summary>
         //public static readonly vec3 defaultUpVector = new vec3(0, 1, 0);
 
+        /// <summary>
+        /// Get front vector in world space.
+        /// </summary>
+        /// <returns></returns>
+        public vec3 GetFront()
+        {
+            vec3 result = this.Target - this.Position;
+            return result;
+        }
+
+        /// <summary>
+        /// Get back vector in world space.
+        /// </summary>
+        /// <returns></returns>
+        public vec3 GetBack()
+        {
+            vec3 result = this.Position - this.Target;
+            return result;
+        }
+
+        /// <summary>
+        /// Get left vector in world space.
+        /// </summary>
+        /// <returns></returns>
+        public vec3 GetLeft()
+        {
+            vec3 back = this.Position - this.Target;
+            vec3 result = back.cross(this.UpVector);
+            return result;
+        }
+
+        /// <summary>
+        /// Get right vector in world space.
+        /// </summary>
+        /// <returns></returns>
+        public vec3 GetRight()
+        {
+            vec3 back = this.Position - this.Target;
+            vec3 result = this.UpVector.cross(back);
+            return result;
+        }
+
         internal Camera() { }
 
         /// <summary>

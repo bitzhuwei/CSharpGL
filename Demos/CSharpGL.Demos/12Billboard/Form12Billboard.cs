@@ -125,24 +125,34 @@ namespace CSharpGL.Demos
 
             if (e.KeyChar == 'w')
             {
-                this.position.z += deltaDistance;
+                vec3 front = this.camera.GetFront();
+                front.y = 0;
+                this.position += deltaDistance * front.normalize();
             }
             else if (e.KeyChar == 's')
             {
-                this.position.z -= deltaDistance;
+                vec3 back = this.camera.GetBack();
+                back.y = 0;
+                this.position += deltaDistance * back.normalize();
             }
             else if (e.KeyChar == 'a')
             {
-                this.position.x -= deltaDistance;
+                vec3 left = this.camera.GetLeft();
+                left.y = 0;
+                this.position += deltaDistance * left.normalize();
             }
             else if (e.KeyChar == 'd')
             {
-                this.position.x += deltaDistance;
+                vec3 right = this.camera.GetRight();
+                right.y = 0;
+                this.position += deltaDistance * right.normalize();
             }
             else if (e.KeyChar == 'r')
             {
                 this.position = new vec3(0, 0, 0);
             }
+
+            this.movableRenderer.Position = this.position;
 
             this.lblCubePosition.Text = string.Format("Cube Pos: {0}", this.position);
         }
