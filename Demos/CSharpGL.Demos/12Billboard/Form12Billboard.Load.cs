@@ -16,7 +16,7 @@ namespace CSharpGL.Demos
         private FormProperyGrid formPropertyGrid;
         private GLControl uiRoot;
         private GLAxis glAxis;
-        private PickableRenderer cubeRenderer;
+        private MovableRenderer movableRenderer;
         private Renderer billboardRenderer;
         private Renderer ground;
 
@@ -50,9 +50,9 @@ namespace CSharpGL.Demos
                 var map = new PropertyNameMap();
                 map.Add("in_Position", "position");
                 map.Add("in_Color", "color");
-                var cubeRenderer = new PickableRenderer(new Cube(), shaderCodes, map, "position");
-                cubeRenderer.Initialize();
-                this.cubeRenderer = cubeRenderer;
+                var movableRenderer = new MovableRenderer(new Cube(), shaderCodes, map, "position");
+                movableRenderer.Initialize();
+                this.movableRenderer = movableRenderer;
             }
             {
                 var shaderCodes = new ShaderCode[2];
@@ -84,7 +84,7 @@ namespace CSharpGL.Demos
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this.glAxis);
+                frmPropertyGrid.DisplayObject(this.movableRenderer);
                 frmPropertyGrid.Show();
                 this.formPropertyGrid = frmPropertyGrid;
             }

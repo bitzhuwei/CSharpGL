@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="12Billboard\MovableRenderer.cs" />
     <Compile Include="12Billboard\GroundRenderer.cs" />
     <Compile Include="12Billboard\GroundModel.cs" />
     <Compile Include="14ShaderToy\Form14ShaderToy.cs">

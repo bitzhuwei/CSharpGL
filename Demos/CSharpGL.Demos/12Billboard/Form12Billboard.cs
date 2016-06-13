@@ -38,21 +38,10 @@ namespace CSharpGL.Demos
             RenderEventArgs arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
 
             {
-                mat4 projection = arg.Camera.GetProjectionMat4();
-                mat4 view = arg.Camera.GetViewMat4();
-                vec4 translationColumn = view[3];
-                translationColumn.x += this.position.x;
-                translationColumn.y += this.position.y;
-                translationColumn.z += this.position.z;
-                view[3] = translationColumn;
-                mat4 model = glm.scale(mat4.identity(), new vec3(0.3f, 0.3f, 0.3f));
-                this.cubeRenderer.SetUniform("projectionMatrix", projection);
-                this.cubeRenderer.SetUniform("viewMatrix", view);
-                this.cubeRenderer.SetUniform("modelMatrix", model);
-                this.cubeRenderer.Render(arg);
+                this.movableRenderer.Render(arg);
             }
             {
-  
+
                 this.ground.Render(arg);
             }
             {
