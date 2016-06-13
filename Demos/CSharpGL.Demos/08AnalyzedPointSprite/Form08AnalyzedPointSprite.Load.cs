@@ -14,6 +14,8 @@ namespace CSharpGL.Demos
     public partial class Form08AnalyzedPointSprite : Form
     {
         private FormProperyGrid formPropertyGrid;
+        private GLControl uiRoot;
+        private GLAxis glAxis;
 
 
         private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
@@ -30,6 +32,18 @@ namespace CSharpGL.Demos
                 var renderer = new AnalyzedPointSpriteRenderer(10000);
                 renderer.Initialize();
                 this.renderer = renderer;
+            }
+            {
+                var UIRoot = new GLControl(this.glCanvas1.Size, -100, 100);
+                UIRoot.Initialize();
+                this.uiRoot = UIRoot;
+
+                var glAxis = new GLAxis(AnchorStyles.Right | AnchorStyles.Bottom,
+                    new Padding(3, 3, 3, 3), new Size(70, 70), -100, 100);
+                glAxis.Initialize();
+                this.glAxis = glAxis;
+
+                UIRoot.Controls.Add(glAxis);
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();

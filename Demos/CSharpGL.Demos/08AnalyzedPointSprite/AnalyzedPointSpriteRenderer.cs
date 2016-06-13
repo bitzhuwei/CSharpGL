@@ -22,7 +22,7 @@ namespace CSharpGL.Demos
                 if (value != clearColor)
                 {
                     clearColor = value;
-                    OpenGL.ClearColor(value.R / 255.0f,value.G / 255.0f,value.B / 255.0f,value.A / 255.0f);
+                    OpenGL.ClearColor(value.R / 255.0f, value.G / 255.0f, value.B / 255.0f, value.A / 255.0f);
                 }
             }
         }
@@ -73,7 +73,7 @@ namespace CSharpGL.Demos
             private int particleCount;
             private Random random = new Random();
             private float factor = 1;
-
+            private const float a = 5, b = 4, c = 3;
             public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
             {
                 if (bufferName == strPosition)
@@ -89,22 +89,12 @@ namespace CSharpGL.Demos
                                 var array = (vec3*)buffer.Header.ToPointer();
                                 for (int i = 0; i < particleCount; i++)
                                 {
-                                    if (i % 2 == 0)
-                                    {
-                                        array[i] = new vec3(
-                                            (float)(random.NextDouble() * 2 - 1) * factor,
-                                            (float)(random.NextDouble() * 2 - 1) * factor,
-                                            (float)(random.NextDouble() * 2 - 1) * factor);
-                                    }
-                                    else
-                                    {
-                                        double theta = random.NextDouble() * 2 * Math.PI - Math.PI;
-                                        double alpha = random.NextDouble() * 2 * Math.PI - Math.PI;
-                                        array[i] = new vec3(
-                                            (float)(Math.Sin(theta) * Math.Cos(alpha)) * factor,
-                                            (float)(Math.Sin(theta) * Math.Sin(alpha)) * factor,
-                                            (float)(Math.Cos(theta)) * factor);
-                                    }
+                                    double beta = random.NextDouble() * Math.PI;
+                                    double theta = random.NextDouble() * Math.PI * 2;
+                                    float x = (float)(a * Math.Sin(beta) * Math.Cos(theta));
+                                    float y = (float)(b * Math.Sin(beta) * Math.Sin(theta));
+                                    float z = (float)(c * Math.Cos(beta));
+                                    array[i] = new vec3(x, y, z);
                                 }
                             }
 
