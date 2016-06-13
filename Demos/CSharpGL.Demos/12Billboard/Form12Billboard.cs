@@ -58,7 +58,8 @@ namespace CSharpGL.Demos
                 this.billboardRenderer.SetUniform("BillboardSize", new vec2(1.0f, 0.125f));
                 float lifeLevel = (float)(Math.Sin(currentTime) * 0.4 + 0.5); currentTime += 0.1f;
                 this.billboardRenderer.SetUniform("LifeLevel", lifeLevel);
-                this.billboardRenderer.SetUniform("VP", projection * view);
+                this.billboardRenderer.SetUniform("projection", projection);
+                this.billboardRenderer.SetUniform("view", view);
                 this.billboardRenderer.Render(arg);
             }
             UIRenderersDraw(arg);
@@ -138,7 +139,7 @@ namespace CSharpGL.Demos
             {
                 this.position.x += deltaDistance;
             }
-            else if(e.KeyChar=='r')
+            else if (e.KeyChar == 'r')
             {
                 this.position = new vec3(0, 0, 0);
             }
