@@ -52,7 +52,7 @@ namespace CSharpGL.Demos
                     view[0][0], view[1][0], view[2][0]));
                 this.billboardRenderer.SetUniform("CameraUp_worldspace", new vec3(
                     view[0][1], view[1][1], view[2][1]));
-                this.billboardRenderer.SetUniform("particleCenter_wordspace",
+                this.billboardRenderer.SetUniform("billboardCenter_worldspace",
                     //new vec3((float)Math.Cos(currentTime), 1f, (float)Math.Sin(currentTime)));
                     this.movableRenderer.Position + new vec3(0, 1.2f, 0));
                 this.billboardRenderer.SetUniform("BillboardSize", new vec2(1.0f, 0.125f));
