@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form08AnalyzedBillboard : Form
+    public partial class Form08AnalyzedPointSprite : Form
     {
         private FormProperyGrid formPropertyGrid;
 
@@ -27,7 +27,7 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
-                var renderer = new AnalyzedBillboardRenderer(10000);
+                var renderer = new AnalyzedPointSpriteRenderer(10000);
                 renderer.Initialize();
                 this.renderer = renderer;
             }

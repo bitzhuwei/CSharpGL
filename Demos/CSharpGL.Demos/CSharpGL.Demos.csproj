@@ -162,32 +162,32 @@
     </Compile>
     <Compile Include="01Renderer\HighlightedPickableRenderer.cs" />
     <Compile Include="01Renderer\Chain.cs" />
-    <Compile Include="08AnalyzedBillboard\AnalyzedBillboardRenderer.cs" />
-    <Compile Include="08AnalyzedBillboard\Form08AnalyzedBillboard.cs">
+    <Compile Include="08AnalyzedPointSprite\AnalyzedPointSpriteRenderer.cs" />
+    <Compile Include="08AnalyzedPointSprite\Form08AnalyzedPointSprite.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="08AnalyzedBillboard\Form08AnalyzedBillboard.Designer.cs">
-      <DependentUpon>Form08AnalyzedBillboard.cs</DependentUpon>
+    <Compile Include="08AnalyzedPointSprite\Form08AnalyzedPointSprite.Designer.cs">
+      <DependentUpon>Form08AnalyzedPointSprite.cs</DependentUpon>
     </Compile>
-    <Compile Include="08AnalyzedBillboard\Form08AnalyzedBillboard.Load.cs">
+    <Compile Include="08AnalyzedPointSprite\Form08AnalyzedPointSprite.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="08AnalyzedBillboard\Form08AnalyzedBillboard.MouseDownMoveUp.cs">
+    <Compile Include="08AnalyzedPointSprite\Form08AnalyzedPointSprite.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="07PiontSprite\Form07PointSprite.cs">
+    <Compile Include="07PointSprite\Form07PointSprite.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="07PiontSprite\Form07PointSprite.Designer.cs">
+    <Compile Include="07PointSprite\Form07PointSprite.Designer.cs">
       <DependentUpon>Form07PointSprite.cs</DependentUpon>
     </Compile>
-    <Compile Include="07PiontSprite\Form07PointSprite.Load.cs">
+    <Compile Include="07PointSprite\Form07PointSprite.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="07PiontSprite\Form07PointSprite.MouseDownMoveUp.cs">
+    <Compile Include="07PointSprite\Form07PointSprite.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="07PiontSprite\PointSpriteRenderer.cs" />
+    <Compile Include="07PointSprite\PointSpriteRenderer.cs" />
     <Compile Include="12Billboard\Form12Billboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -382,10 +382,10 @@
     <EmbeddedResource Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.resx">
       <DependentUpon>Form02OrderIndependentTransparency.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="08AnalyzedBillboard\Form08AnalyzedBillboard.resx">
-      <DependentUpon>Form08AnalyzedBillboard.cs</DependentUpon>
+    <EmbeddedResource Include="08AnalyzedPointSprite\Form08AnalyzedPointSprite.resx">
+      <DependentUpon>Form08AnalyzedPointSprite.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="07PiontSprite\Form07PointSprite.resx">
+    <EmbeddedResource Include="07PointSprite\Form07PointSprite.resx">
       <DependentUpon>Form07PointSprite.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="12Billboard\Form12Billboard.resx">
@@ -422,16 +422,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="08AnalyzedBillboard\AnalyzedBillboard.frag">
+    <None Include="08AnalyzedPointSprite\AnalyzedPointSprite.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="08AnalyzedBillboard\AnalyzedBillboard.vert">
+    <None Include="08AnalyzedPointSprite\AnalyzedPointSprite.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="07PiontSprite\PointSprite.frag">
+    <None Include="07PointSprite\PointSprite.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="07PiontSprite\PointSprite.vert">
+    <None Include="07PointSprite\PointSprite.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="10RaycastVolumeRender\raycasting.frag">
@@ -512,7 +512,7 @@
     <Content Include="06ImageProcessing\teapot.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="07PiontSprite\star.png">
+    <Content Include="07PointSprite\star.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="10RaycastVolumeRender\head256.raw">

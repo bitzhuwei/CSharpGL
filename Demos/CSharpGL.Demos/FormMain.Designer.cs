@@ -35,7 +35,7 @@
             this.btnForm05ParticleSimulator = new System.Windows.Forms.Button();
             this.btnForm06ImageProcessing = new System.Windows.Forms.Button();
             this.btnForm07PointSprite = new System.Windows.Forms.Button();
-            this.btnForm08AnalyzedBillboard = new System.Windows.Forms.Button();
+            this.btnForm08AnalyzedPointSprite = new System.Windows.Forms.Button();
             this.btnForm09TextBoxRenderer = new System.Windows.Forms.Button();
             this.btn10RaycastVolumeRenderer = new System.Windows.Forms.Button();
             this.btn11SharpFont = new System.Windows.Forms.Button();
@@ -135,18 +135,18 @@
             this.btnForm07PointSprite.UseVisualStyleBackColor = true;
             this.btnForm07PointSprite.Click += new System.EventHandler(this.btn07PointSprite_Click);
             // 
-            // btnForm08AnalyzedBillboard
+            // btnForm08AnalyzedPointSprite
             // 
-            this.btnForm08AnalyzedBillboard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnForm08AnalyzedPointSprite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnForm08AnalyzedBillboard.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnForm08AnalyzedBillboard.Location = new System.Drawing.Point(12, 313);
-            this.btnForm08AnalyzedBillboard.Name = "btnForm08AnalyzedBillboard";
-            this.btnForm08AnalyzedBillboard.Size = new System.Drawing.Size(767, 37);
-            this.btnForm08AnalyzedBillboard.TabIndex = 0;
-            this.btnForm08AnalyzedBillboard.Text = "Form08 AnalyzedBillboard";
-            this.btnForm08AnalyzedBillboard.UseVisualStyleBackColor = true;
-            this.btnForm08AnalyzedBillboard.Click += new System.EventHandler(this.btn08AnalyzedBillboard_Click);
+            this.btnForm08AnalyzedPointSprite.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnForm08AnalyzedPointSprite.Location = new System.Drawing.Point(12, 313);
+            this.btnForm08AnalyzedPointSprite.Name = "btnForm08AnalyzedPointSprite";
+            this.btnForm08AnalyzedPointSprite.Size = new System.Drawing.Size(767, 37);
+            this.btnForm08AnalyzedPointSprite.TabIndex = 0;
+            this.btnForm08AnalyzedPointSprite.Text = "Form08 AnalyzedPointSprite";
+            this.btnForm08AnalyzedPointSprite.UseVisualStyleBackColor = true;
+            this.btnForm08AnalyzedPointSprite.Click += new System.EventHandler(this.btn08AnalyzedPointSprite_Click);
             // 
             // btnForm09TextBoxRenderer
             // 
@@ -237,7 +237,7 @@
             this.Controls.Add(this.btn11SharpFont);
             this.Controls.Add(this.btn10RaycastVolumeRenderer);
             this.Controls.Add(this.btnForm09TextBoxRenderer);
-            this.Controls.Add(this.btnForm08AnalyzedBillboard);
+            this.Controls.Add(this.btnForm08AnalyzedPointSprite);
             this.Controls.Add(this.btnForm07PointSprite);
             this.Controls.Add(this.btnForm06ImageProcessing);
             this.Controls.Add(this.btnForm05ParticleSimulator);
@@ -260,7 +260,7 @@
         private System.Windows.Forms.Button btnForm05ParticleSimulator;
         private System.Windows.Forms.Button btnForm06ImageProcessing;
         private System.Windows.Forms.Button btnForm07PointSprite;
-        private System.Windows.Forms.Button btnForm08AnalyzedBillboard;
+        private System.Windows.Forms.Button btnForm08AnalyzedPointSprite;
         private System.Windows.Forms.Button btnForm09TextBoxRenderer;
         private System.Windows.Forms.Button btn10RaycastVolumeRenderer;
         private System.Windows.Forms.Button btn11SharpFont;

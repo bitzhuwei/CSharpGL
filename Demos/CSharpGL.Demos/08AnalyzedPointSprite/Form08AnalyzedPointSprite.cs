@@ -10,15 +10,15 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form08AnalyzedBillboard : Form
+    public partial class Form08AnalyzedPointSprite : Form
     {
 
         private Camera camera;
         private SatelliteRotator rotator;
-        private AnalyzedBillboardRenderer renderer;
+        private AnalyzedPointSpriteRenderer renderer;
 
 
-        public Form08AnalyzedBillboard()
+        public Form08AnalyzedPointSprite()
         {
             InitializeComponent();
 

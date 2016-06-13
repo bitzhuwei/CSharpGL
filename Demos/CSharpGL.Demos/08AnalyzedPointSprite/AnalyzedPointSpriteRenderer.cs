@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CSharpGL.Demos
 {
 
-    class AnalyzedBillboardRenderer : Renderer
+    class AnalyzedPointSpriteRenderer : Renderer
     {
 
         private Color clearColor = Color.Black;
@@ -29,15 +29,15 @@ namespace CSharpGL.Demos
 
         static ShaderCode[] staticShaderCodes;
         static PropertyNameMap map;
-        static AnalyzedBillboardRenderer()
+        static AnalyzedPointSpriteRenderer()
         {
             staticShaderCodes = new ShaderCode[2];
-            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"08AnalyzedBillboard\AnalyzedBillboard.vert"), ShaderType.VertexShader);
-            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"08AnalyzedBillboard\AnalyzedBillboard.frag"), ShaderType.FragmentShader);
+            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"08AnalyzedPointSprite\AnalyzedPointSprite.vert"), ShaderType.VertexShader);
+            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"08AnalyzedPointSprite\AnalyzedPointSprite.frag"), ShaderType.FragmentShader);
             map = new PropertyNameMap();
             map.Add("position", "position");
         }
-        public AnalyzedBillboardRenderer(int particleCount)
+        public AnalyzedPointSpriteRenderer(int particleCount)
             : base(new BillboardModel(particleCount), staticShaderCodes, map)
         {
             this.SwitchList.Add(new PointSpriteSwitch());

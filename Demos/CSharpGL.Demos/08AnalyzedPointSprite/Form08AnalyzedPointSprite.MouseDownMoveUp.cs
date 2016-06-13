@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form08AnalyzedBillboard : Form
+    public partial class Form08AnalyzedPointSprite : Form
     {
 
         private Point lastMousePosition;

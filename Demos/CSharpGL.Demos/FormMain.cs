@@ -52,9 +52,9 @@ namespace CSharpGL.Demos
             (new Form07PointSprite()).Show();
         }
 
-        private void btn08AnalyzedBillboard_Click(object sender, EventArgs e)
+        private void btn08AnalyzedPointSprite_Click(object sender, EventArgs e)
         {
-            (new Form08AnalyzedBillboard()).Show();
+            (new Form08AnalyzedPointSprite()).Show();
         }
 
         private void btn09UIRenderer_Click(object sender, EventArgs e)

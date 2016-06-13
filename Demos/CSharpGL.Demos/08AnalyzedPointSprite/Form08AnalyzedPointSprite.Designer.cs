@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL.Demos
 {
-    partial class Form08AnalyzedBillboard
+    partial class Form08AnalyzedPointSprite
     {
         /// <summary>
         /// Required designer variable.
