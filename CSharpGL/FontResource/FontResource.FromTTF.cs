@@ -11,7 +11,7 @@ using System.Linq;
 namespace CSharpGL
 {
     /// <summary>
-    /// 含有字形贴图及其配置信息的单例类型。
+    /// 字形贴图及其UV。
     /// </summary>
     public sealed partial class FontResource
     {
@@ -19,7 +19,7 @@ namespace CSharpGL
         static int[] standardWidths;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="ttfFilename">".ttf", or ".otf"</param>
         /// <param name="pixelSize">The desired size of the font, in pixels.</param>
@@ -40,7 +40,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="ttfFilename">".ttf", or ".otf"</param>
         /// <param name="pixelSize">The desired size of the font, in pixels.</param>
@@ -61,7 +61,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="ttfFilename">".ttf", or ".otf"</param>
         /// <param name="pixelSize">The desired size of the font, in pixels.</param>
@@ -115,7 +115,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="ttfFilename">".ttf", or ".otf"</param>
         /// <param name="pixelSize">The desired size of the font, in pixels.</param>
@@ -131,7 +131,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="stream">".ttf", or ".otf"</param>
         /// <param name="pixelSize">The desired size of the font, in pixels.</param>

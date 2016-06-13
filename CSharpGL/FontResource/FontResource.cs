@@ -7,7 +7,7 @@ using System.Xml.Linq;
 namespace CSharpGL
 {
     /// <summary>
-    /// 含有字形贴图及其配置信息的单例类型。
+    /// 字形贴图及其UV。
     /// </summary>
     public sealed partial class FontResource : IDisposable
     {
