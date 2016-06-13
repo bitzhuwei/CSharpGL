@@ -269,7 +269,7 @@ namespace CSharpGL
         {
             if (standardWidths == null)
             {
-                int[] maxTextureSize = new int[2];
+                int[] maxTextureSize = new int[1];
                 OpenGL.GetInteger(GetTarget.MaxTextureSize, maxTextureSize);
                 if (maxTextureSize[0] == 0) { maxTextureSize[0] = (int)Math.Pow(2, 14); }
                 int i = 2;
