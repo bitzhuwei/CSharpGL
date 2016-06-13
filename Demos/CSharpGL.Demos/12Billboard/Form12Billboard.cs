@@ -114,24 +114,28 @@ namespace CSharpGL.Demos
                 vec3 front = this.camera.GetFront();
                 front.y = 0;
                 this.position += deltaDistance * front.normalize();
+                this.movableRenderer.SetDirection(front);
             }
             else if (e.KeyChar == 's')
             {
                 vec3 back = this.camera.GetBack();
                 back.y = 0;
                 this.position += deltaDistance * back.normalize();
+                this.movableRenderer.SetDirection(back);
             }
             else if (e.KeyChar == 'a')
             {
                 vec3 left = this.camera.GetLeft();
                 left.y = 0;
                 this.position += deltaDistance * left.normalize();
+                this.movableRenderer.SetDirection(left);
             }
             else if (e.KeyChar == 'd')
             {
                 vec3 right = this.camera.GetRight();
                 right.y = 0;
                 this.position += deltaDistance * right.normalize();
+                this.movableRenderer.SetDirection(right);
             }
             else if (e.KeyChar == 'r')
             {
