@@ -60,12 +60,13 @@ namespace CSharpGL.Demos
                 shaderCodes[1] = new ShaderCode(File.ReadAllText(@"12Billboard\billboard.frag"), ShaderType.FragmentShader);
                 var map = new PropertyNameMap();
                 map.Add("in_Positions", BillboardModel.strPosition);
-                var billboardRenderer = new Renderer(new BillboardModel(), shaderCodes, map);
+                var billboardRenderer = new BillboardRenderer(new BillboardModel(), shaderCodes, map);
                 billboardRenderer.Initialize();
                 var texture = new sampler2D();
                 var bitmap = new Bitmap(@"12Billboard\ExampleBillboard.png");
                 texture.Initialize(bitmap);
                 bitmap.Dispose();
+                billboardRenderer.TargetRenderer = this.movableRenderer;
                 billboardRenderer.SetUniform("myTextureSampler", new samplerValue(BindTextureTarget.Texture2D, texture.Id, OpenGL.GL_TEXTURE0));
 
                 this.billboardRenderer = billboardRenderer;
@@ -85,6 +86,18 @@ namespace CSharpGL.Demos
             {
                 var frmPropertyGrid = new FormProperyGrid();
                 frmPropertyGrid.DisplayObject(this.movableRenderer);
+                frmPropertyGrid.Show();
+                this.formPropertyGrid = frmPropertyGrid;
+            }
+            {
+                var frmPropertyGrid = new FormProperyGrid();
+                frmPropertyGrid.DisplayObject(this.billboardRenderer);
+                frmPropertyGrid.Show();
+                this.formPropertyGrid = frmPropertyGrid;
+            }
+            {
+                var frmPropertyGrid = new FormProperyGrid();
+                frmPropertyGrid.DisplayObject(this.glCanvas1);
                 frmPropertyGrid.Show();
                 this.formPropertyGrid = frmPropertyGrid;
             }

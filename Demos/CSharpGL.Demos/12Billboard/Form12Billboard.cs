@@ -41,28 +41,14 @@ namespace CSharpGL.Demos
                 this.movableRenderer.Render(arg);
             }
             {
-
                 this.ground.Render(arg);
             }
             {
-                mat4 projection = arg.Camera.GetProjectionMat4();
-                mat4 view = arg.Camera.GetViewMat4();
-                mat4 model = mat4.identity();
-                this.billboardRenderer.SetUniform("CameraRight_worldspace", new vec3(
-                    view[0][0], view[1][0], view[2][0]));
-                this.billboardRenderer.SetUniform("CameraUp_worldspace", new vec3(
-                    view[0][1], view[1][1], view[2][1]));
-                this.billboardRenderer.SetUniform("billboardCenter_worldspace",
-                    //new vec3((float)Math.Cos(currentTime), 1f, (float)Math.Sin(currentTime)));
-                    this.movableRenderer.Position + new vec3(0, 1.2f, 0));
-                this.billboardRenderer.SetUniform("BillboardSize", new vec2(1.0f, 0.125f));
-                float lifeLevel = (float)(Math.Sin(currentTime) * 0.4 + 0.5); currentTime += 0.1f;
-                this.billboardRenderer.SetUniform("LifeLevel", lifeLevel);
-                this.billboardRenderer.SetUniform("projection", projection);
-                this.billboardRenderer.SetUniform("view", view);
                 this.billboardRenderer.Render(arg);
             }
-            UIRenderersDraw(arg);
+            {
+                UIRenderersDraw(arg);
+            }
 
             // Cross cursor shows where the mouse is.
             OpenGL.DrawText(this.lastMousePosition.X - offset.X,
