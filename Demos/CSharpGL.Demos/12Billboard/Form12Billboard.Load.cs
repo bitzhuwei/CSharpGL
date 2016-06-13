@@ -37,7 +37,7 @@ namespace CSharpGL.Demos
                 var map = new PropertyNameMap();
                 map.Add("in_Position", GroundModel.strPosition);
                 const int gridsPer2Unit = 20;
-                const int scale = 1;
+                const int scale = 2;
                 var ground = new GroundRenderer(new GroundModel(gridsPer2Unit * scale), shaderCodes, map);
                 ground.Initialize();
                 ground.Scale = scale;
