@@ -33,8 +33,8 @@ namespace CSharpGL.Demos
         static PointSpriteRenderer()
         {
             staticShaderCodes = new ShaderCode[2];
-            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"07PiontSprite\PointSprite.vert"), ShaderType.VertexShader);
-            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"07PiontSprite\PointSprite.frag"), ShaderType.FragmentShader);
+            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"07PointSprite\PointSprite.vert"), ShaderType.VertexShader);
+            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"07PointSprite\PointSprite.frag"), ShaderType.FragmentShader);
             map = new PropertyNameMap();
             map.Add("position", "position");
         }
