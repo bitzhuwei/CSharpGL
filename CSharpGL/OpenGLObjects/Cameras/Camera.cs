@@ -30,11 +30,14 @@ namespace CSharpGL
         internal Camera() { }
 
         /// <summary>
-        /// 摄像机。
+        /// Camera
         /// </summary>
-        /// <param name="cameraType">类型</param>
-        /// <param name="width">OpenGL窗口的宽度</param>
-        /// <param name="height">OpenGL窗口的高度</param>
+        /// <param name="position">position in world space</param>
+        /// <param name="target">target in world space.</param>
+        /// <param name="up">up in world space.</param>
+        /// <param name="cameraType">perspective or ortho?</param>
+        /// <param name="width">canvas' width.</param>
+        /// <param name="height">canvas' height.</param>
         public Camera(vec3 position, vec3 target, vec3 up, CameraType cameraType, double width, double height)
         {
             this.Position = position;
