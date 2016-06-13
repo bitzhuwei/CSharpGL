@@ -18,6 +18,7 @@ namespace CSharpGL.Demos
         private GLAxis glAxis;
         private PickableRenderer cubeRenderer;
         private Renderer billboardRenderer;
+        private Renderer ground;
 
         private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
         {
@@ -28,6 +29,19 @@ namespace CSharpGL.Demos
                 var rotator = new SatelliteRotator(camera);
                 this.camera = camera;
                 this.rotator = rotator;
+            }
+            {
+                var shaderCodes = new ShaderCode[2];
+                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"12Billboard\Ground.vert"), ShaderType.VertexShader);
+                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"12Billboard\Ground.frag"), ShaderType.FragmentShader);
+                var map = new PropertyNameMap();
+                map.Add("in_Position", GroundModel.strPosition);
+                const int gridsPer2Unit = 20;
+                const int scale = 1;
+                var ground = new GroundRenderer(new GroundModel(gridsPer2Unit * scale), shaderCodes, map);
+                ground.Initialize();
+                ground.Scale = scale;
+                this.ground = ground;
             }
             {
                 var shaderCodes = new ShaderCode[2];

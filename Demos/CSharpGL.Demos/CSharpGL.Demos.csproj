@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="12Billboard\GroundRenderer.cs" />
+    <Compile Include="12Billboard\GroundModel.cs" />
     <Compile Include="14ShaderToy\Form14ShaderToy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -273,6 +275,12 @@
     <Compile Include="02OrderIndependentTransparency\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="12Billboard\Ground.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="12Billboard\Ground.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="14ShaderToy\readme.md" />
     <None Include="14ShaderToy\ShaderToy.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -52,6 +52,10 @@ namespace CSharpGL.Demos
                 this.cubeRenderer.Render(arg);
             }
             {
+  
+                this.ground.Render(arg);
+            }
+            {
                 mat4 projection = arg.Camera.GetProjectionMat4();
                 mat4 view = arg.Camera.GetViewMat4();
                 mat4 model = mat4.identity();
