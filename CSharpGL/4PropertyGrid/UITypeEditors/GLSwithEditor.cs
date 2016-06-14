@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// 用在GLSwitch类型的属性上。
     /// </summary>
-    public class GLSwithEditor : UITypeEditor
+    class GLSwithEditor : UITypeEditor
     {
 
         public override UITypeEditorEditStyle GetEditStyle(System.ComponentModel.ITypeDescriptorContext context)

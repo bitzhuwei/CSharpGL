@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
-    public partial class FormUniformVariableType : Form
+    partial class FormUniformVariableType : Form
     {
         public FormUniformVariableType()
         {
@@ -53,7 +53,7 @@ namespace CSharpGL
                 MessageBox.Show("Please select a type first!");
                 return;
             }
-            if(string.IsNullOrEmpty(this.txtVarNameInShader.Text))
+            if (string.IsNullOrEmpty(this.txtVarNameInShader.Text.Trim()))
             {
                 MessageBox.Show("Please type in the variable name in Vertex Shader!");
                 return;

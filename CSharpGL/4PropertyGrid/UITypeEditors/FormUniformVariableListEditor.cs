@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
-    public partial class FormUniformVariableListEditor : Form
+    partial class FormUniformVariableListEditor : Form
     {
 
         public FormUniformVariableListEditor(List<UniformVariable> list)

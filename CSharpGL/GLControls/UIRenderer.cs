@@ -13,9 +13,9 @@ namespace CSharpGL
     {
         private ViewportSwitch viewportSwitch;
         private ScissorTestSwitch scissorTestSwitch;
-        private List<GLSwitch> switchList = new List<GLSwitch>();
+        private GLSwitchList switchList = new GLSwitchList();
 
-        public List<GLSwitch> SwitchList
+        public GLSwitchList SwitchList
         {
             get { return switchList; }
         }

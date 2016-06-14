@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
-    public partial class FormRendererBaseEditor : Form
+    partial class FormRendererBaseEditor : Form
     {
 
         public FormRendererBaseEditor(RendererBase renderer)

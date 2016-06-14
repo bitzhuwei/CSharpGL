@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
-    public partial class FormGLSwitchEditor : Form
+    partial class FormGLSwitchEditor : Form
     {
 
         public FormGLSwitchEditor(GLSwitch glSwitch)

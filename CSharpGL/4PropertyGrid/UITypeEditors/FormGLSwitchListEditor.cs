@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
-    public partial class FormGLSwitchListEditor : Form
+    partial class FormGLSwitchListEditor : Form
     {
 
-        public FormGLSwitchListEditor(List<GLSwitch> list)
+        public FormGLSwitchListEditor(GLSwitchList list)
         {
             InitializeComponent();
 
@@ -54,7 +54,7 @@ namespace CSharpGL
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            var list = new List<GLSwitch>();
+            var list = new GLSwitchList();
             foreach (GLSwitch item in this.lstMember.Items)
             {
                 list.Add(item);
@@ -65,7 +65,7 @@ namespace CSharpGL
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 
-        public List<GLSwitch> GLSwitchList { get; set; }
+        public GLSwitchList GLSwitchList { get; set; }
 
         private void lstMember_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -40,8 +40,7 @@ namespace CSharpGL
             }
         }
 
-        [Editor(typeof(GLSwithListEditor), typeof(UITypeEditor))]
-        public List<GLSwitch> SwitchList
+        public GLSwitchList SwitchList
         {
             get { return switchList; }
         }

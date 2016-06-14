@@ -91,6 +91,7 @@
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\DepthTestSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\CullFaceSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\ClearColorSwitch.cs" />
+    <Compile Include="OpenGLObjects\GLSwitches\GLSwitchList.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\ViewportSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\ScissorTestSwitch.cs" />
     <Compile Include="GLControls\GLText\TextModel.cs" />

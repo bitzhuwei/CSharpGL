@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
-    public partial class FormGLSwtichType : Form
+    partial class FormGLSwtichType : Form
     {
         public FormGLSwtichType()
         {

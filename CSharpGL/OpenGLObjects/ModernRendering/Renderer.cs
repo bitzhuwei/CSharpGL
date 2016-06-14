@@ -24,7 +24,7 @@ namespace CSharpGL
         protected VertexArrayObject vertexArrayObject;
         protected PropertyBufferPtr[] propertyBufferPtrs;
         protected IndexBufferPtr indexBufferPtr;
-        protected List<GLSwitch> switchList = new List<GLSwitch>();
+        protected GLSwitchList switchList = new GLSwitchList();
 
         /// <summary>
         /// 从模型到buffer的pointer

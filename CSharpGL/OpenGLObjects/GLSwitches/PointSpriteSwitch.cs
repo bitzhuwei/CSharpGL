@@ -9,7 +9,7 @@ namespace CSharpGL
     {
         public PointSpriteSwitch()
         {
-            this.SwitchList = new List<GLSwitch>();
+            this.SwitchList = new GLSwitchList();
             this.SwitchList.Add(new PointSmoothSwitch());
             this.SwitchList.Add(new DepthTestSwitch());
             this.SwitchList.Add(new BlendSwitch(
@@ -49,7 +49,7 @@ namespace CSharpGL
             for (int i = count - 1; i >= 0; i--) { this.SwitchList[i].Off(); }
         }
 
-        public List<GLSwitch> SwitchList { get; set; }
+        public GLSwitchList SwitchList { get; set; }
 
         public override string ToString()
         {
