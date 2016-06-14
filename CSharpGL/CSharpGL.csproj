@@ -140,7 +140,6 @@
     <Compile Include="WinformControls\GLCanvas.Designer.cs">
       <DependentUpon>GLCanvas.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinformControls\GLCanvasDesignModeRenderer.cs" />
     <Compile Include="WinformControls\GLCanvasHelper.cs" />
     <Compile Include="WinformControls\RenderTriggers.cs" />
     <Compile Include="FontResource\CharacterInfo.cs" />
