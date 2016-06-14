@@ -56,7 +56,6 @@ namespace CSharpGL.Demos
                 Color.Red, "Courier New", crossCursorSize, "o");
         }
 
-        float currentTime = 0;
         vec3 position = new vec3(0, 0, 0);
 
 

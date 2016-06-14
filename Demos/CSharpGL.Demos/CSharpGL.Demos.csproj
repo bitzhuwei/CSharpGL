@@ -62,8 +62,6 @@
     <Compile Include="14ShaderToy\Form14ShaderToy.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="14ShaderToy\ShaderToy.cssl.cs" />
-    <Compile Include="14ShaderToy\ShaderToy.main.cs" />
     <Compile Include="14ShaderToy\ShaderToyRenderer.cs" />
     <Compile Include="14ShaderToy\ShaderToyRenderer.Dispose.cs" />
     <Compile Include="14ShaderToy\ShaderToyRenderer.DoInitialize.cs" />
@@ -234,8 +232,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="12Billboard\BillboardModel.cs" />
-    <Compile Include="13SimplexNoise\SimplexNoise.cssl.cs" />
-    <Compile Include="13SimplexNoise\SimplexNoise.main.cs" />
     <Compile Include="13SimplexNoise\SimplexNoiseRenderer.Dispose.cs" />
     <Compile Include="13SimplexNoise\SimplexNoiseRenderer.DoRender.cs" />
     <Compile Include="13SimplexNoise\SimplexNoiseRenderer.DoInitialize.cs" />

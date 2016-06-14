@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
                 this.renderer = renderer;
             }
             {
-                var UIRoot = new GLControl(this.glCanvas1.Size, -100, 100);
+                var UIRoot = new GLControl(this.glCanvas1, -100, 100);
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
 

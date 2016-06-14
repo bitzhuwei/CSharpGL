@@ -94,7 +94,7 @@ namespace CSharpGL.EarthMoonSystem
                 this.glAxis = glAxis;
             }
             {
-                var uiRoot = new GLControl(this.glCanvas1.Size, -100, 100);
+                var uiRoot = new GLControl(this.glCanvas1, -100, 100);
                 uiRoot.Initialize();
                 this.uiRoot = uiRoot;
             }

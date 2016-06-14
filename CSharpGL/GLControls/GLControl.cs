@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CSharpGL
 {
@@ -14,21 +15,31 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// root UI for opengl
+        /// root UI for OpenGL controls.
         /// </summary>
+        /// <param name="canvas">opengl canvas that this GLControl binds to.</param>
         /// <param name="size">opengl canvas' size</param>
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
-        public GLControl(
-            System.Drawing.Size size, int zNear, int zFar)
+        public GLControl(Control canvas, int zNear, int zFar)
             : base(null,
             System.Windows.Forms.AnchorStyles.Left |
             System.Windows.Forms.AnchorStyles.Right |
             System.Windows.Forms.AnchorStyles.Bottom |
             System.Windows.Forms.AnchorStyles.Top,
-            new System.Windows.Forms.Padding(), size, zNear, zFar)
+            new System.Windows.Forms.Padding(), canvas.Size, zNear, zFar)
         {
-            this.Name = "GLRoot";
+            this.Name = "GLControl";
+            canvas.Resize += canvas_Resize;
+        }
+
+        void canvas_Resize(object sender, EventArgs e)
+        {
+            var control = sender as Control;
+            if (control != null)
+            {
+                this.Size = control.Size;
+            }
         }
 
         protected override void DoInitialize()

@@ -72,7 +72,6 @@ namespace CSharpGL.Demos
             private IndexBufferPtr indexBufferPtr;
             private int particleCount;
             private Random random = new Random();
-            private float factor = 1;
             private const float a = 5, b = 4, c = 3;
             public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
             {
