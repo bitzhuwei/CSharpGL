@@ -55,7 +55,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override bool Create(GLVersion openGLVersion, int width, int height, int bitDepth, object parameter)
         {
-            //  Call the base class. 	        
+            //  Call the base class.
             base.Create(openGLVersion, width, height, bitDepth, parameter);
 
             uint[] ids = new uint[1];
@@ -128,7 +128,7 @@ namespace CSharpGL
 
             DestroyFramebuffers();
 
-            //  TODO: We should be able to just use the code below - however we 
+            //  TODO: We should be able to just use the code below - however we
             //  get invalid dimension issues at the moment, so recreate for now.
 
             /*
@@ -148,7 +148,7 @@ namespace CSharpGL
             frameBufferId = ids[0];
             OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER, frameBufferId);
 
-            //	Create the colour render buffer and bind it, then allocate storage for it.
+            //	Create the color render buffer and bind it, then allocate storage for it.
             OpenGL.GetDelegateFor<OpenGL.glGenRenderbuffersEXT>()(1, ids);
             colourRenderBufferId = ids[0];
             OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT>()(OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
@@ -160,7 +160,7 @@ namespace CSharpGL
             OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT>()(OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
             OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>()(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH_COMPONENT24, width, height);
 
-            //  Set the render buffer for colour and depth.
+            //  Set the render buffer for color and depth.
             OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_COLOR_ATTACHMENT0,
                 OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
             OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_DEPTH_ATTACHMENT,
