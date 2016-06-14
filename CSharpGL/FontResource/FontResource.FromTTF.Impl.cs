@@ -20,28 +20,30 @@ namespace CSharpGL
         {
             InitStandardWidths();
 
-            FontResource fontResource;
-
             int count = targets.Count();
             int maxWidth = GetMaxWidth(pixelSize, count);
 
-            fontResource = new FontResource();
-            fontResource.FontHeight = pixelSize + yInterval;
             var dict = new FullDictionary<char, CharacterInfo>(CharacterInfo.Default);
-            fontResource.CharInfoDict = dict;
-            var bitmap = new Bitmap(maxWidth, maxWidth, PixelFormat.Format24bppRgb);
-            int currentX = 0, currentY = 0;
-            Graphics graphics = Graphics.FromImage(bitmap);
-            var typeface = new FontFace(stream);
-
-            foreach (char c in targets)
+            Bitmap finalBitmap;
+            using (var bitmap = new Bitmap(maxWidth, maxWidth, PixelFormat.Format24bppRgb))
             {
-                BlitCharacter(pixelSize, maxWidth, dict, ref currentX, ref currentY, graphics, typeface, c);
+                int currentX = 0, currentY = 0;
+                using (Graphics graphics = Graphics.FromImage(bitmap))
+                {
+                    var typeface = new FontFace(stream);
+
+                    foreach (char c in targets)
+                    {
+                        BlitCharacter(pixelSize, maxWidth, dict, ref currentX, ref currentY, graphics, typeface, c);
+                    }
+                }
+
+                finalBitmap = ShortenBitmap(bitmap, maxWidth, currentY + yInterval + pixelSize + (pixelSize / 10 > 1 ? pixelSize / 10 : 1));
             }
 
-            graphics.Dispose();
-            Bitmap finalBitmap = ShortenBitmap(bitmap, maxWidth, currentY + yInterval + pixelSize + (pixelSize / 10 > 1 ? pixelSize / 10 : 1));
-            bitmap.Dispose();
+            var fontResource = new FontResource();
+            fontResource.FontHeight = pixelSize + yInterval;
+            fontResource.CharInfoDict = dict;
             fontResource.InitTexture(finalBitmap);
             finalBitmap.Dispose();
             return fontResource;
@@ -52,15 +54,15 @@ namespace CSharpGL
 
         private static void BlitCharacter(int pixelSize, int maxWidth, FullDictionary<char, CharacterInfo> dict, ref int currentX, ref int currentY, Graphics g, FontFace typeface, char c)
         {
-            if (c == ' ')
+            if (c == ' ' || c == '\t')
             {
-                int width = pixelSize / 3;
+                int width = (c == ' ') ? pixelSize / 2 : pixelSize * 4;
                 if (currentX + xInterval + width >= maxWidth)
                 {
                     currentX = 0;
                     currentY += yInterval + pixelSize;
                     if (currentY + yInterval + pixelSize >= maxWidth)
-                    { throw new Exception("Texture Size not big enough for reuqired characters."); }
+                    { throw new Exception("Texture Size not big enough for required characters."); }
                 }
                 Bitmap glyphBitmap = new Bitmap(width + xInterval, pixelSize + yInterval);
                 //float yoffset = pixelSize * 3 / 4 - glyph.HorizontalMetrics.Bearing.Y;
