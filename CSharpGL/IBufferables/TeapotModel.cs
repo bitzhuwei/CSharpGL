@@ -23,7 +23,7 @@ namespace CSharpGL
             return normals;
         }
 
-        public Face[] GetFaces()
+        public ushort[] GetFaces()
         {
             return faceData;
         }
@@ -36,23 +36,25 @@ namespace CSharpGL
 
         private static void GenNormals()
         {
-            var faceNormals = new vec3[faceData.Length];
+            var faceNormals = new vec3[faceData.Length / 3];
 
-            for (int i = 0; i < faceData.Length; i++)
+            for (int i = 0; i < faceData.Length / 3; i++)
             {
-                var face = faceData[i];
+                ushort vertexId1 = faceData[i * 3 + 0];
+                ushort vertexId2 = faceData[i * 3 + 1];
+                ushort vertexId3 = faceData[i * 3 + 2];
                 vec3 vertex0 = new vec3(
-                    positionData[(face.vertexId1 - 1) * 3 + 0],
-                    positionData[(face.vertexId1 - 1) * 3 + 1],
-                    positionData[(face.vertexId1 - 1) * 3 + 2]);
+                    positionData[(vertexId1 - 1) * 3 + 0],
+                    positionData[(vertexId1 - 1) * 3 + 1],
+                    positionData[(vertexId1 - 1) * 3 + 2]);
                 vec3 vertex1 = new vec3(
-                    positionData[(face.vertexId2 - 1) * 3 + 0],
-                    positionData[(face.vertexId2 - 1) * 3 + 1],
-                    positionData[(face.vertexId2 - 1) * 3 + 2]);
+                    positionData[(vertexId2 - 1) * 3 + 0],
+                    positionData[(vertexId2 - 1) * 3 + 1],
+                    positionData[(vertexId2 - 1) * 3 + 2]);
                 vec3 vertex2 = new vec3(
-                    positionData[(face.vertexId3 - 1) * 3 + 0],
-                    positionData[(face.vertexId3 - 1) * 3 + 1],
-                    positionData[(face.vertexId3 - 1) * 3 + 2]);
+                    positionData[(vertexId3 - 1) * 3 + 0],
+                    positionData[(vertexId3 - 1) * 3 + 1],
+                    positionData[(vertexId3 - 1) * 3 + 2]);
                 vec3 v1 = vertex0 - vertex2;
                 vec3 v2 = vertex2 - vertex1;
                 faceNormals[i] = v2.cross(v1).normalize();
@@ -63,10 +65,12 @@ namespace CSharpGL
             {
                 vec3 sum = new vec3();
                 int shared = 0;
-                for (int j = 0; j < faceData.Length; j++)
+                for (int j = 0; j < faceData.Length / 3; j++)
                 {
-                    var face = faceData[j];
-                    if (face.vertexId1 - 1 == i || face.vertexId2 - 1 == i || face.vertexId3 - 1 == i)
+                    ushort vertexId1 = faceData[j * 3 + 0];
+                    ushort vertexId2 = faceData[j * 3 + 1];
+                    ushort vertexId3 = faceData[j * 3 + 2];
+                    if (vertexId1 - 1 == i || vertexId2 - 1 == i || vertexId3 - 1 == i)
                     {
                         sum = sum + faceNormals[j];
                         shared++;

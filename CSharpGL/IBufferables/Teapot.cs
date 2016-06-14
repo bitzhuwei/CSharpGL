@@ -101,16 +101,14 @@ namespace CSharpGL
             {
                 using (var buffer = new OneIndexBuffer<ushort>(DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    TeapotModel.Face[] faces = model.GetFaces();
+                    ushort[] faces = model.GetFaces();
                     buffer.Alloc(faces.Length * 3);
                     unsafe
                     {
                         var array = (ushort*)buffer.Header.ToPointer();
                         for (int i = 0; i < faces.Length; i++)
                         {
-                            array[i * 3 + 0] = (ushort)(faces[i].vertexId1 - 1);
-                            array[i * 3 + 1] = (ushort)(faces[i].vertexId2 - 1);
-                            array[i * 3 + 2] = (ushort)(faces[i].vertexId3 - 1);
+                            array[i] = (ushort)(faces[i] - 1);
                         }
                     }
 
