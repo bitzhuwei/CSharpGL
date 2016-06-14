@@ -18,7 +18,7 @@ namespace CSharpGL
 
         static int[] standardWidths;
 
-        private static FontResource LoadFromSomeChars(Stream stream, IEnumerable<char> targets, int pixelSize)
+        private static FontResource Load(Stream stream, IEnumerable<char> targets, int pixelSize)
         {
             FontResource fontResource;
 

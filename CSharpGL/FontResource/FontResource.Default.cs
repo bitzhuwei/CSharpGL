@@ -43,7 +43,7 @@ namespace CSharpGL
                                 InitStandardWidths();
                                 var targets = builder.ToString();
                                 const int pixelSize = 32;
-                                defaultInstance = LoadFromSomeChars(stream, targets, pixelSize);
+                                defaultInstance = Load(stream, targets, pixelSize);
                             }
                         }
                     }

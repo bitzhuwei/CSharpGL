@@ -31,7 +31,7 @@ namespace CSharpGL
 
             using (FileStream stream = File.OpenRead(ttfFilename))
             {
-                FontResource fontResource = LoadFromSomeChars(stream, targets, pixelSize);
+                FontResource fontResource = Load(stream, targets, pixelSize);
 
                 return fontResource;
             }
@@ -52,7 +52,7 @@ namespace CSharpGL
 
             using (FileStream stream = File.OpenRead(ttfFilename))
             {
-                FontResource fontResource = LoadFromSomeChars(stream, targets, pixelSize);
+                FontResource fontResource = Load(stream, targets, pixelSize);
 
                 return fontResource;
             }
@@ -76,7 +76,7 @@ namespace CSharpGL
 
             using (FileStream stream = File.OpenRead(ttfFilename))
             {
-                FontResource fontResource = LoadFromSomeChars(stream, targets, pixelSize);
+                FontResource fontResource = Load(stream, targets, pixelSize);
                 return fontResource;
             }
         }
