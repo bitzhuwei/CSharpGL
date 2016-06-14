@@ -18,7 +18,7 @@ namespace CSharpGL
 
         static int[] standardWidths;
 
-        private static FontResource LoadFromSomeChars(Stream stream, int pixelSize, IEnumerable<char> targets)
+        private static FontResource LoadFromSomeChars(Stream stream, IEnumerable<char> targets, int pixelSize)
         {
             FontResource fontResource;
 
@@ -31,73 +31,19 @@ namespace CSharpGL
             fontResource.CharInfoDict = dict;
             var bitmap = new Bitmap(maxWidth, maxWidth, PixelFormat.Format24bppRgb);
             int currentX = 0, currentY = 0;
-            Graphics g = Graphics.FromImage(bitmap);
-            /*
-            this.FontHeight = int.Parse(config.Attribute(strFontHeight).Value);
-            this.CharInfoDict = CharacterInfoDictHelper.Parse(
-                config.Element(CharacterInfoDictHelper.strCharacterInfoDict));
-             */
-            {
-                var typeface = new FontFace(stream);
+            Graphics graphics = Graphics.FromImage(bitmap);
+            var typeface = new FontFace(stream);
 
-                foreach (char c in targets)
-                {
-                    BlitCharacter(pixelSize, maxWidth, dict, ref currentX, ref currentY, g, typeface, c);
-                }
+            foreach (char c in targets)
+            {
+                BlitCharacter(pixelSize, maxWidth, dict, ref currentX, ref currentY, graphics, typeface, c);
             }
 
-            g.Dispose();
+            graphics.Dispose();
             Bitmap finalBitmap = ShortenBitmap(bitmap, maxWidth, currentY + yInterval + pixelSize + (pixelSize / 10 > 1 ? pixelSize / 10 : 1));
             bitmap.Dispose();
             fontResource.InitTexture(finalBitmap);
             finalBitmap.Dispose();
-            return fontResource;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="stream">".ttf", or ".otf"</param>
-        /// <param name="pixelSize">The desired size of the font, in pixels.</param>
-        /// <returns></returns>
-        private static FontResource Load(Stream stream,
-            char firstChar, char lastChar, int pixelSize = 32)
-        {
-            InitStandardWidths();
-
-            int count = lastChar - firstChar + 1;
-            int maxWidth = GetMaxWidth(pixelSize, count);
-
-            var fontResource = new FontResource();
-            fontResource.FontHeight = pixelSize + yInterval;
-            var dict = new FullDictionary<char, CharacterInfo>(CharacterInfo.Default);
-            fontResource.CharInfoDict = dict;
-            var bitmap = new Bitmap(maxWidth, maxWidth, PixelFormat.Format24bppRgb);
-            int currentX = 0, currentY = 0;
-            Graphics g = Graphics.FromImage(bitmap);
-            /*
-            this.FontHeight = int.Parse(config.Attribute(strFontHeight).Value);
-            this.CharInfoDict = CharacterInfoDictHelper.Parse(
-                config.Element(CharacterInfoDictHelper.strCharacterInfoDict));
-             */
-            //using (var file = File.OpenRead(ttfFilename))
-            {
-                var typeface = new FontFace(stream);
-
-                for (char c = firstChar; c <= lastChar; c++)
-                {
-                    BlitCharacter(pixelSize, maxWidth, dict, ref currentX, ref currentY, g, typeface, c);
-
-                    if (c == char.MaxValue) { break; }
-                }
-            }
-
-            g.Dispose();
-            Bitmap finalBitmap = ShortenBitmap(bitmap, maxWidth, currentY + yInterval + pixelSize + (pixelSize / 10 > 1 ? pixelSize / 10 : 1));
-            bitmap.Dispose();
-            fontResource.InitTexture(finalBitmap);
-            finalBitmap.Dispose();
-
             return fontResource;
         }
 
