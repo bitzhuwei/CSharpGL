@@ -49,8 +49,6 @@ namespace CSharpGL
             return fontResource;
         }
 
-        const int xInterval = 1;
-        const int yInterval = 10;
 
         private static void BlitCharacter(int pixelSize, int maxWidth, FullDictionary<char, CharacterInfo> dict, ref int currentX, ref int currentY, Graphics g, FontFace typeface, char c)
         {
@@ -110,6 +108,9 @@ namespace CSharpGL
                 surface.Dispose();
             }
         }
+
+        const int xInterval = 1;
+        const int yInterval = 10;
 
 #if DEBUG
         static Pen redPen = new Pen(Color.Red);
