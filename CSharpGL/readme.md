@@ -21,9 +21,9 @@
 3. CSSL integrates all build-in funcitons from GLSL shader pdf(not into CSharpGL)
 4. Easier to use GLControl as root UI renderer.(Auto-bind to canvas' resize event)
 5. Clean interface and implementation for FontResource.
-7. Update frame buffer constants.
-8. Remove unused resources(teapot.obj etc.) to reduce CSharpGL.dll's file size.
-9. internal fields of mat2/mat3/mat4 for better performance.
+6. Update frame buffer constants.
+7. Remove unused resources(teapot.obj etc.) to reduce CSharpGL.dll's file size.
+8. internal fields of mat2/mat3/mat4 for better performance.
 
 ## v1.0.4.1:
 1. integrate all uniform variables and array variables inheriting from UniformVariable.
