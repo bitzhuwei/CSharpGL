@@ -94,11 +94,13 @@ namespace CSharpGL
                     { skyHeight = 0; }
                     else if (skyHeight + glyphBitmap.Height > yInterval + pixelSize)
                     { skyHeight -= glyphBitmap.Height - (yInterval + pixelSize); }
-#if DEBUG
-                    g.DrawRectangle(redPen, currentX + xInterval, currentY + skyHeight, glyphBitmap.Width, glyphBitmap.Height);
-                    g.DrawRectangle(greenPen, currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
-#endif
                     g.DrawImage(glyphBitmap, currentX + xInterval, currentY + skyHeight, glyphBitmap.Width, glyphBitmap.Height);
+#if DEBUG
+                    g.DrawRectangle(greenPen, currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
+                    g.DrawRectangle(redPen, currentX + xInterval, currentY + skyHeight, glyphBitmap.Width, glyphBitmap.Height);
+                    g.DrawLine(bluePen, currentX, currentY + yInterval + pixelSize * a / b,
+                        currentX + glyphBitmap.Width, currentY + yInterval + pixelSize * a / b);
+#endif
                     CharacterInfo info = new CharacterInfo(currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
                     dict.Add(c, info);
                     glyphBitmap.Dispose();
@@ -112,6 +114,7 @@ namespace CSharpGL
 #if DEBUG
         static Pen redPen = new Pen(Color.Red);
         static Pen greenPen = new Pen(Color.Green);
+        static Pen bluePen = new Pen(Color.Blue);
 #endif
 
         private static unsafe Bitmap GetGlyphBitmap(Surface surface)
