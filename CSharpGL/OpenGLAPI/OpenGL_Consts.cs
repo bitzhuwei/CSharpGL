@@ -687,56 +687,28 @@ namespace CSharpGL
         public const uint GL_WIN_swap_hint = 1;
         public const uint GL_WIN_draw_range_elements = 1;
 
-        //   EXT_vertex_array 
-        public const uint GL_VERTEX_ARRAY_EXT = 0x8074;
-        public const uint GL_NORMAL_ARRAY_EXT = 0x8075;
-        public const uint GL_COLOR_ARRAY_EXT = 0x8076;
-        public const uint GL_INDEX_ARRAY_EXT = 0x8077;
-        public const uint GL_TEXTURE_COORD_ARRAY_EXT = 0x8078;
-        public const uint GL_EDGE_FLAG_ARRAY_EXT = 0x8079;
-        public const uint GL_VERTEX_ARRAY_SIZE_EXT = 0x807A;
-        public const uint GL_VERTEX_ARRAY_TYPE_EXT = 0x807B;
-        public const uint GL_VERTEX_ARRAY_STRIDE_EXT = 0x807C;
-        public const uint GL_VERTEX_ARRAY_COUNT_EXT = 0x807D;
-        public const uint GL_NORMAL_ARRAY_TYPE_EXT = 0x807E;
-        public const uint GL_NORMAL_ARRAY_STRIDE_EXT = 0x807F;
-        public const uint GL_NORMAL_ARRAY_COUNT_EXT = 0x8080;
-        public const uint GL_COLOR_ARRAY_SIZE_EXT = 0x8081;
-        public const uint GL_COLOR_ARRAY_TYPE_EXT = 0x8082;
-        public const uint GL_COLOR_ARRAY_STRIDE_EXT = 0x8083;
-        public const uint GL_COLOR_ARRAY_COUNT_EXT = 0x8084;
-        public const uint GL_INDEX_ARRAY_TYPE_EXT = 0x8085;
-        public const uint GL_INDEX_ARRAY_STRIDE_EXT = 0x8086;
-        public const uint GL_INDEX_ARRAY_COUNT_EXT = 0x8087;
-        public const uint GL_TEXTURE_COORD_ARRAY_SIZE_EXT = 0x8088;
-        public const uint GL_TEXTURE_COORD_ARRAY_TYPE_EXT = 0x8089;
-        public const uint GL_TEXTURE_COORD_ARRAY_STRIDE_EXT = 0x808A;
-        public const uint GL_TEXTURE_COORD_ARRAY_COUNT_EXT = 0x808B;
-        public const uint GL_EDGE_FLAG_ARRAY_STRIDE_EXT = 0x808C;
-        public const uint GL_EDGE_FLAG_ARRAY_COUNT_EXT = 0x808D;
-        public const uint GL_VERTEX_ARRAY_POINTER_EXT = 0x808E;
-        public const uint GL_NORMAL_ARRAY_POINTER_EXT = 0x808F;
-        public const uint GL_COLOR_ARRAY_POINTER_EXT = 0x8090;
-        public const uint GL_INDEX_ARRAY_POINTER_EXT = 0x8091;
-        public const uint GL_TEXTURE_COORD_ARRAY_POINTER_EXT = 0x8092;
-        public const uint GL_EDGE_FLAG_ARRAY_POINTER_EXT = 0x8093;
-        public const uint GL_DOUBLE_EXT = 1;/*DOUBLE*/
+        public const uint GL_VERTEX_ARRAY_COUNT = 0x807D;
+        public const uint GL_NORMAL_ARRAY_COUNT = 0x8080;
+        public const uint GL_COLOR_ARRAY_COUNT = 0x8084;
+        public const uint GL_INDEX_ARRAY_COUNT = 0x8087;
+        public const uint GL_TEXTURE_COORD_ARRAY_COUNT = 0x808B;
+        public const uint GL_EDGE_FLAG_ARRAY_COUNT = 0x808D;
 
         //   EXT_paletted_texture
-        public const uint GL_COLOR_TABLE_FORMAT_EXT = 0x80D8;
-        public const uint GL_COLOR_TABLE_WIDTH_EXT = 0x80D9;
-        public const uint GL_COLOR_TABLE_RED_SIZE_EXT = 0x80DA;
-        public const uint GL_COLOR_TABLE_GREEN_SIZE_EXT = 0x80DB;
-        public const uint GL_COLOR_TABLE_BLUE_SIZE_EXT = 0x80DC;
-        public const uint GL_COLOR_TABLE_ALPHA_SIZE_EXT = 0x80DD;
-        public const uint GL_COLOR_TABLE_LUMINANCE_SIZE_EXT = 0x80DE;
-        public const uint GL_COLOR_TABLE_INTENSITY_SIZE_EXT = 0x80DF;
-        public const uint GL_COLOR_INDEX1_EXT = 0x80E2;
-        public const uint GL_COLOR_INDEX2_EXT = 0x80E3;
-        public const uint GL_COLOR_INDEX4_EXT = 0x80E4;
-        public const uint GL_COLOR_INDEX8_EXT = 0x80E5;
-        public const uint GL_COLOR_INDEX12_EXT = 0x80E6;
-        public const uint GL_COLOR_INDEX16_EXT = 0x80E7;
+        public const uint GL_COLOR_TABLE_FORMAT = 0x80D8;
+        public const uint GL_COLOR_TABLE_WIDTH = 0x80D9;
+        public const uint GL_COLOR_TABLE_RED_SIZE = 0x80DA;
+        public const uint GL_COLOR_TABLE_GREEN_SIZE = 0x80DB;
+        public const uint GL_COLOR_TABLE_BLUE_SIZE = 0x80DC;
+        public const uint GL_COLOR_TABLE_ALPHA_SIZE = 0x80DD;
+        public const uint GL_COLOR_TABLE_LUMINANCE_SIZE = 0x80DE;
+        public const uint GL_COLOR_TABLE_INTENSITY_SIZE = 0x80DF;
+        public const uint GL_COLOR_INDEX1 = 0x80E2;
+        public const uint GL_COLOR_INDEX2 = 0x80E3;
+        public const uint GL_COLOR_INDEX4 = 0x80E4;
+        public const uint GL_COLOR_INDEX8 = 0x80E5;
+        public const uint GL_COLOR_INDEX12 = 0x80E6;
+        public const uint GL_COLOR_INDEX16 = 0x80E7;
 
         //   WIN_draw_range_elements
         public const uint GL_MAX_ELEMENTS_VERTICES_WIN = 0x80E8;

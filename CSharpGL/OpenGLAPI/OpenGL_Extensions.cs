@@ -861,34 +861,17 @@ namespace CSharpGL
 
         #endregion
 
-        #region GL_EXT_bgra
-
-        public const uint GL_BGR_EXT = 0x80E0;
-        public const uint GL_BGRA_EXT = 0x80E1;
-
-        #endregion
-
-        #region GL_EXT_packed_pixels
-
-        public const uint GL_UNSIGNED_BYTE_3_3_2_EXT = 0x8032;
-        public const uint GL_UNSIGNED_SHORT_4_4_4_4_EXT = 0x8033;
-        public const uint GL_UNSIGNED_SHORT_5_5_5_1_EXT = 0x8034;
-        public const uint GL_UNSIGNED_INT_8_8_8_8_EXT = 0x8035;
-        public const uint GL_UNSIGNED_INT_10_10_10_2_EXT = 0x8036;
-
-        #endregion
-
         #region GL_EXT_rescale_normal
 
-        public const uint GL_RESCALE_NORMAL_EXT = 0x803A;
+        public const uint GL_RESCALE_NORMAL = 0x803A;
 
         #endregion
 
         #region GL_EXT_separate_specular_color
 
-        public const uint GL_LIGHT_MODEL_COLOR_CONTROL_EXT = 0x81F8;
-        public const uint GL_SINGLE_COLOR_EXT = 0x81F9;
-        public const uint GL_SEPARATE_SPECULAR_COLOR_EXT = 0x81FA;
+        public const uint GL_LIGHT_MODEL_COLOR_CONTROL = 0x81F8;
+        public const uint GL_SINGLE_COLOR = 0x81F9;
+        public const uint GL_SEPARATE_SPECULAR_COLOR = 0x81FA;
 
         #endregion
 
@@ -911,8 +894,6 @@ namespace CSharpGL
 
         public delegate void glDrawRangeElementsEXT(uint mode, uint start, uint end, uint count, uint type, IntPtr indices);
 
-        public const uint GL_MAX_ELEMENTS_VERTICES_EXT = 0x80E8;
-        public const uint GL_MAX_ELEMENTS_INDICES_EXT = 0x80E9;
 
         #endregion
 
@@ -965,26 +946,26 @@ namespace CSharpGL
         public delegate void glSeparableFilter2DEXT(uint target, uint internalformat, int width, int height, uint format, uint type, IntPtr row, IntPtr column);
 
         //  Constants
-        public static uint GL_CONVOLUTION_1D_EXT = 0x8010;
-        public static uint GL_CONVOLUTION_2D_EXT = 0x8011;
-        public static uint GL_SEPARABLE_2D_EXT = 0x8012;
-        public static uint GL_CONVOLUTION_BORDER_MODE_EXT = 0x8013;
-        public static uint GL_CONVOLUTION_FILTER_SCALE_EXT = 0x8014;
-        public static uint GL_CONVOLUTION_FILTER_BIAS_EXT = 0x8015;
-        public static uint GL_REDUCE_EXT = 0x8016;
-        public static uint GL_CONVOLUTION_FORMAT_EXT = 0x8017;
-        public static uint GL_CONVOLUTION_WIDTH_EXT = 0x8018;
-        public static uint GL_CONVOLUTION_HEIGHT_EXT = 0x8019;
-        public static uint GL_MAX_CONVOLUTION_WIDTH_EXT = 0x801A;
-        public static uint GL_MAX_CONVOLUTION_HEIGHT_EXT = 0x801B;
-        public static uint GL_POST_CONVOLUTION_RED_SCALE_EXT = 0x801C;
-        public static uint GL_POST_CONVOLUTION_GREEN_SCALE_EXT = 0x801D;
-        public static uint GL_POST_CONVOLUTION_BLUE_SCALE_EXT = 0x801E;
-        public static uint GL_POST_CONVOLUTION_ALPHA_SCALE_EXT = 0x801F;
-        public static uint GL_POST_CONVOLUTION_RED_BIAS_EXT = 0x8020;
-        public static uint GL_POST_CONVOLUTION_GREEN_BIAS_EXT = 0x8021;
-        public static uint GL_POST_CONVOLUTION_BLUE_BIAS_EXT = 0x8022;
-        public static uint GL_POST_CONVOLUTION_ALPHA_BIAS_EXT = 0x8023;
+        public static uint GL_CONVOLUTION_1D = 0x8010;
+        public static uint GL_CONVOLUTION_2D = 0x8011;
+        public static uint GL_SEPARABLE_2D = 0x8012;
+        public static uint GL_CONVOLUTION_BORDER_MODE = 0x8013;
+        public static uint GL_CONVOLUTION_FILTER_SCALE = 0x8014;
+        public static uint GL_CONVOLUTION_FILTER_BIAS = 0x8015;
+        public static uint GL_REDUCE = 0x8016;
+        public static uint GL_CONVOLUTION_FORMAT = 0x8017;
+        public static uint GL_CONVOLUTION_WIDTH = 0x8018;
+        public static uint GL_CONVOLUTION_HEIGHT = 0x8019;
+        public static uint GL_MAX_CONVOLUTION_WIDTH = 0x801A;
+        public static uint GL_MAX_CONVOLUTION_HEIGHT = 0x801B;
+        public static uint GL_POST_CONVOLUTION_RED_SCALE = 0x801C;
+        public static uint GL_POST_CONVOLUTION_GREEN_SCALE = 0x801D;
+        public static uint GL_POST_CONVOLUTION_BLUE_SCALE = 0x801E;
+        public static uint GL_POST_CONVOLUTION_ALPHA_SCALE = 0x801F;
+        public static uint GL_POST_CONVOLUTION_RED_BIAS = 0x8020;
+        public static uint GL_POST_CONVOLUTION_GREEN_BIAS = 0x8021;
+        public static uint GL_POST_CONVOLUTION_BLUE_BIAS = 0x8022;
+        public static uint GL_POST_CONVOLUTION_ALPHA_BIAS = 0x8023;
 
         #endregion
 
@@ -1019,20 +1000,20 @@ namespace CSharpGL
         public delegate void glResetMinmaxEXT(uint target);
 
         //  Constants
-        public const uint GL_HISTOGRAM_EXT = 0x8024;
-        public const uint GL_PROXY_HISTOGRAM_EXT = 0x8025;
-        public const uint GL_HISTOGRAM_WIDTH_EXT = 0x8026;
-        public const uint GL_HISTOGRAM_FORMAT_EXT = 0x8027;
-        public const uint GL_HISTOGRAM_RED_SIZE_EXT = 0x8028;
-        public const uint GL_HISTOGRAM_GREEN_SIZE_EXT = 0x8029;
-        public const uint GL_HISTOGRAM_BLUE_SIZE_EXT = 0x802A;
-        public const uint GL_HISTOGRAM_ALPHA_SIZE_EXT = 0x802B;
-        public const uint GL_HISTOGRAM_LUMINANCE_SIZE_EXT = 0x802C;
-        public const uint GL_HISTOGRAM_SINK_EXT = 0x802D;
-        public const uint GL_MINMAX_EXT = 0x802E;
-        public const uint GL_MINMAX_FORMAT_EXT = 0x802F;
-        public const uint GL_MINMAX_SINK_EXT = 0x8030;
-        public const uint GL_TABLE_TOO_LARGE_EXT = 0x8031;
+        public const uint GL_HISTOGRAM = 0x8024;
+        public const uint GL_PROXY_HISTOGRAM = 0x8025;
+        public const uint GL_HISTOGRAM_WIDTH = 0x8026;
+        public const uint GL_HISTOGRAM_FORMAT = 0x8027;
+        public const uint GL_HISTOGRAM_RED_SIZE = 0x8028;
+        public const uint GL_HISTOGRAM_GREEN_SIZE = 0x8029;
+        public const uint GL_HISTOGRAM_BLUE_SIZE = 0x802A;
+        public const uint GL_HISTOGRAM_ALPHA_SIZE = 0x802B;
+        public const uint GL_HISTOGRAM_LUMINANCE_SIZE = 0x802C;
+        public const uint GL_HISTOGRAM_SINK = 0x802D;
+        public const uint GL_MINMAX = 0x802E;
+        public const uint GL_MINMAX_FORMAT = 0x802F;
+        public const uint GL_MINMAX_SINK = 0x8030;
+        public const uint GL_TABLE_TOO_LARGE = 0x8031;
 
         #endregion
 
@@ -1042,11 +1023,7 @@ namespace CSharpGL
         public delegate void glBlendColorEXT(float red, float green, float blue, float alpha);
 
         //  Constants
-        public const uint GL_CONSTANT_COLOR_EXT = 0x8001;
-        public const uint GL_ONE_MINUS_CONSTANT_COLOR_EXT = 0x8002;
-        public const uint GL_CONSTANT_ALPHA_EXT = 0x8003;
-        public const uint GL_ONE_MINUS_CONSTANT_ALPHA_EXT = 0x8004;
-        public const uint GL_BLEND_COLOR_EXT = 0x8005;
+        public const uint GL_BLEND_COLOR = 0x8005;
 
         #endregion
 
@@ -1056,12 +1033,12 @@ namespace CSharpGL
         public delegate void glBlendEquationEXT(uint mode);
 
         //  Constants
-        public const uint GL_FUNC_ADD_EXT = 0x8006;
-        public const uint GL_MIN_EXT = 0x8007;
-        public const uint GL_MAX_EXT = 0x8008;
-        public const uint GL_FUNC_SUBTRACT_EXT = 0x800A;
-        public const uint GL_FUNC_REVERSE_SUBTRACT_EXT = 0x800B;
-        public const uint GL_BLEND_EQUATION_EXT = 0x8009;
+        public const uint GL_FUNC_ADD = 0x8006;
+        public const uint GL_MIN = 0x8007;
+        public const uint GL_MAX = 0x8008;
+        public const uint GL_FUNC_SUBTRACT = 0x800A;
+        public const uint GL_FUNC_REVERSE_SUBTRACT = 0x800B;
+        public const uint GL_BLEND_EQUATION = 0x8009;
 
         #endregion
 
@@ -1171,18 +1148,8 @@ namespace CSharpGL
         #region GL_EXT_texture_cube_map
 
         //  Constants
-        public const uint GL_NORMAL_MAP_EXT = 0x8511;
-        public const uint GL_REFLECTION_MAP_EXT = 0x8512;
-        public const uint GL_TEXTURE_CUBE_MAP_EXT = 0x8513;
-        public const uint GL_TEXTURE_BINDING_CUBE_MAP_EXT = 0x8514;
-        public const uint GL_TEXTURE_CUBE_MAP_POSITIVE_X_EXT = 0x8515;
-        public const uint GL_TEXTURE_CUBE_MAP_NEGATIVE_X_EXT = 0x8516;
-        public const uint GL_TEXTURE_CUBE_MAP_POSITIVE_Y_EXT = 0x8517;
-        public const uint GL_TEXTURE_CUBE_MAP_NEGATIVE_Y_EXT = 0x8518;
-        public const uint GL_TEXTURE_CUBE_MAP_POSITIVE_Z_EXT = 0x8519;
-        public const uint GL_TEXTURE_CUBE_MAP_NEGATIVE_Z_EXT = 0x851A;
-        public const uint GL_PROXY_TEXTURE_CUBE_MAP_EXT = 0x851B;
-        public const uint GL_MAX_CUBE_MAP_TEXTURE_SIZE_EXT = 0x851C;
+        public const uint GL_NORMAL_MAP = 0x8511;
+        public const uint GL_REFLECTION_MAP = 0x8512;
 
         #endregion
 
@@ -1313,14 +1280,14 @@ namespace CSharpGL
         public delegate void glFogCoordPointerEXT(uint type, int stride, IntPtr pointer);
 
         //  Constants
-        public const uint GL_FOG_COORDINATE_SOURCE_EXT = 0x8450;
-        public const uint GL_FOG_COORDINATE_EXT = 0x8451;
-        public const uint GL_FRAGMENT_DEPTH_EXT = 0x8452;
-        public const uint GL_CURRENT_FOG_COORDINATE_EXT = 0x8453;
-        public const uint GL_FOG_COORDINATE_ARRAY_TYPE_EXT = 0x8454;
-        public const uint GL_FOG_COORDINATE_ARRAY_STRIDE_EXT = 0x8455;
-        public const uint GL_FOG_COORDINATE_ARRAY_POINTER_EXT = 0x8456;
-        public const uint GL_FOG_COORDINATE_ARRAY_EXT = 0x8457;
+        public const uint GL_FOG_COORDINATE_SOURCE = 0x8450;
+        public const uint GL_FOG_COORDINATE = 0x8451;
+        public const uint GL_FRAGMENT_DEPTH = 0x8452;
+        public const uint GL_CURRENT_FOG_COORDINATE = 0x8453;
+        public const uint GL_FOG_COORDINATE_ARRAY_TYPE = 0x8454;
+        public const uint GL_FOG_COORDINATE_ARRAY_STRIDE = 0x8455;
+        public const uint GL_FOG_COORDINATE_ARRAY_POINTER = 0x8456;
+        public const uint GL_FOG_COORDINATE_ARRAY = 0x8457;
 
         #endregion
 
@@ -1368,13 +1335,13 @@ namespace CSharpGL
         public delegate void glSecondaryColorPointerEXT(int size, uint type, int stride, IntPtr pointer);
 
         //  Constants
-        public const uint GL_COLOR_SUM_EXT = 0x8458;
-        public const uint GL_CURRENT_SECONDARY_COLOR_EXT = 0x8459;
-        public const uint GL_SECONDARY_COLOR_ARRAY_SIZE_EXT = 0x845A;
-        public const uint GL_SECONDARY_COLOR_ARRAY_TYPE_EXT = 0x845B;
-        public const uint GL_SECONDARY_COLOR_ARRAY_STRIDE_EXT = 0x845C;
-        public const uint GL_SECONDARY_COLOR_ARRAY_POINTER_EXT = 0x845D;
-        public const uint GL_SECONDARY_COLOR_ARRAY_EXT = 0x845E;
+        public const uint GL_COLOR_SUM = 0x8458;
+        public const uint GL_CURRENT_SECONDARY_COLOR = 0x8459;
+        public const uint GL_SECONDARY_COLOR_ARRAY_SIZE = 0x845A;
+        public const uint GL_SECONDARY_COLOR_ARRAY_TYPE = 0x845B;
+        public const uint GL_SECONDARY_COLOR_ARRAY_STRIDE = 0x845C;
+        public const uint GL_SECONDARY_COLOR_ARRAY_POINTER = 0x845D;
+        public const uint GL_SECONDARY_COLOR_ARRAY = 0x845E;
 
         #endregion
 
@@ -1384,18 +1351,12 @@ namespace CSharpGL
         public delegate void glBlendFuncSeparateEXT(uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha);
 
         //  Constants
-        public const uint GL_BLEND_DST_RGB_EXT = 0x80C8;
-        public const uint GL_BLEND_SRC_RGB_EXT = 0x80C9;
-        public const uint GL_BLEND_DST_ALPHA_EXT = 0x80CA;
-        public const uint GL_BLEND_SRC_ALPHA_EXT = 0x80CB;
 
         #endregion
 
         #region GL_EXT_stencil_wrap
 
         //  Constants
-        public const uint GL_INCR_WRAP_EXT = 0x8507;
-        public const uint GL_DECR_WRAP_EXT = 0x8508;
 
         #endregion
 
@@ -1408,9 +1369,7 @@ namespace CSharpGL
         #region GL_EXT_texture_lod_bias
 
         //  Constants
-        public const uint GL_MAX_TEXTURE_LOD_BIAS_EXT = 0x84FD;
-        public const uint GL_TEXTURE_FILTER_CONTROL_EXT = 0x8500;
-        public const uint GL_TEXTURE_LOD_BIAS_EXT = 0x8501;
+        public const uint GL_TEXTURE_FILTER_CONTROL = 0x8500;
 
         #endregion
 
@@ -1851,8 +1810,6 @@ namespace CSharpGL
         public delegate void glBlendEquationSeparateEXT(uint modeRGB, uint modeAlpha);
 
         //  Constants
-        public const uint GL_BLEND_EQUATION_RGB_EXT = 0x8009;
-        public const uint GL_BLEND_EQUATION_ALPHA_EXT = 0x883D;
 
         #endregion
 
@@ -1862,8 +1819,8 @@ namespace CSharpGL
         public delegate void glActiveStencilFaceEXT(uint face);
 
         //  Constants
-        public const uint GL_STENCIL_TEST_TWO_SIDE_EXT = 0x8009;
-        public const uint GL_ACTIVE_STENCIL_FACE_EXT = 0x883D;
+        public const uint GL_STENCIL_TEST_TWO_SIDE = 0x8009;
+        public const uint GL_ACTIVE_STENCIL_FACE = 0x883D;
 
         #endregion
 
@@ -1878,19 +1835,13 @@ namespace CSharpGL
 
         #region GL_EXT_texture_sRGB
 
-        public const uint GL_SRGB_EXT = 0x8C40;
-        public const uint GL_SRGB8_EXT = 0x8C41;
-        public const uint GL_SRGB_ALPHA_EXT = 0x8C42;
-        public const uint GL_SRGB8_ALPHA8_EXT = 0x8C43;
-        public const uint GL_SLUMINANCE_ALPHA_EXT = 0x8C44;
-        public const uint GL_SLUMINANCE8_ALPHA8_EXT = 0x8C45;
-        public const uint GL_SLUMINANCE_EXT = 0x8C46;
-        public const uint GL_SLUMINANCE8_EXT = 0x8C47;
-        public const uint GL_COMPRESSED_SRGB_EXT = 0x8C48;
-        public const uint GL_COMPRESSED_SRGB_ALPHA_EXT = 0x8C49;
-        public const uint GL_COMPRESSED_SLUMINANCE_EXT = 0x8C4A;
-        public const uint GL_COMPRESSED_SLUMINANCE_ALPHA_EXT = 0x8C4B;
-        public const uint GL_COMPRESSED_SRGB_S3TC_DXT1_EXT = 0x8C4C;
+        public const uint GL_SLUMINANCE_ALPHA = 0x8C44;
+        public const uint GL_SLUMINANCE8_ALPHA8 = 0x8C45;
+        public const uint GL_SLUMINANCE = 0x8C46;
+        public const uint GL_SLUMINANCE8 = 0x8C47;
+        public const uint GL_COMPRESSED_SLUMINANCE = 0x8C4A;
+        public const uint GL_COMPRESSED_SLUMINANCE_ALPHA = 0x8C4B;
+        public const uint GL_COMPRESSED_SRGB_S3TC_DXT1 = 0x8C4C;
         public const uint GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT = 0x8C4D;
         public const uint GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT3_EXT = 0x8C4E;
         public const uint GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT = 0x8C4F;
@@ -1935,28 +1886,28 @@ namespace CSharpGL
         public const uint GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT = 0x8CD7;
         public const uint GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS = 0x8CD9;
         public const uint GL_FRAMEBUFFER_INCOMPLETE_FORMATS_EXT = 0x8CDA;
-        public const uint GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER_EXT = 0x8CDB;
-        public const uint GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER_EXT = 0x8CDC;
-        public const uint GL_FRAMEBUFFER_UNSUPPORTED_EXT = 0x8CDD;
-        public const uint GL_MAX_COLOR_ATTACHMENTS_EXT = 0x8CDF;
-        public const uint GL_COLOR_ATTACHMENT0_EXT = 0x8CE0;
-        public const uint GL_COLOR_ATTACHMENT1_EXT = 0x8CE1;
-        public const uint GL_COLOR_ATTACHMENT2_EXT = 0x8CE2;
-        public const uint GL_COLOR_ATTACHMENT3_EXT = 0x8CE3;
-        public const uint GL_COLOR_ATTACHMENT4_EXT = 0x8CE4;
-        public const uint GL_COLOR_ATTACHMENT5_EXT = 0x8CE5;
-        public const uint GL_COLOR_ATTACHMENT6_EXT = 0x8CE6;
-        public const uint GL_COLOR_ATTACHMENT7_EXT = 0x8CE7;
-        public const uint GL_COLOR_ATTACHMENT8_EXT = 0x8CE8;
-        public const uint GL_COLOR_ATTACHMENT9_EXT = 0x8CE9;
-        public const uint GL_COLOR_ATTACHMENT10_EXT = 0x8CEA;
-        public const uint GL_COLOR_ATTACHMENT11_EXT = 0x8CEB;
-        public const uint GL_COLOR_ATTACHMENT12_EXT = 0x8CEC;
-        public const uint GL_COLOR_ATTACHMENT13_EXT = 0x8CED;
-        public const uint GL_COLOR_ATTACHMENT14_EXT = 0x8CEE;
-        public const uint GL_COLOR_ATTACHMENT15_EXT = 0x8CEF;
-        public const uint GL_DEPTH_ATTACHMENT_EXT = 0x8D00;
-        public const uint GL_STENCIL_ATTACHMENT_EXT = 0x8D20;
+        public const uint GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER = 0x8CDB;
+        public const uint GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER = 0x8CDC;
+        public const uint GL_FRAMEBUFFER_UNSUPPORTED = 0x8CDD;
+        public const uint GL_MAX_COLOR_ATTACHMENTS = 0x8CDF;
+        public const uint GL_COLOR_ATTACHMENT0 = 0x8CE0;
+        public const uint GL_COLOR_ATTACHMENT1 = 0x8CE1;
+        public const uint GL_COLOR_ATTACHMENT2 = 0x8CE2;
+        public const uint GL_COLOR_ATTACHMENT3 = 0x8CE3;
+        public const uint GL_COLOR_ATTACHMENT4 = 0x8CE4;
+        public const uint GL_COLOR_ATTACHMENT5 = 0x8CE5;
+        public const uint GL_COLOR_ATTACHMENT6 = 0x8CE6;
+        public const uint GL_COLOR_ATTACHMENT7 = 0x8CE7;
+        public const uint GL_COLOR_ATTACHMENT8 = 0x8CE8;
+        public const uint GL_COLOR_ATTACHMENT9 = 0x8CE9;
+        public const uint GL_COLOR_ATTACHMENT10 = 0x8CEA;
+        public const uint GL_COLOR_ATTACHMENT11 = 0x8CEB;
+        public const uint GL_COLOR_ATTACHMENT12 = 0x8CEC;
+        public const uint GL_COLOR_ATTACHMENT13 = 0x8CED;
+        public const uint GL_COLOR_ATTACHMENT14 = 0x8CEE;
+        public const uint GL_COLOR_ATTACHMENT15 = 0x8CEF;
+        public const uint GL_DEPTH_ATTACHMENT = 0x8D00;
+        public const uint GL_STENCIL_ATTACHMENT = 0x8D20;
         public const uint GL_FRAMEBUFFER = 0x8D40;
         public const uint GL_RENDERBUFFER = 0x8D41;
         public const uint GL_RENDERBUFFER_WIDTH = 0x8D42;
@@ -1981,9 +1932,9 @@ namespace CSharpGL
         public delegate void glRenderbufferStorageMultisampleEXT(uint target, int samples, uint internalformat, int width, int height);
 
         //  Constants
-        public const uint GL_RENDERBUFFER_SAMPLES_EXT = 0x8CAB;
-        public const uint GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE_EXT = 0x8D56;
-        public const uint GL_MAX_SAMPLES_EXT = 0x8D57;
+        public const uint GL_RENDERBUFFER_SAMPLES = 0x8CAB;
+        public const uint GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE = 0x8D56;
+        public const uint GL_MAX_SAMPLES = 0x8D57;
 
         #endregion
 
@@ -2011,8 +1962,8 @@ namespace CSharpGL
         #region GL_EXT_framebuffer_sRGB
 
         //  Constants
-        public const uint GL_FRAMEBUFFER_SRGB_EXT = 0x8DB9;
-        public const uint GL_FRAMEBUFFER_SRGB_CAPABLE_EXT = 0x8DBA;
+        public const uint GL_FRAMEBUFFER_SRGB = 0x8DB9;
+        public const uint GL_FRAMEBUFFER_SRGB_CAPABLE = 0x8DBA;
 
         #endregion
 
@@ -2028,21 +1979,6 @@ namespace CSharpGL
         public delegate void glGetTransformFeedbackVaryingEXT(uint program, uint index, int bufSize, int[] length, int[] size, uint[] type, string name);
 
         //  Constants
-        public const uint GL_TRANSFORM_FEEDBACK_BUFFER_EXT = 0x8C8E;
-        public const uint GL_TRANSFORM_FEEDBACK_BUFFER_START_EXT = 0x8C84;
-        public const uint GL_TRANSFORM_FEEDBACK_BUFFER_SIZE_EXT = 0x8C85;
-        public const uint GL_TRANSFORM_FEEDBACK_BUFFER_BINDING_EXT = 0x8C8F;
-        public const uint GL_INTERLEAVED_ATTRIBS_EXT = 0x8C8C;
-        public const uint GL_SEPARATE_ATTRIBS_EXT = 0x8C8D;
-        public const uint GL_PRIMITIVES_GENERATED_EXT = 0x8C87;
-        public const uint GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN_EXT = 0x8C88;
-        public const uint GL_RASTERIZER_DISCARD_EXT = 0x8C89;
-        public const uint GL_MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS_EXT = 0x8C8A;
-        public const uint GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS_EXT = 0x8C8B;
-        public const uint GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS_EXT = 0x8C80;
-        public const uint GL_TRANSFORM_FEEDBACK_VARYINGS_EXT = 0x8C83;
-        public const uint GL_TRANSFORM_FEEDBACK_BUFFER_MODE_EXT = 0x8C7F;
-        public const uint GL_TRANSFORM_FEEDBACK_VARYING_MAX_LENGTH_EXT = 0x8C76;
 
         #endregion
 

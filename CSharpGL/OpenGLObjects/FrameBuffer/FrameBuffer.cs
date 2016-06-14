@@ -13,22 +13,22 @@ namespace CSharpGL
     {
         private static readonly uint[] attachment_id =
         {
-			OpenGL.GL_COLOR_ATTACHMENT0_EXT,
-			OpenGL.GL_COLOR_ATTACHMENT1_EXT,
-			OpenGL.GL_COLOR_ATTACHMENT2_EXT,
-			OpenGL.GL_COLOR_ATTACHMENT3_EXT,
-			OpenGL.GL_COLOR_ATTACHMENT4_EXT,
-			OpenGL.GL_COLOR_ATTACHMENT5_EXT,
-			OpenGL.GL_COLOR_ATTACHMENT6_EXT,
-			OpenGL.GL_COLOR_ATTACHMENT7_EXT,
-			OpenGL.GL_COLOR_ATTACHMENT8_EXT,
-			OpenGL.GL_COLOR_ATTACHMENT9_EXT,
-			OpenGL.GL_COLOR_ATTACHMENT10_EXT,
-			OpenGL.GL_COLOR_ATTACHMENT11_EXT,
-			OpenGL.GL_COLOR_ATTACHMENT12_EXT,
-			OpenGL.GL_COLOR_ATTACHMENT13_EXT,
-			OpenGL.GL_COLOR_ATTACHMENT14_EXT,
-			OpenGL.GL_COLOR_ATTACHMENT15_EXT,
+			OpenGL.GL_COLOR_ATTACHMENT0,
+			OpenGL.GL_COLOR_ATTACHMENT1,
+			OpenGL.GL_COLOR_ATTACHMENT2,
+			OpenGL.GL_COLOR_ATTACHMENT3,
+			OpenGL.GL_COLOR_ATTACHMENT4,
+			OpenGL.GL_COLOR_ATTACHMENT5,
+			OpenGL.GL_COLOR_ATTACHMENT6,
+			OpenGL.GL_COLOR_ATTACHMENT7,
+			OpenGL.GL_COLOR_ATTACHMENT8,
+			OpenGL.GL_COLOR_ATTACHMENT9,
+			OpenGL.GL_COLOR_ATTACHMENT10,
+			OpenGL.GL_COLOR_ATTACHMENT11,
+			OpenGL.GL_COLOR_ATTACHMENT12,
+			OpenGL.GL_COLOR_ATTACHMENT13,
+			OpenGL.GL_COLOR_ATTACHMENT14,
+			OpenGL.GL_COLOR_ATTACHMENT15,
         };
 
         private uint[] framebufferId = new uint[1];
@@ -84,7 +84,7 @@ namespace CSharpGL
             if (m_depth != null)
             {
                 glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
-                    OpenGL.GL_DEPTH_ATTACHMENT_EXT, OpenGL.GL_TEXTURE_2D, m_depth.glID(), 0);
+                    OpenGL.GL_DEPTH_ATTACHMENT, OpenGL.GL_TEXTURE_2D, m_depth.glID(), 0);
             }
 
             uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER);
@@ -243,7 +243,7 @@ namespace CSharpGL
             if (m_depth != null)
             {
                 glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
-                   OpenGL.GL_DEPTH_ATTACHMENT_EXT, OpenGL.GL_TEXTURE_2D, m_depth.glID(), 0);
+                   OpenGL.GL_DEPTH_ATTACHMENT, OpenGL.GL_TEXTURE_2D, m_depth.glID(), 0);
             }
             // check status
             uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER);

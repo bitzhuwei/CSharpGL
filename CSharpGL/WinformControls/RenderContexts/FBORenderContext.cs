@@ -79,9 +79,9 @@ namespace CSharpGL
             OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>()(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH_COMPONENT24, width, height);
 
             //  Set the render buffer for colour and depth.
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_COLOR_ATTACHMENT0_EXT,
+            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_COLOR_ATTACHMENT0,
                 OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_DEPTH_ATTACHMENT_EXT,
+            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_DEPTH_ATTACHMENT,
                 OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
 
             dibSectionDeviceContext = Win32.CreateCompatibleDC(DeviceContextHandle);
@@ -133,10 +133,10 @@ namespace CSharpGL
 
             /*
             //  Resize the render buffer storage.
-            GL.GetDelegateFor<GL.glBindRenderbufferEXT>()(GL.GL_RENDERBUFFER_EXT, colourRenderBufferId);
-            GL.GetDelegateFor<GL.glRenderbufferStorageEXT>()(GL.GL_RENDERBUFFER_EXT, GL.GL_RGBA, width, height);
-            GL.GetDelegateFor<GL.glBindRenderbufferEXT>()(GL.GL_RENDERBUFFER_EXT, depthRenderBufferId);
-            GL.GetDelegateFor<GL.glRenderbufferStorageEXT>()(GL.GL_RENDERBUFFER_EXT, GL.GL_DEPTH_ATTACHMENT_EXT, width, height);
+            GL.GetDelegateFor<GL.glBindRenderbufferEXT>()(GL.GL_RENDERBUFFER, colourRenderBufferId);
+            GL.GetDelegateFor<GL.glRenderbufferStorageEXT>()(GL.GL_RENDERBUFFER, GL.GL_RGBA, width, height);
+            GL.GetDelegateFor<GL.glBindRenderbufferEXT>()(GL.GL_RENDERBUFFER, depthRenderBufferId);
+            GL.GetDelegateFor<GL.glRenderbufferStorageEXT>()(GL.GL_RENDERBUFFER, GL.GL_DEPTH_ATTACHMENT, width, height);
             var complete = GL.CheckFramebufferStatusEXT(GL.GL_FRAMEBUFFER_EXT);
             */
 
@@ -161,9 +161,9 @@ namespace CSharpGL
             OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>()(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH_COMPONENT24, width, height);
 
             //  Set the render buffer for colour and depth.
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_COLOR_ATTACHMENT0_EXT,
+            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_COLOR_ATTACHMENT0,
                 OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_DEPTH_ATTACHMENT_EXT,
+            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_DEPTH_ATTACHMENT,
                 OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
         }
 
@@ -172,7 +172,7 @@ namespace CSharpGL
             if (DeviceContextHandle != IntPtr.Zero)
             {
                 //  Set the read buffer.
-                OpenGL.ReadBuffer(OpenGL.GL_COLOR_ATTACHMENT0_EXT);
+                OpenGL.ReadBuffer(OpenGL.GL_COLOR_ATTACHMENT0);
 
                 //	Read the pixels into the DIB section.
                 OpenGL.ReadPixels(0, 0, Width, Height, OpenGL.GL_BGRA,
