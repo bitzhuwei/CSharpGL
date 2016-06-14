@@ -84,6 +84,8 @@
     <Compile Include="FontResource\FontResource.FromTTF.Misc.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.Impl.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.cs" />
+    <Compile Include="IBufferables\TeapotModel.Positions.cs" />
+    <Compile Include="IBufferables\TeapotModel.Faces.cs" />
     <Compile Include="OpenGLObjects\Framebuffer\Framebuffer.Dispose.cs" />
     <Compile Include="OpenGLObjects\Framebuffer\Framebuffer.cs">
       <SubType>Code</SubType>
@@ -222,7 +224,6 @@
     <Compile Include="IBufferables\BigDipperModel.cs" />
     <Compile Include="IBufferables\CubeModel.cs" />
     <Compile Include="IBufferables\SphereModel.cs" />
-    <Compile Include="IBufferables\TeapotLoader.cs" />
     <Compile Include="IBufferables\TeapotModel.cs" />
     <Compile Include="IBufferables\TetrahedronModel.cs" />
     <Compile Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInPolygonSearcher.cs" />

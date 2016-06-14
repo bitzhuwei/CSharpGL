@@ -13,9 +13,9 @@ namespace CSharpGL
     public class Teapot : IBufferable
     {
 
-        public Teapot(float radius = 1.0f)
+        public Teapot()
         {
-            this.model = TeapotModel.GetModel(radius);
+            this.model = new TeapotModel();
         }
 
         public const string strPosition = "position";
@@ -32,13 +32,14 @@ namespace CSharpGL
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(model.positions.Count);
+                        vec3[] positions = model.GetPositions();
+                        buffer.Alloc(positions.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < model.positions.Count; i++)
+                            for (int i = 0; i < positions.Length; i++)
                             {
-                                array[i] = model.positions[i];
+                                array[i] = positions[i];
                             }
                         }
                         propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
@@ -52,13 +53,14 @@ namespace CSharpGL
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(model.normals.Count);
+                        vec3[] normals = model.GetNormals();
+                        buffer.Alloc(normals.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < model.normals.Count; i++)
+                            for (int i = 0; i < normals.Length; i++)
                             {
-                                array[i] = model.normals[i];
+                                array[i] = normals[i];
                             }
                         }
                         propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
@@ -72,13 +74,14 @@ namespace CSharpGL
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(model.normals.Count);
+                        vec3[] normals = model.GetNormals();
+                        buffer.Alloc(normals.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < model.normals.Count; i++)
+                            for (int i = 0; i < normals.Length; i++)
                             {
-                                array[i] = model.normals[i];
+                                array[i] = normals[i];
                             }
                         }
                         propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
@@ -98,15 +101,16 @@ namespace CSharpGL
             {
                 using (var buffer = new OneIndexBuffer<ushort>(DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    buffer.Alloc(model.faces.Count * 3);
+                    TeapotModel.Face[] faces = model.GetFaces();
+                    buffer.Alloc(faces.Length * 3);
                     unsafe
                     {
                         var array = (ushort*)buffer.Header.ToPointer();
-                        for (int i = 0; i < model.faces.Count; i++)
+                        for (int i = 0; i < faces.Length; i++)
                         {
-                            array[i * 3 + 0] = (ushort)(model.faces[i].Item1 - 1);
-                            array[i * 3 + 1] = (ushort)(model.faces[i].Item2 - 1);
-                            array[i * 3 + 2] = (ushort)(model.faces[i].Item3 - 1);
+                            array[i * 3 + 0] = (ushort)(faces[i].item1 - 1);
+                            array[i * 3 + 1] = (ushort)(faces[i].item2 - 1);
+                            array[i * 3 + 2] = (ushort)(faces[i].item3 - 1);
                         }
                     }
 
