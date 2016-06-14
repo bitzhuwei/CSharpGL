@@ -107,7 +107,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="target"></param>
         /// <param name="textureId"></param>
@@ -121,7 +121,7 @@ namespace CSharpGL
 
         static readonly char[] separator = new char[] { '[', ']', };
 
-        public static samplerValue Parse(string value)
+        internal static samplerValue Parse(string value)
         {
             string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
             BindTextureTarget target = (BindTextureTarget)Enum.Parse(typeof(BindTextureTarget), parts[1]);

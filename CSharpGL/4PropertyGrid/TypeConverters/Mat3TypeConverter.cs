@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public class Mat3TypeConverter : TypeConverter
+    class Mat3TypeConverter : TypeConverter
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {

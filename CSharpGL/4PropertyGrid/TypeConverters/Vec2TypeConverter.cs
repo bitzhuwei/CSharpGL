@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public class Vec2TypeConverter : TypeConverter
+    class Vec2TypeConverter : TypeConverter
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
@@ -19,7 +19,7 @@ namespace CSharpGL
             CultureInfo culture, object value)
         {
             string str = value as string;
-            if(!string.IsNullOrEmpty(str))
+            if (!string.IsNullOrEmpty(str))
             {
                 return vec2.Parse(str);
             }

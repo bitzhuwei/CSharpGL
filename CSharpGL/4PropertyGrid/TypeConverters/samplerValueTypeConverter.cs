@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public class SamplerValueTypeConverter : TypeConverter
+    class SamplerValueTypeConverter : TypeConverter
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
@@ -20,7 +20,7 @@ namespace CSharpGL
             CultureInfo culture, object value)
         {
             string str = value as string;
-            if(!string.IsNullOrEmpty(str))
+            if (!string.IsNullOrEmpty(str))
             {
                 return samplerValue.Parse(str);
             }
