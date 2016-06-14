@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public static class GLCanvasHelper
+    static class GLCanvasHelper
     {
         //static PyramidVAOElement pyramidVAOElement = new PyramidVAOElement();
         //static GLCanvasHelper()
