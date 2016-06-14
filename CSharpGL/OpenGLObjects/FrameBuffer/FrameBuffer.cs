@@ -75,21 +75,21 @@ namespace CSharpGL
 
             /* Create and bind new FBO */
             glGenFramebuffers(1, framebufferId);
-            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, framebufferId[0]);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, framebufferId[0]);
 
-            glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER_EXT,
+            glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
                 attachment_id[m_color.Count], OpenGL.GL_TEXTURE_2D, color0.glID(), 0);
             m_color.Add(color0);
 
             if (m_depth != null)
             {
-                glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER_EXT,
+                glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
                     OpenGL.GL_DEPTH_ATTACHMENT_EXT, OpenGL.GL_TEXTURE_2D, m_depth.glID(), 0);
             }
 
-            uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER_EXT);
+            uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER);
 
-            if (result != OpenGL.GL_FRAMEBUFFER_COMPLETE_EXT)
+            if (result != OpenGL.GL_FRAMEBUFFER_COMPLETE)
             {
                 throw new Exception("Failed to create frame buffer object!");
             }
@@ -97,7 +97,7 @@ namespace CSharpGL
             useAllAttachments();
 
             /* Uibind FBO */
-            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, 0);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, 0);
         }
 
         public Framebuffer(List<FramebufferTexture> color, bool depth)
@@ -123,22 +123,22 @@ namespace CSharpGL
 
         public void addColorAttachment(FramebufferTexture tex)
         {
-            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, framebufferId[0]);
-            glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER_EXT,
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, framebufferId[0]);
+            glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
                 attachment_id[m_color.Count], tex.glTarget(), tex.glID(), 0);
-            uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER_EXT);
-            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, 0);
+            uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, 0);
 
-            if (result != OpenGL.GL_FRAMEBUFFER_COMPLETE_EXT)
+            if (result != OpenGL.GL_FRAMEBUFFER_COMPLETE)
             {
                 throw new Exception("Failed to attach extra color buffer!");
             }
 
             m_color.Add(tex);
 
-            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, framebufferId[0]);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, framebufferId[0]);
             useAllAttachments();
-            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, 0);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, 0);
         }
 
         public void addColorAttachment(uint internalfmt, uint format, bool mipmap, bool interpol)
@@ -156,15 +156,15 @@ namespace CSharpGL
             m_color[index] = other.m_color[index];
             other.m_color[index] = tmp;
 
-            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, framebufferId[0]);
-            glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER_EXT,
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, framebufferId[0]);
+            glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
                 attachment_id[index], m_color[index].glTarget(), m_color[index].glID(), 0);
-            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, 0);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, 0);
 
-            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, other.framebufferId[0]);
-            glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER_EXT,
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, other.framebufferId[0]);
+            glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
                 attachment_id[index], other.m_color[index].glTarget(), other.m_color[index].glID(), 0);
-            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, 0);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, 0);
 
             ErrorCode error = (ErrorCode)OpenGL.GetError();
             if (error != ErrorCode.NoError)
@@ -180,11 +180,11 @@ namespace CSharpGL
 
         public void bind()
         {
-            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, framebufferId[0]);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, framebufferId[0]);
         }
         public void release()
         {
-            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, 0);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, 0);
         }
 
         public void clear(uint bits)
@@ -234,24 +234,24 @@ namespace CSharpGL
             }
 
             // rebind the textures
-            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, framebufferId[0]);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, framebufferId[0]);
             for (int i = 0; i < m_color.Count; ++i)
             {
-                glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER_EXT,
+                glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
                    attachment_id[i], OpenGL.GL_TEXTURE_2D, m_color[i].glID(), 0);
             }
             if (m_depth != null)
             {
-                glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER_EXT,
+                glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
                    OpenGL.GL_DEPTH_ATTACHMENT_EXT, OpenGL.GL_TEXTURE_2D, m_depth.glID(), 0);
             }
             // check status
-            uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER_EXT);
-            if (result != OpenGL.GL_FRAMEBUFFER_COMPLETE_EXT)
+            uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER);
+            if (result != OpenGL.GL_FRAMEBUFFER_COMPLETE)
             {
                 throw new Exception("Failed to create frame buffer object!");
             }
-            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER_EXT, 0);
+            glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, 0);
         }
 
         public uint glID() { return framebufferId[0]; }

@@ -64,25 +64,25 @@ namespace CSharpGL
             ids = new uint[1];
             OpenGL.GetDelegateFor<OpenGL.glGenFramebuffersEXT>()(1, ids);
             frameBufferId = ids[0];
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, frameBufferId);
+            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER, frameBufferId);
 
             //	Create the colour render buffer and bind it, then allocate storage for it.
             OpenGL.GetDelegateFor<OpenGL.glGenRenderbuffersEXT>()(1, ids);
             colourRenderBufferId = ids[0];
-            OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT>()(OpenGL.GL_RENDERBUFFER_EXT, colourRenderBufferId);
-            OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>()(OpenGL.GL_RENDERBUFFER_EXT, OpenGL.GL_RGBA, width, height);
+            OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT>()(OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
+            OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>()(OpenGL.GL_RENDERBUFFER, OpenGL.GL_RGBA, width, height);
 
             //	Create the depth render buffer and bind it, then allocate storage for it.
             OpenGL.GetDelegateFor<OpenGL.glGenRenderbuffersEXT>()(1, ids);
             depthRenderBufferId = ids[0];
-            OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT>()(OpenGL.GL_RENDERBUFFER_EXT, depthRenderBufferId);
-            OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>()(OpenGL.GL_RENDERBUFFER_EXT, OpenGL.GL_DEPTH_COMPONENT24, width, height);
+            OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT>()(OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
+            OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>()(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH_COMPONENT24, width, height);
 
             //  Set the render buffer for colour and depth.
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, OpenGL.GL_COLOR_ATTACHMENT0_EXT,
-                OpenGL.GL_RENDERBUFFER_EXT, colourRenderBufferId);
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, OpenGL.GL_DEPTH_ATTACHMENT_EXT,
-                OpenGL.GL_RENDERBUFFER_EXT, depthRenderBufferId);
+            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_COLOR_ATTACHMENT0_EXT,
+                OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
+            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_DEPTH_ATTACHMENT_EXT,
+                OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
 
             dibSectionDeviceContext = Win32.CreateCompatibleDC(DeviceContextHandle);
 
@@ -146,25 +146,25 @@ namespace CSharpGL
             ids = new uint[1];
             OpenGL.GetDelegateFor<OpenGL.glGenFramebuffersEXT>()(1, ids);
             frameBufferId = ids[0];
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, frameBufferId);
+            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER, frameBufferId);
 
             //	Create the colour render buffer and bind it, then allocate storage for it.
             OpenGL.GetDelegateFor<OpenGL.glGenRenderbuffersEXT>()(1, ids);
             colourRenderBufferId = ids[0];
-            OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT>()(OpenGL.GL_RENDERBUFFER_EXT, colourRenderBufferId);
-            OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>()(OpenGL.GL_RENDERBUFFER_EXT, OpenGL.GL_RGBA, width, height);
+            OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT>()(OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
+            OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>()(OpenGL.GL_RENDERBUFFER, OpenGL.GL_RGBA, width, height);
 
             //	Create the depth render buffer and bind it, then allocate storage for it.
             OpenGL.GetDelegateFor<OpenGL.glGenRenderbuffersEXT>()(1, ids);
             depthRenderBufferId = ids[0];
-            OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT>()(OpenGL.GL_RENDERBUFFER_EXT, depthRenderBufferId);
-            OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>()(OpenGL.GL_RENDERBUFFER_EXT, OpenGL.GL_DEPTH_COMPONENT24, width, height);
+            OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT>()(OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
+            OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>()(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH_COMPONENT24, width, height);
 
             //  Set the render buffer for colour and depth.
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, OpenGL.GL_COLOR_ATTACHMENT0_EXT,
-                OpenGL.GL_RENDERBUFFER_EXT, colourRenderBufferId);
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, OpenGL.GL_DEPTH_ATTACHMENT_EXT,
-                OpenGL.GL_RENDERBUFFER_EXT, depthRenderBufferId);
+            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_COLOR_ATTACHMENT0_EXT,
+                OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
+            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_DEPTH_ATTACHMENT_EXT,
+                OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
         }
 
         public override void Blit(IntPtr hdc)

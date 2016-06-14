@@ -41,10 +41,10 @@ namespace CSharpGL.Demos
             }
           
             // render to texture
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, frameBuffer[0]);
+            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER, frameBuffer[0]);
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             this.backfaceRenderer.Render(arg);
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, 0);
+            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER, 0);
 
             this.raycastRenderer.Render(arg);
             // need or need not to resume the state of only one active texture unit?

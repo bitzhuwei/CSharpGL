@@ -370,7 +370,7 @@ namespace CSharpGL
         //  By specifying 'ThrowOnUnmappableChar' we protect ourselves from inadvertantly using a unicode character
         //  in the source which the marshaller cannot map. Without this, it maps it to '?' leading to long and pointless
         //  sessions of trying to find bugs in the shader, which are most often just copied and pasted unicode characters!
-        //  If you're getting exceptions here, remove all unicode crap from your input files (remember, some unicode 
+        //  If you're getting exceptions here, remove all unicode crap from your input files (remember, some unicode
         //  characters you can't even see).
         [UnmanagedFunctionPointer(CallingConvention.StdCall, ThrowOnUnmappableChar = true)]
         public delegate void glShaderSource(uint shader, int count, string[] source, int[] length);
@@ -830,7 +830,7 @@ namespace CSharpGL
 
         #region OpenGL 4.0
 
-        //  Delegates        
+        //  Delegates
         public delegate void glMinSampleShading(float value);
         public delegate void glBlendEquationi(uint buf, uint mode);
         public delegate void glBlendEquationSeparatei(uint buf, uint modeRGB, uint modeAlpha);
@@ -964,7 +964,7 @@ namespace CSharpGL
         public delegate void glGetSeparableFilterEXT(uint target, uint format, uint type, IntPtr row, IntPtr column, IntPtr span);
         public delegate void glSeparableFilter2DEXT(uint target, uint internalformat, int width, int height, uint format, uint type, IntPtr row, IntPtr column);
 
-        //  Constants        
+        //  Constants
         public static uint GL_CONVOLUTION_1D_EXT = 0x8010;
         public static uint GL_CONVOLUTION_2D_EXT = 0x8011;
         public static uint GL_SEPARABLE_2D_EXT = 0x8012;
@@ -1041,7 +1041,7 @@ namespace CSharpGL
         //  Delegates
         public delegate void glBlendColorEXT(float red, float green, float blue, float alpha);
 
-        //  Constants        
+        //  Constants
         public const uint GL_CONSTANT_COLOR_EXT = 0x8001;
         public const uint GL_ONE_MINUS_CONSTANT_COLOR_EXT = 0x8002;
         public const uint GL_CONSTANT_ALPHA_EXT = 0x8003;
@@ -1055,7 +1055,7 @@ namespace CSharpGL
         //  Delegates
         public delegate void glBlendEquationEXT(uint mode);
 
-        //  Constants        
+        //  Constants
         public const uint GL_FUNC_ADD_EXT = 0x8006;
         public const uint GL_MIN_EXT = 0x8007;
         public const uint GL_MAX_EXT = 0x8008;
@@ -1067,7 +1067,7 @@ namespace CSharpGL
 
         #region GL_ARB_multitexture
 
-        //  Delegates 
+        //  Delegates
         public delegate void glActiveTextureARB(uint texture);
         public delegate void glClientActiveTextureARB(uint texture);
         public delegate void glMultiTexCoord1dARB(uint target, double s);
@@ -1367,7 +1367,7 @@ namespace CSharpGL
         public delegate void glSecondaryColor3usvEXT(ushort[] v);
         public delegate void glSecondaryColorPointerEXT(int size, uint type, int stride, IntPtr pointer);
 
-        //  Constants        
+        //  Constants
         public const uint GL_COLOR_SUM_EXT = 0x8458;
         public const uint GL_CURRENT_SECONDARY_COLOR_EXT = 0x8459;
         public const uint GL_SECONDARY_COLOR_ARRAY_SIZE_EXT = 0x845A;
@@ -1774,7 +1774,7 @@ namespace CSharpGL
         //  Delegates
         public delegate void glDrawBuffersARB(int n, uint[] bufs);
 
-        //  Constants        
+        //  Constants
         public const uint GL_MAX_DRAW_BUFFERS_ARB = 0x8824;
         public const uint GL_DRAW_BUFFER0_ARB = 0x8825;
         public const uint GL_DRAW_BUFFER1_ARB = 0x8826;
@@ -1919,19 +1919,21 @@ namespace CSharpGL
         public delegate void glGenerateMipmapEXT(uint target);
 
         //  Constants
-        public const uint GL_INVALID_FRAMEBUFFER_OPERATION_EXT = 0x0506;
-        public const uint GL_MAX_RENDERBUFFER_SIZE_EXT = 0x84E8;
-        public const uint GL_FRAMEBUFFER_BINDING_EXT = 0x8CA6;
-        public const uint GL_RENDERBUFFER_BINDING_EXT = 0x8CA7;
-        public const uint GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE_EXT = 0x8CD0;
-        public const uint GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME_EXT = 0x8CD1;
-        public const uint GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL_EXT = 0x8CD2;
-        public const uint GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE_EXT = 0x8CD3;
-        public const uint GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_3D_ZOFFSET_EXT = 0x8CD4;
-        public const uint GL_FRAMEBUFFER_COMPLETE_EXT = 0x8CD5;
-        public const uint GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT_EXT = 0x8CD6;
-        public const uint GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT_EXT = 0x8CD7;
-        public const uint GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS_EXT = 0x8CD9;
+        public const uint GL_INVALID_FRAMEBUFFER_OPERATION = 0x0506;
+        public const uint GL_MAX_RENDERBUFFER_SIZE = 0x84E8;
+        public const uint GL_FRAMEBUFFER_BINDING = 0x8CA6;
+        public const uint GL_RENDERBUFFER_BINDING = 0x8CA7;
+        public const uint GL_READ_FRAMEBUFFER = 0x8CA8;
+        public const uint GL_DRAW_FRAMEBUFFER = 0x8CA9;
+        public const uint GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE = 0x8CD0;
+        public const uint GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME = 0x8CD1;
+        public const uint GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL = 0x8CD2;
+        public const uint GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE = 0x8CD3;
+        public const uint GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_3D_ZOFFSET = 0x8CD4;
+        public const uint GL_FRAMEBUFFER_COMPLETE = 0x8CD5;
+        public const uint GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT = 0x8CD6;
+        public const uint GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT = 0x8CD7;
+        public const uint GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS = 0x8CD9;
         public const uint GL_FRAMEBUFFER_INCOMPLETE_FORMATS_EXT = 0x8CDA;
         public const uint GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER_EXT = 0x8CDB;
         public const uint GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER_EXT = 0x8CDC;
@@ -1955,23 +1957,21 @@ namespace CSharpGL
         public const uint GL_COLOR_ATTACHMENT15_EXT = 0x8CEF;
         public const uint GL_DEPTH_ATTACHMENT_EXT = 0x8D00;
         public const uint GL_STENCIL_ATTACHMENT_EXT = 0x8D20;
-        public const uint GL_FRAMEBUFFER_EXT = 0x8D40;
-        public const uint GL_RENDERBUFFER_EXT = 0x8D41;
-        public const uint GL_RENDERBUFFER_WIDTH_EXT = 0x8D42;
-        public const uint GL_RENDERBUFFER_HEIGHT_EXT = 0x8D43;
-        public const uint GL_RENDERBUFFER_INTERNAL_FORMAT_EXT = 0x8D44;
-        public const uint GL_STENCIL_INDEX1_EXT = 0x8D46;
-        public const uint GL_STENCIL_INDEX4_EXT = 0x8D47;
-        public const uint GL_STENCIL_INDEX8_EXT = 0x8D48;
-        public const uint GL_STENCIL_INDEX16_EXT = 0x8D49;
-        public const uint GL_RENDERBUFFER_RED_SIZE_EXT = 0x8D50;
-        public const uint GL_RENDERBUFFER_GREEN_SIZE_EXT = 0x8D51;
-        public const uint GL_RENDERBUFFER_BLUE_SIZE_EXT = 0x8D52;
-        public const uint GL_RENDERBUFFER_ALPHA_SIZE_EXT = 0x8D53;
-        public const uint GL_RENDERBUFFER_DEPTH_SIZE_EXT = 0x8D54;
-        public const uint GL_RENDERBUFFER_STENCIL_SIZE_EXT = 0x8D55;
-        public const uint GL_READ_FRAMEBUFFER = 0x8CA8;
-        public const uint GL_DRAW_FRAMEBUFFER = 0x8CA9;
+        public const uint GL_FRAMEBUFFER = 0x8D40;
+        public const uint GL_RENDERBUFFER = 0x8D41;
+        public const uint GL_RENDERBUFFER_WIDTH = 0x8D42;
+        public const uint GL_RENDERBUFFER_HEIGHT = 0x8D43;
+        public const uint GL_RENDERBUFFER_INTERNAL_FORMAT = 0x8D44;
+        public const uint GL_STENCIL_INDEX1 = 0x8D46;
+        public const uint GL_STENCIL_INDEX4 = 0x8D47;
+        public const uint GL_STENCIL_INDEX8 = 0x8D48;
+        public const uint GL_STENCIL_INDEX16 = 0x8D49;
+        public const uint GL_RENDERBUFFER_RED_SIZE = 0x8D50;
+        public const uint GL_RENDERBUFFER_GREEN_SIZE = 0x8D51;
+        public const uint GL_RENDERBUFFER_BLUE_SIZE = 0x8D52;
+        public const uint GL_RENDERBUFFER_ALPHA_SIZE = 0x8D53;
+        public const uint GL_RENDERBUFFER_DEPTH_SIZE = 0x8D54;
+        public const uint GL_RENDERBUFFER_STENCIL_SIZE = 0x8D55;
 
         #endregion
 
@@ -2096,7 +2096,7 @@ namespace CSharpGL
         //  Constants
 
         /// <summary>
-        /// The number of available pre-assigned uniform locations to that can default be 
+        /// The number of available pre-assigned uniform locations to that can default be
         /// allocated in the default uniform block.
         /// </summary>
         public const int GL_MAX_UNIFORM_LOCATIONS = 0x826E;
@@ -2249,7 +2249,6 @@ namespace CSharpGL
         public delegate void glGetInternalformati64v(uint target, uint internalformat, uint pname, uint bufSize, Int64[] parameters);
 
         //  Constants
-        public const uint GL_RENDERBUFFER = 0x8D41;
         public const uint GL_TEXTURE_2D_MULTISAMPLE = 0x9100;
         public const uint GL_TEXTURE_2D_MULTISAMPLE_ARRAY = 0x9102;
         public const uint GL_NUM_SAMPLE_COUNTS = 0x9380;
@@ -2626,7 +2625,7 @@ namespace CSharpGL
         #endregion
 
         #region GL_ARB_vertex_attrib_binding
-		
+
         //  Delegates
         public delegate void glBindVertexBuffer(uint bindingindex, uint buffer, IntPtr offset, uint stride);
         public delegate void glVertexAttribFormat(uint attribindex, int size, uint type, bool normalized, uint relativeoffset);

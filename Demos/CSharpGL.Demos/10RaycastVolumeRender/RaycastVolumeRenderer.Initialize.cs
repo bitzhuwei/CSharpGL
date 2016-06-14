@@ -68,17 +68,17 @@ namespace CSharpGL.Demos
 
             // attach the texture and the depth buffer to the framebuffer
             OpenGL.GetDelegateFor<OpenGL.glGenFramebuffersEXT>()(1, frameBuffer);
-            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, frameBuffer[0]);
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, OpenGL.GL_COLOR_ATTACHMENT0_EXT, OpenGL.GL_TEXTURE_2D, backface2DTexObj[0], 0);
-            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER_EXT, OpenGL.GL_DEPTH_ATTACHMENT_EXT, OpenGL.GL_RENDERBUFFER, depthBuffer[0]);
+            OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER, frameBuffer[0]);
+            OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_COLOR_ATTACHMENT0_EXT, OpenGL.GL_TEXTURE_2D, backface2DTexObj[0], 0);
+            OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_DEPTH_ATTACHMENT_EXT, OpenGL.GL_RENDERBUFFER, depthBuffer[0]);
             checkFramebufferStatus();
             //OpenGL.Enable(GL_DEPTH_TEST); 
         }
 
         private void checkFramebufferStatus()
         {
-            uint complete = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>()(OpenGL.GL_FRAMEBUFFER_EXT);
-            if (complete != OpenGL.GL_FRAMEBUFFER_COMPLETE_EXT)
+            uint complete = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>()(OpenGL.GL_FRAMEBUFFER);
+            if (complete != OpenGL.GL_FRAMEBUFFER_COMPLETE)
             {
                 throw new Exception("framebuffer is not complete");
             }
