@@ -51,13 +51,13 @@ namespace CSharpGL
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        vec3[] normals = model.GetNormals();
+                        float[] normals = model.GetNormals();
                         buffer.Alloc(normals.Length);
                         unsafe
                         {
-                            var array = (vec3*)buffer.Header.ToPointer();
+                            var array = (float*)buffer.Header.ToPointer();
                             for (int i = 0; i < normals.Length; i++)
                             {
                                 array[i] = normals[i];
@@ -72,13 +72,13 @@ namespace CSharpGL
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        vec3[] normals = model.GetNormals();
+                        float[] normals = model.GetNormals();
                         buffer.Alloc(normals.Length);
                         unsafe
                         {
-                            var array = (vec3*)buffer.Header.ToPointer();
+                            var array = (float*)buffer.Header.ToPointer();
                             for (int i = 0; i < normals.Length; i++)
                             {
                                 array[i] = normals[i];

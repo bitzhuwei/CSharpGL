@@ -9,7 +9,7 @@ namespace CSharpGL
 {
     internal partial class TeapotModel
     {
-        internal static vec3[] normals;
+        internal static float[] normals;
 
         public TeapotModel() { }
 
@@ -18,7 +18,7 @@ namespace CSharpGL
             return positionData;
         }
 
-        public vec3[] GetNormals()
+        public float[] GetNormals()
         {
             return normals;
         }
@@ -37,7 +37,6 @@ namespace CSharpGL
         private static void GenNormals()
         {
             var faceNormals = new vec3[faceData.Length];
-            normals = new vec3[positionData.Length / 3];
 
             for (int i = 0; i < faceData.Length; i++)
             {
@@ -59,6 +58,7 @@ namespace CSharpGL
                 faceNormals[i] = v2.cross(v1).normalize();
             }
 
+            var normals = new float[positionData.Length];
             for (int i = 0; i < positionData.Length / 3; i++)
             {
                 vec3 sum = new vec3();
@@ -72,13 +72,18 @@ namespace CSharpGL
                         shared++;
                     }
                 }
+
                 if (shared > 0)
                 {
                     sum = (sum / shared).normalize();
                 }
-                normals[i] = sum;
+
+                normals[i * 3 + 0] = sum.x;
+                normals[i * 3 + 1] = sum.y;
+                normals[i * 3 + 2] = sum.z;
             }
 
+            TeapotModel.normals = normals;
         }
 
         private static void MovePosition2Center()
