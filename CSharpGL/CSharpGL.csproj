@@ -65,7 +65,6 @@
     <Content Include="PickableRenderer\ColorCodedPicking\readme.md" />
     <Content Include="IBufferables\AxisModel.jpg" />
     <Content Include="IBufferables\CubeModel.jpg" />
-    <Content Include="IBufferables\SphereModel.jpg" />
     <Content Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInPolygonSearcher.jpg" />
     <Content Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInQuadsSearcher.jpg" />
     <Content Include="PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInQuadStripSearcher.jpg" />
