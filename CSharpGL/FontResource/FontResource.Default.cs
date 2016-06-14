@@ -26,29 +26,26 @@ namespace CSharpGL
                     {
                         if (defaultInstance == null)
                         {
-                            //defaultInstance = new FontResource();
-                            //var bitmap = ManifestResourceLoader.LoadBitmap(@"Resources\ANTQUAI.TTF.png");
-                            //defaultInstance.InitTexture(bitmap);
-                            //bitmap.Dispose();
-                            //string xmlContent = ManifestResourceLoader.LoadTextFile(@"Resources\ANTQUAI.TTF.xml");
-                            //XElement xElement = XElement.Parse(xmlContent, LoadOptions.None);
-                            //defaultInstance.InitConfig(xElement);
-                            var builder = new StringBuilder();
-                            for (int i = 32; i < 127; i++)
-                            {
-                                builder.Append((char)i);
-                            }
-                            using (Stream stream = ManifestResourceLoader.GetStream(@"Resources\ANTQUAI.TTF"))
-                            {
-                                InitStandardWidths();
-                                var targets = builder.ToString();
-                                const int pixelSize = 32;
-                                defaultInstance = Load(stream, targets, pixelSize);
-                            }
+                            InitializeDefaultFontResource();
                         }
                     }
                 }
                 return defaultInstance;
+            }
+        }
+
+        private static void InitializeDefaultFontResource()
+        {
+            var builder = new StringBuilder();
+            for (int i = 32; i < 127; i++)
+            {
+                builder.Append((char)i);
+            }
+            using (Stream stream = ManifestResourceLoader.GetStream(@"Resources\ANTQUAI.TTF"))
+            {
+                var targets = builder.ToString();
+                const int pixelSize = 32;
+                defaultInstance = Load(stream, targets, pixelSize);
             }
         }
 

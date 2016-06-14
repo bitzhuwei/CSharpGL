@@ -25,8 +25,6 @@ namespace CSharpGL
         /// <returns></returns>
         public static FontResource Load(string ttfFilename, char[] content, int pixelSize = 32)
         {
-            InitStandardWidths();
-
             var targets = (from item in content select item).Distinct();
 
             using (FileStream stream = File.OpenRead(ttfFilename))
@@ -46,8 +44,6 @@ namespace CSharpGL
         /// <returns></returns>
         public static FontResource Load(string ttfFilename, string content, int pixelSize = 32)
         {
-            InitStandardWidths();
-
             var targets = (from item in content select item).Distinct();
 
             using (FileStream stream = File.OpenRead(ttfFilename))

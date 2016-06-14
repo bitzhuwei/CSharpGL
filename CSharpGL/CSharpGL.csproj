@@ -81,6 +81,7 @@
     <Content Include="OpenGLObjects\VertexBufferObjects\readme.md" />
     <Content Include="readme.md" />
     <Compile Include="FontResource\FontResource.Default.cs" />
+    <Compile Include="FontResource\FontResource.FromTTF.Misc.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.Impl.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.cs" />
     <Compile Include="OpenGLObjects\Framebuffer\Framebuffer.Dispose.cs" />

@@ -16,10 +16,10 @@ namespace CSharpGL
     public sealed partial class FontResource
     {
 
-        static int[] standardWidths;
-
-        private static FontResource Load(Stream stream, IEnumerable<char> targets, int pixelSize)
+        public static FontResource Load(Stream stream, IEnumerable<char> targets, int pixelSize)
         {
+            InitStandardWidths();
+
             FontResource fontResource;
 
             int count = targets.Count();
@@ -45,16 +45,6 @@ namespace CSharpGL
             fontResource.InitTexture(finalBitmap);
             finalBitmap.Dispose();
             return fontResource;
-        }
-
-        private static Bitmap ShortenBitmap(Bitmap bitmap, int width, int height)
-        {
-            var finalBitmap = new Bitmap(width, height);
-            var g = Graphics.FromImage(finalBitmap);
-            g.DrawImage(bitmap, 0, 0);
-            g.Dispose();
-            //finalBitmap.Save("Test.bmp");
-            return finalBitmap;
         }
 
         const int xInterval = 1;
@@ -121,44 +111,6 @@ namespace CSharpGL
         static Pen redPen = new Pen(Color.Red);
         static Pen greenPen = new Pen(Color.Green);
 #endif
-
-        private static int GetMaxWidth(int pixelSize, int count)
-        {
-            if (count < 1) { throw new ArgumentException(); }
-            int maxWidth = (int)(Math.Sqrt(count) * pixelSize);
-            if (maxWidth < pixelSize)
-            {
-                maxWidth = pixelSize;
-            }
-            for (int i = 0; i < standardWidths.Length; i++)
-            {
-                if (maxWidth <= standardWidths[i])
-                {
-                    maxWidth = standardWidths[i];
-                    break;
-                }
-            }
-            return maxWidth;
-        }
-
-        private static void InitStandardWidths()
-        {
-            if (standardWidths == null)
-            {
-                int[] maxTextureSize = new int[1];
-                OpenGL.GetInteger(GetTarget.MaxTextureSize, maxTextureSize);
-                if (maxTextureSize[0] == 0) { maxTextureSize[0] = (int)Math.Pow(2, 14); }
-                int i = 2;
-                List<int> widths = new List<int>();
-                while (Math.Pow(2, i) <= maxTextureSize[0])
-                {
-                    widths.Add((int)Math.Pow(2, i));
-                    i++;
-                }
-                standardWidths = widths.ToArray();
-            }
-        }
-
 
         private static unsafe Bitmap GetGlyphBitmap(Surface surface)
         {
