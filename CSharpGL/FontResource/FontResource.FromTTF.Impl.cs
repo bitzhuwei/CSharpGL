@@ -82,7 +82,7 @@ namespace CSharpGL
                         currentX = 0;
                         currentY += yInterval + pixelSize;
                         if (currentY + yInterval + pixelSize >= maxWidth)
-                        { throw new Exception("Texture Size not big enough for reuqired characters."); }
+                        { throw new Exception("Texture Size not big enough for required characters."); }
                     }
                     Bitmap glyphBitmap = GetGlyphBitmap(surface);
                     const int a = 5;
