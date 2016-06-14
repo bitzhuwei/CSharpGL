@@ -11,14 +11,14 @@ namespace CSharpGL
     {
         internal struct Face
         {
-            public ushort item1;
-            public ushort item2;
-            public ushort item3;
-            public Face(ushort item1,ushort item2,ushort item3)
+            public ushort vertexId1;
+            public ushort vertexId2;
+            public ushort vertexId3;
+            public Face(ushort vertexId1,ushort vertexId2,ushort vertexId3)
             {
-                this.item1 = item1;
-                this.item2 = item2;
-                this.item3 = item3;
+                this.vertexId1 = vertexId1;
+                this.vertexId2 = vertexId2;
+                this.vertexId3 = vertexId3;
             }
         }
 
