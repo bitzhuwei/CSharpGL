@@ -226,11 +226,17 @@ namespace CSharpGL
                     const int a = 5;
                     const int b = 8;
                     //float yoffset = pixelSize * a / b - glyph.HorizontalMetrics.Bearing.Y;
+                    float skyHeight = yInterval + pixelSize * a / b - glyph.HorizontalMetrics.Bearing.Y;
+                    if (skyHeight < 0) { skyHeight = 0; }
+                    if (skyHeight < 0)
+                    { skyHeight = 0; }
+                    else if (skyHeight + glyphBitmap.Height > yInterval + pixelSize)
+                    { skyHeight -= glyphBitmap.Height - (yInterval + pixelSize); }
 #if DEBUG
-                    g.DrawRectangle(redPen, currentX + xInterval, currentY + yInterval + pixelSize * a / b - glyph.HorizontalMetrics.Bearing.Y, glyphBitmap.Width, glyphBitmap.Height);
+                    g.DrawRectangle(redPen, currentX + xInterval, currentY + skyHeight, glyphBitmap.Width, glyphBitmap.Height);
                     g.DrawRectangle(greenPen, currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
 #endif
-                    g.DrawImage(glyphBitmap, currentX + xInterval, currentY + yInterval + pixelSize * a / b - glyph.HorizontalMetrics.Bearing.Y, glyphBitmap.Width, glyphBitmap.Height);
+                    g.DrawImage(glyphBitmap, currentX + xInterval, currentY + skyHeight, glyphBitmap.Width, glyphBitmap.Height);
                     CharacterInfo info = new CharacterInfo(currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
                     dict.Add(c, info);
                     glyphBitmap.Dispose();

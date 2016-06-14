@@ -143,11 +143,7 @@
     <Compile Include="WinformControls\GLCanvasHelper.cs" />
     <Compile Include="WinformControls\RenderTriggers.cs" />
     <Compile Include="FontResource\CharacterInfo.cs" />
-    <Compile Include="FontResource\CharacterInfoDictHelper.cs" />
-    <Compile Include="FontResource\CharacterInfoHelper.cs" />
     <Compile Include="FontResource\FontResource.cs" />
-    <Compile Include="FontResource\FontTexture.cs" />
-    <Compile Include="FontResource\KeyValuePairHelper.cs" />
     <Compile Include="HighlightRenderer\HighlightRenderer.cs" />
     <Compile Include="HighlightRenderer\HighlightRenderer.DoInitialize.cs" />
     <Compile Include="HighlightRenderer\HighlightRenderer.Property.cs" />
@@ -454,6 +450,7 @@
     <EmbeddedResource Include="Resources\GLAxis.vert" />
     <EmbeddedResource Include="Resources\GLText.frag" />
     <EmbeddedResource Include="Resources\GLText.vert" />
+    <Content Include="Scene\readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Maths\readme.md" />
