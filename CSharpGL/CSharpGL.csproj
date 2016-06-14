@@ -81,6 +81,7 @@
     <Content Include="OpenGLObjects\VertexBufferObjects\readme.md" />
     <Content Include="readme.md" />
     <Compile Include="FontResource\FontResource.Default.cs" />
+    <Compile Include="FontResource\FontResource.FromTTF.Impl.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.cs" />
     <Compile Include="OpenGLObjects\Framebuffer\Framebuffer.Dispose.cs" />
     <Compile Include="OpenGLObjects\Framebuffer\Framebuffer.cs">
@@ -134,6 +135,7 @@
     </Compile>
     <Compile Include="4PropertyGrid\UITypeEditors\GLSwithEditor.cs" />
     <Compile Include="Scene\Component.cs" />
+    <Compile Include="Scene\SceneObject.FindComponent.cs" />
     <Compile Include="Scene\SceneObject.cs" />
     <Compile Include="Scene\TransformComponent.cs" />
     <Compile Include="Utilities\ColorHelper.cs" />

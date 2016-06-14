@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     /// Description of Component.
     /// </summary>
-    public class Component
+    public partial class Component
     {
         public Component()
         {

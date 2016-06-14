@@ -40,7 +40,10 @@ namespace CSharpGL
                             }
                             using (Stream stream = ManifestResourceLoader.GetStream(@"Resources\ANTQUAI.TTF"))
                             {
-                                defaultInstance = FontResource.Load(stream, builder.ToString(), 32);
+                                InitStandardWidths();
+                                var targets = builder.ToString();
+                                const int pixelSize = 32;
+                                defaultInstance = LoadFromSomeChars(stream, pixelSize, targets);
                             }
                         }
                     }

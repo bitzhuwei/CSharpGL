@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// Description of SceneObject.
     /// </summary>
-    public class SceneObject
+    public partial class SceneObject
     {
         public TransformComponent Transform { get; private set; }
         public List<Component> Components { get; private set; }
