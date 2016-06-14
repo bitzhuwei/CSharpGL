@@ -133,6 +133,9 @@
       <DependentUpon>FormGLSwitchEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="4PropertyGrid\UITypeEditors\GLSwithEditor.cs" />
+    <Compile Include="Scene\Component.cs" />
+    <Compile Include="Scene\SceneObject.cs" />
+    <Compile Include="Scene\TransformComponent.cs" />
     <Compile Include="Utilities\ColorHelper.cs" />
     <Compile Include="Utilities\DoubleHelper.cs" />
     <Compile Include="WinformControls\GLCanvas.cs">
