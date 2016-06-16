@@ -139,6 +139,9 @@
     <Compile Include="4PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Scenes\Component.cs" />
+    <Compile Include="Scenes\SceneObject.IRenderable.cs" />
+    <Compile Include="Scenes\SceneObject.ITreeNode.cs" />
+    <Compile Include="Scenes\SceneObject.IEnumerable.cs" />
     <Compile Include="Scenes\SceneObject.cs" />
     <Compile Include="Scenes\SceneObjectList.cs" />
     <Compile Include="Scenes\SceneObjectRenderer.cs" />
