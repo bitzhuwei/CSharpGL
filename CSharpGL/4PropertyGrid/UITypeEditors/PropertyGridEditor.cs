@@ -8,9 +8,9 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 用在GLSwitch类型的属性上。
+    /// For any sinlge object.
     /// </summary>
-    class GLSwithEditor : UITypeEditor
+    class PropertyGridEditor : UITypeEditor
     {
 
         public override UITypeEditorEditStyle GetEditStyle(System.ComponentModel.ITypeDescriptorContext context)
@@ -22,10 +22,8 @@ namespace CSharpGL
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             // 打开属性编辑器修改数据 
-            var frmGLSwitchListEditor = new FormGLSwitchEditor(value as GLSwitch);
-            if (frmGLSwitchListEditor.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-            }
+            var frmGLSwitchListEditor = new FormPropertyGridEditor(value);
+            frmGLSwitchListEditor.ShowDialog();
 
             return value;
         }

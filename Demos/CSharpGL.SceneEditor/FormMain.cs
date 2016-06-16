@@ -12,9 +12,22 @@ namespace CSharpGL.SceneEditor
 {
     public partial class FormMain : Form
     {
+        const string strOpenGL = "OpenGL";
+
+        private SceneObjectList sceneObjectList = new SceneObjectList();
+
+        [Category(strOpenGL)]
+        public Camera Camera { get; private set; }
+
+        [Category(strOpenGL)]
+        public Color ClearColor { get; set; }
+
         public FormMain()
         {
             InitializeComponent();
+
+            this.Load += FormMain_Load;
         }
+
     }
 }

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Design;
 
 namespace CSharpGL
 {
     /// <summary>
     /// 摄像机。
     /// </summary>
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class Camera :
         ICamera,
         IPerspectiveViewCamera, IOrthoViewCamera,

@@ -10,15 +10,15 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
-    partial class FormGLSwitchEditor : Form
+    partial class FormPropertyGridEditor : Form
     {
 
-        public FormGLSwitchEditor(GLSwitch glSwitch)
+        public FormPropertyGridEditor(object obj)
         {
             InitializeComponent();
 
-            this.propertyGrid.SelectedObject = glSwitch;
-            this.lblSwitchName.Text = string.Format("{0}", glSwitch);
+            this.propertyGrid.SelectedObject = obj;
+            this.Text = string.Format("{0} - Property Editor", obj);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

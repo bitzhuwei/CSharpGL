@@ -44,8 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormGLSwitchEditor.resx">
-      <DependentUpon>FormGLSwitchEditor.cs</DependentUpon>
+    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormPropertyGridEditor.resx">
+      <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="GLControls\readme.md" />
     <Content Include="FontResource\readme.md" />
@@ -130,13 +130,13 @@
     <Compile Include="PickableRenderer\InnerPickableRenderer.MovePositions.cs" />
     <Compile Include="PickableRenderer\InnerPickableRenderer.Picking.cs" />
     <Compile Include="PickableRenderer\InnerPickableRendererFactory.cs" />
-    <Compile Include="4PropertyGrid\UITypeEditors\FormGLSwitchEditor.cs">
+    <Compile Include="4PropertyGrid\UITypeEditors\FormPropertyGridEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="4PropertyGrid\UITypeEditors\FormGLSwitchEditor.Designer.cs">
-      <DependentUpon>FormGLSwitchEditor.cs</DependentUpon>
+    <Compile Include="4PropertyGrid\UITypeEditors\FormPropertyGridEditor.Designer.cs">
+      <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="4PropertyGrid\UITypeEditors\GLSwithEditor.cs" />
+    <Compile Include="4PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="Scene\Component.cs" />
     <Compile Include="Scene\SceneObject.cs" />
     <Compile Include="Scene\SceneObjectList.cs" />

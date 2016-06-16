@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    partial class FormGLSwitchEditor
+    partial class FormPropertyGridEditor
     {
         /// <summary>
         /// Required designer variable.
@@ -28,28 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblSwitchName = new System.Windows.Forms.Label();
             this.propertyGrid = new System.Windows.Forms.PropertyGrid();
             this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // lblSwitchName
-            // 
-            this.lblSwitchName.AutoSize = true;
-            this.lblSwitchName.Location = new System.Drawing.Point(12, 9);
-            this.lblSwitchName.Name = "lblSwitchName";
-            this.lblSwitchName.Size = new System.Drawing.Size(111, 15);
-            this.lblSwitchName.TabIndex = 0;
-            this.lblSwitchName.Text = "lblSwitchName";
             // 
             // propertyGrid
             // 
             this.propertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.propertyGrid.Location = new System.Drawing.Point(11, 37);
+            this.propertyGrid.Location = new System.Drawing.Point(11, 12);
             this.propertyGrid.Name = "propertyGrid";
-            this.propertyGrid.Size = new System.Drawing.Size(332, 400);
+            this.propertyGrid.Size = new System.Drawing.Size(332, 425);
             this.propertyGrid.TabIndex = 3;
             // 
             // btnClose
@@ -63,7 +53,7 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // FormGLSwitchEditor
+            // FormPropertyGridEditor
             // 
             this.AcceptButton = this.btnClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -71,17 +61,14 @@
             this.ClientSize = new System.Drawing.Size(355, 478);
             this.Controls.Add(this.propertyGrid);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.lblSwitchName);
-            this.Name = "FormGLSwitchEditor";
-            this.Text = "GLSwticth编辑器";
+            this.Name = "FormPropertyGridEditor";
+            this.Text = "Single Instance Editor";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label lblSwitchName;
         private System.Windows.Forms.PropertyGrid propertyGrid;
         private System.Windows.Forms.Button btnClose;
     }

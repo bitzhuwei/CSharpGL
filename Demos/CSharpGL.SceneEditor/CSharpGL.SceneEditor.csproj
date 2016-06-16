@@ -44,16 +44,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormMain.Resize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.OpenGLDraw.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Backup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Tools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.TreeNode.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormProperyGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProperyGrid.Designer.cs">
+      <DependentUpon>FormProperyGrid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProperyGrid.resx">
+      <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
