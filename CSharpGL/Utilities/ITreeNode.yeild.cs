@@ -18,12 +18,11 @@ namespace System
             where T : ITreeNode<T>
         {
             yield return treeNode.Self;
-            int count = treeNode.Children.Count;
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < treeNode.Children.Count; i++)
             {
                 var child = treeNode.Children[i];
-                var x = EnumerateRecursively(child);
-                foreach (var item in x)
+                var enumerable = EnumerateRecursively(child);
+                foreach (var item in enumerable)
                 {
                     yield return item;
                 }

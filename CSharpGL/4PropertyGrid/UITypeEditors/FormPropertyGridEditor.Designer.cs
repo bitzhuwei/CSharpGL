@@ -39,13 +39,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.propertyGrid.Location = new System.Drawing.Point(11, 12);
             this.propertyGrid.Name = "propertyGrid";
-            this.propertyGrid.Size = new System.Drawing.Size(332, 425);
+            this.propertyGrid.Size = new System.Drawing.Size(509, 648);
             this.propertyGrid.TabIndex = 3;
             // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(268, 443);
+            this.btnClose.Location = new System.Drawing.Point(445, 666);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 2;
@@ -58,7 +58,7 @@
             this.AcceptButton = this.btnClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(355, 478);
+            this.ClientSize = new System.Drawing.Size(532, 701);
             this.Controls.Add(this.propertyGrid);
             this.Controls.Add(this.btnClose);
             this.Name = "FormPropertyGridEditor";

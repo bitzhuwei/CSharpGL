@@ -67,11 +67,11 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.glCanvas1 = new CSharpGL.GLCanvas();
             this.treeNodeContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cubeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sphereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.glCanvas1 = new CSharpGL.GLCanvas();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -81,8 +81,8 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.treeNodeContextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -397,17 +397,6 @@
             this.propertyGrid1.Size = new System.Drawing.Size(306, 411);
             this.propertyGrid1.TabIndex = 0;
             // 
-            // glCanvas1
-            // 
-            this.glCanvas1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.glCanvas1.Location = new System.Drawing.Point(0, 0);
-            this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.glCanvas1.Name = "glCanvas1";
-            this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
-            this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(965, 732);
-            this.glCanvas1.TabIndex = 0;
-            // 
             // treeNodeContextMenu
             // 
             this.treeNodeContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -439,6 +428,17 @@
             this.sphereToolStripMenuItem.Text = "Sphere";
             this.sphereToolStripMenuItem.Click += new System.EventHandler(this.sphereToolStripMenuItem_Click);
             // 
+            // glCanvas1
+            // 
+            this.glCanvas1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.glCanvas1.Location = new System.Drawing.Point(0, 0);
+            this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.glCanvas1.Name = "glCanvas1";
+            this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
+            this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
+            this.glCanvas1.Size = new System.Drawing.Size(965, 732);
+            this.glCanvas1.TabIndex = 0;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -460,8 +460,8 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.treeNodeContextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

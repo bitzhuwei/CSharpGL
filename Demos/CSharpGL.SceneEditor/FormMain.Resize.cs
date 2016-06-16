@@ -17,7 +17,7 @@ namespace CSharpGL.SceneEditor
         {
             GLCanvas canvas = sender as GLCanvas;
 
-            this.Camera.Resize(canvas.Width, canvas.Height);
+            this.Scene.Camera.Resize(canvas.Width, canvas.Height);
         }
 
     }

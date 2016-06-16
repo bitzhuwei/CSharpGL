@@ -15,12 +15,12 @@ namespace CSharpGL.SceneEditor
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            Color clearColor = this.ClearColor;
+            Color clearColor = this.Scene.ClearColor;
             OpenGL.ClearColor(clearColor.R / 255.0f, clearColor.G / 255.0f, clearColor.B / 255.0f, clearColor.A / 255.0f);
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
-            var arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.Camera);
-            foreach (var sceneObject in this.sceneObjectList)
+            var arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.Scene.Camera);
+            foreach (var sceneObject in this.Scene.ObjectList)
             {
                 foreach (var obj in sceneObject)
                 {

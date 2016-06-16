@@ -14,13 +14,8 @@ namespace CSharpGL.SceneEditor
     {
         const string strOpenGL = "OpenGL";
 
-        private SceneObjectList sceneObjectList = new SceneObjectList();
-
         [Category(strOpenGL)]
-        public Camera Camera { get; private set; }
-
-        [Category(strOpenGL)]
-        public Color ClearColor { get; set; }
+        public Scene Scene { get; set; }
 
         public FormMain()
         {

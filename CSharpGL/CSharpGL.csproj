@@ -137,12 +137,13 @@
       <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="4PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
-    <Compile Include="Scene\Component.cs" />
-    <Compile Include="Scene\SceneObject.cs" />
-    <Compile Include="Scene\SceneObjectList.cs" />
-    <Compile Include="Scene\SceneObjectRenderer.cs" />
-    <Compile Include="Scene\ScriptComponent.cs" />
-    <Compile Include="Scene\TransformComponent.cs" />
+    <Compile Include="Scenes\Scene.cs" />
+    <Compile Include="Scenes\Component.cs" />
+    <Compile Include="Scenes\SceneObject.cs" />
+    <Compile Include="Scenes\SceneObjectList.cs" />
+    <Compile Include="Scenes\SceneObjectRenderer.cs" />
+    <Compile Include="Scenes\ScriptComponent.cs" />
+    <Compile Include="Scenes\TransformComponent.cs" />
     <Compile Include="Utilities\ColorHelper.cs" />
     <Compile Include="Utilities\DoubleHelper.cs" />
     <Compile Include="Utilities\ITreeNode.yeild.cs" />
@@ -461,7 +462,7 @@
     <EmbeddedResource Include="Resources\GLAxis.vert" />
     <EmbeddedResource Include="Resources\GLText.frag" />
     <EmbeddedResource Include="Resources\GLText.vert" />
-    <Content Include="Scene\readme.md" />
+    <Content Include="Scenes\readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Maths\readme.md" />

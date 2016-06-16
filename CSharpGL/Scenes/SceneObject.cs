@@ -40,7 +40,11 @@ namespace CSharpGL
 
         public void Render(RenderEventArgs arg)
         {
-            this.Renderer.Render(arg);
+            SceneObjectRenderer renderer = this.Renderer;
+            if (renderer != null)
+            {
+                renderer.Render(arg);
+            }
         }
 
         #region ITreeNode
