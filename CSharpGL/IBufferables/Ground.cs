@@ -18,96 +18,72 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="squreCountPerUnit">每个world space里的1个距离单位有几个方块？</param>
-        public Ground(int squreCountPerUnit)
+        /// <param name="xUnit">在x轴正方向画多少个距离单位？</param>
+        /// <param name="zUnit">在z轴正方向画多少个距离单位？</param>
+        public Ground(int squreCountPerUnit, int xUnit, int zUnit)
         {
-            this.positions = GeneratePositions(squreCountPerUnit * 2);
-            this.colors = GenerateColors(squreCountPerUnit * 2);
+            this.positions = GeneratePositions(squreCountPerUnit, xUnit, zUnit);
+            this.colors = GenerateColors(squreCountPerUnit, xUnit, zUnit);
         }
 
 
-        private vec3[] GenerateColors(int squreCountPerLine)
+        private vec3[] GenerateColors(int squreCountPerUnit, int xUnit, int zUnit)
         {
-            var colors = new vec3[(squreCountPerLine + 1) * 4];
+            var colors = new vec3[
+                (xUnit * 2 * squreCountPerUnit + 1) * 2
+                + (zUnit * 2 * squreCountPerUnit + 1) * 2
+                ];
             int index = 0;
-            for (int i = 0; i < (squreCountPerLine + 1); i++)
+            for (int i = 0; i < xUnit * 2 * squreCountPerUnit + 1; i++)
             {
-                if (squreCountPerLine % 2 == 0)
+                if (i == xUnit * 2 * squreCountPerUnit / 2)
                 {
-                    if (i == squreCountPerLine / 2)
-                    {
-                        colors[index++] = new vec3(1, 0, 0);
-                        colors[index++] = new vec3(1, 1, 1);
-                    }
-                    else
-                    {
-                        colors[index++] = new vec3(1, 1, 1);
-                        colors[index++] = new vec3(1, 1, 1);
-                    }
+                    colors[index++] = new vec3(1, 0, 0);
+                    colors[index++] = new vec3(1, 1, 1);
                 }
                 else
                 {
-                    if (i == squreCountPerLine / 2 || i == squreCountPerLine / 2 + 1)
-                    {
-                        colors[index++] = new vec3(1, 0, 0);
-                        colors[index++] = new vec3(1, 1, 1);
-                    }
-                    else
-                    {
-                        colors[index++] = new vec3(1, 1, 1);
-                        colors[index++] = new vec3(1, 1, 1);
-                    }
+                    colors[index++] = new vec3(1, 1, 1);
+                    colors[index++] = new vec3(1, 1, 1);
                 }
             }
-            for (int i = 0; i < (squreCountPerLine + 1); i++)
+            for (int i = 0; i < zUnit * 2 * squreCountPerUnit + 1; i++)
             {
-                if (squreCountPerLine % 2 == 0)
+                if (i == zUnit * 2 * squreCountPerUnit / 2)
                 {
-                    if (i == squreCountPerLine / 2)
-                    {
-                        colors[index++] = new vec3(0, 0, 1);
-                        colors[index++] = new vec3(1, 1, 1);
-                    }
-                    else
-                    {
-                        colors[index++] = new vec3(1, 1, 1);
-                        colors[index++] = new vec3(1, 1, 1);
-                    }
+                    colors[index++] = new vec3(0, 0, 1);
+                    colors[index++] = new vec3(1, 1, 1);
                 }
                 else
                 {
-                    if (i == squreCountPerLine / 2 || i == squreCountPerLine / 2 + 1)
-                    {
-                        colors[index++] = new vec3(0, 0, 1);
-                        colors[index++] = new vec3(1, 1, 1);
-                    }
-                    else
-                    {
-                        colors[index++] = new vec3(1, 1, 1);
-                        colors[index++] = new vec3(1, 1, 1);
-                    }
+                    colors[index++] = new vec3(1, 1, 1);
+                    colors[index++] = new vec3(1, 1, 1);
                 }
             }
 
             return colors;
         }
 
-        private vec3[] GeneratePositions(int squreCountPerLine)
+        private vec3[] GeneratePositions(int squreCountPerUnit, int xUnit, int zUnit)
         {
-            var positions = new vec3[(squreCountPerLine + 1) * 4];
+            var positions = new vec3[
+                (xUnit * 2 * squreCountPerUnit + 1) * 2
+                + (zUnit * 2 * squreCountPerUnit + 1) * 2
+                ];
             int index = 0;
-            for (int i = 0; i < (squreCountPerLine + 1); i++)
+            for (int i = 0; i < xUnit * 2 * squreCountPerUnit + 1; i++)
             {
                 positions[index++] = new vec3(
-                    1, 0, -1 + 2 * (float)i / (float)(squreCountPerLine));
+                    zUnit, 0, xUnit * 2 * ((float)i / (float)(xUnit * 2 * squreCountPerUnit) - 0.5f));
                 positions[index++] = new vec3(
-                    -1, 0, -1 + 2 * (float)i / (float)(squreCountPerLine));
+                    -zUnit, 0, xUnit * 2 * ((float)i / (float)(xUnit * 2 * squreCountPerUnit) - 0.5f));
             }
-            for (int i = 0; i < (squreCountPerLine + 1); i++)
+            for (int i = 0; i < zUnit * 2 * squreCountPerUnit + 1; i++)
             {
                 positions[index++] = new vec3(
-                    -1 + 2 * (float)i / (float)(squreCountPerLine), 0, 1);
+                    zUnit * 2 * ((float)i / (float)(zUnit * 2 * squreCountPerUnit) - 0.5f), 0, xUnit);
                 positions[index++] = new vec3(
-                    -1 + 2 * (float)i / (float)(squreCountPerLine), 0, -1);
+                    zUnit * 2 * ((float)i / (float)(zUnit * 2 * squreCountPerUnit) - 0.5f), 0, -xUnit);
             }
 
             return positions;
