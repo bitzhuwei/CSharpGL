@@ -41,6 +41,11 @@ namespace CSharpGL
                     colors[index++] = new vec3(1, 0, 0);
                     colors[index++] = new vec3(1, 1, 1);
                 }
+                else if (i % (xUnit * 2) == 0)
+                {
+                    colors[index++] = new vec3(1, 1, 0);
+                    colors[index++] = new vec3(1, 1, 1);
+                }
                 else
                 {
                     colors[index++] = new vec3(1, 1, 1);
@@ -52,6 +57,11 @@ namespace CSharpGL
                 if (i == zUnit * 2 * squreCountPerUnit / 2)
                 {
                     colors[index++] = new vec3(0, 0, 1);
+                    colors[index++] = new vec3(1, 1, 1);
+                }
+                else if (i % (zUnit * 2) == 0)
+                {
+                    colors[index++] = new vec3(0, 1, 1);
                     colors[index++] = new vec3(1, 1, 1);
                 }
                 else
