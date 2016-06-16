@@ -170,18 +170,22 @@ namespace CSharpGL
         /// <value>
         /// The desired OpenGL version.
         /// </value>
-        [Description("The desired OpenGL version for the control."), Category("CSharpGL")]
+        [Description("The desired OpenGL version for the control. Only works in design mode."), Category("CSharpGL")]
         public GLVersion OpenGLVersion
         {
             get { return openGLVersion; }
             set
             {
-                if (openGLVersion != value)
+                if (this.designMode)
                 {
                     openGLVersion = value;
+                    //if (openGLVersion != value)
+                    //{
+                    //    openGLVersion = value;
 
-                    this.DestroyRenderContext();
-                    this.CreateRenderContext();
+                    //    this.DestroyRenderContext();
+                    //    this.CreateRenderContext();
+                    //}
                 }
             }
         }
