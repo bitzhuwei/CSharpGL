@@ -31,8 +31,8 @@ namespace CSharpGL.Demos
             var builder = new StringBuilder();
             int[] maxTextureSize = new int[1];
             OpenGL.GetInteger(GetTarget.MaxTextureSize, maxTextureSize);
-            this.content.Add(string.Format("Max Texture Width: {0}", maxTextureSize[0]));
             this.content.Add(string.Format("FPS: {0}", this.glCanvas1.FPS));
+            this.content.Add(string.Format("Max Texture Width: {0}", maxTextureSize[0]));
         }
 
         void glCanvas1_MouseMove(object sender, MouseEventArgs e)
