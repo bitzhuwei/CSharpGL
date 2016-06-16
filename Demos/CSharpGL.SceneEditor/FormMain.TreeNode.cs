@@ -37,5 +37,15 @@ namespace CSharpGL.SceneEditor
                 this.propertyGrid1.SelectedObject = null;
             }
         }
+
+        private void treeView1_Click(object sender, EventArgs e)
+        {
+            TreeNode node = this.treeView1.SelectedNode;
+            if (node != null)
+            {
+                node.Text = string.Format("{0}", node.Tag);
+            }
+        }
+
     }
 }
