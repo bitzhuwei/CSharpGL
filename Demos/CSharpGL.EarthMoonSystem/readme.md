@@ -1,4 +1,7 @@
-﻿# :telescope:EarthMoonSystem
+﻿# note
+I will rewrite this project after scene funtions are done in CSharpGL.
+
+# :telescope:EarthMoonSystem
 EarthMoonSystem能够展示地月系统的运行过程，也是个综合性地使用CSharpGL的例子。
 ## :mushroom:功能
 根据物理世界的数据和公式，EarthMoonSystem要实现下列功能：
