@@ -14,10 +14,14 @@ namespace CSharpGL
         internal vec3[] positions;
         internal vec3[] colors;
 
-        public Ground(int squreCountPerLine)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="squreCountPerUnit">每个world space里的1个距离单位有几个方块？</param>
+        public Ground(int squreCountPerUnit)
         {
-            this.positions = GeneratePositions(squreCountPerLine);
-            this.colors = GenerateColors(squreCountPerLine);
+            this.positions = GeneratePositions(squreCountPerUnit * 2);
+            this.colors = GenerateColors(squreCountPerUnit * 2);
         }
 
 

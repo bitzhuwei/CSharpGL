@@ -30,7 +30,7 @@ namespace CSharpGL.SceneEditor
 
         private void InitializeScene()
         {
-            var camera = new Camera(new vec3(3, 4, 5), new vec3(0, 0, 0), new vec3(0, 1, 0),
+            var camera = new Camera(new vec3(1, 2, 3), new vec3(0, 0, 0), new vec3(0, 1, 0),
                CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
             this.Scene = new Scene(camera);
         }
