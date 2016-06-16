@@ -31,12 +31,12 @@ namespace CSharpGL
         };
         internal static readonly CubeColor color = new CubeColor()
         {
-            faceX = new SqureColor(new vec3(0, 0, 1)),
-            faceNX = new SqureColor(new vec3(0, 1, 0)),
-            faceY = new SqureColor(new vec3(0, 1, 1)),
-            faceNY = new SqureColor(new vec3(1, 0, 0)),
-            faceZ = new SqureColor(new vec3(1, 0, 1)),
-            faceNZ = new SqureColor(new vec3(1, 1, 0)),
+            faceX = new SqureColor(new vec3(1, 0, 0)),
+            faceNX = new SqureColor(new vec3(0.5f, 0, 0)),
+            faceY = new SqureColor(new vec3(0, 1, 0)),
+            faceNY = new SqureColor(new vec3(0, 0.5f, 0)),
+            faceZ = new SqureColor(new vec3(0, 0, 1)),
+            faceNZ = new SqureColor(new vec3(0, 0, 0.5f)),
         };
         internal static readonly CubeNormal normal = new CubeNormal()
         {

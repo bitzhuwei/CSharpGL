@@ -91,7 +91,12 @@ namespace CSharpGL
 
                     this.normals[index] = position.normalize();
 
-                    this.colors[index] = colorGenerator(i, j);
+                    //this.colors[index] = colorGenerator(i, j);
+                    vec3 color = position;
+                    if (color.x < 0) { color.x = -(color.x / 2); }
+                    if (color.y < 0) { color.y = -(color.y / 2); }
+                    if (color.z < 0) { color.z = -(color.z / 2); }
+                    this.colors[index] = color;
 
                     index++;
                 }
