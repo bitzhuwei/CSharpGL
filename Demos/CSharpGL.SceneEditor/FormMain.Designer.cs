@@ -70,6 +70,7 @@
             this.addSceneObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.glCanvas1 = new CSharpGL.GLCanvas();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -394,14 +395,15 @@
             // 
             this.treeNodeContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.treeNodeContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addSceneObjectToolStripMenuItem});
+            this.addSceneObjectToolStripMenuItem,
+            this.deleteToolStripMenuItem});
             this.treeNodeContextMenu.Name = "treeNodeContextMenu";
-            this.treeNodeContextMenu.Size = new System.Drawing.Size(158, 30);
+            this.treeNodeContextMenu.Size = new System.Drawing.Size(182, 84);
             // 
             // addSceneObjectToolStripMenuItem
             // 
             this.addSceneObjectToolStripMenuItem.Name = "addSceneObjectToolStripMenuItem";
-            this.addSceneObjectToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
+            this.addSceneObjectToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.addSceneObjectToolStripMenuItem.Text = "3D Object";
             // 
             // propertyGrid1
@@ -422,6 +424,13 @@
             this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(965, 732);
             this.glCanvas1.TabIndex = 0;
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -493,5 +502,6 @@
         private System.Windows.Forms.ToolStripMenuItem addSceneObjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thisFormToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gLCanvasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

@@ -12,8 +12,7 @@ namespace CSharpGL
 
         public SceneObject Parent { get; set; }
 
-        private SceneObjectList children = new SceneObjectList();
-        public IList<SceneObject> Children { get { return this.children; } }
+        public IList<SceneObject> Children { get; private set; }
 
         #endregion ITreeNode
 

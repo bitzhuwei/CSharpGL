@@ -58,6 +58,7 @@ namespace CSharpGL
         {
             this.Name = this.GetType().Name;
             this.Transform = new TransformComponent(this);
+            this.Children = new SceneObjectList(this);
         }
 
         public override string ToString()
