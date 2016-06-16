@@ -24,7 +24,7 @@ namespace CSharpGL.SceneEditor
 
         private void InitializeEvents()
         {
-            this.glCanvas1.Resize += glCanvas1_Resize;
+            this.glCanvas1.Resize += this.Scene.Resize;
             this.glCanvas1.OpenGLDraw += new System.EventHandler<System.Windows.Forms.PaintEventArgs>(this.glCanvas1_OpenGLDraw);
         }
 

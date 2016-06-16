@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
+using System.Windows.Forms;
 
 namespace CSharpGL
 {
@@ -27,5 +28,10 @@ namespace CSharpGL
             this.ObjectList.AddRange(objects);
         }
 
+        public void Resize(object sender, EventArgs e)
+        {
+            Control control = sender as Control;
+            this.Camera.Resize(control.Width, control.Height);
+        }
     }
 }

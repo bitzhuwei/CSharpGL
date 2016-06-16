@@ -44,9 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormMain.Resize.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="FormMain.OpenGLDraw.cs">
       <SubType>Form</SubType>
     </Compile>
