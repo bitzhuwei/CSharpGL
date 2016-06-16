@@ -29,8 +29,8 @@ namespace CSharpGL
             mat4 matrix;
 
             matrix = glm.rotate((float)(this.Rotation.x * Math.PI / 180.0), xAxis);
-            matrix = glm.rotate((float)(this.Rotation.y * Math.PI / 180.0), yAxis);
-            matrix = glm.rotate((float)(this.Rotation.z * Math.PI / 180.0), zAxis);
+            matrix = glm.rotate(matrix, (float)(this.Rotation.y * Math.PI / 180.0), yAxis);
+            matrix = glm.rotate(matrix, (float)(this.Rotation.z * Math.PI / 180.0), zAxis);
             matrix = glm.scale(matrix, this.Scale);
             matrix = glm.translate(matrix, this.Position);
 
