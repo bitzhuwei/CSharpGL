@@ -140,6 +140,9 @@
     <Compile Include="Scene\Component.cs" />
     <Compile Include="Scene\SceneObject.FindComponent.cs" />
     <Compile Include="Scene\SceneObject.cs" />
+    <Compile Include="Scene\SceneObjectList.cs" />
+    <Compile Include="Scene\SceneObjectRenderer.cs" />
+    <Compile Include="Scene\ScriptComponent.cs" />
     <Compile Include="Scene\TransformComponent.cs" />
     <Compile Include="Utilities\ColorHelper.cs" />
     <Compile Include="Utilities\DoubleHelper.cs" />

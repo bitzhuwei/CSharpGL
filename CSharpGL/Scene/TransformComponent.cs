@@ -7,7 +7,8 @@ namespace CSharpGL
     /// </summary>
     public partial class TransformComponent : Component
     {
-        public TransformComponent()
+        public TransformComponent(SceneObject bindingObject = null)
+            : base(bindingObject)
         {
         }
     }

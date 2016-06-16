@@ -7,8 +7,11 @@ namespace CSharpGL
     /// </summary>
     public partial class Component
     {
-        public Component()
+        public SceneObject BindingObject { get; set; }
+
+        public Component(SceneObject bindingObject = null)
         {
+            this.BindingObject = bindingObject;
         }
     }
 }
