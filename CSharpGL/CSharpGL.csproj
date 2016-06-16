@@ -84,6 +84,7 @@
     <Compile Include="FontResource\FontResource.FromTTF.Misc.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.Impl.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.cs" />
+    <Compile Include="IBufferables\Ground.cs" />
     <Compile Include="IBufferables\TeapotModel.Positions.cs" />
     <Compile Include="IBufferables\TeapotModel.Faces.cs" />
     <Compile Include="OpenGLObjects\Framebuffer\Framebuffer.Dispose.cs" />
@@ -278,12 +279,6 @@
     <Compile Include="4PropertyGrid\TypeConverters\Vec4TypeConverter.cs" />
     <Compile Include="4PropertyGrid\TypeConverters\Vec3TypeConverter.cs" />
     <Compile Include="4PropertyGrid\TypeConverters\Vec2TypeConverter.cs" />
-    <Compile Include="4PropertyGrid\UITypeEditors\FormRendererBaseEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="4PropertyGrid\UITypeEditors\FormRendererBaseEditor.Designer.cs">
-      <DependentUpon>FormRendererBaseEditor.cs</DependentUpon>
-    </Compile>
     <Compile Include="4PropertyGrid\UITypeEditors\FormUniformVariableListEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -320,7 +315,6 @@
     <Compile Include="OpenGLObjects\GLSwitches\PolygonModeSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PrimitiveRestartSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\GLSwitch.cs" />
-    <Compile Include="4PropertyGrid\UITypeEditors\RendererBaseEditor.cs" />
     <Compile Include="4PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="4PropertyGrid\UITypeEditors\GLSwithListEditor.cs" />
     <Compile Include="IBufferables\IBufferable.cs" />
@@ -442,9 +436,6 @@
     <None Include="PickableRenderer\ColorCodedPicking\ColorCodedPicking.cd" />
     <EmbeddedResource Include="WinformControls\GLCanvas.resx">
       <DependentUpon>GLCanvas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormRendererBaseEditor.resx">
-      <DependentUpon>FormRendererBaseEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormUniformVariableListEditor.resx">
       <DependentUpon>FormUniformVariableListEditor.cs</DependentUpon>

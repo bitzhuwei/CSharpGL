@@ -13,7 +13,7 @@ namespace CSharpGL
     /// 只做初始化和渲染这两件事。
     /// 一个<see cref="RendererBase"/>对象对应一个(vertex shader+fragment shader)的shader program。
     /// </summary>
-    [Editor(typeof(RendererBaseEditor), typeof(UITypeEditor))]
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract class RendererBase : IRenderable, IDisposable
     {
 
