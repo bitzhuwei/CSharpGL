@@ -17,21 +17,31 @@ namespace CSharpGL
             var map = new PropertyNameMap();
             map.Add("in_Position", Cube.strPosition);
             map.Add("in_Color", Cube.strColor);
+            IBufferable bufferable = GetModel(buildIn);
             var obj = new SceneObject();
-            obj.Name = "Sphere";
+            obj.Name = bufferable.GetType().Name;
+            obj.Renderer = new SceneObjectRenderer(obj, bufferable, shaderCodes, map);
+
+            return obj;
+        }
+
+        private static IBufferable GetModel(BuildInSceneObject buildIn)
+        {
+            IBufferable bufferable = null;
+
             switch (buildIn)
             {
                 case BuildInSceneObject.Cube:
-                    obj.Renderer = new SceneObjectRenderer(obj, new Cube(), shaderCodes, map);
+                    bufferable = new Cube();
                     break;
                 case BuildInSceneObject.Sphere:
-                    obj.Renderer = new SceneObjectRenderer(obj, new Sphere(), shaderCodes, map);
+                    bufferable = new Sphere();
                     break;
                 default:
                     throw new NotImplementedException();
             }
 
-            return obj;
+            return bufferable;
         }
 
     }

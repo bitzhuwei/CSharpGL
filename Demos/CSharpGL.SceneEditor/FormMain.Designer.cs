@@ -66,12 +66,10 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeNodeContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addSceneObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.glCanvas1 = new CSharpGL.GLCanvas();
-            this.treeNodeContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.dObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cubeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sphereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -81,8 +79,8 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.treeNodeContextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -389,6 +387,21 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(306, 317);
             this.treeView1.TabIndex = 0;
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            // 
+            // treeNodeContextMenu
+            // 
+            this.treeNodeContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.treeNodeContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addSceneObjectToolStripMenuItem});
+            this.treeNodeContextMenu.Name = "treeNodeContextMenu";
+            this.treeNodeContextMenu.Size = new System.Drawing.Size(158, 30);
+            // 
+            // addSceneObjectToolStripMenuItem
+            // 
+            this.addSceneObjectToolStripMenuItem.Name = "addSceneObjectToolStripMenuItem";
+            this.addSceneObjectToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
+            this.addSceneObjectToolStripMenuItem.Text = "3D Object";
             // 
             // propertyGrid1
             // 
@@ -408,37 +421,6 @@
             this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(965, 732);
             this.glCanvas1.TabIndex = 0;
-            // 
-            // treeNodeContextMenu
-            // 
-            this.treeNodeContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.treeNodeContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dObjectToolStripMenuItem});
-            this.treeNodeContextMenu.Name = "treeNodeContextMenu";
-            this.treeNodeContextMenu.Size = new System.Drawing.Size(158, 30);
-            // 
-            // dObjectToolStripMenuItem
-            // 
-            this.dObjectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cubeToolStripMenuItem,
-            this.sphereToolStripMenuItem});
-            this.dObjectToolStripMenuItem.Name = "dObjectToolStripMenuItem";
-            this.dObjectToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
-            this.dObjectToolStripMenuItem.Text = "3D Object";
-            // 
-            // cubeToolStripMenuItem
-            // 
-            this.cubeToolStripMenuItem.Name = "cubeToolStripMenuItem";
-            this.cubeToolStripMenuItem.Size = new System.Drawing.Size(136, 26);
-            this.cubeToolStripMenuItem.Text = "Cube";
-            this.cubeToolStripMenuItem.Click += new System.EventHandler(this.addSceneObjectToolStripMenuItem_Click);
-            // 
-            // sphereToolStripMenuItem
-            // 
-            this.sphereToolStripMenuItem.Name = "sphereToolStripMenuItem";
-            this.sphereToolStripMenuItem.Size = new System.Drawing.Size(136, 26);
-            this.sphereToolStripMenuItem.Text = "Sphere";
-            this.sphereToolStripMenuItem.Click += new System.EventHandler(this.addSceneObjectToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -461,8 +443,8 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.treeNodeContextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -507,9 +489,7 @@
         private System.Windows.Forms.PropertyGrid propertyGrid1;
         private GLCanvas glCanvas1;
         private System.Windows.Forms.ContextMenuStrip treeNodeContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem dObjectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cubeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sphereToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addSceneObjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thisFormToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gLCanvasToolStripMenuItem;
     }

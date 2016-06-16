@@ -24,5 +24,17 @@ namespace CSharpGL.SceneEditor
             this.treeView1.Nodes.Add(node);
         }
 
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            TreeNode node = e.Node;
+            if(node!=null)
+            {
+                this.propertyGrid1.SelectedObject = node.Tag;
+            }
+            else
+            {
+                this.propertyGrid1.SelectedObject = null;
+            }
+        }
     }
 }
