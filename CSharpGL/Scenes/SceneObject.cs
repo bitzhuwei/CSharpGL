@@ -38,44 +38,5 @@ namespace CSharpGL
             this.Transform = new TransformComponent(this);
         }
 
-        public void Render(RenderEventArgs arg)
-        {
-            SceneObjectRenderer renderer = this.Renderer;
-            if (renderer != null)
-            {
-                renderer.Render(arg);
-            }
-        }
-
-        #region ITreeNode
-
-        public SceneObject Self { get { return this; } }
-
-        public SceneObject Parent { get; set; }
-
-        private SceneObjectList children = new SceneObjectList();
-        public IList<SceneObject> Children { get { return this.children; } }
-
-        #endregion ITreeNode
-
-        #region IEnumerable<SceneObject>
-
-        public IEnumerator<SceneObject> GetEnumerator()
-        {
-            var enumerable = ITreeNodeHelper.EnumerateRecursively(this);
-            foreach (var item in enumerable)
-            {
-                yield return item;
-            }
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
-        }
-
-        #endregion IEnumerable<SceneObject>
-
-
     }
 }
