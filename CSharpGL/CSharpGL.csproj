@@ -467,8 +467,8 @@
     <EmbeddedResource Include="Resources\GLText.frag" />
     <EmbeddedResource Include="Resources\GLText.vert" />
     <Content Include="Scenes\readme.md" />
-    <EmbeddedResource Include="Resources\SceneObject.vert" />
-    <None Include="Resources\SceneObject.frag" />
+    <EmbeddedResource Include="Resources\BuildInSceneObject.vert" />
+    <EmbeddedResource Include="Resources\BuildInSceneObject.frag" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Maths\readme.md" />

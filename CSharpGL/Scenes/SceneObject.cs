@@ -11,6 +11,8 @@ namespace CSharpGL
         ITreeNode<SceneObject>, // contains sub-scene-objects and is contained by parent.
         IEnumerable<SceneObject> // enumerates self and all children recursively.
     {
+        public string Name { get; set; }
+
         public TransformComponent Transform { get; private set; }
 
         public SceneObjectRenderer Renderer { get; set; }
@@ -35,8 +37,13 @@ namespace CSharpGL
 
         public SceneObject()
         {
+            this.Name = this.GetType().Name;
             this.Transform = new TransformComponent(this);
         }
 
+        public override string ToString()
+        {
+            return string.Format("{0}", this.Name);
+        }
     }
 }
