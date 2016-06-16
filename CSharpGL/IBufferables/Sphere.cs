@@ -25,9 +25,9 @@ namespace CSharpGL
         /// <param name="latitudeParts">用纬线把地球切割为几块。</param>
         /// <param name="longitudeParts">用经线把地球切割为几块。</param>
         /// <param name="colorGenerator"></param>
-        public Sphere(float radius = 1.0f, int latitudeParts = 10, int longitudeParts = 40, Func<int, int, vec3> colorGenerator = null)
+        public Sphere(float radius = 1.0f, int latitudeParts = 10, int longitudeParts = 40)
         {
-            this.model = new SphereModel(radius, latitudeParts, longitudeParts, colorGenerator);
+            this.model = new SphereModel(radius, latitudeParts, longitudeParts);
         }
 
         public const string strPosition = "position";

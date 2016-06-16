@@ -40,11 +40,9 @@ namespace CSharpGL
         /// <param name="longitudeParts">用经线把地球切割为几块。</param>
         /// <param name="colorGenerator"></param>
         /// <returns></returns>
-        internal SphereModel(float radius = 1.0f, int latitudeParts = 10, int longitudeParts = 40, Func<int, int, vec3> colorGenerator = null)
+        internal SphereModel(float radius = 1.0f, int latitudeParts = 10, int longitudeParts = 40)
         {
             if (radius <= 0.0f || latitudeParts < 2 || longitudeParts < 3) { throw new Exception(); }
-
-            if (colorGenerator == null) { colorGenerator = defaultColorGenerator; }
 
             int vertexCount = (latitudeParts + 1) * (longitudeParts + 1);
             this.positions = new vec3[vertexCount];
@@ -91,8 +89,7 @@ namespace CSharpGL
 
                     this.normals[index] = position.normalize();
 
-                    //this.colors[index] = colorGenerator(i, j);
-                    vec3 color = position;
+                    vec3 color = position.normalize();
                     if (color.x < 0) { color.x = -(color.x / 2); }
                     if (color.y < 0) { color.y = -(color.y / 2); }
                     if (color.z < 0) { color.z = -(color.z / 2); }
