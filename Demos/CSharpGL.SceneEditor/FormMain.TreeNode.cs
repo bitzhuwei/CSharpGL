@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL.SceneEditor
 {
-    public partial class FormMain 
+    public partial class FormMain
     {
 
         private void addSceneObjectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -27,8 +27,9 @@ namespace CSharpGL.SceneEditor
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             TreeNode node = e.Node;
-            if(node!=null)
+            if (node != null)
             {
+                node.Text = string.Format("{0}", node.Tag);
                 this.propertyGrid1.SelectedObject = node.Tag;
             }
             else

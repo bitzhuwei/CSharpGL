@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing.Design;
 
 namespace CSharpGL
 {
     /// <summary>
     /// Description of SceneObject.
     /// </summary>
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class SceneObject : 
         IRenderable, // take part in rendering an object.
         ITreeNode<SceneObject>, // contains sub-scene-objects and is contained by parent.
