@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public class SceneObjectRenderer : Renderer
+    public class SceneObjectRenderer : Component, IRenderable
     {
         const string projection = "projection";
         const string view = "view";
@@ -14,13 +14,24 @@ namespace CSharpGL
         //uint viewLocation;
         //uint modelLocation;
 
-        public SceneObject BindingObject { get; set; }
+        public Renderer Renderer { get; private set; }
 
         public SceneObjectRenderer(
             IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, propertyNameMap, switches)
-        { }
+            : base(null)
+        {
+            this.Renderer = new Renderer(bufferable, shaderCodes, propertyNameMap, switches);
+            this.Renderer.Initialize();
+        }
+        public SceneObjectRenderer(SceneObject bindingObject,
+           IBufferable bufferable, ShaderCode[] shaderCodes,
+           PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            : base(bindingObject)
+        {
+            this.Renderer = new Renderer(bufferable, shaderCodes, propertyNameMap, switches);
+            this.Renderer.Initialize();
+        }
 
         //protected override void DoInitialize()
         //{
@@ -45,10 +56,11 @@ namespace CSharpGL
 
         //}
 
-        protected override void DoRender(RenderEventArgs arg)
+        public void Render(RenderEventArgs arg)
         {
             SceneObject bindingObject = this.BindingObject;
-            if (bindingObject != null)
+            Renderer renderer = this.Renderer;
+            if (bindingObject != null && renderer != null)
             {
                 mat4 projectionMatrix = arg.Camera.GetProjectionMat4();
                 mat4 viewMatrix = arg.Camera.GetViewMat4();
@@ -65,12 +77,12 @@ namespace CSharpGL
                 }
 
                 {
-                    this.SetUniform(projection, projectionMatrix);
-                    this.SetUniform(view, viewMatrix);
-                    this.SetUniform(model, modelMatrix);
+                    renderer.SetUniform(projection, projectionMatrix);
+                    renderer.SetUniform(view, viewMatrix);
+                    renderer.SetUniform(model, modelMatrix);
                 }
 
-                base.DoRender(arg);
+                renderer.Render(arg);
             }
         }
     }
