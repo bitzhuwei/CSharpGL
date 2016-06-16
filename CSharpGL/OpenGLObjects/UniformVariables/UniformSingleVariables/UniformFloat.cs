@@ -35,11 +35,13 @@ namespace CSharpGL
 
         internal override bool SetValue(ValueType value)
         {
+#if DEBUG
             if (value.GetType() != typeof(float))
             {
                 throw new ArgumentException(string.Format("[{0}] not match [{1}]'s value.",
                     value.GetType().Name, this.GetType().Name));
             }
+#endif
 
             var v = (float)value;
             if (v != this.value)
