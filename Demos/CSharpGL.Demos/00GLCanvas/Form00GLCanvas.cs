@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
     {
 
         private Point mousePosition;
-        private string content;
+        private List<string> content = new List<string>();
 
         public Form00GLCanvas()
         {
@@ -23,14 +23,16 @@ namespace CSharpGL.Demos
             this.glCanvas1.MouseMove += glCanvas1_MouseMove;
             // 天蓝色背景
             OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+        }
 
+        private void UpdateContent()
+        {
+            this.content.Clear();
             var builder = new StringBuilder();
             int[] maxTextureSize = new int[1];
             OpenGL.GetInteger(GetTarget.MaxTextureSize, maxTextureSize);
-            builder.Append("Max Texture Width: ");
-            builder.Append(maxTextureSize[0]);
-
-            this.content = builder.ToString();
+            this.content.Add(string.Format("Max Texture Width: {0}", maxTextureSize[0]));
+            this.content.Add(string.Format("FPS: {0}", this.glCanvas1.FPS));
         }
 
         void glCanvas1_MouseMove(object sender, MouseEventArgs e)
@@ -40,11 +42,15 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
-            OpenGL.DrawText(1, this.glCanvas1.Height - 14 - 1, Color.Red, "Courier New",
-                14.0f, content);
+            UpdateContent();
+
+            for (int i = 0; i < this.content.Count; i++)
+            {
+                OpenGL.DrawText(1, this.glCanvas1.Height - 1 - 14 * (i + 1),
+                    Color.Red, "Courier New", 14.0f, content[i]);
+            }
 
             OpenGL.DrawText(this.mousePosition.X,
                 this.glCanvas1.Height - this.mousePosition.Y - 1, Color.Red, "Courier New",
