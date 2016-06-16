@@ -20,7 +20,7 @@ namespace CSharpGL
             IBufferable bufferable = GetModel(buildIn);
             var obj = new SceneObject();
             obj.Name = bufferable.GetType().Name;
-            obj.Renderer = new SceneObjectRenderer(obj, bufferable, shaderCodes, map);
+            obj.Renderer = new SceneObjectRenderer(bufferable, shaderCodes, map);
 
             return obj;
         }

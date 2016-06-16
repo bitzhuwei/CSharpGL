@@ -18,7 +18,23 @@ namespace CSharpGL
 
         public TransformComponent Transform { get; private set; }
 
-        public SceneObjectRenderer Renderer { get; set; }
+        private SceneObjectRenderer renderer;
+        public SceneObjectRenderer Renderer
+        {
+            get { return this.renderer; }
+            set
+            {
+                {
+                    SceneObjectRenderer renderer = this.renderer;
+                    if (renderer != null) { renderer.BindingObject = null; }
+
+                    if (value != null) { value.BindingObject = this; }
+                }
+                {
+                    this.renderer = value;
+                }
+            }
+        }
 
         private ScriptComponent script;
         public ScriptComponent Script
