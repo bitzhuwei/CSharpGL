@@ -41,6 +41,10 @@ namespace CSharpGL
                     map.Add("in_Position", Ground.strPosition);
                     map.Add("in_Color", Ground.strColor);
                     break;
+                case BuildInSceneObject.Axis:
+                    map.Add("in_Position", Axis.strPosition);
+                    map.Add("in_Color", Axis.strColor);
+                     break;
                 default:
                     throw new NotImplementedException();
             }
@@ -63,6 +67,9 @@ namespace CSharpGL
                 case BuildInSceneObject.Ground:
                     bufferable = new Ground(20);
                     break;
+                case BuildInSceneObject.Axis:
+                    bufferable = new Axis();
+                    break;
                 default:
                     throw new NotImplementedException();
             }
@@ -77,5 +84,6 @@ namespace CSharpGL
         Cube,
         Sphere,
         Ground,
+        Axis,
     }
 }

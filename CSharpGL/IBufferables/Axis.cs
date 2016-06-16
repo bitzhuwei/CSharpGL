@@ -19,13 +19,13 @@ namespace CSharpGL
             this.model = new AxisModel(partCount, radius);
         }
 
-        public const string position = "position";
-        public const string color = "color";
+        public const string strPosition = "position";
+        public const string strColor = "color";
         Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
-            if (bufferName == position)
+            if (bufferName == strPosition)
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
@@ -47,7 +47,7 @@ namespace CSharpGL
                 }
                 return propertyBufferPtrDict[bufferName];
             }
-            else if (bufferName == color)
+            else if (bufferName == strColor)
             {
                 if (!propertyBufferPtrDict.ContainsKey(bufferName))
                 {
