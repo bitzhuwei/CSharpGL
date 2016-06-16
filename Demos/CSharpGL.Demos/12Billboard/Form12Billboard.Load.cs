@@ -52,7 +52,7 @@ namespace CSharpGL.Demos
                 map.Add("in_Color", "color");
                 var movableRenderer = new MovableRenderer(new Teapot(), shaderCodes, map, "position");
                 movableRenderer.Initialize();
-                this.movableRenderer.Scale = 0.1f;
+                movableRenderer.Scale = 0.1f;
                 this.movableRenderer = movableRenderer;
             }
             {

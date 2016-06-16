@@ -49,7 +49,7 @@ namespace CSharpGL.Demos
             {
                 // This is the texture that the compute program will write into
                 sampler2D texture = new sampler2D();
-                var bitmap = new System.Drawing.Bitmap(@"07PiontSprite\star.png");
+                var bitmap = new System.Drawing.Bitmap(@"07PointSprite\PointSprite.png");
                 texture.Initialize(bitmap);
                 bitmap.Dispose();
                 this.sprite_texture[0] = texture.Id;
