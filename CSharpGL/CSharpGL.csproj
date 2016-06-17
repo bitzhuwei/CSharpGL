@@ -87,6 +87,8 @@
     <Compile Include="IBufferables\Ground.cs" />
     <Compile Include="IBufferables\TeapotModel.Positions.cs" />
     <Compile Include="IBufferables\TeapotModel.Faces.cs" />
+    <Compile Include="OpenGLObjects\Camera\CameraManipulater.cs" />
+    <Compile Include="OpenGLObjects\Camera\FirstPerspectiveManipulater.cs" />
     <Compile Include="OpenGLObjects\Camera\ArcBallRotator.cs" />
     <Compile Include="OpenGLObjects\Camera\Camera.cs" />
     <Compile Include="OpenGLObjects\Camera\Camera2Matrix.cs" />
