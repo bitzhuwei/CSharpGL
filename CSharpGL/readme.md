@@ -15,6 +15,16 @@
 * Write GLSL shade in C#.  
 
 # release notes:
+## v1.0.4.5:
+1. Scene object and components learnt from Unity.
+2. UITypeEditor for Camera, Scene types.
+3. OpenGLVersion Only works in design mode.
+4. No need check value type for UniformValue in release mode.
+5. Add Cube, Sphere and Ground as buil-in Scene-Object.
+6. Update color algorithm for cube and sphere.
+7. Remove unnecessary versions of GetViewMat4().
+8. FirstPerspectiveManipulater allows for move camera by key event and mouse event.
+
 ## v1.0.4.2:
 1. Stronger Camera class: Get directions.
 2. Faster glm.lookAt().
