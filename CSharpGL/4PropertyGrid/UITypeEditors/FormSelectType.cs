@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// Select a type from all types that derived from specified base type.
+    /// </summary>
     public partial class FormSelectType : Form
     {
 
@@ -20,6 +23,11 @@ namespace CSharpGL
         private Type baseType;
         private bool forceReload;
 
+        /// <summary>
+        /// Select a type from all types that derived from specified base type.
+        /// </summary>
+        /// <param name="baseType">base type.</param>
+        /// <param name="forceReload">reload types that derived from specified base type.</param>
         public FormSelectType(Type baseType, bool forceReload = false)
         {
             InitializeComponent();
