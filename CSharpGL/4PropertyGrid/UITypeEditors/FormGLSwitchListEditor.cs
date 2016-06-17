@@ -28,7 +28,7 @@ namespace CSharpGL
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var frmSelectType = new FormGLSwtichType();
+            var frmSelectType = new FormSelectType(typeof(GLSwitch));
             if (frmSelectType.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Type type = frmSelectType.SelectedType;

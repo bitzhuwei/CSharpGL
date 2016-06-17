@@ -318,11 +318,11 @@
     <Compile Include="4PropertyGrid\UITypeEditors\FormUniformVariableType.Designer.cs">
       <DependentUpon>FormUniformVariableType.cs</DependentUpon>
     </Compile>
-    <Compile Include="4PropertyGrid\UITypeEditors\FormGLSwtichType.cs">
+    <Compile Include="4PropertyGrid\UITypeEditors\FormSelectType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="4PropertyGrid\UITypeEditors\FormGLSwtichType.Designer.cs">
-      <DependentUpon>FormGLSwtichType.cs</DependentUpon>
+    <Compile Include="4PropertyGrid\UITypeEditors\FormSelectType.Designer.cs">
+      <DependentUpon>FormSelectType.cs</DependentUpon>
     </Compile>
     <Compile Include="PickableRenderer\ColorCodedPicking\GeometryType.cs" />
     <Compile Include="PickableRenderer\ColorCodedPicking\GeometryTypeHelper.cs" />
@@ -451,8 +451,8 @@
     <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormUniformVariableType.resx">
       <DependentUpon>FormUniformVariableType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormGLSwtichType.resx">
-      <DependentUpon>FormGLSwtichType.cs</DependentUpon>
+    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormSelectType.resx">
+      <DependentUpon>FormSelectType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Picking.frag" />
     <EmbeddedResource Include="Resources\Picking.vert" />

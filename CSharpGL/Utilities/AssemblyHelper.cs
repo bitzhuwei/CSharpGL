@@ -11,7 +11,7 @@ namespace CSharpGL
     public static class AssemblyHelper
     {
 
-        public static Assembly[] GetAssemblys(string asmFilename)
+        public static Assembly[] GetAssemblies(string asmFilename)
         {
             var result = new List<Assembly>();
             var asmPaths = new List<string>();

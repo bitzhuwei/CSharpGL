@@ -76,7 +76,7 @@ namespace CSharpGL.SceneEditor
             TreeNode node = this.treeView1.SelectedNode;
             if (node != null)
             {
-                var frmSelectScript = new FormSelectScript();
+                var frmSelectScript = new FormSelectType(typeof(ScriptComponent));
                 if (frmSelectScript.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     var obj = node.Tag as SceneObject;

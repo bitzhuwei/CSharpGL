@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -9,19 +10,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSharpGL.SceneEditor
+namespace CSharpGL
 {
-    partial class FormSelectScript : Form
+    public partial class FormSelectType : Form
     {
-        public FormSelectScript()
+
+        private Type baseType;
+
+        public FormSelectType(Type baseType)
         {
             InitializeComponent();
+
+            this.baseType = baseType;
         }
 
         private void FormGLSwtichType_Load(object sender, EventArgs e)
         {
-            if (typeList == null)
-            { typeList = InitializeTypeList(); }
+            //if (typeList == null)
+            //{ typeList = InitializeTypeList(); }
+            List<Type> typeList = InitializeTypeList();
 
             foreach (var item in typeList)
             {
@@ -32,16 +39,11 @@ namespace CSharpGL.SceneEditor
         private List<Type> InitializeTypeList()
         {
             var result = new List<Type>();
-            Type type = typeof(ScriptComponent);
-            Assembly executingAsm = Assembly.GetExecutingAssembly();
-            Assembly[] assemblies;
-            {
-                assemblies = AssemblyHelper.GetAssemblys(executingAsm.Location);
-            }
+            Assembly[] assemblies = AssemblyHelper.GetAssemblies(Application.ExecutablePath);
             foreach (var asm in assemblies)
             {
                 var list = from item in asm.DefinedTypes
-                           where type.IsAssignableFrom(item) && (!item.IsAbstract)
+                           where baseType.IsAssignableFrom(item) && (!item.IsAbstract)
                            orderby item.FullName
                            select item;
                 foreach (var item in list)
@@ -54,8 +56,6 @@ namespace CSharpGL.SceneEditor
 
             return result;
         }
-
-        static List<Type> typeList;
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
