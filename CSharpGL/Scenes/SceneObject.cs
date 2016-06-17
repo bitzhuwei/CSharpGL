@@ -6,26 +6,35 @@ using System.Drawing.Design;
 namespace CSharpGL
 {
     /// <summary>
-    /// Description of SceneObject.
+    /// an object to be rendered in a scene.
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class SceneObject : 
         IRenderable, // take part in rendering an object.
-        ITreeNode<SceneObject>, // contains sub-scene-objects and is contained by parent.
-        IEnumerable<SceneObject> // enumerates self and all children recursively.
+        ITreeNode<SceneObject>, // contains children objects and is contained by parent.
+        IEnumerable<SceneObject> // enumerates self and all children objects recursively.
     {
+        /// <summary>
+        /// name.
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// translate, rotate and scale this object and its children.
+        /// </summary>
         public TransformComponent Transform { get; private set; }
 
-        private SceneObjectRenderer renderer;
-        public SceneObjectRenderer Renderer
+        private RendererComponent renderer;
+        /// <summary>
+        /// render this object.
+        /// </summary>
+        public RendererComponent Renderer
         {
             get { return this.renderer; }
             set
             {
                 {
-                    SceneObjectRenderer renderer = this.renderer;
+                    RendererComponent renderer = this.renderer;
                     if (renderer != null) { renderer.BindingObject = null; }
 
                     if (value != null) { value.BindingObject = this; }
@@ -37,6 +46,9 @@ namespace CSharpGL
         }
 
         private ScriptComponent script;
+        /// <summary>
+        /// update state of this object.
+        /// </summary>
         public ScriptComponent Script
         {
             get { return this.script; }
@@ -54,6 +66,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// an object to be rendered in a scene.
+        /// </summary>
         public SceneObject()
         {
             this.Name = this.GetType().Name;

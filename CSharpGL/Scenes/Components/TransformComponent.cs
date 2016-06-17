@@ -8,10 +8,24 @@ namespace CSharpGL
     /// </summary>
     public partial class TransformComponent : Component
     {
+        /// <summary>
+        /// translate this object.
+        /// </summary>
         public vec3 Position { get; set; }
+        /// <summary>
+        /// rotate this object.
+        /// </summary>
         public vec3 Rotation { get; set; }
+        /// <summary>
+        /// scale this object.
+        /// </summary>
         public vec3 Scale { get; set; }
 
+        /// <summary>
+        /// Transform model's position from model space to world space,
+        /// including translation, scale and rotation.
+        /// </summary>
+        /// <param name="bindingObject"></param>
         public TransformComponent(SceneObject bindingObject = null)
             : base(bindingObject)
         {

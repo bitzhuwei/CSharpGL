@@ -7,17 +7,31 @@ using System.Windows.Forms;
 namespace CSharpGL
 {
     /// <summary>
-    /// Description of Component.
+    /// Manages a scene to be rendered and updated.
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class Scene
     {
+        /// <summary>
+        /// background color.
+        /// </summary>
         public Color ClearColor { get; set; }
 
+        /// <summary>
+        /// camera of the scene.
+        /// </summary>
         public Camera Camera { get; private set; }
 
+        /// <summary>
+        /// objects to be rendered.
+        /// </summary>
         public SceneObjectList ObjectList { get; private set; }
 
+        /// <summary>
+        /// Manages a scene to be rendered and updated.
+        /// </summary>
+        /// <param name="camera">camera of the scene</param>
+        /// <param name="objects">objects to be rendered</param>
         public Scene(Camera camera, params SceneObject[] objects)
         {
             if (camera == null)

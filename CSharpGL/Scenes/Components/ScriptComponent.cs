@@ -7,7 +7,6 @@ namespace CSharpGL
     /// <summary>
     /// Description of TransformComponent.
     /// </summary>
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract partial class ScriptComponent : Component
     {
         private bool initialized;

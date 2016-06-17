@@ -8,7 +8,7 @@ namespace CSharpGL
 
         public void Render(RenderEventArgs arg)
         {
-            SceneObjectRenderer renderer = this.Renderer;
+            RendererComponent renderer = this.Renderer;
             if (renderer != null)
             {
                 renderer.Render(arg);
