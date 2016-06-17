@@ -47,17 +47,17 @@ namespace CSharpGL.SceneEditor
                 {
                     if (targetTreeNode != null)
                     {
-                        // 往目标节点中加入被拖动节点的一份克隆
-                        targetTreeNode.Nodes.Add((TreeNode)treeNode.Clone());
                         // 将被拖动的节点移除
                         treeNode.Remove();
+                        // 往目标节点中加入被拖动节点的一份克隆
+                        targetTreeNode.Nodes.Add(treeNode);
                         targetTreeNode.ExpandAll();
                     }
                     else
                     {
-                        treeView.Nodes.Add((TreeNode)treeNode.Clone());
-                        // 将被拖动的节点移除
                         treeNode.Remove();
+                        treeView.Nodes.Add(treeNode);
+                        // 将被拖动的节点移除
                         treeView.ExpandAll();
                     }
                 }
