@@ -15,20 +15,41 @@ namespace CSharpGL
     public partial class FormSelectType : Form
     {
 
-        private Type baseType;
+        private static Dictionary<Type, List<Type>> dict = new Dictionary<Type, List<Type>>();
 
-        public FormSelectType(Type baseType)
+        private Type baseType;
+        private bool forceReload;
+
+        public FormSelectType(Type baseType, bool forceReload = false)
         {
             InitializeComponent();
 
             this.baseType = baseType;
+            this.forceReload = forceReload;
         }
 
         private void FormGLSwtichType_Load(object sender, EventArgs e)
         {
-            //if (typeList == null)
-            //{ typeList = InitializeTypeList(); }
-            List<Type> typeList = InitializeTypeList();
+            List<Type> typeList;
+
+            if (this.forceReload)
+            {
+                typeList = InitializeTypeList();
+                if (dict.ContainsKey(this.baseType))
+                { dict[this.baseType] = typeList; }
+                else
+                { dict.Add(this.baseType, typeList); }
+            }
+            else
+            {
+                if (dict.ContainsKey(this.baseType))
+                { typeList = dict[this.baseType]; }
+                else
+                {
+                    typeList = InitializeTypeList();
+                    dict.Add(this.baseType, typeList);
+                }
+            }
 
             foreach (var item in typeList)
             {
