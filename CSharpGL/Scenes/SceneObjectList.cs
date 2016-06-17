@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 
 namespace CSharpGL
 {
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class SceneObjectList : IList<SceneObject>
     {
+
+        List<SceneObject> list = new List<SceneObject>();
 
         public SceneObject Parent { get; set; }
 
@@ -15,7 +20,6 @@ namespace CSharpGL
             this.Parent = parent;
         }
 
-        List<SceneObject> list = new List<SceneObject>();
         public int IndexOf(SceneObject item)
         {
             return list.IndexOf(item);
@@ -24,11 +28,14 @@ namespace CSharpGL
         public void Insert(int index, SceneObject item)
         {
             list.Insert(index, item);
+            item.Parent = this.Parent;
         }
 
         public void RemoveAt(int index)
         {
+            SceneObject obj = list[index];
             list.RemoveAt(index);
+            obj.Parent = null;
         }
 
         public SceneObject this[int index]
@@ -45,12 +52,16 @@ namespace CSharpGL
 
         public void Add(SceneObject item)
         {
-            list.Add(item);
             item.Parent = this.Parent;
+            list.Add(item);
         }
 
         public void AddRange(IEnumerable<SceneObject> items)
         {
+            foreach (var item in items)
+            {
+                item.Parent = this.Parent;
+            }
             list.AddRange(items);
         }
 
@@ -81,13 +92,14 @@ namespace CSharpGL
 
         public bool IsReadOnly
         {
-            get { return ((ICollection<SceneObject>)this).IsReadOnly; }
+            get { return ((ICollection<SceneObject>)(this.list)).IsReadOnly; }
         }
 
         public bool Remove(SceneObject item)
         {
+            bool result = list.Remove(item);
             item.Parent = null;
-            return list.Remove(item);
+            return result;
         }
 
         public IEnumerator<SceneObject> GetEnumerator()
