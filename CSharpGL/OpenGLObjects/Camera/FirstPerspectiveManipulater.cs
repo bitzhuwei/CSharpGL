@@ -97,6 +97,7 @@ namespace CSharpGL
         private MouseEventHandler mouseDownEvent;
         private MouseEventHandler mouseMoveEvent;
         private MouseEventHandler mouseUpEvent;
+        private MouseEventHandler mouseWheelEvent;
 
         public FirstPerspectiveManipulater()
         {
@@ -113,6 +114,8 @@ namespace CSharpGL
             this.mouseDownEvent = new MouseEventHandler(this.canvas_MouseDown);
             this.mouseMoveEvent = new MouseEventHandler(this.canvas_MouseMove);
             this.mouseUpEvent = new MouseEventHandler(this.canvas_MouseUp);
+            this.mouseWheelEvent = new MouseEventHandler(this.canvas_MouseWheel);
+            
         }
 
         public override void Bind(ICamera camera, System.Windows.Forms.Control canvas)
@@ -129,6 +132,7 @@ namespace CSharpGL
             canvas.MouseDown += this.mouseDownEvent;
             canvas.MouseMove += this.mouseMoveEvent;
             canvas.MouseUp += this.mouseUpEvent;
+            canvas.MouseWheel += this.mouseWheelEvent;
         }
 
         public override void Unbind()
@@ -140,12 +144,18 @@ namespace CSharpGL
                 this.canvas.MouseDown -= this.mouseDownEvent;
                 this.canvas.MouseMove -= this.mouseMoveEvent;
                 this.canvas.MouseUp -= this.mouseUpEvent;
+                this.canvas.MouseWheel -= this.mouseWheelEvent;
             }
         }
 
         private bool mouseDownFlag = false;
         private int lastLocationX;
         private int lastLocationY;
+
+        void canvas_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            this.camera.MouseWheel(e.Delta);
+        }
 
         void canvas_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
