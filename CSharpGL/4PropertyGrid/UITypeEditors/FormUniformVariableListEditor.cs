@@ -60,12 +60,12 @@ namespace CSharpGL
                 list.Add(item);
             }
 
-            this.UniformVariableList = list;
+            this.List = list;
 
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 
-        public List<UniformVariable> UniformVariableList { get; set; }
+        public List<UniformVariable> List { get; set; }
 
         private void lstMember_SelectedIndexChanged(object sender, EventArgs e)
         {

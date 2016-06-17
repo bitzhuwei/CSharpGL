@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
-    partial class FormGLSwitchListEditor : Form
+    partial class FormSceneObjectListEditor : Form
     {
 
-        public FormGLSwitchListEditor(IList<GLSwitch> list)
+        public FormSceneObjectListEditor(IList<SceneObject> list)
         {
             InitializeComponent();
 
@@ -28,14 +28,10 @@ namespace CSharpGL
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var frmSelectType = new FormSelectType(typeof(GLSwitch));
-            if (frmSelectType.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                Type type = frmSelectType.SelectedType;
-                object obj = Activator.CreateInstance(type);
-                this.lstMember.Items.Add(obj);
-                this.propertyGrid.SelectedObject = obj;
-            }
+            Type type = typeof(SceneObject);
+            object obj = Activator.CreateInstance(type);
+            this.lstMember.Items.Add(obj);
+            this.propertyGrid.SelectedObject = obj;
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -54,8 +50,8 @@ namespace CSharpGL
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            var list = new List<GLSwitch>();
-            foreach (GLSwitch item in this.lstMember.Items)
+            var list = new List<SceneObject>();
+            foreach (SceneObject item in this.lstMember.Items)
             {
                 list.Add(item);
             }
@@ -65,7 +61,7 @@ namespace CSharpGL
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 
-        public List<GLSwitch> List { get; set; }
+        public List<SceneObject> List { get; set; }
 
         private void lstMember_SelectedIndexChanged(object sender, EventArgs e)
         {

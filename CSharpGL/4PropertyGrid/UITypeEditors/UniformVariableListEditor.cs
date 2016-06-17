@@ -8,7 +8,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 用在IList&lt;GLSwitch&gt;类型的属性上。
+    /// 用在IList&lt;<see cref="UniformVariable"/>&gt;类型的属性上。
     /// </summary>
     class UniformVariableListEditor : UITypeEditor
     {
@@ -22,12 +22,12 @@ namespace CSharpGL
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             //打开属性编辑器修改数据
-            var frmGLSwitchListEditor = new FormUniformVariableListEditor(value as List<UniformVariable>);
-            if (frmGLSwitchListEditor.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            var editor = new FormUniformVariableListEditor(value as List<UniformVariable>);
+            if (editor.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 var list = value as IList<UniformVariable>;
                 list.Clear();
-                foreach (var item in frmGLSwitchListEditor.UniformVariableList)
+                foreach (var item in editor.List)
                 {
                     list.Add(item);
                 }

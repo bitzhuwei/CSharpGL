@@ -8,7 +8,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// For any sinlge object.
+    /// For any single object.
     /// </summary>
     class PropertyGridEditor : UITypeEditor
     {
@@ -22,8 +22,8 @@ namespace CSharpGL
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             // 打开属性编辑器修改数据 
-            var frmGLSwitchListEditor = new FormPropertyGridEditor(value);
-            frmGLSwitchListEditor.ShowDialog();
+            var editor = new FormPropertyGridEditor(value);
+            editor.ShowDialog();
 
             return value;
         }

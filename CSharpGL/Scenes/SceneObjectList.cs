@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    [Editor(typeof(SceneObjectListEditor), typeof(UITypeEditor))]
     public class SceneObjectList : IList<SceneObject>
     {
 

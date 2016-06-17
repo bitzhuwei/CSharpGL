@@ -8,9 +8,9 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 用在IList&lt;GLSwitch&gt;类型的属性上。
+    /// 用在IList&lt;<see cref="SceneObject"/>&gt;类型的属性上。
     /// </summary>
-    class GLSwithListEditor : UITypeEditor
+    class SceneObjectListEditor : UITypeEditor
     {
 
         public override UITypeEditorEditStyle GetEditStyle(System.ComponentModel.ITypeDescriptorContext context)
@@ -22,10 +22,10 @@ namespace CSharpGL
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             // 打开属性编辑器修改数据
-            var editor = new FormGLSwitchListEditor(value as IList<GLSwitch>);
+            var editor = new FormSceneObjectListEditor(value as IList<SceneObject>);
             if (editor.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                var list = value as IList<GLSwitch>;
+                var list = value as IList<SceneObject>;
                 list.Clear();
                 foreach (var item in editor.List)
                 {

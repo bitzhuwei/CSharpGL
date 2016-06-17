@@ -161,7 +161,7 @@
             this.Controls.Add(this.lblProperty);
             this.Controls.Add(this.label1);
             this.Name = "FormGLSwitchListEditor";
-            this.Text = "GLSwticth集合编辑器";
+            this.Text = "GLSwticth List Editor";
             this.ResumeLayout(false);
             this.PerformLayout();
 

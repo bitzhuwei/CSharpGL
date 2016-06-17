@@ -14,7 +14,7 @@ namespace CSharpGL
 
         public SceneObject Parent { get; set; }
 
-        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+        [Editor(typeof(SceneObjectListEditor), typeof(UITypeEditor))]
         public IList<SceneObject> Children { get; private set; }
 
         #endregion ITreeNode
