@@ -10,7 +10,7 @@
     <iconUrl>https://github.com/bitzhuwei/CSharpGL/blob/master/Assets/CSharpGL.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-	<summary>$description$</summary>
+	<summary>CSharpGL allows you to use OpenGL functions in an Object-Oriented way. It wraps OpenGL’s functions and enum types. It abstracts objects inside OpenGL into classes. It provides maths class for matrix and vectors. It provide useful utilities.</summary>
     <releaseNotes>release notes.</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>OpenGL C# GLSL Shader 3D WinForms Graphics glm UI PropertyGrid TTF</tags>
