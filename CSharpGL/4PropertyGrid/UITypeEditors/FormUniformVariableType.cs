@@ -13,8 +13,8 @@ namespace CSharpGL
 {
     partial class FormUniformVariableType : Form
     {
-       
-        private static Dictionary<Type, List<Type>> dict = new Dictionary<Type, List<Type>>();
+
+        private static List<Type> cachedList;
 
         private Type baseType;
         private bool forceReload;
@@ -38,20 +38,17 @@ namespace CSharpGL
             if (this.forceReload)
             {
                 typeList = this.baseType.GetAllDerivedTypes();
-                if (dict.ContainsKey(this.baseType))
-                { dict[this.baseType] = typeList; }
-                else
-                { dict.Add(this.baseType, typeList); }
+                cachedList = typeList;
             }
             else
             {
-                if (dict.ContainsKey(this.baseType))
-                { typeList = dict[this.baseType]; }
-                else
+                if (cachedList == null)
                 {
                     typeList = this.baseType.GetAllDerivedTypes();
-                    dict.Add(this.baseType, typeList);
+                    cachedList = typeList;
                 }
+                else
+                { typeList = cachedList; }
             }
 
             foreach (var item in typeList)
