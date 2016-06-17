@@ -87,6 +87,24 @@
     <Compile Include="IBufferables\Ground.cs" />
     <Compile Include="IBufferables\TeapotModel.Positions.cs" />
     <Compile Include="IBufferables\TeapotModel.Faces.cs" />
+    <Compile Include="OpenGLObjects\Camera\ArcBallRotator.cs" />
+    <Compile Include="OpenGLObjects\Camera\Camera.cs" />
+    <Compile Include="OpenGLObjects\Camera\Camera2Matrix.cs" />
+    <Compile Include="OpenGLObjects\Camera\CameraHelper.cs" />
+    <Compile Include="OpenGLObjects\Camera\CameraType.cs" />
+    <Compile Include="OpenGLObjects\Camera\IBoundingBox.cs" />
+    <Compile Include="OpenGLObjects\Camera\IBoundingBoxHelper.cs" />
+    <Compile Include="OpenGLObjects\Camera\ICamera.cs" />
+    <Compile Include="OpenGLObjects\Camera\ICameraRotator.cs" />
+    <Compile Include="OpenGLObjects\Camera\IOrthoCamera.cs" />
+    <Compile Include="OpenGLObjects\Camera\IOrthoViewCamera.cs" />
+    <Compile Include="OpenGLObjects\Camera\IPerspectiveCamera.cs" />
+    <Compile Include="OpenGLObjects\Camera\IPerspectiveViewCamera.cs" />
+    <Compile Include="OpenGLObjects\Camera\IViewCamera.cs" />
+    <Compile Include="OpenGLObjects\Camera\LegacyBoundingBox.cs" />
+    <Compile Include="OpenGLObjects\Camera\MouseWheelHelper.cs" />
+    <Compile Include="OpenGLObjects\Camera\SatelliteRotator.cs" />
+    <Compile Include="OpenGLObjects\Camera\ViewTypes.cs" />
     <Compile Include="OpenGLObjects\Framebuffer\Framebuffer.Dispose.cs" />
     <Compile Include="OpenGLObjects\Framebuffer\Framebuffer.cs">
       <SubType>Code</SubType>
@@ -138,13 +156,13 @@
       <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="4PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
-    <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Scenes\Component.cs" />
-    <Compile Include="Scenes\SceneObjectFactory.cs" />
+    <Compile Include="Scenes\Scene.cs" />
+    <Compile Include="Scenes\SceneObject.cs" />
+    <Compile Include="Scenes\SceneObject.IEnumerable.cs" />
     <Compile Include="Scenes\SceneObject.IRenderable.cs" />
     <Compile Include="Scenes\SceneObject.ITreeNode.cs" />
-    <Compile Include="Scenes\SceneObject.IEnumerable.cs" />
-    <Compile Include="Scenes\SceneObject.cs" />
+    <Compile Include="Scenes\SceneObjectFactory.cs" />
     <Compile Include="Scenes\SceneObjectList.cs" />
     <Compile Include="Scenes\SceneObjectRenderer.cs" />
     <Compile Include="Scenes\ScriptComponent.cs" />
@@ -333,24 +351,6 @@
     <Compile Include="Maths\vec3.cs" />
     <Compile Include="Maths\vec4.cs" />
     <Compile Include="Maths\vecHelper.cs" />
-    <Compile Include="OpenGLObjects\Cameras\ArcBallRotator.cs" />
-    <Compile Include="OpenGLObjects\Cameras\Camera.cs" />
-    <Compile Include="OpenGLObjects\Cameras\Camera2Matrix.cs" />
-    <Compile Include="OpenGLObjects\Cameras\CameraHelper.cs" />
-    <Compile Include="OpenGLObjects\Cameras\CameraType.cs" />
-    <Compile Include="OpenGLObjects\Cameras\IBoundingBox.cs" />
-    <Compile Include="OpenGLObjects\Cameras\IBoundingBoxHelper.cs" />
-    <Compile Include="OpenGLObjects\Cameras\ICamera.cs" />
-    <Compile Include="OpenGLObjects\Cameras\ICameraRotator.cs" />
-    <Compile Include="OpenGLObjects\Cameras\IOrthoCamera.cs" />
-    <Compile Include="OpenGLObjects\Cameras\IOrthoViewCamera.cs" />
-    <Compile Include="OpenGLObjects\Cameras\IPerspectiveCamera.cs" />
-    <Compile Include="OpenGLObjects\Cameras\IPerspectiveViewCamera.cs" />
-    <Compile Include="OpenGLObjects\Cameras\IViewCamera.cs" />
-    <Compile Include="OpenGLObjects\Cameras\LegacyBoundingBox.cs" />
-    <Compile Include="OpenGLObjects\Cameras\MouseWheelHelper.cs" />
-    <Compile Include="OpenGLObjects\Cameras\SatelliteRotator.cs" />
-    <Compile Include="OpenGLObjects\Cameras\ViewTypes.cs" />
     <Compile Include="OpenGLObjects\ModernRendering\IRenderable.cs" />
     <Compile Include="WinformControls\RenderContexts\DIBSection.cs" />
     <Compile Include="WinformControls\RenderContexts\FBORenderContext.cs" />
@@ -426,7 +426,9 @@
     <Compile Include="Utilities\PositionHelper.cs" />
     <Compile Include="Utilities\UnmanagedArray.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="OpenGLAPI\Scenes\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Highlight.vert" />
     <EmbeddedResource Include="Resources\Highlight.frag" />
@@ -457,9 +459,9 @@
     <EmbeddedResource Include="Resources\GLAxis.vert" />
     <EmbeddedResource Include="Resources\GLText.frag" />
     <EmbeddedResource Include="Resources\GLText.vert" />
-    <Content Include="Scenes\readme.md" />
     <EmbeddedResource Include="Resources\BuildInSceneObject.vert" />
     <EmbeddedResource Include="Resources\BuildInSceneObject.frag" />
+    <None Include="Scenes\readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Maths\readme.md" />
