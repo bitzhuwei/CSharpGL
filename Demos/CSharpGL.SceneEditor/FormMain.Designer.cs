@@ -56,6 +56,7 @@
             this.选项OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thisFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gLCanvasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cameraManipulaterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助HToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.内容CToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.索引IToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +72,6 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.glCanvas1 = new CSharpGL.GLCanvas();
-            this.cameraManipulaterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -112,6 +112,7 @@
             this.打印预览VToolStripMenuItem,
             this.toolStripSeparator2,
             this.退出XToolStripMenuItem});
+            this.文件FToolStripMenuItem.Enabled = false;
             this.文件FToolStripMenuItem.Name = "文件FToolStripMenuItem";
             this.文件FToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.文件FToolStripMenuItem.Text = "文件(&F)";
@@ -198,6 +199,7 @@
             this.粘贴PToolStripMenuItem,
             this.toolStripSeparator4,
             this.全选AToolStripMenuItem});
+            this.编辑EToolStripMenuItem.Enabled = false;
             this.编辑EToolStripMenuItem.Name = "编辑EToolStripMenuItem";
             this.编辑EToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.编辑EToolStripMenuItem.Text = "编辑(&E)";
@@ -273,12 +275,14 @@
             // 
             // 自定义CToolStripMenuItem
             // 
+            this.自定义CToolStripMenuItem.Enabled = false;
             this.自定义CToolStripMenuItem.Name = "自定义CToolStripMenuItem";
             this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
             this.自定义CToolStripMenuItem.Text = "自定义(&C)";
             // 
             // 选项OToolStripMenuItem
             // 
+            this.选项OToolStripMenuItem.Enabled = false;
             this.选项OToolStripMenuItem.Name = "选项OToolStripMenuItem";
             this.选项OToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
             this.选项OToolStripMenuItem.Text = "选项(&O)";
@@ -297,6 +301,13 @@
             this.gLCanvasToolStripMenuItem.Text = "GLCanvas";
             this.gLCanvasToolStripMenuItem.Click += new System.EventHandler(this.gLCanvasToolStripMenuItem_Click);
             // 
+            // cameraManipulaterToolStripMenuItem
+            // 
+            this.cameraManipulaterToolStripMenuItem.Name = "cameraManipulaterToolStripMenuItem";
+            this.cameraManipulaterToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
+            this.cameraManipulaterToolStripMenuItem.Text = "Camera Manipulater";
+            this.cameraManipulaterToolStripMenuItem.Click += new System.EventHandler(this.cameraManipulaterToolStripMenuItem_Click);
+            // 
             // 帮助HToolStripMenuItem
             // 
             this.帮助HToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -305,6 +316,7 @@
             this.搜索SToolStripMenuItem,
             this.toolStripSeparator5,
             this.关于AToolStripMenuItem});
+            this.帮助HToolStripMenuItem.Enabled = false;
             this.帮助HToolStripMenuItem.Name = "帮助HToolStripMenuItem";
             this.帮助HToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
             this.帮助HToolStripMenuItem.Text = "帮助(&H)";
@@ -312,30 +324,30 @@
             // 内容CToolStripMenuItem
             // 
             this.内容CToolStripMenuItem.Name = "内容CToolStripMenuItem";
-            this.内容CToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
+            this.内容CToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.内容CToolStripMenuItem.Text = "内容(&C)";
             // 
             // 索引IToolStripMenuItem
             // 
             this.索引IToolStripMenuItem.Name = "索引IToolStripMenuItem";
-            this.索引IToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
+            this.索引IToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.索引IToolStripMenuItem.Text = "索引(&I)";
             // 
             // 搜索SToolStripMenuItem
             // 
             this.搜索SToolStripMenuItem.Name = "搜索SToolStripMenuItem";
-            this.搜索SToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
+            this.搜索SToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.搜索SToolStripMenuItem.Text = "搜索(&S)";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(144, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(178, 6);
             // 
             // 关于AToolStripMenuItem
             // 
             this.关于AToolStripMenuItem.Name = "关于AToolStripMenuItem";
-            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
+            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.关于AToolStripMenuItem.Text = "关于(&A)...";
             // 
             // statusStrip1
@@ -433,13 +445,6 @@
             this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(965, 732);
             this.glCanvas1.TabIndex = 0;
-            // 
-            // cameraManipulaterToolStripMenuItem
-            // 
-            this.cameraManipulaterToolStripMenuItem.Name = "cameraManipulaterToolStripMenuItem";
-            this.cameraManipulaterToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
-            this.cameraManipulaterToolStripMenuItem.Text = "Camera Manipulater";
-            this.cameraManipulaterToolStripMenuItem.Click += new System.EventHandler(this.cameraManipulaterToolStripMenuItem_Click);
             // 
             // FormMain
             // 
