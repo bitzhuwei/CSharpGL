@@ -96,6 +96,9 @@ namespace CSharpGL
             this.camera = camera;
             this.canvas = canvas;
 
+            this.HorizontalRotationSpeed = 0.002f;
+            this.VerticalRotationSpeed = 0.002f;
+
             canvas.KeyPress += this.keyPressEvent;
             canvas.MouseDown += this.mouseDownEvent;
             canvas.MouseMove += this.mouseMoveEvent;
@@ -123,11 +126,23 @@ namespace CSharpGL
             this.mouseDownFlag = false;
         }
 
+        public float HorizontalRotationSpeed { get; set; }
+        public float VerticalRotationSpeed { get; set; }
+
         void canvas_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (this.mouseDownFlag)
             {
+                int x = e.X; int y = e.Y;
+                mat4 rotationMatrix = glm.rotate(this.HorizontalRotationSpeed * (x - this.lastLocationX), -this.camera.UpVector);
+                var front = new vec4(this.camera.GetFront(), 1.0f);
+                vec4 front1 = rotationMatrix * front;
+                rotationMatrix = glm.rotate(this.VerticalRotationSpeed * (lastLocationY - e.Y), this.camera.GetRight());
+                vec4 front2 = rotationMatrix * front1;
+                front2 = front2.normalize();
+                this.camera.Target = this.camera.Position + new vec3(front2);
 
+                this.lastLocationX = x; this.lastLocationY = y;
             }
         }
 

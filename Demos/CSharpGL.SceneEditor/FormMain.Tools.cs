@@ -23,5 +23,10 @@ namespace CSharpGL.SceneEditor
             (new FormProperyGrid(this.glCanvas1)).Show();
         }
 
+        private void cameraManipulaterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new FormProperyGrid(this.cameraManipulater)).Show();
+        }
+
     }
 }
