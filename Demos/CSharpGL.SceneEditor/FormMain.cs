@@ -26,6 +26,5 @@ namespace CSharpGL.SceneEditor
 
 
 
-
     }
 }

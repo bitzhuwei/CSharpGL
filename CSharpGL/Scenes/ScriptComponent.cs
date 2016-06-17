@@ -10,16 +10,30 @@ namespace CSharpGL
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract partial class ScriptComponent : Component
     {
+        private bool initialized;
         public ScriptComponent() : base(null) { }
 
         public ScriptComponent(SceneObject bindingObject) : base(bindingObject) { }
 
-        public virtual void Awake() { }
+        protected abstract void DoInitialize();
 
-        public virtual void Start() { }
+        protected abstract void DoUpdate(double elapsedTime);
 
-        public virtual void Update(double elapsedTime) { }
+        public void Initialize()
+        {
+            if (!this.initialized)
+            {
+                this.DoInitialize();
+                this.initialized = true;
+            }
+        }
 
-        public virtual void Destroy() { }
+        public void Update(double elapsedTime)
+        {
+            if (!this.initialized)
+            { this.Initialize(); }
+
+            this.DoUpdate(elapsedTime);
+        }
     }
 }

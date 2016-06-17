@@ -22,22 +22,13 @@ namespace CSharpGL.SceneEditor.Scripts
         /// </summary>
         public double RevolutionPeriod { get; set; }
 
-        public override void Awake()
+        protected override void DoInitialize()
         {
-            base.Awake();
-        }
-
-        public override void Start()
-        {
-            base.Start();
-
             this.transform = this.BindingObject.Transform;
         }
 
-        public override void Update(double elapsedTime)
+        protected override void DoUpdate(double elapsedTime)
         {
-            base.Update(elapsedTime);
-
             double deltaAngle = elapsedTime * Math.PI * 2 / this.RevolutionPeriod;
             double newAngle = this.currentAngle + deltaAngle;
             this.transform.Position = new vec3(
@@ -47,9 +38,5 @@ namespace CSharpGL.SceneEditor.Scripts
             this.currentAngle = newAngle;
         }
 
-        public override void Destroy()
-        {
-            base.Destroy();
-        }
     }
 }

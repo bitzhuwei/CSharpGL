@@ -58,6 +58,7 @@
             this.gLCanvasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cameraManipulaterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startStopTimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助HToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.内容CToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.索引IToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,10 +72,11 @@
             this.treeNodeContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addSceneObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
-            this.glCanvas1 = new CSharpGL.GLCanvas();
             this.addScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.glCanvas1 = new CSharpGL.GLCanvas();
+            this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -272,7 +274,8 @@
             this.thisFormToolStripMenuItem,
             this.gLCanvasToolStripMenuItem,
             this.cameraManipulaterToolStripMenuItem,
-            this.saveImageToolStripMenuItem});
+            this.saveImageToolStripMenuItem,
+            this.startStopTimerToolStripMenuItem});
             this.工具TToolStripMenuItem.Name = "工具TToolStripMenuItem";
             this.工具TToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.工具TToolStripMenuItem.Text = "工具(&T)";
@@ -318,6 +321,13 @@
             this.saveImageToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
             this.saveImageToolStripMenuItem.Text = "Save Image";
             this.saveImageToolStripMenuItem.Click += new System.EventHandler(this.saveImageToolStripMenuItem_Click);
+            // 
+            // startStopTimerToolStripMenuItem
+            // 
+            this.startStopTimerToolStripMenuItem.Name = "startStopTimerToolStripMenuItem";
+            this.startStopTimerToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
+            this.startStopTimerToolStripMenuItem.Text = "Start/Stop Timer";
+            this.startStopTimerToolStripMenuItem.Click += new System.EventHandler(this.startStopTimerToolStripMenuItem_Click);
             // 
             // 帮助HToolStripMenuItem
             // 
@@ -424,20 +434,27 @@
             this.deleteToolStripMenuItem,
             this.addScriptToolStripMenuItem});
             this.treeNodeContextMenu.Name = "treeNodeContextMenu";
-            this.treeNodeContextMenu.Size = new System.Drawing.Size(182, 110);
+            this.treeNodeContextMenu.Size = new System.Drawing.Size(163, 82);
             // 
             // addSceneObjectToolStripMenuItem
             // 
             this.addSceneObjectToolStripMenuItem.Name = "addSceneObjectToolStripMenuItem";
-            this.addSceneObjectToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.addSceneObjectToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
             this.addSceneObjectToolStripMenuItem.Text = "3D Object";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // addScriptToolStripMenuItem
+            // 
+            this.addScriptToolStripMenuItem.Name = "addScriptToolStripMenuItem";
+            this.addScriptToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.addScriptToolStripMenuItem.Text = "Add Script";
+            this.addScriptToolStripMenuItem.Click += new System.EventHandler(this.addScriptToolStripMenuItem_Click);
             // 
             // propertyGrid1
             // 
@@ -446,13 +463,6 @@
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.Size = new System.Drawing.Size(306, 411);
             this.propertyGrid1.TabIndex = 0;
-            // 
-            // dlgSaveFile
-            // 
-            this.dlgSaveFile.DefaultExt = "png";
-            this.dlgSaveFile.FileName = "*.png";
-            this.dlgSaveFile.Filter = "(*.png)|*.png";
-            this.dlgSaveFile.RestoreDirectory = true;
             // 
             // glCanvas1
             // 
@@ -465,12 +475,16 @@
             this.glCanvas1.Size = new System.Drawing.Size(965, 732);
             this.glCanvas1.TabIndex = 0;
             // 
-            // addScriptToolStripMenuItem
+            // dlgSaveFile
             // 
-            this.addScriptToolStripMenuItem.Name = "addScriptToolStripMenuItem";
-            this.addScriptToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.addScriptToolStripMenuItem.Text = "Add Script";
-            this.addScriptToolStripMenuItem.Click += new System.EventHandler(this.addScriptToolStripMenuItem_Click);
+            this.dlgSaveFile.DefaultExt = "png";
+            this.dlgSaveFile.FileName = "*.png";
+            this.dlgSaveFile.Filter = "(*.png)|*.png";
+            this.dlgSaveFile.RestoreDirectory = true;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FormMain
             // 
@@ -547,5 +561,7 @@
         private System.Windows.Forms.ToolStripMenuItem saveImageToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog dlgSaveFile;
         private System.Windows.Forms.ToolStripMenuItem addScriptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startStopTimerToolStripMenuItem;
+        private System.Windows.Forms.Timer timer1;
     }
 }
