@@ -47,7 +47,7 @@ namespace CSharpGL
                 SceneObject parent = bindingObject.Parent;
                 if (parent != null)
                 {
-                    model = bindingObject.Transform.GetModelMatrix() * parent.Transform.GetModelMatrix();
+                    model = parent.Transform.GetModelMatrix() * bindingObject.Transform.GetModelMatrix();
                 }
                 else
                 {
