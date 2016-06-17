@@ -24,7 +24,5 @@ namespace CSharpGL.SceneEditor
             this.Load += FormMain_Load;
         }
 
-
-
     }
 }

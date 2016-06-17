@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormMain.DragDrop.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMain.Timer.cs">
       <SubType>Form</SubType>
     </Compile>
