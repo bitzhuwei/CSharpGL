@@ -15,7 +15,7 @@ namespace CSharpGL
         //uint viewLocation;
         //uint modelLocation;
 
-        private Renderer renderer;
+        public Renderer Renderer { get; set; }
 
         public DefaultRendererComponent(BuildInSceneObject buildIn, SceneObject bindingObject = null)
             : base(bindingObject)
@@ -27,21 +27,21 @@ namespace CSharpGL
             PropertyNameMap map = GetMap(buildIn);
             var renderer = new Renderer(bufferable, shaderCodes, map);
             renderer.Initialize();
-            this.renderer = renderer;
+            this.Renderer = renderer;
         }
 
         public override void Render(RenderEventArgs arg)
         {
-            Renderer renderer = this.renderer;
+            Renderer renderer = this.Renderer;
             if (renderer != null)
             {
                 mat4 projection, view, model;
                 if (this.TryGetMatrix(arg, out projection, out view, out model))
                 {
-                    this.renderer.SetUniform(strprojection, projection);
-                    this.renderer.SetUniform(strview, view);
-                    this.renderer.SetUniform(strmodel, model);
-                    this.renderer.Render(arg);
+                    renderer.SetUniform(strprojection, projection);
+                    renderer.SetUniform(strview, view);
+                    renderer.SetUniform(strmodel, model);
+                    renderer.Render(arg);
                 }
             }
         }
