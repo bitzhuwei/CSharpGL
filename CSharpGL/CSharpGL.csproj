@@ -169,6 +169,7 @@
     <Compile Include="Scenes\SceneObjectRenderer.cs" />
     <Compile Include="Scenes\ScriptComponent.cs" />
     <Compile Include="Scenes\TransformComponent.cs" />
+    <Compile Include="Utilities\AssemblyHelper.cs" />
     <Compile Include="Utilities\ColorHelper.cs" />
     <Compile Include="Utilities\DoubleHelper.cs" />
     <Compile Include="Utilities\ITreeNode.yeild.cs" />

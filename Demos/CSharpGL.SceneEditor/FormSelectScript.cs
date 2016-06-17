@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSharpGL
+namespace CSharpGL.SceneEditor
 {
-    partial class FormGLSwtichType : Form
+    partial class FormSelectScript : Form
     {
-        public FormGLSwtichType()
+        public FormSelectScript()
         {
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace CSharpGL
         private List<Type> InitializeTypeList()
         {
             var result = new List<Type>();
-            Type type = typeof(GLSwitch);
+            Type type = typeof(ScriptComponent);
             Assembly executingAsm = Assembly.GetExecutingAssembly();
             Assembly[] assemblies;
             {

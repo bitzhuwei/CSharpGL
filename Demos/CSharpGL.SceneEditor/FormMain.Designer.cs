@@ -72,8 +72,9 @@
             this.addSceneObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.glCanvas1 = new CSharpGL.GLCanvas();
             this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
+            this.glCanvas1 = new CSharpGL.GLCanvas();
+            this.addScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -420,20 +421,21 @@
             this.treeNodeContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.treeNodeContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addSceneObjectToolStripMenuItem,
-            this.deleteToolStripMenuItem});
+            this.deleteToolStripMenuItem,
+            this.addScriptToolStripMenuItem});
             this.treeNodeContextMenu.Name = "treeNodeContextMenu";
-            this.treeNodeContextMenu.Size = new System.Drawing.Size(158, 56);
+            this.treeNodeContextMenu.Size = new System.Drawing.Size(182, 110);
             // 
             // addSceneObjectToolStripMenuItem
             // 
             this.addSceneObjectToolStripMenuItem.Name = "addSceneObjectToolStripMenuItem";
-            this.addSceneObjectToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
+            this.addSceneObjectToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.addSceneObjectToolStripMenuItem.Text = "3D Object";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -444,6 +446,13 @@
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.Size = new System.Drawing.Size(306, 411);
             this.propertyGrid1.TabIndex = 0;
+            // 
+            // dlgSaveFile
+            // 
+            this.dlgSaveFile.DefaultExt = "png";
+            this.dlgSaveFile.FileName = "*.png";
+            this.dlgSaveFile.Filter = "(*.png)|*.png";
+            this.dlgSaveFile.RestoreDirectory = true;
             // 
             // glCanvas1
             // 
@@ -456,12 +465,12 @@
             this.glCanvas1.Size = new System.Drawing.Size(965, 732);
             this.glCanvas1.TabIndex = 0;
             // 
-            // dlgSaveFile
+            // addScriptToolStripMenuItem
             // 
-            this.dlgSaveFile.DefaultExt = "png";
-            this.dlgSaveFile.FileName = "*.png";
-            this.dlgSaveFile.Filter = "(*.png)|*.png";
-            this.dlgSaveFile.RestoreDirectory = true;
+            this.addScriptToolStripMenuItem.Name = "addScriptToolStripMenuItem";
+            this.addScriptToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.addScriptToolStripMenuItem.Text = "Add Script";
+            this.addScriptToolStripMenuItem.Click += new System.EventHandler(this.addScriptToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -537,5 +546,6 @@
         private System.Windows.Forms.ToolStripMenuItem cameraManipulaterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveImageToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog dlgSaveFile;
+        private System.Windows.Forms.ToolStripMenuItem addScriptToolStripMenuItem;
     }
 }

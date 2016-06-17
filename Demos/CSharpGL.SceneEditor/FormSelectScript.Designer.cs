@@ -1,6 +1,6 @@
-﻿namespace CSharpGL
+﻿namespace CSharpGL.SceneEditor
 {
-    partial class FormGLSwtichType
+    partial class FormSelectScript
     {
         /// <summary>
         /// Required designer variable.
@@ -79,7 +79,7 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "GLSwitch Type:";
             // 
-            // FormGLSwtichType
+            // FormSelectScript
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -90,7 +90,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
-            this.Name = "FormGLSwtichType";
+            this.Name = "FormSelectScript";
             this.Text = "FormGLSwtichType";
             this.Load += new System.EventHandler(this.FormGLSwtichType_Load);
             this.ResumeLayout(false);

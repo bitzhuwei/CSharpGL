@@ -70,5 +70,21 @@ namespace CSharpGL.SceneEditor
                 }
             }
         }
+
+        private void addScriptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TreeNode node = this.treeView1.SelectedNode;
+            if (node != null)
+            {
+                var frmSelectScript = new FormSelectScript();
+                if (frmSelectScript.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    var obj = node.Tag as SceneObject;
+                    var script = Activator.CreateInstance(frmSelectScript.SelectedType) as ScriptComponent;
+                    obj.Script = script;
+                }
+            }
+        }
+
     }
 }
