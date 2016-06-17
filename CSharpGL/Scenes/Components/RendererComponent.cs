@@ -7,7 +7,7 @@ namespace CSharpGL
 {
     public abstract class RendererComponent : Component, IRenderable
     {
-     
+
         public RendererComponent(SceneObject bindingObject = null)
             : base(bindingObject)
         { }
@@ -44,15 +44,7 @@ namespace CSharpGL
                 projection = arg.Camera.GetProjectionMat4();
                 view = arg.Camera.GetViewMat4();
 
-                SceneObject parent = bindingObject.Parent;
-                if (parent != null)
-                {
-                    model = parent.Transform.GetModelMatrix() * bindingObject.Transform.GetModelMatrix();
-                }
-                else
-                {
-                    model = bindingObject.Transform.GetModelMatrix();
-                }
+                model = bindingObject.Transform.GetModelMatrix();
 
                 return true;
             }

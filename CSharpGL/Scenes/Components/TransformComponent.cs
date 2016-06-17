@@ -36,21 +36,37 @@ namespace CSharpGL
         static readonly vec3 yAxis = new vec3(0, 1, 0);
         static readonly vec3 zAxis = new vec3(0, 0, 1);
 
+        mat4 selfMatrix = mat4.identity();
+
         /// <summary>
         /// Get model matrix that transform model's position from model space to world space,
+        /// Make sure the scene object list is traversed in pre-order.
         /// </summary>
         /// <returns></returns>
         public mat4 GetModelMatrix()
         {
-            mat4 matrix = mat4.identity();
+            SceneObject obj = this.BindingObject;
+            if (obj != null)
+            {
+                mat4 matrix = mat4.identity();
+                matrix = glm.translate(matrix, this.Position);
+                matrix = glm.scale(matrix, this.Scale);
+                matrix = glm.rotate(matrix, (float)(this.Rotation.x * Math.PI / 180.0), xAxis);
+                matrix = glm.rotate(matrix, (float)(this.Rotation.y * Math.PI / 180.0), yAxis);
+                matrix = glm.rotate(matrix, (float)(this.Rotation.z * Math.PI / 180.0), zAxis);
 
-            matrix = glm.translate(matrix, this.Position);
-            matrix = glm.scale(matrix, this.Scale);
-            matrix = glm.rotate(matrix, (float)(this.Rotation.x * Math.PI / 180.0), xAxis);
-            matrix = glm.rotate(matrix, (float)(this.Rotation.y * Math.PI / 180.0), yAxis);
-            matrix = glm.rotate(matrix, (float)(this.Rotation.z * Math.PI / 180.0), zAxis);
+                SceneObject parent = obj.Parent;
+                if (parent != null)
+                {
+                    this.selfMatrix = parent.Transform.selfMatrix * matrix;
+                }
+                else
+                {
+                    this.selfMatrix = matrix;
+                }
+            }
 
-            return matrix;
+            return this.selfMatrix;
         }
     }
 }
