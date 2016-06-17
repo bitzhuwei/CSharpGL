@@ -13,33 +13,52 @@ namespace CSharpGL
 {
     partial class FormUniformVariableType : Form
     {
-        public FormUniformVariableType()
+       
+        private static Dictionary<Type, List<Type>> dict = new Dictionary<Type, List<Type>>();
+
+        private Type baseType;
+        private bool forceReload;
+
+        /// <summary>
+        /// Select a type from all types that derived from specified base type.
+        /// </summary>
+        /// <param name="forceReload">reload types that derived from specified base type.</param>
+        public FormUniformVariableType(bool forceReload = false)
         {
             InitializeComponent();
+
+            this.baseType = typeof(UniformVariable);
+            this.forceReload = forceReload;
         }
 
-        private void FormGLSwtichType_Load(object sender, EventArgs e)
+        private void FormUniformVariableType_Load(object sender, EventArgs e)
         {
-            if (tyepList == null)
-            { tyepList = InitializeTypeList(); }
+            List<Type> typeList;
 
-            foreach (var item in tyepList)
+            if (this.forceReload)
+            {
+                typeList = this.baseType.GetAllDerivedTypes();
+                if (dict.ContainsKey(this.baseType))
+                { dict[this.baseType] = typeList; }
+                else
+                { dict.Add(this.baseType, typeList); }
+            }
+            else
+            {
+                if (dict.ContainsKey(this.baseType))
+                { typeList = dict[this.baseType]; }
+                else
+                {
+                    typeList = this.baseType.GetAllDerivedTypes();
+                    dict.Add(this.baseType, typeList);
+                }
+            }
+
+            foreach (var item in typeList)
             {
                 this.lstType.Items.Add(item);
             }
         }
-
-        private List<Type> InitializeTypeList()
-        {
-            Type type = typeof(UniformVariable);
-            Assembly asm = Assembly.GetAssembly(type);
-            var result = (from item in asm.ExportedTypes
-                          where type.IsAssignableFrom(item) && (!item.IsAbstract)
-                          select item).ToList();
-            return result;
-        }
-
-        static List<Type> tyepList;
 
         private void btnCancel_Click(object sender, EventArgs e)
         {

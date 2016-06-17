@@ -42,7 +42,7 @@ namespace CSharpGL
 
             if (this.forceReload)
             {
-                typeList = InitializeTypeList();
+                typeList = this.baseType.GetAllDerivedTypes();
                 if (dict.ContainsKey(this.baseType))
                 { dict[this.baseType] = typeList; }
                 else
@@ -54,7 +54,7 @@ namespace CSharpGL
                 { typeList = dict[this.baseType]; }
                 else
                 {
-                    typeList = InitializeTypeList();
+                    typeList = this.baseType.GetAllDerivedTypes();
                     dict.Add(this.baseType, typeList);
                 }
             }
@@ -63,25 +63,6 @@ namespace CSharpGL
             {
                 this.lstType.Items.Add(item);
             }
-        }
-
-        private List<Type> InitializeTypeList()
-        {
-            var result = new List<Type>();
-            Assembly[] assemblies = AssemblyHelper.GetAssemblies(Application.ExecutablePath);
-            foreach (var asm in assemblies)
-            {
-                var list = from item in asm.DefinedTypes
-                           where baseType.IsAssignableFrom(item) && (!item.IsAbstract)
-                           orderby item.FullName
-                           select item;
-                foreach (var item in list)
-                {
-                    result.Add(item);
-                }
-            }
-
-            return result;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

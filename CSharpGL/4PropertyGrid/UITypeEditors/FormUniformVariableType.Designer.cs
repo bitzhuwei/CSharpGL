@@ -113,7 +113,7 @@
             this.Controls.Add(this.btnCancel);
             this.Name = "FormUniformVariableType";
             this.Text = "FormGLSwtichType";
-            this.Load += new System.EventHandler(this.FormGLSwtichType_Load);
+            this.Load += new System.EventHandler(this.FormUniformVariableType_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
