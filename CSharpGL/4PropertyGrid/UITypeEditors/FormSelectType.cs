@@ -61,7 +61,7 @@ namespace CSharpGL
 
             foreach (var item in typeList)
             {
-                this.lstGLSwtichType.Items.Add(item);
+                this.lstType.Items.Add(item);
             }
         }
 
@@ -81,8 +81,6 @@ namespace CSharpGL
                 }
             }
 
-            result.Sort();
-
             return result;
         }
 
@@ -91,15 +89,15 @@ namespace CSharpGL
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        protected virtual void btnOK_Click(object sender, EventArgs e)
         {
-            if (this.lstGLSwtichType.SelectedItem == null)
+            if (this.lstType.SelectedItem == null)
             {
                 MessageBox.Show("Please select a type first!");
                 return;
             }
 
-            this.SelectedType = this.lstGLSwtichType.SelectedItem as Type;
+            this.SelectedType = this.lstType.SelectedItem as Type;
 
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
