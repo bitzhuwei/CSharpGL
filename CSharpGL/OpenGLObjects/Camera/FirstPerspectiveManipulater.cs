@@ -22,10 +22,14 @@ namespace CSharpGL
         private char upcaseBackKey;
         private char upcaseLeftKey;
         private char upcaseRightKey;
+        private char upcaseUpKey;
+        private char upcaseDownKey;
         private char frontKey;
         private char backKey;
         private char leftKey;
         private char rightKey;
+        private char upKey;
+        private char downKey;
 
         public char FrontKey
         {
@@ -67,6 +71,26 @@ namespace CSharpGL
             }
         }
 
+        public char UpKey
+        {
+            get { return upKey; }
+            set
+            {
+                upKey = value.ToString().ToLower()[0];
+                upcaseUpKey = value.ToString().ToUpper()[0];
+            }
+        }
+
+        public char DownKey
+        {
+            get { return downKey; }
+            set
+            {
+                downKey = value.ToString().ToLower()[0];
+                upcaseDownKey = value.ToString().ToUpper()[0];
+            }
+        }
+
         public float StepLength { get; set; }
 
         private KeyPressEventHandler keyPressEvent;
@@ -80,6 +104,8 @@ namespace CSharpGL
             this.BackKey = 's';
             this.LeftKey = 'a';
             this.RightKey = 'd';
+            this.UpKey = 'q';
+            this.DownKey = 'e';
 
             this.StepLength = 0.1f;
 
@@ -181,6 +207,18 @@ namespace CSharpGL
                 vec3 right = this.camera.GetRight().normalize();
                 this.camera.Position += right * this.StepLength;
                 this.camera.Target += right * this.StepLength;
+            }
+            else if (e.KeyChar == upKey || e.KeyChar == upcaseUpKey)
+            {
+                vec3 up = this.camera.UpVector.normalize();
+                this.camera.Position += up * this.StepLength;
+                this.camera.Target += up * this.StepLength;
+            }
+            else if (e.KeyChar == downKey || e.KeyChar == upcaseDownKey)
+            {
+                vec3 down = -this.camera.UpVector.normalize();
+                this.camera.Position += down * this.StepLength;
+                this.camera.Target += down * this.StepLength;
             }
         }
 
