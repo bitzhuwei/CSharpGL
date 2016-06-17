@@ -19,6 +19,11 @@ namespace CSharpGL.SceneEditor
             (new FormProperyGrid(this)).Show();
         }
 
+        private void sceneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new FormProperyGrid(this.scene)).Show();
+        }
+
         private void gLCanvasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             (new FormProperyGrid(this.glCanvas1)).Show();

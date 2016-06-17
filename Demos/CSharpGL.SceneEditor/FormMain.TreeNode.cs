@@ -20,7 +20,7 @@ namespace CSharpGL.SceneEditor
             SceneObject obj = SceneObjectFactory.GetBuildInSceneObject(type);
             var node = new TreeNode(obj.ToString());
             node.Tag = obj;
-            this.Scene.ObjectList.Add(obj);
+            this.scene.ObjectList.Add(obj);
             this.treeView1.Nodes.Add(node);
         }
 
@@ -61,7 +61,7 @@ namespace CSharpGL.SceneEditor
                     { /* nothing to do */ }
                 }
                 {
-                    this.Scene.ObjectList.Remove(node.Tag as SceneObject);
+                    this.scene.ObjectList.Remove(node.Tag as SceneObject);
                     TreeNode parent = node.Parent;
                     if (parent != null)
                     { parent.Nodes.Remove(node); }

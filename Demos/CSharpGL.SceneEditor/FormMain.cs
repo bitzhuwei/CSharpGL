@@ -12,10 +12,8 @@ namespace CSharpGL.SceneEditor
 {
     public partial class FormMain : Form
     {
-        const string strOpenGL = "OpenGL";
 
-        [Category(strOpenGL)]
-        public Scene Scene { get; set; }
+        public Scene scene;
 
         public FormMain()
         {

@@ -74,9 +74,10 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.glCanvas1 = new CSharpGL.GLCanvas();
             this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.glCanvas1 = new CSharpGL.GLCanvas();
+            this.sceneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -272,6 +273,7 @@
             this.自定义CToolStripMenuItem,
             this.选项OToolStripMenuItem,
             this.thisFormToolStripMenuItem,
+            this.sceneToolStripMenuItem,
             this.gLCanvasToolStripMenuItem,
             this.cameraManipulaterToolStripMenuItem,
             this.saveImageToolStripMenuItem,
@@ -470,17 +472,6 @@
             this.propertyGrid1.Size = new System.Drawing.Size(306, 411);
             this.propertyGrid1.TabIndex = 0;
             // 
-            // glCanvas1
-            // 
-            this.glCanvas1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.glCanvas1.Location = new System.Drawing.Point(0, 0);
-            this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.glCanvas1.Name = "glCanvas1";
-            this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
-            this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(965, 732);
-            this.glCanvas1.TabIndex = 0;
-            // 
             // dlgSaveFile
             // 
             this.dlgSaveFile.DefaultExt = "png";
@@ -492,6 +483,24 @@
             // 
             this.timer1.Interval = 40;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // glCanvas1
+            // 
+            this.glCanvas1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.glCanvas1.Location = new System.Drawing.Point(0, 0);
+            this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.glCanvas1.Name = "glCanvas1";
+            this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
+            this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
+            this.glCanvas1.Size = new System.Drawing.Size(965, 732);
+            this.glCanvas1.TabIndex = 0;
+            // 
+            // sceneToolStripMenuItem
+            // 
+            this.sceneToolStripMenuItem.Name = "sceneToolStripMenuItem";
+            this.sceneToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
+            this.sceneToolStripMenuItem.Text = "Scene";
+            this.sceneToolStripMenuItem.Click += new System.EventHandler(this.sceneToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -570,5 +579,6 @@
         private System.Windows.Forms.ToolStripMenuItem addScriptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startStopTimerToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripMenuItem sceneToolStripMenuItem;
     }
 }

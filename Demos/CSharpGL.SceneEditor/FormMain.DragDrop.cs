@@ -49,7 +49,7 @@ namespace CSharpGL.SceneEditor
                         if (dragedObj.Parent != null)
                         { dragedObj.Parent.Children.Remove(dragedObj); }
                         else
-                        { this.Scene.ObjectList.Remove(dragedObj); }
+                        { this.scene.ObjectList.Remove(dragedObj); }
                         //treeNodeObj.Parent = null;
                         // 往目标节点中加入被拖动节点的一份克隆
                         targetNode.Nodes.Add(dragedNode);
@@ -64,9 +64,9 @@ namespace CSharpGL.SceneEditor
                         if (dragedObj.Parent != null)
                         { dragedObj.Parent.Children.Remove(dragedObj); }
                         else
-                        { this.Scene.ObjectList.Remove(dragedObj); }
+                        { this.scene.ObjectList.Remove(dragedObj); }
                         treeView.Nodes.Add(dragedNode);
-                        this.Scene.ObjectList.Add(dragedObj);
+                        this.scene.ObjectList.Add(dragedObj);
                         // 将被拖动的节点移除
                         treeView.ExpandAll();
                     }
