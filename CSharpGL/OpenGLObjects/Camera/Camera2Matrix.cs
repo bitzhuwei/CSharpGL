@@ -64,36 +64,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Extension method for <see cref="ICamera"/> to get view matrix.
-        /// </summary>
-        /// <param name="camera"></param>
-        /// <returns></returns>
-        public static mat4 GetViewMat4(this ICamera camera)
-        {
-            return (GetViewMat4((IViewCamera)camera));
-        }
-
-        /// <summary>
-        /// Extension method for <see cref="IPerspectiveViewCamera"/> to get view matrix.
-        /// </summary>
-        /// <param name="camera"></param>
-        /// <returns></returns>
-        public static mat4 GetViewMat4(this IPerspectiveViewCamera camera)
-        {
-            return (GetViewMat4((IViewCamera)camera));
-        }
-
-        /// <summary>
-        /// Extension method for <see cref="IOrthoViewCamera"/> to get view matrix.
-        /// </summary>
-        /// <param name="camera"></param>
-        /// <returns></returns>
-        public static mat4 GetViewMat4(this IOrthoViewCamera camera)
-        {
-            return (GetViewMat4((IViewCamera)camera));
-        }
-
-        /// <summary>
         /// Extension method for <see cref="IViewCamera"/> to get view matrix.
         /// </summary>
         /// <param name="camera"></param>
