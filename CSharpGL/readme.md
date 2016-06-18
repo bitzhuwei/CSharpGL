@@ -15,6 +15,10 @@
 * Write GLSL shade in C#.  
 
 # release notes:
+## v1.0.4.6:
+1. FormSelectType loads specified types from all loaded assemblies and cache them.
+2. TransformCompoent and ScriptComponent works simiar to those in Unity.
+
 ## v1.0.4.5:
 1. Scene object and components learnt from Unity.
 2. UITypeEditor for Camera, Scene types.
