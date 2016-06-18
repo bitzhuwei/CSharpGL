@@ -29,6 +29,7 @@ namespace CSharpGL
         {
             list.Insert(index, item);
             item.Parent = this.Parent;
+            item.RefreshRelativeTransform();
         }
 
         public void RemoveAt(int index)
@@ -36,6 +37,7 @@ namespace CSharpGL
             SceneObject obj = list[index];
             list.RemoveAt(index);
             obj.Parent = null;
+            obj.RefreshRelativeTransform();
         }
 
         public SceneObject this[int index]
@@ -54,6 +56,7 @@ namespace CSharpGL
         {
             item.Parent = this.Parent;
             list.Add(item);
+            item.RefreshRelativeTransform();
         }
 
         public void AddRange(IEnumerable<SceneObject> items)
@@ -63,6 +66,10 @@ namespace CSharpGL
                 item.Parent = this.Parent;
             }
             list.AddRange(items);
+            foreach (var item in items)
+            {
+                item.RefreshRelativeTransform();
+            }
         }
 
         public void Clear()
@@ -73,6 +80,10 @@ namespace CSharpGL
             }
 
             list.Clear();
+            foreach (var item in this.list)
+            {
+                item.RefreshRelativeTransform();
+            }
         }
 
         public bool Contains(SceneObject item)
@@ -99,6 +110,7 @@ namespace CSharpGL
         {
             bool result = list.Remove(item);
             item.Parent = null;
+            item.RefreshRelativeTransform();
             return result;
         }
 

@@ -107,21 +107,11 @@ namespace CSharpGL
             }
         }
 
-        ///// <summary>
-        ///// Transform relative to its parent.
-        ///// </summary>
-        //public TransformComponent Transform
-        //{
-        //    get { return this.relativeTransform; }
-        //    set
-        //    {
-        //        this.relativeTransform = value;
-        //        SceneObject parent = this.Parent;
-        //        if (parent == null)
-        //        { this.transform = value; }
-        //        else
-        //        { this.transform = parent.transform* value; }
-        //    }
-        //}
+        public void RefreshRelativeTransform()
+        {
+            this.Position = this.position;
+            this.Scale = this.scale;
+            this.Rotation = this.rotation;
+        }
     }
 }

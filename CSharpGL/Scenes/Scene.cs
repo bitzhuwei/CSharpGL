@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
@@ -25,7 +26,7 @@ namespace CSharpGL
         /// <summary>
         /// objects to be rendered.
         /// </summary>
-        public SceneObjectList ObjectList { get; private set; }
+        public IList<SceneObject> ObjectList { get; private set; }
 
         /// <summary>
         /// Manages a scene to be rendered and updated.
@@ -38,8 +39,9 @@ namespace CSharpGL
             { throw new ArgumentNullException(); }
 
             this.Camera = camera;
-            this.ObjectList = new SceneObjectList();
-            this.ObjectList.AddRange(objects);
+            var list = new SceneObjectList();
+            list.AddRange(objects);
+            this.ObjectList = list;
         }
 
         public void Resize(object sender, EventArgs e)

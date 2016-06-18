@@ -106,9 +106,10 @@ namespace CSharpGL
                 script.Update(elapsedTime);
                 foreach (var item in this.Children)
                 {
-                    item.Position = item.position;
-                    item.Scale = item.scale;
-                    item.Rotation = item.rotation;
+                    if (item.Script == null)
+                    {
+                        item.RefreshRelativeTransform();
+                    }
                 }
             }
         }
