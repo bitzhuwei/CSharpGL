@@ -15,11 +15,14 @@ namespace CSharpGL.SceneEditor
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            foreach (var item in this.scene.ObjectList)
+            foreach (var sceneObject in this.scene.ObjectList)
             {
-                if (item.Script != null)
+                foreach (var obj in sceneObject)
                 {
-                    item.Script.Update(this.timer1.Interval);
+                    if (obj.Script != null)
+                    {
+                        obj.Script.Update(this.timer1.Interval);
+                    }
                 }
             }
         }

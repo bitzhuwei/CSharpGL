@@ -13,7 +13,7 @@ namespace System
         /// </summary>
         /// <param name="chunk"></param>
         /// <returns></returns>
-        public static string DumpToText(this ITreeNode chunk)
+        public static string DumpToText<T>(this ITreeNode<T> chunk) where T : ITreeNode<T>
         {
             StringBuilder builder = new StringBuilder();
             int tabSpace = 0;
@@ -21,7 +21,8 @@ namespace System
             return builder.ToString();
         }
 
-        private static void GetBuilder(StringBuilder builder, ITreeNode tree, ref int tabSpace)
+        private static void GetBuilder<T>(StringBuilder builder, ITreeNode<T> tree, ref int tabSpace)
+            where T : ITreeNode<T>
         {
             builder.AppendLine(GetPreMarks(tree) + tree.ToString());
             tabSpace++;
@@ -32,7 +33,7 @@ namespace System
             tabSpace--;
         }
 
-        private static string GetPreMarks(ITreeNode tree)
+        private static string GetPreMarks<T>(ITreeNode<T> tree) where T : ITreeNode<T>
         {
             var parent = tree.Parent;
             if (parent == null) return string.Empty;
@@ -55,10 +56,11 @@ namespace System
                     builder.Append("    ");
             }
             parent = tree.Parent;
-            if (parent.Children.IndexOf(tree) < parent.Children.Count - 1)
-                builder.Append("├─");
+            if (parent.Children.IndexOf(tree.Self) < parent.Children.Count - 1)
+            { builder.Append("├─"); }
             else
-                builder.Append("└─");
+            { builder.Append("└─"); }
+
             return builder.ToString();
         }
 

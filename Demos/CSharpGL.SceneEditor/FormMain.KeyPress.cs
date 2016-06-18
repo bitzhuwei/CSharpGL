@@ -15,7 +15,7 @@ namespace CSharpGL.SceneEditor
 
         void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 't')
+            if (e.KeyChar == 't' || e.KeyChar == 'T')
             {
                 this.timer1.Enabled = !this.timer1.Enabled;
             }

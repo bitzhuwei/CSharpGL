@@ -55,6 +55,7 @@
             this.自定义CToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.选项OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thisFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sceneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gLCanvasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cameraManipulaterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,7 +78,7 @@
             this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.glCanvas1 = new CSharpGL.GLCanvas();
-            this.sceneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sceneObjectsMonitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -277,7 +278,8 @@
             this.gLCanvasToolStripMenuItem,
             this.cameraManipulaterToolStripMenuItem,
             this.saveImageToolStripMenuItem,
-            this.startStopTimerToolStripMenuItem});
+            this.startStopTimerToolStripMenuItem,
+            this.sceneObjectsMonitorToolStripMenuItem});
             this.工具TToolStripMenuItem.Name = "工具TToolStripMenuItem";
             this.工具TToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.工具TToolStripMenuItem.Text = "工具(&T)";
@@ -286,49 +288,56 @@
             // 
             this.自定义CToolStripMenuItem.Enabled = false;
             this.自定义CToolStripMenuItem.Name = "自定义CToolStripMenuItem";
-            this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
+            this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.自定义CToolStripMenuItem.Text = "自定义(&C)";
             // 
             // 选项OToolStripMenuItem
             // 
             this.选项OToolStripMenuItem.Enabled = false;
             this.选项OToolStripMenuItem.Name = "选项OToolStripMenuItem";
-            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
+            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.选项OToolStripMenuItem.Text = "选项(&O)";
             // 
             // thisFormToolStripMenuItem
             // 
             this.thisFormToolStripMenuItem.Name = "thisFormToolStripMenuItem";
-            this.thisFormToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
+            this.thisFormToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.thisFormToolStripMenuItem.Text = "This Form";
             this.thisFormToolStripMenuItem.Click += new System.EventHandler(this.thisFormToolStripMenuItem_Click);
+            // 
+            // sceneToolStripMenuItem
+            // 
+            this.sceneToolStripMenuItem.Name = "sceneToolStripMenuItem";
+            this.sceneToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
+            this.sceneToolStripMenuItem.Text = "Scene";
+            this.sceneToolStripMenuItem.Click += new System.EventHandler(this.sceneToolStripMenuItem_Click);
             // 
             // gLCanvasToolStripMenuItem
             // 
             this.gLCanvasToolStripMenuItem.Name = "gLCanvasToolStripMenuItem";
-            this.gLCanvasToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
+            this.gLCanvasToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.gLCanvasToolStripMenuItem.Text = "GLCanvas";
             this.gLCanvasToolStripMenuItem.Click += new System.EventHandler(this.gLCanvasToolStripMenuItem_Click);
             // 
             // cameraManipulaterToolStripMenuItem
             // 
             this.cameraManipulaterToolStripMenuItem.Name = "cameraManipulaterToolStripMenuItem";
-            this.cameraManipulaterToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
+            this.cameraManipulaterToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.cameraManipulaterToolStripMenuItem.Text = "Camera Manipulater";
             this.cameraManipulaterToolStripMenuItem.Click += new System.EventHandler(this.cameraManipulaterToolStripMenuItem_Click);
             // 
             // saveImageToolStripMenuItem
             // 
             this.saveImageToolStripMenuItem.Name = "saveImageToolStripMenuItem";
-            this.saveImageToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
+            this.saveImageToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.saveImageToolStripMenuItem.Text = "Save Image";
             this.saveImageToolStripMenuItem.Click += new System.EventHandler(this.saveImageToolStripMenuItem_Click);
             // 
             // startStopTimerToolStripMenuItem
             // 
             this.startStopTimerToolStripMenuItem.Name = "startStopTimerToolStripMenuItem";
-            this.startStopTimerToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
-            this.startStopTimerToolStripMenuItem.Text = "Start/Stop Timer";
+            this.startStopTimerToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
+            this.startStopTimerToolStripMenuItem.Text = "Start/Stop Timer(&T)";
             this.startStopTimerToolStripMenuItem.Click += new System.EventHandler(this.startStopTimerToolStripMenuItem_Click);
             // 
             // 帮助HToolStripMenuItem
@@ -495,12 +504,12 @@
             this.glCanvas1.Size = new System.Drawing.Size(965, 732);
             this.glCanvas1.TabIndex = 0;
             // 
-            // sceneToolStripMenuItem
+            // sceneObjectsMonitorToolStripMenuItem
             // 
-            this.sceneToolStripMenuItem.Name = "sceneToolStripMenuItem";
-            this.sceneToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
-            this.sceneToolStripMenuItem.Text = "Scene";
-            this.sceneToolStripMenuItem.Click += new System.EventHandler(this.sceneToolStripMenuItem_Click);
+            this.sceneObjectsMonitorToolStripMenuItem.Name = "sceneObjectsMonitorToolStripMenuItem";
+            this.sceneObjectsMonitorToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
+            this.sceneObjectsMonitorToolStripMenuItem.Text = "Scene Objects Monitor";
+            this.sceneObjectsMonitorToolStripMenuItem.Click += new System.EventHandler(this.sceneObjectsMonitorToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -580,5 +589,6 @@
         private System.Windows.Forms.ToolStripMenuItem startStopTimerToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem sceneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sceneObjectsMonitorToolStripMenuItem;
     }
 }

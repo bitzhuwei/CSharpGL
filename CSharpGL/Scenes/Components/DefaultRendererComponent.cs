@@ -88,7 +88,7 @@ namespace CSharpGL
                     bufferable = new Sphere();
                     break;
                 case BuildInSceneObject.Ground:
-                    bufferable = new Ground(10, 5, 5);
+                    bufferable = new Ground(10, 20, 20);
                     break;
                 case BuildInSceneObject.Axis:
                     bufferable = new Axis();

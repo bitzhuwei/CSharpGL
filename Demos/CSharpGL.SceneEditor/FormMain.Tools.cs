@@ -49,5 +49,10 @@ namespace CSharpGL.SceneEditor
             this.timer1.Enabled = !this.timer1.Enabled;
         }
 
+        private void sceneObjectsMonitorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new FormSceneObjectListMonitor(this.scene)).Show();
+        }
+
     }
 }
