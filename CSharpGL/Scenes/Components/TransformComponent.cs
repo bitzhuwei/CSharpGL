@@ -55,15 +55,15 @@ namespace CSharpGL
                 matrix = glm.rotate(matrix, (float)(this.Rotation.y * Math.PI / 180.0), yAxis);
                 matrix = glm.rotate(matrix, (float)(this.Rotation.z * Math.PI / 180.0), zAxis);
 
-                SceneObject parent = obj.Parent;
-                if (parent != null)
-                {
-                    this.selfMatrix = parent.Transform.selfMatrix * matrix;
-                }
-                else
-                {
+                //SceneObject parent = obj.Parent;
+                //if (parent != null)
+                //{
+                //    this.selfMatrix = parent.Transform.selfMatrix * matrix;
+                //}
+                //else
+                //{
                     this.selfMatrix = matrix;
-                }
+                //}
             }
 
             return this.selfMatrix;

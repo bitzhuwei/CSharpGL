@@ -36,8 +36,8 @@ namespace CSharpGL.SceneEditor.Scripts
             this.transform.Position = new vec3(
                 (float)(this.RevolutionRadius * Math.Cos(newAngle)),
                 0,
-                (float)(this.RevolutionRadius * Math.Sin(newAngle)));
-                //+ this.planetTransform.Position;
+                (float)(this.RevolutionRadius * Math.Sin(newAngle)))
+                + this.planetTransform.Position;
             this.currentAngle = newAngle;
         }
 
