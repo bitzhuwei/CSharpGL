@@ -9,11 +9,14 @@ namespace CSharpGL
     /// an object to be rendered in a scene.
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public partial class SceneObject : 
+    public partial class SceneObject :
         IRenderable, // take part in rendering an object.
         ITreeNode<SceneObject>, // contains children objects and is contained by parent.
         IEnumerable<SceneObject> // enumerates self and all children objects recursively.
     {
+        private TransformComponent transform = new TransformComponent();
+        private RendererComponent renderer;
+        private ScriptComponent script;
         /// <summary>
         /// name.
         /// </summary>
@@ -22,9 +25,8 @@ namespace CSharpGL
         /// <summary>
         /// translate, rotate and scale this object and its children.
         /// </summary>
-        public TransformComponent Transform { get; private set; }
+        public TransformComponent GetTransform() { return this.transform; }
 
-        private RendererComponent renderer;
         /// <summary>
         /// render this object.
         /// </summary>
@@ -45,7 +47,6 @@ namespace CSharpGL
             }
         }
 
-        private ScriptComponent script;
         /// <summary>
         /// update state of this object.
         /// </summary>
@@ -72,7 +73,6 @@ namespace CSharpGL
         public SceneObject()
         {
             this.Name = this.GetType().Name;
-            this.Transform = new TransformComponent(this);
             this.Children = new SceneObjectList(this);
         }
 

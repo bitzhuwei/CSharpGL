@@ -25,8 +25,8 @@ namespace CSharpGL.SceneEditor.Scripts
 
         protected override void DoInitialize()
         {
-            this.transform = this.BindingObject.Transform;
-            this.planetTransform = this.BindingObject.Parent.Transform;
+            this.transform = this.BindingObject.GetTransform();
+            this.planetTransform = this.BindingObject.Parent.GetTransform();
         }
 
         protected override void DoUpdate(double elapsedTime)

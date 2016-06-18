@@ -38,19 +38,20 @@ namespace CSharpGL
         protected bool TryGetMatrix(RenderEventArgs arg,
             out mat4 projection, out mat4 view, out mat4 model)
         {
+            projection = arg.Camera.GetProjectionMat4();
+            view = arg.Camera.GetViewMat4();
+
             SceneObject bindingObject = this.BindingObject;
             if (bindingObject != null)
             {
-                projection = arg.Camera.GetProjectionMat4();
-                view = arg.Camera.GetViewMat4();
-
-                model = bindingObject.Transform.GetModelMatrix();
+                model = bindingObject.GetTransform().GetModelMatrix();
 
                 return true;
             }
             else
             {
-                projection = new mat4(); view = new mat4(); model = new mat4();
+                model = new mat4();
+
                 return false;
             }
         }
