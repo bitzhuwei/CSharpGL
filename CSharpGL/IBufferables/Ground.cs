@@ -20,7 +20,7 @@ namespace CSharpGL
         /// <param name="squreCountPerUnit">每个world space里的1个距离单位有几个方块？</param>
         /// <param name="xUnit">在x轴正方向画多少个距离单位？</param>
         /// <param name="zUnit">在z轴正方向画多少个距离单位？</param>
-        public Ground(int squreCountPerUnit, int xUnit, int zUnit)
+        public Ground(int squreCountPerUnit = 10, int xUnit = 10, int zUnit = 10)
         {
             this.positions = GeneratePositions(squreCountPerUnit, xUnit, zUnit);
             this.colors = GenerateColors(squreCountPerUnit, xUnit, zUnit);
@@ -41,10 +41,10 @@ namespace CSharpGL
                     colors[index++] = new vec3(1, 0, 0);
                     colors[index++] = new vec3(1, 1, 1);
                 }
-                else if (i % (xUnit * 2) == 0)
+                else if (i % squreCountPerUnit == 0)
                 {
                     colors[index++] = new vec3(1, 1, 0);
-                    colors[index++] = new vec3(1, 1, 1);
+                    colors[index++] = new vec3(1, 1, 0);
                 }
                 else
                 {
@@ -59,10 +59,10 @@ namespace CSharpGL
                     colors[index++] = new vec3(0, 0, 1);
                     colors[index++] = new vec3(1, 1, 1);
                 }
-                else if (i % (zUnit * 2) == 0)
+                else if (i % squreCountPerUnit == 0)
                 {
                     colors[index++] = new vec3(0, 1, 1);
-                    colors[index++] = new vec3(1, 1, 1);
+                    colors[index++] = new vec3(0, 1, 1);
                 }
                 else
                 {
