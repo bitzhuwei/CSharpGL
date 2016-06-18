@@ -14,6 +14,9 @@ namespace CSharpGL
         ITreeNode<SceneObject>, // contains children objects and is contained by parent.
         IEnumerable<SceneObject> // enumerates self and all children objects recursively.
     {
+        /// <summary>
+        /// translate, rotate and scale this object in world space.
+        /// </summary>
         private TransformComponent transform = new TransformComponent();
         private RendererComponent renderer;
         private ScriptComponent script;
@@ -23,7 +26,7 @@ namespace CSharpGL
         public string Name { get; set; }
 
         /// <summary>
-        /// translate, rotate and scale this object and its children.
+        /// translate, rotate and scale this object in world space.
         /// </summary>
         public TransformComponent GetTransform() { return this.transform; }
 
@@ -72,7 +75,7 @@ namespace CSharpGL
         /// </summary>
         public SceneObject()
         {
-            this.Name = this.GetType().Name;
+            this.Name = typeof(SceneObject).Name;
             this.Children = new SceneObjectList(this);
         }
 
