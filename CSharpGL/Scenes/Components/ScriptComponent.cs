@@ -18,7 +18,7 @@ namespace CSharpGL
 
         protected abstract void DoUpdate(double elapsedTime);
 
-        public void Initialize()
+        internal void Initialize()
         {
             if (!this.initialized)
             {
@@ -27,7 +27,7 @@ namespace CSharpGL
             }
         }
 
-        public void Update(double elapsedTime)
+        internal void Update(double elapsedTime)
         {
             if (!this.initialized)
             { this.Initialize(); }

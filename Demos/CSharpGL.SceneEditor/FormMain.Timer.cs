@@ -21,7 +21,7 @@ namespace CSharpGL.SceneEditor
                 {
                     if (obj.Script != null)
                     {
-                        obj.Script.Update(this.timer1.Interval);
+                        obj.Update(this.timer1.Interval);
                     }
                 }
             }

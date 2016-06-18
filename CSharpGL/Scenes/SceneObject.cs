@@ -20,9 +20,14 @@ namespace CSharpGL
         private TransformComponent transform;
         private RendererComponent renderer;
         private ScriptComponent script;
+
+        private const string strBasic = "Basic";
+
         /// <summary>
         /// name.
         /// </summary>
+        [Category(strBasic)]
+        [Description("Name.")]
         public string Name { get; set; }
 
         /// <summary>
@@ -33,6 +38,8 @@ namespace CSharpGL
         /// <summary>
         /// render this object.
         /// </summary>
+        [Category(strBasic)]
+        [Description("render this object.")]
         public RendererComponent Renderer
         {
             get { return this.renderer; }
@@ -53,6 +60,8 @@ namespace CSharpGL
         /// <summary>
         /// update state of this object.
         /// </summary>
+        [Category(strBasic)]
+        [Description("update state of this object.")]
         public ScriptComponent Script
         {
             get { return this.script; }
@@ -83,6 +92,25 @@ namespace CSharpGL
         public override string ToString()
         {
             return string.Format("{0}", this.Name);
+        }
+
+        /// <summary>
+        /// Update scene object's state.
+        /// </summary>
+        /// <param name="elapsedTime">elapsed time (in milliseconds)</param>
+        public void Update(double elapsedTime)
+        {
+            ScriptComponent script = this.script;
+            if (script != null)
+            {
+                script.Update(elapsedTime);
+                foreach (var item in this.Children)
+                {
+                    item.Position = item.position;
+                    item.Scale = item.scale;
+                    item.Rotation = item.rotation;
+                }
+            }
         }
     }
 }

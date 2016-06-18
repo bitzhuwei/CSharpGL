@@ -171,6 +171,7 @@
     <Compile Include="Scenes\Components\Component.cs" />
     <Compile Include="Scenes\Components\DefaultRendererComponent.cs" />
     <Compile Include="Scenes\Scene.cs" />
+    <Compile Include="Scenes\SceneObject.RelativeTransform.cs" />
     <Compile Include="Scenes\SceneObject.cs" />
     <Compile Include="Scenes\SceneObject.IEnumerable.cs" />
     <Compile Include="Scenes\SceneObject.IRenderable.cs" />
