@@ -17,7 +17,7 @@ namespace CSharpGL
         /// <summary>
         /// translate, rotate and scale this object in world space.
         /// </summary>
-        private TransformComponent transform = new TransformComponent();
+        private TransformComponent transform;
         private RendererComponent renderer;
         private ScriptComponent script;
         /// <summary>
@@ -76,6 +76,7 @@ namespace CSharpGL
         public SceneObject()
         {
             this.Name = typeof(SceneObject).Name;
+            this.transform = new TransformComponent(this);
             this.Children = new SceneObjectList(this);
         }
 
