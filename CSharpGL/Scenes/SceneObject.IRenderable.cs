@@ -8,10 +8,13 @@ namespace CSharpGL
 
         public void Render(RenderEventArgs arg)
         {
-            RendererComponent renderer = this.Renderer;
-            if (renderer != null)
+            if (this.Enabled)
             {
-                renderer.Render(arg);
+                RendererComponent renderer = this.Renderer;
+                if (renderer != null)
+                {
+                    renderer.Render(arg);
+                }
             }
         }
 

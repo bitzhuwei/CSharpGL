@@ -80,11 +80,18 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Enabled or not.
+        /// </summary>
+        [Category(strBasic)]
+        [Description("Enabled or Not.")]
+        public bool Enabled { get; set; }
+        /// <summary>
         /// an object to be rendered in a scene.
         /// </summary>
         public SceneObject()
         {
             this.Name = typeof(SceneObject).Name;
+            this.Enabled = true;
             this.transform = new TransformComponent(this);
             this.Children = new SceneObjectList(this);
         }
@@ -100,15 +107,18 @@ namespace CSharpGL
         /// <param name="elapsedTime">elapsed time (in milliseconds)</param>
         public void Update(double elapsedTime)
         {
-            ScriptComponent script = this.script;
-            if (script != null)
+            if (this.Enabled)
             {
-                script.Update(elapsedTime);
-                foreach (var item in this.Children)
+                ScriptComponent script = this.script;
+                if (script != null)
                 {
-                    if (item.Script == null)
+                    script.Update(elapsedTime);
+                    foreach (var item in this.Children)
                     {
-                        item.RefreshRelativeTransform();
+                        //if (item.Script == null)
+                        {
+                            item.RefreshRelativeTransform();
+                        }
                     }
                 }
             }
