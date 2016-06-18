@@ -79,6 +79,7 @@
             this.glCanvas1 = new CSharpGL.GLCanvas();
             this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.deleteScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -456,27 +457,28 @@
             this.treeNodeContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addSceneObjectToolStripMenuItem,
             this.deleteToolStripMenuItem,
-            this.addScriptToolStripMenuItem});
+            this.addScriptToolStripMenuItem,
+            this.deleteScriptToolStripMenuItem});
             this.treeNodeContextMenu.Name = "treeNodeContextMenu";
-            this.treeNodeContextMenu.Size = new System.Drawing.Size(163, 82);
+            this.treeNodeContextMenu.Size = new System.Drawing.Size(182, 136);
             // 
             // addSceneObjectToolStripMenuItem
             // 
             this.addSceneObjectToolStripMenuItem.Name = "addSceneObjectToolStripMenuItem";
-            this.addSceneObjectToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.addSceneObjectToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.addSceneObjectToolStripMenuItem.Text = "3D Object";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // addScriptToolStripMenuItem
             // 
             this.addScriptToolStripMenuItem.Name = "addScriptToolStripMenuItem";
-            this.addScriptToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.addScriptToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.addScriptToolStripMenuItem.Text = "Add Script";
             this.addScriptToolStripMenuItem.Click += new System.EventHandler(this.addScriptToolStripMenuItem_Click);
             // 
@@ -510,6 +512,13 @@
             // 
             this.timer1.Interval = 40;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // deleteScriptToolStripMenuItem
+            // 
+            this.deleteScriptToolStripMenuItem.Name = "deleteScriptToolStripMenuItem";
+            this.deleteScriptToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.deleteScriptToolStripMenuItem.Text = "Delete Script";
+            this.deleteScriptToolStripMenuItem.Click += new System.EventHandler(this.deleteScriptToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -590,5 +599,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem sceneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sceneObjectsMonitorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteScriptToolStripMenuItem;
     }
 }

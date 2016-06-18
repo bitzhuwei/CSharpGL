@@ -86,5 +86,15 @@ namespace CSharpGL.SceneEditor
             }
         }
 
+        private void deleteScriptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TreeNode node = this.treeView1.SelectedNode;
+            if (node != null)
+            {
+                var obj = node.Tag as SceneObject;
+                obj.Script = null;
+            }
+        }
+
     }
 }
