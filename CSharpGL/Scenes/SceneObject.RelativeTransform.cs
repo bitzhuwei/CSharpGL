@@ -16,12 +16,12 @@ namespace CSharpGL
         private vec3 scale = new vec3(1, 1, 1);
         private vec3 rotation;
 
-        private const string strTransform = "Transform";
+        private const string strRelativeTransform = "Relative Transform";
         /// <summary>
         /// position relative to parent.
         /// </summary>
-        [Category(strTransform)]
-        [Description("position relative to parent.")]
+        [Category(strRelativeTransform)]
+        [Description("Position relative to parent. Only take effect when Script is null.")]
         public vec3 Position
         {
             get { return position; }
@@ -50,8 +50,8 @@ namespace CSharpGL
         /// <summary>
         /// scale relative to parent.
         /// </summary>
-        [Category(strTransform)]
-        [Description("scale relative to parent.")]
+        [Category(strRelativeTransform)]
+        [Description("Scale relative to parent. Only take effect when Script is null.")]
         public vec3 Scale
         {
             get { return scale; }
@@ -80,8 +80,8 @@ namespace CSharpGL
         /// <summary>
         /// rotation relative to parent
         /// </summary>
-        [Category(strTransform)]
-        [Description("rotation relative to parent.")]
+        [Category(strRelativeTransform)]
+        [Description("Rotation relative to parent. Only take effect when Script is null.")]
         public vec3 Rotation
         {
             get { return rotation; }
