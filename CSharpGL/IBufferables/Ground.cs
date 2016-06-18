@@ -36,15 +36,14 @@ namespace CSharpGL
             int index = 0;
             for (int i = 0; i < xUnit * 2 * squreCountPerUnit + 1; i++)
             {
-                if (i == xUnit * 2 * squreCountPerUnit / 2)
+                if (i % squreCountPerUnit == 0)
                 {
-                    colors[index++] = new vec3(1, 0, 0);
-                    colors[index++] = new vec3(1, 1, 1);
-                }
-                else if (i % squreCountPerUnit == 0)
-                {
-                    colors[index++] = new vec3(1, 1, 0);
-                    colors[index++] = new vec3(1, 1, 0);
+                    colors[index++] = new vec3(1,
+                        Math.Abs((float)(i) / (float)(xUnit * 2 * squreCountPerUnit) * 2 - 1.0f),
+                        0);
+                    colors[index++] = new vec3(1,
+                        Math.Abs((float)(i) / (float)(xUnit * 2 * squreCountPerUnit) * 2 - 1.0f),
+                        0);
                 }
                 else
                 {
@@ -54,15 +53,14 @@ namespace CSharpGL
             }
             for (int i = 0; i < zUnit * 2 * squreCountPerUnit + 1; i++)
             {
-                if (i == zUnit * 2 * squreCountPerUnit / 2)
+                if (i % squreCountPerUnit == 0)
                 {
-                    colors[index++] = new vec3(0, 0, 1);
-                    colors[index++] = new vec3(1, 1, 1);
-                }
-                else if (i % squreCountPerUnit == 0)
-                {
-                    colors[index++] = new vec3(0, 1, 1);
-                    colors[index++] = new vec3(0, 1, 1);
+                    colors[index++] = new vec3(0,
+                        Math.Abs((float)(i) / (float)(xUnit * 2 * squreCountPerUnit) * 2 - 1.0f),
+                        1);
+                    colors[index++] = new vec3(0,
+                        Math.Abs((float)(i) / (float)(xUnit * 2 * squreCountPerUnit) * 2 - 1.0f),
+                        1);
                 }
                 else
                 {
