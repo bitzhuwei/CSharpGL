@@ -75,7 +75,7 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.帮助LToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.scene = new CSharpGL.GLCanvas();
+            this.scene = new ScientificCanvas();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mniLoadECLGrid = new System.Windows.Forms.ToolStripMenuItem();
             this.mniLoadSimbaGrid = new System.Windows.Forms.ToolStripMenuItem();
@@ -527,6 +527,7 @@
             this.mniLoadECLGrid.Name = "mniLoadECLGrid";
             this.mniLoadECLGrid.Size = new System.Drawing.Size(223, 26);
             this.mniLoadECLGrid.Text = "Load ECL Grid";
+            this.mniLoadECLGrid.Click += new System.EventHandler(this.mniLoadECLGrid_Click);
             // 
             // mniLoadSimbaGrid
             // 
@@ -658,7 +659,7 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.TreeView objectsTreeView;
         private System.Windows.Forms.PropertyGrid propertyGrid1;
-        private CSharpGL.GLCanvas scene;
+        private ScientificCanvas scene;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mniLoadECLGrid;
         private System.Windows.Forms.ToolStripMenuItem mniLoadSimbaGrid;
