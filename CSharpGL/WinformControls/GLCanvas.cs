@@ -58,7 +58,7 @@ namespace CSharpGL
 
         #endregion
 
-        private void CreateRenderContext()
+        protected virtual void CreateRenderContext()
         {
             // Initialises OpenGL.
             var renderContext = new FBORenderContext();
@@ -96,9 +96,7 @@ namespace CSharpGL
 
             if (this.designMode)
             {
-                GLCanvasHelper.ResizeGL(this.Width, this.Height);
-
-                GLCanvasHelper.DrawPyramid();
+                DesignModeRender();
             }
             else
             {
@@ -115,6 +113,13 @@ namespace CSharpGL
             stopWatch.Stop();
 
             this.FPS = 1000.0 / stopWatch.Elapsed.TotalMilliseconds;
+        }
+
+        protected virtual void DesignModeRender()
+        {
+            GLCanvasHelper.ResizeGL(this.Width, this.Height);
+
+            GLCanvasHelper.DrawPyramid();
         }
 
         protected override void OnPaintBackground(PaintEventArgs e)
