@@ -13,28 +13,10 @@ namespace CSharpGL
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class Scene
     {
-        private vec4 clearColor = new vec4();
         /// <summary>
         /// background color.
         /// </summary>
-        public Color ClearColor
-        {
-            get
-            {
-                return Color.FromArgb(
-                    (int)(clearColor.w * 255),
-                    (int)(clearColor.x * 255),
-                    (int)(clearColor.y * 255),
-                    (int)(clearColor.z * 255));
-            }
-            set
-            {
-                this.clearColor.x = value.R / 255.0f;
-                this.clearColor.y = value.G / 255.0f;
-                this.clearColor.z = value.B / 255.0f;
-                this.clearColor.w = value.A / 255.0f;
-            }
-        }
+        public Color ClearColor { get; set; }
 
         /// <summary>
         /// camera of the scene.
