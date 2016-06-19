@@ -17,6 +17,7 @@ namespace CSharpGL
         internal vec3[] positions;
         internal vec3[] normals;
         internal vec3[] colors;
+        internal vec2[] uv;
         internal uint[] indexes;
 
         static Random random = new Random();
@@ -48,6 +49,7 @@ namespace CSharpGL
             this.positions = new vec3[vertexCount];
             this.normals = new vec3[vertexCount];
             this.colors = new vec3[vertexCount];
+            this.uv = new vec2[vertexCount];
 
             int indexCount = (latitudeParts) * (2 * (longitudeParts + 1) + 1);
             this.indexes = new uint[indexCount];
@@ -94,6 +96,7 @@ namespace CSharpGL
                     if (color.y < 0) { color.y = -(color.y / 2); }
                     if (color.z < 0) { color.z = -(color.z / 2); }
                     this.colors[index] = color;
+                    this.uv[index] = new vec2((float)j / (float)longitudeParts, (float)i / (float)latitudeParts);
 
                     index++;
                 }

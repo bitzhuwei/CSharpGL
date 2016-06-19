@@ -31,15 +31,20 @@ namespace CSharpGL
         }
 
         public const string strPosition = "position";
-        public const string strColor = "color";
         public const string strNormal = "normal";
-        Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
+        public const string strColor = "color";
+        public const string strUV = "uv";
+        private PropertyBufferPtr positionBufferPtr;
+        private PropertyBufferPtr normalBufferPtr;
+        private PropertyBufferPtr colorBufferPtr;
+        private PropertyBufferPtr uvBufferPtr;
+        private IndexBufferPtr indexBufferPtr = null;
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
-                if (!propertyBufferPtrDict.ContainsKey(bufferName))
+                if (positionBufferPtr == null)
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
@@ -52,34 +57,14 @@ namespace CSharpGL
                                 array[i] = model.positions[i];
                             }
                         }
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
                     }
                 }
-                return propertyBufferPtrDict[bufferName];
+                return positionBufferPtr;
             }
-            else if (bufferName == strColor)
+                else if (bufferName == strNormal)
             {
-                if (!propertyBufferPtrDict.ContainsKey(bufferName))
-                {
-                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
-                    {
-                        buffer.Alloc(model.colors.Length);
-                        unsafe
-                        {
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < model.colors.Length; i++)
-                            {
-                                array[i] = model.colors[i];
-                            }
-                        }
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
-                    }
-                }
-                return propertyBufferPtrDict[bufferName];
-            }
-            else if (bufferName == strNormal)
-            {
-                if (!propertyBufferPtrDict.ContainsKey(bufferName))
+                if (normalBufferPtr == null)
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
@@ -92,10 +77,50 @@ namespace CSharpGL
                                 array[i] = model.normals[i];
                             }
                         }
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                        normalBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
                     }
                 }
-                return propertyBufferPtrDict[bufferName];
+                return normalBufferPtr;
+            }
+            else if (bufferName == strColor)
+            {
+                if (colorBufferPtr == null)
+                {
+                    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    {
+                        buffer.Alloc(model.colors.Length);
+                        unsafe
+                        {
+                            var array = (vec3*)buffer.Header.ToPointer();
+                            for (int i = 0; i < model.colors.Length; i++)
+                            {
+                                array[i] = model.colors[i];
+                            }
+                        }
+                        colorBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                    }
+                }
+                return colorBufferPtr;
+            }
+            else if (bufferName == strUV)
+            {
+                if (uvBufferPtr == null)
+                {
+                    using (var buffer = new PropertyBuffer<vec2>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    {
+                        buffer.Alloc(model.uv.Length);
+                        unsafe
+                        {
+                            var array = (vec2*)buffer.Header.ToPointer();
+                            for (int i = 0; i < model.uv.Length; i++)
+                            {
+                                array[i] = model.uv[i];
+                            }
+                        }
+                        uvBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                    }
+                }
+                return uvBufferPtr;
             }
             else
             {
@@ -169,7 +194,6 @@ namespace CSharpGL
 
             return indexBufferPtr;
         }
-        IndexBufferPtr indexBufferPtr = null;
     }
 
 }
