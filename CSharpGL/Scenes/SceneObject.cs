@@ -115,10 +115,7 @@ namespace CSharpGL
                     script.Update(elapsedTime);
                     foreach (var item in this.Children)
                     {
-                        //if (item.Script == null)
-                        {
-                            item.RefreshRelativeTransform();
-                        }
+                        item.RefreshRelativeTransform();
                     }
                 }
             }
