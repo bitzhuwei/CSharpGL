@@ -13,12 +13,17 @@ namespace CSharpGL
     /// <summary>
     /// 用鼠标旋转模型。
     /// </summary>
-    public abstract class CameraManipulater
+    public class SatelliteManipulater : CameraManipulater
     {
 
-        public abstract void Bind(ICamera camera, Control canvas);
+        public override void Bind(ICamera camera, Control canvas)
+        {
+            throw new NotImplementedException();
+        }
 
-        public abstract void Unbind();
-
+        public override void Unbind()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
