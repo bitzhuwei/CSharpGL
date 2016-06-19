@@ -158,7 +158,7 @@ namespace CSharpGL
                 this._endPosition = GetArcBallPosition(x, y);
                 Debug.WriteLine(string.Format(
                     "    End position: {0}", this._endPosition), listenerName);
-                var cosAngle = _startPosition.dot(_endPosition) / (_startPosition.Magnitude() * _endPosition.Magnitude());
+                var cosAngle = _startPosition.dot(_endPosition) / (_startPosition.length() * _endPosition.length());
                 if (cosAngle > 1) { cosAngle = 1; }
                 else if (cosAngle < -1) { cosAngle = -1; }
                 Debug.Write(string.Format("    cos angle: {0}", cosAngle), listenerName);

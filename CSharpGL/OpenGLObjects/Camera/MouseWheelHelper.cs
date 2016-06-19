@@ -21,7 +21,7 @@ namespace CSharpGL
             //if (camera.CameraType == CameraTypes.Perspecitive)
             {
                 var target2Position = camera.Position - camera.Target;
-                if (target2Position.Magnitude() < 0.01)
+                if (target2Position.length() < 0.01)
                 {
                     target2Position = target2Position.normalize();
                     target2Position.x *= 0.01f;
@@ -30,7 +30,7 @@ namespace CSharpGL
                 }
                 var scaledTarget2Position = target2Position * (1 - delta * 0.001f);
                 camera.Position = camera.Target + scaledTarget2Position;
-                double lengthDiff = scaledTarget2Position.Magnitude() - target2Position.Magnitude();
+                double lengthDiff = scaledTarget2Position.length() - target2Position.length();
                 // Increase ortho camera's Near/Far property in case the camera's position changes too much.
                 IPerspectiveCamera perspectiveCamera = camera;
                 perspectiveCamera.Far += lengthDiff;

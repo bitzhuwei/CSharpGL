@@ -30,7 +30,7 @@ namespace CSharpGL
             if (max.y < boundingBox.MinPosition.y) { max.y = boundingBox.MinPosition.y; }
             if (max.z < boundingBox.MinPosition.z) { max.z = boundingBox.MinPosition.z; }
 
-            float distance = (float)((max - min).Magnitude() * factor);
+            float distance = (float)((max - min).length() * factor);
             vec3 vector = (max - min);
             vector *= (1 + factor);
             vec3 newMax = min + vector;

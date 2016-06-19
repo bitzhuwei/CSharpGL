@@ -75,7 +75,7 @@ namespace CSharpGL
         public override string ToString()
         {
             return string.Format("back:{0}|{3:0.00},up:{1}|{4:0.00},right:{2}|{5:0.00}",
-                back, up, right, back.Magnitude(), up.Magnitude(), right.Magnitude());
+                back, up, right, back.length(), up.length(), right.length());
         }
 
 
@@ -129,7 +129,7 @@ namespace CSharpGL
                 }
 
                 camera.Position = camera.Target +
-                    back * (float)((camera.Position - camera.Target).Magnitude());
+                    back * (float)((camera.Position - camera.Target).length());
                 camera.UpVector = up;
                 this.back = back;
                 this.right = right;
