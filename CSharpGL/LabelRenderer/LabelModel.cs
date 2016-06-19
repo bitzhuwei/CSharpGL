@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public class LabelModel : IBufferable
+    class LabelModel : IBufferable
     {
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
