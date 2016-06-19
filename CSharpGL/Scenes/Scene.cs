@@ -47,6 +47,8 @@ namespace CSharpGL
         public void Resize(object sender, EventArgs e)
         {
             Control control = sender as Control;
+            if (control == null) { throw new ArgumentException(); }
+
             this.Camera.Resize(control.Width, control.Height);
         }
 
