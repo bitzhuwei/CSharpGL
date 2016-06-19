@@ -77,6 +77,16 @@
             this.帮助LToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.glCanvas1 = new CSharpGL.GLCanvas();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniLoadECLGrid = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniLoadSimbaGrid = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniLoadSimbaPoints = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.mniLoadEclProperty = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniLoadProperty = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniLoadCloudResults = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.mniLoadEclWells = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -95,6 +105,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文件FToolStripMenuItem,
+            this.loadToolStripMenuItem,
             this.编辑EToolStripMenuItem,
             this.工具TToolStripMenuItem,
             this.帮助HToolStripMenuItem});
@@ -126,6 +137,7 @@
             this.打印预览VToolStripMenuItem,
             this.toolStripSeparator2,
             this.退出XToolStripMenuItem});
+            this.文件FToolStripMenuItem.Enabled = false;
             this.文件FToolStripMenuItem.Name = "文件FToolStripMenuItem";
             this.文件FToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.文件FToolStripMenuItem.Text = "文件(&F)";
@@ -135,7 +147,7 @@
             this.新建NToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("新建NToolStripMenuItem.Image")));
             this.新建NToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.新建NToolStripMenuItem.Name = "新建NToolStripMenuItem";
-            this.新建NToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            this.新建NToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.新建NToolStripMenuItem.Text = "新建(&N)";
             // 
             // 打开OToolStripMenuItem
@@ -208,6 +220,7 @@
             this.粘贴PToolStripMenuItem,
             this.toolStripSeparator4,
             this.全选AToolStripMenuItem});
+            this.编辑EToolStripMenuItem.Enabled = false;
             this.编辑EToolStripMenuItem.Name = "编辑EToolStripMenuItem";
             this.编辑EToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.编辑EToolStripMenuItem.Text = "编辑(&E)";
@@ -269,6 +282,7 @@
             this.工具TToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.自定义CToolStripMenuItem,
             this.选项OToolStripMenuItem});
+            this.工具TToolStripMenuItem.Enabled = false;
             this.工具TToolStripMenuItem.Name = "工具TToolStripMenuItem";
             this.工具TToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.工具TToolStripMenuItem.Text = "工具(&T)";
@@ -293,6 +307,7 @@
             this.搜索SToolStripMenuItem,
             this.toolStripSeparator5,
             this.关于AToolStripMenuItem});
+            this.帮助HToolStripMenuItem.Enabled = false;
             this.帮助HToolStripMenuItem.Name = "帮助HToolStripMenuItem";
             this.帮助HToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
             this.帮助HToolStripMenuItem.Text = "帮助(&H)";
@@ -328,6 +343,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Enabled = false;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.新建NToolStripButton,
@@ -499,6 +515,74 @@
             this.glCanvas1.Size = new System.Drawing.Size(850, 647);
             this.glCanvas1.TabIndex = 0;
             // 
+            // loadToolStripMenuItem
+            // 
+            this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mniLoadECLGrid,
+            this.mniLoadSimbaGrid,
+            this.mniLoadSimbaPoints,
+            this.toolStripSeparator8,
+            this.mniLoadEclProperty,
+            this.mniLoadProperty,
+            this.mniLoadCloudResults,
+            this.toolStripSeparator9,
+            this.mniLoadEclWells});
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
+            this.loadToolStripMenuItem.Text = "Data";
+            // 
+            // mniLoadECLGrid
+            // 
+            this.mniLoadECLGrid.Name = "mniLoadECLGrid";
+            this.mniLoadECLGrid.Size = new System.Drawing.Size(223, 26);
+            this.mniLoadECLGrid.Text = "Load ECL Grid";
+            // 
+            // mniLoadSimbaGrid
+            // 
+            this.mniLoadSimbaGrid.Name = "mniLoadSimbaGrid";
+            this.mniLoadSimbaGrid.Size = new System.Drawing.Size(223, 26);
+            this.mniLoadSimbaGrid.Text = "Load Simba Grid";
+            // 
+            // mniLoadSimbaPoints
+            // 
+            this.mniLoadSimbaPoints.Name = "mniLoadSimbaPoints";
+            this.mniLoadSimbaPoints.Size = new System.Drawing.Size(223, 26);
+            this.mniLoadSimbaPoints.Text = "Load Simba Points";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(220, 6);
+            // 
+            // mniLoadEclProperty
+            // 
+            this.mniLoadEclProperty.Name = "mniLoadEclProperty";
+            this.mniLoadEclProperty.Size = new System.Drawing.Size(223, 26);
+            this.mniLoadEclProperty.Text = "Load ECL Property";
+            // 
+            // mniLoadProperty
+            // 
+            this.mniLoadProperty.Name = "mniLoadProperty";
+            this.mniLoadProperty.Size = new System.Drawing.Size(223, 26);
+            this.mniLoadProperty.Text = "Load Property";
+            // 
+            // mniLoadCloudResults
+            // 
+            this.mniLoadCloudResults.Name = "mniLoadCloudResults";
+            this.mniLoadCloudResults.Size = new System.Drawing.Size(223, 26);
+            this.mniLoadCloudResults.Text = "Load Cloud Results";
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(220, 6);
+            // 
+            // mniLoadEclWells
+            // 
+            this.mniLoadEclWells.Name = "mniLoadEclWells";
+            this.mniLoadEclWells.Size = new System.Drawing.Size(223, 26);
+            this.mniLoadEclWells.Text = "Load ECL Wells";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -580,6 +664,16 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.PropertyGrid propertyGrid1;
         private CSharpGL.GLCanvas glCanvas1;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mniLoadECLGrid;
+        private System.Windows.Forms.ToolStripMenuItem mniLoadSimbaGrid;
+        private System.Windows.Forms.ToolStripMenuItem mniLoadSimbaPoints;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem mniLoadEclProperty;
+        private System.Windows.Forms.ToolStripMenuItem mniLoadProperty;
+        private System.Windows.Forms.ToolStripMenuItem mniLoadCloudResults;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripMenuItem mniLoadEclWells;
     }
 }
 
