@@ -13,11 +13,10 @@ namespace GridViewer
 {
     public partial class ScientificCanvas : GLCanvas
     {
-        public Scene Scene { get; set; }
-        public ScientificCanvas()
-        {
-            this.Load += ScientificCanvas_Load;
-        }
 
+        void ScientificCanvas_OpenGLDraw(object sender, PaintEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
