@@ -11,7 +11,8 @@ using System.Windows.Forms;
 namespace CSharpGL
 {
     /// <summary>
-    /// 用鼠标旋转模型。
+    /// Rotates a camera on a sphere, whose center is camera's Target.
+    /// <para>Just like a satellite moves around a fixed star.</para>
     /// </summary>
     public class SatelliteManipulater : CameraManipulater
     {
