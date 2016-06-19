@@ -11,15 +11,13 @@ using CSharpGL;
 
 namespace GridViewer
 {
-    public partial class ScientificCanvas : GLCanvas
+    public partial class ScientificCanvas
     {
-
-        public Scene Scene { get; private set; }
-
-        public ScientificCanvas()
+        protected override void Dispose(bool disposing)
         {
-            this.Load += ScientificCanvas_Load;
+            this.cameraManipulater.Unbind();
+            
+            base.Dispose(disposing);
         }
-
     }
 }

@@ -11,28 +11,28 @@ using CSharpGL;
 
 namespace GridViewer
 {
-    public partial class ScientificCanvas : GLCanvas
+    public partial class ScientificCanvas
     {
 
-        void ScientificCanvas_MouseWheel(object sender, MouseEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //void ScientificCanvas_MouseWheel(object sender, MouseEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //}
 
-        void ScientificCanvas_MouseUp(object sender, MouseEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //void ScientificCanvas_MouseUp(object sender, MouseEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //}
 
-        void ScientificCanvas_MouseMove(object sender, MouseEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //void ScientificCanvas_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //}
 
-        void ScientificCanvas_MouseDown(object sender, MouseEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //void ScientificCanvas_MouseDown(object sender, MouseEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //}
 
     }
 }

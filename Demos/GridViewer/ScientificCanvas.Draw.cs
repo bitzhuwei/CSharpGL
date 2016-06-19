@@ -11,12 +11,21 @@ using CSharpGL;
 
 namespace GridViewer
 {
-    public partial class ScientificCanvas : GLCanvas
+    public partial class ScientificCanvas
     {
 
         void ScientificCanvas_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            throw new NotImplementedException();
+            vec4 clearColor = this.Scene.ClearColor.ToVec4();
+            OpenGL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+
+            var arg = new RenderEventArgs(RenderModes.Render, this.ClientRectangle, this.Scene.Camera);
+            var list = this.Scene.ObjectList.ToArray();
+            foreach (var item in list)
+            {
+                item.Render(arg);
+            }
         }
     }
 }
