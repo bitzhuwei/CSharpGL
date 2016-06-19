@@ -82,6 +82,7 @@
     <Compile Include="ScientificCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Models\HexahedronGrid.cs" />
     <Compile Include="SingleFilePropertyLoader.cs" />
     <Compile Include="WindowSizeHelper.cs" />
     <EmbeddedResource Include="FormMain.resx">
@@ -119,6 +120,9 @@
     <Content Include="data\SimLabBridge.dll" />
     <Content Include="data\TracyEnergy.Simba.Data.dll" />
     <Content Include="data\TracyEnergy.Simba.Data.Keywords.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="shaders\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
