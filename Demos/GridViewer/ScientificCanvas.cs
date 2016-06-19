@@ -15,6 +15,7 @@ namespace GridViewer
     {
 
         public Scene Scene { get; private set; }
+        private SatelliteManipulater cameraManipulater;
 
         public ScientificCanvas()
         {

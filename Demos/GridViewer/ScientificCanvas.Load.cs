@@ -14,8 +14,6 @@ namespace GridViewer
     public partial class ScientificCanvas
     {
 
-        private SatelliteManipulater cameraManipulater;
-
         void ScientificCanvas_Load(object sender, EventArgs e)
         {
             var camera = new Camera(new vec3(3, 1, 2), new vec3(), new vec3(0, 1, 0),
