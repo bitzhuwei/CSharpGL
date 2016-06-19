@@ -29,7 +29,7 @@ namespace CSharpGL
         private bool designMode;
 
         /// <summary>
-        /// 可执行OpenGL渲染的控件。
+        /// Creats render context and supports OpenGL rendering.
         /// </summary>
         public GLCanvas()
         {
@@ -72,7 +72,7 @@ namespace CSharpGL
 
             //  Set the most basic OpenGL styles.
             OpenGL.ShadeModel(OpenGL.GL_SMOOTH);
-            // 天蓝色背景
+            // Sky blue fore background.
             OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
             OpenGL.ClearDepth(1.0f);
             OpenGL.Enable(OpenGL.GL_DEPTH_TEST);
@@ -230,9 +230,9 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 获取或设置两次重绘之间的时间间隔（以毫秒为单位）。该值不能小于 1。
+        /// Interval between two rendering passes. Must be greater than 0.(in milliseconds)
         /// </summary>
-        [Description("获取或设置两次重绘之间的时间间隔（以毫秒为单位）。该值不能小于 1。"), Category("CSharpGL"), DefaultValue(50)]
+        [Description("Interval between two rendering passes. Must be greater than 0.(in milliseconds)."), Category("CSharpGL"), DefaultValue(50)]
         public int TimerTriggerInterval
         {
             get { return this.redrawTimer.Interval; }
