@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GridViewer
 {
-    public class ScientificRenderer : Renderer
+    public partial class ScientificRenderer : Renderer
     {
 
         private vec3 scale;

@@ -10,7 +10,7 @@ namespace GridViewer
     /// <summary>
     /// bounding box.
     /// </summary>
-    class BoundingBox : IBufferable
+    public partial class BoundingBox : IBufferable
     {
 
         private vec3[] positions = new vec3[] 

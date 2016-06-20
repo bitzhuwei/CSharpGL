@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GridViewer
 {
-    public class BoudingBoxRenderer : Renderer
+    public partial class BoudingBoxRenderer : Renderer
     {
 
         private vec3 scale;

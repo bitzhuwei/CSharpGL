@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GridViewer
 {
-    public class BoundedRenderer : RendererBase
+    public partial class BoundedRenderer : RendererBase
     {
         public BoudingBoxRenderer BoundingBoxRenderer { get; private set; }
 
