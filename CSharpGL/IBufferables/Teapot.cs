@@ -102,7 +102,7 @@ namespace CSharpGL
                 using (var buffer = new OneIndexBuffer<ushort>(DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
                     ushort[] faces = model.GetFaces();
-                    buffer.Alloc(faces.Length * 3);
+                    buffer.Alloc(faces.Length);
                     unsafe
                     {
                         var array = (ushort*)buffer.Header.ToPointer();
