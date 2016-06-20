@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridViewer.Models
+namespace GridViewer
 {
     /// <summary>
     /// bounding box.
     /// </summary>
-    class BoundingBoxModel : IBufferable
+    class BoundingBox : IBufferable
     {
 
         private vec3[] positions = new vec3[] 

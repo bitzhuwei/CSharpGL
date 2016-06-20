@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridViewer.Models
+namespace GridViewer
 {
     class HexahedronGrid : IBufferable
     {
