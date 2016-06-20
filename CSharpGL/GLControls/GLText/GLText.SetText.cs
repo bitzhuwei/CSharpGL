@@ -44,7 +44,7 @@ namespace CSharpGL
             FullDictionary<char, CharacterInfo> charInfoDict = fontResource.CharInfoDict;
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.model.uvBufferPtr.BufferId);
             IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.WriteOnly);
-            var array = (GlyphTexCoord*)pointer.ToPointer();
+            var array = (TextModel.GlyphTexCoord*)pointer.ToPointer();
             int width = fontResource.TextureSize.Width;
             int height = fontResource.TextureSize.Height;
             /*
@@ -61,7 +61,7 @@ namespace CSharpGL
                 char ch = content[i];
                 CharacterInfo info = fontResource.CharInfoDict[ch];
                 const int shrimp = 0;
-                array[i] = new GlyphTexCoord(
+                array[i] = new TextModel.GlyphTexCoord(
                     //new vec2(0, 0),
                     //new vec2(0, 1),
                     //new vec2(1, 1),
@@ -81,7 +81,7 @@ namespace CSharpGL
             FullDictionary<char, CharacterInfo> charInfoDict = fontResource.CharInfoDict;
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.model.positionBufferPtr.BufferId);
             IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
-            var array = (GlyphPosition*)pointer.ToPointer();
+            var array = (TextModel.GlyphPosition*)pointer.ToPointer();
             int currentWidth = 0; int currentHeight = 0;
             /*
              * 0     3  4     7 8     11 12   15
@@ -96,7 +96,7 @@ namespace CSharpGL
             {
                 char ch = content[i];
                 CharacterInfo info = charInfoDict[ch];
-                array[i] = new GlyphPosition(
+                array[i] = new TextModel.GlyphPosition(
                     new vec2(currentWidth, currentHeight + fontResource.FontHeight),
                     new vec2(currentWidth, currentHeight),
                     new vec2(currentWidth + info.width, currentHeight),
@@ -106,7 +106,7 @@ namespace CSharpGL
             // move to center
             for (int i = 0; i < content.Length; i++)
             {
-                GlyphPosition position = array[i];
+                TextModel.GlyphPosition position = array[i];
 
                 position.leftUp.x -= currentWidth / 2.0f;
                 //position.leftUp.x /= currentWidth / factor;

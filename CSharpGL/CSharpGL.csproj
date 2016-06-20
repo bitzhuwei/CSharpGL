@@ -133,7 +133,7 @@
     <Compile Include="OpenGLObjects\GLSwitches\GLSwitchList.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\ViewportSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\ScissorTestSwitch.cs" />
-    <Compile Include="GLControls\GLText\TextModel.cs" />
+    <Compile Include="IBufferables\TextModel.cs" />
     <Compile Include="GLControls\GLText\GLText.SetText.cs" />
     <Compile Include="GLControls\GLText\GLText.cs" />
     <Compile Include="GLControls\GLControl.cs" />

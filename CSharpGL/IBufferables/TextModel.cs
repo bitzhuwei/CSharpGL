@@ -72,47 +72,49 @@ namespace CSharpGL
 
             return indexBufferPtr;
         }
-    }
 
 
-    struct GlyphPosition
-    {
-        public vec2 leftUp;
-        public vec2 leftDown;
-        public vec2 rightUp;
-        public vec2 rightDown;
-
-        public GlyphPosition(
-            vec2 leftUp,
-            vec2 leftDown,
-            vec2 rightUp,
-            vec2 rightDown)
+        public struct GlyphPosition
         {
-            this.leftUp = leftUp;
-            this.leftDown = leftDown;
-            this.rightUp = rightUp;
-            this.rightDown = rightDown;
+            public vec2 leftUp;
+            public vec2 leftDown;
+            public vec2 rightUp;
+            public vec2 rightDown;
+
+            public GlyphPosition(
+                vec2 leftUp,
+                vec2 leftDown,
+                vec2 rightUp,
+                vec2 rightDown)
+            {
+                this.leftUp = leftUp;
+                this.leftDown = leftDown;
+                this.rightUp = rightUp;
+                this.rightDown = rightDown;
+            }
+        }
+
+        public struct GlyphTexCoord
+        {
+            public vec2 leftUp;
+            public vec2 leftDown;
+            public vec2 rightUp;
+            public vec2 rightDown;
+
+            public GlyphTexCoord(
+                vec2 leftUp,
+                vec2 leftDown,
+                vec2 rightUp,
+                vec2 rightDown)
+            {
+                this.leftUp = leftUp;
+                this.leftDown = leftDown;
+                this.rightUp = rightUp;
+                this.rightDown = rightDown;
+            }
         }
     }
 
-    struct GlyphTexCoord
-    {
-        public vec2 leftUp;
-        public vec2 leftDown;
-        public vec2 rightUp;
-        public vec2 rightDown;
 
-        public GlyphTexCoord(
-            vec2 leftUp,
-            vec2 leftDown,
-            vec2 rightUp,
-            vec2 rightDown)
-        {
-            this.leftUp = leftUp;
-            this.leftDown = leftDown;
-            this.rightUp = rightUp;
-            this.rightDown = rightDown;
-        }
-    }
 
 }
