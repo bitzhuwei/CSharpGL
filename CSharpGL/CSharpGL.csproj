@@ -97,7 +97,6 @@
     <Compile Include="IBufferables\Ground.cs" />
     <Compile Include="IBufferables\TeapotModel.Positions.cs" />
     <Compile Include="IBufferables\TeapotModel.Faces.cs" />
-    <Compile Include="LabelRenderer\LabelModel.cs" />
     <Compile Include="LabelRenderer\LabelRenderer.Static.cs" />
     <Compile Include="LabelRenderer\LabelRenderer.cs" />
     <Compile Include="OpenGLObjects\Camera\SatelliteManipulater.cs" />

@@ -8,12 +8,15 @@ namespace CSharpGL
 {
     public partial class LabelRenderer : Renderer
     {
+        private TextModel textModel;
 
         public vec3 WorldPosition { get; set; }
 
-        public LabelRenderer()
-            : base(new LabelModel(), LabelRenderer.staticShaderCodes, LabelRenderer.staticMap)
-        { }
+        public LabelRenderer(int maxCharCount)
+            : base(new TextModel(maxCharCount), LabelRenderer.staticShaderCodes, LabelRenderer.staticMap)
+        {
+            this.textModel = this.bufferable as TextModel;
+        }
 
     }
 }
