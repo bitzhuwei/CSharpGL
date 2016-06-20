@@ -27,7 +27,7 @@ namespace CSharpGL
         /// Careful to set this value because greater <paramref name="maxCharCount"/> means more space ocupied in GPU nemory.</param>
         /// <param name="labelHeight">Label height(in pixels)</param>
         /// <param name="fontResource">Use which font to render text?</param>
-        public LabelRenderer(int maxCharCount = 64, int labelHeight = 15, FontResource fontResource = null)
+        public LabelRenderer(int maxCharCount = 64, int labelHeight = 32, FontResource fontResource = null)
             : base(null, null, null, new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One))
         {
             if (fontResource == null)
