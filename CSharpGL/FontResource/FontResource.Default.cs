@@ -13,43 +13,55 @@ namespace CSharpGL
     /// </summary>
     public sealed partial class FontResource
     {
-        private static FontResource defaultInstance = null;
         private static readonly object synObj = new object();
 
         public static FontResource Default
         {
             get
             {
-                if (defaultInstance == null)
+                IntPtr renderContext = Win32.wglGetCurrentContext();
+                if (!dict.ContainsKey(renderContext))
                 {
                     lock (synObj)
                     {
-                        if (defaultInstance == null)
+                        if (!dict.ContainsKey(renderContext))
                         {
                             InitializeDefaultFontResource();
                         }
                     }
                 }
-                return defaultInstance;
+
+                return dict[renderContext];
             }
         }
 
-        private static void InitializeDefaultFontResource()
+        private static FontResource InitializeDefaultFontResource()
         {
             var builder = new StringBuilder();
             for (int i = 32; i < 127; i++)
             {
                 builder.Append((char)i);
             }
+            FontResource result = null;
             using (Stream stream = ManifestResourceLoader.GetStream(@"Resources\ANTQUAI.TTF"))
             {
                 var targets = builder.ToString();
                 const int pixelSize = 64;
-                defaultInstance = Load(stream, targets, pixelSize);
+                result = Load(stream, targets, pixelSize);
             }
+
+            return result;
         }
 
-        private FontResource() { }
+        private static Dictionary<IntPtr, FontResource> dict = new Dictionary<IntPtr, FontResource>();
+        private FontResource()
+        {
+            IntPtr renderContext = Win32.wglGetCurrentContext();
+            if (dict.ContainsKey(renderContext))
+            { throw new Exception(); }
+
+            dict.Add(renderContext, this);
+        }
 
         //public FontResource Load(string filename, string config)
         //{

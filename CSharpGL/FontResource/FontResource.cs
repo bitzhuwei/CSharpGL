@@ -88,6 +88,12 @@ namespace CSharpGL
             var ids = new uint[] { FontTextureId, };
             OpenGL.DeleteTextures(ids.Length, ids);
 
+            IntPtr renderContext = Win32.wglGetCurrentContext();
+            if (renderContext != IntPtr.Zero)
+            {
+                dict.Remove(renderContext);
+            }
+
             disposed = true;
         }
 
