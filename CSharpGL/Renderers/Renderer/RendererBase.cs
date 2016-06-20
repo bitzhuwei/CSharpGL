@@ -39,7 +39,7 @@ namespace CSharpGL
             this.ID = idCounter++;
         }
 
-        private bool initialized = false;
+        protected bool initialized = false;
 
         /// <summary>
         /// 初始化此Element，此方法应且只应执行1次。
