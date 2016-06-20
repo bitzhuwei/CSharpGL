@@ -51,13 +51,9 @@ An earth model that singly rotate same as real earth. It's composed of 65341 pos
 ![earth](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/earth.gif?raw=true)
 ## :id::100:Billboard
 Billboard can be used to display health-bar, damage numbers in game application.
-![Billboard](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/Billboard.jpg?raw=true)
+![billboard-health-bar-text](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/billboard-health-bar-text.png?raw=true)
 ## :movie_camera:Scene Editor
 Useful tool to build a scene and feels how opengl's transform system works.
 ![CSharpGL-Scene-Editor](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/CSharpGL-Scene-Editor.jpg?raw=true)
 # :question:Support or Contact
 Check my blog [here](http://www.cnblogs.com/bitzhuwei/) if you are familiar with Chinese.
-# TODO list
-* Drag-drop tree node to build parent-child relationship in Scene Editor.
-* Realistic sun with flame.
-* rewrite all shaders in CSSL.
