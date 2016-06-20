@@ -15,6 +15,16 @@
 * Write GLSL shade in C#.  
 
 # release notes:
+## v1.0.4.7:
+1. Enable/Disable SceneObject controls whether it takes part in rendering and updating.
+2. SceneObject's transform(position/scale/rotation) is updated according to parent/child relation then to script component.
+3. Sphere supports uv mapping attribute.
+4. SatelliteManipulater manipulates camera's posiiton, rotation and distance to target. Camera acts like a sateliite moving around its target when manipulated by SatelliteManipulater.
+5. Rename vec2/vec3/vec4.Magnitude() -> length().
+6. LabelRenderer renders a text label in 3D world space. The text can be updated in runtime.
+7. Fix bug: teapot's face property buffer.
+8. Fix bug: FontResource should provide seperate default instances for different render contexts.
+
 ## v1.0.4.6:
 1. FormSelectType loads specified types from all loaded assemblies and cache them.
 2. TransformCompoent and ScriptComponent works simiar to those in Unity.
