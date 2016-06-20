@@ -28,7 +28,7 @@ namespace CSharpGL
         /// <param name="labelHeight">Label height(in pixels)</param>
         /// <param name="fontResource">Use which font to render text?</param>
         public LabelRenderer(int maxCharCount = 64, int labelHeight = 15, FontResource fontResource = null)
-            : base(null, null, null)
+            : base(null, null, null, new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One))
         {
             if (fontResource == null)
             { this.fontResource = FontResource.Default; }
