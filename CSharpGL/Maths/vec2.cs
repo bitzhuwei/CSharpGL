@@ -103,7 +103,7 @@ namespace CSharpGL
             return result;
         }
 
-        public float Magnitude()
+        public float length()
         {
             double result = Math.Sqrt(this.x * this.x + this.y * this.y);
 
