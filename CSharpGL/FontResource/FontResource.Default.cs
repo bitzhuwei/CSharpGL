@@ -44,7 +44,7 @@ namespace CSharpGL
             using (Stream stream = ManifestResourceLoader.GetStream(@"Resources\ANTQUAI.TTF"))
             {
                 var targets = builder.ToString();
-                const int pixelSize = 32;
+                const int pixelSize = 64;
                 defaultInstance = Load(stream, targets, pixelSize);
             }
         }
