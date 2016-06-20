@@ -1,20 +1,22 @@
 #version 150 core
 
-in vec2 position;
-in vec2 uv;
-uniform mat4 mvp;
-uniform float lackAxis = 2.0f;
+in vec3 in_Positions;
+in vec2 in_UV;
 
 out vec2 passUV;
 
-void main(void)
-{
-	if (lackAxis == 0.0f)
-	{ gl_Position = mvp * vec4(0.0f, position.x, position.y, 1.0f); }
-	else if (lackAxis == 1.0f)
-	{ gl_Position = mvp * vec4(position.x, 0.0f, position.y, 1.0f); }
-	else // if (lackAxis == 2.0f)
-	{ gl_Position = mvp * vec4(position.x, position.y, 0.0f, 1.0f); }
+uniform vec3 billboardCenter_worldspace; // Position of the center of the billboard
+uniform vec2 viewportSize;
+uniform mat4 projection;
+uniform mat4 view;
 
-	passUV = uv;
+void main()
+{
+    // billboardSize is in pixels.
+    gl_Position = projection * view * vec4(billboardCenter_worldspace, 1.0f); // Get the screen-space position of the particle's center
+    gl_Position /= gl_Position.w; // Here we have to do the perspective division ourselves.
+    gl_Position.xy += in_Positions.xy / viewportSize * 2; // Move the vertex in directly screen space. No need for CameraUp/Right_worlspace here.
+
+    // UV of the vertex. No special space for this one.
+    passUV = in_UV;
 }

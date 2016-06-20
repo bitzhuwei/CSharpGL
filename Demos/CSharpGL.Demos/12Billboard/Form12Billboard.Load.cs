@@ -19,6 +19,7 @@ namespace CSharpGL.Demos
         private MovableRenderer movableRenderer;
         private Renderer billboardRenderer;
         private Renderer ground;
+        private LabelRenderer labelRenderer;
 
         private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
         {
@@ -71,6 +72,12 @@ namespace CSharpGL.Demos
                 billboardRenderer.SetUniform("myTextureSampler", new samplerValue(BindTextureTarget.Texture2D, texture.Id, OpenGL.GL_TEXTURE0));
 
                 this.billboardRenderer = billboardRenderer;
+            }
+            {
+                var labelRenderer = new LabelRenderer();
+                labelRenderer.Initialize();
+                labelRenderer.Text = "Teapot - CSharpGL";
+                this.labelRenderer = labelRenderer;
             }
             {
                 var UIRoot = new GLControl(this.glCanvas1, -100, 100);

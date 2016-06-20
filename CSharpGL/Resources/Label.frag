@@ -1,20 +1,13 @@
 #version 150 core
 
-in vec2 position;
-in vec2 uv;
-uniform mat4 mvp;
-uniform float lackAxis = 2.0f;
+in vec2 passUV;
 
-out vec2 passUV;
+uniform sampler2D fontTexture;
 
-void main(void)
-{
-	if (lackAxis == 0.0f)
-	{ gl_Position = mvp * vec4(0.0f, position.x, position.y, 1.0f); }
-	else if (lackAxis == 1.0f)
-	{ gl_Position = mvp * vec4(position.x, 0.0f, position.y, 1.0f); }
-	else // if (lackAxis == 2.0f)
-	{ gl_Position = mvp * vec4(position.x, position.y, 0.0f, 1.0f); }
-
-	passUV = uv;
+void main(){
+    // Output color = color of the texture at the specified UV
+    vec4 color = texture(fontTexture, passUV);
+    //if (color.r <= 0.1f) discard;
+    
+    gl_FragColor = color;
 }

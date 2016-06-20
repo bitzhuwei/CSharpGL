@@ -50,6 +50,7 @@
     <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormPropertyGridEditor.resx">
       <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <Content Include="IBufferables\TextModel.jpg" />
     <Content Include="Renderers\UIRenderers\readme.md" />
     <Content Include="FontResource\readme.md" />
     <Content Include="IBufferables\readme.md" />
@@ -97,7 +98,9 @@
     <Compile Include="IBufferables\Ground.cs" />
     <Compile Include="IBufferables\TeapotModel.Positions.cs" />
     <Compile Include="IBufferables\TeapotModel.Faces.cs" />
-    <Compile Include="Renderers\LabelRenderer\LabelRenderer.Static.cs" />
+    <Compile Include="Renderers\LabelRenderer\LabelRenderer.DoInitialize.cs" />
+    <Compile Include="Renderers\LabelRenderer\LabelRenderer.DoRender.cs" />
+    <Compile Include="Renderers\LabelRenderer\LabelRenderer.SetText.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.cs" />
     <Compile Include="OpenGLObjects\Camera\SatelliteManipulater.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraManipulater.cs" />
@@ -482,7 +485,7 @@
     <EmbeddedResource Include="Resources\BuildInSceneObject.vert" />
     <EmbeddedResource Include="Resources\BuildInSceneObject.frag" />
     <EmbeddedResource Include="Resources\Label.vert" />
-    <None Include="Resources\Label.frag" />
+    <EmbeddedResource Include="Resources\Label.frag" />
     <None Include="Scenes\readme.md" />
   </ItemGroup>
   <ItemGroup>

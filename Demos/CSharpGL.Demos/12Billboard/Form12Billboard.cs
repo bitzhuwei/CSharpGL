@@ -47,6 +47,10 @@ namespace CSharpGL.Demos
                 this.billboardRenderer.Render(arg);
             }
             {
+                this.labelRenderer.WorldPosition = this.movableRenderer.Position;
+                this.labelRenderer.Render(arg);
+            }
+            {
                 UIRenderersDraw(arg);
             }
 
