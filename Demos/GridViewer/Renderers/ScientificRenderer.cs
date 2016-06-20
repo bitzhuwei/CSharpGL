@@ -7,42 +7,51 @@ using System.Threading.Tasks;
 
 namespace GridViewer
 {
-    public class ScientificRenderer : RendererBase
+    public class ScientificRenderer : Renderer
     {
-        public BoudingBoxRenderer BoundingBoxRenderer { get; set; }
 
-        public Renderer Renderer { get; set; }
+        private vec3 scale;
 
-        public ScientificRenderer()
+        public vec3 Scale
         {
-            this.BoundingBoxRenderer = new BoudingBoxRenderer();
+            get { return scale; }
+            set
+            {
+                if (value != scale)
+                {
+                    scale = value;
+                    if (this.initialized)
+                    {
+                        this.SetUniform("modelMatrix",
+                            glm.scale(glm.translate(mat4.identity(), this.translate), this.scale));
+                    }
+                }
+            }
         }
 
-        protected override void DoInitialize()
-        {
-            Renderer boundingBox = this.BoundingBoxRenderer;
-            if (boundingBox != null) { boundingBox.Initialize(); }
+        private vec3 translate;
 
-            Renderer renderer = this.Renderer;
-            if (renderer != null) { renderer.Initialize(); }
+        public vec3 Translate
+        {
+            get { return translate; }
+            set
+            {
+                if (value != translate)
+                {
+                    translate = value;
+                    if (this.initialized)
+                    {
+                        this.SetUniform("modelMatrix",
+                   glm.scale(glm.translate(mat4.identity(), this.translate), this.scale));
+                    }
+                }
+            }
         }
 
-        protected override void DoRender(RenderEventArgs arg)
-        {
-            Renderer boundingBox = this.BoundingBoxRenderer;
-            if (boundingBox != null) { boundingBox.Render(arg); }
+        public ScientificRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
+            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            : base(bufferable, shaderCodes, propertyNameMap, switches)
+        { }
 
-            Renderer renderer = this.Renderer;
-            if (renderer != null) { renderer.Render(arg); }
-        }
-
-        protected override void DisposeUnmanagedResources()
-        {
-            Renderer boundingBox = this.BoundingBoxRenderer;
-            if (boundingBox != null) { boundingBox.Dispose(); }
-
-            Renderer renderer = this.Renderer;
-            if (renderer != null) { renderer.Dispose(); }
-        }
     }
 }
