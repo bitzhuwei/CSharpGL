@@ -49,8 +49,8 @@ namespace CSharpGL
             this.shaderCodes = shaderCodes;
 
             var map = new PropertyNameMap();
-            map.Add("in_Position", "position");
-            map.Add("in_Color", "color");
+            map.Add("in_Position", TextModel.strPosition);
+            map.Add("in_UV", TextModel.strUV);
             this.propertyNameMap = map;
         }
 

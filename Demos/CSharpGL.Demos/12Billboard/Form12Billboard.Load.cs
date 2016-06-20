@@ -109,6 +109,12 @@ namespace CSharpGL.Demos
                 frmPropertyGrid.Show();
                 this.formPropertyGrid = frmPropertyGrid;
             }
+            {
+                var frmPropertyGrid = new FormProperyGrid();
+                frmPropertyGrid.DisplayObject(this.labelRenderer);
+                frmPropertyGrid.Show();
+                this.formPropertyGrid = frmPropertyGrid;
+            }
         }
 
     }
