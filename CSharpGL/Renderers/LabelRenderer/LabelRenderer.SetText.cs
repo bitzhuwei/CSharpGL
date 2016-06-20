@@ -62,7 +62,7 @@ namespace CSharpGL
                     //new vec2(0, 0),
                     //new vec2(0, 1),
                     //new vec2(1, 1),
-                    //new vec2(1, 0)
+                    //new vec2(1, 0));
                     new vec2((float)(info.xoffset + shrimp) / (float)width, (float)(info.yoffset) / (float)height),
                     new vec2((float)(info.xoffset + shrimp) / (float)width, (float)(info.yoffset + info.height) / (float)height),
                     new vec2((float)(info.xoffset - shrimp + info.width) / (float)width, (float)(info.yoffset + info.height) / (float)height),
@@ -95,38 +95,36 @@ namespace CSharpGL
                 char ch = content[i];
                 CharacterInfo info = charInfoDict[ch];
                 array[i] = new TextModel.GlyphPosition(
-                    new vec2(currentWidth, currentHeight + fontResource.FontHeight) * ratio,
-                    new vec2(currentWidth, currentHeight) * ratio,
-                    new vec2(currentWidth + info.width, currentHeight) * ratio,
-                    new vec2(currentWidth + info.width, currentHeight + fontResource.FontHeight) * ratio);
-                currentWidth += (info.width + fontResource.FontHeight / 10) * ratio;
+                    new vec2(currentWidth, currentHeight + fontResource.FontHeight),
+                    new vec2(currentWidth, currentHeight),
+                    new vec2(currentWidth + info.width, currentHeight),
+                    new vec2(currentWidth + info.width, currentHeight + fontResource.FontHeight));
+                currentWidth = currentWidth + (info.width + fontResource.FontHeight / 10);
             }
+            currentHeight = currentHeight + (fontResource.FontHeight);
+
             // move to center
             for (int i = 0; i < content.Length; i++)
             {
                 TextModel.GlyphPosition position = array[i];
 
                 position.leftUp.x -= currentWidth / 2.0f;
-                //position.leftUp.x /= currentWidth / factor;
+                position.leftUp.x *= ratio;
                 position.leftDown.x -= currentWidth / 2.0f;
-                //position.leftDown.x /= currentWidth / factor;
+                position.leftDown.x *= ratio;
                 position.rightUp.x -= currentWidth / 2.0f;
-                //position.rightUp.x /= currentWidth / factor;
+                position.rightUp.x *= ratio;
                 position.rightDown.x -= currentWidth / 2.0f;
-                //position.rightDown.x /= currentWidth / factor;
-                position.leftUp.y -= (currentHeight + fontResource.FontHeight) / 2.0f;
-                position.leftDown.y -= (currentHeight + fontResource.FontHeight) / 2.0f;
-                position.rightUp.y -= (currentHeight + fontResource.FontHeight) / 2.0f;
-                position.rightDown.y -= (currentHeight + fontResource.FontHeight) / 2.0f;
+                position.rightDown.x *= ratio;
+                position.leftUp.y -= currentHeight / 2.0f;
+                position.leftUp.y *= ratio;
+                position.leftDown.y -= currentHeight / 2.0f;
+                position.leftDown.y *= ratio;
+                position.rightUp.y -= currentHeight / 2.0f;
+                position.rightUp.y *= ratio;
+                position.rightDown.y -= currentHeight / 2.0f;
+                position.rightDown.y *= ratio;
 
-                position.leftUp.x /= (currentHeight + fontResource.FontHeight);
-                position.leftDown.x /= (currentHeight + fontResource.FontHeight);
-                position.rightUp.x /= (currentHeight + fontResource.FontHeight);
-                position.rightDown.x /= (currentHeight + fontResource.FontHeight);
-                position.leftUp.y /= (currentHeight + fontResource.FontHeight);
-                position.leftDown.y /= (currentHeight + fontResource.FontHeight);
-                position.rightUp.y /= (currentHeight + fontResource.FontHeight);
-                position.rightDown.y /= (currentHeight + fontResource.FontHeight);
                 array[i] = position;
             }
             OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
