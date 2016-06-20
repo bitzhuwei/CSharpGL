@@ -13,6 +13,11 @@ namespace GridViewer
 
         public Renderer Renderer { get; set; }
 
+        public ScientificRenderer()
+        {
+            this.BoundingBoxRenderer = new BoudingBoxRenderer();
+        }
+
         protected override void DoInitialize()
         {
             Renderer boundingBox = this.BoundingBoxRenderer;
