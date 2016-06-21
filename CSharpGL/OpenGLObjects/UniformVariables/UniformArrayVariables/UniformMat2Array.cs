@@ -30,7 +30,7 @@ namespace CSharpGL
 
         public override void SetUniform(ShaderProgram program)
         {
-            program.SetUniformMatrix2(VarName, this.value);
+            this.Location = program.SetUniformMatrix2(VarName, this.value);
         }
 
     }

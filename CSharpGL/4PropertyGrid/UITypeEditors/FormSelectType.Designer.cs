@@ -31,7 +31,6 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lstType = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnOK
@@ -41,7 +40,7 @@
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 3;
-            this.btnOK.Text = "确定";
+            this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -53,7 +52,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 4;
-            this.btnCancel.Text = "取消";
+            this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -65,20 +64,11 @@
             this.lstType.Font = new System.Drawing.Font("宋体", 14F);
             this.lstType.FormattingEnabled = true;
             this.lstType.ItemHeight = 23;
-            this.lstType.Location = new System.Drawing.Point(12, 37);
+            this.lstType.Location = new System.Drawing.Point(12, 14);
             this.lstType.Name = "lstType";
-            this.lstType.Size = new System.Drawing.Size(418, 372);
+            this.lstType.Size = new System.Drawing.Size(418, 395);
             this.lstType.TabIndex = 6;
             this.lstType.DoubleClick += new System.EventHandler(this.lstType_DoubleClick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 15);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "GLSwitch Type:";
             // 
             // FormSelectType
             // 
@@ -88,14 +78,12 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(442, 472);
             this.Controls.Add(this.lstType);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
             this.Name = "FormSelectType";
             this.Text = "Select type derived from {0}";
             this.Load += new System.EventHandler(this.FormGLSwtichType_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -104,6 +92,5 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ListBox lstType;
-        private System.Windows.Forms.Label label1;
     }
 }

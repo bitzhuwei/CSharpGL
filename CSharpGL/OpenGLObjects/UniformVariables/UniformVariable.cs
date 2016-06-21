@@ -19,6 +19,11 @@ namespace CSharpGL
         public string VarName { get; private set; }
 
         /// <summary>
+        /// location retrieved from shader.
+        /// </summary>
+        public int Location { get; internal set; }
+
+        /// <summary>
         /// 标识此uniform变量是否已更新（若为true，则需要在render前一刻提交到GPU）
         /// </summary>
         [Browsable(false)]

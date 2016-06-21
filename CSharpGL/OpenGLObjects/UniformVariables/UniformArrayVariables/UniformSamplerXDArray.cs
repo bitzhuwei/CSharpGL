@@ -40,7 +40,8 @@ namespace CSharpGL
                 glActiveTexture(this.value[i].ActiveTextureIndex);
                 //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, this.value[i].TextureId);
                 OpenGL.BindTexture(this.value[i].target, this.value[i].TextureId);
-                program.SetUniform(VarName, this.value[i].activeTextureIndex);
+                // TODO: assign the first location or last?
+                this.Location = program.SetUniform(VarName, this.value[i].activeTextureIndex);
             }
         }
 

@@ -30,8 +30,7 @@ namespace CSharpGL
 
         public override void SetUniform(ShaderProgram program)
         {
-            vec4 value = this.value;
-            program.SetUniform(VarName, value.x, value.y, value.z, value.w);
+            this.Location = program.SetUniform(VarName, value.x, value.y, value.z, value.w);
         }
 
         internal override bool SetValue(ValueType value)
