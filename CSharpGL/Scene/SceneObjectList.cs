@@ -8,7 +8,7 @@ using System.Text;
 namespace CSharpGL
 {
     [Editor(typeof(IListEditor<SceneObject>), typeof(UITypeEditor))]
-    public class SceneObjectList : IList<SceneObject>
+    public partial class SceneObjectList : IList<SceneObject>
     {
 
         List<SceneObject> list = new List<SceneObject>();
@@ -27,9 +27,13 @@ namespace CSharpGL
 
         public void Insert(int index, SceneObject item)
         {
-            list.Insert(index, item);
             item.Parent = this.Parent;
+            list.Insert(index, item);
             item.RefreshRelativeTransform();
+
+            EventHandler<AddItemEventArgs<SceneObject>> ItemAdded = this.ItemAdded;
+            if (ItemAdded != null)
+            { ItemAdded(this, new AddItemEventArgs<SceneObject>(item)); }
         }
 
         public void RemoveAt(int index)
@@ -38,6 +42,10 @@ namespace CSharpGL
             list.RemoveAt(index);
             obj.Parent = null;
             obj.RefreshRelativeTransform();
+
+            EventHandler<RemoveItemEventArgs<SceneObject>> ItemRemoved = this.ItemRemoved;
+            if (ItemRemoved != null)
+            { ItemRemoved(this, new RemoveItemEventArgs<SceneObject>(obj)); }
         }
 
         public SceneObject this[int index]
@@ -57,6 +65,10 @@ namespace CSharpGL
             item.Parent = this.Parent;
             list.Add(item);
             item.RefreshRelativeTransform();
+
+            EventHandler<AddItemEventArgs<SceneObject>> ItemAdded = this.ItemAdded;
+            if (ItemAdded != null)
+            { ItemAdded(this, new AddItemEventArgs<SceneObject>(item)); }
         }
 
         public void AddRange(IEnumerable<SceneObject> items)
@@ -70,19 +82,35 @@ namespace CSharpGL
             {
                 item.RefreshRelativeTransform();
             }
+
+            EventHandler<AddItemEventArgs<SceneObject>> ItemAdded = this.ItemAdded;
+            if (ItemAdded != null)
+            {
+                foreach (var item in items)
+                {
+                    ItemAdded(this, new AddItemEventArgs<SceneObject>(item));
+                }
+            }
         }
 
         public void Clear()
         {
-            foreach (var item in this.list)
+            var array = this.list.ToArray();
+            this.list.Clear();
+
+            foreach (var item in array)
             {
                 item.Parent = null;
+                item.RefreshRelativeTransform();
             }
 
-            list.Clear();
-            foreach (var item in this.list)
+            EventHandler<RemoveItemEventArgs<SceneObject>> ItemRemoved = this.ItemRemoved;
+            if (ItemRemoved != null)
             {
-                item.RefreshRelativeTransform();
+                foreach (var item in array)
+                {
+                    ItemRemoved(this, new RemoveItemEventArgs<SceneObject>(item));
+                }
             }
         }
 
@@ -109,8 +137,16 @@ namespace CSharpGL
         public bool Remove(SceneObject item)
         {
             bool result = list.Remove(item);
-            item.Parent = null;
-            item.RefreshRelativeTransform();
+            if (result)
+            {
+                item.Parent = null;
+                item.RefreshRelativeTransform();
+
+                EventHandler<RemoveItemEventArgs<SceneObject>> ItemRemoved = this.ItemRemoved;
+                if (ItemRemoved != null)
+                { ItemRemoved(this, new RemoveItemEventArgs<SceneObject>(item)); }
+            }
+
             return result;
         }
 

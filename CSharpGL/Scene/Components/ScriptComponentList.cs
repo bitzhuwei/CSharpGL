@@ -27,8 +27,8 @@ namespace CSharpGL
 
         public void Insert(int index, ScriptComponent item)
         {
-            list.Insert(index, item);
             item.BindingObject = this.bindingObject;
+            list.Insert(index, item);
         }
 
         public void RemoveAt(int index)
@@ -67,9 +67,10 @@ namespace CSharpGL
 
         public void Clear()
         {
+            var array = this.list.ToArray();
             list.Clear();
 
-            foreach (var item in this.list)
+            foreach (var item in array)
             {
                 item.BindingObject = null;
             }
@@ -98,7 +99,11 @@ namespace CSharpGL
         public bool Remove(ScriptComponent item)
         {
             bool result = list.Remove(item);
-            item.BindingObject = null;
+            if (result)
+            {
+                item.BindingObject = null;
+            }
+
             return result;
         }
 
