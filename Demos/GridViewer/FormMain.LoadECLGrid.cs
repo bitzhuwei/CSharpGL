@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimLab.helper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TracyEnergy.Simba.Data.Keywords;
+using TracyEnergy.Simba.Data.Keywords.impl;
 
 namespace GridViewer
 {
@@ -34,6 +36,11 @@ namespace GridViewer
                 MessageBox.Show(String.Format("Load Error,{0}", err.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            List<GridBlockProperty> gridProps = inputData.RootDataFile.GetGridProperties();
+            GridBlockProperty gbp = gridProps[0];
+            double axisMin, axisMax, step;
+            ColorIndicatorAxisAutomator.Automate(gbp.MinValue, gbp.MaxValue, out axisMin, out axisMax, out step);
+            CatesianGrid grid = inputData.DumpCatesianGrid((float)axisMin, (float)axisMax);
 
             //GridderSource gridderSource;
             //SimLabGrid gridder = null;
