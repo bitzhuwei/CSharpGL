@@ -96,5 +96,41 @@ namespace CSharpGL.SceneEditor
             }
         }
 
+        private void refreshTreeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.treeView1.Nodes.Clear();
+            foreach (var sceneObject in this.scene.ObjectList)
+            {
+                var node = new TreeNode(sceneObject.Name);
+                node.Tag = sceneObject;
+                if (sceneObject.Children.Count > 0)
+                {
+                    TreeNode[] childNodes = GetTreeNodes(sceneObject.Children);
+                    node.Nodes.AddRange(childNodes);
+                }
+                this.treeView1.Nodes.Add(node);
+            }
+
+            this.treeView1.ExpandAll();
+        }
+
+        private TreeNode[] GetTreeNodes(IList<SceneObject> list)
+        {
+            var result = new TreeNode[list.Count];
+            for (int i = 0; i < result.Length; i++)
+            {
+                var node = new TreeNode(list[i].Name);
+                node.Tag = list[i];
+                if (list[i].Children.Count > 0)
+                {
+                    TreeNode[] childNodes = GetTreeNodes(list[i].Children);
+                    node.Nodes.AddRange(childNodes);
+                }
+                result[i] = node;
+            }
+
+            return result;
+        }
+
     }
 }
