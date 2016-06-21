@@ -64,8 +64,8 @@ namespace GridViewer
             //        propNode.Tag = gbp;
             //    }
 
-            //    Vertex boundMin;
-            //    Vertex boundMax;
+            //    vec3 boundMin;
+            //    vec3 boundMax;
             //    gridder = CreateGridder(gridderSource, gridProps[0], out boundMin, out boundMax);
             //    if (gridder != null)
             //    {

@@ -66,6 +66,33 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Geometry\HalfHexahedronIndex.cs" />
+    <Compile Include="Geometry\HexahedronPosition.cs" />
+    <Compile Include="Geometry\HexahedronTexCoord.cs" />
+    <Compile Include="Geometry\LineIndex.cs" />
+    <Compile Include="Geometry\LinePosition.cs" />
+    <Compile Include="Geometry\LineTexCoord.cs" />
+    <Compile Include="Geometry\QuadPosition.cs" />
+    <Compile Include="Geometry\QuadTexCoord.cs" />
+    <Compile Include="Geometry\TetrahedronIndex.cs" />
+    <Compile Include="Geometry\TetrahedronPosition.cs" />
+    <Compile Include="Geometry\TetrahedronTexCoord.cs" />
+    <Compile Include="Geometry\TriangleIndex.cs" />
+    <Compile Include="Geometry\TrianglePosition.cs" />
+    <Compile Include="Geometry\TriangleTexCoord.cs" />
+    <Compile Include="Geometry\TrianglularPrismPosition.cs" />
+    <Compile Include="Geometry\TriangularPrismTexCoord.cs" />
+    <Compile Include="GridSources\CatesianGridderSource.cs" />
+    <Compile Include="GridSources\CornerPointGridderSource.cs" />
+    <Compile Include="GridSources\DynamicUnstructuredGridderSource.cs" />
+    <Compile Include="GridSources\GridderSource.cs" />
+    <Compile Include="GridSources\GridIndexer.cs" />
+    <Compile Include="GridSources\HexahedronGridderSource.cs" />
+    <Compile Include="GridSources\PointGridderSource.cs" />
+    <Compile Include="helper\ColorIndicatorAxisAutomator.cs" />
+    <Compile Include="helper\VertexHelper.cs" />
+    <Compile Include="Loader\DynamicUnstructureGeometryLoader.cs" />
+    <Compile Include="Loader\PointSetLoader.cs" />
     <Compile Include="Models\BoundingBox.cs" />
     <Compile Include="Models\HexahedronGrid.From.cs" />
     <Compile Include="Program.cs" />
@@ -90,6 +117,10 @@
     </Compile>
     <Compile Include="Models\HexahedronGrid.cs" />
     <Compile Include="SingleFilePropertyLoader.cs" />
+    <Compile Include="Utils\ArrayHelper.cs" />
+    <Compile Include="Utils\ColorMapAxisAutomation.cs" />
+    <Compile Include="Utils\ColorMapIndicatorParams.cs" />
+    <Compile Include="Utils\Rectangle3D.cs" />
     <Compile Include="WindowSizeHelper.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
