@@ -70,6 +70,7 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblCameraInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.新建NToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.打开OToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -87,7 +88,6 @@
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.scene = new GridViewer.ScientificCanvas();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.lblCameraInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -414,6 +414,12 @@
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // lblCameraInfo
+            // 
+            this.lblCameraInfo.Name = "lblCameraInfo";
+            this.lblCameraInfo.Size = new System.Drawing.Size(178, 20);
+            this.lblCameraInfo.Text = "eye:{0} center:{1} up:{2}";
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Enabled = false;
@@ -559,6 +565,7 @@
             this.objectsTreeView.Name = "objectsTreeView";
             this.objectsTreeView.Size = new System.Drawing.Size(426, 296);
             this.objectsTreeView.TabIndex = 0;
+            this.objectsTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.objectsTreeView_AfterSelect);
             // 
             // propertyGrid1
             // 
@@ -584,12 +591,6 @@
             this.openFileDialog1.Filter = "Ecl Data files (*.DATA)|*.DATA|All files (*.*)|*.*";
             this.openFileDialog1.FilterIndex = 2;
             this.openFileDialog1.RestoreDirectory = true;
-            // 
-            // lblCameraInfo
-            // 
-            this.lblCameraInfo.Name = "lblCameraInfo";
-            this.lblCameraInfo.Size = new System.Drawing.Size(178, 20);
-            this.lblCameraInfo.Text = "eye:{0} center:{1} up:{2}";
             // 
             // FormMain
             // 

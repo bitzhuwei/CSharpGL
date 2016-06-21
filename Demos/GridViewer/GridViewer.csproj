@@ -57,6 +57,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormMain.TreeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMain.LoadECLGrid.cs">
       <SubType>Form</SubType>
     </Compile>
