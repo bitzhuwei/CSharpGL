@@ -27,20 +27,20 @@ namespace GridViewer
             if (dy == null)
             { throw new ArgumentException("Missing DZ or related description"); }
 
-            var cgs = new CatesianGridderSource();
-            cgs.NX = dimens.NI;
-            cgs.NY = dimens.NJ;
-            cgs.NZ = dimens.NK;
-            cgs.DX = dx;
-            cgs.DY = dy;
-            cgs.DZ = dz;
-            cgs.TOPS = inputData.RootDataFile.GetTOPS();
-            cgs.ActiveBlocks = inputData.RootDataFile.GetACTNUM();
-            cgs.IBlocks = SimLab.ArrayHelper.CreateAllSlices(dimens.NI);
-            cgs.JBlocks = SimLab.ArrayHelper.CreateAllSlices(dimens.NJ);
-            cgs.KBlocks = SimLab.ArrayHelper.CreateAllSlices(dimens.NK);
-            cgs.Init();
-            var grid = new CatesianGrid(cgs);
+            var dataSource = new CatesianGridderSource();
+            dataSource.NX = dimens.NI;
+            dataSource.NY = dimens.NJ;
+            dataSource.NZ = dimens.NK;
+            dataSource.DX = dx;
+            dataSource.DY = dy;
+            dataSource.DZ = dz;
+            dataSource.TOPS = inputData.RootDataFile.GetTOPS();
+            dataSource.ActiveBlocks = inputData.RootDataFile.GetACTNUM();
+            dataSource.IBlocks = SimLab.ArrayHelper.CreateAllSlices(dimens.NI);
+            dataSource.JBlocks = SimLab.ArrayHelper.CreateAllSlices(dimens.NJ);
+            dataSource.KBlocks = SimLab.ArrayHelper.CreateAllSlices(dimens.NK);
+            dataSource.Init();
+            var grid = new CatesianGrid(dataSource);
 
             return grid;
         }

@@ -95,9 +95,9 @@
     <Compile Include="Loader\PointSetLoader.cs" />
     <Compile Include="Models\BoundingBox.cs" />
     <None Include="Models\readme.md" />
-    <Compile Include="Models\CatesianGrid.Index.cs" />
-    <Compile Include="Models\CatesianGrid.Color.cs" />
-    <Compile Include="Models\CatesianGrid.Positions.cs" />
+    <Compile Include="Models\CatesianGrid\CatesianGrid.Index.cs" />
+    <Compile Include="Models\CatesianGrid\CatesianGrid.Color.cs" />
+    <Compile Include="Models\CatesianGrid\CatesianGrid.Positions.cs" />
     <Compile Include="Models\SimulationInputDataHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,7 +119,7 @@
     <Compile Include="ScientificCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Models\CatesianGrid.cs" />
+    <Compile Include="Models\CatesianGrid\CatesianGrid.cs" />
     <Compile Include="SingleFilePropertyLoader.cs" />
     <Compile Include="Utils\ArrayHelper.cs" />
     <Compile Include="Utils\ColorMapAxisAutomation.cs" />
@@ -167,7 +167,7 @@
     <Content Include="data\SimLabBridge.dll" />
     <Content Include="data\TracyEnergy.Simba.Data.dll" />
     <Content Include="data\TracyEnergy.Simba.Data.Keywords.dll" />
-    <Content Include="Models\CatesianGrid.Index.jpg" />
+    <Content Include="Models\CatesianGrid\CatesianGrid.Index.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
