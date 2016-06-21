@@ -25,10 +25,7 @@ namespace CSharpGL.SceneEditor
             {
                 foreach (var obj in sceneObject)
                 {
-                    if (obj.Script != null)
-                    {
-                        obj.Update(this.timer1.Interval);
-                    }
+                    obj.Update(this.timer1.Interval);
                 }
             }
         }

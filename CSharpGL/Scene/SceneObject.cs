@@ -19,7 +19,7 @@ namespace CSharpGL
         /// </summary>
         private TransformComponent transform;
         private RendererComponent renderer;
-        private ScriptComponent script;
+        private ScriptComponentList scriptList = new ScriptComponentList();
 
         private const string strBasic = "Basic";
 
@@ -62,21 +62,9 @@ namespace CSharpGL
         /// </summary>
         [Category(strBasic)]
         [Description("update state of this object.")]
-        public ScriptComponent Script
+        public ScriptComponentList ScriptList
         {
-            get { return this.script; }
-            set
-            {
-                {
-                    ScriptComponent script = this.script;
-                    if (script != null) { script.BindingObject = null; }
-
-                    if (value != null) { value.BindingObject = this; }
-                }
-                {
-                    this.script = value;
-                }
-            }
+            get { return this.scriptList; }
         }
 
         /// <summary>
@@ -109,10 +97,13 @@ namespace CSharpGL
         {
             if (this.Enabled)
             {
-                ScriptComponent script = this.script;
-                if (script != null)
+                ScriptComponentList scriptList = this.scriptList;
+                if (scriptList.Count > 0)
                 {
-                    script.Update(elapsedTime);
+                    foreach (var script in scriptList)
+                    {
+                        script.Update(elapsedTime);
+                    }
                     foreach (var item in this.Children)
                     {
                         item.RefreshRelativeTransform();
