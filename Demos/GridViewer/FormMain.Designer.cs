@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,6 +89,8 @@
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.scene = new GridViewer.ScientificCanvas();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.treeViewRightMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -100,6 +103,7 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scene)).BeginInit();
+            this.treeViewRightMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -560,6 +564,7 @@
             // 
             // objectsTreeView
             // 
+            this.objectsTreeView.ContextMenuStrip = this.treeViewRightMenu;
             this.objectsTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.objectsTreeView.Location = new System.Drawing.Point(0, 0);
             this.objectsTreeView.Name = "objectsTreeView";
@@ -592,6 +597,21 @@
             this.openFileDialog1.FilterIndex = 2;
             this.openFileDialog1.RestoreDirectory = true;
             // 
+            // treeViewRightMenu
+            // 
+            this.treeViewRightMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.treeViewRightMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+            this.treeViewRightMenu.Name = "treeViewRightMenu";
+            this.treeViewRightMenu.Size = new System.Drawing.Size(182, 58);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -619,6 +639,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.scene)).EndInit();
+            this.treeViewRightMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -685,6 +706,8 @@
         private System.Windows.Forms.ToolStripMenuItem mniLoadEclWells;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripStatusLabel lblCameraInfo;
+        private System.Windows.Forms.ContextMenuStrip treeViewRightMenu;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
 
