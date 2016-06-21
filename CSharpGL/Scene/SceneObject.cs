@@ -20,6 +20,8 @@ namespace CSharpGL
         private TransformComponent transform;
         private RendererComponent renderer;
         private ScriptComponentList scriptList = new ScriptComponentList();
+        private SceneObject parent;
+        private SceneObjectList children = new SceneObjectList();
 
         private const string strBasic = "Basic";
 
@@ -81,7 +83,7 @@ namespace CSharpGL
             this.Name = typeof(SceneObject).Name;
             this.Enabled = true;
             this.transform = new TransformComponent(this);
-            this.Children = new SceneObjectList(this);
+            this.children = new SceneObjectList(this);
         }
 
         public override string ToString()

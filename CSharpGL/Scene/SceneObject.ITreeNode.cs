@@ -12,20 +12,26 @@ namespace CSharpGL
 
         private const string strTreeNode = "TreeNode";
 
-        [Category(strTreeNode)]
-        [Description("Self")]
-        public SceneObject Self { get { return this; } }
+        //[Category(strTreeNode)]
+        //[Description("Self")]
+        //public SceneObject Self { get { return this; } }
+        SceneObject ITreeNode<SceneObject>.Self { get { return this; } }
+
+        SceneObject ITreeNode<SceneObject>.Parent { get { return parent; } set { parent = value; } }
+
+        [Editor(typeof(IListEditor<SceneObject>), typeof(UITypeEditor))]
+        IList<SceneObject> ITreeNode<SceneObject>.Children
+        { get { return this.children; } }
+
+        #endregion ITreeNode
 
         [Category(strTreeNode)]
         [Description("Parent")]
-        public SceneObject Parent { get; set; }
+        public SceneObject Parent { get { return parent; } set { parent = value; } }
 
         [Category(strTreeNode)]
         [Description("Children")]
-        [Editor(typeof(IListEditor<SceneObject>), typeof(UITypeEditor))]
-        public IList<SceneObject> Children { get; private set; }
-
-        #endregion ITreeNode
+        public SceneObjectList Children { get { return children; } }
 
     }
 }

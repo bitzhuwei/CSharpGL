@@ -18,6 +18,7 @@ namespace CSharpGL.SceneEditor
             BuildInSceneObject type = (BuildInSceneObject)Enum.Parse(typeof(BuildInSceneObject),
                 (sender as ToolStripItem).Text);
             SceneObject obj = SceneObjectFactory.GetBuildInSceneObject(type);
+            
             var node = new TreeNode(obj.ToString());
             node.Tag = obj;
             this.scene.ObjectList.Add(obj);

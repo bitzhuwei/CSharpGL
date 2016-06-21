@@ -26,7 +26,7 @@ namespace CSharpGL
         /// <summary>
         /// objects to be rendered.
         /// </summary>
-        public IList<SceneObject> ObjectList { get; private set; }
+        public SceneObjectList ObjectList { get; private set; }
 
         /// <summary>
         /// Manages a scene to be rendered and updated.

@@ -81,7 +81,6 @@
             this.glCanvas1 = new CSharpGL.GLCanvas();
             this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.refreshTreeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -469,10 +468,9 @@
             this.addSceneObjectToolStripMenuItem,
             this.deleteToolStripMenuItem,
             this.addScriptToolStripMenuItem,
-            this.deleteScriptToolStripMenuItem,
-            this.refreshTreeToolStripMenuItem});
+            this.deleteScriptToolStripMenuItem});
             this.treeNodeContextMenu.Name = "treeNodeContextMenu";
-            this.treeNodeContextMenu.Size = new System.Drawing.Size(182, 162);
+            this.treeNodeContextMenu.Size = new System.Drawing.Size(182, 136);
             // 
             // addSceneObjectToolStripMenuItem
             // 
@@ -531,13 +529,6 @@
             // 
             this.timer1.Interval = 40;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // refreshTreeToolStripMenuItem
-            // 
-            this.refreshTreeToolStripMenuItem.Name = "refreshTreeToolStripMenuItem";
-            this.refreshTreeToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.refreshTreeToolStripMenuItem.Text = "Refresh Tree";
-            this.refreshTreeToolStripMenuItem.Click += new System.EventHandler(this.refreshTreeToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -622,6 +613,5 @@
         private System.Windows.Forms.ToolStripMenuItem sceneObjectsMonitorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteScriptToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel lblTimerEnabled;
-        private System.Windows.Forms.ToolStripMenuItem refreshTreeToolStripMenuItem;
     }
 }
