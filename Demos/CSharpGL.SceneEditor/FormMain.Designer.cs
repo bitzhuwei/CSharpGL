@@ -68,6 +68,7 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblTimerEnabled = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -77,10 +78,10 @@
             this.addScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.glCanvas1 = new CSharpGL.GLCanvas();
             this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.glCanvas1 = new CSharpGL.GLCanvas();
-            this.lblTimerEnabled = new System.Windows.Forms.ToolStripStatusLabel();
+            this.refreshTreeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -403,6 +404,12 @@
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // lblTimerEnabled
+            // 
+            this.lblTimerEnabled.Name = "lblTimerEnabled";
+            this.lblTimerEnabled.Size = new System.Drawing.Size(15, 20);
+            this.lblTimerEnabled.Text = "-";
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -462,34 +469,35 @@
             this.addSceneObjectToolStripMenuItem,
             this.deleteToolStripMenuItem,
             this.addScriptToolStripMenuItem,
-            this.deleteScriptToolStripMenuItem});
+            this.deleteScriptToolStripMenuItem,
+            this.refreshTreeToolStripMenuItem});
             this.treeNodeContextMenu.Name = "treeNodeContextMenu";
-            this.treeNodeContextMenu.Size = new System.Drawing.Size(180, 108);
+            this.treeNodeContextMenu.Size = new System.Drawing.Size(182, 162);
             // 
             // addSceneObjectToolStripMenuItem
             // 
             this.addSceneObjectToolStripMenuItem.Name = "addSceneObjectToolStripMenuItem";
-            this.addSceneObjectToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.addSceneObjectToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.addSceneObjectToolStripMenuItem.Text = "3D Object";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // addScriptToolStripMenuItem
             // 
             this.addScriptToolStripMenuItem.Name = "addScriptToolStripMenuItem";
-            this.addScriptToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.addScriptToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.addScriptToolStripMenuItem.Text = "Add Script";
             this.addScriptToolStripMenuItem.Click += new System.EventHandler(this.addScriptToolStripMenuItem_Click);
             // 
             // deleteScriptToolStripMenuItem
             // 
             this.deleteScriptToolStripMenuItem.Name = "deleteScriptToolStripMenuItem";
-            this.deleteScriptToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.deleteScriptToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.deleteScriptToolStripMenuItem.Text = "Delete Script";
             this.deleteScriptToolStripMenuItem.Click += new System.EventHandler(this.deleteScriptToolStripMenuItem_Click);
             // 
@@ -500,6 +508,17 @@
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.Size = new System.Drawing.Size(420, 499);
             this.propertyGrid1.TabIndex = 0;
+            // 
+            // glCanvas1
+            // 
+            this.glCanvas1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.glCanvas1.Location = new System.Drawing.Point(0, 0);
+            this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.glCanvas1.Name = "glCanvas1";
+            this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
+            this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
+            this.glCanvas1.Size = new System.Drawing.Size(954, 823);
+            this.glCanvas1.TabIndex = 0;
             // 
             // dlgSaveFile
             // 
@@ -513,22 +532,12 @@
             this.timer1.Interval = 40;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // glCanvas1
+            // refreshTreeToolStripMenuItem
             // 
-            this.glCanvas1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.glCanvas1.Location = new System.Drawing.Point(0, 0);
-            this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.glCanvas1.Name = "glCanvas1";
-            this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
-            this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(954, 823);
-            this.glCanvas1.TabIndex = 0;
-            // 
-            // lblTimerEnabled
-            // 
-            this.lblTimerEnabled.Name = "lblTimerEnabled";
-            this.lblTimerEnabled.Size = new System.Drawing.Size(15, 20);
-            this.lblTimerEnabled.Text = "-";
+            this.refreshTreeToolStripMenuItem.Name = "refreshTreeToolStripMenuItem";
+            this.refreshTreeToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.refreshTreeToolStripMenuItem.Text = "Refresh Tree";
+            this.refreshTreeToolStripMenuItem.Click += new System.EventHandler(this.refreshTreeToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -613,5 +622,6 @@
         private System.Windows.Forms.ToolStripMenuItem sceneObjectsMonitorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteScriptToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel lblTimerEnabled;
+        private System.Windows.Forms.ToolStripMenuItem refreshTreeToolStripMenuItem;
     }
 }
