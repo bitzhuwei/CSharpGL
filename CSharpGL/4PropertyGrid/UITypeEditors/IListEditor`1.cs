@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// 用在IList&lt;GLSwitch&gt;类型的属性上。
     /// </summary>
-    class GLSwithListEditor : UITypeEditor
+    class IListEditor<T> : UITypeEditor
     {
 
         public override UITypeEditorEditStyle GetEditStyle(System.ComponentModel.ITypeDescriptorContext context)
@@ -22,16 +22,8 @@ namespace CSharpGL
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             // 打开属性编辑器修改数据
-            var editor = new FormGLSwitchListEditor(value as IList<GLSwitch>);
-            if (editor.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                var list = value as IList<GLSwitch>;
-                list.Clear();
-                foreach (var item in editor.List)
-                {
-                    list.Add(item);
-                }
-            }
+            var editor = new FormIListEditor<T>(value as IList<T>);
+            editor.ShowDialog();
 
             return value;
         }

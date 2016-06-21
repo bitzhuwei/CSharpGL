@@ -10,10 +10,12 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
-    partial class FormGLSwitchListEditor : Form
+    partial class FormIListEditor<T> : Form
     {
 
-        public FormGLSwitchListEditor(IList<GLSwitch> list)
+        IList<T> list;
+
+        public FormIListEditor(IList<T> list)
         {
             InitializeComponent();
 
@@ -23,17 +25,20 @@ namespace CSharpGL
                 {
                     this.lstMember.Items.Add(item);
                 }
+
+                this.list = list;
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var frmSelectType = new FormSelectType(typeof(GLSwitch));
+            var frmSelectType = new FormSelectType(typeof(T));
             if (frmSelectType.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Type type = frmSelectType.SelectedType;
-                object obj = Activator.CreateInstance(type);
+                T obj = (T)Activator.CreateInstance(type);
                 this.lstMember.Items.Add(obj);
+                this.list.Add(obj);
                 this.propertyGrid.SelectedObject = obj;
             }
         }
@@ -44,28 +49,14 @@ namespace CSharpGL
             if (index >= 0)
             {
                 this.lstMember.Items.RemoveAt(index);
+                this.list.RemoveAt(index);
             }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            var list = new List<GLSwitch>();
-            foreach (GLSwitch item in this.lstMember.Items)
-            {
-                list.Add(item);
-            }
-
-            this.List = list;
-
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
-
-        public List<GLSwitch> List { get; set; }
 
         private void lstMember_SelectedIndexChanged(object sender, EventArgs e)
         {

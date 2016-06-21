@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    [Editor(typeof(ScriptComponentListEditor), typeof(UITypeEditor))]
+    [Editor(typeof(IListEditor<ScriptComponent>), typeof(UITypeEditor))]
     public class ScriptComponentList : IList<ScriptComponent>
     {
 

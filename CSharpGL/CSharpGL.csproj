@@ -44,9 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormScriptComponentListEditor.resx">
-      <DependentUpon>FormScriptComponentListEditor.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormSceneObjectListEditor.resx">
       <DependentUpon>FormSceneObjectListEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,19 +83,12 @@
     <Content Include="OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="OpenGLObjects\VertexBufferObjects\readme.md" />
     <Content Include="readme.md" />
-    <Compile Include="4PropertyGrid\UITypeEditors\FormScriptComponentListEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="4PropertyGrid\UITypeEditors\FormScriptComponentListEditor.Designer.cs">
-      <DependentUpon>FormScriptComponentListEditor.cs</DependentUpon>
-    </Compile>
     <Compile Include="4PropertyGrid\UITypeEditors\FormSceneObjectListEditor.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="4PropertyGrid\UITypeEditors\FormSceneObjectListEditor.Designer.cs">
       <DependentUpon>FormSceneObjectListEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="4PropertyGrid\UITypeEditors\ScriptComponentListEditor.cs" />
     <Compile Include="4PropertyGrid\UITypeEditors\SceneObjectListEditor.cs" />
     <Compile Include="FontResource\FontResource.Default.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.Glyph.cs" />
@@ -336,11 +326,11 @@
     <Compile Include="4PropertyGrid\UITypeEditors\FormUniformVariableListEditor.Designer.cs">
       <DependentUpon>FormUniformVariableListEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="4PropertyGrid\UITypeEditors\FormGLSwitchListEditor.cs">
+    <Compile Include="4PropertyGrid\UITypeEditors\FormIListEditor`1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="4PropertyGrid\UITypeEditors\FormGLSwitchListEditor.Designer.cs">
-      <DependentUpon>FormGLSwitchListEditor.cs</DependentUpon>
+    <Compile Include="4PropertyGrid\UITypeEditors\FormIListEditor`1.Designer.cs">
+      <DependentUpon>FormIListEditor`1.cs</DependentUpon>
     </Compile>
     <Compile Include="4PropertyGrid\UITypeEditors\FormUniformVariableType.cs">
       <SubType>Form</SubType>
@@ -367,7 +357,7 @@
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PrimitiveRestartSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\GLSwitch.cs" />
     <Compile Include="4PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
-    <Compile Include="4PropertyGrid\UITypeEditors\GLSwithListEditor.cs" />
+    <Compile Include="4PropertyGrid\UITypeEditors\IListEditor`1.cs" />
     <Compile Include="IBufferables\IBufferable.cs" />
     <Compile Include="Renderers\Renderer\PropertyNameMap.cs" />
     <Compile Include="Renderers\Renderer\ShaderCode.cs" />
@@ -476,8 +466,8 @@
     <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormUniformVariableListEditor.resx">
       <DependentUpon>FormUniformVariableListEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormGLSwitchListEditor.resx">
-      <DependentUpon>FormGLSwitchListEditor.cs</DependentUpon>
+    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormIListEditor`1.resx">
+      <DependentUpon>FormIListEditor`1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormUniformVariableType.resx">
       <DependentUpon>FormUniformVariableType.cs</DependentUpon>
