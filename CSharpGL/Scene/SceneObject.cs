@@ -81,6 +81,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strBasic)]
         [Description("binded object.")]
+        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
         public object Tag { get; set; }
 
         /// <summary>
