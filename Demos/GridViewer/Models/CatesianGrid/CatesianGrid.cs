@@ -5,16 +5,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TracyEnergy.Simba.Data.Keywords.impl;
 
 namespace GridViewer
 {
     public partial class CatesianGrid : IBufferable
     {
         private CatesianGridderSource dataSource;
+        private List<GridBlockProperty> gridProps;
+        private int defaultBlockPropertyIndex;
 
-        public CatesianGrid(CatesianGridderSource dataSource)
+        public float MinColorCode { get; set; }
+
+        public float MaxColorCode { get; set; }
+
+        public CatesianGrid(CatesianGridderSource dataSource, List<GridBlockProperty> gridProps,
+            float minColorCode, float maxColorCode, int defaultBlockPropertyIndex = 0)
         {
             this.dataSource = dataSource;
+            this.gridProps = gridProps;
+            this.MinColorCode = minColorCode;
+            this.MaxColorCode = maxColorCode;
+            this.defaultBlockPropertyIndex = defaultBlockPropertyIndex;
         }
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)

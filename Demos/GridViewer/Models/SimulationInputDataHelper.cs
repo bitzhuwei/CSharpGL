@@ -12,7 +12,8 @@ namespace GridViewer
 {
     public static class SimulationInputDataHelper
     {
-        public static CatesianGrid DumpCatesianGrid(this SimulationInputData inputData)
+        public static CatesianGrid DumpCatesianGrid(this SimulationInputData inputData,
+            float minColorCode, float maxColorCode)
         {
             GridDimens dimens = inputData.RootDataFile.GetDIMENS();
             if (dimens == null)
@@ -40,7 +41,8 @@ namespace GridViewer
             dataSource.JBlocks = SimLab.ArrayHelper.CreateAllSlices(dimens.NJ);
             dataSource.KBlocks = SimLab.ArrayHelper.CreateAllSlices(dimens.NK);
             dataSource.Init();
-            var grid = new CatesianGrid(dataSource);
+            List<GridBlockProperty> gridProps = inputData.RootDataFile.GetGridProperties();
+            var grid = new CatesianGrid(dataSource, gridProps, minColorCode, maxColorCode);
 
             return grid;
         }
