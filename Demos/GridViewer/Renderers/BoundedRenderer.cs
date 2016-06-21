@@ -1,6 +1,7 @@
 ﻿using CSharpGL;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,16 @@ namespace GridViewer
             if (boundingBox != null) { boundingBox.Initialize(); }
 
             Renderer scientific = this.ScientificRenderer;
-            if (scientific != null) { scientific.Initialize(); }
+            if (scientific != null)
+            {
+                scientific.Initialize();
+                var sampler1D = new sampler1D();
+                var bitmap = new Bitmap(@"Images\simColorCode.jpg");
+                sampler1D.Initialize(bitmap);
+                bitmap.Dispose();
+                scientific.SetUniform("colorCodeSampler", new samplerValue(
+                     BindTextureTarget.Texture1D, sampler1D.Id, OpenGL.GL_TEXTURE0));
+            }
         }
 
         protected override void DoRender(RenderEventArgs arg)
