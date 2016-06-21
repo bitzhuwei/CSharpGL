@@ -44,7 +44,7 @@ namespace CSharpGL
             SceneObject bindingObject = this.BindingObject;
             if (bindingObject != null)
             {
-                model = bindingObject.GetTransform().GetModelMatrix();
+                model = bindingObject.Transform.GetModelMatrix();
 
                 return true;
             }

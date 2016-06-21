@@ -35,7 +35,7 @@ namespace CSharpGL
         /// <summary>
         /// translate, rotate and scale this object in world space.
         /// </summary>
-        public TransformComponent GetTransform() { return this.transform; }
+        public TransformComponent Transform { get { return this.transform; } }
 
         /// <summary>
         /// render this object.
@@ -115,10 +115,10 @@ namespace CSharpGL
                     {
                         script.Update(elapsedTime);
                     }
-                    foreach (var item in this.Children)
-                    {
-                        item.RefreshRelativeTransform();
-                    }
+                    //foreach (var item in this.Children)
+                    //{
+                    //    item.RefreshRelativeTransform();
+                    //}
                 }
             }
         }

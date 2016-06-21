@@ -32,7 +32,7 @@ namespace CSharpGL
         {
             item.Parent = this.Parent;
             list.Insert(index, item);
-            item.RefreshRelativeTransform();
+            //item.RefreshRelativeTransform();
 
             EventHandler<AddItemEventArgs<SceneObject>> ItemAdded = this.ItemAdded;
             if (ItemAdded != null)
@@ -44,7 +44,7 @@ namespace CSharpGL
             SceneObject obj = list[index];
             list.RemoveAt(index);
             obj.Parent = null;
-            obj.RefreshRelativeTransform();
+            //obj.RefreshRelativeTransform();
 
             EventHandler<RemoveItemEventArgs<SceneObject>> ItemRemoved = this.ItemRemoved;
             if (ItemRemoved != null)
@@ -67,7 +67,7 @@ namespace CSharpGL
         {
             item.Parent = this.Parent;
             list.Add(item);
-            item.RefreshRelativeTransform();
+            //item.RefreshRelativeTransform();
 
             EventHandler<AddItemEventArgs<SceneObject>> ItemAdded = this.ItemAdded;
             if (ItemAdded != null)
@@ -83,7 +83,7 @@ namespace CSharpGL
             list.AddRange(items);
             foreach (var item in items)
             {
-                item.RefreshRelativeTransform();
+                //item.RefreshRelativeTransform();
             }
 
             EventHandler<AddItemEventArgs<SceneObject>> ItemAdded = this.ItemAdded;
@@ -104,7 +104,7 @@ namespace CSharpGL
             foreach (var item in array)
             {
                 item.Parent = null;
-                item.RefreshRelativeTransform();
+                //item.RefreshRelativeTransform();
             }
 
             EventHandler<RemoveItemEventArgs<SceneObject>> ItemRemoved = this.ItemRemoved;
@@ -143,7 +143,7 @@ namespace CSharpGL
             if (result)
             {
                 item.Parent = null;
-                item.RefreshRelativeTransform();
+                //item.RefreshRelativeTransform();
 
                 EventHandler<RemoveItemEventArgs<SceneObject>> ItemRemoved = this.ItemRemoved;
                 if (ItemRemoved != null)
