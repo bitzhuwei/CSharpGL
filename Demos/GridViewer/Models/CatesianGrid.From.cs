@@ -10,23 +10,24 @@ using TracyEnergy.Simba.Data.Keywords.impl;
 
 namespace GridViewer
 {
-    public partial class HexahedronGrid
+    public partial class CatesianGrid
     {
-        public static HexahedronGrid From(SimulationInputData inputData)
+        public static CatesianGridderSource From(SimulationInputData inputData)
         {
             GridDimens dimens = inputData.RootDataFile.GetDIMENS();
-            float[] dx = inputData.RootDataFile.GetDX();
-            float[] dy = inputData.RootDataFile.GetDY();
-            float[] dz = inputData.RootDataFile.GetDZ();
             if (dimens == null)
-                throw new ArgumentException("Missing DIMENS or SPECGRID");
+            { throw new ArgumentException("Missing DIMENS or SPECGRID"); }
+            float[] dx = inputData.RootDataFile.GetDX();
             if (dx == null)
-                throw new ArgumentException("Missing DX or related description");
+            { throw new ArgumentException("Missing DX or related description"); }
+            float[] dy = inputData.RootDataFile.GetDY();
             if (dy == null)
-                throw new ArgumentException("Missing DY or related description");
+            { throw new ArgumentException("Missing DY or related description"); }
+            float[] dz = inputData.RootDataFile.GetDZ();
             if (dy == null)
-                throw new ArgumentException("Missing DZ or related description");
-            CatesianGridderSource cgs = new CatesianGridderSource();
+            { throw new ArgumentException("Missing DZ or related description"); }
+
+            var cgs = new CatesianGridderSource();
             cgs.NX = dimens.NI;
             cgs.NY = dimens.NJ;
             cgs.NZ = dimens.NK;
@@ -39,8 +40,7 @@ namespace GridViewer
             cgs.JBlocks = SimLab.ArrayHelper.CreateAllSlices(dimens.NJ);
             cgs.KBlocks = SimLab.ArrayHelper.CreateAllSlices(dimens.NK);
             cgs.Init();
-            //return cgs;
-            throw new NotImplementedException();
+            return cgs;
         }
     }
 }

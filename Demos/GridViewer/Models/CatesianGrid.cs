@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GridViewer
 {
-    public partial class HexahedronGrid : IBufferable
+    public partial class CatesianGrid : IBufferable
     {
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {

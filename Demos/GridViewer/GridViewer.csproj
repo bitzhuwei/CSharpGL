@@ -94,7 +94,8 @@
     <Compile Include="Loader\DynamicUnstructureGeometryLoader.cs" />
     <Compile Include="Loader\PointSetLoader.cs" />
     <Compile Include="Models\BoundingBox.cs" />
-    <Compile Include="Models\HexahedronGrid.From.cs" />
+    <None Include="Models\readme.md" />
+    <Compile Include="Models\CatesianGrid.From.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\BoudingBoxRenderer.cs" />
@@ -115,7 +116,7 @@
     <Compile Include="ScientificCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Models\HexahedronGrid.cs" />
+    <Compile Include="Models\CatesianGrid.cs" />
     <Compile Include="SingleFilePropertyLoader.cs" />
     <Compile Include="Utils\ArrayHelper.cs" />
     <Compile Include="Utils\ColorMapAxisAutomation.cs" />
