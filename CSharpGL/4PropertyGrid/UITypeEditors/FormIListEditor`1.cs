@@ -46,7 +46,7 @@ namespace CSharpGL
         private void btnRemove_Click(object sender, EventArgs e)
         {
             int index = this.lstMember.SelectedIndex;
-            if (index >= 0)
+            if (0 <= index)
             {
                 this.lstMember.Items.RemoveAt(index);
                 this.list.RemoveAt(index);
@@ -63,6 +63,40 @@ namespace CSharpGL
             object obj = this.lstMember.SelectedItem;
             this.propertyGrid.SelectedObject = obj;
             this.lblProperty.Text = string.Format("{0}", obj);
+        }
+
+        private void btnMoveUp_Click(object sender, EventArgs e)
+        {
+            int index = this.lstMember.SelectedIndex;
+            if (0 < index)
+            {
+                object item = this.lstMember.Items[index];
+                this.lstMember.Items.RemoveAt(index);
+                T obj = this.list[index];
+                this.list.RemoveAt(index);
+
+                this.lstMember.Items.Insert(index - 1, item);
+                this.list.Insert(index - 1, obj);
+
+                this.lstMember.SelectedIndex = index - 1;
+            }
+        }
+
+        private void btnMoveDown_Click(object sender, EventArgs e)
+        {
+            int index = this.lstMember.SelectedIndex;
+            if (0 <= index && index + 1 < this.lstMember.Items.Count)
+            {
+                object item = this.lstMember.Items[index];
+                this.lstMember.Items.RemoveAt(index);
+                T obj = this.list[index];
+                this.list.RemoveAt(index);
+
+                this.lstMember.Items.Insert(index + 1, item);
+                this.list.Insert(index + 1, obj);
+
+                this.lstMember.SelectedIndex = index + 1;
+            }
         }
 
     }
