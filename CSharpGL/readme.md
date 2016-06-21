@@ -15,6 +15,15 @@
 * Write GLSL shade in C#.  
 
 # release notes:
+## v1.0.4.8:
+1. SceneObject maintains a list of script components.
+2. Generic List Editor for different list types.
+3. Move item up/down in generic list editor.
+4. Display uniform variable's location in property grid.
+5. Add ItemAdded/ItemRemoved events.
+6. Explicit implement of ITreeNode<SceneObject> for SceneObject.
+7. Remove the complex error-prone relative transform properties.
+
 ## v1.0.4.7:
 1. Enable/Disable SceneObject controls whether it takes part in rendering and updating.
 2. SceneObject's transform(position/scale/rotation) is updated according to parent/child relation then to script component.
