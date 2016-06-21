@@ -7,12 +7,6 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public partial class SceneObjectList
-    {
-        public event EventHandler<AddItemEventArgs<SceneObject>> ItemAdded;
-        public event EventHandler<RemoveItemEventArgs<SceneObject>> ItemRemoved;
-    }
-
     public class AddItemEventArgs<T>
     {
         public T NewItem { get; private set; }

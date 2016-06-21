@@ -11,6 +11,9 @@ namespace CSharpGL
     public class ScriptComponentList : IList<ScriptComponent>
     {
 
+        public event EventHandler<AddItemEventArgs<ScriptComponent>> ItemAdded;
+        public event EventHandler<RemoveItemEventArgs<ScriptComponent>> ItemRemoved;
+
         List<ScriptComponent> list = new List<ScriptComponent>();
 
         private SceneObject bindingObject;
@@ -29,6 +32,10 @@ namespace CSharpGL
         {
             item.BindingObject = this.bindingObject;
             list.Insert(index, item);
+
+            EventHandler<AddItemEventArgs<ScriptComponent>> ItemAdded = this.ItemAdded;
+            if (ItemAdded != null)
+            { ItemAdded(this, new AddItemEventArgs<ScriptComponent>(item)); }
         }
 
         public void RemoveAt(int index)
@@ -36,6 +43,10 @@ namespace CSharpGL
             ScriptComponent obj = list[index];
             list.RemoveAt(index);
             obj.BindingObject = null;
+
+            EventHandler<RemoveItemEventArgs<ScriptComponent>> ItemRemoved = this.ItemRemoved;
+            if (ItemRemoved != null)
+            { ItemRemoved(this, new RemoveItemEventArgs<ScriptComponent>(obj)); }
         }
 
         public ScriptComponent this[int index]
@@ -54,6 +65,10 @@ namespace CSharpGL
         {
             item.BindingObject = this.bindingObject;
             list.Add(item);
+
+            EventHandler<AddItemEventArgs<ScriptComponent>> ItemAdded = this.ItemAdded;
+            if (ItemAdded != null)
+            { ItemAdded(this, new AddItemEventArgs<ScriptComponent>(item)); }
         }
 
         public void AddRange(IEnumerable<ScriptComponent> items)
@@ -63,6 +78,15 @@ namespace CSharpGL
                 item.BindingObject = this.bindingObject;
             }
             list.AddRange(items);
+
+            EventHandler<AddItemEventArgs<ScriptComponent>> ItemAdded = this.ItemAdded;
+            if (ItemAdded != null)
+            {
+                foreach (var item in items)
+                {
+                    ItemAdded(this, new AddItemEventArgs<ScriptComponent>(item));
+                }
+            }
         }
 
         public void Clear()
@@ -73,6 +97,15 @@ namespace CSharpGL
             foreach (var item in array)
             {
                 item.BindingObject = null;
+            }
+
+            EventHandler<RemoveItemEventArgs<ScriptComponent>> ItemRemoved = this.ItemRemoved;
+            if (ItemRemoved != null)
+            {
+                foreach (var item in array)
+                {
+                    ItemRemoved(this, new RemoveItemEventArgs<ScriptComponent>(item));
+                }
             }
         }
 
@@ -102,8 +135,11 @@ namespace CSharpGL
             if (result)
             {
                 item.BindingObject = null;
-            }
 
+                EventHandler<RemoveItemEventArgs<ScriptComponent>> ItemRemoved = this.ItemRemoved;
+                if (ItemRemoved != null)
+                { ItemRemoved(this, new RemoveItemEventArgs<ScriptComponent>(item)); }
+            }
             return result;
         }
 

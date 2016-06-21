@@ -8,8 +8,11 @@ using System.Text;
 namespace CSharpGL
 {
     [Editor(typeof(IListEditor<SceneObject>), typeof(UITypeEditor))]
-    public partial class SceneObjectList : IList<SceneObject>
+    public class SceneObjectList : IList<SceneObject>
     {
+
+        public event EventHandler<AddItemEventArgs<SceneObject>> ItemAdded;
+        public event EventHandler<RemoveItemEventArgs<SceneObject>> ItemRemoved;
 
         List<SceneObject> list = new List<SceneObject>();
 
