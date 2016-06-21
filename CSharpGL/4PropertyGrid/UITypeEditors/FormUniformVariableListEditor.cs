@@ -13,7 +13,9 @@ namespace CSharpGL
     partial class FormUniformVariableListEditor : Form
     {
 
-        public FormUniformVariableListEditor(List<UniformVariable> list)
+        IList<UniformVariable> list;
+
+        public FormUniformVariableListEditor(IList<UniformVariable> list)
         {
             InitializeComponent();
 
@@ -23,6 +25,8 @@ namespace CSharpGL
                 {
                     this.lstMember.Items.Add(item);
                 }
+
+                this.list = list;
             }
         }
 
@@ -32,8 +36,9 @@ namespace CSharpGL
             if (frmSelectType.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Type type = frmSelectType.SelectedType;
-                object obj = Activator.CreateInstance(type, frmSelectType.VarNameInShader);
+                var obj = Activator.CreateInstance(type, frmSelectType.VarNameInShader) as UniformVariable;
                 this.lstMember.Items.Add(obj);
+                this.list.Add(obj);
                 this.propertyGrid.SelectedObject = obj;
             }
         }
@@ -44,28 +49,14 @@ namespace CSharpGL
             if (index >= 0)
             {
                 this.lstMember.Items.RemoveAt(index);
+                this.list.RemoveAt(index);
             }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            var list = new List<UniformVariable>();
-            foreach (UniformVariable item in this.lstMember.Items)
-            {
-                list.Add(item);
-            }
-
-            this.List = list;
-
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
-
-        public List<UniformVariable> List { get; set; }
 
         private void lstMember_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -74,5 +65,38 @@ namespace CSharpGL
             this.lblProperty.Text = string.Format("{0}", obj);
         }
 
+        private void btnMoveUp_Click(object sender, EventArgs e)
+        {
+            int index = this.lstMember.SelectedIndex;
+            if (0 < index)
+            {
+                object item = this.lstMember.Items[index];
+                this.lstMember.Items.RemoveAt(index);
+                UniformVariable obj = this.list[index];
+                this.list.RemoveAt(index);
+
+                this.lstMember.Items.Insert(index - 1, item);
+                this.list.Insert(index - 1, obj);
+
+                this.lstMember.SelectedIndex = index - 1;
+            }
+        }
+
+        private void btnMoveDown_Click(object sender, EventArgs e)
+        {
+            int index = this.lstMember.SelectedIndex;
+            if (0 <= index && index + 1 < this.lstMember.Items.Count)
+            {
+                object item = this.lstMember.Items[index];
+                this.lstMember.Items.RemoveAt(index);
+                UniformVariable obj = this.list[index];
+                this.list.RemoveAt(index);
+
+                this.lstMember.Items.Insert(index + 1, item);
+                this.list.Insert(index + 1, obj);
+
+                this.lstMember.SelectedIndex = index + 1;
+            }
+        }
     }
 }

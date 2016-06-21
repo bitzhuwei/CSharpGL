@@ -27,6 +27,8 @@ namespace CSharpGL
                 }
 
                 this.list = list;
+
+                this.Text = string.Format("{0} List Editor", typeof(T).Name);
             }
         }
 

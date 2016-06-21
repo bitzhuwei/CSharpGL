@@ -92,7 +92,7 @@
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
             this.Name = "FormSelectType";
-            this.Text = "FormGLSwtichType";
+            this.Text = "Select type derived from {0}";
             this.Load += new System.EventHandler(this.FormGLSwtichType_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

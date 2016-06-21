@@ -23,15 +23,7 @@ namespace CSharpGL
         {
             //打开属性编辑器修改数据
             var editor = new FormUniformVariableListEditor(value as List<UniformVariable>);
-            if (editor.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                var list = value as IList<UniformVariable>;
-                list.Clear();
-                foreach (var item in editor.List)
-                {
-                    list.Add(item);
-                }
-            }
+            editor.ShowDialog();
 
             return value;
         }

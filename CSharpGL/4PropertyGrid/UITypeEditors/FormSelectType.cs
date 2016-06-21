@@ -34,6 +34,8 @@ namespace CSharpGL
 
             this.baseType = baseType;
             this.forceReload = forceReload;
+
+            this.Text = string.Format("Select type derived from {0}", baseType);
         }
 
         private void FormGLSwtichType_Load(object sender, EventArgs e)
