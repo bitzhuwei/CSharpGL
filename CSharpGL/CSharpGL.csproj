@@ -44,9 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormSceneObjectListEditor.resx">
-      <DependentUpon>FormSceneObjectListEditor.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormPropertyGridEditor.resx">
       <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -83,13 +80,6 @@
     <Content Include="OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="OpenGLObjects\VertexBufferObjects\readme.md" />
     <Content Include="readme.md" />
-    <Compile Include="4PropertyGrid\UITypeEditors\FormSceneObjectListEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="4PropertyGrid\UITypeEditors\FormSceneObjectListEditor.Designer.cs">
-      <DependentUpon>FormSceneObjectListEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="4PropertyGrid\UITypeEditors\SceneObjectListEditor.cs" />
     <Compile Include="FontResource\FontResource.Default.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.Glyph.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.Misc.cs" />
