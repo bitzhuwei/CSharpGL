@@ -1,9 +1,11 @@
-﻿using SimLab.helper;
+﻿using CSharpGL;
+using SimLab.helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,8 +43,21 @@ namespace GridViewer
             double axisMin, axisMax, step;
             ColorIndicatorAxisAutomator.Automate(gbp.MinValue, gbp.MaxValue, out axisMin, out axisMax, out step);
             CatesianGrid grid = inputData.DumpCatesianGrid((float)axisMin, (float)axisMax);
-
-            //GridderSource gridderSource;
+            var shaderCodes = new ShaderCode[2];
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\HexahedronGrid.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\HexahedronGrid.frag"), ShaderType.FragmentShader);
+            var map = new PropertyNameMap();
+            map.Add("in_Position", CatesianGrid.strPosition);
+            map.Add("in_uv", CatesianGrid.strColor);
+            var scientificRenderer = new Renderer(grid, shaderCodes, map);
+            var boundedRenderer = new BoundedRenderer(scientificRenderer, grid.DataSource.Max - grid.DataSource.Min);
+            boundedRenderer.Initialize();
+            SceneObject sceneObject = new SceneObject();
+            sceneObject.Name = typeof(CatesianGrid).Name;
+            sceneObject.Renderer = new BoundedRendererComponent(boundedRenderer);
+            sceneObject.GetTransform().Position = grid.DataSource.TranslateMatrix;
+            this.scene.Scene.ObjectList.Add(sceneObject);
+            //sceneObject.Renderer=ne
             //SimLabGrid gridder = null;
             //try
             //{
@@ -87,18 +102,18 @@ namespace GridViewer
             //        gridderNode.Nodes[0].Checked = true;
             //    }
 
-                //List<Well> well3dList;
-                //try
-                //{
-                //    well3dList = this.CreateWell3D(inputData, this.scene, gridderSource);
-                //}
-                //catch (Exception err)
-                //{
-                //    MessageBox.Show(String.Format("Create Well3d,{0}", err.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    return;
-                //}
-                //if (well3dList != null && well3dList.Count > 0)
-                //    this.AddWellNodes(gridderNode, this.scene, well3dList);
+            //List<Well> well3dList;
+            //try
+            //{
+            //    well3dList = this.CreateWell3D(inputData, this.scene, gridderSource);
+            //}
+            //catch (Exception err)
+            //{
+            //    MessageBox.Show(String.Format("Create Well3d,{0}", err.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+            //if (well3dList != null && well3dList.Count > 0)
+            //    this.AddWellNodes(gridderNode, this.scene, well3dList);
             //}
         }
 

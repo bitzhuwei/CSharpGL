@@ -45,6 +45,9 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
+                if (shaderProgram == null)
+                { throw new Exception(string.Format("{0} is not initialized!", this.GetType().Name)); }
+
                 int location = shaderProgram.GetUniformLocation(varNameInShader);
                 if (location < 0)
                 {

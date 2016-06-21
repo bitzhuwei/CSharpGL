@@ -9,49 +9,53 @@ namespace GridViewer
 {
     public partial class BoundedRenderer : RendererBase
     {
-        public BoudingBoxRenderer BoundingBoxRenderer { get; private set; }
+        /// <summary>
+        /// Gets bounding box's renderer.
+        /// </summary>
+        public Renderer BoundingBoxRenderer { get; private set; }
 
-        public ScientificRenderer Renderer { get; set; }
+        /// <summary>
+        /// Gets scientific model's renderer.
+        /// </summary>
+        public Renderer ScientificRenderer { get; private set; }
 
-        public void SetWorldPosition(vec3 worldPosition)
+        public BoundedRenderer(Renderer scientificRenderer, vec3 lengths)
         {
-            BoudingBoxRenderer boundingBox = this.BoundingBoxRenderer;
-            if (boundingBox != null) { boundingBox.Translate = worldPosition; }
+            if (scientificRenderer == null)
+            { throw new ArgumentNullException(); }
 
-            ScientificRenderer renderer = this.Renderer;
-            if (renderer != null) { renderer.Translate = worldPosition; }
-        }
-
-        public BoundedRenderer()
-        {
-            this.BoundingBoxRenderer = new BoudingBoxRenderer();
+            this.BoundingBoxRenderer = BoudingBoxRendererFactory.GetBoundingBoxRenderer(lengths);
+            this.ScientificRenderer = scientificRenderer;
         }
 
         protected override void DoInitialize()
         {
-            BoudingBoxRenderer boundingBox = this.BoundingBoxRenderer;
+            Renderer boundingBox = this.BoundingBoxRenderer;
             if (boundingBox != null) { boundingBox.Initialize(); }
 
-            ScientificRenderer renderer = this.Renderer;
-            if (renderer != null) { renderer.Initialize(); }
+            Renderer scientific = this.ScientificRenderer;
+            if (scientific != null) { scientific.Initialize(); }
         }
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            BoudingBoxRenderer boundingBox = this.BoundingBoxRenderer;
+            mat4 projection = arg.Camera.GetProjectionMat4();
+            mat4 view = arg.Camera.GetViewMat4();
+
+            Renderer boundingBox = this.BoundingBoxRenderer;
             if (boundingBox != null) { boundingBox.Render(arg); }
 
-            ScientificRenderer renderer = this.Renderer;
+            Renderer renderer = this.ScientificRenderer;
             if (renderer != null) { renderer.Render(arg); }
         }
 
         protected override void DisposeUnmanagedResources()
         {
-            BoudingBoxRenderer boundingBox = this.BoundingBoxRenderer;
+            Renderer boundingBox = this.BoundingBoxRenderer;
             if (boundingBox != null) { boundingBox.Dispose(); }
 
-            ScientificRenderer renderer = this.Renderer;
-            if (renderer != null) { renderer.Dispose(); }
+            Renderer scientific = this.ScientificRenderer;
+            if (scientific != null) { scientific.Dispose(); }
         }
     }
 }

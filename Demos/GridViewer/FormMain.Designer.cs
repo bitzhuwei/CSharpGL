@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.文件FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新建NToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.打开OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,6 +41,16 @@
             this.打印预览VToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.退出XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniLoadECLGrid = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniLoadSimbaGrid = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniLoadSimbaPoints = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.mniLoadEclProperty = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniLoadProperty = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniLoadCloudResults = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.mniLoadEclWells = new System.Windows.Forms.ToolStripMenuItem();
             this.编辑EToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.撤消UToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.重复RToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,10 +69,8 @@
             this.搜索SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.objectsTreeView = new System.Windows.Forms.TreeView();
             this.新建NToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.打开OToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.保存SToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -74,20 +81,15 @@
             this.粘贴PToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.帮助LToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.objectsTreeView = new System.Windows.Forms.TreeView();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.scene = new ScientificCanvas();
-            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mniLoadECLGrid = new System.Windows.Forms.ToolStripMenuItem();
-            this.mniLoadSimbaGrid = new System.Windows.Forms.ToolStripMenuItem();
-            this.mniLoadSimbaPoints = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.mniLoadEclProperty = new System.Windows.Forms.ToolStripMenuItem();
-            this.mniLoadProperty = new System.Windows.Forms.ToolStripMenuItem();
-            this.mniLoadCloudResults = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.mniLoadEclWells = new System.Windows.Forms.ToolStripMenuItem();
+            this.scene = new GridViewer.ScientificCanvas();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.lblCameraInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -115,15 +117,6 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Location = new System.Drawing.Point(0, 724);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1280, 22);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
             // 文件FToolStripMenuItem
             // 
             this.文件FToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -147,7 +140,7 @@
             this.新建NToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("新建NToolStripMenuItem.Image")));
             this.新建NToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.新建NToolStripMenuItem.Name = "新建NToolStripMenuItem";
-            this.新建NToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.新建NToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.新建NToolStripMenuItem.Text = "新建(&N)";
             // 
             // 打开OToolStripMenuItem
@@ -155,39 +148,39 @@
             this.打开OToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("打开OToolStripMenuItem.Image")));
             this.打开OToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.打开OToolStripMenuItem.Name = "打开OToolStripMenuItem";
-            this.打开OToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.打开OToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.打开OToolStripMenuItem.Text = "打开(&O)";
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(161, 6);
             // 
             // 保存SToolStripMenuItem
             // 
             this.保存SToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("保存SToolStripMenuItem.Image")));
             this.保存SToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.保存SToolStripMenuItem.Name = "保存SToolStripMenuItem";
-            this.保存SToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.保存SToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.保存SToolStripMenuItem.Text = "保存(&S)";
             // 
             // 另存为AToolStripMenuItem
             // 
             this.另存为AToolStripMenuItem.Name = "另存为AToolStripMenuItem";
-            this.另存为AToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.另存为AToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.另存为AToolStripMenuItem.Text = "另存为(&A)";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
             // 
             // 打印PToolStripMenuItem
             // 
             this.打印PToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("打印PToolStripMenuItem.Image")));
             this.打印PToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.打印PToolStripMenuItem.Name = "打印PToolStripMenuItem";
-            this.打印PToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.打印PToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.打印PToolStripMenuItem.Text = "打印(&P)";
             // 
             // 打印预览VToolStripMenuItem
@@ -195,19 +188,88 @@
             this.打印预览VToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("打印预览VToolStripMenuItem.Image")));
             this.打印预览VToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.打印预览VToolStripMenuItem.Name = "打印预览VToolStripMenuItem";
-            this.打印预览VToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.打印预览VToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.打印预览VToolStripMenuItem.Text = "打印预览(&V)";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(161, 6);
             // 
             // 退出XToolStripMenuItem
             // 
             this.退出XToolStripMenuItem.Name = "退出XToolStripMenuItem";
-            this.退出XToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.退出XToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.退出XToolStripMenuItem.Text = "退出(&X)";
+            // 
+            // loadToolStripMenuItem
+            // 
+            this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mniLoadECLGrid,
+            this.mniLoadSimbaGrid,
+            this.mniLoadSimbaPoints,
+            this.toolStripSeparator8,
+            this.mniLoadEclProperty,
+            this.mniLoadProperty,
+            this.mniLoadCloudResults,
+            this.toolStripSeparator9,
+            this.mniLoadEclWells});
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
+            this.loadToolStripMenuItem.Text = "Data";
+            // 
+            // mniLoadECLGrid
+            // 
+            this.mniLoadECLGrid.Name = "mniLoadECLGrid";
+            this.mniLoadECLGrid.Size = new System.Drawing.Size(223, 26);
+            this.mniLoadECLGrid.Text = "Load ECL Grid";
+            this.mniLoadECLGrid.Click += new System.EventHandler(this.mniLoadECLGrid_Click);
+            // 
+            // mniLoadSimbaGrid
+            // 
+            this.mniLoadSimbaGrid.Name = "mniLoadSimbaGrid";
+            this.mniLoadSimbaGrid.Size = new System.Drawing.Size(223, 26);
+            this.mniLoadSimbaGrid.Text = "Load Simba Grid";
+            // 
+            // mniLoadSimbaPoints
+            // 
+            this.mniLoadSimbaPoints.Name = "mniLoadSimbaPoints";
+            this.mniLoadSimbaPoints.Size = new System.Drawing.Size(223, 26);
+            this.mniLoadSimbaPoints.Text = "Load Simba Points";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(220, 6);
+            // 
+            // mniLoadEclProperty
+            // 
+            this.mniLoadEclProperty.Name = "mniLoadEclProperty";
+            this.mniLoadEclProperty.Size = new System.Drawing.Size(223, 26);
+            this.mniLoadEclProperty.Text = "Load ECL Property";
+            // 
+            // mniLoadProperty
+            // 
+            this.mniLoadProperty.Name = "mniLoadProperty";
+            this.mniLoadProperty.Size = new System.Drawing.Size(223, 26);
+            this.mniLoadProperty.Text = "Load Property";
+            // 
+            // mniLoadCloudResults
+            // 
+            this.mniLoadCloudResults.Name = "mniLoadCloudResults";
+            this.mniLoadCloudResults.Size = new System.Drawing.Size(223, 26);
+            this.mniLoadCloudResults.Text = "Load Cloud Results";
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(220, 6);
+            // 
+            // mniLoadEclWells
+            // 
+            this.mniLoadEclWells.Name = "mniLoadEclWells";
+            this.mniLoadEclWells.Size = new System.Drawing.Size(223, 26);
+            this.mniLoadEclWells.Text = "Load ECL Wells";
             // 
             // 编辑EToolStripMenuItem
             // 
@@ -228,26 +290,26 @@
             // 撤消UToolStripMenuItem
             // 
             this.撤消UToolStripMenuItem.Name = "撤消UToolStripMenuItem";
-            this.撤消UToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.撤消UToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.撤消UToolStripMenuItem.Text = "撤消(&U)";
             // 
             // 重复RToolStripMenuItem
             // 
             this.重复RToolStripMenuItem.Name = "重复RToolStripMenuItem";
-            this.重复RToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.重复RToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.重复RToolStripMenuItem.Text = "重复(&R)";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(132, 6);
             // 
             // 剪切TToolStripMenuItem
             // 
             this.剪切TToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("剪切TToolStripMenuItem.Image")));
             this.剪切TToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.剪切TToolStripMenuItem.Name = "剪切TToolStripMenuItem";
-            this.剪切TToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.剪切TToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.剪切TToolStripMenuItem.Text = "剪切(&T)";
             // 
             // 复制CToolStripMenuItem
@@ -255,7 +317,7 @@
             this.复制CToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("复制CToolStripMenuItem.Image")));
             this.复制CToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.复制CToolStripMenuItem.Name = "复制CToolStripMenuItem";
-            this.复制CToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.复制CToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.复制CToolStripMenuItem.Text = "复制(&C)";
             // 
             // 粘贴PToolStripMenuItem
@@ -263,18 +325,18 @@
             this.粘贴PToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("粘贴PToolStripMenuItem.Image")));
             this.粘贴PToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.粘贴PToolStripMenuItem.Name = "粘贴PToolStripMenuItem";
-            this.粘贴PToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.粘贴PToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.粘贴PToolStripMenuItem.Text = "粘贴(&P)";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(132, 6);
             // 
             // 全选AToolStripMenuItem
             // 
             this.全选AToolStripMenuItem.Name = "全选AToolStripMenuItem";
-            this.全选AToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.全选AToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.全选AToolStripMenuItem.Text = "全选(&A)";
             // 
             // 工具TToolStripMenuItem
@@ -290,13 +352,13 @@
             // 自定义CToolStripMenuItem
             // 
             this.自定义CToolStripMenuItem.Name = "自定义CToolStripMenuItem";
-            this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
             this.自定义CToolStripMenuItem.Text = "自定义(&C)";
             // 
             // 选项OToolStripMenuItem
             // 
             this.选项OToolStripMenuItem.Name = "选项OToolStripMenuItem";
-            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
             this.选项OToolStripMenuItem.Text = "选项(&O)";
             // 
             // 帮助HToolStripMenuItem
@@ -315,31 +377,42 @@
             // 内容CToolStripMenuItem
             // 
             this.内容CToolStripMenuItem.Name = "内容CToolStripMenuItem";
-            this.内容CToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.内容CToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.内容CToolStripMenuItem.Text = "内容(&C)";
             // 
             // 索引IToolStripMenuItem
             // 
             this.索引IToolStripMenuItem.Name = "索引IToolStripMenuItem";
-            this.索引IToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.索引IToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.索引IToolStripMenuItem.Text = "索引(&I)";
             // 
             // 搜索SToolStripMenuItem
             // 
             this.搜索SToolStripMenuItem.Name = "搜索SToolStripMenuItem";
-            this.搜索SToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.搜索SToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.搜索SToolStripMenuItem.Text = "搜索(&S)";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(144, 6);
             // 
             // 关于AToolStripMenuItem
             // 
             this.关于AToolStripMenuItem.Name = "关于AToolStripMenuItem";
-            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.关于AToolStripMenuItem.Text = "关于(&A)...";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblCameraInfo});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 721);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1280, 25);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStrip1
             // 
@@ -361,49 +434,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(1280, 27);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 55);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.scene);
-            this.splitContainer1.Size = new System.Drawing.Size(1280, 669);
-            this.splitContainer1.SplitterDistance = 426;
-            this.splitContainer1.TabIndex = 4;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.objectsTreeView);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.propertyGrid1);
-            this.splitContainer2.Size = new System.Drawing.Size(426, 669);
-            this.splitContainer2.SplitterDistance = 298;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // objectsTreeView
-            // 
-            this.objectsTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.objectsTreeView.Location = new System.Drawing.Point(0, 0);
-            this.objectsTreeView.Name = "objectsTreeView";
-            this.objectsTreeView.Size = new System.Drawing.Size(426, 298);
-            this.objectsTreeView.TabIndex = 0;
             // 
             // 新建NToolStripButton
             // 
@@ -487,12 +517,55 @@
             this.帮助LToolStripButton.Size = new System.Drawing.Size(24, 24);
             this.帮助LToolStripButton.Text = "帮助(&L)";
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 55);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.scene);
+            this.splitContainer1.Size = new System.Drawing.Size(1280, 666);
+            this.splitContainer1.SplitterDistance = 426;
+            this.splitContainer1.TabIndex = 4;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.objectsTreeView);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.propertyGrid1);
+            this.splitContainer2.Size = new System.Drawing.Size(426, 666);
+            this.splitContainer2.SplitterDistance = 296;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // objectsTreeView
+            // 
+            this.objectsTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.objectsTreeView.Location = new System.Drawing.Point(0, 0);
+            this.objectsTreeView.Name = "objectsTreeView";
+            this.objectsTreeView.Size = new System.Drawing.Size(426, 296);
+            this.objectsTreeView.TabIndex = 0;
+            // 
             // propertyGrid1
             // 
             this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.propertyGrid1.Location = new System.Drawing.Point(0, 0);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(426, 367);
+            this.propertyGrid1.Size = new System.Drawing.Size(426, 366);
             this.propertyGrid1.TabIndex = 0;
             // 
             // scene
@@ -503,83 +576,20 @@
             this.scene.Name = "scene";
             this.scene.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
             this.scene.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
-            this.scene.Size = new System.Drawing.Size(850, 669);
+            this.scene.Size = new System.Drawing.Size(850, 666);
             this.scene.TabIndex = 0;
-            // 
-            // loadToolStripMenuItem
-            // 
-            this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mniLoadECLGrid,
-            this.mniLoadSimbaGrid,
-            this.mniLoadSimbaPoints,
-            this.toolStripSeparator8,
-            this.mniLoadEclProperty,
-            this.mniLoadProperty,
-            this.mniLoadCloudResults,
-            this.toolStripSeparator9,
-            this.mniLoadEclWells});
-            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
-            this.loadToolStripMenuItem.Text = "Data";
-            // 
-            // mniLoadECLGrid
-            // 
-            this.mniLoadECLGrid.Name = "mniLoadECLGrid";
-            this.mniLoadECLGrid.Size = new System.Drawing.Size(223, 26);
-            this.mniLoadECLGrid.Text = "Load ECL Grid";
-            this.mniLoadECLGrid.Click += new System.EventHandler(this.mniLoadECLGrid_Click);
-            // 
-            // mniLoadSimbaGrid
-            // 
-            this.mniLoadSimbaGrid.Name = "mniLoadSimbaGrid";
-            this.mniLoadSimbaGrid.Size = new System.Drawing.Size(223, 26);
-            this.mniLoadSimbaGrid.Text = "Load Simba Grid";
-            // 
-            // mniLoadSimbaPoints
-            // 
-            this.mniLoadSimbaPoints.Name = "mniLoadSimbaPoints";
-            this.mniLoadSimbaPoints.Size = new System.Drawing.Size(223, 26);
-            this.mniLoadSimbaPoints.Text = "Load Simba Points";
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(220, 6);
-            // 
-            // mniLoadEclProperty
-            // 
-            this.mniLoadEclProperty.Name = "mniLoadEclProperty";
-            this.mniLoadEclProperty.Size = new System.Drawing.Size(223, 26);
-            this.mniLoadEclProperty.Text = "Load ECL Property";
-            // 
-            // mniLoadProperty
-            // 
-            this.mniLoadProperty.Name = "mniLoadProperty";
-            this.mniLoadProperty.Size = new System.Drawing.Size(223, 26);
-            this.mniLoadProperty.Text = "Load Property";
-            // 
-            // mniLoadCloudResults
-            // 
-            this.mniLoadCloudResults.Name = "mniLoadCloudResults";
-            this.mniLoadCloudResults.Size = new System.Drawing.Size(223, 26);
-            this.mniLoadCloudResults.Text = "Load Cloud Results";
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(220, 6);
-            // 
-            // mniLoadEclWells
-            // 
-            this.mniLoadEclWells.Name = "mniLoadEclWells";
-            this.mniLoadEclWells.Size = new System.Drawing.Size(223, 26);
-            this.mniLoadEclWells.Text = "Load ECL Wells";
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.Filter = "Ecl Data files (*.DATA)|*.DATA|All files (*.*)|*.*";
             this.openFileDialog1.FilterIndex = 2;
             this.openFileDialog1.RestoreDirectory = true;
+            // 
+            // lblCameraInfo
+            // 
+            this.lblCameraInfo.Name = "lblCameraInfo";
+            this.lblCameraInfo.Size = new System.Drawing.Size(178, 20);
+            this.lblCameraInfo.Text = "eye:{0} center:{1} up:{2}";
             // 
             // FormMain
             // 
@@ -595,6 +605,8 @@
             this.Text = "Grid Viewer";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -671,6 +683,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripMenuItem mniLoadEclWells;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripStatusLabel lblCameraInfo;
     }
 }
 

@@ -25,6 +25,16 @@ namespace GridViewer
         public const string strPosition = "position";
         private PropertyBufferPtr positionBufferPtr = null;
         private IndexBufferPtr indexBufferPtr = null;
+        private vec3 lengths;
+
+        /// <summary>
+        /// bounding box.
+        /// </summary>
+        /// <param name="lengths">bounding box's length at x, y, z axis.</param>
+        public BoundingBox(vec3 lengths)
+        {
+            this.lengths = lengths;
+        }
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
@@ -40,7 +50,7 @@ namespace GridViewer
                             var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < positions.Length; i++)
                             {
-                                array[i] = positions[i];
+                                array[i] = positions[i] / 2 * this.lengths;
                             }
                         }
 

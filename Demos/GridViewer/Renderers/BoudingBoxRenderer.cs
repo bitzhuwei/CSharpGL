@@ -11,48 +11,48 @@ namespace GridViewer
     public partial class BoudingBoxRenderer : Renderer
     {
 
-        private vec3 scale;
+        //private vec3 scale;
 
-        public vec3 Scale
-        {
-            get { return scale; }
-            set
-            {
-                if (value != scale)
-                {
-                    scale = value;
-                    if (this.initialized)
-                    {
-                        this.SetUniform("modelMatrix",
-                            glm.scale(glm.translate(mat4.identity(), this.translate), this.scale));
-                    }
-                }
-            }
-        }
+        //public vec3 Scale
+        //{
+        //    get { return scale; }
+        //    set
+        //    {
+        //        if (value != scale)
+        //        {
+        //            scale = value;
+        //            if (this.initialized)
+        //            {
+        //                this.SetUniform("modelMatrix",
+        //                    glm.scale(glm.translate(mat4.identity(), this.translate), this.scale));
+        //            }
+        //        }
+        //    }
+        //}
 
-        private vec3 translate;
+        //private vec3 translate;
 
-        public vec3 Translate
-        {
-            get { return translate; }
-            set
-            {
-                if (value != translate)
-                {
-                    translate = value;
-                    if (this.initialized)
-                    {
-                        this.SetUniform("modelMatrix",
-                   glm.scale(glm.translate(mat4.identity(), this.translate), this.scale));
-                    }
-                }
-            }
-        }
+        //public vec3 Translate
+        //{
+        //    get { return translate; }
+        //    set
+        //    {
+        //        if (value != translate)
+        //        {
+        //            translate = value;
+        //            if (this.initialized)
+        //            {
+        //                this.SetUniform("modelMatrix",
+        //           glm.scale(glm.translate(mat4.identity(), this.translate), this.scale));
+        //            }
+        //        }
+        //    }
+        //}
 
-        public BoudingBoxRenderer()
+        public BoudingBoxRenderer(vec3 lengths)
             : base(null, null, null)
         {
-            this.bufferable = new BoundingBox();
+            this.bufferable = new BoundingBox(lengths);
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(
                 @"shaders\BoundingBox.vert"), ShaderType.VertexShader);
