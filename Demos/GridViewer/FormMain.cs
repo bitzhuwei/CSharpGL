@@ -15,6 +15,8 @@ namespace GridViewer
         public FormMain()
         {
             InitializeComponent();
+
+            this.Load += FormMain_Load;
         }
 
     }

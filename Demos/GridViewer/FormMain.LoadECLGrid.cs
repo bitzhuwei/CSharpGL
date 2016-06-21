@@ -50,12 +50,13 @@ namespace GridViewer
             map.Add("in_Position", CatesianGrid.strPosition);
             map.Add("in_uv", CatesianGrid.strColor);
             var scientificRenderer = new Renderer(grid, shaderCodes, map);
-            var boundedRenderer = new BoundedRenderer(scientificRenderer, grid.DataSource.Max - grid.DataSource.Min);
+            var boundedRenderer = new BoundedRenderer(scientificRenderer,
+                grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min);
             boundedRenderer.Initialize();
             SceneObject sceneObject = new SceneObject();
             sceneObject.Name = typeof(CatesianGrid).Name;
             sceneObject.Renderer = new BoundedRendererComponent(boundedRenderer);
-            sceneObject.GetTransform().Position = grid.DataSource.TranslateMatrix;
+            //sceneObject.Transform.Position = grid.DataSource.TranslateMatrix;
             this.scene.Scene.ObjectList.Add(sceneObject);
             //sceneObject.Renderer=ne
             //SimLabGrid gridder = null;

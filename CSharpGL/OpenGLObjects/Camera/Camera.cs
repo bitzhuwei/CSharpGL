@@ -54,7 +54,7 @@ namespace CSharpGL
             perspectiveCamera.FieldOfView = 60.0f;
             perspectiveCamera.AspectRatio = width / height;
             perspectiveCamera.Near = 0.1;
-            perspectiveCamera.Far = 1000;
+            perspectiveCamera.Far = 10000;
 
             const int factor = 100;
             IOrthoCamera orthoCamera = this;
@@ -62,8 +62,8 @@ namespace CSharpGL
             orthoCamera.Right = width / 2 / factor;
             orthoCamera.Bottom = -height / 2 / factor;
             orthoCamera.Top = height / 2 / factor;
-            orthoCamera.Near = -1000;
-            orthoCamera.Far = 1000;
+            orthoCamera.Near = -10000;
+            orthoCamera.Far = 10000;
 
             this.CameraType = cameraType;
         }
