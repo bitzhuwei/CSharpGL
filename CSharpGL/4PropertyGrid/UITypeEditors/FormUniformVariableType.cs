@@ -84,5 +84,10 @@ namespace CSharpGL
         public Type SelectedType { get; set; }
 
         public string VarNameInShader { get; set; }
+
+        private void lstType_DoubleClick(object sender, EventArgs e)
+        {
+            this.btnOK_Click(sender, e);
+        }
     }
 }

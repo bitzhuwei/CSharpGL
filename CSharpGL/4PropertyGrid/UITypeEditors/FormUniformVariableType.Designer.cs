@@ -70,6 +70,7 @@
             this.lstType.Name = "lstType";
             this.lstType.Size = new System.Drawing.Size(418, 326);
             this.lstType.TabIndex = 6;
+            this.lstType.DoubleClick += new System.EventHandler(this.lstType_DoubleClick);
             // 
             // label1
             // 

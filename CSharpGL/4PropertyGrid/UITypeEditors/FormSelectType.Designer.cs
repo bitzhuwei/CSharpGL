@@ -57,7 +57,7 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // lstGLSwtichType
+            // lstType
             // 
             this.lstType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -66,9 +66,10 @@
             this.lstType.FormattingEnabled = true;
             this.lstType.ItemHeight = 23;
             this.lstType.Location = new System.Drawing.Point(12, 37);
-            this.lstType.Name = "lstGLSwtichType";
+            this.lstType.Name = "lstType";
             this.lstType.Size = new System.Drawing.Size(418, 372);
             this.lstType.TabIndex = 6;
+            this.lstType.DoubleClick += new System.EventHandler(this.lstType_DoubleClick);
             // 
             // label1
             // 
@@ -79,7 +80,7 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "GLSwitch Type:";
             // 
-            // FormGLSwtichType
+            // FormSelectType
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -90,7 +91,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
-            this.Name = "FormGLSwtichType";
+            this.Name = "FormSelectType";
             this.Text = "FormGLSwtichType";
             this.Load += new System.EventHandler(this.FormGLSwtichType_Load);
             this.ResumeLayout(false);

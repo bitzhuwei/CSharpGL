@@ -84,5 +84,10 @@ namespace CSharpGL
         }
 
         public Type SelectedType { get; set; }
+
+        private void lstType_DoubleClick(object sender, EventArgs e)
+        {
+            btnOK_Click(sender, e);
+        }
     }
 }
