@@ -10,9 +10,9 @@ using TracyEnergy.Simba.Data.Keywords.impl;
 
 namespace GridViewer
 {
-    public partial class CatesianGrid
+    public static class SimulationInputDataHelper
     {
-        public static CatesianGridderSource From(SimulationInputData inputData)
+        public static CatesianGrid DumpCatesianGrid(this SimulationInputData inputData)
         {
             GridDimens dimens = inputData.RootDataFile.GetDIMENS();
             if (dimens == null)
@@ -40,7 +40,9 @@ namespace GridViewer
             cgs.JBlocks = SimLab.ArrayHelper.CreateAllSlices(dimens.NJ);
             cgs.KBlocks = SimLab.ArrayHelper.CreateAllSlices(dimens.NK);
             cgs.Init();
-            return cgs;
+            var grid = new CatesianGrid(cgs);
+
+            return grid;
         }
     }
 }

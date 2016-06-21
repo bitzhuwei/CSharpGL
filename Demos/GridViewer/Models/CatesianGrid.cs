@@ -1,4 +1,5 @@
 ﻿using CSharpGL;
+using SimLab.GridSource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,13 @@ namespace GridViewer
 {
     public partial class CatesianGrid : IBufferable
     {
+        private CatesianGridderSource dataSource;
+
+        public CatesianGrid(CatesianGridderSource dataSource)
+        {
+            this.dataSource = dataSource;
+        }
+
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             throw new NotImplementedException();
@@ -18,5 +26,6 @@ namespace GridViewer
         {
             throw new NotImplementedException();
         }
+
     }
 }
