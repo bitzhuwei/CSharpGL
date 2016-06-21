@@ -18,11 +18,47 @@ namespace CSharpGL.SceneEditor
             BuildInSceneObject type = (BuildInSceneObject)Enum.Parse(typeof(BuildInSceneObject),
                 (sender as ToolStripItem).Text);
             SceneObject obj = SceneObjectFactory.GetBuildInSceneObject(type);
-            
+            obj.Children.ItemAdded += Children_ItemAdded;
+            obj.Children.ItemRemoved += Children_ItemRemoved;
             var node = new TreeNode(obj.ToString());
             node.Tag = obj;
+            obj.Tag = node;
             this.scene.ObjectList.Add(obj);
             this.treeView1.Nodes.Add(node);
+        }
+
+        void Children_ItemRemoved(object sender, RemoveItemEventArgs<SceneObject> e)
+        {
+            if (e.RemovedItem.Parent == null)
+            {
+                var node = e.RemovedItem.Tag as TreeNode;
+                this.treeView1.Nodes.Remove(node);
+            }
+            else
+            {
+                var node = e.RemovedItem.Tag as TreeNode;
+                node.Parent.Nodes.Remove(node);
+            }
+        }
+
+        void Children_ItemAdded(object sender, AddItemEventArgs<SceneObject> e)
+        {
+            if (e.NewItem.Parent == null)
+            {
+                int index = this.scene.ObjectList.IndexOf(e.NewItem);
+                var node = new TreeNode(e.NewItem.ToString());
+                node.Tag = e.NewItem;
+                e.NewItem.Tag = node;
+                this.treeView1.Nodes.Insert(index, node);
+            }
+            else
+            {
+                int index = e.NewItem.Parent.Children.IndexOf(e.NewItem);
+                var node = new TreeNode(e.NewItem.ToString());
+                node.Tag = e.NewItem;
+                e.NewItem.Tag = node;
+                (e.NewItem.Parent.Tag as TreeNode).Nodes.Insert(index, node);
+            }
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)

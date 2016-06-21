@@ -75,6 +75,14 @@ namespace CSharpGL
         [Category(strBasic)]
         [Description("Enabled or Not.")]
         public bool Enabled { get; set; }
+
+        /// <summary>
+        /// binded object.
+        /// </summary>
+        [Category(strBasic)]
+        [Description("binded object.")]
+        public object Tag { get; set; }
+
         /// <summary>
         /// an object to be rendered in a scene.
         /// </summary>
