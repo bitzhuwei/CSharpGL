@@ -11,6 +11,11 @@ namespace CSharpGL
 {
     public static class AssemblyHelper
     {
+        /// <summary>
+        /// Get all derived types of specified base type from all loaded assemblies.
+        /// </summary>
+        /// <param name="baseType"></param>
+        /// <returns></returns>
         public static List<Type> GetAllDerivedTypes(this Type baseType)
         {
             var result = new List<Type>();
@@ -30,6 +35,11 @@ namespace CSharpGL
             return result;
         }
 
+        /// <summary>
+        /// Get all assemblies referenced by specified <paramref name="asmFilename"/>(self included) recursively.
+        /// </summary>
+        /// <param name="asmFilename"></param>
+        /// <returns></returns>
         public static Assembly[] GetAssemblies(string asmFilename)
         {
             var result = new List<Assembly>();
