@@ -122,6 +122,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Location = new System.Drawing.Point(591, 443);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
@@ -130,11 +131,12 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // FormGLSwitchListEditor
+            // FormIListEditor
             // 
             this.AcceptButton = this.btnClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(678, 478);
             this.Controls.Add(this.propertyGrid);
             this.Controls.Add(this.btnClose);
@@ -145,7 +147,7 @@
             this.Controls.Add(this.lstMember);
             this.Controls.Add(this.lblProperty);
             this.Controls.Add(this.label1);
-            this.Name = "FormGLSwitchListEditor";
+            this.Name = "FormIListEditor";
             this.Text = "GLSwticth List Editor";
             this.ResumeLayout(false);
             this.PerformLayout();
