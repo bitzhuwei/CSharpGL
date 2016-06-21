@@ -247,6 +247,7 @@ namespace SimLab.GridSource
         /// </summary>
         public Rectangle3D SourceActiveBounds { get; internal set; }
 
+        //TODO: rename to translate.
         /// <summary>
         /// SourceActiveBounds到DestActiveBounds的
         /// </summary>

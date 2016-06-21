@@ -95,6 +95,9 @@
     <Compile Include="Loader\PointSetLoader.cs" />
     <Compile Include="Models\BoundingBox.cs" />
     <None Include="Models\readme.md" />
+    <Compile Include="Models\CatesianGrid.Index.cs" />
+    <Compile Include="Models\CatesianGrid.Color.cs" />
+    <Compile Include="Models\CatesianGrid.Positions.cs" />
     <Compile Include="Models\SimulationInputDataHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -164,6 +167,7 @@
     <Content Include="data\SimLabBridge.dll" />
     <Content Include="data\TracyEnergy.Simba.Data.dll" />
     <Content Include="data\TracyEnergy.Simba.Data.Keywords.dll" />
+    <Content Include="Models\CatesianGrid.Index.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

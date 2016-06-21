@@ -19,12 +19,36 @@ namespace GridViewer
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
-            throw new NotImplementedException();
+            if (bufferName == strPosition)
+            {
+                if (this.propertyBufferPtr == null)
+                {
+                    this.propertyBufferPtr = this.GetPositionBufferPtr(varNameInShader);
+                }
+                return this.propertyBufferPtr;
+            }
+            else if (bufferName == strColor)
+            {
+                if (this.colorBufferPtr == null)
+                {
+                    this.colorBufferPtr = this.GetColorBufferPtr(varNameInShader);
+                }
+                return this.colorBufferPtr;
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public IndexBufferPtr GetIndex()
         {
-            throw new NotImplementedException();
+            if (this.indexBufferPtr == null)
+            {
+                this.indexBufferPtr = this.GetIndexBufferPtr();
+            }
+
+            return this.indexBufferPtr;
         }
 
     }
