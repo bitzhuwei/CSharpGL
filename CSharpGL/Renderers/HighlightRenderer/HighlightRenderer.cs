@@ -45,10 +45,10 @@ namespace CSharpGL
             this.SwitchList.Add(lineWidthSwitch);
             var pointSizeSwitch = new PointSizeSwitch(20.0f);
             this.SwitchList.Add(pointSizeSwitch);
-            var polygonOffsetSwitch = new PolygonOffsetSwitch(PolugonOffset.Fill, true);
-            this.SwitchList.Add(polygonOffsetSwitch);
-            polygonOffsetSwitch = new PolygonOffsetSwitch(PolugonOffset.Point, true);
-            this.SwitchList.Add(polygonOffsetSwitch);
+            var polygonOffsetFillSwitch = new PolygonOffsetFillSwitch();
+            this.SwitchList.Add(polygonOffsetFillSwitch);
+            var polygonOffsetPointSwitch = new PolygonOffsetPointSwitch();
+            this.SwitchList.Add(polygonOffsetPointSwitch);
 
         }
 

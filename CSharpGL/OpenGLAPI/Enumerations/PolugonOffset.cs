@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public enum PolugonOffset : uint
+    public enum PolygonOffset : uint
     {
         Factor = OpenGL.GL_POLYGON_OFFSET_FACTOR,// = 0x8038;
         Units = OpenGL.GL_POLYGON_OFFSET_UNITS,// = 0x2A00;

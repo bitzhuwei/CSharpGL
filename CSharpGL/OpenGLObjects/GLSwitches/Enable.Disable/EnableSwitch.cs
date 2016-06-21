@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <summary>
         /// GL.Enable(capacity);
         /// </summary>
-        public uint Capacity { get; private set; }
+        public uint Capacity { get; protected set; }
 
         /// <summary>
         /// GL.Enable(capacity); or GL.Disable(capacity);

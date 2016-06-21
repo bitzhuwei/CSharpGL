@@ -88,6 +88,9 @@
     <Compile Include="IBufferables\Ground.cs" />
     <Compile Include="IBufferables\TeapotModel.Positions.cs" />
     <Compile Include="IBufferables\TeapotModel.Faces.cs" />
+    <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PolygonOffsetPointSwitch.cs" />
+    <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PolygonOffsetLineSwitch.cs" />
+    <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\PolygonOffsetFillSwitch.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.DoRender.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.SetText.cs" />

@@ -5,12 +5,12 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public class PolygonOffsetSwitch : EnableSwitch
+    public abstract class PolygonOffsetSwitch : EnableSwitch
     {
 
-        public PolygonOffsetSwitch() : this(PolugonOffset.Fill, true) { }
+        public PolygonOffsetSwitch() : this(PolygonOffset.Fill, true) { }
 
-        public PolygonOffsetSwitch(PolugonOffset mode, bool pullNear)
+        public PolygonOffsetSwitch(PolygonOffset mode, bool pullNear)
             :base((uint)mode, true)
         {
             this.PullNear = pullNear; 
@@ -19,7 +19,7 @@ namespace CSharpGL
         public override string ToString()
         {
             return string.Format("Polygon Offset: {0} {1}", 
-                (PolugonOffset)this.Capacity,
+                (PolygonOffset)this.Capacity,
                 this.PullNear ? "Near" : "Far");
         }
 

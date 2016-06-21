@@ -26,7 +26,7 @@ namespace GridViewer
                 @"shaders\BoundingBox.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("in_Position", BoundingBox.strPosition);
-            var result = new Renderer(bufferable, shaderCodes, map, new PolygonModeSwitch(PolygonModes.Lines));
+            var result = new Renderer(bufferable, shaderCodes, map, new PolygonModeSwitch(PolygonModes.Lines), new PolygonOffsetLineSwitch( ));
 
             return result;
         }
