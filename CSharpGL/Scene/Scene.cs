@@ -51,6 +51,11 @@ namespace CSharpGL
             this.UIRoot = new UIRoot();
         }
 
+        /// <summary>
+        /// Please bind this method to Control.Resize event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void Resize(object sender, EventArgs e)
         {
             Control control = sender as Control;
