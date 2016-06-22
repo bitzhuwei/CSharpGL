@@ -17,30 +17,30 @@ namespace CSharpGL
         /// <summary>
         /// root UI for opengl.
         /// </summary>
-        /// <param name="canvas">opengl canvas that this GLControl binds to.</param>
-        /// <param name="size">opengl canvas' size</param>
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
-        public UIRoot(Control canvas, int zNear, int zFar)
+        public UIRoot(int zNear = -100, int zFar = 100)
             : base(
             System.Windows.Forms.AnchorStyles.Left |
             System.Windows.Forms.AnchorStyles.Right |
             System.Windows.Forms.AnchorStyles.Bottom |
             System.Windows.Forms.AnchorStyles.Top,
-            new System.Windows.Forms.Padding(), canvas.Size, zNear, zFar)
+            new System.Windows.Forms.Padding(), new System.Drawing.Size(), zNear, zFar)
         {
             this.Name = typeof(UIRoot).Name;
 
-            canvas.Resize += canvas_Resize;
+            int[] viewport = OpenGL.GetViewport();
+            this.Location = new System.Drawing.Point(viewport[0], viewport[1]);
+            this.Size = new System.Drawing.Size(viewport[2], viewport[3]);
         }
 
-        void canvas_Resize(object sender, EventArgs e)
+        private void Layout()
         {
-            var control = sender as Control;
-            if (control != null)
-            {
-                this.Size = control.Size;
-            }
+            int[] viewport = OpenGL.GetViewport();
+            this.Location = new System.Drawing.Point(viewport[0], viewport[1]);
+            this.Size = new System.Drawing.Size(viewport[2], viewport[3]);
+
+            ILayoutHelper.Layout(this);
         }
 
         protected override void DoInitialize()
@@ -49,6 +49,32 @@ namespace CSharpGL
 
         protected override void DoRender(RenderEventArgs arg)
         {
+            this.Layout();
+            foreach (var item in this.Children)
+            {
+                RenderUIRenderer(item, arg);
+            }
+        }
+
+#if DEBUG
+        private int stackLevel = 0;
+#endif
+
+        private void RenderUIRenderer(UIRenderer renderer, RenderEventArgs arg)
+        {
+#if DEBUG
+            stackLevel++;
+            if (stackLevel > ushort.MaxValue)
+            { throw new Exception(string.Format("Circular reference in UI tree!")); }
+#endif
+            renderer.Render(arg);
+            foreach (var item in renderer.Children)
+            {
+                RenderUIRenderer(item, arg);
+            }
+#if DEBUG
+            stackLevel--;
+#endif
         }
 
     }

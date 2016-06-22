@@ -54,19 +54,10 @@ namespace CSharpGL.Demos
             UIRoot uiRoot = this.uiRoot;
             if (uiRoot != null)
             {
-                uiRoot.Layout();
-                RenderUIs(uiRoot, arg);
+                uiRoot.Render(arg);
             }
         }
 
-        private void RenderUIs(UIRenderer uiRoot, RenderEventArgs arg)
-        {
-            uiRoot.Render(arg);
-            foreach (var item in uiRoot.Children)
-            {
-                RenderUIs(item, arg);
-            }
-        }
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
             ICamera camera = this.camera;

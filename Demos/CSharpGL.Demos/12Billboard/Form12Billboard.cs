@@ -71,9 +71,7 @@ namespace CSharpGL.Demos
             UIRoot uiRoot = this.uiRoot;
             if (uiRoot != null)
             {
-                uiRoot.Layout();
-
-                glAxis.Render(arg);
+                uiRoot.Render(arg);
             }
         }
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

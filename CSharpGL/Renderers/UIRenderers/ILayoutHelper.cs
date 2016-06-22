@@ -31,7 +31,7 @@ namespace CSharpGL
         /// 实现在OpenGL窗口中的UI布局
         /// </summary>
         /// <param name="uiRenderer"></param>
-        public static void Layout(this ILayout uiRenderer)
+        internal static void Layout(this ILayout uiRenderer)
         {
             ILayout parent = uiRenderer.Parent;
             if (parent != null)

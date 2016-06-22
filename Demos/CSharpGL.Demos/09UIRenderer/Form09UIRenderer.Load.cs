@@ -30,16 +30,9 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
-                var UIRoot = new UIRoot(this.glCanvas1, -100, 100);
+                var UIRoot = new UIRoot();
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
-
-                var glAxis = new UIAxis(AnchorStyles.Right | AnchorStyles.Bottom,
-                    new Padding(3, 3, 3, 3), new Size(70, 70), -100, 100);
-                glAxis.Initialize();
-                this.glAxis = glAxis;
-
-                UIRoot.Children.Add(glAxis);
 
                 var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top,
                     new Padding(3, 3, 3, 3), new Size(550, 50), -100, 100);
@@ -47,8 +40,13 @@ namespace CSharpGL.Demos
                 glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
                 glText.SetText("The quick brown fox jumps over the lazy dog!");
                 this.glText = glText;
-
                 uiRoot.Children.Add(glText);
+
+                var glAxis = new UIAxis(AnchorStyles.Right | AnchorStyles.Bottom,
+                    new Padding(3, 3, 3, 3), new Size(70, 70), -100, 100);
+                glAxis.Initialize();
+                this.glAxis = glAxis;
+                UIRoot.Children.Add(glAxis);
 
                 this.UpdateLabel();
             }

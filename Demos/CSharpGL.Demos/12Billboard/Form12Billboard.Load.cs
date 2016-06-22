@@ -80,7 +80,7 @@ namespace CSharpGL.Demos
                 this.labelRenderer = labelRenderer;
             }
             {
-                var UIRoot = new UIRoot(this.glCanvas1, -100, 100);
+                var UIRoot = new UIRoot();
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
 

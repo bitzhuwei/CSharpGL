@@ -56,9 +56,7 @@ namespace CSharpGL.Demos
             UIRoot uiRoot = this.uiRoot;
             if (uiRoot != null)
             {
-                uiRoot.Layout();
-
-                glAxis.Render(arg);
+                uiRoot.Render(arg);
             }
         }
 

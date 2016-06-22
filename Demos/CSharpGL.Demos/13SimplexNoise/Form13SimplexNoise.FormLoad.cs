@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
                 this.simplexNoiseRenderer = simplexNoiseRenderer;
             }
             {
-                var UIRoot = new UIRoot(this.glCanvas1, -100, 100);
+                var UIRoot = new UIRoot();
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
 

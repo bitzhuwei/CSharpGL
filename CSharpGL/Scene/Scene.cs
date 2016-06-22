@@ -29,6 +29,11 @@ namespace CSharpGL
         public SceneObjectList ObjectList { get; private set; }
 
         /// <summary>
+        /// hosts all UI renderers.
+        /// </summary>
+        public SceneObject UIRootObject { get; private set; }
+
+        /// <summary>
         /// Manages a scene to be rendered and updated.
         /// </summary>
         /// <param name="camera">camera of the scene</param>
@@ -42,6 +47,7 @@ namespace CSharpGL
             var list = new SceneObjectList();
             list.AddRange(objects);
             this.ObjectList = list;
+            this.UIRootObject = new SceneObject() { Renderer = new UIRootRendererComponent(), };
         }
 
         public void Resize(object sender, EventArgs e)
