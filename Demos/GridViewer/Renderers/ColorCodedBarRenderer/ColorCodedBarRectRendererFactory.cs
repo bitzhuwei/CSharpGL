@@ -50,7 +50,19 @@ namespace GridViewer
                         positions[i * 2 + 0] = new vec2(codedColors[i].Coord, 0);
                         positions[i * 2 + 1] = new vec2(codedColors[i].Coord, 1);
                     }
-                    positions.Move2Center();
+                    //positions.Move2Center();
+                    float min = positions[0].x, max = positions[0].x;
+                    for (int i = 1; i < positions.Length; i++)
+                    {
+                        vec2 value = positions[i];
+                        if (value.x < min) { min = value.x; }
+                        if (max < value.x) { max = value.x; }
+                    }
+                    float mid = max / 2 + min / 2;
+                    for (int i = 0; i < positions.Length; i++)
+                    {
+                        positions[i].x = positions[i].x - mid;
+                    }
                     using (var buffer = new PropertyBuffer<vec2>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Alloc(positions.Length);
