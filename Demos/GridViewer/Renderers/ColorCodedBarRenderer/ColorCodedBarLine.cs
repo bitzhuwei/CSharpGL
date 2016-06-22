@@ -8,19 +8,18 @@ using System.Text;
 
 namespace GridViewer
 {
-    public class ColorCodedBarRect : IBufferable
+    public class ColorCodedBarLine : IBufferable
     {
 
         public CodedColor[] codedColors { get; private set; }
 
         public const string strPosition = "position";
-        public const string strCoord = "coord";
 
         private PropertyBufferPtr positionBufferPtr;
-        private PropertyBufferPtr coordBufferPtr;
+
         private IndexBufferPtr indexBufferPtr;
 
-        public ColorCodedBarRect(CodedColor[] codedColors)
+        public ColorCodedBarLine(CodedColor[] codedColors)
         {
             if (codedColors == null || codedColors.Length < 1) { throw new ArgumentException(); }
 
@@ -33,13 +32,19 @@ namespace GridViewer
             {
                 if (this.positionBufferPtr == null)
                 {
-                    var positions = new vec2[codedColors.Length * 2];
+                    const float lower = -0.3f;
+                    var positions = new vec2[codedColors.Length * 2 + 4];
                     for (int i = 0; i < codedColors.Length; i++)
                     {
-                        positions[i * 2 + 0] = new vec2(codedColors[i].Coord * 2, 0);
+                        positions[i * 2 + 0] = new vec2(codedColors[i].Coord*2, lower);
                         positions[i * 2 + 1] = new vec2(codedColors[i].Coord * 2, 1);
                     }
-                    // Move2Center
+                    int index = codedColors.Length * 2 + 0;
+                    positions[index++] = new vec2(codedColors[0].Coord * 2, 0);
+                    positions[index++] = new vec2(codedColors[codedColors.Length - 1].Coord * 2, 0);
+                    positions[index++] = new vec2(codedColors[0].Coord * 2, 1);
+                    positions[index++] = new vec2(codedColors[codedColors.Length - 1].Coord * 2, 1);
+                    // Move2Cente
                     float min = positions[0].x, max = positions[0].x;
                     for (int i = 1; i < positions.Length; i++)
                     {
@@ -66,30 +71,6 @@ namespace GridViewer
                 }
                 return this.positionBufferPtr;
             }
-            else if (bufferName == strCoord)
-            {
-                if (this.coordBufferPtr == null)
-                {
-                    var coords = new float[codedColors.Length * 2];
-                    for (int i = 0; i < codedColors.Length; i++)
-                    {
-                        coords[i * 2 + 0] = codedColors[i].Coord;
-                        coords[i * 2 + 1] = codedColors[i].Coord;
-                    }
-                    using (var buffer = new PropertyBuffer<float>(varNameInShader, 1, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
-                    {
-                        buffer.Alloc(coords.Length);
-                        unsafe
-                        {
-                            var array = (float*)buffer.Header.ToPointer();
-                            for (int i = 0; i < coords.Length; i++)
-                            { array[i] = coords[i]; }
-                        }
-                        this.coordBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
-                    }
-                }
-                return this.coordBufferPtr;
-            }
             else
             {
                 throw new NotImplementedException();
@@ -100,7 +81,7 @@ namespace GridViewer
         {
             if (this.indexBufferPtr == null)
             {
-                using (var buffer = new ZeroIndexBuffer(DrawMode.QuadStrip, 0, codedColors.Length * 2))
+                using (var buffer = new ZeroIndexBuffer(DrawMode.Lines, 0, codedColors.Length * 2 + 4))
                 {
                     this.indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
                 }

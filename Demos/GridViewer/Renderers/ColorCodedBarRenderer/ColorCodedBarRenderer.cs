@@ -31,14 +31,25 @@ namespace GridViewer
             {
                 var shaderCodes = new ShaderCode[2];
                 shaderCodes[0] = new ShaderCode(File.ReadAllText(
-                    @"shaders\CodedColorBarRect.vert"), ShaderType.VertexShader);
+                    @"shaders\ColorCodedBarRect.vert"), ShaderType.VertexShader);
                 shaderCodes[1] = new ShaderCode(File.ReadAllText(
-                    @"shaders\CodedColorBarRect.frag"), ShaderType.FragmentShader);
+                    @"shaders\ColorCodedBarRect.frag"), ShaderType.FragmentShader);
                 var map = new PropertyNameMap();
-                map.Add("in_Position", CodedColorBarRect.strPosition);
-                map.Add("in_Coord", CodedColorBarRect.strCoord);
-                var model = new CodedColorBarRect(codedColors);
+                map.Add("in_Position", ColorCodedBarRect.strPosition);
+                map.Add("in_Coord", ColorCodedBarRect.strCoord);
+                var model = new ColorCodedBarRect(codedColors);
                 this.RectRenderer = new Renderer(model, shaderCodes, map);
+            }
+            {
+                var shaderCodes = new ShaderCode[2];
+                shaderCodes[0] = new ShaderCode(File.ReadAllText(
+                    @"shaders\ColorCodedBarLine.vert"), ShaderType.VertexShader);
+                shaderCodes[1] = new ShaderCode(File.ReadAllText(
+                    @"shaders\ColorCodedBarLine.frag"), ShaderType.FragmentShader);
+                var map = new PropertyNameMap();
+                map.Add("in_Position", ColorCodedBarLine.strPosition);
+                var model = new ColorCodedBarLine(codedColors);
+                this.LineRenderer = new Renderer(model, shaderCodes, map);
             }
             this.ValueRenderers = new Renderer[codedColors.Length];
         }

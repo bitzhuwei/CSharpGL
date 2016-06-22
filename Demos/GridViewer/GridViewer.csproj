@@ -115,6 +115,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\BoudingBoxRendererFactory.cs" />
+    <Compile Include="Renderers\ColorCodedBarRenderer\ColorCodedBarLine.cs" />
     <Compile Include="Renderers\ColorCodedBarRenderer\ColorCodedBarRenderer.cs" />
     <Compile Include="Renderers\ColorCodedBarRenderer\CodedColor.cs" />
     <Compile Include="Renderers\ColorCodedBarRenderer\CodedColorsHelper.cs" />
@@ -171,10 +172,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="shaders\CodedColorBarRect.frag">
+    <None Include="shaders\ColorCodedBarLine.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="shaders\CodedColorBarRect.vert">
+    <None Include="shaders\ColorCodedBarLine.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\ColorCodedBarRect.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\ColorCodedBarRect.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\BoundingBox.vert">

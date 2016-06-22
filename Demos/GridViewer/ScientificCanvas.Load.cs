@@ -27,6 +27,7 @@ namespace GridViewer
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(10, 10, 10, 10), new Size(100, 100), -100, 100);
                 uiAxis.Initialize();
+                uiAxis.SwitchList.Add(new ClearColorSwitch());
                 this.Scene.UIRoot.Children.Add(uiAxis);
             }
             {
