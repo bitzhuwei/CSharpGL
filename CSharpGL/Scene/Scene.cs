@@ -32,7 +32,7 @@ namespace CSharpGL
         /// <summary>
         /// hosts all UI renderers.
         /// </summary>
-        public SceneObject UIRootObject { get; private set; }
+        public UIRoot UIRoot { get; private set; }
 
         /// <summary>
         /// Manages a scene to be rendered and updated.
@@ -48,9 +48,7 @@ namespace CSharpGL
             var list = new SceneObjectList();
             list.AddRange(objects);
             this.ObjectList = list;
-            var uiRootObj = new SceneObject();
-            uiRootObj.Renderer = new UIRendererComponent(new UIRoot());
-            this.UIRootObject = uiRootObj;
+            this.UIRoot = new UIRoot();
         }
 
         public void Resize(object sender, EventArgs e)
@@ -69,7 +67,7 @@ namespace CSharpGL
             {
                 item.Render(arg);
             }
-            this.UIRootObject.Render(arg);
+            this.UIRoot.Render(arg);
         }
     }
 }

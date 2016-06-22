@@ -27,8 +27,7 @@ namespace GridViewer
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(10, 10, 10, 10), new Size(100, 100), -100, 100);
                 uiAxis.Initialize();
-                var renderer = this.Scene.UIRootObject.Renderer as UIRendererComponent;
-                renderer.UIRoot.Children.Add(uiAxis);
+                this.Scene.UIRoot.Children.Add(uiAxis);
             }
 
             this.Resize += this.Scene.Resize;
