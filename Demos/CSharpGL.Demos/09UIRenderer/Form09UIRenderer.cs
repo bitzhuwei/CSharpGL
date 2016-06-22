@@ -55,20 +55,7 @@ namespace CSharpGL.Demos
             if (uiRoot != null)
             {
                 uiRoot.Layout();
-                mat4 projection, view, model;
-                {
-                    projection = glText.GetOrthoProjection();
-                    //vec3 position = (this.camera.Position - this.camera.Target).normalize();
-                    view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
-                    //float length = Math.Max(glText.Size.Width, glText.Size.Height) / 2;
-                    float length = glText.Size.Height / 2;
-                    model = glm.scale(mat4.identity(), new vec3(length, length, length));
-                    //model = mat4.identity();
-                    glText.Renderer.SetUniform("mvp", projection * view * model);
-
-                    glText.Render(arg);
-                }
-
+                glText.Render(arg);
                 glAxis.Render(arg);
             }
         }

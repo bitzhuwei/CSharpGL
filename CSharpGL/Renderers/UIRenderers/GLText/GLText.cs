@@ -60,9 +60,14 @@ namespace CSharpGL
 
         protected override void DoRender(RenderEventArgs arg)
         {
-            //mat4 projection, view, model;
-            //this.GetMatrix(out projection, out view, out model);
-            //this.SetUniformValue("mvp", projection * view * model);
+            mat4 projection = this.GetOrthoProjection();
+            //vec3 position = (this.camera.Position - this.camera.Target).normalize();
+            mat4 view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
+            //float length = Math.Max(glText.Size.Width, glText.Size.Height) / 2;
+            float length = this.Size.Height / 2;
+            mat4 model = glm.scale(mat4.identity(), new vec3(length, length, length));
+            //model = mat4.identity();
+            this.Renderer.SetUniform("mvp", projection * view * model);
 
             blendSwitch.On();
 
