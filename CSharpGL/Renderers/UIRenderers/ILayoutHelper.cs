@@ -10,10 +10,15 @@ using System.Windows.Forms;
 namespace CSharpGL
 {
     /// <summary>
-    /// 实现在OpenGL窗口中的UI布局
+    /// layout controls in OpenGL canvas.
     /// </summary>
     public static class ILayoutHelper
     {
+        /// <summary>
+        /// Gets projection matrix for <see cref="ILayout"/> to layout controls in OpenGL canvas.
+        /// </summary>
+        /// <param name="uiRenderer"></param>
+        /// <returns></returns>
         public static mat4 GetOrthoProjection(this ILayout uiRenderer)
         {
             float length = Math.Max(uiRenderer.Size.Width, uiRenderer.Size.Height) / 2;
@@ -28,7 +33,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 实现在OpenGL窗口中的UI布局
+        /// layout controls in OpenGL canvas.
         /// </summary>
         /// <param name="uiRenderer"></param>
         internal static void Layout(this ILayout uiRenderer)
@@ -60,6 +65,11 @@ namespace CSharpGL
         /// </summary>
         private const AnchorStyles topBottomAnchor = (AnchorStyles.Top | AnchorStyles.Bottom);
 
+        /// <summary>
+        /// Gets <paramref name="currentNode"/>'s location and size according to its state and parent's information.
+        /// </summary>
+        /// <param name="currentNode"></param>
+        /// <param name="parent"></param>
         private static void NonRootNodeLayout(ILayout currentNode, ILayout parent)
         {
             int x, y, width, height;
