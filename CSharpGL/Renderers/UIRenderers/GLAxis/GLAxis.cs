@@ -53,5 +53,20 @@ namespace CSharpGL
             }
         }
 
+        protected override void DoRender(RenderEventArgs arg)
+        {
+            ICamera camera = arg.Camera;
+            mat4 projection = this.GetOrthoProjection();
+            vec3 position = (camera.Position - camera.Target).normalize();
+            mat4 view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
+            float length = Math.Max(this.Size.Width, this.Size.Height) / 2;
+            mat4 model = glm.scale(mat4.identity(),
+                new vec3(length, length, length));
+            this.Renderer.SetUniform("projectionMatrix", projection);
+            this.Renderer.SetUniform("viewMatrix", view);
+            this.Renderer.SetUniform("modelMatrix", model);
+
+            base.DoRender(arg);
+        }
     }
 }
