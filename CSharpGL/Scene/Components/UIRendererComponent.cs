@@ -19,7 +19,7 @@ namespace CSharpGL
         [Description("Root renderer of UI controls.")]
         public UIRoot UIRoot { get; private set; }
 
-        public UIRendererComponent(UIRoot uiRoot, SceneObject bindingObject)
+        public UIRendererComponent(UIRoot uiRoot, SceneObject bindingObject = null)
             : base(bindingObject)
         { this.UIRoot = uiRoot; }
 
@@ -28,18 +28,7 @@ namespace CSharpGL
             UIRoot renderer = this.UIRoot;
             if (renderer != null)
             {
-                renderer.Layout();
-                RenderAllUIs(renderer, arg);
-            }
-        }
-
-        private void RenderAllUIs(UIRenderer renderer, RenderEventArgs arg)
-        {
-            renderer.Render(arg);
-
-            foreach (var item in renderer.Children)
-            {
-                RenderAllUIs(item, arg);
+                renderer.Render(arg);
             }
         }
 

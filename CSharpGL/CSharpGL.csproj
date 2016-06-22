@@ -183,7 +183,6 @@
     <Compile Include="Scene\Components\RendererComponent.cs" />
     <Compile Include="Scene\Components\ScriptComponent.cs" />
     <Compile Include="Scene\Components\TransformComponent.cs" />
-    <Compile Include="Scene\Components\UIRootRendererComponent.cs" />
     <Compile Include="Utilities\AssemblyHelper.cs" />
     <Compile Include="Utilities\ColorHelper.cs" />
     <Compile Include="Utilities\DoubleHelper.cs" />

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace CSharpGL
 {
@@ -47,7 +48,9 @@ namespace CSharpGL
             var list = new SceneObjectList();
             list.AddRange(objects);
             this.ObjectList = list;
-            this.UIRootObject = new SceneObject() { Renderer = new UIRootRendererComponent(), };
+            var uiRootObj = new SceneObject();
+            uiRootObj.Renderer = new UIRendererComponent(new UIRoot());
+            this.UIRootObject = uiRootObj;
         }
 
         public void Resize(object sender, EventArgs e)
@@ -58,5 +61,15 @@ namespace CSharpGL
             this.Camera.Resize(control.Width, control.Height);
         }
 
+        public void Render(RenderModes renderMode, Rectangle clientRectangle)
+        {
+            var arg = new RenderEventArgs(renderMode, clientRectangle, this.Camera);
+            var list = this.ObjectList.ToArray();
+            foreach (var item in list)
+            {
+                item.Render(arg);
+            }
+            this.UIRootObject.Render(arg);
+        }
     }
 }
