@@ -55,8 +55,18 @@ namespace CSharpGL.Demos
             if (uiRoot != null)
             {
                 uiRoot.Layout();
+                RenderUIs(uiRoot, arg);
                 glText.Render(arg);
                 glAxis.Render(arg);
+            }
+        }
+
+        private void RenderUIs(UIRenderer uiRoot, RenderEventArgs arg)
+        {
+            uiRoot.Render(arg);
+            foreach (var item in uiRoot.Children)
+            {
+                RenderUIs(item, arg);
             }
         }
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
@@ -103,7 +113,7 @@ namespace CSharpGL.Demos
                     glText.SetText("The quick brown fox jumps over the lazy dog!");
                     this.glText = glText;
 
-                    uiRoot.Controls.Add(glText);
+                    uiRoot.Children.Add(glText);
 
                     this.formPropertyGrid.DisplayObject(glText);
                 }

@@ -26,16 +26,12 @@ namespace CSharpGL
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
         {
-            this.Controls = new ILayoutCollection(this);
+            this.children = new ILayoutList(this);
 
             this.Renderer = renderer;
             this.Anchor = anchor; this.Margin = margin;
             this.Size = size; this.zNear = zNear; this.zFar = zFar;
         }
-
-        public ILayout Container { get; set; }
-
-        public ICollection<ILayout> Controls { get; internal set; }
 
         public System.Windows.Forms.AnchorStyles Anchor { get; set; }
 
@@ -100,5 +96,12 @@ namespace CSharpGL
                 renderer.Dispose();
             }
         }
+
+        public UIRenderer Self { get { return this; } }
+
+        public UIRenderer Parent { get; set; }
+
+        IList<UIRenderer> children;
+        public IList<UIRenderer> Children { get { return this.children; } }
     }
 }

@@ -43,7 +43,7 @@ namespace CSharpGL.Demos
                 glAxis.Initialize();
                 this.glAxis = glAxis;
 
-                UIRoot.Controls.Add(glAxis);
+                UIRoot.Children.Add(glAxis);
             }
             {
                 var frmPropertyGrid = new FormProperyGrid();

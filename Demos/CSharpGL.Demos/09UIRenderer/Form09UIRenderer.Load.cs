@@ -39,7 +39,7 @@ namespace CSharpGL.Demos
                 glAxis.Initialize();
                 this.glAxis = glAxis;
 
-                UIRoot.Controls.Add(glAxis);
+                UIRoot.Children.Add(glAxis);
 
                 var glText = new GLText(AnchorStyles.Left | AnchorStyles.Top,
                     new Padding(3, 3, 3, 3), new Size(550, 50), -100, 100);
@@ -48,7 +48,7 @@ namespace CSharpGL.Demos
                 glText.SetText("The quick brown fox jumps over the lazy dog!");
                 this.glText = glText;
 
-                uiRoot.Controls.Add(glText);
+                uiRoot.Children.Add(glText);
 
                 this.UpdateLabel();
             }

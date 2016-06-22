@@ -33,13 +33,13 @@ namespace CSharpGL
         /// <param name="uiRenderer"></param>
         public static void Layout(this ILayout uiRenderer)
         {
-            ILayout parent = uiRenderer.Container;
+            ILayout parent = uiRenderer.Parent;
             if (parent != null)
             {
                 NonRootNodeLayout(uiRenderer, parent);
             }
 
-            foreach (var item in uiRenderer.Controls)
+            foreach (var item in uiRenderer.Children)
             {
                 item.Layout();
             }

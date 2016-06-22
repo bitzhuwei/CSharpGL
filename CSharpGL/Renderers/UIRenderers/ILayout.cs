@@ -10,17 +10,8 @@ namespace CSharpGL
     /// <summary>
     /// 实现在OpenGL窗口中的UI布局
     /// </summary>
-    public interface ILayout
+    public interface ILayout : ITreeNode<UIRenderer>
     {
-        /// <summary>
-        /// parent node
-        /// </summary>
-        ILayout Container { get; set; }
-
-        /// <summary>
-        /// children nodes
-        /// </summary>
-        ICollection<ILayout> Controls { get; }
 
         /// <summary>
         /// the edges of the <see cref="GLCanvas"/> to which a UI’s rect is bound and determines how it is resized with its parent.
