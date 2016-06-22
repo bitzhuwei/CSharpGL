@@ -14,10 +14,10 @@ namespace GridViewer
         /// <summary>
         /// Get bitmap of 1 height for coded color bar.
         /// </summary>
-        /// <param name="codedColor"></param>
+        /// <param name="codedColors"></param>
         /// <param name="width"></param>
         /// <returns></returns>
-        public static Bitmap GetBitmap(this CodedColor[] codedColor, int width)
+        public static Bitmap GetBitmap(this CodedColor[] codedColors, int width)
         {
             var format = System.Drawing.Imaging.PixelFormat.Format32bppRgb;
             var lockMode = System.Drawing.Imaging.ImageLockMode.WriteOnly;
@@ -28,12 +28,12 @@ namespace GridViewer
             int length = Math.Abs(bmpData.Stride) * bitmap.Height;
             byte[] bitmapBytes = new byte[length];
 
-            for (int i = 0; i < codedColor.Length - 1; i++)
+            for (int i = 0; i < codedColors.Length - 1; i++)
             {
-                int left = (int)(width * codedColor[i].Coord);
-                int right = (int)(width * codedColor[i + 1].Coord);
-                vec3 leftColor = codedColor[i].DisplayColor;
-                vec3 rightColor = codedColor[i + 1].DisplayColor;
+                int left = (int)(width * codedColors[i].Coord);
+                int right = (int)(width * codedColors[i + 1].Coord);
+                vec3 leftColor = codedColors[i].DisplayColor;
+                vec3 rightColor = codedColors[i + 1].DisplayColor;
                 for (int col = left; col < right; col++)
                 {
                     vec3 color = (leftColor * ((right - col) * 1.0f / (right - left)) + rightColor * ((col - left) * 1.0f / (right - left)));
