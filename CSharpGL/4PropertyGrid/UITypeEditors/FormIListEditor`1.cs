@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -38,10 +40,35 @@ namespace CSharpGL
             if (frmSelectType.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Type type = frmSelectType.SelectedType;
-                T obj = (T)Activator.CreateInstance(type);
-                this.lstMember.Items.Add(obj);
-                this.list.Add(obj);
-                this.propertyGrid.SelectedObject = obj;
+                try
+                {
+                    T obj;
+                    var ctor = (from item in type.GetConstructors() orderby item.GetParameters().Length select item).First();
+                    ParameterInfo[] parameterInfos = ctor.GetParameters();
+                    if (parameterInfos.Length == 0)
+                    { obj = (T)Activator.CreateInstance(type); }
+                    else
+                    {
+                        object[] parameters = new object[parameterInfos.Length];
+                        for (int i = 0; i < parameterInfos.Length; i++)
+                        {
+                            if (parameterInfos[i].ParameterType.IsClass)
+                            { parameters[i] = null; }
+                            else
+                            { parameters[i] = Activator.CreateInstance(parameterInfos[i].ParameterType); }
+                        }
+                        obj = (T)Activator.CreateInstance(type, parameters);
+                    }
+                    this.lstMember.Items.Add(obj);
+                    this.list.Add(obj);
+                    this.propertyGrid.SelectedObject = obj;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.ToString());
+                    MessageBox.Show(ex.Message,
+                        string.Format("Error when Adding instance of [{0}]!", type.Name));
+                }
             }
         }
 
