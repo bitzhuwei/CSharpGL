@@ -12,7 +12,7 @@ namespace CSharpGL
     /// <summary>
     /// 使用Default字体在一块区域渲染文字。
     /// </summary>
-    public partial class GLText : UIRenderer
+    public partial class UIText : UIRenderer
     {
 
         private TextModel model;
@@ -25,7 +25,7 @@ namespace CSharpGL
             get { return blendSwitch; }
         }
 
-        public GLText(
+        public UIText(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar, FontResource fontResource = null, int maxCharCount = 100)
             : base(anchor, margin, size, zNear, zFar)
@@ -35,7 +35,7 @@ namespace CSharpGL
             else
             { this.fontResource = fontResource; }
 
-            this.Name = typeof(GLText).Name;
+            this.Name = typeof(UIText).Name;
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"Resources.GLText.vert"), ShaderType.VertexShader);

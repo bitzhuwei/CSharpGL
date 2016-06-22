@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// opengl UI for Axis
     /// </summary>
-    public class GLAxis : UIRenderer
+    public class UIAxis : UIRenderer
     {
 
         /// <summary>
@@ -21,12 +21,12 @@ namespace CSharpGL
         /// <param name="size"></param>
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
-        public GLAxis(
+        public UIAxis(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
             : base(anchor, margin, size, zNear, zFar)
         {
-            this.Name = typeof(GLAxis).Name;
+            this.Name = typeof(UIAxis).Name;
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"Resources.GLAxis.vert"), ShaderType.VertexShader);

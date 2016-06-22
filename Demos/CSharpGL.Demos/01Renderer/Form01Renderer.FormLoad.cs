@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
     public partial class Form01Renderer : Form
     {
         private FormIndexBufferPtrBoard frmIndexBufferPtrBoard;
-        private GLAxis glAxis;
+        private UIAxis glAxis;
         private UIRoot uiRoot;
 
         private void Form01Renderer_Load(object sender, EventArgs e)
@@ -206,7 +206,7 @@ namespace CSharpGL.Demos
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
 
-                var glAxis = new GLAxis(AnchorStyles.Right | AnchorStyles.Bottom,
+                var glAxis = new UIAxis(AnchorStyles.Right | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(70, 70), -100, 100);
                 glAxis.Initialize();
                 this.glAxis = glAxis;

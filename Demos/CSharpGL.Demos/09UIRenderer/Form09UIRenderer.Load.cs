@@ -15,8 +15,8 @@ namespace CSharpGL.Demos
     {
         private FormProperyGrid formPropertyGrid;
         private UIRoot uiRoot;
-        private GLAxis glAxis;
-        private GLText glText;
+        private UIAxis glAxis;
+        private UIText glText;
         private CSharpGL.TestHelpers.BlendFactorHelper blendFactorHelper = new TestHelpers.BlendFactorHelper();
 
         private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
@@ -34,14 +34,14 @@ namespace CSharpGL.Demos
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
 
-                var glAxis = new GLAxis(AnchorStyles.Right | AnchorStyles.Bottom,
+                var glAxis = new UIAxis(AnchorStyles.Right | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(70, 70), -100, 100);
                 glAxis.Initialize();
                 this.glAxis = glAxis;
 
                 UIRoot.Children.Add(glAxis);
 
-                var glText = new GLText(AnchorStyles.Left | AnchorStyles.Top,
+                var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top,
                     new Padding(3, 3, 3, 3), new Size(550, 50), -100, 100);
                 glText.Initialize();
                 glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.

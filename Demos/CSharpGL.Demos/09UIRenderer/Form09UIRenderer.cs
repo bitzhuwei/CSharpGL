@@ -104,7 +104,7 @@ namespace CSharpGL.Demos
                     string ttfFilename = this.openTextureDlg.FileName;
                     this.glText.Dispose();
                     FontResource fontResouce = FontResource.Load(ttfFilename, ' ', (char)126);
-                    var glText = new GLText(AnchorStyles.Left | AnchorStyles.Top,
+                    var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top,
                         new Padding(3, 3, 3, 3), new Size(850, 50), -100, 100, fontResouce);
                     glText.Initialize();
                     glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.

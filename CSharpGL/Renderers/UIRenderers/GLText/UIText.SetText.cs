@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CSharpGL
 {
-    public partial class GLText
+    public partial class UIText
     {
 
         private string content = string.Empty;
