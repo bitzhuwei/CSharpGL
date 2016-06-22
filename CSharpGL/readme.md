@@ -11,6 +11,17 @@ It meets common requirements in OpenGL rendering such as:
 * different kinds of demonstrations to use CSharpGL.
 
 # release notes:
+## v1.0.4.9:
+1. 3 PolygonOffsetSwitch types for Fill, Line and Point.
+2. remove unnecessary initialization of creating PrimitiveRestartSwitch for OneIndexRenderer.
+3. Rename GLRoot/GLAxis/GLText to UIRoot/UIAxis/UIText.
+4. UI types manage its uniform variables inside.
+5. ILayout derived from ITreeNode<UIRenderer>.
+6. UIRoot auto-layout before rendering.
+7. UIRendererComponent manages UI objects in the Scene.
+8. FormIListEditor supports creating instance with parameters.
+9. PositionHelper.Move2Center() operates on input parameters.
+
 ## v1.0.4.8:
 1. SceneObject maintains a list of script components.
 2. Generic List Editor for different list types.
