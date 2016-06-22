@@ -65,8 +65,8 @@ namespace CSharpGL
             int x, y, width, height;
             if ((currentNode.Anchor & leftRightAnchor) == leftRightAnchor)
             {
-                //width = parent.Size.Width - currentNode.Margin.Left - currentNode.Margin.Right;
-                width = currentNode.Size.Width + (parent.Size.Width - currentNode.ParentLastSize.Width);
+                width = parent.Size.Width - currentNode.Margin.Left - currentNode.Margin.Right;
+                //width = currentNode.Size.Width + (parent.Size.Width - currentNode.ParentLastSize.Width);
                 if (width < 0) { width = 0; }
             }
             else
@@ -76,8 +76,8 @@ namespace CSharpGL
 
             if ((currentNode.Anchor & topBottomAnchor) == topBottomAnchor)
             {
-                //height = parent.Size.Height - currentNode.Margin.Top - currentNode.Margin.Bottom;
-                height = currentNode.Size.Height + (parent.Size.Height - currentNode.ParentLastSize.Height);
+                height = parent.Size.Height - currentNode.Margin.Top - currentNode.Margin.Bottom;
+                //height = currentNode.Size.Height + (parent.Size.Height - currentNode.ParentLastSize.Height);
                 if (height < 0) { height = 0; }
             }
             else
