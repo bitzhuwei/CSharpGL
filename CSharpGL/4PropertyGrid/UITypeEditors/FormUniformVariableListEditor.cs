@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -36,10 +38,19 @@ namespace CSharpGL
             if (frmSelectType.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Type type = frmSelectType.SelectedType;
-                var obj = Activator.CreateInstance(type, frmSelectType.VarNameInShader) as UniformVariable;
-                this.lstMember.Items.Add(obj);
-                this.list.Add(obj);
-                this.propertyGrid.SelectedObject = obj;
+                try
+                {
+                    var obj = Activator.CreateInstance(type, frmSelectType.VarNameInShader) as UniformVariable;
+                    this.lstMember.Items.Add(obj);
+                    this.list.Add(obj);
+                    this.propertyGrid.SelectedObject = obj;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.ToString());
+                    MessageBox.Show(ex.Message,
+                        string.Format("Error when Adding instance of [{0}]!", type.Name));
+                }
             }
         }
 
