@@ -16,7 +16,7 @@ namespace CSharpGL.Demos
         private Form03OrderDependentTransparency form03;
 
 
-        private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             {
                 var camera = new Camera(

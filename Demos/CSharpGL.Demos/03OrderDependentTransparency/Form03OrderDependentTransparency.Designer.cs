@@ -53,7 +53,7 @@
             this.Controls.Add(this.glCanvas1);
             this.Name = "Form03OrderDependentTransparency";
             this.Text = "Form03OrderDependentTransparency";
-            this.Load += new System.EventHandler(this.Form02OrderIndependentTransparency_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
 

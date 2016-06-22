@@ -16,7 +16,7 @@ namespace CSharpGL.Demos
         private FormProperyGrid formPropertyGrid;
 
 
-        private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             {
                 var camera = new Camera(

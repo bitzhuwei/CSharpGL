@@ -53,7 +53,7 @@
             this.Controls.Add(this.glCanvas1);
             this.Name = "Form10RaycastVolumeRender";
             this.Text = "Form10RaycastVolumeRender";
-            this.Load += new System.EventHandler(this.Form02OrderIndependentTransparency_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
 

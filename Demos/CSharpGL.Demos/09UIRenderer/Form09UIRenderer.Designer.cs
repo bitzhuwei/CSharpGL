@@ -83,7 +83,7 @@
             this.Controls.Add(this.glCanvas1);
             this.Name = "Form09UIRenderer";
             this.Text = "Form09TextBoxRenderer";
-            this.Load += new System.EventHandler(this.Form02OrderIndependentTransparency_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

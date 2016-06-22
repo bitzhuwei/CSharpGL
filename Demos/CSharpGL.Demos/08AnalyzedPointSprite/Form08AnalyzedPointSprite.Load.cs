@@ -18,7 +18,7 @@ namespace CSharpGL.Demos
         private UIAxis glAxis;
 
 
-        private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             {
                 var camera = new Camera(
