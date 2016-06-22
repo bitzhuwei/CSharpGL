@@ -24,9 +24,9 @@ namespace CSharpGL
         public GLAxis(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
-            : base(null, anchor, margin, size, zNear, zFar)
+            : base(anchor, margin, size, zNear, zFar)
         {
-            this.Name = "GLAxis";
+            this.Name = typeof(GLAxis).Name;
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"Resources.GLAxis.vert"), ShaderType.VertexShader);
@@ -41,18 +41,6 @@ namespace CSharpGL
             this.Renderer = renderer;
         }
 
-        protected override void DoInitialize()
-        {
-            base.DoInitialize();
-
-            var renderer = this.Renderer as OneIndexRenderer;
-            if (renderer != null)
-            {
-                GLSwitch primitiveRestartSwitch = new PrimitiveRestartSwitch(renderer.IndexBufferPtr);
-                renderer.SwitchList.Add(primitiveRestartSwitch);
-            }
-        }
-
         protected override void DoRender(RenderEventArgs arg)
         {
             ICamera camera = arg.Camera;
@@ -62,9 +50,10 @@ namespace CSharpGL
             float length = Math.Max(this.Size.Width, this.Size.Height) / 2;
             mat4 model = glm.scale(mat4.identity(),
                 new vec3(length, length, length));
-            this.Renderer.SetUniform("projectionMatrix", projection);
-            this.Renderer.SetUniform("viewMatrix", view);
-            this.Renderer.SetUniform("modelMatrix", model);
+            Renderer renderer = this.Renderer as Renderer;
+            renderer.SetUniform("projectionMatrix", projection);
+            renderer.SetUniform("viewMatrix", view);
+            renderer.SetUniform("modelMatrix", model);
 
             base.DoRender(arg);
         }

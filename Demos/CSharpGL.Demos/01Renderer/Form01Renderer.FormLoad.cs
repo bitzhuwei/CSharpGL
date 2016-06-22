@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
     {
         private FormIndexBufferPtrBoard frmIndexBufferPtrBoard;
         private GLAxis glAxis;
-        private GLControl uiRoot;
+        private UIRoot uiRoot;
 
         private void Form01Renderer_Load(object sender, EventArgs e)
         {
@@ -202,7 +202,7 @@ namespace CSharpGL.Demos
                 this.pickedGeometryBoard = frmBulletinBoard;
             }
             {
-                var UIRoot = new GLControl(this.glCanvas1, -100, 100);
+                var UIRoot = new UIRoot(this.glCanvas1, -100, 100);
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
 

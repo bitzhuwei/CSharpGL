@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
     public partial class Form13SimplexNoise : Form
     {
         private GLAxis glAxis;
-        private GLControl uiRoot;
+        private UIRoot uiRoot;
         private SimplexNoiseRenderer simplexNoiseRenderer;
 
         private void Form01Renderer_Load(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
                 this.simplexNoiseRenderer = simplexNoiseRenderer;
             }
             {
-                var UIRoot = new GLControl(this.glCanvas1, -100, 100);
+                var UIRoot = new UIRoot(this.glCanvas1, -100, 100);
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
 

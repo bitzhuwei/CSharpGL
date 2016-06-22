@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
     public partial class Form12Billboard : Form
     {
         private FormProperyGrid formPropertyGrid;
-        private GLControl uiRoot;
+        private UIRoot uiRoot;
         private GLAxis glAxis;
         private MovableRenderer movableRenderer;
         private Renderer billboardRenderer;
@@ -80,7 +80,7 @@ namespace CSharpGL.Demos
                 this.labelRenderer = labelRenderer;
             }
             {
-                var UIRoot = new GLControl(this.glCanvas1, -100, 100);
+                var UIRoot = new UIRoot(this.glCanvas1, -100, 100);
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
 

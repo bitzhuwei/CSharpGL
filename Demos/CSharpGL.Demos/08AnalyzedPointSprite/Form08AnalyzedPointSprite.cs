@@ -56,24 +56,12 @@ namespace CSharpGL.Demos
         private Point offset = new Point(13, 11);
         private void UIRenderersDraw(RenderEventArgs arg)
         {
-            GLControl uiRoot = this.uiRoot;
+            UIRoot uiRoot = this.uiRoot;
             if (uiRoot != null)
             {
                 uiRoot.Layout();
-                mat4 projection, view, model;
-                {
-                    projection = glAxis.GetOrthoProjection();
-                    vec3 position = (this.camera.Position - this.camera.Target).normalize();
-                    view = glm.lookAt(position, new vec3(0, 0, 0), camera.UpVector);
-                    float length = Math.Max(glAxis.Size.Width, glAxis.Size.Height) / 2;
-                    model = glm.scale(mat4.identity(),
-                        new vec3(length, length, length));
-                    glAxis.Renderer.SetUniform("projectionMatrix", projection);
-                    glAxis.Renderer.SetUniform("viewMatrix", view);
-                    glAxis.Renderer.SetUniform("modelMatrix", model);
 
-                    glAxis.Render(arg);
-                }
+                glAxis.Render(arg);
             }
         }
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)

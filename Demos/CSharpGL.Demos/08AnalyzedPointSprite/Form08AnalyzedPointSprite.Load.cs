@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
     public partial class Form08AnalyzedPointSprite : Form
     {
         private FormProperyGrid formPropertyGrid;
-        private GLControl uiRoot;
+        private UIRoot uiRoot;
         private GLAxis glAxis;
 
 
@@ -34,7 +34,7 @@ namespace CSharpGL.Demos
                 this.renderer = renderer;
             }
             {
-                var UIRoot = new GLControl(this.glCanvas1, -100, 100);
+                var UIRoot = new UIRoot(this.glCanvas1, -100, 100);
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
 

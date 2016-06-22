@@ -11,25 +11,26 @@ namespace CSharpGL
     /// <summary>
     /// root UI for opengl.
     /// </summary>
-    public class GLControl : UIRenderer
+    public class UIRoot : UIRenderer
     {
 
         /// <summary>
-        /// root UI for OpenGL controls.
+        /// root UI for opengl.
         /// </summary>
         /// <param name="canvas">opengl canvas that this GLControl binds to.</param>
         /// <param name="size">opengl canvas' size</param>
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
-        public GLControl(Control canvas, int zNear, int zFar)
-            : base(null,
+        public UIRoot(Control canvas, int zNear, int zFar)
+            : base(
             System.Windows.Forms.AnchorStyles.Left |
             System.Windows.Forms.AnchorStyles.Right |
             System.Windows.Forms.AnchorStyles.Bottom |
             System.Windows.Forms.AnchorStyles.Top,
             new System.Windows.Forms.Padding(), canvas.Size, zNear, zFar)
         {
-            this.Name = "GLControl";
+            this.Name = typeof(UIRoot).Name;
+
             canvas.Resize += canvas_Resize;
         }
 

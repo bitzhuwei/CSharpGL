@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
     public partial class Form09UIRenderer : Form
     {
         private FormProperyGrid formPropertyGrid;
-        private GLControl uiRoot;
+        private UIRoot uiRoot;
         private GLAxis glAxis;
         private GLText glText;
         private CSharpGL.TestHelpers.BlendFactorHelper blendFactorHelper = new TestHelpers.BlendFactorHelper();
@@ -30,7 +30,7 @@ namespace CSharpGL.Demos
                 this.rotator = rotator;
             }
             {
-                var UIRoot = new GLControl(this.glCanvas1, -100, 100);
+                var UIRoot = new UIRoot(this.glCanvas1, -100, 100);
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
 

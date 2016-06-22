@@ -28,14 +28,14 @@ namespace CSharpGL
         public GLText(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar, FontResource fontResource = null, int maxCharCount = 100)
-            : base(null, anchor, margin, size, zNear, zFar)
+            : base(anchor, margin, size, zNear, zFar)
         {
             if (fontResource == null)
             { this.fontResource = FontResource.Default; }
             else
             { this.fontResource = fontResource; }
 
-            this.Name = "GLText";
+            this.Name = typeof(GLText).Name;
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"Resources.GLText.vert"), ShaderType.VertexShader);
@@ -55,7 +55,8 @@ namespace CSharpGL
         {
             base.DoInitialize();
 
-            this.Renderer.SetUniform("fontTexture", this.fontResource.GetSamplerValue());
+            Renderer renderer = this.Renderer as Renderer;
+            renderer.SetUniform("fontTexture", this.fontResource.GetSamplerValue());
         }
 
         protected override void DoRender(RenderEventArgs arg)
@@ -67,7 +68,8 @@ namespace CSharpGL
             float length = this.Size.Height / 2;
             mat4 model = glm.scale(mat4.identity(), new vec3(length, length, length));
             //model = mat4.identity();
-            this.Renderer.SetUniform("mvp", projection * view * model);
+            Renderer renderer = this.Renderer as Renderer;
+            renderer.SetUniform("mvp", projection * view * model);
 
             blendSwitch.On();
 
