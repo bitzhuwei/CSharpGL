@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="15Scene\Form15Scene.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="15Scene\Form15Scene.Designer.cs">
+      <DependentUpon>Form15Scene.cs</DependentUpon>
+    </Compile>
+    <Compile Include="15Scene\Form15Scene.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="15Scene\Form15Scene.MouseDownMoveUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="12Billboard\BillboardRenderer.cs" />
     <Compile Include="12Billboard\MovableRenderer.cs" />
     <Compile Include="12Billboard\GroundRenderer.cs" />
@@ -353,6 +365,9 @@
     </None>
     <EmbeddedResource Include="00GLCanvas\Form00GLCanvas.resx">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="15Scene\Form15Scene.resx">
+      <DependentUpon>Form15Scene.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="14ShaderToy\Form14ShaderToy.resx">
       <DependentUpon>Form14ShaderToy.cs</DependentUpon>

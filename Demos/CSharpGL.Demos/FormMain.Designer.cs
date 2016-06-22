@@ -42,6 +42,7 @@
             this.btn12Billboard = new System.Windows.Forms.Button();
             this.btn13SimplexNoise = new System.Windows.Forms.Button();
             this.btn14ShaderToy = new System.Windows.Forms.Button();
+            this.btn15Scene = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm00GLCanvas
@@ -226,11 +227,25 @@
             this.btn14ShaderToy.UseVisualStyleBackColor = true;
             this.btn14ShaderToy.Click += new System.EventHandler(this.btn14ShaderToy_Click);
             // 
+            // btn15Scene
+            // 
+            this.btn15Scene.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn15Scene.Font = new System.Drawing.Font("宋体", 12F);
+            this.btn15Scene.Location = new System.Drawing.Point(12, 614);
+            this.btn15Scene.Name = "btn15Scene";
+            this.btn15Scene.Size = new System.Drawing.Size(767, 37);
+            this.btn15Scene.TabIndex = 0;
+            this.btn15Scene.Text = "15 Scene";
+            this.btn15Scene.UseVisualStyleBackColor = true;
+            this.btn15Scene.Click += new System.EventHandler(this.btn15Scene_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(791, 632);
+            this.ClientSize = new System.Drawing.Size(791, 723);
+            this.Controls.Add(this.btn15Scene);
             this.Controls.Add(this.btn14ShaderToy);
             this.Controls.Add(this.btn13SimplexNoise);
             this.Controls.Add(this.btn12Billboard);
@@ -267,5 +282,6 @@
         private System.Windows.Forms.Button btn12Billboard;
         private System.Windows.Forms.Button btn13SimplexNoise;
         private System.Windows.Forms.Button btn14ShaderToy;
+        private System.Windows.Forms.Button btn15Scene;
     }
 }
