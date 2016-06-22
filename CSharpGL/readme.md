@@ -10,6 +10,8 @@ It meets common requirements in OpenGL rendering such as:
 * a scene editor;
 * different kinds of demonstrations to use CSharpGL.
 
+For more information please check (http://bitzhuwei.github.io/CSharpGL/)
+
 # release notes:
 ## v1.0.4.9:
 1. 3 PolygonOffsetSwitch types for Fill, Line and Point.
