@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace GridViewer
 {
-    class ColorCodedBarRenderer : UIRenderer
+    class ColorCodedBarRenderer : RendererBase
     {
         public CodedColor[] CodedColors { get; private set; }
 
@@ -20,10 +20,7 @@ namespace GridViewer
 
         public Renderer[] ValueRenderers { get; private set; }
 
-        public ColorCodedBarRenderer(CodedColor[] codedColors,
-            AnchorStyles anchor, Padding margin,
-            System.Drawing.Size size, int zNear, int zFar)
-            : base(anchor, margin, size, zNear, zFar)
+        public ColorCodedBarRenderer(CodedColor[] codedColors)
         {
             if (codedColors == null || codedColors.Length < 1)
             {
@@ -76,11 +73,6 @@ namespace GridViewer
             Renderer rectRenderer = this.RectRenderer;
             if (rectRenderer != null)
             {
-                mat4 projection = this.GetOrthoProjection();
-                mat4 view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
-                float length = Math.Max(this.Size.Width, this.Size.Height);
-                mat4 model = glm.scale(mat4.identity(), new vec3(length, length, length));
-                rectRenderer.SetUniform("mvp", projection * view * model);
                 rectRenderer.Render(arg);
             }
 

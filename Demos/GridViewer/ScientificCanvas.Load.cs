@@ -33,7 +33,7 @@ namespace GridViewer
                 var uiCodedColorBar = new UIColorCodedBarRenderer(
                     CodedColor.GetDefault(),
                     AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right,
-                    new Padding(120, 10, 50, 10 + 40), new Size(400, 30), -100, 100);
+                    new Padding(120, 10, 60, 10 + 40), new Size(400, 30), -100, 100);
                 uiCodedColorBar.Initialize();
                 uiCodedColorBar.SwitchList.Add(new ClearColorSwitch());
                 this.Scene.UIRoot.Children.Add(uiCodedColorBar);

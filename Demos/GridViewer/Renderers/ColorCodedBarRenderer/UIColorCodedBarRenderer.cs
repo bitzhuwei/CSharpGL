@@ -29,8 +29,9 @@ namespace GridViewer
             map.Add("in_Position", CodedColorBarRect.strPosition);
             map.Add("in_Coord", CodedColorBarRect.strCoord);
             this.codedColors = codedColors;
-            var model = new CodedColorBarRect(codedColors);
-            Renderer renderer = new Renderer(model, shaderCodes, map);
+            //var model = new CodedColorBarRect(codedColors);
+            //Renderer renderer = new Renderer(model, shaderCodes, map);
+            var renderer = new ColorCodedBarRenderer(codedColors);
             this.Renderer = renderer;
 
             //this.SwitchList.Add(new ClearColorSwitch());
@@ -45,8 +46,8 @@ namespace GridViewer
                 var sampler = new sampler1D();
                 sampler.Initialize(bitmap);
                 bitmap.Dispose();
-                Renderer renderer = this.Renderer as Renderer;
-                renderer.SetUniform("codedColorSampler", new samplerValue(
+                var renderer = this.Renderer as ColorCodedBarRenderer;
+                renderer.RectRenderer.SetUniform("codedColorSampler", new samplerValue(
                      BindTextureTarget.Texture1D, sampler.Id, OpenGL.GL_TEXTURE0));
             }
         }
@@ -58,8 +59,8 @@ namespace GridViewer
             mat4 view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
             float length = Math.Max(this.Size.Width, this.Size.Height);
             mat4 model = glm.scale(mat4.identity(), new vec3(length, length, length));
-            Renderer renderer = this.Renderer as Renderer;
-            renderer.SetUniform("mvp", projection * view * model);
+            var renderer = this.Renderer as ColorCodedBarRenderer;
+            renderer.RectRenderer.SetUniform("mvp", projection * view * model);
 
             base.DoRender(arg);
         }
