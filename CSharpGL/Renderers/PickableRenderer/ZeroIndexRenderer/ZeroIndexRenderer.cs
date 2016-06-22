@@ -24,10 +24,7 @@ namespace CSharpGL
             PropertyNameMap propertyNameMap, string positionNameInIBufferable,
             params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
-        {
-            this.Name = this.GetType().Name;
-
-        }
+        { }
 
     }
 }

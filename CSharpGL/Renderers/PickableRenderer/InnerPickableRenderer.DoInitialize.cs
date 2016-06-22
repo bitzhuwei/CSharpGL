@@ -48,6 +48,14 @@ namespace CSharpGL
                 }
             }
 
+            // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
+            var ptr = this.indexBufferPtr as OneIndexBufferPtr;
+            if (ptr != null)
+            {
+                GLSwitch glSwitch = new PrimitiveRestartSwitch(ptr);
+                this.switchList.Add(glSwitch);
+            }
+
             // 由于picking.vert/frag只支持vec3的position buffer，所以有此硬性规定。
             if (this.positionBufferPtr.DataSize != 3 || this.positionBufferPtr.DataType != OpenGL.GL_FLOAT)
             { throw new Exception(string.Format("Position buffer must use a type composed of 3 float as PropertyBuffer<T>'s T!")); }

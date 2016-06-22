@@ -12,8 +12,6 @@ namespace CSharpGL
     partial class OneIndexRenderer : InnerPickableRenderer
     {
 
-        PrimitiveRestartSwitch primitiveRestartSwitch4Picking;
-
         /// <summary>
         /// 用glDrawElements进行渲染。
         /// </summary>
@@ -26,20 +24,7 @@ namespace CSharpGL
             PropertyNameMap propertyNameMap, string positionNameInIBufferable,
             params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
-        {
-            
-        }
-
-        protected override void DoInitialize()
-        {
-            base.DoInitialize();
-
-            // init index buffer 
-            var primitiveRestartSwitch4Picking = new PrimitiveRestartSwitch(this.indexBufferPtr as OneIndexBufferPtr);
-            this.primitiveRestartSwitch4Picking = primitiveRestartSwitch4Picking;
-            this.switchList.Add(primitiveRestartSwitch4Picking);
-        }
-
+        { }
 
     }
 }
