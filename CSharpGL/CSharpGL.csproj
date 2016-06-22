@@ -476,8 +476,8 @@
     <None Include="OpenGLObjects\VertexBufferObjects\BufferPtr.cd" />
     <EmbeddedResource Include="Resources\GLAxis.frag" />
     <EmbeddedResource Include="Resources\GLAxis.vert" />
-    <EmbeddedResource Include="Resources\GLText.frag" />
-    <EmbeddedResource Include="Resources\GLText.vert" />
+    <EmbeddedResource Include="Resources\UIText.frag" />
+    <EmbeddedResource Include="Resources\UIText.vert" />
     <EmbeddedResource Include="Resources\BuildInSceneObject.vert" />
     <EmbeddedResource Include="Resources\BuildInSceneObject.frag" />
     <EmbeddedResource Include="Resources\Label.vert" />

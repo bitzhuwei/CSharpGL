@@ -35,12 +35,12 @@ namespace CSharpGL
             else
             { this.fontResource = fontResource; }
 
-            this.Name = typeof(UIText).Name;
+            this.Name = this.GetType().Name;
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"Resources.GLText.vert"), ShaderType.VertexShader);
+@"Resources.UIText.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"Resources.GLText.frag"), ShaderType.FragmentShader);
+@"Resources.UIText.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("position", "position");
             map.Add("uv", "uv");
