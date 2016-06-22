@@ -75,7 +75,7 @@
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripAdjacencySearcher.jpg" />
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.jpg" />
     <Content Include="OpenGLObjects\GLSwitches\readme.md" />
-    <Content Include="Renderers\UIRenderers\GLText\readme.md" />
+    <Content Include="Renderers\UIRenderers\UIText\readme.md" />
     <Content Include="WinformControls\RenderContexts\readme.md" />
     <Content Include="OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="OpenGLObjects\VertexBufferObjects\readme.md" />
@@ -129,12 +129,12 @@
     <Compile Include="OpenGLObjects\GLSwitches\ViewportSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\Enable.Disable\ScissorTestSwitch.cs" />
     <Compile Include="IBufferables\TextModel.cs" />
-    <Compile Include="Renderers\UIRenderers\GLText\UIText.SetText.cs" />
-    <Compile Include="Renderers\UIRenderers\GLText\UIText.cs" />
+    <Compile Include="Renderers\UIRenderers\UIText\UIText.SetText.cs" />
+    <Compile Include="Renderers\UIRenderers\UIText\UIText.cs" />
     <Compile Include="Renderers\UIRenderers\UIRoot.cs" />
     <Compile Include="Renderers\UIRenderers\ILayoutHelper.cs" />
     <Compile Include="Renderers\UIRenderers\ILayoutList.cs" />
-    <Compile Include="Renderers\UIRenderers\GLAxis\UIAxis.cs">
+    <Compile Include="Renderers\UIRenderers\UIAxis\UIAxis.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Renderers\UIRenderers\ILayout.cs">
@@ -474,8 +474,8 @@
     <EmbeddedResource Include="Resources\Picking.vert" />
     <None Include="OpenGLObjects\VertexBufferObjects\Buffer.cd" />
     <None Include="OpenGLObjects\VertexBufferObjects\BufferPtr.cd" />
-    <EmbeddedResource Include="Resources\GLAxis.frag" />
-    <EmbeddedResource Include="Resources\GLAxis.vert" />
+    <EmbeddedResource Include="Resources\UIAxis.frag" />
+    <EmbeddedResource Include="Resources\UIAxis.vert" />
     <EmbeddedResource Include="Resources\UIText.frag" />
     <EmbeddedResource Include="Resources\UIText.vert" />
     <EmbeddedResource Include="Resources\BuildInSceneObject.vert" />

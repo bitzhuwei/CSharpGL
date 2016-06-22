@@ -29,9 +29,9 @@ namespace CSharpGL
             this.Name = typeof(UIAxis).Name;
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"Resources.GLAxis.vert"), ShaderType.VertexShader);
+@"Resources.UIAxis.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"Resources.GLAxis.frag"), ShaderType.FragmentShader);
+@"Resources.UIAxis.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("in_Position", "position");
             map.Add("in_Color", "color");
