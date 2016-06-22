@@ -40,7 +40,8 @@ namespace CSharpGL
                 point.z = (float)random.NextDouble() * height;
                 positions[i] = point;
             }
-            this.Positions = positions.Move2Center();
+            positions.Move2Center();
+            this.Positions = positions;
 
             this.Colors = new vec3[pointCount];
             {

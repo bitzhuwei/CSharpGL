@@ -43,11 +43,7 @@ namespace CSharpGL
                 normal[i] = (position[i] - center).normalize();
             }
 
-            vec3[] tmp = position.Move2Center();
-            position[0] = tmp[0];
-            position[1] = tmp[1];
-            position[2] = tmp[2];
-            position[3] = tmp[3];
+            position.Move2Center();
         }
     }
 }

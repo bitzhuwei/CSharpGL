@@ -29,7 +29,7 @@ namespace CSharpGL
             positions[8] = new vec3(6.1f, 4.2f, 0);
             positions[9] = new vec3(6.2f, 3.9f, 0);
             positions[10] = new vec3(6.4f, 3.9f, 0);
-            positions = positions.Move2Center();
+            positions.Move2Center();
 
             colors = new vec3[11];
             colors[0] = new vec3(1, 0, 0);
