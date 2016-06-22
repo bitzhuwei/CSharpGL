@@ -38,10 +38,20 @@ namespace GridViewer
         /// </summary>
         public vec3 DisplayColor { get; set; }
 
+        private float coord;
         /// <summary>
         /// position in coded color bar. Ranges from 0.0f to 1.0f.
         /// </summary>
-        public float Coord { get; set; }
+        public float Coord
+        {
+            get { return coord; }
+            set
+            {
+                if (value < 0) { coord = 0; }
+                else if (value > 1.0f) { coord = 1.0f; }
+                else { coord = value; }
+            }
+        }
 
         /// <summary>
         /// Display value.
