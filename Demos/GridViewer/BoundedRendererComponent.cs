@@ -16,7 +16,8 @@ namespace GridViewer
 
         public BoundedRenderer Renderer { get; private set; }
 
-        public BoundedRendererComponent(BoundedRenderer renderer)
+        public BoundedRendererComponent(BoundedRenderer renderer, SceneObject bindingObject = null)
+            : base(bindingObject)
         {
             this.Renderer = renderer;
         }
