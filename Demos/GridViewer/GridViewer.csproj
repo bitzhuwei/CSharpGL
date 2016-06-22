@@ -115,6 +115,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\BoudingBoxRendererFactory.cs" />
+    <Compile Include="Renderers\ColorCodedBarRenderer.cs" />
     <Compile Include="Renderers\ColorCodedBarRenderer\CodedColor.cs" />
     <Compile Include="Renderers\ColorCodedBarRenderer\CodedColorsHelper.cs" />
     <Compile Include="Renderers\ColorCodedBarRenderer\ColorCodedBarRectRendererFactory.cs" />
