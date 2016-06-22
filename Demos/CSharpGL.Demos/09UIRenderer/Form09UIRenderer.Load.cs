@@ -34,8 +34,8 @@ namespace CSharpGL.Demos
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
 
-                var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top,
-                    new Padding(3, 3, 3, 3), new Size(550, 50), -100, 100);
+                var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top| AnchorStyles.Right,
+                    new Padding(10, 10, 10, 10), new Size(550, 50), -100, 100);
                 glText.Initialize();
                 glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
                 glText.SetText("The quick brown fox jumps over the lazy dog!");
