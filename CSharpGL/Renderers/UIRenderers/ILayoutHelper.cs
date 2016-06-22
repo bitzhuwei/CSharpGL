@@ -101,7 +101,7 @@ namespace CSharpGL
             }
             else if ((currentNode.Anchor & leftRightAnchor) == leftRightAnchor)
             {
-                x = currentNode.Location.X;
+                x = currentNode.Margin.Left + parent.Location.X;
             }
             else
             { throw new Exception("uiRenderer should not happen!"); }
@@ -122,7 +122,7 @@ namespace CSharpGL
             }
             else if ((currentNode.Anchor & topBottomAnchor) == topBottomAnchor)
             {
-                y = currentNode.Location.Y;
+                y = currentNode.Margin.Top + parent.Location.Y;
             }
             else
             { throw new Exception("This should not happen!"); }
