@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 using System.Threading;
 using System.ComponentModel.Design;
@@ -89,7 +89,8 @@ namespace CSharpGL
                 return;
             }
 
-            stopWatch.Restart();
+            stopWatch.Reset();
+            stopWatch.Start();
 
             //	Make sure it's our instance of openSharpGL that's active.
             renderContext.MakeCurrent();

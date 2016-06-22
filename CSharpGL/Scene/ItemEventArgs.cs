@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public class AddItemEventArgs<T>
+    public class AddItemEventArgs<T> : EventArgs
     {
         public T NewItem { get; private set; }
 
@@ -22,7 +22,7 @@ namespace CSharpGL
         }
     }
 
-    public class RemoveItemEventArgs<T>
+    public class RemoveItemEventArgs<T> : EventArgs
     {
         public T RemovedItem { get; private set; }
 

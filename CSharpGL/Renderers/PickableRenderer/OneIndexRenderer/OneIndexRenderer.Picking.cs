@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace CSharpGL
 {
@@ -24,9 +24,9 @@ namespace CSharpGL
                 arg, lastVertexId, x, y);
             if (lastIndexId == null)
             {
-                Debug.WriteLine(
+                Debug.WriteLine(string.Format(
                     "Got lastVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}] [{3}] [{4}]",
-                    lastVertexId, arg, stageVertexId, x, y);
+                    lastVertexId, arg, stageVertexId, x, y));
                 { return null; }
             }
 

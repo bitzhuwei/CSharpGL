@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace System
 {
@@ -16,8 +16,8 @@ namespace System
     public class FullDictionary<TKey, TValue> : IDictionary<TKey, TValue>,
         ICollection<KeyValuePair<TKey, TValue>>, 
         IDictionary, ICollection, 
-        IReadOnlyDictionary<TKey, TValue>,
-        IReadOnlyCollection<KeyValuePair<TKey, TValue>>,
+        //IReadOnlyDictionary<TKey, TValue>,
+        //IReadOnlyCollection<KeyValuePair<TKey, TValue>>,
         IEnumerable<KeyValuePair<TKey, TValue>>, 
         IEnumerable, ISerializable, IDeserializationCallback
  
@@ -193,17 +193,6 @@ namespace System
         public object SyncRoot
         {
             get { return ((IDictionary)dict).SyncRoot; }
-        }
-
-
-        IEnumerable<TKey> IReadOnlyDictionary<TKey, TValue>.Keys
-        {
-            get { return dict.Keys; }
-        }
-
-        IEnumerable<TValue> IReadOnlyDictionary<TKey, TValue>.Values
-        {
-            get { return dict.Values; }
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

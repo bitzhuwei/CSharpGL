@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace CSharpGL
 {
@@ -56,7 +56,7 @@ namespace CSharpGL
             program.Unbind();
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void SwitchesOn()
         {
             int count = this.switchList.Count;
@@ -66,7 +66,7 @@ namespace CSharpGL
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void SwithesOff()
         {
             int count = this.switchList.Count;
@@ -76,7 +76,7 @@ namespace CSharpGL
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void ResetUniformValues(ShaderProgram program)
         {
             //while (uniformArrayVariableStack.Count > 0)
@@ -92,7 +92,7 @@ namespace CSharpGL
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void SetUniformValues(ShaderProgram program)
         {
             var updatedUniforms = (from item in this.uniformVariables where item.Updated select item).ToArray();
