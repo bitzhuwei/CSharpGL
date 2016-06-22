@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -101,6 +103,8 @@ namespace CSharpGL
         public UIRenderer Parent { get; set; }
 
         IList<UIRenderer> children;
+
+        [Editor(typeof(IListEditor<UIRenderer>), typeof(UITypeEditor))]
         public IList<UIRenderer> Children { get { return this.children; } }
     }
 }

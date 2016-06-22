@@ -86,11 +86,12 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.objectsTreeView = new System.Windows.Forms.TreeView();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.scene = new GridViewer.ScientificCanvas();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.treeViewRightMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.scientificCanvas = new GridViewer.ScientificCanvas();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.sceneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -102,8 +103,8 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.scene)).BeginInit();
             this.treeViewRightMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scientificCanvas)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -347,8 +348,8 @@
             // 
             this.工具TToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.自定义CToolStripMenuItem,
-            this.选项OToolStripMenuItem});
-            this.工具TToolStripMenuItem.Enabled = false;
+            this.选项OToolStripMenuItem,
+            this.sceneToolStripMenuItem});
             this.工具TToolStripMenuItem.Name = "工具TToolStripMenuItem";
             this.工具TToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.工具TToolStripMenuItem.Text = "工具(&T)";
@@ -356,13 +357,13 @@
             // 自定义CToolStripMenuItem
             // 
             this.自定义CToolStripMenuItem.Name = "自定义CToolStripMenuItem";
-            this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.自定义CToolStripMenuItem.Text = "自定义(&C)";
             // 
             // 选项OToolStripMenuItem
             // 
             this.选项OToolStripMenuItem.Name = "选项OToolStripMenuItem";
-            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.选项OToolStripMenuItem.Text = "选项(&O)";
             // 
             // 帮助HToolStripMenuItem
@@ -539,7 +540,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.scene);
+            this.splitContainer1.Panel2.Controls.Add(this.scientificCanvas);
             this.splitContainer1.Size = new System.Drawing.Size(1280, 666);
             this.splitContainer1.SplitterDistance = 426;
             this.splitContainer1.TabIndex = 4;
@@ -572,6 +573,21 @@
             this.objectsTreeView.TabIndex = 0;
             this.objectsTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.objectsTreeView_AfterSelect);
             // 
+            // treeViewRightMenu
+            // 
+            this.treeViewRightMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.treeViewRightMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+            this.treeViewRightMenu.Name = "treeViewRightMenu";
+            this.treeViewRightMenu.Size = new System.Drawing.Size(133, 30);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(132, 26);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
             // propertyGrid1
             // 
             this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -582,14 +598,14 @@
             // 
             // scene
             // 
-            this.scene.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scene.Location = new System.Drawing.Point(0, 0);
-            this.scene.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.scene.Name = "scene";
-            this.scene.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
-            this.scene.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
-            this.scene.Size = new System.Drawing.Size(850, 666);
-            this.scene.TabIndex = 0;
+            this.scientificCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scientificCanvas.Location = new System.Drawing.Point(0, 0);
+            this.scientificCanvas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.scientificCanvas.Name = "scene";
+            this.scientificCanvas.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
+            this.scientificCanvas.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
+            this.scientificCanvas.Size = new System.Drawing.Size(850, 666);
+            this.scientificCanvas.TabIndex = 0;
             // 
             // openFileDialog1
             // 
@@ -597,20 +613,12 @@
             this.openFileDialog1.FilterIndex = 2;
             this.openFileDialog1.RestoreDirectory = true;
             // 
-            // treeViewRightMenu
+            // sceneToolStripMenuItem
             // 
-            this.treeViewRightMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.treeViewRightMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem});
-            this.treeViewRightMenu.Name = "treeViewRightMenu";
-            this.treeViewRightMenu.Size = new System.Drawing.Size(182, 58);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.sceneToolStripMenuItem.Name = "sceneToolStripMenuItem";
+            this.sceneToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.sceneToolStripMenuItem.Text = "Scene";
+            this.sceneToolStripMenuItem.Click += new System.EventHandler(this.sceneToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -638,8 +646,8 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.scene)).EndInit();
             this.treeViewRightMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.scientificCanvas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -693,7 +701,7 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.TreeView objectsTreeView;
         private System.Windows.Forms.PropertyGrid propertyGrid1;
-        private ScientificCanvas scene;
+        private ScientificCanvas scientificCanvas;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mniLoadECLGrid;
         private System.Windows.Forms.ToolStripMenuItem mniLoadSimbaGrid;
@@ -708,6 +716,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblCameraInfo;
         private System.Windows.Forms.ContextMenuStrip treeViewRightMenu;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sceneToolStripMenuItem;
     }
 }
 

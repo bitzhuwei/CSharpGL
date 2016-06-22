@@ -60,7 +60,7 @@ namespace GridViewer
                 sceneObject.Name = typeof(CatesianGrid).Name;
                 sceneObject.Renderer = new BoundedRendererComponent(boundedRenderer);
                 //sceneObject.Transform.Position = grid.DataSource.TranslateMatrix;
-                this.scene.Scene.ObjectList.Add(sceneObject);
+                this.scientificCanvas.Scene.ObjectList.Add(sceneObject);
                 //sceneObject.Renderer=ne
                 //SimLabGrid gridder = null;
                 //try

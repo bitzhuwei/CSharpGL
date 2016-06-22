@@ -25,7 +25,7 @@ namespace GridViewer
                 SceneObject obj = node.Tag as SceneObject;
                 if (obj.Parent == null)
                 {
-                    this.scene.Scene.ObjectList.Remove(obj);
+                    this.scientificCanvas.Scene.ObjectList.Remove(obj);
                     this.objectsTreeView.Nodes.Remove(node);
                 }
                 else

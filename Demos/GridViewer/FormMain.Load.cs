@@ -14,12 +14,12 @@ namespace GridViewer
 
         void FormMain_Load(object sender, EventArgs e)
         {
-            this.scene.Scene.ObjectList.ItemAdded += ObjectList_ItemAdded;
-            this.scene.Scene.ObjectList.ItemRemoved += ObjectList_ItemRemoved;
+            this.scientificCanvas.Scene.ObjectList.ItemAdded += ObjectList_ItemAdded;
+            this.scientificCanvas.Scene.ObjectList.ItemRemoved += ObjectList_ItemRemoved;
             SceneObject ground = SceneObjectFactory.GetBuildInSceneObject(BuildInSceneObject.Ground);
-            this.scene.Scene.ObjectList.Add(ground);
+            this.scientificCanvas.Scene.ObjectList.Add(ground);
             SceneObject axis = SceneObjectFactory.GetBuildInSceneObject(BuildInSceneObject.Axis);
-            this.scene.Scene.ObjectList.Add(axis);
+            this.scientificCanvas.Scene.ObjectList.Add(axis);
 
             Application.Idle += Application_Idle;
         }
@@ -42,7 +42,7 @@ namespace GridViewer
         {
             if (e.NewItem.Parent == null)
             {
-                int index = this.scene.Scene.ObjectList.IndexOf(e.NewItem);
+                int index = this.scientificCanvas.Scene.ObjectList.IndexOf(e.NewItem);
                 var node = new TreeNode(e.NewItem.ToString());
                 node.Tag = e.NewItem;
                 e.NewItem.Tag = node;
@@ -61,9 +61,9 @@ namespace GridViewer
         void Application_Idle(object sender, EventArgs e)
         {
             this.lblCameraInfo.Text = string.Format("eye{0}, center:{1}, up:{2}",
-                this.scene.Scene.Camera.Position,
-                this.scene.Scene.Camera.Target,
-                this.scene.Scene.Camera.UpVector);
+                this.scientificCanvas.Scene.Camera.Position,
+                this.scientificCanvas.Scene.Camera.Target,
+                this.scientificCanvas.Scene.Camera.UpVector);
         }
 
     }
