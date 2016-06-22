@@ -115,6 +115,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\BoudingBoxRendererFactory.cs" />
+    <Compile Include="Renderers\ColorCodedBarRenderer\CodedColor.cs" />
+    <Compile Include="Renderers\ColorCodedBarRenderer\CodedColorsHelper.cs" />
+    <Compile Include="Renderers\ColorCodedBarRenderer\ColorCodedBarRectRendererFactory.cs" />
+    <Compile Include="Renderers\ColorCodedBarRenderer\UIColorCodedBarRenderer.cs" />
     <Compile Include="Renderers\BoundedRenderer.cs" />
     <Compile Include="ScientificCanvas.Dispose.cs">
       <SubType>UserControl</SubType>
@@ -166,6 +170,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="shaders\CodedColorBarRect.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\CodedColorBarRect.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="shaders\BoundingBox.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

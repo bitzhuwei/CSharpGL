@@ -29,7 +29,14 @@ namespace GridViewer
                 uiAxis.Initialize();
                 this.Scene.UIRoot.Children.Add(uiAxis);
             }
-
+            {
+                var uiCodedColorBar = new UIColorCodedBarRenderer(
+                    CodedColor.GetDefault(),
+                    AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right,
+                    new Padding(120, 10, 10, 10 + 25), new Size(400, 50), -100, 100);
+                uiCodedColorBar.Initialize();
+                this.Scene.UIRoot.Children.Add(uiCodedColorBar);
+            }
             this.Resize += this.Scene.Resize;
             this.OpenGLDraw += ScientificCanvas_OpenGLDraw;
             //this.MouseDown += ScientificCanvas_MouseDown;
