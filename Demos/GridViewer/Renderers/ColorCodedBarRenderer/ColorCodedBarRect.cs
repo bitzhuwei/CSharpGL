@@ -8,17 +8,6 @@ using System.Text;
 
 namespace GridViewer
 {
-    public class ColorCodedBarRectRendererFactory
-    {
-
-        public static Renderer GetCodedColorBarRectRenderer(CodedColor[] codedcolors)
-        {
-            if (codedcolors == null || codedcolors.Length < 1) { throw new ArgumentException(); }
-
-            throw new NotImplementedException();
-        }
-    }
-
     public class CodedColorBarRect : IBufferable
     {
 

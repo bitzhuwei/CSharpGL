@@ -118,7 +118,7 @@
     <Compile Include="Renderers\ColorCodedBarRenderer\ColorCodedBarRenderer.cs" />
     <Compile Include="Renderers\ColorCodedBarRenderer\CodedColor.cs" />
     <Compile Include="Renderers\ColorCodedBarRenderer\CodedColorsHelper.cs" />
-    <Compile Include="Renderers\ColorCodedBarRenderer\ColorCodedBarRectRendererFactory.cs" />
+    <Compile Include="Renderers\ColorCodedBarRenderer\ColorCodedBarRect.cs" />
     <Compile Include="Renderers\ColorCodedBarRenderer\UIColorCodedBarRenderer.cs" />
     <Compile Include="Renderers\BoundedRenderer.cs" />
     <Compile Include="ScientificCanvas.Dispose.cs">
