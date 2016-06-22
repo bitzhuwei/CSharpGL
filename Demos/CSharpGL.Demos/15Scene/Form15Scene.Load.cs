@@ -17,7 +17,6 @@ namespace CSharpGL.Demos
         private Scene scene;
 
         private FormProperyGrid formPropertyGrid;
-        private UIRoot uiRoot;
         private UIText glText;
         private CSharpGL.TestHelpers.BlendFactorHelper blendFactorHelper = new TestHelpers.BlendFactorHelper();
 
@@ -32,10 +31,6 @@ namespace CSharpGL.Demos
                 this.scene = new Scene(camera);
             }
             {
-                var UIRoot = new UIRoot();
-                UIRoot.Initialize();
-                this.uiRoot = UIRoot;
-
                 var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right,
                     new Padding(10, 10, 10, 10), new Size(550, 50), -100, 100);
                 glText.Initialize();

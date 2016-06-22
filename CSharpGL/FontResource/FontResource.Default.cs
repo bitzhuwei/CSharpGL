@@ -26,7 +26,8 @@ namespace CSharpGL
                     {
                         if (!dict.ContainsKey(renderContext))
                         {
-                            InitializeDefaultFontResource();
+                            FontResource resource = InitializeDefaultFontResource();
+                            dict.Add(renderContext, resource);
                         }
                     }
                 }
@@ -54,14 +55,7 @@ namespace CSharpGL
         }
 
         private static Dictionary<IntPtr, FontResource> dict = new Dictionary<IntPtr, FontResource>();
-        private FontResource()
-        {
-            IntPtr renderContext = Win32.wglGetCurrentContext();
-            if (dict.ContainsKey(renderContext))
-            { throw new Exception(); }
-
-            dict.Add(renderContext, this);
-        }
+        private FontResource() { }
 
         //public FontResource Load(string filename, string config)
         //{

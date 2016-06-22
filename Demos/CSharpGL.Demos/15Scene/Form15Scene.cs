@@ -61,6 +61,7 @@ namespace CSharpGL.Demos
                 if (this.openTextureDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     string ttfFilename = this.openTextureDlg.FileName;
+                    this.scene.UIRoot.Children.Remove(this.glText);
                     this.glText.Dispose();
                     FontResource fontResouce = FontResource.Load(ttfFilename, ' ', (char)126);
                     var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top,
@@ -70,7 +71,7 @@ namespace CSharpGL.Demos
                     glText.SetText("The quick brown fox jumps over the lazy dog!");
                     this.glText = glText;
 
-                    uiRoot.Children.Add(glText);
+                    this.scene.UIRoot.Children.Add(glText);
 
                     this.formPropertyGrid.DisplayObject(glText);
                 }
