@@ -21,7 +21,7 @@ namespace CSharpGL.Demos
         private Renderer ground;
         private LabelRenderer labelRenderer;
 
-        private void Form02OrderIndependentTransparency_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             {
                 var camera = new Camera(

@@ -62,7 +62,7 @@
             this.Controls.Add(this.glCanvas1);
             this.Name = "Form13SimplexNoise";
             this.Text = "Form13SimplexNoise";
-            this.Load += new System.EventHandler(this.Form01Renderer_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
 

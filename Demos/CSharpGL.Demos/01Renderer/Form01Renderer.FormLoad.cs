@@ -17,7 +17,7 @@ namespace CSharpGL.Demos
         private UIAxis glAxis;
         private UIRoot uiRoot;
 
-        private void Form01Renderer_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             {
                 var camera = new Camera(

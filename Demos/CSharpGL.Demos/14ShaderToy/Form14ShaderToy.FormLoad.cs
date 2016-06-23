@@ -17,7 +17,7 @@ namespace CSharpGL.Demos
         private UIRoot uiRoot;
         private ShaderToyRenderer simplexNoiseRenderer;
 
-        private void Form01Renderer_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             {
                 var camera = new Camera(
