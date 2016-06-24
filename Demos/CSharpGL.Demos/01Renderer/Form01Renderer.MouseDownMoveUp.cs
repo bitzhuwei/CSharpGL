@@ -32,9 +32,9 @@ namespace CSharpGL.Demos
 
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
-                // operate camera
-                rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
-                rotator.MouseDown(e.X, e.Y);
+                //// operate camera
+                //rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
+                //rotator.MouseDown(e.X, e.Y);
             }
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
@@ -71,8 +71,8 @@ namespace CSharpGL.Demos
 
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
-                // operate camera
-                rotator.MouseMove(e.X, e.Y);
+                //// operate camera
+                //rotator.MouseMove(e.X, e.Y);
             }
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
@@ -126,8 +126,8 @@ namespace CSharpGL.Demos
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
-                // operate camera
-                rotator.MouseUp(e.X, e.Y);
+                //// operate camera
+                //rotator.MouseUp(e.X, e.Y);
             }
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {

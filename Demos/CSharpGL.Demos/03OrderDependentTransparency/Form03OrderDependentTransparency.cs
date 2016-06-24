@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
     {
 
         private Camera camera;
-        private SatelliteRotator rotator;
+        private SatelliteManipulater rotator;
         private Renderer renderer;
 
 
@@ -25,9 +25,9 @@ namespace CSharpGL.Demos
             this.form02 = form02;
 
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
-            this.glCanvas1.MouseDown += glCanvas1_MouseDown;
+            //this.glCanvas1.MouseDown += glCanvas1_MouseDown;
             this.glCanvas1.MouseMove += glCanvas1_MouseMove;
-            this.glCanvas1.MouseUp += glCanvas1_MouseUp;
+            //this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.Resize += glCanvas1_Resize;
 

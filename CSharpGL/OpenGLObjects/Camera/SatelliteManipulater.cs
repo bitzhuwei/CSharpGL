@@ -84,12 +84,12 @@ namespace CSharpGL
             this.camera.MouseWheel(e.Delta);
         }
 
-        public void canvas_MouseUp(object sender, MouseEventArgs e)
+        private void canvas_MouseUp(object sender, MouseEventArgs e)
         {
             this.mouseDownFlag = false;
         }
 
-        public void canvas_MouseMove(object sender, MouseEventArgs e)
+        private void canvas_MouseMove(object sender, MouseEventArgs e)
         {
             if (this.mouseDownFlag)
             {
@@ -138,13 +138,13 @@ namespace CSharpGL
             }
         }
 
-        public void SetBounds(int width, int height)
+        private void SetBounds(int width, int height)
         {
             this.bound.Width = width;
             this.bound.Height = height;
         }
 
-        public void canvas_MouseDown(object sender, MouseEventArgs e)
+        private void canvas_MouseDown(object sender, MouseEventArgs e)
         {
             this.downPosition = e.Location;
             var control = sender as Control;

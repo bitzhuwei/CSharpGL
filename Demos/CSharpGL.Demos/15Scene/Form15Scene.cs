@@ -13,16 +13,16 @@ namespace CSharpGL.Demos
     public partial class Form15Scene : Form
     {
 
-        private SatelliteRotator rotator;
+        private SatelliteManipulater rotator;
 
         public Form15Scene()
         {
             InitializeComponent();
 
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
-            this.glCanvas1.MouseDown += glCanvas1_MouseDown;
+            //this.glCanvas1.MouseDown += glCanvas1_MouseDown;
             this.glCanvas1.MouseMove += glCanvas1_MouseMove;
-            this.glCanvas1.MouseUp += glCanvas1_MouseUp;
+            //this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             //this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             //this.glCanvas1.Resize += glCanvas1_Resize;
 

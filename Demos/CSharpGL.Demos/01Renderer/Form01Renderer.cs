@@ -63,7 +63,7 @@ namespace CSharpGL.Demos
         /// <summary>
         /// 控制Camera的旋转、进退
         /// </summary>
-        SatelliteRotator rotator;
+        SatelliteManipulater rotator;
         /// <summary>
         /// 摄像机
         /// </summary>
