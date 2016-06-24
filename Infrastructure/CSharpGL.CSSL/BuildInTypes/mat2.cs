@@ -92,7 +92,7 @@ namespace CSharpGL.CSSL
 
         #endregion
 
-        private vec2 col0;
-        private vec2 col1;
+        //private vec2 col0;
+        //private vec2 col1;
     }
 }
