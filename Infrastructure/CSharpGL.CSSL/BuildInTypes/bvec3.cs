@@ -9,9 +9,9 @@ namespace CSharpGL.CSSL
     /// </summary>
     public class bvec3
     {
-        internal double a0;
-        internal double a1;
-        internal double a2;
+        //internal double a0;
+        //internal double a1;
+        //internal double a2;
 
         #region compositions
 
