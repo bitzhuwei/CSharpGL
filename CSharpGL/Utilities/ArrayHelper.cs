@@ -19,8 +19,8 @@ namespace System
         {
             if (array == null) { return string.Empty; }
 
-            StringBuilder builder = new StringBuilder();
-            foreach (var item in array)
+            var builder = new StringBuilder();
+            foreach (object item in array)
             {
                 builder.Append(item);
                 builder.Append(' ');
@@ -41,9 +41,9 @@ namespace System
 
             if (array == null) { return string.Empty; }
 
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
             int counter = 0;
-            foreach (var item in array)
+            foreach (float item in array)
             {
                 builder.Append(item.ToShortString());
                 counter++;
