@@ -36,7 +36,7 @@ namespace CSharpGL.Demos
         {
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
-            RenderEventArgs arg = new RenderEventArgs(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
+            RenderEventArg arg = new RenderEventArg(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
             {
                 renderer.Render(arg);
             }
@@ -54,7 +54,7 @@ namespace CSharpGL.Demos
         private const float crossCursorSize = 40.0f;
 
         private Point offset = new Point(13, 11);
-        private void UIRenderersDraw(RenderEventArgs arg)
+        private void UIRenderersDraw(RenderEventArg arg)
         {
             UIRoot uiRoot = this.uiRoot;
             if (uiRoot != null)

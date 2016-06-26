@@ -9,7 +9,7 @@ namespace CSharpGL
     partial class InnerPickableRenderer : IColorCodedPicking
     {
 
-        private void ColorCodedRender(RenderEventArgs arg, IndexBufferPtr temporaryIndexBufferPtr = null)
+        private void ColorCodedRender(RenderEventArg arg, IndexBufferPtr temporaryIndexBufferPtr = null)
         {
             UpdatePolygonMode(arg.PickingGeometryType);
 

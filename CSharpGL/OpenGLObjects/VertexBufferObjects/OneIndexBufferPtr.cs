@@ -47,7 +47,7 @@ namespace CSharpGL
         /// </summary>
         public IndexElementType Type { get; private set; }
 
-        public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
+        public override void Render(RenderEventArg arg, ShaderProgram shaderProgram)
         {
             IntPtr offset;
             switch (this.Type)

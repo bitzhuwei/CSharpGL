@@ -59,7 +59,7 @@ namespace CSharpGL
             renderer.SetUniform("fontTexture", this.fontResource.GetSamplerValue());
         }
 
-        protected override void DoRender(RenderEventArgs arg)
+        protected override void DoRender(RenderEventArg arg)
         {
             mat4 projection = this.GetOrthoProjection();
             //vec3 position = (this.camera.Position - this.camera.Target).normalize();

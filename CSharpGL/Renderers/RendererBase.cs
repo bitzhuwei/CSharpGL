@@ -63,7 +63,7 @@ namespace CSharpGL
         /// 渲染
         /// </summary>
         /// <param name="renderMode"></param>
-        public void Render(RenderEventArgs arg)
+        public void Render(RenderEventArg arg)
         {
             if (!initialized) { Initialize(); }
 
@@ -74,7 +74,7 @@ namespace CSharpGL
         /// 执行渲染操作
         /// </summary>
         /// <param name="arg"></param>
-        protected abstract void DoRender(RenderEventArgs arg);
+        protected abstract void DoRender(RenderEventArg arg);
 
 
         #region IDisposable Members

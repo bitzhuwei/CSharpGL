@@ -66,7 +66,7 @@ namespace CSharpGL
 
         public void Render(RenderModes renderMode, Rectangle clientRectangle)
         {
-            var arg = new RenderEventArgs(renderMode, clientRectangle, this.Camera);
+            var arg = new RenderEventArg(renderMode, clientRectangle, this.Camera);
             var list = this.ObjectList.ToArray();
             foreach (var item in list)
             {

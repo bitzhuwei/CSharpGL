@@ -22,7 +22,7 @@ namespace GridViewer
             this.Renderer = renderer;
         }
 
-        public override void Render(RenderEventArgs arg)
+        public override void Render(RenderEventArg arg)
         {
             BoundedRenderer renderer = this.Renderer;
             if (renderer != null)

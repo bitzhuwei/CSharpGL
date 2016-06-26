@@ -38,7 +38,7 @@ namespace CSharpGL
         }
 
         public abstract PickedGeometry Pick(
-            RenderEventArgs arg,
+            RenderEventArg arg,
             uint stageVertexId,
             int x, int y);
 
@@ -48,7 +48,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="indexBufferPtr">indicates the primitive to pick a line from.</param>
-        internal void Render4InnerPicking(RenderEventArgs arg, IndexBufferPtr indexBufferPtr)
+        internal void Render4InnerPicking(RenderEventArg arg, IndexBufferPtr indexBufferPtr)
         {
             // record clear color
             var originalClearColor = new float[4];

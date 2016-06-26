@@ -47,7 +47,7 @@ namespace CSharpGL
         {
         }
 
-        protected override void DoRender(RenderEventArgs arg)
+        protected override void DoRender(RenderEventArg arg)
         {
             this.Layout();
             foreach (var item in this.Children)
@@ -60,7 +60,7 @@ namespace CSharpGL
         private int stackLevel = 0;
 #endif
 
-        private void RenderUIRenderer(UIRenderer renderer, RenderEventArgs arg)
+        private void RenderUIRenderer(UIRenderer renderer, RenderEventArg arg)
         {
 #if DEBUG
             stackLevel++;

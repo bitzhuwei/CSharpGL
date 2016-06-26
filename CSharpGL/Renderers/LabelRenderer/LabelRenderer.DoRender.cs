@@ -12,7 +12,7 @@ namespace CSharpGL
     public partial class LabelRenderer
     {
 
-        protected override void DoRender(RenderEventArgs arg)
+        protected override void DoRender(RenderEventArg arg)
         {
             this.SetUniform("billboardCenter_worldspace", this.WorldPosition);
             int[] viewport = OpenGL.GetViewport();

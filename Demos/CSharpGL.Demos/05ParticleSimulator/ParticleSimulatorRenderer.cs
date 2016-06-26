@@ -40,7 +40,7 @@ namespace CSharpGL.Demos
         }
 
 
-        protected override void DoRender(RenderEventArgs arg)
+        protected override void DoRender(RenderEventArg arg)
         {
             this.particleComputeRenderer.Render(arg);
 

@@ -135,7 +135,7 @@ namespace CSharpGL.Demos
 
         private void RenderersDraw(RenderModes renderMode, bool renderScene = true, bool renderUI = true)
         {
-            var arg = new RenderEventArgs(renderMode, this.glCanvas1.ClientRectangle, this.camera, this.PickingGeometryType);
+            var arg = new RenderEventArg(renderMode, this.glCanvas1.ClientRectangle, this.camera, this.PickingGeometryType);
             if (renderMode == RenderModes.ColorCodedPicking)
             {
                 if (renderScene)
@@ -154,7 +154,7 @@ namespace CSharpGL.Demos
             }
         }
 
-        private void UIRenderersDraw(RenderEventArgs arg)
+        private void UIRenderersDraw(RenderEventArg arg)
         {
             UIRoot uiRoot = this.uiRoot;
             if (uiRoot != null)
@@ -163,7 +163,7 @@ namespace CSharpGL.Demos
             }
         }
 
-        private void SceneRenderersDraw(RenderEventArgs arg)
+        private void SceneRenderersDraw(RenderEventArg arg)
         {
             HighlightedPickableRenderer renderer = this.rendererDict[this.SelectedModel];
             if (renderer != null)

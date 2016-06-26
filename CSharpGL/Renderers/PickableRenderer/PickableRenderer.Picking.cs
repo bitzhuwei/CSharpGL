@@ -60,7 +60,7 @@ namespace CSharpGL
         }
 
         public PickedGeometry Pick(
-            RenderEventArgs arg,
+            RenderEventArg arg,
             uint stageVertexId,
             int x, int y)
         {

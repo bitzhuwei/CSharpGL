@@ -54,7 +54,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="shaderProgram">此VBO使用的shader program。</param>
-        public abstract void Render(RenderEventArgs arg, ShaderProgram shaderProgram);
+        public abstract void Render(RenderEventArg arg, ShaderProgram shaderProgram);
 
         public void Dispose()
         {

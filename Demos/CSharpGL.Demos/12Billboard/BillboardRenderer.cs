@@ -44,7 +44,7 @@ namespace CSharpGL.Demos
             base.DoInitialize();
         }
 
-        protected override void DoRender(RenderEventArgs arg)
+        protected override void DoRender(RenderEventArg arg)
         {
             if (this.TargetRenderer == null) { return; }
 

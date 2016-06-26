@@ -60,7 +60,7 @@ namespace CSharpGL.Demos
             this.SetUniform("factor", 100.0f);
         }
 
-        protected override void DoRender(RenderEventArgs arg)
+        protected override void DoRender(RenderEventArg arg)
         {
             mat4 model = mat4.identity();
             mat4 view = arg.Camera.GetViewMat4();

@@ -7,7 +7,7 @@ namespace CSharpGL
 {
     class OneIndexLineInQuadSearcher : OneIndexLineSearcher
     {
-        internal override uint[] Search(RenderEventArgs arg,
+        internal override uint[] Search(RenderEventArg arg,
             int x, int y,
             RecognizedPrimitiveIndex lastIndexId,
             OneIndexRenderer modernRenderer)

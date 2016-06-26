@@ -20,7 +20,7 @@ namespace CSharpGL
         /// <param name="lastIndexIdList"></param>
         /// <returns></returns>
         private RecognizedPrimitiveIndex GetLastIndexId(
-            RenderEventArgs arg,
+            RenderEventArg arg,
             List<RecognizedPrimitiveIndex> lastIndexIdList,
             int x, int y)
         {

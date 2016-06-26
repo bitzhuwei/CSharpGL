@@ -7,7 +7,7 @@ namespace CSharpGL
 {
     class ZeroIndexPointInTriangleFanSearcher : ZeroIndexPointSearcher
     {
-        internal override uint Search(RenderEventArgs arg,
+        internal override uint Search(RenderEventArg arg,
             int x, int y,
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {

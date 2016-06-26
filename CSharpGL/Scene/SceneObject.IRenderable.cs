@@ -6,7 +6,7 @@ namespace CSharpGL
     public partial class SceneObject
     {
 
-        public void Render(RenderEventArgs arg)
+        public void Render(RenderEventArg arg)
         {
             if (this.Enabled)
             {

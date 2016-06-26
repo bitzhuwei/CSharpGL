@@ -23,7 +23,7 @@ namespace CSharpGL
             : base(bindingObject)
         { this.UIRoot = uiRoot; }
 
-        public override void Render(RenderEventArgs arg)
+        public override void Render(RenderEventArg arg)
         {
             UIRoot renderer = this.UIRoot;
             if (renderer != null)

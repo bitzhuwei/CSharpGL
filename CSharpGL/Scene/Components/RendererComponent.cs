@@ -35,7 +35,7 @@ namespace CSharpGL
 
         //}
 
-        protected bool TryGetMatrix(RenderEventArgs arg,
+        protected bool TryGetMatrix(RenderEventArg arg,
             out mat4 projection, out mat4 view, out mat4 model)
         {
             projection = arg.Camera.GetProjectionMat4();
@@ -56,6 +56,6 @@ namespace CSharpGL
             }
         }
 
-        public abstract void Render(RenderEventArgs arg);
+        public abstract void Render(RenderEventArg arg);
     }
 }

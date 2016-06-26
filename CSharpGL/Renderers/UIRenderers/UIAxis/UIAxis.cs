@@ -41,7 +41,7 @@ namespace CSharpGL
             this.Renderer = renderer;
         }
 
-        protected override void DoRender(RenderEventArgs arg)
+        protected override void DoRender(RenderEventArg arg)
         {
             ICamera camera = arg.Camera;
             mat4 projection = this.GetOrthoProjection();

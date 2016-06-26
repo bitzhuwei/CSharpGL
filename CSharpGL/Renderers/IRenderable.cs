@@ -16,21 +16,21 @@ namespace CSharpGL
         /// Render something.
         /// </summary>
         /// <param name="arg"></param>
-        void Render(RenderEventArgs arg);
+        void Render(RenderEventArg arg);
     }
 
     /// <summary>
     /// Render event argument.
     /// </summary>
-    public class RenderEventArgs
+    public class RenderEventArg
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="RenderEventArg"/> class.
         /// </summary>
         /// <param name="renderMode">render mode.</param>
         /// <param name="camera">camera used during rendering.</param>
         /// <param name="pickingGeometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking when <paramref name="renderMode"/> is <see cref="RenderModes.ColorCodedPicking"/>; otherwise useless.</param>
-        public RenderEventArgs(RenderModes renderMode, Rectangle viewport, ICamera camera, GeometryType pickingGeometryType = GeometryType.Point)
+        public RenderEventArg(RenderModes renderMode, Rectangle viewport, ICamera camera, GeometryType pickingGeometryType = GeometryType.Point)
         {
             this.RenderMode = renderMode;
             this.CanvasRect = viewport;

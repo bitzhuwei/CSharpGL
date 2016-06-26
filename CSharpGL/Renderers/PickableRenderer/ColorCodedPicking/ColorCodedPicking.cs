@@ -19,7 +19,7 @@ namespace CSharpGL
         /// <param name="pickableElements">在哪些对象中执行拾取操作</param>
         /// <returns></returns>
         public static PickedGeometry Pick(
-            RenderEventArgs arg,
+            RenderEventArg arg,
             int x, int y,
             params PickableRenderer[] pickableElements)
         {
@@ -46,7 +46,7 @@ namespace CSharpGL
         /// <param name="pickableElements">在哪些对象中执行拾取操作</param>
         /// <returns></returns>
         public static List<Tuple<Point, PickedGeometry>> Pick(
-            RenderEventArgs arg,
+            RenderEventArg arg,
             int x, int y, int radius,
             params PickableRenderer[] pickableElements)
         {
@@ -64,7 +64,7 @@ namespace CSharpGL
         /// <param name="pickableElements">在哪些对象中执行拾取操作</param>
         /// <returns></returns>
         public static List<Tuple<Point, PickedGeometry>> Pick(
-            RenderEventArgs arg,
+            RenderEventArg arg,
             Rectangle rect,
             params PickableRenderer[] pickableElements)
         {
@@ -96,7 +96,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="pickableElements"></param>
-        public static void Render4Picking(RenderEventArgs arg, params PickableRenderer[] pickableElements)
+        public static void Render4Picking(RenderEventArg arg, params PickableRenderer[] pickableElements)
         {
             if (arg.RenderMode != RenderModes.ColorCodedPicking)
             {
@@ -151,7 +151,7 @@ namespace CSharpGL
         /// <param name="stageVertexId"></param>
         /// <param name="pickableElements"></param>
         /// <returns></returns>
-        private static PickedGeometry PickGeometry(RenderEventArgs arg,
+        private static PickedGeometry PickGeometry(RenderEventArg arg,
             int x, int y,
             uint stageVertexId,
             params IColorCodedPicking[] pickableElements)

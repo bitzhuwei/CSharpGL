@@ -92,7 +92,7 @@ namespace CSharpGL.Demos
             set { groupZ = value; if (maxZ < value) { maxZ = value; } }
         }
 
-        protected override void DoRender(RenderEventArgs arg)
+        protected override void DoRender(RenderEventArg arg)
         {
             // reset image
             resetProgram.Bind();

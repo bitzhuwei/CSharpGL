@@ -79,7 +79,7 @@ namespace GridViewer
             }
         }
 
-        protected override void DoRender(RenderEventArgs arg)
+        protected override void DoRender(RenderEventArg arg)
         {
             Renderer rectRenderer = this.RectRenderer;
             if (rectRenderer != null)

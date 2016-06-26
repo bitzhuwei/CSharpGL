@@ -59,7 +59,7 @@ namespace CSharpGL
             }
         }
 
-        protected override void DoRender(RenderEventArgs arg)
+        protected override void DoRender(RenderEventArg arg)
         {
             RendererBase renderer = this.Renderer;
             if (renderer != null)

@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <param name="lastVertexId">三角形图元的最后一个顶点</param>
         /// <param name="modernRenderer">目标Renderer</param>
         /// <returns></returns>
-        internal override uint Search(RenderEventArgs arg,
+        internal override uint Search(RenderEventArg arg,
             int x, int y,
             uint lastVertexId, ZeroIndexRenderer modernRenderer)
         {

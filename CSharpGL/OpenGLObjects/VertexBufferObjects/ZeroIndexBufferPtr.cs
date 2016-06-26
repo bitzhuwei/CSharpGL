@@ -35,7 +35,7 @@ namespace CSharpGL
         /// </summary>
         public int VertexCount { get; set; }
 
-        public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
+        public override void Render(RenderEventArg arg, ShaderProgram shaderProgram)
         {
             if (arg.RenderMode == RenderModes.ColorCodedPicking
                 && arg.PickingGeometryType == GeometryType.Point

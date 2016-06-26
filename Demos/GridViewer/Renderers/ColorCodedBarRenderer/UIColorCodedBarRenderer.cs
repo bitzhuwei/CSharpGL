@@ -29,7 +29,7 @@ namespace GridViewer
             //this.SwitchList.Add(new ClearColorSwitch());
         }
 
-        protected override void DoRender(RenderEventArgs arg)
+        protected override void DoRender(RenderEventArg arg)
         {
             mat4 projection = this.GetOrthoProjection();
             mat4 view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));

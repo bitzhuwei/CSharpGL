@@ -7,7 +7,7 @@ namespace CSharpGL
 {
     abstract class OneIndexLineSearcher
     {
-        internal abstract uint[] Search(RenderEventArgs arg,
+        internal abstract uint[] Search(RenderEventArg arg,
             int x, int y,
             RecognizedPrimitiveIndex lastIndexId,
             OneIndexRenderer modernRenderer);

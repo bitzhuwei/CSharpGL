@@ -86,7 +86,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
-        public override void Render(RenderEventArgs arg, ShaderProgram shaderProgram)
+        public override void Render(RenderEventArg arg, ShaderProgram shaderProgram)
         {
             int location = shaderProgram.GetAttributeLocation(this.VarNameInVertexShader);
             if (location < 0)

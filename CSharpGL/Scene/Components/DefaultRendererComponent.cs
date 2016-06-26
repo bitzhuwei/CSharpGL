@@ -32,7 +32,7 @@ namespace CSharpGL
             this.Renderer = renderer;
         }
 
-        public override void Render(RenderEventArgs arg)
+        public override void Render(RenderEventArg arg)
         {
             Renderer renderer = this.Renderer;
             if (renderer != null)

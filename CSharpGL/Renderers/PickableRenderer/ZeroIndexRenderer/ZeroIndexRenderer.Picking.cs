@@ -10,7 +10,7 @@ namespace CSharpGL
     partial class ZeroIndexRenderer
     {
 
-        public override PickedGeometry Pick(RenderEventArgs arg, uint stageVertexId,
+        public override PickedGeometry Pick(RenderEventArg arg, uint stageVertexId,
             int x, int y)
         {
             uint lastVertexId;
@@ -70,7 +70,7 @@ namespace CSharpGL
             }
         }
 
-        private PickedGeometry SearchPoint(RenderEventArgs arg, uint stageVertexId, int x, int y, uint lastVertexId, ZeroIndexPointSearcher searcher)
+        private PickedGeometry SearchPoint(RenderEventArg arg, uint stageVertexId, int x, int y, uint lastVertexId, ZeroIndexPointSearcher searcher)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
             pickedGeometry.From = this;
@@ -164,7 +164,7 @@ namespace CSharpGL
         /// <param name="lastVertexId"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchLine(RenderEventArgs arg, uint stageVertexId,
+        private PickedGeometry SearchLine(RenderEventArg arg, uint stageVertexId,
             int x, int y, uint lastVertexId, ZeroIndexLineSearcher searcher)
         {
             PickedGeometry pickedGeometry = new PickedGeometry();
