@@ -24,9 +24,8 @@ namespace CSharpGL
             {
                 var list = from item in asm.GetTypes()
                            where baseType.IsAssignableFrom(item) && (!item.IsAbstract)
-                           orderby item.FullName
                            select item;
-                foreach (var item in list)
+                foreach (var item in list.Distinct())
                 {
                     result.Add(item);
                 }
