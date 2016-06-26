@@ -9,10 +9,10 @@ namespace CSharpGL.CSSL
     /// </summary>
     public class vec4
     {
-        internal double a0;
-        internal double a1;
-        internal double a2;
-        internal double a3;
+        //internal double a0;
+        //internal double a1;
+        //internal double a2;
+        //internal double a3;
 
         #region compositions
 

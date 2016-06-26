@@ -62,7 +62,8 @@ void main(void)
 
         public override void main()
         {
-            gl_Position = vec4(in_Position, 1.0f);//projectionMatrix*viewMatrix*modelMatrix*new vec4()
+            gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);
+
             pass_UV = in_UV;
         }
 

@@ -94,9 +94,9 @@ namespace CSharpGL.CSSL
 
         #endregion
 
-        private vec4 col0;
-        private vec4 col1;
-        private vec4 col2;
-        private vec4 col3;
+        //private vec4 col0;
+        //private vec4 col1;
+        //private vec4 col2;
+        //private vec4 col3;
     }
 }
