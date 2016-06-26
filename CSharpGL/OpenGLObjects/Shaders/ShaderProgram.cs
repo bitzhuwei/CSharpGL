@@ -166,7 +166,7 @@ namespace CSharpGL
             return parameters[0] == OpenGL.GL_TRUE;
         }
 
-        public string GetInfoLog()
+        private string GetInfoLog()
         {
             //  Get the info log length.
             int[] infoLength = new int[] { 0 };
