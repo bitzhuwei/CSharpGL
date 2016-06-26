@@ -381,7 +381,6 @@
     <Compile Include="OpenGLObjects\Shaders\ShaderProgram.cs" />
     <Compile Include="OpenGLObjects\Textures\sampler1D.cs" />
     <Compile Include="OpenGLObjects\Textures\sampler2D.cs" />
-    <Compile Include="OpenGLObjects\Textures\sampler3D.cs" />
     <Compile Include="OpenGLObjects\VertexBufferObjects\BufferPtr.cs" />
     <Compile Include="OpenGLObjects\VertexBufferObjects\OneIndexBuffer.cs" />
     <Compile Include="OpenGLObjects\VertexBufferObjects\IndexBuffer.cs" />

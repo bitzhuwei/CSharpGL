@@ -14,7 +14,7 @@ namespace CSharpGL
     /// </summary>
     public class ArcBallRotator
     {
-        vec3 _vectorCenterEye;
+        vec3 _vectorBack;
         vec3 _vectorUp;
         vec3 _vectorRight;
         float _length, _radiusRadius;
@@ -40,7 +40,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public ICamera Camera { get; set; }
+        public ICamera Camera { get; private set; }
 
 
         const string listenerName = "ArcBallRotator";
@@ -59,7 +59,7 @@ namespace CSharpGL
             string time = DateTime.Now.ToString("yyyyMMdd-HHmmss");
             //if (File.Exists(filename)) { File.Delete(filename); }
             Debug.Listeners.Add(new TextWriterTraceListener(
-                string.Format("{0}{1}.log",filename, time), listenerName));
+                string.Format("{0}{1}.log", filename, time), listenerName));
             Debug.WriteLine(DateTime.Now, listenerName);
             Debug.Flush();
 #endif
@@ -67,10 +67,10 @@ namespace CSharpGL
 
         private void SetCamera(vec3 position, vec3 target, vec3 up)
         {
-            _vectorCenterEye = (position - target).normalize();
+            _vectorBack = (position - target).normalize();
             _vectorUp = up;
-            _vectorRight = _vectorUp.cross(_vectorCenterEye).normalize();
-            _vectorUp = _vectorCenterEye.cross(_vectorRight).normalize();
+            _vectorRight = _vectorUp.cross(_vectorBack).normalize();
+            _vectorUp = _vectorBack.cross(_vectorRight).normalize();
 
             this.cameraState.position = position;
             this.cameraState.target = target;
@@ -129,15 +129,19 @@ namespace CSharpGL
 
         private vec3 GetArcBallPosition(int x, int y)
         {
-            var rx = (x - _width / 2) / _length;
-            var ry = (_height / 2 - y) / _length;
-            var zz = _radiusRadius - rx * rx - ry * ry;
-            var rz = (zz > 0 ? Math.Sqrt(zz) : 0);
+            float rx = (x - _width / 2) / _length;
+            float ry = (_height / 2 - y) / _length;
+            float zz = _radiusRadius - rx * rx - ry * ry;
+            float rz = (zz > 0 ? (float)Math.Sqrt(zz) : 0.0f);
             var result = new vec3(
-                (float)(rx * _vectorRight.x + ry * _vectorUp.x + rz * _vectorCenterEye.x),
-                (float)(rx * _vectorRight.y + ry * _vectorUp.y + rz * _vectorCenterEye.y),
-                (float)(rx * _vectorRight.z + ry * _vectorUp.z + rz * _vectorCenterEye.z)
+                rx * _vectorRight.x + ry * _vectorUp.x + rz * _vectorBack.x,
+                rx * _vectorRight.y + ry * _vectorUp.y + rz * _vectorBack.y,
+                rx * _vectorRight.z + ry * _vectorUp.z + rz * _vectorBack.z
                 );
+            //var radius = new vec3(rx, ry, rz);
+            //var matrix = new mat3(_vectorRight, _vectorUp, _vectorBack);
+            //result = matrix * new vec3(rx, ry, rz);
+
             return result;
         }
 
