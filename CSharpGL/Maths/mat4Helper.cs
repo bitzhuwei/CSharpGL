@@ -16,9 +16,36 @@ namespace CSharpGL
         /// <returns></returns>
         public static mat4 ToMat4(this float[] values, int startIndex = 0)
         {
-            mat4 result;
-            result = new mat4(
+            mat4 result = new mat4(
                 values.ToVec4(startIndex + 0), values.ToVec4(startIndex + 4), values.ToVec4(startIndex + 8), values.ToVec4(startIndex + 12));
+
+            return result;
+        }
+
+        /// <summary>
+        /// 把连续9个float值按照列优先的顺序转换为mat3
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        public static mat3 ToMat3(this float[] values, int startIndex = 0)
+        {
+            mat3 result = new mat3(
+                values.ToVec3(startIndex + 0), values.ToVec3(startIndex + 3), values.ToVec3(startIndex + 6));
+
+            return result;
+        }
+
+        /// <summary>
+        /// 把连续4个float值按照列优先的顺序转换为mat2
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        public static mat2 ToMat2(this float[] values, int startIndex = 0)
+        {
+            mat2 result = new mat2(
+                values.ToVec2(startIndex + 0), values.ToVec2(startIndex + 2));
 
             return result;
         }
