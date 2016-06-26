@@ -23,7 +23,11 @@ namespace CSharpGL
         /// </summary>
         public IntPtr Header
         {
-            get { return (this.array == null) ? IntPtr.Zero : this.array.Header; }
+            get
+            {
+                UnmanagedArrayBase array = this.array;
+                return (array == null) ? IntPtr.Zero : array.Header;
+            }
         }
 
         ///// <summary>
@@ -45,7 +49,11 @@ namespace CSharpGL
         /// </summary>
         public int ByteLength
         {
-            get { return (this.array == null) ? 0 : this.array.ByteLength; }
+            get
+            {
+                UnmanagedArrayBase array = this.array;
+                return (array == null) ? 0 : array.ByteLength;
+            }
 
         }
 
@@ -54,7 +62,11 @@ namespace CSharpGL
         /// </summary>
         public int Length
         {
-            get { return (this.array == null) ? 0 : this.array.Length; }
+            get
+            {
+                UnmanagedArrayBase array = this.array;
+                return (array == null) ? 0 : array.Length;
+            }
         }
 
         /// <summary>
