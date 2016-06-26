@@ -10,8 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// 顶点缓存（VBO）
     /// </summary>
-    ///// <typeparam name="T">此buffer存储的是哪种struct的数据？</typeparam>
-    public abstract class Buffer : IDisposable //where T : struct
+    public abstract class Buffer : IDisposable
     {
         protected static OpenGL.glGenBuffers glGenBuffers;
         protected static OpenGL.glBindBuffer glBindBuffer;
@@ -80,15 +79,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format("VBO: {0}, usage: {1}", this.array, Usage);
-        }
-
-        /// <summary>
         /// 根据buffer内存放的具体的结构类型创建非托管数组。
         /// </summary>
         /// <param name="elementCount">数组元素的数目。</param>
@@ -102,6 +92,33 @@ namespace CSharpGL
         public void Alloc(int elementCount)
         {
             this.array = CreateElements(elementCount);
+        }
+
+        /// <summary>
+        /// 获取一个可渲染此VBO的渲染器。
+        /// </summary>
+        /// <returns></returns>
+        protected abstract BufferPtr Upload2GPU();
+
+        private BufferPtr bufferPtr = null;
+
+        /// <summary>
+        /// 获取一个可渲染此VBO的渲染器。
+        /// </summary>
+        /// <returns></returns>
+        public BufferPtr GetBufferPtr()
+        {
+            if (bufferPtr == null)
+            {
+                bufferPtr = Upload2GPU();
+            }
+
+            return bufferPtr;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("VBO: {0}, usage: {1}", this.array, Usage);
         }
 
         public void Dispose()
@@ -139,28 +156,6 @@ namespace CSharpGL
             this.disposedValue = true;
         }
 
-
-        /// <summary>
-        /// 获取一个可渲染此VBO的渲染器。
-        /// </summary>
-        /// <returns></returns>
-        protected abstract BufferPtr Upload2GPU();
-
-        private BufferPtr bufferPtr = null;
-
-        /// <summary>
-        /// 获取一个可渲染此VBO的渲染器。
-        /// </summary>
-        /// <returns></returns>
-        public BufferPtr GetBufferPtr()
-        {
-            if (bufferPtr == null)
-            {
-                bufferPtr = Upload2GPU();
-            }
-
-            return bufferPtr;
-        }
     }
 
 }
