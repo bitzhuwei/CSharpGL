@@ -9,7 +9,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 支持"拾取"的渲染器
+    /// Renderer that supports color-coded rendering.
     /// </summary>
     abstract partial class InnerPickableRenderer : Renderer, IColorCodedPicking
     {
@@ -19,13 +19,13 @@ namespace CSharpGL
         PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Filled);
 
         /// <summary>
-        /// 支持"拾取"的渲染器
+        /// Renderer that supports color-coded rendering.
         /// </summary>
-        /// <param name="bufferable">一种渲染方式</param>
-        /// <param name="shaderCodes">各种类型的shader代码</param>
-        /// <param name="propertyNameMap">关联<see cref="PropertyBufferPtr"/>和<see cref="shaderCode"/>中的属性</param>
-        /// <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
-        ///<param name="switches"></param>
+        /// <param name="bufferable">model data that can be transfermed into OpenGL Buffer's pointer.</param>
+        /// <param name="shaderCodes">All shader codes needed for this renderer.</param>
+        /// <param name="propertyNameMap">Mapping relations between 'in' variables in vertex shader in <see cref="shaderCodes"/> and buffers in <see cref="bufferable"/>.</param>
+        /// <param name="positionNameInIBufferable">Name of buffer that describes model's position.</param>
+        ///<param name="switches">OpenGL switches.</param>
         internal InnerPickableRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, string positionNameInIBufferable,
             params GLSwitch[] switches)

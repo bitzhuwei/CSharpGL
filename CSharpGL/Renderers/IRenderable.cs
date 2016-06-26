@@ -8,19 +8,19 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 渲染一个元素。
+    /// Render something.
     /// </summary>
     public interface IRenderable
     {
         /// <summary>
-        /// 渲染一个元素。
+        /// Render something.
         /// </summary>
         /// <param name="arg"></param>
         void Render(RenderEventArgs arg);
     }
 
     /// <summary>
-    /// 渲染事件的参数。
+    /// Render event argument.
     /// </summary>
     public class RenderEventArgs
     {

@@ -7,47 +7,41 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 用Shader+VBO(VAO)进行渲染。
+    /// Rendering something using GLSL shader and VBO(VAO).
     /// </summary>
     public partial class Renderer : RendererBase
     {
         
-        // 算法
-        protected ShaderProgram shaderProgram;
+        // algorithm for rendering.
+        public ShaderProgram ShaderProgram { get; protected set; }
 
-        public ShaderProgram ShaderProgram
-        {
-            get { return shaderProgram; }
-        }
-
-        // 数据结构
+        // data structure for rendering.
         protected VertexArrayObject vertexArrayObject;
         protected PropertyBufferPtr[] propertyBufferPtrs;
         protected IndexBufferPtr indexBufferPtr;
         protected GLSwitchList switchList = new GLSwitchList();
 
         /// <summary>
-        /// 从模型到buffer的pointer
+        /// model data that can be transfermed into OpenGL Buffer's pointer.
         /// </summary>
         protected IBufferable bufferable;
         /// <summary>
-        /// 各种类型的shader代码
+        /// All shader codes needed for this renderer.
         /// </summary>
         protected ShaderCode[] shaderCodes;
         /// <summary>
-        /// vertex shader中的in变量与<see cref="propertyBufferPointers"/>中的元素名字的对应关系。
+        /// Mapping relations between 'in' variables in vertex shader and buffers in <see cref="bufferable"/>.
         /// </summary>
         protected PropertyNameMap propertyNameMap;
 
 
         /// <summary>
-        /// 用Shader+VBO(VAO)进行渲染。
+        /// Rendering something using GLSL shader and VBO(VAO).
         /// </summary>
-        /// <param name="bufferable">将具体模型转换为可被OpenGL拿来渲染的格式</param>
-        /// <param name="shaderCodes">各种类型的shader代码</param>
-        /// <param name="propertyNameMap">关联<see cref="PropertyBufferPtr"/>和<see cref="shaderCodes"/>中的属性</param>
-        /// <param name="positionNameInIBufferable">描述顶点位置信息的buffer的名字</param>
-        ///<param name="switches"></param>
+        /// <param name="bufferable">model data that can be transfermed into OpenGL Buffer's pointer.</param>
+        /// <param name="shaderCodes">All shader codes needed for this renderer.</param>
+        /// <param name="propertyNameMap">Mapping relations between 'in' variables in vertex shader in <see cref="shaderCodes"/> and buffers in <see cref="bufferable"/>.</param>
+        ///<param name="switches">OpenGL switches.</param>
         public Renderer(IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
         {

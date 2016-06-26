@@ -354,8 +354,8 @@
     <Compile Include="4PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="4PropertyGrid\UITypeEditors\IListEditor`1.cs" />
     <Compile Include="IBufferables\IBufferable.cs" />
-    <Compile Include="Renderers\Renderer\PropertyNameMap.cs" />
-    <Compile Include="Renderers\Renderer\ShaderCode.cs" />
+    <Compile Include="Renderers\PropertyNameMap.cs" />
+    <Compile Include="Renderers\ShaderCode.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformSingleVariable.cs" />
     <Compile Include="Maths\glm_camera.cs" />
     <Compile Include="Maths\glm_inverse.cs" />
@@ -369,14 +369,14 @@
     <Compile Include="Maths\vec3.cs" />
     <Compile Include="Maths\vec4.cs" />
     <Compile Include="Maths\vecHelper.cs" />
-    <Compile Include="Renderers\Renderer\IRenderable.cs" />
+    <Compile Include="Renderers\IRenderable.cs" />
     <Compile Include="WinformControls\RenderContexts\DIBSection.cs" />
     <Compile Include="WinformControls\RenderContexts\FBORenderContext.cs" />
     <Compile Include="WinformControls\RenderContexts\GLVersion.cs" />
     <Compile Include="WinformControls\RenderContexts\HiddenWindowRenderContext.cs" />
     <Compile Include="WinformControls\RenderContexts\RenderContext.cs" />
     <Compile Include="WinformControls\RenderContexts\VersionAttribute.cs" />
-    <Compile Include="Renderers\Renderer\RendererBase.cs" />
+    <Compile Include="Renderers\RendererBase.cs" />
     <Compile Include="OpenGLObjects\Shaders\Shader.cs" />
     <Compile Include="OpenGLObjects\Shaders\ShaderProgram.cs" />
     <Compile Include="OpenGLObjects\Textures\sampler1D.cs" />

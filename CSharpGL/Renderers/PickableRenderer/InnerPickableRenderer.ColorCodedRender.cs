@@ -13,7 +13,7 @@ namespace CSharpGL
         {
             UpdatePolygonMode(arg.PickingGeometryType);
 
-            ShaderProgram program = this.shaderProgram;
+            ShaderProgram program = this.ShaderProgram;
 
             // 绑定shader
             program.Bind();
