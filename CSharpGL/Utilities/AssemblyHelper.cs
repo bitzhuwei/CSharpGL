@@ -69,8 +69,8 @@ namespace CSharpGL
                 {
                     if (!asmPaths.Contains(path))
                     { asmPaths.Add(path); result.Add(asm); }
-                    var referenced = (from item in asm.GetReferencedAssemblies() select item).Distinct();
-                    foreach (var item in referenced)
+                    var referenced = from item in asm.GetReferencedAssemblies() select item;
+                    foreach (var item in referenced.Distinct())
                     {
                         if (!asmPaths.Contains(item.FullName))
                         {
