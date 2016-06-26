@@ -43,14 +43,14 @@ namespace CSharpGL
 
         /// <summary>
         /// GL_FLOAT etc
-        /// <para>gl.VertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);</para>
-        /// <para>gl.VertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);</para>
+        /// <para>glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);</para>
+        /// <para>glVertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);</para>
         /// <para>表示第3个参数</para>
         /// </summary>
         public uint DataType { get; private set; }
 
         /// <summary>
-        /// gl.VertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);
+        /// glVertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);
         /// <para>表示第2个参数</para>
         /// </summary>
         public int DataSize { get; private set; }
