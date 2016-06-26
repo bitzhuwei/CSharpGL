@@ -13,13 +13,8 @@ namespace CSharpGL
     public sealed class VertexArrayObject : IDisposable
     {
         private BufferPtr[] propertyBufferPtrs;
-        private IndexBufferPtr indexBufferPtr;
 
-        public IndexBufferPtr IndexBufferPtr
-        {
-            get { return indexBufferPtr; }
-            set { indexBufferPtr = value; }
-        }
+        public IndexBufferPtr IndexBufferPtr { get; set; }
 
         /// <summary>
         /// 此VAO的ID，由OpenGL给出。
@@ -53,7 +48,7 @@ namespace CSharpGL
                 glDeleteVertexArrays = OpenGL.GetDelegateFor<OpenGL.glDeleteVertexArrays>();
             }
 
-            this.indexBufferPtr = indexBufferPtr;
+            this.IndexBufferPtr = indexBufferPtr;
             this.propertyBufferPtrs = propertyBufferPtrs;
         }
 
@@ -111,7 +106,7 @@ namespace CSharpGL
             }
             else
             {
-                IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
+                IndexBufferPtr indexBufferPtr = this.IndexBufferPtr;
                 if (indexBufferPtr != null)
                 {
                     this.Bind();
@@ -150,23 +145,25 @@ namespace CSharpGL
                 }
 
                 // Dispose unmanaged resources.
-                uint[] arrays = new uint[] { this.ID };
-                this.ID = 0;
-                IntPtr ptr = Win32.wglGetCurrentContext();
+                 IntPtr ptr = Win32.wglGetCurrentContext();
                 if (ptr != IntPtr.Zero)
                 {
-                    glDeleteVertexArrays(1, new uint[] { this.ID });
-                }
-                {
-                    BufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
-                    foreach (var item in propertyBufferPtrs)
                     {
-                        item.Dispose();
+                        uint[] arrays = new uint[] { this.ID };
+                        this.ID = 0;
+                        glDeleteVertexArrays(1, new uint[] { this.ID });
                     }
-                }
-                {
-                    IndexBufferPtr indexBufferPtr = this.indexBufferPtr;
-                    indexBufferPtr.Dispose();
+                    {
+                        BufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
+                        foreach (var item in propertyBufferPtrs)
+                        {
+                            item.Dispose();
+                        }
+                    }
+                    {
+                        IndexBufferPtr indexBufferPtr = this.IndexBufferPtr;
+                        indexBufferPtr.Dispose();
+                    }
                 }
             }
 
