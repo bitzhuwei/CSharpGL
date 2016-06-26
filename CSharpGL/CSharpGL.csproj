@@ -444,9 +444,7 @@
     <Compile Include="Utilities\PositionHelper.cs" />
     <Compile Include="Utilities\UnmanagedArray.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="OpenGLAPI\Scenes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Resources\Highlight.vert" />
     <EmbeddedResource Include="Resources\Highlight.frag" />
