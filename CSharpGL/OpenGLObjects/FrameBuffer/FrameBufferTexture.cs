@@ -12,21 +12,19 @@ namespace CSharpGL
     {
         private uint[] m_texture_id = new uint[1];
         private uint m_texture_target;
-        private int m_width;
-        private int m_height;
         private uint m_internalfmt;
         private uint m_fmt;
         private bool m_mipmap;
         private bool m_interpol;
 
-        public int width() { return m_width; }
-        public int height() { return m_height; }
+        public int Width { get; private set; }
+        public int Height { get; private set; }
 
         public void setFormat(uint internalfmt, int width, int height, uint format,
             bool mipmap, bool interpol)
         {
-            m_width = width;
-            m_height = height;
+            Width = width;
+            Height = height;
             m_internalfmt = internalfmt;
             m_fmt = format;
             m_mipmap = mipmap;

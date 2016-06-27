@@ -39,8 +39,8 @@ namespace CSharpGL
 
         private List<FramebufferTexture> m_color = new List<FramebufferTexture>();
         private FramebufferTexture m_depth;
-        private int m_width;
-        private int m_height;
+        public int Width { get; private set; }
+        public int Height { get; private set; }
 
         private static OpenGL.glGenFramebuffersEXT glGenFramebuffers;
         private static OpenGL.glBindFramebufferEXT glBindFramebuffer;
@@ -59,14 +59,14 @@ namespace CSharpGL
 
         private void setup(FramebufferTexture color0, bool depth)
         {
-            m_width = color0.width();
-            m_height = color0.height();
+            this.Width = color0.Width;
+            this.Height = color0.Width;
 
             /* Create render buffer object for depth buffering */
             if (depth)
             {
                 m_depth = new FramebufferTexture();
-                m_depth.setFormat(OpenGL.GL_DEPTH_COMPONENT24, m_width, m_height, OpenGL.GL_DEPTH_COMPONENT, false, false);
+                m_depth.setFormat(OpenGL.GL_DEPTH_COMPONENT24, this.Width, this.Height, OpenGL.GL_DEPTH_COMPONENT, false, false);
             }
             else
             {
@@ -145,7 +145,7 @@ namespace CSharpGL
         {
             FramebufferTexture texture = new FramebufferTexture();
 
-            texture.setFormat(internalfmt, m_width, m_height, format, mipmap, interpol);
+            texture.setFormat(internalfmt, this.Width, this.Height, format, mipmap, interpol);
 
             addColorAttachment(texture);
         }
@@ -221,16 +221,16 @@ namespace CSharpGL
 
         public void resize(int width, int height)
         {
-            m_width = width;
-            m_height = height;
+            this.Width = width;
+            this.Height = height;
             for (int i = 0; i < m_color.Count; ++i)
             {
-                m_color[i].resize(m_width, m_height);
+                m_color[i].resize(this.Width, this.Height);
             }
 
             if (m_depth != null)
             {
-                m_depth.resize(m_width, m_height);
+                m_depth.resize(this.Width, this.Height);
             }
 
             // rebind the textures
@@ -254,8 +254,8 @@ namespace CSharpGL
             glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, 0);
         }
 
-        public uint glID() { return framebufferId[0]; }
-        public int width() { return m_width; }
-        public int height() { return m_height; }
+        //public uint glID() { return framebufferId[0]; }
+        //public int width() { return m_width; }
+        //public int height() { return m_height; }
     }
 }
