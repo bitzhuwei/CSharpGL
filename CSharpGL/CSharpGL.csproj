@@ -106,7 +106,6 @@
     <Compile Include="OpenGLObjects\Camera\IBoundingBox.cs" />
     <Compile Include="OpenGLObjects\Camera\IBoundingBoxHelper.cs" />
     <Compile Include="OpenGLObjects\Camera\ICamera.cs" />
-    <Compile Include="OpenGLObjects\Camera\ICameraRotator.cs" />
     <Compile Include="OpenGLObjects\Camera\IOrthoCamera.cs" />
     <Compile Include="OpenGLObjects\Camera\IOrthoViewCamera.cs" />
     <Compile Include="OpenGLObjects\Camera\IPerspectiveCamera.cs" />
