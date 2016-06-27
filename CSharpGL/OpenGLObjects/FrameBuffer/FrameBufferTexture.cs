@@ -11,7 +11,10 @@ namespace CSharpGL
     public class FramebufferTexture
     {
         private uint[] m_texture_id = new uint[1];
-        private uint m_texture_target;
+        public uint TextureId { get { return m_texture_id[0]; } }
+
+        public uint TextureTarget { get; private set; }
+
         private uint m_internalfmt;
         private uint m_fmt;
         private bool m_mipmap;
@@ -29,40 +32,35 @@ namespace CSharpGL
             m_fmt = format;
             m_mipmap = mipmap;
             m_interpol = interpol;
-            m_texture_target = OpenGL.GL_TEXTURE_2D;
+            TextureTarget = OpenGL.GL_TEXTURE_2D;
 
             OpenGL.GenTextures(1, m_texture_id);
-            OpenGL.BindTexture(m_texture_target, m_texture_id[0]);
-            OpenGL.TexParameterf(m_texture_target, OpenGL.GL_TEXTURE_WRAP_S, OpenGL.GL_CLAMP_TO_EDGE);
-            OpenGL.TexParameterf(m_texture_target, OpenGL.GL_TEXTURE_WRAP_T, OpenGL.GL_CLAMP_TO_EDGE);
+            OpenGL.BindTexture(TextureTarget, m_texture_id[0]);
+            OpenGL.TexParameterf(TextureTarget, OpenGL.GL_TEXTURE_WRAP_S, OpenGL.GL_CLAMP_TO_EDGE);
+            OpenGL.TexParameterf(TextureTarget, OpenGL.GL_TEXTURE_WRAP_T, OpenGL.GL_CLAMP_TO_EDGE);
             if (mipmap)
             {
-                OpenGL.TexParameterf(m_texture_target, OpenGL.GL_TEXTURE_MAG_FILTER, OpenGL.GL_LINEAR);
-                OpenGL.TexParameterf(m_texture_target, OpenGL.GL_TEXTURE_MIN_FILTER, OpenGL.GL_LINEAR_MIPMAP_LINEAR);
-                OpenGL.TexParameterf(m_texture_target, OpenGL.GL_GENERATE_MIPMAP, OpenGL.GL_TRUE);
+                OpenGL.TexParameterf(TextureTarget, OpenGL.GL_TEXTURE_MAG_FILTER, OpenGL.GL_LINEAR);
+                OpenGL.TexParameterf(TextureTarget, OpenGL.GL_TEXTURE_MIN_FILTER, OpenGL.GL_LINEAR_MIPMAP_LINEAR);
+                OpenGL.TexParameterf(TextureTarget, OpenGL.GL_GENERATE_MIPMAP, OpenGL.GL_TRUE);
             }
             else
             {
                 if (interpol)
                 {
-                    OpenGL.TexParameterf(m_texture_target, OpenGL.GL_TEXTURE_MAG_FILTER, OpenGL.GL_LINEAR);
-                    OpenGL.TexParameterf(m_texture_target, OpenGL.GL_TEXTURE_MIN_FILTER, OpenGL.GL_LINEAR);
+                    OpenGL.TexParameterf(TextureTarget, OpenGL.GL_TEXTURE_MAG_FILTER, OpenGL.GL_LINEAR);
+                    OpenGL.TexParameterf(TextureTarget, OpenGL.GL_TEXTURE_MIN_FILTER, OpenGL.GL_LINEAR);
                 }
                 else
                 {
-                    OpenGL.TexParameterf(m_texture_target, OpenGL.GL_TEXTURE_MAG_FILTER, OpenGL.GL_NEAREST);
-                    OpenGL.TexParameterf(m_texture_target, OpenGL.GL_TEXTURE_MIN_FILTER, OpenGL.GL_NEAREST);
+                    OpenGL.TexParameterf(TextureTarget, OpenGL.GL_TEXTURE_MAG_FILTER, OpenGL.GL_NEAREST);
+                    OpenGL.TexParameterf(TextureTarget, OpenGL.GL_TEXTURE_MIN_FILTER, OpenGL.GL_NEAREST);
                 }
-                OpenGL.TexParameteri(m_texture_target, OpenGL.GL_GENERATE_MIPMAP, (int)OpenGL.GL_FALSE);
+                OpenGL.TexParameteri(TextureTarget, OpenGL.GL_GENERATE_MIPMAP, (int)OpenGL.GL_FALSE);
             }
-            OpenGL.TexImage2D(m_texture_target, 0, internalfmt, width, height, 0,
+            OpenGL.TexImage2D(TextureTarget, 0, internalfmt, width, height, 0,
                 format, OpenGL.GL_UNSIGNED_BYTE, IntPtr.Zero);
-            OpenGL.BindTexture(m_texture_target, 0);
-        }
-
-        internal uint glID()
-        {
-            return m_texture_id[0];
+            OpenGL.BindTexture(TextureTarget, 0);
         }
 
         internal void resize(int width, int height)
@@ -71,9 +69,5 @@ namespace CSharpGL
             setFormat(m_internalfmt, width, height, m_fmt, m_mipmap, m_interpol);
         }
 
-        internal uint glTarget()
-        {
-            return m_texture_target;
-        }
     }
 }

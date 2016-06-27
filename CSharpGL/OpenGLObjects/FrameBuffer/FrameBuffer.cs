@@ -78,13 +78,13 @@ namespace CSharpGL
             glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, framebufferId[0]);
 
             glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
-                attachment_id[m_color.Count], OpenGL.GL_TEXTURE_2D, color0.glID(), 0);
+                attachment_id[m_color.Count], OpenGL.GL_TEXTURE_2D, color0.TextureId, 0);
             m_color.Add(color0);
 
             if (m_depth != null)
             {
                 glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
-                    OpenGL.GL_DEPTH_ATTACHMENT, OpenGL.GL_TEXTURE_2D, m_depth.glID(), 0);
+                    OpenGL.GL_DEPTH_ATTACHMENT, OpenGL.GL_TEXTURE_2D, m_depth.TextureId, 0);
             }
 
             uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER);
@@ -125,7 +125,7 @@ namespace CSharpGL
         {
             glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, framebufferId[0]);
             glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
-                attachment_id[m_color.Count], tex.glTarget(), tex.glID(), 0);
+                attachment_id[m_color.Count], tex.TextureTarget, tex.TextureId, 0);
             uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER);
             glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, 0);
 
@@ -158,12 +158,12 @@ namespace CSharpGL
 
             glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, framebufferId[0]);
             glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
-                attachment_id[index], m_color[index].glTarget(), m_color[index].glID(), 0);
+                attachment_id[index], m_color[index].TextureTarget, m_color[index].TextureId, 0);
             glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, 0);
 
             glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, other.framebufferId[0]);
             glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
-                attachment_id[index], other.m_color[index].glTarget(), other.m_color[index].glID(), 0);
+                attachment_id[index], other.m_color[index].TextureTarget, other.m_color[index].TextureId, 0);
             glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, 0);
 
             ErrorCode error = (ErrorCode)OpenGL.GetError();
@@ -238,12 +238,12 @@ namespace CSharpGL
             for (int i = 0; i < m_color.Count; ++i)
             {
                 glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
-                   attachment_id[i], OpenGL.GL_TEXTURE_2D, m_color[i].glID(), 0);
+                   attachment_id[i], OpenGL.GL_TEXTURE_2D, m_color[i].TextureId, 0);
             }
             if (m_depth != null)
             {
                 glFramebufferTexture2D(OpenGL.GL_FRAMEBUFFER,
-                   OpenGL.GL_DEPTH_ATTACHMENT, OpenGL.GL_TEXTURE_2D, m_depth.glID(), 0);
+                   OpenGL.GL_DEPTH_ATTACHMENT, OpenGL.GL_TEXTURE_2D, m_depth.TextureId, 0);
             }
             // check status
             uint result = glCheckFramebufferStatus(OpenGL.GL_FRAMEBUFFER);
