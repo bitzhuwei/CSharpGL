@@ -43,11 +43,11 @@ namespace CSharpGL
                 {
                     // check https://www.opengl.org/wiki/Load_OpenGL_Functions
                     proc = Win32.wglGetProcAddress(name);
-                    int pointer = proc.ToInt32();
+                    long pointer = proc.ToInt64();
                     if (-1 <= pointer && pointer <= 3)
                     {
                         proc = Win32.GetProcAddress(name);
-                        pointer = proc.ToInt32();
+                        pointer = proc.ToInt64();
                         if (-1 <= pointer && pointer <= 3)
                         {
                             throw new Exception("Extension function " + name + " not supported");
