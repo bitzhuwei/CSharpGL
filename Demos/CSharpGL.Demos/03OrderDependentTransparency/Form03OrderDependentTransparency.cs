@@ -69,11 +69,7 @@ namespace CSharpGL.Demos
 
         void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
-            ICamera camera = this.camera;
-            if (camera != null)
-            {
-                camera.MouseWheel(e.Delta);
-            }
+            this.rotator.canvas_MouseWheel(sender, e);
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)
