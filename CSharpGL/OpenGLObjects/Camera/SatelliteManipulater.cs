@@ -36,10 +36,13 @@ namespace CSharpGL
 
         public float VerticalRotationFactor { get; set; }
 
+        public MouseButtons BindingMouseButtons { get; set; }
+
         public SatelliteManipulater()
         {
             this.HorizontalRotationFactor = 4;
             this.VerticalRotationFactor = 4;
+            this.BindingMouseButtons = MouseButtons.Right;
             this.mouseDownEvent = new MouseEventHandler(this.canvas_MouseDown);
             this.mouseMoveEvent = new MouseEventHandler(this.canvas_MouseMove);
             this.mouseUpEvent = new MouseEventHandler(this.canvas_MouseUp);
@@ -86,12 +89,15 @@ namespace CSharpGL
 
         private void canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            this.mouseDownFlag = false;
+            if (e.Button == this.BindingMouseButtons)
+            {
+                this.mouseDownFlag = false;
+            }
         }
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.mouseDownFlag)
+            if (this.mouseDownFlag && e.Button == this.BindingMouseButtons)
             {
                 IViewCamera camera = this.camera;
                 if (camera == null) { return; }
@@ -146,11 +152,14 @@ namespace CSharpGL
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            this.downPosition = e.Location;
-            var control = sender as Control;
-            this.SetBounds(control.Width, control.Height);
-            this.mouseDownFlag = true;
-            PrepareCamera();
+            if (e.Button == this.BindingMouseButtons)
+            {
+                this.downPosition = e.Location;
+                var control = sender as Control;
+                this.SetBounds(control.Width, control.Height);
+                this.mouseDownFlag = true;
+                PrepareCamera();
+            }
         }
 
         private void PrepareCamera()
