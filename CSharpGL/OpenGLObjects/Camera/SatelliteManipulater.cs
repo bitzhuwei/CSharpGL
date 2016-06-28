@@ -14,7 +14,7 @@ namespace CSharpGL
     /// Rotates a camera on a sphere, whose center is camera's Target.
     /// <para>Just like a satellite moves around a fixed star.</para>
     /// </summary>
-    public class SatelliteManipulater : CameraManipulater
+    public class SatelliteManipulater : CameraManipulater, ISatelliteManipulater
     {
 
         private ICamera camera;
@@ -43,10 +43,10 @@ namespace CSharpGL
             this.HorizontalRotationFactor = 4;
             this.VerticalRotationFactor = 4;
             this.BindingMouseButtons = MouseButtons.Right;
-            this.mouseDownEvent = new MouseEventHandler(this.canvas_MouseDown);
-            this.mouseMoveEvent = new MouseEventHandler(this.canvas_MouseMove);
-            this.mouseUpEvent = new MouseEventHandler(this.canvas_MouseUp);
-            this.mouseWheelEvent = new MouseEventHandler(this.canvas_MouseWheel);
+            this.mouseDownEvent = new MouseEventHandler(((ISatelliteManipulater)this).canvas_MouseDown);
+            this.mouseMoveEvent = new MouseEventHandler(((ISatelliteManipulater)this).canvas_MouseMove);
+            this.mouseUpEvent = new MouseEventHandler(((ISatelliteManipulater)this).canvas_MouseUp);
+            this.mouseWheelEvent = new MouseEventHandler(((ISatelliteManipulater)this).canvas_MouseWheel);
         }
 
         public override void Bind(ICamera camera, Control canvas)
@@ -81,13 +81,28 @@ namespace CSharpGL
                 back, up, right, back.length(), up.length(), right.length());
         }
 
+        private void PrepareCamera()
+        {
+            var camera = this.camera;
+            if (camera != null)
+            {
+                vec3 back = camera.Position - camera.Target;
+                vec3 right = camera.UpVector.cross(back);
+                vec3 up = back.cross(right);
 
-        private void canvas_MouseWheel(object sender, MouseEventArgs e)
+                this.back = back.normalize();
+                this.right = right.normalize();
+                this.up = up.normalize();
+            }
+        }
+
+
+        void ISatelliteManipulater.canvas_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
         }
 
-        private void canvas_MouseUp(object sender, MouseEventArgs e)
+        void ISatelliteManipulater.canvas_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == this.BindingMouseButtons)
             {
@@ -95,7 +110,7 @@ namespace CSharpGL
             }
         }
 
-        private void canvas_MouseMove(object sender, MouseEventArgs e)
+        void ISatelliteManipulater.canvas_MouseMove(object sender, MouseEventArgs e)
         {
             if (this.mouseDownFlag && e.Button == this.BindingMouseButtons)
             {
@@ -144,38 +159,22 @@ namespace CSharpGL
             }
         }
 
-        private void SetBounds(int width, int height)
+        void ISatelliteManipulater.SetBounds(int width, int height)
         {
             this.bound.Width = width;
             this.bound.Height = height;
         }
 
-        private void canvas_MouseDown(object sender, MouseEventArgs e)
+        void ISatelliteManipulater.canvas_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == this.BindingMouseButtons)
             {
                 this.downPosition = e.Location;
                 var control = sender as Control;
-                this.SetBounds(control.Width, control.Height);
+                ((ISatelliteManipulater)this).SetBounds(control.Width, control.Height);
                 this.mouseDownFlag = true;
                 PrepareCamera();
             }
         }
-
-        private void PrepareCamera()
-        {
-            var camera = this.camera;
-            if (camera != null)
-            {
-                vec3 back = camera.Position - camera.Target;
-                vec3 right = camera.UpVector.cross(back);
-                vec3 up = back.cross(right);
-
-                this.back = back.normalize();
-                this.right = right.normalize();
-                this.up = up.normalize();
-            }
-        }
-
     }
 }
