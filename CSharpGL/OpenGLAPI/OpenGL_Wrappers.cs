@@ -11,89 +11,89 @@ namespace CSharpGL
     // 用重载和枚举来简化GL编程。
     public static partial class OpenGL
     {
-        #region translate, rotate, scale
+        //#region translate, rotate, scale
 
-        /// <summary>
-        /// This function applies a translation transformation to the current matrix.
-        /// </summary>
-        /// <param name="x">The amount to translate along the x axis.</param>
-        /// <param name="y">The amount to translate along the y axis.</param>
-        /// <param name="z">The amount to translate along the z axis.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Translate(double x, double y, double z)
-        {
-            OpenGL.Translated(x, y, z);
-        }
+        ///// <summary>
+        ///// This function applies a translation transformation to the current matrix.
+        ///// </summary>
+        ///// <param name="x">The amount to translate along the x axis.</param>
+        ///// <param name="y">The amount to translate along the y axis.</param>
+        ///// <param name="z">The amount to translate along the z axis.</param>
+        //////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Translate(double x, double y, double z)
+        //{
+        //    OpenGL.Translated(x, y, z);
+        //}
 
-        /// <summary>
-        /// This function applies a translation transformation to the current matrix.
-        /// </summary>
-        /// <param name="x">The amount to translate along the x axis.</param>
-        /// <param name="y">The amount to translate along the y axis.</param>
-        /// <param name="z">The amount to translate along the z axis.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Translate(float x, float y, float z)
-        {
-            OpenGL.Translatef(x, y, z);
-        }
+        ///// <summary>
+        ///// This function applies a translation transformation to the current matrix.
+        ///// </summary>
+        ///// <param name="x">The amount to translate along the x axis.</param>
+        ///// <param name="y">The amount to translate along the y axis.</param>
+        ///// <param name="z">The amount to translate along the z axis.</param>
+        //////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Translate(float x, float y, float z)
+        //{
+        //    OpenGL.Translatef(x, y, z);
+        //}
 
-        /// <summary>
-        /// This function applies a rotation transformation to the current matrix.
-        /// </summary>
-        /// <param name="angle">The angle to rotate.</param>
-        /// <param name="x">Amount along x.</param>
-        /// <param name="y">Amount along y.</param>
-        /// <param name="z">Amount along z.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Rotate(double angle, double x, double y, double z)
-        {
-            OpenGL.Rotated(angle, x, y, z);
-        }
+        ///// <summary>
+        ///// This function applies a rotation transformation to the current matrix.
+        ///// </summary>
+        ///// <param name="angle">The angle to rotate.</param>
+        ///// <param name="x">Amount along x.</param>
+        ///// <param name="y">Amount along y.</param>
+        ///// <param name="z">Amount along z.</param>
+        //////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Rotate(double angle, double x, double y, double z)
+        //{
+        //    OpenGL.Rotated(angle, x, y, z);
+        //}
 
-        /// <summary>
-        /// This function applies a rotation transformation to the current matrix.
-        /// </summary>
-        /// <param name="angle">The angle to rotate.</param>
-        /// <param name="x">Amount along x.</param>
-        /// <param name="y">Amount along y.</param>
-        /// <param name="z">Amount along z.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Rotate(float angle, float x, float y, float z)
-        {
-            OpenGL.Rotatef(angle, x, y, z);
-        }
+        ///// <summary>
+        ///// This function applies a rotation transformation to the current matrix.
+        ///// </summary>
+        ///// <param name="angle">The angle to rotate.</param>
+        ///// <param name="x">Amount along x.</param>
+        ///// <param name="y">Amount along y.</param>
+        ///// <param name="z">Amount along z.</param>
+        //////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Rotate(float angle, float x, float y, float z)
+        //{
+        //    OpenGL.Rotatef(angle, x, y, z);
+        //}
 
-        /// <summary>
-        /// This function applies a translation transformation to the current matrix.
-        /// </summary>
-        /// <param name="x">The amount to translate along the x axis.</param>
-        /// <param name="y">The amount to translate along the y axis.</param>
-        /// <param name="z">The amount to translate along the z axis.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Scale(double x, double y, double z)
-        {
-            OpenGL.Scaled(x, y, z);
-        }
+        ///// <summary>
+        ///// This function applies a translation transformation to the current matrix.
+        ///// </summary>
+        ///// <param name="x">The amount to translate along the x axis.</param>
+        ///// <param name="y">The amount to translate along the y axis.</param>
+        ///// <param name="z">The amount to translate along the z axis.</param>
+        //////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Scale(double x, double y, double z)
+        //{
+        //    OpenGL.Scaled(x, y, z);
+        //}
 
-        /// <summary>
-        /// This function applies a translation transformation to the current matrix.
-        /// </summary>
-        /// <param name="x">The amount to translate along the x axis.</param>
-        /// <param name="y">The amount to translate along the y axis.</param>
-        /// <param name="z">The amount to translate along the z axis.</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Scale(float x, float y, float z)
-        {
-            OpenGL.Scalef(x, y, z);
-        }
+        ///// <summary>
+        ///// This function applies a translation transformation to the current matrix.
+        ///// </summary>
+        ///// <param name="x">The amount to translate along the x axis.</param>
+        ///// <param name="y">The amount to translate along the y axis.</param>
+        ///// <param name="z">The amount to translate along the z axis.</param>
+        //////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Scale(float x, float y, float z)
+        //{
+        //    OpenGL.Scalef(x, y, z);
+        //}
 
-        #endregion translate, rotate, scale
+        //#endregion translate, rotate, scale
 
         #region GL.Color
 

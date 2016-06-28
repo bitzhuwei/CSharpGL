@@ -78,7 +78,7 @@ namespace CSharpGL
             OpenGL.LoadIdentity();
 
             //  Rotate around the Y axis.
-            OpenGL.Rotate(rotation, 0.0f, 1.0f, 0.0f);
+            OpenGL.Rotatef(rotation, 0.0f, 1.0f, 0.0f);
 
             //  Draw a coloured pyramid.
             OpenGL.Begin(OpenGL.GL_TRIANGLES);
@@ -94,6 +94,6 @@ namespace CSharpGL
             rotation += 3.0f;
         }
 
-        private static double rotation;
+        private static float rotation;
     }
 }
