@@ -9,6 +9,7 @@ using System.Text;
 
 namespace CSharpGL
 {
+    //TODO: rename, rewrite this.
     /// <summary>
     /// 用鼠标旋转模型。
     /// </summary>
