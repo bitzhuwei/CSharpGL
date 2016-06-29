@@ -7,7 +7,7 @@ using System.Windows.Forms;
 namespace CSharpGL
 {
     /// <summary>
-    /// Handle mouse events for <see cref="CameraManipupater"/>.
+    /// Handle mouse events.
     /// </summary>
     public interface IMouseHandler
     {
