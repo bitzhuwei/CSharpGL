@@ -8,33 +8,24 @@ namespace CSharpGL
     public partial class SceneObject
     {
 
-        private SceneObject parent;
-        private SceneObjectList children;
-
         #region ITreeNode
 
         private const string strTreeNode = "TreeNode";
 
-        //[Category(strTreeNode)]
-        //[Description("Self")]
-        //public SceneObject Self { get { return this; } }
-        SceneObject ITreeNode<SceneObject>.Self { get { return this; } }
-
-        SceneObject ITreeNode<SceneObject>.Parent { get { return parent; } set { parent = value; } }
-
-        [Editor(typeof(IListEditor<SceneObject>), typeof(UITypeEditor))]
-        IList<SceneObject> ITreeNode<SceneObject>.Children
-        { get { return this.children; } }
-
-        #endregion ITreeNode
+        [Category(strTreeNode)]
+        [Description("Self")]
+        public SceneObject Self { get { return this; } }
 
         [Category(strTreeNode)]
         [Description("Parent")]
-        public SceneObject Parent { get { return parent; } set { parent = value; } }
+        public SceneObject Parent { get; set; }
 
         [Category(strTreeNode)]
         [Description("Children")]
-        public SceneObjectList Children { get { return children; } }
+        [Editor(typeof(IListEditor<SceneObject>), typeof(UITypeEditor))]
+        public ChildList<SceneObject> Children { get; private set; }
+
+        #endregion ITreeNode
 
     }
 }

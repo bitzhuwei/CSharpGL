@@ -5,7 +5,7 @@ using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
+namespace System
 {
     public class AddItemEventArgs<T> : EventArgs
     {

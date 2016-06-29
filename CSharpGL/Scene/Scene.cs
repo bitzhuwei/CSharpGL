@@ -27,7 +27,8 @@ namespace CSharpGL
         /// <summary>
         /// objects to be rendered.
         /// </summary>
-        public SceneObjectList ObjectList { get; private set; }
+        [Editor(typeof(IListEditor<SceneObject>), typeof(UITypeEditor))]
+        public ChildList<SceneObject> ObjectList { get; private set; }
 
         /// <summary>
         /// hosts all UI renderers.
@@ -45,7 +46,7 @@ namespace CSharpGL
             { throw new ArgumentNullException(); }
 
             this.Camera = camera;
-            var list = new SceneObjectList();
+            var list = new ChildList<SceneObject>();
             list.AddRange(objects);
             this.ObjectList = list;
             this.UIRoot = new UIRoot();

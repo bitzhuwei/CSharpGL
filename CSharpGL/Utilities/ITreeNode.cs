@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CSharpGL;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -22,6 +24,6 @@ namespace System
         /// <summary>
         /// 子结点。
         /// </summary>
-        IList<T> Children { get; }
+        ChildList<T> Children { get; }
     }
 }

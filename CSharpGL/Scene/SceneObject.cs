@@ -18,15 +18,17 @@ namespace CSharpGL
         private const string strBasic = "Basic";
 
         /// <summary>
-        /// name.
+        /// Name.
         /// </summary>
         [Category(strBasic)]
         [Description("Name.")]
         public string Name { get; set; }
 
         /// <summary>
-        /// translate, rotate and scale this object in world space.
+        /// Translate, rotate and scale this object in world space.
         /// </summary>
+        [Category(strBasic)]
+        [Description("Translate, rotate and scale this object in world space.")]
         public TransformComponent Transform { get; protected set; }
 
         private RendererComponent renderer;
@@ -79,11 +81,11 @@ namespace CSharpGL
         /// </summary>
         public SceneObject()
         {
-            this.Name = typeof(SceneObject).Name;
+            this.Name = this.GetType().Name;
             this.Enabled = true;
             this.Transform = new TransformComponent(this);
-            this.ScriptList = new ScriptComponentList();
-            this.children = new SceneObjectList(this);
+            this.ScriptList = new ScriptComponentList(this);
+            this.Children = new ChildList<SceneObject>(this);
         }
 
         public override string ToString()

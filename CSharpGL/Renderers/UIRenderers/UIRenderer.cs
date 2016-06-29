@@ -28,7 +28,7 @@ namespace CSharpGL
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
         {
-            this.children = new ILayoutList(this);
+            this.Children = new ChildList<UIRenderer>(this);// new ILayoutList(this);
 
             this.Anchor = anchor; this.Margin = margin;
             this.Size = size; this.zNear = zNear; this.zFar = zFar;
@@ -102,9 +102,9 @@ namespace CSharpGL
 
         public UIRenderer Parent { get; set; }
 
-        IList<UIRenderer> children;
+        //ChildList<UIRenderer> children;
 
         [Editor(typeof(IListEditor<UIRenderer>), typeof(UITypeEditor))]
-        public IList<UIRenderer> Children { get { return this.children; } }
+        public ChildList<UIRenderer> Children { get; private set; }
     }
 }

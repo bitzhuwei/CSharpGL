@@ -140,7 +140,6 @@
     <Compile Include="Renderers\UIRenderers\UIText\UIText.cs" />
     <Compile Include="Renderers\UIRenderers\UIRoot.cs" />
     <Compile Include="Renderers\UIRenderers\ILayoutHelper.cs" />
-    <Compile Include="Renderers\UIRenderers\ILayoutList.cs" />
     <Compile Include="Renderers\UIRenderers\UIAxis\UIAxis.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -184,8 +183,7 @@
     <Compile Include="Scene\SceneObject.ITreeNode.cs" />
     <Compile Include="Scene\SceneObjectFactory.cs" />
     <Compile Include="Scene\Components\ScriptComponentList.cs" />
-    <Compile Include="Scene\ItemEventArgs.cs" />
-    <Compile Include="Scene\SceneObjectList.cs" />
+    <Compile Include="Utilities\ItemEventArgs.cs" />
     <Compile Include="Scene\Components\RendererComponent.cs" />
     <Compile Include="Scene\Components\ScriptComponent.cs" />
     <Compile Include="Scene\Components\TransformComponent.cs" />
@@ -445,6 +443,7 @@
     <Compile Include="Utilities\ManifestResourceLoader.cs" />
     <Compile Include="Utilities\PositionHelper.cs" />
     <Compile Include="Utilities\UnmanagedArray.cs" />
+    <Compile Include="Utilities\ITreeNode.ChildList.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
