@@ -8,7 +8,7 @@ namespace CSharpGL
     /// Description of Component.
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public partial class Component
+    public partial class Component : IBindingObject<SceneObject>
     {
         public SceneObject BindingObject { get; set; }
 
