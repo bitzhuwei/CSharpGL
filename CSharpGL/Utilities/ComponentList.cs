@@ -159,4 +159,10 @@ namespace CSharpGL
             return this.GetEnumerator();
         }
     }
+
+    public interface IBindingObject<TBinding>
+    {
+        TBinding BindingObject { get; set; }
+    }
+
 }
