@@ -26,7 +26,6 @@ namespace CSharpGL.Demos
                 var rotator = new SatelliteManipulater();
                 rotator.Bind(camera, this.glCanvas1);
                 this.camera = camera;
-                this.rotator = rotator;
             }
             {
                 // build several models

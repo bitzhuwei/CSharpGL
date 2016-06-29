@@ -61,10 +61,6 @@ namespace CSharpGL.Demos
         //}
 
         /// <summary>
-        /// 控制Camera的旋转、进退
-        /// </summary>
-        SatelliteManipulater rotator;
-        /// <summary>
         /// 摄像机
         /// </summary>
         Camera camera;

@@ -60,8 +60,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(746, 485);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "Form13SimplexNoise";
-            this.Text = "Form13SimplexNoise";
+            this.Name = "Form14ShaderToy";
+            this.Text = "Form14ShaderToy";
             this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);

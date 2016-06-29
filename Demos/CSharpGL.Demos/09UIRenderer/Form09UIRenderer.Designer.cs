@@ -82,7 +82,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.glCanvas1);
             this.Name = "Form09UIRenderer";
-            this.Text = "Form09TextBoxRenderer";
+            this.Text = "Form09UIRenderer";
             this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);

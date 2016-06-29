@@ -69,8 +69,8 @@
             this.ClientSize = new System.Drawing.Size(783, 548);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "Form07Billboard";
-            this.Text = "Form07Billboard";
+            this.Name = "Form07PointSprite";
+            this.Text = "Form07PointSprite";
             this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);

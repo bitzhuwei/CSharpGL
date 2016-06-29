@@ -54,7 +54,7 @@
             this.ClientSize = new System.Drawing.Size(731, 534);
             this.Controls.Add(this.glCanvas1);
             this.Name = "Form00GLCanvas";
-            this.Text = "Form00GLCanvas - random background";
+            this.Text = "Form00GLCanvas";
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
 
