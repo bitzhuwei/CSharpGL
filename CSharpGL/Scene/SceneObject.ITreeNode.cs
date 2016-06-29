@@ -9,7 +9,7 @@ namespace CSharpGL
     {
 
         private SceneObject parent;
-        private SceneObjectList children = new SceneObjectList();
+        private SceneObjectList children;
 
         #region ITreeNode
 
