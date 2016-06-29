@@ -192,7 +192,7 @@
     <Compile Include="Utilities\ColorHelper.cs" />
     <Compile Include="Utilities\DoubleHelper.cs" />
     <Compile Include="Utilities\DumpTreeToText.cs" />
-    <Compile Include="Utilities\ITreeNode.yeild.cs" />
+    <Compile Include="Utilities\ITreeNode.yield.cs" />
     <Compile Include="Utilities\ITreeNode.cs" />
     <Compile Include="WinformControls\GLCanvas.cs">
       <SubType>UserControl</SubType>
