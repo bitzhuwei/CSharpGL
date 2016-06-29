@@ -13,10 +13,21 @@ namespace CSharpGL
     /// <summary>
     /// 用鼠标旋转模型。
     /// </summary>
-    public class FirstPerspectiveManipulater : CameraManipulater
+    public class FirstPerspectiveManipulater :
+        CameraManipulater, IMouseHandler, IKeyboardHandler
     {
         private ICamera camera;
         private Control canvas;
+
+        private KeyPressEventHandler keyPressEvent;
+        private MouseEventHandler mouseDownEvent;
+        private MouseEventHandler mouseMoveEvent;
+        private MouseEventHandler mouseUpEvent;
+        private MouseEventHandler mouseWheelEvent;
+
+        private bool mouseDownFlag = false;
+        private int lastLocationX;
+        private int lastLocationY;
 
         private char upcaseFrontKey;
         private char upcaseBackKey;
@@ -92,12 +103,9 @@ namespace CSharpGL
         }
 
         public float StepLength { get; set; }
-
-        private KeyPressEventHandler keyPressEvent;
-        private MouseEventHandler mouseDownEvent;
-        private MouseEventHandler mouseMoveEvent;
-        private MouseEventHandler mouseUpEvent;
-        private MouseEventHandler mouseWheelEvent;
+        public float HorizontalRotationSpeed { get; set; }
+        public float VerticalRotationSpeed { get; set; }
+        public MouseButtons BindingMouseButtons { get; set; }
 
         public FirstPerspectiveManipulater()
         {
@@ -110,12 +118,11 @@ namespace CSharpGL
 
             this.StepLength = 0.1f;
 
-            this.keyPressEvent = new KeyPressEventHandler(this.canvas_KeyPress);
-            this.mouseDownEvent = new MouseEventHandler(this.canvas_MouseDown);
-            this.mouseMoveEvent = new MouseEventHandler(this.canvas_MouseMove);
-            this.mouseUpEvent = new MouseEventHandler(this.canvas_MouseUp);
-            this.mouseWheelEvent = new MouseEventHandler(this.canvas_MouseWheel);
-            
+            this.keyPressEvent = new KeyPressEventHandler(((IKeyboardHandler)this).canvas_KeyPress);
+            this.mouseDownEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseDown);
+            this.mouseMoveEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseMove);
+            this.mouseUpEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseUp);
+            this.mouseWheelEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseWheel);
         }
 
         public override void Bind(ICamera camera, System.Windows.Forms.Control canvas)
@@ -148,26 +155,24 @@ namespace CSharpGL
             }
         }
 
-        private bool mouseDownFlag = false;
-        private int lastLocationX;
-        private int lastLocationY;
-
-        void canvas_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
+        void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
         }
 
-        void canvas_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            this.mouseDownFlag = false;
+            if (e.Button == this.BindingMouseButtons)
+            {
+                this.mouseDownFlag = true;
+                this.lastLocationX = e.X;
+                this.lastLocationY = e.Y;
+            }
         }
 
-        public float HorizontalRotationSpeed { get; set; }
-        public float VerticalRotationSpeed { get; set; }
-
-        void canvas_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.mouseDownFlag)
+            if (this.mouseDownFlag && e.Button == this.BindingMouseButtons)
             {
                 int x = e.X; int y = e.Y;
                 mat4 rotationMatrix = glm.rotate(this.HorizontalRotationSpeed * (x - this.lastLocationX), -this.camera.UpVector);
@@ -182,14 +187,15 @@ namespace CSharpGL
             }
         }
 
-        void canvas_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            this.mouseDownFlag = true;
-            this.lastLocationX = e.X;
-            this.lastLocationY = e.Y;
+            if (e.Button == this.BindingMouseButtons)
+            {
+                this.mouseDownFlag = false;
+            }
         }
 
-        void canvas_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        void IKeyboardHandler.canvas_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == frontKey || e.KeyChar == upcaseFrontKey)
             {
@@ -231,6 +237,5 @@ namespace CSharpGL
                 this.camera.Target += down * this.StepLength;
             }
         }
-
     }
 }
