@@ -14,7 +14,7 @@ namespace CSharpGL
     /// Rotates a camera on a sphere, whose center is camera's Target.
     /// <para>Just like a satellite moves around a fixed star.</para>
     /// </summary>
-    public class SatelliteManipulater : CameraManipulater, ISatelliteManipulater
+    public class SatelliteManipulater : CameraManipulater, IMouseHandler
     {
 
         private ICamera camera;
@@ -43,10 +43,10 @@ namespace CSharpGL
             this.HorizontalRotationFactor = 4;
             this.VerticalRotationFactor = 4;
             this.BindingMouseButtons = MouseButtons.Right;
-            this.mouseDownEvent = new MouseEventHandler(((ISatelliteManipulater)this).canvas_MouseDown);
-            this.mouseMoveEvent = new MouseEventHandler(((ISatelliteManipulater)this).canvas_MouseMove);
-            this.mouseUpEvent = new MouseEventHandler(((ISatelliteManipulater)this).canvas_MouseUp);
-            this.mouseWheelEvent = new MouseEventHandler(((ISatelliteManipulater)this).canvas_MouseWheel);
+            this.mouseDownEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseDown);
+            this.mouseMoveEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseMove);
+            this.mouseUpEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseUp);
+            this.mouseWheelEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseWheel);
         }
 
         public override void Bind(ICamera camera, Control canvas)
@@ -97,12 +97,12 @@ namespace CSharpGL
         }
 
 
-        void ISatelliteManipulater.canvas_MouseWheel(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
         }
 
-        void ISatelliteManipulater.canvas_MouseUp(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == this.BindingMouseButtons)
             {
@@ -110,7 +110,7 @@ namespace CSharpGL
             }
         }
 
-        void ISatelliteManipulater.canvas_MouseMove(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
         {
             if (this.mouseDownFlag && e.Button == this.BindingMouseButtons)
             {
@@ -165,7 +165,7 @@ namespace CSharpGL
             this.bound.Height = height;
         }
 
-        void ISatelliteManipulater.canvas_MouseDown(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == this.BindingMouseButtons)
             {

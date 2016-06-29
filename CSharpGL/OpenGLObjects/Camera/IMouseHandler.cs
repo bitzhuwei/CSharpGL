@@ -6,7 +6,10 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
-    public interface ISatelliteManipulater
+    /// <summary>
+    /// Handle mouse events for <see cref="CameraManipupater"/>.
+    /// </summary>
+    public interface IMouseHandler
     {
         void canvas_MouseWheel(object sender, MouseEventArgs e);
 

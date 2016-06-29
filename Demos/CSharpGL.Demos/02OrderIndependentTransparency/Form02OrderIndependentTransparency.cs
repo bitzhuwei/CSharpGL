@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
     {
 
         private Camera camera;
-        private ISatelliteManipulater rotator;
+        private IMouseHandler rotator;
         private OrderIndependentTransparencyRenderer OITRenderer;
         private FormProperyGrid formPropertyGrid;
 

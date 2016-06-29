@@ -88,7 +88,7 @@
     <Compile Include="IBufferables\Ground.cs" />
     <Compile Include="IBufferables\TeapotModel.Positions.cs" />
     <Compile Include="IBufferables\TeapotModel.Faces.cs" />
-    <Compile Include="OpenGLObjects\Camera\ISatelliteManipulater.cs" />
+    <Compile Include="OpenGLObjects\Camera\IMouseHandler.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\BlendSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\CullFaceSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\DepthTestSwitch.cs" />
