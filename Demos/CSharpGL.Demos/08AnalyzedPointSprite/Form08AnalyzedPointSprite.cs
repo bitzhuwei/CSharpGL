@@ -24,9 +24,9 @@ namespace CSharpGL.Demos
 
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             //this.glCanvas1.MouseDown += glCanvas1_MouseDown;
-            this.glCanvas1.MouseMove += glCanvas1_MouseMove;
+            //this.glCanvas1.MouseMove += glCanvas1_MouseMove;
             //this.glCanvas1.MouseUp += glCanvas1_MouseUp;
-            this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
+            //this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.Resize += glCanvas1_Resize;
 
             OpenGL.ClearColor(0, 0, 0, 0);
@@ -44,9 +44,10 @@ namespace CSharpGL.Demos
                 UIRenderersDraw(arg);
             }
 
+            Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
             // Cross cursor shows where the mouse is.
-            OpenGL.DrawText(this.lastMousePosition.X - offset.X,
-                this.glCanvas1.Height - (this.lastMousePosition.Y + offset.Y) - 1,
+            OpenGL.DrawText(mousePosition.X - offset.X,
+                this.glCanvas1.Height - (mousePosition.Y + offset.Y) - 1,
                 Color.Red, "Courier New", crossCursorSize, "o");
         }
 
@@ -62,14 +63,14 @@ namespace CSharpGL.Demos
                 uiRoot.Render(arg);
             }
         }
-        void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
-        {
-            ICamera camera = this.camera;
-            if (camera != null)
-            {
-                camera.MouseWheel(e.Delta);
-            }
-        }
+        //void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
+        //{
+        //    ICamera camera = this.camera;
+        //    if (camera != null)
+        //    {
+        //        camera.MouseWheel(e.Delta);
+        //    }
+        //}
 
         private void glCanvas1_Resize(object sender, EventArgs e)
         {

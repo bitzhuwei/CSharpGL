@@ -58,9 +58,10 @@ namespace CSharpGL.Demos
                 }
             }
 
+            Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
             // Cross cursor shows where the mouse is.
-            OpenGL.DrawText(this.lastMousePosition.X - offset.X,
-                this.glCanvas1.Height - (this.lastMousePosition.Y + offset.Y) - 1,
+            OpenGL.DrawText(mousePosition.X - offset.X,
+                this.glCanvas1.Height - (mousePosition.Y + offset.Y) - 1,
                 Color.Red, "Courier New", crossCursorSize, "o");
         }
 

@@ -27,16 +27,16 @@ namespace CSharpGL.Demos
         //    rotator.MouseDown(lastmousePositionX, lastmousePositionY);
         //}
 
-        internal void glCanvas1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (lastmousePositionX == e.X && lastmousePositionY == e.Y) { return; }
+        //internal void glCanvas1_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    if (lastmousePositionX == e.X && lastmousePositionY == e.Y) { return; }
 
-            ////// operate camera
-            //rotator.MouseMove(e.X, e.Y);
+        //    ////// operate camera
+        //    //rotator.MouseMove(e.X, e.Y);
 
-            lastmousePositionX = e.X;
-            lastmousePositionY = e.Y;
-        }
+        //    lastmousePositionX = e.X;
+        //    lastmousePositionY = e.Y;
+        //}
 
         //internal void glCanvas1_MouseUp(object sender, MouseEventArgs e)
         //{

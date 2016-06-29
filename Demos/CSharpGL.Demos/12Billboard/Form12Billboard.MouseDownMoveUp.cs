@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
     public partial class Form12Billboard : Form
     {
 
-        private Point lastMousePosition;
+        //private Point lastMousePosition;
 
         //internal void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         //{

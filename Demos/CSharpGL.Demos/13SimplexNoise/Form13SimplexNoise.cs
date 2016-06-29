@@ -29,9 +29,9 @@ namespace CSharpGL.Demos
 
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             //this.glCanvas1.MouseDown += glCanvas1_MouseDown;
-            this.glCanvas1.MouseMove += glCanvas1_MouseMove;
+            //this.glCanvas1.MouseMove += glCanvas1_MouseMove;
             //this.glCanvas1.MouseUp += glCanvas1_MouseUp;
-            this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
+            //this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
             // 天蓝色背景
             //OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
@@ -60,13 +60,13 @@ namespace CSharpGL.Demos
             }
         }
 
-        void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
-        {
-            if (camera != null)
-            {
-                camera.MouseWheel(e.Delta);
-            }
-        }
+        //void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
+        //{
+        //    if (camera != null)
+        //    {
+        //        camera.MouseWheel(e.Delta);
+        //    }
+        //}
 
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
