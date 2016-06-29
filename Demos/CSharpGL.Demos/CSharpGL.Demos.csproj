@@ -55,9 +55,6 @@
     <Compile Include="15Scene\Form15Scene.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="15Scene\Form15Scene.MouseDownMoveUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="12Billboard\BillboardRenderer.cs" />
     <Compile Include="12Billboard\MovableRenderer.cs" />
     <Compile Include="12Billboard\GroundRenderer.cs" />
@@ -69,9 +66,6 @@
       <DependentUpon>Form14ShaderToy.cs</DependentUpon>
     </Compile>
     <Compile Include="14ShaderToy\Form14ShaderToy.FormLoad.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="14ShaderToy\Form14ShaderToy.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="14ShaderToy\ShaderToyRenderer.cs" />
@@ -88,9 +82,6 @@
       <DependentUpon>Form13SimplexNoise.cs</DependentUpon>
     </Compile>
     <Compile Include="13SimplexNoise\Form13SimplexNoise.FormLoad.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="13SimplexNoise\Form13SimplexNoise.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="01Renderer\DragParam.cs" />
@@ -116,9 +107,6 @@
       <DependentUpon>Form06ImageProcessing.cs</DependentUpon>
     </Compile>
     <Compile Include="06ImageProcessing\Form06ImageProcessing.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="06ImageProcessing\Form06ImageProcessing.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="06ImageProcessing\ImageProcessingRenderer.cs" />
@@ -155,12 +143,6 @@
     <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="05ParticleSimulator\Form05ParticleSimulator.MouseDownMoveUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="04SimpleCompute\Form04SimpleCompute.MouseDownMoveUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="03OrderDependentTransparency\Form03OrderDependentTransparency.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,9 +164,6 @@
     <Compile Include="08AnalyzedPointSprite\Form08AnalyzedPointSprite.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="08AnalyzedPointSprite\Form08AnalyzedPointSprite.MouseDownMoveUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="07PointSprite\Form07PointSprite.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,9 +171,6 @@
       <DependentUpon>Form07PointSprite.cs</DependentUpon>
     </Compile>
     <Compile Include="07PointSprite\Form07PointSprite.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="07PointSprite\Form07PointSprite.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="07PointSprite\PointSpriteRenderer.cs" />
@@ -207,9 +183,6 @@
     <Compile Include="12Billboard\Form12Billboard.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="12Billboard\Form12Billboard.MouseDownMoveUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="09UIRenderer\Form09UIRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,9 +190,6 @@
       <DependentUpon>Form09UIRenderer.cs</DependentUpon>
     </Compile>
     <Compile Include="09UIRenderer\Form09UIRenderer.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="09UIRenderer\Form09UIRenderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="11SharpFont\Form1111SharpFont.cs">
@@ -238,9 +208,6 @@
       <DependentUpon>Form10RaycastVolumeRenderer.cs</DependentUpon>
     </Compile>
     <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRenderer.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRenderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="12Billboard\BillboardModel.cs" />

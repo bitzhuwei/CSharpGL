@@ -14,21 +14,13 @@ namespace CSharpGL.Demos
     public partial class Form01Renderer
     {
 
-        private void glCanvas1_KeyDown(object sender, KeyEventArgs e)
-        {
-        }
-
-        private void glCanvas1_KeyUp(object sender, KeyEventArgs e)
-        {
-        }
-
         PickedGeometry pickedGeometry;
         private DragParam dragParam;
         private Point lastMousePosition;
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
-            this.lastMousePosition = new Point(e.X, e.Y);
+            this.lastMousePosition = e.Location;
 
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
@@ -45,7 +37,7 @@ namespace CSharpGL.Demos
                     new RenderEventArg(
                         RenderModes.ColorCodedPicking,
                         this.glCanvas1.ClientRectangle,
-                        this.camera, 
+                        this.camera,
                         this.PickingGeometryType),
                     e.X, e.Y);
                 if (pickedGeometry != null)
@@ -57,7 +49,7 @@ namespace CSharpGL.Demos
                         camera.GetProjectionMat4(),
                         camera.GetViewMat4(),
                         new Point(e.X, glCanvas1.Height - e.Y - 1));
-                    dragParam.pickedIndexes.AddRange(pickedGeometry.Indexes); 
+                    dragParam.pickedIndexes.AddRange(pickedGeometry.Indexes);
                     this.dragParam = dragParam;
                 }
 
@@ -67,7 +59,7 @@ namespace CSharpGL.Demos
 
         private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (lastMousePosition.X == e.X && lastMousePosition.Y == e.Y) { return; }
+            if (lastMousePosition == e.Location) { return; }
 
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
@@ -117,9 +109,9 @@ namespace CSharpGL.Demos
                 UpdatePickingBoard(pickedGeometry);
             }
 
-            
 
-            this.lastMousePosition = new Point(e.X, e.Y);
+
+            this.lastMousePosition = e.Location;
         }
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
@@ -138,7 +130,7 @@ namespace CSharpGL.Demos
 
             UpdateColorInformationAtMouse(e.X, e.Y);
 
-            this.lastMousePosition = new Point(e.X, e.Y);
+            this.lastMousePosition = e.Location;
         }
 
         private void UpdatePickingBoard(PickedGeometry pickedGeometry)
@@ -174,7 +166,7 @@ namespace CSharpGL.Demos
                 pickable.MVP = this.camera.GetProjectionMat4() * this.camera.GetViewMat4();
 
                 PickedGeometry pickedGeometry = ColorCodedPicking.Pick(
-                    arg, x, y, 
+                    arg, x, y,
                     pickable);
 
                 return pickedGeometry;

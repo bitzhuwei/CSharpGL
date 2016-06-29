@@ -74,9 +74,7 @@
             this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
             this.glCanvas1.Size = new System.Drawing.Size(720, 416);
             this.glCanvas1.TabIndex = 0;
-            this.glCanvas1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.glCanvas1_KeyDown);
             this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
-            this.glCanvas1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.glCanvas1_KeyUp);
             this.glCanvas1.Resize += new System.EventHandler(this.glCanvas1_Resize);
             // 
             // lblDrawText
