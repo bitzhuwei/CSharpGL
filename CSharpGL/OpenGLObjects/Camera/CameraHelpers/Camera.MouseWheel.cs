@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public static class MouseWheelHelper
+    public static partial class CameraHelper
     {
         /// <summary>
         /// 对摄像机执行一次缩放操作

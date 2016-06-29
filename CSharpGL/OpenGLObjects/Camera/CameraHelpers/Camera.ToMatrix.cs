@@ -6,10 +6,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public static class Camera2Matrix
+    public static partial class CameraHelper
     {
 
         /// <summary>

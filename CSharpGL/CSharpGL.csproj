@@ -88,6 +88,8 @@
     <Compile Include="IBufferables\Ground.cs" />
     <Compile Include="IBufferables\TeapotModel.Positions.cs" />
     <Compile Include="IBufferables\TeapotModel.Faces.cs" />
+    <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.Orientation.cs" />
+    <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.ViewType.cs" />
     <Compile Include="OpenGLObjects\Manipulaters\IKeyboardHandler.cs" />
     <Compile Include="OpenGLObjects\Manipulaters\IMouseHandler.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\BlendSwitch.cs" />
@@ -110,8 +112,8 @@
     <Compile Include="OpenGLObjects\Manipulaters\CameraManipulaters\FirstPerspectiveManipulater.cs" />
     <Compile Include="OpenGLObjects\Manipulaters\ModelManipulaters\ArcBallRotator.cs" />
     <Compile Include="OpenGLObjects\Camera\Camera.cs" />
-    <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera2Matrix.cs" />
-    <Compile Include="OpenGLObjects\Camera\CameraHelpers\CameraHelper.cs" />
+    <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.ToMatrix.cs" />
+    <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.Zoom.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraType.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\IBoundingBox.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\IBoundingBoxHelper.cs" />
@@ -122,7 +124,7 @@
     <Compile Include="OpenGLObjects\Camera\IPerspectiveViewCamera.cs" />
     <Compile Include="OpenGLObjects\Camera\IViewCamera.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\LegacyBoundingBox.cs" />
-    <Compile Include="OpenGLObjects\Camera\CameraHelpers\MouseWheelHelper.cs" />
+    <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.MouseWheel.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\ViewTypes.cs" />
     <Compile Include="OpenGLObjects\Framebuffer\Framebuffer.Dispose.cs" />
     <Compile Include="OpenGLObjects\Framebuffer\Framebuffer.cs">
