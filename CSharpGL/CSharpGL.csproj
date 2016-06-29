@@ -175,7 +175,6 @@
     </Compile>
     <Compile Include="4PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="Scene\Components\Component.cs" />
-    <Compile Include="Scene\Components\UIRendererComponent.cs" />
     <Compile Include="Scene\Components\DefaultRendererComponent.cs" />
     <Compile Include="Scene\Scene.cs" />
     <Compile Include="Scene\SceneObject.RelativeTransform.cs" />
