@@ -37,7 +37,7 @@ namespace CSharpGL.Demos
 
         void glCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            this.mousePosition = new Point(e.X, e.Y);
+            this.mousePosition = e.Location;
         }
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
