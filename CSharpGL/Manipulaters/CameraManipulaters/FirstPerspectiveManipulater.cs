@@ -107,6 +107,11 @@ namespace CSharpGL
         public MouseButtons BindingMouseButtons { get; set; }
 
         public FirstPerspectiveManipulater()
+            : this(0.1f, 0.002f, 0.002f, MouseButtons.Right) { }
+
+        public FirstPerspectiveManipulater(
+            float stepLength, float horizontalRotationSpeed,
+            float verticalRotationSpeed, MouseButtons bindingMouseButtons)
         {
             this.FrontKey = 'w';
             this.BackKey = 's';
@@ -115,10 +120,10 @@ namespace CSharpGL
             this.UpKey = 'q';
             this.DownKey = 'e';
 
-            this.StepLength = 0.1f;
-            this.HorizontalRotationSpeed = 0.002f;
-            this.VerticalRotationSpeed = 0.002f;
-            this.BindingMouseButtons = MouseButtons.Right;
+            this.StepLength = stepLength;
+            this.HorizontalRotationSpeed = horizontalRotationSpeed;
+            this.VerticalRotationSpeed = verticalRotationSpeed;
+            this.BindingMouseButtons = bindingMouseButtons;
 
             this.keyPressEvent = new KeyPressEventHandler(((IKeyboardHandler)this).canvas_KeyPress);
             this.mouseDownEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseDown);
