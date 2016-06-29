@@ -444,7 +444,9 @@
     <Compile Include="Utilities\PositionHelper.cs" />
     <Compile Include="Utilities\UnmanagedArray.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="OpenGLObjects\Camera\Manipulaters\ModelManipulaters\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Highlight.vert" />
     <EmbeddedResource Include="Resources\Highlight.frag" />
