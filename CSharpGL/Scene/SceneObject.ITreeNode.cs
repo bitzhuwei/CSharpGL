@@ -8,6 +8,9 @@ namespace CSharpGL
     public partial class SceneObject
     {
 
+        private SceneObject parent;
+        private SceneObjectList children = new SceneObjectList();
+
         #region ITreeNode
 
         private const string strTreeNode = "TreeNode";

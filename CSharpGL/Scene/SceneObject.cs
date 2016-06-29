@@ -14,14 +14,6 @@ namespace CSharpGL
         ITreeNode<SceneObject>, // contains children objects and is contained by parent.
         IEnumerable<SceneObject> // enumerates self and all children objects recursively.
     {
-        /// <summary>
-        /// translate, rotate and scale this object in world space.
-        /// </summary>
-        private TransformComponent transform;
-        private RendererComponent renderer;
-        private ScriptComponentList scriptList = new ScriptComponentList();
-        private SceneObject parent;
-        private SceneObjectList children = new SceneObjectList();
 
         private const string strBasic = "Basic";
 
@@ -35,8 +27,9 @@ namespace CSharpGL
         /// <summary>
         /// translate, rotate and scale this object in world space.
         /// </summary>
-        public TransformComponent Transform { get { return this.transform; } }
+        public TransformComponent Transform { get; protected set; }
 
+        private RendererComponent renderer;
         /// <summary>
         /// render this object.
         /// </summary>
@@ -47,13 +40,13 @@ namespace CSharpGL
             get { return this.renderer; }
             set
             {
+                RendererComponent renderer = this.renderer;
+                if (renderer != value)
                 {
-                    RendererComponent renderer = this.renderer;
                     if (renderer != null) { renderer.BindingObject = null; }
 
                     if (value != null) { value.BindingObject = this; }
-                }
-                {
+
                     this.renderer = value;
                 }
             }
@@ -64,10 +57,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strBasic)]
         [Description("update state of this object.")]
-        public ScriptComponentList ScriptList
-        {
-            get { return this.scriptList; }
-        }
+        public ScriptComponentList ScriptList { get; protected set; }
 
         /// <summary>
         /// Enabled or not.
@@ -91,7 +81,8 @@ namespace CSharpGL
         {
             this.Name = typeof(SceneObject).Name;
             this.Enabled = true;
-            this.transform = new TransformComponent(this);
+            this.Transform = new TransformComponent(this);
+            this.ScriptList = new ScriptComponentList();
             this.children = new SceneObjectList(this);
         }
 
@@ -108,7 +99,7 @@ namespace CSharpGL
         {
             if (this.Enabled)
             {
-                ScriptComponentList scriptList = this.scriptList;
+                ScriptComponentList scriptList = this.ScriptList;
                 if (scriptList.Count > 0)
                 {
                     foreach (var script in scriptList)
