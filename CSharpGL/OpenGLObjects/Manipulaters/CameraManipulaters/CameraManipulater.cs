@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
+    //TODO: post a blog about two ways of using CameraManipulater.
     /// <summary>
     /// Manipulate camera.
     /// </summary>
