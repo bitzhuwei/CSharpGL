@@ -14,7 +14,7 @@ namespace CSharpGL
 
         void canvas_MouseMove(object sender, MouseEventArgs e);
 
-        void SetBounds(int width, int height);
+        //void SetBounds(int width, int height);
 
         void canvas_MouseDown(object sender, MouseEventArgs e);
     }

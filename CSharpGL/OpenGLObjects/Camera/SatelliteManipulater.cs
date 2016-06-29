@@ -159,7 +159,7 @@ namespace CSharpGL
             }
         }
 
-        void ISatelliteManipulater.SetBounds(int width, int height)
+        void SetBounds(int width, int height)
         {
             this.bound.Width = width;
             this.bound.Height = height;
@@ -171,7 +171,7 @@ namespace CSharpGL
             {
                 this.downPosition = e.Location;
                 var control = sender as Control;
-                ((ISatelliteManipulater)this).SetBounds(control.Width, control.Height);
+                this.SetBounds(control.Width, control.Height);
                 this.mouseDownFlag = true;
                 PrepareCamera();
             }

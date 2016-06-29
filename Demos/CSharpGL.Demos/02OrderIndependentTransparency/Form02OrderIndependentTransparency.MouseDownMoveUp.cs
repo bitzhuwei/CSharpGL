@@ -21,7 +21,7 @@ namespace CSharpGL.Demos
             this.lastMousePosition = new Point(e.X, e.Y);
 
             // operate camera
-            rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
+            //rotator.SetBounds(this.glCanvas1.Width, this.glCanvas1.Height);
             rotator.canvas_MouseDown(sender, e);
 
             if (sender == this.glCanvas1)
