@@ -116,6 +116,9 @@ namespace CSharpGL
             this.DownKey = 'e';
 
             this.StepLength = 0.1f;
+            this.HorizontalRotationSpeed = 0.002f;
+            this.VerticalRotationSpeed = 0.002f;
+            this.BindingMouseButtons = MouseButtons.Right;
 
             this.keyPressEvent = new KeyPressEventHandler(((IKeyboardHandler)this).canvas_KeyPress);
             this.mouseDownEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseDown);
@@ -130,9 +133,6 @@ namespace CSharpGL
 
             this.camera = camera;
             this.canvas = canvas;
-
-            this.HorizontalRotationSpeed = 0.002f;
-            this.VerticalRotationSpeed = 0.002f;
 
             canvas.KeyPress += this.keyPressEvent;
             canvas.MouseDown += this.mouseDownEvent;
