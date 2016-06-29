@@ -13,10 +13,10 @@ namespace CSharpGL
         /// <summary>
         /// Color Coded Picking
         /// </summary>
-        /// <param name="arg></param>
-        /// <param name="x">鼠标位置</param>
-        /// <param name="y">鼠标位置</param>
-        /// <param name="pickableElements">在哪些对象中执行拾取操作</param>
+        /// <param name="arg"></param>
+        /// <param name="x">mouse position in control's coordinate sytem.</param>
+        /// <param name="y">mouse position in control's coordinate sytem.</param>
+        /// <param name="pickableElements">picking among which elements?</param>
         /// <returns></returns>
         public static PickedGeometry Pick(
             RenderEventArg arg,
@@ -37,13 +37,11 @@ namespace CSharpGL
         /// <summary>
         /// Color Coded Picking
         /// </summary>
-        /// <param name="camera"></param>
-        /// <param name="x">鼠标位置</param>
-        /// <param name="y">鼠标位置</param>
-        /// <param name="radius">以鼠标位置为中心，在半径为<paramref name="radius"/>的正方形范围内进行拾取</param>
-        /// <param name="width">画布宽度</param>
-        /// <param name="height">画布高度</param>
-        /// <param name="pickableElements">在哪些对象中执行拾取操作</param>
+        /// <param name="arg"></param>
+        /// <param name="x">mouse position in control's coordinate sytem.</param>
+        /// <param name="y">mouse position in control's coordinate sytem.</param>
+        /// <param name="radius">picking in rectangle whose center is at <paramref name="x"/>, <paramref name="y"/> and with specified <paramref name="radius"/>.</param>
+        /// <param name="pickableElements">picking among which elements?</param>
         /// <returns></returns>
         public static List<Tuple<Point, PickedGeometry>> Pick(
             RenderEventArg arg,
@@ -60,8 +58,8 @@ namespace CSharpGL
         /// Color Coded Picking
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="rect">拾取范围</param>
-        /// <param name="pickableElements">在哪些对象中执行拾取操作</param>
+        /// <param name="rect">picking area.</param>
+        /// <param name="pickableElements">picking among which elements?</param>
         /// <returns></returns>
         public static List<Tuple<Point, PickedGeometry>> Pick(
             RenderEventArg arg,
@@ -81,7 +79,7 @@ namespace CSharpGL
                 if (x < 0 || arg.CanvasRect.Width <= x || y < 0 || arg.CanvasRect.Height <= y) { continue; }
 
                 uint stageVertexId = tuple.Item2;
-                PickedGeometry pickedGeometry = PickGeometry(arg,
+                PickedGeometry pickedGeometry = GetPickGeometry(arg,
                     x, y, stageVertexId, pickableElements);
                 if (pickedGeometry != null)
                 {
@@ -105,7 +103,11 @@ namespace CSharpGL
                 var array = (byte*)codedColor.Header.ToPointer();
                 for (int i = 0; i < codedColor.Length; i++)
                 {
-                    if (array[i] < byte.MaxValue) { result = true; break; }
+                    if (array[i] < byte.MaxValue)
+                    {
+                        result = true;
+                        break;
+                    }
                 }
             }
 
@@ -163,7 +165,7 @@ namespace CSharpGL
 
 
         /// <summary>
-        /// get picked primitive
+        /// get picked geometry.
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="x"></param>
@@ -171,7 +173,7 @@ namespace CSharpGL
         /// <param name="stageVertexId"></param>
         /// <param name="pickableElements"></param>
         /// <returns></returns>
-        private static PickedGeometry PickGeometry(RenderEventArg arg,
+        private static PickedGeometry GetPickGeometry(RenderEventArg arg,
             int x, int y,
             uint stageVertexId,
             params IColorCodedPicking[] pickableElements)
@@ -179,18 +181,16 @@ namespace CSharpGL
             PickedGeometry pickedGeometry = null;
             foreach (var item in pickableElements)
             {
-                pickedGeometry = item.Pick(arg, stageVertexId,
-                    x, y);
-                if (pickedGeometry != null)
-                { break; }
+                pickedGeometry = item.GetPickedGeometry(arg, stageVertexId, x, y);
+
+                if (pickedGeometry != null) { break; }
             }
 
             return pickedGeometry;
         }
 
         /// <summary>
-        /// 读取指定范围内的像素，获取其代表的VertexId
-        /// <para>Read specified rect and get the VertexIds they represent.</para>
+        /// <para>Read pixels in specified rect and get the VertexIds they represent.</para>
         /// </summary>
         /// <param name="rect"></param>
         /// <param name="canvasHeight"></param>
@@ -250,8 +250,7 @@ namespace CSharpGL
             return result;
         }
 
-        public static unsafe uint ReadPixel(
-            int x, int y, int canvasHeight)
+        public static unsafe uint ReadPixel(int x, int y, int canvasHeight)
         {
             uint stageVertexId = uint.MaxValue;
             // get coded color.

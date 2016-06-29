@@ -59,14 +59,14 @@ namespace CSharpGL
             { return 0; }
         }
 
-        public PickedGeometry Pick(
+        public PickedGeometry GetPickedGeometry(
             RenderEventArg arg,
             uint stageVertexId,
             int x, int y)
         {
             InnerPickableRenderer renderer = this.innerPickableRenderer;
             if (renderer != null)
-            { return this.innerPickableRenderer.Pick(arg, stageVertexId, x, y); }
+            { return this.innerPickableRenderer.GetPickedGeometry(arg, stageVertexId, x, y); }
             else
             { return null; }
         }

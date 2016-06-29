@@ -37,7 +37,7 @@ namespace CSharpGL
             return vertexCount;
         }
 
-        public abstract PickedGeometry Pick(
+        public abstract PickedGeometry GetPickedGeometry(
             RenderEventArg arg,
             uint stageVertexId,
             int x, int y);

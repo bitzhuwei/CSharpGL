@@ -30,16 +30,14 @@ namespace CSharpGL
         uint GetVertexCount();
 
         /// <summary>
-        /// Get the primitive according to vertex's id.
-        /// <para>Note: the <paramref name="stageVertexId"/> refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</para>
-        /// <para>You can use <see cref="PickedPrimitiveHelper.TryPick()"/> to simplify your work.</para>
+        /// Get the geometry according to vertex's id.
+        /// <para>Note: the <paramref name="stageVertexId"/> refers to the last vertex that constructs the geometry. And it's unique among all elements in a scene.</para>
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId">Refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</param>
         /// <param name="x">mouse position</param>
         /// <param name="y">mouse position</param>
         /// <returns></returns>
-        PickedGeometry Pick(RenderEventArg arg, uint stageVertexId, 
-            int x, int y);
+        PickedGeometry GetPickedGeometry(RenderEventArg arg, uint stageVertexId, int x, int y);
     }
 }
