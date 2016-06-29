@@ -21,7 +21,7 @@ namespace CSharpGL.Demos
 
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
             //this.glCanvas1.MouseDown += glCanvas1_MouseDown;
-            this.glCanvas1.MouseMove += glCanvas1_MouseMove;
+            //this.glCanvas1.MouseMove += glCanvas1_MouseMove;
             //this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             //this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             //this.glCanvas1.Resize += glCanvas1_Resize;
@@ -33,12 +33,14 @@ namespace CSharpGL.Demos
         {
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
+            this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle);
+
             // Cross cursor shows where the mouse is.
-            OpenGL.DrawText(this.lastMousePosition.X - offset.X,
-                this.glCanvas1.Height - (this.lastMousePosition.Y + offset.Y) - 1,
+            Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
+            OpenGL.DrawText(mousePosition.X - offset.X,
+                this.glCanvas1.Height - (mousePosition.Y + offset.Y) - 1,
                 Color.Red, "Courier New", crossCursorSize, "o");
 
-            this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle);
         }
 
         private const float crossCursorSize = 40.0f;

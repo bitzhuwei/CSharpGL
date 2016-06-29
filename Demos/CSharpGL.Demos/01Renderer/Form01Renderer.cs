@@ -180,6 +180,7 @@ namespace CSharpGL.Demos
 
         private void DrawText(PaintEventArgs e)
         {
+            Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
             PickedGeometry pickedGeometry = this.pickedGeometry;
             if (pickedGeometry != null)
             {
@@ -187,13 +188,13 @@ namespace CSharpGL.Demos
                     pickedGeometry.Indexes.PrintArray());
                 SizeF size = e.Graphics.MeasureString(content, font);
                 // make sure the text be displayed.
-                int x = this.lastMousePosition.X - (int)(size.Width / 2) + 20;
+                int x = mousePosition.X - (int)(size.Width / 2) + 20;
                 if (x + (int)(size.Width) - 20 >= this.glCanvas1.Width)
                 { x = this.glCanvas1.Width - (int)size.Width + 20; }
                 else if (x < 0)
                 { x = 0; }
                 // make sure the text be displayed.
-                int y = this.glCanvas1.Height - this.lastMousePosition.Y - 1;
+                int y = this.glCanvas1.Height - mousePosition.Y - 1;
                 if (y + size.Height + 1 >= this.glCanvas1.Height)
                 { y = this.glCanvas1.Height - 15 - 5; }
                 else if (y < 15) { if (y > 0) { y += 15; } else { y = 15; } }
@@ -205,16 +206,16 @@ namespace CSharpGL.Demos
             }
             else
             {
-                OpenGL.DrawText(this.lastMousePosition.X,
-                    this.glCanvas1.Height - this.lastMousePosition.Y - 1,
+                OpenGL.DrawText(mousePosition.X,
+                    this.glCanvas1.Height - mousePosition.Y - 1,
                     this.TextColor, "Courier New", fontSize,
                     "");
                 this.lblDrawText.Text = "";
             }
             {
                 // Cross cursor shows where the mouse is.
-                OpenGL.DrawText(this.lastMousePosition.X - offset.X,
-                    this.glCanvas1.Height - (this.lastMousePosition.Y + offset.Y) - 1,
+                OpenGL.DrawText(mousePosition.X - offset.X,
+                    this.glCanvas1.Height - (mousePosition.Y + offset.Y) - 1,
                     Color.Red, "Courier New", crossCursorSize, "o");
             }
         }

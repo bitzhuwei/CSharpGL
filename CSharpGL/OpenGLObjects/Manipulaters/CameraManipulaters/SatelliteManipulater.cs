@@ -25,7 +25,7 @@ namespace CSharpGL
         private MouseEventHandler mouseUpEvent;
         private MouseEventHandler mouseWheelEvent;
 
-        private Point downPosition = new Point();
+        private Point lastPosition = new Point();
         private Size bound = new Size();
         private bool mouseDownFlag = false;
         private vec3 up;
@@ -102,17 +102,28 @@ namespace CSharpGL
             this.camera.MouseWheel(e.Delta);
         }
 
-        void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
+        void SetBounds(int width, int height)
+        {
+            this.bound.Width = width;
+            this.bound.Height = height;
+        }
+
+        void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == this.BindingMouseButtons)
             {
-                this.mouseDownFlag = false;
+                this.lastPosition = e.Location;
+                var control = sender as Control;
+                this.SetBounds(control.Width, control.Height);
+                this.mouseDownFlag = true;
+                PrepareCamera();
             }
         }
 
         void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.mouseDownFlag && e.Button == this.BindingMouseButtons)
+            if (this.mouseDownFlag && e.Button == this.BindingMouseButtons
+                && (e.X != lastPosition.X || e.Y != lastPosition.Y))
             {
                 IViewCamera camera = this.camera;
                 if (camera == null) { return; }
@@ -121,7 +132,7 @@ namespace CSharpGL
                 vec3 right = this.right;
                 vec3 up = this.up;
                 Size bound = this.bound;
-                Point downPosition = this.downPosition;
+                Point downPosition = this.lastPosition;
                 {
                     float deltaX = -this.HorizontalRotationFactor * (e.X - downPosition.X) / bound.Width;
                     float cos = (float)Math.Cos(deltaX);
@@ -155,26 +166,17 @@ namespace CSharpGL
                 this.back = back;
                 this.right = right;
                 this.up = up;
-                this.downPosition = e.Location;
+                this.lastPosition = e.Location;
             }
         }
 
-        void SetBounds(int width, int height)
-        {
-            this.bound.Width = width;
-            this.bound.Height = height;
-        }
-
-        void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == this.BindingMouseButtons)
             {
-                this.downPosition = e.Location;
-                var control = sender as Control;
-                this.SetBounds(control.Width, control.Height);
-                this.mouseDownFlag = true;
-                PrepareCamera();
+                this.mouseDownFlag = false;
             }
         }
+
     }
 }

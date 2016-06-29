@@ -26,8 +26,7 @@ namespace CSharpGL
         private MouseEventHandler mouseWheelEvent;
 
         private bool mouseDownFlag = false;
-        private int lastLocationX;
-        private int lastLocationY;
+        private Point lastPosition;
 
         private char upcaseFrontKey;
         private char upcaseBackKey;
@@ -165,25 +164,24 @@ namespace CSharpGL
             if (e.Button == this.BindingMouseButtons)
             {
                 this.mouseDownFlag = true;
-                this.lastLocationX = e.X;
-                this.lastLocationY = e.Y;
+                this.lastPosition = e.Location;
             }
         }
 
         void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.mouseDownFlag && e.Button == this.BindingMouseButtons)
+            if (this.mouseDownFlag && e.Button == this.BindingMouseButtons
+                && (e.X != this.lastPosition.X || e.Y != this.lastPosition.Y))
             {
-                int x = e.X; int y = e.Y;
-                mat4 rotationMatrix = glm.rotate(this.HorizontalRotationSpeed * (x - this.lastLocationX), -this.camera.UpVector);
+                mat4 rotationMatrix = glm.rotate(this.HorizontalRotationSpeed * (e.X - this.lastPosition.X), -this.camera.UpVector);
                 var front = new vec4(this.camera.GetFront(), 1.0f);
                 vec4 front1 = rotationMatrix * front;
-                rotationMatrix = glm.rotate(this.VerticalRotationSpeed * (lastLocationY - e.Y), this.camera.GetRight());
+                rotationMatrix = glm.rotate(this.VerticalRotationSpeed * (this.lastPosition.Y - e.Y), this.camera.GetRight());
                 vec4 front2 = rotationMatrix * front1;
                 front2 = front2.normalize();
                 this.camera.Target = this.camera.Position + new vec3(front2);
 
-                this.lastLocationX = x; this.lastLocationY = y;
+                this.lastPosition = e.Location;
             }
         }
 
