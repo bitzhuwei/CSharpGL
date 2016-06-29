@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace CSharpGL
 {
     /// <summary>
-    /// 用鼠标旋转模型。
+    /// Manipulate a camera in first-persppective's view.
     /// </summary>
     public class FirstPerspectiveManipulater :
         CameraManipulater, IMouseHandler, IKeyboardHandler
