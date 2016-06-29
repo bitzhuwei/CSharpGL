@@ -59,7 +59,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strBasic)]
         [Description("update state of this object.")]
-        public ScriptComponentList ScriptList { get; protected set; }
+        public ScriptComponentList ScriptList { get; private set; }
 
         /// <summary>
         /// Enabled or not.
