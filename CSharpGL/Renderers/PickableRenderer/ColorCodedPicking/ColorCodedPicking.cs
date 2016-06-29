@@ -70,6 +70,7 @@ namespace CSharpGL
         {
             var result = new List<Tuple<Point, PickedGeometry>>();
             if (pickableElements.Length == 0) { return result; }
+            if (!PickedSomething(rect, arg.CanvasRect)) { return result; }
 
             Render4Picking(arg, pickableElements);
             List<Tuple<Point, uint>> stageVertexIdList = ReadPixels(rect, arg.CanvasRect.Height);
@@ -91,8 +92,28 @@ namespace CSharpGL
             return result;
         }
 
+        private static unsafe bool PickedSomething(Rectangle rect, Rectangle rectangle)
+        {
+            if (rect.Width <= 0 || rect.Height <= 0) { return false; }
+
+            bool result = false;
+            using (var codedColor = new UnmanagedArray<byte>(rect.Width * rect.Height))
+            {
+                OpenGL.ReadPixels(rect.X, rectangle.Height - rect.Y - 1, rect.Width, rect.Height,
+                    OpenGL.GL_DEPTH_COMPONENT, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
+
+                var array = (byte*)codedColor.Header.ToPointer();
+                for (int i = 0; i < codedColor.Length; i++)
+                {
+                    if (array[i] < byte.MaxValue) { result = true; break; }
+                }
+            }
+
+            return result;
+        }
+
         /// <summary>
-        /// 在多个buffer中拾取一个图元
+        /// render specified objects for color-coded picking.
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="pickableElements"></param>
@@ -107,8 +128,7 @@ namespace CSharpGL
             var originalClearColor = new float[4];
             OpenGL.GetFloat(GetTarget.ColorClearValue, originalClearColor);
 
-            // 白色意味着没有拾取到任何对象
-            // white color: nothing picked.
+            // white color means nothing picked.
             OpenGL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
@@ -235,7 +255,7 @@ namespace CSharpGL
         {
             uint stageVertexId = uint.MaxValue;
             // get coded color.
-            using (var codedColor = new UnmanagedArray<byte>(4))
+            using (var codedColor = new UnmanagedArray<Pixel>(1))
             {
                 OpenGL.ReadPixels(x, canvasHeight - y - 1, 1, 1, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, codedColor.Header);
                 var array = (Pixel*)codedColor.Header.ToPointer();
