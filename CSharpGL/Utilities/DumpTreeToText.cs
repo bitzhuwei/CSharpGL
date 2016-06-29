@@ -24,7 +24,7 @@ namespace System
         private static void GetBuilder<T>(StringBuilder builder, ITreeNode<T> tree, ref int tabSpace)
             where T : ITreeNode<T>
         {
-            builder.AppendLine(GetPreMarks(tree) + tree.ToString());
+            builder.AppendLine(GetPreMarks(tree) + tree.Self.ToString());
             tabSpace++;
             foreach (var item in tree.Children)
             {
