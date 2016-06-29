@@ -183,7 +183,6 @@
     <Compile Include="Scene\SceneObject.ITreeNode.cs" />
     <Compile Include="Scene\SceneObjectFactory.cs" />
     <Compile Include="Scene\Components\ScriptComponentList.cs" />
-    <Compile Include="Utilities\ItemEventArgs.cs" />
     <Compile Include="Scene\Components\RendererComponent.cs" />
     <Compile Include="Scene\Components\ScriptComponent.cs" />
     <Compile Include="Scene\Components\TransformComponent.cs" />

@@ -172,4 +172,35 @@ namespace System
             return string.Format("Count: {0}", this.list.Count);
         }
     }
+
+    public class AddItemEventArgs<T> : EventArgs
+    {
+        public T NewItem { get; private set; }
+
+        public AddItemEventArgs(T newItem)
+        {
+            this.NewItem = newItem;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Added item: {0}", NewItem);
+        }
+    }
+
+    public class RemoveItemEventArgs<T> : EventArgs
+    {
+        public T RemovedItem { get; private set; }
+
+        public RemoveItemEventArgs(T removedItem)
+        {
+            this.RemovedItem = removedItem;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Removed item: {0}", RemovedItem);
+        }
+    }
+
 }
