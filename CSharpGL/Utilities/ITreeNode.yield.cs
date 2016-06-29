@@ -20,9 +20,9 @@ namespace System
             yield return treeNode.Self;
             for (int i = 0; i < treeNode.Children.Count; i++)
             {
-                var child = treeNode.Children[i];
-                var enumerable = EnumerateRecursively(child);
-                foreach (var item in enumerable)
+                T child = treeNode.Children[i];
+                IEnumerable<T> enumerable = EnumerateRecursively(child);
+                foreach (T item in enumerable)
                 {
                     yield return item;
                 }
@@ -43,7 +43,7 @@ namespace System
             while (stack.Count > 0)
             {
                 ITreeNode<T> current = stack.Pop();
-                foreach (var item in current.Children)
+                foreach (T item in current.Children)
                 {
                     stack.Push(item);
                 }
