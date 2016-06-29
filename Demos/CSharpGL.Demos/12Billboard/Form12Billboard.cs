@@ -51,7 +51,11 @@ namespace CSharpGL.Demos
                 this.labelRenderer.Render(arg);
             }
             {
-                UIRenderersDraw(arg);
+                UIRoot uiRoot = this.uiRoot;
+                if (uiRoot != null)
+                {
+                    uiRoot.Render(arg);
+                }
             }
 
             // Cross cursor shows where the mouse is.
@@ -66,23 +70,7 @@ namespace CSharpGL.Demos
         private const float crossCursorSize = 40.0f;
 
         private Point offset = new Point(13, 11);
-        private void UIRenderersDraw(RenderEventArg arg)
-        {
-            UIRoot uiRoot = this.uiRoot;
-            if (uiRoot != null)
-            {
-                uiRoot.Render(arg);
-            }
-        }
-        //void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
-        //{
-        //    ICamera camera = this.camera;
-        //    if (camera != null)
-        //    {
-        //        camera.MouseWheel(e.Delta);
-        //    }
-        //}
-
+      
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
             if (camera != null)
@@ -92,7 +80,6 @@ namespace CSharpGL.Demos
 
             this.uiRoot.Size = this.glCanvas1.Size;
         }
-
 
         private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
