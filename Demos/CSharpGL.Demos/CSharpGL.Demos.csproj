@@ -433,10 +433,10 @@
     <None Include="12Billboard\billboard.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="12Billboard\Cube.frag">
+    <None Include="12Billboard\Teapot.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="12Billboard\Cube.vert">
+    <None Include="12Billboard\Teapot.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="13SimplexNoise\sunColor.grd" />
