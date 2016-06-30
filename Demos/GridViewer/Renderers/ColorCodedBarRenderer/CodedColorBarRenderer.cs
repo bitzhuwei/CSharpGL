@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace GridViewer
 {
-    class ColorCodedBarRenderer : RendererBase
+    class CodedColorBarRenderer : RendererBase
     {
         public CodedColor[] CodedColors { get; private set; }
 
@@ -20,7 +20,7 @@ namespace GridViewer
 
         public Renderer[] ValueRenderers { get; private set; }
 
-        public ColorCodedBarRenderer(CodedColor[] codedColors)
+        public CodedColorBarRenderer(CodedColor[] codedColors)
         {
             if (codedColors == null || codedColors.Length < 1)
             {
@@ -35,9 +35,9 @@ namespace GridViewer
                 shaderCodes[1] = new ShaderCode(File.ReadAllText(
                     @"shaders\ColorCodedBarRect.frag"), ShaderType.FragmentShader);
                 var map = new PropertyNameMap();
-                map.Add("in_Position", ColorCodedBarRect.strPosition);
-                map.Add("in_Coord", ColorCodedBarRect.strCoord);
-                var model = new ColorCodedBarRect(codedColors);
+                map.Add("in_Position", CodedColorBarRect.strPosition);
+                map.Add("in_Coord", CodedColorBarRect.strCoord);
+                var model = new CodedColorBarRect(codedColors);
                 this.RectRenderer = new Renderer(model, shaderCodes, map);
             }
             {
@@ -47,8 +47,8 @@ namespace GridViewer
                 shaderCodes[1] = new ShaderCode(File.ReadAllText(
                     @"shaders\ColorCodedBarLine.frag"), ShaderType.FragmentShader);
                 var map = new PropertyNameMap();
-                map.Add("in_Position", ColorCodedBarLine.strPosition);
-                var model = new ColorCodedBarLine(codedColors);
+                map.Add("in_Position", CodedColorBarLine.strPosition);
+                var model = new CodedColorBarLine(codedColors);
                 this.LineRenderer = new Renderer(model, shaderCodes, map);
             }
             this.ValueRenderers = new Renderer[codedColors.Length];

@@ -31,7 +31,7 @@ namespace GridViewer
                 this.Scene.UIRoot.Children.Add(uiAxis);
             }
             {
-                var uiCodedColorBar = new UIColorCodedBarRenderer(
+                var uiCodedColorBar = new UICodedColorBarRenderer(
                     CodedColor.GetDefault(),
                     AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right,
                     new Padding(120, 10, 60, 10 + 40), new Size(400, 30), -100, 100);

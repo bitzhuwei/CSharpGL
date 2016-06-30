@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace GridViewer
 {
-    public partial class UIColorCodedBarRenderer : UIRenderer
+    public partial class UICodedColorBarRenderer : UIRenderer
     {
         private CodedColor[] codedColors;
 
-        public UIColorCodedBarRenderer(CodedColor[] codedColors,
+        public UICodedColorBarRenderer(CodedColor[] codedColors,
             AnchorStyles anchor, Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
             : base(anchor, margin, size, zNear, zFar)
@@ -23,7 +23,7 @@ namespace GridViewer
             this.codedColors = codedColors;
             //var model = new CodedColorBarRect(codedColors);
             //Renderer renderer = new Renderer(model, shaderCodes, map);
-            var renderer = new ColorCodedBarRenderer(codedColors);
+            var renderer = new CodedColorBarRenderer(codedColors);
             this.Renderer = renderer;
 
             //this.SwitchList.Add(new ClearColorSwitch());
@@ -35,7 +35,7 @@ namespace GridViewer
             mat4 view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
             float length = Math.Max(this.Size.Width, this.Size.Height);
             mat4 model = glm.scale(mat4.identity(), new vec3(this.Size.Width, this.Size.Height, length) * 0.45f);
-            var renderer = this.Renderer as ColorCodedBarRenderer;
+            var renderer = this.Renderer as CodedColorBarRenderer;
             renderer.RectRenderer.SetUniform("mvp", projection * view * model);
             renderer.LineRenderer.SetUniform("mvp", projection * view * model);
 
