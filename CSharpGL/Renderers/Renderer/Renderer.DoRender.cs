@@ -99,12 +99,5 @@ namespace CSharpGL
             foreach (var item in updatedUniforms) { item.SetUniform(program); uniformVariableStack.Push(item); }
         }
 
-        public IndexBufferPtr IndexBufferPtr
-        {
-            get
-            {
-                return this.indexBufferPtr;
-            }
-        }
     }
 }

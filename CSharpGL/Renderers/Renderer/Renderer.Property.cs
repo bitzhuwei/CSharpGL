@@ -50,5 +50,14 @@ namespace CSharpGL
         {
             get { return uniformVariables; }
         }
+
+        public IndexBufferPtr IndexBufferPtr
+        {
+            get
+            {
+                return this.indexBufferPtr;
+            }
+        }
+
     }
 }
