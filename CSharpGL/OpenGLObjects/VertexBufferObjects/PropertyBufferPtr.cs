@@ -18,7 +18,7 @@ namespace CSharpGL
         /// 在渲染时此VBO要执行绑定自己、指明数据结构和启用此VBO等操作。
         /// </summary>
         /// <param name="varNameInVertexShader"></param>
-        /// <param name="bufferID">用GL.GenBuffers()得到的VBO的ID。</param>
+        /// <param name="bufferId">用GL.GenBuffers()得到的VBO的ID。</param>
         /// <param name="dataSize">gl.VertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);
         /// <para>表示第2个参数</para></param>
         /// <param name="dataType">GL_FLOAT etc
@@ -27,8 +27,8 @@ namespace CSharpGL
         /// <para>表示第3个参数</para></param>
         /// <param name="length">此VBO含有多个个元素？</param>
         internal PropertyBufferPtr(string varNameInVertexShader,
-            uint bufferID, int dataSize, uint dataType, int length, int byteLength)
-            : base(bufferID, length, byteLength)
+            uint bufferId, int dataSize, uint dataType, int length, int byteLength)
+            : base(bufferId, length, byteLength)
         {
             if (glVertexAttribPointer == null)
             {
