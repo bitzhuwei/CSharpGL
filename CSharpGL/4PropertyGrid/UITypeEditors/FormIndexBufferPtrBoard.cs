@@ -69,14 +69,38 @@ namespace CSharpGL
             }
         }
 
-        private void trackFirst_Scroll(object sender, EventArgs e)
+        private void txtFirst_TextChanged(object sender, EventArgs e)
+        {
+            int value;
+            if (int.TryParse(this.txtFirst.Text, out value))
+            {
+                if (value < this.trackFirst.Minimum) { value = this.trackFirst.Minimum; }
+                else if (value > this.trackFirst.Maximum) { value = this.trackFirst.Maximum; }
+
+                this.trackFirst.Value = value;
+            }
+        }
+
+        private void txtCount_TextChanged(object sender, EventArgs e)
+        {
+            int value;
+            if (int.TryParse(this.txtCount.Text, out value))
+            {
+                if (value < this.trackCount.Minimum) { value = this.trackCount.Minimum; }
+                else if (value > this.trackCount.Maximum) { value = this.trackCount.Maximum; }
+
+                this.trackCount.Value = value;
+            }
+        }
+
+        private void trackFirst_ValueChanged(object sender, EventArgs e)
         {
             this.controller.SetFirst(this.trackFirst.Value);
             this.lblFirstValue.Text = this.trackFirst.Value.ToString();
             this.Text = string.Format("{0}", this.controller);
         }
 
-        private void trackCount_Scroll(object sender, EventArgs e)
+        private void trackCount_ValueChanged(object sender, EventArgs e)
         {
             this.controller.SetCount(this.trackCount.Value);
             this.lblCountValue.Text = this.trackCount.Value.ToString();
