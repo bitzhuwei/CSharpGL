@@ -65,7 +65,7 @@ namespace CSharpGL
 #if DEBUG
             stackLevel++;
             if (stackLevel > ushort.MaxValue)
-            { throw new Exception(string.Format("Circular reference in UI tree!")); }
+            { throw new Exception(string.Format("Maybe circular reference in UI tree!")); }
 #endif
             renderer.Render(arg);
             foreach (var item in renderer.Children)
