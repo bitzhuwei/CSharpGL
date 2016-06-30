@@ -39,13 +39,19 @@ namespace GridViewer
             this.FontResource = FontResource.Default;
         }
 
+        protected override void DoInitialize()
+        {
+            base.DoInitialize();
+
+            this.SetUniform("fontTexture", this.FontResource.GetSamplerValue());
+        }
         protected override void DoRender(RenderEventArg arg)
         {
-            //blendSwitch.On();
+            blendSwitch.On();
 
             base.DoRender(arg);
 
-            //blendSwitch.Off();
+            blendSwitch.Off();
         }
     }
 }
