@@ -120,6 +120,7 @@
     <Compile Include="Renderers\CodedColorBarRenderer\CodedColor.cs" />
     <Compile Include="Renderers\CodedColorBarRenderer\CodedColorsHelper.cs" />
     <Compile Include="Renderers\CodedColorBarRenderer\CodedColorBarRect.cs" />
+    <Compile Include="Renderers\CodedColorBarRenderer\CodedColorValueRenderer.cs" />
     <Compile Include="Renderers\CodedColorBarRenderer\UICodedColorBar.cs" />
     <Compile Include="Renderers\BoundedRenderer.cs" />
     <Compile Include="ScientificCanvas.Property.cs">

@@ -50,9 +50,9 @@ namespace CSharpGL
             this.Name = this.GetType().Name;
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"Resources.UIText.vert"), ShaderType.VertexShader);
+@"Resources.TextModel.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"Resources.UIText.frag"), ShaderType.FragmentShader);
+@"Resources.TextModel.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("position", "position");
             map.Add("uv", "uv");
