@@ -42,13 +42,25 @@ namespace GridViewer
 
         protected override void DoRender(RenderEventArg arg)
         {
+            const int shrink = 50;
             mat4 projection = this.GetOrthoProjection();
             mat4 view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
             //float length = Math.Max(this.Size.Width, this.Size.Height);
-            mat4 model = glm.scale(mat4.identity(), new vec3(this.Size.Width / 2 - 1, this.Size.Height / 2 - 1, 1));
+            mat4 model = glm.scale(mat4.identity(), new vec3(this.Size.Width / 2 - shrink, this.Size.Height / 2 - 1, 1));
             var renderer = this.Renderer as CodedColorBarRenderer;
             renderer.RectRenderer.SetUniform("mvp", projection * view * model);
             renderer.LineRenderer.SetUniform("mvp", projection * view * model);
+            for (int i = 0; i < renderer.ValueRenderers.Length; i++)
+            {
+                Renderer valueRenderer = renderer.ValueRenderers[i];
+                if (valueRenderer != null)
+                {
+                    model = glm.translate(mat4.identity(), new vec3(0,
+                        -(this.Size.Width / 2 - shrink) + (this.Size.Width - shrink * 2) / (this.codedColors.Length - 1) * i,
+                        0));
+                    valueRenderer.SetUniform("mvp", projection * view * model);
+                }
+            }
 
             base.DoRender(arg);
         }
