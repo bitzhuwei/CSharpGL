@@ -34,9 +34,9 @@ namespace CSharpGL
         /// <summary>
         /// 为给定VBO执行渲染时所需的操作。
         /// </summary>
-        /// <param name="bufferID">用GL.GenBuffers()得到的VBO的ID。</param>
+        /// <param name="bufferId">用GL.GenBuffers()得到的VBO的ID。</param>
         /// <param name="length">此VBO含有多个个元素？</param>
-        internal BufferPtr(uint bufferID, int length, int byteLength)
+        internal BufferPtr(uint bufferId, int length, int byteLength)
         {
             if (glBindBuffer == null)
             {
@@ -44,7 +44,7 @@ namespace CSharpGL
                 glDeleteBuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteBuffers>();
             }
 
-            this.BufferId = bufferID;
+            this.BufferId = bufferId;
             this.Length = length;
             this.ByteLength = byteLength;
         }

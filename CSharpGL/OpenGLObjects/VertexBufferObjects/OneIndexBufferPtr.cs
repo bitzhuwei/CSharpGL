@@ -6,25 +6,26 @@ using System.Text;
 
 namespace CSharpGL
 {
+    // 用GL.DrawElements()执行一个索引buffer的渲染操作。
     /// <summary>
-    /// 用GL.DrawElements()执行一个索引buffer的渲染操作。
+    /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
     /// </summary>
     public sealed class OneIndexBufferPtr : IndexBufferPtr
     {
         /// <summary>
-        /// 用GL.DrawElements()执行一个索引buffer的渲染操作。
+        /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
         /// </summary>
-        /// <param name="bufferID">用GL.GenBuffers()得到的VBO的ID。</param>
+        /// <param name="bufferId">用GL.GenBuffers()得到的VBO的Id。</param>
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
         /// <param name="firstIndex">要渲染的第一个索引的位置。</param>
         /// <param name="elementCount">索引数组中有多少个元素。</param>
-        /// <param name="type">type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
+        /// <param name="type">type in glDrawElements(uint mode, int count, uint type, IntPtr indices);
         /// <para>表示第3个参数，表示索引元素的类型。</para></param>
         /// <param name="length">此VBO含有多个个元素？</param>
         /// <param name="byteLength">此VBO占多少字节？</param>
-        internal OneIndexBufferPtr(uint bufferID, DrawMode mode, int firstIndex, int elementCount,
+        internal OneIndexBufferPtr(uint bufferId, DrawMode mode, int firstIndex, int elementCount,
             IndexElementType type, int length, int byteLength)
-            : base(mode, bufferID, length, byteLength)
+            : base(mode, bufferId, length, byteLength)
         {
             this.FirstIndex = firstIndex;
             this.ElementCount = elementCount;
@@ -74,11 +75,11 @@ namespace CSharpGL
             {
                 // this may render points that should not appear. 
                 // so need to select by another picking.
-                OpenGL.DrawElements(DrawMode.Points, this.ElementCount, (uint)this.Type, offset);
+                OpenGL.DrawElements((uint)DrawMode.Points, this.ElementCount, (uint)this.Type, offset);
             }
             else
             {
-                OpenGL.DrawElements(this.Mode, this.ElementCount, (uint)this.Type, offset);
+                OpenGL.DrawElements((uint)this.Mode, this.ElementCount, (uint)this.Type, offset);
             }
         }
 
