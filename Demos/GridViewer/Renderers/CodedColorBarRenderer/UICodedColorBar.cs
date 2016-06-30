@@ -44,8 +44,8 @@ namespace GridViewer
         {
             mat4 projection = this.GetOrthoProjection();
             mat4 view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
-            float length = Math.Max(this.Size.Width, this.Size.Height);
-            mat4 model = glm.scale(mat4.identity(), new vec3(this.Size.Width, this.Size.Height, length) * 0.45f);
+            //float length = Math.Max(this.Size.Width, this.Size.Height);
+            mat4 model = glm.scale(mat4.identity(), new vec3(this.Size.Width / 2 - 1, this.Size.Height / 2 - 1, 1));
             var renderer = this.Renderer as CodedColorBarRenderer;
             renderer.RectRenderer.SetUniform("mvp", projection * view * model);
             renderer.LineRenderer.SetUniform("mvp", projection * view * model);
