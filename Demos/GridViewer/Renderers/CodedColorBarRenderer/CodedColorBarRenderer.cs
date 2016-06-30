@@ -20,9 +20,14 @@ namespace GridViewer
 
         public Renderer LineRenderer { get; private set; }
 
-        public Renderer[] ValueRenderers { get; private set; }
+        public CodedColorValueRenderer[] ValueRenderers { get; private set; }
 
-        public CodedColorBarRenderer(CodedColor[] codedColors)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="codedColors"></param>
+        /// <param name="maxValueLength"></param>
+        public CodedColorBarRenderer(CodedColor[] codedColors, int maxCharCount = 100)
         {
             if (codedColors == null || codedColors.Length < 1)
             {
@@ -53,7 +58,22 @@ namespace GridViewer
                 var model = new CodedColorBarLine(codedColors);
                 this.LineRenderer = new Renderer(model, shaderCodes, map);
             }
-            this.ValueRenderers = new Renderer[codedColors.Length];
+            {
+                this.ValueRenderers = new CodedColorValueRenderer[codedColors.Length];
+                var shaderCodes = new ShaderCode[2];
+                shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
+@"Resources.TextModel.vert",1), ShaderType.VertexShader);
+                shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
+@"Resources.TextModel.frag",1), ShaderType.FragmentShader);
+                var map = new PropertyNameMap();
+                map.Add("position", "position");
+                map.Add("uv", "uv");
+                for (int i = 0; i < this.ValueRenderers.Length; i++)
+                {
+                    var valueModel = new TextModel(maxCharCount);
+                    this.ValueRenderers[i] = new CodedColorValueRenderer(valueModel, shaderCodes, map);
+                }
+            }
         }
 
         protected override void DoInitialize()
@@ -74,11 +94,14 @@ namespace GridViewer
             Renderer lineRenderer = this.LineRenderer;
             if (lineRenderer != null) { lineRenderer.Initialize(); }
 
-            Renderer[] valueRenderers = this.ValueRenderers;
+            CodedColorValueRenderer[] valueRenderers = this.ValueRenderers;
             for (int i = 0; i < valueRenderers.Length; i++)
             {
                 if (valueRenderers[i] != null)
-                { valueRenderers[i].Initialize(); }
+                {
+                    valueRenderers[i].Initialize();
+                    valueRenderers[i].Text = string.Format("{0}", this.CodedColors[i].Value);
+                }
             }
         }
 
@@ -93,7 +116,7 @@ namespace GridViewer
             Renderer lineRenderer = this.LineRenderer;
             if (lineRenderer != null) { lineRenderer.Render(arg); }
 
-            Renderer[] valueRenderers = this.ValueRenderers;
+            CodedColorValueRenderer[] valueRenderers = this.ValueRenderers;
             for (int i = 0; i < valueRenderers.Length; i++)
             {
                 if (valueRenderers[i] != null)
@@ -109,7 +132,7 @@ namespace GridViewer
             Renderer lineRenderer = this.LineRenderer;
             if (lineRenderer != null) { lineRenderer.Dispose(); }
 
-            Renderer[] valueRenderers = this.ValueRenderers;
+            CodedColorValueRenderer[] valueRenderers = this.ValueRenderers;
             for (int i = 0; i < valueRenderers.Length; i++)
             {
                 if (valueRenderers[i] != null)
