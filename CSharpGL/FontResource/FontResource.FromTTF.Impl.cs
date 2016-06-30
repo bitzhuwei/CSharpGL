@@ -50,7 +50,7 @@ namespace CSharpGL
         }
 
 
-        private static void BlitCharacter(int pixelSize, int maxWidth, FullDictionary<char, CharacterInfo> dict, ref int currentX, ref int currentY, Graphics g, FontFace typeface, char c)
+        private static void BlitCharacter(int pixelSize, int maxWidth, FullDictionary<char, CharacterInfo> dict, ref int currentX, ref int currentY, Graphics graphics, FontFace typeface, char c)
         {
             if (c == ' ' || c == '\t')
             {
@@ -64,7 +64,7 @@ namespace CSharpGL
                 }
                 Bitmap glyphBitmap = new Bitmap(width + xInterval, pixelSize + yInterval);
                 //float yoffset = pixelSize * 3 / 4 - glyph.HorizontalMetrics.Bearing.Y;
-                g.DrawImage(glyphBitmap, currentX + xInterval, currentY + yInterval);
+                graphics.DrawImage(glyphBitmap, currentX + xInterval, currentY + yInterval);
                 CharacterInfo info = new CharacterInfo(currentX, currentY, width + xInterval, pixelSize + yInterval);
                 dict.Add(c, info);
                 glyphBitmap.Dispose();
@@ -92,13 +92,13 @@ namespace CSharpGL
                     { skyHeight = 0; }
                     else if (skyHeight + glyphBitmap.Height > yInterval + pixelSize)
                     { skyHeight -= glyphBitmap.Height - (yInterval + pixelSize); }
-                    g.DrawImage(glyphBitmap, currentX + xInterval, currentY + skyHeight, glyphBitmap.Width, glyphBitmap.Height);
-#if DEBUG
-                    g.DrawRectangle(greenPen, currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
-                    g.DrawRectangle(redPen, currentX + xInterval, currentY + skyHeight, glyphBitmap.Width, glyphBitmap.Height);
-                    g.DrawLine(bluePen, currentX, currentY + yInterval + pixelSize * a / b,
-                        currentX + glyphBitmap.Width, currentY + yInterval + pixelSize * a / b);
-#endif
+                    graphics.DrawImage(glyphBitmap, currentX + xInterval, currentY + skyHeight, glyphBitmap.Width, glyphBitmap.Height);
+//#if DEBUG
+//                    graphics.DrawRectangle(greenPen, currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
+//                    graphics.DrawRectangle(redPen, currentX + xInterval, currentY + skyHeight, glyphBitmap.Width, glyphBitmap.Height);
+//                    graphics.DrawLine(bluePen, currentX, currentY + yInterval + pixelSize * a / b,
+//                        currentX + glyphBitmap.Width, currentY + yInterval + pixelSize * a / b);
+//#endif
                     CharacterInfo info = new CharacterInfo(currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
                     dict.Add(c, info);
                     glyphBitmap.Dispose();
@@ -112,10 +112,10 @@ namespace CSharpGL
         const int xInterval = 1;
         const int yInterval = 10;
 
-#if DEBUG
-        static Pen redPen = new Pen(Color.Red);
-        static Pen greenPen = new Pen(Color.Green);
-        static Pen bluePen = new Pen(Color.Blue);
-#endif
+//#if DEBUG
+//        static Pen redPen = new Pen(Color.Red);
+//        static Pen greenPen = new Pen(Color.Green);
+//        static Pen bluePen = new Pen(Color.Blue);
+//#endif
     }
 }
