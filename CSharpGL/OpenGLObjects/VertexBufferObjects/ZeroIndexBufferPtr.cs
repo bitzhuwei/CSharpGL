@@ -6,15 +6,15 @@ using System.Text;
 
 namespace CSharpGL
 {
+    // 没有显式索引时的渲染方法。
     /// <summary>
-    /// 没有显式索引时的渲染方法。
+    /// Wraps glDrawArrays(uint mode, int first, int count).
     /// </summary>
     public sealed class ZeroIndexBufferPtr : IndexBufferPtr
     {
         /// <summary>
-        /// 没有显式索引时的渲染方法。
+        /// Wraps glDrawArrays(uint mode, int first, int count).
         /// </summary>
-        /// <param name="bufferID">用GL.GenBuffers()得到的VBO的ID。</param>
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
         ///<param name="firstVertex">要渲染的第一个顶点的索引</param>
         /// <param name="vertexCount">要渲染多少个顶点？</param>
@@ -45,12 +45,12 @@ namespace CSharpGL
                 && this.Mode.ToGeometryType() == GeometryType.Line)// picking point from a line
             {
                 // this maybe render points that should not appear. 
-                // so need to select by another picking
-                OpenGL.DrawArrays(DrawMode.Points, this.FirstVertex, this.VertexCount);
+                // so need to select by another picking.
+                OpenGL.DrawArrays((uint)DrawMode.Points, this.FirstVertex, this.VertexCount);
             }
             else
             {
-                OpenGL.DrawArrays(this.Mode, this.FirstVertex, this.VertexCount);
+                OpenGL.DrawArrays((uint)this.Mode, this.FirstVertex, this.VertexCount);
             }
         }
 

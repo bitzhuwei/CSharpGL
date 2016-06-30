@@ -8,7 +8,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 顶点缓存（VBO）
+    /// Vertex Buffer Object.
     /// </summary>
     public abstract class Buffer : IDisposable
     {
@@ -75,7 +75,7 @@ namespace CSharpGL
         public BufferUsage Usage { get; private set; }
 
         /// <summary>
-        /// 顶点缓存（VBO）
+        /// Vertex Buffer Object.
         /// </summary>
         /// <param name="usage"></param>
         public Buffer(BufferUsage usage)
