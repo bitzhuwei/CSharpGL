@@ -11,15 +11,23 @@ namespace CSharpGL
 {
     /// <summary>
     /// 使用Default字体在一块区域渲染文字。
+    /// UIText is a simple label similar to System.Windows.Forms.Label.
     /// </summary>
     public partial class UIText : UIRenderer
     {
 
         private TextModel model;
-        private BlendSwitch blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One);
 
         private FontResource fontResource;
 
+        private string content = string.Empty;
+        public string Text
+        {
+            get { return content; }
+            set { this.model.SetText(value, this.fontResource); this.content = value; }
+        }
+
+        private BlendSwitch blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One);
         public BlendSwitch BlendSwitch
         {
             get { return blendSwitch; }

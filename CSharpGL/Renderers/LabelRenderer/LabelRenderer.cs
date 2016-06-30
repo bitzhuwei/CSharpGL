@@ -20,6 +20,13 @@ namespace CSharpGL
         /// </summary>
         public int LabelHeight { get; private set; }
 
+        private string content = string.Empty;
+        public string Text
+        {
+            get { return content; }
+            set { this.model.SetText(value, this.fontResource); this.content = value; }
+        }
+
         /// <summary>
         /// 
         /// </summary>

@@ -78,7 +78,6 @@
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripAdjacencySearcher.jpg" />
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.jpg" />
     <Content Include="OpenGLObjects\GLSwitches\readme.md" />
-    <Content Include="Renderers\UIRenderers\UIText\readme.md" />
     <Content Include="WinformControls\RenderContexts\readme.md" />
     <Content Include="OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="OpenGLObjects\VertexBufferObjects\readme.md" />
@@ -117,7 +116,6 @@
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\ScissorTestSwitch.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.DoRender.cs" />
-    <Compile Include="Renderers\LabelRenderer\LabelRenderer.SetText.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\SatelliteManipulater.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\CameraManipulater.cs" />
@@ -147,11 +145,10 @@
     <Compile Include="OpenGLObjects\GLSwitches\GLSwitchList.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\ViewportSwitch.cs" />
     <Compile Include="IBufferables\TextModel.cs" />
-    <Compile Include="Renderers\UIRenderers\UIText\UIText.SetText.cs" />
-    <Compile Include="Renderers\UIRenderers\UIText\UIText.cs" />
+    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\UIText.cs" />
     <Compile Include="Renderers\UIRenderers\UIRoot.cs" />
     <Compile Include="Renderers\UIRenderers\ILayoutHelper.cs" />
-    <Compile Include="Renderers\UIRenderers\UIAxis\UIAxis.cs">
+    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\UIAxis.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Renderers\UIRenderers\ILayout.cs">
