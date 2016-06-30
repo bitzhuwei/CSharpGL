@@ -13,6 +13,23 @@ It meets common requirements in OpenGL rendering such as:
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.4.10:
+1. Simpler Scene: remove useless UIRootRendererComponent; UIRoot rendering ui for Scene.
+2. PositionHelper.Move2Center() supports vec2.
+3. Retarget CSharpGL's .net version to .net3.5.
+4. Fix bug in ILyaout.NonRootNodeLayout().
+5. Remove SatelliteRotator.
+6. Rename RenderEventArgs to RenderEventArg.
+7. mat4Helper converts float array to mat4.
+8. Fix bug in get delegate for OpenGL command.(Use proc.ToInt64() instead of proc.ToInt32())
+9. Camera manipulaters using mouse/keyboard.
+10. Better performance: reading GL_DEPTH_COMPONENT to make sure something is picked.
+11. ChildList<T> represents children in ITreeNode<T>.
+12. IndexBufferPtrEditor displays controller for update parameters for glDrawArrays() or glDrawElements().
+13: Release bind element buffer in OneIndexBufferPtr.
+14. Comment debug lines in FontResource.
+
+14. TextModel allows for updating text property.
 ## v1.0.4.9:
 1. 3 PolygonOffsetSwitch types for Fill, Line and Point.
 2. remove unnecessary initialization of creating PrimitiveRestartSwitch for OneIndexRenderer.
