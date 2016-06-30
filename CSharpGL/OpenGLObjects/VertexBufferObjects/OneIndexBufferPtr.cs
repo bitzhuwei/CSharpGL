@@ -81,6 +81,7 @@ namespace CSharpGL
             {
                 OpenGL.DrawElements((uint)this.Mode, this.ElementCount, (uint)this.Type, offset);
             }
+            glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
         }
 
         public override string ToString()
