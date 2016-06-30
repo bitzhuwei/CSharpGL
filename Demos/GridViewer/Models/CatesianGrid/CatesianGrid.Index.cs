@@ -20,7 +20,7 @@ namespace GridViewer
             using (var buffer = new OneIndexBuffer<uint>(DrawMode.QuadStrip, BufferUsage.StaticDraw))
             {
                 int dimSize = this.DataSource.DimenSize;
-                buffer.Alloc(dimSize * 2 * Marshal.SizeOf(typeof(HalfHexahedronIndex)));
+                buffer.Alloc(dimSize * 2 * Marshal.SizeOf(typeof(HalfHexahedronIndex)) / sizeof(uint));
                 unsafe
                 {
                     var array = (HalfHexahedronIndex*)buffer.Header.ToPointer();
