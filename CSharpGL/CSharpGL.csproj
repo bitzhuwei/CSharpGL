@@ -99,6 +99,7 @@
     <Compile Include="IBufferables\TeapotModel.Positions.cs" />
     <Compile Include="IBufferables\TeapotModel.Faces.cs" />
     <None Include="Manipulaters\readme.md" />
+    <Compile Include="IBufferables\TextModel.SetText.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.Orientation.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.ViewType.cs" />
     <Compile Include="Manipulaters\IKeyboardHandler.cs" />

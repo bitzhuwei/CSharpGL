@@ -9,7 +9,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    class TextModel : IBufferable
+    public partial class TextModel : IBufferable
     {
 
         public TextModel(int maxCharCount)

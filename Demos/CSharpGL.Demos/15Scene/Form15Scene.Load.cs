@@ -36,7 +36,7 @@ namespace CSharpGL.Demos
                     new Padding(10, 10, 10, 10), new Size(550, 50), -100, 100);
                 glText.Initialize();
                 glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
-                glText.SetText("The quick brown fox jumps over the lazy dog!");
+                glText.Text = "The quick brown fox jumps over the lazy dog!";
                 this.glText = glText;
                 this.scene.UIRoot.Children.Add(glText);
 
