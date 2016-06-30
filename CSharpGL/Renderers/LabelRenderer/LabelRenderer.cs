@@ -24,7 +24,11 @@ namespace CSharpGL
         public string Text
         {
             get { return content; }
-            set { this.model.SetText(value, this.fontResource); this.content = value; }
+            set
+            {
+                if (this.model != null) { this.model.SetText(value, this.fontResource); }
+                this.content = value;
+            }
         }
 
         /// <summary>
