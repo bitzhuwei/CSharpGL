@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 
@@ -11,6 +12,7 @@ namespace CSharpGL
     /// 索引buffer渲染器的基类。
     /// </summary>
     [Browsable(true)]
+    [Editor(typeof(IndexBufferPtrEditor), typeof(UITypeEditor))]
     public abstract class IndexBufferPtr : BufferPtr
     {
 

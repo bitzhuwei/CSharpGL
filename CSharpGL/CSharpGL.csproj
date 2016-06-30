@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.resx">
+      <DependentUpon>FormIndexBufferPtrBoard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormPropertyGridEditor.resx">
       <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -80,6 +83,13 @@
     <Content Include="OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="OpenGLObjects\VertexBufferObjects\readme.md" />
     <Content Include="readme.md" />
+    <Compile Include="4PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="4PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.Designer.cs">
+      <DependentUpon>FormIndexBufferPtrBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="4PropertyGrid\UITypeEditors\IndexBufferPtrEditor.cs" />
     <Compile Include="FontResource\FontResource.Default.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.Glyph.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.Misc.cs" />
