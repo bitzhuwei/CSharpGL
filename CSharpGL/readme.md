@@ -28,8 +28,8 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 12. IndexBufferPtrEditor displays controller for update parameters for glDrawArrays() or glDrawElements().
 13: Release bind element buffer in OneIndexBufferPtr.
 14. Comment debug lines in FontResource.
+15. TextModel allows for updating text property.
 
-14. TextModel allows for updating text property.
 ## v1.0.4.9:
 1. 3 PolygonOffsetSwitch types for Fill, Line and Point.
 2. remove unnecessary initialization of creating PrimitiveRestartSwitch for OneIndexRenderer.
