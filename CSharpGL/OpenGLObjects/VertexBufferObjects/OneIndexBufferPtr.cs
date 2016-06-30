@@ -72,8 +72,8 @@ namespace CSharpGL
                 && arg.PickingGeometryType == GeometryType.Point
                 && this.Mode.ToGeometryType() == GeometryType.Line)// picking point from a line
             {
-                // this maybe render points that should not appear. 
-                // so need to select by another picking
+                // this may render points that should not appear. 
+                // so need to select by another picking.
                 OpenGL.DrawElements(DrawMode.Points, this.ElementCount, (uint)this.Type, offset);
             }
             else
