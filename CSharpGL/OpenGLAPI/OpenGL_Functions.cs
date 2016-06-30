@@ -672,14 +672,14 @@ namespace CSharpGL
         [DllImport(Win32.OpenGL32, EntryPoint = "glDrawElements", SetLastError = true)]
         public static extern void DrawElements(uint mode, int count, uint type, IntPtr indices);
 
-        /// <summary>
-        /// Render primitives from array data.
-        /// </summary>
-        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
-        /// <param name="count">Specifies the number of elements to be rendered.</param>
-        /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
-        [DllImport(Win32.OpenGL32, EntryPoint = "glDrawElements", SetLastError = true)]
-        public static extern void DrawElements(uint mode, int count, uint type, uint[] indices);
+        ///// <summary>
+        ///// Render primitives from array data.
+        ///// </summary>
+        ///// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants OpenGL.POINTS, OpenGL.LINE_STRIP, OpenGL.LINE_LOOP, OpenGL.LINES, OpenGL.TRIANGLE_STRIP, OpenGL.TRIANGLE_FAN, OpenGL.TRIANGLES, OpenGL.QUAD_STRIP, OpenGL.QUADS, and OpenGL.POLYGON are accepted.</param>
+        ///// <param name="count">Specifies the number of elements to be rendered.</param>
+        ///// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
+        //[DllImport(Win32.OpenGL32, EntryPoint = "glDrawElements", SetLastError = true)]
+        //public static extern void DrawElements(uint mode, int count, uint type, uint[] indices);
 
         /// <summary>
         /// Draws a rectangle of pixel data at the current raster position.
