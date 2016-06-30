@@ -23,6 +23,7 @@ namespace CSharpGL
         {
             this.FirstVertex = firstVertex;
             this.VertexCount = vertexCount;
+            this.OriginalVertexCount = vertexCount;
         }
 
         /// <summary>
@@ -34,6 +35,8 @@ namespace CSharpGL
         /// 要渲染多少个顶点。
         /// </summary>
         public int VertexCount { get; set; }
+
+        public int OriginalVertexCount { get; private set; }
 
         public override void Render(RenderEventArg arg, ShaderProgram shaderProgram)
         {

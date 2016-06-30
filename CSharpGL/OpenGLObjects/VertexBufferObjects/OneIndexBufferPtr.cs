@@ -28,6 +28,7 @@ namespace CSharpGL
         {
             this.FirstIndex = firstIndex;
             this.ElementCount = elementCount;
+            this.OriginalElementCount = elementCount;
             this.Type = type;
         }
 
@@ -40,6 +41,8 @@ namespace CSharpGL
         /// 要渲染多少个索引。
         /// </summary>
         public int ElementCount { get; set; }
+
+        public int OriginalElementCount { get; private set; }
 
         /// <summary>
         /// type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
