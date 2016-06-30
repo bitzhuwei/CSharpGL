@@ -28,15 +28,17 @@ namespace GridViewer
                     new Padding(10, 10, 10, 10), new Size(100, 100), -100, 100);
                 uiAxis.Initialize();
                 uiAxis.SwitchList.Add(new ClearColorSwitch());
+                this.uiAxis = uiAxis;
                 this.Scene.UIRoot.Children.Add(uiAxis);
             }
             {
-                var uiCodedColorBar = new UICodedColorBarRenderer(
+                var uiCodedColorBar = new UICodedColorBar(
                     CodedColor.GetDefault(),
                     AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right,
                     new Padding(120, 10, 60, 10 + 40), new Size(400, 30), -100, 100);
                 uiCodedColorBar.Initialize();
                 uiCodedColorBar.SwitchList.Add(new ClearColorSwitch());
+                this.uiCodedColorBar = uiCodedColorBar;
                 this.Scene.UIRoot.Children.Add(uiCodedColorBar);
             }
             this.Resize += this.Scene.Resize;

@@ -12,6 +12,8 @@ namespace GridViewer
 {
     class CodedColorBarRenderer : RendererBase
     {
+        public sampler1D CodedColorSampler { get; private set; }
+
         public CodedColor[] CodedColors { get; private set; }
 
         public Renderer RectRenderer { get; private set; }
@@ -63,6 +65,7 @@ namespace GridViewer
                 Bitmap bitmap = this.CodedColors.GetBitmap(1024);
                 var sampler = new sampler1D();
                 sampler.Initialize(bitmap);
+                this.CodedColorSampler = sampler;
                 bitmap.Dispose();
                 rectRenderer.SetUniform("codedColorSampler", new samplerValue(
                      BindTextureTarget.Texture1D, sampler.Id, OpenGL.GL_TEXTURE0));

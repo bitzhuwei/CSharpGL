@@ -115,13 +115,16 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\BoudingBoxRendererFactory.cs" />
-    <Compile Include="Renderers\ColorCodedBarRenderer\CodedColorBarLine.cs" />
-    <Compile Include="Renderers\ColorCodedBarRenderer\CodedColorBarRenderer.cs" />
-    <Compile Include="Renderers\ColorCodedBarRenderer\CodedColor.cs" />
-    <Compile Include="Renderers\ColorCodedBarRenderer\CodedColorsHelper.cs" />
-    <Compile Include="Renderers\ColorCodedBarRenderer\CodedColorBarRect.cs" />
-    <Compile Include="Renderers\ColorCodedBarRenderer\UICodedColorBarRenderer.cs" />
+    <Compile Include="Renderers\CodedColorBarRenderer\CodedColorBarLine.cs" />
+    <Compile Include="Renderers\CodedColorBarRenderer\CodedColorBarRenderer.cs" />
+    <Compile Include="Renderers\CodedColorBarRenderer\CodedColor.cs" />
+    <Compile Include="Renderers\CodedColorBarRenderer\CodedColorsHelper.cs" />
+    <Compile Include="Renderers\CodedColorBarRenderer\CodedColorBarRect.cs" />
+    <Compile Include="Renderers\CodedColorBarRenderer\UICodedColorBar.cs" />
     <Compile Include="Renderers\BoundedRenderer.cs" />
+    <Compile Include="ScientificCanvas.Property.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ScientificCanvas.Dispose.cs">
       <SubType>UserControl</SubType>
     </Compile>

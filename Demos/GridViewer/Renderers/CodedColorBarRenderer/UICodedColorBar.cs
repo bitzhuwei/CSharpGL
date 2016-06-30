@@ -10,11 +10,22 @@ using System.Windows.Forms;
 
 namespace GridViewer
 {
-    public partial class UICodedColorBarRenderer : UIRenderer
+    public partial class UICodedColorBar : UIRenderer
     {
         private CodedColor[] codedColors;
 
-        public UICodedColorBarRenderer(CodedColor[] codedColors,
+        public sampler1D CodedColorSampler
+        {
+            get
+            {
+                var renderer = this.Renderer as CodedColorBarRenderer;
+                if (renderer == null) { return null; }
+
+                return renderer.CodedColorSampler;
+            }
+        }
+
+        public UICodedColorBar(CodedColor[] codedColors,
             AnchorStyles anchor, Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
             : base(anchor, margin, size, zNear, zFar)

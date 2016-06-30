@@ -54,7 +54,7 @@ namespace GridViewer
                 map.Add("in_uv", CatesianGrid.strColor);
                 var scientificRenderer = new Renderer(grid, shaderCodes, map);
                 var boundedRenderer = new BoundedRenderer(scientificRenderer,
-                    grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min);
+                    grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min, this.scientificCanvas.CodedColorSampler);
                 boundedRenderer.Initialize();
                 SceneObject sceneObject = new SceneObject();
                 sceneObject.Name = typeof(CatesianGrid).Name;
