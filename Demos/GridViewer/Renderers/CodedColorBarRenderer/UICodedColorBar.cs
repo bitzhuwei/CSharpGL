@@ -55,14 +55,17 @@ namespace GridViewer
                 Renderer valueRenderer = renderer.ValueRenderers[i];
                 if (valueRenderer != null)
                 {
-                    model = glm.translate(mat4.identity(), new vec3(0,
+                    model = glm.translate(mat4.identity(), new vec3(
                         -(this.Size.Width / 2 - shrink) + (this.Size.Width - shrink * 2) / (this.codedColors.Length - 1) * i,
+                        -this.Size.Height / 4,
                         0));
+                    model = glm.scale(model, new vec3(this.Size.Height, this.Size.Height, this.Size.Height) / 2.3f);
                     valueRenderer.SetUniform("mvp", projection * view * model);
                 }
             }
 
             base.DoRender(arg);
         }
+
     }
 }

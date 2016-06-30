@@ -32,16 +32,16 @@ namespace GridViewer
             {
                 if (this.positionBufferPtr == null)
                 {
-                    const float lower = -0.3f;
+                    const float lower = 0.3f;
                     var positions = new vec2[codedColors.Length * 2 + 4];
                     for (int i = 0; i < codedColors.Length; i++)
                     {
-                        positions[i * 2 + 0] = new vec2(codedColors[i].Coord*2, lower);
+                        positions[i * 2 + 0] = new vec2(codedColors[i].Coord * 2, lower);
                         positions[i * 2 + 1] = new vec2(codedColors[i].Coord * 2, 1);
                     }
                     int index = codedColors.Length * 2 + 0;
-                    positions[index++] = new vec2(codedColors[0].Coord * 2, 0);
-                    positions[index++] = new vec2(codedColors[codedColors.Length - 1].Coord * 2, 0);
+                    positions[index++] = new vec2(codedColors[0].Coord * 2, 0.5f);
+                    positions[index++] = new vec2(codedColors[codedColors.Length - 1].Coord * 2, 0.5f);
                     positions[index++] = new vec2(codedColors[0].Coord * 2, 1);
                     positions[index++] = new vec2(codedColors[codedColors.Length - 1].Coord * 2, 1);
                     // Move2Cente

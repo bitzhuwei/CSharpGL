@@ -25,6 +25,11 @@ namespace GridViewer
             }
         }
 
+        private BlendSwitch blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One);
+        public BlendSwitch BlendSwitch
+        {
+            get { return blendSwitch; }
+        }
 
         public CodedColorValueRenderer(TextModel textModel, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
@@ -34,5 +39,13 @@ namespace GridViewer
             this.FontResource = FontResource.Default;
         }
 
+        protected override void DoRender(RenderEventArg arg)
+        {
+            //blendSwitch.On();
+
+            base.DoRender(arg);
+
+            //blendSwitch.Off();
+        }
     }
 }

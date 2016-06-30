@@ -36,7 +36,7 @@ namespace GridViewer
                     var positions = new vec2[codedColors.Length * 2];
                     for (int i = 0; i < codedColors.Length; i++)
                     {
-                        positions[i * 2 + 0] = new vec2(codedColors[i].Coord * 2, 0);
+                        positions[i * 2 + 0] = new vec2(codedColors[i].Coord * 2, 0.5f);
                         positions[i * 2 + 1] = new vec2(codedColors[i].Coord * 2, 1);
                     }
                     // Move2Center
