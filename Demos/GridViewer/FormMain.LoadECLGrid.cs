@@ -52,19 +52,19 @@ namespace GridViewer
                 var map = new PropertyNameMap();
                 map.Add("in_Position", CatesianGrid.strPosition);
                 map.Add("in_uv", CatesianGrid.strColor);
-                var scientificRenderer = new Renderer(grid, shaderCodes, map);
+                var scientificRenderer = new CatesianGridRenderer(grid, shaderCodes, map);
                 var boundedRenderer = new BoundedRenderer(scientificRenderer,
                     grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min, this.scientificCanvas.CodedColorSampler);
                 boundedRenderer.Initialize();
                 SceneObject sceneObject = new SceneObject();
-                sceneObject.Name = typeof(CatesianGrid).Name;
+                sceneObject.Name = grid.GetType().Name;
                 sceneObject.Renderer = new BoundedRendererComponent(boundedRenderer);
                 //sceneObject.Transform.Position = grid.DataSource.TranslateMatrix;
                 this.scientificCanvas.Scene.ObjectList.Add(sceneObject);
                 string caseFileName = System.IO.Path.GetFileName(fileName);
                 TreeNode gridderNode = this.objectsTreeView.Nodes.Add(caseFileName);
-                gridderNode.Tag = grid;
-                gridderNode.ToolTipText = fileName;
+                gridderNode.Tag = sceneObject;
+                gridderNode.ToolTipText = grid.GetType().Name;
                 //if (gridProps.Count <= 0)
                 //{
                 //    GridBlockProperty gbp = this.CreateGridSequenceGridBlockProperty(gridderSource, "INDEX");

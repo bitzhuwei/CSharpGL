@@ -37,10 +37,10 @@ namespace GridViewer
             return ptr;
         }
 
-        public void UpdateColor(int propertyIndex)
-        {
-            this.UpdateColor(this.GridBlockProperties[propertyIndex]);
-        }
+        //public void UpdateColor(int propertyIndex)
+        //{
+        //    this.UpdateColor(this.GridBlockProperties[propertyIndex]);
+        //}
 
         public void UpdateColor(TracyEnergy.Simba.Data.Keywords.impl.GridBlockProperty property)
         {

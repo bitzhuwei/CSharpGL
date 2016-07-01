@@ -1,10 +1,10 @@
 ﻿using CSharpGL;
+using SimLab.helper;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-
 using System.Windows.Forms;
 using TracyEnergy.Simba.Data.Keywords.impl;
 
@@ -16,28 +16,34 @@ namespace GridViewer
         private void objectsTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             this.propertyGrid1.SelectedObject = e.Node.Tag;
-            var property = e.Node.Tag as GridBlockProperty;
-            if (property != null)
+            if (e.Node.Tag is GridBlockProperty)
             {
-                TreeNode parent = e.Node.Parent;
-                if (parent != null)
+                var property = e.Node.Tag as GridBlockProperty;
+                var sceneObject = e.Node.Parent.Tag as SceneObject;
+                Renderer scientificRenderer = (sceneObject.Renderer as BoundedRendererComponent).Renderer.ScientificRenderer;
+                if (scientificRenderer is CatesianGridRenderer)
                 {
-                    var grid = parent.Tag as CatesianGrid;
-                    if (grid != null)
-                    {
-                        grid.UpdateColor(property);
-                        this.scientificCanvas.uiCodedColorBar.UpdateValues(property.Values);
-                    }
+                    CatesianGrid grid = (scientificRenderer as CatesianGridRenderer).Grid;
+
+                    double axisMin, axisMax, step;
+                    ColorIndicatorAxisAutomator.Automate(property.MinValue, property.MaxValue, out axisMin, out axisMax, out step);
+                    grid.MinColorCode = (float)axisMin;
+                    grid.MaxColorCode = (float)axisMax;
+                    grid.UpdateColor(property);
+                    this.scientificCanvas.uiCodedColorBar.UpdateValues(property.Values);
                 }
             }
-            else
+            else if (e.Node.ToolTipText == typeof(CatesianGrid).Name)
             {
-                var grid = e.Node.Tag as CatesianGrid;
-                if (grid != null)
-                {
-                    grid.UpdateColor(0);
-                    this.scientificCanvas.uiCodedColorBar.UpdateValues(grid.GridBlockProperties[0].Values);
-                }
+                var sceneObject = e.Node.Tag as SceneObject;
+                CatesianGrid grid = ((sceneObject.Renderer as BoundedRendererComponent).Renderer.ScientificRenderer as CatesianGridRenderer).Grid;
+                GridBlockProperty property = grid.GridBlockProperties[0];
+                double axisMin, axisMax, step;
+                ColorIndicatorAxisAutomator.Automate(property.MinValue, property.MaxValue, out axisMin, out axisMax, out step);
+                grid.MinColorCode = (float)axisMin;
+                grid.MaxColorCode = (float)axisMax;
+                grid.UpdateColor(grid.GridBlockProperties[0]);
+                this.scientificCanvas.uiCodedColorBar.UpdateValues(grid.GridBlockProperties[0].Values);
             }
         }
 
