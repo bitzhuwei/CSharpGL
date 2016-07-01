@@ -17,5 +17,9 @@ namespace GridViewer
             (new FormProperyGrid(this.scientificCanvas.Scene)).Show();
         }
 
+        private void scientificCanvasMenuItem_Click(object sender, EventArgs e)
+        {
+            (new FormProperyGrid(this.scientificCanvas)).Show();
+        }
     }
 }

@@ -92,6 +92,7 @@
             this.scientificCanvas = new GridViewer.ScientificCanvas();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.sceneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scientificCanvasMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -349,7 +350,8 @@
             this.工具TToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.自定义CToolStripMenuItem,
             this.选项OToolStripMenuItem,
-            this.sceneToolStripMenuItem});
+            this.sceneToolStripMenuItem,
+            this.scientificCanvasMenuItem});
             this.工具TToolStripMenuItem.Name = "工具TToolStripMenuItem";
             this.工具TToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.工具TToolStripMenuItem.Text = "工具(&T)";
@@ -603,7 +605,7 @@
             this.scientificCanvas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.scientificCanvas.Name = "scene";
             this.scientificCanvas.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
-            this.scientificCanvas.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
+            this.scientificCanvas.RenderTrigger = CSharpGL.RenderTriggers.Manual;
             this.scientificCanvas.Size = new System.Drawing.Size(850, 666);
             this.scientificCanvas.TabIndex = 0;
             // 
@@ -619,6 +621,13 @@
             this.sceneToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.sceneToolStripMenuItem.Text = "Scene";
             this.sceneToolStripMenuItem.Click += new System.EventHandler(this.sceneToolStripMenuItem_Click);
+            // 
+            // scientificCanvasMenuItem
+            // 
+            this.scientificCanvasMenuItem.Name = "scientificCanvasMenuItem";
+            this.scientificCanvasMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.scientificCanvasMenuItem.Text = "scientificCanvas";
+            this.scientificCanvasMenuItem.Click += new System.EventHandler(this.scientificCanvasMenuItem_Click);
             // 
             // FormMain
             // 
@@ -717,6 +726,7 @@
         private System.Windows.Forms.ContextMenuStrip treeViewRightMenu;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sceneToolStripMenuItem;
+    	private System.Windows.Forms.ToolStripMenuItem scientificCanvasMenuItem;
     }
 }
 
