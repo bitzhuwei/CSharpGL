@@ -52,18 +52,21 @@ namespace GridViewer
             if (node != null)
             {
                 SceneObject obj = node.Tag as SceneObject;
-                if (obj.Parent == null)
+                if (obj != null)
                 {
-                    this.scientificCanvas.Scene.ObjectList.Remove(obj);
-                    this.objectsTreeView.Nodes.Remove(node);
-                }
-                else
-                {
-                    obj.Parent.Children.Remove(obj);
-                    node.Parent.Nodes.Remove(node);
-                }
+                    if (obj.Parent == null)
+                    {
+                        this.scientificCanvas.Scene.ObjectList.Remove(obj);
+                        this.objectsTreeView.Nodes.Remove(node);
+                    }
+                    else
+                    {
+                        obj.Parent.Children.Remove(obj);
+                        node.Parent.Nodes.Remove(node);
+                    }
 
-                obj.Renderer.Dispose();
+                    obj.Renderer.Dispose();
+                }
             }
         }
 
