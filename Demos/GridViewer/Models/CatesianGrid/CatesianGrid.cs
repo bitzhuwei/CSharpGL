@@ -11,7 +11,9 @@ namespace GridViewer
 {
     public partial class CatesianGrid : IBufferable
     {
-        private List<GridBlockProperty> gridProps;
+
+        public List<GridBlockProperty> GridBlockProperties { get; private set; }
+
         private int defaultBlockPropertyIndex;
 
         public CatesianGridderSource DataSource { get; private set; }
@@ -24,7 +26,7 @@ namespace GridViewer
             float minColorCode, float maxColorCode, int defaultBlockPropertyIndex = 0)
         {
             this.DataSource = dataSource;
-            this.gridProps = gridProps;
+            this.GridBlockProperties = gridProps;
             this.MinColorCode = minColorCode;
             this.MaxColorCode = maxColorCode;
             this.defaultBlockPropertyIndex = defaultBlockPropertyIndex;

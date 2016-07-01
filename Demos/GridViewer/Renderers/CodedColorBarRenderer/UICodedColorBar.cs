@@ -49,7 +49,7 @@ namespace GridViewer
             renderer.LineRenderer.SetUniform("mvp", projection * view * model);
             for (int i = 0; i < renderer.ValueRenderers.Length; i++)
             {
-                Renderer valueRenderer = renderer.ValueRenderers[i];
+                CodedColorValueRenderer valueRenderer = renderer.ValueRenderers[i];
                 if (valueRenderer != null)
                 {
                     model = glm.translate(mat4.identity(), new vec3(
@@ -64,5 +64,17 @@ namespace GridViewer
             base.DoRender(arg);
         }
 
+        public void UpdateValues(TracyEnergy.Simba.Data.Keywords.impl.GridBlockProperty property)
+        {
+            var renderer = this.Renderer as CodedColorBarRenderer;
+            for (int i = 0; i < renderer.ValueRenderers.Length; i++)
+            {
+                CodedColorValueRenderer valueRenderer = renderer.ValueRenderers[i];
+                if (valueRenderer != null)
+                {
+                    valueRenderer.Text = string.Format("{0}", property.Values[i]);
+                }
+            } 
+        }
     }
 }

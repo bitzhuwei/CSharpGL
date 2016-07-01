@@ -41,10 +41,10 @@ namespace GridViewer
 
             try
             {
-                List<GridBlockProperty> gridProps = inputData.RootDataFile.GetGridProperties();
-                GridBlockProperty gbp = gridProps[0];
+                List<GridBlockProperty> gridProperties = inputData.RootDataFile.GetGridProperties();
+                GridBlockProperty firstProperty = gridProperties[0];
                 double axisMin, axisMax, step;
-                ColorIndicatorAxisAutomator.Automate(gbp.MinValue, gbp.MaxValue, out axisMin, out axisMax, out step);
+                ColorIndicatorAxisAutomator.Automate(firstProperty.MinValue, firstProperty.MaxValue, out axisMin, out axisMax, out step);
                 CatesianGrid grid = inputData.DumpCatesianGrid((float)axisMin, (float)axisMax);
                 var shaderCodes = new ShaderCode[2];
                 shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\HexahedronGrid.vert"), ShaderType.VertexShader);
@@ -61,50 +61,26 @@ namespace GridViewer
                 sceneObject.Renderer = new BoundedRendererComponent(boundedRenderer);
                 //sceneObject.Transform.Position = grid.DataSource.TranslateMatrix;
                 this.scientificCanvas.Scene.ObjectList.Add(sceneObject);
-                //sceneObject.Renderer=ne
-                //SimLabGrid gridder = null;
-                //try
+                string caseFileName = System.IO.Path.GetFileName(fileName);
+                TreeNode gridderNode = this.objectsTreeView.Nodes.Add(caseFileName);
+                gridderNode.Tag = grid;
+                gridderNode.ToolTipText = fileName;
+                //if (gridProps.Count <= 0)
                 //{
-                //    gridderSource = CreateGridderSource(inputData);
+                //    GridBlockProperty gbp = this.CreateGridSequenceGridBlockProperty(gridderSource, "INDEX");
+                //    gridProps.Add(gbp);
                 //}
-                //catch (Exception err)
-                //{
-                //    MessageBox.Show(String.Format("Create Gridder Failed,{0}", err.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    return;
-                //}
+                foreach (GridBlockProperty gbp in gridProperties)
+                {
+                    TreeNode propNode = gridderNode.Nodes.Add(gbp.Name);
+                    propNode.Tag = gbp;
+                }
 
-                //if (gridderSource != null)
-                //{
-                //    string caseFileName = System.IO.Path.GetFileName(fileName);
-                //    TreeNode gridderNode = this.objectsTreeView.Nodes.Add(caseFileName);
-                //    gridderNode.ToolTipText = fileName;
-                //    List<GridBlockProperty> gridProps = inputData.RootDataFile.GetGridProperties();
-                //    if (gridProps.Count <= 0)
-                //    {
-                //        GridBlockProperty gbp = this.CreateGridSequenceGridBlockProperty(gridderSource, "INDEX");
-                //        gridProps.Add(gbp);
-                //    }
-                //    foreach (GridBlockProperty gbp in gridProps)
-                //    {
-                //        TreeNode propNode = gridderNode.Nodes.Add(gbp.Name);
-                //        propNode.Tag = gbp;
-                //    }
-
-                //    vec3 boundMin;
-                //    vec3 boundMax;
-                //    gridder = CreateGridder(gridderSource, gridProps[0], out boundMin, out boundMax);
-                //    if (gridder != null)
-                //    {
-                //        this.objectsTreeView.ExpandAll();
-                //        //modelContainer.AddChild(gridder);
-                //        //modelContainer.BoundingBox.SetBounds(gridderSource.TransformedActiveBounds.Min, gridderSource.TransformedActiveBounds.Max);
-                //        //this.scene.ViewType = ViewTypes.UserView;
-                //        gridderNode.Tag = gridder;
-                //        gridder.Tag = gridderSource;
-                //        gridderSource.Tag = gridderNode.Nodes[0];
-                //        gridderNode.Checked = gridder.IsEnabled;
-                //        gridderNode.Nodes[0].Checked = true;
-                //    }
+                this.objectsTreeView.ExpandAll();
+                this.scientificCanvas.uiCodedColorBar.UpdateValues(firstProperty);
+                //modelContainer.AddChild(gridder);
+                //modelContainer.BoundingBox.SetBounds(gridderSource.TransformedActiveBounds.Min, gridderSource.TransformedActiveBounds.Max);
+                //this.scene.ViewType = ViewTypes.UserView;
 
                 //List<Well> well3dList;
                 //try
