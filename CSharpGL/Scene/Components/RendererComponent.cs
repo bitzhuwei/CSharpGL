@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public abstract class RendererComponent : Component, IRenderable
+    public abstract class RendererComponent : Component, IRenderable, IDisposable
     {
 
         public RendererComponent(SceneObject bindingObject = null)
@@ -57,5 +57,56 @@ namespace CSharpGL
         }
 
         public abstract void Render(RenderEventArg arg);
+
+        #region IDisposable Members
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        } // end sub
+
+        /// <summary>
+        /// Destruct instance of the class.
+        /// </summary>
+        ~RendererComponent()
+        {
+            this.Dispose(false);
+        }
+
+        /// <summary>
+        /// Backing field to track whether Dispose has been called.
+        /// </summary>
+        private bool disposedValue = false;
+
+        /// <summary>
+        /// Dispose managed and unmanaged resources of this instance.
+        /// </summary>
+        /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
+        protected virtual void Dispose(bool disposing)
+        {
+
+            if (this.disposedValue == false)
+            {
+                if (disposing)
+                {
+                    DisposeManagedResources();
+                } // end if
+
+                DisposeUnmanagedResource();
+
+            } // end if
+
+            this.disposedValue = true;
+        } // end sub
+
+        protected virtual void DisposeManagedResources() { }
+        protected abstract void DisposeUnmanagedResource();
+
+        #endregion
+
     }
 }

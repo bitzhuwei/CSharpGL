@@ -63,6 +63,8 @@ namespace GridViewer
                     obj.Parent.Children.Remove(obj);
                     node.Parent.Nodes.Remove(node);
                 }
+
+                obj.Renderer.Dispose();
             }
         }
 

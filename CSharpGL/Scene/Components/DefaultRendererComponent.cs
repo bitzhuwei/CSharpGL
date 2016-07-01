@@ -101,5 +101,11 @@ namespace CSharpGL
 
             return bufferable;
         }
+
+        protected override void DisposeUnmanagedResource()
+        {
+            Renderer renderer = this.Renderer;
+            if (renderer != null) { renderer.Dispose(); }
+        }
     }
 }

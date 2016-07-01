@@ -41,5 +41,11 @@ namespace GridViewer
                 renderer.Render(arg);
             }
         }
+
+        protected override void DisposeUnmanagedResource()
+        {
+            BoundedRenderer renderer = this.Renderer;
+            if (renderer != null) { renderer.Dispose(); }
+        }
     }
 }
