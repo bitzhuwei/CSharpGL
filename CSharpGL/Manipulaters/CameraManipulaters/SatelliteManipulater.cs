@@ -18,7 +18,7 @@ namespace CSharpGL
     {
 
         private ICamera camera;
-        private Control canvas;
+        private GLCanvas canvas;
 
         private MouseEventHandler mouseDownEvent;
         private MouseEventHandler mouseMoveEvent;
@@ -49,7 +49,7 @@ namespace CSharpGL
             this.mouseWheelEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseWheel);
         }
 
-        public override void Bind(ICamera camera, Control canvas)
+        public override void Bind(ICamera camera, GLCanvas canvas)
         {
             if (camera == null || canvas == null) { throw new ArgumentNullException(); }
 
@@ -100,6 +100,9 @@ namespace CSharpGL
         void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
+
+            if (this.canvas.RenderTrigger == RenderTriggers.Manual)
+            { this.canvas.Invalidate(); }
         }
 
         void SetBounds(int width, int height)
@@ -167,6 +170,9 @@ namespace CSharpGL
                 this.right = right;
                 this.up = up;
                 this.lastPosition = e.Location;
+
+                if (this.canvas.RenderTrigger == RenderTriggers.Manual)
+                { this.canvas.Invalidate(); }
             }
         }
 

@@ -17,7 +17,7 @@ namespace CSharpGL
         CameraManipulater, IMouseHandler, IKeyboardHandler
     {
         private ICamera camera;
-        private Control canvas;
+        private GLCanvas canvas;
 
         private KeyPressEventHandler keyPressEvent;
         private MouseEventHandler mouseDownEvent;
@@ -132,7 +132,7 @@ namespace CSharpGL
             this.mouseWheelEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseWheel);
         }
 
-        public override void Bind(ICamera camera, System.Windows.Forms.Control canvas)
+        public override void Bind(ICamera camera, GLCanvas canvas)
         {
             if (camera == null || canvas == null) { throw new ArgumentNullException(); }
 
@@ -162,6 +162,9 @@ namespace CSharpGL
         void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
+
+            if (this.canvas.RenderTrigger == RenderTriggers.Manual)
+            { this.canvas.Invalidate(); }
         }
 
         void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
@@ -187,6 +190,9 @@ namespace CSharpGL
                 this.camera.Target = this.camera.Position + new vec3(front2);
 
                 this.lastPosition = e.Location;
+
+                if (this.canvas.RenderTrigger == RenderTriggers.Manual)
+                { this.canvas.Invalidate(); }
             }
         }
 
@@ -200,12 +206,15 @@ namespace CSharpGL
 
         void IKeyboardHandler.canvas_KeyPress(object sender, KeyPressEventArgs e)
         {
+            bool updated = false;
+
             if (e.KeyChar == frontKey || e.KeyChar == upcaseFrontKey)
             {
                 vec3 right = this.camera.GetRight();
                 vec3 standardFront = this.camera.UpVector.cross(right).normalize();
                 this.camera.Position += standardFront * this.StepLength;
                 this.camera.Target += standardFront * this.StepLength;
+                updated = true;
             }
             else if (e.KeyChar == backKey || e.KeyChar == upcaseBackKey)
             {
@@ -213,6 +222,7 @@ namespace CSharpGL
                 vec3 standardBack = right.cross(this.camera.UpVector).normalize();
                 this.camera.Position += standardBack * this.StepLength;
                 this.camera.Target += standardBack * this.StepLength;
+                updated = true;
             }
             else if (e.KeyChar == leftKey || e.KeyChar == upcaseLeftKey)
             {
@@ -220,24 +230,34 @@ namespace CSharpGL
                 vec3 left = (-right).normalize();
                 this.camera.Position += left * this.StepLength;
                 this.camera.Target += left * this.StepLength;
+                updated = true;
             }
             else if (e.KeyChar == rightKey || e.KeyChar == upcaseRightKey)
             {
                 vec3 right = this.camera.GetRight().normalize();
                 this.camera.Position += right * this.StepLength;
                 this.camera.Target += right * this.StepLength;
+                updated = true;
             }
             else if (e.KeyChar == upKey || e.KeyChar == upcaseUpKey)
             {
                 vec3 up = this.camera.UpVector.normalize();
                 this.camera.Position += up * this.StepLength;
                 this.camera.Target += up * this.StepLength;
+                updated = true;
             }
             else if (e.KeyChar == downKey || e.KeyChar == upcaseDownKey)
             {
                 vec3 down = -this.camera.UpVector.normalize();
                 this.camera.Position += down * this.StepLength;
                 this.camera.Target += down * this.StepLength;
+                updated = true;
+            }
+
+            if (updated)
+            {
+                if (this.canvas.RenderTrigger == RenderTriggers.Manual)
+                { this.canvas.Invalidate(); }
             }
         }
     }

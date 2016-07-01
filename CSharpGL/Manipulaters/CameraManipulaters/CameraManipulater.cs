@@ -21,7 +21,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="canvas"></param>
-        public abstract void Bind(ICamera camera, Control canvas);
+        public abstract void Bind(ICamera camera, GLCanvas canvas);
 
         /// <summary>
         /// stop to manipulate specified <paramref name="camera"/>.
