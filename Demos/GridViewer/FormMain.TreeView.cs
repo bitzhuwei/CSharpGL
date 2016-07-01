@@ -24,13 +24,7 @@ namespace GridViewer
                 if (scientificRenderer is CatesianGridRenderer)
                 {
                     CatesianGrid grid = (scientificRenderer as CatesianGridRenderer).Grid;
-
-                    double axisMin, axisMax, step;
-                    ColorIndicatorAxisAutomator.Automate(property.MinValue, property.MaxValue, out axisMin, out axisMax, out step);
-                    grid.MinColorCode = (float)axisMin;
-                    grid.MaxColorCode = (float)axisMax;
-                    grid.UpdateColor(property);
-                    this.scientificCanvas.uiCodedColorBar.UpdateValues(property.Values);
+                    UpdateCatesianGrid(grid, property);
                 }
             }
             else if (e.Node.ToolTipText == typeof(CatesianGrid).Name)
@@ -38,13 +32,18 @@ namespace GridViewer
                 var sceneObject = e.Node.Tag as SceneObject;
                 CatesianGrid grid = ((sceneObject.Renderer as BoundedRendererComponent).Renderer.ScientificRenderer as CatesianGridRenderer).Grid;
                 GridBlockProperty property = grid.GridBlockProperties[0];
-                double axisMin, axisMax, step;
-                ColorIndicatorAxisAutomator.Automate(property.MinValue, property.MaxValue, out axisMin, out axisMax, out step);
-                grid.MinColorCode = (float)axisMin;
-                grid.MaxColorCode = (float)axisMax;
-                grid.UpdateColor(grid.GridBlockProperties[0]);
-                this.scientificCanvas.uiCodedColorBar.UpdateValues(grid.GridBlockProperties[0].Values);
+                UpdateCatesianGrid(grid, property);
             }
+        }
+
+        private void UpdateCatesianGrid(CatesianGrid grid, GridBlockProperty property)
+        {
+            double axisMin, axisMax, step;
+            ColorIndicatorAxisAutomator.Automate(property.MinValue, property.MaxValue, out axisMin, out axisMax, out step);
+            grid.MinColorCode = (float)axisMin;
+            grid.MaxColorCode = (float)axisMax;
+            grid.UpdateColor(property);
+            this.scientificCanvas.uiCodedColorBar.UpdateValues(property.Values);
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
