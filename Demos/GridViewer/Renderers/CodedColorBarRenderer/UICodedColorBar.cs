@@ -64,7 +64,7 @@ namespace GridViewer
             base.DoRender(arg);
         }
 
-        public void UpdateValues(TracyEnergy.Simba.Data.Keywords.impl.GridBlockProperty property)
+        public void UpdateValues(float[] values)
         {
             var renderer = this.Renderer as CodedColorBarRenderer;
             for (int i = 0; i < renderer.ValueRenderers.Length; i++)
@@ -72,9 +72,9 @@ namespace GridViewer
                 CodedColorValueRenderer valueRenderer = renderer.ValueRenderers[i];
                 if (valueRenderer != null)
                 {
-                    valueRenderer.Text = string.Format("{0}", property.Values[i]);
+                    valueRenderer.Text = string.Format("{0}", values[i]);
                 }
-            } 
+            }
         }
     }
 }

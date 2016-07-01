@@ -26,7 +26,7 @@ namespace GridViewer
                     if (grid != null)
                     {
                         grid.UpdateColor(property);
-                        this.scientificCanvas.uiCodedColorBar.UpdateValues(property);
+                        this.scientificCanvas.uiCodedColorBar.UpdateValues(property.Values);
                     }
                 }
             }
@@ -36,7 +36,7 @@ namespace GridViewer
                 if (grid != null)
                 {
                     grid.UpdateColor(0);
-                    this.scientificCanvas.uiCodedColorBar.UpdateValues(grid.GridBlockProperties[0]);
+                    this.scientificCanvas.uiCodedColorBar.UpdateValues(grid.GridBlockProperties[0].Values);
                 }
             }
         }
