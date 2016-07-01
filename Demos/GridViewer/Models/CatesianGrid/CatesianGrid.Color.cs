@@ -19,14 +19,15 @@ namespace GridViewer
             PropertyBufferPtr ptr = null;
             using (var buffer = new PropertyBuffer<HexahedronTexCoord>(varNameInShader, 1, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
             {
-                var gridIndexes = this.gridProps[this.defaultBlockPropertyIndex].Positions;
+                TracyEnergy.Simba.Data.Keywords.impl.GridBlockProperty property = this.gridProps[this.defaultBlockPropertyIndex];
+                int[] gridIndexes = property.Positions;
+                float[] values = property.Values;
                 int[] resultsVisibles = this.DataSource.ExpandVisibles(gridIndexes);
                 int[] bindVisibles = this.DataSource.BindCellActive(this.DataSource.BindVisibles, resultsVisibles);
 
                 int dimenSize = this.DataSource.DimenSize;
                 float[] textures = this.DataSource.GetInvisibleTextureCoords();
                 float distance = Math.Abs(this.MaxColorCode - this.MinColorCode);
-                float[] values = this.gridProps[this.defaultBlockPropertyIndex].Values;
                 for (int i = 0; i < gridIndexes.Length; i++)
                 {
                     int gridIndex = gridIndexes[i];

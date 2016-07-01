@@ -38,10 +38,12 @@ namespace GridViewer
 
         protected override void DoRender(RenderEventArg arg)
         {
-            const int shrink = 50;
+            const int shrink = 50;// leave some space for first and last value.
+            int width = this.Size.Width;
+            int height = this.Size.Height;
             mat4 projection = this.GetOrthoProjection();
             mat4 view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
-            mat4 model = glm.scale(mat4.identity(), new vec3(this.Size.Width / 2 - shrink, this.Size.Height / 2 - 1, 1));
+            mat4 model = glm.scale(mat4.identity(), new vec3(width / 2 - shrink, height / 2 - 1, 1));
             var renderer = this.Renderer as CodedColorBarRenderer;
             renderer.RectRenderer.SetUniform("mvp", projection * view * model);
             renderer.LineRenderer.SetUniform("mvp", projection * view * model);
@@ -51,10 +53,10 @@ namespace GridViewer
                 if (valueRenderer != null)
                 {
                     model = glm.translate(mat4.identity(), new vec3(
-                        -(this.Size.Width / 2 - shrink) + (this.Size.Width - shrink * 2) / (this.codedColors.Length - 1) * i,
-                        -this.Size.Height / 4,
+                        -(width / 2 - shrink) + (width - shrink * 2) / (this.codedColors.Length - 1) * i,
+                        -height / 4,
                         0));
-                    model = glm.scale(model, new vec3(this.Size.Height, this.Size.Height, this.Size.Height) / 2.3f);
+                    model = glm.scale(model, new vec3(height, height, height) / 2.3f);
                     valueRenderer.SetUniform("mvp", projection * view * model);
                 }
             }
