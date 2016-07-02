@@ -95,6 +95,7 @@ namespace GridViewer
                 //if (well3dList != null && well3dList.Count > 0)
                 //    this.AddWellNodes(gridderNode, this.scene, well3dList);
                 //}
+                this.scientificCanvas.Invalidate();
             }
             catch (Exception ex)
             {

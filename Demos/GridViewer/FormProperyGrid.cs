@@ -13,6 +13,8 @@ namespace GridViewer
     public partial class FormProperyGrid : Form
     {
 
+        public PropertyGrid PropertyGrid { get { return this.propertyGrid1; } }
+
         public FormProperyGrid(object obj = null)
         {
             InitializeComponent();

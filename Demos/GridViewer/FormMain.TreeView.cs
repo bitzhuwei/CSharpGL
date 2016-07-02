@@ -26,6 +26,7 @@ namespace GridViewer
                     CatesianGrid grid = (scientificRenderer as CatesianGridRenderer).Grid;
                     UpdateCatesianGrid(grid, property);
                 }
+                this.scientificCanvas.Invalidate();
             }
             else if (e.Node.ToolTipText == typeof(CatesianGrid).Name)
             {
@@ -33,6 +34,7 @@ namespace GridViewer
                 CatesianGrid grid = ((sceneObject.Renderer as BoundedRendererComponent).Renderer.ScientificRenderer as CatesianGridRenderer).Grid;
                 GridBlockProperty property = grid.GridBlockProperties[0];
                 UpdateCatesianGrid(grid, property);
+                this.scientificCanvas.Invalidate();
             }
         }
 
@@ -67,6 +69,7 @@ namespace GridViewer
 
                     obj.Renderer.Dispose();
                 }
+                this.scientificCanvas.Invalidate();
             }
         }
 

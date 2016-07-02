@@ -14,12 +14,23 @@ namespace GridViewer
 
         private void sceneToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new FormProperyGrid(this.scientificCanvas.Scene)).Show();
+            var form = new FormProperyGrid(this.scientificCanvas.Scene);
+            form.PropertyGrid.PropertyValueChanged += PropertyGrid_PropertyValueChanged;
+            form.ShowDialog();
+            this.scientificCanvas.Invalidate();
+        }
+
+        void PropertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            this.scientificCanvas.Invalidate();
         }
 
         private void scientificCanvasMenuItem_Click(object sender, EventArgs e)
         {
-            (new FormProperyGrid(this.scientificCanvas)).Show();
+            var form = new FormProperyGrid(this.scientificCanvas);
+            form.PropertyGrid.PropertyValueChanged += PropertyGrid_PropertyValueChanged;
+            form.ShowDialog();
+            this.scientificCanvas.Invalidate();
         }
     }
 }
