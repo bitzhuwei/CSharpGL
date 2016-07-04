@@ -16,7 +16,7 @@ namespace CSharpGL
         protected static OpenGL.glBindBuffer glBindBuffer;
         protected static OpenGL.glBufferData glBufferData;
 
-        private UnmanagedArrayBase array = null;
+        protected UnmanagedArrayBase array = null;
 
         /// <summary>
         /// 此VBO中的数据在内存中的起始地址
@@ -97,23 +97,23 @@ namespace CSharpGL
             this.Usage = usage;
         }
 
-        /// <summary>
-        /// 根据buffer内存放的具体的结构类型创建非托管数组。
-        /// <para>create an unmanaged array to store data for this buffer.</para>
-        /// </summary>
-        /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-        /// <returns></returns>
-        protected abstract UnmanagedArrayBase CreateElements(int elementCount);
+        ///// <summary>
+        ///// 根据buffer内存放的具体的结构类型创建非托管数组。
+        ///// <para>create an unmanaged array to store data for this buffer.</para>
+        ///// </summary>
+        ///// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
+        ///// <returns></returns>
+        //protected abstract UnmanagedArrayBase CreateElements(int elementCount);
 
         /// <summary>
         /// 申请指定长度的非托管数组。
         /// <para>create an unmanaged array to store data for this buffer.</para>
         /// </summary>
         /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-        public void Alloc(int elementCount)
-        {
-            this.array = CreateElements(elementCount);
-        }
+        public abstract void Alloc(int elementCount);
+        //{
+        //    this.array = CreateElements(elementCount);
+        //}
 
         /// <summary>
         /// 获取一个可渲染此VBO的渲染器。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。

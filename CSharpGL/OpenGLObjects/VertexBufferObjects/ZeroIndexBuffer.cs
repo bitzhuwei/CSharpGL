@@ -34,9 +34,9 @@ namespace CSharpGL
         /// </summary>
         public int VertexCount { get; private set; }
 
-        protected override UnmanagedArrayBase CreateElements(int elementCount)
+        public override void Alloc(int elementCount)
         {
-            return null;
+            // no need to alloc memory for this buffer.
         }
 
         protected override BufferPtr Upload2GPU()

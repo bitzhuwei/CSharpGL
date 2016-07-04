@@ -89,6 +89,11 @@ namespace CSharpGL
         //    return result;
         //}
 
+        public override void Alloc(int elementCount)
+        {
+            this.array = new UnmanagedArray<T>(elementCount);
+        }
+
         protected override BufferPtr Upload2GPU()
         {
             uint[] buffers = new uint[1];

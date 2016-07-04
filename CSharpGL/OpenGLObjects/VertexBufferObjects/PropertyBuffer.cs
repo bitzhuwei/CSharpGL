@@ -69,9 +69,9 @@ namespace CSharpGL
             return bufferPtr;
         }
 
-        protected override UnmanagedArrayBase CreateElements(int elementCount)
+        public override void Alloc(int elementCount)
         {
-            return new UnmanagedArray<T>(elementCount);
+            this.array = new UnmanagedArray<T>(elementCount);
         }
     }
 }

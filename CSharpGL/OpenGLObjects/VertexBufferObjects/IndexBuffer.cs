@@ -28,12 +28,6 @@ namespace CSharpGL
         /// </summary>
         public DrawMode Mode { get; private set; }
 
-
-        protected override UnmanagedArrayBase CreateElements(int elementCount)
-        {
-            return new UnmanagedArray<T>(elementCount);
-        }
-
     }
 
 
