@@ -12,7 +12,7 @@ namespace CSharpGL
     /// </summary>
     public sealed class VertexArrayObject : IDisposable
     {
-        private BufferPtr[] propertyBufferPtrs;
+        public BufferPtr[] PropertyBufferPtrs { get; private set; }
 
         public IndexBufferPtr IndexBufferPtr { get; private set; }
 
@@ -51,7 +51,7 @@ namespace CSharpGL
             }
 
             this.IndexBufferPtr = indexBufferPtr;
-            this.propertyBufferPtrs = propertyBufferPtrs;
+            this.PropertyBufferPtrs = propertyBufferPtrs;
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace CSharpGL
             this.Id = buffers[0];
 
             this.Bind();
-            BufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
+            BufferPtr[] propertyBufferPtrs = this.PropertyBufferPtrs;
             if (propertyBufferPtrs != null)
             {
                 foreach (var item in propertyBufferPtrs)
@@ -147,7 +147,7 @@ namespace CSharpGL
                         glDeleteVertexArrays(1, new uint[] { this.Id });
                     }
                     {
-                        BufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
+                        BufferPtr[] propertyBufferPtrs = this.PropertyBufferPtrs;
                         foreach (var item in propertyBufferPtrs)
                         {
                             item.Dispose();
