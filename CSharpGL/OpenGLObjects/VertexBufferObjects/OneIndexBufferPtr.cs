@@ -59,7 +59,7 @@ namespace CSharpGL
                 case IndexElementType.UnsignedByte:
                     offset = new IntPtr(this.FirstIndex * sizeof(byte));
                     break;
-                case IndexElementType.UnsignedShort:
+                case IndexElementType.UnsighedShort:
                     offset = new IntPtr(this.FirstIndex * sizeof(ushort));
                     break;
                 case IndexElementType.UnsignedInt:
@@ -92,7 +92,7 @@ namespace CSharpGL
                 case IndexElementType.UnsignedByte:
                     type = "byte";
                     break;
-                case IndexElementType.UnsignedShort:
+                case IndexElementType.UnsighedShort:
                     type = "ushort";
                     break;
                 case IndexElementType.UnsignedInt:

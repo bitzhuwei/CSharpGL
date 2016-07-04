@@ -7,17 +7,17 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 索引buffer。索引指定了<see cref="PropertyBuffer"/>里各个顶点的渲染顺序。
+    /// 用于存储索引的VBO。索引指定了<see cref="PropertyBuffer"/>里各个顶点的渲染顺序。
+    /// Vertex Buffer Object storing vertex' indexes, which indicate the rendering order of each vertex.
     /// </summary>
-    /// <typeparam name="T">此buffer存储的是哪种struct的数据？</typeparam>
+    /// <typeparam name="T">此buffer存储的是哪种struct的数据？只支持byte, ushort, uint。<para>type of index value. Only support byte, ushort, uint.</para></typeparam>
     public class OneIndexBuffer<T> : IndexBuffer<T> where T : struct
     {
         /// <summary>
-        /// 用于存储索引的VBO。
+        /// 用于存储索引的VBO。索引指定了<see cref="PropertyBuffer"/>里各个顶点的渲染顺序。
+        /// Vertex Buffer Object storing vertex' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-        /// <param name="type">type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
-        /// <para>表示第3个参数，表示索引元素的类型。</para></param>
         /// <param name="usage"></param>
         public OneIndexBuffer(DrawMode mode, BufferUsage usage)
             : base(mode, usage)
@@ -28,7 +28,7 @@ namespace CSharpGL
             }
             else if (typeof(ushort) == typeof(T))
             {
-                this.Type = IndexElementType.UnsignedShort;
+                this.Type = IndexElementType.UnsighedShort;
             }
             else if (typeof(byte) == typeof(T))
             {
@@ -49,7 +49,7 @@ namespace CSharpGL
                 case IndexElementType.UnsignedByte:
                     result = base.ByteLength / sizeof(byte);
                     break;
-                case IndexElementType.UnsignedShort:
+                case IndexElementType.UnsighedShort:
                     result = base.ByteLength / sizeof(ushort);
                     break;
                 case IndexElementType.UnsignedInt:
@@ -64,30 +64,8 @@ namespace CSharpGL
 
         /// <summary>
         /// type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
-        /// 只能是OpenGL.UNSIGNED_BYTE, OpenGL.UNSIGNED_SHORT, or OpenGL.UNSIGNED_INT
         /// </summary>
         public IndexElementType Type { get; private set; }
-
-        //protected override UnmanagedArrayBase CreateElements(int elementCount)
-        //{
-        //    UnmanagedArrayBase result = null;
-        //    switch (this.Type)
-        //    {
-        //        case IndexElementType.UnsignedByte:
-        //            result = new UnmanagedArray<byte>(elementCount);
-        //            break;
-        //        case IndexElementType.UnsignedShort:
-        //            result = new UnmanagedArray<ushort>(elementCount);
-        //            break;
-        //        case IndexElementType.UnsignedInt:
-        //            result = new UnmanagedArray<uint>(elementCount);
-        //            break;
-        //        default:
-        //            throw new NotImplementedException();
-        //    }
-
-        //    return result;
-        //}
 
         /// <summary>
         /// 申请指定长度的非托管数组。
@@ -107,7 +85,7 @@ namespace CSharpGL
             glBufferData(OpenGL.GL_ELEMENT_ARRAY_BUFFER, this.ByteLength, this.Header, (uint)this.Usage);
             glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
 
-            OneIndexBufferPtr bufferPtr = new OneIndexBufferPtr(
+            var bufferPtr = new OneIndexBufferPtr(
                  buffers[0], this.Mode, 0, this.GetElementCount(), this.Type, this.Length, this.ByteLength);
 
             return bufferPtr;
@@ -116,8 +94,17 @@ namespace CSharpGL
 
     public enum IndexElementType : uint
     {
+        /// <summary>
+        /// byte
+        /// </summary>
         UnsignedByte = OpenGL.GL_UNSIGNED_BYTE,
-        UnsignedShort = OpenGL.GL_UNSIGNED_SHORT,
+        /// <summary>
+        /// ushort
+        /// </summary>
+        UnsighedShort = OpenGL.GL_UNSIGNED_SHORT,
+        /// <summary>
+        /// uint
+        /// </summary>
         UnsignedInt = OpenGL.GL_UNSIGNED_INT,
     }
 }

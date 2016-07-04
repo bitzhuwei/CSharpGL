@@ -19,7 +19,7 @@ namespace CSharpGL
                 case IndexElementType.UnsignedByte:
                     this.RestartIndex = byte.MaxValue;
                     break;
-                case IndexElementType.UnsignedShort:
+                case IndexElementType.UnsighedShort:
                     this.RestartIndex = ushort.MaxValue;
                     break;
                 case IndexElementType.UnsignedInt:

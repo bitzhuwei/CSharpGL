@@ -25,7 +25,7 @@ namespace CSharpGL
                 case IndexElementType.UnsignedByte:
                     RecognizeByte(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList);
                     break;
-                case IndexElementType.UnsignedShort:
+                case IndexElementType.UnsighedShort:
                     RecognizeUShort(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList);
                     break;
                 case IndexElementType.UnsignedInt:
@@ -64,7 +64,7 @@ namespace CSharpGL
                     case IndexElementType.UnsignedByte:
                         RecognizeByte(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList, primitiveRestartIndex);
                         break;
-                    case IndexElementType.UnsignedShort:
+                    case IndexElementType.UnsighedShort:
                         RecognizeUShort(lastVertexId, pointer, oneIndexBufferPtr, lastIndexIdList, primitiveRestartIndex);
                         break;
                     case IndexElementType.UnsignedInt:
