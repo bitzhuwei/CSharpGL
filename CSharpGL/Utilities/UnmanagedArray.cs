@@ -10,26 +10,25 @@ namespace System
 {
 
     /// <summary>
-    /// 元素类型为sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool或其它struct的非托管数组。
-    /// <para>不能使用enum类型作为T。</para>
+    /// unmanaged huge array.
     /// <para>Check http://www.cnblogs.com/bitzhuwei/p/huge-unmanged-array-in-csharp.html </para>
     /// </summary>
-    /// <typeparam name="T">sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool或其它struct, 不能使用enum类型作为T。</typeparam>
+    /// <typeparam name="T">sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool or other struct types. enum not supported.</typeparam>
     public sealed unsafe class UnmanagedArray<T> : UnmanagedArrayBase where T : struct
     {
         /// <summary>
-        /// 此类型（即参数为T）一共申请了多少个对象？
-        /// <para>仅为调试之用，无应用意义。</para>
+        /// How many <see cref="UnmanagedArray"/>&lt;<typeparam name="T"></typeparam>&gt; objects allocated?
+        /// <para>Only used for debugging.</para>
         /// </summary>
         private static int thisTypeAllocatedCount = 0;
         /// <summary>
-        /// 此类型（即参数为T）一共释放了多少个对象？
-        /// <para>仅为调试之用，无应用意义。</para>
+        /// How many <see cref="UnmanagedArray"/>&lt;<typeparam name="T"></typeparam>&gt; objects released?
+        /// <para>Only used for debugging.</para>
         /// </summary>
         private static int thisTypeDisposedCount = 0;
 
         /// <summary>
-        ///元素类型为sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool或其它struct的非托管数组。
+        /// unmanaged array.
         /// </summary>
         /// <param name="count"></param>
         public UnmanagedArray(int count)
@@ -38,6 +37,7 @@ namespace System
             UnmanagedArray<T>.thisTypeAllocatedCount++;
         }
 
+        // Do not try to use less effitient way of accessing elements as we're using OpenGL.
         // 既然要用OpenGL，就不要试图才用低效的方式了。
         ///// <summary>
         ///// 获取或设置索引为<paramref name="index"/>的元素。
@@ -75,6 +75,8 @@ namespace System
 
             base.DisposeUnmanagedResources();
         }
+
+        // Do not try to use less effitient way of accessing elements as we're using OpenGL.
         ///// <summary>
         ///// 按索引顺序依次获取各个元素。
         ///// </summary>
@@ -89,39 +91,45 @@ namespace System
     }
 
     /// <summary>
-    /// 非托管数组的基类。
+    /// Base type of unmanaged array.
+    /// <para>Similar to array in <code>int array[Length];</code></para>
     /// </summary>
     public abstract class UnmanagedArrayBase : IDisposable
     {
         /// <summary>
-        /// 一共申请了多少个<see cref="UnmanagedArrayBase"/>对象？
-        /// <para>仅为调试之用，无应用意义。</para>
+        /// How many <see cref="UnmanagedArrayBase"/> allocated?
+        /// <para>Only used for debugging.</para>
         /// </summary>
         public static int allocatedCount = 0;
 
         /// <summary>
-        /// 一共释放了多少个<see cref="UnmanagedArrayBase"/>对象？
-        /// <para>仅为调试之用，无应用意义。</para>
+        /// How many <see cref="UnmanagedArrayBase"/> released?
+        /// <para>Only used for debugging.</para>
         /// </summary>
         public static int disposedCount = 0;
 
         /// <summary>
-        /// 此数组的起始位置。
+        /// Start position of array; Head of array; first element's position of array.
+        /// <para><code>array</code> in <code>int array[Length];</code></para>
         /// </summary>
         public IntPtr Header { get; private set; }
 
         /// <summary>
-        /// 元素的总数。
+        /// How many elements?
+        /// <para><code>Length</code> in <code>int array[Length];</code></para>
         /// </summary>
         public int Length { get; private set; }
 
         /// <summary>
         /// 单个元素的字节数。
+        /// <para>How manay bytes for one element of array?</para>
         /// </summary>
         protected int elementSize;
 
         /// <summary>
         /// 申请到的字节数。（元素的总数 * 单个元素的字节数）。
+        /// <para>How many bytes for total array?</para>
+        /// <para>Length * elementSize</para>
         /// </summary>
         public int ByteLength
         {
@@ -129,11 +137,12 @@ namespace System
         }
 
         /// <summary>
-        /// 非托管数组。
+        /// Base type of unmanaged array.
+        /// <para>Similar to array in <code>int array[Length];</code></para>
         /// </summary>
-        /// <param name="elementCount">元素的总数。</param>
-        /// <param name="elementSize">单个元素的字节数。</param>
-        //[MethodImpl(MethodImplOptions.Synchronized)]//这造成死锁，不知道是为什么
+        /// <param name="elementCount">How many elements?</param>
+        /// <param name="elementSize">How manay bytes for one element of array?</param>
+        //[MethodImpl(MethodImplOptions.Synchronized)]//这造成死锁，不知道是为什么 Dead lock, Why?
         protected UnmanagedArrayBase(int elementCount, int elementSize)
         {
             this.Length = elementCount;
