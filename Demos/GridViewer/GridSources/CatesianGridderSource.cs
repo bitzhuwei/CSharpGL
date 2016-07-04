@@ -18,20 +18,20 @@ namespace SimLab.GridSource
         /// <summary>
         /// X(I)方向上的网格宽度
         /// </summary>
-        public float[] DX { get; set; }
+        public float[] DX { get; internal set; }
 
         /// <summary>
         /// Y(J)方向上的网格宽度
         /// </summary>
-        public float[] DY { get; set; }
+        public float[] DY { get; internal set; }
 
         /// <summary>
         /// Z(K)方向上的网格宽度
         /// </summary>
-        public float[] DZ { get; set; }
+        public float[] DZ { get; internal set; }
 
 
-        public float[] TOPS { get; set; }
+        public float[] TOPS { get; internal set; }
 
         /// <summary>
         /// 数组大小为 (nx+1)*(ny+1)*(nz+1);
@@ -49,17 +49,17 @@ namespace SimLab.GridSource
         /// <summary>
         /// 网格起始原点X坐标
         /// </summary>
-        public float OX { get; set; }
+        public float OX { get; internal set; }
 
         /// <summary>
         /// 网格起始原点Y坐标
         /// </summary>
-        public float OY { get; set; }
+        public float OY { get; internal set; }
 
         /// <summary>
         /// 网格起始原点Z坐标
         /// </summary>
-        public float OZ { get; set; }
+        public float OZ { get; internal set; }
 
         /// <summary>
         /// 前左上角坐标
