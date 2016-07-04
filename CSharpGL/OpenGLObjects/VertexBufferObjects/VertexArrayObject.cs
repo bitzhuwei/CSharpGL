@@ -12,7 +12,7 @@ namespace CSharpGL
     /// </summary>
     public sealed class VertexArrayObject : IDisposable
     {
-        public BufferPtr[] PropertyBufferPtrs { get; private set; }
+        public PropertyBufferPtr[] PropertyBufferPtrs { get; private set; }
 
         public IndexBufferPtr IndexBufferPtr { get; private set; }
 
@@ -32,7 +32,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="indexBufferPtr">index buffer pointer that used to invoke draw command.</param>
         /// <param name="propertyBufferPtrs">给出此VAO要管理的所有VBO。<para>All VBOs that are managed by this VAO.</para></param>
-        public VertexArrayObject(IndexBufferPtr indexBufferPtr, params BufferPtr[] propertyBufferPtrs)
+        public VertexArrayObject(IndexBufferPtr indexBufferPtr, params PropertyBufferPtr[] propertyBufferPtrs)
         {
             if (indexBufferPtr == null)
             {
@@ -71,7 +71,7 @@ namespace CSharpGL
             this.Id = buffers[0];
 
             this.Bind();
-            BufferPtr[] propertyBufferPtrs = this.PropertyBufferPtrs;
+            PropertyBufferPtr[] propertyBufferPtrs = this.PropertyBufferPtrs;
             if (propertyBufferPtrs != null)
             {
                 foreach (var item in propertyBufferPtrs)
@@ -147,10 +147,13 @@ namespace CSharpGL
                         glDeleteVertexArrays(1, new uint[] { this.Id });
                     }
                     {
-                        BufferPtr[] propertyBufferPtrs = this.PropertyBufferPtrs;
-                        foreach (var item in propertyBufferPtrs)
+                        PropertyBufferPtr[] propertyBufferPtrs = this.PropertyBufferPtrs;
+                        if (propertyBufferPtrs != null)
                         {
-                            item.Dispose();
+                            foreach (var item in propertyBufferPtrs)
+                            {
+                                item.Dispose();
+                            }
                         }
                     }
                     {
