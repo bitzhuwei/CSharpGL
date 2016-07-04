@@ -8,24 +8,25 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 顶点的属性数组。描述顶点的位置或颜色或UV等各种属性。
+    /// 顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
     /// <para>每个<see cref="PropertyBuffer"/>仅描述其中一个属性。</para>
+    /// <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, ect.).</para>
+    /// <para>Each <see cref="PropertyBuffer"/> describes only 1 property.</para>
     /// </summary>
-    /// <typeparam name="T">此buffer存储的是哪种struct的数据？</typeparam>
+    /// <typeparam name="T">此buffer存储的是哪种struct的数据？<para>type of index value.</para></typeparam>
     public class PropertyBuffer<T> : Buffer where T : struct
     {
 
         /// <summary>
-        /// 顶点的属性数组。描述顶点的位置或颜色或UV等各种属性。
+        /// 顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
         /// <para>每个<see cref="PropertyBuffer"/>仅描述其中一个属性。</para>
+        /// <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, ect.).</para>
+        /// <para>Each <see cref="PropertyBuffer"/> describes only 1 property.</para>
         /// </summary>
-        /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？</param>
-        /// <param name="dataSize">gl.VertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);
-        /// <para>表示第2个参数</para>
+        /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
+        /// <param name="dataSize">second parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
         /// </param>
-        /// <param name="dataType">GL_FLOAT etc
-        /// <para>gl.VertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);</para>
-        /// <para>表示第3个参数</para>
+        /// <param name="dataType">third parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
         /// </param>
         /// <param name="usage"></param>
         public PropertyBuffer(string varNameInVertexShader, int dataSize, uint dataType, BufferUsage usage)
@@ -38,22 +39,20 @@ namespace CSharpGL
 
         /// <summary>
         /// 此顶点属性VBO对应于vertex shader中的哪个in变量？
+        /// <para>Mapping variable's name in vertex shader.</para>
         /// </summary>
         public string VarNameInVertexShader { get; private set; }
 
         /// <summary>
-        /// GL_FLOAT etc
-        /// <para>glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);</para>
-        /// <para>glVertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);</para>
-        /// <para>表示第3个参数</para>
-        /// </summary>
-        public uint DataType { get; private set; }
-
-        /// <summary>
-        /// glVertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);
-        /// <para>表示第2个参数</para>
+        /// second parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
         /// </summary>
         public int DataSize { get; private set; }
+
+        /// <summary>
+        /// GL_FLOAT etc
+        /// <para>third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);</para>
+        /// </summary>
+        public uint DataType { get; private set; }
 
         protected override BufferPtr Upload2GPU()
         {
@@ -63,7 +62,7 @@ namespace CSharpGL
             glBufferData(OpenGL.GL_ARRAY_BUFFER, this.ByteLength, this.Header, (uint)this.Usage);
             glBindBuffer(OpenGL.GL_ARRAY_BUFFER, 0);
 
-            PropertyBufferPtr bufferPtr = new PropertyBufferPtr(
+            var bufferPtr = new PropertyBufferPtr(
                 this.VarNameInVertexShader, buffers[0], this.DataSize, this.DataType, this.Length, this.ByteLength);
 
             return bufferPtr;

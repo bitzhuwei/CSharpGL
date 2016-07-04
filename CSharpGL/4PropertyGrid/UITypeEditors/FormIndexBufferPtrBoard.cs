@@ -40,10 +40,10 @@ namespace CSharpGL
             {
                 this.lblFirst.Text = "First Vertex:";
                 this.lblCount.Text = "Vertex Count:";
-                this.trackFirst.Minimum = indexBufferPtrController.First();
+                this.trackFirst.Minimum = 0;
                 this.trackFirst.Maximum = indexBufferPtrController.Count();
                 this.trackFirst.Value = indexBufferPtrController.First();
-                this.trackCount.Minimum = indexBufferPtrController.First();
+                this.trackCount.Minimum = 0;
                 this.trackCount.Maximum = indexBufferPtrController.Count();
                 this.trackCount.Value = indexBufferPtrController.Count();
                 this.lblFirstValue.Text = this.trackFirst.Value.ToString();
@@ -54,10 +54,10 @@ namespace CSharpGL
             {
                 this.lblFirst.Text = "First Index:";
                 this.lblCount.Text = "Element Count:";
-                this.trackFirst.Minimum = indexBufferPtrController.First();
+                this.trackFirst.Minimum = 0;
                 this.trackFirst.Maximum = indexBufferPtrController.Count();
                 this.trackFirst.Value = indexBufferPtrController.First();
-                this.trackCount.Minimum = indexBufferPtrController.First();
+                this.trackCount.Minimum = 0;
                 this.trackCount.Maximum = indexBufferPtrController.Count();
                 this.trackCount.Value = indexBufferPtrController.Count();
                 this.lblFirstValue.Text = this.trackFirst.Value.ToString();

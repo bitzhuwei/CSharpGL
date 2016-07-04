@@ -7,38 +7,40 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 一个vertex array object。（即VAO）
-    /// <para>VAO是用来管理VBO的。可以进一步减少DrawCall。</para>
+    /// VAO是用来管理VBO的。可以进一步减少DrawCall。
+    /// <para>VAO is used to reduce draw-call.</para>
     /// </summary>
     public sealed class VertexArrayObject : IDisposable
     {
         private BufferPtr[] propertyBufferPtrs;
 
-        public IndexBufferPtr IndexBufferPtr { get; set; }
+        public IndexBufferPtr IndexBufferPtr { get; private set; }
 
         /// <summary>
         /// 此VAO的ID，由OpenGL给出。
+        /// <para>Id gets from glGenVertexArrays().</para>
         /// </summary>
-        public uint ID { get; private set; }
+        public uint Id { get; private set; }
 
         static OpenGL.glGenVertexArrays glGenVertexArrays;
         static OpenGL.glBindVertexArray glBindVertexArray;
         static OpenGL.glDeleteVertexArrays glDeleteVertexArrays;
 
         /// <summary>
-        /// 一个vertex array object。（即VAO）
-        /// <para>VAO是用来管理VBO的。可以进一步减少DrawCall。</para>
+        /// VAO是用来管理VBO的。可以进一步减少DrawCall。
+        /// <para>VAO is used to reduce draw-call.</para>
         /// </summary>
-        /// <param name="propertyBufferPtrs">给出此VAO要管理的所有VBO。</param>
+        /// <param name="indexBufferPtr">index buffer pointer that used to invoke draw command.</param>
+        /// <param name="propertyBufferPtrs">给出此VAO要管理的所有VBO。<para>All VBOs that are managed by this VAO.</para></param>
         public VertexArrayObject(IndexBufferPtr indexBufferPtr, params BufferPtr[] propertyBufferPtrs)
         {
             if (indexBufferPtr == null)
             {
-                throw new ArgumentNullException("indexBufferRenderer");
+                throw new ArgumentNullException("indexBufferPtr");
             }
             if (propertyBufferPtrs == null || propertyBufferPtrs.Length == 0)
             {
-                throw new ArgumentNullException("propertyBuffers");
+                throw new ArgumentNullException("propertyBufferPtrs");
             }
 
             if (glGenVertexArrays == null)
@@ -60,13 +62,13 @@ namespace CSharpGL
         /// <param name="shaderProgram"></param>
         public void Create(RenderEventArg arg, ShaderProgram shaderProgram)
         {
-            if (this.ID != 0)
-            { throw new Exception(string.Format("ID[{0}] is already generated!", this.ID)); }
+            if (this.Id != 0)
+            { throw new Exception(string.Format("Id[{0}] is already generated!", this.Id)); }
 
             uint[] buffers = new uint[1];
             glGenVertexArrays(1, buffers);
 
-            this.ID = buffers[0];
+            this.Id = buffers[0];
 
             this.Bind();
             BufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;
@@ -82,7 +84,7 @@ namespace CSharpGL
 
         private void Bind()
         {
-            glBindVertexArray(this.ID);
+            glBindVertexArray(this.Id);
         }
 
         private void Unbind()
@@ -98,27 +100,18 @@ namespace CSharpGL
         /// <param name="temporaryIndexBufferPtr">render by a temporary index buffer</param>
         public void Render(RenderEventArg arg, ShaderProgram shaderProgram, IndexBufferPtr temporaryIndexBufferPtr = null)
         {
-            if (temporaryIndexBufferPtr != null)
+            IndexBufferPtr indexBufferPtr = (temporaryIndexBufferPtr == null) ? this.IndexBufferPtr : temporaryIndexBufferPtr;
+            if (indexBufferPtr != null)
             {
                 this.Bind();
-                temporaryIndexBufferPtr.Render(arg, shaderProgram);
+                indexBufferPtr.Render(arg, shaderProgram);
                 this.Unbind();
-            }
-            else
-            {
-                IndexBufferPtr indexBufferPtr = this.IndexBufferPtr;
-                if (indexBufferPtr != null)
-                {
-                    this.Bind();
-                    indexBufferPtr.Render(arg, shaderProgram);
-                    this.Unbind();
-                }
             }
         }
 
         public override string ToString()
         {
-            return string.Format("VAO ID: {0}", this.ID);
+            return string.Format("VAO Id: {0}", this.Id);
         }
 
         public void Dispose()
@@ -145,13 +138,13 @@ namespace CSharpGL
                 }
 
                 // Dispose unmanaged resources.
-                 IntPtr ptr = Win32.wglGetCurrentContext();
+                IntPtr ptr = Win32.wglGetCurrentContext();
                 if (ptr != IntPtr.Zero)
                 {
                     {
-                        uint[] arrays = new uint[] { this.ID };
-                        this.ID = 0;
-                        glDeleteVertexArrays(1, new uint[] { this.ID });
+                        uint[] arrays = new uint[] { this.Id };
+                        this.Id = 0;
+                        glDeleteVertexArrays(1, new uint[] { this.Id });
                     }
                     {
                         BufferPtr[] propertyBufferPtrs = this.propertyBufferPtrs;

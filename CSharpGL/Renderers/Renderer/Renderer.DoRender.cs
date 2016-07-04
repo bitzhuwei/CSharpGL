@@ -43,8 +43,9 @@ namespace CSharpGL
                 if (vertexArrayObject != null)
                 {
                     if (vertexArrayObject.IndexBufferPtr != indexBufferPtr)
-                    { vertexArrayObject.IndexBufferPtr = indexBufferPtr; }
-                    vertexArrayObject.Render(arg, program);
+                    { vertexArrayObject.Render(arg, program, indexBufferPtr); }
+                    else
+                    { vertexArrayObject.Render(arg, program); }
                 }
             }
 

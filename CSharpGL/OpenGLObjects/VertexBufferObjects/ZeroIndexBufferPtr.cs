@@ -16,8 +16,8 @@ namespace CSharpGL
         /// Wraps glDrawArrays(uint mode, int first, int count).
         /// </summary>
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>
-        ///<param name="firstVertex">要渲染的第一个顶点的索引</param>
-        /// <param name="vertexCount">要渲染多少个顶点？</param>
+        /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
+        /// <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
         internal ZeroIndexBufferPtr(DrawMode mode, int firstVertex, int vertexCount)
             : base(mode, 0, vertexCount, vertexCount * sizeof(uint))
         {
@@ -27,15 +27,18 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 要渲染的第一个顶点的索引。
+        /// 要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para>
         /// </summary>
         public int FirstVertex { get; set; }
 
         /// <summary>
-        /// 要渲染多少个顶点。
+        /// 要渲染多少个元素？<para>How many vertexes to be rendered?</para>
         /// </summary>
         public int VertexCount { get; set; }
 
+        /// <summary>
+        /// 总共有多少个元素？<para>How many vertexes are there in total?</para>
+        /// </summary>
         public int OriginalVertexCount { get; private set; }
 
         public override void Render(RenderEventArg arg, ShaderProgram shaderProgram)

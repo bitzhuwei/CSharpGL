@@ -7,7 +7,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 在渲染时此VBO要执行绑定自己、指明数据结构和启用此VBO等操作。
+    /// Vertex' property buffer's pointer.
     /// </summary>
     public class PropertyBufferPtr : BufferPtr
     {
@@ -15,17 +15,16 @@ namespace CSharpGL
         protected static OpenGL.glEnableVertexAttribArray glEnableVertexAttribArray;
 
         /// <summary>
-        /// 在渲染时此VBO要执行绑定自己、指明数据结构和启用此VBO等操作。
+        /// Vertex' property buffer's pointer.
         /// </summary>
-        /// <param name="varNameInVertexShader"></param>
-        /// <param name="bufferId">用GL.GenBuffers()得到的VBO的ID。</param>
-        /// <param name="dataSize">gl.VertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);
-        /// <para>表示第2个参数</para></param>
-        /// <param name="dataType">GL_FLOAT etc
-        /// <para>gl.VertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);</para>
-        /// <para>gl.VertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);</para>
-        /// <para>表示第3个参数</para></param>
-        /// <param name="length">此VBO含有多个个元素？</param>
+        /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
+        /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
+        /// <param name="dataSize">second parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
+        /// </param>
+        /// <param name="dataType">third parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
+        /// </param>
+        /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
+        /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         internal PropertyBufferPtr(string varNameInVertexShader,
             uint bufferId, int dataSize, uint dataType, int length, int byteLength)
             : base(bufferId, length, byteLength)
@@ -42,14 +41,13 @@ namespace CSharpGL
 
         /// <summary>
         /// 此顶点属性VBO对应于vertex shader中的哪个in变量？
+        /// <para>Mapping variable's name in vertex shader.</para>
         /// </summary>
         public string VarNameInVertexShader { get; set; }
 
         /// <summary>
         /// GL_FLOAT etc
-        /// <para>gl.VertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);</para>
-        /// <para>gl.VertexAttribPointer(attributeLocation, 3, GL.GL_FLOAT, false, 0, IntPtr.Zero);</para>
-        /// <para>表示第3个参数</para>
+        /// <para>third parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);</para>
         /// </summary>
         public uint DataType { get; private set; }
 
@@ -76,13 +74,13 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// gl.VertexAttribPointer(attributeLocation, 3, OpenGL.GL_FLOAT, false, 0, IntPtr.Zero);
-        /// <para>表示第2个参数</para>
+        /// second parameter in glVertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
         /// </summary>
         public int DataSize { get; private set; }
 
         /// <summary>
         /// 在使用<see cref="VertexArrayObject"/>后，此方法只会执行一次。
+        /// This method will only be invoked once when using <see cref="VertexArrayObject"/>.
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
@@ -93,11 +91,14 @@ namespace CSharpGL
             { throw new ArgumentException(); }
 
             uint loc = (uint)location;
-            // 选择 VBO
+            // 选中此VBO
+            // select this VBO.
             glBindBuffer(OpenGL.GL_ARRAY_BUFFER, this.BufferId);
             // 指定格式
+            // specify data format.
             glVertexAttribPointer(loc, this.DataSize, this.DataType, false, 0, IntPtr.Zero);
             // 启用
+            // enable this VBO.
             glEnableVertexAttribArray(loc);
         }
 
