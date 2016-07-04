@@ -29,7 +29,7 @@ namespace CSharpGL.Demos
                 {
                     using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.DynamicDraw))
                     {
-                        buffer.Alloc(positions.Length);
+                        buffer.Create(positions.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();

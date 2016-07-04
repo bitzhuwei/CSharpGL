@@ -58,7 +58,7 @@ namespace CSharpGL.Demos
                 {
                     using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(boundingBox.Length);
+                        buffer.Create(boundingBox.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
@@ -78,7 +78,7 @@ namespace CSharpGL.Demos
                 {
                     using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(boundingBox.Length);
+                        buffer.Create(boundingBox.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
@@ -104,7 +104,7 @@ namespace CSharpGL.Demos
             {
                 using (var buffer = new OneIndexBuffer<uint>(DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    buffer.Alloc(indices.Length);
+                    buffer.Create(indices.Length);
                     unsafe
                     {
                         var array = (uint*)buffer.Header.ToPointer();

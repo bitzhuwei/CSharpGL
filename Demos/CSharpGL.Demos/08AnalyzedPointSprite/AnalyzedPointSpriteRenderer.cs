@@ -82,7 +82,7 @@ namespace CSharpGL.Demos
                         using (var buffer = new PropertyBuffer<vec3>(
                             varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                         {
-                            buffer.Alloc(particleCount);
+                            buffer.Create(particleCount);
                             unsafe
                             {
                                 var array = (vec3*)buffer.Header.ToPointer();

@@ -55,7 +55,7 @@ namespace GridViewer
                 using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                 {
                     int vertexCount = (faceCount * 2 + 2) * (this.pipeline.Count - 1);
-                    buffer.Alloc(vertexCount);
+                    buffer.Create(vertexCount);
                     var array = (vec3*)buffer.Header.ToPointer();
                     int index = 0;
                     for (int i = 1; i < this.pipeline.Count; i++)
@@ -89,7 +89,7 @@ namespace GridViewer
                 using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                 {
                     int vertexCount = (faceCount * 2 + 2) * (this.pipeline.Count - 1);
-                    buffer.Alloc(vertexCount);
+                    buffer.Create(vertexCount);
                     var array = (vec3*)buffer.Header.ToPointer();
                     vec3 vColor = this.color.ToVec3();
                     for (int i = 0; i < buffer.Length; i++)
@@ -115,7 +115,7 @@ namespace GridViewer
             int vertexCount = (faceCount * 2 + 2) * (this.pipeline.Count - 1);
             using (var buffer = new OneIndexBuffer<uint>(DrawMode.QuadStrip, BufferUsage.StaticDraw))
             {
-                buffer.Alloc(vertexCount + (this.pipeline.Count - 1));
+                buffer.Create(vertexCount + (this.pipeline.Count - 1));
                 var array = (uint*)buffer.Header.ToPointer();
                 uint positionIndex = 0;
                 for (int i = 0; i < buffer.Length; i++)

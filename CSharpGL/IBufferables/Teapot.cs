@@ -33,7 +33,7 @@ namespace CSharpGL
                     using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         float[] positions = model.GetPositions();
-                        buffer.Alloc(positions.Length);
+                        buffer.Create(positions.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
@@ -54,7 +54,7 @@ namespace CSharpGL
                     using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         float[] normals = model.GetNormals();
-                        buffer.Alloc(normals.Length);
+                        buffer.Create(normals.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
@@ -75,7 +75,7 @@ namespace CSharpGL
                     using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         float[] normals = model.GetNormals();
-                        buffer.Alloc(normals.Length);
+                        buffer.Create(normals.Length);
                         unsafe
                         {
                             var array = (float*)buffer.Header.ToPointer();
@@ -102,7 +102,7 @@ namespace CSharpGL
                 using (var buffer = new OneIndexBuffer<ushort>(DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
                     ushort[] faces = model.GetFaces();
-                    buffer.Alloc(faces.Length);
+                    buffer.Create(faces.Length);
                     unsafe
                     {
                         var array = (ushort*)buffer.Header.ToPointer();

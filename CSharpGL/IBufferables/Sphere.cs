@@ -48,7 +48,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(model.positions.Length);
+                        buffer.Create(model.positions.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -68,7 +68,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(model.normals.Length);
+                        buffer.Create(model.normals.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -88,7 +88,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(model.colors.Length);
+                        buffer.Create(model.colors.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -108,7 +108,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new PropertyBuffer<vec2>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(model.uv.Length);
+                        buffer.Create(model.uv.Length);
                         unsafe
                         {
                             var array = (vec2*)buffer.Header.ToPointer();
@@ -137,7 +137,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new OneIndexBuffer<byte>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(model.indexes.Length);
+                        buffer.Create(model.indexes.Length);
                         unsafe
                         {
                             var indexArray = (byte*)buffer.Header.ToPointer();
@@ -157,7 +157,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new OneIndexBuffer<ushort>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(model.indexes.Length);
+                        buffer.Create(model.indexes.Length);
                         unsafe
                         {
                             var indexArray = (ushort*)buffer.Header.ToPointer();
@@ -177,7 +177,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new OneIndexBuffer<uint>(DrawMode.TriangleStrip, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(model.indexes.Length);
+                        buffer.Create(model.indexes.Length);
                         unsafe
                         {
                             var indexArray = (uint*)buffer.Header.ToPointer();

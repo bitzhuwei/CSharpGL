@@ -110,7 +110,7 @@ namespace CSharpGL
         /// <para>create an unmanaged array to store data for this buffer.</para>
         /// </summary>
         /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
-        public abstract void Alloc(int elementCount);
+        public abstract void Create(int elementCount);
         //{
         //    this.array = CreateElements(elementCount);
         //}
@@ -126,7 +126,9 @@ namespace CSharpGL
         private BufferPtr bufferPtr = null;
 
         /// <summary>
-        /// 获取一个可渲染此VBO的渲染器。
+        /// 获取一个可渲染此VBO的渲染器。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
+        /// Uploads this buffer to GPU memory and gets its pointer.
+        /// It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
         /// </summary>
         /// <returns></returns>
         public BufferPtr GetBufferPtr()

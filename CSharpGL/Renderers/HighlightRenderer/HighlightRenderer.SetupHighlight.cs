@@ -32,7 +32,7 @@ namespace CSharpGL
                 using (var buffer = new OneIndexBuffer<uint>(
                     indexBufferPtr.Mode, BufferUsage.DynamicDraw))
                 {
-                    buffer.Alloc(indexesLength);
+                    buffer.Create(indexesLength);
                     indexBufferPtr = buffer.GetBufferPtr() as OneIndexBufferPtr;
                 }
                 this.maxElementCount = indexesLength;

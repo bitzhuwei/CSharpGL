@@ -29,7 +29,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(TetrahedronModel.position.Length);
+                        buffer.Create(TetrahedronModel.position.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -50,7 +50,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(TetrahedronModel.color.Length);
+                        buffer.Create(TetrahedronModel.color.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -71,7 +71,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(TetrahedronModel.normal.Length);
+                        buffer.Create(TetrahedronModel.normal.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -98,7 +98,7 @@ namespace CSharpGL
             {
                 using (var buffer = new OneIndexBuffer<byte>(DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    buffer.Alloc(TetrahedronModel.index.Length);
+                    buffer.Create(TetrahedronModel.index.Length);
                     unsafe
                     {
                         var array = (byte*)buffer.Header.ToPointer();

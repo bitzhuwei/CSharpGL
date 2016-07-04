@@ -34,7 +34,12 @@ namespace CSharpGL
         /// </summary>
         public int VertexCount { get; private set; }
 
-        public override void Alloc(int elementCount)
+        /// <summary>
+        /// 对此buffer，没有必要调用此方法。
+        /// <para>No need to invoke this method for <see cref="ZeroIndexBuffer"/>.</para>
+        /// </summary>
+        /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
+        public override void Create(int elementCount)
         {
             // no need to alloc memory for this buffer.
         }

@@ -19,7 +19,7 @@ namespace GridViewer
             using (var buffer = new PropertyBuffer<HexahedronPosition>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
             {
                 int dimSize = this.DataSource.DimenSize;
-                buffer.Alloc(dimSize);
+                buffer.Create(dimSize);
                 unsafe
                 {
                     var array = (HexahedronPosition*)buffer.Header.ToPointer();

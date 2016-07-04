@@ -59,7 +59,7 @@ namespace GridViewer
                     }
                     using (var buffer = new PropertyBuffer<vec2>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(positions.Length);
+                        buffer.Create(positions.Length);
                         unsafe
                         {
                             var array = (vec2*)buffer.Header.ToPointer();

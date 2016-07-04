@@ -44,7 +44,7 @@ namespace CSharpGL.Demos
                     using (var buffer = new PropertyBuffer<vec4>(
                         varNameInShader, 4, OpenGL.GL_FLOAT, BufferUsage.DynamicCopy))
                     {
-                        buffer.Alloc(particleCount);
+                        buffer.Create(particleCount);
                         unsafe
                         {
                             var array = (vec4*)buffer.Header.ToPointer();
@@ -72,7 +72,7 @@ namespace CSharpGL.Demos
                     using (var buffer = new PropertyBuffer<vec4>(
                         varNameInShader, 4, OpenGL.GL_FLOAT, BufferUsage.DynamicCopy))
                     {
-                        buffer.Alloc(particleCount);
+                        buffer.Create(particleCount);
                         unsafe
                         {
                             var array = (vec4*)buffer.Header.ToPointer();

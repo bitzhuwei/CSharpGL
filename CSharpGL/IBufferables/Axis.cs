@@ -32,7 +32,7 @@ namespace CSharpGL
                     using (var buffer = new PropertyBuffer<vec3>(
                         varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(this.model.positions.Length);
+                        buffer.Create(this.model.positions.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -54,7 +54,7 @@ namespace CSharpGL
                     using (var buffer = new PropertyBuffer<vec3>(
                         varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(this.model.colors.Length);
+                        buffer.Create(this.model.colors.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -82,7 +82,7 @@ namespace CSharpGL
                 using (var buffer = new OneIndexBuffer<uint>(
                      this.model.mode, BufferUsage.StaticDraw))
                 {
-                    buffer.Alloc(this.model.indexes.Length);
+                    buffer.Create(this.model.indexes.Length);
                     unsafe
                     {
                         var array = (uint*)buffer.Header.ToPointer();

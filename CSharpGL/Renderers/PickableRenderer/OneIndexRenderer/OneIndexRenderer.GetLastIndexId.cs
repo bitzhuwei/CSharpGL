@@ -94,7 +94,7 @@ namespace CSharpGL
 
             using (var indexBuffer = new OneIndexBuffer<uint>(drawMode, BufferUsage.StaticDraw))
             {
-                indexBuffer.Alloc(
+                indexBuffer.Create(
                     recognizedPrimitiveIndex0.IndexIdList.Count
                     + 1
                     + recognizedPrimitiveIndex1.IndexIdList.Count);

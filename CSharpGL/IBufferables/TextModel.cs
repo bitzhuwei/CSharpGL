@@ -31,7 +31,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new PropertyBuffer<GlyphPosition>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.DynamicDraw))
                     {
-                        buffer.Alloc(maxCharCount);
+                        buffer.Create(maxCharCount);
 
                         positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
                     }
@@ -45,7 +45,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new PropertyBuffer<GlyphTexCoord>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.DynamicDraw))
                     {
-                        buffer.Alloc(maxCharCount);
+                        buffer.Create(maxCharCount);
 
                         uvBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
                     }

@@ -146,7 +146,7 @@ namespace CSharpGL.Demos
             public const string struv = "uv";
             PropertyBufferPtr positionBufferPtr;
             PropertyBufferPtr uvBufferPtr;
-            ZeroIndexBufferPtr indexBufferPtr;
+            IndexBufferPtr indexBufferPtr;
 
             public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
             {
@@ -156,7 +156,7 @@ namespace CSharpGL.Demos
                     {
                         using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                         {
-                            buffer.Alloc(4);
+                            buffer.Create(4);
                             unsafe
                             {
                                 var array = (vec3*)buffer.Header.ToPointer();
@@ -176,7 +176,7 @@ namespace CSharpGL.Demos
                     {
                         using (var buffer = new PropertyBuffer<vec2>(varNameInShader, 2, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                         {
-                            buffer.Alloc(4);
+                            buffer.Create(4);
                             unsafe
                             {
                                 var array = (vec2*)buffer.Header.ToPointer();
@@ -200,7 +200,7 @@ namespace CSharpGL.Demos
                 {
                     using (var buffer = new ZeroIndexBuffer(DrawMode.TriangleFan, 0, 4))
                     {
-                        indexBufferPtr = buffer.GetBufferPtr() as ZeroIndexBufferPtr;
+                        indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
                     }
                 }
                 return indexBufferPtr;

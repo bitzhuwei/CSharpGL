@@ -26,7 +26,7 @@ namespace CSharpGL
                     using (var buffer = new PropertyBuffer<vec3>(
                         varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(BigDipperModel.positions.Length);
+                        buffer.Create(BigDipperModel.positions.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
@@ -48,7 +48,7 @@ namespace CSharpGL
                     using (var buffer = new PropertyBuffer<vec3>(
                         varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(BigDipperModel.colors.Length);
+                        buffer.Create(BigDipperModel.colors.Length);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();

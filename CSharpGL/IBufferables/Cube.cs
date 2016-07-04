@@ -29,7 +29,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new PropertyBuffer<CubeModel.CubePosition>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(1);
+                        buffer.Create(1);
                         unsafe
                         {
                             var positionArray = (CubeModel.CubePosition*)buffer.Header.ToPointer();
@@ -48,7 +48,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new PropertyBuffer<CubeModel.CubeColor>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(1);
+                        buffer.Create(1);
                         unsafe
                         {
                             var colorArray = (CubeModel.CubeColor*)buffer.Header.ToPointer();
@@ -66,7 +66,7 @@ namespace CSharpGL
                 {
                     using (var buffer = new PropertyBuffer<CubeModel.CubeNormal>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Alloc(1);
+                        buffer.Create(1);
                         unsafe
                         {
                             var normalArray = (CubeModel.CubeNormal*)buffer.Header.ToPointer();
@@ -90,7 +90,7 @@ namespace CSharpGL
             {
                 using (var buffer = new OneIndexBuffer<byte>(DrawMode.Triangles, BufferUsage.StaticDraw))
                 {
-                    buffer.Alloc(CubeModel.index.Length);
+                    buffer.Create(CubeModel.index.Length);
                     unsafe
                     {
                         var array = (byte*)buffer.Header.ToPointer();
