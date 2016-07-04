@@ -8,23 +8,27 @@ namespace CSharpGL
 {
     /// <summary>
     /// 将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
+    /// VBO's pointer got from Buffer's Upload2GPU() method. It's totally OK to free memory of unmanaged array stored in this buffer object now.
     /// </summary>
     public abstract class BufferPtr : IDisposable
     {
         private bool disposedValue = false;
 
         /// <summary>
-        /// 用GL.GenBuffers()得到的VBO的ID。
+        /// 用glGenBuffers()得到的VBO的Id。
+        /// <para>Id got from glGenBuffers();</para>
         /// </summary>
         public uint BufferId { get; private set; }
 
         /// <summary>
         /// 此VBO含有多个个元素？
+        /// <para>How many elements?</para>
         /// </summary>
         public int Length { get; private set; }
 
         /// <summary>
-        /// 此VBO含有多个个字节？
+        /// 此VBO中的数据在内存中占用多少个字节？
+        /// <para>How many bytes in this buffer?</para>
         /// </summary>
         public int ByteLength { get; private set; }
 
@@ -32,10 +36,12 @@ namespace CSharpGL
         protected static OpenGL.glDeleteBuffers glDeleteBuffers;
 
         /// <summary>
-        /// 为给定VBO执行渲染时所需的操作。
+        /// 将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
+        /// VBO's pointer got from Buffer's Upload2GPU() method. It's totally OK to free memory of unmanaged array stored in this buffer object now.
         /// </summary>
-        /// <param name="bufferId">用GL.GenBuffers()得到的VBO的ID。</param>
-        /// <param name="length">此VBO含有多个个元素？</param>
+        /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
+        /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
+        /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         internal BufferPtr(uint bufferId, int length, int byteLength)
         {
             if (glBindBuffer == null)
@@ -51,9 +57,10 @@ namespace CSharpGL
 
         /// <summary>
         /// 执行此VBO的渲染操作。
+        /// <para>Render using this VBO.</para>
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="shaderProgram">此VBO使用的shader program。</param>
+        /// <param name="shaderProgram">binding shader program for this VBO.</param>
         public abstract void Render(RenderEventArg arg, ShaderProgram shaderProgram);
 
         public void Dispose()

@@ -65,7 +65,6 @@ namespace CSharpGL
         /// <summary>
         /// 此VBO含有多个个元素？
         /// <para>How many elements?</para>
-        /// <para><code>Length</code> in <code>int array[Length];</code></para>
         /// </summary>
         public int Length
         {
