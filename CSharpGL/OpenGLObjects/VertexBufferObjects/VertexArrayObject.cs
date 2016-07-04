@@ -57,6 +57,8 @@ namespace CSharpGL
         /// <summary>
         /// 在OpenGL中创建VAO。
         /// 创建的过程就是执行一次渲染的过程。
+        /// <para>Creates VAO and bind it to specified VBOs.</para>
+        /// <para>The whole process of binding is also the process of rendering.</para>
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
@@ -94,17 +96,24 @@ namespace CSharpGL
 
         /// <summary>
         /// 执行一次渲染的过程。
+        /// <para>Execute rendering command.</para>
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="shaderProgram"></param>
         /// <param name="temporaryIndexBufferPtr">render by a temporary index buffer</param>
         public void Render(RenderEventArg arg, ShaderProgram shaderProgram, IndexBufferPtr temporaryIndexBufferPtr = null)
         {
-            IndexBufferPtr indexBufferPtr = (temporaryIndexBufferPtr == null) ? this.IndexBufferPtr : temporaryIndexBufferPtr;
-            if (indexBufferPtr != null)
+            if (temporaryIndexBufferPtr == null)
             {
+                IndexBufferPtr indexBufferPtr = this.IndexBufferPtr;
                 this.Bind();
                 indexBufferPtr.Render(arg, shaderProgram);
+                this.Unbind();
+            }
+            else
+            {
+                this.Bind();
+                temporaryIndexBufferPtr.Render(arg, shaderProgram);
                 this.Unbind();
             }
         }
