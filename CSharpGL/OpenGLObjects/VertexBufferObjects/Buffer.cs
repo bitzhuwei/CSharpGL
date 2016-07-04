@@ -20,6 +20,7 @@ namespace CSharpGL
 
         /// <summary>
         /// 此VBO中的数据在内存中的起始地址
+        /// <para>Start position of this buffer; first element's position of this buffer.</para>
         /// </summary>
         public IntPtr Header
         {
@@ -30,6 +31,9 @@ namespace CSharpGL
             }
         }
 
+        // Use 
+        // this.Header.ToPointer()
+        // instead of this.
         ///// <summary>
         ///// 获取此VBO的内存首地址。用于快速读写。
         ///// </summary>
@@ -46,6 +50,7 @@ namespace CSharpGL
 
         /// <summary>
         /// 此VBO中的数据在内存中占用多少个字节？
+        /// <para>How many bytes in this buffer?</para>
         /// </summary>
         public int ByteLength
         {
@@ -59,6 +64,8 @@ namespace CSharpGL
 
         /// <summary>
         /// 此VBO含有多个个元素？
+        /// <para>How many elements?</para>
+        /// <para><code>Length</code> in <code>int array[Length];</code></para>
         /// </summary>
         public int Length
         {
@@ -92,22 +99,26 @@ namespace CSharpGL
 
         /// <summary>
         /// 根据buffer内存放的具体的结构类型创建非托管数组。
+        /// <para>create an unmanaged array to store data for this buffer.</para>
         /// </summary>
-        /// <param name="elementCount">数组元素的数目。</param>
+        /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
         /// <returns></returns>
         protected abstract UnmanagedArrayBase CreateElements(int elementCount);
 
         /// <summary>
         /// 申请指定长度的非托管数组。
+        /// <para>create an unmanaged array to store data for this buffer.</para>
         /// </summary>
-        /// <param name="elementCount">数组元素的数目。</param>
+        /// <param name="elementCount">数组元素的数目。<para>How many elements?</para></param>
         public void Alloc(int elementCount)
         {
             this.array = CreateElements(elementCount);
         }
 
         /// <summary>
-        /// 获取一个可渲染此VBO的渲染器。
+        /// 获取一个可渲染此VBO的渲染器。执行此方法后，此对象中的非托管内存即可释放掉，不再占用CPU内存。
+        /// Uploads this buffer to GPU memory and gets its pointer.
+        /// It's totally OK to free memory of unmanaged array stored in this buffer object after this method invoked.
         /// </summary>
         /// <returns></returns>
         protected abstract BufferPtr Upload2GPU();
