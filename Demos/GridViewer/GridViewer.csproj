@@ -79,9 +79,6 @@
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="Geometry\HalfHexahedronIndex.cs" />
-    <Compile Include="Geometry\HexahedronPosition.cs" />
-    <Compile Include="Geometry\HexahedronTexCoord.cs" />
     <Compile Include="Geometry\LineIndex.cs" />
     <Compile Include="Geometry\LinePosition.cs" />
     <Compile Include="Geometry\LineTexCoord.cs" />
@@ -129,9 +126,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ScientificCanvas.Dispose.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ScientificCanvas.MouseEvents.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ScientificCanvas.Load.cs">
