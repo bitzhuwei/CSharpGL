@@ -59,7 +59,7 @@ namespace GridViewer
                 SceneObject sceneObject = new SceneObject();
                 sceneObject.Name = grid.GetType().Name;
                 sceneObject.Renderer = new BoundedRendererComponent(boundedRenderer);
-                //sceneObject.Transform.Position = grid.DataSource.TranslateMatrix;
+                sceneObject.Transform.Position = -grid.DataSource.TranslateMatrix;
                 this.scientificCanvas.Scene.ObjectList.Add(sceneObject);
                 string caseFileName = System.IO.Path.GetFileName(fileName);
                 TreeNode gridderNode = this.objectsTreeView.Nodes.Add(caseFileName);
