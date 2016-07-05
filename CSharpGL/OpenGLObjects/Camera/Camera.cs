@@ -6,7 +6,7 @@ using System.Drawing.Design;
 namespace CSharpGL
 {
     /// <summary>
-    /// 摄像机。
+    /// 摄像机。Camera.
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class Camera :
@@ -33,7 +33,7 @@ namespace CSharpGL
         internal Camera() { }
 
         /// <summary>
-        /// Camera
+        /// Camera.
         /// </summary>
         /// <param name="position">position in world space</param>
         /// <param name="target">target in world space.</param>
@@ -69,7 +69,8 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// opengl控件的大小改变时调整camera
+        /// opengl控件的大小改变时调整camera.
+        /// Adjust camera when OpenGL canvas's size changed.
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
@@ -114,10 +115,12 @@ namespace CSharpGL
         double lastWidth;
         double lastHeight;
 
+        private const string strCamera = "Camera";
         /// <summary>
         /// Gets or sets world coordinate of the camera's target.
         /// </summary>
-        [Description("world coordinate of the camera's target(the point it's looking at)."), Category("Camera")]
+        [Description("world coordinate of the camera's target(the point it's looking at).")]
+        [Category(strCamera)]
         public vec3 Target { get; set; }
 
         /// <summary>
@@ -126,7 +129,8 @@ namespace CSharpGL
         /// <value>
         /// Up vector.
         /// </value>
-        [Description("world coordinate of the camera's up vector."), Category("Camera")]
+        [Description("world coordinate of the camera's up vector.")]
+        [Category(strCamera)]
         public vec3 UpVector { get; set; }
 
         /// <summary>
@@ -135,12 +139,14 @@ namespace CSharpGL
         /// <value>
         /// The position.
         /// </value>
-        [Description("world coordinate of the camera 's position."), Category("Camera")]
+        [Description("world coordinate of the camera 's position.")]
+        [Category(strCamera)]
         public vec3 Position { get; set; }
 
         /// <summary>
         /// camera's perspective type.
         /// </summary>
+        [Category(strCamera)]
         public CameraType CameraType { get; set; }
 
         #region IPerspectiveCamera 成员
