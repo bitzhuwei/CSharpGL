@@ -99,6 +99,7 @@
     <Compile Include="IBufferables\TeapotModel.Faces.cs" />
     <None Include="Manipulaters\readme.md" />
     <Compile Include="IBufferables\TextModel.SetText.cs" />
+    <Compile Include="Octree\OctreeHelper.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.Orientation.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.ViewType.cs" />
     <Compile Include="Manipulaters\IKeyboardHandler.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Scene\Components\ScriptComponent.cs" />
     <Compile Include="Scene\Components\TransformComponent.cs" />
     <Compile Include="Utilities\ComponentList.cs" />
+    <Compile Include="Utilities\Pixel.cs" />
     <Compile Include="Utilities\Tuple.cs" />
     <Compile Include="Utilities\AssemblyHelper.cs" />
     <Compile Include="Utilities\ColorHelper.cs" />

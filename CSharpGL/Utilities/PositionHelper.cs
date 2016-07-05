@@ -33,7 +33,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Move positions where around (0, 0, 0)
+        /// Move positions where around (0, 0)
         /// </summary>
         /// <param name="positions"></param>
         /// <returns></returns>
