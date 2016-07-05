@@ -9,10 +9,7 @@ namespace CSharpGL
     /// 摄像机。Camera.
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public class Camera :
-        ICamera,
-        IPerspectiveViewCamera, IOrthoViewCamera,
-        IViewCamera, IPerspectiveCamera, IOrthoCamera
+    public class Camera : ICamera
     {
         ///// <summary>
         ///// 默认目标为vec3(0, 0, 0)
