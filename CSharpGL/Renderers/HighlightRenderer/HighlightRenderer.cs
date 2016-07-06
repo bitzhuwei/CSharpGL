@@ -34,21 +34,13 @@ namespace CSharpGL
             this.Name = this.GetType().Name;
 
             this.positionNameInIBufferable = positionNameInIBufferable;
-            var uniformHighlightColor = new UniformVec4("highlightColor");
-            //another way: uniform.SetValue(new vec4(1, 1, 1, 1));
-            uniformHighlightColor.Value = new vec4(1, 1, 1, 1);
-            this.UniformVariables.Add(uniformHighlightColor);
+            this.UniformVariables.Add(new UniformVec4("highlightColor", new vec4(1, 1, 1, 1)));
             this.UniformVariables.Add(this.uniformMVP);
-            var polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Lines);
-            this.SwitchList.Add(polygonModeSwitch);
-            var lineWidthSwitch = new LineWidthSwitch(10.0f);
-            this.SwitchList.Add(lineWidthSwitch);
-            var pointSizeSwitch = new PointSizeSwitch(20.0f);
-            this.SwitchList.Add(pointSizeSwitch);
-            var polygonOffsetFillSwitch = new PolygonOffsetFillSwitch();
-            this.SwitchList.Add(polygonOffsetFillSwitch);
-            var polygonOffsetPointSwitch = new PolygonOffsetPointSwitch();
-            this.SwitchList.Add(polygonOffsetPointSwitch);
+            this.SwitchList.Add(new PolygonModeSwitch(PolygonModes.Lines));
+            this.SwitchList.Add(new LineWidthSwitch(10.0f));
+            this.SwitchList.Add(new PointSizeSwitch(20.0f));
+            this.SwitchList.Add(new PolygonOffsetFillSwitch());
+            this.SwitchList.Add(new PolygonOffsetPointSwitch());
 
         }
 
