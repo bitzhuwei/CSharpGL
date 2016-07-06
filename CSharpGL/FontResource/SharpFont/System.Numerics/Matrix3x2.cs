@@ -9,18 +9,10 @@ namespace System.Numerics
         public float M21; public float M22;
         public float M31; public float M32;
 
-        private static readonly Matrix3x2 _identity = new Matrix3x2(
+        public static readonly Matrix3x2 Identity = new Matrix3x2(
             1f, 0f,
             0f, 1f,
             0f, 0f);
-
-        public static Matrix3x2 Identity
-        {
-            get
-            {
-                return Matrix3x2._identity;
-            }
-        }
 
         public bool IsIdentity
         {
