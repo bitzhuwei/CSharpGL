@@ -15,8 +15,9 @@ namespace CSharpGL
         private static Bitmap defaultGlyphBitmap;
         private static FullDictionary<char, GlyphInfo> defaultGlyphDict;
 
-        private static void GetDefaultGlyphBitmap(out Bitmap glyphBitmap, out FullDictionary<char, GlyphInfo> glyphDict)
+        private static void GetDefaultGlyphBitmap(out Bitmap glyphBitmap, out FullDictionary<char, GlyphInfo> glyphDict, out int pixelSize)
         {
+            pixelSize = 64;
             if (defaultGlyphBitmap == null)
             {
                 defaultGlyphDict = new FullDictionary<char, GlyphInfo>(GlyphInfo.Default);
@@ -29,7 +30,6 @@ namespace CSharpGL
                 using (Stream stream = ManifestResourceLoader.GetStream(@"Resources\ANTQUAI.TTF"))
                 {
                     InitStandardWidths();
-                    const int pixelSize = 64;
                     string targets = builder.ToString();
                     int maxWidth = GetMaxWidth(pixelSize, targets.Length);
 

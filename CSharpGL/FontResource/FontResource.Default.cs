@@ -38,20 +38,17 @@ namespace CSharpGL
 
         private static FontResource InitializeDefaultFontResource()
         {
-            var builder = new StringBuilder();
-            for (int i = 32; i < 127; i++)
-            {
-                builder.Append((char)i);
-            }
-            FontResource result = null;
-            using (Stream stream = ManifestResourceLoader.GetStream(@"Resources\ANTQUAI.TTF"))
-            {
-                var targets = builder.ToString();
-                const int pixelSize = 64;
-                result = Load(stream, targets, pixelSize);
-            }
+            Bitmap glyphBitmap;
+            FullDictionary<char, GlyphInfo> defaultGlyphDict;
+            int pixelSize;
+            GetDefaultGlyphBitmap(out glyphBitmap, out defaultGlyphDict, out pixelSize);
 
-            return result;
+            var fontResource = new FontResource();
+            fontResource.FontHeight = pixelSize + yInterval;
+            fontResource.CharInfoDict = defaultGlyphDict;
+            fontResource.InitTexture(glyphBitmap);
+
+            return fontResource;
         }
 
         private static Dictionary<IntPtr, FontResource> dict = new Dictionary<IntPtr, FontResource>();
