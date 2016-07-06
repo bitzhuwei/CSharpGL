@@ -12,7 +12,7 @@ namespace CSharpGL
     public sealed partial class FontResource
     {
 
-        private static void GetDefaultGlyphInfo(out Bitmap glyphBitmap, out FullDictionary<char, GlyphInfo> glyphDict, int pixelSize)
+        private static void GetGlyphInfo(out Bitmap glyphBitmap, out FullDictionary<char, GlyphInfo> glyphDict, int pixelSize)
         {
             defaultGlyphDict = new FullDictionary<char, GlyphInfo>(GlyphInfo.Default);
 
