@@ -45,8 +45,7 @@ namespace CSharpGL
 
         public override string ToString()
         {
-            return string.Format("{0}offset:{1}, {2}; size:{3}, {4};",
-                "", xoffset, yoffset, width, height);
+            return string.Format("offset:{0}, {1}; size:{2}, {3};", xoffset, yoffset, width, height);
         }
     }
 }
