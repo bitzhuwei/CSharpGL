@@ -113,7 +113,7 @@ namespace CSharpGL
 
         void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == this.BindingMouseButtons)
+            if ((e.Button & this.BindingMouseButtons) != MouseButtons.None)
             {
                 this.lastPosition = e.Location;
                 var control = sender as Control;
@@ -125,7 +125,8 @@ namespace CSharpGL
 
         void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.mouseDownFlag && e.Button == this.BindingMouseButtons
+            if (this.mouseDownFlag 
+                && ((e.Button & this.BindingMouseButtons) != MouseButtons.None)
                 && (e.X != lastPosition.X || e.Y != lastPosition.Y))
             {
                 IViewCamera camera = this.camera;
@@ -178,7 +179,7 @@ namespace CSharpGL
 
         void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == this.BindingMouseButtons)
+            if ((e.Button & this.BindingMouseButtons) != MouseButtons.None)
             {
                 this.mouseDownFlag = false;
             }
