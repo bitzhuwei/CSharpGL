@@ -13,6 +13,11 @@ It meets common requirements in OpenGL rendering such as:
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.4.11:
+1. Remove FUint, Rect, ResizableArray etc from SharpFont.
+2. Organize FontResource' code.
+3. Manipulaters' BindingMouseButtons response to all possible buttons.
+
 ## v1.0.4.10:
 1. Simpler Scene: remove useless UIRootRendererComponent; UIRoot rendering ui for Scene.
 2. PositionHelper.Move2Center() supports vec2.
