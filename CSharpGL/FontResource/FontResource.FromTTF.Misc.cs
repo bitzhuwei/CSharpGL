@@ -51,11 +51,11 @@ namespace CSharpGL
         {
             if (standardWidths == null)
             {
-                int[] maxTextureSize = new int[1];
+                var maxTextureSize = new int[1];
                 OpenGL.GetInteger(GetTarget.MaxTextureSize, maxTextureSize);
                 if (maxTextureSize[0] == 0) { maxTextureSize[0] = (int)Math.Pow(2, 14); }
                 int i = 2;
-                List<int> widths = new List<int>();
+                var widths = new List<int>();
                 while (Math.Pow(2, i) <= maxTextureSize[0])
                 {
                     widths.Add((int)Math.Pow(2, i));

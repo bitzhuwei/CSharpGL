@@ -14,25 +14,29 @@ namespace CSharpGL
     public sealed partial class FontResource
     {
         private static readonly object synObj = new object();
+        private static readonly Dictionary<IntPtr, FontResource> dict = new Dictionary<IntPtr, FontResource>();
+
+        private FontResource() { }
 
         public static FontResource Default
         {
             get
             {
                 IntPtr renderContext = Win32.wglGetCurrentContext();
-                if (!dict.ContainsKey(renderContext))
+                FontResource resource;
+                if (!dict.TryGetValue(renderContext, out resource))
                 {
                     lock (synObj)
                     {
-                        if (!dict.ContainsKey(renderContext))
+                        if (!dict.TryGetValue(renderContext, out resource))
                         {
-                            FontResource resource = InitializeDefaultFontResource();
+                            resource = InitializeDefaultFontResource();
                             dict.Add(renderContext, resource);
                         }
                     }
                 }
 
-                return dict[renderContext];
+                return resource;
             }
         }
 
@@ -67,8 +71,6 @@ namespace CSharpGL
             return fontResource;
         }
 
-        private static Dictionary<IntPtr, FontResource> dict = new Dictionary<IntPtr, FontResource>();
-        private FontResource() { }
 
         //public FontResource Load(string filename, string config)
         //{
