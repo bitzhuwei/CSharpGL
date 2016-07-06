@@ -65,16 +65,18 @@ namespace CSharpGL
         public static FontResource Load(string ttfFilename, char firstChar, char lastChar, int pixelSize = 32)
         {
             var targets = new List<char>();
-            for (int i = 0; i < lastChar - firstChar; i++)
+            for (char c = firstChar; c <= lastChar; c++)
             {
-                targets.Add((char)(i + firstChar));
+                targets.Add(c);
             }
 
+            FontResource fontResource;
             using (FileStream stream = File.OpenRead(ttfFilename))
             {
-                FontResource fontResource = Load(stream, targets, pixelSize);
-                return fontResource;
+                fontResource = Load(stream, targets, pixelSize);
             }
+
+            return fontResource;
         }
 
     }
