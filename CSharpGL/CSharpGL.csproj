@@ -373,11 +373,9 @@
     <Compile Include="Maths\mat2.cs" />
     <Compile Include="Maths\mat3.cs" />
     <Compile Include="Maths\mat4.cs" />
-    <Compile Include="Maths\matHelper.cs" />
     <Compile Include="Maths\vec2.cs" />
     <Compile Include="Maths\vec3.cs" />
     <Compile Include="Maths\vec4.cs" />
-    <Compile Include="Maths\vecHelper.cs" />
     <Compile Include="Renderers\IRenderable.cs" />
     <Compile Include="WinformControls\RenderContexts\DIBSection.cs" />
     <Compile Include="WinformControls\RenderContexts\FBORenderContext.cs" />

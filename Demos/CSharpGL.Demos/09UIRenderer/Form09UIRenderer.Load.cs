@@ -17,7 +17,7 @@ namespace CSharpGL.Demos
         private UIRoot uiRoot;
         private UIAxis glAxis;
         private UIText glText;
-        private CSharpGL.TestHelpers.BlendFactorHelper blendFactorHelper = new TestHelpers.BlendFactorHelper();
+        private BlendFactorHelper blendFactorHelper = new BlendFactorHelper();
 
         private void Form_Load(object sender, EventArgs e)
         {

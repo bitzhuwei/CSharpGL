@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace CSharpGL.TestHelpers
+namespace CSharpGL
 {
     public class BlendFactorHelper
     {

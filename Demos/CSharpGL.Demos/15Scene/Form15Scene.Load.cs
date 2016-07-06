@@ -18,7 +18,7 @@ namespace CSharpGL.Demos
 
         private FormProperyGrid formPropertyGrid;
         private UIText glText;
-        private CSharpGL.TestHelpers.BlendFactorHelper blendFactorHelper = new TestHelpers.BlendFactorHelper();
+        private BlendFactorHelper blendFactorHelper = new BlendFactorHelper();
 
         private void Form_Load(object sender, EventArgs e)
         {

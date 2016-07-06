@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="matHelper.cs" />
+    <Compile Include="vecHelper.cs" />
     <Content Include="readme.md" />
     <Compile Include="BlendFactorHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
