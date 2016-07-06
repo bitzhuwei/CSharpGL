@@ -1,39 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace SharpFont
 {
-    struct Rect
-    {
-        public int X, Y, Width, Height;
+    //struct Rect
+    //{
+    //    public int X, Y, Width, Height;
 
-        //public int Right => X + Width;
-        public int Right
-        { get { return X + Width; } }
-        //public int Bottom => Y + Height;
-        public int Bottom
-        { get { return Y + Height; } }
+    //    //public int Right => X + Width;
+    //    public int Right
+    //    { get { return X + Width; } }
+    //    //public int Bottom => Y + Height;
+    //    public int Bottom
+    //    { get { return Y + Height; } }
 
-        public Rect(int x, int y, int width, int height)
-        {
-            X = x;
-            Y = y;
-            Width = width;
-            Height = height;
-        }
+    //    public Rect(int x, int y, int width, int height)
+    //    {
+    //        X = x;
+    //        Y = y;
+    //        Width = width;
+    //        Height = height;
+    //    }
 
-        public bool Contains(Rect rect)
-        {
-            return rect.X >= X && rect.Y >= Y &&
-                   rect.Right <= Right && rect.Bottom <= Bottom;
-        }
+    //    public bool Contains(Rect rect)
+    //    {
+    //        return rect.X >= X && rect.Y >= Y &&
+    //               rect.Right <= Right && rect.Bottom <= Bottom;
+    //    }
 
-        //public override string ToString () => $"{X}, {Y}, {Width}, {Height}";
-        public override string ToString()
-        {
-            return string.Format("{0}, {1}, {2}, {3}", this.X, this.Y, this.Width, this.Height);
-        }
-    }
+    //    //public override string ToString () => $"{X}, {Y}, {Width}, {Height}";
+    //    public override string ToString()
+    //    {
+    //        return string.Format("{0}, {1}, {2}, {3}", this.X, this.Y, this.Width, this.Height);
+    //    }
+    //}
 
     //struct ResizableArray<T>
     //{
@@ -77,24 +78,24 @@ namespace SharpFont
     struct BinPacker
     {
         //ResizableArray<Rect> freeList;
-        List<Rect> freeList;
+        List<Rectangle> freeList;
 
         public BinPacker(int width, int height)
         {
             //freeList = new ResizableArray<Rect>(16);
-            freeList = new List<Rect>(16);
-            freeList.Add(new Rect(0, 0, width, height));
+            freeList = new List<Rectangle>(16);
+            freeList.Add(new Rectangle(0, 0, width, height));
         }
 
         public void Clear(int width, int height)
         {
             freeList.Clear();
-            freeList.Add(new Rect(0, 0, width, height));
+            freeList.Add(new Rectangle(0, 0, width, height));
         }
 
-        public Rect Insert(int width, int height)
+        public Rectangle Insert(int width, int height)
         {
-            var bestNode = new Rect();
+            var bestNode = new Rectangle();
             var bestShortFit = int.MaxValue;
             var bestLongFit = int.MaxValue;
 
@@ -113,7 +114,7 @@ namespace SharpFont
 
                 if (shortFit < bestShortFit || (shortFit == bestShortFit && longFit < bestLongFit))
                 {
-                    bestNode = new Rect(rect.X, rect.Y, width, height);
+                    bestNode = new Rectangle(rect.X, rect.Y, width, height);
                     bestShortFit = shortFit;
                     bestLongFit = longFit;
                 }
@@ -158,7 +159,7 @@ namespace SharpFont
             return bestNode;
         }
 
-        bool SplitFreeNode(Rect freeNode, Rect usedNode)
+        bool SplitFreeNode(Rectangle freeNode, Rectangle usedNode)
         {
             // test if the rects even intersect
             var insideX = usedNode.X < freeNode.Right && usedNode.Right > freeNode.X;
