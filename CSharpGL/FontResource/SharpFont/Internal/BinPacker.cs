@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SharpFont
 {
@@ -34,52 +35,54 @@ namespace SharpFont
         }
     }
 
-    struct ResizableArray<T>
-    {
-        public T[] Data;
-        public int Count;
+    //struct ResizableArray<T>
+    //{
+    //    public T[] Data;
+    //    public int Count;
 
-        //public T this[int index] => Data[index];
-        public T this[int index]
-        {
-            get { return Data[index]; }
-        }
+    //    //public T this[int index] => Data[index];
+    //    public T this[int index]
+    //    {
+    //        get { return Data[index]; }
+    //    }
 
-        public ResizableArray(int capacity)
-        {
-            Data = new T[capacity];
-            Count = 0;
-        }
+    //    public ResizableArray(int capacity)
+    //    {
+    //        Data = new T[capacity];
+    //        Count = 0;
+    //    }
 
-        //public void Clear () => Count = 0;
-        public void Clear()
-        {
-            Count = 0;
-        }
+    //    //public void Clear () => Count = 0;
+    //    public void Clear()
+    //    {
+    //        Count = 0;
+    //    }
 
-        public void Add(T value)
-        {
-            if (Count == Data.Length)
-                Array.Resize(ref Data, (int)(Data.Length * 1.5));
-            Data[Count++] = value;
-        }
+    //    public void Add(T value)
+    //    {
+    //        if (Count == Data.Length)
+    //            Array.Resize(ref Data, (int)(Data.Length * 1.5));
+    //        Data[Count++] = value;
+    //    }
 
-        public void RemoveAt(int index)
-        {
-            Count--;
-            if (index < Count)
-                Array.Copy(Data, index + 1, Data, index, Count - index);
-        }
-    }
+    //    public void RemoveAt(int index)
+    //    {
+    //        Count--;
+    //        if (index < Count)
+    //            Array.Copy(Data, index + 1, Data, index, Count - index);
+    //    }
+    //}
 
     // based on the "MAXRECTS" method developed by Jukka Jylänki: http://clb.demon.fi/files/RectangleBinPack.pdf
     struct BinPacker
     {
-        ResizableArray<Rect> freeList;
+        //ResizableArray<Rect> freeList;
+        List<Rect> freeList;
 
         public BinPacker(int width, int height)
         {
-            freeList = new ResizableArray<Rect>(16);
+            //freeList = new ResizableArray<Rect>(16);
+            freeList = new List<Rect>(16);
             freeList.Add(new Rect(0, 0, width, height));
         }
 
