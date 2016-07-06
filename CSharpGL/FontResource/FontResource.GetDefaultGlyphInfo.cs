@@ -15,7 +15,7 @@ namespace CSharpGL
         private static Bitmap defaultGlyphBitmap;
         private static FullDictionary<char, GlyphInfo> defaultGlyphDict;
 
-        private static void GetDefaultGlyphBitmap(out Bitmap glyphBitmap, out FullDictionary<char, GlyphInfo> glyphDict, out int pixelSize)
+        private static void GetDefaultGlyphInfo(out Bitmap glyphBitmap, out FullDictionary<char, GlyphInfo> glyphDict, out int pixelSize)
         {
             pixelSize = 64;
             if (defaultGlyphBitmap == null)

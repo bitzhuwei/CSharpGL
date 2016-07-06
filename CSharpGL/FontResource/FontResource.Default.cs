@@ -41,7 +41,7 @@ namespace CSharpGL
             Bitmap glyphBitmap;
             FullDictionary<char, GlyphInfo> defaultGlyphDict;
             int pixelSize;
-            GetDefaultGlyphBitmap(out glyphBitmap, out defaultGlyphDict, out pixelSize);
+            GetDefaultGlyphInfo(out glyphBitmap, out defaultGlyphDict, out pixelSize);
 
             var fontResource = new FontResource();
             fontResource.FontHeight = pixelSize + yInterval;
