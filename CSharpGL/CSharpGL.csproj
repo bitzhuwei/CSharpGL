@@ -318,7 +318,6 @@
     <Compile Include="FontResource\SharpFont\Internal\SfntTables.cs" />
     <Compile Include="FontResource\SharpFont\Metrics.cs" />
     <Compile Include="FontResource\SharpFont\System.Numerics\Matrix3x2.cs" />
-    <Compile Include="FontResource\SharpFont\System.Numerics\Register.cs" />
     <Compile Include="FontResource\SharpFont\System.Numerics\Vector2.cs" />
     <Compile Include="4PropertyGrid\TypeConverters\Mat2TypeConverter.cs" />
     <Compile Include="4PropertyGrid\TypeConverters\Mat3TypeConverter.cs" />
