@@ -23,12 +23,15 @@ namespace CSharpGL
         public const string strNormal = "normal";
         private TeapotModel model;
         Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
+        PropertyBufferPtr positionBufferPtr;
+        PropertyBufferPtr colorBufferPtr;
+        PropertyBufferPtr normalBufferPtr;
 
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
-                if (!propertyBufferPtrDict.ContainsKey(bufferName))
+                if (positionBufferPtr == null)
                 {
                     using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
@@ -42,14 +45,14 @@ namespace CSharpGL
                                 array[i] = positions[i];
                             }
                         }
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
                     }
                 }
-                return propertyBufferPtrDict[bufferName];
+                return positionBufferPtr;
             }
             else if (bufferName == strColor)
             {
-                if (!propertyBufferPtrDict.ContainsKey(bufferName))
+                if (colorBufferPtr == null)
                 {
                     using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
@@ -63,14 +66,14 @@ namespace CSharpGL
                                 array[i] = normals[i];
                             }
                         }
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                        colorBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
                     }
                 }
-                return propertyBufferPtrDict[bufferName];
+                return colorBufferPtr;
             }
             else if (bufferName == strNormal)
             {
-                if (!propertyBufferPtrDict.ContainsKey(bufferName))
+                if (normalBufferPtr == null)
                 {
                     using (var buffer = new PropertyBuffer<float>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
@@ -84,10 +87,10 @@ namespace CSharpGL
                                 array[i] = normals[i];
                             }
                         }
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                        normalBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
                     }
                 }
-                return propertyBufferPtrDict[bufferName];
+                return normalBufferPtr;
             }
             else
             {
