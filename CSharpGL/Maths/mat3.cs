@@ -8,7 +8,7 @@ namespace CSharpGL
     /// Represents a 3x3 matrix.
     /// </summary>
     [TypeConverter(typeof(Mat3TypeConverter))]
-    public struct mat3
+    public struct mat3 : IEquatable<mat3>
     {
         static readonly char[] separator = new char[] { '[', ']' };
 
@@ -250,16 +250,16 @@ namespace CSharpGL
 
         public static bool operator ==(mat3 left, mat3 right)
         {
-            object leftObj = left, rightObj = right;
-            if (leftObj == null)
-            {
-                if (rightObj == null) { return true; }
-                else { return false; }
-            }
-            else
-            {
-                if (rightObj == null) { return false; }
-            }
+            //object leftObj = left, rightObj = right;
+            //if (leftObj == null)
+            //{
+            //    if (rightObj == null) { return true; }
+            //    else { return false; }
+            //}
+            //else
+            //{
+            //    if (rightObj == null) { return false; }
+            //}
 
             return left.Equals(right);
         }
@@ -271,10 +271,7 @@ namespace CSharpGL
 
         public override bool Equals(object obj)
         {
-            var p = (mat3)obj;
-
-            return (this.col0 == p.col0 && this.col1 == p.col1
-                && this.col2 == p.col2);
+            return (obj is mat3) && (this.Equals((mat3)obj));
         }
 
         public override int GetHashCode()
@@ -282,5 +279,10 @@ namespace CSharpGL
             return this.ToString().GetHashCode();
         }
 
+
+        public bool Equals(mat3 other)
+        {
+            return (this.col0 == other.col0 && this.col1 == other.col1 && this.col2 == other.col2);
+        }
     }
 }

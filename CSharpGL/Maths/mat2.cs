@@ -8,7 +8,7 @@ namespace CSharpGL
     /// Represents a 2x2 matrix.
     /// </summary>
     [TypeConverter(typeof(Mat2TypeConverter))]
-    public struct mat2
+    public struct mat2 : IEquatable<mat2>
     {
         static readonly char[] separator = new char[] { '[', ']' };
 
@@ -24,7 +24,7 @@ namespace CSharpGL
         public override string ToString()
         {
             var builder = new System.Text.StringBuilder();
-            var cols = new vec2[] { col0, col1};
+            var cols = new vec2[] { col0, col1 };
             for (int i = 0; i < cols.Length; i++)
             {
                 builder.Append("col ");
@@ -222,16 +222,16 @@ namespace CSharpGL
 
         public static bool operator ==(mat2 left, mat2 right)
         {
-            object leftObj = left, rightObj = right;
-            if (leftObj == null)
-            {
-                if (rightObj == null) { return true; }
-                else { return false; }
-            }
-            else
-            {
-                if (rightObj == null) { return false; }
-            }
+            //object leftObj = left, rightObj = right;
+            //if (leftObj == null)
+            //{
+            //    if (rightObj == null) { return true; }
+            //    else { return false; }
+            //}
+            //else
+            //{
+            //    if (rightObj == null) { return false; }
+            //}
 
             return left.Equals(right);
         }
@@ -243,14 +243,17 @@ namespace CSharpGL
 
         public override bool Equals(object obj)
         {
-            var p = (mat2)obj;
-
-            return (this.col0 == p.col0 && this.col1 == p.col1);
+            return (obj is mat2) && (this.Equals((mat2)obj));
         }
 
         public override int GetHashCode()
         {
             return this.ToString().GetHashCode();
+        }
+
+        public bool Equals(mat2 other)
+        {
+            return (this.col0 == other.col0 && this.col1 == other.col1);
         }
     }
 }

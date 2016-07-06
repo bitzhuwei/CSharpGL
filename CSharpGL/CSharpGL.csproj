@@ -370,7 +370,6 @@
     <Compile Include="Maths\glm_camera.cs" />
     <Compile Include="Maths\glm_inverse.cs" />
     <Compile Include="Maths\glm_trigonometric.cs" />
-    <Compile Include="Maths\glm_vec.cs" />
     <Compile Include="Maths\mat2.cs" />
     <Compile Include="Maths\mat3.cs" />
     <Compile Include="Maths\mat4.cs" />

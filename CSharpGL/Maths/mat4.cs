@@ -10,7 +10,7 @@ namespace CSharpGL
     /// Represents a 4x4 matrix.
     /// </summary>
     [TypeConverter(typeof(Mat4TypeConverter))]
-    public struct mat4
+    public struct mat4 : IEquatable<mat4>
     {
         static readonly char[] separator = new char[] { '[', ']' };
 
@@ -273,16 +273,16 @@ namespace CSharpGL
 
         public static bool operator ==(mat4 left, mat4 right)
         {
-            object leftObj = left, rightObj = right;
-            if (leftObj == null)
-            {
-                if (rightObj == null) { return true; }
-                else { return false; }
-            }
-            else
-            {
-                if (rightObj == null) { return false; }
-            }
+            //object leftObj = left, rightObj = right;
+            //if (leftObj == null)
+            //{
+            //    if (rightObj == null) { return true; }
+            //    else { return false; }
+            //}
+            //else
+            //{
+            //    if (rightObj == null) { return false; }
+            //}
 
             return left.Equals(right);
         }
@@ -294,10 +294,7 @@ namespace CSharpGL
 
         public override bool Equals(object obj)
         {
-            var p = (mat4)obj;
-
-            return (this.col0 == p.col0 && this.col1 == p.col1
-                && this.col2 == p.col2 && this.col3 == p.col3);
+            return (obj is mat4) && (this.Equals((mat4)obj));
         }
 
         public override int GetHashCode()
@@ -305,5 +302,10 @@ namespace CSharpGL
             return this.ToString().GetHashCode();
         }
 
+
+        public bool Equals(mat4 other)
+        {
+            return (this.col0 == other.col0 && this.col1 == other.col1 && this.col2 == other.col2 && this.col3 == other.col3);
+        }
     }
 }
