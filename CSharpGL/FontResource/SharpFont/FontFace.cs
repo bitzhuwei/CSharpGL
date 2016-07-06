@@ -19,7 +19,7 @@ namespace SharpFont
         readonly CharacterMap charMap;
         readonly KerningTable kernTable;
         readonly MetricsEntry verticalSynthesized;
-        readonly FUnit[] controlValueTable;
+        readonly int[] controlValueTable;
         readonly byte[] prepProgram;
         readonly int cellAscent;
         readonly int cellDescent;
@@ -315,10 +315,10 @@ namespace SharpFont
 
             // add phantom points; these are used to define the extents of the glyph,
             // and can be modified by hinting instructions
-            var pp1 = new Point((FUnit)(glyph.MinX - horizontal.FrontSideBearing), (FUnit)0);
-            var pp2 = new Point(pp1.X + (FUnit)horizontal.Advance, (FUnit)0);
-            var pp3 = new Point((FUnit)0, (FUnit)(glyph.MaxY + vertical.FrontSideBearing));
-            var pp4 = new Point((FUnit)0, pp3.Y - (FUnit)vertical.Advance);
+            var pp1 = new Point((glyph.MinX - horizontal.FrontSideBearing), 0);
+            var pp2 = new Point(pp1.X + horizontal.Advance, 0);
+            var pp3 = new Point(0, (glyph.MaxY + vertical.FrontSideBearing));
+            var pp4 = new Point(0, pp3.Y - vertical.Advance);
             points.Add(pp1 * scale);
             points.Add(pp2 * scale);
             points.Add(pp3 * scale);

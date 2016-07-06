@@ -40,7 +40,7 @@ namespace SharpFont
             Execute(new InstructionStream(instructions), false, true);
         }
 
-        public void SetControlValueTable(FUnit[] cvt, float scale, int ppem, byte[] cvProgram)
+        public void SetControlValueTable(int[] cvt, float scale, int ppem, byte[] cvProgram)
         {
             if (this.scale == scale || cvt == null)
                 return;

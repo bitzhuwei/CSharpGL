@@ -12,13 +12,15 @@ namespace SharpFont
             this.table = table;
         }
 
-        public FUnit Lookup(int left, int right)
+        public int Lookup(int left, int right)
         {
             var key = ((uint)left << 16) | (uint)right;
             int value;
             if (table.TryGetValue(key, out value))
-                return (FUnit)value;
-            return (FUnit)0;
+            {
+                return value;
+            }
+            return 0;
         }
 
         public static KerningTable ReadKern(DataReader reader, TableRecord[] tables)

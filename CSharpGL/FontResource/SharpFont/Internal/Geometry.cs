@@ -4,56 +4,56 @@ using System.Numerics;
 
 namespace SharpFont
 {
-    struct FUnit
-    {
-        int value;
+    //struct FUnit
+    //{
+    //    int value;
 
-        //public static explicit operator int (FUnit v) => v.value;
-        public static explicit operator int(FUnit v)
-        {
-            return v.value;
-        }
-        //public static explicit operator FUnit (int v) => new FUnit { value = v };
-        public static explicit operator FUnit(int v)
-        {
-            return new FUnit { value = v };
-        }
+    //    //public static explicit operator int (FUnit v) => v.value;
+    //    public static explicit operator int(FUnit v)
+    //    {
+    //        return v.value;
+    //    }
+    //    //public static explicit operator FUnit (int v) => new FUnit { value = v };
+    //    public static explicit operator FUnit(int v)
+    //    {
+    //        return new FUnit { value = v };
+    //    }
 
-        //public static FUnit operator -(FUnit lhs, FUnit rhs) => (FUnit)(lhs.value - rhs.value);
-        public static FUnit operator -(FUnit lhs, FUnit rhs)
-        {
-            return (FUnit)(lhs.value - rhs.value);
-        }
-        //public static FUnit operator +(FUnit lhs, FUnit rhs) => (FUnit)(lhs.value + rhs.value);
-        public static FUnit operator +(FUnit lhs, FUnit rhs)
-        {
-            return (FUnit)(lhs.value + rhs.value);
-        }
-        //public static float operator *(FUnit lhs, float rhs) => lhs.value * rhs;
-        public static float operator *(FUnit lhs, float rhs)
-        {
-            return lhs.value * rhs;
-        }
+    //    //public static FUnit operator -(FUnit lhs, FUnit rhs) => (FUnit)(lhs.value - rhs.value);
+    //    public static FUnit operator -(FUnit lhs, FUnit rhs)
+    //    {
+    //        return (FUnit)(lhs.value - rhs.value);
+    //    }
+    //    //public static FUnit operator +(FUnit lhs, FUnit rhs) => (FUnit)(lhs.value + rhs.value);
+    //    public static FUnit operator +(FUnit lhs, FUnit rhs)
+    //    {
+    //        return (FUnit)(lhs.value + rhs.value);
+    //    }
+    //    //public static float operator *(FUnit lhs, float rhs) => lhs.value * rhs;
+    //    public static float operator *(FUnit lhs, float rhs)
+    //    {
+    //        return lhs.value * rhs;
+    //    }
 
-        //public static FUnit Max (FUnit a, FUnit b) => (FUnit)Math.Max(a.value, b.value);
-        public static FUnit Max(FUnit a, FUnit b)
-        {
-            return (FUnit)Math.Max(a.value, b.value);
-        }
-        //public static FUnit Min (FUnit a, FUnit b) => (FUnit)Math.Min(a.value, b.value);
-        public static FUnit Min(FUnit a, FUnit b)
-        {
-            return (FUnit)Math.Min(a.value, b.value);
-        }
-    }
+    //    //public static FUnit Max (FUnit a, FUnit b) => (FUnit)Math.Max(a.value, b.value);
+    //    public static FUnit Max(FUnit a, FUnit b)
+    //    {
+    //        return (FUnit)Math.Max(a.value, b.value);
+    //    }
+    //    //public static FUnit Min (FUnit a, FUnit b) => (FUnit)Math.Min(a.value, b.value);
+    //    public static FUnit Min(FUnit a, FUnit b)
+    //    {
+    //        return (FUnit)Math.Min(a.value, b.value);
+    //    }
+    //}
 
     struct Point
     {
-        public FUnit X;
-        public FUnit Y;
+        public int X;
+        public int Y;
         public PointType Type;
 
-        public Point(FUnit x, FUnit y)
+        public Point(int x, int y)
         {
             X = x;
             Y = y;
@@ -144,7 +144,7 @@ namespace SharpFont
                     Vector2 offset;
                     if ((subglyph.Flags & CompositeGlyphFlags.ArgsAreXYValues) != 0)
                     {
-                        offset = (Vector2)new Point((FUnit)subglyph.Arg1, (FUnit)subglyph.Arg2);
+                        offset = (Vector2)new Point(subglyph.Arg1, subglyph.Arg2);
                         if (haveScale && (subglyph.Flags & CompositeGlyphFlags.ScaledComponentOffset) != 0)
                             offset = Vector2.TransformNormal(offset, local);
                         else

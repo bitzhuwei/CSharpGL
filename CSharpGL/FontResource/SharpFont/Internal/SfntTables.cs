@@ -299,7 +299,7 @@ namespace SharpFont
             return nameData;
         }
 
-        public static FUnit[] ReadCvt(DataReader reader, TableRecord[] tables)
+        public static int[] ReadCvt(DataReader reader, TableRecord[] tables)
         {
             var index = FindTable(tables, FourCC.Cvt);
             if (index == -1)
@@ -307,9 +307,11 @@ namespace SharpFont
 
             reader.Seek(tables[index].Offset);
 
-            var results = new FUnit[tables[index].Length / sizeof(short)];
+            var results = new int[tables[index].Length / sizeof(short)];
             for (int i = 0; i < results.Length; i++)
-                results[i] = (FUnit)reader.ReadInt16BE();
+            {
+                results[i] = reader.ReadInt16BE(); 
+            }
 
             return results;
         }
@@ -491,7 +493,7 @@ namespace SharpFont
                     delta = reader.ReadInt16BE();
 
                 x += delta;
-                points[i].X = (FUnit)x;
+                points[i].X = x;
             }
 
             var y = 0;
@@ -510,7 +512,7 @@ namespace SharpFont
                     delta = reader.ReadInt16BE();
 
                 y += delta;
-                points[i].Y = (FUnit)y;
+                points[i].Y = y;
                 points[i].Type = (f & SimpleGlyphFlags.OnCurve) != 0 ? PointType.OnCurve : PointType.Quadratic;
             }
 
