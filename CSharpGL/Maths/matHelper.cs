@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public static class mat4Helper
+    public static class matHelper
     {
         /// <summary>
         /// 把连续16个float值按照列优先的顺序转换为mat4
