@@ -40,7 +40,7 @@ namespace CSharpGL
             this.height = height;
         }
 
-        public CharacterInfo() { }
+        //public CharacterInfo() { }
 
 
         public override string ToString()
