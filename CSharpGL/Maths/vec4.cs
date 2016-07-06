@@ -140,7 +140,7 @@ namespace CSharpGL
 
         public override int GetHashCode()
         {
-            return string.Format("{0},{1},{2},{3}", x, y, z, w).GetHashCode();
+            return string.Format("{0}#{1}#{2}#{3}", x, y, z, w).GetHashCode();
         }
 
         public float[] to_array()
