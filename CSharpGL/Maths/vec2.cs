@@ -122,8 +122,7 @@ namespace CSharpGL
 
         public override bool Equals(object obj)
         {
-            vec2 p = (vec2)obj;
-            return (this == p);
+            return (obj is vec2) && (this.Equals((vec2)obj));
         }
 
         public override int GetHashCode()
