@@ -15,7 +15,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 # release notes:
 ## v1.0.4.11:
 1. Remove FUint, Rect, ResizableArray etc from SharpFont.
-2. Organize FontResource' code.
+2. Organize FontResource's code.
 3. Manipulaters' BindingMouseButtons response to all possible buttons.
 
 ## v1.0.4.10:
