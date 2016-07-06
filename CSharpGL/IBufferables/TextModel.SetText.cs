@@ -36,7 +36,7 @@ namespace CSharpGL
 
         unsafe private void SetupGlyphTexCoord(string content, FontResource fontResource)
         {
-            FullDictionary<char, CharacterInfo> charInfoDict = fontResource.CharInfoDict;
+            FullDictionary<char, GlyphInfo> charInfoDict = fontResource.CharInfoDict;
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.uvBufferPtr.BufferId);
             IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.WriteOnly);
             var array = (TextModel.GlyphTexCoord*)pointer.ToPointer();
@@ -54,7 +54,7 @@ namespace CSharpGL
             for (int i = 0; i < content.Length; i++)
             {
                 char ch = content[i];
-                CharacterInfo info = fontResource.CharInfoDict[ch];
+                GlyphInfo info = fontResource.CharInfoDict[ch];
                 const int shrimp = 0;
                 array[i] = new TextModel.GlyphTexCoord(
                     //new vec2(0, 0),
@@ -73,7 +73,7 @@ namespace CSharpGL
 
         unsafe private void SetupGlyphPositions(string content, FontResource fontResource)
         {
-            FullDictionary<char, CharacterInfo> charInfoDict = fontResource.CharInfoDict;
+            FullDictionary<char, GlyphInfo> charInfoDict = fontResource.CharInfoDict;
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
             IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
             var array = (TextModel.GlyphPosition*)pointer.ToPointer();
@@ -90,7 +90,7 @@ namespace CSharpGL
             for (int i = 0; i < content.Length; i++)
             {
                 char ch = content[i];
-                CharacterInfo info = charInfoDict[ch];
+                GlyphInfo info = charInfoDict[ch];
                 array[i] = new TextModel.GlyphPosition(
                     new vec2(currentWidth, currentHeight + fontResource.FontHeight),
                     new vec2(currentWidth, currentHeight),

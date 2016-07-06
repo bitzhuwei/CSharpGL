@@ -55,7 +55,7 @@ namespace CSharpGL
         /// <summary>
         /// 记录每个字符在<see cref="FontBitmap"/>里的偏移量及其字形的宽高。
         /// </summary>
-        public FullDictionary<char, CharacterInfo> CharInfoDict { get; private set; }
+        public FullDictionary<char, GlyphInfo> CharInfoDict { get; private set; }
 
         ~FontResource()
         {

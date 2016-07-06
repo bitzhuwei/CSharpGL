@@ -23,7 +23,7 @@ namespace CSharpGL
             int count = targets.Count();
             int maxWidth = GetMaxWidth(pixelSize, count);
 
-            var dict = new FullDictionary<char, CharacterInfo>(CharacterInfo.Default);
+            var dict = new FullDictionary<char, GlyphInfo>(GlyphInfo.Default);
             Bitmap finalBitmap;
             using (var bitmap = new Bitmap(maxWidth, maxWidth, PixelFormat.Format24bppRgb))
             {
@@ -50,7 +50,7 @@ namespace CSharpGL
         }
 
 
-        private static void BlitCharacter(int pixelSize, int maxWidth, FullDictionary<char, CharacterInfo> dict, ref int currentX, ref int currentY, Graphics graphics, FontFace typeface, char c)
+        private static void BlitCharacter(int pixelSize, int maxWidth, FullDictionary<char, GlyphInfo> dict, ref int currentX, ref int currentY, Graphics graphics, FontFace typeface, char c)
         {
             if (c == ' ' || c == '\t')
             {
@@ -65,7 +65,7 @@ namespace CSharpGL
                 Bitmap glyphBitmap = new Bitmap(width + xInterval, pixelSize + yInterval);
                 //float yoffset = pixelSize * 3 / 4 - glyph.HorizontalMetrics.Bearing.Y;
                 graphics.DrawImage(glyphBitmap, currentX + xInterval, currentY + yInterval);
-                CharacterInfo info = new CharacterInfo(currentX, currentY, width + xInterval, pixelSize + yInterval);
+                var info = new GlyphInfo(currentX, currentY, width + xInterval, pixelSize + yInterval);
                 dict.Add(c, info);
                 glyphBitmap.Dispose();
                 currentX += width;
@@ -99,7 +99,7 @@ namespace CSharpGL
 //                    graphics.DrawLine(bluePen, currentX, currentY + yInterval + pixelSize * a / b,
 //                        currentX + glyphBitmap.Width, currentY + yInterval + pixelSize * a / b);
 //#endif
-                    CharacterInfo info = new CharacterInfo(currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
+                    GlyphInfo info = new GlyphInfo(currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
                     dict.Add(c, info);
                     glyphBitmap.Dispose();
                     currentX += xInterval + surface.Width;

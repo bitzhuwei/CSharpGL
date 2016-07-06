@@ -8,9 +8,9 @@ namespace CSharpGL
     /// <summary>
     /// 绘制一个字符所需要的所有信息
     /// </summary>
-    public class CharacterInfo
+    public class GlyphInfo
     {
-        public static readonly CharacterInfo Default = new CharacterInfo(0, 0, 0, 0);
+        public static readonly GlyphInfo Default = new GlyphInfo(0, 0, 0, 0);
 
         /// <summary>
         /// 此字符的字形在纹理的横向偏移量（左上角）
@@ -31,8 +31,8 @@ namespace CSharpGL
         /// 此字符的字形高度
         /// </summary>
         public int height;
-
-        public CharacterInfo(int xoffset, int yoffset, int width, int height)
+        
+        public GlyphInfo(int xoffset, int yoffset, int width, int height)
         {
             this.xoffset = xoffset;
             this.yoffset = yoffset;

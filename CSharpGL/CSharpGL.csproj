@@ -212,7 +212,7 @@
     </Compile>
     <Compile Include="WinformControls\GLCanvasHelper.cs" />
     <Compile Include="WinformControls\RenderTriggers.cs" />
-    <Compile Include="FontResource\CharacterInfo.cs" />
+    <Compile Include="FontResource\GlyphInfo.cs" />
     <Compile Include="FontResource\FontResource.cs" />
     <Compile Include="Renderers\HighlightRenderer\HighlightRenderer.cs" />
     <Compile Include="Renderers\HighlightRenderer\HighlightRenderer.DoInitialize.cs" />
