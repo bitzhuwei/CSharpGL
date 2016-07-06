@@ -88,8 +88,6 @@ namespace CSharpGL
                     //float yoffset = pixelSize * a / b - glyph.HorizontalMetrics.Bearing.Y;
                     float skyHeight = yInterval + pixelSize * a / b - glyph.HorizontalMetrics.Bearing.Y;
                     if (skyHeight < 0) { skyHeight = 0; }
-                    if (skyHeight < 0)
-                    { skyHeight = 0; }
                     else if (skyHeight + glyphBitmap.Height > yInterval + pixelSize)
                     { skyHeight -= glyphBitmap.Height - (yInterval + pixelSize); }
                     graphics.DrawImage(glyphBitmap, currentX + xInterval, currentY + skyHeight, glyphBitmap.Width, glyphBitmap.Height);
@@ -99,7 +97,7 @@ namespace CSharpGL
 //                    graphics.DrawLine(bluePen, currentX, currentY + yInterval + pixelSize * a / b,
 //                        currentX + glyphBitmap.Width, currentY + yInterval + pixelSize * a / b);
 //#endif
-                    GlyphInfo info = new GlyphInfo(currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
+                    var info = new GlyphInfo(currentX, currentY, glyphBitmap.Width + xInterval, yInterval + pixelSize - 1);
                     dict.Add(c, info);
                     glyphBitmap.Dispose();
                     currentX += xInterval + surface.Width;
