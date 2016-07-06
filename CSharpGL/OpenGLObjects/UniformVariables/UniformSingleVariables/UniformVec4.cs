@@ -28,6 +28,8 @@ namespace CSharpGL
 
         public UniformVec4(string varName) : base(varName) { }
 
+        public UniformVec4(string varName, vec4 value) : base(varName) { this.Value = value; }
+
         public override void SetUniform(ShaderProgram program)
         {
             this.Location = program.SetUniform(VarName, value.x, value.y, value.z, value.w);

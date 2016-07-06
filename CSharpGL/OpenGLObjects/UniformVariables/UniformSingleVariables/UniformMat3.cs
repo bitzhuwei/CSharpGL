@@ -28,6 +28,8 @@ namespace CSharpGL
 
         public UniformMat3(string varName) : base(varName) { }
 
+        public UniformMat3(string varName, mat3 value) : base(varName) { this.Value = value; }
+
         public override void SetUniform(ShaderProgram program)
         {
             this.Location = program.SetUniformMatrix3(VarName, this.value.to_array());

@@ -29,6 +29,8 @@ namespace CSharpGL
 
         public UniformSampler(string varName) : base(varName) { }
 
+        public UniformSampler(string varName, samplerValue value) : base(varName) { this.Value = value; }
+
         static OpenGL.glActiveTexture glActiveTexture = null;
 
         public override void SetUniform(ShaderProgram program)

@@ -28,6 +28,8 @@ namespace CSharpGL
 
         public UniformFloat(string varName) : base(varName) { }
 
+        public UniformFloat(string varName, float value) : base(varName) { this.Value = value; }
+
         public override void SetUniform(ShaderProgram program)
         {
             this.Location = program.SetUniform(VarName, value);

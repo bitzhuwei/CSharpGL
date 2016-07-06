@@ -31,6 +31,8 @@ namespace CSharpGL
 
         public UniformBool(string varName) : base(varName) { }
 
+        public UniformBool(string varName, bool value) : base(varName) { this.Value = value; }
+
         public override void SetUniform(ShaderProgram program)
         {
             this.Location = program.SetUniform(VarName, value ? 1.0f : 0.0f);
