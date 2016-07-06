@@ -23,23 +23,9 @@ namespace CSharpGL
             int count = targets.Count();
             int maxWidth = GetMaxWidth(pixelSize, count);
 
-            var dict = new FullDictionary<char, GlyphInfo>(GlyphInfo.Default);
             Bitmap finalBitmap;
-            using (var bitmap = new Bitmap(maxWidth, maxWidth, PixelFormat.Format24bppRgb))
-            {
-                int currentX = 0, currentY = 0;
-                using (Graphics graphics = Graphics.FromImage(bitmap))
-                {
-                    var typeface = new FontFace(stream);
-
-                    foreach (char c in targets)
-                    {
-                        BlitCharacter(pixelSize, maxWidth, dict, ref currentX, ref currentY, graphics, typeface, c);
-                    }
-                }
-
-                finalBitmap = ShortenBitmap(bitmap, maxWidth, currentY + yInterval + pixelSize + (pixelSize / 10 > 1 ? pixelSize / 10 : 1));
-            }
+            FullDictionary<char, GlyphInfo> dict;
+            GetGlyphInfo(out finalBitmap, out dict, pixelSize, targets);
 
             var fontResource = new FontResource();
             fontResource.FontHeight = pixelSize + yInterval;

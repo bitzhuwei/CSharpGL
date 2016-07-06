@@ -6,20 +6,23 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Xml.Linq;
+using System.Linq;
 
 namespace CSharpGL
 {
     public sealed partial class FontResource
     {
+        private static Bitmap defaultGlyphBitmap;
+        private static FullDictionary<char, GlyphInfo> defaultGlyphDict;
 
-        private static void GetGlyphInfo(out Bitmap glyphBitmap, out FullDictionary<char, GlyphInfo> glyphDict, int pixelSize, string targets)
+        private static void GetGlyphInfo(out Bitmap glyphBitmap, out FullDictionary<char, GlyphInfo> glyphDict, int pixelSize, IEnumerable<char> targets)
         {
             defaultGlyphDict = new FullDictionary<char, GlyphInfo>(GlyphInfo.Default);
 
             using (Stream stream = ManifestResourceLoader.GetStream(@"Resources\ANTQUAI.TTF"))
             {
                 InitStandardWidths();
-                int maxWidth = GetMaxWidth(pixelSize, targets.Length);
+                int maxWidth = GetMaxWidth(pixelSize, targets.Count());
 
                 using (var bitmap = new Bitmap(maxWidth, maxWidth, PixelFormat.Format24bppRgb))
                 {
