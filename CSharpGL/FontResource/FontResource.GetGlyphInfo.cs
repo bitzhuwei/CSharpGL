@@ -12,19 +12,13 @@ namespace CSharpGL
     public sealed partial class FontResource
     {
 
-        private static void GetGlyphInfo(out Bitmap glyphBitmap, out FullDictionary<char, GlyphInfo> glyphDict, int pixelSize)
+        private static void GetGlyphInfo(out Bitmap glyphBitmap, out FullDictionary<char, GlyphInfo> glyphDict, int pixelSize, string targets)
         {
             defaultGlyphDict = new FullDictionary<char, GlyphInfo>(GlyphInfo.Default);
 
-            var builder = new StringBuilder();
-            for (int i = 32; i < 127; i++)
-            {
-                builder.Append((char)i);
-            }
             using (Stream stream = ManifestResourceLoader.GetStream(@"Resources\ANTQUAI.TTF"))
             {
                 InitStandardWidths();
-                string targets = builder.ToString();
                 int maxWidth = GetMaxWidth(pixelSize, targets.Length);
 
                 using (var bitmap = new Bitmap(maxWidth, maxWidth, PixelFormat.Format24bppRgb))
