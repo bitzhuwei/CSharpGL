@@ -8,7 +8,7 @@ namespace CSharpGL
     /// Represents a three dimensional vector.
     /// </summary>
     [TypeConverter(typeof(Vec3TypeConverter))]
-    public struct vec3
+    public struct vec3 : IEquatable<vec3>
     {
         public float x;
         public float y;
@@ -184,5 +184,10 @@ namespace CSharpGL
         }
 
         static readonly char[] separator = new char[] { ' ', ',' };
+
+        public bool Equals(vec3 other)
+        {
+            return this == other;
+        }
     }
 }

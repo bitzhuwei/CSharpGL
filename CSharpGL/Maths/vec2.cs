@@ -8,7 +8,7 @@ namespace CSharpGL
     /// Represents a two dimensional vector.
     /// </summary>
     [TypeConverter(typeof(Vec2TypeConverter))]
-    public struct vec2
+    public struct vec2 : IEquatable<vec2>
     {
         public float x;
         public float y;
@@ -163,5 +163,10 @@ namespace CSharpGL
         }
 
         static readonly char[] separator = new char[] { ' ', ',' };
+
+        public bool Equals(vec2 other)
+        {
+            return this == other;
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace CSharpGL
     /// </summary>
     //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]   
     [TypeConverter(typeof(Vec4TypeConverter))]
-    public struct vec4
+    public struct vec4 : IEquatable<vec4>
     {
         public float x;
         public float y;
@@ -181,5 +181,10 @@ namespace CSharpGL
         }
 
         static readonly char[] separator = new char[] { ' ', ',' };
+
+        public bool Equals(vec4 other)
+        {
+            return this == other;
+        }
     }
 }
