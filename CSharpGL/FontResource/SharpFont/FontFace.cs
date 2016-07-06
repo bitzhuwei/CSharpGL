@@ -427,21 +427,21 @@ namespace SharpFont
 
             // save the "pure" size of the glyph, in fractional pixels
             var size = max - min;
-            Width = size.X;
-            Height = size.Y;
+            Width = size.x;
+            Height = size.y;
 
             // find the "render" size of the glyph, in whole pixels
-            var shiftX = (int)Math.Floor(min.X);
-            var shiftY = (int)Math.Floor(min.Y);
-            RenderWidth = (int)Math.Ceiling(max.X) - shiftX;
-            RenderHeight = (int)Math.Ceiling(max.Y) - shiftY;
+            var shiftX = (int)Math.Floor(min.x);
+            var shiftY = (int)Math.Floor(min.y);
+            RenderWidth = (int)Math.Ceiling(max.x) - shiftX;
+            RenderHeight = (int)Math.Ceiling(max.y) - shiftY;
 
             // translate the points so that 0,0 is at the bottom left corner
             var offset = new Vector2(-shiftX, -shiftY);
             for (int i = 0; i < pointCount; i++)
                 points[i] = points[i].Offset(offset);
 
-            HorizontalMetrics = new GlyphMetrics(new Vector2(min.X, max.Y), points[pointCount + 1].P.X - points[pointCount].P.X, linearHorizontalAdvance);
+            HorizontalMetrics = new GlyphMetrics(new Vector2(min.x, max.y), points[pointCount + 1].P.x - points[pointCount].P.x, linearHorizontalAdvance);
 
             // TODO: vertical metrics
         }

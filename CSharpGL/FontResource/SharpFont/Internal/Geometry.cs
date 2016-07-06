@@ -152,7 +152,7 @@ namespace SharpFont
 
                         // if the RoundXYToGrid flag is set, round the offset components
                         if ((subglyph.Flags & CompositeGlyphFlags.RoundXYToGrid) != 0)
-                            offset = new Vector2((float)Math.Round(offset.X), (float)Math.Round(offset.Y));
+                            offset = new Vector2((float)Math.Round(offset.x), (float)Math.Round(offset.y));
                     }
                     else
                     {

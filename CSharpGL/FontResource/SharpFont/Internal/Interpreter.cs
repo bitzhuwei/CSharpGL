@@ -224,8 +224,8 @@ namespace SharpFont
                     case OpCode.GFV:
                         {
                             var vec = opcode == OpCode.GPV ? state.Projection : state.Freedom;
-                            stack.Push(FloatToF2Dot14(vec.X));
-                            stack.Push(FloatToF2Dot14(vec.Y));
+                            stack.Push(FloatToF2Dot14(vec.x));
+                            stack.Push(FloatToF2Dot14(vec.y));
                         }
                         break;
 
@@ -524,14 +524,14 @@ namespace SharpFont
                                 if (opcode == OpCode.IUP0)
                                 {
                                     touchMask = TouchState.Y;
-                                    current = (byte*)&currentPtr->P.Y;
-                                    original = (byte*)&originalPtr->P.Y;
+                                    current = (byte*)&currentPtr->P.y;
+                                    original = (byte*)&originalPtr->P.y;
                                 }
                                 else
                                 {
                                     touchMask = TouchState.X;
-                                    current = (byte*)&currentPtr->P.X;
-                                    original = (byte*)&originalPtr->P.X;
+                                    current = (byte*)&currentPtr->P.x;
+                                    original = (byte*)&originalPtr->P.x;
                                 }
 
                                 var point = 0;
@@ -605,7 +605,7 @@ namespace SharpFont
                             // calculate intersection using determinants: https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection#Given_two_points_on_each_line
                             var da = a0 - a1;
                             var db = b0 - b1;
-                            var den = (da.X * db.Y) - (da.Y * db.X);
+                            var den = (da.x * db.y) - (da.y * db.x);
                             if (Math.Abs(den) <= Epsilon)
                             {
                                 // parallel lines; spec says to put the ppoint "into the middle of the two lines"
@@ -613,11 +613,11 @@ namespace SharpFont
                             }
                             else
                             {
-                                var t = (a0.X * a1.Y) - (a0.Y * a1.X);
-                                var u = (b0.X * b1.Y) - (b0.Y * b1.X);
+                                var t = (a0.x * a1.y) - (a0.y * a1.x);
+                                var u = (b0.x * b1.y) - (b0.y * b1.x);
                                 var p = new Vector2(
-                                    (t * db.X) - (da.X * u),
-                                    (t * db.Y) - (da.Y * u)
+                                    (t * db.x) - (da.x * u),
+                                    (t * db.y) - (da.y * u)
                                 );
                                 zp2.Current[index].P = p / den;
                             }
@@ -1029,7 +1029,7 @@ namespace SharpFont
             {
                 // if mode is 1 or 3, we want a perpendicular vector
                 if ((mode & 0x1) != 0)
-                    line = new Vector2(-line.Y, line.X);
+                    line = new Vector2(-line.y, line.x);
                 line = Vector2.Normalize(line);
 
                 if (mode >= 2)
@@ -1053,7 +1053,7 @@ namespace SharpFont
                 else
                 {
                     if ((mode & 0x1) != 0)
-                        line = new Vector2(-line.Y, line.X);
+                        line = new Vector2(-line.y, line.x);
 
                     state.DualProjection = Vector2.Normalize(line);
                 }
@@ -1221,9 +1221,9 @@ namespace SharpFont
         TouchState GetTouchState()
         {
             var touch = TouchState.None;
-            if (state.Freedom.X != 0)
+            if (state.Freedom.x != 0)
                 touch = TouchState.X;
-            if (state.Freedom.Y != 0)
+            if (state.Freedom.y != 0)
                 touch |= TouchState.Y;
 
             return touch;

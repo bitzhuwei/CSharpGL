@@ -86,7 +86,7 @@ namespace CSharpGL
                     const int a = 5;
                     const int b = 8;
                     //float yoffset = pixelSize * a / b - glyph.HorizontalMetrics.Bearing.Y;
-                    float skyHeight = yInterval + pixelSize * a / b - glyph.HorizontalMetrics.Bearing.Y;
+                    float skyHeight = yInterval + pixelSize * a / b - glyph.HorizontalMetrics.Bearing.y;
                     if (skyHeight < 0) { skyHeight = 0; }
                     else if (skyHeight + glyphBitmap.Height > yInterval + pixelSize)
                     { skyHeight -= glyphBitmap.Height - (yInterval + pixelSize); }

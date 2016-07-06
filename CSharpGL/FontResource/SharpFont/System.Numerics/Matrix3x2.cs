@@ -30,8 +30,8 @@ namespace System.Numerics
             }
             set
             {
-                this.M31 = value.X;
-                this.M32 = value.Y;
+                this.M31 = value.x;
+                this.M32 = value.y;
             }
         }
 
@@ -47,7 +47,7 @@ namespace System.Numerics
             Matrix3x2 result;
             result.M11 = 1f; result.M12 = 0f;
             result.M21 = 0f; result.M22 = 1f;
-            result.M31 = position.X; result.M32 = position.Y;
+            result.M31 = position.x; result.M32 = position.y;
             return result;
         }
 
@@ -71,8 +71,8 @@ namespace System.Numerics
 
         public static Matrix3x2 CreateScale(float xScale, float yScale, Vector2 centerPoint)
         {
-            float m = centerPoint.X * (1f - xScale);
-            float m2 = centerPoint.Y * (1f - yScale);
+            float m = centerPoint.x * (1f - xScale);
+            float m2 = centerPoint.y * (1f - yScale);
             Matrix3x2 result;
             result.M11 = xScale; result.M12 = 0f;
             result.M21 = 0f; result.M22 = yScale;
@@ -83,19 +83,19 @@ namespace System.Numerics
         public static Matrix3x2 CreateScale(Vector2 scales)
         {
             Matrix3x2 result;
-            result.M11 = scales.X; result.M12 = 0f;
-            result.M21 = 0f; result.M22 = scales.Y;
+            result.M11 = scales.x; result.M12 = 0f;
+            result.M21 = 0f; result.M22 = scales.y;
             result.M31 = 0f; result.M32 = 0f;
             return result;
         }
 
         public static Matrix3x2 CreateScale(Vector2 scales, Vector2 centerPoint)
         {
-            float m = centerPoint.X * (1f - scales.X);
-            float m2 = centerPoint.Y * (1f - scales.Y);
+            float m = centerPoint.x * (1f - scales.x);
+            float m2 = centerPoint.y * (1f - scales.y);
             Matrix3x2 result;
-            result.M11 = scales.X; result.M12 = 0f;
-            result.M21 = 0f; result.M22 = scales.Y;
+            result.M11 = scales.x; result.M12 = 0f;
+            result.M21 = 0f; result.M22 = scales.y;
             result.M31 = m; result.M32 = m2;
             return result;
         }
@@ -111,8 +111,8 @@ namespace System.Numerics
 
         public static Matrix3x2 CreateScale(float scale, Vector2 centerPoint)
         {
-            float m = centerPoint.X * (1f - scale);
-            float m2 = centerPoint.Y * (1f - scale);
+            float m = centerPoint.x * (1f - scale);
+            float m2 = centerPoint.y * (1f - scale);
             Matrix3x2 result;
             result.M11 = scale; result.M12 = 0f;
             result.M21 = 0f; result.M22 = scale;
@@ -135,8 +135,8 @@ namespace System.Numerics
         {
             float num = (float)Math.Tan((double)radiansX);
             float num2 = (float)Math.Tan((double)radiansY);
-            float m = -centerPoint.Y * num;
-            float m2 = -centerPoint.X * num2;
+            float m = -centerPoint.y * num;
+            float m2 = -centerPoint.x * num2;
             Matrix3x2 result;
             result.M11 = 1f; result.M12 = num2;
             result.M21 = num; result.M22 = 1f;
@@ -211,8 +211,8 @@ namespace System.Numerics
                 num = (float)Math.Cos((double)radians);
                 num2 = (float)Math.Sin((double)radians);
             }
-            float m = centerPoint.X * (1f - num) + centerPoint.Y * num2;
-            float m2 = centerPoint.Y * (1f - num) - centerPoint.X * num2;
+            float m = centerPoint.x * (1f - num) + centerPoint.y * num2;
+            float m2 = centerPoint.y * (1f - num) - centerPoint.x * num2;
             Matrix3x2 result;
             result.M11 = num; result.M12 = num2;
             result.M21 = -num2; result.M22 = num;

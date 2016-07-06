@@ -52,8 +52,8 @@ namespace SharpFont
 
             // calculate cell coordinates
             activePoint = point;
-            cellX = Math.Max(-1, Math.Min((int)activePoint.X, width));
-            cellY = (int)activePoint.Y;
+            cellX = Math.Max(-1, Math.Min((int)activePoint.x, width));
+            cellY = (int)activePoint.y;
 
             // activate if this is a valid cell location
             cellActive = cellX < width && cellY < height;
@@ -64,8 +64,8 @@ namespace SharpFont
         public void LineTo(Vector2 point)
         {
             // figure out which scanlines this line crosses
-            var startScanline = (int)activePoint.Y;
-            var endScanline = (int)point.Y;
+            var startScanline = (int)activePoint.y;
+            var endScanline = (int)point.y;
 
             // vertical clipping
             if (Math.Min(startScanline, endScanline) >= height ||
@@ -78,24 +78,24 @@ namespace SharpFont
 
             // render the line
             var vector = point - activePoint;
-            var fringeStart = activePoint.Y - startScanline;
-            var fringeEnd = point.Y - endScanline;
+            var fringeStart = activePoint.y - startScanline;
+            var fringeEnd = point.y - endScanline;
 
             if (startScanline == endScanline)
             {
                 // this is a horizontal line
-                RenderScanline(startScanline, activePoint.X, fringeStart, point.X, fringeEnd);
+                RenderScanline(startScanline, activePoint.x, fringeStart, point.x, fringeEnd);
             }
-            else if (vector.X == 0)
+            else if (vector.x == 0)
             {
                 // this is a vertical line
-                var x = (int)activePoint.X;
-                var xarea = (activePoint.X - x) * 2;
+                var x = (int)activePoint.x;
+                var xarea = (activePoint.x - x) * 2;
 
                 // check if we're scanning up or down
                 var first = 1.0f;
                 var increment = 1;
-                if (vector.Y < 0)
+                if (vector.y < 0)
                 {
                     first = 0.0f;
                     increment = -1;
@@ -128,28 +128,28 @@ namespace SharpFont
             {
                 // diagonal line
                 // check if we're scanning up or down
-                var dist = (1.0f - fringeStart) * vector.X;
+                var dist = (1.0f - fringeStart) * vector.x;
                 var first = 1.0f;
                 var increment = 1;
-                if (vector.Y < 0)
+                if (vector.y < 0)
                 {
-                    dist = fringeStart * vector.X;
+                    dist = fringeStart * vector.x;
                     first = 0.0f;
                     increment = -1;
-                    vector.Y = -vector.Y;
+                    vector.y = -vector.y;
                 }
 
                 // render the first scanline
-                var delta = dist / vector.Y;
-                var x = activePoint.X + delta;
-                RenderScanline(startScanline, activePoint.X, fringeStart, x, first);
+                var delta = dist / vector.y;
+                var x = activePoint.x + delta;
+                RenderScanline(startScanline, activePoint.x, fringeStart, x, first);
                 startScanline += increment;
                 SetCurrentCell((int)x, startScanline);
 
                 // step along the line
                 if (startScanline != endScanline)
                 {
-                    delta = vector.X / vector.Y;
+                    delta = vector.x / vector.y;
                     while (startScanline != endScanline)
                     {
                         var x2 = x + delta;
@@ -162,7 +162,7 @@ namespace SharpFont
                 }
 
                 // last scanline
-                RenderScanline(startScanline, x, 1.0f - first, point.X, fringeEnd);
+                RenderScanline(startScanline, x, 1.0f - first, point.x, fringeEnd);
             }
 
             activePoint = point;
@@ -177,9 +177,9 @@ namespace SharpFont
             arc[2] = activePoint;
 
             var delta = Vector2.Abs(arc[2] + arc[0] - 2 * arc[1]);
-            var dx = delta.X;
-            if (dx < delta.Y)
-                dx = delta.Y;
+            var dx = delta.x;
+            if (dx < delta.y)
+                dx = delta.y;
 
             // short cut for small arcs
             if (dx < 0.25f)

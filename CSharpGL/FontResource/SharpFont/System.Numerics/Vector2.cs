@@ -8,9 +8,9 @@ namespace System.Numerics
     public struct Vector2 : IEquatable<Vector2>
     //, IFormattable
     {
-        public float X;
+        public float x;
 
-        public float Y;
+        public float y;
 
         public static Vector2 Zero
         {
@@ -46,8 +46,8 @@ namespace System.Numerics
 
         public override int GetHashCode()
         {
-            int h1 = this.X.GetHashCode();
-            int h2 = this.Y.GetHashCode();
+            int h1 = this.x.GetHashCode();
+            int h2 = this.y.GetHashCode();
             return (h1 << 5) + h1 ^ h2;
         }
 
@@ -87,7 +87,7 @@ namespace System.Numerics
             //{
             //    return (float)Math.Sqrt((double)Vector2.Dot(this, this));
             //}
-            return (float)Math.Sqrt((double)(this.X * this.X + this.Y * this.Y));
+            return (float)Math.Sqrt((double)(this.x * this.x + this.y * this.y));
         }
 
         [MethodImpl(256)]
@@ -97,7 +97,7 @@ namespace System.Numerics
             //{
             //    return Vector2.Dot(this, this);
             //}
-            return this.X * this.X + this.Y * this.Y;
+            return this.x * this.x + this.y * this.y;
         }
 
         [MethodImpl(256)]
@@ -108,8 +108,8 @@ namespace System.Numerics
             //    Vector2 expr_0E = value1 - value2;
             //    return (float)Math.Sqrt((double)Vector2.Dot(expr_0E, expr_0E));
             //}
-            float arg_37_0 = value1.X - value2.X;
-            float num = value1.Y - value2.Y;
+            float arg_37_0 = value1.x - value2.x;
+            float num = value1.y - value2.y;
             double arg_3C_0 = (double)(arg_37_0 * arg_37_0);
             float expr_3A = num;
             return (float)Math.Sqrt(arg_3C_0 + (double)(expr_3A * expr_3A));
@@ -123,8 +123,8 @@ namespace System.Numerics
             //    Vector2 expr_0E = value1 - value2;
             //    return Vector2.Dot(expr_0E, expr_0E);
             //}
-            float arg_30_0 = value1.X - value2.X;
-            float num = value1.Y - value2.Y;
+            float arg_30_0 = value1.x - value2.x;
+            float num = value1.y - value2.y;
             float arg_35_0 = arg_30_0 * arg_30_0;
             float expr_33 = num;
             return arg_35_0 + expr_33 * expr_33;
@@ -138,9 +138,9 @@ namespace System.Numerics
             //    float value2 = value.Length();
             //    return value / value2;
             //}
-            float num = value.X * value.X + value.Y * value.Y;
+            float num = value.x * value.x + value.y * value.y;
             float num2 = 1f / (float)Math.Sqrt((double)num);
-            return new Vector2(value.X * num2, value.Y * num2);
+            return new Vector2(value.x * num2, value.y * num2);
         }
 
         [MethodImpl(256)]
@@ -151,32 +151,32 @@ namespace System.Numerics
             //    float num = Vector2.Dot(vector, normal);
             //    return vector - 2f * num * normal;
             //}
-            float num2 = vector.X * normal.X + vector.Y * normal.Y;
-            return new Vector2(vector.X - 2f * num2 * normal.X, vector.Y - 2f * num2 * normal.Y);
+            float num2 = vector.x * normal.x + vector.y * normal.y;
+            return new Vector2(vector.x - 2f * num2 * normal.x, vector.y - 2f * num2 * normal.y);
         }
 
         [MethodImpl(256)]
         public static Vector2 Clamp(Vector2 value1, Vector2 min, Vector2 max)
         {
-            float num = value1.X;
-            num = ((num > max.X) ? max.X : num);
-            num = ((num < min.X) ? min.X : num);
-            float num2 = value1.Y;
-            num2 = ((num2 > max.Y) ? max.Y : num2);
-            num2 = ((num2 < min.Y) ? min.Y : num2);
+            float num = value1.x;
+            num = ((num > max.x) ? max.x : num);
+            num = ((num < min.x) ? min.x : num);
+            float num2 = value1.y;
+            num2 = ((num2 > max.y) ? max.y : num2);
+            num2 = ((num2 < min.y) ? min.y : num2);
             return new Vector2(num, num2);
         }
 
         [MethodImpl(256)]
         public static Vector2 Lerp(Vector2 value1, Vector2 value2, float amount)
         {
-            return new Vector2(value1.X + (value2.X - value1.X) * amount, value1.Y + (value2.Y - value1.Y) * amount);
+            return new Vector2(value1.x + (value2.x - value1.x) * amount, value1.y + (value2.y - value1.y) * amount);
         }
 
         [MethodImpl(256)]
         public static Vector2 Transform(Vector2 position, Matrix3x2 matrix)
         {
-            return new Vector2(position.X * matrix.M11 + position.Y * matrix.M21 + matrix.M31, position.X * matrix.M12 + position.Y * matrix.M22 + matrix.M32);
+            return new Vector2(position.x * matrix.M11 + position.y * matrix.M21 + matrix.M31, position.x * matrix.M12 + position.y * matrix.M22 + matrix.M32);
         }
 
         //[MethodImpl(256)]
@@ -188,7 +188,7 @@ namespace System.Numerics
         [MethodImpl(256)]
         public static Vector2 TransformNormal(Vector2 normal, Matrix3x2 matrix)
         {
-            return new Vector2(normal.X * matrix.M11 + normal.Y * matrix.M21, normal.X * matrix.M12 + normal.Y * matrix.M22);
+            return new Vector2(normal.x * matrix.M11 + normal.y * matrix.M21, normal.x * matrix.M12 + normal.y * matrix.M22);
         }
 
         //[MethodImpl(256)]
@@ -268,8 +268,8 @@ namespace System.Numerics
         //[JitIntrinsic]
         public Vector2(float x, float y)
         {
-            this.X = x;
-            this.Y = y;
+            this.x = x;
+            this.y = y;
         }
 
         [MethodImpl(256)]
@@ -294,70 +294,70 @@ namespace System.Numerics
                 //throw new ArgumentException(SR.Format(SR.Arg_ElementsInSourceIsGreaterThanDestination, index));
                 throw new Exception();
             }
-            array[index] = this.X;
-            array[index + 1] = this.Y;
+            array[index] = this.x;
+            array[index + 1] = this.y;
         }
 
         //[JitIntrinsic]
         public bool Equals(Vector2 other)
         {
-            return this.X == other.X && this.Y == other.Y;
+            return this.x == other.x && this.y == other.y;
         }
 
         //[JitIntrinsic]
         [MethodImpl(256)]
         public static float Dot(Vector2 value1, Vector2 value2)
         {
-            return value1.X * value2.X + value1.Y * value2.Y;
+            return value1.x * value2.x + value1.y * value2.y;
         }
 
         //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 Min(Vector2 value1, Vector2 value2)
         {
-            return new Vector2((value1.X < value2.X) ? value1.X : value2.X, (value1.Y < value2.Y) ? value1.Y : value2.Y);
+            return new Vector2((value1.x < value2.x) ? value1.x : value2.x, (value1.y < value2.y) ? value1.y : value2.y);
         }
 
         //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 Max(Vector2 value1, Vector2 value2)
         {
-            return new Vector2((value1.X > value2.X) ? value1.X : value2.X, (value1.Y > value2.Y) ? value1.Y : value2.Y);
+            return new Vector2((value1.x > value2.x) ? value1.x : value2.x, (value1.y > value2.y) ? value1.y : value2.y);
         }
 
         //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 Abs(Vector2 value)
         {
-            return new Vector2(Math.Abs(value.X), Math.Abs(value.Y));
+            return new Vector2(Math.Abs(value.x), Math.Abs(value.y));
         }
 
         //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 SquareRoot(Vector2 value)
         {
-            return new Vector2((float)Math.Sqrt((double)value.X), (float)Math.Sqrt((double)value.Y));
+            return new Vector2((float)Math.Sqrt((double)value.x), (float)Math.Sqrt((double)value.y));
         }
 
         //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 operator +(Vector2 left, Vector2 right)
         {
-            return new Vector2(left.X + right.X, left.Y + right.Y);
+            return new Vector2(left.x + right.x, left.y + right.y);
         }
 
         //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 operator -(Vector2 left, Vector2 right)
         {
-            return new Vector2(left.X - right.X, left.Y - right.Y);
+            return new Vector2(left.x - right.x, left.y - right.y);
         }
 
         //[JitIntrinsic]
         [MethodImpl(256)]
         public static Vector2 operator *(Vector2 left, Vector2 right)
         {
-            return new Vector2(left.X * right.X, left.Y * right.Y);
+            return new Vector2(left.x * right.x, left.y * right.y);
         }
 
         //[JitIntrinsic]
@@ -378,7 +378,7 @@ namespace System.Numerics
         [MethodImpl(256)]
         public static Vector2 operator /(Vector2 left, Vector2 right)
         {
-            return new Vector2(left.X / right.X, left.Y / right.Y);
+            return new Vector2(left.x / right.x, left.y / right.y);
         }
 
         //[JitIntrinsic]
@@ -386,7 +386,7 @@ namespace System.Numerics
         public static Vector2 operator /(Vector2 value1, float value2)
         {
             float num = 1f / value2;
-            return new Vector2(value1.X * num, value1.Y * num);
+            return new Vector2(value1.x * num, value1.y * num);
         }
 
         [MethodImpl(256)]

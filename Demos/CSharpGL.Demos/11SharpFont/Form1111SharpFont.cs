@@ -93,7 +93,7 @@ namespace CSharpGL.Demos
                 var surfaceBitmap = GetSurfaceBitmap(ref surface);
                 var bitmap = new Bitmap(surface.Width, pixelSize);
                 Graphics g = Graphics.FromImage(bitmap);
-                g.DrawImage(surfaceBitmap, 0, pixelSize * 3 / 4 - glyph.HorizontalMetrics.Bearing.Y);
+                g.DrawImage(surfaceBitmap, 0, pixelSize * 3 / 4 - glyph.HorizontalMetrics.Bearing.y);
                 g.Dispose();
                 surfaceBitmap.Dispose();
 
