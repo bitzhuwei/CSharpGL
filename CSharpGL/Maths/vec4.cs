@@ -183,7 +183,7 @@ namespace CSharpGL
 
         public bool Equals(vec4 other)
         {
-            return this == other;
+            return (this.x == other.x && this.y == other.y && this.z == other.z && this.w == other.w);
         }
     }
 }

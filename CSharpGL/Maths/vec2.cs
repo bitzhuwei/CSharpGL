@@ -165,7 +165,7 @@ namespace CSharpGL
 
         public bool Equals(vec2 other)
         {
-            return this == other;
+            return (this.x == other.x && this.y == other.y);
         }
     }
 }
