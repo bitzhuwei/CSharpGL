@@ -5,19 +5,14 @@ namespace System.Numerics
 {
     public struct Matrix3x2 : IEquatable<Matrix3x2>
     {
-        public float M11;
+        public float M11; public float M12;
+        public float M21; public float M22;
+        public float M31; public float M32;
 
-        public float M12;
-
-        public float M21;
-
-        public float M22;
-
-        public float M31;
-
-        public float M32;
-
-        private static readonly Matrix3x2 _identity = new Matrix3x2(1f, 0f, 0f, 1f, 0f, 0f);
+        private static readonly Matrix3x2 _identity = new Matrix3x2(
+            1f, 0f,
+            0f, 1f,
+            0f, 0f);
 
         public static Matrix3x2 Identity
         {
@@ -50,47 +45,35 @@ namespace System.Numerics
 
         public Matrix3x2(float m11, float m12, float m21, float m22, float m31, float m32)
         {
-            this.M11 = m11;
-            this.M12 = m12;
-            this.M21 = m21;
-            this.M22 = m22;
-            this.M31 = m31;
-            this.M32 = m32;
+            this.M11 = m11; this.M12 = m12;
+            this.M21 = m21; this.M22 = m22;
+            this.M31 = m31; this.M32 = m32;
         }
 
         public static Matrix3x2 CreateTranslation(Vector2 position)
         {
             Matrix3x2 result;
-            result.M11 = 1f;
-            result.M12 = 0f;
-            result.M21 = 0f;
-            result.M22 = 1f;
-            result.M31 = position.X;
-            result.M32 = position.Y;
+            result.M11 = 1f; result.M12 = 0f;
+            result.M21 = 0f; result.M22 = 1f;
+            result.M31 = position.X; result.M32 = position.Y;
             return result;
         }
 
         public static Matrix3x2 CreateTranslation(float xPosition, float yPosition)
         {
             Matrix3x2 result;
-            result.M11 = 1f;
-            result.M12 = 0f;
-            result.M21 = 0f;
-            result.M22 = 1f;
-            result.M31 = xPosition;
-            result.M32 = yPosition;
+            result.M11 = 1f; result.M12 = 0f;
+            result.M21 = 0f; result.M22 = 1f;
+            result.M31 = xPosition; result.M32 = yPosition;
             return result;
         }
 
         public static Matrix3x2 CreateScale(float xScale, float yScale)
         {
             Matrix3x2 result;
-            result.M11 = xScale;
-            result.M12 = 0f;
-            result.M21 = 0f;
-            result.M22 = yScale;
-            result.M31 = 0f;
-            result.M32 = 0f;
+            result.M11 = xScale; result.M12 = 0f;
+            result.M21 = 0f; result.M22 = yScale;
+            result.M31 = 0f; result.M32 = 0f;
             return result;
         }
 
@@ -99,24 +82,18 @@ namespace System.Numerics
             float m = centerPoint.X * (1f - xScale);
             float m2 = centerPoint.Y * (1f - yScale);
             Matrix3x2 result;
-            result.M11 = xScale;
-            result.M12 = 0f;
-            result.M21 = 0f;
-            result.M22 = yScale;
-            result.M31 = m;
-            result.M32 = m2;
+            result.M11 = xScale; result.M12 = 0f;
+            result.M21 = 0f; result.M22 = yScale;
+            result.M31 = m; result.M32 = m2;
             return result;
         }
 
         public static Matrix3x2 CreateScale(Vector2 scales)
         {
             Matrix3x2 result;
-            result.M11 = scales.X;
-            result.M12 = 0f;
-            result.M21 = 0f;
-            result.M22 = scales.Y;
-            result.M31 = 0f;
-            result.M32 = 0f;
+            result.M11 = scales.X; result.M12 = 0f;
+            result.M21 = 0f; result.M22 = scales.Y;
+            result.M31 = 0f; result.M32 = 0f;
             return result;
         }
 
@@ -125,24 +102,18 @@ namespace System.Numerics
             float m = centerPoint.X * (1f - scales.X);
             float m2 = centerPoint.Y * (1f - scales.Y);
             Matrix3x2 result;
-            result.M11 = scales.X;
-            result.M12 = 0f;
-            result.M21 = 0f;
-            result.M22 = scales.Y;
-            result.M31 = m;
-            result.M32 = m2;
+            result.M11 = scales.X; result.M12 = 0f;
+            result.M21 = 0f; result.M22 = scales.Y;
+            result.M31 = m; result.M32 = m2;
             return result;
         }
 
         public static Matrix3x2 CreateScale(float scale)
         {
             Matrix3x2 result;
-            result.M11 = scale;
-            result.M12 = 0f;
-            result.M21 = 0f;
-            result.M22 = scale;
-            result.M31 = 0f;
-            result.M32 = 0f;
+            result.M11 = scale; result.M12 = 0f;
+            result.M21 = 0f; result.M22 = scale;
+            result.M31 = 0f; result.M32 = 0f;
             return result;
         }
 
@@ -151,12 +122,9 @@ namespace System.Numerics
             float m = centerPoint.X * (1f - scale);
             float m2 = centerPoint.Y * (1f - scale);
             Matrix3x2 result;
-            result.M11 = scale;
-            result.M12 = 0f;
-            result.M21 = 0f;
-            result.M22 = scale;
-            result.M31 = m;
-            result.M32 = m2;
+            result.M11 = scale; result.M12 = 0f;
+            result.M21 = 0f; result.M22 = scale;
+            result.M31 = m; result.M32 = m2;
             return result;
         }
 
@@ -165,12 +133,9 @@ namespace System.Numerics
             float m = (float)Math.Tan((double)radiansX);
             float m2 = (float)Math.Tan((double)radiansY);
             Matrix3x2 result;
-            result.M11 = 1f;
-            result.M12 = m2;
-            result.M21 = m;
-            result.M22 = 1f;
-            result.M31 = 0f;
-            result.M32 = 0f;
+            result.M11 = 1f; result.M12 = m2;
+            result.M21 = m; result.M22 = 1f;
+            result.M31 = 0f; result.M32 = 0f;
             return result;
         }
 
@@ -181,12 +146,9 @@ namespace System.Numerics
             float m = -centerPoint.Y * num;
             float m2 = -centerPoint.X * num2;
             Matrix3x2 result;
-            result.M11 = 1f;
-            result.M12 = num2;
-            result.M21 = num;
-            result.M22 = 1f;
-            result.M31 = m;
-            result.M32 = m2;
+            result.M11 = 1f; result.M12 = num2;
+            result.M21 = num; result.M22 = 1f;
+            result.M31 = m; result.M32 = m2;
             return result;
         }
 
@@ -221,12 +183,9 @@ namespace System.Numerics
                 num2 = (float)Math.Sin((double)radians);
             }
             Matrix3x2 result;
-            result.M11 = num;
-            result.M12 = num2;
-            result.M21 = -num2;
-            result.M22 = num;
-            result.M31 = 0f;
-            result.M32 = 0f;
+            result.M11 = num; result.M12 = num2;
+            result.M21 = -num2; result.M22 = num;
+            result.M31 = 0f; result.M32 = 0f;
             return result;
         }
 
@@ -263,12 +222,9 @@ namespace System.Numerics
             float m = centerPoint.X * (1f - num) + centerPoint.Y * num2;
             float m2 = centerPoint.Y * (1f - num) - centerPoint.X * num2;
             Matrix3x2 result;
-            result.M11 = num;
-            result.M12 = num2;
-            result.M21 = -num2;
-            result.M22 = num;
-            result.M31 = m;
-            result.M32 = m2;
+            result.M11 = num; result.M12 = num2;
+            result.M21 = -num2; result.M22 = num;
+            result.M31 = m; result.M32 = m2;
             return result;
         }
 
@@ -286,12 +242,9 @@ namespace System.Numerics
                 return false;
             }
             float num2 = 1f / num;
-            result.M11 = matrix.M22 * num2;
-            result.M12 = -matrix.M12 * num2;
-            result.M21 = -matrix.M21 * num2;
-            result.M22 = matrix.M11 * num2;
-            result.M31 = (matrix.M21 * matrix.M32 - matrix.M31 * matrix.M22) * num2;
-            result.M32 = (matrix.M31 * matrix.M12 - matrix.M11 * matrix.M32) * num2;
+            result.M11 = matrix.M22 * num2; result.M12 = -matrix.M12 * num2;
+            result.M21 = -matrix.M21 * num2; result.M22 = matrix.M11 * num2;
+            result.M31 = (matrix.M21 * matrix.M32 - matrix.M31 * matrix.M22) * num2; result.M32 = (matrix.M31 * matrix.M12 - matrix.M11 * matrix.M32) * num2;
             return true;
         }
 
@@ -310,36 +263,27 @@ namespace System.Numerics
         public static Matrix3x2 Negate(Matrix3x2 value)
         {
             Matrix3x2 result;
-            result.M11 = -value.M11;
-            result.M12 = -value.M12;
-            result.M21 = -value.M21;
-            result.M22 = -value.M22;
-            result.M31 = -value.M31;
-            result.M32 = -value.M32;
+            result.M11 = -value.M11; result.M12 = -value.M12;
+            result.M21 = -value.M21; result.M22 = -value.M22;
+            result.M31 = -value.M31; result.M32 = -value.M32;
             return result;
         }
 
         public static Matrix3x2 Add(Matrix3x2 value1, Matrix3x2 value2)
         {
             Matrix3x2 result;
-            result.M11 = value1.M11 + value2.M11;
-            result.M12 = value1.M12 + value2.M12;
-            result.M21 = value1.M21 + value2.M21;
-            result.M22 = value1.M22 + value2.M22;
-            result.M31 = value1.M31 + value2.M31;
-            result.M32 = value1.M32 + value2.M32;
+            result.M11 = value1.M11 + value2.M11; result.M12 = value1.M12 + value2.M12;
+            result.M21 = value1.M21 + value2.M21; result.M22 = value1.M22 + value2.M22;
+            result.M31 = value1.M31 + value2.M31; result.M32 = value1.M32 + value2.M32;
             return result;
         }
 
         public static Matrix3x2 Subtract(Matrix3x2 value1, Matrix3x2 value2)
         {
             Matrix3x2 result;
-            result.M11 = value1.M11 - value2.M11;
-            result.M12 = value1.M12 - value2.M12;
-            result.M21 = value1.M21 - value2.M21;
-            result.M22 = value1.M22 - value2.M22;
-            result.M31 = value1.M31 - value2.M31;
-            result.M32 = value1.M32 - value2.M32;
+            result.M11 = value1.M11 - value2.M11; result.M12 = value1.M12 - value2.M12;
+            result.M21 = value1.M21 - value2.M21; result.M22 = value1.M22 - value2.M22;
+            result.M31 = value1.M31 - value2.M31; result.M32 = value1.M32 - value2.M32;
             return result;
         }
 
@@ -358,48 +302,36 @@ namespace System.Numerics
         public static Matrix3x2 Multiply(Matrix3x2 value1, float value2)
         {
             Matrix3x2 result;
-            result.M11 = value1.M11 * value2;
-            result.M12 = value1.M12 * value2;
-            result.M21 = value1.M21 * value2;
-            result.M22 = value1.M22 * value2;
-            result.M31 = value1.M31 * value2;
-            result.M32 = value1.M32 * value2;
+            result.M11 = value1.M11 * value2; result.M12 = value1.M12 * value2;
+            result.M21 = value1.M21 * value2; result.M22 = value1.M22 * value2;
+            result.M31 = value1.M31 * value2; result.M32 = value1.M32 * value2;
             return result;
         }
 
         public static Matrix3x2 operator -(Matrix3x2 value)
         {
             Matrix3x2 result;
-            result.M11 = -value.M11;
-            result.M12 = -value.M12;
-            result.M21 = -value.M21;
-            result.M22 = -value.M22;
-            result.M31 = -value.M31;
-            result.M32 = -value.M32;
+            result.M11 = -value.M11; result.M12 = -value.M12;
+            result.M21 = -value.M21; result.M22 = -value.M22;
+            result.M31 = -value.M31; result.M32 = -value.M32;
             return result;
         }
 
         public static Matrix3x2 operator +(Matrix3x2 value1, Matrix3x2 value2)
         {
             Matrix3x2 result;
-            result.M11 = value1.M11 + value2.M11;
-            result.M12 = value1.M12 + value2.M12;
-            result.M21 = value1.M21 + value2.M21;
-            result.M22 = value1.M22 + value2.M22;
-            result.M31 = value1.M31 + value2.M31;
-            result.M32 = value1.M32 + value2.M32;
+            result.M11 = value1.M11 + value2.M11; result.M12 = value1.M12 + value2.M12;
+            result.M21 = value1.M21 + value2.M21; result.M22 = value1.M22 + value2.M22;
+            result.M31 = value1.M31 + value2.M31; result.M32 = value1.M32 + value2.M32;
             return result;
         }
 
         public static Matrix3x2 operator -(Matrix3x2 value1, Matrix3x2 value2)
         {
             Matrix3x2 result;
-            result.M11 = value1.M11 - value2.M11;
-            result.M12 = value1.M12 - value2.M12;
-            result.M21 = value1.M21 - value2.M21;
-            result.M22 = value1.M22 - value2.M22;
-            result.M31 = value1.M31 - value2.M31;
-            result.M32 = value1.M32 - value2.M32;
+            result.M11 = value1.M11 - value2.M11; result.M12 = value1.M12 - value2.M12;
+            result.M21 = value1.M21 - value2.M21; result.M22 = value1.M22 - value2.M22;
+            result.M31 = value1.M31 - value2.M31; result.M32 = value1.M32 - value2.M32;
             return result;
         }
 
@@ -418,12 +350,9 @@ namespace System.Numerics
         public static Matrix3x2 operator *(Matrix3x2 value1, float value2)
         {
             Matrix3x2 result;
-            result.M11 = value1.M11 * value2;
-            result.M12 = value1.M12 * value2;
-            result.M21 = value1.M21 * value2;
-            result.M22 = value1.M22 * value2;
-            result.M31 = value1.M31 * value2;
-            result.M32 = value1.M32 * value2;
+            result.M11 = value1.M11 * value2; result.M12 = value1.M12 * value2;
+            result.M21 = value1.M21 * value2; result.M22 = value1.M22 * value2;
+            result.M31 = value1.M31 * value2; result.M32 = value1.M32 * value2;
             return result;
         }
 
