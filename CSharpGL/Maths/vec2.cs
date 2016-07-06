@@ -117,7 +117,7 @@ namespace CSharpGL
 
         public static bool operator !=(vec2 lhs, vec2 rhs)
         {
-            return !(lhs == rhs);
+            return (lhs.x != rhs.x || lhs.y != rhs.y);
         }
 
         public override bool Equals(object obj)
