@@ -35,8 +35,8 @@ namespace CSharpGL.Demos
             }
             {
                 var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"12Billboard\Ground.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"12Billboard\Ground.frag"), ShaderType.FragmentShader);
+                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Ground.vert"), ShaderType.VertexShader);
+                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Ground.frag"), ShaderType.FragmentShader);
                 var map = new PropertyNameMap();
                 map.Add("in_Position", GroundModel.strPosition);
                 const int gridsPer2Unit = 20;
@@ -48,8 +48,8 @@ namespace CSharpGL.Demos
             }
             {
                 var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"12Billboard\Teapot.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"12Billboard\Teapot.frag"), ShaderType.FragmentShader);
+                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Teapot.vert"), ShaderType.VertexShader);
+                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Teapot.frag"), ShaderType.FragmentShader);
                 var map = new PropertyNameMap();
                 map.Add("in_Position", "position");
                 map.Add("in_Color", "color");
