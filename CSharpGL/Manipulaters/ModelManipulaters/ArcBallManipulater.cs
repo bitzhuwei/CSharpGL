@@ -24,37 +24,28 @@ namespace CSharpGL
         private MouseEventHandler mouseUpEvent;
         private MouseEventHandler mouseWheelEvent;
 
-        vec3 _vectorRight;
-        vec3 _vectorUp;
-        vec3 _vectorBack;
-        float _length, _radiusRadius;
-        CameraState cameraState = new CameraState();
-        mat4 totalRotation = mat4.identity();
-        vec3 _startPosition, _endPosition, _normalVector = new vec3(0, 1, 0);
-        int _width;
-        int _height;
+        private vec3 _vectorRight;
+        private vec3 _vectorUp;
+        private vec3 _vectorBack;
+        private float _length, _radiusRadius;
+        private CameraState cameraState = new CameraState();
+        private mat4 totalRotation = mat4.identity();
+        private vec3 _startPosition, _endPosition, _normalVector = new vec3(0, 1, 0);
+        private int _width;
+        private int _height;
+        private bool mouseDownFlag;
 
-        float mouseSensitivity = 0.1f;
-
-        public float MouseSensitivity
-        {
-            get { return mouseSensitivity; }
-            set { mouseSensitivity = value; }
-        }
-
-        /// <summary>
-        /// 标识鼠标是否按下
-        /// </summary>
-        public bool MouseDownFlag { get; private set; }
+        public float MouseSensitivity { get; set; }
 
         public MouseButtons BindingMouseButtons { get; set; }
 
         /// <summary>
-        /// 用鼠标旋转模型。
+        /// Rotate model using arc-ball method.
         /// </summary>
-        /// <param name="camera">当前场景所用的摄像机。</param>
+        /// <param name="bindingMouseButtons"></param>
         public ArcBallManipulater(MouseButtons bindingMouseButtons = MouseButtons.Left)
         {
+            this.MouseSensitivity = 0.1f;
             this.BindingMouseButtons = bindingMouseButtons;
 
             this.mouseDownEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseDown);
@@ -141,7 +132,7 @@ namespace CSharpGL
 
                 this._startPosition = GetArcBallPosition(e.X, e.Y);
 
-                MouseDownFlag = true;
+                mouseDownFlag = true;
             }
         }
 
@@ -156,7 +147,7 @@ namespace CSharpGL
 
         void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (MouseDownFlag && ((e.Button & this.BindingMouseButtons) != MouseButtons.None))
+            if (mouseDownFlag && ((e.Button & this.BindingMouseButtons) != MouseButtons.None))
             {
                 if (!cameraState.IsSameState(this.camera))
                 {
@@ -167,7 +158,7 @@ namespace CSharpGL
                 var cosAngle = _startPosition.dot(_endPosition) / (_startPosition.length() * _endPosition.length());
                 if (cosAngle > 1.0f) { cosAngle = 1.0f; }
                 else if (cosAngle < -1) { cosAngle = -1.0f; }
-                var angle = mouseSensitivity * (float)(Math.Acos(cosAngle) / Math.PI * 180);
+                var angle = MouseSensitivity * (float)(Math.Acos(cosAngle) / Math.PI * 180);
                 _normalVector = _startPosition.cross(_endPosition).normalize();
                 if (!
                     ((_normalVector.x == 0 && _normalVector.y == 0 && _normalVector.z == 0)
@@ -203,7 +194,7 @@ namespace CSharpGL
         {
             if ((e.Button & this.BindingMouseButtons) != MouseButtons.None)
             {
-                MouseDownFlag = false;
+                mouseDownFlag = false;
             }
         }
 
