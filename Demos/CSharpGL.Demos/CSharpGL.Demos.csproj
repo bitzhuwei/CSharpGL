@@ -64,7 +64,7 @@
     <Compile Include="15Scene\Form15Scene.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="12Billboard\BillboardRenderer.cs" />
+    <Compile Include="Renderers\BillboardRenderer.cs" />
     <Compile Include="Renderers\MovableRenderer.cs" />
     <Compile Include="Renderers\GroundRenderer.cs" />
     <Compile Include="Models\GroundModel.cs" />
@@ -219,7 +219,7 @@
     <Compile Include="10RaycastVolumeRender\Form10RaycastVolumeRenderer.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="12Billboard\BillboardModel.cs" />
+    <Compile Include="Models\BillboardModel.cs" />
     <Compile Include="13SimplexNoise\SimplexNoiseRenderer.Dispose.cs" />
     <Compile Include="13SimplexNoise\SimplexNoiseRenderer.DoRender.cs" />
     <Compile Include="13SimplexNoise\SimplexNoiseRenderer.DoInitialize.cs" />
@@ -439,10 +439,10 @@
     <None Include="10RaycastVolumeRender\tff.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="12Billboard\billboard.frag">
+    <None Include="shaders\billboard.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="12Billboard\billboard.vert">
+    <None Include="shaders\billboard.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\Teapot.frag">

@@ -51,19 +51,9 @@ namespace CSharpGL.Demos
                 this.movableRenderer = movableRenderer;
             }
             {
-                var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"12Billboard\billboard.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"12Billboard\billboard.frag"), ShaderType.FragmentShader);
-                var map = new PropertyNameMap();
-                map.Add("in_Positions", BillboardModel.strPosition);
-                var billboardRenderer = new BillboardRenderer(new BillboardModel(), shaderCodes, map);
+                var billboardRenderer = BillboardRenderer.GetRenderer(new BillboardModel());
                 billboardRenderer.Initialize();
-                var texture = new sampler2D();
-                var bitmap = new Bitmap(@"12Billboard\ExampleBillboard.png");
-                texture.Initialize(bitmap);
-                bitmap.Dispose();
                 billboardRenderer.TargetRenderer = this.movableRenderer;
-                billboardRenderer.SetUniform("myTextureSampler", new samplerValue(BindTextureTarget.Texture2D, texture.Id, OpenGL.GL_TEXTURE0));
 
                 this.billboardRenderer = billboardRenderer;
             }

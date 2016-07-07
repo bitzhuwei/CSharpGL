@@ -12,6 +12,17 @@ namespace CSharpGL.Demos
 
     class BillboardRenderer : Renderer
     {
+
+        public static BillboardRenderer GetRenderer(IBufferable model)
+        {
+            var shaderCodes = new ShaderCode[2];
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\billboard.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\billboard.frag"), ShaderType.FragmentShader);
+            var map = new PropertyNameMap();
+            map.Add("in_Positions", BillboardModel.strPosition);
+            var billboardRenderer = new BillboardRenderer(model, shaderCodes, map);
+            return billboardRenderer;
+        }
         private double currentTime;
 
         public MovableRenderer TargetRenderer { get; set; }
@@ -42,6 +53,12 @@ namespace CSharpGL.Demos
         protected override void DoInitialize()
         {
             base.DoInitialize();
+
+            var texture = new sampler2D();
+            var bitmap = new Bitmap(@"12Billboard\ExampleBillboard.png");
+            texture.Initialize(bitmap);
+            bitmap.Dispose();
+            this.SetUniform("myTextureSampler", new samplerValue(BindTextureTarget.Texture2D, texture.Id, OpenGL.GL_TEXTURE0));
         }
 
         protected override void DoRender(RenderEventArg arg)
