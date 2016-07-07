@@ -19,7 +19,7 @@ namespace CSharpGL.Demos
             lastTime = DateTime.Now;
 
             var texture = new sampler1D();
-            var bitmap = new Bitmap(@"13SimplexNoise\sunColor.png");
+            var bitmap = new Bitmap(@"Textures\sunColor.png");
             texture.Initialize(bitmap);
             bitmap.Dispose();
             this.SetUniform("sunColor", new samplerValue(BindTextureTarget.Texture1D,
