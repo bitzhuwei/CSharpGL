@@ -38,6 +38,7 @@ namespace CSharpGL
         public float MouseSensitivity { get; set; }
 
         public MouseButtons BindingMouseButtons { get; set; }
+        private MouseButtons lastBindingMouseButtons;
 
         /// <summary>
         /// Rotate model using arc-ball method.
@@ -120,7 +121,8 @@ namespace CSharpGL
 
         void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            if ((e.Button & this.BindingMouseButtons) != MouseButtons.None)
+            this.lastBindingMouseButtons = this.BindingMouseButtons;
+            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
             {
                 var control = sender as Control;
                 this.SetBounds(control.Width, control.Height);
@@ -147,7 +149,7 @@ namespace CSharpGL
 
         void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (mouseDownFlag && ((e.Button & this.BindingMouseButtons) != MouseButtons.None))
+            if (mouseDownFlag && ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None))
             {
                 if (!cameraState.IsSameState(this.camera))
                 {
@@ -192,7 +194,7 @@ namespace CSharpGL
 
         void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            if ((e.Button & this.BindingMouseButtons) != MouseButtons.None)
+            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
             {
                 mouseDownFlag = false;
             }

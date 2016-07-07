@@ -162,7 +162,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="01Renderer\HighlightedPickableRenderer.cs" />
-    <Compile Include="01Renderer\Chain.cs" />
+    <Compile Include="Renderers\Chain.cs" />
     <Compile Include="08AnalyzedPointSprite\AnalyzedPointSpriteRenderer.cs" />
     <Compile Include="08AnalyzedPointSprite\Form08AnalyzedPointSprite.cs">
       <SubType>Form</SubType>
@@ -243,7 +243,7 @@
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="01Renderer\ChainModel.cs" />
+    <Compile Include="Models\ChainModel.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

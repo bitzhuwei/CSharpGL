@@ -37,6 +37,7 @@ namespace CSharpGL
         public float VerticalRotationFactor { get; set; }
 
         public MouseButtons BindingMouseButtons { get; set; }
+        private MouseButtons lastBindingMouseButtons;
 
         public SatelliteManipulater()
         {
@@ -74,7 +75,6 @@ namespace CSharpGL
                 this.camera = null;
             }
         }
-
 
         public override string ToString()
         {
@@ -114,7 +114,8 @@ namespace CSharpGL
 
         void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            if ((e.Button & this.BindingMouseButtons) != MouseButtons.None)
+            this.lastBindingMouseButtons = this.BindingMouseButtons;
+            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
             {
                 this.lastPosition = e.Location;
                 var control = sender as Control;
@@ -126,8 +127,8 @@ namespace CSharpGL
 
         void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.mouseDownFlag 
-                && ((e.Button & this.BindingMouseButtons) != MouseButtons.None)
+            if (this.mouseDownFlag
+                && ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
                 && (e.X != lastPosition.X || e.Y != lastPosition.Y))
             {
                 IViewCamera camera = this.camera;
@@ -180,7 +181,7 @@ namespace CSharpGL
 
         void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            if ((e.Button & this.BindingMouseButtons) != MouseButtons.None)
+            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
             {
                 this.mouseDownFlag = false;
             }

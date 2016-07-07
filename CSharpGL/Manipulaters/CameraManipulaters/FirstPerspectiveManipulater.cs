@@ -105,6 +105,7 @@ namespace CSharpGL
         public float HorizontalRotationSpeed { get; set; }
         public float VerticalRotationSpeed { get; set; }
         public MouseButtons BindingMouseButtons { get; set; }
+        private MouseButtons lastBindingMouseButtons;
 
         public FirstPerspectiveManipulater()
             : this(0.1f, 0.002f, 0.002f, MouseButtons.Right) { }
@@ -170,7 +171,8 @@ namespace CSharpGL
 
         void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            if ((e.Button & this.BindingMouseButtons) != MouseButtons.None)
+            this.lastBindingMouseButtons = this.BindingMouseButtons;
+            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
             {
                 this.mouseDownFlag = true;
                 this.lastPosition = e.Location;
@@ -179,8 +181,8 @@ namespace CSharpGL
 
         void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.mouseDownFlag 
-                && ((e.Button & this.BindingMouseButtons) != MouseButtons.None)
+            if (this.mouseDownFlag
+                && ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
                 && (e.X != this.lastPosition.X || e.Y != this.lastPosition.Y))
             {
                 mat4 rotationMatrix = glm.rotate(this.HorizontalRotationSpeed * (e.X - this.lastPosition.X), -this.camera.UpVector);
@@ -200,7 +202,7 @@ namespace CSharpGL
 
         void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            if ((e.Button & this.BindingMouseButtons) != MouseButtons.None)
+            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
             {
                 this.mouseDownFlag = false;
             }
