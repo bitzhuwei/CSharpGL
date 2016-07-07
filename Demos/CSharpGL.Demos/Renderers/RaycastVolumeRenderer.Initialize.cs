@@ -19,8 +19,8 @@ namespace CSharpGL.Demos
 
             InitRaycastRenderer();
 
-            initTFF1DTex(@"10RaycastVolumeRender\tff.dat");
-            initVol3DTex(@"10RaycastVolumeRender\head256.raw", 256, 256, 225);
+            initTFF1DTex(@"data\tff.dat");
+            initVol3DTex(@"data\head256.raw", 256, 256, 225);
 
             int[] viewport = OpenGL.GetViewport();
             Resize(viewport[2], viewport[3]);
@@ -166,8 +166,8 @@ namespace CSharpGL.Demos
         private void InitRaycastRenderer()
         {
             var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"10RaycastVolumeRender\raycasting.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"10RaycastVolumeRender\raycasting.frag"), ShaderType.FragmentShader);
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\raycasting.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\raycasting.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add(RaycastModel.strPosition, RaycastModel.strPosition);
             map.Add(RaycastModel.strBoundingBox, RaycastModel.strBoundingBox);
@@ -179,8 +179,8 @@ namespace CSharpGL.Demos
         private void InitBackfaceRenderer()
         {
             var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"10RaycastVolumeRender\backface.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"10RaycastVolumeRender\backface.frag"), ShaderType.FragmentShader);
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\backface.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\backface.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add(RaycastModel.strPosition, RaycastModel.strPosition);
             map.Add(RaycastModel.strBoundingBox, RaycastModel.strBoundingBox);
