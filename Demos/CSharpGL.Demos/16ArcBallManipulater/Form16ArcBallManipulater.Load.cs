@@ -11,14 +11,13 @@ using System.Windows.Forms;
 
 namespace CSharpGL.Demos
 {
-    public partial class Form12Billboard : Form
+    public partial class Form16ArcBallManipulater : Form
     {
         private UIRoot uiRoot;
         private UIAxis glAxis;
-        private MovableRenderer movableRenderer;
-        private Renderer billboardRenderer;
+        private Renderer teapotRenderer;
         private Renderer ground;
-        private LabelRenderer labelRenderer;
+        private ArcBallManipulater arcballManipulater;
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -26,10 +25,13 @@ namespace CSharpGL.Demos
                 var camera = new Camera(
                     new vec3(0, 0, 5), new vec3(0, 0, 0), new vec3(0, 1, 0),
                     CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
-                var rotator = new SatelliteManipulater();
-                rotator.Bind(camera, this.glCanvas1);
                 this.camera = camera;
-                this.rotator = rotator;
+                var cameraManipulater = new SatelliteManipulater();
+                cameraManipulater.Bind(camera, this.glCanvas1);
+                this.cameraManipulater = cameraManipulater;
+                var arcballManipulater = new ArcBallManipulater();
+                arcballManipulater.Bind(camera, this.glCanvas1);
+                this.arcballManipulater = arcballManipulater;
             }
             {
                 var shaderCodes = new ShaderCode[2];
@@ -45,33 +47,15 @@ namespace CSharpGL.Demos
                 this.ground = ground;
             }
             {
-                var movableRenderer = MovableRenderer.GetRenderer(new Teapot());
-                movableRenderer.Initialize();
-                movableRenderer.Scale = 0.1f;
-                this.movableRenderer = movableRenderer;
-            }
-            {
                 var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"12Billboard\billboard.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"12Billboard\billboard.frag"), ShaderType.FragmentShader);
+                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"12Billboard\Teapot.vert"), ShaderType.VertexShader);
+                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"12Billboard\Teapot.frag"), ShaderType.FragmentShader);
                 var map = new PropertyNameMap();
-                map.Add("in_Positions", BillboardModel.strPosition);
-                var billboardRenderer = new BillboardRenderer(new BillboardModel(), shaderCodes, map);
-                billboardRenderer.Initialize();
-                var texture = new sampler2D();
-                var bitmap = new Bitmap(@"12Billboard\ExampleBillboard.png");
-                texture.Initialize(bitmap);
-                bitmap.Dispose();
-                billboardRenderer.TargetRenderer = this.movableRenderer;
-                billboardRenderer.SetUniform("myTextureSampler", new samplerValue(BindTextureTarget.Texture2D, texture.Id, OpenGL.GL_TEXTURE0));
-
-                this.billboardRenderer = billboardRenderer;
-            }
-            {
-                var labelRenderer = new LabelRenderer();
-                labelRenderer.Initialize();
-                labelRenderer.Text = "Teapot - CSharpGL";
-                this.labelRenderer = labelRenderer;
+                map.Add("in_Position", "position");
+                map.Add("in_Color", "color");
+                var teapotRenderer = new Renderer(new Teapot(), shaderCodes, map);
+                teapotRenderer.Initialize();
+                this.teapotRenderer = teapotRenderer;
             }
             {
                 var UIRoot = new UIRoot();
@@ -86,19 +70,11 @@ namespace CSharpGL.Demos
                 UIRoot.Children.Add(glAxis);
             }
             {
-                var frmPropertyGrid = new FormProperyGrid(this.movableRenderer);
-                frmPropertyGrid.Show();
-            }
-            {
-                var frmPropertyGrid = new FormProperyGrid(this.billboardRenderer);
+                var frmPropertyGrid = new FormProperyGrid(this.teapotRenderer);
                 frmPropertyGrid.Show();
             }
             {
                 var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
-                frmPropertyGrid.Show();
-            }
-            {
-                var frmPropertyGrid = new FormProperyGrid(this.labelRenderer);
                 frmPropertyGrid.Show();
             }
         }

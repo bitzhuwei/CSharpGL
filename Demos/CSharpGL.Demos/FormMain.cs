@@ -92,5 +92,10 @@ namespace CSharpGL.Demos
             (new Form15Scene()).Show();
         }
 
+        private void btn16ArcBallManipulater_Click(object sender, EventArgs e)
+        {
+            (new Form16ArcBallManipulater()).Show();
+        }
+
     }
 }

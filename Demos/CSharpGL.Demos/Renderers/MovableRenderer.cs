@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -12,16 +13,30 @@ namespace CSharpGL.Demos
     /// </summary>
     internal class MovableRenderer : PickableRenderer
     {
+        public static MovableRenderer GetRenderer(IBufferable model)
+        {
+            var shaderCodes = new ShaderCode[2];
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Teapot.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Teapot.frag"), ShaderType.FragmentShader);
+            var propertyNameMap = new PropertyNameMap();
+            propertyNameMap.Add("in_Position", "position");
+            propertyNameMap.Add("in_Color", "color");
+            var result = new MovableRenderer(model, shaderCodes, propertyNameMap, "position");
+            return result;
+        }
+
         private float radian;
 
         public float Scale { get; set; }
 
         public vec3 Position { get; set; }
 
-        public MovableRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
+        public mat4 Rotation { get; set; }
+
+        private MovableRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, string positionNameInIBufferable,
             params GLSwitch[] switches)
-            : base(bufferable, shaderCodes, propertyNameMap, positionNameInIBufferable, switches)
+            : base(bufferable, shaderCodes, propertyNameMap, "position")
         {
             this.Scale = 1.0f;
         }

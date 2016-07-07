@@ -46,6 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="16ArcBallManipulater\Form16ArcBallManipulater.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="16ArcBallManipulater\Form16ArcBallManipulater.Designer.cs">
+      <DependentUpon>Form16ArcBallManipulater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="16ArcBallManipulater\Form16ArcBallManipulater.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="15Scene\Form15Scene.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,7 +65,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="12Billboard\BillboardRenderer.cs" />
-    <Compile Include="12Billboard\MovableRenderer.cs" />
+    <Compile Include="Renderers\MovableRenderer.cs" />
     <Compile Include="12Billboard\GroundRenderer.cs" />
     <Compile Include="12Billboard\GroundModel.cs" />
     <Compile Include="14ShaderToy\Form14ShaderToy.cs">
@@ -333,6 +342,9 @@
     <EmbeddedResource Include="00GLCanvas\Form00GLCanvas.resx">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="16ArcBallManipulater\Form16ArcBallManipulater.resx">
+      <DependentUpon>Form16ArcBallManipulater.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="15Scene\Form15Scene.resx">
       <DependentUpon>Form15Scene.cs</DependentUpon>
     </EmbeddedResource>
@@ -433,10 +445,10 @@
     <None Include="12Billboard\billboard.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="12Billboard\Teapot.frag">
+    <None Include="shaders\Teapot.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="12Billboard\Teapot.vert">
+    <None Include="shaders\Teapot.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="13SimplexNoise\sunColor.grd" />
