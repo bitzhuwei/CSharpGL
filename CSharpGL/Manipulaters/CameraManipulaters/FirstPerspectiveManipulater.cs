@@ -14,7 +14,7 @@ namespace CSharpGL
     /// Manipulate a camera in first-persppective's view.
     /// </summary>
     public class FirstPerspectiveManipulater :
-        CameraManipulater, IMouseHandler, IKeyboardHandler
+        Manipulater, IMouseHandler, IKeyboardHandler
     {
         private ICamera camera;
         private GLCanvas canvas;

@@ -12,9 +12,9 @@ namespace CSharpGL
 {
     //TODO: post a blog about two ways of using CameraManipulater.
     /// <summary>
-    /// Manipulate camera.
+    /// Manipulate camera or model.
     /// </summary>
-    public abstract class CameraManipulater
+    public abstract class Manipulater
     {
         /// <summary>
         /// start to manipulate specified <paramref name="camera"/>.

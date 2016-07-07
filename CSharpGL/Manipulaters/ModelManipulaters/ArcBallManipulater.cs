@@ -11,10 +11,19 @@ using System.Windows.Forms;
 namespace CSharpGL
 {
     /// <summary>
-    /// 用鼠标旋转模型。
+    /// Rotate model using arc-ball method.
     /// </summary>
-    public class ArcBallManipulater
+    public class ArcBallManipulater : Manipulater, IMouseHandler
     {
+
+        private ICamera camera;
+        private GLCanvas canvas;
+
+        private MouseEventHandler mouseDownEvent;
+        private MouseEventHandler mouseMoveEvent;
+        private MouseEventHandler mouseUpEvent;
+        private MouseEventHandler mouseWheelEvent;
+
         vec3 _vectorRight;
         vec3 _vectorUp;
         vec3 _vectorBack;
@@ -38,20 +47,20 @@ namespace CSharpGL
         /// </summary>
         public bool MouseDownFlag { get; private set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public ICamera Camera { get; private set; }
+        public MouseButtons BindingMouseButtons { get; set; }
 
         /// <summary>
         /// 用鼠标旋转模型。
         /// </summary>
         /// <param name="camera">当前场景所用的摄像机。</param>
-        public ArcBallManipulater(ICamera camera)
+        public ArcBallManipulater(MouseButtons bindingMouseButtons = MouseButtons.Left)
         {
-            this.Camera = camera;
+            this.BindingMouseButtons = bindingMouseButtons;
 
-            SetCamera(camera.Position, camera.Target, camera.UpVector);
+            this.mouseDownEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseDown);
+            this.mouseMoveEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseMove);
+            this.mouseUpEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseUp);
+            this.mouseWheelEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseWheel);
         }
 
         private void SetCamera(vec3 position, vec3 target, vec3 up)
@@ -81,7 +90,62 @@ namespace CSharpGL
             }
         }
 
-        public void SetBounds(int width, int height)
+        public mat4 GetRotationMatrix()
+        {
+            return totalRotation;
+        }
+
+        public override void Bind(ICamera camera, GLCanvas canvas)
+        {
+            if (camera == null || canvas == null) { throw new ArgumentNullException(); }
+
+            this.camera = camera;
+            this.canvas = canvas;
+
+            canvas.MouseDown += this.mouseDownEvent;
+            canvas.MouseMove += this.mouseMoveEvent;
+            canvas.MouseUp += this.mouseUpEvent;
+            canvas.MouseWheel += this.mouseWheelEvent;
+
+            SetCamera(camera.Position, camera.Target, camera.UpVector);
+        }
+
+        public override void Unbind()
+        {
+            if (this.canvas != null && (!this.canvas.IsDisposed))
+            {
+                this.canvas.MouseDown -= this.mouseDownEvent;
+                this.canvas.MouseMove -= this.mouseMoveEvent;
+                this.canvas.MouseUp -= this.mouseUpEvent;
+                this.canvas.MouseWheel -= this.mouseWheelEvent;
+                this.canvas = null;
+                this.camera = null;
+            }
+        }
+
+        void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
+        {
+        }
+
+        void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
+        {
+            if ((e.Button & this.BindingMouseButtons) != MouseButtons.None)
+            {
+                var control = sender as Control;
+                this.SetBounds(control.Width, control.Height);
+
+                if (!cameraState.IsSameState(this.camera))
+                {
+                    SetCamera(this.camera.Position, this.camera.Target, this.camera.UpVector);
+                }
+
+                this._startPosition = GetArcBallPosition(e.X, e.Y);
+
+                MouseDownFlag = true;
+            }
+        }
+
+        private void SetBounds(int width, int height)
         {
             this._width = width; this._height = height;
             _length = width > height ? width : height;
@@ -90,49 +154,13 @@ namespace CSharpGL
             _radiusRadius = (float)(rx * rx + ry * ry);
         }
 
-        /// <summary>
-        /// 必须先调用<see cref="SetBounds"/>()方法。
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        public void MouseDown(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!cameraState.IsSameState(this.Camera))
+            if (MouseDownFlag && ((e.Button & this.BindingMouseButtons) != MouseButtons.None))
             {
-                SetCamera(this.Camera.Position, this.Camera.Target, this.Camera.UpVector);
-            }
-
-            this._startPosition = GetArcBallPosition(e.X, e.Y);
-
-            MouseDownFlag = true;
-        }
-
-        private vec3 GetArcBallPosition(int x, int y)
-        {
-            float rx = (x - _width / 2) / _length;
-            float ry = (_height / 2 - y) / _length;
-            float zz = _radiusRadius - rx * rx - ry * ry;
-            float rz = (zz > 0 ? (float)Math.Sqrt(zz) : 0.0f);
-            var result = new vec3(
-                rx * _vectorRight.x + ry * _vectorUp.x + rz * _vectorBack.x,
-                rx * _vectorRight.y + ry * _vectorUp.y + rz * _vectorBack.y,
-                rx * _vectorRight.z + ry * _vectorUp.z + rz * _vectorBack.z
-                );
-            //var radius = new vec3(rx, ry, rz);
-            //var matrix = new mat3(_vectorRight, _vectorUp, _vectorBack);
-            //result = matrix * new vec3(rx, ry, rz);
-
-            return result;
-        }
-
-
-        public void MouseMove(object sender, MouseEventArgs e)
-        {
-            if (MouseDownFlag)
-            {
-                if (!cameraState.IsSameState(this.Camera))
+                if (!cameraState.IsSameState(this.camera))
                 {
-                    SetCamera(this.Camera.Position, this.Camera.Target, this.Camera.UpVector);
+                    SetCamera(this.camera.Position, this.camera.Target, this.camera.UpVector);
                 }
 
                 this._endPosition = GetArcBallPosition(e.X, e.Y);
@@ -153,14 +181,31 @@ namespace CSharpGL
             }
         }
 
-        public void MouseUp(object sender, MouseEventArgs e)
+        private vec3 GetArcBallPosition(int x, int y)
         {
-            MouseDownFlag = false;
+            float rx = (x - _width / 2) / _length;
+            float ry = (_height / 2 - y) / _length;
+            float zz = _radiusRadius - rx * rx - ry * ry;
+            float rz = (zz > 0 ? (float)Math.Sqrt(zz) : 0.0f);
+            var result = new vec3(
+                rx * _vectorRight.x + ry * _vectorUp.x + rz * _vectorBack.x,
+                rx * _vectorRight.y + ry * _vectorUp.y + rz * _vectorBack.y,
+                rx * _vectorRight.z + ry * _vectorUp.z + rz * _vectorBack.z
+                );
+            //var radius = new vec3(rx, ry, rz);
+            //var matrix = new mat3(_vectorRight, _vectorUp, _vectorBack);
+            //result = matrix * new vec3(rx, ry, rz);
+
+            return result;
         }
 
-        public mat4 GetRotationMatrix()
+        void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            return totalRotation;
+            if ((e.Button & this.BindingMouseButtons) != MouseButtons.None)
+            {
+                MouseDownFlag = false;
+            }
         }
+
     }
 }

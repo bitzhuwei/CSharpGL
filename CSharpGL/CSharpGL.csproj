@@ -122,7 +122,7 @@
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.DoRender.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\SatelliteManipulater.cs" />
-    <Compile Include="Manipulaters\CameraManipulaters\CameraManipulater.cs" />
+    <Compile Include="Manipulaters\Manipulater.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\FirstPerspectiveManipulater.cs" />
     <Compile Include="OpenGLObjects\Camera\Camera.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.ToMatrix.cs" />

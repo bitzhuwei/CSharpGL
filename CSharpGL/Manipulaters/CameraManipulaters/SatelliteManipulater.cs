@@ -14,7 +14,7 @@ namespace CSharpGL
     /// Rotates a camera on a sphere, whose center is camera's Target.
     /// <para>Just like a satellite moves around a fixed star.</para>
     /// </summary>
-    public class SatelliteManipulater : CameraManipulater, IMouseHandler
+    public class SatelliteManipulater : Manipulater, IMouseHandler
     {
 
         private ICamera camera;
