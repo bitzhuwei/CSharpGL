@@ -106,9 +106,9 @@
     <Compile Include="01Renderer\Form01Renderer.MouseDownMoveUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="05ParticleSimulator\ParticleComputeRenderer.cs" />
-    <Compile Include="05ParticleSimulator\ParticleRenderer.cs" />
-    <Compile Include="05ParticleSimulator\ParticleModel.cs" />
+    <Compile Include="Renderers\ParticleComputeRenderer.cs" />
+    <Compile Include="Renderers\ParticleRenderer.cs" />
+    <Compile Include="Models\ParticleModel.cs" />
     <Compile Include="06ImageProcessing\Form06ImageProcessing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,7 +256,7 @@
     <Compile Include="00GLCanvas\Form00GLCanvas.Designer.cs">
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>
     </Compile>
-    <Compile Include="05ParticleSimulator\ParticleSimulatorRenderer.cs" />
+    <Compile Include="Renderers\ParticleSimulatorRenderer.cs" />
     <Compile Include="Renderers\SimpleComputeRenderer.cs" />
     <Compile Include="Renderers\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
@@ -282,7 +282,7 @@
     <None Include="13SimplexNoise\SimplexNoise.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="05ParticleSimulator\particleSimulator-fountain.comp">
+    <None Include="shaders\particleSimulator-fountain.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="06ImageProcessing\ImageProcessing.comp">
@@ -303,13 +303,13 @@
     <None Include="shaders\computeReset.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="05ParticleSimulator\particleSimulator.frag">
+    <None Include="shaders\particleSimulator.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="05ParticleSimulator\particleSimulator.vert">
+    <None Include="shaders\particleSimulator.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="05ParticleSimulator\particleSimulator.comp">
+    <None Include="shaders\particleSimulator.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\compute.comp">

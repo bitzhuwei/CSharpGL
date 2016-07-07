@@ -22,8 +22,8 @@ namespace CSharpGL.Demos
             {
                 IBufferable bufferable = new ParticleModel();
                 var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"05ParticleSimulator\particleSimulator.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"05ParticleSimulator\particleSimulator.frag"), ShaderType.FragmentShader);
+                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\particleSimulator.vert"), ShaderType.VertexShader);
+                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\particleSimulator.frag"), ShaderType.FragmentShader);
                 var map = new PropertyNameMap();
                 map.Add("position", ParticleModel.strPosition);
                 var particleRenderer = new ParticleRenderer(bufferable, shaderCodes, map, new DepthTestSwitch(false), new BlendSwitch(BlendingSourceFactor.One, BlendingDestinationFactor.One));

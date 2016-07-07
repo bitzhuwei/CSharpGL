@@ -30,7 +30,7 @@ namespace CSharpGL.Demos
         {
             {
                 var computeProgram = new ShaderProgram();
-                var shaderCode = new ShaderCode(File.ReadAllText(@"05ParticleSimulator\particleSimulator.comp"), ShaderType.ComputeShader);
+                var shaderCode = new ShaderCode(File.ReadAllText(@"shaders\particleSimulator.comp"), ShaderType.ComputeShader);
                 var shader = shaderCode.CreateShader();
                 computeProgram.Create(shader);
                 shader.Delete();
