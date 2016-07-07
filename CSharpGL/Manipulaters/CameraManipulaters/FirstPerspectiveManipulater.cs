@@ -148,7 +148,6 @@ namespace CSharpGL
 
         public override void Unbind()
         {
-            this.camera = null;
             if (this.canvas != null && (!this.canvas.IsDisposed))
             {
                 this.canvas.KeyPress -= this.keyPressEvent;
@@ -156,6 +155,8 @@ namespace CSharpGL
                 this.canvas.MouseMove -= this.mouseMoveEvent;
                 this.canvas.MouseUp -= this.mouseUpEvent;
                 this.canvas.MouseWheel -= this.mouseWheelEvent;
+                this.canvas = null;
+                this.camera = null;
             }
         }
 
