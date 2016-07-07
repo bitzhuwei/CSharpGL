@@ -163,7 +163,7 @@
     </Compile>
     <Compile Include="Renderers\HighlightedPickableRenderer.cs" />
     <Compile Include="Renderers\Chain.cs" />
-    <Compile Include="08AnalyzedPointSprite\AnalyzedPointSpriteRenderer.cs" />
+    <Compile Include="Renderers\AnalyzedPointSpriteRenderer.cs" />
     <Compile Include="08AnalyzedPointSprite\Form08AnalyzedPointSprite.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -412,10 +412,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="08AnalyzedPointSprite\AnalyzedPointSprite.frag">
+    <None Include="shaders\AnalyzedPointSprite.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="08AnalyzedPointSprite\AnalyzedPointSprite.vert">
+    <None Include="shaders\AnalyzedPointSprite.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\PointSprite.frag">

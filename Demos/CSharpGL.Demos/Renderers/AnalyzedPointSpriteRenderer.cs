@@ -32,8 +32,8 @@ namespace CSharpGL.Demos
         static AnalyzedPointSpriteRenderer()
         {
             staticShaderCodes = new ShaderCode[2];
-            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"08AnalyzedPointSprite\AnalyzedPointSprite.vert"), ShaderType.VertexShader);
-            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"08AnalyzedPointSprite\AnalyzedPointSprite.frag"), ShaderType.FragmentShader);
+            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\AnalyzedPointSprite.vert"), ShaderType.VertexShader);
+            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\AnalyzedPointSprite.frag"), ShaderType.FragmentShader);
             map = new PropertyNameMap();
             map.Add("position", "position");
         }
