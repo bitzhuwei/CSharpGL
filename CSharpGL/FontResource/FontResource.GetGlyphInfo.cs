@@ -17,7 +17,7 @@ namespace CSharpGL
 
         private static void GetGlyphInfo(out Bitmap glyphBitmap, out FullDictionary<char, GlyphInfo> glyphDict, int pixelSize, IEnumerable<char> targets)
         {
-            defaultGlyphDict = new FullDictionary<char, GlyphInfo>(GlyphInfo.Default);
+            glyphDict = new FullDictionary<char, GlyphInfo>(GlyphInfo.Default);
 
             using (Stream stream = ManifestResourceLoader.GetStream(@"Resources\ANTQUAI.TTF"))
             {
@@ -33,16 +33,14 @@ namespace CSharpGL
 
                         foreach (char c in targets)
                         {
-                            BlitCharacter(pixelSize, maxWidth, defaultGlyphDict, ref currentX, ref currentY, graphics, typeface, c);
+                            BlitCharacter(pixelSize, maxWidth, glyphDict, ref currentX, ref currentY, graphics, typeface, c);
                         }
                     }
 
-                    defaultGlyphBitmap = ShortenBitmap(bitmap, maxWidth, currentY + yInterval + pixelSize + (pixelSize / 10 > 1 ? pixelSize / 10 : 1));
+                    glyphBitmap = ShortenBitmap(bitmap, maxWidth, currentY + yInterval + pixelSize + (pixelSize / 10 > 1 ? pixelSize / 10 : 1));
                 }
             }
 
-            glyphBitmap = defaultGlyphBitmap;
-            glyphDict = defaultGlyphDict;
         }
     }
 }
