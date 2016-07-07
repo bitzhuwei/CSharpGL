@@ -183,9 +183,9 @@ namespace CSharpGL
                 rx * _vectorRight.y + ry * _vectorUp.y + rz * _vectorBack.y,
                 rx * _vectorRight.z + ry * _vectorUp.z + rz * _vectorBack.z
                 );
-            //var radius = new vec3(rx, ry, rz);
+            //var position = new vec3(rx, ry, rz);
             //var matrix = new mat3(_vectorRight, _vectorUp, _vectorBack);
-            //result = matrix * new vec3(rx, ry, rz);
+            //result = matrix * position;
 
             return result;
         }
