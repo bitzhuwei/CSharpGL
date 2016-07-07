@@ -118,7 +118,7 @@
     <Compile Include="06ImageProcessing\Form06ImageProcessing.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="06ImageProcessing\ImageProcessingRenderer.cs" />
+    <Compile Include="Renderers\ImageProcessingRenderer.cs" />
     <Compile Include="05ParticleSimulator\Form05ParticleSimulator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,13 +285,13 @@
     <None Include="shaders\particleSimulator-fountain.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="06ImageProcessing\ImageProcessing.comp">
+    <None Include="shaders\ImageProcessing.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="06ImageProcessing\ImageProcessing.frag">
+    <None Include="shaders\ImageProcessing.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="06ImageProcessing\ImageProcessing.vert">
+    <None Include="shaders\ImageProcessing.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\build_lists.frag">
@@ -490,16 +490,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="shaders\Simple.PropertyNameMap.xml" />
-    <Content Include="06ImageProcessing\box.bmp">
+    <Content Include="Textures\box.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="06ImageProcessing\Martian.bmp">
+    <Content Include="Textures\Martian.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="06ImageProcessing\teapot.bmp">
+    <Content Include="Textures\teapot.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="06ImageProcessing\teapot.png">
+    <Content Include="Textures\teapot.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="07PointSprite\PointSprite.png">

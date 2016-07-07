@@ -22,7 +22,7 @@ namespace CSharpGL.Demos
         private PickableRenderer renderer;
         private string textureFilename;
 
-        public ImageProcessingRenderer(string textureFilename = @"06ImageProcessing\teapot.bmp")
+        public ImageProcessingRenderer(string textureFilename = @"Textures\teapot.bmp")
         {
             this.textureFilename = textureFilename;
         }
@@ -32,7 +32,7 @@ namespace CSharpGL.Demos
             {
                 var computeProgram = new ShaderProgram();
                 var shaderCode = new ShaderCode(File.ReadAllText(
-                    @"06ImageProcessing\ImageProcessing.comp"), ShaderType.ComputeShader);
+                    @"shaders\ImageProcessing.comp"), ShaderType.ComputeShader);
                 var shader = shaderCode.CreateShader();
                 computeProgram.Create(shader);
                 shader.Delete();
@@ -82,14 +82,14 @@ namespace CSharpGL.Demos
             {
                 var bufferable = new ImageProcessingModel();
                 ShaderCode[] simpleShader = new ShaderCode[2];
-                simpleShader[0] = new ShaderCode(File.ReadAllText(@"06ImageProcessing\ImageProcessing.vert"), ShaderType.VertexShader);
-                simpleShader[1] = new ShaderCode(File.ReadAllText(@"06ImageProcessing\ImageProcessing.frag"), ShaderType.FragmentShader);
+                simpleShader[0] = new ShaderCode(File.ReadAllText(@"shaders\ImageProcessing.vert"), ShaderType.VertexShader);
+                simpleShader[1] = new ShaderCode(File.ReadAllText(@"shaders\ImageProcessing.frag"), ShaderType.FragmentShader);
                 var propertyNameMap = new PropertyNameMap();
                 propertyNameMap.Add("vert", "position");
                 propertyNameMap.Add("uv", "uv");
                 var pickableRenderer = new PickableRenderer(
                     bufferable, simpleShader, propertyNameMap, "position");
-                pickableRenderer.Name = string.Format("Pickable: [ImageProcessingRenderer]");
+                pickableRenderer.Name = string.Format("Pickable: [{0}]", this.GetType().Name);
                 pickableRenderer.Initialize();
                 pickableRenderer.SetUniform("output_image",
                     new samplerValue(
