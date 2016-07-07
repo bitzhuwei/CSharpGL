@@ -33,8 +33,8 @@ namespace CSharpGL.Demos
         static PointSpriteRenderer()
         {
             staticShaderCodes = new ShaderCode[2];
-            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"07PointSprite\PointSprite.vert"), ShaderType.VertexShader);
-            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"07PointSprite\PointSprite.frag"), ShaderType.FragmentShader);
+            staticShaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\PointSprite.vert"), ShaderType.VertexShader);
+            staticShaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\PointSprite.frag"), ShaderType.FragmentShader);
             map = new PropertyNameMap();
             map.Add("position", "position");
         }
@@ -49,7 +49,7 @@ namespace CSharpGL.Demos
             {
                 // This is the texture that the compute program will write into
                 sampler2D texture = new sampler2D();
-                var bitmap = new System.Drawing.Bitmap(@"07PointSprite\PointSprite.png");
+                var bitmap = new System.Drawing.Bitmap(@"Textures\PointSprite.png");
                 texture.Initialize(bitmap);
                 bitmap.Dispose();
                 this.sprite_texture[0] = texture.Id;

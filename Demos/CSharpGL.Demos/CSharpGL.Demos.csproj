@@ -182,7 +182,7 @@
     <Compile Include="07PointSprite\Form07PointSprite.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="07PointSprite\PointSpriteRenderer.cs" />
+    <Compile Include="Renderers\PointSpriteRenderer.cs" />
     <Compile Include="12Billboard\Form12Billboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -418,10 +418,10 @@
     <None Include="08AnalyzedPointSprite\AnalyzedPointSprite.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="07PointSprite\PointSprite.frag">
+    <None Include="shaders\PointSprite.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="07PointSprite\PointSprite.vert">
+    <None Include="shaders\PointSprite.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="10RaycastVolumeRender\raycasting.frag">
@@ -502,7 +502,7 @@
     <Content Include="Textures\teapot.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="07PointSprite\PointSprite.png">
+    <Content Include="Textures\PointSprite.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="10RaycastVolumeRender\head256.raw">
