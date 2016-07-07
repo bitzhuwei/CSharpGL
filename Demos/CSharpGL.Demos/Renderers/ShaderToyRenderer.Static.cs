@@ -12,8 +12,8 @@ namespace CSharpGL.Demos
         static readonly IBufferable staticBufferable = new Cube();
         static readonly ShaderCode[] staticShaderCodes = new ShaderCode[]
         {
-            new ShaderCode(File.ReadAllText(@"14ShaderToy\ShaderToy.vert"), ShaderType.VertexShader),
-            new ShaderCode(File.ReadAllText(@"14ShaderToy\ShaderToy.frag"), ShaderType.FragmentShader),
+            new ShaderCode(File.ReadAllText(@"shaders\ShaderToy.vert"), ShaderType.VertexShader),
+            new ShaderCode(File.ReadAllText(@"shaders\ShaderToy.frag"), ShaderType.FragmentShader),
         };
         static readonly PropertyNameMap staticPropertyNameMap = new PropertyNameMap(
             new string[] { "in_Position", },

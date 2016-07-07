@@ -77,11 +77,11 @@
     <Compile Include="14ShaderToy\Form14ShaderToy.FormLoad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="14ShaderToy\ShaderToyRenderer.cs" />
-    <Compile Include="14ShaderToy\ShaderToyRenderer.Dispose.cs" />
-    <Compile Include="14ShaderToy\ShaderToyRenderer.DoInitialize.cs" />
-    <Compile Include="14ShaderToy\ShaderToyRenderer.DoRender.cs" />
-    <Compile Include="14ShaderToy\ShaderToyRenderer.Static.cs" />
+    <Compile Include="Renderers\ShaderToyRenderer.cs" />
+    <Compile Include="Renderers\ShaderToyRenderer.Dispose.cs" />
+    <Compile Include="Renderers\ShaderToyRenderer.DoInitialize.cs" />
+    <Compile Include="Renderers\ShaderToyRenderer.DoRender.cs" />
+    <Compile Include="Renderers\ShaderToyRenderer.Static.cs" />
     <Compile Include="shaders\Simple.cssl.cs" />
     <Compile Include="shaders\Simple.main.cs" />
     <Compile Include="13SimplexNoise\Form13SimplexNoise.cs">
@@ -268,10 +268,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="14ShaderToy\readme.md" />
-    <None Include="14ShaderToy\ShaderToy.frag">
+    <None Include="shaders\ShaderToy.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="14ShaderToy\ShaderToy.vert">
+    <None Include="shaders\ShaderToy.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\Simple.config" />
