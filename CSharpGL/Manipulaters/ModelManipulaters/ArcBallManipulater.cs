@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 
 namespace CSharpGL
@@ -14,9 +15,9 @@ namespace CSharpGL
     /// </summary>
     public class ArcBallManipulater
     {
-        vec3 _vectorBack;
-        vec3 _vectorUp;
         vec3 _vectorRight;
+        vec3 _vectorUp;
+        vec3 _vectorBack;
         float _length, _radiusRadius;
         CameraState cameraState = new CameraState();
         mat4 totalRotation = mat4.identity();
@@ -56,8 +57,7 @@ namespace CSharpGL
         private void SetCamera(vec3 position, vec3 target, vec3 up)
         {
             _vectorBack = (position - target).normalize();
-            _vectorUp = up;
-            _vectorRight = _vectorUp.cross(_vectorBack).normalize();
+            _vectorRight = up.cross(_vectorBack).normalize();
             _vectorUp = _vectorBack.cross(_vectorRight).normalize();
 
             this.cameraState.position = position;
@@ -95,14 +95,14 @@ namespace CSharpGL
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public void MouseDown(int x, int y)
+        public void MouseDown(object sender, MouseEventArgs e)
         {
             if (!cameraState.IsSameState(this.Camera))
             {
                 SetCamera(this.Camera.Position, this.Camera.Target, this.Camera.UpVector);
             }
 
-            this._startPosition = GetArcBallPosition(x, y);
+            this._startPosition = GetArcBallPosition(e.X, e.Y);
 
             MouseDownFlag = true;
         }
@@ -126,7 +126,7 @@ namespace CSharpGL
         }
 
 
-        public void MouseMove(int x, int y)
+        public void MouseMove(object sender, MouseEventArgs e)
         {
             if (MouseDownFlag)
             {
@@ -135,10 +135,10 @@ namespace CSharpGL
                     SetCamera(this.Camera.Position, this.Camera.Target, this.Camera.UpVector);
                 }
 
-                this._endPosition = GetArcBallPosition(x, y);
+                this._endPosition = GetArcBallPosition(e.X, e.Y);
                 var cosAngle = _startPosition.dot(_endPosition) / (_startPosition.length() * _endPosition.length());
-                if (cosAngle > 1) { cosAngle = 1; }
-                else if (cosAngle < -1) { cosAngle = -1; }
+                if (cosAngle > 1.0f) { cosAngle = 1.0f; }
+                else if (cosAngle < -1) { cosAngle = -1.0f; }
                 var angle = mouseSensitivity * (float)(Math.Acos(cosAngle) / Math.PI * 180);
                 _normalVector = _startPosition.cross(_endPosition).normalize();
                 if (!
@@ -153,7 +153,7 @@ namespace CSharpGL
             }
         }
 
-        public void MouseUp(int x, int y)
+        public void MouseUp(object sender, MouseEventArgs e)
         {
             MouseDownFlag = false;
         }
