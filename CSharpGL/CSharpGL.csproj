@@ -101,6 +101,7 @@
     <Compile Include="IBufferables\TeapotModel.Faces.cs" />
     <None Include="Manipulaters\readme.md" />
     <Compile Include="IBufferables\TextModel.SetText.cs" />
+    <Compile Include="Manipulaters\ModelManipulaters\ArcBallManipulater.cs" />
     <Compile Include="Octree\OctreeHelper.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.Orientation.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.ViewType.cs" />
@@ -123,7 +124,6 @@
     <Compile Include="Manipulaters\CameraManipulaters\SatelliteManipulater.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\CameraManipulater.cs" />
     <Compile Include="Manipulaters\CameraManipulaters\FirstPerspectiveManipulater.cs" />
-    <Compile Include="Manipulaters\ModelManipulaters\ArcBallRotator.cs" />
     <Compile Include="OpenGLObjects\Camera\Camera.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.ToMatrix.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.Zoom.cs" />
