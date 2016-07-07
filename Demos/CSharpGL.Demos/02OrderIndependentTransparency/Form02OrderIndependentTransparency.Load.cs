@@ -24,6 +24,7 @@ namespace CSharpGL.Demos
                     CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 var rotator = new SatelliteManipulater();
                 rotator.Bind(camera, this.glCanvas1);
+                rotator.BindingMouseButtons = System.Windows.Forms.MouseButtons.Left | System.Windows.Forms.MouseButtons.Right;
                 this.camera = camera;
                 this.rotator = rotator;
             }

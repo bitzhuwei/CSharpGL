@@ -161,7 +161,7 @@
     <Compile Include="02OrderIndependentTransparency\Form02OrderIndependentTransparency.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="01Renderer\HighlightedPickableRenderer.cs" />
+    <Compile Include="Renderers\HighlightedPickableRenderer.cs" />
     <Compile Include="Renderers\Chain.cs" />
     <Compile Include="08AnalyzedPointSprite\AnalyzedPointSpriteRenderer.cs" />
     <Compile Include="08AnalyzedPointSprite\Form08AnalyzedPointSprite.cs">
@@ -257,8 +257,8 @@
       <DependentUpon>Form00GLCanvas.cs</DependentUpon>
     </Compile>
     <Compile Include="05ParticleSimulator\ParticleSimulatorRenderer.cs" />
-    <Compile Include="04SimpleCompute\SimpleComputeRenderer.cs" />
-    <Compile Include="02OrderIndependentTransparency\OrderIndependentTransparencyRenderer.cs" />
+    <Compile Include="Renderers\SimpleComputeRenderer.cs" />
+    <Compile Include="Renderers\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="shaders\Ground.frag">
@@ -300,7 +300,7 @@
     <None Include="shaders\build_lists.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="04SimpleCompute\computeReset.comp">
+    <None Include="shaders\computeReset.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="05ParticleSimulator\particleSimulator.frag">
@@ -312,13 +312,13 @@
     <None Include="05ParticleSimulator\particleSimulator.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="04SimpleCompute\compute.comp">
+    <None Include="shaders\compute.comp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="04SimpleCompute\compute.frag">
+    <None Include="shaders\compute.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="04SimpleCompute\compute.vert">
+    <None Include="shaders\compute.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="shaders\Transparent.frag">
