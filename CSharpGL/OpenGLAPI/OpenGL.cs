@@ -46,7 +46,7 @@ namespace CSharpGL
                     long pointer = proc.ToInt64();
                     if (-1 <= pointer && pointer <= 3)
                     {
-                        proc = Win32.GetProcAddress(Win32.opengl32Library, name);
+                        proc = Win32.GetProcAddress(Win32.Instance.opengl32Library, name);
                         pointer = proc.ToInt64();
                         if (-1 <= pointer && pointer <= 3)
                         {
