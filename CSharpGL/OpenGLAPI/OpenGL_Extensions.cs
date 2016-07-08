@@ -6854,6 +6854,11 @@ namespace CSharpGL
         #region WGL_ARB_extensions_string
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hdc"></param>
+        /// <returns></returns>
         public delegate string wglGetExtensionsStringARB(IntPtr hdc);
 
         #endregion

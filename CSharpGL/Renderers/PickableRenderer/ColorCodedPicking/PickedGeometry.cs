@@ -11,6 +11,9 @@ namespace CSharpGL
     /// </summary>
     public class PickedGeometry : IPickedGeometry
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string ErrorInfo { get; set; }
 
         /// <summary>
@@ -39,6 +42,13 @@ namespace CSharpGL
         /// </summary>
         public virtual IColorCodedPicking From { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="projection"></param>
+        /// <param name="view"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public string ToString(mat4 projection, mat4 view, mat4 model)
         {
             StringBuilder builder = BasicInfo();
@@ -114,6 +124,10 @@ namespace CSharpGL
 
             return builder.ToString();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             StringBuilder builder = BasicInfo();

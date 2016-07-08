@@ -5,8 +5,14 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PointSpriteSwitch : GLSwitch
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public PointSpriteSwitch()
         {
             this.SwitchList = new GLSwitchList();
@@ -18,6 +24,9 @@ namespace CSharpGL
         }
 
         //int m_ParticleSize = 30;
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void SwitchOn()
         {
             int count = this.SwitchList.Count;
@@ -39,7 +48,9 @@ namespace CSharpGL
             ////GL.TexEnvi(GL.GL_POINT_SPRITE, GL.GL_COORD_REPLACE, GL.GL_TRUE);
             //GL.PointParameter(GL.GL_POINT_SPRITE_COORD_ORIGIN, GL.GL_LOWER_LEFT);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void SwitchOff()
         {
             OpenGL.Disable(OpenGL.GL_POINT_SPRITE_ARB);
@@ -48,9 +59,14 @@ namespace CSharpGL
             int count = this.SwitchList.Count;
             for (int i = count - 1; i >= 0; i--) { this.SwitchList[i].Off(); }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public GLSwitchList SwitchList { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("{0}", this.GetType().Name);

@@ -5,23 +5,38 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PolygonModeSwitch : GLSwitch
     {
 
         int[] originalPolygonMode = new int[2];
 
+        /// <summary>
+        /// 
+        /// </summary>
         public PolygonModeSwitch() : this(PolygonModes.Filled) { }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
         public PolygonModeSwitch(PolygonModes mode)
         {
             this.Mode = mode;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("Polygon Mode: {0}", Mode);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void SwitchOn()
         {
             OpenGL.GetInteger(GetTarget.PolygonMode, originalPolygonMode);
@@ -29,7 +44,9 @@ namespace CSharpGL
             OpenGL.PolygonMode(PolygonModeFaces.FrontAndBack, Mode);
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void SwitchOff()
         {
             if (originalPolygonMode[0] == originalPolygonMode[1])
@@ -44,7 +61,9 @@ namespace CSharpGL
 
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public PolygonModes Mode { get; set; }
     }
 

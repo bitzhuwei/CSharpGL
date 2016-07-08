@@ -2169,6 +2169,13 @@ namespace CSharpGL
         /// <param name="v2">Bottom-Right point.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glRectdv", SetLastError = true)]
         public static extern void Rectdv(double[] v1, double[] v2);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x1"></param>
+        /// <param name="y1"></param>
+        /// <param name="x2"></param>
+        /// <param name="y2"></param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glRectf", SetLastError = true)]
         public static extern void Rectf(float x1, float y1, float x2, float y2);
 
@@ -2622,6 +2629,12 @@ namespace CSharpGL
         /// <param name="param">Specifies a single symbolic constant, one of OpenGL.MODULATE, OpenGL.DECAL, OpenGL.BLEND, or OpenGL.REPLACE.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glTexEnvi", SetLastError = true)]
         public static extern void TexEnvi(uint target, uint pname, int param);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glTexEnviv", SetLastError = true)]
         public static extern void TexEnviv(uint target, uint pname, int[] parameters);
 

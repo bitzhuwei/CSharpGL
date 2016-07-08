@@ -3,9 +3,16 @@ using System.Linq;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class PickingShaderHelper //: IDisposable
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static ShaderCode[] GetPickingShaderCode()
         {
             var shaderCodes = new ShaderCode[2];
@@ -14,7 +21,10 @@ namespace CSharpGL
 
             return shaderCodes;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static ShaderProgram GetPickingShaderProgram()
         {
             var shaderCodes = new ShaderCode[2];
@@ -38,7 +48,10 @@ namespace CSharpGL
         /// fragmente shader's cache.
         /// </summary>
         static string fragmentShader = null;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static ShaderCode[] GetShaderCodes()
         {
             var shaderCodes = new ShaderCode[2];

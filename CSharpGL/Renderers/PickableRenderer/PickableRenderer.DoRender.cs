@@ -10,6 +10,10 @@ namespace CSharpGL
     public partial class PickableRenderer
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         protected override void DoRender(RenderEventArg arg)
         {
             if (arg.RenderMode == RenderModes.ColorCodedPicking)

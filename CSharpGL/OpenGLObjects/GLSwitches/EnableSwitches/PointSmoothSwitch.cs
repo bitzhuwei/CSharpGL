@@ -5,6 +5,9 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PointSmoothSwitch : EnableSwitch
     {
         /// <summary>
@@ -22,6 +25,10 @@ namespace CSharpGL
             : base(OpenGL.GL_POINT_SMOOTH, enableCapacity)
         { }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             if (this.EnableCapacity)

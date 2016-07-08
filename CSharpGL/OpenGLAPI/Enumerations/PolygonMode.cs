@@ -7,6 +7,9 @@ using System.Text;
 namespace CSharpGL
 {
 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum PolygonModeFaces : uint
     {
         /// <summary>

@@ -890,6 +890,14 @@ namespace CSharpGL
             OpenGL.DrawElements((uint)mode, count, type, indices);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="primcount"></param>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void MultiDrawElements(DrawMode mode, int[] count, uint type, IntPtr indices, int primcount)
         {
@@ -1116,6 +1124,19 @@ namespace CSharpGL
             OpenGL.GetTexImage((uint)target, level, (uint)format, (uint)type, pixels.Header);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="level"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="depth"></param>
+        /// <param name="border"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="pixels"></param>
         public static void TexImage3D(uint target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, IntPtr pixels)
         {
             OpenGL.GetDelegateFor<OpenGL.glTexImage3D>()(target, level, internalformat, width, height, depth, border, format, type, pixels);

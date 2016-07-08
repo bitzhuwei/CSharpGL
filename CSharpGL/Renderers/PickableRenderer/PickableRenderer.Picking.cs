@@ -32,6 +32,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public uint PickingBaseId
         {
             get
@@ -50,6 +53,10 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public uint GetVertexCount()
         {
             InnerPickableRenderer renderer = this.innerPickableRenderer;
@@ -59,6 +66,14 @@ namespace CSharpGL
             { return 0; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="stageVertexId"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public PickedGeometry GetPickedGeometry(
             RenderEventArg arg,
             uint stageVertexId,
