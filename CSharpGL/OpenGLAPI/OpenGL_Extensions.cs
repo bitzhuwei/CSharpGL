@@ -5259,7 +5259,25 @@ namespace CSharpGL
         /// <param name="type">Specifies the data type of the pixel data. The following symbolic values are accepted: GL_UNSIGNED_BYTE​, GL_BYTE​, GL_UNSIGNED_SHORT​, GL_SHORT​, GL_UNSIGNED_INT​, GL_INT​, GL_FLOAT​, GL_UNSIGNED_BYTE_3_3_2​, GL_UNSIGNED_BYTE_2_3_3_REV​, GL_UNSIGNED_SHORT_5_6_5​, GL_UNSIGNED_SHORT_5_6_5_REV​, GL_UNSIGNED_SHORT_4_4_4_4​, GL_UNSIGNED_SHORT_4_4_4_4_REV​, GL_UNSIGNED_SHORT_5_5_5_1​, GL_UNSIGNED_SHORT_1_5_5_5_REV​, GL_UNSIGNED_INT_8_8_8_8​, GL_UNSIGNED_INT_8_8_8_8_REV​, GL_UNSIGNED_INT_10_10_10_2​, and GL_UNSIGNED_INT_2_10_10_10_REV​.</param>
         /// <param name="data">Specifies a pointer to a single pixel of data to upload. This parameter may not be NULL.</param>
         public delegate void glClearBufferSubData(uint target, uint internalformat, IntPtr offset, uint size, uint format, uint type, IntPtr data);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="data"></param>
         public delegate void glClearNamedBufferDataEXT(uint buffer, uint internalformat, uint format, uint type, IntPtr data);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="offset"></param>
+        /// <param name="size"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="data"></param>
         public delegate void glClearNamedBufferSubDataEXT(uint buffer, uint internalformat, IntPtr offset, uint size, uint format, uint type, IntPtr data);
 
         #endregion
@@ -5267,27 +5285,91 @@ namespace CSharpGL
         #region GL_ARB_compute_shader
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="num_groups_x"></param>
+        /// <param name="num_groups_y"></param>
+        /// <param name="num_groups_z"></param>
         public delegate void glDispatchCompute(uint num_groups_x, uint num_groups_y, uint num_groups_z);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="indirect"></param>
         public delegate void glDispatchComputeIndirect(IntPtr indirect);
 
         // Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPUTE_SHADER = 0x91B9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMPUTE_UNIFORM_BLOCKS = 0x91BB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMPUTE_TEXTURE_IMAGE_UNITS = 0x91BC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMPUTE_IMAGE_UNIFORMS = 0x91BD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMPUTE_SHARED_MEMORY_SIZE = 0x8262;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMPUTE_UNIFORM_COMPONENTS = 0x8263;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMPUTE_ATOMIC_COUNTER_BUFFERS = 0x8264;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMPUTE_ATOMIC_COUNTERS = 0x8265;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMBINED_COMPUTE_UNIFORM_COMPONENTS = 0x8266;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS = 0x90EB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMPUTE_WORK_GROUP_COUNT = 0x91BE;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMPUTE_WORK_GROUP_SIZE = 0x91BF;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPUTE_WORK_GROUP_SIZE = 0x8267;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNIFORM_BLOCK_REFERENCED_BY_COMPUTE_SHADER = 0x90EC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_COMPUTE_SHADER = 0x90ED;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DISPATCH_INDIRECT_BUFFER = 0x90EE;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DISPATCH_INDIRECT_BUFFER_BINDING = 0x90EF;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPUTE_SHADER_BIT = 0x00000020;
 
         #endregion
@@ -5907,37 +5989,113 @@ namespace CSharpGL
 
         #region transform feedbacks
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="id"></param>
         public delegate void glBindTransformFeedback(uint target, uint id);
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSFORM_FEEDBACK = 0x8E22;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSFORM_FEEDBACK_BUFFER_PAUSED = 0x8E23;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSFORM_FEEDBACK_BUFFER_ACTIVE = 0x8E24;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSFORM_FEEDBACK_BINDING = 0x8E25;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
         public delegate void glIsTransformFeedback(uint id);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="ids"></param>
         public delegate void glDeleteTransformFeedbacks(int n, uint[] ids);
 
+        /// <summary>
+        /// 
+        /// </summary>
         public delegate void glPauseTransformFeedback();
 
+        /// <summary>
+        /// 
+        /// </summary>
         public delegate void glResumeTransformFeedback();
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_ATOMIC_COUNTER_BUFFER = 0x92C0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNIFORM_BUFFER = 0x8A11;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="uniformBlockIndex"></param>
+        /// <param name="uniformBlockBinding"></param>
         public delegate void glUniformBlockBinding(uint program, uint uniformBlockIndex, uint uniformBlockBinding);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="uniformBlockName"></param>
+        /// <returns></returns>
         public delegate uint glGetUniformBlockIndex(uint program, string uniformBlockName);
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT = 0x8A34;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAP_READ_BIT = 0x0001;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAP_WRITE_BIT = 0x0002;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAP_INVALIDATE_RANGE_BIT = 0x0004;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAP_INVALIDATE_BUFFER_BIT = 0x0008;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAP_FLUSH_EXPLICIT_BIT = 0x0010;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAP_UNSYNCHRONIZED_BIT = 0x0020;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="id"></param>
         public delegate void glDrawTransformFeedback(uint mode, uint id);
 
         #endregion transform feedbacks
@@ -5958,8 +6116,17 @@ namespace CSharpGL
         /// <param name="values">Specifies the address of an array containing the new values for the parameter given by <paramref name="pname"/>​.</param>
         public delegate void glPatchParameterfv(uint pname, float[] values);
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PATCH_VERTICES = 0x8E72;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PATCH_DEFAULT_INNER_LEVEL = 0x8E73;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PATCH_DEFAULT_OUTER_LEVEL = 0x8E74;
 
         #endregion patch
@@ -5978,10 +6145,34 @@ namespace CSharpGL
         /// <param name="format">Specifies the format that the elements of the image will be treated as for the purposes of formatted stores.</param>
         public delegate void glBindImageTexture(uint unit, uint texture, int level, bool layered, int layer, uint access, uint format);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="levels"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
         public delegate void glTexStorage1D(uint target, int levels, uint internalformat, int width);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="levels"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         public delegate void glTexStorage2D(uint target, int levels, uint internalformat, int width, int height);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="levels"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="depth"></param>
         public delegate void glTexStorage3D(uint target, int levels, uint internalformat, int width, int height, int depth);
 
         #endregion texture
@@ -5992,41 +6183,134 @@ namespace CSharpGL
         /// <param name="barriers">Specifies the barriers to insert.</param>
         public delegate void glMemoryBarrier(uint barriers);
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT = 0x00000001;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_ELEMENT_ARRAY_BARRIER_BIT = 0x00000002;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNIFORM_BARRIER_BIT = 0x00000004;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_FETCH_BARRIER_BIT = 0x00000008;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SHADER_IMAGE_ACCESS_BARRIER_BIT = 0x00000020;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMMAND_BARRIER_BIT = 0x00000040;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PIXEL_BUFFER_BARRIER_BIT = 0x00000080;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_UPDATE_BARRIER_BIT = 0x00000100;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BUFFER_UPDATE_BARRIER_BIT = 0x00000200;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAMEBUFFER_BARRIER_BIT = 0x00000400;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSFORM_FEEDBACK_BARRIER_BIT = 0x00000800;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_ATOMIC_COUNTER_BARRIER_BIT = 0x00001000;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_QUERY_BUFFER_BARRIER_BIT = 0x00008000;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT = 0x00004000;
 
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_CUBE_MAP_SEAMLESS = 0x884F;
 
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_HALF_FLOAT = 0x140B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEPTH_STENCIL = 0x84F9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FLOAT_32_UNSIGNED_INT_24_8_REV = 0x8DAD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEPTH32F_STENCIL8 = 0x8CAD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGB10_A2UI = 0x906F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEPTH_COMPONENT32F = 0x8CAC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEPTH24_STENCIL8 = 0x88F0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT_ARB = 0x8E8F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_RGB_BPTC_SIGNED_FLOAT_ARB = 0x8E8E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_RGBA_BPTC_UNORM_ARB = 0x8E8C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM_ARB = 0x8E8D;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_SWIZZLE_R = 0x8E42;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_SWIZZLE_G = 0x8E43;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_SWIZZLE_B = 0x8E44;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_SWIZZLE_A = 0x8E45;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_SWIZZLE_RGBA = 0x8E46;
 
     }
