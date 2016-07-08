@@ -386,465 +386,465 @@ namespace CSharpGL
 
         //#endregion GL.Color
 
-        #region GL.Vertex
+        //#region GL.Vertex
 
-        /// <summary>
-        /// Set the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="x">X Value.</param>
-        /// <param name="y">Y Value.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(double x, double y)
-        {
-            OpenGL.Vertex2d(x, y);
-        }
+        ///// <summary>
+        ///// Set the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="x">X Value.</param>
+        ///// <param name="y">Y Value.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(double x, double y)
+        //{
+        //    OpenGL.Vertex2d(x, y);
+        //}
 
-        /// <summary>
-        /// Set the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="v">Specifies the coordinate.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(double[] v)
-        {
-            int length = v.Length;
-            if (length == 2) { OpenGL.Vertex2dv(v); }
-            else if (length == 3) { OpenGL.Vertex3dv(v); }
-            else if (length == 4) { OpenGL.Vertex4dv(v); }
-            else { throw new ArgumentOutOfRangeException(); }
-        }
+        ///// <summary>
+        ///// Set the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="v">Specifies the coordinate.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(double[] v)
+        //{
+        //    int length = v.Length;
+        //    if (length == 2) { OpenGL.Vertex2dv(v); }
+        //    else if (length == 3) { OpenGL.Vertex3dv(v); }
+        //    else if (length == 4) { OpenGL.Vertex4dv(v); }
+        //    else { throw new ArgumentOutOfRangeException(); }
+        //}
 
-        /// <summary>
-        /// Set the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="x">X Value.</param>
-        /// <param name="y">Y Value.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(float x, float y)
-        {
-            OpenGL.Vertex2f(x, y);
-        }
+        ///// <summary>
+        ///// Set the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="x">X Value.</param>
+        ///// <param name="y">Y Value.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(float x, float y)
+        //{
+        //    OpenGL.Vertex2f(x, y);
+        //}
 
-        /// <summary>
-        /// Set the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="x">X Value.</param>
-        /// <param name="y">Y Value.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(int x, int y)
-        {
-            OpenGL.Vertex2i(x, y);
-        }
+        ///// <summary>
+        ///// Set the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="x">X Value.</param>
+        ///// <param name="y">Y Value.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(int x, int y)
+        //{
+        //    OpenGL.Vertex2i(x, y);
+        //}
 
-        /// <summary>
-        /// Set the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="v">Specifies the coordinate.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(int[] v)
-        {
-            int length = v.Length;
-            if (length == 2) { OpenGL.Vertex2iv(v); }
-            else if (length == 3) { OpenGL.Vertex3iv(v); }
-            else if (length == 4) { OpenGL.Vertex4iv(v); }
-            else { throw new ArgumentOutOfRangeException(); }
-        }
+        ///// <summary>
+        ///// Set the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="v">Specifies the coordinate.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(int[] v)
+        //{
+        //    int length = v.Length;
+        //    if (length == 2) { OpenGL.Vertex2iv(v); }
+        //    else if (length == 3) { OpenGL.Vertex3iv(v); }
+        //    else if (length == 4) { OpenGL.Vertex4iv(v); }
+        //    else { throw new ArgumentOutOfRangeException(); }
+        //}
 
-        /// <summary>
-        /// Set the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="x">X Value.</param>
-        /// <param name="y">Y Value.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(short x, short y)
-        {
-            OpenGL.Vertex2s(x, y);
-        }
+        ///// <summary>
+        ///// Set the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="x">X Value.</param>
+        ///// <param name="y">Y Value.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(short x, short y)
+        //{
+        //    OpenGL.Vertex2s(x, y);
+        //}
 
-        /// <summary>
-        /// Set the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="v">Specifies the coordinate.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(short[] v)
-        {
-            int length = v.Length;
-            if (length == 2) { OpenGL.Vertex2sv(v); }
-            else if (length == 3) { OpenGL.Vertex3sv(v); }
-            else if (length == 4) { OpenGL.Vertex4sv(v); }
-            else { throw new ArgumentOutOfRangeException(); }
-        }
+        ///// <summary>
+        ///// Set the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="v">Specifies the coordinate.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(short[] v)
+        //{
+        //    int length = v.Length;
+        //    if (length == 2) { OpenGL.Vertex2sv(v); }
+        //    else if (length == 3) { OpenGL.Vertex3sv(v); }
+        //    else if (length == 4) { OpenGL.Vertex4sv(v); }
+        //    else { throw new ArgumentOutOfRangeException(); }
+        //}
 
-        /// <summary>
-        /// Set the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="x">X Value.</param>
-        /// <param name="y">Y Value.</param>
-        /// <param name="z">Z Value.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(double x, double y, double z)
-        {
-            OpenGL.Vertex3d(x, y, z);
-        }
+        ///// <summary>
+        ///// Set the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="x">X Value.</param>
+        ///// <param name="y">Y Value.</param>
+        ///// <param name="z">Z Value.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(double x, double y, double z)
+        //{
+        //    OpenGL.Vertex3d(x, y, z);
+        //}
 
-        /// <summary>
-        /// Set the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="x">X Value.</param>
-        /// <param name="y">Y Value.</param>
-        /// <param name="z">Z Value.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(float x, float y, float z)
-        {
-            OpenGL.Vertex3f(x, y, z);
-        }
+        ///// <summary>
+        ///// Set the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="x">X Value.</param>
+        ///// <param name="y">Y Value.</param>
+        ///// <param name="z">Z Value.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(float x, float y, float z)
+        //{
+        //    OpenGL.Vertex3f(x, y, z);
+        //}
 
-        /// <summary>
-        /// Sets the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="v">An array of 2, 3 or 4 floats.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(float[] v)
-        {
-            int length = v.Length;
-            if (length == 2) { OpenGL.Vertex2fv(v); }
-            else if (length == 3) { OpenGL.Vertex3fv(v); }
-            else if (length == 4) { OpenGL.Vertex4fv(v); }
-            else { throw new ArgumentOutOfRangeException(); }
-        }
+        ///// <summary>
+        ///// Sets the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="v">An array of 2, 3 or 4 floats.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(float[] v)
+        //{
+        //    int length = v.Length;
+        //    if (length == 2) { OpenGL.Vertex2fv(v); }
+        //    else if (length == 3) { OpenGL.Vertex3fv(v); }
+        //    else if (length == 4) { OpenGL.Vertex4fv(v); }
+        //    else { throw new ArgumentOutOfRangeException(); }
+        //}
 
-        /// <summary>
-        /// Set the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="x">X Value.</param>
-        /// <param name="y">Y Value.</param>
-        /// <param name="z">Z Value.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(int x, int y, int z)
-        {
-            OpenGL.Vertex3i(x, y, z);
-        }
+        ///// <summary>
+        ///// Set the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="x">X Value.</param>
+        ///// <param name="y">Y Value.</param>
+        ///// <param name="z">Z Value.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(int x, int y, int z)
+        //{
+        //    OpenGL.Vertex3i(x, y, z);
+        //}
 
-        /// <summary>
-        /// Set the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="x">X Value.</param>
-        /// <param name="y">Y Value.</param>
-        /// <param name="z">Z Value.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(short x, short y, short z)
-        {
-            OpenGL.Vertex3s(x, y, z);
-        }
+        ///// <summary>
+        ///// Set the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="x">X Value.</param>
+        ///// <param name="y">Y Value.</param>
+        ///// <param name="z">Z Value.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(short x, short y, short z)
+        //{
+        //    OpenGL.Vertex3s(x, y, z);
+        //}
 
-        /// <summary>
-        /// Set the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="x">X Value.</param>
-        /// <param name="y">Y Value.</param>
-        /// <param name="z">Z Value.</param>
-        /// <param name="w">W Value.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(double x, double y, double z, double w)
-        {
-            OpenGL.Vertex4d(x, y, z, w);
-        }
+        ///// <summary>
+        ///// Set the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="x">X Value.</param>
+        ///// <param name="y">Y Value.</param>
+        ///// <param name="z">Z Value.</param>
+        ///// <param name="w">W Value.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(double x, double y, double z, double w)
+        //{
+        //    OpenGL.Vertex4d(x, y, z, w);
+        //}
 
-        /// <summary>
-        /// Set the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="x">X Value.</param>
-        /// <param name="y">Y Value.</param>
-        /// <param name="z">Z Value.</param>
-        /// <param name="w">W Value.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(float x, float y, float z, float w)
-        {
-            OpenGL.Vertex4f(x, y, z, w);
-        }
+        ///// <summary>
+        ///// Set the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="x">X Value.</param>
+        ///// <param name="y">Y Value.</param>
+        ///// <param name="z">Z Value.</param>
+        ///// <param name="w">W Value.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(float x, float y, float z, float w)
+        //{
+        //    OpenGL.Vertex4f(x, y, z, w);
+        //}
 
-        /// <summary>
-        /// Set the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="x">X Value.</param>
-        /// <param name="y">Y Value.</param>
-        /// <param name="z">Z Value.</param>
-        /// <param name="w">W Value.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(int x, int y, int z, int w)
-        {
-            OpenGL.Vertex4i(x, y, z, w);
-        }
+        ///// <summary>
+        ///// Set the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="x">X Value.</param>
+        ///// <param name="y">Y Value.</param>
+        ///// <param name="z">Z Value.</param>
+        ///// <param name="w">W Value.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(int x, int y, int z, int w)
+        //{
+        //    OpenGL.Vertex4i(x, y, z, w);
+        //}
 
-        /// <summary>
-        /// Set the current vertex (must be called between 'Begin' and 'End').
-        /// </summary>
-        /// <param name="x">X Value.</param>
-        /// <param name="y">Y Value.</param>
-        /// <param name="z">Z Value.</param>
-        /// <param name="w">W Value.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Vertex(short x, short y, short z, short w)
-        {
-            OpenGL.Vertex4s(x, y, z, w);
-        }
+        ///// <summary>
+        ///// Set the current vertex (must be called between 'Begin' and 'End').
+        ///// </summary>
+        ///// <param name="x">X Value.</param>
+        ///// <param name="y">Y Value.</param>
+        ///// <param name="z">Z Value.</param>
+        ///// <param name="w">W Value.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Vertex(short x, short y, short z, short w)
+        //{
+        //    OpenGL.Vertex4s(x, y, z, w);
+        //}
 
-        #endregion GL.Vertex
+        //#endregion GL.Vertex
 
-        #region GL.TexCoord
-
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        public static void TexCoord(double s)
-        {
-            OpenGL.TexCoord1d(s);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        public static void TexCoord(double[] v)
-        {
-            if (v.Length == 1)
-                OpenGL.TexCoord1dv(v);
-            else if (v.Length == 2)
-                OpenGL.TexCoord2dv(v);
-            else if (v.Length == 3)
-                OpenGL.TexCoord3dv(v);
-            else if (v.Length == 4)
-                OpenGL.TexCoord4dv(v);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        public static void TexCoord(float s)
-        {
-            OpenGL.TexCoord1f(s);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates. WARNING: if you
-        /// can call something more explicit, like TexCoord2f then call that, it's
-        /// much faster.
-        /// </summary>
-        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        public static void TexCoord(float[] v)
-        {
-            if (v.Length == 1)
-                OpenGL.TexCoord1fv(v);
-            else if (v.Length == 2)
-                OpenGL.TexCoord2fv(v);
-            else if (v.Length == 3)
-                OpenGL.TexCoord3fv(v);
-            else if (v.Length == 4)
-                OpenGL.TexCoord4fv(v);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        public static void TexCoord(int s)
-        {
-            OpenGL.TexCoord1i(s);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        public static void TexCoord(int[] v)
-        {
-            if (v.Length == 1)
-                OpenGL.TexCoord1iv(v);
-            else if (v.Length == 2)
-                OpenGL.TexCoord2iv(v);
-            else if (v.Length == 3)
-                OpenGL.TexCoord3iv(v);
-            else if (v.Length == 4)
-                OpenGL.TexCoord4iv(v);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        public static void TexCoord(short s)
-        {
-            OpenGL.TexCoord1s(s);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
-        public static void TexCoord(short[] v)
-        {
-            if (v.Length == 1)
-                OpenGL.TexCoord1sv(v);
-            else if (v.Length == 2)
-                OpenGL.TexCoord2sv(v);
-            else if (v.Length == 3)
-                OpenGL.TexCoord3sv(v);
-            else if (v.Length == 4)
-                OpenGL.TexCoord4sv(v);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        /// <param name="t">Texture Coordinate.</param>
-        public static void TexCoord(double s, double t)
-        {
-            OpenGL.TexCoord2d(s, t);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        /// <param name="t">Texture Coordinate.</param>
-        public static void TexCoord(float s, float t)
-        {
-            OpenGL.TexCoord2f(s, t);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        /// <param name="t">Texture Coordinate.</param>
-        public static void TexCoord(int s, int t)
-        {
-            OpenGL.TexCoord2i(s, t);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        /// <param name="t">Texture Coordinate.</param>
-        public static void TexCoord(short s, short t)
-        {
-            OpenGL.TexCoord2s(s, t);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        /// <param name="t">Texture Coordinate.</param>
-        /// <param name="r">Texture Coordinate.</param>
-        public static void TexCoord(double s, double t, double r)
-        {
-            OpenGL.TexCoord3d(s, t, r);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        /// <param name="t">Texture Coordinate.</param>
-        /// <param name="r">Texture Coordinate.</param>
-        public static void TexCoord(float s, float t, float r)
-        {
-            OpenGL.TexCoord3f(s, t, r);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        /// <param name="t">Texture Coordinate.</param>
-        /// <param name="r">Texture Coordinate.</param>
-        public static void TexCoord(int s, int t, int r)
-        {
-            OpenGL.TexCoord3i(s, t, r);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        /// <param name="t">Texture Coordinate.</param>
-        /// <param name="r">Texture Coordinate.</param>
-        public static void TexCoord(short s, short t, short r)
-        {
-            OpenGL.TexCoord3s(s, t, r);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        /// <param name="t">Texture Coordinate.</param>
-        /// <param name="r">Texture Coordinate.</param>
-        /// <param name="q">Texture Coordinate.</param>
-        public static void TexCoord(double s, double t, double r, double q)
-        {
-            OpenGL.TexCoord4d(s, t, r, q);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        /// <param name="t">Texture Coordinate.</param>
-        /// <param name="r">Texture Coordinate.</param>
-        /// <param name="q">Texture Coordinate.</param>
-        public static void TexCoord(float s, float t, float r, float q)
-        {
-            OpenGL.TexCoord4f(s, t, r, q);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        /// <param name="t">Texture Coordinate.</param>
-        /// <param name="r">Texture Coordinate.</param>
-        /// <param name="q">Texture Coordinate.</param>
-        public static void TexCoord(int s, int t, int r, int q)
-        {
-            OpenGL.TexCoord4i(s, t, r, q);
-        }
-
-        /// <summary>
-        /// This function sets the current texture coordinates.
-        /// </summary>
-        /// <param name="s">Texture Coordinate.</param>
-        /// <param name="t">Texture Coordinate.</param>
-        /// <param name="r">Texture Coordinate.</param>
-        /// <param name="q">Texture Coordinate.</param>
-        public static void TexCoord(short s, short t, short r, short q)
-        {
-            OpenGL.TexCoord4s(s, t, r, q);
-        }
+        //#region GL.TexCoord
 
 
-        #endregion GL.TexCoord
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        //public static void TexCoord(double s)
+        //{
+        //    OpenGL.TexCoord1d(s);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        //public static void TexCoord(double[] v)
+        //{
+        //    if (v.Length == 1)
+        //        OpenGL.TexCoord1dv(v);
+        //    else if (v.Length == 2)
+        //        OpenGL.TexCoord2dv(v);
+        //    else if (v.Length == 3)
+        //        OpenGL.TexCoord3dv(v);
+        //    else if (v.Length == 4)
+        //        OpenGL.TexCoord4dv(v);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        //public static void TexCoord(float s)
+        //{
+        //    OpenGL.TexCoord1f(s);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates. WARNING: if you
+        ///// can call something more explicit, like TexCoord2f then call that, it's
+        ///// much faster.
+        ///// </summary>
+        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        //public static void TexCoord(float[] v)
+        //{
+        //    if (v.Length == 1)
+        //        OpenGL.TexCoord1fv(v);
+        //    else if (v.Length == 2)
+        //        OpenGL.TexCoord2fv(v);
+        //    else if (v.Length == 3)
+        //        OpenGL.TexCoord3fv(v);
+        //    else if (v.Length == 4)
+        //        OpenGL.TexCoord4fv(v);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        //public static void TexCoord(int s)
+        //{
+        //    OpenGL.TexCoord1i(s);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        //public static void TexCoord(int[] v)
+        //{
+        //    if (v.Length == 1)
+        //        OpenGL.TexCoord1iv(v);
+        //    else if (v.Length == 2)
+        //        OpenGL.TexCoord2iv(v);
+        //    else if (v.Length == 3)
+        //        OpenGL.TexCoord3iv(v);
+        //    else if (v.Length == 4)
+        //        OpenGL.TexCoord4iv(v);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        //public static void TexCoord(short s)
+        //{
+        //    OpenGL.TexCoord1s(s);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="v">Array of 1,2,3 or 4 Texture Coordinates.</param>
+        //public static void TexCoord(short[] v)
+        //{
+        //    if (v.Length == 1)
+        //        OpenGL.TexCoord1sv(v);
+        //    else if (v.Length == 2)
+        //        OpenGL.TexCoord2sv(v);
+        //    else if (v.Length == 3)
+        //        OpenGL.TexCoord3sv(v);
+        //    else if (v.Length == 4)
+        //        OpenGL.TexCoord4sv(v);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        ///// <param name="t">Texture Coordinate.</param>
+        //public static void TexCoord(double s, double t)
+        //{
+        //    OpenGL.TexCoord2d(s, t);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        ///// <param name="t">Texture Coordinate.</param>
+        //public static void TexCoord(float s, float t)
+        //{
+        //    OpenGL.TexCoord2f(s, t);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        ///// <param name="t">Texture Coordinate.</param>
+        //public static void TexCoord(int s, int t)
+        //{
+        //    OpenGL.TexCoord2i(s, t);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        ///// <param name="t">Texture Coordinate.</param>
+        //public static void TexCoord(short s, short t)
+        //{
+        //    OpenGL.TexCoord2s(s, t);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        ///// <param name="t">Texture Coordinate.</param>
+        ///// <param name="r">Texture Coordinate.</param>
+        //public static void TexCoord(double s, double t, double r)
+        //{
+        //    OpenGL.TexCoord3d(s, t, r);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        ///// <param name="t">Texture Coordinate.</param>
+        ///// <param name="r">Texture Coordinate.</param>
+        //public static void TexCoord(float s, float t, float r)
+        //{
+        //    OpenGL.TexCoord3f(s, t, r);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        ///// <param name="t">Texture Coordinate.</param>
+        ///// <param name="r">Texture Coordinate.</param>
+        //public static void TexCoord(int s, int t, int r)
+        //{
+        //    OpenGL.TexCoord3i(s, t, r);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        ///// <param name="t">Texture Coordinate.</param>
+        ///// <param name="r">Texture Coordinate.</param>
+        //public static void TexCoord(short s, short t, short r)
+        //{
+        //    OpenGL.TexCoord3s(s, t, r);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        ///// <param name="t">Texture Coordinate.</param>
+        ///// <param name="r">Texture Coordinate.</param>
+        ///// <param name="q">Texture Coordinate.</param>
+        //public static void TexCoord(double s, double t, double r, double q)
+        //{
+        //    OpenGL.TexCoord4d(s, t, r, q);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        ///// <param name="t">Texture Coordinate.</param>
+        ///// <param name="r">Texture Coordinate.</param>
+        ///// <param name="q">Texture Coordinate.</param>
+        //public static void TexCoord(float s, float t, float r, float q)
+        //{
+        //    OpenGL.TexCoord4f(s, t, r, q);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        ///// <param name="t">Texture Coordinate.</param>
+        ///// <param name="r">Texture Coordinate.</param>
+        ///// <param name="q">Texture Coordinate.</param>
+        //public static void TexCoord(int s, int t, int r, int q)
+        //{
+        //    OpenGL.TexCoord4i(s, t, r, q);
+        //}
+
+        ///// <summary>
+        ///// This function sets the current texture coordinates.
+        ///// </summary>
+        ///// <param name="s">Texture Coordinate.</param>
+        ///// <param name="t">Texture Coordinate.</param>
+        ///// <param name="r">Texture Coordinate.</param>
+        ///// <param name="q">Texture Coordinate.</param>
+        //public static void TexCoord(short s, short t, short r, short q)
+        //{
+        //    OpenGL.TexCoord4s(s, t, r, q);
+        //}
+
+
+        //#endregion GL.TexCoord
 
         /// <summary>
         /// 

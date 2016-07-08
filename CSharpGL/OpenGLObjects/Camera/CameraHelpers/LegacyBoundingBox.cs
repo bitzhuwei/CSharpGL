@@ -101,30 +101,30 @@ namespace CSharpGL
 
             //GL.Color(1.0f, 0, 0);
             OpenGL.Begin(DrawMode.LineLoop);
-            OpenGL.Vertex(MinPosition.x, MinPosition.y, MinPosition.z);
-            OpenGL.Vertex(MaxPosition.x, MinPosition.y, MinPosition.z);
-            OpenGL.Vertex(MaxPosition.x, MinPosition.y, MaxPosition.z);
-            OpenGL.Vertex(MinPosition.x, MinPosition.y, MaxPosition.z);
+            OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MinPosition.z);
+            OpenGL.Vertex3f(MaxPosition.x, MinPosition.y, MinPosition.z);
+            OpenGL.Vertex3f(MaxPosition.x, MinPosition.y, MaxPosition.z);
+            OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MaxPosition.z);
             OpenGL.End();
 
             //GL.Color(0, 1.0f, 0);
             OpenGL.Begin(DrawMode.LineLoop);
-            OpenGL.Vertex(MinPosition.x, MaxPosition.y, MinPosition.z);
-            OpenGL.Vertex(MaxPosition.x, MaxPosition.y, MinPosition.z);
-            OpenGL.Vertex(MaxPosition.x, MaxPosition.y, MaxPosition.z);
-            OpenGL.Vertex(MinPosition.x, MaxPosition.y, MaxPosition.z);
+            OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MinPosition.z);
+            OpenGL.Vertex3f(MaxPosition.x, MaxPosition.y, MinPosition.z);
+            OpenGL.Vertex3f(MaxPosition.x, MaxPosition.y, MaxPosition.z);
+            OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MaxPosition.z);
             OpenGL.End();
 
             //GL.Color(0, 0, 1.0f);
             OpenGL.Begin(DrawMode.Lines);
-            OpenGL.Vertex(MinPosition.x, MinPosition.y, MinPosition.z);
-            OpenGL.Vertex(MinPosition.x, MaxPosition.y, MinPosition.z);
-            OpenGL.Vertex(MaxPosition.x, MinPosition.y, MinPosition.z);
-            OpenGL.Vertex(MaxPosition.x, MaxPosition.y, MinPosition.z);
-            OpenGL.Vertex(MaxPosition.x, MinPosition.y, MaxPosition.z);
-            OpenGL.Vertex(MaxPosition.x, MaxPosition.y, MaxPosition.z);
-            OpenGL.Vertex(MinPosition.x, MinPosition.y, MaxPosition.z);
-            OpenGL.Vertex(MinPosition.x, MaxPosition.y, MaxPosition.z);
+            OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MinPosition.z);
+            OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MinPosition.z);
+            OpenGL.Vertex3f(MaxPosition.x, MinPosition.y, MinPosition.z);
+            OpenGL.Vertex3f(MaxPosition.x, MaxPosition.y, MinPosition.z);
+            OpenGL.Vertex3f(MaxPosition.x, MinPosition.y, MaxPosition.z);
+            OpenGL.Vertex3f(MaxPosition.x, MaxPosition.y, MaxPosition.z);
+            OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MaxPosition.z);
+            OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MaxPosition.z);
             OpenGL.End();
 
             OpenGL.PopAttrib();
@@ -137,30 +137,30 @@ namespace CSharpGL
         private void QuadsDraw(RenderModes renderMode)
         {
             OpenGL.Begin(DrawMode.Quads);
-            OpenGL.Vertex(maxPosition.x, maxPosition.y, minPosition.z);// Top Right Of The Quad (Top)
-            OpenGL.Vertex(minPosition.x, maxPosition.y, minPosition.z);// Top Left Of The Quad (Top)
-            OpenGL.Vertex(minPosition.x, maxPosition.y, maxPosition.z);// Bottom Left Of The Quad (Top)
-            OpenGL.Vertex(maxPosition.x, maxPosition.y, maxPosition.z);// Bottom Right Of The Quad (Top)
-            OpenGL.Vertex(maxPosition.x, minPosition.y, maxPosition.z);// Top Right Of The Quad (Bottom)
-            OpenGL.Vertex(minPosition.x, minPosition.y, maxPosition.z);// Top Left Of The Quad (Bottom)
-            OpenGL.Vertex(minPosition.x, minPosition.y, minPosition.z);// Bottom Left Of The Quad (Bottom)
-            OpenGL.Vertex(maxPosition.x, minPosition.y, minPosition.z);// Bottom Right Of The Quad (Bottom)
-            OpenGL.Vertex(maxPosition.x, maxPosition.y, maxPosition.z);// Top Right Of The Quad (Front)
-            OpenGL.Vertex(minPosition.x, maxPosition.y, maxPosition.z);// Top Left Of The Quad (Front)
-            OpenGL.Vertex(minPosition.x, minPosition.y, maxPosition.z);// Bottom Left Of The Quad (Front)
-            OpenGL.Vertex(maxPosition.x, minPosition.y, maxPosition.z);// Bottom Right Of The Quad (Front)
-            OpenGL.Vertex(maxPosition.x, minPosition.y, minPosition.z);// Top Right Of The Quad (Back)
-            OpenGL.Vertex(minPosition.x, minPosition.y, minPosition.z);// Top Left Of The Quad (Back)
-            OpenGL.Vertex(minPosition.x, maxPosition.y, minPosition.z);// Bottom Left Of The Quad (Back)
-            OpenGL.Vertex(maxPosition.x, maxPosition.y, minPosition.z);// Bottom Right Of The Quad (Back)
-            OpenGL.Vertex(minPosition.x, maxPosition.y, maxPosition.z);// Top Right Of The Quad (Left)
-            OpenGL.Vertex(minPosition.x, maxPosition.y, minPosition.z);// Top Left Of The Quad (Left)
-            OpenGL.Vertex(minPosition.x, minPosition.y, minPosition.z);// Bottom Left Of The Quad (Left)
-            OpenGL.Vertex(minPosition.x, minPosition.y, maxPosition.z);// Bottom Right Of The Quad (Left)
-            OpenGL.Vertex(maxPosition.x, maxPosition.y, minPosition.z);// Top Right Of The Quad (Right)
-            OpenGL.Vertex(maxPosition.x, maxPosition.y, maxPosition.z);// Top Left Of The Quad (Right)
-            OpenGL.Vertex(maxPosition.x, minPosition.y, maxPosition.z);// Bottom Left Of The Quad (Right)
-            OpenGL.Vertex(maxPosition.x, minPosition.y, minPosition.z);// Bottom Right Of The Quad (Right)
+            OpenGL.Vertex3f(maxPosition.x, maxPosition.y, minPosition.z);// Top Right Of The Quad (Top)
+            OpenGL.Vertex3f(minPosition.x, maxPosition.y, minPosition.z);// Top Left Of The Quad (Top)
+            OpenGL.Vertex3f(minPosition.x, maxPosition.y, maxPosition.z);// Bottom Left Of The Quad (Top)
+            OpenGL.Vertex3f(maxPosition.x, maxPosition.y, maxPosition.z);// Bottom Right Of The Quad (Top)
+            OpenGL.Vertex3f(maxPosition.x, minPosition.y, maxPosition.z);// Top Right Of The Quad (Bottom)
+            OpenGL.Vertex3f(minPosition.x, minPosition.y, maxPosition.z);// Top Left Of The Quad (Bottom)
+            OpenGL.Vertex3f(minPosition.x, minPosition.y, minPosition.z);// Bottom Left Of The Quad (Bottom)
+            OpenGL.Vertex3f(maxPosition.x, minPosition.y, minPosition.z);// Bottom Right Of The Quad (Bottom)
+            OpenGL.Vertex3f(maxPosition.x, maxPosition.y, maxPosition.z);// Top Right Of The Quad (Front)
+            OpenGL.Vertex3f(minPosition.x, maxPosition.y, maxPosition.z);// Top Left Of The Quad (Front)
+            OpenGL.Vertex3f(minPosition.x, minPosition.y, maxPosition.z);// Bottom Left Of The Quad (Front)
+            OpenGL.Vertex3f(maxPosition.x, minPosition.y, maxPosition.z);// Bottom Right Of The Quad (Front)
+            OpenGL.Vertex3f(maxPosition.x, minPosition.y, minPosition.z);// Top Right Of The Quad (Back)
+            OpenGL.Vertex3f(minPosition.x, minPosition.y, minPosition.z);// Top Left Of The Quad (Back)
+            OpenGL.Vertex3f(minPosition.x, maxPosition.y, minPosition.z);// Bottom Left Of The Quad (Back)
+            OpenGL.Vertex3f(maxPosition.x, maxPosition.y, minPosition.z);// Bottom Right Of The Quad (Back)
+            OpenGL.Vertex3f(minPosition.x, maxPosition.y, maxPosition.z);// Top Right Of The Quad (Left)
+            OpenGL.Vertex3f(minPosition.x, maxPosition.y, minPosition.z);// Top Left Of The Quad (Left)
+            OpenGL.Vertex3f(minPosition.x, minPosition.y, minPosition.z);// Bottom Left Of The Quad (Left)
+            OpenGL.Vertex3f(minPosition.x, minPosition.y, maxPosition.z);// Bottom Right Of The Quad (Left)
+            OpenGL.Vertex3f(maxPosition.x, maxPosition.y, minPosition.z);// Top Right Of The Quad (Right)
+            OpenGL.Vertex3f(maxPosition.x, maxPosition.y, maxPosition.z);// Top Left Of The Quad (Right)
+            OpenGL.Vertex3f(maxPosition.x, minPosition.y, maxPosition.z);// Bottom Left Of The Quad (Right)
+            OpenGL.Vertex3f(maxPosition.x, minPosition.y, minPosition.z);// Bottom Right Of The Quad (Right)
             OpenGL.End();
         }
         /// <summary>
