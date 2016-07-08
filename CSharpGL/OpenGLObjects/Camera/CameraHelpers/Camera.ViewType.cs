@@ -174,39 +174,39 @@ namespace CSharpGL
         }
 
 
-        /// <summary>
-        /// 实施传统方式的投影
-        /// </summary>
-        /// <param name="camera"></param>
-        public static void LegacyGLProjection(this ICamera camera)
-        {
-            //	Load the projection identity matrix.
-            OpenGL.MatrixMode(OpenGL.GL_PROJECTION);
-            OpenGL.LoadIdentity();
+        ///// <summary>
+        ///// 实施传统方式的投影
+        ///// </summary>
+        ///// <param name="camera"></param>
+        //public static void LegacyGLProjection(this ICamera camera)
+        //{
+        //    //	Load the projection identity matrix.
+        //    OpenGL.MatrixMode(OpenGL.GL_PROJECTION);
+        //    OpenGL.LoadIdentity();
 
-            //	Perform the projection.
-            switch (camera.CameraType)
-            {
-                case CameraType.Perspecitive:
-                    IPerspectiveCamera perspectiveCamera = camera;
-                    OpenGL.gluPerspective(perspectiveCamera.FieldOfView, perspectiveCamera.AspectRatio, perspectiveCamera.Near, perspectiveCamera.Far);
-                    break;
-                case CameraType.Ortho:
-                    IOrthoCamera orthoCamera = camera;
-                    OpenGL.Ortho(orthoCamera.Left, orthoCamera.Right, orthoCamera.Bottom, orthoCamera.Top, orthoCamera.Near, orthoCamera.Far);
-                    break;
-                default:
-                    break;
-            }
+        //    //	Perform the projection.
+        //    switch (camera.CameraType)
+        //    {
+        //        case CameraType.Perspecitive:
+        //            IPerspectiveCamera perspectiveCamera = camera;
+        //            OpenGL.gluPerspective(perspectiveCamera.FieldOfView, perspectiveCamera.AspectRatio, perspectiveCamera.Near, perspectiveCamera.Far);
+        //            break;
+        //        case CameraType.Ortho:
+        //            IOrthoCamera orthoCamera = camera;
+        //            OpenGL.Ortho(orthoCamera.Left, orthoCamera.Right, orthoCamera.Bottom, orthoCamera.Top, orthoCamera.Near, orthoCamera.Far);
+        //            break;
+        //        default:
+        //            break;
+        //    }
 
-            //  Perform the look at transformation.
-            OpenGL.gluLookAt((double)camera.Position.x, (double)camera.Position.y, (double)camera.Position.z,
-                (double)camera.Target.x, (double)camera.Target.y, (double)camera.Target.z,
-                (double)camera.UpVector.x, (double)camera.UpVector.y, (double)camera.UpVector.z);
+        //    //  Perform the look at transformation.
+        //    OpenGL.gluLookAt((double)camera.Position.x, (double)camera.Position.y, (double)camera.Position.z,
+        //        (double)camera.Target.x, (double)camera.Target.y, (double)camera.Target.z,
+        //        (double)camera.UpVector.x, (double)camera.UpVector.y, (double)camera.UpVector.z);
 
-            //	Back to the modelview matrix.
-            OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);
-        }
+        //    //	Back to the modelview matrix.
+        //    OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);
+        //}
 
     }
 }

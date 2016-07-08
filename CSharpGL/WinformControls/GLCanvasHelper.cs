@@ -29,11 +29,11 @@ namespace CSharpGL
             //  Load the identity.
             OpenGL.LoadIdentity();
 
-            //  Create a perspective transformation.
-            OpenGL.gluPerspective(60.0f, width / height, 0.01, 100.0);
+            ////  Create a perspective transformation.
+            //OpenGL.gluPerspective(60.0f, width / height, 0.01, 100.0);
 
-            //  Use the 'look at' helper function to position and aim the camera.
-            OpenGL.gluLookAt(-2, 2, -2, 0, 0, 0, 0, 1, 0);
+            ////  Use the 'look at' helper function to position and aim the camera.
+            //OpenGL.gluLookAt(-2, 2, -2, 0, 0, 0, 0, 1, 0);
 
             //  Set the modelview matrix.
             OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);

@@ -38,10 +38,10 @@ namespace CSharpGL
         /// public const string Kernel32 = "opengl32.dll"
         /// </summary>
         public const string OpenGL32 = "opengl32.dll";
-        /// <summary>
-        /// public const string Kernel32 = "Glu32.dll"
-        /// </summary>
-        public const string Glu32 = "Glu32.dll";
+        ///// <summary>
+        ///// public const string Kernel32 = "Glu32.dll"
+        ///// </summary>
+        //public const string Glu32 = "Glu32.dll";
         /// <summary>
         /// public const string Kernel32 = "gdi32.dll"
         /// </summary>
