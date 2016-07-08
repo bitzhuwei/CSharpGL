@@ -43,6 +43,10 @@ namespace CSharpGL
         [DllImport(Win32.OpenGL32, EntryPoint = "glArrayElement", SetLastError = true)]
         public static extern void ArrayElement(int i);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
         //[Obsolete(fixedPipelineIsNotGood, error)]
         [DllImport(Win32.OpenGL32, EntryPoint = "glBegin", SetLastError = true)]
         public static extern void Begin(uint mode);
@@ -166,6 +170,12 @@ namespace CSharpGL
         /// <param name="equation">Specifies the address of an	array of four double-precision floating-point values. These values are interpreted as a plane equation.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glClipPlane", SetLastError = true)]
         public static extern void ClipPlane(uint plane, double[] equation);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glColor3b", SetLastError = true)]
         public static extern void Color3b(byte red, byte green, byte blue);
 
@@ -773,6 +783,9 @@ namespace CSharpGL
         /// <param name="array">The array to enable.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glEnableClientState", SetLastError = true)]
         public static extern void EnableClientState(uint array);
+        /// <summary>
+        /// 
+        /// </summary>
         //[Obsolete(fixedPipelineIsNotGood, error)]
         [DllImport(Win32.OpenGL32, EntryPoint = "glEnd", SetLastError = true)]
         public static extern void End();

@@ -846,6 +846,10 @@ namespace CSharpGL
 
         #endregion GL.TexCoord
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
         ////[Obsolete(fixedPipelineIsNotGood, error)]
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Begin(DrawMode mode)
@@ -904,18 +908,42 @@ namespace CSharpGL
         //    OpenGL.DrawElements((uint)mode, count, type, indices);
         //}
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DrawRangeElements(DrawMode mode, uint start, uint end, int count, uint type, IntPtr indices)
         {
             GetDelegateFor<glDrawRangeElements>()((uint)mode, start, end, count, type, indices);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="first"></param>
+        /// <param name="count"></param>
+        /// <param name="primcount"></param>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DrawArraysInstanced(DrawMode mode, int first, int count, int primcount)
         {
             GetDelegateFor<glDrawArraysInstanced>()((uint)mode, first, count, primcount);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="primcount"></param>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DrawElementsInstanced(DrawMode mode, int count, uint type, IntPtr indices, int primcount)
         {
@@ -1184,6 +1212,16 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        /// <param name="severity"></param>
+        /// <param name="length"></param>
+        /// <param name="message"></param>
+        /// <param name="userParam"></param>
         public delegate void DebugProc(
             CSharpGL.DebugSource source,
             CSharpGL.DebugType type,
@@ -1237,6 +1275,11 @@ namespace CSharpGL
 
         #region transform feedback
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="id"></param>
         public static void BindTransformFeedback(TransformFeedbackTarget target, uint id)
         {
             OpenGL.GetDelegateFor<OpenGL.glBindTransformFeedback>()((uint)target, id);
@@ -1265,6 +1308,10 @@ namespace CSharpGL
         {
             OpenGL.GetDelegateFor<OpenGL.glBindBufferRange>()((uint)target, index, buffer, offset, size);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="primitiveMode"></param>
         public static void BeginTransformFeedback(BeginTransformFeedbackPrimitiveMode primitiveMode)
         {
             OpenGL.GetDelegateFor<OpenGL.glBeginTransformFeedback>()((uint)primitiveMode);
@@ -1354,6 +1401,11 @@ namespace CSharpGL
 
         #region Blend
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sfactor"></param>
+        /// <param name="dfactor"></param>
         public static void BlendFunc(BlendingSourceFactor sfactor, BlendingDestinationFactor dfactor)
         {
             BlendFunc((uint)sfactor, (uint)dfactor);

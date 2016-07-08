@@ -2637,6 +2637,16 @@ namespace CSharpGL
         /// </param>
         /// <param name="userParam">建议使用UnmanagedArray.Header</param>
         public delegate void glDebugMessageCallback(DEBUGPROC callback, IntPtr userParam);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        /// <param name="severity"></param>
+        /// <param name="length"></param>
+        /// <param name="message"></param>
+        /// <param name="userParam"></param>
         public delegate void DEBUGPROC(
             uint source, uint type, uint id, uint severity, int length, StringBuilder message, IntPtr userParam);
 

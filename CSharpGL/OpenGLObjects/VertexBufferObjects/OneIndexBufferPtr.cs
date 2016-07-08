@@ -55,6 +55,11 @@ namespace CSharpGL
         /// </summary>
         public IndexElementType Type { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="shaderProgram"></param>
         public override void Render(RenderEventArg arg, ShaderProgram shaderProgram)
         {
             IntPtr offset;
@@ -88,6 +93,10 @@ namespace CSharpGL
             glBindBuffer(OpenGL.GL_ELEMENT_ARRAY_BUFFER, 0);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string type = string.Empty;
