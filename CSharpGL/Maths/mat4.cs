@@ -25,6 +25,9 @@ namespace CSharpGL
             return new mat4(col0, col1, col2, col3);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override string ToString()
         {
             var builder = new System.Text.StringBuilder();
@@ -68,6 +71,13 @@ namespace CSharpGL
             this.col3 = cols[3];
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="col0"></param>
+        /// <param name="col1"></param>
+        /// <param name="col2"></param>
+        /// <param name="col3"></param>
         public mat4(vec4 col0, vec4 col1, vec4 col2, vec4 col3)
         {
             this.col0 = col0;
@@ -253,6 +263,12 @@ namespace CSharpGL
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static mat4 operator *(mat4 lhs, float s)
         {
             return new mat4(new[]
@@ -270,7 +286,12 @@ namespace CSharpGL
         internal vec4 col1;
         internal vec4 col2;
         internal vec4 col3;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
         public static bool operator ==(mat4 left, mat4 right)
         {
             //object leftObj = left, rightObj = right;
@@ -286,23 +307,39 @@ namespace CSharpGL
 
             return left.Equals(right);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
         public static bool operator !=(mat4 left, mat4 right)
         {
             return !(left == right);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             return (obj is mat4) && (this.Equals((mat4)obj));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return this.ToString().GetHashCode();
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool Equals(mat4 other)
         {
             return (this.col0 == other.col0 && this.col1 == other.col1 && this.col2 == other.col2 && this.col3 == other.col3);

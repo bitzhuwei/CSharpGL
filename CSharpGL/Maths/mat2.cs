@@ -21,6 +21,9 @@ namespace CSharpGL
             return new mat2(col0, col1);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override string ToString()
         {
             var builder = new System.Text.StringBuilder();
@@ -60,13 +63,23 @@ namespace CSharpGL
             this.col0 = cols[0];
             this.col1 = cols[1];
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="col0"></param>
+        /// <param name="col1"></param>
         public mat2(vec2 col0, vec2 col1)
         {
             this.col0 = col0;
             this.col1 = col1;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <param name="d"></param>
         public mat2(float a, float b, float c, float d)
         {
             this.col0 = new vec2(a, b);
@@ -205,7 +218,12 @@ namespace CSharpGL
 
             return result;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static mat2 operator *(mat2 lhs, float s)
         {
             return new mat2(new[]
@@ -219,7 +237,12 @@ namespace CSharpGL
 
         internal vec2 col0;
         internal vec2 col1;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
         public static bool operator ==(mat2 left, mat2 right)
         {
             //object leftObj = left, rightObj = right;
@@ -235,22 +258,38 @@ namespace CSharpGL
 
             return left.Equals(right);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
         public static bool operator !=(mat2 left, mat2 right)
         {
             return !(left == right);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             return (obj is mat2) && (this.Equals((mat2)obj));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return this.ToString().GetHashCode();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool Equals(mat2 other)
         {
             return (this.col0 == other.col0 && this.col1 == other.col1);
