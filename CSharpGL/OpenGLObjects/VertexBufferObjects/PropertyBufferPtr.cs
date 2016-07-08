@@ -11,7 +11,13 @@ namespace CSharpGL
     /// </summary>
     public class PropertyBufferPtr : BufferPtr
     {
+        /// <summary>
+        /// 
+        /// </summary>
         protected static OpenGL.glVertexAttribPointer glVertexAttribPointer;
+        /// <summary>
+        /// 
+        /// </summary>
         protected static OpenGL.glEnableVertexAttribArray glEnableVertexAttribArray;
 
         /// <summary>

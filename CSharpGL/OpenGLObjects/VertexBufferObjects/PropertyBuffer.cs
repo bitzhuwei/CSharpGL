@@ -54,6 +54,10 @@ namespace CSharpGL
         /// </summary>
         public uint DataType { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         protected override BufferPtr Upload2GPU()
         {
             uint[] buffers = new uint[1];

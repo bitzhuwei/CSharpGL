@@ -8,6 +8,9 @@ namespace CSharpGL
 {
     public partial class Renderer
     {
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DisposeUnmanagedResources()
         {
             if (this.vertexArrayObject != null)

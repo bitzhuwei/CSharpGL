@@ -12,7 +12,10 @@ namespace CSharpGL
 
         private Stack<UniformVariable> uniformVariableStack = new Stack<UniformVariable>();
         //private Stack<UniformArrayVariable> uniformArrayVariableStack = new Stack<UniformArrayVariable>();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         protected override void DoRender(RenderEventArg arg)
         {
             ShaderProgram program = this.ShaderProgram;

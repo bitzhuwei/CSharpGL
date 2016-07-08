@@ -8,7 +8,9 @@ namespace CSharpGL
 {
     public partial class Renderer
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DoInitialize()
         {
             // init shader program

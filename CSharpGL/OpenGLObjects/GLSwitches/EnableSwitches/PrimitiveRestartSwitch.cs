@@ -5,9 +5,16 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PrimitiveRestartSwitch : EnableSwitch
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="indexBufferPtr"></param>
         public PrimitiveRestartSwitch(OneIndexBufferPtr indexBufferPtr)
             : base(OpenGL.GL_PRIMITIVE_RESTART, true)
         {
@@ -29,13 +36,19 @@ namespace CSharpGL
                     break;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("Restart Index: {0}", RestartIndex);
         }
 
         static OpenGL.glPrimitiveRestartIndex glPrimitiveRestartIndex;
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void SwitchOn()
         {
             base.SwitchOn();
@@ -48,7 +61,9 @@ namespace CSharpGL
                 glPrimitiveRestartIndex(RestartIndex);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public uint RestartIndex { get; set; }
     }
 

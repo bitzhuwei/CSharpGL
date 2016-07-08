@@ -66,13 +66,21 @@ namespace CSharpGL
                 this.Add(nameInShaders[i], nameInIBufferables[i]);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nameInShader"></param>
+        /// <param name="nameInIBufferable"></param>
         public void Add(string nameInShader, string nameInIBufferable)
         {
             this.namesInShader.Add(nameInShader);
             this.namesInIBufferable.Add(nameInIBufferable);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public XElement ToXElement()
         {
             XElement result = new XElement(typeof(PropertyNameMap).Name,
@@ -84,7 +92,11 @@ namespace CSharpGL
 
             return result;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="xElement"></param>
+        /// <returns></returns>
         public static PropertyNameMap Parse(XElement xElement)
         {
             if (xElement.Name != typeof(PropertyNameMap).Name) { throw new Exception(); }
@@ -100,7 +112,10 @@ namespace CSharpGL
 
             return result;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<NamePair> GetEnumerator()
         {
             List<string> namesInShader = this.namesInShader;
@@ -115,28 +130,47 @@ namespace CSharpGL
         {
             return this.GetEnumerator();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public class NamePair
         {
             const string strVarNameInShader = "VarNameInShader";
+            /// <summary>
+            /// 
+            /// </summary>
             public string VarNameInShader { get; set; }
 
             const string strNameInIBufferable = "NameInIBufferable";
+            /// <summary>
+            /// 
+            /// </summary>
             public string nameInIBufferable { get; set; }
-
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="nameInShader"></param>
+            /// <param name="nameInIBufferable"></param>
             public NamePair(string nameInShader, string nameInIBufferable)
             {
                 this.VarNameInShader = nameInShader;
                 this.nameInIBufferable = nameInIBufferable;
             }
-
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <returns></returns>
             public XElement ToXElement()
             {
                 return new XElement(typeof(NamePair).Name,
                     new XAttribute(strVarNameInShader, VarNameInShader),
                     new XAttribute(strNameInIBufferable, nameInIBufferable));
             }
-
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="xElement"></param>
+            /// <returns></returns>
             public static NamePair Parse(XElement xElement)
             {
                 if (xElement.Name != typeof(NamePair).Name)
@@ -148,7 +182,10 @@ namespace CSharpGL
 
                 return result;
             }
-
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <returns></returns>
             public override string ToString()
             {
                 return string.Format("shader [{0}] -> model [{1}]", VarNameInShader, nameInIBufferable);
