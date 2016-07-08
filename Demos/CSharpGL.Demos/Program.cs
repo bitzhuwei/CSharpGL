@@ -25,7 +25,7 @@ namespace CSharpGL.Demos
                 ErrorCode error = (ErrorCode)OpenGL.GetError();
                 if (error != ErrorCode.NoError)
                 {
-                    Debug.WriteLine("OpenGL error: {0}", error);
+                    Debug.WriteLine(string.Format("OpenGL error: {0}", error));
                 }
             }
             Debug.Close();
