@@ -97,6 +97,7 @@ namespace CSharpGL
         /// Execute	a list of display lists. Automatically uses the GL_UNSIGNED_INT version of the function.
         /// </summary>
         /// <param name="n">The number of lists.</param>
+        /// <param name="type"></param>
         /// <param name="lists">The lists.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glCallLists", SetLastError = true)]
         public static extern void CallLists(int n, uint type, uint[] lists);
@@ -105,6 +106,7 @@ namespace CSharpGL
         /// Execute	a list of display lists. Automatically uses the GL_UNSIGNED_BYTE version of the function.
         /// </summary>
         /// <param name="n">The number of lists.</param>
+        /// <param name="type"></param>
         /// <param name="lists">The lists.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glCallLists", SetLastError = true)]
         public static extern void CallLists(int n, uint type, byte[] lists);
@@ -687,6 +689,7 @@ namespace CSharpGL
         /// <param name="width">Width of pixel data.</param>
         /// <param name="height">Height of pixel data.</param>
         /// <param name="format">Format of pixel data.</param>
+        /// <param name="type"></param>
         /// <param name="pixels">Pixel data buffer.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glDrawPixels", SetLastError = true)]
         public static extern void DrawPixels(int width, int height, uint format, uint type, float[] pixels);
@@ -697,6 +700,7 @@ namespace CSharpGL
         /// <param name="width">Width of pixel data.</param>
         /// <param name="height">Height of pixel data.</param>
         /// <param name="format">Format of pixel data.</param>
+        /// <param name="type"></param>
         /// <param name="pixels">Pixel data buffer.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glDrawPixels", SetLastError = true)]
         public static extern void DrawPixels(int width, int height, uint format, uint type, uint[] pixels);
@@ -707,6 +711,7 @@ namespace CSharpGL
         /// <param name="width">Width of pixel data.</param>
         /// <param name="height">Height of pixel data.</param>
         /// <param name="format">Format of pixel data.</param>
+        /// <param name="type"></param>
         /// <param name="pixels">Pixel data buffer.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glDrawPixels", SetLastError = true)]
         public static extern void DrawPixels(int width, int height, uint format, uint type, ushort[] pixels);
@@ -717,6 +722,7 @@ namespace CSharpGL
         /// <param name="width">Width of pixel data.</param>
         /// <param name="height">Height of pixel data.</param>
         /// <param name="format">Format of pixel data.</param>
+        /// <param name="type"></param>
         /// <param name="pixels">Pixel data buffer.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glDrawPixels", SetLastError = true)]
         public static extern void DrawPixels(int width, int height, uint format, uint type, byte[] pixels);
@@ -3052,6 +3058,7 @@ namespace CSharpGL
         /// This function sets the address of the vertex pointer array.
         /// </summary>
         /// <param name="size">The number of coords per vertex.</param>
+        /// <param name="type"></param>
         /// <param name="stride">The byte offset between vertices.</param>
         /// <param name="pointer">The array.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glVertexPointer", SetLastError = true)]
@@ -3061,6 +3068,7 @@ namespace CSharpGL
         /// This function sets the address of the vertex pointer array.
         /// </summary>
         /// <param name="size">The number of coords per vertex.</param>
+        /// <param name="type"></param>
         /// <param name="stride">The byte offset between vertices.</param>
         /// <param name="pointer">The array.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glVertexPointer", SetLastError = true)]
@@ -3070,6 +3078,7 @@ namespace CSharpGL
         /// This function sets the address of the vertex pointer array.
         /// </summary>
         /// <param name="size">The number of coords per vertex.</param>
+        /// <param name="type"></param>
         /// <param name="stride">The byte offset between vertices.</param>
         /// <param name="pointer">The array.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glVertexPointer", SetLastError = true)]
@@ -3079,6 +3088,7 @@ namespace CSharpGL
         /// This function sets the address of the vertex pointer array.
         /// </summary>
         /// <param name="size">The number of coords per vertex.</param>
+        /// <param name="type"></param>
         /// <param name="stride">The byte offset between vertices.</param>
         /// <param name="pointer">The array.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glVertexPointer", SetLastError = true)]

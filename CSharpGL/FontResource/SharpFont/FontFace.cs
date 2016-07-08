@@ -404,10 +404,10 @@ namespace SharpFont
         /// </summary>
         public readonly GlyphMetrics HorizontalMetrics;
 
-        /// <summary>
-        /// The metrics to use when the glyph is laid out vertically.
-        /// </summary>
-        public readonly GlyphMetrics VerticalMetrics;
+        ///// <summary>
+        ///// The metrics to use when the glyph is laid out vertically.
+        ///// </summary>
+        //public readonly GlyphMetrics VerticalMetrics;
 
         internal Glyph(SharpFontRenderer renderer, PointF[] points, int[] contours, float linearHorizontalAdvance)
         {

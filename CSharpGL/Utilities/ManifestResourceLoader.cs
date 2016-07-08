@@ -16,6 +16,7 @@ namespace System
         /// Loads the named manifest resource and returns each line in order.
         /// </summary>
         /// <param name="textFileName"></param>
+        /// <param name="stackIndex"></param>
         /// <returns></returns>
         public static Stream GetStream(string textFileName, int stackIndex = 2)
         {
@@ -31,6 +32,7 @@ namespace System
         /// Loads the named manifest resource and returns each line in order.
         /// </summary>
         /// <param name="textFileName"></param>
+        /// <param name="stackIndex"></param>
         /// <returns></returns>
         public static IEnumerable<string> GetLines(string textFileName, int stackIndex = 2)
         {
@@ -54,6 +56,7 @@ namespace System
         /// Loads the named manifest resource as a text string.
         /// </summary>
         /// <param name="textFileName">Name of the text file.</param>
+        /// <param name="stackIndex"></param>
         /// <returns>The contents of the manifest resource.</returns>
         public static string LoadTextFile(string textFileName, int stackIndex = 2)
         {

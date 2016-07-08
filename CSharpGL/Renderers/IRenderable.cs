@@ -28,6 +28,7 @@ namespace CSharpGL
         /// Initializes a new instance of the <see cref="RenderEventArg"/> class.
         /// </summary>
         /// <param name="renderMode">render mode.</param>
+        /// <param name="viewport"></param>
         /// <param name="camera">camera used during rendering.</param>
         /// <param name="pickingGeometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking when <paramref name="renderMode"/> is <see cref="RenderModes.ColorCodedPicking"/>; otherwise useless.</param>
         public RenderEventArg(RenderModes renderMode, Rectangle viewport, ICamera camera, GeometryType pickingGeometryType = GeometryType.Point)
