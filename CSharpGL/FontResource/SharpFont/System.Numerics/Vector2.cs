@@ -5,8 +5,7 @@ using System.Text;
 
 namespace System.Numerics
 {
-    public struct Vector2 : IEquatable<Vector2>
-    //, IFormattable
+    struct Vector2 : IEquatable<Vector2>
     {
         public float x;
 
