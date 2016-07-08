@@ -77,6 +77,9 @@ namespace CSharpGL
             this.array = new UnmanagedArray<T>(elementCount);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override BufferPtr Upload2GPU()
         {
             uint[] buffers = new uint[1];
@@ -92,6 +95,9 @@ namespace CSharpGL
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum IndexElementType : uint
     {
         /// <summary>

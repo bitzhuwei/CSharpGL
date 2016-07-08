@@ -9,6 +9,9 @@ namespace CSharpGL
     public partial class LabelRenderer
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DoInitialize()
         {
             base.DoInitialize();

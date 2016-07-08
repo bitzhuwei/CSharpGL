@@ -163,13 +163,25 @@ namespace CSharpGL
             OpenGL.Vertex(maxPosition.x, minPosition.y, minPosition.z);// Bottom Right Of The Quad (Right)
             OpenGL.End();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
         public void SetBounds(vec3 min, vec3 max)
         {
             this.minPosition = min;
             this.maxPosition = max;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="minX"></param>
+        /// <param name="minY"></param>
+        /// <param name="minZ"></param>
+        /// <param name="maxX"></param>
+        /// <param name="maxY"></param>
+        /// <param name="maxZ"></param>
         public void Set(float minX = 0, float minY = 0, float minZ = 0, float maxX = 0, float maxY = 0, float maxZ = 0)
         {
             this.minPosition.x = minX;

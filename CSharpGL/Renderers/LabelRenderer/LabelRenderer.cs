@@ -14,6 +14,9 @@ namespace CSharpGL
         private FontResource fontResource;
         private TextModel model;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public vec3 WorldPosition { get; set; }
         /// <summary>
         /// Label height(in pixels)
@@ -21,6 +24,9 @@ namespace CSharpGL
         public int LabelHeight { get; private set; }
 
         private string content = string.Empty;
+        /// <summary>
+        /// 
+        /// </summary>
         public string Text
         {
             get { return content; }

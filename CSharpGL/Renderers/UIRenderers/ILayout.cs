@@ -35,10 +35,19 @@ namespace CSharpGL
         /// </summary>
         System.Drawing.Size Size { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         System.Drawing.Size ParentLastSize { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         int zNear { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         int zFar { get; set; }
 
     }

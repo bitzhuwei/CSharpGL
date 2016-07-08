@@ -216,6 +216,9 @@ namespace CSharpGL
     /// <typeparam name="TBinding"></typeparam>
     public interface IBindingObject<TBinding>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         TBinding BindingObject { get; set; }
     }
 

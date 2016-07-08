@@ -274,7 +274,12 @@ namespace CSharpGL
             return result;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <param name="v"></param>
+        /// <returns></returns>
         public static mat4 rotate(float angle, vec3 v)
         {
             return rotate(mat4.identity(), angle, v);

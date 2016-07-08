@@ -11,7 +11,10 @@ namespace CSharpGL
     /// </summary>
     public partial class LabelRenderer
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         protected override void DoRender(RenderEventArg arg)
         {
             this.SetUniform("billboardCenter_worldspace", this.WorldPosition);
