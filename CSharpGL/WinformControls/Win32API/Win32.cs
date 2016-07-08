@@ -172,41 +172,41 @@ namespace CSharpGL
         //internal static extern bool wglUseFontOutlines(IntPtr hDC, uint first, uint count, uint listBase,
         //    float deviation, float extrusion, int format, [Out, MarshalAs(UnmanagedType.LPArray)] GLYPHMETRICSFLOAT[] lpgmf);
 
-        /// <summary>
-        /// Link two render contexts so they share lists (buffer IDs, etc.)
-        /// </summary>
-        /// <param name="hrc1">The first context.</param>
-        /// <param name="hrc2">The second context.</param>
-        /// <returns>If the function succeeds, the return value is TRUE. If the function fails, the return value is FALSE. 
-        /// To get extended error information, call GetLastError.</returns>
-        [DllImport(opengl32, SetLastError = true)]
-        internal static extern bool wglShareLists(IntPtr hrc1, IntPtr hrc2);
+        ///// <summary>
+        ///// Link two render contexts so they share lists (buffer IDs, etc.)
+        ///// </summary>
+        ///// <param name="hrc1">The first context.</param>
+        ///// <param name="hrc2">The second context.</param>
+        ///// <returns>If the function succeeds, the return value is TRUE. If the function fails, the return value is FALSE. 
+        ///// To get extended error information, call GetLastError.</returns>
+        //[DllImport(opengl32, SetLastError = true)]
+        //internal static extern bool wglShareLists(IntPtr hrc1, IntPtr hrc2);
 
         #endregion
 
         #region PixelFormatDescriptor structure and flags.
 
         internal const byte PFD_TYPE_RGBA = 0;
-        internal const byte PFD_TYPE_COLORINDEX = 1;
+        //internal const byte PFD_TYPE_COLORINDEX = 1;
 
         internal const uint PFD_DOUBLEBUFFER = 1;
-        internal const uint PFD_STEREO = 2;
+        //internal const uint PFD_STEREO = 2;
         internal const uint PFD_DRAW_TO_WINDOW = 4;
         internal const uint PFD_DRAW_TO_BITMAP = 8;
         internal const uint PFD_SUPPORT_GDI = 16;
         internal const uint PFD_SUPPORT_OPENGL = 32;
-        internal const uint PFD_GENERIC_FORMAT = 64;
-        internal const uint PFD_NEED_PALETTE = 128;
-        internal const uint PFD_NEED_SYSTEM_PALETTE = 256;
-        internal const uint PFD_SWAP_EXCHANGE = 512;
-        internal const uint PFD_SWAP_COPY = 1024;
-        internal const uint PFD_SWAP_LAYER_BUFFERS = 2048;
-        internal const uint PFD_GENERIC_ACCELERATED = 4096;
-        internal const uint PFD_SUPPORT_DIRECTDRAW = 8192;
+        //internal const uint PFD_GENERIC_FORMAT = 64;
+        //internal const uint PFD_NEED_PALETTE = 128;
+        //internal const uint PFD_NEED_SYSTEM_PALETTE = 256;
+        //internal const uint PFD_SWAP_EXCHANGE = 512;
+        //internal const uint PFD_SWAP_COPY = 1024;
+        //internal const uint PFD_SWAP_LAYER_BUFFERS = 2048;
+        //internal const uint PFD_GENERIC_ACCELERATED = 4096;
+        //internal const uint PFD_SUPPORT_DIRECTDRAW = 8192;
 
         internal const sbyte PFD_MAIN_PLANE = 0;
-        internal const sbyte PFD_OVERLAY_PLANE = 1;
-        internal const sbyte PFD_UNDERLAY_PLANE = -1;
+        //internal const sbyte PFD_OVERLAY_PLANE = 1;
+        //internal const sbyte PFD_UNDERLAY_PLANE = -1;
 
 
         [DllImport(user32, SetLastError = true)]
@@ -240,8 +240,8 @@ namespace CSharpGL
         internal unsafe static extern int SetPixelFormat(IntPtr hDC, int iPixelFormat,
             [In, MarshalAs(UnmanagedType.LPStruct)] PIXELFORMATDESCRIPTOR ppfd);
 
-        [DllImport(gdi32, SetLastError = true)]
-        internal static extern IntPtr GetStockObject(uint fnObject);
+        //[DllImport(gdi32, SetLastError = true)]
+        //internal static extern IntPtr GetStockObject(uint fnObject);
 
         [DllImport(gdi32, SetLastError = true)]
         internal static extern int SwapBuffers(IntPtr hDC);
