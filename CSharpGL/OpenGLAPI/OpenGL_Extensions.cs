@@ -3085,8 +3085,19 @@ namespace CSharpGL
         /// <param name="count"></param>
         /// <param name="value"></param>
         public delegate void glUniform1uiv(int location, int count, uint[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
         public delegate void glUniform2uiv(int location, int count, uint[] value);
-        //
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
         public delegate void glUniform3uiv(int location, int count, uint[] value);
         /// <summary>
         /// 
@@ -7558,12 +7569,57 @@ namespace CSharpGL
         #region GGL_EXT_transform_feedback
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="primitiveMode"></param>
         public delegate void glBeginTransformFeedbackEXT(uint primitiveMode);
+        /// <summary>
+        /// 
+        /// </summary>
         public delegate void glEndTransformFeedbackEXT();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="buffer"></param>
+        /// <param name="offset"></param>
+        /// <param name="size"></param>
         public delegate void glBindBufferRangeEXT(uint target, uint index, uint buffer, int offset, int size);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="buffer"></param>
+        /// <param name="offset"></param>
         public delegate void glBindBufferOffsetEXT(uint target, uint index, uint buffer, int offset);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="buffer"></param>
         public delegate void glBindBufferBaseEXT(uint target, uint index, uint buffer);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="count"></param>
+        /// <param name="varyings"></param>
+        /// <param name="bufferMode"></param>
         public delegate void glTransformFeedbackVaryingsEXT(uint program, int count, string[] varyings, uint bufferMode);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="index"></param>
+        /// <param name="bufSize"></param>
+        /// <param name="length"></param>
+        /// <param name="size"></param>
+        /// <param name="type"></param>
+        /// <param name="name"></param>
         public delegate void glGetTransformFeedbackVaryingEXT(uint program, uint index, int bufSize, int[] length, int[] size, uint[] type, string name);
 
         //  Constants
