@@ -1604,6 +1604,9 @@ namespace CSharpGL
         public const uint GL_STENCIL = 0x1802;
 
         //   PixelFormat
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_INDEX = 0x1900;
         /// <summary>
         /// 

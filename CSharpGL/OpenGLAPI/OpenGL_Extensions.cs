@@ -3720,28 +3720,97 @@ namespace CSharpGL
         public delegate void glFramebufferTexture(uint target, uint attachment, uint texture, int level);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CONTEXT_CORE_PROFILE_BIT = 0x00000001;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CONTEXT_COMPATIBILITY_PROFILE_BIT = 0x00000002;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_LINES_ADJACENCY = 0x000A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_LINE_STRIP_ADJACENCY = 0x000B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRIANGLES_ADJACENCY = 0x000C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PATCHES = 0xE;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRIANGLE_STRIP_ADJACENCY = 0x000D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_POINT_SIZE = 0x8642;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS = 0x8C29;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAMEBUFFER_ATTACHMENT_LAYERED = 0x8DA7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS = 0x8DA8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_GEOMETRY_SHADER = 0x8DD9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_GEOMETRY_VERTICES_OUT = 0x8916;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_GEOMETRY_INPUT_TYPE = 0x8917;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_GEOMETRY_OUTPUT_TYPE = 0x8918;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_GEOMETRY_UNIFORM_COMPONENTS = 0x8DDF;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_GEOMETRY_OUTPUT_VERTICES = 0x8DE0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS = 0x8DE1;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_VERTEX_OUTPUT_COMPONENTS = 0x9122;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_GEOMETRY_INPUT_COMPONENTS = 0x9123;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_GEOMETRY_OUTPUT_COMPONENTS = 0x9124;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_FRAGMENT_INPUT_COMPONENTS = 0x9125;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CONTEXT_PROFILE_MASK = 0x9126;
 
         #endregion
@@ -4787,25 +4856,133 @@ namespace CSharpGL
         #region GL_ARB_texture_compression
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="level"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="depth"></param>
+        /// <param name="border"></param>
+        /// <param name="imageSize"></param>
+        /// <param name="data"></param>
         public delegate void glCompressedTexImage3DARB(uint target, int level, uint internalformat, int width, int height, int depth, int border, int imageSize, IntPtr data);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="level"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="border"></param>
+        /// <param name="imageSize"></param>
+        /// <param name="data"></param>
         public delegate void glCompressedTexImage2DARB(uint target, int level, uint internalformat, int width, int height, int border, int imageSize, IntPtr data);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="level"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="border"></param>
+        /// <param name="imageSize"></param>
+        /// <param name="data"></param>
         public delegate void glCompressedTexImage1DARB(uint target, int level, uint internalformat, int width, int border, int imageSize, IntPtr data);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="level"></param>
+        /// <param name="xoffset"></param>
+        /// <param name="yoffset"></param>
+        /// <param name="zoffset"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="depth"></param>
+        /// <param name="format"></param>
+        /// <param name="imageSize"></param>
+        /// <param name="data"></param>
         public delegate void glCompressedTexSubImage3DARB(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, int imageSize, IntPtr data);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="level"></param>
+        /// <param name="xoffset"></param>
+        /// <param name="yoffset"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="format"></param>
+        /// <param name="imageSize"></param>
+        /// <param name="data"></param>
         public delegate void glCompressedTexSubImage2DARB(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, int imageSize, IntPtr data);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="level"></param>
+        /// <param name="xoffset"></param>
+        /// <param name="width"></param>
+        /// <param name="format"></param>
+        /// <param name="imageSize"></param>
+        /// <param name="data"></param>
         public delegate void glCompressedTexSubImage1DARB(uint target, int level, int xoffset, int width, uint format, int imageSize, IntPtr data);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="level"></param>
+        /// <param name="img"></param>
         public delegate void glGetCompressedTexImageARB(uint target, int level, IntPtr img);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_ALPHA_ARB = 0x84E9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_LUMINANCE_ARB = 0x84EA;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_LUMINANCE_ALPHA_ARB = 0x84EB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_INTENSITY_ARB = 0x84EC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_RGB_ARB = 0x84ED;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_RGBA_ARB = 0x84EE;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_COMPRESSION_HINT_ARB = 0x84EF;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_COMPRESSED_IMAGE_SIZE_ARB = 0x86A0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_COMPRESSED_ARB = 0x86A1;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_NUM_COMPRESSED_TEXTURE_FORMATS_ARB = 0x86A2;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_TEXTURE_FORMATS_ARB = 0x86A3;
 
         #endregion
@@ -7000,7 +7177,13 @@ namespace CSharpGL
         #region GL_ARB_point_sprite
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POINT_SPRITE_ARB = 0x8861;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COORD_REPLACE_ARB = 0x8862;
 
         #endregion
@@ -8855,24 +9038,72 @@ namespace CSharpGL
         public delegate void DEBUGPROC(
             uint source, uint type, uint id, uint severity, int length, StringBuilder message, IntPtr userParam);
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB = 0x8242;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_SOURCE_API_ARB = 0x8246;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_SOURCE_WINDOW_SYSTEM_ARB = 0x8247;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_SOURCE_SHADER_COMPILER_ARB = 0x8248;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_SOURCE_THIRD_PARTY_ARB = 0x8249;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_SOURCE_APPLICATION_ARB = 0x824A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_SOURCE_OTHER_ARB = 0x824B;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_TYPE_ERROR_ARB = 0x824C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB = 0x824D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB = 0x824E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_TYPE_PORTABILITY_ARB = 0x824F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_TYPE_PERFORMANCE_ARB = 0x8250;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_TYPE_OTHER_ARB = 0x8251;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_SEVERITY_HIGH_ARB = 0x9146;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_SEVERITY_MEDIUM_ARB = 0x9147;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_SEVERITY_LOW_ARB = 0x9148;
         //public const uint GL_DEBUG_SEVERITY_NOTIFICATION_ARB = 0x9149;
 
