@@ -13,10 +13,21 @@ namespace CSharpGL
     public class BigDipper : IBufferable
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const string position = "position";
+        /// <summary>
+        /// 
+        /// </summary>
         public const string color = "color";
         Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bufferName"></param>
+        /// <param name="varNameInShader"></param>
+        /// <returns></returns>
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == position)
@@ -68,7 +79,10 @@ namespace CSharpGL
                 throw new NotImplementedException();
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IndexBufferPtr GetIndex()
         {
             if (indexBufferPtr == null)

@@ -13,16 +13,32 @@ namespace CSharpGL
     public class Axis : IBufferable
     {
         private AxisModel model;
-
+        /// <summary>
+        /// 3D坐标系
+        /// 
+        /// </summary>
+        /// <param name="partCount"></param>
+        /// <param name="radius"></param>
         public Axis(uint partCount = 24, float radius = 1.0f)
         {
             this.model = new AxisModel(partCount, radius);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const string strPosition = "position";
+        /// <summary>
+        /// 
+        /// </summary>
         public const string strColor = "color";
         Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bufferName"></param>
+        /// <param name="varNameInShader"></param>
+        /// <returns></returns>
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
@@ -74,7 +90,10 @@ namespace CSharpGL
                 throw new NotImplementedException();
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IndexBufferPtr GetIndex()
         {
             if (indexBufferPtr == null)

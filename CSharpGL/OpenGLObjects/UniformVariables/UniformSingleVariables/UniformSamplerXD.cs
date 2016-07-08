@@ -235,8 +235,17 @@ namespace CSharpGL
     /// </summary>
     public enum BindTextureTarget : uint
     {
+        /// <summary>
+        /// 
+        /// </summary>
         Texture1D = OpenGL.GL_TEXTURE_1D,
+        /// <summary>
+        /// 
+        /// </summary>
         Texture2D = OpenGL.GL_TEXTURE_2D,
+        /// <summary>
+        /// 
+        /// </summary>
         Texture3D = OpenGL.GL_TEXTURE_3D,
     }
 }

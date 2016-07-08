@@ -35,8 +35,14 @@ namespace CSharpGL
         private int _height;
         private bool mouseDownFlag;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public float MouseSensitivity { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public MouseButtons BindingMouseButtons { get; set; }
         private MouseButtons lastBindingMouseButtons;
 
@@ -82,11 +88,18 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public mat4 GetRotationMatrix()
         {
             return totalRotation;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="camera"></param>
+        /// <param name="canvas"></param>
         public override void Bind(ICamera camera, GLCanvas canvas)
         {
             if (camera == null || canvas == null) { throw new ArgumentNullException(); }
@@ -102,6 +115,9 @@ namespace CSharpGL
             SetCamera(camera.Position, camera.Target, camera.UpVector);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Unbind()
         {
             if (this.canvas != null && (!this.canvas.IsDisposed))

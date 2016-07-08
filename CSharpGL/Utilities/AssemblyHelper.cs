@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class AssemblyHelper
     {
         /// <summary>
