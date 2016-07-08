@@ -1800,56 +1800,248 @@ namespace CSharpGL
         #region GL_EXT_convolution
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="image"></param>
         public delegate void glConvolutionFilter1DEXT(uint target, uint internalformat, int width, uint format, uint type, IntPtr image);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="image"></param>
         public delegate void glConvolutionFilter2DEXT(uint target, uint internalformat, int width, int height, uint format, uint type, IntPtr image);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glConvolutionParameterfEXT(uint target, uint pname, float parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glConvolutionParameterfvEXT(uint target, uint pname, float[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameter"></param>
         public delegate void glConvolutionParameteriEXT(uint target, uint pname, int parameter);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glConvolutionParameterivEXT(uint target, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
         public delegate void glCopyConvolutionFilter1DEXT(uint target, uint internalformat, int x, int y, int width);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         public delegate void glCopyConvolutionFilter2DEXT(uint target, uint internalformat, int x, int y, int width, int height);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="image"></param>
         public delegate void glGetConvolutionFilterEXT(uint target, uint format, uint type, IntPtr image);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetConvolutionParameterfvEXT(uint target, uint pname, float[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetConvolutionParameterivEXT(uint target, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
+        /// <param name="span"></param>
         public delegate void glGetSeparableFilterEXT(uint target, uint format, uint type, IntPtr row, IntPtr column, IntPtr span);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
         public delegate void glSeparableFilter2DEXT(uint target, uint internalformat, int width, int height, uint format, uint type, IntPtr row, IntPtr column);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_CONVOLUTION_1D = 0x8010;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_CONVOLUTION_2D = 0x8011;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_SEPARABLE_2D = 0x8012;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_CONVOLUTION_BORDER_MODE = 0x8013;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_CONVOLUTION_FILTER_SCALE = 0x8014;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_CONVOLUTION_FILTER_BIAS = 0x8015;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_REDUCE = 0x8016;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_CONVOLUTION_FORMAT = 0x8017;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_CONVOLUTION_WIDTH = 0x8018;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_CONVOLUTION_HEIGHT = 0x8019;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_MAX_CONVOLUTION_WIDTH = 0x801A;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_MAX_CONVOLUTION_HEIGHT = 0x801B;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_POST_CONVOLUTION_RED_SCALE = 0x801C;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_POST_CONVOLUTION_GREEN_SCALE = 0x801D;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_POST_CONVOLUTION_BLUE_SCALE = 0x801E;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_POST_CONVOLUTION_ALPHA_SCALE = 0x801F;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_POST_CONVOLUTION_RED_BIAS = 0x8020;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_POST_CONVOLUTION_GREEN_BIAS = 0x8021;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_POST_CONVOLUTION_BLUE_BIAS = 0x8022;
+        /// <summary>
+        /// 
+        /// </summary>
         public static uint GL_POST_CONVOLUTION_ALPHA_BIAS = 0x8023;
 
         #endregion
 
         #region GL_SGI_color_matrix
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_MATRIX_SGI = 0x80B1;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_MATRIX_STACK_DEPTH_SGI = 0x80B2;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COLOR_MATRIX_STACK_DEPTH_SGI = 0x80B3;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POST_COLOR_MATRIX_RED_SCALE_SGI = 0x80B4;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POST_COLOR_MATRIX_GREEN_SCALE_SGI = 0x80B5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POST_COLOR_MATRIX_BLUE_SCALE_SGI = 0x80B6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POST_COLOR_MATRIX_ALPHA_SCALE_SGI = 0x80B7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POST_COLOR_MATRIX_RED_BIAS_SGI = 0x80B8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POST_COLOR_MATRIX_GREEN_BIAS_SGI = 0x80B9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POST_COLOR_MATRIX_BLUE_BIAS_SGI = 0x80BA;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POST_COLOR_MATRIX_ALPHA_BIAS_SGI = 0x80BB;
 
         #endregion
@@ -1857,31 +2049,131 @@ namespace CSharpGL
         #region GL_EXT_histogram
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="reset"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="values"></param>
         public delegate void glGetHistogramEXT(uint target, bool reset, uint format, uint type, IntPtr values);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetHistogramParameterfvEXT(uint target, uint pname, float[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetHistogramParameterivEXT(uint target, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="reset"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="values"></param>
         public delegate void glGetMinmaxEXT(uint target, bool reset, uint format, uint type, IntPtr values);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetMinmaxParameterfvEXT(uint target, uint pname, float[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetMinmaxParameterivEXT(uint target, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="width"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="sink"></param>
         public delegate void glHistogramEXT(uint target, int width, uint internalformat, bool sink);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="sink"></param>
         public delegate void glMinmaxEXT(uint target, uint internalformat, bool sink);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
         public delegate void glResetHistogramEXT(uint target);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
         public delegate void glResetMinmaxEXT(uint target);
 
         //  Constants
         public const uint GL_HISTOGRAM = 0x8024;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROXY_HISTOGRAM = 0x8025;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_HISTOGRAM_WIDTH = 0x8026;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_HISTOGRAM_FORMAT = 0x8027;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_HISTOGRAM_RED_SIZE = 0x8028;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_HISTOGRAM_GREEN_SIZE = 0x8029;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_HISTOGRAM_BLUE_SIZE = 0x802A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_HISTOGRAM_ALPHA_SIZE = 0x802B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_HISTOGRAM_LUMINANCE_SIZE = 0x802C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_HISTOGRAM_SINK = 0x802D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MINMAX = 0x802E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MINMAX_FORMAT = 0x802F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MINMAX_SINK = 0x8030;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TABLE_TOO_LARGE = 0x8031;
 
         #endregion
@@ -1889,9 +2181,19 @@ namespace CSharpGL
         #region GL_EXT_blend_color
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
+        /// <param name="alpha"></param>
         public delegate void glBlendColorEXT(float red, float green, float blue, float alpha);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BLEND_COLOR = 0x8005;
 
         #endregion
@@ -1899,14 +2201,36 @@ namespace CSharpGL
         #region GL_EXT_blend_minmax
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
         public delegate void glBlendEquationEXT(uint mode);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FUNC_ADD = 0x8006;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MIN = 0x8007;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX = 0x8008;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FUNC_SUBTRACT = 0x800A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FUNC_REVERSE_SUBTRACT = 0x800B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BLEND_EQUATION = 0x8009;
 
         #endregion
