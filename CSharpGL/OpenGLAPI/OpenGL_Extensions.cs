@@ -3671,10 +3671,43 @@ namespace CSharpGL
         #region OpenGL 3.1
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="first"></param>
+        /// <param name="count"></param>
+        /// <param name="primcount"></param>
         public delegate void glDrawArraysInstanced(uint mode, int first, int count, int primcount);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="primcount"></param>
         public delegate void glDrawElementsInstanced(uint mode, int count, uint type, IntPtr indices, int primcount);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="baseVertex"></param>
         public delegate void glDrawElementsBaseVertex(uint mode, int count, uint type, IntPtr indices, int baseVertex);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="buffer"></param>
         public delegate void glTexBuffer(uint target, uint internalformat, uint buffer);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
         public delegate void glPrimitiveRestartIndex(uint index);
 
         //  Constants
@@ -3929,10 +3962,39 @@ namespace CSharpGL
         #region OpenGL 4.0
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
         public delegate void glMinSampleShading(float value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buf"></param>
+        /// <param name="mode"></param>
         public delegate void glBlendEquationi(uint buf, uint mode);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buf"></param>
+        /// <param name="modeRGB"></param>
+        /// <param name="modeAlpha"></param>
         public delegate void glBlendEquationSeparatei(uint buf, uint modeRGB, uint modeAlpha);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buf"></param>
+        /// <param name="src"></param>
+        /// <param name="dst"></param>
         public delegate void glBlendFunci(uint buf, uint src, uint dst);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buf"></param>
+        /// <param name="srcRGB"></param>
+        /// <param name="dstRGB"></param>
+        /// <param name="srcAlpha"></param>
+        /// <param name="dstAlpha"></param>
         public delegate void glBlendFuncSeparatei(uint buf, uint srcRGB, uint dstRGB, uint srcAlpha, uint dstAlpha);
 
         //  Constants
@@ -4027,8 +4089,17 @@ namespace CSharpGL
 
         #region GL_EXT_separate_specular_color
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_LIGHT_MODEL_COLOR_CONTROL = 0x81F8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SINGLE_COLOR = 0x81F9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SEPARATE_SPECULAR_COLOR = 0x81FA;
 
         #endregion
@@ -5154,17 +5225,49 @@ namespace CSharpGL
         #region GL_ARB_multisample
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="invert"></param>
         public delegate void glSampleCoverageARB(float value, bool invert);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MULTISAMPLE_ARB = 0x809D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLE_ALPHA_TO_COVERAGE_ARB = 0x809E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLE_ALPHA_TO_ONE_ARB = 0x809F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLE_COVERAGE_ARB = 0x80A0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLE_BUFFERS_ARB = 0x80A8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLES_ARB = 0x80A9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLE_COVERAGE_VALUE_ARB = 0x80AA;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLE_COVERAGE_INVERT_ARB = 0x80AB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MULTISAMPLE_BIT_ARB = 0x20000000;
 
         #endregion
@@ -7964,12 +8067,34 @@ namespace CSharpGL
         #region GL_ARB_vertex_array_object
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="array"></param>
         public delegate void glBindVertexArray(uint array);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="arrays"></param>
         public delegate void glDeleteVertexArrays(int n, uint[] arrays);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="arrays"></param>
         public delegate void glGenVertexArrays(int n, uint[] arrays);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
         public delegate bool glIsVertexArray(uint array);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_ARRAY_BINDING = 0x85B5;
 
         #endregion
@@ -8985,21 +9110,69 @@ namespace CSharpGL
         public delegate void glShaderStorageBlockBinding(uint program, uint storageBlockIndex, uint storageBlockBinding);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SHADER_STORAGE_BUFFER = 0x90D2;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SHADER_STORAGE_BUFFER_BINDING = 0x90D3;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SHADER_STORAGE_BUFFER_START = 0x90D4;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SHADER_STORAGE_BUFFER_SIZE = 0x90D5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS = 0x90D6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_GEOMETRY_SHADER_STORAGE_BLOCKS = 0x90D7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_TESS_CONTROL_SHADER_STORAGE_BLOCKS = 0x90D8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_TESS_EVALUATION_SHADER_STORAGE_BLOCKS = 0x90D9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS = 0x90DA;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS = 0x90DB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS = 0x90DC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_SHADER_STORAGE_BUFFER_BINDINGS = 0x90DD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_SHADER_STORAGE_BLOCK_SIZE = 0x90DE;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SHADER_STORAGE_BUFFER_OFFSET_ALIGNMENT = 0x90DF;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SHADER_STORAGE_BARRIER_BIT = 0x2000;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES = 0x8F39;
 
         #endregion
