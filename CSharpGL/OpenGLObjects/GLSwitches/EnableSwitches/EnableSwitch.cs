@@ -11,6 +11,9 @@ namespace CSharpGL
     public abstract class EnableSwitch : GLSwitch
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected bool enableCapacityWhenSwitchOn;
 
         /// <summary>
@@ -47,6 +50,9 @@ namespace CSharpGL
             this.Capacity = capacity; this.EnableCapacity = enableCapacity;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override string ToString()
         {
             if (this.EnableCapacity)
@@ -55,6 +61,9 @@ namespace CSharpGL
             { return string.Format("OpenGL.Disable({0});", Capacity); }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void SwitchOn()
         {
             this.enableCapacityWhenSwitchOn = this.EnableCapacity;
@@ -71,6 +80,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void SwitchOff()
         {
             if (this.enableCapacityWhenSwitchOn)

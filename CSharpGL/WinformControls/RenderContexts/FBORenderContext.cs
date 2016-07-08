@@ -105,6 +105,9 @@ namespace CSharpGL
             frameBufferId = 0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Destroy()
         {
             //  Delete the render buffers.
@@ -165,7 +168,10 @@ namespace CSharpGL
             OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>()(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_DEPTH_ATTACHMENT,
                 OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hdc"></param>
         public override void Blit(IntPtr hdc)
         {
             if (DeviceContextHandle != IntPtr.Zero)
@@ -183,10 +189,25 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected uint colourRenderBufferId = 0;
+        /// <summary>
+        /// 
+        /// </summary>
         protected uint depthRenderBufferId = 0;
+        /// <summary>
+        /// 
+        /// </summary>
         protected uint frameBufferId = 0;
+        /// <summary>
+        /// 
+        /// </summary>
         protected IntPtr dibSectionDeviceContext = IntPtr.Zero;
+        /// <summary>
+        /// 
+        /// </summary>
         protected DIBSection dibSection = new DIBSection();
 
         /// <summary>

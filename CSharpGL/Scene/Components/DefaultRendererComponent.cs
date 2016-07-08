@@ -6,6 +6,9 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DefaultRendererComponent : RendererComponent
     {
 
@@ -15,10 +18,16 @@ namespace CSharpGL
         //uint projectionLocation;
         //uint viewLocation;
         //uint modelLocation;
-
+        /// <summary>
+        /// 
+        /// </summary>
         [Description("renderer.")]
         public Renderer Renderer { get; private set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buildIn"></param>
+        /// <param name="bindingObject"></param>
         public DefaultRendererComponent(BuildInSceneObject buildIn, SceneObject bindingObject = null)
             : base(bindingObject)
         {
@@ -31,7 +40,10 @@ namespace CSharpGL
             renderer.Initialize();
             this.Renderer = renderer;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public override void Render(RenderEventArg arg)
         {
             Renderer renderer = this.Renderer;
@@ -101,7 +113,9 @@ namespace CSharpGL
 
             return bufferable;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DisposeUnmanagedResource()
         {
             Renderer renderer = this.Renderer;

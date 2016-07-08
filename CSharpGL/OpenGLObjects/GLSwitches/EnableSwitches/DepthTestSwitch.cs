@@ -5,6 +5,9 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DepthTestSwitch : EnableSwitch
     {
 
@@ -23,6 +26,9 @@ namespace CSharpGL
             : base(OpenGL.GL_DEPTH_TEST, enableCapacity)
         { }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override string ToString()
         {
             if (this.EnableCapacity)
