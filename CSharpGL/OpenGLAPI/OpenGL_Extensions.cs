@@ -3320,6 +3320,9 @@ namespace CSharpGL
         /// 
         /// </summary>
         public const uint GL_R11F_G11F_B10F = 0x8C3A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNSIGNED_INT_10F_11F_11F_REV = 0x8C3B;
         /// <summary>
         /// 
@@ -3841,8 +3844,27 @@ namespace CSharpGL
         #region OpenGL 3.2
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="data"></param>
         public delegate void glGetInteger64i_v(uint target, uint index, Int64[] data);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetBufferParameteri64v(uint target, uint pname, Int64[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="attachment"></param>
+        /// <param name="texture"></param>
+        /// <param name="level"></param>
         public delegate void glFramebufferTexture(uint target, uint attachment, uint texture, int level);
 
         //  Constants
@@ -4083,6 +4105,9 @@ namespace CSharpGL
 
         #region GL_EXT_rescale_normal
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RESCALE_NORMAL = 0x803A;
 
         #endregion
@@ -4115,9 +4140,21 @@ namespace CSharpGL
 
         #region GL_SGIS_texture_lod
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_MIN_LOD_SGIS = 0x813A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_MAX_LOD_SGIS = 0x813B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_BASE_LEVEL_SGIS = 0x813C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_MAX_LEVEL_SGIS = 0x813D;
 
         #endregion
@@ -5217,7 +5254,13 @@ namespace CSharpGL
         #region GL_EXT_texture_cube_map
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_NORMAL_MAP = 0x8511;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_REFLECTION_MAP = 0x8512;
 
         #endregion
@@ -7368,17 +7411,60 @@ namespace CSharpGL
         #region GL_ARB_vertex_shader
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="programObj"></param>
+        /// <param name="index"></param>
+        /// <param name="name"></param>
         public delegate void glBindAttribLocationARB(uint programObj, uint index, string name);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="programObj"></param>
+        /// <param name="index"></param>
+        /// <param name="maxLength"></param>
+        /// <param name="length"></param>
+        /// <param name="size"></param>
+        /// <param name="type"></param>
+        /// <param name="name"></param>
         public delegate void glGetActiveAttribARB(uint programObj, uint index, int maxLength, int[] length, int[] size, uint[] type, string name);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="programObj"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public delegate uint glGetAttribLocationARB(uint programObj, string name);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_SHADER_ARB = 0x8B31;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_VERTEX_UNIFORM_COMPONENTS_ARB = 0x8B4A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_VARYING_FLOATS_ARB = 0x8B4B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS_ARB = 0x8B4C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS_ARB = 0x8B4D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_OBJECT_ACTIVE_ATTRIBUTES_ARB = 0x8B89;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_OBJECT_ACTIVE_ATTRIBUTE_MAX_LENGTH_ARB = 0x8B8A;
 
         #endregion
@@ -7403,6 +7489,11 @@ namespace CSharpGL
         #region GL_ARB_draw_buffers
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="bufs"></param>
         public delegate void glDrawBuffersARB(int n, uint[] bufs);
 
         //  Constants
@@ -7486,9 +7577,21 @@ namespace CSharpGL
         #region GL_ARB_texture_rectangle
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_RECTANGLE_ARB = 0x84F5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_BINDING_RECTANGLE_ARB = 0x84F6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROXY_TEXTURE_RECTANGLE_ARB = 0x84F7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_RECTANGLE_TEXTURE_SIZE_ARB = 0x84F8;
 
         #endregion
@@ -7596,6 +7699,11 @@ namespace CSharpGL
         #region GL_EXT_blend_equation_separate
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modeRGB"></param>
+        /// <param name="modeAlpha"></param>
         public delegate void glBlendEquationSeparateEXT(uint modeRGB, uint modeAlpha);
 
         //  Constants
@@ -8059,7 +8167,22 @@ namespace CSharpGL
         #region GL_EXT_draw_instanced
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="start"></param>
+        /// <param name="count"></param>
+        /// <param name="primcount"></param>
         public delegate void glDrawArraysInstancedEXT(uint mode, int start, int count, int primcount);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="primcount"></param>
         public delegate void glDrawElementsInstancedEXT(uint mode, int count, uint type, IntPtr indices, int primcount);
 
         #endregion
@@ -9278,9 +9401,21 @@ namespace CSharpGL
         public delegate void glTextureView(uint texture, uint target, uint origtexture, uint internalformat, uint minlevel, uint numlevels, uint minlayer, uint numlayers);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_VIEW_MIN_LEVEL = 0x82DB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_VIEW_NUM_LEVELS = 0x82DC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_VIEW_MIN_LAYER = 0x82DD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_VIEW_NUM_LAYERS = 0x82DE;
 
         #endregion
