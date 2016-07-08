@@ -95,7 +95,7 @@ namespace CSharpGL
             OpenGL.Disable(OpenGL.GL_LIGHTING);
             OpenGL.Disable(OpenGL.GL_TEXTURE_2D);
             OpenGL.LineWidth(1.0f);
-            OpenGL.Color(BoxColor.x, BoxColor.y, BoxColor.z, BoxColor.w);
+            OpenGL.Color4f(BoxColor.x, BoxColor.y, BoxColor.z, BoxColor.w);
 
             //QuadsDraw(gl);
 

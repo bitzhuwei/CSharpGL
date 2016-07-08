@@ -86,7 +86,7 @@ namespace CSharpGL
             for (int i = 0; i < pyramidPosition.Count; i++)
             {
                 vec3 color = pyramidColor[i];
-                OpenGL.Color(color.x, color.y, color.z);
+                OpenGL.Color3f(color.x, color.y, color.z);
                 vec3 position = pyramidPosition[i];
                 OpenGL.Vertex(position.x, position.y, position.z);
             }

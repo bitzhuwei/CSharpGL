@@ -8,7 +8,7 @@ namespace CSharpGL
     public static partial class OpenGL
     {
 
-        #region The OpenGL DLL Functions (Exactly the same naming).
+        #region The OpenGL DLL Functions.
 
         /// <summary>
         /// Set the Accumulation Buffer operation.

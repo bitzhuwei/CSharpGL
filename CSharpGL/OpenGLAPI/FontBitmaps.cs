@@ -110,7 +110,7 @@ namespace CSharpGL
 
             //GL.PushAttrib(GL.GL_LIST_BIT | GL.GL_CURRENT_BIT |
             //    GL.GL_ENABLE_BIT | GL.GL_TRANSFORM_BIT);
-            OpenGL.Color(color.R, color.G, color.B);
+            OpenGL.Color3ub(color.R, color.G, color.B);
             //GL.Disable(GL.GL_LIGHTING);
             //GL.Disable(GL.GL_TEXTURE_2D);
             //GL.Disable(GL.GL_DEPTH_TEST);

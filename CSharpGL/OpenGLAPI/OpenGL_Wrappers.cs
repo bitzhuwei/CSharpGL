@@ -95,296 +95,296 @@ namespace CSharpGL
 
         //#endregion translate, rotate, scale
 
-        #region GL.Color
+        //#region GL.Color
 
-        /// <summary>
-        /// Sets the current color.
-        /// </summary>
-        /// <param name="red">Red color component (between 0 and 255).</param>
-        /// <param name="green">Green color component (between 0 and 255).</param>
-        /// <param name="blue">Blue color component (between 0 and 255).</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(byte red, byte green, byte blue)
-        {
-            OpenGL.Color3ub(red, green, blue);
-        }
+        ///// <summary>
+        ///// Sets the current color.
+        ///// </summary>
+        ///// <param name="red">Red color component (between 0 and 255).</param>
+        ///// <param name="green">Green color component (between 0 and 255).</param>
+        ///// <param name="blue">Blue color component (between 0 and 255).</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(byte red, byte green, byte blue)
+        //{
+        //    OpenGL.Color3ub(red, green, blue);
+        //}
 
-        /// <summary>
-        /// Sets the current color.
-        /// </summary>
-        /// <param name="red">Red color component (between 0 and 255).</param>
-        /// <param name="green">Green color component (between 0 and 255).</param>
-        /// <param name="blue">Blue color component (between 0 and 255).</param>
-        /// <param name="alpha">Alpha color component (between 0 and 255).</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(byte red, byte green, byte blue, byte alpha)
-        {
-            OpenGL.Color4ub(red, green, blue, alpha);
-        }
+        ///// <summary>
+        ///// Sets the current color.
+        ///// </summary>
+        ///// <param name="red">Red color component (between 0 and 255).</param>
+        ///// <param name="green">Green color component (between 0 and 255).</param>
+        ///// <param name="blue">Blue color component (between 0 and 255).</param>
+        ///// <param name="alpha">Alpha color component (between 0 and 255).</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(byte red, byte green, byte blue, byte alpha)
+        //{
+        //    OpenGL.Color4ub(red, green, blue, alpha);
+        //}
 
-        /// <summary>
-        /// Sets the current color.
-        /// </summary>
-        /// <param name="red">Red color component (between 0 and 1).</param>
-        /// <param name="green">Green color component (between 0 and 1).</param>
-        /// <param name="blue">Blue color component (between 0 and 1).</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(double red, double green, double blue)
-        {
-            OpenGL.Color3d(red, green, blue);
-        }
+        ///// <summary>
+        ///// Sets the current color.
+        ///// </summary>
+        ///// <param name="red">Red color component (between 0 and 1).</param>
+        ///// <param name="green">Green color component (between 0 and 1).</param>
+        ///// <param name="blue">Blue color component (between 0 and 1).</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(double red, double green, double blue)
+        //{
+        //    OpenGL.Color3d(red, green, blue);
+        //}
 
-        /// <summary>
-        /// Sets the current color.
-        /// </summary>
-        /// <param name="red">Red color component (between 0 and 1).</param>
-        /// <param name="green">Green color component (between 0 and 1).</param>
-        /// <param name="blue">Blue color component (between 0 and 1).</param>
-        /// <param name="alpha">Alpha color component.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(double red, double green, double blue, double alpha)
-        {
-            OpenGL.Color4d(red, green, blue, alpha);
-        }
+        ///// <summary>
+        ///// Sets the current color.
+        ///// </summary>
+        ///// <param name="red">Red color component (between 0 and 1).</param>
+        ///// <param name="green">Green color component (between 0 and 1).</param>
+        ///// <param name="blue">Blue color component (between 0 and 1).</param>
+        ///// <param name="alpha">Alpha color component.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(double red, double green, double blue, double alpha)
+        //{
+        //    OpenGL.Color4d(red, green, blue, alpha);
+        //}
 
-        /// <summary>
-        /// Sets the current color.
-        /// </summary>
-        /// <param name="red">Red color component (between 0 and 1).</param>
-        /// <param name="green">Green color component (between 0 and 1).</param>
-        /// <param name="blue">Blue color component (between 0 and 1).</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(float red, float green, float blue)
-        {
-            OpenGL.Color3f(red, green, blue);
-        }
+        ///// <summary>
+        ///// Sets the current color.
+        ///// </summary>
+        ///// <param name="red">Red color component (between 0 and 1).</param>
+        ///// <param name="green">Green color component (between 0 and 1).</param>
+        ///// <param name="blue">Blue color component (between 0 and 1).</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(float red, float green, float blue)
+        //{
+        //    OpenGL.Color3f(red, green, blue);
+        //}
 
-        /// <summary>
-        /// Sets the current color to 'v'.
-        /// </summary>
-        /// <param name="v">An array of either 3 or 4 float values.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(float[] v)
-        {
-            int length = v.Length;
-            if (length == 3) { OpenGL.Color3fv(v); }
-            else if (length == 4) { OpenGL.Color4fv(v); }
-            else { throw new ArgumentOutOfRangeException(); }
-        }
+        ///// <summary>
+        ///// Sets the current color to 'v'.
+        ///// </summary>
+        ///// <param name="v">An array of either 3 or 4 float values.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(float[] v)
+        //{
+        //    int length = v.Length;
+        //    if (length == 3) { OpenGL.Color3fv(v); }
+        //    else if (length == 4) { OpenGL.Color4fv(v); }
+        //    else { throw new ArgumentOutOfRangeException(); }
+        //}
 
-        /// <summary>
-        /// Sets the current color to 'v'.
-        /// </summary>
-        /// <param name="v">An array of either 3 or 4 int values.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(int[] v)
-        {
-            int length = v.Length;
-            if (length == 3) { OpenGL.Color3iv(v); }
-            else if (length == 4) { OpenGL.Color4iv(v); }
-            else { throw new ArgumentOutOfRangeException(); }
-        }
+        ///// <summary>
+        ///// Sets the current color to 'v'.
+        ///// </summary>
+        ///// <param name="v">An array of either 3 or 4 int values.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(int[] v)
+        //{
+        //    int length = v.Length;
+        //    if (length == 3) { OpenGL.Color3iv(v); }
+        //    else if (length == 4) { OpenGL.Color4iv(v); }
+        //    else { throw new ArgumentOutOfRangeException(); }
+        //}
 
-        /// <summary>
-        /// Sets the current color to 'v'.
-        /// </summary>
-        /// <param name="v">An array of either 3 or 4 int values.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(short[] v)
-        {
-            int length = v.Length;
-            if (length == 3) { OpenGL.Color3sv(v); }
-            else if (length == 4) { OpenGL.Color4sv(v); }
-            else { throw new ArgumentOutOfRangeException(); }
-        }
+        ///// <summary>
+        ///// Sets the current color to 'v'.
+        ///// </summary>
+        ///// <param name="v">An array of either 3 or 4 int values.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(short[] v)
+        //{
+        //    int length = v.Length;
+        //    if (length == 3) { OpenGL.Color3sv(v); }
+        //    else if (length == 4) { OpenGL.Color4sv(v); }
+        //    else { throw new ArgumentOutOfRangeException(); }
+        //}
 
-        /// <summary>
-        /// Sets the current color to 'v'.
-        /// </summary>
-        /// <param name="v">An array of either 3 or 4 double values.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(double[] v)
-        {
-            int length = v.Length;
-            if (length == 3) { OpenGL.Color3dv(v); }
-            else if (length == 4) { OpenGL.Color4dv(v); }
-            else { throw new ArgumentOutOfRangeException(); }
-        }
+        ///// <summary>
+        ///// Sets the current color to 'v'.
+        ///// </summary>
+        ///// <param name="v">An array of either 3 or 4 double values.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(double[] v)
+        //{
+        //    int length = v.Length;
+        //    if (length == 3) { OpenGL.Color3dv(v); }
+        //    else if (length == 4) { OpenGL.Color4dv(v); }
+        //    else { throw new ArgumentOutOfRangeException(); }
+        //}
 
-        /// <summary>
-        /// Sets the current color to 'v'.
-        /// </summary>
-        /// <param name="v">An array of either 3 or 4 byte values.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(byte[] v)
-        {
-            int length = v.Length;
-            if (length == 3) { OpenGL.Color3bv(v); }
-            else if (length == 4) { OpenGL.Color4bv(v); }
-            else { throw new ArgumentOutOfRangeException(); }
-        }
+        ///// <summary>
+        ///// Sets the current color to 'v'.
+        ///// </summary>
+        ///// <param name="v">An array of either 3 or 4 byte values.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(byte[] v)
+        //{
+        //    int length = v.Length;
+        //    if (length == 3) { OpenGL.Color3bv(v); }
+        //    else if (length == 4) { OpenGL.Color4bv(v); }
+        //    else { throw new ArgumentOutOfRangeException(); }
+        //}
 
-        /// <summary>
-        /// Sets the current color to 'v'.
-        /// </summary>
-        /// <param name="v">An array of either 3 or 4 unsigned int values.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(uint[] v)
-        {
-            int length = v.Length;
-            if (length == 3) { OpenGL.Color3uiv(v); }
-            else if (length == 4) { OpenGL.Color4uiv(v); }
-            else { throw new ArgumentOutOfRangeException(); }
-        }
+        ///// <summary>
+        ///// Sets the current color to 'v'.
+        ///// </summary>
+        ///// <param name="v">An array of either 3 or 4 unsigned int values.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(uint[] v)
+        //{
+        //    int length = v.Length;
+        //    if (length == 3) { OpenGL.Color3uiv(v); }
+        //    else if (length == 4) { OpenGL.Color4uiv(v); }
+        //    else { throw new ArgumentOutOfRangeException(); }
+        //}
 
-        /// <summary>
-        /// Sets the current color to 'v'.
-        /// </summary>
-        /// <param name="v">An array of either 3 or 4 unsigned short values.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(ushort[] v)
-        {
-            int length = v.Length;
-            if (length == 3) { OpenGL.Color3usv(v); }
-            else if (length == 4) { OpenGL.Color4usv(v); }
-            else { throw new ArgumentOutOfRangeException(); }
-        }
+        ///// <summary>
+        ///// Sets the current color to 'v'.
+        ///// </summary>
+        ///// <param name="v">An array of either 3 or 4 unsigned short values.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(ushort[] v)
+        //{
+        //    int length = v.Length;
+        //    if (length == 3) { OpenGL.Color3usv(v); }
+        //    else if (length == 4) { OpenGL.Color4usv(v); }
+        //    else { throw new ArgumentOutOfRangeException(); }
+        //}
 
-        /// <summary>
-        /// Sets the current color.
-        /// </summary>
-        /// <param name="red">Red color component (between 0 and 1).</param>
-        /// <param name="green">Green color component (between 0 and 1).</param>
-        /// <param name="blue">Blue color component (between 0 and 1).</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(int red, int green, int blue)
-        {
-            OpenGL.Color3i(red, green, blue);
-        }
+        ///// <summary>
+        ///// Sets the current color.
+        ///// </summary>
+        ///// <param name="red">Red color component (between 0 and 1).</param>
+        ///// <param name="green">Green color component (between 0 and 1).</param>
+        ///// <param name="blue">Blue color component (between 0 and 1).</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(int red, int green, int blue)
+        //{
+        //    OpenGL.Color3i(red, green, blue);
+        //}
 
-        /// <summary>
-        /// Sets the current color.
-        /// </summary>
-        /// <param name="red">Red color component (between 0 and 1).</param>
-        /// <param name="green">Green color component (between 0 and 1).</param>
-        /// <param name="blue">Blue color component (between 0 and 1).</param>
-        /// <param name="alpha">Alpha color component.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(int red, int green, int blue, int alpha)
-        {
-            OpenGL.Color4i(red, green, blue, alpha);
-        }
+        ///// <summary>
+        ///// Sets the current color.
+        ///// </summary>
+        ///// <param name="red">Red color component (between 0 and 1).</param>
+        ///// <param name="green">Green color component (between 0 and 1).</param>
+        ///// <param name="blue">Blue color component (between 0 and 1).</param>
+        ///// <param name="alpha">Alpha color component.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(int red, int green, int blue, int alpha)
+        //{
+        //    OpenGL.Color4i(red, green, blue, alpha);
+        //}
 
-        /// <summary>
-        /// Sets the current color.
-        /// </summary>
-        /// <param name="red">Red color component (between 0 and 1).</param>
-        /// <param name="green">Green color component (between 0 and 1).</param>
-        /// <param name="blue">Blue color component (between 0 and 1).</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(short red, short green, short blue)
-        {
-            OpenGL.Color3s(red, green, blue);
-        }
+        ///// <summary>
+        ///// Sets the current color.
+        ///// </summary>
+        ///// <param name="red">Red color component (between 0 and 1).</param>
+        ///// <param name="green">Green color component (between 0 and 1).</param>
+        ///// <param name="blue">Blue color component (between 0 and 1).</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(short red, short green, short blue)
+        //{
+        //    OpenGL.Color3s(red, green, blue);
+        //}
 
-        /// <summary>
-        /// Sets the current color.
-        /// </summary>
-        /// <param name="red">Red color component (between 0 and 1).</param>
-        /// <param name="green">Green color component (between 0 and 1).</param>
-        /// <param name="blue">Blue color component (between 0 and 1).</param>
-        /// <param name="alpha">Alpha color component.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(short red, short green, short blue, short alpha)
-        {
-            OpenGL.Color4s(red, green, blue, alpha);
-        }
+        ///// <summary>
+        ///// Sets the current color.
+        ///// </summary>
+        ///// <param name="red">Red color component (between 0 and 1).</param>
+        ///// <param name="green">Green color component (between 0 and 1).</param>
+        ///// <param name="blue">Blue color component (between 0 and 1).</param>
+        ///// <param name="alpha">Alpha color component.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(short red, short green, short blue, short alpha)
+        //{
+        //    OpenGL.Color4s(red, green, blue, alpha);
+        //}
 
-        /// <summary>
-        /// Sets the current color.
-        /// </summary>
-        /// <param name="red">Red color component (between 0 and 1).</param>
-        /// <param name="green">Green color component (between 0 and 1).</param>
-        /// <param name="blue">Blue color component (between 0 and 1).</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(uint red, uint green, uint blue)
-        {
-            OpenGL.Color3ui(red, green, blue);
-        }
+        ///// <summary>
+        ///// Sets the current color.
+        ///// </summary>
+        ///// <param name="red">Red color component (between 0 and 1).</param>
+        ///// <param name="green">Green color component (between 0 and 1).</param>
+        ///// <param name="blue">Blue color component (between 0 and 1).</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(uint red, uint green, uint blue)
+        //{
+        //    OpenGL.Color3ui(red, green, blue);
+        //}
 
-        /// <summary>
-        /// Sets the current color.
-        /// </summary>
-        /// <param name="red">Red color component (between 0 and 1).</param>
-        /// <param name="green">Green color component (between 0 and 1).</param>
-        /// <param name="blue">Blue color component (between 0 and 1).</param>
-        /// <param name="alpha">Alpha color component.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(uint red, uint green, uint blue, uint alpha)
-        {
-            OpenGL.Color4ui(red, green, blue, alpha);
-        }
+        ///// <summary>
+        ///// Sets the current color.
+        ///// </summary>
+        ///// <param name="red">Red color component (between 0 and 1).</param>
+        ///// <param name="green">Green color component (between 0 and 1).</param>
+        ///// <param name="blue">Blue color component (between 0 and 1).</param>
+        ///// <param name="alpha">Alpha color component.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(uint red, uint green, uint blue, uint alpha)
+        //{
+        //    OpenGL.Color4ui(red, green, blue, alpha);
+        //}
 
-        /// <summary>
-        /// Sets the current color.
-        /// </summary>
-        /// <param name="red">Red color component (between 0 and 1).</param>
-        /// <param name="green">Green color component (between 0 and 1).</param>
-        /// <param name="blue">Blue color component (between 0 and 1).</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(ushort red, ushort green, ushort blue)
-        {
-            OpenGL.Color3us(red, green, blue);
-        }
+        ///// <summary>
+        ///// Sets the current color.
+        ///// </summary>
+        ///// <param name="red">Red color component (between 0 and 1).</param>
+        ///// <param name="green">Green color component (between 0 and 1).</param>
+        ///// <param name="blue">Blue color component (between 0 and 1).</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(ushort red, ushort green, ushort blue)
+        //{
+        //    OpenGL.Color3us(red, green, blue);
+        //}
 
-        /// <summary>
-        /// Sets the current color.
-        /// </summary>
-        /// <param name="red">Red color component (between 0 and 1).</param>
-        /// <param name="green">Green color component (between 0 and 1).</param>
-        /// <param name="blue">Blue color component (between 0 and 1).</param>
-        /// <param name="alpha">Alpha color component.</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(ushort red, ushort green, ushort blue, ushort alpha)
-        {
-            OpenGL.Color4us(red, green, blue, alpha);
-        }
+        ///// <summary>
+        ///// Sets the current color.
+        ///// </summary>
+        ///// <param name="red">Red color component (between 0 and 1).</param>
+        ///// <param name="green">Green color component (between 0 and 1).</param>
+        ///// <param name="blue">Blue color component (between 0 and 1).</param>
+        ///// <param name="alpha">Alpha color component.</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(ushort red, ushort green, ushort blue, ushort alpha)
+        //{
+        //    OpenGL.Color4us(red, green, blue, alpha);
+        //}
 
-        /// <summary>
-        /// Sets the current color.
-        /// </summary>
-        /// <param name="red">Red color component (between 0 and 1).</param>
-        /// <param name="green">Green color component (between 0 and 1).</param>
-        /// <param name="blue">Blue color component (between 0 and 1).</param>
-        /// <param name="alpha">Alpha color component (between 0 and 1).</param>
-        //[Obsolete(fixedPipelineIsNotGood, error)]
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Color(float red, float green, float blue, float alpha)
-        {
-            OpenGL.Color4f(red, green, blue, alpha);
-        }
+        ///// <summary>
+        ///// Sets the current color.
+        ///// </summary>
+        ///// <param name="red">Red color component (between 0 and 1).</param>
+        ///// <param name="green">Green color component (between 0 and 1).</param>
+        ///// <param name="blue">Blue color component (between 0 and 1).</param>
+        ///// <param name="alpha">Alpha color component (between 0 and 1).</param>
+        ////[Obsolete(fixedPipelineIsNotGood, error)]
+        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static void Color(float red, float green, float blue, float alpha)
+        //{
+        //    OpenGL.Color4f(red, green, blue, alpha);
+        //}
 
-        #endregion GL.Color
+        //#endregion GL.Color
 
         #region GL.Vertex
 
