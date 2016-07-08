@@ -69,7 +69,7 @@ namespace CSharpGL.Demos
 
         private void btn11SharpFont_Click(object sender, EventArgs e)
         {
-            (new Form1111SharpFont()).Show();
+            //(new Form1111SharpFont()).Show();
         }
 
         private void btn12Billboard_Click(object sender, EventArgs e)

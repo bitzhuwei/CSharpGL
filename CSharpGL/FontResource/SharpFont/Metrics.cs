@@ -7,7 +7,7 @@ namespace SharpFont
     /// <summary>
     /// Contains various metrics that apply to a font face as a whole, scaled for a particular size.
     /// </summary>
-    public sealed class FaceMetrics
+    sealed class FaceMetrics
     {
         /// <summary>
         /// The distance from the baseline up to the top of the em box.
@@ -87,7 +87,7 @@ namespace SharpFont
     /// <summary>
     /// Contains metrics for a single glyph.
     /// </summary>
-    public struct GlyphMetrics
+    struct GlyphMetrics
     {
         /// <summary>
         /// The leading bearings; this is the offset from the pen at which to position the glyph.
@@ -122,7 +122,7 @@ namespace SharpFont
     /// <summary>
     /// Represents an image surface in memory.
     /// </summary>
-    public struct Surface : IDisposable
+    struct Surface : IDisposable
     {
         /// <summary>
         /// A pointer to the image data.
@@ -153,7 +153,7 @@ namespace SharpFont
     /// <summary>
     /// Represents a single Unicode codepoint.
     /// </summary>
-    public struct CodePoint : IComparable<CodePoint>, IEquatable<CodePoint>
+    struct CodePoint : IComparable<CodePoint>, IEquatable<CodePoint>
     {
         readonly int value;
 
@@ -347,7 +347,7 @@ namespace SharpFont
     /// <summary>
     /// Specifies various font weights.
     /// </summary>
-    public enum FontWeight
+    enum FontWeight
     {
         /// <summary>
         /// The weight is unknown or unspecified.
@@ -403,7 +403,7 @@ namespace SharpFont
     /// <summary>
     /// Specifies the font stretching level.
     /// </summary>
-    public enum FontStretch
+    enum FontStretch
     {
         /// <summary>
         /// The stretch is unknown or unspecified.
@@ -459,7 +459,7 @@ namespace SharpFont
     /// <summary>
     /// Specifies various font styles.
     /// </summary>
-    public enum FontStyle
+    enum FontStyle
     {
         /// <summary>
         /// No particular styles applied.

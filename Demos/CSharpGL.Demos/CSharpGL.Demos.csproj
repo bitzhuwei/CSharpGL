@@ -201,12 +201,6 @@
     <Compile Include="09UIRenderer\Form09UIRenderer.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="11SharpFont\Form1111SharpFont.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="11SharpFont\Form1111SharpFont.Designer.cs">
-      <DependentUpon>Form1111SharpFont.cs</DependentUpon>
-    </Compile>
     <Compile Include="Renderers\RaycastVolumeRenderer.Initialize.cs" />
     <Compile Include="Models\RaycastModel.cs" />
     <Compile Include="Renderers\RaycastVolumeRenderer.cs" />
@@ -377,9 +371,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="09UIRenderer\Form09UIRenderer.resx">
       <DependentUpon>Form09UIRenderer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="11SharpFont\Form1111SharpFont.resx">
-      <DependentUpon>Form1111SharpFont.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="10RaycastVolumeRender\Form10RaycastVolumeRenderer.resx">
       <DependentUpon>Form10RaycastVolumeRenderer.cs</DependentUpon>

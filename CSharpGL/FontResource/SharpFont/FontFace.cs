@@ -9,7 +9,7 @@ namespace SharpFont
     /// <summary>
     /// Represents a single font face, maintaining all font data in memory.
     /// </summary>
-    public sealed class FontFace
+    sealed class FontFace
     {
         readonly SharpFontRenderer renderer = new SharpFontRenderer();
         readonly Interpreter interpreter;
@@ -373,7 +373,7 @@ namespace SharpFont
     /// <summary>
     /// Represents a single glyph of a font.
     /// </summary>
-    public sealed class Glyph
+    sealed class Glyph
     {
         readonly SharpFontRenderer renderer;
         readonly PointF[] points;
