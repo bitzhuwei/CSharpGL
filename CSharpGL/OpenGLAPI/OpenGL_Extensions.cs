@@ -3678,36 +3678,129 @@ namespace CSharpGL
         public delegate void glPrimitiveRestartIndex(uint index);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_2D_RECT = 0x8B63;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_2D_RECT_SHADOW = 0x8B64;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_BUFFER = 0x8DC2;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INT_SAMPLER_2D_RECT = 0x8DCD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INT_SAMPLER_BUFFER = 0x8DD0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNSIGNED_INT_SAMPLER_2D_RECT = 0x8DD5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNSIGNED_INT_SAMPLER_BUFFER = 0x8DD8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_BUFFER = 0x8C2A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_TEXTURE_BUFFER_SIZE = 0x8C2B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_BINDING_BUFFER = 0x8C2C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_BUFFER_DATA_STORE_BINDING = 0x8C2D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_BUFFER_FORMAT = 0x8C2E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_RECTANGLE = 0x84F5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_BINDING_RECTANGLE = 0x84F6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROXY_TEXTURE_RECTANGLE = 0x84F7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_RECTANGLE_TEXTURE_SIZE = 0x84F8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RED_SNORM = 0x8F90;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RG_SNORM = 0x8F91;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGB_SNORM = 0x8F92;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGBA_SNORM = 0x8F93;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_R8_SNORM = 0x8F94;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RG8_SNORM = 0x8F95;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGB8_SNORM = 0x8F96;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGBA8_SNORM = 0x8F97;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_R16_SNORM = 0x8F98;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RG16_SNORM = 0x8F99;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGB16_SNORM = 0x8F9A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGBA16_SNORM = 0x8F9B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SIGNED_NORMALIZED = 0x8F9C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PRIMITIVE_RESTART = 0x8F9D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PRIMITIVE_RESTART_INDEX = 0x8F9E;
 
         #endregion
@@ -3843,24 +3936,84 @@ namespace CSharpGL
         public delegate void glBlendFuncSeparatei(uint buf, uint srcRGB, uint dstRGB, uint srcAlpha, uint dstAlpha);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLE_SHADING = 0x8C36;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MIN_SAMPLE_SHADING_VALUE = 0x8C37;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET = 0x8E5E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET = 0x8E5F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_CUBE_MAP_ARRAY = 0x9009;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_BINDING_CUBE_MAP_ARRAY = 0x900A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROXY_TEXTURE_CUBE_MAP_ARRAY = 0x900B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_CUBE_MAP_ARRAY = 0x900C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_CUBE_MAP_ARRAY_SHADOW = 0x900D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INT_SAMPLER_CUBE_MAP_ARRAY = 0x900E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNSIGNED_INT_SAMPLER_CUBE_MAP_ARRAY = 0x900F;
 
         #endregion
 
         #region GL_EXT_texture3D
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="level"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="depth"></param>
+        /// <param name="border"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="pixels"></param>
         public delegate void glTexImage3DEXT(uint target, int level, uint internalformat, uint width,
             uint height, uint depth, int border, uint format, uint type, IntPtr pixels);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="level"></param>
+        /// <param name="xoffset"></param>
+        /// <param name="yoffset"></param>
+        /// <param name="zoffset"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="depth"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="pixels"></param>
         public delegate void glTexSubImage3DEXT(uint target, int level, int xoffset, int yoffset, int zoffset,
             uint width, uint height, uint depth, uint format, uint type, IntPtr pixels);
 
@@ -4366,6 +4519,9 @@ namespace CSharpGL
         public delegate void glResetMinmaxEXT(uint target);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_HISTOGRAM = 0x8024;
         /// <summary>
         /// 
@@ -7126,8 +7282,17 @@ namespace CSharpGL
 
         #region GL_ARB_fragment_shader
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAGMENT_SHADER_ARB = 0x8B30;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_FRAGMENT_UNIFORM_COMPONENTS_ARB = 0x8B49;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAGMENT_SHADER_DERIVATIVE_HINT_ARB = 0x8B8B;
 
         #endregion
@@ -7138,22 +7303,73 @@ namespace CSharpGL
         public delegate void glDrawBuffersARB(int n, uint[] bufs);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_DRAW_BUFFERS_ARB = 0x8824;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER0_ARB = 0x8825;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER1_ARB = 0x8826;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER2_ARB = 0x8827;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER3_ARB = 0x8828;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER4_ARB = 0x8829;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER5_ARB = 0x882A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER6_ARB = 0x882B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER7_ARB = 0x882C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER8_ARB = 0x882D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER9_ARB = 0x882E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER10_ARB = 0x882F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER11_ARB = 0x8830;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER12_ARB = 0x8831;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER13_ARB = 0x8832;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER14_ARB = 0x8833;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DRAW_BUFFER15_ARB = 0x8834;
 
         #endregion
@@ -7711,11 +7927,28 @@ namespace CSharpGL
         #region GL_EXT_framebuffer_multisample
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="samples"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         public delegate void glRenderbufferStorageMultisampleEXT(uint target, int samples, uint internalformat, int width, int height);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RENDERBUFFER_SAMPLES = 0x8CAB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE = 0x8D56;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_SAMPLES = 0x8D57;
 
         #endregion
@@ -7744,7 +7977,13 @@ namespace CSharpGL
         #region GL_EXT_framebuffer_sRGB
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAMEBUFFER_SRGB = 0x8DB9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAMEBUFFER_SRGB_CAPABLE = 0x8DBA;
 
         #endregion
@@ -8768,6 +9007,9 @@ namespace CSharpGL
         #region GL_ARB_stencil_texturing
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEPTH_STENCIL_TEXTURE_MODE = 0x90EA;
 
         #endregion

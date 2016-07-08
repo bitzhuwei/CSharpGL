@@ -535,6 +535,9 @@ namespace CSharpGL
         public const uint GL_DOMAIN = 0x0A02;
 
         //   GetTarget
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CURRENT_COLOR = 0x0B00;
         /// <summary>
         /// 
