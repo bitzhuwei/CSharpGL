@@ -11,6 +11,9 @@ namespace CSharpGL
     public class CullFaceSwitch : EnableSwitch
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
         public CullFaceSwitch()
             : base(OpenGL.GL_CULL_FACE, true)
         {
@@ -26,7 +29,10 @@ namespace CSharpGL
         {
             this.Init(CullFaceMode.Back);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
         public CullFaceSwitch(CullFaceMode mode)
             : base(OpenGL.GL_CULL_FACE, true)
         {
@@ -49,6 +55,9 @@ namespace CSharpGL
             this.Mode = mode;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override string ToString()
         {
             if (this.EnableCapacity)
@@ -61,6 +70,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void SwitchOn()
         {
             base.SwitchOn();
@@ -86,10 +98,22 @@ namespace CSharpGL
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum CullFaceMode : uint
     {
+        /// <summary>
+        /// 
+        /// </summary>
         Front = OpenGL.GL_FRONT,
+        /// <summary>
+        /// 
+        /// </summary>
         Back = OpenGL.GL_BACK,
+        /// <summary>
+        /// 
+        /// </summary>
         FrontAndBack = OpenGL.GL_FRONT_AND_BACK,
     }
 }
