@@ -88,6 +88,10 @@ namespace CSharpGL
             this.Children = new ChildList<SceneObject>(this);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("{0}", this.Name);

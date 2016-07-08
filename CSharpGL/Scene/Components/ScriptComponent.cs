@@ -10,12 +10,24 @@ namespace CSharpGL
     public abstract partial class ScriptComponent : Component
     {
         private bool initialized;
+        /// <summary>
+        /// 
+        /// </summary>
         public ScriptComponent() : base(null) { }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bindingObject"></param>
         public ScriptComponent(SceneObject bindingObject) : base(bindingObject) { }
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected abstract void DoInitialize();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="elapsedTime"></param>
         protected abstract void DoUpdate(double elapsedTime);
 
         internal void Initialize()

@@ -5,9 +5,14 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ScissorTestSwitch : EnableSwitch
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         public ScissorTestSwitch()
             : base(OpenGL.GL_SCISSOR_TEST, true)
         {
@@ -27,7 +32,13 @@ namespace CSharpGL
             OpenGL.GetViewport(out x, out y, out width, out height);
             this.Init(x, y, width, height);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         public ScissorTestSwitch(int x, int y, int width, int height)
             : base(OpenGL.GL_SCISSOR_TEST, true)
         {
@@ -53,7 +64,10 @@ namespace CSharpGL
             this.X = x; this.Y = y;
             this.Width = width; this.Height = height;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             if (this.EnableCapacity)
@@ -67,7 +81,9 @@ namespace CSharpGL
                     X, Y, Width, Height);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void SwitchOn()
         {
             base.SwitchOn();
@@ -77,10 +93,21 @@ namespace CSharpGL
                 OpenGL.Scissor(this.X, this.Y, this.Width, this.Height);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public int X { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int Y { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int Width { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int Height { get; set; }
     }
 
