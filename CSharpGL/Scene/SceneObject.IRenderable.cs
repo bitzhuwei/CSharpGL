@@ -5,7 +5,10 @@ namespace CSharpGL
 {
     public partial class SceneObject
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public void Render(RenderEventArg arg)
         {
             if (this.Enabled)

@@ -5,9 +5,15 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class RendererComponent : Component, IRenderable, IDisposable
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bindingObject"></param>
         public RendererComponent(SceneObject bindingObject = null)
             : base(bindingObject)
         { }
@@ -34,7 +40,14 @@ namespace CSharpGL
         //    { this.modelLocation = (uint)location; }
 
         //}
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="projection"></param>
+        /// <param name="view"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         protected bool TryGetMatrix(RenderEventArg arg,
             out mat4 projection, out mat4 view, out mat4 model)
         {
@@ -55,7 +68,10 @@ namespace CSharpGL
                 return false;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public abstract void Render(RenderEventArg arg);
 
         #region IDisposable Members
@@ -103,7 +119,13 @@ namespace CSharpGL
             this.disposedValue = true;
         } // end sub
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual void DisposeManagedResources() { }
+        /// <summary>
+        /// 
+        /// </summary>
         protected abstract void DisposeUnmanagedResource();
 
         #endregion

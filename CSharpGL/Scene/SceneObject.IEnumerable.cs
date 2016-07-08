@@ -7,7 +7,10 @@ namespace CSharpGL
     {
 
         #region IEnumerable<SceneObject>
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<SceneObject> GetEnumerator()
         {
             var enumerable = ITreeNodeHelper.EnumerateRecursively(this);

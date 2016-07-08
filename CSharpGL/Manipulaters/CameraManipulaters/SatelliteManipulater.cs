@@ -32,13 +32,25 @@ namespace CSharpGL
         private vec3 back;
         private vec3 right;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public float HorizontalRotationFactor { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public float VerticalRotationFactor { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public MouseButtons BindingMouseButtons { get; set; }
         private MouseButtons lastBindingMouseButtons;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public SatelliteManipulater()
         {
             this.HorizontalRotationFactor = 4;
@@ -50,6 +62,9 @@ namespace CSharpGL
             this.mouseWheelEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseWheel);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Bind(ICamera camera, GLCanvas canvas)
         {
             if (camera == null || canvas == null) { throw new ArgumentNullException(); }
@@ -63,6 +78,9 @@ namespace CSharpGL
             canvas.MouseWheel += this.mouseWheelEvent;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Unbind()
         {
             if (this.canvas != null && (!this.canvas.IsDisposed))
@@ -75,7 +93,10 @@ namespace CSharpGL
                 this.camera = null;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("back:{0}|{3:0.00},up:{1}|{4:0.00},right:{2}|{5:0.00}",

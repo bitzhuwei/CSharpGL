@@ -21,6 +21,10 @@ namespace CSharpGL
         /// </summary>
         public uint Id { get { return this.id[0]; } }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bitmap"></param>
         public void Initialize(System.Drawing.Bitmap bitmap)
         {
             if (!this.initialized)
@@ -106,11 +110,17 @@ namespace CSharpGL
 
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Bind()
         {
             OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, this.id[0]);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Unbind()
         {
             OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);

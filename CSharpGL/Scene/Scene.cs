@@ -64,7 +64,11 @@ namespace CSharpGL
 
             this.Camera.Resize(control.Width, control.Height);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="renderMode"></param>
+        /// <param name="clientRectangle"></param>
         public void Render(RenderModes renderMode, Rectangle clientRectangle)
         {
             var arg = new RenderEventArg(renderMode, clientRectangle, this.Camera);

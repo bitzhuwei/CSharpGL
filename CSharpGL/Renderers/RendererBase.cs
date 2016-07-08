@@ -17,6 +17,9 @@ namespace CSharpGL
     public abstract class RendererBase : IRenderable, IDisposable
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Name { get; set; }
 
         /// <summary>
@@ -24,8 +27,12 @@ namespace CSharpGL
         /// </summary>
         public int ID { get; private set; }
 
-        public static int idCounter = 0;
+        private static int idCounter = 0;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("[{0}]: [{1}]", this.ID, this.Name);
@@ -39,7 +46,15 @@ namespace CSharpGL
             this.ID = idCounter++;
         }
 
-        protected bool initialized = false;
+        private bool initialized = false;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool Initialized
+        {
+            get { return initialized; }
+        }
 
         /// <summary>
         /// 初始化此Element，此方法应且只应执行1次。

@@ -8,6 +8,9 @@ namespace CSharpGL
 {
     public partial class Renderer
     {
+        /// <summary>
+        /// 
+        /// </summary>
         protected List<UniformVariable> uniformVariables = new List<UniformVariable>();
 
         //protected OrderedCollection<string> uniformVariableNames = new OrderedCollection<string>(", ");
@@ -35,6 +38,9 @@ namespace CSharpGL
             return gotUniform;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool SetUniform(string varNameInShader, ValueType value)
         {
             bool gotUniform = false;

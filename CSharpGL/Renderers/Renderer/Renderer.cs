@@ -12,13 +12,28 @@ namespace CSharpGL
     public partial class Renderer : RendererBase
     {
         
-        // algorithm for rendering.
+        /// <summary>
+        /// algorithm for rendering.
+        /// </summary>
         public ShaderProgram ShaderProgram { get; protected set; }
 
         // data structure for rendering.
+
+        /// <summary>
+        /// 
+        /// </summary>
         protected VertexArrayObject vertexArrayObject;
+        /// <summary>
+        /// 
+        /// </summary>
         protected PropertyBufferPtr[] propertyBufferPtrs;
+        /// <summary>
+        /// 
+        /// </summary>
         protected IndexBufferPtr indexBufferPtr;
+        /// <summary>
+        /// 
+        /// </summary>
         protected GLSwitchList switchList = new GLSwitchList();
 
         /// <summary>

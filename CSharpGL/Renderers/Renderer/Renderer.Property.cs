@@ -11,6 +11,9 @@ namespace CSharpGL
     public partial class Renderer
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
         public DrawMode Mode
         {
             get
@@ -40,17 +43,26 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public GLSwitchList SwitchList
         {
             get { return switchList; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Editor(typeof(UniformVariableListEditor), typeof(UITypeEditor))]
         public List<UniformVariable> UniformVariables
         {
             get { return uniformVariables; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IndexBufferPtr IndexBufferPtr
         {
             get
