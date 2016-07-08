@@ -3,22 +3,62 @@ using System.Numerics;
 
 namespace SharpFont
 {
-    // handles rasterizing curves to a bitmap
-    // the algorithm is heavily inspired by the FreeType2 renderer; thanks guys!
+    /// <summary>
+    /// Handles rasterizing curves to a bitmap.
+    /// The algorithm is heavily inspired by the FreeType2 renderer; thanks guys!
+    /// </summary>
     unsafe class SharpFontRenderer
     {
-        Surface surface;                // the surface we're currently rendering to
-        int[] scanlines;                // one scanline per Y, points into cell buffer
+        /// <summary>
+        /// the surface we're currently rendering to.
+        /// </summary>
+        Surface surface;                // 
+        /// <summary>
+        /// one scanline per Y, points into cell buffer
+        /// </summary>
+        int[] scanlines;                // 
         int[] curveLevels;
-        Vector2[] bezierArc;            // points on a bezier arc
+        /// <summary>
+        /// points on a bezier arc
+        /// </summary>
+        Vector2[] bezierArc;            // 
         Cell[] cells;
-        Vector2 activePoint;            // subpixel position of active point
-        float activeArea;               // running total of the active cell's area
-        float activeCoverage;           // ditto for coverage
-        int cellX, cellY;               // pixel position of the active cell
-        int cellCount;                  // number of cells in active use
-        int width, height;              // bounds of the glyph surface, in plain old pixels
-        bool cellActive;                // whether the current cell has active data
+        /// <summary>
+        /// subpixel position of active point
+        /// </summary>
+        Vector2 activePoint;            // 
+        /// <summary>
+        /// running total of the active cell's area
+        /// </summary>
+        float activeArea;               // 
+        /// <summary>
+        /// ditto for coverage
+        /// </summary>
+        float activeCoverage;           // 
+        /// <summary>
+        /// pixel position of the active cell
+        /// </summary>
+        int cellX;
+        /// <summary>
+        /// pixel position of the active cell
+        /// </summary>
+        int cellY;               // 
+        /// <summary>
+        /// number of cells in active use
+        /// </summary>
+        int cellCount;                  // 
+        /// <summary>
+        /// bounds of the glyph surface, in plain old pixels
+        /// </summary>
+        int width;
+        /// <summary>
+        /// bounds of the glyph surface, in plain old pixels
+        /// </summary>
+        int height;              // 
+        /// <summary>
+        /// whether the current cell has active data
+        /// </summary>
+        bool cellActive;                // 
 
         public void Start(int width, int height)
         {
