@@ -119,7 +119,11 @@ namespace CSharpGL
             //	Call the base, which will delete the render context handle and window.
             base.Destroy();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         public override void SetDimensions(int width, int height)
         {
             //  Call the base.

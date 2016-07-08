@@ -12,6 +12,9 @@ namespace CSharpGL
     public sealed partial class FontResource : IDisposable
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
         public samplerValue GetSamplerValue()
         {
             return new samplerValue(
@@ -45,6 +48,9 @@ namespace CSharpGL
         ///// 含有各个字形的贴图。
         ///// </summary>
         //private System.Drawing.Bitmap FontBitmap;
+        /// <summary>
+        /// 
+        /// </summary>
         public Size TextureSize { get; set; }
 
         /// <summary>
@@ -57,6 +63,9 @@ namespace CSharpGL
         /// </summary>
         public FullDictionary<char, GlyphInfo> CharInfoDict { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         ~FontResource()
         {
             this.Dispose();

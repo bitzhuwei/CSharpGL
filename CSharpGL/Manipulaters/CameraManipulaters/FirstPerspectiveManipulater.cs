@@ -41,6 +41,9 @@ namespace CSharpGL
         private char upKey;
         private char downKey;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public char FrontKey
         {
             get { return frontKey; }
@@ -51,6 +54,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public char BackKey
         {
             get { return backKey; }
@@ -61,6 +67,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public char LeftKey
         {
             get { return leftKey; }
@@ -71,6 +80,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public char RightKey
         {
             get { return rightKey; }
@@ -81,6 +93,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public char UpKey
         {
             get { return upKey; }
@@ -91,6 +106,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public char DownKey
         {
             get { return downKey; }
@@ -101,15 +119,35 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public float StepLength { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public float HorizontalRotationSpeed { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public float VerticalRotationSpeed { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public MouseButtons BindingMouseButtons { get; set; }
         private MouseButtons lastBindingMouseButtons;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public FirstPerspectiveManipulater()
             : this(0.1f, 0.002f, 0.002f, MouseButtons.Right) { }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stepLength"></param>
+        /// <param name="horizontalRotationSpeed"></param>
+        /// <param name="verticalRotationSpeed"></param>
+        /// <param name="bindingMouseButtons"></param>
         public FirstPerspectiveManipulater(
             float stepLength, float horizontalRotationSpeed,
             float verticalRotationSpeed, MouseButtons bindingMouseButtons)
@@ -132,7 +170,11 @@ namespace CSharpGL
             this.mouseUpEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseUp);
             this.mouseWheelEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseWheel);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="camera"></param>
+        /// <param name="canvas"></param>
         public override void Bind(ICamera camera, GLCanvas canvas)
         {
             if (camera == null || canvas == null) { throw new ArgumentNullException(); }
@@ -147,6 +189,9 @@ namespace CSharpGL
             canvas.MouseWheel += this.mouseWheelEvent;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Unbind()
         {
             if (this.canvas != null && (!this.canvas.IsDisposed))

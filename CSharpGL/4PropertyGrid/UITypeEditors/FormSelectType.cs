@@ -72,7 +72,7 @@ namespace CSharpGL
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
         }
 
-        protected virtual void btnOK_Click(object sender, EventArgs e)
+        private void btnOK_Click(object sender, EventArgs e)
         {
             if (this.lstType.SelectedItem == null)
             {
@@ -85,6 +85,9 @@ namespace CSharpGL
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Type SelectedType { get; set; }
 
         private void lstType_DoubleClick(object sender, EventArgs e)

@@ -9,10 +9,16 @@ using System.Windows.Forms;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class FormIndexBufferPtrBoard : Form
     {
         private IndexBufferPtrController controller;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="indexBufferPtr"></param>
         public FormIndexBufferPtrBoard(IndexBufferPtr indexBufferPtr = null)
         {
             InitializeComponent();
@@ -22,7 +28,10 @@ namespace CSharpGL
                 this.SetTarget(indexBufferPtr);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="indexBufferPtr"></param>
         public void SetTarget(IndexBufferPtr indexBufferPtr)
         {
             if (indexBufferPtr == null) { throw new ArgumentNullException(); }

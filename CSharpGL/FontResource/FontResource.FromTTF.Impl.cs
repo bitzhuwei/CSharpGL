@@ -15,7 +15,13 @@ namespace CSharpGL
     /// </summary>
     public sealed partial class FontResource
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="targets"></param>
+        /// <param name="pixelSize"></param>
+        /// <returns></returns>
         public static FontResource Load(Stream stream, IEnumerable<char> targets, int pixelSize)
         {
             InitStandardWidths();

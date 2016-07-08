@@ -18,6 +18,9 @@ namespace CSharpGL
 
         private FontResource() { }
 
+        /// <summary>
+        /// Default FontResource instance for this render context.
+        /// </summary>
         public static FontResource Default
         {
             get
