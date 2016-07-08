@@ -11,8 +11,14 @@ namespace CSharpGL
     public class FramebufferTexture
     {
         private uint[] m_texture_id = new uint[1];
+        /// <summary>
+        /// 
+        /// </summary>
         public uint TextureId { get { return m_texture_id[0]; } }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public uint TextureTarget { get; private set; }
 
         private uint m_internalfmt;
@@ -20,9 +26,23 @@ namespace CSharpGL
         private bool m_mipmap;
         private bool m_interpol;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int Width { get; private set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int Height { get; private set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="internalfmt"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="format"></param>
+        /// <param name="mipmap"></param>
+        /// <param name="interpol"></param>
         public void setFormat(uint internalfmt, int width, int height, uint format,
             bool mipmap, bool interpol)
         {

@@ -32,6 +32,9 @@ namespace CSharpGL
         };
 
         private uint[] framebufferId = new uint[1];
+        /// <summary>
+        /// 
+        /// </summary>
         public uint FramebufferId
         {
             get { return framebufferId[0]; }
@@ -39,7 +42,13 @@ namespace CSharpGL
 
         private List<FramebufferTexture> m_color = new List<FramebufferTexture>();
         private FramebufferTexture m_depth;
+        /// <summary>
+        /// 
+        /// </summary>
         public int Width { get; private set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int Height { get; private set; }
 
         private static OpenGL.glGenFramebuffersEXT glGenFramebuffers;
@@ -99,7 +108,11 @@ namespace CSharpGL
             /* Uibind FBO */
             glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, 0);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="color"></param>
+        /// <param name="depth"></param>
         public Framebuffer(List<FramebufferTexture> color, bool depth)
         {
             setup(color[0], depth);
@@ -108,11 +121,22 @@ namespace CSharpGL
                 addColorAttachment(color[i]);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="color0"></param>
+        /// <param name="depth"></param>
         public Framebuffer(FramebufferTexture color0, bool depth)
         {
             setup(color0, depth);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="depth"></param>
+        /// <param name="interpol"></param>
         public Framebuffer(int width, int height, bool depth, bool interpol)
         {
             FramebufferTexture texture = new FramebufferTexture();
@@ -120,7 +144,10 @@ namespace CSharpGL
 
             setup(texture, depth);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tex"></param>
         public void addColorAttachment(FramebufferTexture tex)
         {
             glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, framebufferId[0]);
@@ -140,7 +167,13 @@ namespace CSharpGL
             useAllAttachments();
             glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, 0);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="internalfmt"></param>
+        /// <param name="format"></param>
+        /// <param name="mipmap"></param>
+        /// <param name="interpol"></param>
         public void addColorAttachment(uint internalfmt, uint format, bool mipmap, bool interpol)
         {
             FramebufferTexture texture = new FramebufferTexture();
@@ -149,7 +182,11 @@ namespace CSharpGL
 
             addColorAttachment(texture);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <param name="index"></param>
         public void swapColorAttachment(Framebuffer other, int index)
         {
             FramebufferTexture tmp = m_color[index];
@@ -173,20 +210,32 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void useAllAttachments()
         {
             OpenGL.GetDelegateFor<OpenGL.glDrawBuffers>()(m_color.Count, attachment_id);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void bind()
         {
             glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, framebufferId[0]);
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public void release()
         {
             glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, 0);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bits"></param>
         public void clear(uint bits)
         {
             bind();
@@ -194,31 +243,54 @@ namespace CSharpGL
             release();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void bindDraw()
         {
             glBindFramebuffer(OpenGL.GL_DRAW_FRAMEBUFFER, framebufferId[0]);
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public void releaseDraw()
         {
             glBindFramebuffer(OpenGL.GL_DRAW_FRAMEBUFFER, 0);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void bindRead()
         {
             glBindFramebuffer(OpenGL.GL_READ_FRAMEBUFFER, framebufferId[0]);
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public void releaseRead()
         {
             glBindFramebuffer(OpenGL.GL_READ_FRAMEBUFFER, 0);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i"></param>
         public FramebufferTexture color(int i)
         {
             return m_color[i];
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public FramebufferTexture depth() { return m_depth; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         public void resize(int width, int height)
         {
             this.Width = width;

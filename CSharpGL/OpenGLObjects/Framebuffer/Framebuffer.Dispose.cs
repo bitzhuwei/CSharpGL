@@ -9,13 +9,19 @@ namespace CSharpGL
     //TODO: IDisposable
     public partial class Framebuffer : IDisposable
     {
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         ~Framebuffer()
         {
             this.Dispose(false);
