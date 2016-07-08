@@ -12,10 +12,22 @@ namespace CSharpGL
     /// </summary>
     public abstract class Buffer : IDisposable
     {
+        /// <summary>
+        /// 
+        /// </summary>
         protected static OpenGL.glGenBuffers glGenBuffers;
+        /// <summary>
+        /// 
+        /// </summary>
         protected static OpenGL.glBindBuffer glBindBuffer;
+        /// <summary>
+        /// 
+        /// </summary>
         protected static OpenGL.glBufferData glBufferData;
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected UnmanagedArrayBase array = null;
 
         /// <summary>
@@ -140,17 +152,26 @@ namespace CSharpGL
             return bufferPtr;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override string ToString()
         {
             return string.Format("VBO: {0}, usage: {1}", this.array, Usage);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         ~Buffer()
         {
             this.Dispose(false);

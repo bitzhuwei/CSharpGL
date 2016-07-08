@@ -249,8 +249,8 @@ namespace CSharpGL
 
             return result;
         }
-
-        public static unsafe uint ReadPixel(int x, int y, int canvasHeight)
+    
+        internal static unsafe uint ReadPixel(int x, int y, int canvasHeight)
         {
             uint stageVertexId = uint.MaxValue;
             // get coded color.

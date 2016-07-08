@@ -7,11 +7,17 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ClearColorSwitch : GLSwitch
     {
 
         private bool clearColorWhenOn;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool ClearColorWhenOn
         {
             get { return clearColorWhenOn; }
@@ -24,6 +30,9 @@ namespace CSharpGL
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Color ClearColor
         {
             get
@@ -43,8 +52,15 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ClearColorSwitch() : this(Color.Black, true) { }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clearColor"></param>
+        /// <param name="clearColorWhenOn"></param>
         public ClearColorSwitch(Color clearColor, bool clearColorWhenOn)
         {
             this.ClearColor = clearColor;
@@ -53,12 +69,18 @@ namespace CSharpGL
 
         float[] original = new float[4];
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override string ToString()
         {
             return string.Format("glClearColor({0}, {1}, {2}, {3});",
                 clearColor.x, clearColor.y, clearColor.z, clearColor.w);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void SwitchOn()
         {
             OpenGL.GetFloat(GetTarget.ColorClearValue, original);
@@ -67,6 +89,9 @@ namespace CSharpGL
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void SwitchOff()
         {
             OpenGL.ClearColor(original[0], original[1], original[2], original[3]);

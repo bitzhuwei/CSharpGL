@@ -32,7 +32,13 @@ namespace CSharpGL
         /// </summary>
         public int ByteLength { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected static OpenGL.glBindBuffer glBindBuffer;
+        /// <summary>
+        /// 
+        /// </summary>
         protected static OpenGL.glDeleteBuffers glDeleteBuffers;
 
         /// <summary>
@@ -63,12 +69,18 @@ namespace CSharpGL
         /// <param name="shaderProgram">binding shader program for this VBO.</param>
         public abstract void Render(RenderEventArg arg, ShaderProgram shaderProgram);
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         ~BufferPtr()
         {
             this.Dispose(false);
@@ -91,6 +103,9 @@ namespace CSharpGL
             this.disposedValue = true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual void DisposeUnmanagedResources()
         {
             IntPtr context = Win32.wglGetCurrentContext();
@@ -102,6 +117,9 @@ namespace CSharpGL
             this.BufferId = 0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual void DisposeManagedResources()
         {
         }

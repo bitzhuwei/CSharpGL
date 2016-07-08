@@ -5,11 +5,21 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class BlendSwitch : EnableSwitch
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
         public BlendSwitch() : this(BlendingSourceFactor.One, BlendingDestinationFactor.DestinationAlpha) { }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sourceFactor"></param>
+        /// <param name="destFactor"></param>
         public BlendSwitch(BlendingSourceFactor sourceFactor, BlendingDestinationFactor destFactor)
             : base(OpenGL.GL_BLEND, true)
         {
@@ -17,6 +27,9 @@ namespace CSharpGL
             this.DestFactor = destFactor;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override string ToString()
         {
             if (this.EnableCapacity)
@@ -31,6 +44,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void SwitchOn()
         {
             base.SwitchOn();
@@ -41,7 +57,13 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public BlendingSourceFactor SourceFactor { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public BlendingDestinationFactor DestFactor { get; set; }
     }
 
