@@ -10,6 +10,9 @@ namespace CSharpGL
     /// </summary>
     public class GlyphInfo
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly GlyphInfo Default = new GlyphInfo(0, 0, 0, 0);
 
         /// <summary>
@@ -31,7 +34,13 @@ namespace CSharpGL
         /// 此字符的字形高度
         /// </summary>
         public int height;
-        
+        /// <summary>
+        /// 绘制一个字符所需要的所有信息
+        /// </summary>
+        /// <param name="xoffset">此字符的字形在纹理的横向偏移量（左上角）</param>
+        /// <param name="yoffset">此字符的字形在纹理的纵向偏移量（左上角）</param>
+        /// <param name="width">此字符的字形宽度</param>
+        /// <param name="height">此字符的字形高度</param>
         public GlyphInfo(int xoffset, int yoffset, int width, int height)
         {
             this.xoffset = xoffset;
@@ -42,7 +51,9 @@ namespace CSharpGL
 
         //public CharacterInfo() { }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public override string ToString()
         {
             return string.Format("offset:{0}, {1}; size:{2}, {3};", xoffset, yoffset, width, height);

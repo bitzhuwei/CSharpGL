@@ -7,6 +7,9 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract class GLSwitch
     {
@@ -18,12 +21,17 @@ namespace CSharpGL
         /// </summary>
         public bool InUse { get; set; }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public GLSwitch()
         {
             this.InUse = true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void On()
         {
             if (this.InUse)
@@ -33,6 +41,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Off()
         {
             if (this.inUse)
@@ -42,8 +53,14 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected abstract void SwitchOn();
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected abstract void SwitchOff();
     }
 

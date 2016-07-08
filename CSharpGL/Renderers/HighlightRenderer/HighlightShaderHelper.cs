@@ -3,9 +3,15 @@ using System.Linq;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class HighlightShaderHelper //: IDisposable
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static ShaderCode[] GetHighlightShaderCode()
         {
             var shaderCodes = new ShaderCode[2];
@@ -15,6 +21,9 @@ namespace CSharpGL
             return shaderCodes;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static ShaderProgram GetHighlightShaderProgram()
         {
             var shaderCodes = new ShaderCode[2];

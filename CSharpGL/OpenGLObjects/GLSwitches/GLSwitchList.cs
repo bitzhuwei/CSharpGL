@@ -7,6 +7,9 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Editor(typeof(IListEditor<GLSwitch>), typeof(UITypeEditor))]
     public class GLSwitchList : List<GLSwitch>
     {

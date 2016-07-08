@@ -5,6 +5,9 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class HiddenWindowRenderContext : RenderContext
     {
 

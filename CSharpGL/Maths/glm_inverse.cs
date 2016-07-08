@@ -1,8 +1,12 @@
 ﻿namespace CSharpGL
 {
-    // ReSharper disable InconsistentNaming
     public static partial class glm
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
         public static mat2 inverse(mat2 m)
         {
 
@@ -19,6 +23,11 @@
             return Inverse;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
         public static mat3 inverse(mat3 m)
         {
             float OneOverDeterminant = (1f) / (
@@ -40,6 +49,11 @@
             return Inverse;
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
         public static mat4 inverse(mat4 m)
         {
             float Coef00 = m[2][2] * m[3][3] - m[3][2] * m[2][3];
@@ -97,5 +111,4 @@
             return Inverse * OneOverDeterminant;
         }
     }
-    // ReSharper restore InconsistentNaming
 }

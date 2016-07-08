@@ -23,7 +23,9 @@ namespace CSharpGL
     public partial class GLCanvas : UserControl, ISupportInitialize
     {
         private Stopwatch stopWatch = new Stopwatch();
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected RenderContext renderContext;
 
         private bool designMode;
@@ -58,6 +60,9 @@ namespace CSharpGL
 
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual void CreateRenderContext()
         {
             // Initialises OpenGL.
@@ -79,7 +84,10 @@ namespace CSharpGL
             OpenGL.DepthFunc(OpenGL.GL_LEQUAL);
             OpenGL.Hint(OpenGL.GL_PERSPECTIVE_CORRECTION_HINT, OpenGL.GL_NICEST);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
             RenderContext renderContext = this.renderContext;
@@ -116,13 +124,19 @@ namespace CSharpGL
             this.FPS = 1000.0 / stopWatch.Elapsed.TotalMilliseconds;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual void DesignModeRender()
         {
             GLCanvasHelper.ResizeGL(this.Width, this.Height);
 
             GLCanvasHelper.DrawPyramid();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             //base.OnPaintBackground(e);
@@ -133,7 +147,10 @@ namespace CSharpGL
             //this.renderingRequired = true;
             this.Invalidate();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -151,6 +168,10 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnHandleDestroyed(EventArgs e)
         {
             DestroyRenderContext();
@@ -168,6 +189,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public double FPS { get; private set; }
 
         /// <summary>
