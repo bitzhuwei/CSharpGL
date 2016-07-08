@@ -1078,68 +1078,343 @@ namespace CSharpGL
         #region OpenGL 1.4
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sfactorRGB"></param>
+        /// <param name="dfactorRGB"></param>
+        /// <param name="sfactorAlpha"></param>
+        /// <param name="dfactorAlpha"></param>
         public delegate void glBlendFuncSeparate(uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="first"></param>
+        /// <param name="count"></param>
+        /// <param name="primcount"></param>
         public delegate void glMultiDrawArrays(uint mode, int[] first, int[] count, int primcount);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="primcount"></param>
         public delegate void glMultiDrawElements(uint mode, int[] count, uint type, IntPtr indices, int primcount);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pname"></param>
+        /// <param name="parameter"></param>
         public delegate void glPointParameterf(uint pname, float parameter);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glPointParameterfv(uint pname, float[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pname"></param>
+        /// <param name="parameter"></param>
         public delegate void glPointParameteri(uint pname, int parameter);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glPointParameteriv(uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="coord"></param>
         public delegate void glFogCoordf(float coord);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="coord"></param>
         public delegate void glFogCoordfv(float[] coord);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="coord"></param>
         public delegate void glFogCoordd(double coord);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="coord"></param>
         public delegate void glFogCoorddv(double[] coord);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="stride"></param>
+        /// <param name="pointer"></param>
         public delegate void glFogCoordPointer(uint type, int stride, IntPtr pointer);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3b(sbyte red, sbyte green, sbyte blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3bv(sbyte[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3d(double red, double green, double blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3dv(double[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3f(float red, float green, float blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3fv(float[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3i(int red, int green, int blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3iv(int[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3s(short red, short green, short blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3sv(short[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3ub(byte red, byte green, byte blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3ubv(byte[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3ui(uint red, uint green, uint blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3uiv(uint[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3us(ushort red, ushort green, ushort blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3usv(ushort[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="size"></param>
+        /// <param name="type"></param>
+        /// <param name="stride"></param>
+        /// <param name="pointer"></param>
         public delegate void glSecondaryColorPointer(int size, uint type, int stride, IntPtr pointer);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public delegate void glWindowPos2d(double x, double y);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos2dv(double[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public delegate void glWindowPos2f(float x, float y);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos2fv(float[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public delegate void glWindowPos2i(int x, int y);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos2iv(int[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public delegate void glWindowPos2s(short x, short y);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos2sv(short[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public delegate void glWindowPos3d(double x, double y, double z);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos3dv(double[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public delegate void glWindowPos3f(float x, float y, float z);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos3fv(float[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public delegate void glWindowPos3i(int x, int y, int z);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos3iv(int[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public delegate void glWindowPos3s(short x, short y, short z);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos3sv(short[] v);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BLEND_DST_RGB = 0x80C8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BLEND_SRC_RGB = 0x80C9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BLEND_DST_ALPHA = 0x80CA;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BLEND_SRC_ALPHA = 0x80CB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POINT_FADE_THRESHOLD_SIZE = 0x8128;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEPTH_COMPONENT16 = 0x81A5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEPTH_COMPONENT24 = 0x81A6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEPTH_COMPONENT32 = 0x81A7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MIRRORED_REPEAT = 0x8370;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_TEXTURE_LOD_BIAS = 0x84FD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_LOD_BIAS = 0x8501;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INCR_WRAP = 0x8507;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DECR_WRAP = 0x8508;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_DEPTH_SIZE = 0x884A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_COMPARE_MODE = 0x884C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_COMPARE_FUNC = 0x884D;
 
         #endregion
@@ -2261,29 +2536,119 @@ namespace CSharpGL
         #region OpenGL 2.1
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="transpose"></param>
+        /// <param name="value"></param>
         public delegate void glUniformMatrix2x3fv(int location, int count, bool transpose, float[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="transpose"></param>
+        /// <param name="value"></param>
         public delegate void glUniformMatrix3x2fv(int location, int count, bool transpose, float[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="transpose"></param>
+        /// <param name="value"></param>
         public delegate void glUniformMatrix2x4fv(int location, int count, bool transpose, float[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="transpose"></param>
+        /// <param name="value"></param>
         public delegate void glUniformMatrix4x2fv(int location, int count, bool transpose, float[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="transpose"></param>
+        /// <param name="value"></param>
         public delegate void glUniformMatrix3x4fv(int location, int count, bool transpose, float[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="transpose"></param>
+        /// <param name="value"></param>
         public delegate void glUniformMatrix4x3fv(int location, int count, bool transpose, float[] value);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PIXEL_PACK_BUFFER = 0x88EB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PIXEL_UNPACK_BUFFER = 0x88EC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PIXEL_PACK_BUFFER_BINDING = 0x88ED;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PIXEL_UNPACK_BUFFER_BINDING = 0x88EF;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FLOAT_MAT2x3 = 0x8B65;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FLOAT_MAT2x4 = 0x8B66;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FLOAT_MAT3x2 = 0x8B67;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FLOAT_MAT3x4 = 0x8B68;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FLOAT_MAT4x2 = 0x8B69;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FLOAT_MAT4x3 = 0x8B6A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SRGB = 0x8C40;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SRGB8 = 0x8C41;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SRGB_ALPHA = 0x8C42;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SRGB8_ALPHA8 = 0x8C43;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_SRGB = 0x8C48;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_SRGB_ALPHA = 0x8C49;
 
         #endregion
@@ -2291,189 +2656,889 @@ namespace CSharpGL
         #region OpenGL 3.0
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
+        /// <param name="a"></param>
         public delegate void glColorMaski(uint index, bool r, bool g, bool b, bool a);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="data"></param>
         public delegate void glGetBooleani_v(uint target, uint index, bool[] data);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="data"></param>
         public delegate void glGetIntegeri_v(uint target, uint index, int[] data);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
         public delegate void glEnablei(uint target, uint index);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
         public delegate void glDisablei(uint target, uint index);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public delegate bool glIsEnabledi(uint target, uint index);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="primitiveMode"></param>
         public delegate void glBeginTransformFeedback(uint primitiveMode);
+        /// <summary>
+        /// 
+        /// </summary>
         public delegate void glEndTransformFeedback();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="buffer"></param>
+        /// <param name="offset"></param>
+        /// <param name="size"></param>
         public delegate void glBindBufferRange(uint target, uint index, uint buffer, int offset, int size);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="buffer"></param>
         public delegate void glBindBufferBase(uint target, uint index, uint buffer);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="count"></param>
+        /// <param name="varyings"></param>
+        /// <param name="bufferMode"></param>
         public delegate void glTransformFeedbackVaryings(uint program, int count, string[] varyings, uint bufferMode);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="index"></param>
+        /// <param name="bufSize"></param>
+        /// <param name="length"></param>
+        /// <param name="size"></param>
+        /// <param name="type"></param>
+        /// <param name="name"></param>
         public delegate void glGetTransformFeedbackVarying(uint program, uint index, int bufSize, int[] length, int[] size, uint[] type, string name);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="clamp"></param>
         public delegate void glClampColor(uint target, uint clamp);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="mode"></param>
         public delegate void glBeginConditionalRender(uint id, uint mode);
+        /// <summary>
+        /// 
+        /// </summary>
         public delegate void glEndConditionalRender();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="size"></param>
+        /// <param name="type"></param>
+        /// <param name="stride"></param>
+        /// <param name="pointer"></param>
         public delegate void glVertexAttribIPointer(uint index, int size, uint type, int stride, IntPtr pointer);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetVertexAttribIiv(uint index, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetVertexAttribIuiv(uint index, uint pname, uint[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
         public delegate void glVertexAttribI1i(uint index, int x);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public delegate void glVertexAttribI2i(uint index, int x, int y);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public delegate void glVertexAttribI3i(uint index, int x, int y, int z);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="w"></param>
         public delegate void glVertexAttribI4i(uint index, int x, int y, int z, int w);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
         public delegate void glVertexAttribI1ui(uint index, uint x);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public delegate void glVertexAttribI2ui(uint index, uint x, uint y);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public delegate void glVertexAttribI3ui(uint index, uint x, uint y, uint z);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="w"></param>
         public delegate void glVertexAttribI4ui(uint index, uint x, uint y, uint z, uint w);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttribI1iv(uint index, int[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttribI2iv(uint index, int[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttribI3iv(uint index, int[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttribI4iv(uint index, int[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttribI1uiv(uint index, uint[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttribI2uiv(uint index, uint[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttribI3uiv(uint index, uint[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttribI4uiv(uint index, uint[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttribI4bv(uint index, sbyte[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttribI4sv(uint index, short[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttribI4ubv(uint index, byte[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttribI4usv(uint index, ushort[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="location"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetUniformuiv(uint program, int location, uint[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="color"></param>
+        /// <param name="name"></param>
         public delegate void glBindFragDataLocation(uint program, uint color, string name);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public delegate int glGetFragDataLocation(uint program, string name);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="v0"></param>
         public delegate void glUniform1ui(int location, uint v0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="v0"></param>
+        /// <param name="v1"></param>
         public delegate void glUniform2ui(int location, uint v0, uint v1);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="v0"></param>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
         public delegate void glUniform3ui(int location, uint v0, uint v1, uint v2);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="v0"></param>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <param name="v3"></param>
         public delegate void glUniform4ui(int location, uint v0, uint v1, uint v2, uint v3);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
         public delegate void glUniform1uiv(int location, int count, uint[] value);
         public delegate void glUniform2uiv(int location, int count, uint[] value);
+        //
         public delegate void glUniform3uiv(int location, int count, uint[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
         public delegate void glUniform4uiv(int location, int count, uint[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glTexParameterIiv(uint target, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glTexParameterIuiv(uint target, uint pname, uint[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetTexParameterIiv(uint target, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetTexParameterIuiv(uint target, uint pname, uint[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="drawbuffer"></param>
+        /// <param name="value"></param>
         public delegate void glClearBufferiv(uint buffer, int drawbuffer, int[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="drawbuffer"></param>
+        /// <param name="value"></param>
         public delegate void glClearBufferuiv(uint buffer, int drawbuffer, uint[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="drawbuffer"></param>
+        /// <param name="value"></param>
         public delegate void glClearBufferfv(uint buffer, int drawbuffer, float[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="drawbuffer"></param>
+        /// <param name="depth"></param>
+        /// <param name="stencil"></param>
         public delegate void glClearBufferfi(uint buffer, int drawbuffer, float depth, int stencil);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public delegate string glGetStringi(uint name, uint index);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPARE_REF_TO_TEXTURE = 0x884E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CLIP_DISTANCE0 = 0x3000;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CLIP_DISTANCE1 = 0x3001;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CLIP_DISTANCE2 = 0x3002;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CLIP_DISTANCE3 = 0x3003;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CLIP_DISTANCE4 = 0x3004;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CLIP_DISTANCE5 = 0x3005;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CLIP_DISTANCE6 = 0x3006;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CLIP_DISTANCE7 = 0x3007;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_CLIP_DISTANCES = 0x0D32;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAJOR_VERSION = 0x821B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MINOR_VERSION = 0x821C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_NUM_EXTENSIONS = 0x821D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CONTEXT_FLAGS = 0x821E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEPTH_BUFFER = 0x8223;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_STENCIL_BUFFER = 0x8224;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_RED = 0x8225;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_RG = 0x8226;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CONTEXT_FLAG_FORWARD_COMPATIBLE_BIT = 0x0001;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGBA32F = 0x8814;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGB32F = 0x8815;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGBA16F = 0x881A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGB16F = 0x881B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_ATTRIB_ARRAY_INTEGER = 0x88FD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_ARRAY_TEXTURE_LAYERS = 0x88FF;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MIN_PROGRAM_TEXEL_OFFSET = 0x8904;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_TEXEL_OFFSET = 0x8905;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CLAMP_READ_COLOR = 0x891C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FIXED_ONLY = 0x891D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_VARYING_COMPONENTS = 0x8B4B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_1D_ARRAY = 0x8C18;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROXY_TEXTURE_1D_ARRAY = 0x8C19;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_2D_ARRAY = 0x8C1A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROXY_TEXTURE_2D_ARRAY = 0x8C1B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_BINDING_1D_ARRAY = 0x8C1C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_BINDING_2D_ARRAY = 0x8C1D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_R11F_G11F_B10F = 0x8C3A;
         public const uint GL_UNSIGNED_INT_10F_11F_11F_REV = 0x8C3B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGB9_E5 = 0x8C3D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNSIGNED_INT_5_9_9_9_REV = 0x8C3E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_SHARED_SIZE = 0x8C3F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSFORM_FEEDBACK_VARYING_MAX_LENGTH = 0x8C76;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSFORM_FEEDBACK_BUFFER_MODE = 0x8C7F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS = 0x8C80;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSFORM_FEEDBACK_VARYINGS = 0x8C83;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSFORM_FEEDBACK_BUFFER_START = 0x8C84;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSFORM_FEEDBACK_BUFFER_SIZE = 0x8C85;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PRIMITIVES_GENERATED = 0x8C87;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN = 0x8C88;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RASTERIZER_DISCARD = 0x8C89;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS = 0x8C8A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS = 0x8C8B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERLEAVED_ATTRIBS = 0x8C8C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SEPARATE_ATTRIBS = 0x8C8D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSFORM_FEEDBACK_BUFFER = 0x8C8E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSFORM_FEEDBACK_BUFFER_BINDING = 0x8C8F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGBA32UI = 0x8D70;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGB32UI = 0x8D71;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGBA16UI = 0x8D76;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGB16UI = 0x8D77;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGBA8UI = 0x8D7C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGB8UI = 0x8D7D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGBA32I = 0x8D82;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGB32I = 0x8D83;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGBA16I = 0x8D88;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGB16I = 0x8D89;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGBA8I = 0x8D8E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGB8I = 0x8D8F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RED_INTEGER = 0x8D94;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_GREEN_INTEGER = 0x8D95;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BLUE_INTEGER = 0x8D96;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGB_INTEGER = 0x8D98;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RGBA_INTEGER = 0x8D99;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BGR_INTEGER = 0x8D9A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BGRA_INTEGER = 0x8D9B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_1D_ARRAY = 0x8DC0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_2D_ARRAY = 0x8DC1;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_1D_ARRAY_SHADOW = 0x8DC3;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_2D_ARRAY_SHADOW = 0x8DC4;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_CUBE_SHADOW = 0x8DC5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNSIGNED_INT_VEC2 = 0x8DC6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNSIGNED_INT_VEC3 = 0x8DC7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNSIGNED_INT_VEC4 = 0x8DC8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INT_SAMPLER_1D = 0x8DC9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INT_SAMPLER_2D = 0x8DCA;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INT_SAMPLER_3D = 0x8DCB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INT_SAMPLER_CUBE = 0x8DCC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INT_SAMPLER_1D_ARRAY = 0x8DCE;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INT_SAMPLER_2D_ARRAY = 0x8DCF;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNSIGNED_INT_SAMPLER_1D = 0x8DD1;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNSIGNED_INT_SAMPLER_2D = 0x8DD2;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNSIGNED_INT_SAMPLER_3D = 0x8DD3;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNSIGNED_INT_SAMPLER_CUBE = 0x8DD4;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNSIGNED_INT_SAMPLER_1D_ARRAY = 0x8DD6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_UNSIGNED_INT_SAMPLER_2D_ARRAY = 0x8DD7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_QUERY_WAIT = 0x8E13;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_QUERY_NO_WAIT = 0x8E14;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_QUERY_BY_REGION_WAIT = 0x8E15;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_QUERY_BY_REGION_NO_WAIT = 0x8E16;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BUFFER_ACCESS_FLAGS = 0x911F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BUFFER_MAP_LENGTH = 0x9120;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BUFFER_MAP_OFFSET = 0x9121;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_R8 = 0x8229;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_R16 = 0x822A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RG8 = 0x822B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RG16 = 0x822C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_R16F = 0x822D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_R32F = 0x822E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RG16F = 0x822F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RG32F = 0x8230;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_R8I = 0x8231;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_R8UI = 0x8232;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_R16I = 0x8233;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_R16UI = 0x8234;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_R32I = 0x8235;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_R32UI = 0x8236;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RG8I = 0x8237;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RG8UI = 0x8238;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RG16I = 0x8239;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RG16UI = 0x823A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RG32I = 0x823B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RG32UI = 0x823C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RG = 0x8227;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_RG_INTEGER = 0x8228;
 
         #endregion
@@ -4570,80 +5635,415 @@ namespace CSharpGL
         #region GL_ARB_shader_objects
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public delegate void glDeleteObjectARB(uint obj);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pname"></param>
+        /// <returns></returns>
         public delegate uint glGetHandleARB(uint pname);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="containerObj"></param>
+        /// <param name="attachedObj"></param>
         public delegate void glDetachObjectARB(uint containerObj, uint attachedObj);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shaderType"></param>
+        /// <returns></returns>
         public delegate uint glCreateShaderObjectARB(uint shaderType);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shaderObj"></param>
+        /// <param name="count"></param>
+        /// <param name="source"></param>
+        /// <param name="length"></param>
         public delegate void glShaderSourceARB(uint shaderObj, int count, string[] source, ref int length);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shaderObj"></param>
         public delegate void glCompileShaderARB(uint shaderObj);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public delegate uint glCreateProgramObjectARB();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="containerObj"></param>
+        /// <param name="obj"></param>
         public delegate void glAttachObjectARB(uint containerObj, uint obj);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="programObj"></param>
         public delegate void glLinkProgramARB(uint programObj);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="programObj"></param>
         public delegate void glUseProgramObjectARB(uint programObj);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="programObj"></param>
         public delegate void glValidateProgramARB(uint programObj);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="v0"></param>
         public delegate void glUniform1fARB(int location, float v0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="v0"></param>
+        /// <param name="v1"></param>
         public delegate void glUniform2fARB(int location, float v0, float v1);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="v0"></param>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
         public delegate void glUniform3fARB(int location, float v0, float v1, float v2);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="v0"></param>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <param name="v3"></param>
         public delegate void glUniform4fARB(int location, float v0, float v1, float v2, float v3);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="v0"></param>
         public delegate void glUniform1iARB(int location, int v0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="v0"></param>
+        /// <param name="v1"></param>
         public delegate void glUniform2iARB(int location, int v0, int v1);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="v0"></param>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
         public delegate void glUniform3iARB(int location, int v0, int v1, int v2);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="v0"></param>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <param name="v3"></param>
         public delegate void glUniform4iARB(int location, int v0, int v1, int v2, int v3);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
         public delegate void glUniform1fvARB(int location, int count, float[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
         public delegate void glUniform2fvARB(int location, int count, float[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
         public delegate void glUniform3fvARB(int location, int count, float[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
         public delegate void glUniform4fvARB(int location, int count, float[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
         public delegate void glUniform1ivARB(int location, int count, int[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
         public delegate void glUniform2ivARB(int location, int count, int[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
         public delegate void glUniform3ivARB(int location, int count, int[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
         public delegate void glUniform4ivARB(int location, int count, int[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="transpose"></param>
+        /// <param name="value"></param>
         public delegate void glUniformMatrix2fvARB(int location, int count, bool transpose, float[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="transpose"></param>
+        /// <param name="value"></param>
         public delegate void glUniformMatrix3fvARB(int location, int count, bool transpose, float[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="transpose"></param>
+        /// <param name="value"></param>
         public delegate void glUniformMatrix4fvARB(int location, int count, bool transpose, float[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetObjectParameterfvARB(uint obj, uint pname, float[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetObjectParameterivARB(uint obj, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="maxLength"></param>
+        /// <param name="length"></param>
+        /// <param name="infoLog"></param>
         public delegate void glGetInfoLogARB(uint obj, int maxLength, ref int length, string infoLog);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="containerObj"></param>
+        /// <param name="maxCount"></param>
+        /// <param name="count"></param>
+        /// <param name="obj"></param>
         public delegate void glGetAttachedObjectsARB(uint containerObj, int maxCount, ref int count, ref uint obj);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="programObj"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public delegate int glGetUniformLocationARB(uint programObj, string name);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="programObj"></param>
+        /// <param name="index"></param>
+        /// <param name="maxLength"></param>
+        /// <param name="length"></param>
+        /// <param name="size"></param>
+        /// <param name="type"></param>
+        /// <param name="name"></param>
         public delegate void glGetActiveUniformARB(uint programObj, uint index, int maxLength, ref int length, ref int size, ref uint type, string name);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="programObj"></param>
+        /// <param name="location"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetUniformfvARB(uint programObj, int location, float[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="programObj"></param>
+        /// <param name="location"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetUniformivARB(uint programObj, int location, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="maxLength"></param>
+        /// <param name="length"></param>
+        /// <param name="source"></param>
         public delegate void glGetShaderSourceARB(uint obj, int maxLength, ref int length, string source);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_OBJECT_ARB = 0x8B40;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SHADER_OBJECT_ARB = 0x8B48;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_OBJECT_TYPE_ARB = 0x8B4E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_OBJECT_SUBTYPE_ARB = 0x8B4F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FLOAT_VEC2_ARB = 0x8B50;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FLOAT_VEC3_ARB = 0x8B51;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FLOAT_VEC4_ARB = 0x8B52;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INT_VEC2_ARB = 0x8B53;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INT_VEC3_ARB = 0x8B54;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INT_VEC4_ARB = 0x8B55;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BOOL_ARB = 0x8B56;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BOOL_VEC2_ARB = 0x8B57;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BOOL_VEC3_ARB = 0x8B58;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BOOL_VEC4_ARB = 0x8B59;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FLOAT_MAT2_ARB = 0x8B5A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FLOAT_MAT3_ARB = 0x8B5B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FLOAT_MAT4_ARB = 0x8B5C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_1D_ARB = 0x8B5D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_2D_ARB = 0x8B5E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_3D_ARB = 0x8B5F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_CUBE_ARB = 0x8B60;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_1D_SHADOW_ARB = 0x8B61;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_2D_SHADOW_ARB = 0x8B62;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_2D_RECT_ARB = 0x8B63;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLER_2D_RECT_SHADOW_ARB = 0x8B64;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_OBJECT_DELETE_STATUS_ARB = 0x8B80;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_OBJECT_COMPILE_STATUS_ARB = 0x8B81;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_OBJECT_LINK_STATUS_ARB = 0x8B82;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_OBJECT_VALIDATE_STATUS_ARB = 0x8B83;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_OBJECT_INFO_LOG_LENGTH_ARB = 0x8B84;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_OBJECT_ATTACHED_OBJECTS_ARB = 0x8B85;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_OBJECT_ACTIVE_UNIFORMS_ARB = 0x8B86;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_OBJECT_ACTIVE_UNIFORM_MAX_LENGTH_ARB = 0x8B87;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_OBJECT_SHADER_SOURCE_LENGTH_ARB = 0x8B88;
 
         #endregion
@@ -5478,7 +6878,19 @@ namespace CSharpGL
         /// <param name="pname">A token indicating the parameter to be retrieved.</param>
         /// <param name="parameters">The address of a variable to receive the value of the parameter named pname​.</param>
         public delegate void glGetFramebufferParameteriv(uint target, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="framebuffer"></param>
+        /// <param name="pname"></param>
+        /// <param name="param"></param>
         public delegate void glNamedFramebufferParameteriEXT(uint framebuffer, uint pname, int param);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="framebuffer"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetNamedFramebufferParameterivEXT(uint framebuffer, uint pname, int[] parameters);
 
         #endregion
@@ -5506,108 +6918,417 @@ namespace CSharpGL
         public delegate void glGetInternalformati64v(uint target, uint internalformat, uint pname, uint bufSize, Int64[] parameters);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_2D_MULTISAMPLE = 0x9100;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_2D_MULTISAMPLE_ARRAY = 0x9102;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_NUM_SAMPLE_COUNTS = 0x9380;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERNALFORMAT_SUPPORTED = 0x826F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERNALFORMAT_PREFERRED = 0x8270;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERNALFORMAT_RED_SIZE = 0x8271;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERNALFORMAT_GREEN_SIZE = 0x8272;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERNALFORMAT_BLUE_SIZE = 0x8273;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERNALFORMAT_ALPHA_SIZE = 0x8274;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERNALFORMAT_DEPTH_SIZE = 0x8275;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERNALFORMAT_STENCIL_SIZE = 0x8276;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERNALFORMAT_SHARED_SIZE = 0x8277;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERNALFORMAT_RED_TYPE = 0x8278;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERNALFORMAT_GREEN_TYPE = 0x8279;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERNALFORMAT_BLUE_TYPE = 0x827A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERNALFORMAT_ALPHA_TYPE = 0x827B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERNALFORMAT_DEPTH_TYPE = 0x827C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INTERNALFORMAT_STENCIL_TYPE = 0x827D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_WIDTH = 0x827E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_HEIGHT = 0x827F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_DEPTH = 0x8280;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_LAYERS = 0x8281;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_COMBINED_DIMENSIONS = 0x8282;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_COMPONENTS = 0x8283;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEPTH_COMPONENTS = 0x8284;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_STENCIL_COMPONENTS = 0x8285;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_RENDERABLE = 0x8286;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEPTH_RENDERABLE = 0x8287;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_STENCIL_RENDERABLE = 0x8288;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAMEBUFFER_RENDERABLE = 0x8289;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAMEBUFFER_RENDERABLE_LAYERED = 0x828A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAMEBUFFER_BLEND = 0x828B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_READ_PIXELS = 0x828C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_READ_PIXELS_FORMAT = 0x828D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_READ_PIXELS_TYPE = 0x828E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_IMAGE_FORMAT = 0x828F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_IMAGE_TYPE = 0x8290;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_GET_TEXTURE_IMAGE_FORMAT = 0x8291;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_GET_TEXTURE_IMAGE_TYPE = 0x8292;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MIPMAP = 0x8293;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MANUAL_GENERATE_MIPMAP = 0x8294;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_AUTO_GENERATE_MIPMAP = 0x8295;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_ENCODING = 0x8296;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SRGB_READ = 0x8297;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SRGB_WRITE = 0x8298;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SRGB_DECODE_ARB = 0x8299;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FILTER = 0x829A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_TEXTURE = 0x829B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TESS_CONTROL_TEXTURE = 0x829C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TESS_EVALUATION_TEXTURE = 0x829D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_GEOMETRY_TEXTURE = 0x829E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAGMENT_TEXTURE = 0x829F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPUTE_TEXTURE = 0x82A0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_SHADOW = 0x82A1;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_GATHER = 0x82A2;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_GATHER_SHADOW = 0x82A3;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SHADER_IMAGE_LOAD = 0x82A4;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SHADER_IMAGE_STORE = 0x82A5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SHADER_IMAGE_ATOMIC = 0x82A6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_TEXEL_SIZE = 0x82A7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_COMPATIBILITY_CLASS = 0x82A8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_PIXEL_FORMAT = 0x82A9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_PIXEL_TYPE = 0x82AA;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_FORMAT_COMPATIBILITY_TYPE = 0x90C7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SIMULTANEOUS_TEXTURE_AND_DEPTH_TEST = 0x82AC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SIMULTANEOUS_TEXTURE_AND_STENCIL_TEST = 0x82AD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SIMULTANEOUS_TEXTURE_AND_DEPTH_WRITE = 0x82AE;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SIMULTANEOUS_TEXTURE_AND_STENCIL_WRITE = 0x82AF;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_COMPRESSED_BLOCK_WIDTH = 0x82B1;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_COMPRESSED_BLOCK_HEIGHT = 0x82B2;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_COMPRESSED_BLOCK_SIZE = 0x82B3;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CLEAR_BUFFER = 0x82B4;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_VIEW = 0x82B5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_COMPATIBILITY_CLASS = 0x82B6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FULL_SUPPORT = 0x82B7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CAVEAT_SUPPORT = 0x82B8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_CLASS_4_X_32 = 0x82B9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_CLASS_2_X_32 = 0x82BA;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_CLASS_1_X_32 = 0x82BB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_CLASS_4_X_16 = 0x82BC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_CLASS_2_X_16 = 0x82BD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_CLASS_1_X_16 = 0x82BE;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_CLASS_4_X_8 = 0x82BF;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_CLASS_2_X_8 = 0x82C0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_CLASS_1_X_8 = 0x82C1;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_CLASS_11_11_10 = 0x82C2;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_IMAGE_CLASS_10_10_10_2 = 0x82C3;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_128_BITS = 0x82C4;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_96_BITS = 0x82C5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_64_BITS = 0x82C6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_48_BITS = 0x82C7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_32_BITS = 0x82C8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_24_BITS = 0x82C9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_16_BITS = 0x82CA;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_8_BITS = 0x82CB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_S3TC_DXT1_RGB = 0x82CC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_S3TC_DXT1_RGBA = 0x82CD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_S3TC_DXT3_RGBA = 0x82CE;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_S3TC_DXT5_RGBA = 0x82CF;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_RGTC1_RED = 0x82D0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_RGTC2_RG = 0x82D1;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_BPTC_UNORM = 0x82D2;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VIEW_CLASS_BPTC_FLOAT = 0x82D3;
 
         #endregion

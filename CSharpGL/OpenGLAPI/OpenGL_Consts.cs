@@ -1647,9 +1647,15 @@ namespace CSharpGL
         public const uint GL_LUMINANCE_ALPHA = 0x190A;
 
         //   PixelType
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BITMAP = 0x1A00;
 
         //   PolygonMode
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POINT = 0x1B00;
         /// <summary>
         /// 
