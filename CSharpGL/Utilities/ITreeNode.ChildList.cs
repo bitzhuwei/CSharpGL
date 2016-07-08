@@ -8,7 +8,7 @@ using System.Text;
 namespace System
 {
     /// <summary>
-    /// children in <see cref="ITreeNode"/>&lt;<typeparamref name="T"/>&gt;.
+    /// children in <see cref="ITreeNode&lt;T&gt"/>.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     //[Editor(typeof(IListEditor<T>), typeof(UITypeEditor))]
@@ -32,7 +32,7 @@ namespace System
         public T Parent { get; set; }
 
         /// <summary>
-        /// children in <see cref="ITreeNode"/>&lt;<typeparamref name="T"/>&gt;.
+        /// children in <see cref="ITreeNode&lt;T&gt;"/>.
         /// </summary>
         /// <param name="parent"></param>
         public ChildList(T parent = default(T))
@@ -117,7 +117,7 @@ namespace System
         /// <summary>
         /// 将指定集合的元素添加到 System.Collections.Generic.List<T> 的末尾。
         /// </summary>
-        /// <param name="items">一个集合，其元素应被添加到 System.Collections.Generic.List<T> 的末尾。集合自身不能为 null，但它可以包含为null 的元素（如果类型 T 为引用类型）。</param>
+        /// <param name="items">一个集合，其元素应被添加到 System.Collections.Generic.List&lt;T&gt; 的末尾。集合自身不能为 null，但它可以包含为null 的元素（如果类型 T 为引用类型）。</param>
         public void AddRange(IEnumerable<T> items)
         {
             foreach (var item in items)
@@ -141,7 +141,7 @@ namespace System
         }
 
         /// <summary>
-        /// 从 System.Collections.Generic.List<T> 中移除所有元素。
+        /// 从 System.Collections.Generic.List&lt;T&gt;中移除所有元素。
         /// </summary>
         public void Clear()
         {
@@ -165,10 +165,10 @@ namespace System
         }
 
         /// <summary>
-        /// 确定某元素是否在 System.Collections.Generic.List<T> 中。
+        /// 确定某元素是否在 System.Collections.Generic.List&lt;T&gt;中。
         /// </summary>
-        /// <param name="item">要在 System.Collections.Generic.List<T> 中定位的对象。对于引用类型，该值可以为 null。</param>
-        /// <returns>如果在 System.Collections.Generic.List<T> 中找到 item，则为 true，否则为 false。</returns>
+        /// <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
+        /// <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 item，则为 true，否则为 false。</returns>
         public bool Contains(T item)
         {
             return list.Contains(item);
@@ -177,7 +177,7 @@ namespace System
         /// <summary>
         /// 将整个 System.Collections.Generic.List<T> 复制到兼容的一维数组中，从目标数组的指定索引位置开始放置。
         /// </summary>
-        /// <param name="array">作为从 System.Collections.Generic.List<T> 复制的元素的目标位置的一维 System.Array。System.Array必须具有从零开始的索引。</param>
+        /// <param name="array">作为从 System.Collections.Generic.List&lt;T&gt; 复制的元素的目标位置的一维 System.Array。System.Array必须具有从零开始的索引。</param>
         /// <param name="arrayIndex">array 中从零开始的索引，从此处开始复制。</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
@@ -185,7 +185,7 @@ namespace System
         }
 
         /// <summary>
-        /// 获取 System.Collections.Generic.List<T> 中实际包含的元素数。
+        /// 获取 System.Collections.Generic.List&lt;T&gt; 中实际包含的元素数。
         /// </summary>
         public int Count
         {
@@ -222,9 +222,9 @@ namespace System
         }
 
         /// <summary>
-        /// 返回循环访问 System.Collections.Generic.List<T> 的枚举数。
+        /// 返回循环访问 System.Collections.Generic.List&lt;T&gt; 的枚举数。
         /// </summary>
-        /// <returns>用于 System.Collections.Generic.List<T> 的 System.Collections.Generic.List<T>.Enumerator。</returns>
+        /// <returns>用于 System.Collections.Generic.List&lt;T&gt; 的 System.Collections.Generic.List&lt;T&gt;.Enumerator。</returns>
         public IEnumerator<T> GetEnumerator()
         {
             return list.GetEnumerator();

@@ -9,9 +9,9 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 一个四面体的模型。
+    /// Tetrahedron.
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_tetrahedron.jpg
-    /// <para>使用<see cref="OneIndexBuffer"/></para>
+    /// <para>Uses <see cref="OneIndexBufferPtr"/></para>
     /// </summary>
     public class Tetrahedron : IBufferable
     {

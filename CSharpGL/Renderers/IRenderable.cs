@@ -54,15 +54,24 @@ namespace CSharpGL
         public Rectangle CanvasRect { get; set; }
 
         /// <summary>
-        /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking when <see cref="renderMode"/> is <see cref="RenderModes.ColorCodedPicking"/>; otherwise useless.
+        /// Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking when render mode is <see cref="RenderModes.ColorCodedPicking"/>; otherwise useless.
         /// </summary>
         public GeometryType PickingGeometryType { get; private set; }
 
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum RenderModes
     {
+        /// <summary>
+        /// 
+        /// </summary>
         Render,
+        /// <summary>
+        /// 
+        /// </summary>
         ColorCodedPicking,
         //DesignMode,
     }

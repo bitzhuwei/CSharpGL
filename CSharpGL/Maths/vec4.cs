@@ -267,7 +267,6 @@ namespace CSharpGL
         /// <summary>
         /// 归一化向量
         /// </summary>
-        /// <param name="vector"></param>
         /// <returns></returns>
         public vec4 normalize()
         {

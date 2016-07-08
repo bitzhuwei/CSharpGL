@@ -8,13 +8,13 @@ namespace CSharpGL
 {
     /// <summary>
     /// 没有显式的索引。等价于索引数组的值为[0,1,2,2,3,4,5,6,7,8,9...]
-    /// <para>Same effect to <see cref="OneIndexBuffer"/> with content: [0,1,2,2,3,4,5,6,7,8,9...].</para>
+    /// <para>Same effect to <see cref="OneIndexBufferPtr"/> with content: [0,1,2,2,3,4,5,6,7,8,9...].</para>
     /// </summary>
     public sealed class ZeroIndexBuffer : IndexBuffer<byte>
     {
         /// <summary>
         /// 没有显式的索引。等价于索引数组的值为[0,1,2,2,3,4,5,6,7,8,9...]
-        /// <para>Same effect to <see cref="OneIndexBuffer"/> with content: [0,1,2,2,3,4,5,6,7,8,9...].</para>
+        /// <para>Same effect to <see cref="OneIndexBuffer&lt;T&gt;"/> with content: [0,1,2,2,3,4,5,6,7,8,9...].</para>
         /// </summary>
         /// <param name="mode">渲染模式。</param>
         /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>

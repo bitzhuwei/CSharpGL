@@ -62,7 +62,7 @@ namespace CSharpGL
         /// <summary>
         /// 渲染
         /// </summary>
-        /// <param name="renderMode"></param>
+        /// <param name="arg"></param>
         public void Render(RenderEventArg arg)
         {
             if (!initialized) { Initialize(); }

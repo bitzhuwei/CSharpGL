@@ -5,13 +5,15 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class RenderContext : IDisposable
     {
         /// <summary>
         /// Creates the render context provider. Must also create the OpenGL extensions.
         /// </summary>
         /// <param name="openGLVersion">The desired OpenGL version.</param>
-        /// <param name="gl">The OpenGL context.</param>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="bitDepth">The bit depth.</param>
@@ -80,7 +82,6 @@ namespace CSharpGL
         /// move the render context to the OpenGL version originally requested. If this is &gt; 2.1, this
         /// means building a new context. If this fails, we'll have to make do with 2.1.
         /// </summary>
-        /// <param name="gl">The OpenGL instance.</param>
         protected void UpdateContextVersion()
         {
             //  If the request version number is anything up to and including 2.1, standard render contexts

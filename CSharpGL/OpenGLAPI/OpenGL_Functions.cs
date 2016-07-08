@@ -908,7 +908,7 @@ namespace CSharpGL
         /// <param name="pname">The parameter to set.</param>
         /// <param name="parameters">The values to set it to.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glFogfv", SetLastError = true)]
-        public static extern void Fogfv(uint pname, float[] params_notkeyword);
+        public static extern void Fogfv(uint pname, float[] parameters);
 
         /// <summary>
         /// Sets a fog parameter.
@@ -924,7 +924,7 @@ namespace CSharpGL
         /// <param name="pname">The parameter to set.</param>
         /// <param name="parameters">The values to set it to.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glFogiv", SetLastError = true)]
-        public static extern void Fogiv(uint pname, int[] params_notkeyword);
+        public static extern void Fogiv(uint pname, int[] parameters);
 
         /// <summary>
         /// This function sets what defines a front face.
@@ -968,7 +968,7 @@ namespace CSharpGL
         /// <param name="pname">The parameter to query.</param>
         /// <param name="parameters"></param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetBooleanv", SetLastError = true)]
-        public static extern void GetBooleanv(uint pname, byte[] params_notkeyword);
+        public static extern void GetBooleanv(uint pname, byte[] parameters);
 
         /// <summary>
         /// Return the coefficients of the specified clipping plane.
@@ -984,7 +984,7 @@ namespace CSharpGL
         /// <param name="pname">The parameter to query.</param>
         /// <param name="parameters">The buffer to put that data into.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetDoublev", SetLastError = true)]
-        public static extern void GetDoublev(uint pname, double[] params_notkeyword);
+        public static extern void GetDoublev(uint pname, double[] parameters);
 
         /// <summary>
         /// Get the current OpenGL error code.
@@ -999,7 +999,7 @@ namespace CSharpGL
         /// <param name="pname">The parameter to query.</param>
         /// <param name="parameters">The parameters</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetFloatv", SetLastError = true)]
-        public static extern void GetFloatv(uint pname, float[] params_notkeyword);
+        public static extern void GetFloatv(uint pname, float[] parameters);
 
         /// <summary>
         /// Use this function to query OpenGL parameter values.
@@ -1007,7 +1007,7 @@ namespace CSharpGL
         /// <param name="pname">The Parameter to query</param>
         /// <param name="parameters">An array to put the values into.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetIntegerv", SetLastError = true)]
-        public static extern void GetIntegerv(uint pname, int[] params_notkeyword);
+        public static extern void GetIntegerv(uint pname, int[] parameters);
 
         /// <summary>
         /// Return light source parameter values.
@@ -1016,7 +1016,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies a light source parameter for light.</param>
         /// <param name="parameters">Returns the requested data.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetLightfv", SetLastError = true)]
-        public static extern void GetLightfv(uint light, uint pname, float[] params_notkeyword);
+        public static extern void GetLightfv(uint light, uint pname, float[] parameters);
 
         /// <summary>
         /// Return light source parameter values.
@@ -1025,7 +1025,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies a light source parameter for light.</param>
         /// <param name="parameters">Returns the requested data.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetLightiv", SetLastError = true)]
-        public static extern void GetLightiv(uint light, uint pname, int[] params_notkeyword);
+        public static extern void GetLightiv(uint light, uint pname, int[] parameters);
 
         /// <summary>
         /// Return evaluator parameters.
@@ -1061,7 +1061,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the material parameter to return.</param>
         /// <param name="parameters">Returns the requested data.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetMaterialfv", SetLastError = true)]
-        public static extern void GetMaterialfv(uint face, uint pname, float[] params_notkeyword);
+        public static extern void GetMaterialfv(uint face, uint pname, float[] parameters);
 
         /// <summary>
         /// Return material parameters.
@@ -1070,7 +1070,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the material parameter to return.</param>
         /// <param name="parameters">Returns the requested data.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetMaterialiv", SetLastError = true)]
-        public static extern void GetMaterialiv(uint face, uint pname, int[] params_notkeyword);
+        public static extern void GetMaterialiv(uint face, uint pname, int[] parameters);
 
         /// <summary>
         /// Return the specified pixel map.
@@ -1102,7 +1102,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the array or buffer pointer to be returned.</param>
         /// <param name="parameters">Returns the pointer value specified by parameters.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetPointerv", SetLastError = true)]
-        public static extern void GetPointerv(uint pname, int[] params_notkeyword);
+        public static extern void GetPointerv(uint pname, int[] parameters);
 
         /// <summary>
         /// Return the polygon stipple pattern.
@@ -1126,7 +1126,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the	symbolic name of a texture environment parameter.  Accepted values are OpenGL.TEXTURE_ENV_MODE, and OpenGL.TEXTURE_ENV_COLOR.</param>
         /// <param name="parameters">Returns the requested	data.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetTexEnvfv", SetLastError = true)]
-        public static extern void GetTexEnvfv(uint target, uint pname, float[] params_notkeyword);
+        public static extern void GetTexEnvfv(uint target, uint pname, float[] parameters);
 
         /// <summary>
         /// Return texture environment parameters.
@@ -1135,7 +1135,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the	symbolic name of a texture environment parameter.  Accepted values are OpenGL.TEXTURE_ENV_MODE, and OpenGL.TEXTURE_ENV_COLOR.</param>
         /// <param name="parameters">Returns the requested	data.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetTexEnviv", SetLastError = true)]
-        public static extern void GetTexEnviv(uint target, uint pname, int[] params_notkeyword);
+        public static extern void GetTexEnviv(uint target, uint pname, int[] parameters);
 
         /// <summary>
         /// Control the generation of texture coordinates.
@@ -1144,7 +1144,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
         /// <param name="parameters">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetTexGendv", SetLastError = true)]
-        public static extern void GetTexGendv(uint coord, uint pname, double[] params_notkeyword);
+        public static extern void GetTexGendv(uint coord, uint pname, double[] parameters);
 
         /// <summary>
         /// Control the generation of texture coordinates.
@@ -1153,7 +1153,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
         /// <param name="parameters">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetTexGenfv", SetLastError = true)]
-        public static extern void GetTexGenfv(uint coord, uint pname, float[] params_notkeyword);
+        public static extern void GetTexGenfv(uint coord, uint pname, float[] parameters);
 
         /// <summary>
         /// Control the generation of texture coordinates.
@@ -1162,7 +1162,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function. Must be OpenGL.TEXTURE_GEN_MODE.</param>
         /// <param name="parameters">Specifies a single-valued texture generation parameter, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetTexGeniv", SetLastError = true)]
-        public static extern void GetTexGeniv(uint coord, uint pname, int[] params_notkeyword);
+        public static extern void GetTexGeniv(uint coord, uint pname, int[] parameters);
 
         /// <summary>
         /// Return a texture image.
@@ -1183,7 +1183,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the symbolic name of a texture parameter.</param>
         /// <param name="parameters">Returns the requested	data.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetTexLevelParameterfv", SetLastError = true)]
-        public static extern void GetTexLevelParameterfv(uint target, int level, uint pname, float[] params_notkeyword);
+        public static extern void GetTexLevelParameterfv(uint target, int level, uint pname, float[] parameters);
 
         /// <summary>
         /// Return texture parameter values for a specific level of detail.
@@ -1193,7 +1193,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the symbolic name of a texture parameter.</param>
         /// <param name="parameters">Returns the requested	data.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetTexLevelParameteriv", SetLastError = true)]
-        public static extern void GetTexLevelParameteriv(uint target, int level, uint pname, int[] params_notkeyword);
+        public static extern void GetTexLevelParameteriv(uint target, int level, uint pname, int[] parameters);
 
         /// <summary>
         /// Return texture parameter values.
@@ -1202,7 +1202,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the symbolic name of a texture parameter.</param>
         /// <param name="parameters">Returns the texture parameters.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetTexParameterfv", SetLastError = true)]
-        public static extern void GetTexParameterfv(uint target, uint pname, float[] params_notkeyword);
+        public static extern void GetTexParameterfv(uint target, uint pname, float[] parameters);
 
         /// <summary>
         /// Return texture parameter values.
@@ -1211,7 +1211,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the symbolic name of a texture parameter.</param>
         /// <param name="parameters">Returns the texture parameters.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glGetTexParameteriv", SetLastError = true)]
-        public static extern void GetTexParameteriv(uint target, uint pname, int[] params_notkeyword);
+        public static extern void GetTexParameteriv(uint target, uint pname, int[] parameters);
 
         /// <summary>
         /// Specify implementation-specific hints.
@@ -1360,7 +1360,7 @@ namespace CSharpGL
         /// <param name="pname">The name of the parameter.</param>
         /// <param name="parameters">The parameter to set it to.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glLightModelfv", SetLastError = true)]
-        public static extern void LightModelfv(uint pname, float[] params_notkeyword);
+        public static extern void LightModelfv(uint pname, float[] parameters);
 
         /// <summary>
         /// This function sets a parameter of the lighting model.
@@ -1376,7 +1376,7 @@ namespace CSharpGL
         /// <param name="pname">The name of the parameter.</param>
         /// <param name="parameters">The parameter to set it to.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glLightModeliv", SetLastError = true)]
-        public static extern void LightModeliv(uint pname, int[] params_notkeyword);
+        public static extern void LightModeliv(uint pname, int[] parameters);
 
         /// <summary>
         /// Set the parameter (pname) of the light 'light'.
@@ -1394,7 +1394,7 @@ namespace CSharpGL
         /// <param name="pname">The parameter you want to set.</param>
         /// <param name="parameters">The value that you want to set the parameter to.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glLightfv", SetLastError = true)]
-        public static extern void Lightfv(uint light, uint pname, float[] params_notkeyword);
+        public static extern void Lightfv(uint light, uint pname, float[] parameters);
 
         /// <summary>
         /// Set the parameter (pname) of the light 'light'.
@@ -1412,7 +1412,7 @@ namespace CSharpGL
         /// <param name="pname">The parameter you want to set.</param>
         /// <param name="parameters">The parameters.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glLightiv", SetLastError = true)]
-        public static extern void Lightiv(uint light, uint pname, int[] params_notkeyword);
+        public static extern void Lightiv(uint light, uint pname, int[] parameters);
 
         /// <summary>
         /// Specify the line stipple pattern.
@@ -1434,7 +1434,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="listbase">Specifies an integer offset that will be added to glCallLists offsets to generate display-list names. The initial value is 0.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glListBase", SetLastError = true)]
-        public static extern void ListBase(uint base_notkeyword);
+        public static extern void ListBase(uint listbase);
 
         /// <summary>
         /// Call this function to load the identity matrix into the current matrix stack.
@@ -1580,7 +1580,7 @@ namespace CSharpGL
         /// <param name="pname">What parameter you want to set.</param>
         /// <param name="parameters">The value to set 'pname' to.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glMaterialfv", SetLastError = true)]
-        public static extern void Materialfv(uint face, uint pname, float[] params_notkeyword);
+        public static extern void Materialfv(uint face, uint pname, float[] parameters);
 
         /// <summary>
         /// This function sets a material parameter.
@@ -1598,7 +1598,7 @@ namespace CSharpGL
         /// <param name="pname">What parameter you want to set.</param>
         /// <param name="parameters">The value to set 'pname' to.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glMaterialiv", SetLastError = true)]
-        public static extern void Materialiv(uint face, uint pname, int[] params_notkeyword);
+        public static extern void Materialiv(uint face, uint pname, int[] parameters);
 
         /// <summary>
         /// Set the current matrix mode (the matrix that matrix operations will be
@@ -2283,7 +2283,7 @@ namespace CSharpGL
         /// <param name="reference">The function reference.</param>
         /// <param name="mask">The function mask.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glStencilFunc", SetLastError = true)]
-        public static extern void StencilFunc(uint func, int ref_notkeword, uint mask);
+        public static extern void StencilFunc(uint func, int reference, uint mask);
 
         /// <summary>
         /// This function sets the stencil buffer mask.
@@ -2593,7 +2593,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the symbolic name of a texture environment parameter. Accepted values are OpenGL.TEXTURE_ENV_MODE and OpenGL.TEXTURE_ENV_COLOR.</param>
         /// <param name="parameters">Specifies a pointer to a parameter array that contains either a single symbolic constant or an RGBA color.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glTexEnvfv", SetLastError = true)]
-        public static extern void TexEnvfv(uint target, uint pname, float[] params_notkeyword);
+        public static extern void TexEnvfv(uint target, uint pname, float[] parameters);
 
         /// <summary>
         /// Set texture environment parameters.
@@ -2604,7 +2604,7 @@ namespace CSharpGL
         [DllImport(Win32.OpenGL32, EntryPoint = "glTexEnvi", SetLastError = true)]
         public static extern void TexEnvi(uint target, uint pname, int param);
         [DllImport(Win32.OpenGL32, EntryPoint = "glTexEnviv", SetLastError = true)]
-        public static extern void TexEnviv(uint target, uint pname, int[] params_notkeyword);
+        public static extern void TexEnviv(uint target, uint pname, int[] parameters);
 
         /// <summary>
         /// Control the generation of texture coordinates.
@@ -2622,7 +2622,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function or function parameters. Must be OpenGL.TEXTURE_GEN_MODE, OpenGL.OBJECT_PLANE, or OpenGL.EYE_PLANE.</param>
         /// <param name="parameters">Specifies a pointer to an array of texture generation parameters. If pname is OpenGL.TEXTURE_GEN_MODE, then the array must contain a single symbolic constant, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP. Otherwise, params holds the coefficients for the texture-coordinate generation function specified by pname.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glTexGendv", SetLastError = true)]
-        public static extern void TexGendv(uint coord, uint pname, double[] params_notkeyword);
+        public static extern void TexGendv(uint coord, uint pname, double[] parameters);
 
         /// <summary>
         /// Control the generation of texture coordinates.
@@ -2640,7 +2640,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function or function parameters. Must be OpenGL.TEXTURE_GEN_MODE, OpenGL.OBJECT_PLANE, or OpenGL.EYE_PLANE.</param>
         /// <param name="parameters">Specifies a pointer to an array of texture generation parameters. If pname is OpenGL.TEXTURE_GEN_MODE, then the array must contain a single symbolic constant, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP. Otherwise, params holds the coefficients for the texture-coordinate generation function specified by pname.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glTexGenfv", SetLastError = true)]
-        public static extern void TexGenfv(uint coord, uint pname, float[] params_notkeyword);
+        public static extern void TexGenfv(uint coord, uint pname, float[] parameters);
 
         /// <summary>
         /// Control the generation of texture coordinates.
@@ -2665,7 +2665,7 @@ namespace CSharpGL
         /// <param name="pname">Specifies the symbolic name of the texture-coordinate generation function or function parameters. Must be OpenGL.TEXTURE_GEN_MODE, OpenGL.OBJECT_PLANE, or OpenGL.EYE_PLANE.</param>
         /// <param name="parameters">Specifies a pointer to an array of texture generation parameters. If pname is OpenGL.TEXTURE_GEN_MODE, then the array must contain a single symbolic constant, one of OpenGL.OBJECT_LINEAR, OpenGL.EYE_LINEAR, or OpenGL.SPHERE_MAP. Otherwise, params holds the coefficients for the texture-coordinate generation function specified by pname.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glTexGeniv", SetLastError = true)]
-        public static extern void TexGeniv(uint coord, uint pname, int[] params_notkeyword);
+        public static extern void TexGeniv(uint coord, uint pname, int[] parameters);
 
         /// <summary>
         /// This function sets the image for the currently binded texture.
@@ -2726,7 +2726,7 @@ namespace CSharpGL
         /// <param name="pname">The parameter to set.</param>
         /// <param name="parameters">The value to set it to.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glTexParameterfv", SetLastError = true)]
-        public static extern void TexParameterfv(uint target, uint pname, float[] params_notkeyword);
+        public static extern void TexParameterfv(uint target, uint pname, float[] parameters);
 
         /// <summary>
         ///	This function sets the parameters for the currently binded texture object.
@@ -2744,7 +2744,7 @@ namespace CSharpGL
         /// <param name="pname">The parameter to set.</param>
         /// <param name="parameters">The value to set it to.</param>
         [DllImport(Win32.OpenGL32, EntryPoint = "glTexParameteriv", SetLastError = true)]
-        public static extern void TexParameteriv(uint target, uint pname, int[] params_notkeyword);
+        public static extern void TexParameteriv(uint target, uint pname, int[] parameters);
 
         /// <summary>
         /// Specify a two-dimensional texture subimage.

@@ -39,7 +39,6 @@ namespace CSharpGL
         /// <param name="radius"></param>
         /// <param name="latitudeParts">用纬线把地球切割为几块。</param>
         /// <param name="longitudeParts">用经线把地球切割为几块。</param>
-        /// <param name="colorGenerator"></param>
         /// <returns></returns>
         internal SphereModel(float radius = 1.0f, int latitudeParts = 10, int longitudeParts = 40)
         {

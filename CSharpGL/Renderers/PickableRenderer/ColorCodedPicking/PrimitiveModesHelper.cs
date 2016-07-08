@@ -9,7 +9,7 @@ namespace CSharpGL
     static class PrimitiveModesHelper
     {
         /// <summary>
-        /// Convert <see cref="BeginMode"/> to <see cref="GeometryType"/>.
+        /// Convert <see cref="DrawMode"/> to <see cref="GeometryType"/>.
         /// </summary>
         /// <param name="mode"></param>
         /// <returns></returns>

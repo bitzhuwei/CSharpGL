@@ -1111,7 +1111,7 @@ namespace CSharpGL
         /// <para>此函数的'try to remove unused items from rc2ProcDict'部分尚需检测。</para>
         /// </summary>
         /// <param name="callback"></param>
-        /// <param name="userParam">建议使用<see cref="UnmanagedArray.Header"/></param>
+        /// <param name="userParam">建议使用UnmanagedArray.Header</param>
         public static void DebugMessageCallback(DebugProc callback, IntPtr userParam)
         {
             if (innerCallbackProc == null)
@@ -1448,14 +1448,12 @@ namespace CSharpGL
         /// <summary>
         /// Draws the text.
         /// </summary>
-        /// <param name="x">The x.</param>
-        /// <param name="y">The y.</param>
-        /// <param name="r">The r.</param>
-        /// <param name="g">The g.</param>
-        /// <param name="b">The b.</param>
-        /// <param name="faceName">Name of the face.</param>
-        /// <param name="fontSize">Size of the font.</param>
-        /// <param name="text">The text.</param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="color"></param>
+        /// <param name="faceName"></param>
+        /// <param name="fontSize"></param>
+        /// <param name="text"></param>
         public static void DrawText(int x, int y, Color color,
             string faceName, float fontSize, string text)
         {

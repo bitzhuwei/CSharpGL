@@ -9,9 +9,9 @@ namespace CSharpGL
 {
     /// <summary>
     /// 顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
-    /// <para>每个<see cref="PropertyBuffer"/>仅描述其中一个属性。</para>
+    /// <para>每个<see cref="PropertyBuffer&lt;T&gt;"/>仅描述其中一个属性。</para>
     /// <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, ect.).</para>
-    /// <para>Each <see cref="PropertyBuffer"/> describes only 1 property.</para>
+    /// <para>Each <see cref="PropertyBuffer&lt;T&gt;"/> describes only 1 property.</para>
     /// </summary>
     /// <typeparam name="T">此buffer存储的是哪种struct的数据？<para>type of index value.</para></typeparam>
     public class PropertyBuffer<T> : Buffer where T : struct
@@ -19,9 +19,9 @@ namespace CSharpGL
 
         /// <summary>
         /// 顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
-        /// <para>每个<see cref="PropertyBuffer"/>仅描述其中一个属性。</para>
+        /// <para>每个<see cref="PropertyBuffer&lt;T&gt;"/>仅描述其中一个属性。</para>
         /// <para>Vertex Buffer Object that describes vertex' property(position, color, uv coordinate, ect.).</para>
-        /// <para>Each <see cref="PropertyBuffer"/> describes only 1 property.</para>
+        /// <para>Each <see cref="PropertyBuffer&lt;T&gt;"/> describes only 1 property.</para>
         /// </summary>
         /// <param name="varNameInVertexShader">此顶点属性VBO对应于vertex shader中的哪个in变量？<para>Mapping variable's name in vertex shader.</para></param>
         /// <param name="dataSize">second parameter in glVertexAttribPointer(attributeLocation, size, type, false, 0, IntPtr.Zero);
