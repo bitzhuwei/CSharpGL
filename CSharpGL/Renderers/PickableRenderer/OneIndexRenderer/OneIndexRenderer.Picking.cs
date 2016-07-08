@@ -174,9 +174,9 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 遍历以<see cref="lastVerteID"/>为最后一个顶点的图元，
+        /// 遍历以<paramref name="lastVertexId"/>为最后一个顶点的图元，
         /// 瞄准每个图元的索引（例如1个三角形有3个索引）中的最后一个索引，
-        /// 将此索引在<see cref="indexBufferPtr"/>中的索引（位置）收集起来。
+        /// 将此索引在<see cref="IndexBufferPtr"/>中的索引（位置）收集起来。
         /// </summary>
         /// <param name="lastVertexId"></param>
         /// <returns></returns>

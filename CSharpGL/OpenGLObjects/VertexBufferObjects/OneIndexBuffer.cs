@@ -7,14 +7,14 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 用于存储索引的VBO。索引指定了<see cref="PropertyBuffer"/>里各个顶点的渲染顺序。
+    /// 用于存储索引的VBO。索引指定了<see cref="PropertyBuffer&lt;T&gt;"/>里各个顶点的渲染顺序。
     /// Vertex Buffer Object storing vertex' indexes, which indicate the rendering order of each vertex.
     /// </summary>
     /// <typeparam name="T">此buffer存储的是哪种struct的数据？只支持byte, ushort, uint。<para>type of index value. Only support byte, ushort, uint.</para></typeparam>
     public class OneIndexBuffer<T> : IndexBuffer<T> where T : struct
     {
         /// <summary>
-        /// 用于存储索引的VBO。索引指定了<see cref="PropertyBuffer"/>里各个顶点的渲染顺序。
+        /// 用于存储索引的VBO。索引指定了<see cref="PropertyBuffer&lt;T&gt;"/>里各个顶点的渲染顺序。
         /// Vertex Buffer Object storing vertex' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <param name="mode">用哪种方式渲染各个顶点？（OpenGL.GL_TRIANGLES etc.）</param>

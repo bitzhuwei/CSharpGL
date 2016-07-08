@@ -17,14 +17,14 @@ namespace CSharpGL
     public abstract class Manipulater
     {
         /// <summary>
-        /// start to manipulate specified <paramref name="camera"/>.
+        /// start to manipulate specified <paramref name="camera"/> or model.
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="canvas"></param>
         public abstract void Bind(ICamera camera, GLCanvas canvas);
 
         /// <summary>
-        /// stop to manipulate specified <paramref name="camera"/>.
+        /// stop to manipulate camera or model.
         /// </summary>
         public abstract void Unbind();
 

@@ -13,9 +13,9 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// 在所有可能的图元（<see cref="lastVertexId"/>匹配）中，
+        /// 在所有可能的图元（lastVertexId匹配）中，
         /// 逐个测试，找到最接近摄像机的那个图元，
-        /// 返回此图元的最后一个索引在<see cref="indexBufferPtr"/>中的索引（位置）。
+        /// 返回此图元的最后一个索引在<see cref="IndexBufferPtr"/>中的索引（位置）。
         /// </summary>
         /// <param name="lastIndexIdList"></param>
         /// <returns></returns>

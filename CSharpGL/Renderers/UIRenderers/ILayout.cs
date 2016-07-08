@@ -25,7 +25,7 @@ namespace CSharpGL
         System.Windows.Forms.Padding Margin { get; set; }
 
         /// <summary>
-        /// 相对于<see cref="Parent"/>左下角的位置(Left Down location)
+        /// 相对于Parent左下角的位置(Left Down location)
         /// </summary>
         System.Drawing.Point Location { get; set; }
 

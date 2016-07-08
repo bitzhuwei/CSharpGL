@@ -15,7 +15,6 @@ namespace CSharpGL
         /// 根据<see cref="IndexBufferPtr"/>的具体类型获取一个<see cref="PickableRenderer"/>
         /// </summary>
         /// <param name="bufferable"></param>
-        /// <param name="shaderCodes"></param>
         /// <param name="propertyNameMap"></param>
         /// <param name="positionNameInIBufferable"></param>
         /// <param name="switches"></param>
