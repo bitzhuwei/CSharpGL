@@ -3738,7 +3738,13 @@ namespace CSharpGL
         #region GL_ARB_texture_env_dot3
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DOT3_RGB_ARB = 0x86AE;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DOT3_RGBA_ARB = 0x86AF;
 
         #endregion
@@ -3746,6 +3752,9 @@ namespace CSharpGL
         #region GL_ARB_texture_border_clamp
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CLAMP_TO_BORDER_ARB = 0x812D;
 
         #endregion
@@ -3753,15 +3762,43 @@ namespace CSharpGL
         #region GL_ARB_transpose_matrix
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="m"></param>
         public delegate void glLoadTransposeMatrixfARB(float[] m);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="m"></param>
         public delegate void glLoadTransposeMatrixdARB(double[] m);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="m"></param>
         public delegate void glMultTransposeMatrixfARB(float[] m);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="m"></param>
         public delegate void glMultTransposeMatrixdARB(double[] m);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSPOSE_MODELVIEW_MATRIX_ARB = 0x84E3;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSPOSE_PROJECTION_MATRIX_ARB = 0x84E4;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSPOSE_TEXTURE_MATRIX_ARB = 0x84E5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSPOSE_COLOR_MATRIX_ARB = 0x84E6;
 
         #endregion
@@ -3769,7 +3806,13 @@ namespace CSharpGL
         #region GL_SGIS_generate_mipmap
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_GENERATE_MIPMAP_SGIS = 0x8191;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_GENERATE_MIPMAP_HINT_SGIS = 0x8192;
 
         #endregion
@@ -3783,10 +3826,25 @@ namespace CSharpGL
         #region GL_ARB_depth_texture
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEPTH_COMPONENT16_ARB = 0x81A5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEPTH_COMPONENT24_ARB = 0x81A6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEPTH_COMPONENT32_ARB = 0x81A7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_DEPTH_SIZE_ARB = 0x884A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEPTH_TEXTURE_MODE_ARB = 0x884B;
 
         #endregion
@@ -3794,8 +3852,17 @@ namespace CSharpGL
         #region GL_ARB_shadow
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_COMPARE_MODE_ARB = 0x884C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_COMPARE_FUNC_ARB = 0x884D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPARE_R_TO_TEXTURE_ARB = 0x884E;
 
         #endregion
@@ -3803,20 +3870,66 @@ namespace CSharpGL
         #region GL_EXT_fog_coord
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="coord"></param>
         public delegate void glFogCoordfEXT(float coord);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="coord"></param>
         public delegate void glFogCoordfvEXT(float[] coord);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="coord"></param>
         public delegate void glFogCoorddEXT(double coord);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="coord"></param>
         public delegate void glFogCoorddvEXT(double[] coord);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="stride"></param>
+        /// <param name="pointer"></param>
         public delegate void glFogCoordPointerEXT(uint type, int stride, IntPtr pointer);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FOG_COORDINATE_SOURCE = 0x8450;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FOG_COORDINATE = 0x8451;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FRAGMENT_DEPTH = 0x8452;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CURRENT_FOG_COORDINATE = 0x8453;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FOG_COORDINATE_ARRAY_TYPE = 0x8454;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FOG_COORDINATE_ARRAY_STRIDE = 0x8455;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FOG_COORDINATE_ARRAY_POINTER = 0x8456;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FOG_COORDINATE_ARRAY = 0x8457;
 
         #endregion
@@ -3824,7 +3937,22 @@ namespace CSharpGL
         #region GL_EXT_multi_draw_arrays
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="first"></param>
+        /// <param name="count"></param>
+        /// <param name="primcount"></param>
         public delegate void glMultiDrawArraysEXT(uint mode, int[] first, int[] count, int primcount);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="primcount"></param>
         public delegate void glMultiDrawElementsEXT(uint mode, int[] count, uint type, IntPtr indices, int primcount);
 
         #endregion
@@ -3832,13 +3960,35 @@ namespace CSharpGL
         #region GL_ARB_point_parameters
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pname"></param>
+        /// <param name="param"></param>
         public delegate void glPointParameterfARB(uint pname, float param);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glPointParameterfvARB(uint pname, float[] parameters);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POINT_SIZE_MIN_ARB = 0x8126;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POINT_SIZE_MAX_ARB = 0x8127;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POINT_FADE_THRESHOLD_SIZE_ARB = 0x8128;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POINT_DISTANCE_ATTENUATION_ARB = 0x8129;
 
         #endregion
@@ -3846,31 +3996,139 @@ namespace CSharpGL
         #region GL_EXT_secondary_color
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3bEXT(sbyte red, sbyte green, sbyte blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3bvEXT(sbyte[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3dEXT(double red, double green, double blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3dvEXT(double[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3fEXT(float red, float green, float blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3fvEXT(float[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3iEXT(int red, int green, int blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3ivEXT(int[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3sEXT(short red, short green, short blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3svEXT(short[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3ubEXT(byte red, byte green, byte blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3ubvEXT(byte[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3uiEXT(uint red, uint green, uint blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3uivEXT(uint[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public delegate void glSecondaryColor3usEXT(ushort red, ushort green, ushort blue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glSecondaryColor3usvEXT(ushort[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="size"></param>
+        /// <param name="type"></param>
+        /// <param name="stride"></param>
+        /// <param name="pointer"></param>
         public delegate void glSecondaryColorPointerEXT(int size, uint type, int stride, IntPtr pointer);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_SUM = 0x8458;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CURRENT_SECONDARY_COLOR = 0x8459;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SECONDARY_COLOR_ARRAY_SIZE = 0x845A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SECONDARY_COLOR_ARRAY_TYPE = 0x845B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SECONDARY_COLOR_ARRAY_STRIDE = 0x845C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SECONDARY_COLOR_ARRAY_POINTER = 0x845D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SECONDARY_COLOR_ARRAY = 0x845E;
 
         #endregion
@@ -3878,6 +4136,13 @@ namespace CSharpGL
         #region  GL_EXT_blend_func_separate
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sfactorRGB"></param>
+        /// <param name="dfactorRGB"></param>
+        /// <param name="sfactorAlpha"></param>
+        /// <param name="dfactorAlpha"></param>
         public delegate void glBlendFuncSeparateEXT(uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha);
 
         //  Constants
@@ -3899,6 +4164,9 @@ namespace CSharpGL
         #region GL_EXT_texture_lod_bias
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_FILTER_CONTROL = 0x8500;
 
         #endregion
@@ -3906,6 +4174,9 @@ namespace CSharpGL
         #region GL_ARB_texture_mirrored_repeat
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MIRRORED_REPEAT_ARB = 0x8370;
 
         #endregion
@@ -3913,21 +4184,97 @@ namespace CSharpGL
         #region GL_ARB_window_pos
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public delegate void glWindowPos2dARB(double x, double y);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos2dvARB(double[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public delegate void glWindowPos2fARB(float x, float y);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos2fvARB(float[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public delegate void glWindowPos2iARB(int x, int y);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos2ivARB(int[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public delegate void glWindowPos2sARB(short x, short y);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos2svARB(short[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public delegate void glWindowPos3dARB(double x, double y, double z);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos3dvARB(double[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public delegate void glWindowPos3fARB(float x, float y, float z);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos3fvARB(float[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public delegate void glWindowPos3iARB(int x, int y, int z);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos3ivARB(int[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public delegate void glWindowPos3sARB(short x, short y, short z);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public delegate void glWindowPos3svARB(short[] v);
 
         #endregion
@@ -3935,70 +4282,287 @@ namespace CSharpGL
         #region GL_ARB_vertex_buffer_object
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="buffer"></param>
         public delegate void glBindBufferARB(uint target, uint buffer);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="buffers"></param>
         public delegate void glDeleteBuffersARB(int n, uint[] buffers);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="buffers"></param>
         public delegate void glGenBuffersARB(int n, uint[] buffers);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
         public delegate bool glIsBufferARB(uint buffer);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="size"></param>
+        /// <param name="data"></param>
+        /// <param name="usage"></param>
         public delegate void glBufferDataARB(uint target, uint size, IntPtr data, uint usage);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="offset"></param>
+        /// <param name="size"></param>
+        /// <param name="data"></param>
         public delegate void glBufferSubDataARB(uint target, uint offset, uint size, IntPtr data);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="offset"></param>
+        /// <param name="size"></param>
+        /// <param name="data"></param>
         public delegate void glGetBufferSubDataARB(uint target, uint offset, uint size, IntPtr data);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="access"></param>
+        /// <returns></returns>
         public delegate IntPtr glMapBufferARB(uint target, uint access);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public delegate bool glUnmapBufferARB(uint target);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetBufferParameterivARB(uint target, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetBufferPointervARB(uint target, uint pname, IntPtr parameters);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BUFFER_SIZE_ARB = 0x8764;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BUFFER_USAGE_ARB = 0x8765;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_ARRAY_BUFFER_ARB = 0x8892;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_ELEMENT_ARRAY_BUFFER_ARB = 0x8893;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_ARRAY_BUFFER_BINDING_ARB = 0x8894;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_ELEMENT_ARRAY_BUFFER_BINDING_ARB = 0x8895;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_ARRAY_BUFFER_BINDING_ARB = 0x8896;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_NORMAL_ARRAY_BUFFER_BINDING_ARB = 0x8897;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_ARRAY_BUFFER_BINDING_ARB = 0x8898;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_INDEX_ARRAY_BUFFER_BINDING_ARB = 0x8899;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING_ARB = 0x889A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_EDGE_FLAG_ARRAY_BUFFER_BINDING_ARB = 0x889B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING_ARB = 0x889C;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING_ARB = 0x889D;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_WEIGHT_ARRAY_BUFFER_BINDING_ARB = 0x889E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING_ARB = 0x889F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_READ_ONLY_ARB = 0x88B8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_WRITE_ONLY_ARB = 0x88B9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_READ_WRITE_ARB = 0x88BA;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BUFFER_ACCESS_ARB = 0x88BB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BUFFER_MAPPED_ARB = 0x88BC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_BUFFER_MAP_POINTER_ARB = 0x88BD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_STREAM_DRAW_ARB = 0x88E0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_STREAM_READ_ARB = 0x88E1;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_STREAM_COPY_ARB = 0x88E2;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_STATIC_DRAW_ARB = 0x88E4;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_STATIC_READ_ARB = 0x88E5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_STATIC_COPY_ARB = 0x88E6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DYNAMIC_DRAW_ARB = 0x88E8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DYNAMIC_READ_ARB = 0x88E9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DYNAMIC_COPY_ARB = 0x88EA;
         #endregion
 
         #region GL_ARB_occlusion_query
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="ids"></param>
         public delegate void glGenQueriesARB(int n, uint[] ids);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="ids"></param>
         public delegate void glDeleteQueriesARB(int n, uint[] ids);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public delegate bool glIsQueryARB(uint id);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="id"></param>
         public delegate void glBeginQueryARB(uint target, uint id);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
         public delegate void glEndQueryARB(uint target);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetQueryivARB(uint target, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetQueryObjectivARB(uint id, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetQueryObjectuivARB(uint id, uint pname, uint[] parameters);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_QUERY_COUNTER_BITS_ARB = 0x8864;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CURRENT_QUERY_ARB = 0x8865;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_QUERY_RESULT_ARB = 0x8866;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_QUERY_RESULT_AVAILABLE_ARB = 0x8867;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_SAMPLES_PASSED_ARB = 0x8914;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_ANY_SAMPLES_PASSED = 0x8C2F;
 
         #endregion
@@ -4756,19 +5320,61 @@ namespace CSharpGL
 
         #region GL_ARB_ES3_compatibility
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_RGB8_ETC2 = 0x9274;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_SRGB8_ETC2 = 0x9275;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2 = 0x9276;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2 = 0x9277;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_RGBA8_ETC2_EAC = 0x9278;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_SRGB8_ALPHA8_ETC2_EAC = 0x9279;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_R11_EAC = 0x9270;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_SIGNED_R11_EAC = 0x9271;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_RG11_EAC = 0x9272;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COMPRESSED_SIGNED_RG11_EAC = 0x9273;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PRIMITIVE_RESTART_FIXED_INDEX = 0x8D69;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_ANY_SAMPLES_PASSED_CONSERVATIVE = 0x8D6A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_ELEMENT_INDEX = 0x8D6B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TEXTURE_IMMUTABLE_LEVELS = 0x82DF;
 
         #endregion
