@@ -1514,7 +1514,10 @@ namespace CSharpGL
         }
 
         #endregion
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static int[] GetViewport()
         {
             var viewport = new int[4];
@@ -1522,7 +1525,13 @@ namespace CSharpGL
 
             return viewport;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         public static void GetViewport(out int x, out int y, out int width, out int height)
         {
             var viewport = new int[4];
@@ -1532,6 +1541,11 @@ namespace CSharpGL
             width = viewport[2]; height = viewport[3];
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="near"></param>
+        /// <param name="far"></param>
         public static void GetDepthRange(out float near, out float far)
         {
             var depthRange = new float[2];
@@ -1539,7 +1553,11 @@ namespace CSharpGL
 
             near = depthRange[0]; far = depthRange[1];
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
         public static void LineWidthRange(out float min, out float max)
         {
             float[] lineWidthRange = new float[2];
@@ -1547,7 +1565,11 @@ namespace CSharpGL
             min = lineWidthRange[0];
             max = lineWidthRange[1];
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
         public static void PointSizeRange(out float min, out float max)
         {
             float[] pointSizeRange = new float[2];

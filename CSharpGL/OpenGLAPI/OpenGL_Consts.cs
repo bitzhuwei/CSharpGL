@@ -1183,10 +1183,10 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public const uint GL_MAX_PROJECTION_STACK_DEPTH = 0x0D38
+        public const uint GL_MAX_PROJECTION_STACK_DEPTH = 0x0D38;
         /// <summary>
         /// 
-        /// </summary>;
+        /// </summary>
         public const uint GL_MAX_TEXTURE_STACK_DEPTH = 0x0D39;
         /// <summary>
         /// 
