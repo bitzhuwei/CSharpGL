@@ -10,7 +10,13 @@ namespace CSharpGL
     /// </summary>
     public enum ShadeModel : uint
     {
+        /// <summary>
+        /// 
+        /// </summary>
         Flat = OpenGL.GL_FLAT,
-        Smooth = OpenGL.GL_SMOOTH
+        /// <summary>
+        /// 
+        /// </summary>
+        Smooth = OpenGL.GL_SMOOTH,
     }
 }

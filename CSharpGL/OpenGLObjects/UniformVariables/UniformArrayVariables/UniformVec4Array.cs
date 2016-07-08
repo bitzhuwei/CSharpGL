@@ -8,11 +8,17 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// uniform vec4 variable[10];
+    /// </summary>
     public class UniformVec4Array : UniformArrayVariable
     {
 
         private vec4[] value;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public vec4[] Value
         {
             get { return this.value; }
@@ -26,8 +32,16 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// uniform vec4 variable[10];
+        /// </summary>
+        /// <param name="varName"></param>
         public UniformVec4Array(string varName) : base(varName) { }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)
         {
             this.Location = program.SetUniform(VarName, value);

@@ -43,10 +43,17 @@ namespace CSharpGL
             ILayoutHelper.Layout(this);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DoInitialize()
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         protected override void DoRender(RenderEventArg arg)
         {
             this.Layout();

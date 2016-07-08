@@ -61,15 +61,12 @@ namespace CSharpGL
         /// <summary>
         /// Draws the text.
         /// </summary>
-        /// <param name="gl">The gl.</param>
-        /// <param name="x">The x.</param>
-        /// <param name="y">The y.</param9>
-        /// <param name="r">The r.</param>
-        /// <param name="g">The g.</param>
-        /// <param name="b">The b.</param>
-        /// <param name="faceName">Name of the face.</param>
-        /// <param name="fontSize">Size of the font.</param>
-        /// <param name="text">The text.</param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="color"></param>
+        /// <param name="faceName"></param>
+        /// <param name="fontSize"></param>
+        /// <param name="text"></param>
         public static void DrawText(int x, int y, Color color, string faceName, float fontSize, string text)
         {
             IntPtr renderContext = Win32.wglGetCurrentContext();

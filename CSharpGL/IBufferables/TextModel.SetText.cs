@@ -5,13 +5,23 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class TextModel
     {
 
         private string content = string.Empty;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Text { get { return content; } }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="fontResource"></param>
         public unsafe void SetText(string content, FontResource fontResource)
         {
             if (string.IsNullOrEmpty(content))

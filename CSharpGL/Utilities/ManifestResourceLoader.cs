@@ -81,6 +81,12 @@ namespace System
             location = string.Format("{0}.{1}", executingAssembly.GetName().Name, pathToDots);
         }
 
+        /// <summary>
+        /// Loads bitmap in the manifest resource.
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="stackIndex"></param>
+        /// <returns></returns>
         public static Bitmap LoadBitmap(string filename, int stackIndex = 2)
         {
             Assembly executingAssembly;

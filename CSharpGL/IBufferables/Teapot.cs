@@ -7,26 +7,43 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 经典的茶壶模型
-    /// <para>使用<see cref="OneIndexBuffer"/></para>
+    /// Teapot.
+    /// <para>Uses <see cref="OneIndexBuffer&lt;T&gt;"/></para>
     /// </summary>
     public class Teapot : IBufferable
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Teapot()
         {
             this.model = new TeapotModel();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const string strPosition = "position";
+        /// <summary>
+        /// 
+        /// </summary>
         public const string strColor = "color";
+        /// <summary>
+        /// 
+        /// </summary>
         public const string strNormal = "normal";
         private TeapotModel model;
         Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
-        PropertyBufferPtr positionBufferPtr;
-        PropertyBufferPtr colorBufferPtr;
-        PropertyBufferPtr normalBufferPtr;
-
+        private PropertyBufferPtr positionBufferPtr;
+        private PropertyBufferPtr colorBufferPtr;
+        private PropertyBufferPtr normalBufferPtr;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bufferName"></param>
+        /// <param name="varNameInShader"></param>
+        /// <returns></returns>
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
@@ -97,7 +114,10 @@ namespace CSharpGL
                 return null;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IndexBufferPtr GetIndex()
         {
             if (indexBufferPtr == null)

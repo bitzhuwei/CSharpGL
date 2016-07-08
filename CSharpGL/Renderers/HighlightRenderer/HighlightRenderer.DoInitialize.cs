@@ -11,10 +11,12 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// <see cref="this.oneIndexBufferPtr"/>实际存在多少个元素。
+        /// <see cref="OneIndexBufferPtr"/>实际存在多少个元素。
         /// </summary>
         protected int maxElementCount = 0;
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DoInitialize()
         {
             base.DoInitialize();

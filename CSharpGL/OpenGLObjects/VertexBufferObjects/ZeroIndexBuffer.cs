@@ -46,6 +46,10 @@ namespace CSharpGL
             // no need to alloc memory for this buffer.
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         protected override BufferPtr Upload2GPU()
         {
             ZeroIndexBufferPtr bufferPtr = new ZeroIndexBufferPtr(

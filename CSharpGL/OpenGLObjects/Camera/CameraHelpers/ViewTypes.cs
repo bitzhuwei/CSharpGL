@@ -11,12 +11,33 @@ namespace CSharpGL
     /// </summary>
     public enum ViewTypes
     {
+        /// <summary>
+        /// 
+        /// </summary>
         UserView,
+        /// <summary>
+        /// 
+        /// </summary>
         Top,
+        /// <summary>
+        /// 
+        /// </summary>
         Bottom,
+        /// <summary>
+        /// 
+        /// </summary>
         Left,
+        /// <summary>
+        /// 
+        /// </summary>
         Right,
+        /// <summary>
+        /// 
+        /// </summary>
         Front,
+        /// <summary>
+        /// 
+        /// </summary>
         Back,
     }
 }

@@ -53,7 +53,7 @@ namespace CSharpGL
         public uint FontTextureId { get; set; }
 
         /// <summary>
-        /// 记录每个字符在<see cref="FontBitmap"/>里的偏移量及其字形的宽高。
+        /// 记录每个字符在<see cref="FontResource"/>里的偏移量及其字形的宽高。
         /// </summary>
         public FullDictionary<char, GlyphInfo> CharInfoDict { get; private set; }
 

@@ -40,7 +40,10 @@ namespace CSharpGL
 
             this.Renderer = renderer;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         protected override void DoRender(RenderEventArg arg)
         {
             ICamera camera = arg.Camera;

@@ -15,11 +15,14 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// shader中的一个uniform变量。
+        /// shader中的一个数组类型的uniform变量。
         /// </summary>
         /// <param name="varName"></param>
         public UniformArrayVariable(string varName) : base(varName) { }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("{0}: {1}", this.GetType().Name, this.VarName);

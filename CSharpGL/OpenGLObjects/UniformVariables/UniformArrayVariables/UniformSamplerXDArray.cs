@@ -8,12 +8,16 @@ using System.Text;
 
 namespace CSharpGL
 {
-
+    /// <summary>
+    /// uniform samplerXD variable[10];
+    /// </summary>
     public class UniformSamplerArray : UniformArrayVariable
     {
 
         private samplerValue[] value;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public samplerValue[] Value
         {
             get { return this.value; }
@@ -26,11 +30,17 @@ namespace CSharpGL
                 }
             }
         }
-
+        /// <summary>
+        /// uniform samplerXD variable[10];
+        /// </summary>
+        /// <param name="varName"></param>
         public UniformSamplerArray(string varName) : base(varName) { }
 
         static OpenGL.glActiveTexture glActiveTexture = null;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)
         {
             if (glActiveTexture == null)
@@ -44,7 +54,10 @@ namespace CSharpGL
                 this.Location = program.SetUniform(VarName, this.value[i].activeTextureIndex);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
         public override void ResetUniform(ShaderProgram program)
         {
             //base.ResetUniform(program);

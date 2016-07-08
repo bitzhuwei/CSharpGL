@@ -8,11 +8,16 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// uniform mat2 variable;
+    /// </summary>
     public class UniformMat2 : UniformSingleVariable
     {
 
         private mat2 value;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public mat2 Value
         {
             get { return this.value; }
@@ -25,11 +30,21 @@ namespace CSharpGL
                 }
             }
         }
-
+        /// <summary>
+        /// uniform mat2 variable;
+        /// </summary>
+        /// <param name="varName"></param>
         public UniformMat2(string varName) : base(varName) { }
-
+        /// <summary>
+        /// uniform mat2 variable;
+        /// </summary>
+        /// <param name="varName"></param>
+        /// <param name="value"></param>
         public UniformMat2(string varName, mat2 value) : base(varName) { this.Value = value; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)
         {
             this.Location = program.SetUniformMatrix2(VarName, this.value.to_array());

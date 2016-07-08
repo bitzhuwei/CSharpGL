@@ -9,9 +9,9 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 一个球体的模型。
+    /// Sphere.
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_sphere.jpg
-    /// <para>使用<see cref="OneIndexBuffer"/></para>
+    /// <para>Uses <see cref="OneIndexBuffer&lt;T&gt;"/></para>
     /// </summary>
     public class Sphere : IBufferable
     {
@@ -30,16 +30,33 @@ namespace CSharpGL
             this.model = new SphereModel(radius, latitudeParts, longitudeParts);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const string strPosition = "position";
+        /// <summary>
+        /// 
+        /// </summary>
         public const string strNormal = "normal";
+        /// <summary>
+        /// 
+        /// </summary>
         public const string strColor = "color";
+        /// <summary>
+        /// 
+        /// </summary>
         public const string strUV = "uv";
         private PropertyBufferPtr positionBufferPtr;
         private PropertyBufferPtr normalBufferPtr;
         private PropertyBufferPtr colorBufferPtr;
         private PropertyBufferPtr uvBufferPtr;
         private IndexBufferPtr indexBufferPtr = null;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bufferName"></param>
+        /// <param name="varNameInShader"></param>
+        /// <returns></returns>
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
@@ -128,7 +145,10 @@ namespace CSharpGL
             }
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IndexBufferPtr GetIndex()
         {
             if (indexBufferPtr == null)

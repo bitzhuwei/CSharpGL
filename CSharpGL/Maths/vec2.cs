@@ -10,9 +10,20 @@ namespace CSharpGL
     [TypeConverter(typeof(Vec2TypeConverter))]
     public struct vec2 : IEquatable<vec2>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public float x;
+        /// <summary>
+        /// 
+        /// </summary>
         public float y;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public float this[int index]
         {
             get
@@ -29,107 +40,193 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s"></param>
         public vec2(float s)
         {
             x = y = s;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public vec2(float x, float y)
         {
             this.x = x;
             this.y = y;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public vec2(vec2 v)
         {
             this.x = v.x;
             this.y = v.y;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public vec2(vec3 v)
         {
             this.x = v.x;
             this.y = v.y;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <returns></returns>
         public static vec2 operator -(vec2 lhs)
         {
             return new vec2(-lhs.x, -lhs.y);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static vec2 operator +(vec2 lhs, vec2 rhs)
         {
             return new vec2(lhs.x + rhs.x, lhs.y + rhs.y);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static vec2 operator +(vec2 lhs, float rhs)
         {
             return new vec2(lhs.x + rhs, lhs.y + rhs);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static vec2 operator -(vec2 lhs, vec2 rhs)
         {
             return new vec2(lhs.x - rhs.x, lhs.y - rhs.y);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static vec2 operator -(vec2 lhs, float rhs)
         {
             return new vec2(lhs.x - rhs, lhs.y - rhs);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static vec2 operator *(vec2 self, float s)
         {
             return new vec2(self.x * s, self.y * s);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static vec2 operator *(float lhs, vec2 rhs)
         {
             return new vec2(rhs.x * lhs, rhs.y * lhs);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static vec2 operator *(vec2 lhs, vec2 rhs)
         {
             return new vec2(rhs.x * lhs.x, rhs.y * lhs.y);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static vec2 operator /(vec2 lhs, float rhs)
         {
             return new vec2(lhs.x / rhs, lhs.y / rhs);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public float dot(vec2 rhs)
         {
             var result = this.x * rhs.x + this.y * rhs.y;
             return result;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public float length()
         {
             double result = Math.Sqrt(this.x * this.x + this.y * this.y);
 
             return (float)result;
-
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static bool operator ==(vec2 lhs, vec2 rhs)
         {
             return (lhs.x == rhs.x && lhs.y == rhs.y);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static bool operator !=(vec2 lhs, vec2 rhs)
         {
             return (lhs.x != rhs.x || lhs.y != rhs.y);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             return (obj is vec2) && (this.Equals((vec2)obj));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return string.Format("{0}#{1}", x, y).GetHashCode();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public float[] to_array()
         {
             return new[] { x, y };
@@ -146,7 +243,10 @@ namespace CSharpGL
 
             return new vec2(x / frt, y / frt);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             //return string.Format("{0:0.00},{1:0.00}", x, y);
@@ -162,7 +262,11 @@ namespace CSharpGL
         }
 
         static readonly char[] separator = new char[] { ' ', ',' };
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool Equals(vec2 other)
         {
             return (this.x == other.x && this.y == other.y);

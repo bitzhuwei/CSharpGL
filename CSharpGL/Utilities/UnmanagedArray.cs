@@ -69,6 +69,9 @@ namespace System
         //    }
         //}
 
+        /// <summary>
+        /// Dispose unmanaged resources
+        /// </summary>
         protected override void DisposeUnmanagedResources()
         {
             UnmanagedArray<T>.thisTypeDisposedCount++;
@@ -207,6 +210,9 @@ namespace System
 
         #endregion
 
+        /// <summary>
+        /// Dispose unmanaged resources
+        /// </summary>
         protected virtual void DisposeUnmanagedResources()
         {
             Marshal.FreeHGlobal(this.Header);
@@ -214,10 +220,18 @@ namespace System
             this.Header = IntPtr.Zero;
         }
 
+        /// <summary>
+        /// Dispose managed resources
+        /// </summary>
         protected virtual void DisposeManagedResources()
         {
         }
 
+        /// <summary>
+        /// return string.Format("head: {0}, element count: {1}, byte length: {2}",
+        ///     this.Header, this.Length, this.ByteLength);
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("head: {0}, element count: {1}, byte length: {2}",

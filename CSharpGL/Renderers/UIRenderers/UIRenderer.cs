@@ -9,7 +9,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 支持UI布局的渲染器
+    /// 支持2D UI布局的渲染器
     /// </summary>
     public class UIRenderer : RendererBase, ILayout
     {
@@ -17,13 +17,26 @@ namespace CSharpGL
         private ScissorTestSwitch scissorTestSwitch;
         private GLSwitchList switchList = new GLSwitchList();
 
+        /// <summary>
+        /// 
+        /// </summary>
         public GLSwitchList SwitchList
         {
             get { return switchList; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public RendererBase Renderer { get; protected set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="anchor"></param>
+        /// <param name="margin"></param>
+        /// <param name="size"></param>
+        /// <param name="zNear"></param>
+        /// <param name="zFar"></param>
         public UIRenderer(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
@@ -34,19 +47,43 @@ namespace CSharpGL
             this.Size = size; this.zNear = zNear; this.zFar = zFar;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public System.Windows.Forms.AnchorStyles Anchor { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public System.Windows.Forms.Padding Margin { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public System.Drawing.Point Location { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public System.Drawing.Size Size { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public System.Drawing.Size ParentLastSize { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int zNear { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int zFar { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DoInitialize()
         {
             this.viewportSwitch = new ViewportSwitch();
@@ -59,6 +96,10 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         protected override void DoRender(RenderEventArg arg)
         {
             RendererBase renderer = this.Renderer;
@@ -89,6 +130,9 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DisposeUnmanagedResources()
         {
             RendererBase renderer = this.Renderer;
@@ -98,12 +142,21 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public UIRenderer Self { get { return this; } }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public UIRenderer Parent { get; set; }
 
         //ChildList<UIRenderer> children;
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Editor(typeof(IListEditor<UIRenderer>), typeof(UITypeEditor))]
         public ChildList<UIRenderer> Children { get; private set; }
     }

@@ -8,11 +8,16 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// uniform float variable;
+    /// </summary>
     public class UniformFloat : UniformSingleVariable
     {
 
         private float value;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public float Value
         {
             get { return this.value; }
@@ -26,10 +31,22 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// uniform float variable;
+        /// </summary>
+        /// <param name="varName"></param>
         public UniformFloat(string varName) : base(varName) { }
 
+        /// <summary>
+        /// uniform float variable;
+        /// </summary>
+        /// <param name="varName"></param>
+        /// <param name="value"></param>
         public UniformFloat(string varName, float value) : base(varName) { this.Value = value; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)
         {
             this.Location = program.SetUniform(VarName, value);

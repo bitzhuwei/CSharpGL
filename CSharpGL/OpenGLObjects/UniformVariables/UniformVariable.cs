@@ -59,6 +59,10 @@ namespace CSharpGL
             this.Updated = false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("{0}: {1}", this.GetType(), this.VarName);

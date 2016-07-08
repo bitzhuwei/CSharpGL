@@ -8,12 +8,16 @@ using System.Text;
 
 namespace CSharpGL
 {
-
+    /// <summary>
+    /// uniform samplerXD variable;
+    /// </summary>
     public class UniformSampler : UniformSingleVariable
     {
 
         private samplerValue value;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public samplerValue Value
         {
             get { return this.value; }
@@ -26,13 +30,23 @@ namespace CSharpGL
                 }
             }
         }
-
+        /// <summary>
+        /// uniform samplerXD variable;
+        /// </summary>
+        /// <param name="varName"></param>
         public UniformSampler(string varName) : base(varName) { }
-
+        /// <summary>
+        /// uniform samplerXD variable;
+        /// </summary>
+        /// <param name="varName"></param>
+        /// <param name="value"></param>
         public UniformSampler(string varName, samplerValue value) : base(varName) { this.Value = value; }
 
         static OpenGL.glActiveTexture glActiveTexture = null;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)
         {
             if (glActiveTexture == null)
@@ -42,7 +56,10 @@ namespace CSharpGL
             OpenGL.BindTexture(value.target, value.TextureId);
             this.Location = program.SetUniform(VarName, value.activeTextureIndex);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="program"></param>
         public override void ResetUniform(ShaderProgram program)
         {
             //base.ResetUniform(program);
@@ -82,12 +99,16 @@ namespace CSharpGL
         }
 
     }
-
+    /// <summary>
+    /// value for setting/resetting uniform samplerXD variable.
+    /// </summary>
     [TypeConverter(typeof(SamplerValueTypeConverter))]
-    public struct samplerValue
+    public struct samplerValue : IEquatable<samplerValue>
     {
         internal uint target;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public BindTextureTarget Target
         {
             get { return (BindTextureTarget)target; }
@@ -95,7 +116,9 @@ namespace CSharpGL
         }
 
         private uint textureId;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public uint TextureId
         {
             get { return textureId; }
@@ -103,7 +126,9 @@ namespace CSharpGL
         }
 
         internal uint activeTextureIndex;
-
+        /// <summary>
+        /// OpenGL.GL_TEXTURE0, OpenGL.GL_TEXTURE1, OpenGL.GL_TEXTURE2, ...
+        /// </summary>
         public uint ActiveTextureIndex
         {
             get { return (activeTextureIndex + OpenGL.GL_TEXTURE0); }
@@ -111,7 +136,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        ///
+        /// value for setting/resetting uniform samplerXD variable.
         /// </summary>
         /// <param name="target"></param>
         /// <param name="textureId"></param>
@@ -134,12 +159,20 @@ namespace CSharpGL
 
             return new samplerValue(target, textureId, activeTextureIndex);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("texture target: [{0}] texture id:[{1}] active texture index:[{2}]", target, textureId, activeTextureIndex);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
         public static bool operator ==(samplerValue left, samplerValue right)
         {
             //object leftObj = left, rightObj = right;
@@ -155,29 +188,51 @@ namespace CSharpGL
 
             return left.Equals(right);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
         public static bool operator !=(samplerValue left, samplerValue right)
         {
-            return !(left == right);
+            return !left.Equals(right);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var p = (samplerValue)obj;
-
-            return (
-                this.target == p.target
-                && this.activeTextureIndex == p.activeTextureIndex
-                && this.textureId == p.textureId);
+            return (obj is samplerValue) && (this.Equals((samplerValue)obj));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
-            return this.ToString().GetHashCode();
+            return string.Format("{0}#{1}#{2}", target, textureId, activeTextureIndex).GetHashCode();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(samplerValue other)
+        {
+            return (
+                this.target == other.target
+                && this.textureId == other.textureId
+                && this.activeTextureIndex == other.activeTextureIndex
+                );
+        }
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
     public enum BindTextureTarget : uint
     {
         Texture1D = OpenGL.GL_TEXTURE_1D,

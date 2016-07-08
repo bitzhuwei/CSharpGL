@@ -25,13 +25,13 @@ namespace CSharpGL
         System.Windows.Forms.Padding Margin { get; set; }
 
         /// <summary>
-        /// 相对于<see cref="Container"/>左下角的位置(Left Down location)
+        /// 相对于<see cref="Parent"/>左下角的位置(Left Down location)
         /// </summary>
         System.Drawing.Point Location { get; set; }
 
         /// <summary>
-        /// Stores width when <see cref="OpenGLUIRect.Anchor"/>.Left &amp; <see cref="OpenGLUIRect.Anchor"/>.Right is <see cref="OpenGLUIRect.Anchor"/>.None.
-        /// <para> and height when <see cref="OpenGLUIRect.Anchor"/>.Top &amp; <see cref="OpenGLUIRect.Anchor"/>.Bottom is <see cref="OpenGLUIRect.Anchor"/>.None.</para>
+        /// Stores width when <see cref="Anchor"/>.Left &amp; <see cref="Anchor"/>.Right is <see cref="Anchor"/>.None.
+        /// <para> and height when <see cref="Anchor"/>.Top &amp; <see cref="Anchor"/>.Bottom is <see cref="Anchor"/>.None.</para>
         /// </summary>
         System.Drawing.Size Size { get; set; }
 

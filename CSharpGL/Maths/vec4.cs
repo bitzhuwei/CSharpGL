@@ -11,11 +11,32 @@ namespace CSharpGL
     [TypeConverter(typeof(Vec4TypeConverter))]
     public struct vec4 : IEquatable<vec4>
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
         public float x;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public float y;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public float z;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public float w;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public float this[int index]
         {
             get
@@ -36,11 +57,22 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s"></param>
         public vec4(float s)
         {
             x = y = z = w = s;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="w"></param>
         public vec4(float x, float y, float z, float w)
         {
             this.x = x;
@@ -49,6 +81,10 @@ namespace CSharpGL
             this.w = w;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
         public vec4(vec4 v)
         {
             this.x = v.x;
@@ -57,6 +93,11 @@ namespace CSharpGL
             this.w = v.w;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="xyz"></param>
+        /// <param name="w"></param>
         public vec4(vec3 xyz, float w)
         {
             this.x = xyz.x;
@@ -65,11 +106,22 @@ namespace CSharpGL
             this.w = w;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <returns></returns>
         public static vec4 operator -(vec4 lhs)
         {
             return new vec4(-lhs.x, -lhs.y, -lhs.z, -lhs.w);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static vec4 operator +(vec4 lhs, vec4 rhs)
         {
             return new vec4(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z, lhs.w + rhs.w);
@@ -85,37 +137,76 @@ namespace CSharpGL
         //    return new vec4(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs, lhs.w - rhs);
         //}
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static vec4 operator -(vec4 lhs, vec4 rhs)
         {
             return new vec4(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z, lhs.w - rhs.w);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static vec4 operator *(vec4 self, float s)
         {
             return new vec4(self.x * s, self.y * s, self.z * s, self.w * s);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static vec4 operator *(float lhs, vec4 rhs)
         {
             return new vec4(rhs.x * lhs, rhs.y * lhs, rhs.z * lhs, rhs.w * lhs);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static vec4 operator *(vec4 lhs, vec4 rhs)
         {
             return new vec4(rhs.x * lhs.x, rhs.y * lhs.y, rhs.z * lhs.z, rhs.w * lhs.w);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static vec4 operator /(vec4 lhs, float rhs)
         {
             return new vec4(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs, lhs.w / rhs);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public float dot(vec4 rhs)
         {
             var result = this.x * rhs.x + this.y * rhs.y + this.z * rhs.z + this.w * rhs.w;
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public float length()
         {
             double result = Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w);
@@ -123,26 +214,51 @@ namespace CSharpGL
             return (float)result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static bool operator ==(vec4 lhs, vec4 rhs)
         {
             return (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.w == rhs.w);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static bool operator !=(vec4 lhs, vec4 rhs)
         {
             return (lhs.x != rhs.x || lhs.y != rhs.y || lhs.z != rhs.z || lhs.w != rhs.w);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             return (obj is vec4) && (this.Equals((vec4)obj));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return string.Format("{0}#{1}#{2}#{3}", x, y, z, w).GetHashCode();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public float[] to_array()
         {
             return new[] { x, y, z, w };
@@ -161,13 +277,16 @@ namespace CSharpGL
             ;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             //return string.Format("{0:0.00},{1:0.00},{2:0.00},{3:0.00}", x, y, z, w);
             return string.Format("{0}, {1}, {2}, {3}", x.ToShortString(), y.ToShortString(), z.ToShortString(), w.ToShortString());
             //return base.ToString();
         }
-
 
         internal static vec4 Parse(string value)
         {
@@ -181,6 +300,11 @@ namespace CSharpGL
 
         static readonly char[] separator = new char[] { ' ', ',' };
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool Equals(vec4 other)
         {
             return (this.x == other.x && this.y == other.y && this.z == other.z && this.w == other.w);

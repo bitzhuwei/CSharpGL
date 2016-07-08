@@ -47,11 +47,10 @@ namespace CSharpGL
         /// Creates the render context provider. Must also create the OpenGL extensions.
         /// </summary>
         /// <param name="openGLVersion">The desired OpenGL version.</param>
-        /// <param name="gl">The OpenGL context.</param>
-        /// <param name="width">The width.</param>
-        /// <param name="height">The height.</param>
-        /// <param name="bitDepth">The bit depth.</param>
-        /// <param name="parameter">The parameter</param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="bitDepth"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
         public override bool Create(GLVersion openGLVersion, int width, int height, int bitDepth, object parameter)
         {

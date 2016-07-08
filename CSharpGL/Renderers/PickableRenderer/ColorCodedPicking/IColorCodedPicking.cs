@@ -7,7 +7,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Scene element that implemented this interface will take part in color-coded picking when using <see cref="MyScene.Draw(RenderMode.HitTest);"/>.
+    /// Scene element that implemented this interface will take part in color-coded picking.
     /// </summary>
     public interface IColorCodedPicking : IRenderable
     {
@@ -18,8 +18,7 @@ namespace CSharpGL
         mat4 MVP { get; set; }
 
         /// <summary>
-        /// Gets or internal sets how many primitived have been rendered till now during hit test.
-        /// <para>This will be set up by <see cref="ColorCodedPickingScene.Draw(RenderMode.HitTest)"/>, so just use it to set shader's uniform variable.</para>
+        /// Gets how many primitived have been rendered till now during color coded rendering.
         /// </summary>
         uint PickingBaseId { get; }
 

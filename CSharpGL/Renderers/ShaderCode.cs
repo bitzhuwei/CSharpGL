@@ -21,16 +21,26 @@ namespace CSharpGL
             this.SourceCode = sourceCode;
             this.ShaderType = shaderType;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string SourceCode { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public ShaderType ShaderType { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("{0}", this.ShaderType);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Shader CreateShader()
         {
             var shader = new Shader();

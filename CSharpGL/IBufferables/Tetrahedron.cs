@@ -15,12 +15,25 @@ namespace CSharpGL
     /// </summary>
     public class Tetrahedron : IBufferable
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const string strPosition = "position";
+        /// <summary>
+        /// 
+        /// </summary>
         public const string strColor = "color";
+        /// <summary>
+        /// 
+        /// </summary>
         public const string strNormal = "normal";
         Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bufferName"></param>
+        /// <param name="varNameInShader"></param>
+        /// <returns></returns>
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
@@ -91,7 +104,10 @@ namespace CSharpGL
                 return null;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IndexBufferPtr GetIndex()
         {
             if (indexBufferPtr == null)

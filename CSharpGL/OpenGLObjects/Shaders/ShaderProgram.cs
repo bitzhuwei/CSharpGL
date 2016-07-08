@@ -7,6 +7,9 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ShaderProgram
     {
 
@@ -43,6 +46,9 @@ namespace CSharpGL
         static OpenGL.glUniformMatrix4fv glUniformMatrix4fv;
         static OpenGL.glGetUniformLocation glGetUniformLocation;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ShaderProgram()
         {
             if (glCreateProgram == null)
@@ -83,7 +89,10 @@ namespace CSharpGL
 
             this.ShaderProgramObject = glCreateProgram();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shaders"></param>
         public void Create(params Shader[] shaders)
         {
             if (shaders.Length < 1) { throw new ArgumentException(); }
@@ -119,7 +128,9 @@ namespace CSharpGL
                 glDetachShader(program, item.ShaderObject);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void Delete()
         {
             IntPtr ptr = Win32.wglGetCurrentContext();
@@ -129,7 +140,11 @@ namespace CSharpGL
             }
             this.ShaderProgramObject = 0;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="attributeName"></param>
+        /// <returns></returns>
         public int GetAttributeLocation(string attributeName)
         {
             //  If we don't have the attribute name in the dictionary, get it's
@@ -148,12 +163,16 @@ namespace CSharpGL
             //  Return the attribute location.
             return attributeNamesToLocations[attributeName];
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void Bind()
         {
             glUseProgram(this.ShaderProgramObject);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void Unbind()
         {
             glUseProgram(0);
@@ -180,7 +199,12 @@ namespace CSharpGL
             string log = il.ToString();
             return log;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
         public int SetUniform(string uniformName, float[] values)
         {
             int location = GetUniformLocation(uniformName);
@@ -190,7 +214,12 @@ namespace CSharpGL
             }
             return location;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
         public int SetUniform(string uniformName, vec2[] values)
         {
             int location = GetUniformLocation(uniformName);
@@ -208,7 +237,12 @@ namespace CSharpGL
             }
             return location;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
         public int SetUniform(string uniformName, vec3[] values)
         {
             int location = GetUniformLocation(uniformName);
@@ -227,7 +261,12 @@ namespace CSharpGL
             }
             return location;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
         public int SetUniform(string uniformName, vec4[] values)
         {
             int location = GetUniformLocation(uniformName);
@@ -599,7 +638,11 @@ namespace CSharpGL
             }
             return location;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <returns></returns>
         public int GetUniformLocation(string uniformName)
         {
             //  If we don't have the uniform name in the dictionary, get it's

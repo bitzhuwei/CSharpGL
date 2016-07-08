@@ -9,7 +9,7 @@ namespace CSharpGL
     {
         /// <summary>
         /// Get vertex count of specified geometry's type.
-        /// <para>returns -1 if type is <see cref="Geometry.Polygon"/>.</para>
+        /// <para>returns -1 if type is <see cref="GeometryType.Polygon"/>.</para>
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -40,7 +40,11 @@ namespace CSharpGL
 
             return result;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public static DrawMode ToDrawMode(this GeometryType type)
         {
             DrawMode mode = DrawMode.Points;

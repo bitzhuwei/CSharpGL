@@ -12,8 +12,15 @@ namespace CSharpGL
     /// </summary>
     public sealed class VertexArrayObject : IDisposable
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
         public PropertyBufferPtr[] PropertyBufferPtrs { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IndexBufferPtr IndexBufferPtr { get; private set; }
 
         /// <summary>
@@ -118,17 +125,26 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override string ToString()
         {
             return string.Format("VAO Id: {0}", this.Id);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         ~VertexArrayObject()
         {
             this.Dispose(false);

@@ -21,6 +21,9 @@ namespace CSharpGL
         private FontResource fontResource;
 
         private string content = string.Empty;
+        /// <summary>
+        /// 
+        /// </summary>
         public string Text
         {
             get { return content; }
@@ -32,11 +35,24 @@ namespace CSharpGL
         }
 
         private BlendSwitch blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One);
+        /// <summary>
+        /// 
+        /// </summary>
         public BlendSwitch BlendSwitch
         {
             get { return blendSwitch; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="anchor"></param>
+        /// <param name="margin"></param>
+        /// <param name="size"></param>
+        /// <param name="zNear"></param>
+        /// <param name="zFar"></param>
+        /// <param name="fontResource"></param>
+        /// <param name="maxCharCount"></param>
         public UIText(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar, FontResource fontResource = null, int maxCharCount = 100)
@@ -63,6 +79,9 @@ namespace CSharpGL
             this.Renderer = renderer;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DoInitialize()
         {
             base.DoInitialize();
@@ -71,6 +90,10 @@ namespace CSharpGL
             renderer.SetUniform("fontTexture", this.fontResource.GetSamplerValue());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         protected override void DoRender(RenderEventArg arg)
         {
             mat4 projection = this.GetOrthoProjection();

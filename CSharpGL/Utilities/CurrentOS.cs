@@ -2,10 +2,11 @@
 using System.Runtime.InteropServices;
 namespace System
 {
-    //https://blez.wordpress.com/2012/09/17/determine-os-with-netmono/
-    // CurrentOS Class by blez
-    // Detects the current OS (Windows, Linux, MacOS)
-    //
+    /// <summary>
+    /// Detects the current OS (Windows, Linux, MacOS)
+    /// <para>CurrentOS Class by blez</para>
+    /// <para>https://blez.wordpress.com/2012/09/17/determine-os-with-netmono/</para>
+    /// </summary>
     public static class CurrentOS
     {
         static CurrentOS()
@@ -78,24 +79,61 @@ namespace System
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool IsWindows { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool IsUnix { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool IsMac { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool IsLinux { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool IsUnknown { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool Is32bit { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool Is64bit { get; private set; }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool Is64BitProcess
         {
             get { return (IntPtr.Size == 8); }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool Is32BitProcess
         {
             get { return (IntPtr.Size == 4); }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static string Name { get; private set; }
 
         private static bool Is64bitWindows

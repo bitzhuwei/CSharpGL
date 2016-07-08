@@ -6,6 +6,9 @@ using System.Text;
 
 namespace System
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static partial class ITreeNodeHelper
     {
         /// <summary>

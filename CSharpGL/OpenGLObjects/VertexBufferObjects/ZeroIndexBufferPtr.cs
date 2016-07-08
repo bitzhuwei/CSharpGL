@@ -41,6 +41,11 @@ namespace CSharpGL
         /// </summary>
         public int OriginalVertexCount { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="shaderProgram"></param>
         public override void Render(RenderEventArg arg, ShaderProgram shaderProgram)
         {
             if (arg.RenderMode == RenderModes.ColorCodedPicking
@@ -57,6 +62,10 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("OpenGL.DrawArrays({0}, {1}, {2})",

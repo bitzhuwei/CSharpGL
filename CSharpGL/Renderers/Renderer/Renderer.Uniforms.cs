@@ -11,7 +11,13 @@ namespace CSharpGL
         protected List<UniformVariable> uniformVariables = new List<UniformVariable>();
 
         //protected OrderedCollection<string> uniformVariableNames = new OrderedCollection<string>(", ");
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="varNameInShader"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool GetUniformValue<T>(string varNameInShader, out T value) where T : struct
         {
             value = default(T);

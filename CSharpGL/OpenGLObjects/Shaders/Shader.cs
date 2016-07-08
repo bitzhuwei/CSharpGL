@@ -29,6 +29,11 @@ namespace CSharpGL
                 glGetShaderiv = OpenGL.GetDelegateFor<OpenGL.glGetShaderiv>();
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shaderType"></param>
+        /// <param name="source"></param>
         public void Create(uint shaderType, string source)
         {
             //  Create the OpenGL shader object.
@@ -48,20 +53,28 @@ namespace CSharpGL
                     string.Format("Failed to compile shader with ID {0}: {1}", ShaderObject, log));
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void Delete()
         {
             glDeleteShader(ShaderObject);
             ShaderObject = 0;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public bool GetCompileStatus()
         {
             int[] parameters = new int[] { 0 };
             glGetShaderiv(ShaderObject, OpenGL.GL_COMPILE_STATUS, parameters);
             return parameters[0] == OpenGL.GL_TRUE;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string GetInfoLog()
         {
             //  Get the info log length.

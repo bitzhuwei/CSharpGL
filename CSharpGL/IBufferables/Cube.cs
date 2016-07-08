@@ -9,18 +9,32 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 一个立方体的模型。
+    /// Cube.
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_CubeModel.jpg
-    /// <para>使用<see cref="OneIndexBuffer"/></para>
+    /// <para>Uses <see cref="OneIndexBuffer&lt;T&gt;"/></para>
     /// </summary>
     public class Cube : IBufferable
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const string strPosition = "position";
+        /// <summary>
+        /// 
+        /// </summary>
         public const string strColor = "color";
+        /// <summary>
+        /// 
+        /// </summary>
         public const string strNormal = "normal";
         Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bufferName"></param>
+        /// <param name="varNameInShader"></param>
+        /// <returns></returns>
         public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
@@ -83,7 +97,10 @@ namespace CSharpGL
                 return null;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IndexBufferPtr GetIndex()
         {
             if (indexBufferPtr == null)
