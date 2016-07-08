@@ -11,6 +11,7 @@ namespace CSharpGL
         /// <summary>
         /// Creates the specified width.
         /// </summary>
+        /// <param name="hDC"></param>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="bitCount">The bit count.</param>
@@ -89,6 +90,7 @@ namespace CSharpGL
         /// <summary>
         /// This function sets the pixel format of the underlying bitmap.
         /// </summary>
+        /// <param name="hDC"></param>
         /// <param name="bitCount">The bitcount.</param>
         protected virtual bool SetPixelFormat(IntPtr hDC, int bitCount)
         {

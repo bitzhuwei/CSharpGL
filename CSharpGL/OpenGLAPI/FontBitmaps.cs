@@ -16,7 +16,7 @@ namespace CSharpGL
     {
         private static FontBitmapEntry CreateFontBitmapEntry(string faceName, int height)
         {
-            ///  Make the OpenGL instance current.
+            //  Make the OpenGL instance current.
             //GL.MakeCurrent();
             IntPtr renderContext = Win32.wglGetCurrentContext();
             IntPtr deviceContext = Win32.wglGetCurrentDC();

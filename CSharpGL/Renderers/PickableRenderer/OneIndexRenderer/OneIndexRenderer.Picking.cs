@@ -178,6 +178,7 @@ namespace CSharpGL
         /// 瞄准每个图元的索引（例如1个三角形有3个索引）中的最后一个索引，
         /// 将此索引在<see cref="IndexBufferPtr"/>中的索引（位置）收集起来。
         /// </summary>
+        /// <param name="arg"></param>
         /// <param name="lastVertexId"></param>
         /// <returns></returns>
         private List<RecognizedPrimitiveIndex> GetLastIndexIdList(RenderEventArg arg, uint lastVertexId)

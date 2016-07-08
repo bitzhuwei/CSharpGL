@@ -17,12 +17,12 @@ namespace System
     public sealed unsafe class UnmanagedArray<T> : UnmanagedArrayBase where T : struct
     {
         /// <summary>
-        /// How many <see cref="UnmanagedArray"/>&lt;<typeparam name="T"></typeparam>&gt; objects allocated?
+        /// How many <see cref="UnmanagedArray&lt;T&gt;"/> objects allocated?
         /// <para>Only used for debugging.</para>
         /// </summary>
         private static int thisTypeAllocatedCount = 0;
         /// <summary>
-        /// How many <see cref="UnmanagedArray"/>&lt;<typeparam name="T"></typeparam>&gt; objects released?
+        /// How many <see cref="UnmanagedArray&lt;T&gt;"/> objects released?
         /// <para>Only used for debugging.</para>
         /// </summary>
         private static int thisTypeDisposedCount = 0;
@@ -181,10 +181,6 @@ namespace System
         /// </summary>
         private bool disposedValue = false;
 
-        /// <summary>
-        /// Dispose managed and unmanaged resources of this instance.
-        /// </summary>
-        /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
         /// <summary>
         /// Dispose managed and unmanaged resources of this instance.
         /// </summary>

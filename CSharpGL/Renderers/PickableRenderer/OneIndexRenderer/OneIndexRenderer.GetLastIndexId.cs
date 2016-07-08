@@ -17,7 +17,10 @@ namespace CSharpGL
         /// 逐个测试，找到最接近摄像机的那个图元，
         /// 返回此图元的最后一个索引在<see cref="IndexBufferPtr"/>中的索引（位置）。
         /// </summary>
+        /// <param name="arg"></param>
         /// <param name="lastIndexIdList"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         /// <returns></returns>
         private RecognizedPrimitiveIndex GetLastIndexId(
             RenderEventArg arg,
@@ -116,6 +119,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="recognizedPrimitiveIndex0"></param>
         /// <param name="recognizedPrimitiveIndex1"></param>
+        /// <param name="drawMode"></param>
+        /// <param name="lastIndex0"></param>
+        /// <param name="lastIndex1"></param>
         /// <returns></returns>
         private List<uint> ArrangeIndexes(
             RecognizedPrimitiveIndex recognizedPrimitiveIndex0,
