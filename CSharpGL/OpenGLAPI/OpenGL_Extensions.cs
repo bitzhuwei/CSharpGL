@@ -1761,6 +1761,15 @@ namespace CSharpGL
 
         #region GL_EXT_draw_range_elements
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
         public delegate void glDrawRangeElementsEXT(uint mode, uint start, uint end, uint count, uint type, IntPtr indices);
 
 
@@ -1769,30 +1778,126 @@ namespace CSharpGL
         #region GL_SGI_color_table
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="table"></param>
         public delegate void glColorTableSGI(uint target, uint internalformat, uint width, uint format, uint type, IntPtr table);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glColorTableParameterfvSGI(uint target, uint pname, float[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glColorTableParameterivSGI(uint target, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="internalformat"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
         public delegate void glCopyColorTableSGI(uint target, uint internalformat, int x, int y, uint width);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="format"></param>
+        /// <param name="type"></param>
+        /// <param name="table"></param>
         public delegate void glGetColorTableSGI(uint target, uint format, uint type, IntPtr table);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetColorTableParameterfvSGI(uint target, uint pname, float[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetColorTableParameterivSGI(uint target, uint pname, int[] parameters);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_TABLE_SGI = 0x80D0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POST_CONVOLUTION_COLOR_TABLE_SGI = 0x80D1;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_POST_COLOR_MATRIX_COLOR_TABLE_SGI = 0x80D2;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROXY_COLOR_TABLE_SGI = 0x80D3;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROXY_POST_CONVOLUTION_COLOR_TABLE_SGI = 0x80D4;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE_SGI = 0x80D5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_TABLE_SCALE_SGI = 0x80D6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_TABLE_BIAS_SGI = 0x80D7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_TABLE_FORMAT_SGI = 0x80D8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_TABLE_WIDTH_SGI = 0x80D9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_TABLE_RED_SIZE_SGI = 0x80DA;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_TABLE_GREEN_SIZE_SGI = 0x80DB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_TABLE_BLUE_SIZE_SGI = 0x80DC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_TABLE_ALPHA_SIZE_SGI = 0x80DD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_TABLE_LUMINANCE_SIZE_SGI = 0x80DE;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_TABLE_INTENSITY_SIZE_SGI = 0x80DF;
 
         #endregion
