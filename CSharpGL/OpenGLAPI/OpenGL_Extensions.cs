@@ -1422,25 +1422,139 @@ namespace CSharpGL
         #region OpenGL 1.5
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="ids"></param>
         public delegate void glGenQueries(int n, uint[] ids);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="ids"></param>
         public delegate void glDeleteQueries(int n, uint[] ids);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public delegate bool glIsQuery(uint id);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="id"></param>
         public delegate void glBeginQuery(uint target, uint id);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
         public delegate void glEndQuery(uint target);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetQueryiv(uint target, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetQueryObjectiv(uint id, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetQueryObjectuiv(uint id, uint pname, uint[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="buffer"></param>
         public delegate void glBindBuffer(uint target, uint buffer);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="buffers"></param>
         public delegate void glDeleteBuffers(int n, uint[] buffers);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="buffers"></param>
         public delegate void glGenBuffers(int n, uint[] buffers);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
         public delegate bool glIsBuffer(uint buffer);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="size"></param>
+        /// <param name="data"></param>
+        /// <param name="usage"></param>
         public delegate void glBufferData(uint target, int size, IntPtr data, uint usage);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="offset"></param>
+        /// <param name="size"></param>
+        /// <param name="data"></param>
         public delegate void glBufferSubData(uint target, int offset, int size, IntPtr data);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="offset"></param>
+        /// <param name="size"></param>
+        /// <param name="data"></param>
         public delegate void glGetBufferSubData(uint target, int offset, int size, IntPtr data);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="access"></param>
+        /// <returns></returns>
         public delegate IntPtr glMapBuffer(uint target, uint access);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="access"></param>
+        /// <returns></returns>
         public delegate IntPtr glMapBufferRange(uint target, int offset, int length, uint access);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public delegate bool glUnmapBuffer(uint target);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetBufferParameteriv(uint target, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetBufferPointerv(uint target, uint pname, IntPtr[] parameters);
 
         //  Constants
@@ -3624,9 +3738,17 @@ namespace CSharpGL
         #region OpenGL 3.3
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="divisor"></param>
         public delegate void glVertexAttribDivisor(uint index, uint divisor);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_ATTRIB_ARRAY_DIVISOR = 0x88FE;
 
         #endregion

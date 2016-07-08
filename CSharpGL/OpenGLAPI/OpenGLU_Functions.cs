@@ -28,6 +28,13 @@ namespace CSharpGL
         [DllImport(Win32.Glu32, SetLastError = true)]
         private static unsafe extern sbyte* gluGetString(int name);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <param name="bottom"></param>
+        /// <param name="top"></param>
         //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluOrtho2D(double left, double right, double bottom, double top);
