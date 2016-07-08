@@ -6054,147 +6054,744 @@ namespace CSharpGL
         #region GL_ARB_vertex_program
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
         public delegate void glVertexAttrib1dARB(uint index, double x);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib1dvARB(uint index, double[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
         public delegate void glVertexAttrib1fARB(uint index, float x);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib1fvARB(uint index, float[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
         public delegate void glVertexAttrib1sARB(uint index, short x);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib1svARB(uint index, short[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public delegate void glVertexAttrib2dARB(uint index, double x, double y);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib2dvARB(uint index, double[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public delegate void glVertexAttrib2fARB(uint index, float x, float y);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib2fvARB(uint index, float[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public delegate void glVertexAttrib2sARB(uint index, short x, short y);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib2svARB(uint index, short[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public delegate void glVertexAttrib3dARB(uint index, double x, double y, double z);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib3dvARB(uint index, double[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public delegate void glVertexAttrib3fARB(uint index, float x, float y, float z);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib3fvARB(uint index, float[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public delegate void glVertexAttrib3sARB(uint index, short x, short y, short z);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib3svARB(uint index, short[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib4NbvARB(uint index, sbyte[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib4NivARB(uint index, int[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib4NsvARB(uint index, short[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="w"></param>
         public delegate void glVertexAttrib4NubARB(uint index, byte x, byte y, byte z, byte w);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib4NubvARB(uint index, byte[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib4NuivARB(uint index, uint[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib4NusvARB(uint index, ushort[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib4bvARB(uint index, sbyte[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="w"></param>
         public delegate void glVertexAttrib4dARB(uint index, double x, double y, double z, double w);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib4dvARB(uint index, double[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="w"></param>
         public delegate void glVertexAttrib4fARB(uint index, float x, float y, float z, float w);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib4fvARB(uint index, float[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib4ivARB(uint index, int[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="w"></param>
         public delegate void glVertexAttrib4sARB(uint index, short x, short y, short z, short w);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib4svARB(uint index, short[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib4ubvARB(uint index, byte[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib4uivARB(uint index, uint[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="v"></param>
         public delegate void glVertexAttrib4usvARB(uint index, ushort[] v);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="size"></param>
+        /// <param name="type"></param>
+        /// <param name="normalized"></param>
+        /// <param name="stride"></param>
+        /// <param name="pointer"></param>
         public delegate void glVertexAttribPointerARB(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
         public delegate void glEnableVertexAttribArrayARB(uint index);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
         public delegate void glDisableVertexAttribArrayARB(uint index);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="format"></param>
+        /// <param name="len"></param>
+        /// <param name="str"></param>
         public delegate void glProgramStringARB(uint target, uint format, int len, IntPtr str);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="program"></param>
         public delegate void glBindProgramARB(uint target, uint program);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="programs"></param>
         public delegate void glDeleteProgramsARB(int n, uint[] programs);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="programs"></param>
         public delegate void glGenProgramsARB(int n, uint[] programs);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="w"></param>
         public delegate void glProgramEnvParameter4dARB(uint target, uint index, double x, double y, double z, double w);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="parameters"></param>
         public delegate void glProgramEnvParameter4dvARB(uint target, uint index, double[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="w"></param>
         public delegate void glProgramEnvParameter4fARB(uint target, uint index, float x, float y, float z, float w);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="parameters"></param>
         public delegate void glProgramEnvParameter4fvARB(uint target, uint index, float[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="w"></param>
         public delegate void glProgramLocalParameter4dARB(uint target, uint index, double x, double y, double z, double w);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="parameters"></param>
         public delegate void glProgramLocalParameter4dvARB(uint target, uint index, double[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="w"></param>
         public delegate void glProgramLocalParameter4fARB(uint target, uint index, float x, float y, float z, float w);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="parameters"></param>
         public delegate void glProgramLocalParameter4fvARB(uint target, uint index, float[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetProgramEnvParameterdvARB(uint target, uint index, double[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetProgramEnvParameterfvARB(uint target, uint index, float[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetProgramLocalParameterdvARB(uint target, uint index, double[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="index"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetProgramLocalParameterfvARB(uint target, uint index, float[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetProgramivARB(uint target, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pname"></param>
+        /// <param name="str"></param>
         public delegate void glGetProgramStringARB(uint target, uint pname, IntPtr str);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetVertexAttribdvARB(uint index, uint pname, double[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetVertexAttribfvARB(uint index, uint pname, float[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="pname"></param>
+        /// <param name="parameters"></param>
         public delegate void glGetVertexAttribivARB(uint index, uint pname, int[] parameters);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="pname"></param>
+        /// <param name="pointer"></param>
         public delegate void glGetVertexAttribPointervARB(uint index, uint pname, IntPtr pointer);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_COLOR_SUM_ARB = 0x8458;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_PROGRAM_ARB = 0x8620;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_ATTRIB_ARRAY_ENABLED_ARB = 0x8622;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_ATTRIB_ARRAY_SIZE_ARB = 0x8623;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_ATTRIB_ARRAY_STRIDE_ARB = 0x8624;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_ATTRIB_ARRAY_TYPE_ARB = 0x8625;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CURRENT_VERTEX_ATTRIB_ARB = 0x8626;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_LENGTH_ARB = 0x8627;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_STRING_ARB = 0x8628;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_MATRIX_STACK_DEPTH_ARB = 0x862E;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_MATRICES_ARB = 0x862F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CURRENT_MATRIX_STACK_DEPTH_ARB = 0x8640;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_CURRENT_MATRIX_ARB = 0x8641;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_PROGRAM_POINT_SIZE_ARB = 0x8642;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_PROGRAM_TWO_SIDE_ARB = 0x8643;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_ATTRIB_ARRAY_POINTER_ARB = 0x8645;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_ERROR_POSITION_ARB = 0x864B;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_BINDING_ARB = 0x8677;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_VERTEX_ATTRIBS_ARB = 0x8869;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_ATTRIB_ARRAY_NORMALIZED_ARB = 0x886A;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_ERROR_STRING_ARB = 0x8874;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_FORMAT_ASCII_ARB = 0x8875;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_FORMAT_ARB = 0x8876;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_INSTRUCTIONS_ARB = 0x88A0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_INSTRUCTIONS_ARB = 0x88A1;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_NATIVE_INSTRUCTIONS_ARB = 0x88A2;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_NATIVE_INSTRUCTIONS_ARB = 0x88A3;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_TEMPORARIES_ARB = 0x88A4;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_TEMPORARIES_ARB = 0x88A5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_NATIVE_TEMPORARIES_ARB = 0x88A6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_NATIVE_TEMPORARIES_ARB = 0x88A7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_PARAMETERS_ARB = 0x88A8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_PARAMETERS_ARB = 0x88A9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_NATIVE_PARAMETERS_ARB = 0x88AA;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_NATIVE_PARAMETERS_ARB = 0x88AB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_ATTRIBS_ARB = 0x88AC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_ATTRIBS_ARB = 0x88AD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_NATIVE_ATTRIBS_ARB = 0x88AE;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_NATIVE_ATTRIBS_ARB = 0x88AF;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_ADDRESS_REGISTERS_ARB = 0x88B0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_ADDRESS_REGISTERS_ARB = 0x88B1;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB = 0x88B2;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB = 0x88B3;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_LOCAL_PARAMETERS_ARB = 0x88B4;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_PROGRAM_ENV_PARAMETERS_ARB = 0x88B5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_PROGRAM_UNDER_NATIVE_LIMITS_ARB = 0x88B6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_TRANSPOSE_CURRENT_MATRIX_ARB = 0x88B7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX0_ARB = 0x88C0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX1_ARB = 0x88C1;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX2_ARB = 0x88C2;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX3_ARB = 0x88C3;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX4_ARB = 0x88C4;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX5_ARB = 0x88C5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX6_ARB = 0x88C6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX7_ARB = 0x88C7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX8_ARB = 0x88C8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX9_ARB = 0x88C9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX10_ARB = 0x88CA;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX11_ARB = 0x88CB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX12_ARB = 0x88CC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX13_ARB = 0x88CD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX14_ARB = 0x88CE;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX15_ARB = 0x88CF;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX16_ARB = 0x88D0;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX17_ARB = 0x88D1;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX18_ARB = 0x88D2;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX19_ARB = 0x88D3;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX20_ARB = 0x88D4;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX21_ARB = 0x88D5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX22_ARB = 0x88D6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX23_ARB = 0x88D7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX24_ARB = 0x88D8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX25_ARB = 0x88D9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX26_ARB = 0x88DA;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX27_ARB = 0x88DB;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX28_ARB = 0x88DC;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX29_ARB = 0x88DD;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX30_ARB = 0x88DE;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MATRIX31_ARB = 0x88DF;
 
         #endregion
@@ -7915,27 +8512,135 @@ namespace CSharpGL
         #region GL_ARB_vertex_attrib_binding
 
         //  Delegates
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bindingindex"></param>
+        /// <param name="buffer"></param>
+        /// <param name="offset"></param>
+        /// <param name="stride"></param>
         public delegate void glBindVertexBuffer(uint bindingindex, uint buffer, IntPtr offset, uint stride);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="attribindex"></param>
+        /// <param name="size"></param>
+        /// <param name="type"></param>
+        /// <param name="normalized"></param>
+        /// <param name="relativeoffset"></param>
         public delegate void glVertexAttribFormat(uint attribindex, int size, uint type, bool normalized, uint relativeoffset);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="attribindex"></param>
+        /// <param name="size"></param>
+        /// <param name="type"></param>
+        /// <param name="relativeoffset"></param>
         public delegate void glVertexAttribIFormat(uint attribindex, int size, uint type, uint relativeoffset);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="attribindex"></param>
+        /// <param name="size"></param>
+        /// <param name="type"></param>
+        /// <param name="relativeoffset"></param>
         public delegate void glVertexAttribLFormat(uint attribindex, int size, uint type, uint relativeoffset);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="attribindex"></param>
+        /// <param name="bindingindex"></param>
         public delegate void glVertexAttribBinding(uint attribindex, uint bindingindex);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bindingindex"></param>
+        /// <param name="divisor"></param>
         public delegate void glVertexBindingDivisor(uint bindingindex, uint divisor);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vaobj"></param>
+        /// <param name="bindingindex"></param>
+        /// <param name="buffer"></param>
+        /// <param name="offset"></param>
+        /// <param name="stride"></param>
         public delegate void glVertexArrayBindVertexBufferEXT(uint vaobj, uint bindingindex, uint buffer, IntPtr offset, uint stride);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vaobj"></param>
+        /// <param name="attribindex"></param>
+        /// <param name="size"></param>
+        /// <param name="type"></param>
+        /// <param name="normalized"></param>
+        /// <param name="relativeoffset"></param>
         public delegate void glVertexArrayVertexAttribFormatEXT(uint vaobj, uint attribindex, int size, uint type, bool normalized, uint relativeoffset);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vaobj"></param>
+        /// <param name="attribindex"></param>
+        /// <param name="size"></param>
+        /// <param name="type"></param>
+        /// <param name="relativeoffset"></param>
         public delegate void glVertexArrayVertexAttribIFormatEXT(uint vaobj, uint attribindex, int size, uint type, uint relativeoffset);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vaobj"></param>
+        /// <param name="attribindex"></param>
+        /// <param name="size"></param>
+        /// <param name="type"></param>
+        /// <param name="relativeoffset"></param>
         public delegate void glVertexArrayVertexAttribLFormatEXT(uint vaobj, uint attribindex, int size, uint type, uint relativeoffset);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vaobj"></param>
+        /// <param name="attribindex"></param>
+        /// <param name="bindingindex"></param>
         public delegate void glVertexArrayVertexAttribBindingEXT(uint vaobj, uint attribindex, uint bindingindex);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vaobj"></param>
+        /// <param name="bindingindex"></param>
+        /// <param name="divisor"></param>
         public delegate void glVertexArrayVertexBindingDivisorEXT(uint vaobj, uint bindingindex, uint divisor);
 
         //  Constants
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_ATTRIB_BINDING = 0x82D4;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_ATTRIB_RELATIVE_OFFSET = 0x82D5;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_BINDING_DIVISOR = 0x82D6;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_BINDING_OFFSET = 0x82D7;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_BINDING_STRIDE = 0x82D8;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_VERTEX_BINDING_BUFFER = 0x8F4F;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_VERTEX_ATTRIB_RELATIVE_OFFSET = 0x82D9;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_MAX_VERTEX_ATTRIB_BINDINGS = 0x82DA;
 
         #endregion
@@ -7943,6 +8648,9 @@ namespace CSharpGL
 
         #region debugging and profiling
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GL_DEBUG_OUTPUT = 0x92E0;
 
         // https://www.opengl.org/registry/specs/ARB/debug_output.txt

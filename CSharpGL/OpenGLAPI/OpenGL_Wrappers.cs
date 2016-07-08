@@ -871,6 +871,13 @@ namespace CSharpGL
             OpenGL.DrawArrays((uint)mode, first, count);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="first"></param>
+        /// <param name="count"></param>
+        /// <param name="primcount"></param>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void MultiDrawArrays(DrawMode mode, int[] first, int[] count, int primcount)
         {
@@ -1072,6 +1079,14 @@ namespace CSharpGL
             return GetDelegateFor<glUnmapBuffer>()((uint)target);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="access"></param>
+        /// <returns></returns>
         public static IntPtr MapBufferRange(BufferTarget target, int offset, int length, MapBufferRangeAccess access)
         {
             return GetDelegateFor<OpenGL.glMapBufferRange>()((uint)target, offset, length, (uint)access);

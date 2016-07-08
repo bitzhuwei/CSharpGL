@@ -494,6 +494,12 @@ namespace CSharpGL
         //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void gluGetNurbsProperty(IntPtr nurbsObject, int property, float value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nurbsObject"></param>
+        /// <param name="which"></param>
+        /// <param name="Callback"></param>
         //[Obsolete(obsoleteGluDll, error)]
         [DllImport(Win32.Glu32, SetLastError = true)]
         public static extern void IntPtrCallback(IntPtr nurbsObject, int which, IntPtr Callback);
