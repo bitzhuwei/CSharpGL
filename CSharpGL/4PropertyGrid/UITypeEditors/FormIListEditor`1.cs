@@ -42,23 +42,7 @@ namespace CSharpGL
                 Type type = frmSelectType.SelectedType;
                 try
                 {
-                    T obj;
-                    var ctor = (from item in type.GetConstructors() orderby item.GetParameters().Length select item).First();
-                    ParameterInfo[] parameterInfos = ctor.GetParameters();
-                    if (parameterInfos.Length == 0)
-                    { obj = (T)Activator.CreateInstance(type); }
-                    else
-                    {
-                        object[] parameters = new object[parameterInfos.Length];
-                        for (int i = 0; i < parameterInfos.Length; i++)
-                        {
-                            if (parameterInfos[i].ParameterType.IsClass)
-                            { parameters[i] = null; }
-                            else
-                            { parameters[i] = Activator.CreateInstance(parameterInfos[i].ParameterType); }
-                        }
-                        obj = (T)Activator.CreateInstance(type, parameters);
-                    }
+                    T obj = (T)type.CreateInstance();
                     this.lstMember.Items.Add(obj);
                     this.list.Add(obj);
                     this.propertyGrid.SelectedObject = obj;
