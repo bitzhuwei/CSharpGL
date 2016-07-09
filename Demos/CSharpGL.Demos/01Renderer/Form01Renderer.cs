@@ -81,9 +81,6 @@ namespace CSharpGL.Demos
             this.glCanvas1.MouseMove += glCanvas1_MouseMove;
             this.glCanvas1.MouseUp += glCanvas1_MouseUp;
             this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
-            // 天蓝色背景
-            //GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
-            OpenGL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f);
             this.TextColor = Color.White;
 
             Application.Idle += Application_Idle;
@@ -119,8 +116,6 @@ namespace CSharpGL.Demos
         {
             lock (this.synObj)
             {
-                //GL.Enable(GL.GL_SCISSOR_TEST);
-                //GL.Scissor(0, 0, this.glCanvas1.Width, this.glCanvas1.Height);
 
                 RenderersDraw(this.renderMode);
 
@@ -141,6 +136,8 @@ namespace CSharpGL.Demos
             }
             else if (renderMode == RenderModes.Render)
             {
+                // 天蓝色背景
+                //GL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
                 OpenGL.ClearColor(ClearColor.R / 255.0f, ClearColor.G / 255.0f, ClearColor.B / 255.0f, ClearColor.A / 255.0f);
 
                 OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
