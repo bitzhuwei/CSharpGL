@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// device-independent bitmap
     /// </summary>
-    public class DIBSection : IDisposable
+    class DIBSection : IDisposable
     {
         /// <summary>
         /// Creates the specified width.

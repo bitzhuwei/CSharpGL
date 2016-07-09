@@ -196,31 +196,31 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected uint colourRenderBufferId = 0;
+        private uint colourRenderBufferId = 0;
         /// <summary>
         /// 
         /// </summary>
-        protected uint depthRenderBufferId = 0;
+        private uint depthRenderBufferId = 0;
         /// <summary>
         /// 
         /// </summary>
-        protected uint frameBufferId = 0;
+        private uint frameBufferId = 0;
         /// <summary>
         /// 
         /// </summary>
-        protected IntPtr dibSectionDeviceContext = IntPtr.Zero;
+        private IntPtr dibSectionDeviceContext = IntPtr.Zero;
         /// <summary>
         /// 
         /// </summary>
-        protected DIBSection dibSection = new DIBSection();
+        private DIBSection dibSection = new DIBSection();
 
-        /// <summary>
-        /// Gets the internal DIB section.
-        /// </summary>
-        /// <value>The internal DIB section.</value>
-        public DIBSection InternalDIBSection
-        {
-            get { return dibSection; }
-        }
+        ///// <summary>
+        ///// Gets the internal DIB section.
+        ///// </summary>
+        ///// <value>The internal DIB section.</value>
+        //public DIBSection InternalDIBSection
+        //{
+        //    get { return dibSection; }
+        //}
     }
 }
