@@ -16,8 +16,8 @@ namespace CSharpGL.Demos
         private UIRoot uiRoot;
         private UIAxis glAxis;
         private MovableRenderer movableRenderer;
-        private Renderer billboardRenderer;
-        private Renderer ground;
+        private BillboardRenderer billboardRenderer;
+        private GroundRenderer ground;
         private LabelRenderer labelRenderer;
 
         private void Form_Load(object sender, EventArgs e)
