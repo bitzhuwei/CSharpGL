@@ -87,10 +87,6 @@ namespace CSharpGL.Demos
             base.DoRender(arg);
         }
 
-        protected override void DisposeUnmanagedResources()
-        {
-        }
-
     }
 
     enum BillboardType
