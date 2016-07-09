@@ -70,8 +70,8 @@ namespace CSharpGL
                 for (int i = 0; i < circleParts; i++)
                 {
                     var position = new vec3(
-                        (float)Math.Cos((float)i / (float)circleParts * Math.PI * 2),
-                        (float)Math.Sin((float)i / (float)circleParts * Math.PI * 2),
+                        (float)Math.Cos((double)i / (double)circleParts * Math.PI * 2),
+                        (float)Math.Sin((double)i / (double)circleParts * Math.PI * 2),
                         0);
                     circlePosition.Add(position);
                     circleColor.Add(new vec3(1, 1, 1));
@@ -83,15 +83,15 @@ namespace CSharpGL
                 for (int i = 0; i < markCount; i++)
                 {
                     var position = new vec3(
-                        (float)Math.Cos((float)i / (float)markCount * Math.PI * 2),
-                        (float)Math.Sin((float)i / (float)markCount * Math.PI * 2),
+                        (float)Math.Cos((double)i / (double)markCount * Math.PI * 2),
+                        (float)Math.Sin((double)i / (double)markCount * Math.PI * 2),
                         0);
                     markPosition.Add(position);
                     markColor.Add(new vec3(1, 1, 1));
 
                     var position2 = new vec3(
-                        (float)Math.Cos((float)i / (float)markCount * Math.PI * 2),
-                        (float)Math.Sin((float)i / (float)markCount * Math.PI * 2),
+                        (float)Math.Cos((double)i / (double)markCount * Math.PI * 2),
+                        (float)Math.Sin((double)i / (double)markCount * Math.PI * 2),
                         0) * (i % 5 == 0 ? 0.8f : 0.9f);
                     markPosition.Add(position2);
                     markColor.Add(new vec3(1, 1, 1));
@@ -110,6 +110,7 @@ namespace CSharpGL
 
         private static void DrawMark()
         {
+            OpenGL.LoadIdentity();
             OpenGL.Begin(DrawMode.Lines);
             for (int i = 0; i < markPosition.Count; i++)
             {
@@ -123,6 +124,7 @@ namespace CSharpGL
 
         private static void DrawCircle()
         {
+            OpenGL.LoadIdentity();
             circleLineWidthSwitch.On();
             OpenGL.Begin(DrawMode.LineLoop);
             for (int i = 0; i < circlePosition.Count; i++)
