@@ -41,6 +41,7 @@ namespace CSharpGL
         static readonly LineWidthSwitch hourLineWidthSwitch = new LineWidthSwitch(8);
         static readonly List<vec3> circlePosition = new List<vec3>();
         static readonly List<vec3> circleColor = new List<vec3>();
+        static readonly LineWidthSwitch circleLineWidthSwitch = new LineWidthSwitch(80);
         static readonly List<vec3> markPosition = new List<vec3>();
         static readonly List<vec3> markColor = new List<vec3>();
 
@@ -122,6 +123,7 @@ namespace CSharpGL
 
         private static void DrawCircle()
         {
+            circleLineWidthSwitch.On();
             OpenGL.Begin(DrawMode.LineLoop);
             for (int i = 0; i < circlePosition.Count; i++)
             {
@@ -131,6 +133,7 @@ namespace CSharpGL
                 OpenGL.Vertex3f(position.x, position.y, position.z);
             }
             OpenGL.End();
+            circleLineWidthSwitch.Off();
         }
 
         private static void DrawPins()
