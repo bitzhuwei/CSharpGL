@@ -483,8 +483,6 @@
     <EmbeddedResource Include="Resources\UIAxis.vert" />
     <EmbeddedResource Include="Resources\TextModel.frag" />
     <EmbeddedResource Include="Resources\TextModel.vert" />
-    <EmbeddedResource Include="Resources\BuildInSceneObject.vert" />
-    <EmbeddedResource Include="Resources\BuildInSceneObject.frag" />
     <EmbeddedResource Include="Resources\Label.vert" />
     <EmbeddedResource Include="Resources\Label.frag" />
     <None Include="Scene\readme.md" />
