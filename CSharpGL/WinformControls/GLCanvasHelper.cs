@@ -52,12 +52,12 @@ namespace CSharpGL
                 secondColor.Add(new vec3(1.0f, 0.0f, 0.0f));
                 secondPosition.Add(new vec3(0.0f, 0.0f, 0.0f));
                 secondColor.Add(new vec3(1.0f, 0.0f, 0.0f));
-                secondPosition.Add(new vec3(0.0f, 1.0f, 0.0f) * 1.0f);
+                secondPosition.Add(new vec3(0.0f, 1.0f, 0.0f) * 0.85f);
                 // minite
                 minuteColor.Add(new vec3(0.0f, 1.0f, 0.0f));
                 minutePosition.Add(new vec3(0.0f, 0.0f, 0.0f));
                 minuteColor.Add(new vec3(0.0f, 1.0f, 0.0f));
-                minutePosition.Add(new vec3(0.0f, 1.0f, 0.0f) * 0.8f);
+                minutePosition.Add(new vec3(0.0f, 1.0f, 0.0f) * 0.7f);
                 // hour
                 hourColor.Add(new vec3(0.0f, 0.0f, 1.0f));
                 hourPosition.Add(new vec3(0.0f, 0.0f, 0.0f));
@@ -101,11 +101,11 @@ namespace CSharpGL
 
         public static void DrawClock()
         {
-            DrawPins();
-
             DrawCircle();
 
             DrawMark();
+
+            DrawPins();
         }
 
         private static void DrawMark()
