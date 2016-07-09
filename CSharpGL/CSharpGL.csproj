@@ -461,9 +461,6 @@
     <None Include="Renderers\Renderer\Renderers.cd" />
     <Content Include="OpenGLObjects\UniformVariables\UniformArrayVariables\readme.md" />
     <None Include="Renderers\PickableRenderer\ColorCodedPicking\ColorCodedPicking.cd" />
-    <EmbeddedResource Include="WinformControls\GLCanvas.resx">
-      <DependentUpon>GLCanvas.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormUniformVariableListEditor.resx">
       <DependentUpon>FormUniformVariableListEditor.cs</DependentUpon>
     </EmbeddedResource>
