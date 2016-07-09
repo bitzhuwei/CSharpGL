@@ -43,7 +43,7 @@ namespace CSharpGL
 
         /// <summary>
         /// 将VBO上传到GPU后，就得到VBO的指针。CPU内存中的VBO数据就可以释放掉了。
-        /// VBO's pointer got from Buffer's Upload2GPU() method. It's totally OK to free memory of unmanaged array stored in this buffer object now.
+        /// VBO's pointer got from Buffer's GetBufferPtr() method. It's totally OK to free memory of unmanaged array stored in this buffer object now.
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
         /// <param name="length">此VBO含有多个个元素？<para>How many elements?</para></param>
