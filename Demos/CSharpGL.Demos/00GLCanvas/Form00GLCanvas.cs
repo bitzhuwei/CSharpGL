@@ -21,8 +21,27 @@ namespace CSharpGL.Demos
             InitializeComponent();
 
             this.glCanvas1.MouseMove += glCanvas1_MouseMove;
+            this.glCanvas1.KeyPress += glCanvas1_KeyPress;
 
             Application.Idle += Application_Idle;
+        }
+
+        void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar=='t')
+            {
+                switch (this.glCanvas1.RenderTrigger)
+                {
+                    case RenderTriggers.TimerBased:
+                        this.glCanvas1.RenderTrigger = RenderTriggers.Manual;
+                        break;
+                    case RenderTriggers.Manual:
+                        this.glCanvas1.RenderTrigger = RenderTriggers.TimerBased;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         void Application_Idle(object sender, EventArgs e)

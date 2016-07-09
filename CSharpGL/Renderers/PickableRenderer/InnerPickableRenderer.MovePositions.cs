@@ -32,7 +32,7 @@ namespace CSharpGL
                 {
                     vec3 windowPos = glm.project(array[index],
                         viewMatrix, projectionMatrix, viewport);
-                    vec3 newWindowPos = new vec3(windowPos.x + differenceOnWindow.X,
+                    var newWindowPos = new vec3(windowPos.x + differenceOnWindow.X,
                         windowPos.y + differenceOnWindow.Y, windowPos.z);
                     array[index] = glm.unProject(newWindowPos,
                         viewMatrix, projectionMatrix, viewport);
@@ -62,7 +62,7 @@ namespace CSharpGL
                 {
                     vec3 windowPos = glm.project(array[index],
                         viewMatrix, projectionMatrix, viewport);
-                    vec3 newWindowPos = new vec3(windowPos.x + differenceOnWindow.X,
+                    var newWindowPos = new vec3(windowPos.x + differenceOnWindow.X,
                         windowPos.y + differenceOnWindow.Y, windowPos.z);
                     array[index] = glm.unProject(newWindowPos,
                         viewMatrix, projectionMatrix, viewport);
