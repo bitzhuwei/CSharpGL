@@ -28,7 +28,13 @@ namespace CSharpGL.Demos
             //this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
             this.glCanvas1.Resize += glCanvas1_Resize;
 
+            Application.Idle += Application_Idle;
             OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
+        }
+
+        void Application_Idle(object sender, EventArgs e)
+        {
+            this.Text = string.Format("{0} - FPS: {1}", this.GetType().Name, this.glCanvas1.FPS.ToShortString());
         }
 
         private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
