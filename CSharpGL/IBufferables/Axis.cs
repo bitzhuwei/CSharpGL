@@ -32,7 +32,8 @@ namespace CSharpGL
         /// 
         /// </summary>
         public const string strColor = "color";
-        Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
+        private PropertyBufferPtr positionBufferPtr;
+        private PropertyBufferPtr colorBufferPtr;
         /// <summary>
         /// 
         /// </summary>
@@ -43,7 +44,7 @@ namespace CSharpGL
         {
             if (bufferName == strPosition)
             {
-                if (!propertyBufferPtrDict.ContainsKey(bufferName))
+                if (positionBufferPtr == null)
                 {
                     using (var buffer = new PropertyBuffer<vec3>(
                         varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
@@ -58,14 +59,14 @@ namespace CSharpGL
                             }
                         }
 
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
                     }
                 }
-                return propertyBufferPtrDict[bufferName];
+                return positionBufferPtr;
             }
             else if (bufferName == strColor)
             {
-                if (!propertyBufferPtrDict.ContainsKey(bufferName))
+                if (colorBufferPtr == null)
                 {
                     using (var buffer = new PropertyBuffer<vec3>(
                         varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
@@ -80,10 +81,10 @@ namespace CSharpGL
                             }
                         }
 
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                        colorBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
                     }
                 }
-                return propertyBufferPtrDict[bufferName];
+                return colorBufferPtr;
             }
             else
             {
