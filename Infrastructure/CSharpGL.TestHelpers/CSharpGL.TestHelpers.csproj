@@ -39,7 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultRendererComponent.cs" />
     <Compile Include="matHelper.cs" />
+    <Compile Include="SceneObjectFactory.cs" />
     <Compile Include="vecHelper.cs" />
     <Content Include="readme.md" />
     <Compile Include="BlendFactorHelper.cs" />

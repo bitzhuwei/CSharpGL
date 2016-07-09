@@ -185,14 +185,12 @@
     </Compile>
     <Compile Include="4PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="Scene\Components\Component.cs" />
-    <Compile Include="Scene\Components\DefaultRendererComponent.cs" />
     <Compile Include="Scene\Scene.cs" />
     <Compile Include="Scene\SceneObject.RelativeTransform.cs" />
     <Compile Include="Scene\SceneObject.cs" />
     <Compile Include="Scene\SceneObject.IEnumerable.cs" />
     <Compile Include="Scene\SceneObject.IRenderable.cs" />
     <Compile Include="Scene\SceneObject.ITreeNode.cs" />
-    <Compile Include="Scene\SceneObjectFactory.cs" />
     <Compile Include="Scene\Components\ScriptComponentList.cs" />
     <Compile Include="Scene\Components\RendererComponent.cs" />
     <Compile Include="Scene\Components\ScriptComponent.cs" />
