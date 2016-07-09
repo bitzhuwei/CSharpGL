@@ -79,8 +79,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Qualifiers.cs" />
     <Compile Include="Shaders\CSShaderCode.cs" />
+    <None Include="Shaders\FragmentCSShaderCode.Demo.cs" />
     <Compile Include="Shaders\FragmentCSShaderCode.cs" />
     <Compile Include="Shaders\GeometryCSShaderCode.cs" />
+    <None Include="Shaders\VertexCSShaderCode.Demo.cs" />
     <Compile Include="Shaders\VertexCSShaderCode.cs" />
   </ItemGroup>
   <ItemGroup>
