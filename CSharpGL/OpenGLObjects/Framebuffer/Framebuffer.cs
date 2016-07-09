@@ -57,13 +57,16 @@ namespace CSharpGL
         private static OpenGL.glCheckFramebufferStatusEXT glCheckFramebufferStatus;
         private static OpenGL.glDeleteFramebuffersEXT glDeleteFramebuffers;
 
-        static Framebuffer()
+        private void InitFramebufferExtensions()
         {
-            glGenFramebuffers = OpenGL.GetDelegateFor<OpenGL.glGenFramebuffersEXT>();
-            glBindFramebuffer = OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>();
-            glFramebufferTexture2D = OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>();
-            glCheckFramebufferStatus = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>();
-            glDeleteFramebuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteFramebuffersEXT>();
+            if (glGenFramebuffers == null)
+            {
+                glGenFramebuffers = OpenGL.GetDelegateFor<OpenGL.glGenFramebuffersEXT>();
+                glBindFramebuffer = OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>();
+                glFramebufferTexture2D = OpenGL.GetDelegateFor<OpenGL.glFramebufferTexture2DEXT>();
+                glCheckFramebufferStatus = OpenGL.GetDelegateFor<OpenGL.glCheckFramebufferStatusEXT>();
+                glDeleteFramebuffers = OpenGL.GetDelegateFor<OpenGL.glDeleteFramebuffersEXT>();
+            }
         }
 
         private void setup(FramebufferTexture color0, bool depth)
@@ -115,6 +118,7 @@ namespace CSharpGL
         /// <param name="depth"></param>
         public Framebuffer(List<FramebufferTexture> color, bool depth)
         {
+            InitFramebufferExtensions();
             setup(color[0], depth);
             for (int i = 1; i < color.Count; ++i)
             {
@@ -128,6 +132,7 @@ namespace CSharpGL
         /// <param name="depth"></param>
         public Framebuffer(FramebufferTexture color0, bool depth)
         {
+            InitFramebufferExtensions();
             setup(color0, depth);
         }
         /// <summary>
@@ -139,6 +144,7 @@ namespace CSharpGL
         /// <param name="interpol"></param>
         public Framebuffer(int width, int height, bool depth, bool interpol)
         {
+            InitFramebufferExtensions();
             FramebufferTexture texture = new FramebufferTexture();
             texture.setFormat(OpenGL.GL_RGBA16F, width, height, OpenGL.GL_RGBA, false, interpol);
 
