@@ -1,45 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="CSharpGL.CSSL.CSShaderCode" Collapsed="true">
-    <Position X="3.25" Y="0.5" Width="1.5" />
+    <Position X="3.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAABIIRAwEAAEAIAIAAAAAAAgAACACAIAAAAAQ=</HashCode>
-      <FileName>CSSL\Shaders\CSShaderCode.cs</FileName>
+      <HashCode>AQCAMGjgBIKTk0cAAkWYb8SgAkIhHoBgCgCAIACgAow=</HashCode>
+      <FileName>BuildInFunctions\AngleAndTrigonometryFunctions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CSharpGL.CSSL.FragmentCSShaderCode" Collapsed="true">
-    <Position X="3" Y="1.75" Width="2" />
+  <Class Name="CSharpGL.CSSL.FragmentCSShaderCode">
+    <Position X="6" Y="1.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAQAAAAAAAAAAAgAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CSSL\Shaders\FragmentCSShaderCode.cs</FileName>
+      <HashCode>AAAAQIABAAAAAAAAgAAAASAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BuildInFunctions\FragmentProcessingFunctions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CSharpGL.CSSL.DemoFrag" Collapsed="true">
-    <Position X="3" Y="3.25" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAICAAgAAAEAAAAAAAAAAAAAAAAAAIAAAAAAAAAAQ=</HashCode>
-      <FileName>CSSL\Shaders\FragmentCSShaderCode.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CSharpGL.CSSL.GeometryCSShaderCode" Collapsed="true">
-    <Position X="5.75" Y="1.75" Width="2" />
+  <Class Name="CSharpGL.CSSL.GeometryCSShaderCode">
+    <Position X="3" Y="1.75" Width="2.25" />
+    <NestedTypes>
+      <Class Name="CSharpGL.CSSL.GeometryCSShaderCode.gl_inElement" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Shaders\GeometryCSShaderCode.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CSharpGL.CSSL.GeometryCSShaderCode.gl_inArray" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Shaders\GeometryCSShaderCode.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Enum Name="CSharpGL.CSSL.GeometryCSShaderCode.InType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Shaders\GeometryCSShaderCode.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="CSharpGL.CSSL.GeometryCSShaderCode.OutType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Shaders\GeometryCSShaderCode.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAQAAAAAAAAAACAAQEAAAQAAAAAAAQA=</HashCode>
-      <FileName>CSSL\Shaders\GeometryCSShaderCode.cs</FileName>
+      <FileName>Shaders\GeometryCSShaderCode.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CSharpGL.CSSL.VertexCSShaderCode" Collapsed="true">
+  <Class Name="CSharpGL.CSSL.VertexCSShaderCode">
     <Position X="0.5" Y="1.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAAAAAAAA=</HashCode>
-      <FileName>CSSL\Shaders\VertexCSShaderCode.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CSharpGL.CSSL.DemoVert" Collapsed="true">
-    <Position X="0.5" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AACAAAAAgCAAAAAAAAQAAgAAAQAAAAAAAAAAAAAAAAQ=</HashCode>
-      <FileName>CSSL\Shaders\VertexCSShaderCode.cs</FileName>
+      <FileName>Shaders\VertexCSShaderCode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
