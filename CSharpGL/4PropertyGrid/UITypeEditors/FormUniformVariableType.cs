@@ -16,8 +16,8 @@ namespace CSharpGL
 
         private static List<Type> cachedList;
 
-        private Type baseType;
-        private bool forceReload;
+        private readonly Type baseType;
+        private readonly bool forceReload;
 
         /// <summary>
         /// Select a type from all types that derived from specified base type.
@@ -88,6 +88,17 @@ namespace CSharpGL
         private void lstType_DoubleClick(object sender, EventArgs e)
         {
             this.btnOK_Click(sender, e);
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            List<Type> typeList = this.baseType.GetAllDerivedTypes();
+            cachedList = typeList;
+            this.lstType.Items.Clear();
+            foreach (var item in typeList)
+            {
+                this.lstType.Items.Add(item);
+            }
         }
     }
 }

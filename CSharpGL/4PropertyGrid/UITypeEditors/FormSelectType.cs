@@ -20,8 +20,8 @@ namespace CSharpGL
 
         private static Dictionary<Type, List<Type>> dict = new Dictionary<Type, List<Type>>();
 
-        private Type baseType;
-        private bool forceReload;
+        private readonly Type baseType;
+        private readonly bool forceReload;
 
         /// <summary>
         /// Select a type from all types that derived from specified base type.
@@ -93,6 +93,17 @@ namespace CSharpGL
         private void lstType_DoubleClick(object sender, EventArgs e)
         {
             btnOK_Click(sender, e);
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            List<Type> typeList = this.baseType.GetAllDerivedTypes();
+            dict[this.baseType] = typeList;
+            this.lstType.Items.Clear();
+            foreach (var item in typeList)
+            {
+                this.lstType.Items.Add(item);
+            }
         }
     }
 }

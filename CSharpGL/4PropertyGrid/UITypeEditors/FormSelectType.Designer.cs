@@ -31,6 +31,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lstType = new System.Windows.Forms.ListBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOK
@@ -70,6 +71,17 @@
             this.lstType.TabIndex = 6;
             this.lstType.DoubleClick += new System.EventHandler(this.lstType_DoubleClick);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRefresh.Location = new System.Drawing.Point(12, 437);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // FormSelectType
             // 
             this.AcceptButton = this.btnOK;
@@ -78,6 +90,7 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(442, 472);
             this.Controls.Add(this.lstType);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
             this.Name = "FormSelectType";
@@ -92,5 +105,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ListBox lstType;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
