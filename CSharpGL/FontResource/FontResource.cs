@@ -32,7 +32,7 @@ namespace CSharpGL
         /// <summary>
         /// 字形高度
         /// </summary>
-        public int FontHeight { get; set; }
+        public int FontHeight { get; private set; }
 
         ///// <summary>
         ///// 第一个字符
@@ -51,12 +51,12 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public Size TextureSize { get; set; }
+        public Size TextureSize { get; private set; }
 
         /// <summary>
         /// 含有各个字形的贴图的Id。
         /// </summary>
-        public uint FontTextureId { get; set; }
+        public uint FontTextureId { get; private set; }
 
         /// <summary>
         /// 记录每个字符在<see cref="FontResource"/>里的偏移量及其字形的宽高。
