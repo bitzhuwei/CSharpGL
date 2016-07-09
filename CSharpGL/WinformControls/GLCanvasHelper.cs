@@ -45,10 +45,10 @@ namespace CSharpGL
         static readonly LineWidthSwitch secondLineWidthSwitch = new LineWidthSwitch(1);
         static readonly List<vec3> minutePosition = new List<vec3>();
         static readonly List<vec3> minuteColor = new List<vec3>();
-        static readonly LineWidthSwitch minuteLineWidthSwitch = new LineWidthSwitch(3);
+        static readonly LineWidthSwitch minuteLineWidthSwitch = new LineWidthSwitch(4);
         static readonly List<vec3> hourPosition = new List<vec3>();
         static readonly List<vec3> hourColor = new List<vec3>();
-        static readonly LineWidthSwitch hourLineWidthSwitch = new LineWidthSwitch(5);
+        static readonly LineWidthSwitch hourLineWidthSwitch = new LineWidthSwitch(8);
         static GLCanvasHelper()
         {
             // second
@@ -71,9 +71,10 @@ namespace CSharpGL
         public static void DrawClock()
         {
             DateTime now = DateTime.Now;
+            const float speed = 1.0f;
 
             OpenGL.LoadIdentity();
-            float secondAngle = ((float)now.Second) / 60.0f * 360.0f;
+            float secondAngle = ((float)now.Second) / 60.0f * 360.0f * speed;
             OpenGL.Rotatef(secondAngle, 0.0f, 0.0f, -1.0f);
             secondLineWidthSwitch.On();
             OpenGL.Begin(OpenGL.GL_LINES);
@@ -88,7 +89,7 @@ namespace CSharpGL
             secondLineWidthSwitch.Off();
 
             OpenGL.LoadIdentity();
-            float minuteAngle = ((float)(now.Minute * 60 + now.Second)) / (60.0f * 60.0f) * 360.0f;
+            float minuteAngle = ((float)(now.Minute * 60 + now.Second)) / (60.0f * 60.0f) * 360.0f * speed;
             OpenGL.Rotatef(minuteAngle, 0.0f, 0.0f, -1.0f);
             minuteLineWidthSwitch.On();
             OpenGL.Begin(OpenGL.GL_LINES);
@@ -103,7 +104,7 @@ namespace CSharpGL
             minuteLineWidthSwitch.Off();
 
             OpenGL.LoadIdentity();
-            float hourAngle = ((float)((now.Hour * 60 + now.Minute) * 60 + now.Second)) / (24.0f * 60.0f * 60.0f) * 360.0f;
+            float hourAngle = ((float)((now.Hour * 60 + now.Minute) * 60 + now.Second)) / (12.0f * 60.0f * 60.0f) * 360.0f * speed;
             OpenGL.Rotatef(hourAngle, 0.0f, 0.0f, -1.0f);
             hourLineWidthSwitch.On();
             OpenGL.Begin(OpenGL.GL_LINES);
