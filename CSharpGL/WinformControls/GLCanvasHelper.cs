@@ -41,7 +41,7 @@ namespace CSharpGL
         static readonly LineWidthSwitch hourLineWidthSwitch = new LineWidthSwitch(8);
         static readonly List<vec3> circlePosition = new List<vec3>();
         static readonly List<vec3> circleColor = new List<vec3>();
-        static readonly LineWidthSwitch circleLineWidthSwitch = new LineWidthSwitch(80);
+        static readonly LineWidthSwitch circleLineWidthSwitch = new LineWidthSwitch(8);
         static readonly List<vec3> markPosition = new List<vec3>();
         static readonly List<vec3> markColor = new List<vec3>();
 
