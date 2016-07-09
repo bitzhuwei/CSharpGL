@@ -34,7 +34,6 @@ namespace CSharpGL
         /// </summary>
         public const string strNormal = "normal";
         private TeapotModel model;
-        Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
         private PropertyBufferPtr positionBufferPtr;
         private PropertyBufferPtr colorBufferPtr;
         private PropertyBufferPtr normalBufferPtr;

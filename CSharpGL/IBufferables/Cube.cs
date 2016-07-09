@@ -28,7 +28,10 @@ namespace CSharpGL
         /// 
         /// </summary>
         public const string strNormal = "normal";
-        Dictionary<string, PropertyBufferPtr> propertyBufferPtrDict = new Dictionary<string, PropertyBufferPtr>();
+
+        private PropertyBufferPtr positionBufferPtr;
+        private PropertyBufferPtr colorBufferPtr;
+        private PropertyBufferPtr normalBufferPtr;
         /// <summary>
         /// 
         /// </summary>
@@ -39,7 +42,7 @@ namespace CSharpGL
         {
             if (bufferName == strPosition)
             {
-                if (!propertyBufferPtrDict.ContainsKey(bufferName))
+                if (positionBufferPtr == null)
                 {
                     using (var buffer = new PropertyBuffer<CubeModel.CubePosition>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
@@ -51,14 +54,14 @@ namespace CSharpGL
 
                         }
 
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                        positionBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
                     }
                 }
-                return propertyBufferPtrDict[bufferName];
+                return positionBufferPtr;
             }
             else if (bufferName == strColor)
             {
-                if (!propertyBufferPtrDict.ContainsKey(bufferName))
+                if (colorBufferPtr == null)
                 {
                     using (var buffer = new PropertyBuffer<CubeModel.CubeColor>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
@@ -69,14 +72,14 @@ namespace CSharpGL
                             colorArray[0] = CubeModel.color;
                         }
 
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                        colorBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
                     }
                 }
-                return propertyBufferPtrDict[bufferName];
+                return colorBufferPtr;
             }
             else if (bufferName == strNormal)
             {
-                if (!propertyBufferPtrDict.ContainsKey(bufferName))
+                if (normalBufferPtr == null)
                 {
                     using (var buffer = new PropertyBuffer<CubeModel.CubeNormal>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
@@ -87,10 +90,10 @@ namespace CSharpGL
                             normalArray[0] = CubeModel.normal;
                         }
 
-                        propertyBufferPtrDict.Add(bufferName, buffer.GetBufferPtr() as PropertyBufferPtr);
+                        normalBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
                     }
                 }
-                return propertyBufferPtrDict[bufferName];
+                return normalBufferPtr;
             }
             else
             {
