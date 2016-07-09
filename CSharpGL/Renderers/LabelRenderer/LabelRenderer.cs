@@ -19,13 +19,13 @@ namespace CSharpGL
         /// </summary>
         public vec3 WorldPosition { get; set; }
         /// <summary>
-        /// Label height(in pixels)
+        /// Label's height(in pixels of OpenGL's viewport)
         /// </summary>
-        public int LabelHeight { get; private set; }
+        public int LabelHeight { get; set; }
 
         private string content = string.Empty;
         /// <summary>
-        /// 
+        /// Displayed text whose maximum length is limited by constructor's maxCharCount parameter.
         /// </summary>
         public string Text
         {
