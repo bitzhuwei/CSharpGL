@@ -35,7 +35,7 @@ namespace CSharpGL
         static readonly LineWidthSwitch secondLineWidthSwitch = new LineWidthSwitch(1);
         static readonly List<vec3> minutePosition = new List<vec3>();
         static readonly List<vec3> minuteColor = new List<vec3>();
-        static readonly LineWidthSwitch minuteLineWidthSwitch = new LineWidthSwitch(4);
+        static readonly LineWidthSwitch minuteLineWidthSwitch = new LineWidthSwitch(3);
         static readonly List<vec3> hourPosition = new List<vec3>();
         static readonly List<vec3> hourColor = new List<vec3>();
         static readonly LineWidthSwitch hourLineWidthSwitch = new LineWidthSwitch(8);
