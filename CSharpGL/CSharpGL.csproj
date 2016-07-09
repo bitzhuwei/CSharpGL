@@ -137,7 +137,6 @@
     <Compile Include="OpenGLObjects\Camera\IPerspectiveCamera.cs" />
     <Compile Include="OpenGLObjects\Camera\IPerspectiveViewCamera.cs" />
     <Compile Include="OpenGLObjects\Camera\IViewCamera.cs" />
-    <Compile Include="OpenGLObjects\Camera\CameraHelpers\LegacyBoundingBox.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.MouseWheel.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\ViewTypes.cs" />
     <Compile Include="OpenGLObjects\Framebuffer\Framebuffer.Dispose.cs" />

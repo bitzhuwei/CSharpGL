@@ -6,9 +6,6 @@ using System.Text;
 
 namespace CSharpGL
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public static partial class CameraHelper
     {
         /// <summary>
