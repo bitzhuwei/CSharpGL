@@ -25,7 +25,7 @@ namespace CSharpGL
             //OpenGL.gluPerspective(60.0f, width / height, 0.01, 100.0);
             mat4 projectionMatrix = glm.perspective(glm.radians(60.0f), (float)(width / height), 0.01f, 100.0f);
             OpenGL.MultMatrixf((projectionMatrix * viewMatrix).to_array());
-         
+
             //  Set the modelview matrix.
             OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);
         }
@@ -39,26 +39,101 @@ namespace CSharpGL
         static readonly List<vec3> hourPosition = new List<vec3>();
         static readonly List<vec3> hourColor = new List<vec3>();
         static readonly LineWidthSwitch hourLineWidthSwitch = new LineWidthSwitch(8);
+        static readonly List<vec3> circlePosition = new List<vec3>();
+        static readonly List<vec3> circleColor = new List<vec3>();
+        static readonly List<vec3> markPosition = new List<vec3>();
+        static readonly List<vec3> markColor = new List<vec3>();
+
         static GLCanvasHelper()
         {
-            // second
-            secondColor.Add(new vec3(1.0f, 0.0f, 0.0f));
-            secondPosition.Add(new vec3(0.0f, 0.0f, 0.0f));
-            secondColor.Add(new vec3(1.0f, 0.0f, 0.0f));
-            secondPosition.Add(new vec3(0.0f, 1.0f, 0.0f) * 1.0f);
-            // minite
-            minuteColor.Add(new vec3(0.0f, 1.0f, 0.0f));
-            minutePosition.Add(new vec3(0.0f, 0.0f, 0.0f));
-            minuteColor.Add(new vec3(0.0f, 1.0f, 0.0f));
-            minutePosition.Add(new vec3(0.0f, 1.0f, 0.0f) * 0.8f);
-            // hour
-            hourColor.Add(new vec3(0.0f, 0.0f, 1.0f));
-            hourPosition.Add(new vec3(0.0f, 0.0f, 0.0f));
-            hourColor.Add(new vec3(0.0f, 0.0f, 1.0f));
-            hourPosition.Add(new vec3(0.0f, 1.0f, 0.0f) * 0.5f);
+            {
+                // second
+                secondColor.Add(new vec3(1.0f, 0.0f, 0.0f));
+                secondPosition.Add(new vec3(0.0f, 0.0f, 0.0f));
+                secondColor.Add(new vec3(1.0f, 0.0f, 0.0f));
+                secondPosition.Add(new vec3(0.0f, 1.0f, 0.0f) * 1.0f);
+                // minite
+                minuteColor.Add(new vec3(0.0f, 1.0f, 0.0f));
+                minutePosition.Add(new vec3(0.0f, 0.0f, 0.0f));
+                minuteColor.Add(new vec3(0.0f, 1.0f, 0.0f));
+                minutePosition.Add(new vec3(0.0f, 1.0f, 0.0f) * 0.8f);
+                // hour
+                hourColor.Add(new vec3(0.0f, 0.0f, 1.0f));
+                hourPosition.Add(new vec3(0.0f, 0.0f, 0.0f));
+                hourColor.Add(new vec3(0.0f, 0.0f, 1.0f));
+                hourPosition.Add(new vec3(0.0f, 1.0f, 0.0f) * 0.5f);
+            }
+            // circle
+            {
+                int circleParts = 60;
+                for (int i = 0; i < circleParts; i++)
+                {
+                    var position = new vec3(
+                        (float)Math.Cos((float)i / (float)circleParts * Math.PI * 2),
+                        (float)Math.Sin((float)i / (float)circleParts * Math.PI * 2),
+                        0);
+                    circlePosition.Add(position);
+                    circleColor.Add(new vec3(1, 1, 1));
+                }
+            }
+            // mark
+            {
+                int markCount = 60;
+                for (int i = 0; i < markCount; i++)
+                {
+                    var position = new vec3(
+                        (float)Math.Cos((float)i / (float)markCount * Math.PI * 2),
+                        (float)Math.Sin((float)i / (float)markCount * Math.PI * 2),
+                        0);
+                    markPosition.Add(position);
+                    markColor.Add(new vec3(1, 1, 1));
+
+                    var position2 = new vec3(
+                        (float)Math.Cos((float)i / (float)markCount * Math.PI * 2),
+                        (float)Math.Sin((float)i / (float)markCount * Math.PI * 2),
+                        0) * (i % 5 == 0 ? 0.8f : 0.9f);
+                    markPosition.Add(position2);
+                    markColor.Add(new vec3(1, 1, 1));
+                }
+            }
         }
 
         public static void DrawClock()
+        {
+            DrawPins();
+
+            DrawCircle();
+
+            DrawMark();
+        }
+
+        private static void DrawMark()
+        {
+            OpenGL.Begin(DrawMode.Lines);
+            for (int i = 0; i < markPosition.Count; i++)
+            {
+                vec3 color = markColor[i];
+                OpenGL.Color3f(color.x, color.y, color.z);
+                vec3 position = markPosition[i];
+                OpenGL.Vertex3f(position.x, position.y, position.z);
+            }
+            OpenGL.End();
+        }
+
+        private static void DrawCircle()
+        {
+            OpenGL.Begin(DrawMode.LineLoop);
+            for (int i = 0; i < circlePosition.Count; i++)
+            {
+                vec3 color = circleColor[i];
+                OpenGL.Color3f(color.x, color.y, color.z);
+                vec3 position = circlePosition[i];
+                OpenGL.Vertex3f(position.x, position.y, position.z);
+            }
+            OpenGL.End();
+        }
+
+        private static void DrawPins()
         {
             DateTime now = DateTime.Now;
             const float speed = 1.0f;
@@ -107,7 +182,6 @@ namespace CSharpGL
             }
             OpenGL.End();
             hourLineWidthSwitch.Off();
-
         }
 
     }
