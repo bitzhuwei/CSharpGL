@@ -45,12 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.resx">
-      <DependentUpon>FormIndexBufferPtrBoard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormPropertyGridEditor.resx">
-      <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
-    </EmbeddedResource>
     <Content Include="IBufferables\TextModel.jpg" />
     <Content Include="Renderers\UIRenderers\readme.md" />
     <Content Include="FontResource\readme.md" />
@@ -461,18 +455,6 @@
     <None Include="Renderers\Renderer\Renderers.cd" />
     <Content Include="OpenGLObjects\UniformVariables\UniformArrayVariables\readme.md" />
     <None Include="Renderers\PickableRenderer\ColorCodedPicking\ColorCodedPicking.cd" />
-    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormUniformVariableListEditor.resx">
-      <DependentUpon>FormUniformVariableListEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormIListEditor`1.resx">
-      <DependentUpon>FormIListEditor`1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormUniformVariableType.resx">
-      <DependentUpon>FormUniformVariableType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="4PropertyGrid\UITypeEditors\FormSelectType.resx">
-      <DependentUpon>FormSelectType.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Picking.frag" />
     <EmbeddedResource Include="Resources\Picking.vert" />
     <None Include="OpenGLObjects\VertexBufferObjects\Buffer.cd" />
