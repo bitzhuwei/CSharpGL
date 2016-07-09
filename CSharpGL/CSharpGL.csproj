@@ -113,6 +113,8 @@
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\PolygonOffsetSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\PrimitiveRestartSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\ScissorTestSwitch.cs" />
+    <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformInt32Array.cs" />
+    <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformInt32.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.DoRender.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.cs" />

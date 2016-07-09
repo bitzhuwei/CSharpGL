@@ -205,6 +205,21 @@ namespace CSharpGL
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
+        public int SetUniform(string uniformName, int[] values)
+        {
+            int location = GetUniformLocation(uniformName);
+            if (location >= 0)
+            {
+                glUniform1iv(location, values.Length, values);
+            }
+            return location;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
         public int SetUniform(string uniformName, float[] values)
         {
             int location = GetUniformLocation(uniformName);

@@ -18,7 +18,7 @@ namespace CSharpGL
         protected override void DoRender(RenderEventArg arg)
         {
             this.SetUniform("billboardCenter_worldspace", this.WorldPosition);
-            this.SetUniform("labelHeight", (float)this.LabelHeight);
+            this.SetUniform("labelHeight", this.LabelHeight);
             int[] viewport = OpenGL.GetViewport();
             this.SetUniform("viewportSize", new vec2(viewport[2], viewport[3]));
             mat4 projection = arg.Camera.GetProjectionMat4();

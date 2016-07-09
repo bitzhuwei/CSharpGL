@@ -6,7 +6,7 @@ in vec2 in_UV;
 out vec2 passUV;
 
 uniform vec3 billboardCenter_worldspace; // Position of the center of the billboard
-uniform float labelHeight; // Size of the billboard, in percentage of screen units (probably meters)
+uniform int labelHeight; // Size of the billboard, in percentage of screen units (probably meters)
 uniform vec2 viewportSize;
 uniform mat4 projection;
 uniform mat4 view;

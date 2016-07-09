@@ -85,6 +85,7 @@ namespace CSharpGL
             {
                 variableDict = new Dictionary<Type, Type>();
                 variableDict.Add(typeof(bool), typeof(UniformBool));
+                variableDict.Add(typeof(int), typeof(UniformInt32));
                 variableDict.Add(typeof(float), typeof(UniformFloat));
                 variableDict.Add(typeof(vec2), typeof(UniformVec2));
                 variableDict.Add(typeof(vec3), typeof(UniformVec3));
