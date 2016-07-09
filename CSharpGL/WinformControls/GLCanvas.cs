@@ -28,7 +28,7 @@ namespace CSharpGL
         /// </summary>
         protected RenderContext renderContext;
 
-        private bool designMode;
+        private readonly bool designMode;
 
         /// <summary>
         /// Creats render context and supports OpenGL rendering.
@@ -83,6 +83,10 @@ namespace CSharpGL
             OpenGL.Enable(OpenGL.GL_DEPTH_TEST);
             OpenGL.DepthFunc(OpenGL.GL_LEQUAL);
             OpenGL.Hint(OpenGL.GL_PERSPECTIVE_CORRECTION_HINT, OpenGL.GL_NICEST);
+            if (this.designMode)
+            {
+                GLCanvasHelper.ResizeGL(this.Width, this.Height);
+            }
         }
         /// <summary>
         /// 
@@ -129,8 +133,6 @@ namespace CSharpGL
         /// </summary>
         protected virtual void DesignModeRender()
         {
-            GLCanvasHelper.ResizeGL(this.Width, this.Height);
-
             GLCanvasHelper.DrawPyramid();
         }
         /// <summary>
@@ -163,6 +165,11 @@ namespace CSharpGL
                 renderContext.SetDimensions(this.Width, this.Height);
 
                 OpenGL.Viewport(0, 0, this.Width, this.Height);
+
+                if (this.designMode)
+                {
+                    GLCanvasHelper.ResizeGL(this.Width, this.Height);
+                }
 
                 this.Invalidate();
             }
