@@ -60,10 +60,9 @@ namespace CSharpGL
                     Pitch = glyph.RenderWidth
                 };
 
-                var stuff = (byte*)surface.Bits;
-                // todo: this is not needed?
+                var stuff = (byte*)surface.Bits.ToPointer();
                 for (int i = 0; i < surface.Width * surface.Height; i++)
-                    *stuff++ = 0;
+                { *stuff++ = 0; }
 
                 glyph.RenderTo(surface);
 
