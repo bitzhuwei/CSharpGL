@@ -199,6 +199,10 @@
     <Compile Include="Utilities\DumpTreeToText.cs" />
     <Compile Include="Utilities\ITreeNode.yield.cs" />
     <Compile Include="Utilities\ITreeNode.cs" />
+    <Compile Include="WinformControls\ClockRenderer\ClockRenderer.cs" />
+    <Compile Include="WinformControls\ClockRenderer\ClockMarkRenderer.cs" />
+    <Compile Include="WinformControls\ClockRenderer\ClockCircleRenderer.cs" />
+    <Compile Include="WinformControls\ClockRenderer\ClockPinRenderer.cs" />
     <Compile Include="WinformControls\GLCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>

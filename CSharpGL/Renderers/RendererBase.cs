@@ -11,7 +11,7 @@ namespace CSharpGL
     /// <summary>
     /// 用OpenGL初始化和渲染一个元素。
     /// 只做初始化和渲染这两件事。
-    /// 一个<see cref="RendererBase"/>对象对应一个(vertex shader+fragment shader)的shader program。
+    /// <para>Initialize and render something.</para>
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract class RendererBase : IRenderable, IDisposable
@@ -24,6 +24,7 @@ namespace CSharpGL
 
         /// <summary>
         /// 为便于调试而设置的ID值，没有应用意义。
+        /// <para>Only for debugging.</para>
         /// </summary>
         public int ID { get; private set; }
 
@@ -39,7 +40,9 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 用OPENGL渲染一个元素。
+        /// 用OpenGL初始化和渲染一个元素。
+        /// 只做初始化和渲染这两件事。
+        /// <para>Initialize and render something.</para>
         /// </summary>
         public RendererBase()
         {
