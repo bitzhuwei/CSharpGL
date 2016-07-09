@@ -60,7 +60,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 初始化此Element，此方法应且只应执行1次。
+        /// 
         /// </summary>
         public void Initialize()
         {
@@ -73,12 +73,12 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 初始化此Element，此方法应且只应执行1次。
+        /// This method should only be invoked once.
         /// </summary>
         protected abstract void DoInitialize();
 
         /// <summary>
-        /// 渲染
+        /// Render something.
         /// </summary>
         /// <param name="arg"></param>
         public void Render(RenderEventArg arg)
@@ -89,7 +89,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 执行渲染操作
+        /// Render something.
         /// </summary>
         /// <param name="arg"></param>
         protected abstract void DoRender(RenderEventArg arg);
@@ -145,14 +145,15 @@ namespace CSharpGL
 
         /// <summary>
         /// 释放.net托管资源。
+        /// <para>Dispose reources managed by .NET.</para>
         /// </summary>
         protected virtual void DisposeManagedResources() { }
 
         /// <summary>
-        /// 释放.net非托管资源，例如释放OpenGL相关的资源。
-        /// 此类型用于OpenGL渲染，因此必有要释放的OpenGL资源。因此设置为abstract。
+        /// 释放.net非托管资源，例如释放OpenGL相关的资源（Buffer、纹理等）。
+        /// <para>Dispose resources not managed by .NET(OpenGL buffers, textures, etc.).</para>
         /// </summary>
-        protected abstract void DisposeUnmanagedResources();
+        protected virtual void DisposeUnmanagedResources() { }
 
     }
 

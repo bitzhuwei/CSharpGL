@@ -87,8 +87,5 @@ namespace CSharpGL
             hourLineWidthSwitch.Off();
         }
 
-        protected override void DisposeUnmanagedResources()
-        {
-        }
     }
 }

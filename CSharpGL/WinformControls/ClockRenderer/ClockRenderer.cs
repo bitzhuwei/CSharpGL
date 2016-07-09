@@ -25,8 +25,5 @@ namespace CSharpGL
             markRenderer.Render(arg);
         }
 
-        protected override void DisposeUnmanagedResources()
-        {
-        }
     }
 }

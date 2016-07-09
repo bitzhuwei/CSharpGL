@@ -45,8 +45,5 @@ namespace CSharpGL
             OpenGL.End();
         }
 
-        protected override void DisposeUnmanagedResources()
-        {
-        }
     }
 }

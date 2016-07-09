@@ -41,8 +41,5 @@ namespace CSharpGL
             circleLineWidthSwitch.Off();
         }
 
-        protected override void DisposeUnmanagedResources()
-        {
-        }
     }
 }
