@@ -15,7 +15,7 @@ namespace CSharpGL
     public static class TypeHelper
     {
         /// <summary>
-        /// Create an instance of specified <typeparamref name="type"/>.
+        /// Create an instance of specified <paramref name="type"/>.
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
