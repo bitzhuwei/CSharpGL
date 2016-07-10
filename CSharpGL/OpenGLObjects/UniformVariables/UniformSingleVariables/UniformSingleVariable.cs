@@ -32,7 +32,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("{0}: {1}", this.VarName, this.GetValue());
+            return string.Format("{0} {1}: {2}", this.GetType().Name, this.VarName, this.GetValue());
         }
 
     }
