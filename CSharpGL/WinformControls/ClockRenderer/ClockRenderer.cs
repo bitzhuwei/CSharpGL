@@ -7,22 +7,22 @@ namespace CSharpGL
 {
     class ClockRenderer : RendererBase
     {
-        private readonly ClockPinRenderer pinRenderer = new ClockPinRenderer();
         private readonly ClockCircleRenderer circleRenderer = new ClockCircleRenderer();
         private readonly ClockMarkRenderer markRenderer = new ClockMarkRenderer();
+        private readonly ClockPinRenderer pinRenderer = new ClockPinRenderer();
 
         protected override void DoInitialize()
         {
-            pinRenderer.Initialize();
             circleRenderer.Initialize();
             markRenderer.Initialize();
+            pinRenderer.Initialize();
         }
 
         protected override void DoRender(RenderEventArg arg)
         {
-            pinRenderer.Render(arg);
             circleRenderer.Render(arg);
             markRenderer.Render(arg);
+            pinRenderer.Render(arg);
         }
 
     }
