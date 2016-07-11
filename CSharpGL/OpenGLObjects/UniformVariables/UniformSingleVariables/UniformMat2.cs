@@ -11,25 +11,9 @@ namespace CSharpGL
     /// <summary>
     /// uniform mat2 variable;
     /// </summary>
-    public class UniformMat2 : UniformSingleVariable
+    public class UniformMat2 : UniformSingleVariable<mat2>
     {
 
-        private mat2 value;
-        /// <summary>
-        /// 
-        /// </summary>
-        public mat2 Value
-        {
-            get { return this.value; }
-            set
-            {
-                if (this.value != value)
-                {
-                    this.value = value;
-                    this.Updated = true;
-                }
-            }
-        }
         /// <summary>
         /// uniform mat2 variable;
         /// </summary>
@@ -40,7 +24,8 @@ namespace CSharpGL
         /// </summary>
         /// <param name="varName"></param>
         /// <param name="value"></param>
-        public UniformMat2(string varName, mat2 value) : base(varName) { this.Value = value; }
+        public UniformMat2(string varName, mat2 value) : base(varName, value) { }
+
         /// <summary>
         /// 
         /// </summary>
@@ -50,32 +35,5 @@ namespace CSharpGL
             this.Location = program.SetUniformMatrix2(VarName, this.value.to_array());
         }
 
-        internal override bool SetValue(ValueType value)
-        {
-#if DEBUG
-            if (value.GetType() != typeof(mat2))
-            {
-                throw new ArgumentException(string.Format("[{0}] not match [{1}]'s value.",
-                    value.GetType().Name, this.GetType().Name));
-            }
-#endif
-
-            var v = (mat2)value;
-            if (v != this.value)
-            {
-                this.value = v;
-                this.Updated = true;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        internal override ValueType GetValue()
-        {
-            return value;
-        }
     }
 }

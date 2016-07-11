@@ -11,25 +11,9 @@ namespace CSharpGL
     /// <summary>
     /// uniform samplerXD variable;
     /// </summary>
-    public class UniformSampler : UniformSingleVariable
+    public class UniformSampler : UniformSingleVariable<samplerValue>
     {
 
-        private samplerValue value;
-        /// <summary>
-        /// 
-        /// </summary>
-        public samplerValue Value
-        {
-            get { return this.value; }
-            set
-            {
-                if (this.value != value)
-                {
-                    this.value = value;
-                    this.Updated = true;
-                }
-            }
-        }
         /// <summary>
         /// uniform samplerXD variable;
         /// </summary>
@@ -40,7 +24,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="varName"></param>
         /// <param name="value"></param>
-        public UniformSampler(string varName, samplerValue value) : base(varName) { this.Value = value; }
+        public UniformSampler(string varName, samplerValue value) : base(varName, value) { }
 
         static OpenGL.glActiveTexture glActiveTexture = null;
         /// <summary>
@@ -69,36 +53,8 @@ namespace CSharpGL
             ////OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
             //OpenGL.BindTexture(value.target, 0);
         }
-
-        internal override bool SetValue(ValueType value)
-        {
-#if DEBUG
-            if (value.GetType() != typeof(samplerValue))
-            {
-                throw new ArgumentException(string.Format("[{0}] not match [{1}]'s value.",
-                    value.GetType().Name, this.GetType().Name));
-            }
-#endif
-
-            var v = (samplerValue)value;
-            if (v != this.value)
-            {
-                this.value = v;
-                this.Updated = true;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        internal override ValueType GetValue()
-        {
-            return value;
-        }
-
     }
+
     /// <summary>
     /// value for setting/resetting uniform samplerXD variable.
     /// </summary>

@@ -11,25 +11,8 @@ namespace CSharpGL
     /// <summary>
     /// uniform float variable;
     /// </summary>
-    public class UniformFloat : UniformSingleVariable
+    public class UniformFloat : UniformSingleVariable<float>
     {
-
-        private float value;
-        /// <summary>
-        /// 
-        /// </summary>
-        public float Value
-        {
-            get { return this.value; }
-            set
-            {
-                if (this.value != value)
-                {
-                    this.value = value;
-                    this.Updated = true;
-                }
-            }
-        }
 
         /// <summary>
         /// uniform float variable;
@@ -42,7 +25,8 @@ namespace CSharpGL
         /// </summary>
         /// <param name="varName"></param>
         /// <param name="value"></param>
-        public UniformFloat(string varName, float value) : base(varName) { this.Value = value; }
+        public UniformFloat(string varName, float value) : base(varName, value) { }
+
         /// <summary>
         /// 
         /// </summary>
@@ -51,35 +35,6 @@ namespace CSharpGL
         {
             this.Location = program.SetUniform(VarName, value);
         }
-
-        internal override bool SetValue(ValueType value)
-        {
-#if DEBUG
-            if (value.GetType() != typeof(float))
-            {
-                throw new ArgumentException(string.Format("[{0}] not match [{1}]'s value.",
-                    value.GetType().Name, this.GetType().Name));
-            }
-#endif
-
-            var v = (float)value;
-            if (v != this.value)
-            {
-                this.value = v;
-                this.Updated = true;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        internal override ValueType GetValue()
-        {
-            return value;
-        }
-
     }
 
 }

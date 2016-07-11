@@ -92,22 +92,6 @@ namespace CSharpGL.Demos
                     "position", 
                     "position", 
                 };
-                var uniformTupleList = new List<Tuple<string, ValueType>>()
-                {
-                    new Tuple<string, ValueType>("normalLength", 0.5f),
-                    new Tuple<string, ValueType>("showModel", true),
-                    new Tuple<string, ValueType>("showNormal", false),
-                };
-                var uniformVariablesList = new List<List<Tuple<string, ValueType>>>()
-                {
-                    new List<Tuple<string, ValueType>>(),
-                    new List<Tuple<string, ValueType>>(),
-                    new List<Tuple<string, ValueType>>(),
-                    uniformTupleList,
-                    uniformTupleList,
-                    uniformTupleList,
-                    uniformTupleList,
-                };
                 for (int i = 0; i < bufferables.Length; i++)
                 {
                     GeometryModel key = keys[i];
@@ -123,10 +107,11 @@ namespace CSharpGL.Demos
                         bufferable, shaders, propertyNameMap, positionNameInIBufferable);
                     pickableRenderer.Name = string.Format("Pickable: [{0}]", key);
                     pickableRenderer.Initialize();
-                    var uniformVariables = uniformVariablesList[i];
-                    foreach (var item in uniformVariables)
+                    if (i > 2)
                     {
-                        pickableRenderer.SetUniform(item.Item1, item.Item2);
+                        pickableRenderer.SetUniform("normalLength", 0.5f);
+                        pickableRenderer.SetUniform("showModel", true);
+                        pickableRenderer.SetUniform("showNormal", false);
                     }
 
                     HighlightedPickableRenderer renderer = new HighlightedPickableRenderer(
@@ -148,52 +133,17 @@ namespace CSharpGL.Demos
             }
             {
                 // build the axis
-                var bufferables = new IBufferable[]{
-                    new Axis(),
-                };
-                var keys = new GeometryModel[] 
-                { 
-                    GeometryModel.Axis, 
-                };
-                ShaderCode[] simpleShader = new ShaderCode[2];
-                simpleShader[0] = new ShaderCode(File.ReadAllText(@"shaders\Simple.vert"), ShaderType.VertexShader);
-                simpleShader[1] = new ShaderCode(File.ReadAllText(@"shaders\Simple.frag"), ShaderType.FragmentShader);
-                var shaderCodesGroup = new ShaderCode[][]
-                {
-                    simpleShader,
-                };
-                var simpleShaderPropertyNameMap = new PropertyNameMap();
-                simpleShaderPropertyNameMap.Add("in_Position", "position");
-                simpleShaderPropertyNameMap.Add("in_Color", "color");
-                var propertyNameMaps = new PropertyNameMap[]
-                {
-                    simpleShaderPropertyNameMap,
-                };
-                var positionNameInIBufferables = new string[]
-                {
-                    "position", 
-                };
-                var uniformVariablesList = new List<List<Tuple<string, ValueType>>>()
-                {
-                    new List<Tuple<string, ValueType>>(),
-                };
-                for (int i = 0; i < bufferables.Length; i++)
-                {
-                    GeometryModel key = keys[i];
-                    IBufferable bufferable = bufferables[i];
-                    ShaderCode[] shaders = shaderCodesGroup[i];
-                    var propertyNameMap = propertyNameMaps[i];
-                    string positionNameInIBufferable = positionNameInIBufferables[i];
-                    var pickableRenderer = new PickableRenderer(
-                        bufferable, shaders, propertyNameMap, positionNameInIBufferable);
-                    pickableRenderer.Name = string.Format("Pickable: [{0}]", key);
-                    pickableRenderer.Initialize();
-                    var uniformVariables = uniformVariablesList[i];
-                    foreach (var item in uniformVariables)
-                    {
-                        pickableRenderer.SetUniform(item.Item1, item.Item2);
-                    }
-                }
+                var bufferable = new Axis();
+                var shaders = new ShaderCode[2];
+                shaders[0] = new ShaderCode(File.ReadAllText(@"shaders\Simple.vert"), ShaderType.VertexShader);
+                shaders[1] = new ShaderCode(File.ReadAllText(@"shaders\Simple.frag"), ShaderType.FragmentShader);
+                var propertyNameMap = new PropertyNameMap();
+                propertyNameMap.Add("in_Position", "position");
+                propertyNameMap.Add("in_Color", "color");
+                var pickableRenderer = new PickableRenderer(
+                    bufferable, shaders, propertyNameMap, "position");
+                pickableRenderer.Name = string.Format("Pickable: [{0}]", "Axis");
+                pickableRenderer.Initialize();
             }
             {
                 var frmBulletinBoard = new FormBulletinBoard();

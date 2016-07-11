@@ -11,7 +11,7 @@ namespace CSharpGL
     /// <summary>
     /// uniform vec3 variable;
     /// </summary>
-    public class UniformVec3 : UniformSingleVariable
+    public class UniformVec3 : UniformSingleVariable<vec3>
     {
 
         private vec3 value;
@@ -43,7 +43,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="varName"></param>
         /// <param name="value"></param>
-        public UniformVec3(string varName, vec3 value) : base(varName) { this.Value = value; }
+        public UniformVec3(string varName, vec3 value) : base(varName, value) { }
 
         /// <summary>
         /// 
@@ -53,35 +53,6 @@ namespace CSharpGL
         {
             this.Location = program.SetUniform(VarName, value.x, value.y, value.z);
         }
-
-        internal override bool SetValue(ValueType value)
-        {
-#if DEBUG
-            if (value.GetType() != typeof(vec3))
-            {
-                throw new ArgumentException(string.Format("[{0}] not match [{1}]'s value.",
-                    value.GetType().Name, this.GetType().Name));
-            }
-#endif
-
-            var v = (vec3)value;
-            if (v != this.value)
-            {
-                this.value = v;
-                this.Updated = true;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        internal override ValueType GetValue()
-        {
-            return value;
-        }
-
     }
 
 }

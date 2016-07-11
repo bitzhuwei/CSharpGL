@@ -21,7 +21,7 @@ namespace CSharpGL
         /// <param name="varNameInShader"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public bool GetUniformValue<T>(string varNameInShader, out T value) where T : struct
+        public bool GetUniformValue<T>(string varNameInShader, out T value) where T : struct, IEquatable<T>
         {
             value = default(T);
             bool gotUniform = false;
@@ -29,7 +29,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = (T)(item as UniformSingleVariable).GetValue();
+                    value = (item as UniformSingleVariable<T>).Value;
                     gotUniform = true;
                     break;
                 }
@@ -41,7 +41,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public bool SetUniform(string varNameInShader, ValueType value)
+        public bool SetUniform<T>(string varNameInShader, T value) where T : struct,IEquatable<T>
         {
             bool gotUniform = false;
             bool updated = false;
@@ -49,7 +49,9 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    updated = (item as UniformSingleVariable).SetValue(value);
+                    var variable = item as UniformSingleVariable<T>;
+                    variable.Value = value;
+                    updated = variable.Updated;
                     gotUniform = true;
                     break;
                 }
@@ -67,8 +69,8 @@ namespace CSharpGL
                         "uniform variable [{0}] not exists!", varNameInShader));
                 }
 
-                var variable = GetVariable(value, varNameInShader) as UniformSingleVariable;
-                variable.SetValue(value);
+                var variable = GetVariable(value, varNameInShader) as UniformSingleVariable<T>;
+                variable.Value = value;
                 this.uniformVariables.Add(variable);
                 updated = true;
             }
@@ -76,7 +78,7 @@ namespace CSharpGL
             return updated;
         }
 
-        private object GetVariable(ValueType value, string varNameInShader)
+        private object GetVariable<T>(T value, string varNameInShader)
         {
             Type t = value.GetType();
             Type varType;
@@ -84,7 +86,7 @@ namespace CSharpGL
             if (variableDict == null)
             {
                 variableDict = new Dictionary<Type, Type>();
-                var types = AssemblyHelper.GetAllDerivedTypes(typeof(UniformSingleVariable));
+                var types = AssemblyHelper.GetAllDerivedTypes(typeof(UniformSingleVariableBase));
                 foreach (var item in types)
                 {
                     try
