@@ -67,7 +67,7 @@ namespace CSharpGL
                         "uniform variable [{0}] not exists!", varNameInShader));
                 }
 
-                UniformSingleVariable variable = GetVariable(value, varNameInShader);
+                var variable = GetVariable(value, varNameInShader) as UniformSingleVariable;
                 variable.SetValue(value);
                 this.uniformVariables.Add(variable);
                 updated = true;
@@ -76,7 +76,7 @@ namespace CSharpGL
             return updated;
         }
 
-        private UniformSingleVariable GetVariable(ValueType value, string varNameInShader)
+        private object GetVariable(ValueType value, string varNameInShader)
         {
             Type t = value.GetType();
             Type varType;
@@ -98,8 +98,7 @@ namespace CSharpGL
 
             if (variableDict.TryGetValue(t, out varType))
             {
-                object variable = Activator.CreateInstance(varType, varNameInShader);
-                return variable as UniformSingleVariable;
+                return Activator.CreateInstance(varType, varNameInShader);
             }
             else
             {

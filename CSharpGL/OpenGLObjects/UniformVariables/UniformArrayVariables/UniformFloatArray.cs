@@ -11,22 +11,8 @@ namespace CSharpGL
     /// <summary>
     /// uniform float variable[10];
     /// </summary>
-    public class UniformFloatArray : UniformArrayVariable
+    public class UniformFloatArray : UniformArrayVariable<float>
     {
-
-        private float[] value;
-        /// <summary>
-        /// 
-        /// </summary>
-        public float[] Value
-        {
-            get { return this.value; }
-            set
-            {
-                this.value = value;
-                this.Updated = true;
-            }
-        }
 
         /// <summary>
         /// uniform float variable[10];
@@ -40,13 +26,7 @@ namespace CSharpGL
         /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)
         {
-            this.Location = program.SetUniform(VarName, value);
-        }
-
-        protected override Array GetValue()
-        {
-            return this.value;
+            this.Location = program.SetUniform(VarName, this.Value.Array);
         }
     }
-
 }

@@ -191,6 +191,7 @@
     <Compile Include="Scene\Components\RendererComponent.cs" />
     <Compile Include="Scene\Components\ScriptComponent.cs" />
     <Compile Include="Scene\Components\TransformComponent.cs" />
+    <Compile Include="Utilities\NoisyArray.cs" />
     <Compile Include="Utilities\TypeHelper.cs" />
     <Compile Include="Utilities\ComponentList.cs" />
     <Compile Include="Utilities\Pixel.cs" />

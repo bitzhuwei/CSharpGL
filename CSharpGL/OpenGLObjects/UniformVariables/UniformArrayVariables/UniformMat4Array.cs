@@ -11,26 +11,9 @@ namespace CSharpGL
     /// <summary>
     /// uniform mat4 variable[10];
     /// </summary>
-    public class UniformMat4Array : UniformArrayVariable
+    public class UniformMat4Array : UniformArrayVariable<mat4>
     {
 
-        private mat4[] value;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public mat4[] Value
-        {
-            get { return this.value; }
-            set
-            {
-                if (this.value != value)
-                {
-                    this.value = value;
-                    this.Updated = true;
-                }
-            }
-        }
         /// <summary>
         /// uniform mat4 variable[10];
         /// </summary>
@@ -43,12 +26,8 @@ namespace CSharpGL
         /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)
         {
-            this.Location = program.SetUniformMatrix4(VarName, this.value);
+            this.Location = program.SetUniformMatrix4(VarName, this.Value.Array);
         }
 
-        protected override Array GetValue()
-        {
-            return this.value;
-        }
     }
 }

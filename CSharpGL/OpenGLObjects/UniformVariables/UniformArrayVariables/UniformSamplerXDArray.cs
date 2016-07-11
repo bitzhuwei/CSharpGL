@@ -11,25 +11,9 @@ namespace CSharpGL
     /// <summary>
     /// uniform samplerXD variable[10];
     /// </summary>
-    public class UniformSamplerArray : UniformArrayVariable
+    public class UniformSamplerArray : UniformArrayVariable<samplerValue>
     {
 
-        private samplerValue[] value;
-        /// <summary>
-        /// 
-        /// </summary>
-        public samplerValue[] Value
-        {
-            get { return this.value; }
-            set
-            {
-                if (this.value != value)
-                {
-                    this.value = value;
-                    this.Updated = true;
-                }
-            }
-        }
         /// <summary>
         /// uniform samplerXD variable[10];
         /// </summary>
@@ -45,13 +29,14 @@ namespace CSharpGL
         {
             if (glActiveTexture == null)
             { glActiveTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
-            for (int i = 0; i < this.value.Length; i++)
+            for (int i = 0; i < this.Value.Length; i++)
             {
-                glActiveTexture(this.value[i].ActiveTextureIndex);
+                samplerValue value = this.Value[i];
+                glActiveTexture(value.ActiveTextureIndex);
                 //OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, this.value[i].TextureId);
-                OpenGL.BindTexture(this.value[i].target, this.value[i].TextureId);
+                OpenGL.BindTexture(value.target, value.TextureId);
                 // TODO: assign the first location or last?
-                this.Location = program.SetUniform(VarName, this.value[i].activeTextureIndex);
+                this.Location = program.SetUniform(VarName, value.activeTextureIndex);
             }
         }
         /// <summary>
@@ -66,11 +51,6 @@ namespace CSharpGL
             //glActiveTexture(value.ActiveTextureIndex);
             ////OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
             //OpenGL.BindTexture(value.target, 0);
-        }
-
-        protected override Array GetValue()
-        {
-            return this.value;
         }
     }
 

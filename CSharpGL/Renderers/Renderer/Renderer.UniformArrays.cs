@@ -24,7 +24,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = (item as UniformBoolArray).Value;
+                    value = (item as UniformBoolArray).Value.Array;
                     gotUniform = true;
                     break;
                 }
@@ -47,7 +47,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = (item as UniformFloatArray).Value;
+                    value = (item as UniformFloatArray).Value.Array;
                     gotUniform = true;
                     break;
                 }
@@ -70,7 +70,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = (item as UniformVec2Array).Value;
+                    value = (item as UniformVec2Array).Value.Array;
                     gotUniform = true;
                     break;
                 }
@@ -93,7 +93,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = (item as UniformVec3Array).Value;
+                    value = (item as UniformVec3Array).Value.Array;
                     gotUniform = true;
                     break;
                 }
@@ -116,7 +116,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = (item as UniformVec4Array).Value;
+                    value = (item as UniformVec4Array).Value.Array;
                     gotUniform = true;
                     break;
                 }
@@ -139,7 +139,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = (item as UniformMat2Array).Value;
+                    value = (item as UniformMat2Array).Value.Array;
                     gotUniform = true;
                     break;
                 }
@@ -162,7 +162,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = (item as UniformMat3Array).Value;
+                    value = (item as UniformMat3Array).Value.Array;
                     gotUniform = true;
                     break;
                 }
@@ -185,7 +185,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = (item as UniformMat4Array).Value;
+                    value = (item as UniformMat4Array).Value.Array;
                     gotUniform = true;
                     break;
                 }
@@ -208,7 +208,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    value = (item as UniformSamplerArray).Value;
+                    value = (item as UniformSamplerArray).Value.Array;
                     gotUniform = true;
                     break;
                 }
@@ -233,7 +233,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    (item as UniformBoolArray).Value = value;
+                    (item as UniformBoolArray).Value = new NoisyArray<bool>(value);
                     updated = true;
                     gotUniform = true;
                     break;
@@ -250,7 +250,7 @@ namespace CSharpGL
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformBoolArray;
-                variable.Value = value;
+                variable.Value = new NoisyArray<bool>(value);
                 this.uniformVariables.Add(variable);
                 updated = true;
             }
@@ -274,7 +274,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    (item as UniformFloatArray).Value = value;
+                    (item as UniformFloatArray).Value = new NoisyArray<float>(value);
                     updated = true;
                     gotUniform = true;
                     break;
@@ -291,7 +291,7 @@ namespace CSharpGL
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformFloatArray;
-                variable.Value = value;
+                variable.Value = new NoisyArray<float>(value);
                 this.uniformVariables.Add(variable);
                 updated = true;
             }
@@ -314,7 +314,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    (item as UniformVec2Array).Value = value;
+                    (item as UniformVec2Array).Value = new NoisyArray<vec2>(value);
                     updated = true;
                     gotUniform = true;
                     break;
@@ -331,7 +331,7 @@ namespace CSharpGL
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformVec2Array;
-                variable.Value = value;
+                variable.Value = new NoisyArray<vec2>(value);
                 this.uniformVariables.Add(variable);
                 updated = true;
             }
@@ -354,7 +354,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    (item as UniformVec3Array).Value = value;
+                    (item as UniformVec3Array).Value = new NoisyArray<vec3>(value);
                     updated = true;
                     gotUniform = true;
                     break;
@@ -371,7 +371,7 @@ namespace CSharpGL
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformVec3Array;
-                variable.Value = value;
+                variable.Value = new NoisyArray<vec3>(value);
                 this.uniformVariables.Add(variable);
                 updated = true;
             }
@@ -394,7 +394,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    (item as UniformVec4Array).Value = value;
+                    (item as UniformVec4Array).Value = new NoisyArray<vec4>(value);
                     updated = true;
                     gotUniform = true;
                     break;
@@ -411,7 +411,7 @@ namespace CSharpGL
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformVec4Array;
-                variable.Value = value;
+                variable.Value = new NoisyArray<vec4>(value);
                 this.uniformVariables.Add(variable);
                 updated = true;
             }
@@ -434,7 +434,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    (item as UniformMat2Array).Value = value;
+                    (item as UniformMat2Array).Value = new NoisyArray<mat2>(value);
                     updated = true;
                     gotUniform = true;
                     break;
@@ -451,7 +451,7 @@ namespace CSharpGL
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformMat2Array;
-                variable.Value = value;
+                variable.Value = new NoisyArray<mat2>(value);
                 this.uniformVariables.Add(variable);
                 updated = true;
             }
@@ -474,7 +474,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    (item as UniformMat3Array).Value = value;
+                    (item as UniformMat3Array).Value = new NoisyArray<mat3>(value);
                     updated = true;
                     gotUniform = true;
                     break;
@@ -491,7 +491,7 @@ namespace CSharpGL
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformMat3Array;
-                variable.Value = value;
+                variable.Value = new NoisyArray<mat3>(value);
                 this.uniformVariables.Add(variable);
                 updated = true;
             }
@@ -514,7 +514,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    (item as UniformMat4Array).Value = value;
+                    (item as UniformMat4Array).Value = new NoisyArray<mat4>(value);
                     updated = true;
                     gotUniform = true;
                     break;
@@ -531,7 +531,7 @@ namespace CSharpGL
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformMat4Array;
-                variable.Value = value;
+                variable.Value = new NoisyArray<mat4>(value);
                 this.uniformVariables.Add(variable);
                 updated = true;
             }
@@ -554,7 +554,7 @@ namespace CSharpGL
             {
                 if (item.VarName == varNameInShader)
                 {
-                    (item as UniformSamplerArray).Value = value;
+                    (item as UniformSamplerArray).Value = new NoisyArray<samplerValue>(value);
                     updated = true;
                     gotUniform = true;
                     break;
@@ -571,7 +571,7 @@ namespace CSharpGL
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformSamplerArray;
-                variable.Value = value;
+                variable.Value = new NoisyArray<samplerValue>(value);
                 this.uniformVariables.Add(variable);
                 updated = true;
             }
@@ -584,7 +584,7 @@ namespace CSharpGL
         /// <param name="value"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        private UniformArrayVariable GetVariableArray(Array value, string varNameInShader)
+        private object GetVariableArray(Array value, string varNameInShader)
         {
             Type t = value.GetType().GetElementType();
             Type varType;
@@ -605,8 +605,7 @@ namespace CSharpGL
 
             if (variableArrayDict.TryGetValue(t, out varType))
             {
-                object variable = Activator.CreateInstance(varType, varNameInShader);
-                return variable as UniformArrayVariable;
+                return Activator.CreateInstance(varType, varNameInShader);
             }
             else
             {
