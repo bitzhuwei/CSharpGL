@@ -46,13 +46,6 @@ namespace CSharpGL
         /// <param name="value"></param>
         public UniformSingleVariable(string varName, T value) : base(varName) { this.Value = value; }
 
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="value"></param>
-        //internal abstract bool SetValue(T value);
-
-        //internal abstract T GetValue();
         /// <summary>
         /// 
         /// </summary>

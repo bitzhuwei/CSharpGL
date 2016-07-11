@@ -27,7 +27,6 @@ namespace CSharpGL
         /// 标识此uniform变量是否已更新（若为true，则需要在render前一刻提交到GPU）
         /// <para>Set uniform's value to GPU if true; otherwise nothing to do.</para>
         /// </summary>
-        [Browsable(false)]
         public bool Updated { get; set; }
 
         /// <summary>
@@ -58,16 +57,6 @@ namespace CSharpGL
         {
             this.Updated = false;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format("{0}: {1}", this.GetType(), this.VarName);
-        }
-
     }
 
 }
