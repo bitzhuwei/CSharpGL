@@ -15,7 +15,7 @@ namespace System
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
-        public static string PrintArray(this System.Collections.IEnumerable array)
+        public static string PrintArray(this System.Collections.IEnumerable array, string seperator = " ")
         {
             if (array == null) { return string.Empty; }
 
@@ -23,7 +23,7 @@ namespace System
             foreach (object item in array)
             {
                 builder.Append(item);
-                builder.Append(' ');
+                builder.Append(seperator);
             }
 
             return builder.ToString();

@@ -44,6 +44,14 @@ namespace CSharpGL
             this.Location = program.SetUniformMatrix3(VarName, this.value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("{0} {1}: {2}", this.GetType().Name, this.VarName, this.value.PrintArray("; "));
+        }
     }
 
 }
