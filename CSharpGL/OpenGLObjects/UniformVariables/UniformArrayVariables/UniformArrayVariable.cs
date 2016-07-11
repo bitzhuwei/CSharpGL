@@ -20,15 +20,25 @@ namespace CSharpGL
         /// </summary>
         /// <param name="varName"></param>
         public UniformArrayVariable(string varName) : base(varName) { }
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <returns></returns>
-        //public override string ToString()
-        //{
-        //    return string.Format("{0}: {1}", this.GetType().Name, this.VarName);
-        //}
 
+        protected abstract Array GetValue();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            Array array = this.GetValue();
+            if (array != null)
+            {
+                return string.Format("{0} {1}: [{2}]", this.GetType().Name, this.VarName, this.GetValue().PrintArray("; "));
+            }
+            else
+            {
+                return string.Format("{0} {1}: []", this.GetType().Name, this.VarName);
+            }
+        }
     }
 
 }

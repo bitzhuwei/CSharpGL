@@ -47,13 +47,9 @@ namespace CSharpGL
             this.Location = program.SetUniform(VarName, value);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
+        protected override Array GetValue()
         {
-            return string.Format("{0} {1}: {2}", this.GetType().Name, this.VarName, this.value.PrintArray("; "));
+            return this.value;
         }
     }
 }

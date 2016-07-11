@@ -14,6 +14,7 @@ namespace System
         /// Print elements in format 'element, element, element, ...'
         /// </summary>
         /// <param name="array"></param>
+        /// <param name="seperator"></param>
         /// <returns></returns>
         public static string PrintArray(this System.Collections.IEnumerable array, string seperator = " ")
         {
