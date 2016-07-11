@@ -18,7 +18,8 @@ namespace CSharpGL
         /// uniform mat2 variable[10];
         /// </summary>
         /// <param name="varName"></param>
-        public UniformMat2Array(string varName) : base(varName) { }
+        /// <param name="length"></param>
+        public UniformMat2Array(string varName, int length) : base(varName, length) { }
         /// <summary>
         /// 
         /// </summary>

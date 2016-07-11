@@ -18,7 +18,8 @@ namespace CSharpGL
         /// uniform vec2 variable[10];
         /// </summary>
         /// <param name="varName"></param>
-        public UniformVec2Array(string varName) : base(varName) { }
+        /// <param name="length"></param>
+        public UniformVec2Array(string varName, int length) : base(varName, length) { }
         /// <summary>
         /// 
         /// </summary>

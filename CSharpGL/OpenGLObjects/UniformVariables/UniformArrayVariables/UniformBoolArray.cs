@@ -19,7 +19,8 @@ namespace CSharpGL
         /// uniform bool variable[10];
         /// </summary>
         /// <param name="varName"></param>
-        public UniformBoolArray(string varName) : base(varName) { }
+        /// <param name="length"></param>
+        public UniformBoolArray(string varName, int length) : base(varName, length) { }
         /// <summary>
         /// 
         /// </summary>

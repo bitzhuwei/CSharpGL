@@ -15,9 +15,6 @@ namespace CSharpGL.Demos
         [STAThread]
         static void Main()
         {
-            int x = 10;
-            Console.WriteLine(Object.Equals(x, x));
-            Console.WriteLine(Object.Equals(x, 10));
             string filename = string.Format("CSharpGL{0:yyyy-MM-dd_HH-mm-ss.ff}.log", DateTime.Now);
             Debug.Listeners.Add(new TextWriterTraceListener(filename));
             Debug.AutoFlush = true;

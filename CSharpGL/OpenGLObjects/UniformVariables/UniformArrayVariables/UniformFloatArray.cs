@@ -18,7 +18,8 @@ namespace CSharpGL
         /// uniform float variable[10];
         /// </summary>
         /// <param name="varName"></param>
-        public UniformFloatArray(string varName) : base(varName) { }
+        /// <param name="length"></param>
+        public UniformFloatArray(string varName, int length) : base(varName, length) { }
 
         /// <summary>
         /// 

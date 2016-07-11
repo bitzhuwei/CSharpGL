@@ -18,7 +18,8 @@ namespace CSharpGL
         /// uniform samplerXD variable[10];
         /// </summary>
         /// <param name="varName"></param>
-        public UniformSamplerArray(string varName) : base(varName) { }
+        /// <param name="length"></param>
+        public UniformSamplerArray(string varName, int length) : base(varName, length) { }
 
         static OpenGL.glActiveTexture glActiveTexture = null;
         /// <summary>

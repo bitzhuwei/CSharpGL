@@ -18,7 +18,8 @@ namespace CSharpGL
         /// uniform mat4 variable[10];
         /// </summary>
         /// <param name="varName"></param>
-        public UniformMat4Array(string varName) : base(varName) { }
+        /// <param name="length"></param>
+        public UniformMat4Array(string varName, int length) : base(varName, length) { }
 
         /// <summary>
         /// 

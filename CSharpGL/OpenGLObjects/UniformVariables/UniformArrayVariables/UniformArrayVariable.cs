@@ -12,7 +12,7 @@ namespace CSharpGL
     /// shader中的一个数组类型的uniform变量。
     /// 例如：uniform vec3 positions[10];
     /// </summary>
-    public abstract class UniformArrayVariable<T> : UniformVariable
+    public abstract class UniformArrayVariable<T> : UniformArrayVariableBase
     {
 
         private NoisyArray<T> value;
@@ -24,19 +24,17 @@ namespace CSharpGL
             get { return this.value; }
             set
             {
-                if (value != null)
+                if (this.value != value)
                 {
-                    if (this.value != value)
+                    if (this.value != null)
+                    { this.value.ItemUpdated -= eventHandler; }
+
+                    if (value != null)
                     {
-                        this.value.ItemUpdated -= eventHandler;
-                        this.value = value;
                         value.ItemUpdated += eventHandler;
+                        this.value = value;
                         this.Updated = true;
                     }
-                }
-                else
-                {
-                    this.value = new NoisyArray<T>(0);
                 }
             }
         }
@@ -51,10 +49,12 @@ namespace CSharpGL
         /// shader中的一个数组类型的uniform变量。
         /// </summary>
         /// <param name="varName"></param>
-        public UniformArrayVariable(string varName)
+        /// <param name="length"></param>
+        public UniformArrayVariable(string varName, int length)
             : base(varName)
         {
             this.eventHandler = new EventHandler<NoisyArrayEventArgs<T>>(value_ItemUpdated);
+            this.Value = new NoisyArray<T>(length);
         }
 
         /// <summary>

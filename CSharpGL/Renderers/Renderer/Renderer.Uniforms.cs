@@ -84,16 +84,18 @@ namespace CSharpGL
             if (variableDict == null)
             {
                 variableDict = new Dictionary<Type, Type>();
-                variableDict.Add(typeof(bool), typeof(UniformBool));
-                variableDict.Add(typeof(int), typeof(UniformInt32));
-                variableDict.Add(typeof(float), typeof(UniformFloat));
-                variableDict.Add(typeof(vec2), typeof(UniformVec2));
-                variableDict.Add(typeof(vec3), typeof(UniformVec3));
-                variableDict.Add(typeof(vec4), typeof(UniformVec4));
-                variableDict.Add(typeof(mat2), typeof(UniformMat2));
-                variableDict.Add(typeof(mat3), typeof(UniformMat3));
-                variableDict.Add(typeof(mat4), typeof(UniformMat4));
-                variableDict.Add(typeof(samplerValue), typeof(UniformSampler));
+                var types = AssemblyHelper.GetAllDerivedTypes(typeof(UniformSingleVariable));
+                foreach (var item in types)
+                {
+                    try
+                    {
+                        // example: variableDict.Add(typeof(int), typeof(UniformInt32));
+                        variableDict.Add(item.GetProperty("Value").PropertyType, item);
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
             }
 
             if (variableDict.TryGetValue(t, out varType))
