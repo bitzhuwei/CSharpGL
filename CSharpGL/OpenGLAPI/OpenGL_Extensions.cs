@@ -1558,30 +1558,30 @@ namespace CSharpGL
         //public delegate void glGetBufferPointerv(uint target, uint pname, IntPtr[] parameters);
 
         //  Constants
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_BUFFER_SIZE = 0x8764;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_BUFFER_USAGE = 0x8765;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_QUERY_COUNTER_BITS = 0x8864;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CURRENT_QUERY = 0x8865;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_QUERY_RESULT = 0x8866;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_QUERY_RESULT_AVAILABLE = 0x8867;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_BUFFER_SIZE = 0x8764;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_BUFFER_USAGE = 0x8765;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_QUERY_COUNTER_BITS = 0x8864;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CURRENT_QUERY = 0x8865;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_QUERY_RESULT = 0x8866;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_QUERY_RESULT_AVAILABLE = 0x8867;
         /// <summary>
         /// 
         /// </summary>
@@ -1593,15 +1593,15 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public const uint GL_ARRAY_BUFFER_BINDING = 0x8894;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_ELEMENT_ARRAY_BUFFER_BINDING = 0x8895;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING = 0x889F;
+        //public const uint GL_ARRAY_BUFFER_BINDING = 0x8894;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_ELEMENT_ARRAY_BUFFER_BINDING = 0x8895;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING = 0x889F;
         /// <summary>
         /// 
         /// </summary>
@@ -1618,14 +1618,14 @@ namespace CSharpGL
         /// 
         /// </summary>
         public const uint GL_BUFFER_ACCESS = 0x88BB;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_BUFFER_MAPPED = 0x88BC;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_BUFFER_MAP_POINTER = 0x88BD;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_BUFFER_MAPPED = 0x88BC;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_BUFFER_MAP_POINTER = 0x88BD;
         /// <summary>
         /// 
         /// </summary>
@@ -1662,50 +1662,50 @@ namespace CSharpGL
         /// 
         /// </summary>
         public const uint GL_DYNAMIC_COPY = 0x88EA;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SAMPLES_PASSED = 0x8914;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SAMPLES_PASSED = 0x8914;
 
         #endregion
 
         #region OpenGL 2.0
 
         //  Delegates
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="modeRGB"></param>
-        /// <param name="modeAlpha"></param>
-        public delegate void glBlendEquationSeparate(uint modeRGB, uint modeAlpha);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="modeRGB"></param>
+        ///// <param name="modeAlpha"></param>
+        //public delegate void glBlendEquationSeparate(uint modeRGB, uint modeAlpha);
         /// <summary>
         /// 
         /// </summary>
         /// <param name="n"></param>
         /// <param name="bufs"></param>
         public delegate void glDrawBuffers(int n, uint[] bufs);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="face"></param>
-        /// <param name="sfail"></param>
-        /// <param name="dpfail"></param>
-        /// <param name="dppass"></param>
-        public delegate void glStencilOpSeparate(uint face, uint sfail, uint dpfail, uint dppass);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="face"></param>
-        /// <param name="func"></param>
-        /// <param name="reference"></param>
-        /// <param name="mask"></param>
-        public delegate void glStencilFuncSeparate(uint face, uint func, int reference, uint mask);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="face"></param>
-        /// <param name="mask"></param>
-        public delegate void glStencilMaskSeparate(uint face, uint mask);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="face"></param>
+        ///// <param name="sfail"></param>
+        ///// <param name="dpfail"></param>
+        ///// <param name="dppass"></param>
+        //public delegate void glStencilOpSeparate(uint face, uint sfail, uint dpfail, uint dppass);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="face"></param>
+        ///// <param name="func"></param>
+        ///// <param name="reference"></param>
+        ///// <param name="mask"></param>
+        //public delegate void glStencilFuncSeparate(uint face, uint func, int reference, uint mask);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="face"></param>
+        ///// <param name="mask"></param>
+        //public delegate void glStencilMaskSeparate(uint face, uint mask);
         /// <summary>
         /// 
         /// </summary>
@@ -1761,36 +1761,36 @@ namespace CSharpGL
         /// </summary>
         /// <param name="index"></param>
         public delegate void glEnableVertexAttribArray(uint index);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="program"></param>
-        /// <param name="index"></param>
-        /// <param name="bufSize"></param>
-        /// <param name="length"></param>
-        /// <param name="size"></param>
-        /// <param name="type"></param>
-        /// <param name="name"></param>
-        public delegate void glGetActiveAttrib(uint program, uint index, int bufSize, out int length, out int size, out uint type, StringBuilder name);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="program"></param>
-        /// <param name="index"></param>
-        /// <param name="bufSize"></param>
-        /// <param name="length"></param>
-        /// <param name="size"></param>
-        /// <param name="type"></param>
-        /// <param name="name"></param>
-        public delegate void glGetActiveUniform(uint program, uint index, int bufSize, out int length, out int size, out uint type, StringBuilder name);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="program"></param>
-        /// <param name="maxCount"></param>
-        /// <param name="count"></param>
-        /// <param name="obj"></param>
-        public delegate void glGetAttachedShaders(uint program, int maxCount, int[] count, uint[] obj);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="program"></param>
+        ///// <param name="index"></param>
+        ///// <param name="bufSize"></param>
+        ///// <param name="length"></param>
+        ///// <param name="size"></param>
+        ///// <param name="type"></param>
+        ///// <param name="name"></param>
+        //public delegate void glGetActiveAttrib(uint program, uint index, int bufSize, out int length, out int size, out uint type, StringBuilder name);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="program"></param>
+        ///// <param name="index"></param>
+        ///// <param name="bufSize"></param>
+        ///// <param name="length"></param>
+        ///// <param name="size"></param>
+        ///// <param name="type"></param>
+        ///// <param name="name"></param>
+        //public delegate void glGetActiveUniform(uint program, uint index, int bufSize, out int length, out int size, out uint type, StringBuilder name);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="program"></param>
+        ///// <param name="maxCount"></param>
+        ///// <param name="count"></param>
+        ///// <param name="obj"></param>
+        //public delegate void glGetAttachedShaders(uint program, int maxCount, int[] count, uint[] obj);
         /// <summary>
         /// 
         /// </summary>
@@ -1857,34 +1857,34 @@ namespace CSharpGL
         /// <param name="location"></param>
         /// <param name="parameters"></param>
         public delegate void glGetUniformiv(uint program, int location, int[] parameters);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="pname"></param>
-        /// <param name="parameters"></param>
-        public delegate void glGetVertexAttribdv(uint index, uint pname, double[] parameters);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="pname"></param>
-        /// <param name="parameters"></param>
-        public delegate void glGetVertexAttribfv(uint index, uint pname, float[] parameters);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="pname"></param>
-        /// <param name="parameters"></param>
-        public delegate void glGetVertexAttribiv(uint index, uint pname, int[] parameters);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="pname"></param>
-        /// <param name="pointer"></param>
-        public delegate void glGetVertexAttribPointerv(uint index, uint pname, IntPtr pointer);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="pname"></param>
+        ///// <param name="parameters"></param>
+        //public delegate void glGetVertexAttribdv(uint index, uint pname, double[] parameters);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="pname"></param>
+        ///// <param name="parameters"></param>
+        //public delegate void glGetVertexAttribfv(uint index, uint pname, float[] parameters);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="pname"></param>
+        ///// <param name="parameters"></param>
+        //public delegate void glGetVertexAttribiv(uint index, uint pname, int[] parameters);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="pname"></param>
+        ///// <param name="pointer"></param>
+        //public delegate void glGetVertexAttribPointerv(uint index, uint pname, IntPtr pointer);
         /// <summary>
         /// 
         /// </summary>
@@ -2062,248 +2062,248 @@ namespace CSharpGL
         /// <param name="transpose"></param>
         /// <param name="value"></param>
         public delegate void glUniformMatrix4fv(int location, int count, bool transpose, float[] value);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="program"></param>
-        public delegate void glValidateProgram(uint program);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="x"></param>
-        public delegate void glVertexAttrib1d(uint index, double x);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib1dv(uint index, double[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="x"></param>
-        public delegate void glVertexAttrib1f(uint index, float x);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib1fv(uint index, float[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="x"></param>
-        public delegate void glVertexAttrib1s(uint index, short x);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib1sv(uint index, short[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        public delegate void glVertexAttrib2d(uint index, double x, double y);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib2dv(uint index, double[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        public delegate void glVertexAttrib2f(uint index, float x, float y);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib2fv(uint index, float[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        public delegate void glVertexAttrib2s(uint index, short x, short y);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib2sv(uint index, short[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
-        public delegate void glVertexAttrib3d(uint index, double x, double y, double z);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib3dv(uint index, double[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
-        public delegate void glVertexAttrib3f(uint index, float x, float y, float z);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib3fv(uint index, float[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
-        public delegate void glVertexAttrib3s(uint index, short x, short y, short z);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib3sv(uint index, short[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib4Nbv(uint index, sbyte[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib4Niv(uint index, int[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib4Nsv(uint index, short[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
-        /// <param name="w"></param>
-        public delegate void glVertexAttrib4Nub(uint index, byte x, byte y, byte z, byte w);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib4Nubv(uint index, byte[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib4Nuiv(uint index, uint[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib4Nusv(uint index, ushort[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib4bv(uint index, sbyte[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
-        /// <param name="w"></param>
-        public delegate void glVertexAttrib4d(uint index, double x, double y, double z, double w);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib4dv(uint index, double[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
-        /// <param name="w"></param>
-        public delegate void glVertexAttrib4f(uint index, float x, float y, float z, float w);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib4fv(uint index, float[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib4iv(uint index, int[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
-        /// <param name="w"></param>
-        public delegate void glVertexAttrib4s(uint index, short x, short y, short z, short w);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib4sv(uint index, short[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib4ubv(uint index, byte[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib4uiv(uint index, uint[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="v"></param>
-        public delegate void glVertexAttrib4usv(uint index, ushort[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="program"></param>
+        //public delegate void glValidateProgram(uint program);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="x"></param>
+        //public delegate void glVertexAttrib1d(uint index, double x);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib1dv(uint index, double[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="x"></param>
+        //public delegate void glVertexAttrib1f(uint index, float x);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib1fv(uint index, float[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="x"></param>
+        //public delegate void glVertexAttrib1s(uint index, short x);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib1sv(uint index, short[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        //public delegate void glVertexAttrib2d(uint index, double x, double y);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib2dv(uint index, double[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        //public delegate void glVertexAttrib2f(uint index, float x, float y);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib2fv(uint index, float[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        //public delegate void glVertexAttrib2s(uint index, short x, short y);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib2sv(uint index, short[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="z"></param>
+        //public delegate void glVertexAttrib3d(uint index, double x, double y, double z);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib3dv(uint index, double[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="z"></param>
+        //public delegate void glVertexAttrib3f(uint index, float x, float y, float z);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib3fv(uint index, float[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="z"></param>
+        //public delegate void glVertexAttrib3s(uint index, short x, short y, short z);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib3sv(uint index, short[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4Nbv(uint index, sbyte[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4Niv(uint index, int[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4Nsv(uint index, short[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="z"></param>
+        ///// <param name="w"></param>
+        //public delegate void glVertexAttrib4Nub(uint index, byte x, byte y, byte z, byte w);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4Nubv(uint index, byte[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4Nuiv(uint index, uint[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4Nusv(uint index, ushort[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4bv(uint index, sbyte[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="z"></param>
+        ///// <param name="w"></param>
+        //public delegate void glVertexAttrib4d(uint index, double x, double y, double z, double w);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4dv(uint index, double[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="z"></param>
+        ///// <param name="w"></param>
+        //public delegate void glVertexAttrib4f(uint index, float x, float y, float z, float w);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4fv(uint index, float[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4iv(uint index, int[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="z"></param>
+        ///// <param name="w"></param>
+        //public delegate void glVertexAttrib4s(uint index, short x, short y, short z, short w);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4sv(uint index, short[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4ubv(uint index, byte[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4uiv(uint index, uint[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="v"></param>
+        //public delegate void glVertexAttrib4usv(uint index, ushort[] v);
         /// <summary>
         /// 
         /// </summary>
