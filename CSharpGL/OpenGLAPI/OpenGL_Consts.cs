@@ -1740,59 +1740,59 @@ namespace CSharpGL
         ///// </summary>
         //public const uint GL_Q = 0x2003;
 
-        //   TextureEnvMode
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_MODULATE = 0x2100;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_DECAL = 0x2101;
+        ////   TextureEnvMode
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_MODULATE = 0x2100;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_DECAL = 0x2101;
 
-        //   TextureEnvParameter
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_ENV_MODE = 0x2200;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_ENV_COLOR = 0x2201;
+        ////   TextureEnvParameter
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_ENV_MODE = 0x2200;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_ENV_COLOR = 0x2201;
 
-        //   TextureEnvTarget
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_ENV = 0x2300;
+        ////   TextureEnvTarget
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_ENV = 0x2300;
 
-        //   TextureGenMode 
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_EYE_LINEAR = 0x2400;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_OBJECT_LINEAR = 0x2401;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SPHERE_MAP = 0x2402;
+        ////   TextureGenMode 
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_EYE_LINEAR = 0x2400;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_OBJECT_LINEAR = 0x2401;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SPHERE_MAP = 0x2402;
 
-        //   TextureGenParameter
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_GEN_MODE = 0x2500;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_OBJECT_PLANE = 0x2501;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_EYE_PLANE = 0x2502;
+        ////   TextureGenParameter
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_GEN_MODE = 0x2500;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_OBJECT_PLANE = 0x2501;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_EYE_PLANE = 0x2502;
 
         //   TextureMagFilter
         /// <summary>
@@ -1854,19 +1854,19 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_REPEAT = 0x2901;
 
-        //   ClientAttribMask
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CLIENT_PIXEL_STORE_BIT = 0x00000001;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CLIENT_VERTEX_ARRAY_BIT = 0x00000002;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CLIENT_ALL_ATTRIB_BITS = 0xffffffff;
+        ////   ClientAttribMask
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CLIENT_PIXEL_STORE_BIT = 0x00000001;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CLIENT_VERTEX_ARRAY_BIT = 0x00000002;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CLIENT_ALL_ATTRIB_BITS = 0xffffffff;
 
         //   Polygon Offset
         /// <summary>
@@ -2056,185 +2056,185 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_PROXY_TEXTURE_2D = 0x8064;
 
-        //   Texture object
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_PRIORITY = 0x8066;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_RESIDENT = 0x8067;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_BINDING_1D = 0x8068;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_BINDING_2D = 0x8069;
+        ////   Texture object
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_PRIORITY = 0x8066;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_RESIDENT = 0x8067;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_BINDING_1D = 0x8068;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_BINDING_2D = 0x8069;
 
-        //   Vertex array
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_VERTEX_ARRAY = 0x8074;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_NORMAL_ARRAY = 0x8075;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_ARRAY = 0x8076;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_INDEX_ARRAY = 0x8077;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_COORD_ARRAY = 0x8078;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_EDGE_FLAG_ARRAY = 0x8079;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_VERTEX_ARRAY_SIZE = 0x807A;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_VERTEX_ARRAY_TYPE = 0x807B;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_VERTEX_ARRAY_STRIDE = 0x807C;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_NORMAL_ARRAY_TYPE = 0x807E;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_NORMAL_ARRAY_STRIDE = 0x807F;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_ARRAY_SIZE = 0x8081;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_ARRAY_TYPE = 0x8082;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_ARRAY_STRIDE = 0x8083;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_INDEX_ARRAY_TYPE = 0x8085;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_INDEX_ARRAY_STRIDE = 0x8086;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_COORD_ARRAY_SIZE = 0x8088;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_COORD_ARRAY_TYPE = 0x8089;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_COORD_ARRAY_STRIDE = 0x808A;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_EDGE_FLAG_ARRAY_STRIDE = 0x808C;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_VERTEX_ARRAY_POINTER = 0x808E;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_NORMAL_ARRAY_POINTER = 0x808F;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_ARRAY_POINTER = 0x8090;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_INDEX_ARRAY_POINTER = 0x8091;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_COORD_ARRAY_POINTER = 0x8092;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_EDGE_FLAG_ARRAY_POINTER = 0x8093;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_V2F = 0x2A20;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_V3F = 0x2A21;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_C4UB_V2F = 0x2A22;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_C4UB_V3F = 0x2A23;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_C3F_V3F = 0x2A24;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_N3F_V3F = 0x2A25;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_C4F_N3F_V3F = 0x2A26;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_T2F_V3F = 0x2A27;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_T4F_V4F = 0x2A28;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_T2F_C4UB_V3F = 0x2A29;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_T2F_C3F_V3F = 0x2A2A;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_T2F_N3F_V3F = 0x2A2B;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_T2F_C4F_N3F_V3F = 0x2A2C;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_T4F_C4F_N3F_V4F = 0x2A2D;
+        ////   Vertex array
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_VERTEX_ARRAY = 0x8074;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_NORMAL_ARRAY = 0x8075;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_ARRAY = 0x8076;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_INDEX_ARRAY = 0x8077;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_COORD_ARRAY = 0x8078;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_EDGE_FLAG_ARRAY = 0x8079;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_VERTEX_ARRAY_SIZE = 0x807A;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_VERTEX_ARRAY_TYPE = 0x807B;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_VERTEX_ARRAY_STRIDE = 0x807C;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_NORMAL_ARRAY_TYPE = 0x807E;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_NORMAL_ARRAY_STRIDE = 0x807F;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_ARRAY_SIZE = 0x8081;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_ARRAY_TYPE = 0x8082;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_ARRAY_STRIDE = 0x8083;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_INDEX_ARRAY_TYPE = 0x8085;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_INDEX_ARRAY_STRIDE = 0x8086;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_COORD_ARRAY_SIZE = 0x8088;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_COORD_ARRAY_TYPE = 0x8089;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_COORD_ARRAY_STRIDE = 0x808A;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_EDGE_FLAG_ARRAY_STRIDE = 0x808C;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_VERTEX_ARRAY_POINTER = 0x808E;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_NORMAL_ARRAY_POINTER = 0x808F;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_ARRAY_POINTER = 0x8090;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_INDEX_ARRAY_POINTER = 0x8091;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_COORD_ARRAY_POINTER = 0x8092;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_EDGE_FLAG_ARRAY_POINTER = 0x8093;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_V2F = 0x2A20;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_V3F = 0x2A21;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_C4UB_V2F = 0x2A22;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_C4UB_V3F = 0x2A23;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_C3F_V3F = 0x2A24;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_N3F_V3F = 0x2A25;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_C4F_N3F_V3F = 0x2A26;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_T2F_V3F = 0x2A27;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_T4F_V4F = 0x2A28;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_T2F_C4UB_V3F = 0x2A29;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_T2F_C3F_V3F = 0x2A2A;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_T2F_N3F_V3F = 0x2A2B;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_T2F_C4F_N3F_V3F = 0x2A2C;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_T4F_C4F_N3F_V4F = 0x2A2D;
 
         //   Extensions
         /// <summary>
