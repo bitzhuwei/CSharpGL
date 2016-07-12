@@ -3078,34 +3078,34 @@ namespace CSharpGL
         /// <param name="v2"></param>
         /// <param name="v3"></param>
         public delegate void glUniform4ui(int location, uint v0, uint v1, uint v2, uint v3);
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="location"></param>
-        ///// <param name="count"></param>
-        ///// <param name="value"></param>
-        //public delegate void glUniform1uiv(int location, int count, uint[] value);
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="location"></param>
-        ///// <param name="count"></param>
-        ///// <param name="value"></param>
-        //public delegate void glUniform2uiv(int location, int count, uint[] value);
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="location"></param>
-        ///// <param name="count"></param>
-        ///// <param name="value"></param>
-        //public delegate void glUniform3uiv(int location, int count, uint[] value);
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="location"></param>
-        ///// <param name="count"></param>
-        ///// <param name="value"></param>
-        //public delegate void glUniform4uiv(int location, int count, uint[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
+        public delegate void glUniform1uiv(int location, int count, uint[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
+        public delegate void glUniform2uiv(int location, int count, uint[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
+        public delegate void glUniform3uiv(int location, int count, uint[] value);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
+        public delegate void glUniform4uiv(int location, int count, uint[] value);
         ///// <summary>
         ///// 
         ///// </summary>
