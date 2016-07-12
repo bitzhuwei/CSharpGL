@@ -1484,89 +1484,89 @@ namespace CSharpGL
         ///// </summary>
         //public const uint GL_COMPILE_AND_EXECUTE = 0x1301;
 
-        //   LogicOp
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CLEAR = 0x1500;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_AND = 0x1501;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_AND_REVERSE = 0x1502;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COPY = 0x1503;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_AND_INVERTED = 0x1504;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_NOOP = 0x1505;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_XOR = 0x1506;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_OR = 0x1507;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_NOR = 0x1508;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_EQUIV = 0x1509;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_INVERT = 0x150A;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_OR_REVERSE = 0x150B;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COPY_INVERTED = 0x150C;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_OR_INVERTED = 0x150D;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_NAND = 0x150E;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SET = 0x150F;
+        ////   LogicOp
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CLEAR = 0x1500;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_AND = 0x1501;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_AND_REVERSE = 0x1502;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COPY = 0x1503;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_AND_INVERTED = 0x1504;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_NOOP = 0x1505;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_XOR = 0x1506;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_OR = 0x1507;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_NOR = 0x1508;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_EQUIV = 0x1509;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_INVERT = 0x150A;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_OR_REVERSE = 0x150B;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COPY_INVERTED = 0x150C;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_OR_INVERTED = 0x150D;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_NAND = 0x150E;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SET = 0x150F;
 
-        //   MaterialParameter
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_EMISSION = 0x1600;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SHININESS = 0x1601;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_AMBIENT_AND_DIFFUSE = 0x1602;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_INDEXES = 0x1603;
+        ////   MaterialParameter
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_EMISSION = 0x1600;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SHININESS = 0x1601;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_AMBIENT_AND_DIFFUSE = 0x1602;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_INDEXES = 0x1603;
 
         //   MatrixMode
         /// <summary>
@@ -1582,29 +1582,29 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_TEXTURE = 0x1702;
 
-        //   PixelCopyType
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR = 0x1800;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_DEPTH = 0x1801;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_STENCIL = 0x1802;
+        ////   PixelCopyType
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR = 0x1800;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_DEPTH = 0x1801;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_STENCIL = 0x1802;
 
-        //   PixelFormat
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_INDEX = 0x1900;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_STENCIL_INDEX = 0x1901;
+        ////   PixelFormat
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_INDEX = 0x1900;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_STENCIL_INDEX = 0x1901;
         /// <summary>
         /// 
         /// </summary>
@@ -1642,11 +1642,11 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_LUMINANCE_ALPHA = 0x190A;
 
-        //   PixelType
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_BITMAP = 0x1A00;
+        ////   PixelType
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_BITMAP = 0x1A00;
 
         //   PolygonMode
         /// <summary>
@@ -1662,19 +1662,19 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_FILL = 0x1B02;
 
-        //   RenderingMode 
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_RENDER = 0x1C00;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_FEEDBACK = 0x1C01;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SELECT = 0x1C02;
+        ////   RenderingMode 
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_RENDER = 0x1C00;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_FEEDBACK = 0x1C01;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SELECT = 0x1C02;
 
         //   ShadingModel
         /// <summary>
@@ -1686,59 +1686,59 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_SMOOTH = 0x1D01;
 
-        //   StencilOp	
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_KEEP = 0x1E00;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_REPLACE = 0x1E01;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_INCR = 0x1E02;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_DECR = 0x1E03;
+        ////   StencilOp	
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_KEEP = 0x1E00;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_REPLACE = 0x1E01;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_INCR = 0x1E02;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_DECR = 0x1E03;
 
-        //   StringName
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_VENDOR = 0x1F00;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_RENDERER = 0x1F01;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_VERSION = 0x1F02;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_EXTENSIONS = 0x1F03;
+        ////   StringName
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_VENDOR = 0x1F00;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_RENDERER = 0x1F01;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_VERSION = 0x1F02;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_EXTENSIONS = 0x1F03;
 
-        //   TextureCoordName
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_S = 0x2000;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_T = 0x2001;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_R = 0x2002;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_Q = 0x2003;
+        ////   TextureCoordName
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_S = 0x2000;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_T = 0x2001;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_R = 0x2002;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_Q = 0x2003;
 
         //   TextureEnvMode
         /// <summary>
