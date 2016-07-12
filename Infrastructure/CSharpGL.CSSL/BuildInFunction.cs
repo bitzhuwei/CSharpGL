@@ -7,11 +7,11 @@ namespace CSharpGL.CSSL
 {
     public class BuildInFunctionAttribute : Attribute
     {
-        public BuildInFunctionAttribute(string bulidInName)
+        public BuildInFunctionAttribute(string buildInName)
         {
-            this.bulidInName = bulidInName;
+            this.BuildInName = buildInName;
         }
 
-        public string bulidInName { get; private set; }
+        public string BuildInName { get; private set; }
     }
 }
