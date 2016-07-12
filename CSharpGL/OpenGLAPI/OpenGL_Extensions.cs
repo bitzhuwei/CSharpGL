@@ -213,140 +213,140 @@ namespace CSharpGL
         ///// <param name="pname"></param>
         ///// <param name="parameters"></param>
         //public delegate void glConvolutionParameteriv(uint target, uint pname, int[] parameters);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="width"></param>
-        public delegate void glCopyConvolutionFilter1D(uint target, uint internalformat, int x, int y, int width);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        public delegate void glCopyConvolutionFilter2D(uint target, uint internalformat, int x, int y, int width, int height);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="format"></param>
-        /// <param name="type"></param>
-        /// <param name="image"></param>
-        public delegate void glGetConvolutionFilter(uint target, uint format, uint type, IntPtr image);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="pname"></param>
-        /// <param name="parameters"></param>
-        public delegate void glGetConvolutionParameterfv(uint target, uint pname, float[] parameters);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="pname"></param>
-        /// <param name="parameters"></param>
-        public delegate void glGetConvolutionParameteriv(uint target, uint pname, int[] parameters);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="format"></param>
-        /// <param name="type"></param>
-        /// <param name="row"></param>
-        /// <param name="column"></param>
-        /// <param name="span"></param>
-        public delegate void glGetSeparableFilter(uint target, uint format, uint type, IntPtr row, IntPtr column, IntPtr span);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="format"></param>
-        /// <param name="type"></param>
-        /// <param name="row"></param>
-        /// <param name="column"></param>
-        public delegate void glSeparableFilter2D(uint target, uint internalformat, int width, int height, uint format, uint type, IntPtr row, IntPtr column);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="reset"></param>
-        /// <param name="format"></param>
-        /// <param name="type"></param>
-        /// <param name="values"></param>
-        public delegate void glGetHistogram(uint target, bool reset, uint format, uint type, IntPtr values);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="pname"></param>
-        /// <param name="parameters"></param>
-        public delegate void glGetHistogramParameterfv(uint target, uint pname, float[] parameters);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="pname"></param>
-        /// <param name="parameters"></param>
-        public delegate void glGetHistogramParameteriv(uint target, uint pname, int[] parameters);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="reset"></param>
-        /// <param name="format"></param>
-        /// <param name="type"></param>
-        /// <param name="values"></param>
-        public delegate void glGetMinmax(uint target, bool reset, uint format, uint type, IntPtr values);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="pname"></param>
-        /// <param name="parameters"></param>
-        public delegate void glGetMinmaxParameterfv(uint target, uint pname, float[] parameters);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="pname"></param>
-        /// <param name="parameters"></param>
-        public delegate void glGetMinmaxParameteriv(uint target, uint pname, int[] parameters);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="width"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="sink"></param>
-        public delegate void glHistogram(uint target, int width, uint internalformat, bool sink);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="sink"></param>
-        public delegate void glMinmax(uint target, uint internalformat, bool sink);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        public delegate void glResetHistogram(uint target);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        public delegate void glResetMinmax(uint target);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="width"></param>
+        //public delegate void glCopyConvolutionFilter1D(uint target, uint internalformat, int x, int y, int width);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        //public delegate void glCopyConvolutionFilter2D(uint target, uint internalformat, int x, int y, int width, int height);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="format"></param>
+        ///// <param name="type"></param>
+        ///// <param name="image"></param>
+        //public delegate void glGetConvolutionFilter(uint target, uint format, uint type, IntPtr image);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="pname"></param>
+        ///// <param name="parameters"></param>
+        //public delegate void glGetConvolutionParameterfv(uint target, uint pname, float[] parameters);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="pname"></param>
+        ///// <param name="parameters"></param>
+        //public delegate void glGetConvolutionParameteriv(uint target, uint pname, int[] parameters);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="format"></param>
+        ///// <param name="type"></param>
+        ///// <param name="row"></param>
+        ///// <param name="column"></param>
+        ///// <param name="span"></param>
+        //public delegate void glGetSeparableFilter(uint target, uint format, uint type, IntPtr row, IntPtr column, IntPtr span);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        ///// <param name="format"></param>
+        ///// <param name="type"></param>
+        ///// <param name="row"></param>
+        ///// <param name="column"></param>
+        //public delegate void glSeparableFilter2D(uint target, uint internalformat, int width, int height, uint format, uint type, IntPtr row, IntPtr column);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="reset"></param>
+        ///// <param name="format"></param>
+        ///// <param name="type"></param>
+        ///// <param name="values"></param>
+        //public delegate void glGetHistogram(uint target, bool reset, uint format, uint type, IntPtr values);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="pname"></param>
+        ///// <param name="parameters"></param>
+        //public delegate void glGetHistogramParameterfv(uint target, uint pname, float[] parameters);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="pname"></param>
+        ///// <param name="parameters"></param>
+        //public delegate void glGetHistogramParameteriv(uint target, uint pname, int[] parameters);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="reset"></param>
+        ///// <param name="format"></param>
+        ///// <param name="type"></param>
+        ///// <param name="values"></param>
+        //public delegate void glGetMinmax(uint target, bool reset, uint format, uint type, IntPtr values);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="pname"></param>
+        ///// <param name="parameters"></param>
+        //public delegate void glGetMinmaxParameterfv(uint target, uint pname, float[] parameters);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="pname"></param>
+        ///// <param name="parameters"></param>
+        //public delegate void glGetMinmaxParameteriv(uint target, uint pname, int[] parameters);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="width"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="sink"></param>
+        //public delegate void glHistogram(uint target, int width, uint internalformat, bool sink);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="sink"></param>
+        //public delegate void glMinmax(uint target, uint internalformat, bool sink);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        //public delegate void glResetHistogram(uint target);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        //public delegate void glResetMinmax(uint target);
 
         //  Constants
         /// <summary>
@@ -504,336 +504,336 @@ namespace CSharpGL
         /// </summary>
         /// <param name="texture"></param>
         public delegate void glActiveTexture(uint texture);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="invert"></param>
-        public delegate void glSampleCoverage(float value, bool invert);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="depth"></param>
-        /// <param name="border"></param>
-        /// <param name="imageSize"></param>
-        /// <param name="data"></param>
-        public delegate void glCompressedTexImage3D(uint target, int level, uint internalformat, int width, int height, int depth, int border, int imageSize, IntPtr data);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="border"></param>
-        /// <param name="imageSize"></param>
-        /// <param name="data"></param>
-        public delegate void glCompressedTexImage2D(uint target, int level, uint internalformat, int width, int height, int border, int imageSize, IntPtr data);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="width"></param>
-        /// <param name="border"></param>
-        /// <param name="imageSize"></param>
-        /// <param name="data"></param>
-        public delegate void glCompressedTexImage1D(uint target, int level, uint internalformat, int width, int border, int imageSize, IntPtr data);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="xoffset"></param>
-        /// <param name="yoffset"></param>
-        /// <param name="zoffset"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="depth"></param>
-        /// <param name="format"></param>
-        /// <param name="imageSize"></param>
-        /// <param name="data"></param>
-        public delegate void glCompressedTexSubImage3D(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, int imageSize, IntPtr data);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="xoffset"></param>
-        /// <param name="yoffset"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="format"></param>
-        /// <param name="imageSize"></param>
-        /// <param name="data"></param>
-        public delegate void glCompressedTexSubImage2D(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, int imageSize, IntPtr data);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="xoffset"></param>
-        /// <param name="width"></param>
-        /// <param name="format"></param>
-        /// <param name="imageSize"></param>
-        /// <param name="data"></param>
-        public delegate void glCompressedTexSubImage1D(uint target, int level, int xoffset, int width, uint format, int imageSize, IntPtr data);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="img"></param>
-        public delegate void glGetCompressedTexImage(uint target, int level, IntPtr img);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="value"></param>
+        ///// <param name="invert"></param>
+        //public delegate void glSampleCoverage(float value, bool invert);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="level"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        ///// <param name="depth"></param>
+        ///// <param name="border"></param>
+        ///// <param name="imageSize"></param>
+        ///// <param name="data"></param>
+        //public delegate void glCompressedTexImage3D(uint target, int level, uint internalformat, int width, int height, int depth, int border, int imageSize, IntPtr data);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="level"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        ///// <param name="border"></param>
+        ///// <param name="imageSize"></param>
+        ///// <param name="data"></param>
+        //public delegate void glCompressedTexImage2D(uint target, int level, uint internalformat, int width, int height, int border, int imageSize, IntPtr data);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="level"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="width"></param>
+        ///// <param name="border"></param>
+        ///// <param name="imageSize"></param>
+        ///// <param name="data"></param>
+        //public delegate void glCompressedTexImage1D(uint target, int level, uint internalformat, int width, int border, int imageSize, IntPtr data);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="level"></param>
+        ///// <param name="xoffset"></param>
+        ///// <param name="yoffset"></param>
+        ///// <param name="zoffset"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        ///// <param name="depth"></param>
+        ///// <param name="format"></param>
+        ///// <param name="imageSize"></param>
+        ///// <param name="data"></param>
+        //public delegate void glCompressedTexSubImage3D(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, int imageSize, IntPtr data);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="level"></param>
+        ///// <param name="xoffset"></param>
+        ///// <param name="yoffset"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        ///// <param name="format"></param>
+        ///// <param name="imageSize"></param>
+        ///// <param name="data"></param>
+        //public delegate void glCompressedTexSubImage2D(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, int imageSize, IntPtr data);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="level"></param>
+        ///// <param name="xoffset"></param>
+        ///// <param name="width"></param>
+        ///// <param name="format"></param>
+        ///// <param name="imageSize"></param>
+        ///// <param name="data"></param>
+        //public delegate void glCompressedTexSubImage1D(uint target, int level, int xoffset, int width, uint format, int imageSize, IntPtr data);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="level"></param>
+        ///// <param name="img"></param>
+        //public delegate void glGetCompressedTexImage(uint target, int level, IntPtr img);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="texture"></param>
-        public delegate void glClientActiveTexture(uint texture);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        public delegate void glMultiTexCoord1d(uint target, double s);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord1dv(uint target, double[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        public delegate void glMultiTexCoord1f(uint target, float s);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord1fv(uint target, float[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        public delegate void glMultiTexCoord1i(uint target, int s);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord1iv(uint target, int[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        public delegate void glMultiTexCoord1s(uint target, short s);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord1sv(uint target, short[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        public delegate void glMultiTexCoord2d(uint target, double s, double t);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord2dv(uint target, double[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        public delegate void glMultiTexCoord2f(uint target, float s, float t);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord2fv(uint target, float[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        public delegate void glMultiTexCoord2i(uint target, int s, int t);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord2iv(uint target, int[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        public delegate void glMultiTexCoord2s(uint target, short s, short t);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord2sv(uint target, short[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        public delegate void glMultiTexCoord3d(uint target, double s, double t, double r);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord3dv(uint target, double[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        public delegate void glMultiTexCoord3f(uint target, float s, float t, float r);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord3fv(uint target, float[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        public delegate void glMultiTexCoord3i(uint target, int s, int t, int r);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord3iv(uint target, int[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        public delegate void glMultiTexCoord3s(uint target, short s, short t, short r);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord3sv(uint target, short[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        /// <param name="q"></param>
-        public delegate void glMultiTexCoord4d(uint target, double s, double t, double r, double q);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord4dv(uint target, double[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        /// <param name="q"></param>
-        public delegate void glMultiTexCoord4f(uint target, float s, float t, float r, float q);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord4fv(uint target, float[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        /// <param name="q"></param>
-        public delegate void glMultiTexCoord4i(uint target, int s, int t, int r, int q);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord4iv(uint target, int[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        /// <param name="q"></param>
-        public delegate void glMultiTexCoord4s(uint target, short s, short t, short r, short q);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord4sv(uint target, short[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="m"></param>
-        public delegate void glLoadTransposeMatrixf(float[] m);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="m"></param>
-        public delegate void glLoadTransposeMatrixd(double[] m);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="m"></param>
-        public delegate void glMultTransposeMatrixf(float[] m);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="m"></param>
-        public delegate void glMultTransposeMatrixd(double[] m);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="texture"></param>
+        //public delegate void glClientActiveTexture(uint texture);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        //public delegate void glMultiTexCoord1d(uint target, double s);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord1dv(uint target, double[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        //public delegate void glMultiTexCoord1f(uint target, float s);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord1fv(uint target, float[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        //public delegate void glMultiTexCoord1i(uint target, int s);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord1iv(uint target, int[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        //public delegate void glMultiTexCoord1s(uint target, short s);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord1sv(uint target, short[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        //public delegate void glMultiTexCoord2d(uint target, double s, double t);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord2dv(uint target, double[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        //public delegate void glMultiTexCoord2f(uint target, float s, float t);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord2fv(uint target, float[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        //public delegate void glMultiTexCoord2i(uint target, int s, int t);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord2iv(uint target, int[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        //public delegate void glMultiTexCoord2s(uint target, short s, short t);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord2sv(uint target, short[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        //public delegate void glMultiTexCoord3d(uint target, double s, double t, double r);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord3dv(uint target, double[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        //public delegate void glMultiTexCoord3f(uint target, float s, float t, float r);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord3fv(uint target, float[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        //public delegate void glMultiTexCoord3i(uint target, int s, int t, int r);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord3iv(uint target, int[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        //public delegate void glMultiTexCoord3s(uint target, short s, short t, short r);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord3sv(uint target, short[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        ///// <param name="q"></param>
+        //public delegate void glMultiTexCoord4d(uint target, double s, double t, double r, double q);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord4dv(uint target, double[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        ///// <param name="q"></param>
+        //public delegate void glMultiTexCoord4f(uint target, float s, float t, float r, float q);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord4fv(uint target, float[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        ///// <param name="q"></param>
+        //public delegate void glMultiTexCoord4i(uint target, int s, int t, int r, int q);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord4iv(uint target, int[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        ///// <param name="q"></param>
+        //public delegate void glMultiTexCoord4s(uint target, short s, short t, short r, short q);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord4sv(uint target, short[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="m"></param>
+        //public delegate void glLoadTransposeMatrixf(float[] m);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="m"></param>
+        //public delegate void glLoadTransposeMatrixd(double[] m);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="m"></param>
+        //public delegate void glMultTransposeMatrixf(float[] m);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="m"></param>
+        //public delegate void glMultTransposeMatrixd(double[] m);
 
         //  Constants
         /// <summary>
