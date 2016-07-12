@@ -10,33 +10,33 @@ namespace CSharpGL
 
         #region The OpenGL constant definitions.
 
-        // OpenGL Version Identifier
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_VERSION_1_1 = 1;
+        //// OpenGL Version Identifier
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_VERSION_1_1 = 1;
 
-        // AccumOp
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_ACCUM = 0x0100;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_LOAD = 0x0101;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_RETURN = 0x0102;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_MULT = 0x0103;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_ADD = 0x0104;
+        //// AccumOp
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_ACCUM = 0x0100;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_LOAD = 0x0101;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_RETURN = 0x0102;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_MULT = 0x0103;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_ADD = 0x0104;
 
         // Alpha functions
         /// <summary>
