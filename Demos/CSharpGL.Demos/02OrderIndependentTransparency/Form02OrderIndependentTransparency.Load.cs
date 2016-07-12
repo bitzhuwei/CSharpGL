@@ -38,8 +38,7 @@ namespace CSharpGL.Demos
                 this.OITRenderer = OITRenderer;
             }
             {
-                var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this.OITRenderer);
+                var frmPropertyGrid = new FormProperyGrid(this.OITRenderer);
                 frmPropertyGrid.Show();
                 this.formPropertyGrid = frmPropertyGrid;
             }

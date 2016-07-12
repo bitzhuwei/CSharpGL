@@ -48,8 +48,7 @@ namespace CSharpGL.Demos
                 this.UpdateLabel();
             }
             {
-                var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this.glText);
+                var frmPropertyGrid = new FormProperyGrid(this.glText);
                 frmPropertyGrid.Show();
                 this.formPropertyGrid = frmPropertyGrid;
             }

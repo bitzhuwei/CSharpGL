@@ -132,20 +132,6 @@ namespace CSharpGL.Demos
                 this.SelectedModel = GeometryModel.Tetrahedron;
             }
             {
-                // build the axis
-                var bufferable = new Axis();
-                var shaders = new ShaderCode[2];
-                shaders[0] = new ShaderCode(File.ReadAllText(@"shaders\Simple.vert"), ShaderType.VertexShader);
-                shaders[1] = new ShaderCode(File.ReadAllText(@"shaders\Simple.frag"), ShaderType.FragmentShader);
-                var propertyNameMap = new PropertyNameMap();
-                propertyNameMap.Add("in_Position", "position");
-                propertyNameMap.Add("in_Color", "color");
-                var pickableRenderer = new PickableRenderer(
-                    bufferable, shaders, propertyNameMap, "position");
-                pickableRenderer.Name = string.Format("Pickable: [{0}]", "Axis");
-                pickableRenderer.Initialize();
-            }
-            {
                 var frmBulletinBoard = new FormBulletinBoard();
                 //frmBulletinBoard.Dump = true;
                 frmBulletinBoard.Show();
@@ -164,20 +150,17 @@ namespace CSharpGL.Demos
                 UIRoot.Children.Add(glAxis);
             }
             {
-                var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this.rendererDict[this.SelectedModel].PickableRenderer);
+                var frmPropertyGrid = new FormProperyGrid(this.rendererDict[this.SelectedModel].PickableRenderer);
                 frmPropertyGrid.Show();
                 this.pickableRendererPropertyGrid = frmPropertyGrid;
             }
             {
-                var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this.rendererDict[this.SelectedModel].Highlighter);
+                var frmPropertyGrid = new FormProperyGrid(this.rendererDict[this.SelectedModel].Highlighter);
                 frmPropertyGrid.Show();
                 this.highlightRendererPropertyGrid = frmPropertyGrid;
             }
             {
-                var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this);
+                var frmPropertyGrid = new FormProperyGrid(this);
                 frmPropertyGrid.Show();
                 this.formPropertyGrid = frmPropertyGrid;
             }

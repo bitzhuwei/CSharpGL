@@ -12,7 +12,7 @@ namespace CSharpGL.Demos
 {
     public partial class FormProperyGrid : Form
     {
-        public FormProperyGrid(object obj = null)
+        public FormProperyGrid(object obj)
         {
             InitializeComponent();
 

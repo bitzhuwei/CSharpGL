@@ -47,8 +47,7 @@ namespace CSharpGL.Demos
                 UIRoot.Children.Add(glAxis);
             }
             {
-                var frmPropertyGrid = new FormProperyGrid();
-                frmPropertyGrid.DisplayObject(this.simplexNoiseRenderer);
+                var frmPropertyGrid = new FormProperyGrid(this.simplexNoiseRenderer);
                 frmPropertyGrid.Show();
             }
         }
