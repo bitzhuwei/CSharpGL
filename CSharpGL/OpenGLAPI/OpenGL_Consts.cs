@@ -1398,91 +1398,91 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_NICEST = 0x1102;
 
-        //   LightName
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_LIGHT0 = 0x4000;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_LIGHT1 = 0x4001;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_LIGHT2 = 0x4002;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_LIGHT3 = 0x4003;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_LIGHT4 = 0x4004;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_LIGHT5 = 0x4005;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_LIGHT6 = 0x4006;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_LIGHT7 = 0x4007;
+        ////   LightName
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_LIGHT0 = 0x4000;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_LIGHT1 = 0x4001;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_LIGHT2 = 0x4002;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_LIGHT3 = 0x4003;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_LIGHT4 = 0x4004;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_LIGHT5 = 0x4005;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_LIGHT6 = 0x4006;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_LIGHT7 = 0x4007;
 
-        //   LightParameter
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_AMBIENT = 0x1200;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_DIFFUSE = 0x1201;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SPECULAR = 0x1202;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_POSITION = 0x1203;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SPOT_DIRECTION = 0x1204;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SPOT_EXPONENT = 0x1205;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SPOT_CUTOFF = 0x1206;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CONSTANT_ATTENUATION = 0x1207;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_LINEAR_ATTENUATION = 0x1208;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_QUADRATIC_ATTENUATION = 0x1209;
+        ////   LightParameter
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_AMBIENT = 0x1200;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_DIFFUSE = 0x1201;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SPECULAR = 0x1202;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_POSITION = 0x1203;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SPOT_DIRECTION = 0x1204;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SPOT_EXPONENT = 0x1205;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SPOT_CUTOFF = 0x1206;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CONSTANT_ATTENUATION = 0x1207;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_LINEAR_ATTENUATION = 0x1208;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_QUADRATIC_ATTENUATION = 0x1209;
 
-        //   ListMode
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COMPILE = 0x1300;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COMPILE_AND_EXECUTE = 0x1301;
+        ////   ListMode
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COMPILE = 0x1300;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COMPILE_AND_EXECUTE = 0x1301;
 
         //   LogicOp
         /// <summary>
