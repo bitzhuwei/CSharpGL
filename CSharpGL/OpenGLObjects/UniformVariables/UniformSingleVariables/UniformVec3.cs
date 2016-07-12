@@ -14,24 +14,6 @@ namespace CSharpGL
     public class UniformVec3 : UniformSingleVariable<vec3>
     {
 
-        private vec3 value;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec3 Value
-        {
-            get { return this.value; }
-            set
-            {
-                if (this.value != value)
-                {
-                    this.value = value;
-                    this.Updated = true;
-                }
-            }
-        }
-
         /// <summary>
         /// uniform vec3 variable;
         /// </summary>

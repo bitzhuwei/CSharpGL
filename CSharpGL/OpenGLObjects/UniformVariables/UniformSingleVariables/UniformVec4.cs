@@ -14,24 +14,6 @@ namespace CSharpGL
     public class UniformVec4 : UniformSingleVariable<vec4>
     {
 
-        private vec4 value;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec4 Value
-        {
-            get { return this.value; }
-            set
-            {
-                if (this.value != value)
-                {
-                    this.value = value;
-                    this.Updated = true;
-                }
-            }
-        }
-
         /// <summary>
         /// uniform vec4 variable;
         /// </summary>
