@@ -4686,866 +4686,866 @@ namespace CSharpGL
 
         //#endregion
 
-        #region GL_EXT_blend_color
+        //#region GL_EXT_blend_color
 
-        //  Delegates
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="red"></param>
-        /// <param name="green"></param>
-        /// <param name="blue"></param>
-        /// <param name="alpha"></param>
-        public delegate void glBlendColorEXT(float red, float green, float blue, float alpha);
+        ////  Delegates
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="red"></param>
+        ///// <param name="green"></param>
+        ///// <param name="blue"></param>
+        ///// <param name="alpha"></param>
+        //public delegate void glBlendColorEXT(float red, float green, float blue, float alpha);
 
-        //  Constants
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_BLEND_COLOR = 0x8005;
+        ////  Constants
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_BLEND_COLOR = 0x8005;
 
-        #endregion
+        //#endregion
 
-        #region GL_EXT_blend_minmax
+        //#region GL_EXT_blend_minmax
 
-        //  Delegates
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="mode"></param>
-        public delegate void glBlendEquationEXT(uint mode);
+        ////  Delegates
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="mode"></param>
+        //public delegate void glBlendEquationEXT(uint mode);
 
-        //  Constants
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_FUNC_ADD = 0x8006;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_MIN = 0x8007;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_MAX = 0x8008;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_FUNC_SUBTRACT = 0x800A;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_FUNC_REVERSE_SUBTRACT = 0x800B;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_BLEND_EQUATION = 0x8009;
+        ////  Constants
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_FUNC_ADD = 0x8006;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_MIN = 0x8007;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_MAX = 0x8008;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_FUNC_SUBTRACT = 0x800A;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_FUNC_REVERSE_SUBTRACT = 0x800B;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_BLEND_EQUATION = 0x8009;
 
-        #endregion
+        //#endregion
 
-        #region GL_ARB_multitexture
+        //#region GL_ARB_multitexture
 
-        //  Delegates
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="texture"></param>
-        public delegate void glActiveTextureARB(uint texture);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="texture"></param>
-        public delegate void glClientActiveTextureARB(uint texture);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        public delegate void glMultiTexCoord1dARB(uint target, double s);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord1dvARB(uint target, double[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        public delegate void glMultiTexCoord1fARB(uint target, float s);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord1fvARB(uint target, float[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        public delegate void glMultiTexCoord1iARB(uint target, int s);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord1ivARB(uint target, int[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        public delegate void glMultiTexCoord1sARB(uint target, short s);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord1svARB(uint target, short[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        public delegate void glMultiTexCoord2dARB(uint target, double s, double t);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord2dvARB(uint target, double[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        public delegate void glMultiTexCoord2fARB(uint target, float s, float t);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord2fvARB(uint target, float[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        public delegate void glMultiTexCoord2iARB(uint target, int s, int t);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord2ivARB(uint target, int[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        public delegate void glMultiTexCoord2sARB(uint target, short s, short t);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord2svARB(uint target, short[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        public delegate void glMultiTexCoord3dARB(uint target, double s, double t, double r);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord3dvARB(uint target, double[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        public delegate void glMultiTexCoord3fARB(uint target, float s, float t, float r);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord3fvARB(uint target, float[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        public delegate void glMultiTexCoord3iARB(uint target, int s, int t, int r);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord3ivARB(uint target, int[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        public delegate void glMultiTexCoord3sARB(uint target, short s, short t, short r);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord3svARB(uint target, short[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        /// <param name="q"></param>
-        public delegate void glMultiTexCoord4dARB(uint target, double s, double t, double r, double q);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord4dvARB(uint target, double[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        /// <param name="q"></param>
-        public delegate void glMultiTexCoord4fARB(uint target, float s, float t, float r, float q);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord4fvARB(uint target, float[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        /// <param name="q"></param>
-        public delegate void glMultiTexCoord4iARB(uint target, int s, int t, int r, int q);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord4ivARB(uint target, int[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="s"></param>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        /// <param name="q"></param>
-        public delegate void glMultiTexCoord4sARB(uint target, short s, short t, short r, short q);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="v"></param>
-        public delegate void glMultiTexCoord4svARB(uint target, short[] v);
+        ////  Delegates
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="texture"></param>
+        //public delegate void glActiveTextureARB(uint texture);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="texture"></param>
+        //public delegate void glClientActiveTextureARB(uint texture);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        //public delegate void glMultiTexCoord1dARB(uint target, double s);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord1dvARB(uint target, double[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        //public delegate void glMultiTexCoord1fARB(uint target, float s);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord1fvARB(uint target, float[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        //public delegate void glMultiTexCoord1iARB(uint target, int s);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord1ivARB(uint target, int[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        //public delegate void glMultiTexCoord1sARB(uint target, short s);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord1svARB(uint target, short[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        //public delegate void glMultiTexCoord2dARB(uint target, double s, double t);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord2dvARB(uint target, double[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        //public delegate void glMultiTexCoord2fARB(uint target, float s, float t);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord2fvARB(uint target, float[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        //public delegate void glMultiTexCoord2iARB(uint target, int s, int t);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord2ivARB(uint target, int[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        //public delegate void glMultiTexCoord2sARB(uint target, short s, short t);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord2svARB(uint target, short[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        //public delegate void glMultiTexCoord3dARB(uint target, double s, double t, double r);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord3dvARB(uint target, double[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        //public delegate void glMultiTexCoord3fARB(uint target, float s, float t, float r);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord3fvARB(uint target, float[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        //public delegate void glMultiTexCoord3iARB(uint target, int s, int t, int r);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord3ivARB(uint target, int[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        //public delegate void glMultiTexCoord3sARB(uint target, short s, short t, short r);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord3svARB(uint target, short[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        ///// <param name="q"></param>
+        //public delegate void glMultiTexCoord4dARB(uint target, double s, double t, double r, double q);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord4dvARB(uint target, double[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        ///// <param name="q"></param>
+        //public delegate void glMultiTexCoord4fARB(uint target, float s, float t, float r, float q);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord4fvARB(uint target, float[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        ///// <param name="q"></param>
+        //public delegate void glMultiTexCoord4iARB(uint target, int s, int t, int r, int q);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord4ivARB(uint target, int[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="s"></param>
+        ///// <param name="t"></param>
+        ///// <param name="r"></param>
+        ///// <param name="q"></param>
+        //public delegate void glMultiTexCoord4sARB(uint target, short s, short t, short r, short q);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="v"></param>
+        //public delegate void glMultiTexCoord4svARB(uint target, short[] v);
 
-        //  Constants
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE0_ARB = 0x84C0;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE1_ARB = 0x84C1;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE2_ARB = 0x84C2;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE3_ARB = 0x84C3;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE4_ARB = 0x84C4;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE5_ARB = 0x84C5;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE6_ARB = 0x84C6;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE7_ARB = 0x84C7;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE8_ARB = 0x84C8;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE9_ARB = 0x84C9;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE10_ARB = 0x84CA;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE11_ARB = 0x84CB;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE12_ARB = 0x84CC;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE13_ARB = 0x84CD;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE14_ARB = 0x84CE;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE15_ARB = 0x84CF;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE16_ARB = 0x84D0;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE17_ARB = 0x84D1;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE18_ARB = 0x84D2;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE19_ARB = 0x84D3;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE20_ARB = 0x84D4;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE21_ARB = 0x84D5;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE22_ARB = 0x84D6;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE23_ARB = 0x84D7;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE24_ARB = 0x84D8;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE25_ARB = 0x84D9;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE26_ARB = 0x84DA;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE27_ARB = 0x84DB;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE28_ARB = 0x84DC;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE29_ARB = 0x84DD;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE30_ARB = 0x84DE;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE31_ARB = 0x84DF;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_ACTIVE_TEXTURE_ARB = 0x84E0;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CLIENT_ACTIVE_TEXTURE_ARB = 0x84E1;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_MAX_TEXTURE_UNITS_ARB = 0x84E2;
+        ////  Constants
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE0_ARB = 0x84C0;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE1_ARB = 0x84C1;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE2_ARB = 0x84C2;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE3_ARB = 0x84C3;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE4_ARB = 0x84C4;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE5_ARB = 0x84C5;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE6_ARB = 0x84C6;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE7_ARB = 0x84C7;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE8_ARB = 0x84C8;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE9_ARB = 0x84C9;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE10_ARB = 0x84CA;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE11_ARB = 0x84CB;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE12_ARB = 0x84CC;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE13_ARB = 0x84CD;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE14_ARB = 0x84CE;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE15_ARB = 0x84CF;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE16_ARB = 0x84D0;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE17_ARB = 0x84D1;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE18_ARB = 0x84D2;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE19_ARB = 0x84D3;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE20_ARB = 0x84D4;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE21_ARB = 0x84D5;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE22_ARB = 0x84D6;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE23_ARB = 0x84D7;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE24_ARB = 0x84D8;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE25_ARB = 0x84D9;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE26_ARB = 0x84DA;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE27_ARB = 0x84DB;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE28_ARB = 0x84DC;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE29_ARB = 0x84DD;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE30_ARB = 0x84DE;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE31_ARB = 0x84DF;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_ACTIVE_TEXTURE_ARB = 0x84E0;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CLIENT_ACTIVE_TEXTURE_ARB = 0x84E1;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_MAX_TEXTURE_UNITS_ARB = 0x84E2;
 
-        #endregion
+        //#endregion
 
-        #region GL_ARB_texture_compression
+        //#region GL_ARB_texture_compression
 
-        //  Delegates
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="depth"></param>
-        /// <param name="border"></param>
-        /// <param name="imageSize"></param>
-        /// <param name="data"></param>
-        public delegate void glCompressedTexImage3DARB(uint target, int level, uint internalformat, int width, int height, int depth, int border, int imageSize, IntPtr data);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="border"></param>
-        /// <param name="imageSize"></param>
-        /// <param name="data"></param>
-        public delegate void glCompressedTexImage2DARB(uint target, int level, uint internalformat, int width, int height, int border, int imageSize, IntPtr data);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="internalformat"></param>
-        /// <param name="width"></param>
-        /// <param name="border"></param>
-        /// <param name="imageSize"></param>
-        /// <param name="data"></param>
-        public delegate void glCompressedTexImage1DARB(uint target, int level, uint internalformat, int width, int border, int imageSize, IntPtr data);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="xoffset"></param>
-        /// <param name="yoffset"></param>
-        /// <param name="zoffset"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="depth"></param>
-        /// <param name="format"></param>
-        /// <param name="imageSize"></param>
-        /// <param name="data"></param>
-        public delegate void glCompressedTexSubImage3DARB(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, int imageSize, IntPtr data);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="xoffset"></param>
-        /// <param name="yoffset"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="format"></param>
-        /// <param name="imageSize"></param>
-        /// <param name="data"></param>
-        public delegate void glCompressedTexSubImage2DARB(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, int imageSize, IntPtr data);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="xoffset"></param>
-        /// <param name="width"></param>
-        /// <param name="format"></param>
-        /// <param name="imageSize"></param>
-        /// <param name="data"></param>
-        public delegate void glCompressedTexSubImage1DARB(uint target, int level, int xoffset, int width, uint format, int imageSize, IntPtr data);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="level"></param>
-        /// <param name="img"></param>
-        public delegate void glGetCompressedTexImageARB(uint target, int level, IntPtr img);
+        ////  Delegates
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="level"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        ///// <param name="depth"></param>
+        ///// <param name="border"></param>
+        ///// <param name="imageSize"></param>
+        ///// <param name="data"></param>
+        //public delegate void glCompressedTexImage3DARB(uint target, int level, uint internalformat, int width, int height, int depth, int border, int imageSize, IntPtr data);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="level"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        ///// <param name="border"></param>
+        ///// <param name="imageSize"></param>
+        ///// <param name="data"></param>
+        //public delegate void glCompressedTexImage2DARB(uint target, int level, uint internalformat, int width, int height, int border, int imageSize, IntPtr data);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="level"></param>
+        ///// <param name="internalformat"></param>
+        ///// <param name="width"></param>
+        ///// <param name="border"></param>
+        ///// <param name="imageSize"></param>
+        ///// <param name="data"></param>
+        //public delegate void glCompressedTexImage1DARB(uint target, int level, uint internalformat, int width, int border, int imageSize, IntPtr data);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="level"></param>
+        ///// <param name="xoffset"></param>
+        ///// <param name="yoffset"></param>
+        ///// <param name="zoffset"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        ///// <param name="depth"></param>
+        ///// <param name="format"></param>
+        ///// <param name="imageSize"></param>
+        ///// <param name="data"></param>
+        //public delegate void glCompressedTexSubImage3DARB(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, int imageSize, IntPtr data);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="level"></param>
+        ///// <param name="xoffset"></param>
+        ///// <param name="yoffset"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        ///// <param name="format"></param>
+        ///// <param name="imageSize"></param>
+        ///// <param name="data"></param>
+        //public delegate void glCompressedTexSubImage2DARB(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, int imageSize, IntPtr data);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="level"></param>
+        ///// <param name="xoffset"></param>
+        ///// <param name="width"></param>
+        ///// <param name="format"></param>
+        ///// <param name="imageSize"></param>
+        ///// <param name="data"></param>
+        //public delegate void glCompressedTexSubImage1DARB(uint target, int level, int xoffset, int width, uint format, int imageSize, IntPtr data);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="target"></param>
+        ///// <param name="level"></param>
+        ///// <param name="img"></param>
+        //public delegate void glGetCompressedTexImageARB(uint target, int level, IntPtr img);
 
-        //  Constants
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COMPRESSED_ALPHA_ARB = 0x84E9;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COMPRESSED_LUMINANCE_ARB = 0x84EA;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COMPRESSED_LUMINANCE_ALPHA_ARB = 0x84EB;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COMPRESSED_INTENSITY_ARB = 0x84EC;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COMPRESSED_RGB_ARB = 0x84ED;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COMPRESSED_RGBA_ARB = 0x84EE;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_COMPRESSION_HINT_ARB = 0x84EF;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_COMPRESSED_IMAGE_SIZE_ARB = 0x86A0;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_COMPRESSED_ARB = 0x86A1;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_NUM_COMPRESSED_TEXTURE_FORMATS_ARB = 0x86A2;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COMPRESSED_TEXTURE_FORMATS_ARB = 0x86A3;
+        ////  Constants
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COMPRESSED_ALPHA_ARB = 0x84E9;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COMPRESSED_LUMINANCE_ARB = 0x84EA;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COMPRESSED_LUMINANCE_ALPHA_ARB = 0x84EB;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COMPRESSED_INTENSITY_ARB = 0x84EC;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COMPRESSED_RGB_ARB = 0x84ED;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COMPRESSED_RGBA_ARB = 0x84EE;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_COMPRESSION_HINT_ARB = 0x84EF;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_COMPRESSED_IMAGE_SIZE_ARB = 0x86A0;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_COMPRESSED_ARB = 0x86A1;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_NUM_COMPRESSED_TEXTURE_FORMATS_ARB = 0x86A2;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COMPRESSED_TEXTURE_FORMATS_ARB = 0x86A3;
 
-        #endregion
+        //#endregion
 
-        #region GL_EXT_texture_cube_map
+        //#region GL_EXT_texture_cube_map
 
-        //  Constants
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_NORMAL_MAP = 0x8511;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_REFLECTION_MAP = 0x8512;
+        ////  Constants
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_NORMAL_MAP = 0x8511;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_REFLECTION_MAP = 0x8512;
 
-        #endregion
+        //#endregion
 
-        #region GL_ARB_multisample
+        //#region GL_ARB_multisample
 
-        //  Delegates
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="invert"></param>
-        public delegate void glSampleCoverageARB(float value, bool invert);
+        ////  Delegates
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="value"></param>
+        ///// <param name="invert"></param>
+        //public delegate void glSampleCoverageARB(float value, bool invert);
 
-        //  Constants
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_MULTISAMPLE_ARB = 0x809D;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SAMPLE_ALPHA_TO_COVERAGE_ARB = 0x809E;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SAMPLE_ALPHA_TO_ONE_ARB = 0x809F;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SAMPLE_COVERAGE_ARB = 0x80A0;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SAMPLE_BUFFERS_ARB = 0x80A8;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SAMPLES_ARB = 0x80A9;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SAMPLE_COVERAGE_VALUE_ARB = 0x80AA;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SAMPLE_COVERAGE_INVERT_ARB = 0x80AB;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_MULTISAMPLE_BIT_ARB = 0x20000000;
+        ////  Constants
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_MULTISAMPLE_ARB = 0x809D;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SAMPLE_ALPHA_TO_COVERAGE_ARB = 0x809E;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SAMPLE_ALPHA_TO_ONE_ARB = 0x809F;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SAMPLE_COVERAGE_ARB = 0x80A0;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SAMPLE_BUFFERS_ARB = 0x80A8;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SAMPLES_ARB = 0x80A9;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SAMPLE_COVERAGE_VALUE_ARB = 0x80AA;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SAMPLE_COVERAGE_INVERT_ARB = 0x80AB;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_MULTISAMPLE_BIT_ARB = 0x20000000;
 
-        #endregion
+        //#endregion
 
-        #region GL_ARB_texture_env_add
+        //#region GL_ARB_texture_env_add
 
-        //  Appears to not have any functionality
+        ////  Appears to not have any functionality
 
-        #endregion
+        //#endregion
 
-        #region GL_ARB_texture_env_combine
+        //#region GL_ARB_texture_env_combine
 
-        //  Constants
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COMBINE_ARB = 0x8570;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COMBINE_RGB_ARB = 0x8571;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COMBINE_ALPHA_ARB = 0x8572;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SOURCE0_RGB_ARB = 0x8580;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SOURCE1_RGB_ARB = 0x8581;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SOURCE2_RGB_ARB = 0x8582;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SOURCE0_ALPHA_ARB = 0x8588;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SOURCE1_ALPHA_ARB = 0x8589;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SOURCE2_ALPHA_ARB = 0x858A;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_OPERAND0_RGB_ARB = 0x8590;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_OPERAND1_RGB_ARB = 0x8591;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_OPERAND2_RGB_ARB = 0x8592;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_OPERAND0_ALPHA_ARB = 0x8598;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_OPERAND1_ALPHA_ARB = 0x8599;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_OPERAND2_ALPHA_ARB = 0x859A;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_RGB_SCALE_ARB = 0x8573;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_ADD_SIGNED_ARB = 0x8574;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_INTERPOLATE_ARB = 0x8575;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_SUBTRACT_ARB = 0x84E7;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CONSTANT_ARB = 0x8576;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_PRIMARY_COLOR_ARB = 0x8577;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_PREVIOUS_ARB = 0x8578;
+        ////  Constants
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COMBINE_ARB = 0x8570;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COMBINE_RGB_ARB = 0x8571;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COMBINE_ALPHA_ARB = 0x8572;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SOURCE0_RGB_ARB = 0x8580;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SOURCE1_RGB_ARB = 0x8581;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SOURCE2_RGB_ARB = 0x8582;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SOURCE0_ALPHA_ARB = 0x8588;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SOURCE1_ALPHA_ARB = 0x8589;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SOURCE2_ALPHA_ARB = 0x858A;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_OPERAND0_RGB_ARB = 0x8590;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_OPERAND1_RGB_ARB = 0x8591;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_OPERAND2_RGB_ARB = 0x8592;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_OPERAND0_ALPHA_ARB = 0x8598;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_OPERAND1_ALPHA_ARB = 0x8599;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_OPERAND2_ALPHA_ARB = 0x859A;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_RGB_SCALE_ARB = 0x8573;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_ADD_SIGNED_ARB = 0x8574;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_INTERPOLATE_ARB = 0x8575;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_SUBTRACT_ARB = 0x84E7;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CONSTANT_ARB = 0x8576;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_PRIMARY_COLOR_ARB = 0x8577;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_PREVIOUS_ARB = 0x8578;
 
-        #endregion
+        //#endregion
 
-        #region GL_ARB_texture_env_dot3
+        //#region GL_ARB_texture_env_dot3
 
-        //  Constants
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_DOT3_RGB_ARB = 0x86AE;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_DOT3_RGBA_ARB = 0x86AF;
+        ////  Constants
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_DOT3_RGB_ARB = 0x86AE;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_DOT3_RGBA_ARB = 0x86AF;
 
-        #endregion
+        //#endregion
 
-        #region GL_ARB_texture_border_clamp
+        //#region GL_ARB_texture_border_clamp
 
-        //  Constants
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CLAMP_TO_BORDER_ARB = 0x812D;
+        ////  Constants
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CLAMP_TO_BORDER_ARB = 0x812D;
 
-        #endregion
+        //#endregion
 
-        #region GL_ARB_transpose_matrix
+        //#region GL_ARB_transpose_matrix
 
-        //  Delegates
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="m"></param>
-        public delegate void glLoadTransposeMatrixfARB(float[] m);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="m"></param>
-        public delegate void glLoadTransposeMatrixdARB(double[] m);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="m"></param>
-        public delegate void glMultTransposeMatrixfARB(float[] m);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="m"></param>
-        public delegate void glMultTransposeMatrixdARB(double[] m);
+        ////  Delegates
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="m"></param>
+        //public delegate void glLoadTransposeMatrixfARB(float[] m);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="m"></param>
+        //public delegate void glLoadTransposeMatrixdARB(double[] m);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="m"></param>
+        //public delegate void glMultTransposeMatrixfARB(float[] m);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="m"></param>
+        //public delegate void glMultTransposeMatrixdARB(double[] m);
 
-        //  Constants
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TRANSPOSE_MODELVIEW_MATRIX_ARB = 0x84E3;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TRANSPOSE_PROJECTION_MATRIX_ARB = 0x84E4;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TRANSPOSE_TEXTURE_MATRIX_ARB = 0x84E5;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TRANSPOSE_COLOR_MATRIX_ARB = 0x84E6;
+        ////  Constants
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TRANSPOSE_MODELVIEW_MATRIX_ARB = 0x84E3;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TRANSPOSE_PROJECTION_MATRIX_ARB = 0x84E4;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TRANSPOSE_TEXTURE_MATRIX_ARB = 0x84E5;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TRANSPOSE_COLOR_MATRIX_ARB = 0x84E6;
 
-        #endregion
+        //#endregion
 
-        #region GL_SGIS_generate_mipmap
+        //#region GL_SGIS_generate_mipmap
 
-        //  Constants
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_GENERATE_MIPMAP_SGIS = 0x8191;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_GENERATE_MIPMAP_HINT_SGIS = 0x8192;
+        ////  Constants
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_GENERATE_MIPMAP_SGIS = 0x8191;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_GENERATE_MIPMAP_HINT_SGIS = 0x8192;
 
-        #endregion
+        //#endregion
 
-        #region GL_NV_blend_square
+        //#region GL_NV_blend_square
 
-        //  Appears to be empty.
+        ////  Appears to be empty.
 
-        #endregion
+        //#endregion
 
-        #region GL_ARB_depth_texture
+        //#region GL_ARB_depth_texture
 
-        //  Constants
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_DEPTH_COMPONENT16_ARB = 0x81A5;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_DEPTH_COMPONENT24_ARB = 0x81A6;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_DEPTH_COMPONENT32_ARB = 0x81A7;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_DEPTH_SIZE_ARB = 0x884A;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_DEPTH_TEXTURE_MODE_ARB = 0x884B;
+        ////  Constants
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_DEPTH_COMPONENT16_ARB = 0x81A5;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_DEPTH_COMPONENT24_ARB = 0x81A6;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_DEPTH_COMPONENT32_ARB = 0x81A7;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_DEPTH_SIZE_ARB = 0x884A;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_DEPTH_TEXTURE_MODE_ARB = 0x884B;
 
-        #endregion
+        //#endregion
 
-        #region GL_ARB_shadow
+        //#region GL_ARB_shadow
 
-        //  Constants
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_COMPARE_MODE_ARB = 0x884C;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_COMPARE_FUNC_ARB = 0x884D;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COMPARE_R_TO_TEXTURE_ARB = 0x884E;
+        ////  Constants
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_COMPARE_MODE_ARB = 0x884C;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_COMPARE_FUNC_ARB = 0x884D;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COMPARE_R_TO_TEXTURE_ARB = 0x884E;
 
-        #endregion
+        //#endregion
 
         #region GL_EXT_fog_coord
 
