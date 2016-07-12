@@ -1258,164 +1258,164 @@ namespace CSharpGL
         ///// <param name="stride"></param>
         ///// <param name="pointer"></param>
         //public delegate void glSecondaryColorPointer(int size, uint type, int stride, IntPtr pointer);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        public delegate void glWindowPos2d(double x, double y);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="v"></param>
-        public delegate void glWindowPos2dv(double[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        public delegate void glWindowPos2f(float x, float y);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="v"></param>
-        public delegate void glWindowPos2fv(float[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        public delegate void glWindowPos2i(int x, int y);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="v"></param>
-        public delegate void glWindowPos2iv(int[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        public delegate void glWindowPos2s(short x, short y);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="v"></param>
-        public delegate void glWindowPos2sv(short[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
-        public delegate void glWindowPos3d(double x, double y, double z);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="v"></param>
-        public delegate void glWindowPos3dv(double[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
-        public delegate void glWindowPos3f(float x, float y, float z);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="v"></param>
-        public delegate void glWindowPos3fv(float[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
-        public delegate void glWindowPos3i(int x, int y, int z);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="v"></param>
-        public delegate void glWindowPos3iv(int[] v);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
-        public delegate void glWindowPos3s(short x, short y, short z);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="v"></param>
-        public delegate void glWindowPos3sv(short[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        //public delegate void glWindowPos2d(double x, double y);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="v"></param>
+        //public delegate void glWindowPos2dv(double[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        //public delegate void glWindowPos2f(float x, float y);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="v"></param>
+        //public delegate void glWindowPos2fv(float[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        //public delegate void glWindowPos2i(int x, int y);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="v"></param>
+        //public delegate void glWindowPos2iv(int[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        //public delegate void glWindowPos2s(short x, short y);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="v"></param>
+        //public delegate void glWindowPos2sv(short[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="z"></param>
+        //public delegate void glWindowPos3d(double x, double y, double z);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="v"></param>
+        //public delegate void glWindowPos3dv(double[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="z"></param>
+        //public delegate void glWindowPos3f(float x, float y, float z);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="v"></param>
+        //public delegate void glWindowPos3fv(float[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="z"></param>
+        //public delegate void glWindowPos3i(int x, int y, int z);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="v"></param>
+        //public delegate void glWindowPos3iv(int[] v);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="x"></param>
+        ///// <param name="y"></param>
+        ///// <param name="z"></param>
+        //public delegate void glWindowPos3s(short x, short y, short z);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="v"></param>
+        //public delegate void glWindowPos3sv(short[] v);
 
         //  Constants
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_BLEND_DST_RGB = 0x80C8;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_BLEND_SRC_RGB = 0x80C9;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_BLEND_DST_ALPHA = 0x80CA;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_BLEND_SRC_ALPHA = 0x80CB;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_POINT_FADE_THRESHOLD_SIZE = 0x8128;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_DEPTH_COMPONENT16 = 0x81A5;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_BLEND_DST_RGB = 0x80C8;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_BLEND_SRC_RGB = 0x80C9;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_BLEND_DST_ALPHA = 0x80CA;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_BLEND_SRC_ALPHA = 0x80CB;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_POINT_FADE_THRESHOLD_SIZE = 0x8128;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_DEPTH_COMPONENT16 = 0x81A5;
         /// <summary>
         /// 
         /// </summary>
         public const uint GL_DEPTH_COMPONENT24 = 0x81A6;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_DEPTH_COMPONENT32 = 0x81A7;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_MIRRORED_REPEAT = 0x8370;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_MAX_TEXTURE_LOD_BIAS = 0x84FD;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_LOD_BIAS = 0x8501;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_INCR_WRAP = 0x8507;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_DECR_WRAP = 0x8508;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_DEPTH_SIZE = 0x884A;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_COMPARE_MODE = 0x884C;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_COMPARE_FUNC = 0x884D;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_DEPTH_COMPONENT32 = 0x81A7;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_MIRRORED_REPEAT = 0x8370;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_MAX_TEXTURE_LOD_BIAS = 0x84FD;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_LOD_BIAS = 0x8501;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_INCR_WRAP = 0x8507;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_DECR_WRAP = 0x8508;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_DEPTH_SIZE = 0x884A;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_COMPARE_MODE = 0x884C;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_COMPARE_FUNC = 0x884D;
 
         #endregion
 
