@@ -434,95 +434,95 @@ namespace CSharpGL
         /// </summary>
         internal const uint GL_OUT_OF_MEMORY = 0x0505;
 
-        //   FeedBackMode
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_2D = 0x0600;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_3D = 0x0601;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_4D_COLOR = 0x0602;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_3D_COLOR_TEXTURE = 0x0603;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_4D_COLOR_TEXTURE = 0x0604;
+        ////   FeedBackMode
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_2D = 0x0600;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_3D = 0x0601;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_4D_COLOR = 0x0602;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_3D_COLOR_TEXTURE = 0x0603;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_4D_COLOR_TEXTURE = 0x0604;
 
-        //   FeedBackToken
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_PASS_THROUGH_TOKEN = 0x0700;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_POINT_TOKEN = 0x0701;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_LINE_TOKEN = 0x0702;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_POLYGON_TOKEN = 0x0703;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_BITMAP_TOKEN = 0x0704;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_DRAW_PIXEL_TOKEN = 0x0705;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COPY_PIXEL_TOKEN = 0x0706;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_LINE_RESET_TOKEN = 0x0707;
+        ////   FeedBackToken
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_PASS_THROUGH_TOKEN = 0x0700;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_POINT_TOKEN = 0x0701;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_LINE_TOKEN = 0x0702;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_POLYGON_TOKEN = 0x0703;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_BITMAP_TOKEN = 0x0704;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_DRAW_PIXEL_TOKEN = 0x0705;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COPY_PIXEL_TOKEN = 0x0706;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_LINE_RESET_TOKEN = 0x0707;
 
-        //   FogMode
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_EXP = 0x0800;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_EXP2 = 0x0801;
+        ////   FogMode
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_EXP = 0x0800;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_EXP2 = 0x0801;
 
-        //   FrontFaceDirection
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CW = 0x0900;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CCW = 0x0901;
+        ////   FrontFaceDirection
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CW = 0x0900;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CCW = 0x0901;
 
-        //    GetMapTarget 
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COEFF = 0x0A00;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_ORDER = 0x0A01;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_DOMAIN = 0x0A02;
+        ////    GetMapTarget 
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COEFF = 0x0A00;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_ORDER = 0x0A01;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_DOMAIN = 0x0A02;
 
         //   GetTarget
         /// <summary>
@@ -1362,27 +1362,27 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_SELECTION_BUFFER_SIZE = 0x0DF4;
 
-        //   GetTextureParameter
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_WIDTH = 0x1000;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_HEIGHT = 0x1001;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_INTERNAL_FORMAT = 0x1003;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_BORDER_COLOR = 0x1004;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_BORDER = 0x1005;
+        ////   GetTextureParameter
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_WIDTH = 0x1000;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_HEIGHT = 0x1001;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_INTERNAL_FORMAT = 0x1003;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_BORDER_COLOR = 0x1004;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_BORDER = 0x1005;
 
         //   HintMode
         /// <summary>
