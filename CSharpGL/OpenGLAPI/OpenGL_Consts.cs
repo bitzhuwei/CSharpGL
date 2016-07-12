@@ -274,31 +274,31 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_FALSE = 0;
 
-        //   ClipPlaneName
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CLIP_PLANE0 = 0x3000;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CLIP_PLANE1 = 0x3001;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CLIP_PLANE2 = 0x3002;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CLIP_PLANE3 = 0x3003;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CLIP_PLANE4 = 0x3004;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_CLIP_PLANE5 = 0x3005;
+        ////   ClipPlaneName
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CLIP_PLANE0 = 0x3000;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CLIP_PLANE1 = 0x3001;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CLIP_PLANE2 = 0x3002;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CLIP_PLANE3 = 0x3003;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CLIP_PLANE4 = 0x3004;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_CLIP_PLANE5 = 0x3005;
 
         //   DataType
         /// <summary>
@@ -346,27 +346,27 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_DOUBLE = 0x140A;
 
-        //   DrawBufferMode
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_NONE = 0;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_FRONT_LEFT = 0x0400;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_FRONT_RIGHT = 0x0401;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_BACK_LEFT = 0x0402;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_BACK_RIGHT = 0x0403;
+        ////   DrawBufferMode
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_NONE = 0;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_FRONT_LEFT = 0x0400;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_FRONT_RIGHT = 0x0401;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_BACK_LEFT = 0x0402;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_BACK_RIGHT = 0x0403;
         /// <summary>
         /// 
         /// </summary>
@@ -375,34 +375,34 @@ namespace CSharpGL
         /// 
         /// </summary>
         public const uint GL_BACK = 0x0405;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_LEFT = 0x0406;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_RIGHT = 0x0407;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_LEFT = 0x0406;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_RIGHT = 0x0407;
         /// <summary>
         /// 
         /// </summary>
         public const uint GL_FRONT_AND_BACK = 0x0408;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_AUX0 = 0x0409;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_AUX1 = 0x040A;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_AUX2 = 0x040B;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_AUX3 = 0x040C;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_AUX0 = 0x0409;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_AUX1 = 0x040A;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_AUX2 = 0x040B;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_AUX3 = 0x040C;
 
         //   ErrorCode
         /// <summary>
