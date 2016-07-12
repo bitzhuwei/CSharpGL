@@ -2236,137 +2236,137 @@ namespace CSharpGL
         ///// </summary>
         //public const uint GL_T4F_C4F_N3F_V4F = 0x2A2D;
 
-        //   Extensions
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_EXT_vertex_array = 1;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_EXT_bgra = 1;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_EXT_paletted_texture = 1;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_WIN_swap_hint = 1;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_WIN_draw_range_elements = 1;
+        ////   Extensions
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_EXT_vertex_array = 1;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_EXT_bgra = 1;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_EXT_paletted_texture = 1;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_WIN_swap_hint = 1;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_WIN_draw_range_elements = 1;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_VERTEX_ARRAY_COUNT = 0x807D;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_NORMAL_ARRAY_COUNT = 0x8080;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_ARRAY_COUNT = 0x8084;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_INDEX_ARRAY_COUNT = 0x8087;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_TEXTURE_COORD_ARRAY_COUNT = 0x808B;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_EDGE_FLAG_ARRAY_COUNT = 0x808D;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_VERTEX_ARRAY_COUNT = 0x807D;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_NORMAL_ARRAY_COUNT = 0x8080;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_ARRAY_COUNT = 0x8084;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_INDEX_ARRAY_COUNT = 0x8087;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_TEXTURE_COORD_ARRAY_COUNT = 0x808B;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_EDGE_FLAG_ARRAY_COUNT = 0x808D;
 
-        //   EXT_paletted_texture
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_TABLE_FORMAT = 0x80D8;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_TABLE_WIDTH = 0x80D9;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_TABLE_RED_SIZE = 0x80DA;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_TABLE_GREEN_SIZE = 0x80DB;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_TABLE_BLUE_SIZE = 0x80DC;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_TABLE_ALPHA_SIZE = 0x80DD;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_TABLE_LUMINANCE_SIZE = 0x80DE;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_TABLE_INTENSITY_SIZE = 0x80DF;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_INDEX1 = 0x80E2;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_INDEX2 = 0x80E3;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_INDEX4 = 0x80E4;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_INDEX8 = 0x80E5;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_INDEX12 = 0x80E6;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_COLOR_INDEX16 = 0x80E7;
+        ////   EXT_paletted_texture
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_TABLE_FORMAT = 0x80D8;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_TABLE_WIDTH = 0x80D9;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_TABLE_RED_SIZE = 0x80DA;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_TABLE_GREEN_SIZE = 0x80DB;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_TABLE_BLUE_SIZE = 0x80DC;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_TABLE_ALPHA_SIZE = 0x80DD;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_TABLE_LUMINANCE_SIZE = 0x80DE;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_TABLE_INTENSITY_SIZE = 0x80DF;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_INDEX1 = 0x80E2;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_INDEX2 = 0x80E3;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_INDEX4 = 0x80E4;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_INDEX8 = 0x80E5;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_INDEX12 = 0x80E6;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_COLOR_INDEX16 = 0x80E7;
 
-        //   WIN_draw_range_elements
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_MAX_ELEMENTS_VERTICES_WIN = 0x80E8;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_MAX_ELEMENTS_INDICES_WIN = 0x80E9;
+        ////   WIN_draw_range_elements
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_MAX_ELEMENTS_VERTICES_WIN = 0x80E8;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_MAX_ELEMENTS_INDICES_WIN = 0x80E9;
 
-        //   WIN_phong_shading
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_PHONG_WIN = 0x80EA;
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_PHONG_HINT_WIN = 0x80EB;
+        ////   WIN_phong_shading
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_PHONG_WIN = 0x80EA;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const uint GL_PHONG_HINT_WIN = 0x80EB;
 
 
-        //   WIN_specular_fog 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static uint FOG_SPECULAR_TEXTURE_WIN = 0x80EC;
+        ////   WIN_specular_fog 
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public static uint FOG_SPECULAR_TEXTURE_WIN = 0x80EC;
 
         #endregion
 
