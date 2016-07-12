@@ -10,13 +10,15 @@ namespace CSharpGL
 
         #region The OpenGL constant definitions.
 
+        //// OpenGL Version Identifier
         ///// <summary>
-        ///// OpenGL Version Identifier
+        ///// 
         ///// </summary>
         //public const uint GL_VERSION_1_1 = 1;
 
+        //// AccumOp
         ///// <summary>
-        ///// AccumOp
+        ///// 
         ///// </summary>
         //public const uint GL_ACCUM = 0x0100;
         ///// <summary>
@@ -36,8 +38,9 @@ namespace CSharpGL
         ///// </summary>
         //public const uint GL_ADD = 0x0104;
 
+        // Alpha functions
         /// <summary>
-        /// Alpha functions
+        /// 
         /// </summary>
         public const uint GL_NEVER = 0x0200;
         /// <summary>
