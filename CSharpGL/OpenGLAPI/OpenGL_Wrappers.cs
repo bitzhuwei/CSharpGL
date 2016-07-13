@@ -1503,9 +1503,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="name">Specifies a symbolic constant, one of OpenGL.VENDOR, OpenGL.RENDERER, OpenGL.VERSION, or OpenGL.EXTENSIONS.</param>
         /// <returns>Pointer to the specified string.</returns>
-        public static unsafe string GetString(uint name)
+        public static unsafe string GetString(StringName name)
         {
-            sbyte* pStr = OpenGL.glGetString(name);
+            sbyte* pStr = OpenGL.glGetString((uint)name);
             var str = new string(pStr);
 
             return str;

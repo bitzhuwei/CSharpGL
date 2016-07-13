@@ -1704,23 +1704,23 @@ namespace CSharpGL
         ///// </summary>
         //public const uint GL_DECR = 0x1E03;
 
-        ////   StringName
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public const uint GL_VENDOR = 0x1F00;
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public const uint GL_RENDERER = 0x1F01;
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public const uint GL_VERSION = 0x1F02;
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public const uint GL_EXTENSIONS = 0x1F03;
+        //   StringName
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_VENDOR = 0x1F00;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_RENDERER = 0x1F01;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_VERSION = 0x1F02;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_EXTENSIONS = 0x1F03;
 
         ////   TextureCoordName
         ///// <summary>

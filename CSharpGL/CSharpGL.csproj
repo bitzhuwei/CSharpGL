@@ -98,6 +98,7 @@
     <Compile Include="IBufferables\TextModel.SetText.cs" />
     <Compile Include="Manipulaters\ModelManipulaters\ArcBallManipulater.cs" />
     <Compile Include="Octree\OctreeHelper.cs" />
+    <Compile Include="OpenGLAPI\Enumerations\StringName.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.Orientation.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.ViewType.cs" />
     <Compile Include="Manipulaters\IKeyboardHandler.cs" />
