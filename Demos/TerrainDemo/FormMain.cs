@@ -36,6 +36,41 @@ namespace TerrainDemo
 
         private void 打开OToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TerrainRenderer renderer = GetRenderer();
+            if (renderer != null)
+            {
+                this.terrainRendererList.Clear();
+                this.terrainRendererList.Add(renderer);
+                renderer.Initialize();
+                var frmPropertyGrid = new FormProperyGrid(renderer);
+                frmPropertyGrid.Show();
+            }
+        }
+
+        private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
+        {
+            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+            var list = this.terrainRendererList.ToArray();
+            foreach (var item in list)
+            {
+                item.Render(new RenderEventArg(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera));
+            }
+        }
+
+        private void 添加OToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TerrainRenderer renderer = GetRenderer();
+            if (renderer != null)
+            {
+                this.terrainRendererList.Add(renderer);
+                renderer.Initialize();
+                var frmPropertyGrid = new FormProperyGrid(renderer);
+                frmPropertyGrid.Show();
+            }
+        }
+
+        private TerrainRenderer GetRenderer()
+        {
             if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 try
@@ -56,26 +91,19 @@ namespace TerrainDemo
                     }
                     positionList.Move2Center();
                     var renderer = TerrainRenderer.GetRenderer(positionList);
-                    renderer.Initialize();
-                    var frmPropertyGrid = new FormProperyGrid(renderer);
-                    frmPropertyGrid.Show();
-                    this.terrainRendererList.Add(renderer);
+                    return renderer;
+                    //renderer.Initialize();
+                    //var frmPropertyGrid = new FormProperyGrid(renderer);
+                    //frmPropertyGrid.Show();
+                    //this.terrainRendererList.Add(renderer);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
             }
-        }
 
-        private void glCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
-        {
-            OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
-            var list = this.terrainRendererList.ToArray();
-            foreach (var item in list)
-            {
-                item.Render(new RenderEventArg(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera));
-            }
+            return null;
         }
     }
 }
