@@ -101,5 +101,10 @@ namespace TerrainDemo
 
             return null;
         }
+
+        private void 退出XToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
