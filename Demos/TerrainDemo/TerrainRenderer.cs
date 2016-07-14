@@ -40,10 +40,10 @@ namespace TerrainDemo
             mat4 view = arg.Camera.GetViewMat4();
             mat4 model = glm.translate(mat4.identity(), this.BoundingBox.GetCenter());
             this.SetUniform("MVP", projection * view * model);
-            if (pointColorRecord.Need2Upload())
+            if (pointColorRecord.IsMarked())
             {
                 this.SetUniform("color", this.PointColor.ToVec4());
-                pointColorRecord.Uploaded();
+                pointColorRecord.CancelMark();
             }
 
             base.DoRender(arg);
@@ -61,7 +61,7 @@ namespace TerrainDemo
                 if (value != pointColor)
                 {
                     pointColor = value;
-                    pointColorRecord.Update();
+                    pointColorRecord.Mark();
                 }
             }
         }

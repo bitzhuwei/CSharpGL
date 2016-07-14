@@ -22,7 +22,7 @@ namespace CSharpGL
         /// <summary>
         /// Mark a property as updated(thus needs to be uploaded to OpenGL).
         /// </summary>
-        public void Update()
+        public void Mark()
         {
             this.updateTicks = DateTime.Now.Ticks;
         }
@@ -30,7 +30,7 @@ namespace CSharpGL
         /// <summary>
         /// Mark a property as uploaded(thus not need to upload it to OpenGL again).
         /// </summary>
-        public void Uploaded()
+        public void CancelMark()
         {
             this.uploadTicks = this.updateTicks;
         }
@@ -39,7 +39,7 @@ namespace CSharpGL
         /// Indicates whether a property is needed to be uploaded to OpenGL.
         /// </summary>
         /// <returns></returns>
-        public bool Need2Upload()
+        public bool IsMarked()
         {
             return this.updateTicks != this.uploadTicks;
         }

@@ -63,7 +63,7 @@ namespace CSharpGL
                 if (value != boundingBoxColor)
                 {
                     boundingBoxColor = value;
-                    boundingBoxColorRecord.Update();
+                    boundingBoxColorRecord.Mark();
                 }
             }
         }
@@ -81,10 +81,10 @@ namespace CSharpGL
             mat4 model = glm.translate(mat4.identity(), this.GetCenter());
             model = glm.scale(model, this.MaxPosition - this.MinPosition);
             this.SetUniform("modelMatrix", model);
-            if (this.boundingBoxColorRecord.Need2Upload())
+            if (this.boundingBoxColorRecord.IsMarked())
             {
                 this.SetUniform("boundingBoxColor", this.BoundingBoxColor);
-                this.boundingBoxColorRecord.Uploaded();
+                this.boundingBoxColorRecord.CancelMark();
             }
 
             base.DoRender(arg);
