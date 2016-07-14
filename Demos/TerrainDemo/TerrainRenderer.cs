@@ -1,6 +1,7 @@
 ﻿using CSharpGL;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,8 @@ namespace TerrainDemo
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Terrain.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("in_Position", TerrainModel.strPosition);
-            var renderer = new TerrainRenderer(model, shaderCodes, map, boundingBox);
+            var renderer = new TerrainRenderer(model, shaderCodes, map, boundingBox,
+                new PointSizeSwitch(10));
             return renderer;
         }
 
@@ -29,18 +31,22 @@ namespace TerrainDemo
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
             this.BoundingBox = boundingBox;
+            this.PointColor = Color.Green;
         }
 
         protected override void DoRender(RenderEventArg arg)
         {
             mat4 projection = arg.Camera.GetProjectionMat4();
             mat4 view = arg.Camera.GetViewMat4();
-            mat4 model = glm.translate(mat4.identity(), this.BoundingBox.MaxPosition / 2 + this.BoundingBox.MinPosition / 2);
+            mat4 model = glm.translate(mat4.identity(), this.BoundingBox.GetCenter());
             this.SetUniform("MVP", projection * view * model);
+            this.SetUniform("color", this.PointColor.ToVec4());
 
             base.DoRender(arg);
         }
 
         public BoundingBox BoundingBox { get; set; }
+
+        public Color PointColor { get; set; }
     }
 }
