@@ -23,9 +23,9 @@ namespace CSharpGL
         {
             var bufferable = new BoundingBoxModel();
             var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(File.ReadAllText(
+            shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
                 @"Resources\BoundingBox.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(File.ReadAllText(
+            shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
                 @"Resources\BoundingBox.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("in_Position", BoundingBoxModel.strPosition);

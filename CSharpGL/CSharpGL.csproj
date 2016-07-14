@@ -480,12 +480,8 @@
     <EmbeddedResource Include="Resources\TextModel.vert" />
     <EmbeddedResource Include="Resources\Label.vert" />
     <EmbeddedResource Include="Resources\Label.frag" />
-    <None Include="Resources\BoundingBox.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\BoundingBox.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <EmbeddedResource Include="Resources\BoundingBox.frag" />
+    <EmbeddedResource Include="Resources\BoundingBox.vert" />
     <None Include="Scene\readme.md" />
   </ItemGroup>
   <ItemGroup>
