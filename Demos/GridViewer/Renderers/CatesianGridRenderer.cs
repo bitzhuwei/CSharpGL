@@ -32,8 +32,14 @@ namespace GridViewer
             : base(catesianGrid, shaderCodes, propertyNameMap, switches)
         {
             this.Grid = catesianGrid;
-            this.boundingBoxRenderer = BoundingBoxRenderer.GetBoundingBoxRenderer(catesianGrid.DataSource.SourceActiveBounds.Max,
-                catesianGrid.DataSource.SourceActiveBounds.Min);
+            var box = new vec3[2];
+            box[0] = catesianGrid.DataSource.SourceActiveBounds.Max;
+            box[1] = catesianGrid.DataSource.SourceActiveBounds.Min;
+            box.Move2Center();
+            this.boundingBoxRenderer = BoundingBoxRenderer.GetBoundingBoxRenderer(
+                box[0], box[1]);
+                //catesianGrid.DataSource.SourceActiveBounds.Max,
+                //catesianGrid.DataSource.SourceActiveBounds.Min);
             this.codedColorSampler = codedColorSampler;
         }
 

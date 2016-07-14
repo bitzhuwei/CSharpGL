@@ -20,7 +20,7 @@ namespace GridViewer
             {
                 var property = e.Node.Tag as GridBlockProperty;
                 var sceneObject = e.Node.Parent.Tag as SceneObject;
-                Renderer scientificRenderer = (sceneObject.Renderer as BoundedRendererComponent).Renderer.ScientificRenderer;
+                WorldRenderer scientificRenderer = (sceneObject.Renderer as GridRendererComponent).Renderer;
                 if (scientificRenderer is CatesianGridRenderer)
                 {
                     CatesianGrid grid = (scientificRenderer as CatesianGridRenderer).Grid;
@@ -31,7 +31,7 @@ namespace GridViewer
             else if (e.Node.ToolTipText == typeof(CatesianGrid).Name)
             {
                 var sceneObject = e.Node.Tag as SceneObject;
-                CatesianGrid grid = ((sceneObject.Renderer as BoundedRendererComponent).Renderer.ScientificRenderer as CatesianGridRenderer).Grid;
+                CatesianGrid grid = ((sceneObject.Renderer as GridRendererComponent).Renderer as CatesianGridRenderer).Grid;
                 GridBlockProperty property = grid.GridBlockProperties[0];
                 UpdateCatesianGrid(grid, property);
                 this.scientificCanvas.Invalidate();
