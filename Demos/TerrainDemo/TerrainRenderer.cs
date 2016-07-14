@@ -40,13 +40,30 @@ namespace TerrainDemo
             mat4 view = arg.Camera.GetViewMat4();
             mat4 model = glm.translate(mat4.identity(), this.BoundingBox.GetCenter());
             this.SetUniform("MVP", projection * view * model);
-            this.SetUniform("color", this.PointColor.ToVec4());
+            if (pointColorRecord.Need2Upload())
+            {
+                this.SetUniform("color", this.PointColor.ToVec4());
+                pointColorRecord.Uploaded();
+            }
 
             base.DoRender(arg);
         }
 
         public BoundingBox BoundingBox { get; set; }
 
-        public Color PointColor { get; set; }
+        private UpdatingRecord pointColorRecord = new UpdatingRecord();
+        private Color pointColor;
+        public Color PointColor
+        {
+            get { return pointColor; }
+            set
+            {
+                if (value != pointColor)
+                {
+                    pointColor = value;
+                    pointColorRecord.Update();
+                }
+            }
+        }
     }
 }

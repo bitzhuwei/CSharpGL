@@ -50,10 +50,23 @@ namespace CSharpGL
             this.BoundingBoxColor = new vec3(1, 1, 1);
         }
 
+        private UpdatingRecord boundingBoxColorRecord = new UpdatingRecord();
+        private vec3 boundingBoxColor;
         /// <summary>
         /// 
         /// </summary>
-        public vec3 BoundingBoxColor { get; set; }
+        public vec3 BoundingBoxColor
+        {
+            get { return boundingBoxColor; }
+            set
+            {
+                if (value != boundingBoxColor)
+                {
+                    boundingBoxColor = value;
+                    boundingBoxColorRecord.Update();
+                }
+            }
+        }
 
         /// <summary>
         /// 
@@ -68,7 +81,11 @@ namespace CSharpGL
             mat4 model = glm.translate(mat4.identity(), this.GetCenter());
             model = glm.scale(model, this.MaxPosition - this.MinPosition);
             this.SetUniform("modelMatrix", model);
-            this.SetUniform("boundingBoxColor", this.BoundingBoxColor);
+            if (this.boundingBoxColorRecord.Need2Upload())
+            {
+                this.SetUniform("boundingBoxColor", this.BoundingBoxColor);
+                this.boundingBoxColorRecord.Uploaded();
+            }
 
             base.DoRender(arg);
         }

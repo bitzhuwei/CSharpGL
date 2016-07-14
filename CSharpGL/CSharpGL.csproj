@@ -210,6 +210,7 @@
     <Compile Include="Utilities\DumpTreeToText.cs" />
     <Compile Include="Utilities\ITreeNode.yield.cs" />
     <Compile Include="Utilities\ITreeNode.cs" />
+    <Compile Include="Utilities\UpdatingRecord.cs" />
     <Compile Include="WinformControls\ClockRenderer\ClockRenderer.cs" />
     <Compile Include="WinformControls\ClockRenderer\ClockMarkRenderer.cs" />
     <Compile Include="WinformControls\ClockRenderer\ClockCircleRenderer.cs" />
