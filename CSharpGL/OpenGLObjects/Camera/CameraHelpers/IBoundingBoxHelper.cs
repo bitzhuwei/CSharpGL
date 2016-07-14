@@ -10,6 +10,35 @@ namespace CSharpGL
     /// </summary>
     public static class IBoundingBoxHelper
     {
+        public static vec3 Max(vec3 a, vec3 b)
+        {
+            vec3 result = a;
+            if (result.x < b.x) { result.x = b.x; }
+            if (result.y < b.y) { result.y = b.y; }
+            if (result.z < b.z) { result.z = b.z; }
+
+            return result;
+        }
+
+        public static vec3 Min(vec3 a, vec3 b)
+        {
+            vec3 result = a;
+            if (result.x > b.x) { result.x = b.x; }
+            if (result.y > b.y) { result.y = b.y; }
+            if (result.z > b.z) { result.z = b.z; }
+
+            return result;
+        }
+
+        public static void Union(this IBoundingBox boundingBox, IBoundingBox another)
+        {
+            vec3 min = Min(boundingBox.MinPosition, another.MinPosition);
+            vec3 max = Max(boundingBox.MaxPosition, another.MaxPosition);
+
+            boundingBox.MinPosition = min;
+            boundingBox.MaxPosition = max;
+        }
+
         /// <summary>
         /// Expands the <see cref="IBoundingBox"/>'s values.
         /// </summary>
@@ -34,7 +63,8 @@ namespace CSharpGL
             vector *= (1 + factor);
             vec3 newMax = min + vector;
             vec3 newMin = max - vector;
-            boundingBox.Set(newMin.x, newMin.y, newMin.z, newMax.x, newMax.y, newMax.z);
+            boundingBox.MinPosition = newMin;
+            boundingBox.MaxPosition = newMax;
         }
     }
 }

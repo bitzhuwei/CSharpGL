@@ -15,9 +15,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="positions"></param>
         /// <returns></returns>
-        public static vec2 Move2Center(this vec2[] positions)
+        public static BoundingBox2D Move2Center(this vec2[] positions)
         {
-            if (positions.Length == 0) { return new vec2(0, 0); }
+            if (positions.Length == 0) { return new BoundingBox2D(); }
 
             vec2 min = positions[0], max = positions[0];
             for (int i = 1; i < positions.Length; i++)
@@ -34,7 +34,7 @@ namespace CSharpGL
                 positions[i] = positions[i] - mid;
             }
 
-            return mid;
+            return new BoundingBox2D(min, max);
         }
 
         /// <summary>
@@ -42,9 +42,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="positions"></param>
         /// <returns></returns>
-        public static vec2 Move2Center(this IList<vec2> positions)
+        public static BoundingBox2D Move2Center(this IList<vec2> positions)
         {
-            if (positions.Count == 0) { return new vec2(0, 0); }
+            if (positions.Count == 0) { return new BoundingBox2D(); }
 
             vec2 min = positions[0], max = positions[0];
             for (int i = 1; i < positions.Count; i++)
@@ -61,16 +61,16 @@ namespace CSharpGL
                 positions[i] = positions[i] - mid;
             }
 
-            return mid;
+            return new BoundingBox2D(min, max);
         }
         /// <summary>
         /// Move positions where around (0, 0, 0)
         /// </summary>
         /// <param name="positions"></param>
         /// <returns></returns>
-        public static vec3 Move2Center(this vec3[] positions)
+        public static BoundingBox Move2Center(this vec3[] positions)
         {
-            if (positions.Length == 0) { return new vec3(0, 0, 0); }
+            if (positions.Length == 0) { return new BoundingBox(); }
 
             vec3 min = positions[0], max = positions[0];
             for (int i = 1; i < positions.Length; i++)
@@ -89,7 +89,7 @@ namespace CSharpGL
                 positions[i] = positions[i] - mid;
             }
 
-            return mid;
+            return new BoundingBox(min, max);
         }
 
         /// <summary>
@@ -97,9 +97,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="positions"></param>
         /// <returns></returns>
-        public static vec3 Move2Center(this IList<vec3> positions)
+        public static BoundingBox Move2Center(this IList<vec3> positions)
         {
-            if (positions.Count == 0) { return new vec3(0, 0, 0); }
+            if (positions.Count == 0) { return new BoundingBox(); }
 
             vec3 min = positions[0], max = positions[0];
             for (int i = 1; i < positions.Count; i++)
@@ -118,7 +118,7 @@ namespace CSharpGL
                 positions[i] = positions[i] - mid;
             }
 
-            return mid;
+            return new BoundingBox(min, max);
         }
 
     }

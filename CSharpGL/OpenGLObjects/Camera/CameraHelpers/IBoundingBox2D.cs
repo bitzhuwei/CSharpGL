@@ -8,17 +8,17 @@ namespace CSharpGL
     /// <summary>
     /// Specify a cuboid that marks a model's edges.
     /// </summary>
-    public interface IBoundingBox
+    public interface IBoundingBox2D
     {
         /// <summary>
         /// Maximum position of this cuboid.
         /// </summary>
-        vec3 MaxPosition { get; set; }
+        vec2 MaxPosition { get; set; }
 
         /// <summary>
         /// Minimum position of this cuboid.
         /// </summary>
-        vec3 MinPosition { get; set; }
+        vec2 MinPosition { get; set; }
 
         ///// <summary>
         ///// Get center position of this cuboid.

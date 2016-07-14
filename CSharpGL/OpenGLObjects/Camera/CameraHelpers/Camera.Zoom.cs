@@ -81,14 +81,11 @@ namespace CSharpGL
         /// <param name="boundingBox"></param>
         public static void ZoomCamera(this IPerspectiveViewCamera camera, IBoundingBox boundingBox)
         {
-            float sizeX, sizeY, sizeZ;
-            boundingBox.GetBoundDimensions(out sizeX, out sizeY, out sizeZ);
-            float size = Math.Max(Math.Max(sizeX, sizeY), sizeZ);
+            vec3 length = boundingBox.MaxPosition - boundingBox.MinPosition;
+            float size = Math.Max(Math.Max(length.x, length.y), length.z);
 
             {
-                float centerX, centerY, centerZ;
-                boundingBox.GetCenter(out centerX, out centerY, out centerZ);
-                vec3 target = new vec3(centerX, centerY, centerZ);
+                vec3 target = boundingBox.MaxPosition / 2 + boundingBox.MinPosition / 2;
 
                 vec3 target2Position = (camera.Position - camera.Target).normalize();
 
@@ -119,14 +116,11 @@ namespace CSharpGL
         /// <param name="boundingBox"></param>
         public static void ZoomCamera(this IOrthoViewCamera camera, IBoundingBox boundingBox)
         {
-            float sizeX, sizeY, sizeZ;
-            boundingBox.GetBoundDimensions(out sizeX, out sizeY, out sizeZ);
-            float size = Math.Max(Math.Max(sizeX, sizeY), sizeZ);
+            vec3 length = boundingBox.MaxPosition - boundingBox.MinPosition;
+            float size = Math.Max(Math.Max(length.x, length.y), length.z);
 
             {
-                float centerX, centerY, centerZ;
-                boundingBox.GetCenter(out centerX, out centerY, out centerZ);
-                vec3 target = new vec3(centerX, centerY, centerZ);
+                vec3 target = boundingBox.MaxPosition / 2 + boundingBox.MinPosition / 2;
 
                 vec3 target2Position = (camera.Position - camera.Target).normalize();
 

@@ -91,6 +91,7 @@
     <Compile Include="FontResource\FontResource.FromTTF.Misc.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.Impl.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.cs" />
+    <Compile Include="IBufferables\BoundingBoxModel.cs" />
     <Compile Include="IBufferables\Ground.cs" />
     <Compile Include="IBufferables\TeapotModel.Positions.cs" />
     <Compile Include="IBufferables\TeapotModel.Faces.cs" />
@@ -99,10 +100,13 @@
     <Compile Include="Manipulaters\ModelManipulaters\ArcBallManipulater.cs" />
     <Compile Include="Octree\OctreeHelper.cs" />
     <Compile Include="OpenGLAPI\Enumerations\StringName.cs" />
+    <Compile Include="OpenGLObjects\Camera\CameraHelpers\BoundingBox2D.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.Orientation.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.ViewType.cs" />
     <Compile Include="Manipulaters\IKeyboardHandler.cs" />
     <Compile Include="Manipulaters\IMouseHandler.cs" />
+    <Compile Include="OpenGLObjects\Camera\CameraHelpers\BoundingBox.cs" />
+    <Compile Include="OpenGLObjects\Camera\CameraHelpers\IBoundingBox2D.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\BlendSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\CullFaceSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\DepthTestSwitch.cs" />
@@ -118,6 +122,7 @@
     <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformInt32Array.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformInt32.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformSingleVariableBase.cs" />
+    <Compile Include="Renderers\BoudingBoxRenderer.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.DoRender.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.cs" />
@@ -475,6 +480,12 @@
     <EmbeddedResource Include="Resources\TextModel.vert" />
     <EmbeddedResource Include="Resources\Label.vert" />
     <EmbeddedResource Include="Resources\Label.frag" />
+    <None Include="Resources\BoundingBox.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BoundingBox.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Scene\readme.md" />
   </ItemGroup>
   <ItemGroup>

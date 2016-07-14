@@ -61,9 +61,12 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblCamera = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblTargetCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.glCanvas1 = new CSharpGL.GLCanvas();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -329,11 +332,26 @@
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Location = new System.Drawing.Point(0, 643);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblCamera,
+            this.lblTargetCount});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 640);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1021, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1021, 25);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lblCamera
+            // 
+            this.lblCamera.Name = "lblCamera";
+            this.lblCamera.Size = new System.Drawing.Size(62, 20);
+            this.lblCamera.Text = "camera";
+            // 
+            // lblTargetCount
+            // 
+            this.lblTargetCount.Name = "lblTargetCount";
+            this.lblTargetCount.Size = new System.Drawing.Size(94, 20);
+            this.lblTargetCount.Text = "taget count";
             // 
             // glCanvas1
             // 
@@ -343,9 +361,10 @@
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(1021, 615);
+            this.glCanvas1.Size = new System.Drawing.Size(1021, 612);
             this.glCanvas1.TabIndex = 2;
             this.glCanvas1.OpenGLDraw += new System.EventHandler<System.Windows.Forms.PaintEventArgs>(this.glCanvas1_OpenGLDraw);
+            this.glCanvas1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.glCanvas1_KeyPress);
             // 
             // openFileDialog1
             // 
@@ -365,6 +384,8 @@
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -407,5 +428,7 @@
         private CSharpGL.GLCanvas glCanvas1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripStatusLabel lblCamera;
+        private System.Windows.Forms.ToolStripStatusLabel lblTargetCount;
     }
 }

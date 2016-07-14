@@ -19,6 +19,14 @@ namespace TerrainDemo
         public FormMain()
         {
             InitializeComponent();
+
+            Application.Idle += Application_Idle;
+        }
+
+        void Application_Idle(object sender, EventArgs e)
+        {
+            this.lblCamera.Text = string.Format("{0}", this.camera);
+            this.lblTargetCount.Text = string.Format(" | {0}/{1}", this.targetIndex, this.terrainRendererList.Count);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -42,8 +50,25 @@ namespace TerrainDemo
                 this.terrainRendererList.Clear();
                 this.terrainRendererList.Add(renderer);
                 renderer.Initialize();
+                UpdateCamera();
                 var frmPropertyGrid = new FormProperyGrid(renderer);
                 frmPropertyGrid.Show();
+            }
+        }
+
+        private void UpdateCamera()
+        {
+            if (this.terrainRendererList.Count > 0)
+            {
+                TerrainRenderer first = this.terrainRendererList[0];
+                BoundingBox boundingBox = first.BoundingBox;
+                for (int i = 1; i < this.terrainRendererList.Count; i++)
+                {
+                    boundingBox.Union(this.terrainRendererList[i].BoundingBox);
+                }
+                vec3 translate = boundingBox.GetCenter() - this.camera.Target;
+                this.camera.Target = this.camera.Target + translate;
+                this.camera.Position = this.camera.Position + translate;
             }
         }
 
@@ -64,6 +89,7 @@ namespace TerrainDemo
             {
                 this.terrainRendererList.Add(renderer);
                 renderer.Initialize();
+                UpdateCamera();
                 var frmPropertyGrid = new FormProperyGrid(renderer);
                 frmPropertyGrid.Show();
             }
@@ -89,7 +115,6 @@ namespace TerrainDemo
                             positionList.Add(new vec3(x, y, z));
                         }
                     }
-                    positionList.Move2Center();
                     var renderer = TerrainRenderer.GetRenderer(positionList);
                     return renderer;
                 }
@@ -105,6 +130,29 @@ namespace TerrainDemo
         private void 退出XToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        int targetIndex = -1;
+
+        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 't')
+            {
+                targetIndex++;
+                if (targetIndex > this.terrainRendererList.Count) { targetIndex = 0; }
+
+                if (targetIndex < this.terrainRendererList.Count)
+                {
+                    BoundingBox boundingBox = this.terrainRendererList[targetIndex].BoundingBox;
+                    vec3 translate = boundingBox.GetCenter() - this.camera.Target;
+                    this.camera.Target = this.camera.Target + translate;
+                    this.camera.Position = this.camera.Position + translate;
+                }
+                else if (targetIndex == this.terrainRendererList.Count)
+                {
+                    UpdateCamera();
+                }
+            }
         }
     }
 }

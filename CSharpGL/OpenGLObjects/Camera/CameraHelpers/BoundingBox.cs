@@ -8,18 +8,35 @@ namespace CSharpGL
     /// <summary>
     /// Specify a cuboid that marks a model's edges.
     /// </summary>
-    public interface IBoundingBox
+    public class BoundingBox : IBoundingBox
     {
         /// <summary>
         /// Maximum position of this cuboid.
         /// </summary>
-        vec3 MaxPosition { get; set; }
+        public vec3 MaxPosition { get; set; }
 
         /// <summary>
         /// Minimum position of this cuboid.
         /// </summary>
-        vec3 MinPosition { get; set; }
+        public vec3 MinPosition { get; set; }
 
+        public BoundingBox() { }
+
+        public BoundingBox(vec3 min, vec3 max)
+        {
+            this.MinPosition = min;
+            this.MaxPosition = max;
+        }
+
+        public vec3 GetCenter()
+        {
+            return this.MaxPosition / 2 + this.MinPosition / 2;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("min: {0} max: {1}", this.MinPosition, this.MaxPosition);
+        }
         ///// <summary>
         ///// Get center position of this cuboid.
         ///// </summary>
@@ -52,5 +69,7 @@ namespace CSharpGL
         ///// <param name="maxY"></param>
         ///// <param name="maxZ"></param>
         //void Set(float minX, float minY, float minZ, float maxX, float maxY, float maxZ);
+
+
     }
 }
