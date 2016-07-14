@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Records when is a property is updated and uploaded.
+    /// Records time when is a property is updated and uploaded.
     /// </summary>
     public class UpdatingRecord
     {
@@ -50,7 +50,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("{0}({1} {2} {3}",
+            return string.Format("{0}({1} {2} {3})",
                 this.updateTicks != this.uploadTicks ? "Needs Uploading" : "Not Needs Uploading",
                 this.updateTicks,
                 (this.updateTicks < this.uploadTicks) ? "<" : (this.updateTicks == this.uploadTicks ? "==" : ">"),
