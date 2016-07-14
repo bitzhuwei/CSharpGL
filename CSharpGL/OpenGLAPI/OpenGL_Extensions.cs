@@ -1590,9 +1590,9 @@ namespace CSharpGL
         /// 
         /// </summary>
         public const uint GL_ELEMENT_ARRAY_BUFFER = 0x8893;
-        /// <summary>
-        /// 
-        /// </summary>
+        ///// <summary>
+        ///// 
+        ///// </summary>
         //public const uint GL_ARRAY_BUFFER_BINDING = 0x8894;
         ///// <summary>
         ///// 

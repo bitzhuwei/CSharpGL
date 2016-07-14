@@ -20,14 +20,26 @@ namespace CSharpGL
         /// </summary>
         public vec2 MinPosition { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public BoundingBox2D() { }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
         public BoundingBox2D(vec2 min, vec2 max)
         {
             this.MinPosition = min;
             this.MaxPosition = max;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("min: {0} max: {1}", this.MinPosition, this.MaxPosition);

@@ -174,6 +174,10 @@ namespace CSharpGL
 
         #endregion
 
+        /// <summary>
+        /// Pos:{0}, Target:{1}, Up:{2}
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("Pos:{0}, Target:{1}, Up:{2}", this.Position, this.Target, this.UpVector);

@@ -14,6 +14,7 @@ namespace TerrainDemo
     public partial class FormMain : Form
     {
         private List<TerrainRenderer> terrainRendererList = new List<TerrainRenderer>();
+        IBoundingBox boundingBox;
         private Camera camera;
 
         public FormMain()
@@ -66,9 +67,11 @@ namespace TerrainDemo
                 {
                     boundingBox.Union(this.terrainRendererList[i].BoundingBox);
                 }
-                vec3 translate = boundingBox.GetCenter() - this.camera.Target;
-                this.camera.Target = this.camera.Target + translate;
-                this.camera.Position = this.camera.Position + translate;
+                this.camera.ZoomCamera(boundingBox);
+                this.boundingBox = boundingBox;
+                //vec3 translate = boundingBox.GetCenter() - this.camera.Target;
+                //this.camera.Target = this.camera.Target + translate;
+                //this.camera.Position = this.camera.Position + translate;
             }
         }
 
@@ -76,9 +79,15 @@ namespace TerrainDemo
         {
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
             var list = this.terrainRendererList.ToArray();
+            var arg = new RenderEventArg(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
             foreach (var item in list)
             {
-                item.Render(new RenderEventArg(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera));
+                item.Render(arg);
+            }
+            IBoundingBox boundingBox = this.boundingBox;
+            if (boundingBox != null)
+            {
+                boundingBox.Render(Color.White, arg);
             }
         }
 

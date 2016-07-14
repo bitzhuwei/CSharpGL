@@ -74,6 +74,50 @@ namespace CSharpGL
         //}
 
         /// <summary>
+        /// Zoom camera to fit in specified <paramref name="boundingBox"/>.
+        /// </summary>
+        /// <param name="boundingBox"></param>
+        /// <param name="camera"></param>
+        public static void ZoomCamera(this IBoundingBox boundingBox, ICamera camera)
+        {
+            if (boundingBox == null || camera == null) { throw new ArgumentNullException(); }
+
+            switch (camera.CameraType)
+            {
+                case CameraType.Perspecitive:
+                    ((IPerspectiveViewCamera)camera).ZoomCamera(boundingBox);
+                    break;
+                case CameraType.Ortho:
+                    ((IOrthoViewCamera)camera).ZoomCamera(boundingBox);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Zoom camera to fit in specified <paramref name="boundingBox"/>.
+        /// </summary>
+        /// <param name="camera"></param>
+        /// <param name="boundingBox"></param>
+        public static void ZoomCamera(this ICamera camera, IBoundingBox boundingBox)
+        {
+            if (boundingBox == null || camera == null) { throw new ArgumentNullException(); }
+
+            switch (camera.CameraType)
+            {
+                case CameraType.Perspecitive:
+                    ((IPerspectiveViewCamera)camera).ZoomCamera(boundingBox);
+                    break;
+                case CameraType.Ortho:
+                    ((IOrthoViewCamera)camera).ZoomCamera(boundingBox);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
         /// Adjusts camera's settings according to bounding box.
         /// <para>Use this when bounding box's size or positon is changed.</para>
         /// </summary>
