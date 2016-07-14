@@ -46,19 +46,11 @@ namespace GridViewer
                 double axisMin, axisMax, step;
                 ColorIndicatorAxisAutomator.Automate(firstProperty.MinValue, firstProperty.MaxValue, out axisMin, out axisMax, out step);
                 CatesianGrid grid = inputData.DumpCatesianGrid((float)axisMin, (float)axisMax);
-                var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\HexahedronGrid.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\HexahedronGrid.frag"), ShaderType.FragmentShader);
-                var map = new PropertyNameMap();
-                map.Add("in_Position", CatesianGrid.strPosition);
-                map.Add("in_uv", CatesianGrid.strColor);
-                var scientificRenderer = new CatesianGridRenderer(grid, shaderCodes, map);
-                var boundedRenderer = new BoundedRenderer(scientificRenderer,
-                    grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min, this.scientificCanvas.CodedColorSampler);
-                boundedRenderer.Initialize();
+                var scientificRenderer = CatesianGridRenderer.GetRenderer(grid, this.scientificCanvas.CodedColorSampler);
+                scientificRenderer.Initialize();
                 SceneObject sceneObject = new SceneObject();
                 sceneObject.Name = grid.GetType().Name;
-                sceneObject.Renderer = new BoundedRendererComponent(boundedRenderer);
+                sceneObject.Renderer = new GridRendererComponent(scientificRenderer);
                 sceneObject.Transform.Position = -grid.DataSource.TranslateMatrix;
                 this.scientificCanvas.Scene.ObjectList.Add(sceneObject);
                 string caseFileName = System.IO.Path.GetFileName(fileName);
