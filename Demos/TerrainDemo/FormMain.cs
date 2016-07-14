@@ -92,10 +92,6 @@ namespace TerrainDemo
                     positionList.Move2Center();
                     var renderer = TerrainRenderer.GetRenderer(positionList);
                     return renderer;
-                    //renderer.Initialize();
-                    //var frmPropertyGrid = new FormProperyGrid(renderer);
-                    //frmPropertyGrid.Show();
-                    //this.terrainRendererList.Add(renderer);
                 }
                 catch (Exception ex)
                 {
