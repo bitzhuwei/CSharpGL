@@ -30,9 +30,9 @@ namespace GridViewer
                 mat4 projection, view, model;
                 if (this.TryGetMatrix(arg, out projection, out view, out model))
                 {
-                    renderer.BoundingBoxRenderer.SetUniform(strprojection, projection);
-                    renderer.BoundingBoxRenderer.SetUniform(strview, view);
-                    renderer.BoundingBoxRenderer.SetUniform(strmodel, model);
+                    renderer.BoxRenderer.SetUniform(strprojection, projection);
+                    renderer.BoxRenderer.SetUniform(strview, view);
+                    renderer.BoxRenderer.SetUniform(strmodel, model);
                     renderer.ScientificRenderer.SetUniform(strprojection, projection);
                     renderer.ScientificRenderer.SetUniform(strview, view);
                     renderer.ScientificRenderer.SetUniform(strmodel, model);

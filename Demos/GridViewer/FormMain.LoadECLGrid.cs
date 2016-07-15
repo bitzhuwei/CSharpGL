@@ -48,9 +48,12 @@ namespace GridViewer
                 CatesianGrid grid = inputData.DumpCatesianGrid((float)axisMin, (float)axisMax);
                 var scientificRenderer = CatesianGridRenderer.GetRenderer(grid, this.scientificCanvas.CodedColorSampler);
                 scientificRenderer.Initialize();
+                var boundedRenderer = new BoundedRenderer(scientificRenderer,
+                    grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min,
+                    this.scientificCanvas.CodedColorSampler);
                 SceneObject sceneObject = new SceneObject();
                 sceneObject.Name = grid.GetType().Name;
-                sceneObject.Renderer = new GridRendererComponent(scientificRenderer);
+                sceneObject.Renderer = new BoundedRendererComponent(boundedRenderer);
                 sceneObject.Transform.Position = -grid.DataSource.TranslateMatrix;
                 this.scientificCanvas.Scene.ObjectList.Add(sceneObject);
                 string caseFileName = System.IO.Path.GetFileName(fileName);

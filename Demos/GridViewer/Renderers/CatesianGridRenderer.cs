@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GridViewer
 {
-    public partial class CatesianGridRenderer : WorldRenderer
+    public partial class CatesianGridRenderer : GridViewRenderer
     {
         private sampler1D codedColorSampler;
         //IBoundingBox boundingBox;
@@ -32,14 +32,9 @@ namespace GridViewer
             : base(catesianGrid, shaderCodes, propertyNameMap, switches)
         {
             this.Grid = catesianGrid;
-            var box = new vec3[2];
-            box[0] = catesianGrid.DataSource.SourceActiveBounds.Max;
-            box[1] = catesianGrid.DataSource.SourceActiveBounds.Min;
-            box.Move2Center();
             this.boundingBoxRenderer = BoundingBoxRenderer.GetBoundingBoxRenderer(
-                box[0], box[1]);
-                //catesianGrid.DataSource.SourceActiveBounds.Max,
-                //catesianGrid.DataSource.SourceActiveBounds.Min);
+                catesianGrid.DataSource.SourceActiveBounds.Max
+                - catesianGrid.DataSource.SourceActiveBounds.Min);
             this.codedColorSampler = codedColorSampler;
         }
 

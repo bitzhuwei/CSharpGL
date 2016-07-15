@@ -14,9 +14,9 @@ namespace GridViewer
         const string strview = "viewMatrix";
         const string strmodel = "modelMatrix";
 
-        public WorldRenderer Renderer { get; private set; }
+        public GridViewRenderer Renderer { get; private set; }
 
-        public GridRendererComponent(WorldRenderer renderer, SceneObject bindingObject = null)
+        public GridRendererComponent(GridViewRenderer renderer, SceneObject bindingObject = null)
             : base(bindingObject)
         {
             this.Renderer = renderer;
@@ -24,7 +24,7 @@ namespace GridViewer
 
         public override void Render(RenderEventArg arg)
         {
-            WorldRenderer renderer = this.Renderer;
+            GridViewRenderer renderer = this.Renderer;
             if (renderer != null)
             {
                 mat4 projection, view, model;
@@ -41,7 +41,7 @@ namespace GridViewer
 
         protected override void DisposeUnmanagedResource()
         {
-            WorldRenderer renderer = this.Renderer;
+            GridViewRenderer renderer = this.Renderer;
             if (renderer != null) { renderer.Dispose(); }
         }
     }

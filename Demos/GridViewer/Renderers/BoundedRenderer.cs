@@ -14,7 +14,7 @@ namespace GridViewer
         /// <summary>
         /// Gets bounding box's renderer.
         /// </summary>
-        public Renderer BoundingBoxRenderer { get; private set; }
+        public BoundingBoxRenderer BoxRenderer { get; private set; }
 
         /// <summary>
         /// Gets scientific model's renderer.
@@ -26,14 +26,14 @@ namespace GridViewer
             if (scientificRenderer == null || codedColorSampler == null)
             { throw new ArgumentNullException(); }
 
-            this.BoundingBoxRenderer = BoudingBoxRendererFactory.GetBoundingBoxRenderer(lengths);
+            this.BoxRenderer = BoundingBoxRenderer.GetBoundingBoxRenderer(lengths);
             this.ScientificRenderer = scientificRenderer;
             this.codedColorSampler = codedColorSampler;
         }
 
         protected override void DoInitialize()
         {
-            Renderer boundingBox = this.BoundingBoxRenderer;
+            Renderer boundingBox = this.BoxRenderer;
             if (boundingBox != null) { boundingBox.Initialize(); }
 
             Renderer scientific = this.ScientificRenderer;
@@ -55,7 +55,7 @@ namespace GridViewer
             mat4 projection = arg.Camera.GetProjectionMat4();
             mat4 view = arg.Camera.GetViewMat4();
 
-            Renderer boundingBox = this.BoundingBoxRenderer;
+            Renderer boundingBox = this.BoxRenderer;
             if (boundingBox != null) { boundingBox.Render(arg); }
 
             Renderer renderer = this.ScientificRenderer;
@@ -64,11 +64,12 @@ namespace GridViewer
 
         protected override void DisposeUnmanagedResources()
         {
-            Renderer boundingBox = this.BoundingBoxRenderer;
+            BoundingBoxRenderer boundingBox = this.BoxRenderer;
             if (boundingBox != null) { boundingBox.Dispose(); }
 
             Renderer scientific = this.ScientificRenderer;
             if (scientific != null) { scientific.Dispose(); }
         }
+
     }
 }

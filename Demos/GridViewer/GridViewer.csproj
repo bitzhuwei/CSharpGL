@@ -58,7 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GridRendererComponent.cs" />
+    <Compile Include="BoundedRendererComponent.cs" />
     <Compile Include="FormMain.ShowPropertyGrid.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +112,7 @@
     <Compile Include="Models\SimulationInputDataHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\BoundedRenderer.cs" />
     <Compile Include="Renderers\CatesianGridRenderer.cs" />
     <Compile Include="Renderers\CodedColorBarRenderer\CodedColorBarLine.cs" />
     <Compile Include="Renderers\CodedColorBarRenderer\CodedColorBarRenderer.cs" />
@@ -120,7 +121,7 @@
     <Compile Include="Renderers\CodedColorBarRenderer\CodedColorBarRect.cs" />
     <Compile Include="Renderers\CodedColorBarRenderer\CodedColorValueRenderer.cs" />
     <Compile Include="Renderers\CodedColorBarRenderer\UICodedColorBar.cs" />
-    <Compile Include="Renderers\WorldRenderer.cs" />
+    <Compile Include="Renderers\GridViewRenderer.cs" />
     <Compile Include="ScientificCanvas.Property.cs">
       <SubType>UserControl</SubType>
     </Compile>
