@@ -9,18 +9,18 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// uniform vec2 variable;
+    /// uniform ivec2 variable;
     /// </summary>
     public class UniformIVec2 : UniformSingleVariable<ivec2>
     {
 
         /// <summary>
-        /// uniform vec2 variable;
+        /// uniform ivec2 variable;
         /// </summary>
         /// <param name="varName"></param>
         public UniformIVec2(string varName) : base(varName) { }
         /// <summary>
-        /// uniform vec2 variable;
+        /// uniform ivec2 variable;
         /// </summary>
         /// <param name="varName"></param>
         /// <param name="value"></param>
