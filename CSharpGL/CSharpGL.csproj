@@ -77,6 +77,9 @@
     <Content Include="OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="OpenGLObjects\VertexBufferObjects\readme.md" />
     <Content Include="readme.md" />
+    <Compile Include="4PropertyGrid\TypeConverters\uvec3TypeConverter.cs" />
+    <Compile Include="4PropertyGrid\TypeConverters\uvec4TypeConverter.cs" />
+    <Compile Include="4PropertyGrid\TypeConverters\uvec2TypeConverter.cs" />
     <Compile Include="4PropertyGrid\TypeConverters\ivec2TypeConverter.cs" />
     <Compile Include="4PropertyGrid\TypeConverters\ivec3TypeConverter.cs" />
     <Compile Include="4PropertyGrid\TypeConverters\ivec4TypeConverter.cs" />
@@ -101,8 +104,11 @@
     <None Include="Manipulaters\readme.md" />
     <Compile Include="IBufferables\TextModel.SetText.cs" />
     <Compile Include="Manipulaters\ModelManipulaters\ArcBallManipulater.cs" />
+    <Compile Include="Maths\uvec2.cs" />
     <Compile Include="Maths\ivec2.cs" />
+    <Compile Include="Maths\uvec3.cs" />
     <Compile Include="Maths\ivec3.cs" />
+    <Compile Include="Maths\uvec4.cs" />
     <Compile Include="Maths\ivec4.cs" />
     <Compile Include="Octree\OctreeHelper.cs" />
     <Compile Include="OpenGLAPI\Enumerations\StringName.cs" />
@@ -127,6 +133,9 @@
     <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformArrayVariableBase.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformInt32Array.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformInt32.cs" />
+    <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformUVec2.cs" />
+    <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformUVec3.cs" />
+    <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformUVec4.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformIVec4.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformIVec3.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformSingleVariableBase.cs" />
