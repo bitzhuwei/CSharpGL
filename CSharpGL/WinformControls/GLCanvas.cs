@@ -28,6 +28,9 @@ namespace CSharpGL
         /// </summary>
         protected RenderContext renderContext;
 
+        /// <summary>
+        /// indicates whether the control is in design mode.
+        /// </summary>
         protected readonly bool designMode;
 
         /// <summary>
