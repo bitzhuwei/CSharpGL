@@ -28,20 +28,20 @@ namespace CSharpGL
         public const string strPosition = "position";
         private PropertyBufferPtr positionBufferPtr = null;
         private IndexBufferPtr indexBufferPtr = null;
-        //private vec3 lengths;
+        private vec3 lengths;
 
-        /// <summary>
-        /// bounding box's model.
-        /// </summary>
-        public BoundingBoxModel() { }
         ///// <summary>
-        ///// bounding box.
+        ///// bounding box's model.
         ///// </summary>
-        ///// <param name="lengths">bounding box's length at x, y, z axis.</param>
-        //public BoundingBoxModel(vec3 lengths)
-        //{
-        //    this.lengths = lengths;
-        //}
+        //public BoundingBoxModel() { }
+        /// <summary>
+        /// bounding box.
+        /// </summary>
+        /// <param name="lengths">bounding box's length at x, y, z axis.</param>
+        public BoundingBoxModel(vec3 lengths)
+        {
+            this.lengths = lengths;
+        }
 
         /// <summary>
         /// 
@@ -63,7 +63,7 @@ namespace CSharpGL
                             var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < positions.Length; i++)
                             {
-                                array[i] = positions[i] / 2;// *this.lengths;
+                                array[i] = positions[i] / 2 * this.lengths;
                             }
                         }
 

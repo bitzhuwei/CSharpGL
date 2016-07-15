@@ -98,7 +98,7 @@ namespace CSharpGL
 
         private static BoundingBoxRenderer renderer;
         /// <summary>
-        /// Render this bouding box.
+        /// Render this bounding box.
         /// </summary>
         /// <param name="boundingBox"></param>
         /// <param name="color"></param>
@@ -107,7 +107,7 @@ namespace CSharpGL
         {
             if (renderer == null)
             {
-                renderer = BoundingBoxRenderer.GetBoundingBoxRenderer(new vec3(1, 1, 1), new vec3(-1, -1, -1));
+                renderer = BoundingBoxRenderer.GetBoundingBoxRenderer(new vec3(1, 1, 1));
                 renderer.Initialize();
             }
             renderer.MaxPosition = boundingBox.MaxPosition;

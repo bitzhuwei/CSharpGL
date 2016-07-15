@@ -9,19 +9,18 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Renders a bouding box.
+    /// Renders a bounding box.
     /// </summary>
     public class BoundingBoxRenderer : Renderer, IBoundingBox
     {
         /// <summary>
         /// get a bounding box renderer.
         /// </summary>
-        /// <param name="max">bouding box's max position</param>
-        /// <param name="min">bouding box's min position</param>
+        /// <param name="lengths">bounding box's length at x, y, z direction.</param>
         /// <returns></returns>
-        public static BoundingBoxRenderer GetBoundingBoxRenderer(vec3 max, vec3 min)
+        public static BoundingBoxRenderer GetBoundingBoxRenderer(vec3 lengths)
         {
-            var bufferable = new BoundingBoxModel();
+            var bufferable = new BoundingBoxModel(lengths);
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
                 @"Resources\BoundingBox.vert"), ShaderType.VertexShader);
@@ -30,8 +29,8 @@ namespace CSharpGL
             var map = new PropertyNameMap();
             map.Add("in_Position", BoundingBoxModel.strPosition);
             var result = new BoundingBoxRenderer(bufferable, shaderCodes, map, new PolygonModeSwitch(PolygonModes.Lines), new PolygonOffsetFillSwitch());
-            result.MaxPosition = max;
-            result.MinPosition = min;
+            result.MaxPosition = lengths / 2;
+            result.MinPosition = -lengths / 2;
 
             return result;
         }
@@ -74,13 +73,13 @@ namespace CSharpGL
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArg arg)
         {
-            mat4 projection = arg.Camera.GetProjectionMat4();
-            mat4 view = arg.Camera.GetViewMat4();
-            this.SetUniform("projectionMatrix", projection);
-            this.SetUniform("viewMatrix", view);
-            mat4 model = glm.translate(mat4.identity(), this.GetCenter());
-            model = glm.scale(model, this.MaxPosition - this.MinPosition);
-            this.SetUniform("modelMatrix", model);
+            //mat4 projection = arg.Camera.GetProjectionMat4();
+            //mat4 view = arg.Camera.GetViewMat4();
+            //this.SetUniform("projectionMatrix", projection);
+            //this.SetUniform("viewMatrix", view);
+            //mat4 model = glm.translate(mat4.identity(), this.GetCenter());
+            //model = glm.scale(model, this.MaxPosition - this.MinPosition);
+            //this.SetUniform("modelMatrix", model);
             if (this.boundingBoxColorRecord.IsMarked())
             {
                 this.SetUniform("boundingBoxColor", this.BoundingBoxColor);
