@@ -5,37 +5,54 @@ using System.Runtime.InteropServices;
 namespace CSharpGL
 {
     /// <summary>
-    /// Represents a two dimensional vector.
+    /// Represents a four dimensional vector.
     /// </summary>
-    [TypeConverter(typeof(Vec2TypeConverter))]
-    public struct vec2 : IEquatable<vec2>
+    //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]   
+    [TypeConverter(typeof(ivec4TypeConverter))]
+    public struct ivec4 : IEquatable<ivec4>
     {
+
         /// <summary>
         /// 
         /// </summary>
-        public float x;
+        public int x;
+
         /// <summary>
         /// 
         /// </summary>
-        public float y;
+        public int y;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int z;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int w;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public float this[int index]
+        public int this[int index]
         {
             get
             {
                 if (index == 0) return x;
                 else if (index == 1) return y;
+                else if (index == 2) return z;
+                else if (index == 3) return w;
                 else throw new Exception("Out of range.");
             }
             set
             {
                 if (index == 0) x = value;
                 else if (index == 1) y = value;
+                else if (index == 2) z = value;
+                else if (index == 3) w = value;
                 else throw new Exception("Out of range.");
             }
         }
@@ -44,9 +61,9 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="s"></param>
-        public vec2(float s)
+        public ivec4(int s)
         {
-            x = y = s;
+            x = y = z = w = s;
         }
 
         /// <summary>
@@ -54,167 +71,171 @@ namespace CSharpGL
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public vec2(float x, float y)
+        /// <param name="z"></param>
+        /// <param name="w"></param>
+        public ivec4(int x, int y, int z, int w)
         {
             this.x = x;
             this.y = y;
+            this.z = z;
+            this.w = w;
         }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="v"></param>
-        public vec2(vec2 v)
+        public ivec4(ivec4 v)
         {
             this.x = v.x;
             this.y = v.y;
+            this.z = v.z;
+            this.w = v.w;
         }
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="v"></param>
-        public vec2(vec3 v)
+        /// <param name="xyz"></param>
+        /// <param name="w"></param>
+        public ivec4(ivec3 xyz, int w)
         {
-            this.x = v.x;
-            this.y = v.y;
+            this.x = xyz.x;
+            this.y = xyz.y;
+            this.z = xyz.z;
+            this.w = w;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="v"></param>
-        public vec2(vec4 v)
-        {
-            this.x = v.x;
-            this.y = v.y;
-        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="lhs"></param>
         /// <returns></returns>
-        public static vec2 operator -(vec2 lhs)
+        public static ivec4 operator -(ivec4 lhs)
         {
-            return new vec2(-lhs.x, -lhs.y);
+            return new ivec4(-lhs.x, -lhs.y, -lhs.z, -lhs.w);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="lhs"></param>
-        /// <param name="rhs"></param>
-        /// <returns></returns>
-        public static vec2 operator +(vec2 lhs, vec2 rhs)
-        {
-            return new vec2(lhs.x + rhs.x, lhs.y + rhs.y);
-        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static vec2 operator +(vec2 lhs, float rhs)
+        public static ivec4 operator +(ivec4 lhs, ivec4 rhs)
         {
-            return new vec2(lhs.x + rhs, lhs.y + rhs);
+            return new ivec4(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z, lhs.w + rhs.w);
         }
+
+        //public static ivec4 operator +(ivec4 lhs, int rhs)
+        //{
+        //    return new ivec4(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs, lhs.w + rhs);
+        //}
+
+        //public static ivec4 operator -(ivec4 lhs, int rhs)
+        //{
+        //    return new ivec4(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs, lhs.w - rhs);
+        //}
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static vec2 operator -(vec2 lhs, vec2 rhs)
+        public static ivec4 operator -(ivec4 lhs, ivec4 rhs)
         {
-            return new vec2(lhs.x - rhs.x, lhs.y - rhs.y);
+            return new ivec4(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z, lhs.w - rhs.w);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="lhs"></param>
-        /// <param name="rhs"></param>
-        /// <returns></returns>
-        public static vec2 operator -(vec2 lhs, float rhs)
-        {
-            return new vec2(lhs.x - rhs, lhs.y - rhs);
-        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="self"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static vec2 operator *(vec2 self, float s)
+        public static ivec4 operator *(ivec4 self, int s)
         {
-            return new vec2(self.x * s, self.y * s);
+            return new ivec4(self.x * s, self.y * s, self.z * s, self.w * s);
         }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static vec2 operator *(float lhs, vec2 rhs)
+        public static ivec4 operator *(int lhs, ivec4 rhs)
         {
-            return new vec2(rhs.x * lhs, rhs.y * lhs);
+            return new ivec4(rhs.x * lhs, rhs.y * lhs, rhs.z * lhs, rhs.w * lhs);
         }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static vec2 operator *(vec2 lhs, vec2 rhs)
+        public static ivec4 operator *(ivec4 lhs, ivec4 rhs)
         {
-            return new vec2(rhs.x * lhs.x, rhs.y * lhs.y);
+            return new ivec4(rhs.x * lhs.x, rhs.y * lhs.y, rhs.z * lhs.z, rhs.w * lhs.w);
         }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static vec2 operator /(vec2 lhs, float rhs)
+        public static ivec4 operator /(ivec4 lhs, int rhs)
         {
-            return new vec2(lhs.x / rhs, lhs.y / rhs);
+            return new ivec4(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs, lhs.w / rhs);
         }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public float dot(vec2 rhs)
+        public int dot(ivec4 rhs)
         {
-            var result = this.x * rhs.x + this.y * rhs.y;
+            var result = this.x * rhs.x + this.y * rhs.y + this.z * rhs.z + this.w * rhs.w;
             return result;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public float length()
-        {
-            double result = Math.Sqrt(this.x * this.x + this.y * this.y);
 
-            return (float)result;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public int length()
+        {
+            double result = Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w);
+
+            return (int)result;
         }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static bool operator ==(vec2 lhs, vec2 rhs)
+        public static bool operator ==(ivec4 lhs, ivec4 rhs)
         {
-            return (lhs.x == rhs.x && lhs.y == rhs.y);
+            return (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.w == rhs.w);
         }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static bool operator !=(vec2 lhs, vec2 rhs)
+        public static bool operator !=(ivec4 lhs, ivec4 rhs)
         {
-            return (lhs.x != rhs.x || lhs.y != rhs.y);
+            return (lhs.x != rhs.x || lhs.y != rhs.y || lhs.z != rhs.z || lhs.w != rhs.w);
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -222,62 +243,68 @@ namespace CSharpGL
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            return (obj is vec2) && (this.Equals((vec2)obj));
+            return (obj is ivec4) && (this.Equals((ivec4)obj));
         }
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return string.Format("{0}#{1}", x, y).GetHashCode();
+            return string.Format("{0}#{1}#{2}#{3}", x, y, z, w).GetHashCode();
         }
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public float[] to_array()
+        public int[] to_array()
         {
-            return new[] { x, y };
+            return new[] { x, y, z, w };
         }
 
         /// <summary>
         /// 归一化向量
         /// </summary>
         /// <returns></returns>
-        public vec2 normalize()
+        public ivec4 normalize()
         {
-            var frt = (float)Math.Sqrt(this.x * this.x + this.y * this.y);
+            var frt = (int)Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w);
 
-            return new vec2(x / frt, y / frt);
+            return new ivec4(x / frt, y / frt, z / frt, w / frt);
+            ;
         }
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            //return string.Format("{0:0.00},{1:0.00}", x, y);
-            return string.Format("{0}, {1}", x.ToShortString(), y.ToShortString());
+            return string.Format("{0}, {1}, {2}, {3}", x, y, z, w);
         }
 
-        internal static vec2 Parse(string value)
+        internal static ivec4 Parse(string value)
         {
             string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            float x = float.Parse(parts[0]);
-            float y = float.Parse(parts[1]);
-            return new vec2(x, y);
+            int x = int.Parse(parts[0]);
+            int y = int.Parse(parts[1]);
+            int z = int.Parse(parts[2]);
+            int w = int.Parse(parts[3]);
+            return new ivec4(x, y, z, w);
         }
 
         static readonly char[] separator = new char[] { ' ', ',' };
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public bool Equals(vec2 other)
+        public bool Equals(ivec4 other)
         {
-            return (this.x == other.x && this.y == other.y);
+            return (this.x == other.x && this.y == other.y && this.z == other.z && this.w == other.w);
         }
     }
 }

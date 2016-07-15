@@ -7,24 +7,24 @@ namespace CSharpGL
     /// <summary>
     /// Represents a two dimensional vector.
     /// </summary>
-    [TypeConverter(typeof(Vec2TypeConverter))]
-    public struct vec2 : IEquatable<vec2>
+    [TypeConverter(typeof(ivec2TypeConverter))]
+    public struct ivec2 : IEquatable<ivec2>
     {
         /// <summary>
         /// 
         /// </summary>
-        public float x;
+        public int x;
         /// <summary>
         /// 
         /// </summary>
-        public float y;
+        public int y;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public float this[int index]
+        public int this[int index]
         {
             get
             {
@@ -44,7 +44,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="s"></param>
-        public vec2(float s)
+        public ivec2(int s)
         {
             x = y = s;
         }
@@ -54,7 +54,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public vec2(float x, float y)
+        public ivec2(int x, int y)
         {
             this.x = x;
             this.y = y;
@@ -63,7 +63,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="v"></param>
-        public vec2(vec2 v)
+        public ivec2(ivec2 v)
         {
             this.x = v.x;
             this.y = v.y;
@@ -72,16 +72,16 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="v"></param>
-        public vec2(vec3 v)
+        public ivec2(ivec3 v)
         {
             this.x = v.x;
             this.y = v.y;
         }
-        /// <summary>
+           /// <summary>
         /// 
         /// </summary>
         /// <param name="v"></param>
-        public vec2(vec4 v)
+        public ivec2(ivec4 v)
         {
             this.x = v.x;
             this.y = v.y;
@@ -91,9 +91,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="lhs"></param>
         /// <returns></returns>
-        public static vec2 operator -(vec2 lhs)
+        public static ivec2 operator -(ivec2 lhs)
         {
-            return new vec2(-lhs.x, -lhs.y);
+            return new ivec2(-lhs.x, -lhs.y);
         }
         /// <summary>
         /// 
@@ -101,9 +101,9 @@ namespace CSharpGL
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static vec2 operator +(vec2 lhs, vec2 rhs)
+        public static ivec2 operator +(ivec2 lhs, ivec2 rhs)
         {
-            return new vec2(lhs.x + rhs.x, lhs.y + rhs.y);
+            return new ivec2(lhs.x + rhs.x, lhs.y + rhs.y);
         }
         /// <summary>
         /// 
@@ -111,9 +111,9 @@ namespace CSharpGL
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static vec2 operator +(vec2 lhs, float rhs)
+        public static ivec2 operator +(ivec2 lhs, int rhs)
         {
-            return new vec2(lhs.x + rhs, lhs.y + rhs);
+            return new ivec2(lhs.x + rhs, lhs.y + rhs);
         }
         /// <summary>
         /// 
@@ -121,9 +121,9 @@ namespace CSharpGL
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static vec2 operator -(vec2 lhs, vec2 rhs)
+        public static ivec2 operator -(ivec2 lhs, ivec2 rhs)
         {
-            return new vec2(lhs.x - rhs.x, lhs.y - rhs.y);
+            return new ivec2(lhs.x - rhs.x, lhs.y - rhs.y);
         }
         /// <summary>
         /// 
@@ -131,9 +131,9 @@ namespace CSharpGL
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static vec2 operator -(vec2 lhs, float rhs)
+        public static ivec2 operator -(ivec2 lhs, int rhs)
         {
-            return new vec2(lhs.x - rhs, lhs.y - rhs);
+            return new ivec2(lhs.x - rhs, lhs.y - rhs);
         }
         /// <summary>
         /// 
@@ -141,9 +141,9 @@ namespace CSharpGL
         /// <param name="self"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static vec2 operator *(vec2 self, float s)
+        public static ivec2 operator *(ivec2 self, int s)
         {
-            return new vec2(self.x * s, self.y * s);
+            return new ivec2(self.x * s, self.y * s);
         }
         /// <summary>
         /// 
@@ -151,9 +151,9 @@ namespace CSharpGL
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static vec2 operator *(float lhs, vec2 rhs)
+        public static ivec2 operator *(int lhs, ivec2 rhs)
         {
-            return new vec2(rhs.x * lhs, rhs.y * lhs);
+            return new ivec2(rhs.x * lhs, rhs.y * lhs);
         }
         /// <summary>
         /// 
@@ -161,9 +161,9 @@ namespace CSharpGL
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static vec2 operator *(vec2 lhs, vec2 rhs)
+        public static ivec2 operator *(ivec2 lhs, ivec2 rhs)
         {
-            return new vec2(rhs.x * lhs.x, rhs.y * lhs.y);
+            return new ivec2(rhs.x * lhs.x, rhs.y * lhs.y);
         }
         /// <summary>
         /// 
@@ -171,16 +171,16 @@ namespace CSharpGL
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static vec2 operator /(vec2 lhs, float rhs)
+        public static ivec2 operator /(ivec2 lhs, int rhs)
         {
-            return new vec2(lhs.x / rhs, lhs.y / rhs);
+            return new ivec2(lhs.x / rhs, lhs.y / rhs);
         }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public float dot(vec2 rhs)
+        public int dot(ivec2 rhs)
         {
             var result = this.x * rhs.x + this.y * rhs.y;
             return result;
@@ -189,11 +189,11 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public float length()
+        public int length()
         {
             double result = Math.Sqrt(this.x * this.x + this.y * this.y);
 
-            return (float)result;
+            return (int)result;
         }
         /// <summary>
         /// 
@@ -201,7 +201,7 @@ namespace CSharpGL
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static bool operator ==(vec2 lhs, vec2 rhs)
+        public static bool operator ==(ivec2 lhs, ivec2 rhs)
         {
             return (lhs.x == rhs.x && lhs.y == rhs.y);
         }
@@ -211,7 +211,7 @@ namespace CSharpGL
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         /// <returns></returns>
-        public static bool operator !=(vec2 lhs, vec2 rhs)
+        public static bool operator !=(ivec2 lhs, ivec2 rhs)
         {
             return (lhs.x != rhs.x || lhs.y != rhs.y);
         }
@@ -222,7 +222,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            return (obj is vec2) && (this.Equals((vec2)obj));
+            return (obj is ivec2) && (this.Equals((ivec2)obj));
         }
         /// <summary>
         /// 
@@ -236,7 +236,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public float[] to_array()
+        public int[] to_array()
         {
             return new[] { x, y };
         }
@@ -245,11 +245,11 @@ namespace CSharpGL
         /// 归一化向量
         /// </summary>
         /// <returns></returns>
-        public vec2 normalize()
+        public ivec2 normalize()
         {
-            var frt = (float)Math.Sqrt(this.x * this.x + this.y * this.y);
+            var frt = (int)Math.Sqrt(this.x * this.x + this.y * this.y);
 
-            return new vec2(x / frt, y / frt);
+            return new ivec2(x / frt, y / frt);
         }
         /// <summary>
         /// 
@@ -257,16 +257,15 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            //return string.Format("{0:0.00},{1:0.00}", x, y);
-            return string.Format("{0}, {1}", x.ToShortString(), y.ToShortString());
+            return string.Format("{0}, {1}", x, y);
         }
 
-        internal static vec2 Parse(string value)
+        internal static ivec2 Parse(string value)
         {
             string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            float x = float.Parse(parts[0]);
-            float y = float.Parse(parts[1]);
-            return new vec2(x, y);
+            int x = int.Parse(parts[0]);
+            int y = int.Parse(parts[1]);
+            return new ivec2(x, y);
         }
 
         static readonly char[] separator = new char[] { ' ', ',' };
@@ -275,7 +274,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public bool Equals(vec2 other)
+        public bool Equals(ivec2 other)
         {
             return (this.x == other.x && this.y == other.y);
         }
