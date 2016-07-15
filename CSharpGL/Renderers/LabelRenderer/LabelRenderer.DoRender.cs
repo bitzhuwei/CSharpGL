@@ -22,7 +22,11 @@ namespace CSharpGL
                 this.SetUniform("billboardCenter_worldspace", this.WorldPosition);
                 worldPositionRecord.CancelMark();
             }
-            this.SetUniform("labelHeight", this.LabelHeight);
+            if (labelHeightRecord.IsMarked())
+            {
+                this.SetUniform("labelHeight", this.LabelHeight);
+                labelHeightRecord.CancelMark();
+            }
             int[] viewport = OpenGL.GetViewport();
             this.SetUniform("viewportSize", new vec2(viewport[2], viewport[3]));
             mat4 projection = arg.Camera.GetProjectionMat4();

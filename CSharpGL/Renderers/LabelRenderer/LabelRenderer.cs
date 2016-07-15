@@ -22,16 +22,18 @@ namespace CSharpGL
         public vec3 WorldPosition
         {
             get { return worldPosition; }
-            set
-            {
-                worldPositionRecord.Set(ref worldPosition, value);
-                //worldPosition = value;
-            }
+            set { worldPositionRecord.Set(ref worldPosition, value); }
         }
+        private UpdatingRecord labelHeightRecord = new UpdatingRecord();
+        private int labelHeight;
         /// <summary>
         /// Label's height(in pixels of OpenGL's viewport)
         /// </summary>
-        public int LabelHeight { get; set; }
+        public int LabelHeight
+        {
+            get { return labelHeight; }
+            set { labelHeightRecord.Set(ref labelHeight, value); }
+        }
 
         private string content = string.Empty;
         /// <summary>
