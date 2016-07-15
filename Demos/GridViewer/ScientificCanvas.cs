@@ -19,7 +19,10 @@ namespace GridViewer
 
         public ScientificCanvas()
         {
-            this.Load += ScientificCanvas_Load;
+            if (!this.designMode)
+            {
+                this.Load += ScientificCanvas_Load;
+            }
         }
 
     }

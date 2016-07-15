@@ -28,7 +28,7 @@ namespace CSharpGL
         /// </summary>
         protected RenderContext renderContext;
 
-        private readonly bool designMode;
+        protected readonly bool designMode;
 
         /// <summary>
         /// Creats render context and supports OpenGL rendering.
