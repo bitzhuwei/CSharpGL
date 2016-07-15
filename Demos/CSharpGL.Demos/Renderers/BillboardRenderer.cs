@@ -32,11 +32,27 @@ namespace CSharpGL.Demos
         public float Width { get; set; }
         public float Height { get; set; }
 
-        public float WidthPercentage { get; set; }
-        public float HeightPercentage { get; set; }
+        private UpdatingRecord percentageRecord = new UpdatingRecord();
+        private vec2 percentage;
+        /// <summary>
+        /// width percentage and height percentage.
+        /// </summary>
+        public vec2 Percentage
+        {
+            get { return percentage; }
+            set { percentageRecord.Set(ref percentage, value); }
+        }
 
-        public int WidthInPixelSize { get; set; }
-        public int HeightInPixelSize { get; set; }
+        private UpdatingRecord pixelSizeRecord = new UpdatingRecord();
+        private vec2 pixelSize;
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec2 PixelSize
+        {
+            get { return pixelSize; }
+            set { pixelSizeRecord.Set(ref  pixelSize, value); }
+        }
 
         public BillboardType Type { get; set; }
 
@@ -46,8 +62,8 @@ namespace CSharpGL.Demos
         {
             this.Offset = new vec3(0, 0.4f, 0);
             this.Width = 1.0f; this.Height = 0.125f;
-            this.WidthPercentage = 0.2f; this.HeightPercentage = 0.05f;
-            this.WidthInPixelSize = 100; this.HeightInPixelSize = 10;
+            this.Percentage = new vec2(0.2f, 0.05f);
+            this.PixelSize = new vec2(100, 10);
         }
 
         protected override void DoInitialize()
@@ -74,8 +90,16 @@ namespace CSharpGL.Demos
             this.SetUniform("billboardCenter_worldspace",
                 this.TargetRenderer.Position + this.Offset);
             this.SetUniform("BillboardSize", new vec2(this.Width, this.Height));
-            this.SetUniform("BillboardSizeInPercentage", new vec2(this.WidthPercentage, this.HeightPercentage));
-            this.SetUniform("BillboardSizeInPixelSize", new vec2(this.WidthInPixelSize, this.HeightInPixelSize));
+            if (this.percentageRecord.IsMarked())
+            {
+                this.SetUniform("BillboardSizeInPercentage", this.Percentage);
+                this.percentageRecord.CancelMark();
+            }
+            if (this.pixelSizeRecord.IsMarked())
+            {
+                this.SetUniform("BillboardSizeInPixelSize", this.PixelSize);
+                this.pixelSizeRecord.CancelMark();
+            }
             int[] viewport = OpenGL.GetViewport();
             this.SetUniform("ScreenSizeinPixelSize", new vec2(viewport[2], viewport[3]));
             this.SetUniform("billboardType", (float)(this.Type));
