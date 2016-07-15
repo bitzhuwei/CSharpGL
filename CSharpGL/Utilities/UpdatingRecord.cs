@@ -52,7 +52,7 @@ namespace CSharpGL
         /// <param name="value"></param>
         public void Set<T>(ref T target, T value)
         {
-            if (Comparer<T>.Default.Compare(target, value) != 0)
+            if (!EqualityComparer<T>.Default.Equals(target, value))
             {
                 target = value;
                 this.Mark();

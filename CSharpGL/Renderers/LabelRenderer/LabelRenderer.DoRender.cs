@@ -17,7 +17,11 @@ namespace CSharpGL
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArg arg)
         {
-            this.SetUniform("billboardCenter_worldspace", this.WorldPosition);
+            if (worldPositionRecord.IsMarked())
+            {
+                this.SetUniform("billboardCenter_worldspace", this.WorldPosition);
+                worldPositionRecord.CancelMark();
+            }
             this.SetUniform("labelHeight", this.LabelHeight);
             int[] viewport = OpenGL.GetViewport();
             this.SetUniform("viewportSize", new vec2(viewport[2], viewport[3]));

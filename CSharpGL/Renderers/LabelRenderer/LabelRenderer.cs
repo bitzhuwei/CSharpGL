@@ -14,10 +14,20 @@ namespace CSharpGL
         private FontResource fontResource;
         private TextModel model;
 
+        private UpdatingRecord worldPositionRecord = new UpdatingRecord();
+        private vec3 worldPosition;
         /// <summary>
         /// 
         /// </summary>
-        public vec3 WorldPosition { get; set; }
+        public vec3 WorldPosition
+        {
+            get { return worldPosition; }
+            set
+            {
+                worldPositionRecord.Set(ref worldPosition, value);
+                //worldPosition = value;
+            }
+        }
         /// <summary>
         /// Label's height(in pixels of OpenGL's viewport)
         /// </summary>
