@@ -73,5 +73,21 @@ namespace GridViewer
             }
         }
 
+        private void adjustCameraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TreeNode node = this.objectsTreeView.SelectedNode;
+            if (node != null)
+            {
+                SceneObject obj = node.Tag as SceneObject;
+                if (obj != null)
+                {
+                    var rendererComponent = obj.Renderer as BoundedRendererComponent;
+                    IBoundingBox box = rendererComponent.Renderer.BoxRenderer;
+                    IBoundingBox translatedBox = new BoundingBox(box.MinPosition + obj.Transform.Position, box.MaxPosition + obj.Transform.Position);
+                    translatedBox.ZoomCamera(this.scientificCanvas.Scene.Camera);
+                }
+                this.scientificCanvas.Invalidate();
+            }
+        }
     }
 }

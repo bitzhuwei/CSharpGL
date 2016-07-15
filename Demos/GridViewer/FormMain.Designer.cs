@@ -64,6 +64,8 @@
             this.工具TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.自定义CToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.选项OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sceneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scientificCanvasMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助HToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.内容CToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.索引IToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,8 +93,7 @@
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.scientificCanvas = new GridViewer.ScientificCanvas();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.sceneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scientificCanvasMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adjustCameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -359,14 +360,28 @@
             // 自定义CToolStripMenuItem
             // 
             this.自定义CToolStripMenuItem.Name = "自定义CToolStripMenuItem";
-            this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.自定义CToolStripMenuItem.Text = "自定义(&C)";
             // 
             // 选项OToolStripMenuItem
             // 
             this.选项OToolStripMenuItem.Name = "选项OToolStripMenuItem";
-            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.选项OToolStripMenuItem.Text = "选项(&O)";
+            // 
+            // sceneToolStripMenuItem
+            // 
+            this.sceneToolStripMenuItem.Name = "sceneToolStripMenuItem";
+            this.sceneToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
+            this.sceneToolStripMenuItem.Text = "Scene";
+            this.sceneToolStripMenuItem.Click += new System.EventHandler(this.sceneToolStripMenuItem_Click);
+            // 
+            // scientificCanvasMenuItem
+            // 
+            this.scientificCanvasMenuItem.Name = "scientificCanvasMenuItem";
+            this.scientificCanvasMenuItem.Size = new System.Drawing.Size(198, 26);
+            this.scientificCanvasMenuItem.Text = "scientificCanvas";
+            this.scientificCanvasMenuItem.Click += new System.EventHandler(this.scientificCanvasMenuItem_Click);
             // 
             // 帮助HToolStripMenuItem
             // 
@@ -579,14 +594,15 @@
             // 
             this.treeViewRightMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.treeViewRightMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem});
+            this.deleteToolStripMenuItem,
+            this.adjustCameraToolStripMenuItem});
             this.treeViewRightMenu.Name = "treeViewRightMenu";
-            this.treeViewRightMenu.Size = new System.Drawing.Size(133, 30);
+            this.treeViewRightMenu.Size = new System.Drawing.Size(191, 84);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(132, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -598,12 +614,12 @@
             this.propertyGrid1.Size = new System.Drawing.Size(426, 366);
             this.propertyGrid1.TabIndex = 0;
             // 
-            // scene
+            // scientificCanvas
             // 
             this.scientificCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scientificCanvas.Location = new System.Drawing.Point(0, 0);
             this.scientificCanvas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.scientificCanvas.Name = "scene";
+            this.scientificCanvas.Name = "scientificCanvas";
             this.scientificCanvas.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
             this.scientificCanvas.RenderTrigger = CSharpGL.RenderTriggers.Manual;
             this.scientificCanvas.Size = new System.Drawing.Size(850, 666);
@@ -615,19 +631,12 @@
             this.openFileDialog1.FilterIndex = 2;
             this.openFileDialog1.RestoreDirectory = true;
             // 
-            // sceneToolStripMenuItem
+            // adjustCameraToolStripMenuItem
             // 
-            this.sceneToolStripMenuItem.Name = "sceneToolStripMenuItem";
-            this.sceneToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.sceneToolStripMenuItem.Text = "Scene";
-            this.sceneToolStripMenuItem.Click += new System.EventHandler(this.sceneToolStripMenuItem_Click);
-            // 
-            // scientificCanvasMenuItem
-            // 
-            this.scientificCanvasMenuItem.Name = "scientificCanvasMenuItem";
-            this.scientificCanvasMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.scientificCanvasMenuItem.Text = "scientificCanvas";
-            this.scientificCanvasMenuItem.Click += new System.EventHandler(this.scientificCanvasMenuItem_Click);
+            this.adjustCameraToolStripMenuItem.Name = "adjustCameraToolStripMenuItem";
+            this.adjustCameraToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
+            this.adjustCameraToolStripMenuItem.Text = "Adjust Camera";
+            this.adjustCameraToolStripMenuItem.Click += new System.EventHandler(this.adjustCameraToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -727,6 +736,7 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sceneToolStripMenuItem;
     	private System.Windows.Forms.ToolStripMenuItem scientificCanvasMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adjustCameraToolStripMenuItem;
     }
 }
 
