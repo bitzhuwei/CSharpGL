@@ -103,7 +103,7 @@ namespace CSharpGL
             float length = this.Size.Height;// / 2;
             mat4 model = glm.scale(mat4.identity(), new vec3(length, length, length));
             //model = mat4.identity();
-            Renderer renderer = this.Renderer as Renderer;
+            var renderer = this.Renderer as Renderer;
             renderer.SetUniform("mvp", projection * view * model);
 
             blendSwitch.On();
