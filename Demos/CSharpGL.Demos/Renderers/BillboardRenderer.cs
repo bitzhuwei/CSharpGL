@@ -44,11 +44,11 @@ namespace CSharpGL.Demos
         }
 
         private UpdatingRecord pixelSizeRecord = new UpdatingRecord();
-        private vec2 pixelSize;
+        private ivec2 pixelSize;
         /// <summary>
         /// 
         /// </summary>
-        public vec2 PixelSize
+        public ivec2 PixelSize
         {
             get { return pixelSize; }
             set { pixelSizeRecord.Set(ref  pixelSize, value); }
@@ -63,7 +63,7 @@ namespace CSharpGL.Demos
             this.Offset = new vec3(0, 0.4f, 0);
             this.Width = 1.0f; this.Height = 0.125f;
             this.Percentage = new vec2(0.2f, 0.05f);
-            this.PixelSize = new vec2(100, 10);
+            this.PixelSize = new ivec2(100, 10);
         }
 
         protected override void DoInitialize()

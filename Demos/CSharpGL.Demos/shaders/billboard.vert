@@ -9,7 +9,7 @@ uniform vec3 CameraRight_worldspace;
 uniform vec3 CameraUp_worldspace;
 uniform vec2 BillboardSize; // Size of the billboard, in world units (probably meters)
 uniform vec2 BillboardSizeInPercentage; // Size of the billboard, in percentage of screen units (probably meters)
-uniform vec2 BillboardSizeInPixelSize; // Size of the billboard, in percentage of screen units (probably meters)
+uniform ivec2 BillboardSizeInPixelSize; // Size of the billboard, in percentage of screen units (probably meters)
 uniform vec2 ScreenSizeinPixelSize;
 uniform mat4 projection;
 uniform mat4 view;

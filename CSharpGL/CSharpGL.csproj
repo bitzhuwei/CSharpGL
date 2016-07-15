@@ -128,6 +128,7 @@
     <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformInt32Array.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformInt32.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformSingleVariableBase.cs" />
+    <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformIVec2.cs" />
     <Compile Include="Renderers\BoundingBoxRenderer.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\LabelRenderer\LabelRenderer.DoRender.cs" />
