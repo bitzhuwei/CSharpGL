@@ -13,6 +13,29 @@ It meets common requirements in OpenGL rendering such as:
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.4.12:
+1. Add ArcBallManipulater to rotate model.
+2. All types for SharpFont are private.
+3. Remove all GLU functions and constants.
+4. Remove wraper functions for legacy OpenGL.
+5. Single instance pattern for Win32.
+6. Remove constants in Win32 that are not used.
+7. Resize GLCanvas only when the control is resized.
+8. Allows for refresh canditate types in FormSelectType.
+9. Remove unnecessray dictionary.
+10. TypeHelper helps to create instance of specified type.
+11. Display a clock in GLCanvas in design mode.
+12. Fix bug in LabelRenderer which allows to define size in pixel.
+13. Add uniform type for Int32.
+14. UniformArrayVariable will be marked as Updated whenever its item is updated.
+15. Use reflection to get all uniform types and uniform array types.
+16. Comment some OpenGL contants that are never used.
+17. Enumeration type for glGetString.
+18. PositionHelper returns a IBoundingBox of specified position array.
+19. UpdatingRecord records time when a property is updated or uploaded.
+20. BoundingBoxRenderer renders a bounding box.
+21. IBoundingBox and ICamera supports adjusting camera's position and target.
+
 ## v1.0.4.11:
 1. Remove FUint, Rect, ResizableArray etc from SharpFont.
 2. Organize FontResource's code.
