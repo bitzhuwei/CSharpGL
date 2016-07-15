@@ -23,6 +23,8 @@ namespace CSharpGL
         /// <returns></returns>
         public bool GetUniformValue<T>(string varNameInShader, out T value) where T : struct, IEquatable<T>
         {
+            if ((!this.Initialized) && (!this.Initializing)) { this.Initialize(); }
+
             value = default(T);
             bool gotUniform = false;
             foreach (var item in this.uniformVariables)
@@ -43,6 +45,8 @@ namespace CSharpGL
         /// </summary>
         public bool SetUniform<T>(string varNameInShader, T value) where T : struct,IEquatable<T>
         {
+            if ((!this.Initialized) && (!this.Initializing)) { this.Initialize(); }
+
             bool gotUniform = false;
             bool updated = false;
             foreach (var item in this.uniformVariables)
@@ -113,7 +117,6 @@ namespace CSharpGL
         }
 
         static Dictionary<Type, Type> variableDict;
-
 
     }
 }
