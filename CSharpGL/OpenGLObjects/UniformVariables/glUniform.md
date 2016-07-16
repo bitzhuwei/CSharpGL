@@ -78,10 +78,10 @@ Specifies a pointer to an array of
 	the uniform variable to be modified is specified by
 	_`location`_, which should be a value
 	returned by
-	[<span class="citerefentry"><span class="refentrytitle">glGetUniformLocation</span></span>](glGetUniformLocation.xml).
+	[glGetUniformLocation(https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniformLocation.xml).
 	`glUniform` operates on the program object
 	that was made part of current state by calling
-	[<span class="citerefentry"><span class="refentrytitle">glUseProgram</span></span>](glUseProgram.xml).
+	[glUseProgram](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glUseProgram.xml).
 
 The commands `glUniform{1|2|3|4}{f|i}`
 	are used to change the value of the uniform variable specified
@@ -230,30 +230,30 @@ If _`location`_ is a value other than
 
 ## Associated Gets
 
-[<span class="citerefentry"><span class="refentrytitle">glGet</span></span>](glGet.xml)
+[glGet](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGet.xml)
 	with the argument `GL_CURRENT_PROGRAM`
 
-[<span class="citerefentry"><span class="refentrytitle">glGetActiveUniform</span></span>](glGetActiveUniform.xml)
+[glGetActiveUniform](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetActiveUniform.xml)
 	with the handle of a program object and the index of an active uniform variable
 
-[<span class="citerefentry"><span class="refentrytitle">glGetUniform</span></span>](glGetUniform.xml)
+[<span class="citerefentry"><span class="refentrytitle">glGetUniform</span></span>](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniform.xml)
 	with the handle of a program object and the location of a
 	uniform variable
 
-[<span class="citerefentry"><span class="refentrytitle">glGetUniformLocation</span></span>](glGetUniformLocation.xml)
+[<span class="citerefentry"><span class="refentrytitle">glGetUniformLocation</span></span>](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniformLocation.xml)
 	with the handle of a program object and the name of a uniform
 	variable
 </div><div class="refsect1"><a id="seealso"></a>
 
 ## See Also
 
-[<span class="citerefentry"><span class="refentrytitle">glLinkProgram</span></span>](glLinkProgram.xml),
-	[<span class="citerefentry"><span class="refentrytitle">glUseProgram</span></span>](glUseProgram.xml)
+[<span class="citerefentry"><span class="refentrytitle">glLinkProgram</span></span>](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glLinkProgram.xml),
+	[<span class="citerefentry"><span class="refentrytitle">glUseProgram</span></span>](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glUseProgram.xml)
 </div><div class="refsect1"><a id="copyright"></a>
 
 ## Copyright
 
-            Copyright <span class="trademark"></span>© 2003-2005 3Dlabs Inc. Ltd. 
+            Copyright © 2003-2005 3Dlabs Inc. Ltd. 
             This material may be distributed subject to the terms and conditions set forth in 
             the Open Publication License, v 1.0, 8 June 1999.
             [http://opencontent.org/openpub/](http://opencontent.org/openpub/).
