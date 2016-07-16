@@ -15,7 +15,7 @@ namespace CSharpGL
     {
         
         /// <summary>
-        /// uniform float variable[10];
+        /// uniform int variable[10];
         /// </summary>
         /// <param name="varName"></param>
         /// <param name="length"></param>

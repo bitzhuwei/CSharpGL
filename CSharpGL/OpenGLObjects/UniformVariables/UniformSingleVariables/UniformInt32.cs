@@ -15,13 +15,13 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// uniform float variable;
+        /// uniform int variable;
         /// </summary>
         /// <param name="varName"></param>
         public UniformInt32(string varName) : base(varName) { }
 
         /// <summary>
-        /// uniform float variable;
+        /// uniform int variable;
         /// </summary>
         /// <param name="varName"></param>
         /// <param name="value"></param>
