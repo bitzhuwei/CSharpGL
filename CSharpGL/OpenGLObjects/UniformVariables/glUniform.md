@@ -78,7 +78,7 @@ Specifies a pointer to an array of
 	the uniform variable to be modified is specified by
 	_`location`_, which should be a value
 	returned by
-	[glGetUniformLocation(https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniformLocation.xml).
+	[glGetUniformLocation](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniformLocation.xml).
 	`glUniform` operates on the program object
 	that was made part of current state by calling
 	[glUseProgram](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glUseProgram.xml).
