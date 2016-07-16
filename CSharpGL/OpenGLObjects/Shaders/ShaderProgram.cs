@@ -229,6 +229,30 @@ namespace CSharpGL
             }
             return location;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public int SetUniform(string uniformName, ivec2[] values)
+        {
+            int location = GetUniformLocation(uniformName);
+            if (location >= 0)
+            {
+                int count = values.Length;
+                var value = new int[count * 2];
+                int index = 0;
+                for (int i = 0; i < value.Length; i++)
+                {
+                    value[index++] = values[i].x;
+                    value[index++] = values[i].y;
+                }
+                glUniform2iv(GetUniformLocation(uniformName), count, value);
+            }
+            return location;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -241,7 +265,7 @@ namespace CSharpGL
             if (location >= 0)
             {
                 int count = values.Length;
-                float[] value = new float[count * 2];
+                var value = new float[count * 2];
                 int index = 0;
                 for (int i = 0; i < value.Length; i++)
                 {
@@ -258,13 +282,37 @@ namespace CSharpGL
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
+        public int SetUniform(string uniformName, ivec3[] values)
+        {
+            int location = GetUniformLocation(uniformName);
+            if (location >= 0)
+            {
+                int count = values.Length;
+                var value = new int[count * 3];
+                int index = 0;
+                for (int i = 0; i < value.Length; i++)
+                {
+                    value[index++] = values[i].x;
+                    value[index++] = values[i].y;
+                    value[index++] = values[i].z;
+                }
+                glUniform3iv(GetUniformLocation(uniformName), count, value);
+            }
+            return location;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
         public int SetUniform(string uniformName, vec3[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
                 int count = values.Length;
-                float[] value = new float[count * 3];
+                var value = new float[count * 3];
                 int index = 0;
                 for (int i = 0; i < value.Length; i++)
                 {
@@ -282,13 +330,38 @@ namespace CSharpGL
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
+        public int SetUniform(string uniformName, ivec4[] values)
+        {
+            int location = GetUniformLocation(uniformName);
+            if (location >= 0)
+            {
+                int count = values.Length;
+                var value = new int[count * 4];
+                int index = 0;
+                for (int i = 0; i < value.Length; i++)
+                {
+                    value[index++] = values[i].x;
+                    value[index++] = values[i].y;
+                    value[index++] = values[i].z;
+                    value[index++] = values[i].w;
+                }
+                glUniform4iv(GetUniformLocation(uniformName), count, value);
+            }
+            return location;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
         public int SetUniform(string uniformName, vec4[] values)
         {
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
                 int count = values.Length;
-                float[] value = new float[count * 4];
+                var value = new float[count * 4];
                 int index = 0;
                 for (int i = 0; i < value.Length; i++)
                 {
@@ -301,7 +374,6 @@ namespace CSharpGL
             }
             return location;
         }
-
         /// <summary>
         /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
