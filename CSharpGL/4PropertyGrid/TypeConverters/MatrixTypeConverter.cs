@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    class MatrixTypeConverter<T> : TypeConverter where T : ILoadFromString, new()
+    class MatrixTypeConverter<T> : TypeConverter where T : struct, ILoadFromString
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
@@ -18,15 +18,10 @@ namespace CSharpGL
         public override object ConvertFrom(ITypeDescriptorContext context,
             CultureInfo culture, object value)
         {
-            string str = value as string;
-            if (!string.IsNullOrEmpty(str))
-            {
-                var result = new T();
-                result.Load(str);
-                return result;
-            }
-            else
-            { return new T(); }
+            var result = new T();
+            result.Load(value as string);
+
+            return result;
         }
 
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)

@@ -78,7 +78,6 @@
     <Content Include="OpenGLObjects\VertexBufferObjects\readme.md" />
     <Content Include="readme.md" />
     <Compile Include="4PropertyGrid\TypeConverters\MatrixTypeConverter.cs" />
-    <Compile Include="4PropertyGrid\TypeConverters\VectorTypeConverter.cs" />
     <Compile Include="4PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.cs">
       <SubType>Form</SubType>
     </Compile>

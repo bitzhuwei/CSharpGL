@@ -7,7 +7,7 @@ namespace CSharpGL
     /// <summary>
     /// Represents a two dimensional vector.
     /// </summary>
-    [TypeConverter(typeof(VectorTypeConverter<vec2>))]
+    [TypeConverter(typeof(MatrixTypeConverter<vec2>))]
     public struct vec2 : IEquatable<vec2>, ILoadFromString
     {
         /// <summary>

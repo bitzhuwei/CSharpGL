@@ -7,7 +7,7 @@ namespace CSharpGL
     /// <summary>
     /// Represents a three dimensional vector.
     /// </summary>
-    [TypeConverter(typeof(VectorTypeConverter<uvec3>))]
+    [TypeConverter(typeof(MatrixTypeConverter<uvec3>))]
     public struct uvec3 : IEquatable<uvec3>, ILoadFromString
     {
 
