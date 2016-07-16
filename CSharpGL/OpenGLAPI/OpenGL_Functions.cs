@@ -351,16 +351,16 @@ namespace CSharpGL
         //[DllImport(Win32.opengl32, EntryPoint = "glColor4dv", SetLastError = true)]
         //public static extern void Color4dv(double[] v);
 
-        ///// <summary>
-        ///// Sets the current color.
-        ///// </summary>
-        ///// <param name="red">Red color component (between 0 and 1).</param>
-        ///// <param name="green">Green color component (between 0 and 1).</param>
-        ///// <param name="blue">Blue color component (between 0 and 1).</param>
-        ///// <param name="alpha">Alpha color component (between 0 and 1).</param>
-        ////[Obsolete(fixedPipelineIsNotGood, error)]
-        //[DllImport(Win32.opengl32, EntryPoint = "glColor4f", SetLastError = true)]
-        //public static extern void Color4f(float red, float green, float blue, float alpha);
+        /// <summary>
+        /// Sets the current color.
+        /// </summary>
+        /// <param name="red">Red color component (between 0 and 1).</param>
+        /// <param name="green">Green color component (between 0 and 1).</param>
+        /// <param name="blue">Blue color component (between 0 and 1).</param>
+        /// <param name="alpha">Alpha color component (between 0 and 1).</param>
+        //[Obsolete(fixedPipelineIsNotGood, error)]
+        [DllImport(Win32.opengl32, EntryPoint = "glColor4f", SetLastError = true)]
+        public static extern void Color4f(float red, float green, float blue, float alpha);
 
         ///// <summary>
         ///// Sets the current color to 'v'.
@@ -1871,12 +1871,12 @@ namespace CSharpGL
         //[DllImport(Win32.opengl32, EntryPoint = "glPolygonStipple", SetLastError = true)]
         //public static extern void PolygonStipple(byte[] mask);
 
-        ///// <summary>
-        ///// This function restores the attribute stack to the state it was when
-        ///// PushAttrib was called.
-        ///// </summary>
-        //[DllImport(Win32.opengl32, EntryPoint = "glPopAttrib", SetLastError = true)]
-        //public static extern void PopAttrib();
+        /// <summary>
+        /// This function restores the attribute stack to the state it was when
+        /// PushAttrib was called.
+        /// </summary>
+        [DllImport(Win32.opengl32, EntryPoint = "glPopAttrib", SetLastError = true)]
+        public static extern void PopAttrib();
 
         ///// <summary>
         ///// Pop the client attribute stack.
@@ -1905,12 +1905,12 @@ namespace CSharpGL
         //[DllImport(Win32.opengl32, EntryPoint = "glPrioritizeTextures", SetLastError = true)]
         //public static extern void PrioritizeTextures(int n, uint[] textures, float[] priorities);
 
-        ///// <summary>
-        ///// Save the current state of the attribute groups specified by 'mask'.
-        ///// </summary>
-        ///// <param name="mask">The attibute groups to save.</param>
-        //[DllImport(Win32.opengl32, EntryPoint = "glPushAttrib", SetLastError = true)]
-        //public static extern void PushAttrib(uint mask);
+        /// <summary>
+        /// Save the current state of the attribute groups specified by 'mask'.
+        /// </summary>
+        /// <param name="mask">The attibute groups to save.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glPushAttrib", SetLastError = true)]
+        public static extern void PushAttrib(uint mask);
 
         ///// <summary>
         ///// Push the client attribute stack.

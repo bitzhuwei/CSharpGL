@@ -125,6 +125,8 @@
     <Compile Include="Manipulaters\IMouseHandler.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\BoundingBox.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\IBoundingBox2D.cs" />
+    <Compile Include="WinformControls\BoundedClockRenderer.cs" />
+    <Compile Include="WinformControls\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\BlendSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\CullFaceSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\DepthTestSwitch.cs" />

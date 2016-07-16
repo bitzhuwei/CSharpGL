@@ -30,7 +30,7 @@ namespace CSharpGL
             OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);
         }
 
-        static readonly ClockRenderer clockRenderer = new ClockRenderer();
+        static readonly BoundedClockRenderer clockRenderer = new BoundedClockRenderer();
      
         public static void DrawClock()
         {

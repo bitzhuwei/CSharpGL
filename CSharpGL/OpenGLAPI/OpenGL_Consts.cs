@@ -72,23 +72,23 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_ALWAYS = 0x0207;
 
-        ////  AttribMask
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public const uint GL_CURRENT_BIT = 0x00000001;
+        //  AttribMask
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_CURRENT_BIT = 0x00000001;
         ///// <summary>
         ///// 
         ///// </summary>
         //public const uint GL_POINT_BIT = 0x00000002;
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public const uint GL_LINE_BIT = 0x00000004;
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public const uint GL_POLYGON_BIT = 0x00000008;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_LINE_BIT = 0x00000004;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_POLYGON_BIT = 0x00000008;
         ///// <summary>
         ///// 
         ///// </summary>
@@ -125,10 +125,10 @@ namespace CSharpGL
         ///// 
         ///// </summary>
         //public const uint GL_TRANSFORM_BIT = 0x00001000;
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public const uint GL_ENABLE_BIT = 0x00002000;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_ENABLE_BIT = 0x00002000;
         /// <summary>
         /// 
         /// </summary>
