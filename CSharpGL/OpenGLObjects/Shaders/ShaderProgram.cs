@@ -65,33 +65,6 @@ namespace CSharpGL
                 glGetAttribLocation = OpenGL.GetDelegateFor<OpenGL.glGetAttribLocation>();
                 glUseProgram = OpenGL.GetDelegateFor<OpenGL.glUseProgram>();
                 glGetProgramiv = OpenGL.GetDelegateFor<OpenGL.glGetProgramiv>();
-                glUniform1ui = OpenGL.GetDelegateFor<OpenGL.glUniform1ui>();
-                glUniform2ui = OpenGL.GetDelegateFor<OpenGL.glUniform2ui>();
-                glUniform3ui = OpenGL.GetDelegateFor<OpenGL.glUniform3ui>();
-                glUniform4ui = OpenGL.GetDelegateFor<OpenGL.glUniform4ui>();
-                glUniform1uiv = OpenGL.GetDelegateFor<OpenGL.glUniform1uiv>();
-                glUniform2uiv = OpenGL.GetDelegateFor<OpenGL.glUniform2uiv>();
-                glUniform3uiv = OpenGL.GetDelegateFor<OpenGL.glUniform3uiv>();
-                glUniform4uiv = OpenGL.GetDelegateFor<OpenGL.glUniform4uiv>();
-                glUniform1i = OpenGL.GetDelegateFor<OpenGL.glUniform1i>();
-                glUniform2i = OpenGL.GetDelegateFor<OpenGL.glUniform2i>();
-                glUniform3i = OpenGL.GetDelegateFor<OpenGL.glUniform3i>();
-                glUniform4i = OpenGL.GetDelegateFor<OpenGL.glUniform4i>();
-                glUniform1iv = OpenGL.GetDelegateFor<OpenGL.glUniform1iv>();
-                glUniform2iv = OpenGL.GetDelegateFor<OpenGL.glUniform2iv>();
-                glUniform3iv = OpenGL.GetDelegateFor<OpenGL.glUniform3iv>();
-                glUniform4iv = OpenGL.GetDelegateFor<OpenGL.glUniform4iv>();
-                glUniform1f = OpenGL.GetDelegateFor<OpenGL.glUniform1f>();
-                glUniform2f = OpenGL.GetDelegateFor<OpenGL.glUniform2f>();
-                glUniform3f = OpenGL.GetDelegateFor<OpenGL.glUniform3f>();
-                glUniform4f = OpenGL.GetDelegateFor<OpenGL.glUniform4f>();
-                glUniform1fv = OpenGL.GetDelegateFor<OpenGL.glUniform1fv>();
-                glUniform2fv = OpenGL.GetDelegateFor<OpenGL.glUniform2fv>();
-                glUniform3fv = OpenGL.GetDelegateFor<OpenGL.glUniform3fv>();
-                glUniform4fv = OpenGL.GetDelegateFor<OpenGL.glUniform4fv>();
-                glUniformMatrix2fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix2fv>();
-                glUniformMatrix3fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix3fv>();
-                glUniformMatrix4fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix4fv>();
                 glGetUniformLocation = OpenGL.GetDelegateFor<OpenGL.glGetUniformLocation>();
             }
 
@@ -218,6 +191,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform1iv == null) { glUniform1iv = OpenGL.GetDelegateFor<OpenGL.glUniform1iv>(); }
                 glUniform1iv(location, values.Length, values);
             }
             return location;
@@ -232,6 +206,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform1fv == null) { glUniform1fv = OpenGL.GetDelegateFor<OpenGL.glUniform1fv>(); }
                 glUniform1fv(location, values.Length, values);
             }
             return location;
@@ -246,6 +221,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform2iv == null) { glUniform2iv = OpenGL.GetDelegateFor<OpenGL.glUniform2iv>(); }
                 int count = values.Length;
                 var value = new int[count * 2];
                 int index = 0;
@@ -268,6 +244,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform2uiv == null) { glUniform2uiv = OpenGL.GetDelegateFor<OpenGL.glUniform2uiv>(); }
                 int count = values.Length;
                 var value = new uint[count * 2];
                 int index = 0;
@@ -290,6 +267,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform2iv == null) { glUniform2iv = OpenGL.GetDelegateFor<OpenGL.glUniform2iv>(); }
                 int count = values.Length;
                 var value = new int[count * 2];
                 int index = 0;
@@ -312,6 +290,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform2fv == null) { glUniform2fv = OpenGL.GetDelegateFor<OpenGL.glUniform2fv>(); }
                 int count = values.Length;
                 var value = new float[count * 2];
                 int index = 0;
@@ -334,6 +313,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform3iv == null) { glUniform3iv = OpenGL.GetDelegateFor<OpenGL.glUniform3iv>(); }
                 int count = values.Length;
                 var value = new int[count * 3];
                 int index = 0;
@@ -357,6 +337,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform3uiv == null) { glUniform3uiv = OpenGL.GetDelegateFor<OpenGL.glUniform3uiv>(); }
                 int count = values.Length;
                 var value = new uint[count * 3];
                 int index = 0;
@@ -380,6 +361,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform3iv == null) { glUniform3iv = OpenGL.GetDelegateFor<OpenGL.glUniform3iv>(); }
                 int count = values.Length;
                 var value = new int[count * 3];
                 int index = 0;
@@ -403,6 +385,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform3fv == null) { glUniform3fv = OpenGL.GetDelegateFor<OpenGL.glUniform3fv>(); }
                 int count = values.Length;
                 var value = new float[count * 3];
                 int index = 0;
@@ -426,6 +409,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform4iv == null) { glUniform4iv = OpenGL.GetDelegateFor<OpenGL.glUniform4iv>(); }
                 int count = values.Length;
                 var value = new int[count * 4];
                 int index = 0;
@@ -450,6 +434,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform4uiv == null) { glUniform4uiv = OpenGL.GetDelegateFor<OpenGL.glUniform4uiv>(); }
                 int count = values.Length;
                 var value = new uint[count * 4];
                 int index = 0;
@@ -474,6 +459,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform4iv == null) { glUniform4iv = OpenGL.GetDelegateFor<OpenGL.glUniform4iv>(); }
                 int count = values.Length;
                 var value = new int[count * 4];
                 int index = 0;
@@ -498,6 +484,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform4fv == null) { glUniform4fv = OpenGL.GetDelegateFor<OpenGL.glUniform4fv>(); }
                 int count = values.Length;
                 var value = new float[count * 4];
                 int index = 0;
@@ -521,6 +508,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform1i == null) { glUniform1i = OpenGL.GetDelegateFor<OpenGL.glUniform1i>(); }
                 glUniform1i(GetUniformLocation(uniformName), v0 ? 1 : 0);
             }
             return location;
@@ -535,6 +523,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform1iv == null) { glUniform1iv = OpenGL.GetDelegateFor<OpenGL.glUniform1iv>(); }
                 //TODO: note tested yet.
                 var values = new int[v0.Length];
                 for (int i = 0; i < values.Length; i++)
@@ -555,6 +544,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform1ui == null) { glUniform1ui = OpenGL.GetDelegateFor<OpenGL.glUniform1ui>(); }
                 glUniform1ui(GetUniformLocation(uniformName), v0);
             }
             return location;
@@ -570,6 +560,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform2ui == null) { glUniform2ui = OpenGL.GetDelegateFor<OpenGL.glUniform2ui>(); }
                 glUniform2ui(GetUniformLocation(uniformName), v0, v1);
             }
             return location;
@@ -586,6 +577,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform3ui == null) { glUniform3ui = OpenGL.GetDelegateFor<OpenGL.glUniform3ui>(); }
                 glUniform3ui(GetUniformLocation(uniformName), v0, v1, v2);
             }
             return location;
@@ -603,11 +595,26 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform4ui == null) { glUniform4ui = OpenGL.GetDelegateFor<OpenGL.glUniform4ui>(); }
                 glUniform4ui(GetUniformLocation(uniformName), v0, v1, v2, v3);
             }
             return location;
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public int SetUniform(string uniformName, uint[] values)
+        {
+            int location = GetUniformLocation(uniformName);
+            if (location >= 0)
+            {
+                if (glUniform1uiv == null) { glUniform1uiv = OpenGL.GetDelegateFor<OpenGL.glUniform1uiv>(); }
+                glUniform1uiv(location, values.Length, values);
+            }
+            return location;
+        }
         /// <summary>
         /// </summary>
         /// <param name="uniformName"></param>
@@ -617,6 +624,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform1i == null) { glUniform1i = OpenGL.GetDelegateFor<OpenGL.glUniform1i>(); }
                 glUniform1i(GetUniformLocation(uniformName), v0);
             }
             return location;
@@ -632,6 +640,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform2i == null) { glUniform2i = OpenGL.GetDelegateFor<OpenGL.glUniform2i>(); }
                 glUniform2i(GetUniformLocation(uniformName), v0, v1);
             }
             return location;
@@ -648,6 +657,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform3i == null) { glUniform3i = OpenGL.GetDelegateFor<OpenGL.glUniform3i>(); }
                 glUniform3i(GetUniformLocation(uniformName), v0, v1, v2);
             }
             return location;
@@ -665,6 +675,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform4i == null) { glUniform4i = OpenGL.GetDelegateFor<OpenGL.glUniform4i>(); }
                 glUniform4i(GetUniformLocation(uniformName), v0, v1, v2, v3);
             }
             return location;
@@ -679,6 +690,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform1f == null) { glUniform1f = OpenGL.GetDelegateFor<OpenGL.glUniform1f>(); }
                 glUniform1f(GetUniformLocation(uniformName), v0);
             }
             return location;
@@ -694,6 +706,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform2f == null) { glUniform2f = OpenGL.GetDelegateFor<OpenGL.glUniform2f>(); }
                 glUniform2f(GetUniformLocation(uniformName), v0, v1);
             }
             return location;
@@ -710,6 +723,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform3f == null) { glUniform3f = OpenGL.GetDelegateFor<OpenGL.glUniform3f>(); }
                 glUniform3f(GetUniformLocation(uniformName), v0, v1, v2);
             }
             return location;
@@ -727,6 +741,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniform4f == null) { glUniform4f = OpenGL.GetDelegateFor<OpenGL.glUniform4f>(); }
                 glUniform4f(location, v0, v1, v2, v3);
             }
             return location;
@@ -742,6 +757,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniformMatrix2fv == null) { glUniformMatrix2fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix2fv>(); }
                 var values = new float[m.Length * 4];
                 for (int index = 0, i = 0; i < m.Length; i++)
                 {
@@ -765,6 +781,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniformMatrix3fv == null) { glUniformMatrix3fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix3fv>(); }
                 var values = new float[m.Length * 9];
                 for (int index = 0, i = 0; i < m.Length; i++)
                 {
@@ -788,6 +805,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniformMatrix4fv == null) { glUniformMatrix4fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix4fv>(); }
                 var values = new float[m.Length * 16];
                 for (int index = 0, i = 0; i < m.Length; i++)
                 {
@@ -811,6 +829,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniformMatrix2fv == null) { glUniformMatrix2fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix2fv>(); }
                 glUniformMatrix2fv(location, m.Length / 4, false, m);
             }
             return location;
@@ -825,6 +844,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniformMatrix3fv == null) { glUniformMatrix3fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix3fv>(); }
                 glUniformMatrix3fv(location, m.Length / 9, false, m);
             }
             return location;
@@ -839,6 +859,7 @@ namespace CSharpGL
             int location = GetUniformLocation(uniformName);
             if (location >= 0)
             {
+                if (glUniformMatrix4fv == null) { glUniformMatrix4fv = OpenGL.GetDelegateFor<OpenGL.glUniformMatrix4fv>(); }
                 glUniformMatrix4fv(location, m.Length / 16, false, m);
             }
             return location;
