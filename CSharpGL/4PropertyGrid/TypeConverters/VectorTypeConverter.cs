@@ -26,7 +26,7 @@ namespace CSharpGL
                 return result;
             }
             else
-            { return new bvec2(); }
+            { return new T(); }
         }
 
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
