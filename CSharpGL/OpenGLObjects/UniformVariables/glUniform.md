@@ -14,41 +14,253 @@ glUniform — specify the value of a uniform variable for the current program ob
 
 <div class="funcsynopsis">
 
-| `void **glUniform1f**(` | GLint <var class="pdparam">location</var>, |
- GLfloat <var class="pdparam">v0</var>`)`; |
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
 
-| `void **glUniform2f**(` | GLint <var class="pdparam">location</var>, |
- GLfloat <var class="pdparam">v0</var>, |
- GLfloat <var class="pdparam">v1</var>`)`; |
+<tbody>
 
-| `void **glUniform3f**(` | GLint <var class="pdparam">location</var>, |
- GLfloat <var class="pdparam">v0</var>, |
- GLfloat <var class="pdparam">v1</var>, |
- GLfloat <var class="pdparam">v2</var>`)`; |
+<tr>
 
-| `void **glUniform4f**(` | GLint <var class="pdparam">location</var>, |
- GLfloat <var class="pdparam">v0</var>, |
- GLfloat <var class="pdparam">v1</var>, |
- GLfloat <var class="pdparam">v2</var>, |
- GLfloat <var class="pdparam">v3</var>`)`; |
+<td>`void **glUniform1f**(`</td>
 
-| `void **glUniform1i**(` | GLint <var class="pdparam">location</var>, |
- GLint <var class="pdparam">v0</var>`)`; |
+<td>GLint <var class="pdparam">location</var>,</td>
 
-| `void **glUniform2i**(` | GLint <var class="pdparam">location</var>, |
- GLint <var class="pdparam">v0</var>, |
- GLint <var class="pdparam">v1</var>`)`; |
+</tr>
 
-| `void **glUniform3i**(` | GLint <var class="pdparam">location</var>, |
- GLint <var class="pdparam">v0</var>, |
- GLint <var class="pdparam">v1</var>, |
- GLint <var class="pdparam">v2</var>`)`; |
+<tr>
 
-| `void **glUniform4i**(` | GLint <var class="pdparam">location</var>, |
- GLint <var class="pdparam">v0</var>, |
- GLint <var class="pdparam">v1</var>, |
- GLint <var class="pdparam">v2</var>, |
- GLint <var class="pdparam">v3</var>`)`; |
+<td>GLfloat <var class="pdparam">v0</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniform2f**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLfloat <var class="pdparam">v0</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLfloat <var class="pdparam">v1</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniform3f**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLfloat <var class="pdparam">v0</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLfloat <var class="pdparam">v1</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLfloat <var class="pdparam">v2</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniform4f**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLfloat <var class="pdparam">v0</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLfloat <var class="pdparam">v1</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLfloat <var class="pdparam">v2</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLfloat <var class="pdparam">v3</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniform1i**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLint <var class="pdparam">v0</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniform2i**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLint <var class="pdparam">v0</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLint <var class="pdparam">v1</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniform3i**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLint <var class="pdparam">v0</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLint <var class="pdparam">v1</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLint <var class="pdparam">v2</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniform4i**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLint <var class="pdparam">v0</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLint <var class="pdparam">v1</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLint <var class="pdparam">v2</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLint <var class="pdparam">v3</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 </div>
 
@@ -90,37 +302,229 @@ Specifies the new values to be used for the specified uniform variable.
 
 <div class="funcsynopsis">
 
-| `void **glUniform1fv**(` | GLint <var class="pdparam">location</var>, |
- GLsizei <var class="pdparam">count</var>, |
- const GLfloat *<var class="pdparam">value</var>`)`; |
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
 
-| `void **glUniform2fv**(` | GLint <var class="pdparam">location</var>, |
- GLsizei <var class="pdparam">count</var>, |
- const GLfloat *<var class="pdparam">value</var>`)`; |
+<tbody>
 
-| `void **glUniform3fv**(` | GLint <var class="pdparam">location</var>, |
- GLsizei <var class="pdparam">count</var>, |
- const GLfloat *<var class="pdparam">value</var>`)`; |
+<tr>
 
-| `void **glUniform4fv**(` | GLint <var class="pdparam">location</var>, |
- GLsizei <var class="pdparam">count</var>, |
- const GLfloat *<var class="pdparam">value</var>`)`; |
+<td>`void **glUniform1fv**(`</td>
 
-| `void **glUniform1iv**(` | GLint <var class="pdparam">location</var>, |
- GLsizei <var class="pdparam">count</var>, |
- const GLint *<var class="pdparam">value</var>`)`; |
+<td>GLint <var class="pdparam">location</var>,</td>
 
-| `void **glUniform2iv**(` | GLint <var class="pdparam">location</var>, |
- GLsizei <var class="pdparam">count</var>, |
- const GLint *<var class="pdparam">value</var>`)`; |
+</tr>
 
-| `void **glUniform3iv**(` | GLint <var class="pdparam">location</var>, |
- GLsizei <var class="pdparam">count</var>, |
- const GLint *<var class="pdparam">value</var>`)`; |
+<tr>
 
-| `void **glUniform4iv**(` | GLint <var class="pdparam">location</var>, |
- GLsizei <var class="pdparam">count</var>, |
- const GLint *<var class="pdparam">value</var>`)`; |
+<td>GLsizei <var class="pdparam">count</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>const GLfloat *<var class="pdparam">value</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniform2fv**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLsizei <var class="pdparam">count</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>const GLfloat *<var class="pdparam">value</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniform3fv**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLsizei <var class="pdparam">count</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>const GLfloat *<var class="pdparam">value</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniform4fv**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLsizei <var class="pdparam">count</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>const GLfloat *<var class="pdparam">value</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniform1iv**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLsizei <var class="pdparam">count</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>const GLint *<var class="pdparam">value</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniform2iv**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLsizei <var class="pdparam">count</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>const GLint *<var class="pdparam">value</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniform3iv**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLsizei <var class="pdparam">count</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>const GLint *<var class="pdparam">value</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniform4iv**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLsizei <var class="pdparam">count</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>const GLint *<var class="pdparam">value</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 </div>
 
@@ -170,20 +574,107 @@ Specifies a pointer to an array of _`count`_ values that will be used to update 
 
 <div class="funcsynopsis">
 
-| `void **glUniformMatrix2fv**(` | GLint <var class="pdparam">location</var>, |
- GLsizei <var class="pdparam">count</var>, |
- GLboolean <var class="pdparam">transpose</var>, |
- const GLfloat *<var class="pdparam">value</var>`)`; |
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
 
-| `void **glUniformMatrix3fv**(` | GLint <var class="pdparam">location</var>, |
- GLsizei <var class="pdparam">count</var>, |
- GLboolean <var class="pdparam">transpose</var>, |
- const GLfloat *<var class="pdparam">value</var>`)`; |
+<tbody>
 
-| `void **glUniformMatrix4fv**(` | GLint <var class="pdparam">location</var>, |
- GLsizei <var class="pdparam">count</var>, |
- GLboolean <var class="pdparam">transpose</var>, |
- const GLfloat *<var class="pdparam">value</var>`)`; |
+<tr>
+
+<td>`void **glUniformMatrix2fv**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLsizei <var class="pdparam">count</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLboolean <var class="pdparam">transpose</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>const GLfloat *<var class="pdparam">value</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniformMatrix3fv**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLsizei <var class="pdparam">count</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLboolean <var class="pdparam">transpose</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>const GLfloat *<var class="pdparam">value</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;">
+
+<tbody>
+
+<tr>
+
+<td>`void **glUniformMatrix4fv**(`</td>
+
+<td>GLint <var class="pdparam">location</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLsizei <var class="pdparam">count</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>GLboolean <var class="pdparam">transpose</var>,</td>
+
+</tr>
+
+<tr>
+
+<td>const GLfloat *<var class="pdparam">value</var>`)`;</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 </div>
 
