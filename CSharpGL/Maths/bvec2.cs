@@ -128,7 +128,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public bool[] to_array()
+        public bool[] ToArray()
         {
             return new[] { x, y };
         }

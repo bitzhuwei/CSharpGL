@@ -355,17 +355,17 @@ namespace CSharpGL.CSSLGenetator
                 else if (item.FieldType == "mat2")
                 {
                     Debug.WriteLine(string.Format(
-                        "program.SetUniformMatrix2(str{0}, {0}.to_array());", item.FieldName));
+                        "program.SetUniformMatrix2(str{0}, {0}.ToArray());", item.FieldName));
                 }
                 else if (item.FieldType == "mat3")
                 {
                     Debug.WriteLine(string.Format(
-                        "program.SetUniformMatrix3(str{0}, {0}.to_array());", item.FieldName));
+                        "program.SetUniformMatrix3(str{0}, {0}.ToArray());", item.FieldName));
                 }
                 else if (item.FieldType == "mat4")
                 {
                     Debug.WriteLine(string.Format(
-                        "program.SetUniformMatrix4(str{0}, {0}.to_array());", item.FieldName));
+                        "program.SetUniformMatrix4(str{0}, {0}.ToArray());", item.FieldName));
                 }
 
             }

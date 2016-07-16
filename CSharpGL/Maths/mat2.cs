@@ -170,9 +170,9 @@ namespace CSharpGL
         /// Returns the matrix as a flat array of elements, column major.
         /// </summary>
         /// <returns></returns>
-        public float[] to_array()
+        public float[] ToArray()
         {
-            float[] result = new float[4];
+            var result = new float[4];
             result[0 + 0] = col0.x; result[0 + 1] = col0.y;
             result[2 + 0] = col1.x; result[2 + 1] = col1.y;
 

@@ -745,7 +745,7 @@ namespace CSharpGL
                 var values = new float[m.Length * 4];
                 for (int index = 0, i = 0; i < m.Length; i++)
                 {
-                    float[] array = m[i].to_array();
+                    float[] array = m[i].ToArray();
                     for (int j = 0; j < 4; j++)
                     {
                         values[index++] = array[j];
@@ -768,7 +768,7 @@ namespace CSharpGL
                 var values = new float[m.Length * 9];
                 for (int index = 0, i = 0; i < m.Length; i++)
                 {
-                    float[] array = m[i].to_array();
+                    float[] array = m[i].ToArray();
                     for (int j = 0; j < 9; j++)
                     {
                         values[index++] = array[j];
@@ -791,7 +791,7 @@ namespace CSharpGL
                 var values = new float[m.Length * 16];
                 for (int index = 0, i = 0; i < m.Length; i++)
                 {
-                    float[] array = m[i].to_array();
+                    float[] array = m[i].ToArray();
                     for (int j = 0; j < 16; j++)
                     {
                         values[index++] = array[j];

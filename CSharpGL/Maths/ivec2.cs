@@ -77,7 +77,7 @@ namespace CSharpGL
             this.x = v.x;
             this.y = v.y;
         }
-           /// <summary>
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="v"></param>
@@ -236,7 +236,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public int[] to_array()
+        public int[] ToArray()
         {
             return new[] { x, y };
         }

@@ -236,7 +236,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public float[] to_array()
+        public float[] ToArray()
         {
             return new[] { x, y };
         }

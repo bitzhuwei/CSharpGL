@@ -236,7 +236,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public uint[] to_array()
+        public uint[] ToArray()
         {
             return new[] { x, y };
         }

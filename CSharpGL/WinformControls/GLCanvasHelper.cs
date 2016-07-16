@@ -24,7 +24,7 @@ namespace CSharpGL
             ////  Create a perspective transformation.
             //OpenGL.gluPerspective(60.0f, width / height, 0.01, 100.0);
             mat4 projectionMatrix = glm.perspective(glm.radians(60.0f), (float)(width / height), 0.01f, 100.0f);
-            OpenGL.MultMatrixf((projectionMatrix * viewMatrix).to_array());
+            OpenGL.MultMatrixf((projectionMatrix * viewMatrix).ToArray());
 
             //  Set the modelview matrix.
             OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);

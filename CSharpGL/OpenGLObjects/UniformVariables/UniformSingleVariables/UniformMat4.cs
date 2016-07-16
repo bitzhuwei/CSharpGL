@@ -33,7 +33,7 @@ namespace CSharpGL
         /// <param name="program"></param>
         public override void SetUniform(ShaderProgram program)
         {
-            this.Location = program.SetUniformMatrix4(VarName, this.value.to_array());
+            this.Location = program.SetUniformMatrix4(VarName, this.value.ToArray());
         }
     }
 }
