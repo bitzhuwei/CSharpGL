@@ -1730,7 +1730,7 @@ namespace CSharpGL
         /// <returns></returns>
         public delegate uint glCreateProgram();
         /// <summary>
-        /// 
+        /// create a shader object.
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
