@@ -157,9 +157,10 @@ namespace CSharpGL
         {
             //  If we don't have the attribute name in the dictionary, get it's
             //  location and add it.
-            if (attributeNamesToLocations.ContainsKey(attributeName) == false)
+            int location;
+            if (!attributeNamesToLocations.TryGetValue(attributeName, out location))
             {
-                int location = glGetAttribLocation(this.ShaderProgramObject, attributeName);
+                location = glGetAttribLocation(this.ShaderProgramObject, attributeName);
                 if (location < 0)
                 {
                     Debug.WriteLine(string.Format("Failed to getAttribLocation for [{0}]", attributeName));
@@ -169,7 +170,7 @@ namespace CSharpGL
             }
 
             //  Return the attribute location.
-            return attributeNamesToLocations[attributeName];
+            return location;
         }
         /// <summary>
         /// 
@@ -208,7 +209,6 @@ namespace CSharpGL
             return log;
         }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
@@ -223,7 +223,6 @@ namespace CSharpGL
             return location;
         }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
@@ -238,7 +237,6 @@ namespace CSharpGL
             return location;
         }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
@@ -261,7 +259,6 @@ namespace CSharpGL
             return location;
         }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
@@ -284,7 +281,6 @@ namespace CSharpGL
             return location;
         }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
@@ -307,7 +303,6 @@ namespace CSharpGL
             return location;
         }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
@@ -330,7 +325,6 @@ namespace CSharpGL
             return location;
         }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
@@ -354,7 +348,6 @@ namespace CSharpGL
             return location;
         }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
@@ -378,7 +371,6 @@ namespace CSharpGL
             return location;
         }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
@@ -402,7 +394,6 @@ namespace CSharpGL
             return location;
         }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
@@ -426,7 +417,6 @@ namespace CSharpGL
             return location;
         }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
@@ -451,7 +441,6 @@ namespace CSharpGL
             return location;
         }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
@@ -476,7 +465,6 @@ namespace CSharpGL
             return location;
         }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
@@ -501,7 +489,6 @@ namespace CSharpGL
             return location;
         }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
@@ -526,7 +513,6 @@ namespace CSharpGL
             return location;
         }
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
@@ -541,7 +527,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
@@ -562,7 +547,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
@@ -577,7 +561,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
@@ -593,7 +576,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
@@ -610,7 +592,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
@@ -628,7 +609,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
@@ -643,7 +623,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
@@ -659,7 +638,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
@@ -676,7 +654,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
@@ -694,7 +671,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
@@ -709,7 +685,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
@@ -725,7 +700,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
@@ -742,7 +716,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="v0"></param>
@@ -761,7 +734,6 @@ namespace CSharpGL
 
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
@@ -785,7 +757,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
@@ -809,7 +780,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
@@ -833,7 +803,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
@@ -848,7 +817,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
@@ -863,7 +831,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 请注意你的数据类型最终将转换为int还是float
         /// </summary>
         /// <param name="uniformName"></param>
         /// <param name="m"></param>
@@ -877,7 +844,6 @@ namespace CSharpGL
             return location;
         }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uniformName"></param>
         /// <returns></returns>
@@ -885,9 +851,10 @@ namespace CSharpGL
         {
             //  If we don't have the uniform name in the dictionary, get it's
             //  location and add it.
-            if (uniformNamesToLocations.ContainsKey(uniformName) == false)
+            int location;
+            if (!uniformNamesToLocations.TryGetValue(uniformName, out location))
             {
-                int location = glGetUniformLocation(this.ShaderProgramObject, uniformName);
+                location = glGetUniformLocation(this.ShaderProgramObject, uniformName);
                 if (location < 0)
                 { Debug.WriteLine(string.Format("No uniform found for the name [{0}]", uniformName)); }
 
@@ -895,15 +862,12 @@ namespace CSharpGL
             }
 
             //  Return the uniform location.
-            return uniformNamesToLocations[uniformName];
+            return location;
         }
 
         /// <summary>
         /// Gets the shader program object.
         /// </summary>
-        /// <value>
-        /// The shader program object.
-        /// </value>
         public uint ShaderProgramObject { get; protected set; }
 
 
