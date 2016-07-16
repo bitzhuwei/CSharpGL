@@ -25,6 +25,10 @@ namespace CSharpGL
         static OpenGL.glUniform2ui glUniform2ui;
         static OpenGL.glUniform3ui glUniform3ui;
         static OpenGL.glUniform4ui glUniform4ui;
+        static OpenGL.glUniform1uiv glUniform1uiv;
+        static OpenGL.glUniform2uiv glUniform2uiv;
+        static OpenGL.glUniform3uiv glUniform3uiv;
+        static OpenGL.glUniform4uiv glUniform4uiv;
         static OpenGL.glUniform1i glUniform1i;
         static OpenGL.glUniform2i glUniform2i;
         static OpenGL.glUniform3i glUniform3i;
@@ -65,6 +69,10 @@ namespace CSharpGL
                 glUniform2ui = OpenGL.GetDelegateFor<OpenGL.glUniform2ui>();
                 glUniform3ui = OpenGL.GetDelegateFor<OpenGL.glUniform3ui>();
                 glUniform4ui = OpenGL.GetDelegateFor<OpenGL.glUniform4ui>();
+                glUniform1uiv = OpenGL.GetDelegateFor<OpenGL.glUniform1uiv>();
+                glUniform2uiv = OpenGL.GetDelegateFor<OpenGL.glUniform2uiv>();
+                glUniform3uiv = OpenGL.GetDelegateFor<OpenGL.glUniform3uiv>();
+                glUniform4uiv = OpenGL.GetDelegateFor<OpenGL.glUniform4uiv>();
                 glUniform1i = OpenGL.GetDelegateFor<OpenGL.glUniform1i>();
                 glUniform2i = OpenGL.GetDelegateFor<OpenGL.glUniform2i>();
                 glUniform3i = OpenGL.GetDelegateFor<OpenGL.glUniform3i>();
@@ -229,7 +237,29 @@ namespace CSharpGL
             }
             return location;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public int SetUniform(string uniformName, uvec2[] values)
+        {
+            int location = GetUniformLocation(uniformName);
+            if (location >= 0)
+            {
+                int count = values.Length;
+                var value = new uint[count * 2];
+                int index = 0;
+                for (int i = 0; i < value.Length; i++)
+                {
+                    value[index++] = values[i].x;
+                    value[index++] = values[i].y;
+                }
+                glUniform2uiv(GetUniformLocation(uniformName), count, value);
+            }
+            return location;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -282,6 +312,30 @@ namespace CSharpGL
         /// <param name="uniformName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
+        public int SetUniform(string uniformName, uvec3[] values)
+        {
+            int location = GetUniformLocation(uniformName);
+            if (location >= 0)
+            {
+                int count = values.Length;
+                var value = new uint[count * 3];
+                int index = 0;
+                for (int i = 0; i < value.Length; i++)
+                {
+                    value[index++] = values[i].x;
+                    value[index++] = values[i].y;
+                    value[index++] = values[i].z;
+                }
+                glUniform3uiv(GetUniformLocation(uniformName), count, value);
+            }
+            return location;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
         public int SetUniform(string uniformName, ivec3[] values)
         {
             int location = GetUniformLocation(uniformName);
@@ -321,6 +375,31 @@ namespace CSharpGL
                     value[index++] = values[i].z;
                 }
                 glUniform3fv(GetUniformLocation(uniformName), count, value);
+            }
+            return location;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uniformName"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public int SetUniform(string uniformName, uvec4[] values)
+        {
+            int location = GetUniformLocation(uniformName);
+            if (location >= 0)
+            {
+                int count = values.Length;
+                var value = new uint[count * 4];
+                int index = 0;
+                for (int i = 0; i < value.Length; i++)
+                {
+                    value[index++] = values[i].x;
+                    value[index++] = values[i].y;
+                    value[index++] = values[i].z;
+                    value[index++] = values[i].w;
+                }
+                glUniform4uiv(GetUniformLocation(uniformName), count, value);
             }
             return location;
         }

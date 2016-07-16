@@ -132,6 +132,9 @@
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\ScissorTestSwitch.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformArrayVariableBase.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformInt32Array.cs" />
+    <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformUVec4Array.cs" />
+    <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformUVec3Array.cs" />
+    <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformUVec2Array.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformIVec2Array.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformIVec3Array.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformIVec4Array.cs" />
