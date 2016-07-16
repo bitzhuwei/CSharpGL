@@ -1,6 +1,4 @@
-﻿<div class="refentry"><a id="glUniform"></a><div class="titlepage"></div><div class="refnamediv">
-
-## Name
+﻿# glUniform
 
 glUniform — specify the value of a uniform variable for the current program object
 </div><div class="refsynopsisdiv">
@@ -259,5 +257,3 @@ If _`location`_ is a value other than
             This material may be distributed subject to the terms and conditions set forth in 
             the Open Publication License, v 1.0, 8 June 1999.
             [http://opencontent.org/openpub/](http://opencontent.org/openpub/).
-
-</div></div>
