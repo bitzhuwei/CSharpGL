@@ -49,5 +49,30 @@ namespace CSharpGL
             return result;
         }
 
+        /// <summary>
+        /// Gets standard up.
+        /// </summary>
+        /// <param name="camera"></param>
+        /// <returns></returns>
+        public static vec3 GetUp(this IViewCamera camera)
+        {
+            vec3 back = camera.Position - camera.Target;
+            vec3 right = camera.UpVector.cross(back);
+            vec3 up = back.cross(right);
+            return up;
+        }
+
+        /// <summary>
+        /// Gets standard down.
+        /// </summary>
+        /// <param name="camera"></param>
+        /// <returns></returns>
+        public static vec3 GetDown(this IViewCamera camera)
+        {
+            vec3 back = camera.Position - camera.Target;
+            vec3 right = camera.UpVector.cross(back);
+            vec3 down = right.cross(back);
+            return down;
+        }
     }
 }
