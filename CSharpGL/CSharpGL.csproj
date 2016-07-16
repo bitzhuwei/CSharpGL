@@ -145,8 +145,11 @@
     <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformIVec3Array.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformIVec4Array.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformInt32.cs" />
+    <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformBVec2.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformUVec2.cs" />
+    <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformBVec3.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformUVec3.cs" />
+    <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformBVec4.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformUVec4.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformIVec4.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformIVec3.cs" />
