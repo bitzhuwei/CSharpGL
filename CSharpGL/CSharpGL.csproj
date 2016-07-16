@@ -136,7 +136,7 @@
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\PolygonOffsetSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\PrimitiveRestartSwitch.cs" />
     <Compile Include="OpenGLObjects\GLSwitches\EnableSwitches\ScissorTestSwitch.cs" />
-    <None Include="OpenGLObjects\UniformVariables\glUniform.md" />
+    <None Include="OpenGLObjects\UniformVariables\readme.md" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformArrayVariableBase.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformInt32Array.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformArrayVariables\UniformBVec2Array.cs" />
