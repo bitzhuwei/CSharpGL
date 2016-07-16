@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -9,7 +8,11 @@ using System.Text;
 
 namespace CSharpGL
 {
-    class SamplerValueTypeConverter : TypeConverter
+    /// <summary>
+    /// Supports editing values in PropertyGrid.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    class StructTypeConverter<T> : TypeConverter where T : struct, ILoadFromString
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
@@ -19,18 +22,15 @@ namespace CSharpGL
         public override object ConvertFrom(ITypeDescriptorContext context,
             CultureInfo culture, object value)
         {
-            string str = value as string;
-            if (!string.IsNullOrEmpty(str))
-            {
-                return samplerValue.Parse(str);
-            }
-            else
-            { return new vec2(); }
+            var result = new T();
+            result.Load(value as string);
+
+            return result;
         }
 
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
         {
-            return destinationType == typeof(samplerValue);
+            return destinationType == typeof(T);
         }
 
         public override object ConvertTo(ITypeDescriptorContext context,

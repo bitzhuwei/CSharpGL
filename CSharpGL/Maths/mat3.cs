@@ -7,7 +7,7 @@ namespace CSharpGL
     /// <summary>
     /// Represents a 3x3 matrix.
     /// </summary>
-    [TypeConverter(typeof(MatrixTypeConverter<mat3>))]
+    [TypeConverter(typeof(StructTypeConverter<mat3>))]
     public struct mat3 : IEquatable<mat3>, ILoadFromString
     {
 

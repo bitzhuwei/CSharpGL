@@ -8,7 +8,7 @@ namespace CSharpGL
     /// Represents a four dimensional vector.
     /// </summary>
     //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]   
-    [TypeConverter(typeof(MatrixTypeConverter<ivec4>))]
+    [TypeConverter(typeof(StructTypeConverter<ivec4>))]
     public struct ivec4 : IEquatable<ivec4>, ILoadFromString
     {
 

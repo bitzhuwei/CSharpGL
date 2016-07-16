@@ -7,7 +7,7 @@ namespace CSharpGL
     /// <summary>
     /// Represents a three dimensional vector.
     /// </summary>
-    [TypeConverter(typeof(MatrixTypeConverter<bvec3>))]
+    [TypeConverter(typeof(StructTypeConverter<bvec3>))]
     public struct bvec3 : IEquatable<bvec3>, ILoadFromString
     {
 

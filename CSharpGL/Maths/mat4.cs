@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Represents a 4x4 matrix.
     /// </summary>
-    [TypeConverter(typeof(MatrixTypeConverter<mat4>))]
+    [TypeConverter(typeof(StructTypeConverter<mat4>))]
     public struct mat4 : IEquatable<mat4>, ILoadFromString
     {
 

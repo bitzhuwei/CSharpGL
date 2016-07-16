@@ -60,8 +60,8 @@ namespace CSharpGL
     /// <summary>
     /// value for setting/resetting uniform samplerXD variable.
     /// </summary>
-    [TypeConverter(typeof(SamplerValueTypeConverter))]
-    public struct samplerValue : IEquatable<samplerValue>
+    [TypeConverter(typeof(StructTypeConverter<samplerValue>))]
+    public struct samplerValue : IEquatable<samplerValue>, ILoadFromString
     {
         internal uint target;
         /// <summary>
@@ -186,6 +186,17 @@ namespace CSharpGL
                 && this.textureId == other.textureId
                 && this.activeTextureIndex == other.activeTextureIndex
                 );
+        }
+
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+            BindTextureTarget target = (BindTextureTarget)Enum.Parse(typeof(BindTextureTarget), parts[1]);
+            uint textureId = uint.Parse(parts[3]);
+            uint activeTextureIndex = uint.Parse(parts[5]);
+            this.target = (uint)target;
+            this.textureId = textureId;
+            this.activeTextureIndex = (activeTextureIndex - OpenGL.GL_TEXTURE0);
         }
     }
     /// <summary>
