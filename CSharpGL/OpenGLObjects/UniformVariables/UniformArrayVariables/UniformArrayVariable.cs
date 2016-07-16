@@ -15,24 +15,33 @@ namespace CSharpGL
     public abstract class UniformArrayVariable<T> : UniformArrayVariableBase
     {
 
-        private NoisyArray<T> value;
+        private NoisyArray<T> array;
         /// <summary>
         /// 
         /// </summary>
         public NoisyArray<T> Value
         {
-            get { return this.value; }
+            get { return this.array; }
             set
             {
-                if (this.value != value)
+                if (value != null)
                 {
-                    if (this.value != null)
-                    { this.value.ItemUpdated -= eventHandler; }
-
-                    if (value != null)
+                    if (this.array != value)
                     {
+                        if (this.array != null)
+                        { this.array.ItemUpdated -= eventHandler; }
+
                         value.ItemUpdated += eventHandler;
-                        this.value = value;
+                        this.array = value;
+                        this.Updated = true;
+                    }
+                }
+                else
+                {
+                    if (this.array.Length != 0)
+                    {
+                        this.array.ItemUpdated -= eventHandler;
+                        this.array = new NoisyArray<T>(0);
                         this.Updated = true;
                     }
                 }
