@@ -69,7 +69,7 @@ Specifies a pointer to an array of
 		    _`count`_ values that will be
 		    used to update the specified uniform
 		    variable.
-</dd></dl></div></div>
+</dd></dl></div></div><div class="refsect1"><a id="description"></a>
 
 ## Description
 
@@ -159,6 +159,7 @@ The commands
 	of 1 should be used if modifying the value of a single matrix,
 	and a count greater than 1 can be used to modify an array of
 	matrices.
+</div><div class="refsect1"><a id="notes"></a>
 
 ## Notes
 
@@ -187,6 +188,7 @@ If _`location`_ is a value other than
 	current program object. If _`location`_ is
 	equal to -1, the data passed in will be silently ignored and the
 	specified uniform variable will not be changed.
+</div><div class="refsect1"><a id="errors"></a>
 
 ## Errors
 
@@ -224,7 +226,7 @@ If _`location`_ is a value other than
 	sampler is loaded using a command other than
 	`glUniform1i` and
 	`glUniform1iv`.
-</div>
+</div><div class="refsect1"><a id="associatedgets"></a>
 
 ## Associated Gets
 
@@ -234,17 +236,20 @@ If _`location`_ is a value other than
 [glGetActiveUniform](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetActiveUniform.xml)
 	with the handle of a program object and the index of an active uniform variable
 
-[glGetUniform](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniform.xml)
+[<span class="citerefentry"><span class="refentrytitle">glGetUniform</span></span>](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniform.xml)
 	with the handle of a program object and the location of a
 	uniform variable
 
-[glGetUniformLocation](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniformLocation.xml)
+[<span class="citerefentry"><span class="refentrytitle">glGetUniformLocation</span></span>](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniformLocation.xml)
 	with the handle of a program object and the name of a uniform
 	variable
+</div><div class="refsect1"><a id="seealso"></a>
 
 ## See Also
 
-[glLinkProgram](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glLinkProgram.xml), [glUseProgram](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glUseProgram.xml)
+[<span class="citerefentry"><span class="refentrytitle">glLinkProgram</span></span>](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glLinkProgram.xml),
+	[<span class="citerefentry"><span class="refentrytitle">glUseProgram</span></span>](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glUseProgram.xml)
+</div><div class="refsect1"><a id="copyright"></a>
 
 ## Copyright
 
