@@ -24,7 +24,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public uint this[uint index]
+        public uint this[int index]
         {
             get
             {
@@ -189,11 +189,11 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public uint length()
+        public float length()
         {
             double result = Math.Sqrt(this.x * this.x + this.y * this.y);
 
-            return (uint)result;
+            return (float)result;
         }
         /// <summary>
         /// 
@@ -241,16 +241,16 @@ namespace CSharpGL
             return new[] { x, y };
         }
 
-        /// <summary>
-        /// 归一化向量
-        /// </summary>
-        /// <returns></returns>
-        public uvec2 normalize()
-        {
-            var frt = (uint)Math.Sqrt(this.x * this.x + this.y * this.y);
+        ///// <summary>
+        ///// 归一化向量
+        ///// </summary>
+        ///// <returns></returns>
+        //public uvec2 normalize()
+        //{
+        //    var frt = (uint)Math.Sqrt(this.x * this.x + this.y * this.y);
 
-            return new uvec2(x / frt, y / frt);
-        }
+        //    return new uvec2(x / frt, y / frt);
+        //}
         /// <summary>
         /// 
         /// </summary>
