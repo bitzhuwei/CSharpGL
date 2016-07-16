@@ -78,12 +78,6 @@
     <Content Include="OpenGLObjects\VertexBufferObjects\readme.md" />
     <Content Include="readme.md" />
     <Compile Include="4PropertyGrid\TypeConverters\VectorTypeConverter.cs" />
-    <Compile Include="4PropertyGrid\TypeConverters\uvec3TypeConverter.cs" />
-    <Compile Include="4PropertyGrid\TypeConverters\uvec4TypeConverter.cs" />
-    <Compile Include="4PropertyGrid\TypeConverters\uvec2TypeConverter.cs" />
-    <Compile Include="4PropertyGrid\TypeConverters\ivec2TypeConverter.cs" />
-    <Compile Include="4PropertyGrid\TypeConverters\ivec3TypeConverter.cs" />
-    <Compile Include="4PropertyGrid\TypeConverters\ivec4TypeConverter.cs" />
     <Compile Include="4PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -374,9 +368,6 @@
     <Compile Include="4PropertyGrid\TypeConverters\Mat3TypeConverter.cs" />
     <Compile Include="4PropertyGrid\TypeConverters\Mat4TypeConverter.cs" />
     <Compile Include="4PropertyGrid\TypeConverters\SamplerValueTypeConverter.cs" />
-    <Compile Include="4PropertyGrid\TypeConverters\Vec4TypeConverter.cs" />
-    <Compile Include="4PropertyGrid\TypeConverters\Vec3TypeConverter.cs" />
-    <Compile Include="4PropertyGrid\TypeConverters\Vec2TypeConverter.cs" />
     <Compile Include="4PropertyGrid\UITypeEditors\FormUniformVariableListEditor.cs">
       <SubType>Form</SubType>
     </Compile>

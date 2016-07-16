@@ -7,8 +7,8 @@ namespace CSharpGL
     /// <summary>
     /// Represents a three dimensional vector.
     /// </summary>
-    [TypeConverter(typeof(Vec3TypeConverter))]
-    public struct vec3 : IEquatable<vec3>
+    [TypeConverter(typeof(VectorTypeConverter<vec3>))]
+    public struct vec3 : IEquatable<vec3>, ILoadFromString
     {
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace CSharpGL
                 else throw new Exception("Out of range.");
             }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -247,7 +247,7 @@ namespace CSharpGL
         {
             return (lhs.x != rhs.x || lhs.y != rhs.y || lhs.z != rhs.z);
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -299,7 +299,7 @@ namespace CSharpGL
 
         internal static vec3 Parse(string value)
         {
-            string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
             float x = float.Parse(parts[0]);
             float y = float.Parse(parts[1]);
             float z = float.Parse(parts[2]);
@@ -316,6 +316,14 @@ namespace CSharpGL
         public bool Equals(vec3 other)
         {
             return (this.x == other.x && this.y == other.y && this.z == other.z);
+        }
+
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.x = float.Parse(parts[0]);
+            this.y = float.Parse(parts[1]);
+            this.z = float.Parse(parts[2]);
         }
     }
 }

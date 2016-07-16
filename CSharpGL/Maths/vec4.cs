@@ -8,8 +8,8 @@ namespace CSharpGL
     /// Represents a four dimensional vector.
     /// </summary>
     //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]   
-    [TypeConverter(typeof(Vec4TypeConverter))]
-    public struct vec4 : IEquatable<vec4>
+    [TypeConverter(typeof(VectorTypeConverter<vec4>))]
+    public struct vec4 : IEquatable<vec4>, ILoadFromString
     {
 
         /// <summary>
@@ -287,18 +287,6 @@ namespace CSharpGL
             //return base.ToString();
         }
 
-        internal static vec4 Parse(string value)
-        {
-            string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            float x = float.Parse(parts[0]);
-            float y = float.Parse(parts[1]);
-            float z = float.Parse(parts[2]);
-            float w = float.Parse(parts[3]);
-            return new vec4(x, y, z, w);
-        }
-
-        static readonly char[] separator = new char[] { ' ', ',' };
-
         /// <summary>
         /// 
         /// </summary>
@@ -307,6 +295,25 @@ namespace CSharpGL
         public bool Equals(vec4 other)
         {
             return (this.x == other.x && this.y == other.y && this.z == other.z && this.w == other.w);
+        }
+
+        internal static vec4 Parse(string value)
+        {
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            float x = float.Parse(parts[0]);
+            float y = float.Parse(parts[1]);
+            float z = float.Parse(parts[2]);
+            float w = float.Parse(parts[3]);
+            return new vec4(x, y, z, w);
+        }
+
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.x = float.Parse(parts[0]);
+            this.y = float.Parse(parts[1]);
+            this.z = float.Parse(parts[2]);
+            this.w = float.Parse(parts[3]);
         }
     }
 }

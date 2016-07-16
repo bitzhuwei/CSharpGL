@@ -7,8 +7,8 @@ namespace CSharpGL
     /// <summary>
     /// Represents a two dimensional vector.
     /// </summary>
-    [TypeConverter(typeof(uvec2TypeConverter))]
-    public struct uvec2 : IEquatable<uvec2>
+    [TypeConverter(typeof(VectorTypeConverter<uvec2>))]
+    public struct uvec2 : IEquatable<uvec2>, ILoadFromString
     {
         /// <summary>
         /// 
@@ -77,7 +77,7 @@ namespace CSharpGL
             this.x = v.x;
             this.y = v.y;
         }
-           /// <summary>
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="v"></param>
@@ -262,13 +262,12 @@ namespace CSharpGL
 
         internal static uvec2 Parse(string value)
         {
-            string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
             uint x = uint.Parse(parts[0]);
             uint y = uint.Parse(parts[1]);
             return new uvec2(x, y);
         }
 
-        static readonly char[] separator = new char[] { ' ', ',' };
         /// <summary>
         /// 
         /// </summary>
@@ -277,6 +276,13 @@ namespace CSharpGL
         public bool Equals(uvec2 other)
         {
             return (this.x == other.x && this.y == other.y);
+        }
+
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.x = uint.Parse(parts[0]);
+            this.y = uint.Parse(parts[1]);
         }
     }
 }

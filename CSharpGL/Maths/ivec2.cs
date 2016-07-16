@@ -7,8 +7,8 @@ namespace CSharpGL
     /// <summary>
     /// Represents a two dimensional vector.
     /// </summary>
-    [TypeConverter(typeof(ivec2TypeConverter))]
-    public struct ivec2 : IEquatable<ivec2>
+    [TypeConverter(typeof(VectorTypeConverter<ivec2>))]
+    public struct ivec2 : IEquatable<ivec2>, ILoadFromString
     {
         /// <summary>
         /// 
@@ -262,13 +262,12 @@ namespace CSharpGL
 
         internal static ivec2 Parse(string value)
         {
-            string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
             int x = int.Parse(parts[0]);
             int y = int.Parse(parts[1]);
             return new ivec2(x, y);
         }
 
-        static readonly char[] separator = new char[] { ' ', ',' };
         /// <summary>
         /// 
         /// </summary>
@@ -277,6 +276,13 @@ namespace CSharpGL
         public bool Equals(ivec2 other)
         {
             return (this.x == other.x && this.y == other.y);
+        }
+
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.x = int.Parse(parts[0]);
+            this.y = int.Parse(parts[1]);
         }
     }
 }
