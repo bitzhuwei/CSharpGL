@@ -77,7 +77,10 @@
     <Content Include="OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="OpenGLObjects\VertexBufferObjects\readme.md" />
     <Content Include="readme.md" />
+    <Compile Include="4PropertyGrid\TypeConverters\bvec3TypeConverter.cs" />
+    <Compile Include="4PropertyGrid\TypeConverters\bvec2TypeConverter.cs" />
     <Compile Include="4PropertyGrid\TypeConverters\uvec3TypeConverter.cs" />
+    <Compile Include="4PropertyGrid\TypeConverters\bvec4TypeConverter.cs" />
     <Compile Include="4PropertyGrid\TypeConverters\uvec4TypeConverter.cs" />
     <Compile Include="4PropertyGrid\TypeConverters\uvec2TypeConverter.cs" />
     <Compile Include="4PropertyGrid\TypeConverters\ivec2TypeConverter.cs" />
@@ -104,10 +107,13 @@
     <None Include="Manipulaters\readme.md" />
     <Compile Include="IBufferables\TextModel.SetText.cs" />
     <Compile Include="Manipulaters\ModelManipulaters\ArcBallManipulater.cs" />
+    <Compile Include="Maths\bvec2.cs" />
+    <Compile Include="Maths\bvec3.cs" />
     <Compile Include="Maths\uvec2.cs" />
     <Compile Include="Maths\ivec2.cs" />
     <Compile Include="Maths\uvec3.cs" />
     <Compile Include="Maths\ivec3.cs" />
+    <Compile Include="Maths\bvec4.cs" />
     <Compile Include="Maths\uvec4.cs" />
     <Compile Include="Maths\ivec4.cs" />
     <Compile Include="Octree\OctreeHelper.cs" />
