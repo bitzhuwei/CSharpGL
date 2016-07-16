@@ -46,6 +46,8 @@ namespace CSharpGL
         /// <param name="program"></param>
         public override void ResetUniform(ShaderProgram program)
         {
+            glActiveTexture(value.ActiveTextureIndex);
+            OpenGL.BindTexture(value.target, 0);
             //base.ResetUniform(program);
             //if (glActiveTexture == null)
             //{ glActiveTexture = OpenGL.GetDelegateFor<OpenGL.glActiveTexture>(); }
