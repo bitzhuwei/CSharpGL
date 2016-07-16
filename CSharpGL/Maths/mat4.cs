@@ -9,21 +9,20 @@ namespace CSharpGL
     /// <summary>
     /// Represents a 4x4 matrix.
     /// </summary>
-    [TypeConverter(typeof(Mat4TypeConverter))]
-    public struct mat4 : IEquatable<mat4>
+    [TypeConverter(typeof(MatrixTypeConverter<mat4>))]
+    public struct mat4 : IEquatable<mat4>, ILoadFromString
     {
-        static readonly char[] separator = new char[] { '[', ']' };
 
-        internal static mat4 Parse(string value)
-        {
-            string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            vec4 col0 = vec4.Parse(parts[1]);
-            vec4 col1 = vec4.Parse(parts[3]);
-            vec4 col2 = vec4.Parse(parts[5]);
-            vec4 col3 = vec4.Parse(parts[7]);
+        //internal static mat4 Parse(string value)
+        //{
+        //    string[] parts = value.Split(MatrixHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+        //    vec4 col0 = vec4.Parse(parts[1]);
+        //    vec4 col1 = vec4.Parse(parts[3]);
+        //    vec4 col2 = vec4.Parse(parts[5]);
+        //    vec4 col3 = vec4.Parse(parts[7]);
 
-            return new mat4(col0, col1, col2, col3);
-        }
+        //    return new mat4(col0, col1, col2, col3);
+        //}
 
         /// <summary>
         /// 
@@ -343,6 +342,15 @@ namespace CSharpGL
         public bool Equals(mat4 other)
         {
             return (this.col0 == other.col0 && this.col1 == other.col1 && this.col2 == other.col2 && this.col3 == other.col3);
+        }
+
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(MatrixHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.col0 = vec4.Parse(parts[1]);
+            this.col1 = vec4.Parse(parts[3]);
+            this.col2 = vec4.Parse(parts[5]);
+            this.col3 = vec4.Parse(parts[7]); 
         }
     }
 }

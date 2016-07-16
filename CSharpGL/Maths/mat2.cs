@@ -7,19 +7,18 @@ namespace CSharpGL
     /// <summary>
     /// Represents a 2x2 matrix.
     /// </summary>
-    [TypeConverter(typeof(Mat2TypeConverter))]
-    public struct mat2 : IEquatable<mat2>
+    [TypeConverter(typeof(MatrixTypeConverter<mat2>))]
+    public struct mat2 : IEquatable<mat2>, ILoadFromString
     {
-        static readonly char[] separator = new char[] { '[', ']' };
 
-        internal static mat2 Parse(string value)
-        {
-            string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            vec2 col0 = vec2.Parse(parts[1]);
-            vec2 col1 = vec2.Parse(parts[3]);
+        //internal static mat2 Parse(string value)
+        //{
+        //    string[] parts = value.Split(MatrixHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+        //    vec2 col0 = vec2.Parse(parts[1]);
+        //    vec2 col1 = vec2.Parse(parts[3]);
 
-            return new mat2(col0, col1);
-        }
+        //    return new mat2(col0, col1);
+        //}
 
         /// <summary>
         /// 
@@ -293,6 +292,13 @@ namespace CSharpGL
         public bool Equals(mat2 other)
         {
             return (this.col0 == other.col0 && this.col1 == other.col1);
+        }
+
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(MatrixHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.col0 = vec2.Parse(parts[1]);
+            this.col1 = vec2.Parse(parts[3]);
         }
     }
 }

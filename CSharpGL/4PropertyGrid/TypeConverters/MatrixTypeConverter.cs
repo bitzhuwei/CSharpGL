@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    class uvec3TypeConverter : TypeConverter
+    class MatrixTypeConverter<T> : TypeConverter where T : ILoadFromString, new()
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
@@ -21,15 +21,17 @@ namespace CSharpGL
             string str = value as string;
             if (!string.IsNullOrEmpty(str))
             {
-                return uvec3.Parse(str);
+                var result = new T();
+                result.Load(str);
+                return result;
             }
             else
-            { return new uvec3(); }
+            { return new mat2(); }
         }
 
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
         {
-            return destinationType == typeof(uvec3);
+            return destinationType == typeof(T);
         }
 
         public override object ConvertTo(ITypeDescriptorContext context,

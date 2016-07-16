@@ -77,6 +77,7 @@
     <Content Include="OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="OpenGLObjects\VertexBufferObjects\readme.md" />
     <Content Include="readme.md" />
+    <Compile Include="4PropertyGrid\TypeConverters\MatrixTypeConverter.cs" />
     <Compile Include="4PropertyGrid\TypeConverters\VectorTypeConverter.cs" />
     <Compile Include="4PropertyGrid\UITypeEditors\FormIndexBufferPtrBoard.cs">
       <SubType>Form</SubType>
@@ -102,6 +103,7 @@
     <Compile Include="Maths\bvec2.cs" />
     <Compile Include="Maths\bvec3.cs" />
     <Compile Include="Maths\ILoadFromString.cs" />
+    <Compile Include="Maths\MatrixHelper.cs" />
     <Compile Include="Maths\uvec2.cs" />
     <Compile Include="Maths\ivec2.cs" />
     <Compile Include="Maths\uvec3.cs" />
@@ -364,9 +366,6 @@
     <Compile Include="FontResource\SharpFont\Metrics.cs" />
     <Compile Include="FontResource\SharpFont\System.Numerics\Matrix3x2.cs" />
     <Compile Include="FontResource\SharpFont\System.Numerics\Vector2.cs" />
-    <Compile Include="4PropertyGrid\TypeConverters\Mat2TypeConverter.cs" />
-    <Compile Include="4PropertyGrid\TypeConverters\Mat3TypeConverter.cs" />
-    <Compile Include="4PropertyGrid\TypeConverters\Mat4TypeConverter.cs" />
     <Compile Include="4PropertyGrid\TypeConverters\SamplerValueTypeConverter.cs" />
     <Compile Include="4PropertyGrid\UITypeEditors\FormUniformVariableListEditor.cs">
       <SubType>Form</SubType>

@@ -7,20 +7,19 @@ namespace CSharpGL
     /// <summary>
     /// Represents a 3x3 matrix.
     /// </summary>
-    [TypeConverter(typeof(Mat3TypeConverter))]
-    public struct mat3 : IEquatable<mat3>
+    [TypeConverter(typeof(MatrixTypeConverter<mat3>))]
+    public struct mat3 : IEquatable<mat3>, ILoadFromString
     {
-        static readonly char[] separator = new char[] { '[', ']' };
 
-        internal static mat3 Parse(string value)
-        {
-            string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            vec3 col0 = vec3.Parse(parts[1]);
-            vec3 col1 = vec3.Parse(parts[3]);
-            vec3 col2 = vec3.Parse(parts[5]);
+        //internal static mat3 Parse(string value)
+        //{
+        //    string[] parts = value.Split(MatrixHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+        //    vec3 col0 = vec3.Parse(parts[1]);
+        //    vec3 col1 = vec3.Parse(parts[3]);
+        //    vec3 col2 = vec3.Parse(parts[5]);
 
-            return new mat3(col0, col1, col2);
-        }
+        //    return new mat3(col0, col1, col2);
+        //}
 
         /// <summary>
         /// 
@@ -319,6 +318,14 @@ namespace CSharpGL
         public bool Equals(mat3 other)
         {
             return (this.col0 == other.col0 && this.col1 == other.col1 && this.col2 == other.col2);
+        }
+
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(MatrixHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.col0 = vec3.Parse(parts[1]);
+            this.col1 = vec3.Parse(parts[3]);
+            this.col2 = vec3.Parse(parts[5]);
         }
     }
 }
