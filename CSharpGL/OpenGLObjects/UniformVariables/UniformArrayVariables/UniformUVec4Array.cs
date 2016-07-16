@@ -15,7 +15,7 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// uniform vec4 variable[10];
+        /// uniform uvec4 variable[10];
         /// </summary>
         /// <param name="varName"></param>
         /// <param name="length"></param>
