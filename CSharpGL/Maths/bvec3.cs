@@ -7,8 +7,8 @@ namespace CSharpGL
     /// <summary>
     /// Represents a three dimensional vector.
     /// </summary>
-    [TypeConverter(typeof(bvec3TypeConverter))]
-    public struct bvec3 : IEquatable<bvec3>
+    [TypeConverter(typeof(VectorTypeConverter<bvec3>))]
+    public struct bvec3 : IEquatable<bvec3>, ILoadFromString
     {
 
         /// <summary>
@@ -164,17 +164,6 @@ namespace CSharpGL
             return string.Format("{0}, {1}, {2}", x, y, z);
         }
 
-        internal static bvec3 Parse(string value)
-        {
-            string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            bool x = bool.Parse(parts[0]);
-            bool y = bool.Parse(parts[1]);
-            bool z = bool.Parse(parts[2]);
-            return new bvec3(x, y, z);
-        }
-
-        static readonly char[] separator = new char[] { ' ', ',' };
-
         /// <summary>
         /// 
         /// </summary>
@@ -183,6 +172,14 @@ namespace CSharpGL
         public bool Equals(bvec3 other)
         {
             return (this.x == other.x && this.y == other.y && this.z == other.z);
+        }
+
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.x = bool.Parse(parts[0]);
+            this.y = bool.Parse(parts[1]);
+            this.z = bool.Parse(parts[2]);
         }
     }
 }

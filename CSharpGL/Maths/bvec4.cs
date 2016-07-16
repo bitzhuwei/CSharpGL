@@ -8,8 +8,8 @@ namespace CSharpGL
     /// Represents a four dimensional vector.
     /// </summary>
     //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]   
-    [TypeConverter(typeof(bvec4TypeConverter))]
-    public struct bvec4 : IEquatable<bvec4>
+    [TypeConverter(typeof(VectorTypeConverter<bvec4>))]
+    public struct bvec4 : IEquatable<bvec4>, ILoadFromString
     {
 
         /// <summary>
@@ -165,18 +165,6 @@ namespace CSharpGL
             return string.Format("{0}, {1}, {2}, {3}", x, y, z, w);
         }
 
-        internal static bvec4 Parse(string value)
-        {
-            string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            bool x = bool.Parse(parts[0]);
-            bool y = bool.Parse(parts[1]);
-            bool z = bool.Parse(parts[2]);
-            bool w = bool.Parse(parts[3]);
-            return new bvec4(x, y, z, w);
-        }
-
-        static readonly char[] separator = new char[] { ' ', ',' };
-
         /// <summary>
         /// 
         /// </summary>
@@ -185,6 +173,15 @@ namespace CSharpGL
         public bool Equals(bvec4 other)
         {
             return (this.x == other.x && this.y == other.y && this.z == other.z && this.w == other.w);
+        }
+
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.x = bool.Parse(parts[0]);
+            this.y = bool.Parse(parts[1]);
+            this.z = bool.Parse(parts[2]);
+            this.w = bool.Parse(parts[3]);
         }
     }
 }

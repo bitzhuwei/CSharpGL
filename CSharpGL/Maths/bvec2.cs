@@ -7,8 +7,8 @@ namespace CSharpGL
     /// <summary>
     /// Represents a two dimensional vector.
     /// </summary>
-    [TypeConverter(typeof(bvec2TypeConverter))]
-    public struct bvec2 : IEquatable<bvec2>
+    [TypeConverter(typeof(VectorTypeConverter<bvec2>))]
+    public struct bvec2 : IEquatable<bvec2>, ILoadFromString
     {
         /// <summary>
         /// 
@@ -77,7 +77,7 @@ namespace CSharpGL
             this.x = v.x;
             this.y = v.y;
         }
-           /// <summary>
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="v"></param>
@@ -86,7 +86,7 @@ namespace CSharpGL
             this.x = v.x;
             this.y = v.y;
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -152,15 +152,6 @@ namespace CSharpGL
             return string.Format("{0}, {1}", x, y);
         }
 
-        internal static bvec2 Parse(string value)
-        {
-            string[] parts = value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            bool x = bool.Parse(parts[0]);
-            bool y = bool.Parse(parts[1]);
-            return new bvec2(x, y);
-        }
-
-        static readonly char[] separator = new char[] { ' ', ',' };
         /// <summary>
         /// 
         /// </summary>
@@ -169,6 +160,13 @@ namespace CSharpGL
         public bool Equals(bvec2 other)
         {
             return (this.x == other.x && this.y == other.y);
+        }
+
+        void ILoadFromString.Load(string value)
+        {
+            string[] parts = value.Split(VectorHelper.separator, StringSplitOptions.RemoveEmptyEntries);
+            this.x = bool.Parse(parts[0]);
+            this.y = bool.Parse(parts[1]);
         }
     }
 }
