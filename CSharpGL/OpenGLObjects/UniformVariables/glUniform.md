@@ -1,5 +1,5 @@
 ﻿# glUniform
-
+This is from [glUniform at khronos](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml) 
 glUniform — specify the value of a uniform variable for the current program object
 </div><div class="refsynopsisdiv">
 
