@@ -237,19 +237,19 @@ If _`location`_ is a value other than
 [glGetActiveUniform](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetActiveUniform.xml)
 	with the handle of a program object and the index of an active uniform variable
 
-[<span class="citerefentry"><span class="refentrytitle">glGetUniform</span></span>](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniform.xml)
+[glGetUniform](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniform.xml)
 	with the handle of a program object and the location of a
 	uniform variable
 
-[<span class="citerefentry"><span class="refentrytitle">glGetUniformLocation</span></span>](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniformLocation.xml)
+[glGetUniformLocation](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniformLocation.xml)
 	with the handle of a program object and the name of a uniform
 	variable
 </div><div class="refsect1"><a id="seealso"></a>
 
 ## See Also
 
-[<span class="citerefentry"><span class="refentrytitle">glLinkProgram</span></span>](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glLinkProgram.xml),
-	[<span class="citerefentry"><span class="refentrytitle">glUseProgram</span></span>](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glUseProgram.xml)
+[glLinkProgram](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glLinkProgram.xml),
+	[glUseProgram](https://www.khronos.org/opengles/sdk/docs/man/xhtml/glUseProgram.xml)
 </div><div class="refsect1"><a id="copyright"></a>
 
 ## Copyright
