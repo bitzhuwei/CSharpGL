@@ -56,6 +56,7 @@ namespace CSharpGL
         private static OpenGL.glFramebufferTexture2DEXT glFramebufferTexture2D;
         private static OpenGL.glCheckFramebufferStatusEXT glCheckFramebufferStatus;
         private static OpenGL.glDeleteFramebuffersEXT glDeleteFramebuffers;
+        private static OpenGL.glDrawBuffers glDrawBuffers;
 
         private void InitFramebufferExtensions()
         {
@@ -145,7 +146,7 @@ namespace CSharpGL
         public Framebuffer(int width, int height, bool depth, bool interpol)
         {
             InitFramebufferExtensions();
-            FramebufferTexture texture = new FramebufferTexture();
+            var texture = new FramebufferTexture();
             texture.setFormat(OpenGL.GL_RGBA16F, width, height, OpenGL.GL_RGBA, false, interpol);
 
             setup(texture, depth);
@@ -182,7 +183,7 @@ namespace CSharpGL
         /// <param name="interpol"></param>
         public void addColorAttachment(uint internalfmt, uint format, bool mipmap, bool interpol)
         {
-            FramebufferTexture texture = new FramebufferTexture();
+            var texture = new FramebufferTexture();
 
             texture.setFormat(internalfmt, this.Width, this.Height, format, mipmap, interpol);
 
@@ -221,7 +222,8 @@ namespace CSharpGL
         /// </summary>
         public void useAllAttachments()
         {
-            OpenGL.GetDelegateFor<OpenGL.glDrawBuffers>()(m_color.Count, attachment_id);
+            if (glDrawBuffers == null) { glDrawBuffers = OpenGL.GetDelegateFor<OpenGL.glDrawBuffers>(); }
+            glDrawBuffers(m_color.Count, attachment_id);
         }
 
         /// <summary>
