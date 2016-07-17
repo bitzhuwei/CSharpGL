@@ -43,15 +43,6 @@ namespace CSharpGL
 
         //}
 
-        static OpenGL.glGenFramebuffersEXT glGenFramebuffersEXT;
-        static OpenGL.glBindFramebufferEXT glBindFramebufferEXT;
-        static OpenGL.glGenRenderbuffersEXT glGenRenderbuffersEXT;
-        static OpenGL.glBindRenderbufferEXT glBindRenderbufferEXT;
-        static OpenGL.glRenderbufferStorageEXT glRenderbufferStorageEXT;
-        static OpenGL.glFramebufferRenderbufferEXT glFramebufferRenderbufferEXT;
-        static OpenGL.glDeleteRenderbuffersEXT glDeleteRenderbuffersEXT;
-        static OpenGL.glDeleteFramebuffersEXT glDeleteFramebuffersEXT;
-
         /// <summary>
         /// Creates the render context provider. Must also create the OpenGL extensions.
         /// </summary>
@@ -66,79 +57,30 @@ namespace CSharpGL
             //  Call the base class.
             base.Create(openGLVersion, width, height, bitDepth, parameter);
 
-            if (glGenFramebuffersEXT == null)
-            {
-                glGenFramebuffersEXT = OpenGL.GetDelegateFor<OpenGL.glGenFramebuffersEXT>();
-                glBindFramebufferEXT = OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>();
-                glGenRenderbuffersEXT = OpenGL.GetDelegateFor<OpenGL.glGenRenderbuffersEXT>();
-                glBindRenderbufferEXT = OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT>();
-                glRenderbufferStorageEXT = OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT>();
-                glFramebufferRenderbufferEXT = OpenGL.GetDelegateFor<OpenGL.glFramebufferRenderbufferEXT>();
-                glDeleteRenderbuffersEXT = OpenGL.GetDelegateFor<OpenGL.glDeleteRenderbuffersEXT>();
-                glDeleteFramebuffersEXT = OpenGL.GetDelegateFor<OpenGL.glDeleteFramebuffersEXT>();
-            }
-
-            uint[] ids = new uint[1];
-
-            //  First, create the frame buffer and bind it.
-            ids = new uint[1];
-            glGenFramebuffersEXT(1, ids);
-            frameBufferId = ids[0];
-            glBindFramebufferEXT(OpenGL.GL_FRAMEBUFFER, frameBufferId);
-
-            //	Create the colour render buffer and bind it, then allocate storage for it.
-            glGenRenderbuffersEXT(1, ids);
-            colourRenderBufferId = ids[0];
-            glBindRenderbufferEXT(OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
-            glRenderbufferStorageEXT(OpenGL.GL_RENDERBUFFER, OpenGL.GL_RGBA, width, height);
-
-            //	Create the depth render buffer and bind it, then allocate storage for it.
-            glGenRenderbuffersEXT(1, ids);
-            depthRenderBufferId = ids[0];
-            glBindRenderbufferEXT(OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
-            glRenderbufferStorageEXT(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH_COMPONENT24, width, height);
-
-            //  Set the render buffer for colour and depth.
-            glFramebufferRenderbufferEXT(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_COLOR_ATTACHMENT0,
-                OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
-            glFramebufferRenderbufferEXT(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_DEPTH_ATTACHMENT,
-                OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
+            var framebuffer = new DefaultFramebuffer();
+            framebuffer.Create(width, height);
+            this.framebuffer = framebuffer;
 
             dibSectionDeviceContext = Win32.CreateCompatibleDC(DeviceContextHandle);
-
             //  Create the DIB section.
             dibSection.Create(dibSectionDeviceContext, width, height, bitDepth);
 
             return true;
         }
 
-        private void DestroyFramebuffers()
-        {
-            //  Delete the render buffers.
-            glDeleteRenderbuffersEXT(2, new uint[] { colourRenderBufferId, depthRenderBufferId });
-
-            //	Delete the framebuffer.
-            glDeleteFramebuffersEXT(1, new uint[] { frameBufferId });
-
-            //  Reset the IDs.
-            colourRenderBufferId = 0;
-            depthRenderBufferId = 0;
-            frameBufferId = 0;
-        }
-
         /// <summary>
         /// 
         /// </summary>
-        public override void Destroy()
+        protected override void DisposeUnmanagedResources()
         {
             //  Delete the render buffers.
-            DestroyFramebuffers();
+            this.framebuffer.Dispose();
 
             //  Destroy the internal dc.
             Win32.DeleteDC(dibSectionDeviceContext);
 
             //	Call the base, which will delete the render context handle and window.
-            base.Destroy();
+            base.DisposeUnmanagedResources();
         }
         /// <summary>
         /// 
@@ -153,8 +95,6 @@ namespace CSharpGL
             //	Resize dib section.
             dibSection.Resize(width, height, BitDepth);
 
-            DestroyFramebuffers();
-
             //  TODO: We should be able to just use the code below - however we
             //  get invalid dimension issues at the moment, so recreate for now.
 
@@ -166,32 +106,10 @@ namespace CSharpGL
             GL.GetDelegateFor<GL.glRenderbufferStorageEXT(GL.GL_RENDERBUFFER, GL.GL_DEPTH_ATTACHMENT, width, height);
             var complete = GL.CheckFramebufferStatusEXT(GL.GL_FRAMEBUFFER_EXT);
             */
-
-            uint[] ids = new uint[1];
-
-            //  First, create the frame buffer and bind it.
-            ids = new uint[1];
-            glGenFramebuffersEXT(1, ids);
-            frameBufferId = ids[0];
-            glBindFramebufferEXT(OpenGL.GL_FRAMEBUFFER, frameBufferId);
-
-            //	Create the color render buffer and bind it, then allocate storage for it.
-            glGenRenderbuffersEXT(1, ids);
-            colourRenderBufferId = ids[0];
-            glBindRenderbufferEXT(OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
-            glRenderbufferStorageEXT(OpenGL.GL_RENDERBUFFER, OpenGL.GL_RGBA, width, height);
-
-            //	Create the depth render buffer and bind it, then allocate storage for it.
-            glGenRenderbuffersEXT(1, ids);
-            depthRenderBufferId = ids[0];
-            glBindRenderbufferEXT(OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
-            glRenderbufferStorageEXT(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH_COMPONENT24, width, height);
-
-            //  Set the render buffer for color and depth.
-            glFramebufferRenderbufferEXT(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_COLOR_ATTACHMENT0,
-                OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
-            glFramebufferRenderbufferEXT(OpenGL.GL_FRAMEBUFFER, OpenGL.GL_DEPTH_ATTACHMENT,
-                OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
+            this.framebuffer.Dispose();
+            var framebuffer = new DefaultFramebuffer();
+            framebuffer.Create(width, height);
+            this.framebuffer = framebuffer;
         }
         /// <summary>
         /// 
@@ -214,18 +132,8 @@ namespace CSharpGL
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        private uint colourRenderBufferId = 0;
-        /// <summary>
-        /// 
-        /// </summary>
-        private uint depthRenderBufferId = 0;
-        /// <summary>
-        /// 
-        /// </summary>
-        private uint frameBufferId = 0;
+        private DefaultFramebuffer framebuffer;
+
         /// <summary>
         /// 
         /// </summary>

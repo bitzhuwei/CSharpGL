@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public abstract class RenderContext : IDisposable
+    public abstract partial class RenderContext : IDisposable
     {
         /// <summary>
         /// Creates the render context provider. Must also create the OpenGL extensions.
@@ -34,19 +34,6 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Destroys the render context provider instance.
-        /// </summary>
-        public virtual void Destroy()
-        {
-            //  If we have a render context, destroy it.
-            if (RenderContextHandle != IntPtr.Zero)
-            {
-                Win32.wglDeleteContext(RenderContextHandle);
-                RenderContextHandle = IntPtr.Zero;
-            }
-        }
-
-        /// <summary>
         /// Sets the dimensions of the render context provider.
         /// </summary>
         /// <param name="width">Width.</param>
@@ -67,15 +54,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="hdc">The HDC.</param>
         public abstract void Blit(IntPtr hdc);
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            //  Destroy the context provider.
-            Destroy();
-        }
 
         /// <summary>
         /// Only valid to be called after the render context is created, this function attempts to

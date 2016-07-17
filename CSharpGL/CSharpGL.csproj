@@ -257,6 +257,9 @@
       <DependentUpon>GLCanvas.cs</DependentUpon>
     </Compile>
     <Compile Include="WinformControls\GLCanvasHelper.cs" />
+    <Compile Include="WinformControls\RenderContexts\DefaultFramebuffer.IDisposable.cs" />
+    <Compile Include="WinformControls\RenderContexts\DefaultFramebuffer.cs" />
+    <Compile Include="WinformControls\RenderContexts\RenderContext.IDisposable.cs" />
     <Compile Include="WinformControls\RenderTriggers.cs" />
     <Compile Include="FontResource\GlyphInfo.cs" />
     <Compile Include="FontResource\FontResource.cs" />

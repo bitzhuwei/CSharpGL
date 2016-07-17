@@ -97,7 +97,7 @@ namespace CSharpGL
         /// <summary>
         /// Destroys the render context provider instance.
         /// </summary>
-        public override void Destroy()
+        protected override void DisposeUnmanagedResources()
         {
             //	Release the device context.
             Win32.ReleaseDC(windowHandle, DeviceContextHandle);
@@ -106,7 +106,7 @@ namespace CSharpGL
             Win32.DestroyWindow(windowHandle);
 
             //	Call the base, which will delete the render context handle.
-            base.Destroy();
+            base.DisposeUnmanagedResources();
         }
 
         /// <summary>
