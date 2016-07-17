@@ -109,23 +109,23 @@ namespace CSharpGL
             base.DisposeUnmanagedResources();
         }
 
-        /// <summary>
-        /// Sets the dimensions of the render context provider.
-        /// </summary>
-        /// <param name="width">Width.</param>
-        /// <param name="height">Height.</param>
-        public override void SetDimensions(int width, int height)
-        {
-            //  Call the base.
-            base.SetDimensions(width, height);
+        ///// <summary>
+        ///// Sets the dimensions of the render context provider.
+        ///// </summary>
+        ///// <param name="width">Width.</param>
+        ///// <param name="height">Height.</param>
+        //public override void SetDimensions(int width, int height)
+        //{
+        //    //  Call the base.
+        //    base.SetDimensions(width, height);
 
-            //	Set the window size.
-            Win32.SetWindowPos(windowHandle, IntPtr.Zero, 0, 0, Width, Height,
-                SetWindowPosFlags.SWP_NOACTIVATE |
-                SetWindowPosFlags.SWP_NOCOPYBITS |
-                SetWindowPosFlags.SWP_NOMOVE |
-                SetWindowPosFlags.SWP_NOOWNERZORDER);
-        }
+        //    //	Set the window size.
+        //    Win32.SetWindowPos(windowHandle, IntPtr.Zero, 0, 0, Width, Height,
+        //        SetWindowPosFlags.SWP_NOACTIVATE |
+        //        SetWindowPosFlags.SWP_NOCOPYBITS |
+        //        SetWindowPosFlags.SWP_NOMOVE |
+        //        SetWindowPosFlags.SWP_NOOWNERZORDER);
+        //}
 
         /// <summary>
         /// Blit the rendered data to the supplied device context.
