@@ -95,7 +95,7 @@ namespace CSharpGL
         protected virtual bool SetPixelFormat(IntPtr hDC, int bitCount)
         {
             //	Create the big lame pixel format majoo.
-            PIXELFORMATDESCRIPTOR pixelFormat = new PIXELFORMATDESCRIPTOR();
+            PixelFormatDescriptor pixelFormat = new PixelFormatDescriptor();
             pixelFormat.Init();
 
             //	Set the values for the pixel format.

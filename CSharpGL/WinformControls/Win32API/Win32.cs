@@ -234,11 +234,11 @@ namespace CSharpGL
         //	Unmanaged functions from the Win32 graphics library.
         [DllImport(gdi32, SetLastError = true)]
         internal unsafe static extern int ChoosePixelFormat(IntPtr hDC,
-            [In, MarshalAs(UnmanagedType.LPStruct)] PIXELFORMATDESCRIPTOR ppfd);
+            [In, MarshalAs(UnmanagedType.LPStruct)] PixelFormatDescriptor ppfd);
 
         [DllImport(gdi32, SetLastError = true)]
         internal unsafe static extern int SetPixelFormat(IntPtr hDC, int iPixelFormat,
-            [In, MarshalAs(UnmanagedType.LPStruct)] PIXELFORMATDESCRIPTOR ppfd);
+            [In, MarshalAs(UnmanagedType.LPStruct)] PixelFormatDescriptor ppfd);
 
         //[DllImport(gdi32, SetLastError = true)]
         //internal static extern IntPtr GetStockObject(uint fnObject);

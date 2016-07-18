@@ -26,16 +26,16 @@ namespace CSharpGL
             base.Create(openGLVersion, width, height, bitDepth, parameter);
 
             // Create a new window class, as basic as possible.
-            if (!CreateBasicRenderContext(width, height, bitDepth)) { return false; }
+            if (!this.CreateBasicRenderContext(width, height, bitDepth)) { return false; }
 
             //	Create the render context.
             this.RenderContextHandle = Win32.wglCreateContext(this.DeviceContextHandle);
 
             //  Make the context current.
-            MakeCurrent();
+            this.MakeCurrent();
 
             //  Update the context if required.
-            UpdateContextVersion();
+            this.UpdateContextVersion();
 
             //  Return success.
             return true;
@@ -50,7 +50,7 @@ namespace CSharpGL
         /// <returns></returns>
         private bool CreateBasicRenderContext(int width, int height, int bitDepth)
         {
-            WNDCLASSEX wndClass = new WNDCLASSEX();
+            var wndClass = new WNDCLASSEX();
             wndClass.Init();
             wndClass.style = ClassStyles.HorizontalRedraw | ClassStyles.VerticalRedraw | ClassStyles.OwnDC;
             wndClass.lpfnWndProc = wndProcDelegate;
@@ -77,7 +77,7 @@ namespace CSharpGL
             this.DeviceContextHandle = Win32.GetDC(windowHandle);
 
             //	Setup a pixel format.
-            PIXELFORMATDESCRIPTOR pfd = new PIXELFORMATDESCRIPTOR();
+            var pfd = new PixelFormatDescriptor();
             pfd.Init();
             pfd.nVersion = 1;
             pfd.dwFlags = Win32.PFD_DRAW_TO_WINDOW | Win32.PFD_SUPPORT_OPENGL | Win32.PFD_DOUBLEBUFFER;
@@ -88,8 +88,8 @@ namespace CSharpGL
             pfd.iLayerType = Win32.PFD_MAIN_PLANE;
 
             //	Match an appropriate pixel format 
-            int iPixelformat;
-            if ((iPixelformat = Win32.ChoosePixelFormat(this.DeviceContextHandle, pfd)) == 0)
+            int iPixelformat = Win32.ChoosePixelFormat(this.DeviceContextHandle, pfd);
+            if (iPixelformat == 0)
             {
                 return false;
             }
@@ -142,7 +142,7 @@ namespace CSharpGL
             catch (Exception)
             {
                 //  TODO: can we actually get the real version?
-                CreatedGLVersion = GLVersion.OpenGL2_1;
+                this.CreatedGLVersion = GLVersion.OpenGL2_1;
             }
         }
 

@@ -8,7 +8,7 @@ using System.Text;
 namespace CSharpGL
 {
     [StructLayout(LayoutKind.Explicit)]
-    class PIXELFORMATDESCRIPTOR
+    class PixelFormatDescriptor
     {
         [FieldOffset(0)]
         public UInt16 nSize;
