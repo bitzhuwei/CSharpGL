@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// device-independent bitmap
     /// </summary>
-    class DIBSection : IDisposable
+    partial class DIBSection : IDisposable
     {
         /// <summary>
         /// Creates the specified width.
@@ -77,14 +77,6 @@ namespace CSharpGL
                 out this.bits, IntPtr.Zero, 0);
 
             Win32.SelectObject(this.DibSectionDeviceContext, this.HBitmap);
-        }
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Destroy();
         }
 
         /// <summary>
