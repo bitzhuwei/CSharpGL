@@ -47,13 +47,16 @@ namespace CSharpGL
             this.disposedValue = true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual void DisposeUnmanagedResources()
         {
             // If we have a render context, destroy it.
-            if (RenderContextHandle != IntPtr.Zero)
+            if (this.RenderContextHandle != IntPtr.Zero)
             {
-                Win32.wglDeleteContext(RenderContextHandle);
-                RenderContextHandle = IntPtr.Zero;
+                Win32.wglDeleteContext(this.RenderContextHandle);
+                this.RenderContextHandle = IntPtr.Zero;
             }
         }
 

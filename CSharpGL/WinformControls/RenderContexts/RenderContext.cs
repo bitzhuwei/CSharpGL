@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// All information for creating render context and device context.
     /// </summary>
     public abstract partial class RenderContext : IDisposable
     {
@@ -54,49 +54,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="hdc">The HDC.</param>
         public abstract void Blit(IntPtr hdc);
-
-        /// <summary>
-        /// Only valid to be called after the render context is created, this function attempts to
-        /// move the render context to the OpenGL version originally requested. If this is &gt; 2.1, this
-        /// means building a new context. If this fails, we'll have to make do with 2.1.
-        /// </summary>
-        protected void UpdateContextVersion()
-        {
-            //  If the request version number is anything up to and including 2.1, standard render contexts
-            //  will provide what we need (as long as the graphics card drivers are up to date).
-            var requestedVersionNumber = VersionAttribute.GetVersionAttribute(this.RequestedGLVersion);
-            if (requestedVersionNumber.IsAtLeastVersion(3, 0) == false)
-            {
-                this.CreatedGLVersion = this.RequestedGLVersion;
-                return;
-            }
-
-            //  Now the none-trivial case. We must use the WGL_ARB_create_context extension to 
-            //  attempt to create a 3.0+ context.
-            try
-            {
-                int[] attributes = 
-                {
-                    OpenGL.WGL_CONTEXT_MAJOR_VERSION_ARB, requestedVersionNumber.Major,  
-                    OpenGL.WGL_CONTEXT_MINOR_VERSION_ARB, requestedVersionNumber.Minor,
-                    OpenGL.WGL_CONTEXT_FLAGS_ARB, OpenGL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,// compatible profile
-#if DEBUG
-                    OpenGL.WGL_CONTEXT_FLAGS_ARB, OpenGL.WGL_CONTEXT_DEBUG_BIT_ARB,// this is a debug context
-#endif
-                    0
-                };
-                IntPtr hrc = OpenGL.GetDelegateFor<OpenGL.wglCreateContextAttribsARB>()(this.DeviceContextHandle, IntPtr.Zero, attributes);
-                Win32.wglMakeCurrent(IntPtr.Zero, IntPtr.Zero);
-                Win32.wglDeleteContext(this.RenderContextHandle);
-                Win32.wglMakeCurrent(this.DeviceContextHandle, hrc);
-                this.RenderContextHandle = hrc;
-            }
-            catch (Exception)
-            {
-                //  TODO: can we actually get the real version?
-                CreatedGLVersion = GLVersion.OpenGL2_1;
-            }
-        }
 
         /// <summary>
         /// Gets the render context handle.

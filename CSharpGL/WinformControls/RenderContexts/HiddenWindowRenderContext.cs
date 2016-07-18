@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// creates render device and render context.
     /// </summary>
     public class HiddenWindowRenderContext : RenderContext
     {
@@ -25,7 +25,31 @@ namespace CSharpGL
             //  Call the base.
             base.Create(openGLVersion, width, height, bitDepth, parameter);
 
-            //	Create a new window class, as basic as possible.                
+            // Create a new window class, as basic as possible.
+            if (!CreateBasicRenderContext(width, height, bitDepth)) { return false; }
+
+            //	Create the render context.
+            this.RenderContextHandle = Win32.wglCreateContext(this.DeviceContextHandle);
+
+            //  Make the context current.
+            MakeCurrent();
+
+            //  Update the context if required.
+            UpdateContextVersion();
+
+            //  Return success.
+            return true;
+        }
+
+        /// <summary>
+        /// Create a new window class, as basic as possible.
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="bitDepth"></param>
+        /// <returns></returns>
+        private bool CreateBasicRenderContext(int width, int height, int bitDepth)
+        {
             WNDCLASSEX wndClass = new WNDCLASSEX();
             wndClass.Init();
             wndClass.style = ClassStyles.HorizontalRedraw | ClassStyles.VerticalRedraw | ClassStyles.OwnDC;
@@ -50,7 +74,7 @@ namespace CSharpGL
                           IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero);
 
             //	Get the window device context.
-            DeviceContextHandle = Win32.GetDC(windowHandle);
+            this.DeviceContextHandle = Win32.GetDC(windowHandle);
 
             //	Setup a pixel format.
             PIXELFORMATDESCRIPTOR pfd = new PIXELFORMATDESCRIPTOR();
@@ -65,26 +89,61 @@ namespace CSharpGL
 
             //	Match an appropriate pixel format 
             int iPixelformat;
-            if ((iPixelformat = Win32.ChoosePixelFormat(DeviceContextHandle, pfd)) == 0)
-                return false;
-
-            //	Sets the pixel format
-            if (Win32.SetPixelFormat(DeviceContextHandle, iPixelformat, pfd) == 0)
+            if ((iPixelformat = Win32.ChoosePixelFormat(this.DeviceContextHandle, pfd)) == 0)
             {
                 return false;
             }
 
-            //	Create the render context.
-            RenderContextHandle = Win32.wglCreateContext(DeviceContextHandle);
+            //	Sets the pixel format
+            if (Win32.SetPixelFormat(this.DeviceContextHandle, iPixelformat, pfd) == 0)
+            {
+                return false;
+            }
 
-            //  Make the context current.
-            MakeCurrent();
-
-            //  Update the context if required.
-            UpdateContextVersion();
-
-            //  Return success.
             return true;
+        }
+
+        /// <summary>
+        /// Only valid to be called after the render context is created, this function attempts to
+        /// move the render context to the OpenGL version originally requested. If this is &gt; 2.1, this
+        /// means building a new context. If this fails, we'll have to make do with 2.1.
+        /// </summary>
+        protected void UpdateContextVersion()
+        {
+            //  If the request version number is anything up to and including 2.1, standard render contexts
+            //  will provide what we need (as long as the graphics card drivers are up to date).
+            var requestedVersionNumber = VersionAttribute.GetVersionAttribute(this.RequestedGLVersion);
+            if (requestedVersionNumber.IsAtLeastVersion(3, 0) == false)
+            {
+                this.CreatedGLVersion = this.RequestedGLVersion;
+                return;
+            }
+
+            //  Now the none-trivial case. We must use the WGL_ARB_create_context extension to 
+            //  attempt to create a 3.0+ context.
+            try
+            {
+                int[] attributes = 
+                {
+                    OpenGL.WGL_CONTEXT_MAJOR_VERSION_ARB, requestedVersionNumber.Major,  
+                    OpenGL.WGL_CONTEXT_MINOR_VERSION_ARB, requestedVersionNumber.Minor,
+                    OpenGL.WGL_CONTEXT_FLAGS_ARB, OpenGL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,// compatible profile
+#if DEBUG
+                    OpenGL.WGL_CONTEXT_FLAGS_ARB, OpenGL.WGL_CONTEXT_DEBUG_BIT_ARB,// this is a debug context
+#endif
+                    0
+                };
+                IntPtr hrc = OpenGL.GetDelegateFor<OpenGL.wglCreateContextAttribsARB>()(this.DeviceContextHandle, IntPtr.Zero, attributes);
+                Win32.wglMakeCurrent(IntPtr.Zero, IntPtr.Zero);
+                Win32.wglDeleteContext(this.RenderContextHandle);
+                Win32.wglMakeCurrent(this.DeviceContextHandle, hrc);
+                this.RenderContextHandle = hrc;
+            }
+            catch (Exception)
+            {
+                //  TODO: can we actually get the real version?
+                CreatedGLVersion = GLVersion.OpenGL2_1;
+            }
         }
 
         private static WndProc wndProcDelegate = new WndProc(WndProc);
@@ -100,7 +159,7 @@ namespace CSharpGL
         protected override void DisposeUnmanagedResources()
         {
             //	Release the device context.
-            Win32.ReleaseDC(windowHandle, DeviceContextHandle);
+            Win32.ReleaseDC(windowHandle, this.DeviceContextHandle);
 
             //	Destroy the window.
             Win32.DestroyWindow(windowHandle);
@@ -133,13 +192,13 @@ namespace CSharpGL
         /// <param name="hdc">The HDC.</param>
         public override void Blit(IntPtr hdc)
         {
-            if (DeviceContextHandle != IntPtr.Zero || windowHandle != IntPtr.Zero)
+            if (this.DeviceContextHandle != IntPtr.Zero || windowHandle != IntPtr.Zero)
             {
                 //	Swap the buffers.
-                Win32.SwapBuffers(DeviceContextHandle);
+                Win32.SwapBuffers(this.DeviceContextHandle);
 
                 //  Get the HDC for the graphics object.
-                Win32.BitBlt(hdc, 0, 0, Width, Height, DeviceContextHandle, 0, 0, Win32.SRCCOPY);
+                Win32.BitBlt(hdc, 0, 0, this.Width, this.Height, this.DeviceContextHandle, 0, 0, Win32.SRCCOPY);
             }
         }
 
@@ -148,8 +207,8 @@ namespace CSharpGL
         /// </summary>
         public override void MakeCurrent()
         {
-            if (RenderContextHandle != IntPtr.Zero)
-                Win32.wglMakeCurrent(DeviceContextHandle, RenderContextHandle);
+            if (this.RenderContextHandle != IntPtr.Zero)
+                Win32.wglMakeCurrent(this.DeviceContextHandle, this.RenderContextHandle);
         }
 
         /// <summary>
