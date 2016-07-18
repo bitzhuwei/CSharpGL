@@ -23,7 +23,7 @@ namespace CSharpGL
         private uint[] depthRenderBufferId = new uint[1];
         public uint DepthRenderBufferId { get { return this.depthRenderBufferId[0]; } }
 
-        public DefaultFramebuffer()
+        public void Create(int width, int height)
         {
             if (glGenFramebuffersEXT == null)
             {
@@ -36,9 +36,6 @@ namespace CSharpGL
                 glDeleteRenderbuffersEXT = OpenGL.GetDelegateFor<OpenGL.glDeleteRenderbuffersEXT>();
                 glDeleteFramebuffersEXT = OpenGL.GetDelegateFor<OpenGL.glDeleteFramebuffersEXT>();
             }
-        }
-        internal void Create(int width, int height)
-        {
             //  First, create the frame buffer and bind it.
             glGenFramebuffersEXT(1, this.framebufferId);
             glBindFramebufferEXT(OpenGL.GL_FRAMEBUFFER, this.framebufferId[0]);

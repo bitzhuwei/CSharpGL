@@ -20,7 +20,7 @@ namespace CSharpGL
         {
             this.Width = width;
             this.Height = height;
-            parentDC = hDC;
+            DibSectionDeviceContext = Win32.CreateCompatibleDC(hDC);
 
             //	Destroy existing objects.
             Destroy();
@@ -73,10 +73,10 @@ namespace CSharpGL
             info.biHeight = height;
 
             //	Create the bitmap.
-            HBitmap = Win32.CreateDIBSection(parentDC, ref info, Win32.DIB_RGB_COLORS,
+            HBitmap = Win32.CreateDIBSection(DibSectionDeviceContext, ref info, Win32.DIB_RGB_COLORS,
                 out bits, IntPtr.Zero, 0);
 
-            Win32.SelectObject(parentDC, HBitmap);
+            Win32.SelectObject(DibSectionDeviceContext, HBitmap);
         }
 
         /// <summary>
@@ -134,15 +134,19 @@ namespace CSharpGL
             }
         }
 
-        /// <summary>
-        /// The parent dc.
-        /// </summary>
-        protected IntPtr parentDC = IntPtr.Zero;
+        ///// <summary>
+        ///// The parent dc.
+        ///// </summary>
+        //protected IntPtr parentDC = IntPtr.Zero;
 
         /// <summary>
         /// The bits.
         /// </summary>
         protected IntPtr bits = IntPtr.Zero;
+        /// <summary>
+        /// parentDC
+        /// </summary>
+        public IntPtr DibSectionDeviceContext { get; private set; }
 
         /// <summary>
         /// Gets the handle to the bitmap.

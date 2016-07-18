@@ -61,9 +61,8 @@ namespace CSharpGL
             framebuffer.Create(width, height);
             this.framebuffer = framebuffer;
 
-            dibSectionDeviceContext = Win32.CreateCompatibleDC(DeviceContextHandle);
             //  Create the DIB section.
-            dibSection.Create(dibSectionDeviceContext, width, height, bitDepth);
+            dibSection.Create(this.DeviceContextHandle, width, height, bitDepth);
 
             return true;
         }
@@ -77,7 +76,7 @@ namespace CSharpGL
             this.framebuffer.Dispose();
 
             //  Destroy the internal dc.
-            Win32.DeleteDC(dibSectionDeviceContext);
+            Win32.DeleteDC(this.dibSection.DibSectionDeviceContext);
 
             //	Call the base, which will delete the render context handle and window.
             base.DisposeUnmanagedResources();
@@ -93,7 +92,7 @@ namespace CSharpGL
             base.SetDimensions(width, height);
 
             //	Resize dib section.
-            dibSection.Resize(width, height, BitDepth);
+            this.dibSection.Resize(width, height, this.BitDepth);
 
             //  TODO: We should be able to just use the code below - however we
             //  get invalid dimension issues at the moment, so recreate for now.
@@ -117,27 +116,27 @@ namespace CSharpGL
         /// <param name="hdc"></param>
         public override void Blit(IntPtr hdc)
         {
-            if (DeviceContextHandle != IntPtr.Zero)
+            if (this.DeviceContextHandle != IntPtr.Zero)
             {
                 //  Set the read buffer.
                 OpenGL.ReadBuffer(OpenGL.GL_COLOR_ATTACHMENT0);
 
                 //	Read the pixels into the DIB section.
-                OpenGL.ReadPixels(0, 0, Width, Height, OpenGL.GL_BGRA,
-                    OpenGL.GL_UNSIGNED_BYTE, dibSection.Bits);
+                OpenGL.ReadPixels(0, 0, this.Width, this.Height, OpenGL.GL_BGRA,
+                    OpenGL.GL_UNSIGNED_BYTE, this.dibSection.Bits);
 
                 //	Blit the DC (containing the DIB section) to the target DC.
-                Win32.BitBlt(hdc, 0, 0, Width, Height,
-                    dibSectionDeviceContext, 0, 0, Win32.SRCCOPY);
+                Win32.BitBlt(hdc, 0, 0, this.Width, this.Height,
+                    this.dibSection.DibSectionDeviceContext, 0, 0, Win32.SRCCOPY);
             }
         }
 
         private DefaultFramebuffer framebuffer;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        private IntPtr dibSectionDeviceContext = IntPtr.Zero;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //private IntPtr dibSectionDeviceContext = IntPtr.Zero;
         /// <summary>
         /// 
         /// </summary>
