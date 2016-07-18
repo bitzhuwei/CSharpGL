@@ -57,12 +57,15 @@ namespace CSharpGL
             //  Call the base class.
             base.Create(openGLVersion, width, height, bitDepth, parameter);
 
+            // Create frame buffer object.
             var framebuffer = new DefaultFramebuffer();
             framebuffer.Create(width, height);
             this.framebuffer = framebuffer;
 
             //  Create the DIB section.
+            var dibSection = new DIBSection();
             dibSection.Create(this.DeviceContextHandle, width, height, bitDepth);
+            this.dibSection = dibSection;
 
             return true;
         }
@@ -140,7 +143,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        private DIBSection dibSection = new DIBSection();
+        private DIBSection dibSection;
 
         ///// <summary>
         ///// Gets the internal DIB section.
