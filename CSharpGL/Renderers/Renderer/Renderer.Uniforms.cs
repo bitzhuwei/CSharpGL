@@ -41,7 +41,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// Sets up a new value to specified uniform variable and mark it as updated so that the new value will be sent to shader before rendering.
         /// </summary>
         public bool SetUniform<T>(string varNameInShader, T value) where T : struct,IEquatable<T>
         {
