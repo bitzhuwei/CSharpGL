@@ -23,7 +23,7 @@ namespace CSharpGL
             this.DibSectionDeviceContext = Win32.CreateCompatibleDC(deviceContext);
 
             //	Destroy existing objects.
-            this.Destroy();
+            this.DestroyBitmap();
 
             //	Create a bitmap info structure.
             var info = new BitmapInfo();
@@ -56,7 +56,7 @@ namespace CSharpGL
         public void Resize(int width, int height, int bitCount)
         {
             //	Destroy existing objects.
-            this.Destroy();
+            this.DestroyBitmap();
 
             //  Set parameters.
             this.Width = width;
@@ -115,7 +115,7 @@ namespace CSharpGL
         /// <summary>
         /// Destroys this instance.
         /// </summary>
-        public virtual void Destroy()
+        public virtual void DestroyBitmap()
         {
             //	Destroy the bitmap.
             if (this.HBitmap != IntPtr.Zero)

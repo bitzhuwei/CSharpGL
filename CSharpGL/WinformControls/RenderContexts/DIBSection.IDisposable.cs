@@ -35,7 +35,7 @@ namespace CSharpGL
                 }
 
                 // Dispose unmanaged resources.
-                this.Destroy();
+                this.DestroyBitmap();
             }
 
             this.disposedValue = true;
