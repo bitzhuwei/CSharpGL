@@ -22,13 +22,13 @@ namespace CSharpGL
         public virtual bool Create(GLVersion openGLVersion, int width, int height, int bitDepth, object parameter)
         {
             //  Set the width, height and bit depth.
-            Width = width;
-            Height = height;
-            BitDepth = bitDepth;
+            this.Width = width;
+            this.Height = height;
+            this.BitDepth = bitDepth;
 
             //  For now, assume we're going to be able to create the requested OpenGL version.
-            RequestedGLVersion = openGLVersion;
-            CreatedGLVersion = openGLVersion;
+            this.RequestedGLVersion = openGLVersion;
+            this.CreatedGLVersion = openGLVersion;
 
             return true;
         }
@@ -40,8 +40,8 @@ namespace CSharpGL
         /// <param name="height">Height.</param>
         public virtual void SetDimensions(int width, int height)
         {
-            Width = width;
-            Height = height;
+            this.Width = width;
+            this.Height = height;
         }
 
         /// <summary>
@@ -64,10 +64,10 @@ namespace CSharpGL
         {
             //  If the request version number is anything up to and including 2.1, standard render contexts
             //  will provide what we need (as long as the graphics card drivers are up to date).
-            var requestedVersionNumber = VersionAttribute.GetVersionAttribute(RequestedGLVersion);
+            var requestedVersionNumber = VersionAttribute.GetVersionAttribute(this.RequestedGLVersion);
             if (requestedVersionNumber.IsAtLeastVersion(3, 0) == false)
             {
-                CreatedGLVersion = RequestedGLVersion;
+                this.CreatedGLVersion = this.RequestedGLVersion;
                 return;
             }
 
@@ -87,9 +87,9 @@ namespace CSharpGL
                 };
                 IntPtr hrc = OpenGL.GetDelegateFor<OpenGL.wglCreateContextAttribsARB>()(this.DeviceContextHandle, IntPtr.Zero, attributes);
                 Win32.wglMakeCurrent(IntPtr.Zero, IntPtr.Zero);
-                Win32.wglDeleteContext(RenderContextHandle);
-                Win32.wglMakeCurrent(DeviceContextHandle, hrc);
-                RenderContextHandle = hrc;
+                Win32.wglDeleteContext(this.RenderContextHandle);
+                Win32.wglMakeCurrent(this.DeviceContextHandle, hrc);
+                this.RenderContextHandle = hrc;
             }
             catch (Exception)
             {

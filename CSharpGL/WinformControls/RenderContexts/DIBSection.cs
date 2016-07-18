@@ -11,16 +11,16 @@ namespace CSharpGL
         /// <summary>
         /// Creates the specified width.
         /// </summary>
-        /// <param name="hDC"></param>
+        /// <param name="deviceContext"></param>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="bitCount">The bit count.</param>
         /// <returns></returns>
-        public virtual bool Create(IntPtr hDC, int width, int height, int bitCount)
+        public virtual bool Create(IntPtr deviceContext, int width, int height, int bitCount)
         {
             this.Width = width;
             this.Height = height;
-            DibSectionDeviceContext = Win32.CreateCompatibleDC(hDC);
+            DibSectionDeviceContext = Win32.CreateCompatibleDC(deviceContext);
 
             //	Destroy existing objects.
             Destroy();
@@ -36,13 +36,13 @@ namespace CSharpGL
             info.biHeight = height;
 
             //	Create the bitmap.
-            HBitmap = Win32.CreateDIBSection(hDC, ref info, Win32.DIB_RGB_COLORS,
+            HBitmap = Win32.CreateDIBSection(deviceContext, ref info, Win32.DIB_RGB_COLORS,
                 out bits, IntPtr.Zero, 0);
 
-            Win32.SelectObject(hDC, HBitmap);
+            Win32.SelectObject(deviceContext, HBitmap);
 
             //	Set the OpenGL pixel format.
-            SetPixelFormat(hDC, bitCount);
+            SetPixelFormat(deviceContext, bitCount);
 
             return true;
         }
