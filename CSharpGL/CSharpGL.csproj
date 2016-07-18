@@ -472,7 +472,7 @@
     <Compile Include="OpenGLAPI\OpenGL_Extensions.cs" />
     <Compile Include="OpenGLAPI\OpenGL_Functions.cs" />
     <Compile Include="OpenGLAPI\OpenGL_Wrappers.cs" />
-    <Compile Include="WinformControls\Win32API\BITMAPINFO.cs" />
+    <Compile Include="WinformControls\Win32API\BitmapInfo.cs" />
     <Compile Include="WinformControls\Win32API\ClassStyles.cs" />
     <Compile Include="WinformControls\Win32API\Delegates.cs" />
     <Compile Include="WinformControls\Win32API\PixelFormatDescriptor.cs" />

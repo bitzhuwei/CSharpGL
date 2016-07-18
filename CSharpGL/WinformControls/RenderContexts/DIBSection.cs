@@ -20,13 +20,13 @@ namespace CSharpGL
         {
             this.Width = width;
             this.Height = height;
-            DibSectionDeviceContext = Win32.CreateCompatibleDC(deviceContext);
+            this.DibSectionDeviceContext = Win32.CreateCompatibleDC(deviceContext);
 
             //	Destroy existing objects.
-            Destroy();
+            this.Destroy();
 
             //	Create a bitmap info structure.
-            BITMAPINFO info = new BITMAPINFO();
+            var info = new BitmapInfo();
             info.Init();
 
             //	Set the data.
@@ -36,10 +36,10 @@ namespace CSharpGL
             info.biHeight = height;
 
             //	Create the bitmap.
-            HBitmap = Win32.CreateDIBSection(deviceContext, ref info, Win32.DIB_RGB_COLORS,
-                out bits, IntPtr.Zero, 0);
+            this.HBitmap = Win32.CreateDIBSection(deviceContext, ref info, Win32.DIB_RGB_COLORS,
+                out this.bits, IntPtr.Zero, 0);
 
-            Win32.SelectObject(deviceContext, HBitmap);
+            Win32.SelectObject(deviceContext, this.HBitmap);
 
             //	Set the OpenGL pixel format.
             SetPixelFormat(deviceContext, bitCount);
@@ -56,14 +56,14 @@ namespace CSharpGL
         public void Resize(int width, int height, int bitCount)
         {
             //	Destroy existing objects.
-            Destroy();
+            this.Destroy();
 
             //  Set parameters.
-            Width = width;
-            Height = height;
+            this.Width = width;
+            this.Height = height;
 
             //	Create a bitmap info structure.
-            BITMAPINFO info = new BITMAPINFO();
+            var info = new BitmapInfo();
             info.Init();
 
             //	Set the data.
@@ -73,10 +73,10 @@ namespace CSharpGL
             info.biHeight = height;
 
             //	Create the bitmap.
-            HBitmap = Win32.CreateDIBSection(DibSectionDeviceContext, ref info, Win32.DIB_RGB_COLORS,
-                out bits, IntPtr.Zero, 0);
+            this.HBitmap = Win32.CreateDIBSection(this.DibSectionDeviceContext, ref info, Win32.DIB_RGB_COLORS,
+                out this.bits, IntPtr.Zero, 0);
 
-            Win32.SelectObject(DibSectionDeviceContext, HBitmap);
+            Win32.SelectObject(this.DibSectionDeviceContext, this.HBitmap);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace CSharpGL
         /// </summary>
         public void Dispose()
         {
-            Destroy();
+            this.Destroy();
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace CSharpGL
         protected virtual bool SetPixelFormat(IntPtr hDC, int bitCount)
         {
             //	Create the big lame pixel format majoo.
-            PixelFormatDescriptor pixelFormat = new PixelFormatDescriptor();
+            var pixelFormat = new PixelFormatDescriptor();
             pixelFormat.Init();
 
             //	Set the values for the pixel format.
@@ -107,9 +107,8 @@ namespace CSharpGL
             pixelFormat.iLayerType = Win32.PFD_MAIN_PLANE;
 
             //	Match an appropriate pixel format 
-            int iPixelformat;
-            if ((iPixelformat = Win32.ChoosePixelFormat(hDC, pixelFormat)) == 0)
-                return false;
+            int iPixelformat = Win32.ChoosePixelFormat(hDC, pixelFormat);
+            if (iPixelformat == 0) { return false; }
 
             //	Sets the pixel format
             if (Win32.SetPixelFormat(hDC, iPixelformat, pixelFormat) == 0)
@@ -127,10 +126,10 @@ namespace CSharpGL
         public virtual void Destroy()
         {
             //	Destroy the bitmap.
-            if (HBitmap != IntPtr.Zero)
+            if (this.HBitmap != IntPtr.Zero)
             {
-                Win32.DeleteObject(HBitmap);
-                HBitmap = IntPtr.Zero;
+                Win32.DeleteObject(this.HBitmap);
+                this.HBitmap = IntPtr.Zero;
             }
         }
 

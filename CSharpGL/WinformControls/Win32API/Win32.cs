@@ -251,7 +251,7 @@ namespace CSharpGL
             int height, IntPtr hDCSource, int sourceX, int sourceY, uint type);
 
         [DllImport(gdi32, SetLastError = true)]
-        internal static extern IntPtr CreateDIBSection(IntPtr hdc, [In] ref BITMAPINFO pbmi,
+        internal static extern IntPtr CreateDIBSection(IntPtr hdc, [In] ref BitmapInfo pbmi,
            uint pila, out IntPtr ppvBits, IntPtr hSection, uint dwOffset);
 
         [DllImport(gdi32, SetLastError = true)]

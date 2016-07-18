@@ -8,7 +8,7 @@ using System.Text;
 namespace CSharpGL
 {
     [StructLayout(LayoutKind.Sequential)]
-    struct BITMAPINFO
+    struct BitmapInfo
     {
         public Int32 biSize;
         public Int32 biWidth;
