@@ -34,7 +34,7 @@ namespace CSharpGL
             }
         }
 
-        private BlendSwitch blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One);
+        private BlendSwitch blendSwitch = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
         /// <summary>
         /// 
         /// </summary>
