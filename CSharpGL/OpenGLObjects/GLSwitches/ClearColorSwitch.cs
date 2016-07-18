@@ -13,22 +13,9 @@ namespace CSharpGL
     public class ClearColorSwitch : GLSwitch
     {
 
-        private bool clearColorWhenOn;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool ClearColorWhenOn
-        {
-            get { return clearColorWhenOn; }
-            set { clearColorWhenOn = value; }
-        }
-
         vec4 clearColor = new vec4();
 
-        static ClearColorSwitch()
-        {
-        }
+        static ClearColorSwitch() { }
 
         /// <summary>
         /// 
@@ -55,16 +42,14 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public ClearColorSwitch() : this(Color.Black, true) { }
+        public ClearColorSwitch() : this(Color.Black) { }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="clearColor"></param>
-        /// <param name="clearColorWhenOn"></param>
-        public ClearColorSwitch(Color clearColor, bool clearColorWhenOn)
+        public ClearColorSwitch(Color clearColor)
         {
             this.ClearColor = clearColor;
-            this.clearColorWhenOn = clearColorWhenOn;
         }
 
         float[] original = new float[4];

@@ -43,6 +43,20 @@ namespace CSharpGL
             get { return blendSwitch; }
         }
 
+        private UpdatingRecord textColorRecord = new UpdatingRecord();
+        private vec3 textColor = new vec3(1, 1, 1);
+        /// <summary>
+        /// Text's color.
+        /// </summary>
+        public Color TextColor
+        {
+            get { return textColor.ToColor(); }
+            set
+            {
+                vec3 color = value.ToVec3();
+                textColorRecord.Set(ref this.textColor, color);
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -105,6 +119,11 @@ namespace CSharpGL
             //model = mat4.identity();
             var renderer = this.Renderer as Renderer;
             renderer.SetUniform("mvp", projection * view * model);
+            if(this.textColorRecord.IsMarked())
+            {
+                renderer.SetUniform("textColor", this.textColor);
+                this.textColorRecord.CancelMark();
+            }
 
             blendSwitch.On();
 
