@@ -20,7 +20,7 @@ namespace CSharpGL
         {
             this.Width = width;
             this.Height = height;
-            this.DibSectionDeviceContext = Win32.CreateCompatibleDC(deviceContext);
+            this.MemoryDeviceContext = Win32.CreateCompatibleDC(deviceContext);
 
             //	Destroy existing objects.
             this.DestroyBitmap();
@@ -36,13 +36,13 @@ namespace CSharpGL
             info.biHeight = height;
 
             //	Create the bitmap.
-            this.HBitmap = Win32.CreateDIBSection(this.DibSectionDeviceContext, ref info, Win32.DIB_RGB_COLORS,
+            this.HBitmap = Win32.CreateDIBSection(this.MemoryDeviceContext, ref info, Win32.DIB_RGB_COLORS,
                 out this.bits, IntPtr.Zero, 0);
 
-            Win32.SelectObject(this.DibSectionDeviceContext, this.HBitmap);
+            Win32.SelectObject(this.MemoryDeviceContext, this.HBitmap);
 
             //	Set the OpenGL pixel format.
-            SetPixelFormat(this.DibSectionDeviceContext, bitCount);
+            SetPixelFormat(this.MemoryDeviceContext, bitCount);
 
             return true;
         }
@@ -73,10 +73,10 @@ namespace CSharpGL
             info.biHeight = height;
 
             //	Create the bitmap.
-            this.HBitmap = Win32.CreateDIBSection(this.DibSectionDeviceContext, ref info, Win32.DIB_RGB_COLORS,
+            this.HBitmap = Win32.CreateDIBSection(this.MemoryDeviceContext, ref info, Win32.DIB_RGB_COLORS,
                 out this.bits, IntPtr.Zero, 0);
 
-            Win32.SelectObject(this.DibSectionDeviceContext, this.HBitmap);
+            Win32.SelectObject(this.MemoryDeviceContext, this.HBitmap);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace CSharpGL
         /// <summary>
         /// parentDC
         /// </summary>
-        public IntPtr DibSectionDeviceContext { get; private set; }
+        public IntPtr MemoryDeviceContext { get; private set; }
 
         /// <summary>
         /// Gets the handle to the bitmap.

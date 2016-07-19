@@ -79,7 +79,7 @@ namespace CSharpGL
             this.framebuffer.Dispose();
 
             //  Destroy the internal dc.
-            Win32.DeleteDC(this.dibSection.DibSectionDeviceContext);
+            Win32.DeleteDC(this.dibSection.MemoryDeviceContext);
 
             //this.dibSection.Dispose();
 
@@ -132,7 +132,7 @@ namespace CSharpGL
 
                 //	Blit the DC (containing the DIB section) to the target DC.
                 Win32.BitBlt(hdc, 0, 0, this.Width, this.Height,
-                    this.dibSection.DibSectionDeviceContext, 0, 0, Win32.SRCCOPY);
+                    this.dibSection.MemoryDeviceContext, 0, 0, Win32.SRCCOPY);
             }
         }
 
