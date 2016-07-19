@@ -260,6 +260,11 @@ namespace CSharpGL
         [DllImport(gdi32, SetLastError = true)]
         internal static extern bool DeleteObject(IntPtr hObject);
 
+        /// <summary>
+        /// This function creates a memory device context (DC) compatible with the specified device.
+        /// </summary>
+        /// <param name="hDC">Handle to an existing device context.If this handle is NULL, the function creates a memory device context compatible with the application's current screen.</param>
+        /// <returns>The handle to a memory device context indicates success. NULL indicates failure.</returns>
         [DllImport(gdi32, SetLastError = true)]
         internal static extern IntPtr CreateCompatibleDC(IntPtr hDC);
 
