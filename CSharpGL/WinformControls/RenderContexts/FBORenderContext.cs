@@ -81,6 +81,8 @@ namespace CSharpGL
             //  Destroy the internal dc.
             Win32.DeleteDC(this.dibSection.DibSectionDeviceContext);
 
+            //this.dibSection.Dispose();
+
             //	Call the base, which will delete the render context handle and window.
             base.DisposeUnmanagedResources();
         }
