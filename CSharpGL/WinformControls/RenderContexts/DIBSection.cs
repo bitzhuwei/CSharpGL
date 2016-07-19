@@ -36,13 +36,13 @@ namespace CSharpGL
             info.biHeight = height;
 
             //	Create the bitmap.
-            this.HBitmap = Win32.CreateDIBSection(deviceContext, ref info, Win32.DIB_RGB_COLORS,
+            this.HBitmap = Win32.CreateDIBSection(this.DibSectionDeviceContext, ref info, Win32.DIB_RGB_COLORS,
                 out this.bits, IntPtr.Zero, 0);
 
-            Win32.SelectObject(deviceContext, this.HBitmap);
+            Win32.SelectObject(this.DibSectionDeviceContext, this.HBitmap);
 
             //	Set the OpenGL pixel format.
-            SetPixelFormat(deviceContext, bitCount);
+            SetPixelFormat(this.DibSectionDeviceContext, bitCount);
 
             return true;
         }
