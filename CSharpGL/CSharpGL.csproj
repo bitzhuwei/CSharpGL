@@ -235,18 +235,18 @@
     <Compile Include="Scene\Components\RendererComponent.cs" />
     <Compile Include="Scene\Components\ScriptComponent.cs" />
     <Compile Include="Scene\Components\TransformComponent.cs" />
-    <Compile Include="_Foundations\Utilities\NoisyArray.cs" />
+    <Compile Include="_Foundations\DataStructrues\NoisyArray.cs" />
     <Compile Include="_Foundations\Utilities\TypeHelper.cs" />
-    <Compile Include="_Foundations\Utilities\ComponentList.cs" />
-    <Compile Include="_Foundations\Utilities\Pixel.cs" />
-    <Compile Include="_Foundations\Utilities\Tuple.cs" />
+    <Compile Include="_Foundations\DataStructrues\ComponentList.cs" />
+    <Compile Include="_Foundations\DataStructrues\Pixel.cs" />
+    <Compile Include="_Foundations\DataStructrues\Tuple.cs" />
     <Compile Include="_Foundations\Utilities\AssemblyHelper.cs" />
     <Compile Include="_Foundations\Utilities\ColorHelper.cs" />
     <Compile Include="_Foundations\Utilities\DoubleHelper.cs" />
     <Compile Include="_Foundations\Utilities\DumpTreeToText.cs" />
-    <Compile Include="_Foundations\Utilities\ITreeNode.yield.cs" />
-    <Compile Include="_Foundations\Utilities\ITreeNode.cs" />
-    <Compile Include="_Foundations\Utilities\UpdatingRecord.cs" />
+    <Compile Include="_Foundations\DataStructrues\ITreeNode.yield.cs" />
+    <Compile Include="_Foundations\DataStructrues\ITreeNode.cs" />
+    <Compile Include="_Foundations\DataStructrues\UpdatingRecord.cs" />
     <Compile Include="WinformControls\ClockRenderer\ClockRenderer.cs" />
     <Compile Include="WinformControls\ClockRenderer\ClockMarkRenderer.cs" />
     <Compile Include="WinformControls\ClockRenderer\ClockCircleRenderer.cs" />
@@ -466,7 +466,6 @@
     <Compile Include="_Foundations\OpenGLAPI\Enumerations\TexSubImage2D.cs" />
     <Compile Include="_Foundations\OpenGLAPI\Enumerations\TransformFeedbackBufferTarget.cs" />
     <Compile Include="_Foundations\OpenGLAPI\Enumerations\TransformFeedbackTarget.cs" />
-    <Compile Include="_Foundations\OpenGLAPI\Enumerations\UniformType.cs" />
     <Compile Include="_Foundations\OpenGLAPI\OpenGL.cs" />
     <Compile Include="_Foundations\OpenGLAPI\OpenGLU_Consts.cs" />
     <Compile Include="_Foundations\OpenGLAPI\OpenGLU_Functions.cs" />
@@ -484,7 +483,7 @@
     <Compile Include="WinformControls\Win32API\WindowStylesEx.cs" />
     <Compile Include="WinformControls\Win32API\WNDCLASSEX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="_Foundations\Utilities\FullDictionary.cs" />
+    <Compile Include="_Foundations\DataStructrues\FullDictionary.cs" />
     <Compile Include="_Foundations\Utilities\RectangleHelper.cs" />
     <Compile Include="_Foundations\Utilities\Save2Picture.cs" />
     <Compile Include="_Foundations\Utilities\ArrayHelper.cs" />
@@ -492,8 +491,8 @@
     <Compile Include="_Foundations\Utilities\FloatHelper.cs" />
     <Compile Include="_Foundations\Utilities\ManifestResourceLoader.cs" />
     <Compile Include="_Foundations\Utilities\PositionHelper.cs" />
-    <Compile Include="_Foundations\Utilities\UnmanagedArray.cs" />
-    <Compile Include="_Foundations\Utilities\ITreeNode.ChildList.cs" />
+    <Compile Include="_Foundations\DataStructrues\UnmanagedArray.cs" />
+    <Compile Include="_Foundations\DataStructrues\ITreeNode.ChildList.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

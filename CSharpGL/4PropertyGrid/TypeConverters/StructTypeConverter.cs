@@ -22,7 +22,7 @@ namespace CSharpGL
         public override object ConvertFrom(ITypeDescriptorContext context,
             CultureInfo culture, object value)
         {
-            var result = new T();
+            var result = default(T);
             result.Load(value as string);
 
             return result;
@@ -36,10 +36,16 @@ namespace CSharpGL
         public override object ConvertTo(ITypeDescriptorContext context,
             CultureInfo culture, object value, Type destinationType)
         {
+            object result;
             if (destinationType == typeof(string))
-            { return value.ToString(); }
+            {
+                result = value.ToString();
+            }
             else
-            { return base.ConvertTo(context, culture, value, destinationType); }
+            {
+                result = base.ConvertTo(context, culture, value, destinationType);
+            }
+            return result;
         }
     }
 

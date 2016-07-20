@@ -74,9 +74,9 @@ namespace CSharpGL
         /// </summary>
         protected override void DisposeUnmanagedResources()
         {
-            UnmanagedArray<T>.thisTypeDisposedCount++;
-
             base.DisposeUnmanagedResources();
+
+            UnmanagedArray<T>.thisTypeDisposedCount++;
         }
 
         // Do not try to use less effitient way of accessing elements as we're using OpenGL.
@@ -192,7 +192,7 @@ namespace CSharpGL
                 if (disposing)
                 {
                     // Dispose managed resources.
-                    DisposeManagedResources();
+                    //DisposeManagedResources();
                 } // end if
 
                 // Dispose unmanaged resources.
@@ -216,12 +216,12 @@ namespace CSharpGL
             this.Header = IntPtr.Zero;
         }
 
-        /// <summary>
-        /// Dispose managed resources
-        /// </summary>
-        protected virtual void DisposeManagedResources()
-        {
-        }
+        ///// <summary>
+        ///// Dispose managed resources
+        ///// </summary>
+        //protected virtual void DisposeManagedResources()
+        //{
+        //}
 
         /// <summary>
         /// return string.Format("head: {0}, element count: {1}, byte length: {2}",
