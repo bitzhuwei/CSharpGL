@@ -1,6 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
-namespace System
+namespace CSharpGL
 {
     /// <summary>
     /// Detects the current OS (Windows, Linux, MacOS)

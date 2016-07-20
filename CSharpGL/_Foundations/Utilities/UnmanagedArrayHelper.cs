@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System
+namespace CSharpGL
 {
     /// <summary>
     /// 在非托管内存之间复制信息的辅助类。

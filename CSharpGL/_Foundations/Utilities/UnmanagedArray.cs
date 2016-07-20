@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 
 
-namespace System
+namespace CSharpGL
 {
 
     /// <summary>

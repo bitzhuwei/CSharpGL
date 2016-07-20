@@ -5,8 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-
-namespace System.Drawing
+namespace CSharpGL
 {
     /// <summary>
     /// Helper class for array.

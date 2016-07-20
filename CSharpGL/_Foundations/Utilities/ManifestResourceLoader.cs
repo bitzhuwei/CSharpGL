@@ -5,7 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 
-namespace System
+namespace CSharpGL
 {
     /// <summary>
     /// A small helper class to load manifest resource files.

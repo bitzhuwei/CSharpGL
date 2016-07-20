@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace System
+namespace CSharpGL
 {
     /// <summary>
     /// Invoke ItemUpdated event when item is updated.

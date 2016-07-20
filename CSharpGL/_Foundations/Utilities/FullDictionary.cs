@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 
 
-namespace System
+namespace CSharpGL
 {
     /// <summary>
     /// 对于没有key的情况，统一返回一个固定值.
@@ -193,7 +193,7 @@ namespace System
             return ((ICollection<KeyValuePair<TKey, TValue>>)dict).GetEnumerator();
         }
 
-        Collections.IEnumerator Collections.IEnumerable.GetEnumerator()
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return ((IEnumerable<KeyValuePair<TKey, TValue>>)dict).GetEnumerator();
         }

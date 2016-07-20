@@ -5,7 +5,7 @@ using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 
-namespace System
+namespace CSharpGL
 {
     /// <summary>
     /// children in <see cref="ITreeNode&lt;T&gt;"/>.

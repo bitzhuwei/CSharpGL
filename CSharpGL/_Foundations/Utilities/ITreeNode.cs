@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace System
+namespace CSharpGL
 {
     /// <summary>
     /// 通用的树结点。
