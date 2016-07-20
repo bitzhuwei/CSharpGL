@@ -112,6 +112,7 @@
     <Compile Include="_Foundations\Maths\ivec4.cs" />
     <Compile Include="_Foundations\Maths\VectorHelper.cs" />
     <Compile Include="Octree\OctreeHelper.cs" />
+    <Compile Include="_Foundations\OpenGLAPI\Enumerations\ClearBufferMask.cs" />
     <Compile Include="_Foundations\OpenGLAPI\Enumerations\StringName.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\BoundingBox2D.cs" />
     <Compile Include="OpenGLObjects\Camera\CameraHelpers\Camera.Orientation.cs" />
