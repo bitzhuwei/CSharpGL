@@ -109,10 +109,10 @@ namespace CSharpGL
         /// 
         /// </summary>
         public const uint GL_DEPTH_BUFFER_BIT = 0x00000100;
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public const uint GL_ACCUM_BUFFER_BIT = 0x00000200;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_ACCUM_BUFFER_BIT = 0x00000200;
         /// <summary>
         /// 
         /// </summary>
@@ -133,6 +133,10 @@ namespace CSharpGL
         /// 
         /// </summary>
         public const uint GL_COLOR_BUFFER_BIT = 0x00004000;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_COVERAGE_BUFFER_BIT_NV = 0x00008000;
         ///// <summary>
         ///// 
         ///// </summary>
@@ -347,10 +351,10 @@ namespace CSharpGL
         public const uint GL_DOUBLE = 0x140A;
 
         ////   DrawBufferMode
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public const uint GL_NONE = 0;
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_NONE = 0;
         ///// <summary>
         ///// 
         ///// </summary>
