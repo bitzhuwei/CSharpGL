@@ -69,7 +69,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 
+        /// Initialize all stuff related to OpenGL.
         /// </summary>
         public void Initialize()
         {
