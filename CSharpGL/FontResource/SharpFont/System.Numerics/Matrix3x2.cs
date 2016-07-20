@@ -1,7 +1,8 @@
 using System;
 using System.Globalization;
 
-namespace System.Numerics
+//namespace System.Numerics
+namespace SharpFont
 {
     struct Matrix3x2 : IEquatable<Matrix3x2>
     {

@@ -3,7 +3,8 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace System.Numerics
+//namespace System.Numerics
+namespace SharpFont
 {
     struct Vector2 : IEquatable<Vector2>
     {
