@@ -12,7 +12,7 @@ namespace CSharpGL
     /// shader中的一个数组类型的uniform变量。
     /// 例如：uniform vec3 positions[10];
     /// </summary>
-    public abstract class UniformArrayVariable<T> : UniformArrayVariableBase
+    public abstract class UniformArrayVariable<T> : UniformArrayVariableBase where T : struct, IEquatable<T>
     {
 
         private NoisyArray<T> array;

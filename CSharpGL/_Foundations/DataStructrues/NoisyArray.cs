@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// Invoke ItemUpdated event when item is updated.
     /// </summary>
-    public class NoisyArray<T>
+    public class NoisyArray<T> where T : struct, IEquatable<T>
     {
         T[] array;
         /// <summary>
@@ -58,7 +58,8 @@ namespace CSharpGL
             get { return this.array[index]; }
             set
             {
-                if (!object.Equals(value, this.array[index]))
+                //if (!object.Equals(value, this.array[index]))
+                if (!value.Equals(this.array[index]))
                 {
                     this.array[index] = value;
                     EventHandler<NoisyArrayEventArgs<T>> itemUpdated = this.ItemUpdated;
