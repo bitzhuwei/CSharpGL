@@ -99,6 +99,7 @@
     <None Include="Manipulaters\readme.md" />
     <Compile Include="Renderers\IBufferables\TextModel.SetText.cs" />
     <Compile Include="Manipulaters\ModelManipulaters\ArcBallManipulater.cs" />
+    <None Include="Renderers\readme.md" />
     <Compile Include="_Foundations\Maths\bvec2.cs" />
     <Compile Include="_Foundations\Maths\bvec3.cs" />
     <Compile Include="_Foundations\Maths\ILoadFromString.cs" />
