@@ -13,6 +13,13 @@ It meets common requirements in OpenGL rendering such as:
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.4.13:
+1. Mapping uniform type ivec2/3/4, uvec2/3/4, bvec2/3/4 types.
+2. Generic type converter for struct types.
+3. DefaultFramebuffer creates framebuffer for canvas.
+4. Fix bug: UIText supports all colors.
+5. Remove namespace System.
+
 ## v1.0.4.12:
 1. Add ArcBallManipulater to rotate model.
 2. All types for SharpFont are private.
