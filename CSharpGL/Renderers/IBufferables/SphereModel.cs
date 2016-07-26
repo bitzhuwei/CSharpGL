@@ -111,9 +111,9 @@ namespace CSharpGL
                     this.indexes[index++] = (uint)((longitudeParts + 1) * (i + 1) + j);
                 }
                 // use 
-                // GL.Enable(GL.GL_PRIMITIVE_RESTART); 
-                // GL.PrimitiveRestartIndex(uint.MaxValue); 
-                // GL.Disable(GL.GL_PRIMITIVE_RESTART);
+                // OpenGL.Enable(OpenGL.GL_PRIMITIVE_RESTART); 
+                // OpenGL.PrimitiveRestartIndex(uint.MaxValue); 
+                // OpenGL.Disable(OpenGL.GL_PRIMITIVE_RESTART);
                 this.indexes[index++] = uint.MaxValue;
             }
         }

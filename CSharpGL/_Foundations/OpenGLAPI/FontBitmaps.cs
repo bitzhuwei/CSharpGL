@@ -17,7 +17,7 @@ namespace CSharpGL
         private static FontBitmapEntry CreateFontBitmapEntry(string faceName, int height)
         {
             //  Make the OpenGL instance current.
-            //GL.MakeCurrent();
+            //OpenGL.MakeCurrent();
             IntPtr renderContext = Win32.wglGetCurrentContext();
             IntPtr deviceContext = Win32.wglGetCurrentDC();
             Win32.wglMakeCurrent(deviceContext, renderContext);
@@ -105,15 +105,15 @@ namespace CSharpGL
             OpenGL.MatrixMode(OpenGL.GL_MODELVIEW);
             OpenGL.PushMatrix();
             OpenGL.LoadIdentity();
-            //GL.Color(color.R, color.G, color.B);
-            //GL.RasterPos2i(x, y);
+            //OpenGL.Color(color.R, color.G, color.B);
+            //OpenGL.RasterPos2i(x, y);
 
-            //GL.PushAttrib(GL.GL_LIST_BIT | GL.GL_CURRENT_BIT |
-            //    GL.GL_ENABLE_BIT | GL.GL_TRANSFORM_BIT);
+            //OpenGL.PushAttrib(OpenGL.GL_LIST_BIT | OpenGL.GL_CURRENT_BIT |
+            //    OpenGL.GL_ENABLE_BIT | OpenGL.GL_TRANSFORM_BIT);
             OpenGL.Color3ub(color.R, color.G, color.B);
-            //GL.Disable(GL.GL_LIGHTING);
-            //GL.Disable(GL.GL_TEXTURE_2D);
-            //GL.Disable(GL.GL_DEPTH_TEST);
+            //OpenGL.Disable(OpenGL.GL_LIGHTING);
+            //OpenGL.Disable(OpenGL.GL_TEXTURE_2D);
+            //OpenGL.Disable(OpenGL.GL_DEPTH_TEST);
             OpenGL.RasterPos2i(x, y);
 
             //  Set the list base.
@@ -127,7 +127,7 @@ namespace CSharpGL
             OpenGL.Flush();
 
             ////  Reset the list bit.
-            //GL.PopAttrib();
+            //OpenGL.PopAttrib();
 
             //  Pop the modelview.
             OpenGL.PopMatrix();

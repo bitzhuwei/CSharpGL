@@ -88,7 +88,7 @@ namespace CSharpGL
         {
             int offset = (int)(firstIndex * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
-            //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
+            //IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
             IntPtr pointer = OpenGL.MapBufferRange(BufferTarget.ArrayBuffer,
                 offset,
                 indexCount * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength,
@@ -128,7 +128,7 @@ namespace CSharpGL
             for (int i = 0; i < indexes.Length; i++)
             {
                 int offset = (int)(indexes[i] * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength);
-                //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
+                //IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
                 IntPtr pointer = OpenGL.MapBufferRange(BufferTarget.ArrayBuffer,
                     offset,
                     1 * this.positionBufferPtr.DataSize * this.positionBufferPtr.DataTypeByteLength,

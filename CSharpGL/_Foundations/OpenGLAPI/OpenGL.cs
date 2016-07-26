@@ -93,7 +93,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        [DllImport("libGL.so", EntryPoint = "glXGetProcAddress")]
+        [DllImport("libOpenGL.so", EntryPoint = "glXGetProcAddress")]
         internal static extern IntPtr glxGetProcAddress(string s);
     }
 }

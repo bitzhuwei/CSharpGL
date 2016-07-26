@@ -39,7 +39,7 @@ namespace CSharpGL
 
         //    {
         //        int[] viewport = new int[4];
-        //        GL.GetInteger(GetTarget.Viewport, viewport);
+        //        OpenGL.GetInteger(GetTarget.Viewport, viewport);
         //        int width = viewport[2]; int height = viewport[3];
 
         //        IPerspectiveViewCamera perspectiveViewCamera = camera;
@@ -50,7 +50,7 @@ namespace CSharpGL
         //    }
         //    {
         //        int[] viewport = new int[4];
-        //        GL.GetInteger(GetTarget.Viewport, viewport);
+        //        OpenGL.GetInteger(GetTarget.Viewport, viewport);
         //        int width = viewport[2]; int height = viewport[3];
 
         //        IOrthoViewCamera orthoViewCamera = camera;

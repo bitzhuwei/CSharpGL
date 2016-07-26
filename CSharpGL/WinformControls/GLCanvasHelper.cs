@@ -31,7 +31,7 @@ namespace CSharpGL
         }
 
         static readonly BoundedClockRenderer clockRenderer = new BoundedClockRenderer();
-     
+
         public static void DrawClock()
         {
             clockRenderer.Render(null);

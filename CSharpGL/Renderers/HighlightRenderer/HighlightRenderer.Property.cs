@@ -34,7 +34,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
+        /// type in OpenGL.DrawElements(uint mode, int count, uint type, IntPtr indices);
         /// 只能是OpenGL.UNSIGNED_BYTE, OpenGL.UNSIGNED_SHORT, or OpenGL.UNSIGNED_INT
         /// </summary>
         public IndexElementType Type

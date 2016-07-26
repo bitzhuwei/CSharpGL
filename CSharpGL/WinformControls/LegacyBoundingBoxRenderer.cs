@@ -108,7 +108,7 @@ namespace CSharpGL
 
             //QuadsDraw(gl);
 
-            //GL.Color(1.0f, 0, 0);
+            //OpenGL.Color(1.0f, 0, 0);
             OpenGL.Begin(DrawMode.LineLoop);
             OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MinPosition.z);
             OpenGL.Vertex3f(MaxPosition.x, MinPosition.y, MinPosition.z);
@@ -116,7 +116,7 @@ namespace CSharpGL
             OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MaxPosition.z);
             OpenGL.End();
 
-            //GL.Color(0, 1.0f, 0);
+            //OpenGL.Color(0, 1.0f, 0);
             OpenGL.Begin(DrawMode.LineLoop);
             OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MinPosition.z);
             OpenGL.Vertex3f(MaxPosition.x, MaxPosition.y, MinPosition.z);
@@ -124,7 +124,7 @@ namespace CSharpGL
             OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MaxPosition.z);
             OpenGL.End();
 
-            //GL.Color(0, 0, 1.0f);
+            //OpenGL.Color(0, 0, 1.0f);
             OpenGL.Begin(DrawMode.Lines);
             OpenGL.Vertex3f(MinPosition.x, MinPosition.y, MinPosition.z);
             OpenGL.Vertex3f(MinPosition.x, MaxPosition.y, MinPosition.z);

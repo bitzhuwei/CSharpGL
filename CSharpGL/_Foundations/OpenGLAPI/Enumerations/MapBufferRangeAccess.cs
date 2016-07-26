@@ -36,7 +36,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         MapUnsynchronizedBit = OpenGL.GL_MAP_UNSYNCHRONIZED_BIT,
-        //MapPersistentBit = GL.GL_MAP_PERSISTENT_BIT,
-        //MapCoherentBit = GL.GL_MAP_COHERENT_BIT,
+        //MapPersistentBit = OpenGL.GL_MAP_PERSISTENT_BIT,
+        //MapCoherentBit = OpenGL.GL_MAP_COHERENT_BIT,
     }
 }
