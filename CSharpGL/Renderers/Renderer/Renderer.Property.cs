@@ -26,7 +26,7 @@ namespace CSharpGL
                 else
                 {
                     throw new Exception("Index Buffer Not Initialized!");
-                    //return CSharpOpenGL.DrawMode.Points;
+                    //return CSharpGL.DrawMode.Points;
                 }
             }
             set

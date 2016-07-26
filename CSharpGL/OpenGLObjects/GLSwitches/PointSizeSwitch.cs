@@ -17,7 +17,7 @@ namespace CSharpGL
         static PointSizeSwitch()
         {
             OpenGL.PointSizeRange(out min, out max);
-            //OpenGL.GetFloat(GetTarget.PointSizeGranularity, pointSizeWidthRange);//TODO: what does PointSizeGranularity mean?
+            //GL.GetFloat(GetTarget.PointSizeGranularity, pointSizeWidthRange);//TODO: what does PointSizeGranularity mean?
         }
 
         /// <summary>

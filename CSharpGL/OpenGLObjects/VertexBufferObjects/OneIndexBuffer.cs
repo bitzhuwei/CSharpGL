@@ -63,7 +63,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// type in OpenGL.DrawElements(uint mode, int count, uint type, IntPtr indices);
+        /// type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
         /// </summary>
         public IndexElementType Type { get; private set; }
 

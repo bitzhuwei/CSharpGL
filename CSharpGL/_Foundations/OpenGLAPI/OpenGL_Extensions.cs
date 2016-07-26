@@ -9570,7 +9570,7 @@ namespace CSharpGL
         /// 设置Debug模式的回调函数。
         /// </summary>
         /// <param name="callback">使用一个字段来持有
-        /// <para>callback = new OpenGL.DEBUGPROC(this.callbackProc);</para>
+        /// <para>callback = new GL.DEBUGPROC(this.callbackProc);</para>
         /// 这样就可以避免垃圾回收的问题。
         /// </param>
         /// <param name="userParam">建议使用UnmanagedArray.Header</param>

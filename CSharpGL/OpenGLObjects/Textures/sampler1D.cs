@@ -40,12 +40,12 @@ namespace CSharpGL
             //  Lock the image bits (so that we can pass them to OGL).
             BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
                 ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-            //OpenGL.ActiveTexture(OpenGL.GL_TEXTURE0);
+            //GL.ActiveTexture(GL.GL_TEXTURE0);
             OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
             OpenGL.GenTextures(1, id);
             OpenGL.BindTexture(OpenGL.GL_TEXTURE_1D, id[0]);
             /* We require 1 byte alignment when uploading texture data */
-            //OpenGL.PixelStorei(OpenGL.GL_UNPACK_ALIGNMENT, 1);
+            //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
             /* Clamping to edges is important to prevent artifacts when scaling */
             OpenGL.TexParameteri(OpenGL.GL_TEXTURE_1D, OpenGL.GL_TEXTURE_WRAP_S, (int)OpenGL.GL_CLAMP_TO_EDGE);
             OpenGL.TexParameteri(OpenGL.GL_TEXTURE_1D, OpenGL.GL_TEXTURE_WRAP_T, (int)OpenGL.GL_CLAMP_TO_EDGE);

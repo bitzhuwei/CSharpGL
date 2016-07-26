@@ -95,7 +95,7 @@ namespace CSharpGL
 
         //#endregion translate, rotate, scale
 
-        //#region OpenGL.Color
+        //#region GL.Color
 
         ///// <summary>
         ///// Sets the current color.
@@ -384,9 +384,9 @@ namespace CSharpGL
         //    OpenGL.Color4f(red, green, blue, alpha);
         //}
 
-        //#endregion OpenGL.Color
+        //#endregion GL.Color
 
-        //#region OpenGL.Vertex
+        //#region GL.Vertex
 
         ///// <summary>
         ///// Set the current vertex (must be called between 'Begin' and 'End').
@@ -604,9 +604,9 @@ namespace CSharpGL
         //    OpenGL.Vertex4s(x, y, z, w);
         //}
 
-        //#endregion OpenGL.Vertex
+        //#endregion GL.Vertex
 
-        //#region OpenGL.TexCoord
+        //#region GL.TexCoord
 
 
         ///// <summary>
@@ -844,7 +844,7 @@ namespace CSharpGL
         //}
 
 
-        //#endregion OpenGL.TexCoord
+        //#endregion GL.TexCoord
 
         /// <summary>
         /// 
@@ -1259,10 +1259,10 @@ namespace CSharpGL
         /// <param name="message"></param>
         /// <param name="userParam"></param>
         public delegate void DebugProc(
-            CSharpOpenGL.DebugSource source,
-            CSharpOpenGL.DebugType type,
+            CSharpGL.DebugSource source,
+            CSharpGL.DebugType type,
             uint id,
-            CSharpOpenGL.DebugSeverity severity,
+            CSharpGL.DebugSeverity severity,
             int length,
             StringBuilder message,
             IntPtr userParam);
@@ -1277,9 +1277,9 @@ namespace CSharpGL
         /// <param name="ids"></param>
         /// <param name="enabled"></param>
         public static void DebugMessageControl(
-            CSharpOpenGL.DebugMessageControlSource source,
-            CSharpOpenGL.DebugMessageControlType type,
-            CSharpOpenGL.DebugMessageControlSeverity severity,
+            CSharpGL.DebugMessageControlSource source,
+            CSharpGL.DebugMessageControlType type,
+            CSharpGL.DebugMessageControlSeverity severity,
             int count,
             int[] ids,
             bool enabled)
@@ -1297,10 +1297,10 @@ namespace CSharpGL
         /// <param name="length">用-1即可。</param>
         /// <param name="buf"></param>
         public static void DebugMessageInsert(
-            CSharpOpenGL.DebugSource source,
-            CSharpOpenGL.DebugType type,
+            CSharpGL.DebugSource source,
+            CSharpGL.DebugType type,
             uint id,
-            CSharpOpenGL.DebugSeverity severity,
+            CSharpGL.DebugSeverity severity,
             int length,
             StringBuilder buf)
         {

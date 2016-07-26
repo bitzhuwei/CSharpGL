@@ -338,18 +338,18 @@ namespace CSharpGL
         ////[Obsolete(obsoleteGluDll, error)]
         //[DllImport(Win32.Glu32, SetLastError = true)]
         //public static extern void gluTessNormal(IntPtr tess, double x, double y, double z);
-        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpOpenGL.Delegates.Tesselators.Begin callback);
-        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpOpenGL.Delegates.Tesselators.BeginData callback);
-        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpOpenGL.Delegates.Tesselators.Combine callback);
-        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpOpenGL.Delegates.Tesselators.CombineData callback);
-        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpOpenGL.Delegates.Tesselators.EdgeFlag callback);
-        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpOpenGL.Delegates.Tesselators.EdgeFlagData callback);
-        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpOpenGL.Delegates.Tesselators.End callback);
-        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpOpenGL.Delegates.Tesselators.EndData callback);
-        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpOpenGL.Delegates.Tesselators.Error callback);
-        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpOpenGL.Delegates.Tesselators.ErrorData callback);
-        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpOpenGL.Delegates.Tesselators.Vertex callback);
-        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpOpenGL.Delegates.Tesselators.VertexData callback);
+        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpGL.Delegates.Tesselators.Begin callback);
+        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpGL.Delegates.Tesselators.BeginData callback);
+        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpGL.Delegates.Tesselators.Combine callback);
+        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpGL.Delegates.Tesselators.CombineData callback);
+        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpGL.Delegates.Tesselators.EdgeFlag callback);
+        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpGL.Delegates.Tesselators.EdgeFlagData callback);
+        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpGL.Delegates.Tesselators.End callback);
+        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpGL.Delegates.Tesselators.EndData callback);
+        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpGL.Delegates.Tesselators.Error callback);
+        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpGL.Delegates.Tesselators.ErrorData callback);
+        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpGL.Delegates.Tesselators.Vertex callback);
+        ////		[DllImport(Win32.Glu32, SetLastError = true)] public static extern void  gluTessCallback(IntPtr tess, int which, SharpGL.Delegates.Tesselators.VertexData callback);
 
         ///// <summary>
         ///// Set a tessellation object property.

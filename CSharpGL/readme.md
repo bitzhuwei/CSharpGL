@@ -8,7 +8,7 @@ It meets common requirements in OpenGL rendering such as:
 * picking primitives in multiple vertex buffer objects;
 * rendering text using build-in GLText object in 3D space world or UI(window space);
 * a scene editor;
-* different kinds of demonstrations to use CSharpOpenGL.
+* different kinds of demonstrations to use CSharpGL.
 
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
@@ -116,7 +116,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 4. Easier to use GLControl as root UI renderer.(Auto-bind to canvas' resize event)
 5. Clean interface and implementation for FontResource.
 6. Update frame buffer constants.
-7. Remove unused resources(teapot.obj etc.) to reduce CSharpOpenGL.dll's file size.
+7. Remove unused resources(teapot.obj etc.) to reduce CSharpGL.dll's file size.
 8. internal fields of mat2/mat3/mat4 for better performance.
 
 ## v1.0.4.1:

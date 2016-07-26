@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Used in OpenGL.BlitFramebuffer, OpenGL.Clear and 1 other function
+    /// Used in GL.BlitFramebuffer, GL.Clear and 1 other function
     /// </summary>
     [Flags]
     public enum ClearBufferMask : uint

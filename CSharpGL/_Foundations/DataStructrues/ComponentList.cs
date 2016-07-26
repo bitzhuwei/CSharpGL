@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    //“CSharpOpenGL.IListEditor<CSharpOpenGL.ComponentList<TBinding,TComponent>>”: 特性参数不能使用类型参数
+    //“CSharpGL.IListEditor<CSharpGL.ComponentList<TBinding,TComponent>>”: 特性参数不能使用类型参数
     //[Editor(typeof(IListEditor<ComponentList<TBinding, TComponent>>), typeof(UITypeEditor))]
     /// <summary>
     /// a list of components who bind to the specified binding object.

@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// OpenGL.Enable(cap); or OpenGL.Disable(cap);
+    /// GL.Enable(cap); or GL.Disable(cap);
     /// </summary>
     public abstract class EnableSwitch : GLSwitch
     {
@@ -17,24 +17,24 @@ namespace CSharpGL
         protected bool enableCapacityWhenSwitchOn;
 
         /// <summary>
-        /// OpenGL.Enable(capacity);
+        /// GL.Enable(capacity);
         /// </summary>
         public uint Capacity { get; protected set; }
 
         /// <summary>
-        /// OpenGL.Enable(capacity); or OpenGL.Disable(capacity);
+        /// GL.Enable(capacity); or GL.Disable(capacity);
         /// </summary>
         public bool EnableCapacity { get; set; }
         private bool originalEnableCapacity;
 
         /// <summary>
-        /// OpenGL.Enable(capacity);
+        /// GL.Enable(capacity);
         /// </summary>
         /// <param name="capacity"></param>
         public EnableSwitch(uint capacity) : this(capacity, true) { }
 
         /// <summary>
-        /// OpenGL.Enable(capacity); or OpenGL.Disable(capacity);
+        /// GL.Enable(capacity); or GL.Disable(capacity);
         /// </summary>
         /// <param name="capacity"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>

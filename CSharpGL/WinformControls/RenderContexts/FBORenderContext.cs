@@ -104,11 +104,11 @@ namespace CSharpGL
 
             /*
             //  Resize the render buffer storage.
-            OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT(OpenGL.GL_RENDERBUFFER, colourRenderBufferId);
-            OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT(OpenGL.GL_RENDERBUFFER, OpenGL.GL_RGBA, width, height);
-            OpenGL.GetDelegateFor<OpenGL.glBindRenderbufferEXT(OpenGL.GL_RENDERBUFFER, depthRenderBufferId);
-            OpenGL.GetDelegateFor<OpenGL.glRenderbufferStorageEXT(OpenGL.GL_RENDERBUFFER, OpenGL.GL_DEPTH_ATTACHMENT, width, height);
-            var complete = OpenGL.CheckFramebufferStatusEXT(OpenGL.GL_FRAMEBUFFER_EXT);
+            GL.GetDelegateFor<GL.glBindRenderbufferEXT(GL.GL_RENDERBUFFER, colourRenderBufferId);
+            GL.GetDelegateFor<GL.glRenderbufferStorageEXT(GL.GL_RENDERBUFFER, GL.GL_RGBA, width, height);
+            GL.GetDelegateFor<GL.glBindRenderbufferEXT(GL.GL_RENDERBUFFER, depthRenderBufferId);
+            GL.GetDelegateFor<GL.glRenderbufferStorageEXT(GL.GL_RENDERBUFFER, GL.GL_DEPTH_ATTACHMENT, width, height);
+            var complete = GL.CheckFramebufferStatusEXT(GL.GL_FRAMEBUFFER_EXT);
             */
             this.framebuffer.Dispose();
             var framebuffer = new DefaultFramebuffer();

@@ -22,9 +22,9 @@ namespace CSharpGL
         /// <param name="mode"></param>
         /// <param name="pullNear"></param>
         public PolygonOffsetSwitch(PolygonOffset mode, bool pullNear)
-            : base((uint)mode, true)
+            :base((uint)mode, true)
         {
-            this.PullNear = pullNear;
+            this.PullNear = pullNear; 
         }
         /// <summary>
         /// 
@@ -32,7 +32,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("Polygon Offset: {0} {1}",
+            return string.Format("Polygon Offset: {0} {1}", 
                 (PolygonOffset)this.Capacity,
                 this.PullNear ? "Near" : "Far");
         }
