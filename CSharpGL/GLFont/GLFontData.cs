@@ -18,7 +18,7 @@ namespace CSharpGL
         /// <summary>
         /// Mapping from character to glyph index
         /// </summary>
-        public Dictionary<char, GLFontGlyph> CharSetMapping; 
+        public Dictionary<char, GLFontGlyph> CharSetMapping;
 
         /// <summary>
         /// The average glyph width
@@ -37,7 +37,7 @@ namespace CSharpGL
 
         public bool IsMonospacingActive(GLFontRenderOptions options)
         {
-            return (options.Monospacing == GLFontMonospacing.Natural && naturallyMonospaced) || options.Monospacing == GLFontMonospacing.Yes; 
+            return (options.Monospacing == GLFontMonospacing.Natural && naturallyMonospaced) || options.Monospacing == GLFontMonospacing.Yes;
         }
 
         public float GetMonoSpaceWidth(GLFontRenderOptions options)

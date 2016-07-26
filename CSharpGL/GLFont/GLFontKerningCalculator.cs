@@ -26,20 +26,20 @@ namespace CSharpGL
             //TODO - offset startY, endY by yOffset1 so that lim1[j-yOffset1] can be written as lim1[j], will need another var for yOffset2
 
             for (int j = startY; j < endY; j++)
-                worstCase = Math.Min(worstCase, w1 - lim1[j-yOffset1].Max + lim2[j-yOffset2].Min);
+                worstCase = Math.Min(worstCase, w1 - lim1[j - yOffset1].Max + lim2[j - yOffset2].Min);
 
             worstCase = Math.Min(worstCase, g1.Rect.Width);
             worstCase = Math.Min(worstCase, g2.Rect.Width);
 
             //modify by character kerning rules
-            GLFontCharacterKerningRule kerningRule = config.GetOverridingCharacterKerningRuleForPair(""+g1.Character + g2.Character);
+            GLFontCharacterKerningRule kerningRule = config.GetOverridingCharacterKerningRuleForPair("" + g1.Character + g2.Character);
             if (kerningRule == GLFontCharacterKerningRule.Zero)
             {
                 return 0;
             }
             else if (kerningRule == GLFontCharacterKerningRule.NotMoreThanHalf)
             {
-                return (int)Math.Min(Math.Min(g1.Rect.Width,g2.Rect.Width)*0.5f, worstCase);
+                return (int)Math.Min(Math.Min(g1.Rect.Width, g2.Rect.Width) * 0.5f, worstCase);
             }
 
             return worstCase;
@@ -73,7 +73,7 @@ namespace CSharpGL
                     bool yetToFindFirst = true;
                     for (int i = xStart; i < xEnd; i++)
                     {
-                        if (!GLFontBitmap.EmptyAlphaPixel(page.bitmapData, i, j,config.AlphaEmptyPixelTolerance))
+                        if (!GLFontBitmap.EmptyAlphaPixel(page.bitmapData, i, j, config.AlphaEmptyPixelTolerance))
                         {
 
                             if (yetToFindFirst)
@@ -103,7 +103,8 @@ namespace CSharpGL
 
                 for (int j = 0; j < limits[n].Length; j++)
                 {
-                    if(j != 0){
+                    if (j != 0)
+                    {
                         tmp[j].Min = Math.Min(limits[n][j - 1].Min, tmp[j].Min);
                         tmp[j].Max = Math.Max(limits[n][j - 1].Max, tmp[j].Max);
                     }
@@ -113,7 +114,7 @@ namespace CSharpGL
                         tmp[j].Min = Math.Min(limits[n][j + 1].Min, tmp[j].Min);
                         tmp[j].Max = Math.Max(limits[n][j + 1].Max, tmp[j].Max);
                     }
-                    
+
                 }
 
                 for (int j = 0; j < limits[n].Length; j++)
@@ -123,7 +124,7 @@ namespace CSharpGL
 
             for (int i = 0; i < charSet.Length; i++)
                 for (int j = 0; j < charSet.Length; j++)
-                    kerningPairs.Add("" + charSet[i] + charSet[j], 1-Kerning(glyphs[i], glyphs[j], limits[i], limits[j],config));
+                    kerningPairs.Add("" + charSet[i] + charSet[j], 1 - Kerning(glyphs[i], glyphs[j], limits[i], limits[j], config));
 
             return kerningPairs;
         }

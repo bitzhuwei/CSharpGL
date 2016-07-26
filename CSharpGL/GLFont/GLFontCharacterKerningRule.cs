@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-	public enum GLFontCharacterKerningRule : byte
+    public enum GLFontCharacterKerningRule : byte
     {
         /// <summary>
         /// Ordinary kerning

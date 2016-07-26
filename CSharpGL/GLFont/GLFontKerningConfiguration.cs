@@ -15,7 +15,7 @@ namespace CSharpGL
         /// this is the minimum alpha level that is necessray for a pixel to be considered
         /// non-empty. This should be set to a value on the range [0,255]
         /// </summary>
-		public byte AlphaEmptyPixelTolerance = 0;
+        public byte AlphaEmptyPixelTolerance = 0;
 
 
         /// <summary>
@@ -81,8 +81,8 @@ namespace CSharpGL
 
         public GLFontKerningConfiguration()
         {
-			SetCharacterKerningRule('^', GLFontCharacterKerningRule.NotMoreThanHalf);
-			SetCharacterKerningRule('_', GLFontCharacterKerningRule.NotMoreThanHalf);
+            SetCharacterKerningRule('^', GLFontCharacterKerningRule.NotMoreThanHalf);
+            SetCharacterKerningRule('_', GLFontCharacterKerningRule.NotMoreThanHalf);
             SetCharacterKerningRule('\"', GLFontCharacterKerningRule.NotMoreThanHalf);
             SetCharacterKerningRule('\'', GLFontCharacterKerningRule.NotMoreThanHalf);
         }

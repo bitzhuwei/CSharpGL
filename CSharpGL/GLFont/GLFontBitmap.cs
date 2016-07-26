@@ -49,7 +49,7 @@ namespace CSharpGL
         public static unsafe bool EmptyPixel(BitmapData bitmapData, int px, int py)
         {
             byte* addr = (byte*)(bitmapData.Scan0) + bitmapData.Stride * py + px * 3;
-			return (*addr == 0 && *(addr + 1) == 0 && *(addr + 2) == 0);
+            return (*addr == 0 && *(addr + 1) == 0 && *(addr + 2) == 0);
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace CSharpGL
 
                     byte* targetOffset = targetY + targetStartX * bpp;
                     byte* sourceOffset = sourceY + sourceStartX * bpp;
-                    for (int x = 0; x < copyW*bpp; x++, targetOffset ++, sourceOffset ++)
+                    for (int x = 0; x < copyW * bpp; x++, targetOffset++, sourceOffset++)
                         *(targetOffset) = *(sourceOffset);
 
                 }
@@ -190,7 +190,7 @@ namespace CSharpGL
         public unsafe void PutPixel32(int px, int py, byte r, byte g, byte b, byte a)
         {
             byte* addr = (byte*)(bitmapData.Scan0) + bitmapData.Stride * py + px * 4;
-       
+
             *addr = b;
             *(addr + 1) = g;
             *(addr + 2) = r;
@@ -200,11 +200,11 @@ namespace CSharpGL
         public unsafe void GetPixel32(int px, int py, ref byte r, ref byte g, ref byte b, ref byte a)
         {
             byte* addr = (byte*)(bitmapData.Scan0) + bitmapData.Stride * py + px * 4;
-        
+
             b = *addr;
             g = *(addr + 1);
             r = *(addr + 2);
-            a = *(addr + 3); 
+            a = *(addr + 3);
         }
 
         public void DownScale32(int newWidth, int newHeight)
@@ -308,7 +308,7 @@ namespace CSharpGL
                 }
 
             }
-            
+
             this.Free();
             this.bitmap = newBitmap.bitmap;
             this.bitmapData = newBitmap.bitmapData;

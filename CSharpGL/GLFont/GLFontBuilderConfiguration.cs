@@ -36,7 +36,7 @@
         /// their texture page
         /// </summary>
         public int GlyphMargin = 2;
-       
+
         /// <summary>
         /// Set of characters to support
         /// </summary>

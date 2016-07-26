@@ -10,7 +10,7 @@
         /// <summary>
         /// Spacing between words in units of average glyph width
         /// </summary>
-		public float WordSpacing = 0.6f;
+        public float WordSpacing = 0.6f;
 
         /// <summary>
         /// Line spacing in units of max glyph width
@@ -61,7 +61,7 @@
         {
             get { return justifyCharWeightForExpand; }
             set
-            { 
+            {
                 justifyCharWeightForExpand = value;
                 if (justifyCharWeightForExpand < 0f)
                     justifyCharWeightForExpand = 0f;
