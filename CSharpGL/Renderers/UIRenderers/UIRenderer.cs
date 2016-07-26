@@ -120,6 +120,7 @@ namespace CSharpGL
                 for (int i = 0; i < count; i++) { this.switchList[i].On(); }
 
                 // 把所有在此之前渲染的内容都推到最远。
+                // Push all rendered stuff to farest position.
                 OpenGL.Clear(OpenGL.GL_DEPTH_BUFFER_BIT);
 
                 renderer.Render(arg);
