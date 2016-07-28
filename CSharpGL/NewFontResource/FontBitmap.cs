@@ -6,6 +6,9 @@ using System.Text;
 
 namespace CSharpGL.NewFontResource
 {
+    /// <summary>
+    /// font, bitmap and texture coordiante.
+    /// </summary>
     public class FontBitmap
     {
     }

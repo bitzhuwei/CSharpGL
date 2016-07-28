@@ -6,8 +6,17 @@ using System.Text;
 
 namespace CSharpGL.NewFontResource
 {
+    /// <summary>
+    /// helper class.
+    /// </summary>
     public static class FontBitmapHelper
     {
+        /// <summary>
+        /// Gets a <see cref="FontBitmap"/>'s intance.
+        /// </summary>
+        /// <param name="font"></param>
+        /// <param name="config"></param>
+        /// <returns></returns>
         public static FontBitmap GetFontBitmap(this Font font, GLFontBuilderConfiguration config = null)
         {
 
