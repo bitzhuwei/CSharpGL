@@ -16,7 +16,7 @@ namespace CSharpGL
         private static readonly object synObj = new object();
         private static readonly Dictionary<IntPtr, FontResource> dict = new Dictionary<IntPtr, FontResource>();
 
-        private FontResource() { }
+        internal FontResource() { }
 
         /// <summary>
         /// Default FontResource instance for this render context.

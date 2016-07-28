@@ -93,6 +93,7 @@
     <Compile Include="FontResource\FontResource.FromTTF.Impl.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.cs" />
     <Compile Include="GLFont\GLFont.cs" />
+    <None Include="GLFont\readme.md" />
     <Compile Include="GLFont\GLFontAlignment.cs" />
     <Compile Include="GLFont\GLFontBitmap.cs" />
     <Compile Include="GLFont\GLFontBuilder.cs" />
@@ -112,6 +113,10 @@
     <Compile Include="GLFont\GLFontTextPosition.cs" />
     <Compile Include="GLFont\GLFontTexture.cs" />
     <Compile Include="GLFont\GLFontVertexBuffer.cs" />
+    <Compile Include="NewFontResource\FontBitmapHelper.cs" />
+    <Compile Include="NewFontResource\FontBitmap.cs" />
+    <Compile Include="NewFontResource\FontTextureHelper.cs" />
+    <Compile Include="NewFontResource\FontTexture.cs" />
     <Compile Include="Renderers\IBufferables\BoundingBoxModel.cs" />
     <Compile Include="Renderers\IBufferables\Ground.cs" />
     <Compile Include="Renderers\IBufferables\TeapotModel.Positions.cs" />

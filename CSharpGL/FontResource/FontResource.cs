@@ -32,7 +32,7 @@ namespace CSharpGL
         /// <summary>
         /// 字形高度
         /// </summary>
-        public int FontHeight { get; private set; }
+        public float FontHeight { get; private set; }
 
         ///// <summary>
         ///// 第一个字符

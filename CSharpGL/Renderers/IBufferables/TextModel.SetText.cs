@@ -87,7 +87,7 @@ namespace CSharpGL
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
             IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
             var array = (TextModel.GlyphPosition*)pointer.ToPointer();
-            int currentWidth = 0; int currentHeight = 0;
+            float currentWidth = 0; int currentHeight = 0;
             /*
              * 0     3  4     7 8     11 12   15
              * -------  ------- -------  -------

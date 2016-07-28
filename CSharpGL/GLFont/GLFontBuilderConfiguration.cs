@@ -1,4 +1,6 @@
-﻿namespace CSharpGL
+﻿using System.Collections;
+using System.Collections.Generic;
+namespace CSharpGL
 {
     /// <summary>
     /// What settings to use when building the font
