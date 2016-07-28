@@ -5,7 +5,7 @@ namespace CSharpGL.NewFontResource
     /// <summary>
     /// What settings to use when building the font
     /// </summary>
-    public class GLFontBuilderConfiguration
+    public class FontBitmapConfiguration
     {
         //public GLFontKerningConfiguration KerningConfig = new GLFontKerningConfiguration();
 

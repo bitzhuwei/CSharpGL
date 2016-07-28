@@ -11,14 +11,22 @@ namespace CSharpGL.NewFontResource
     /// </summary>
     public class FontBitmap
     {
+        /// <summary>
+        /// font of glyphs in <see cref="glyphBitmap"/>.
+        /// </summary>
         private Font font;
-        private GLFontBuilderConfiguration config;
+        /// <summary>
+        /// bitmap in which glyphs is printed.
+        /// </summary>
+        private Bitmap glyphBitmap;
+        /// <summary>
+        /// 
+        /// </summary>
+        private FontBitmapConfiguration config;
+        /// <summary>
+        /// glyph information dictionary.
+        /// </summary>
+        private Dictionary<char, GlyphInfo> glyphInfoDictionary = new Dictionary<char, GlyphInfo>();
 
-        public FontBitmap(Font font, GLFontBuilderConfiguration config)
-        {
-            // TODO: Complete member initialization
-            this.font = font;
-            this.config = config;
-        }
     }
 }

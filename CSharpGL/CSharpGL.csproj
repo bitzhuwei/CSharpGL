@@ -96,8 +96,7 @@
     <Compile Include="NewFontResource\FontBitmap.cs" />
     <Compile Include="NewFontResource\FontTextureHelper.cs" />
     <Compile Include="NewFontResource\FontTexture.cs" />
-    <Compile Include="NewFontResource\GLFontBuilder.cs" />
-    <Compile Include="NewFontResource\GLFontBuilderConfiguration.cs" />
+    <Compile Include="NewFontResource\FontBitmapConfiguration.cs" />
     <Compile Include="NewFontResource\GLFontData.cs" />
     <Compile Include="Renderers\IBufferables\BoundingBoxModel.cs" />
     <Compile Include="Renderers\IBufferables\Ground.cs" />
