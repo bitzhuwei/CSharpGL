@@ -19,7 +19,9 @@ namespace CSharpGL.NewFontResource
         /// <returns></returns>
         public static FontBitmap GetFontBitmap(this Font font, GLFontBuilderConfiguration config = null)
         {
-
+            if (config == null) { config = new GLFontBuilderConfiguration(); }
+            GLFontData fontData = new GLFontBuilder(font, config).BuildFontData();
+            var result = new FontBitmap(font, config);
             throw new NotImplementedException();
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace CSharpGL
+﻿namespace CSharpGL.NewFontResource
 {
     class GLFontTextNode
     {

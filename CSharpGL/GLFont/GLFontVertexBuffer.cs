@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpGL
+namespace CSharpGL.NewFontResource
 {
     public class GLFontVertexBuffer : RendererBase, IDisposable
     {

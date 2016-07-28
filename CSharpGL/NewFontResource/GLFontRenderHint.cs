@@ -1,4 +1,4 @@
-﻿namespace CSharpGL
+﻿namespace CSharpGL.NewFontResource
 {
     public enum GLFontRenderHint : byte
     {

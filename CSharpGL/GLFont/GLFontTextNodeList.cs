@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CSharpGL
+namespace CSharpGL.NewFontResource
 {
     /// <summary>
     /// A doubly linked list of text nodes

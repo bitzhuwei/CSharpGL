@@ -1,5 +1,5 @@
 ﻿
-namespace CSharpGL
+namespace CSharpGL.NewFontResource
 {
     public struct GLFontTextPosition
     {
