@@ -19,6 +19,8 @@ namespace CSharpGL.NewFontResource
         /// <returns></returns>
         public static FontBitmap GetFontBitmap(this Font font)
         {
+            var result = new FontBitmap();
+            result.font = font;
             throw new NotImplementedException();
         }
     }

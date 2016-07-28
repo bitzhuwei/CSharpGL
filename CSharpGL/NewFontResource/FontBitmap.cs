@@ -14,15 +14,16 @@ namespace CSharpGL.NewFontResource
         /// <summary>
         /// font of glyphs in <see cref="glyphBitmap"/>.
         /// </summary>
-        private Font font;
+        internal Font font;
         /// <summary>
         /// bitmap in which glyphs is printed.
         /// </summary>
-        private Bitmap glyphBitmap;
+        internal Bitmap glyphBitmap;
         /// <summary>
         /// glyph information dictionary.
         /// </summary>
-        private Dictionary<char, GlyphInfo> glyphInfoDictionary = new Dictionary<char, GlyphInfo>();
+        internal FullDictionary<char, GlyphInfo> glyphInfoDictionary = new FullDictionary<char, GlyphInfo>(GlyphInfo.Default);
 
+        internal FontBitmap() { }
     }
 }
