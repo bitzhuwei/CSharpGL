@@ -92,6 +92,10 @@
     <Compile Include="FontResource\FontResource.FromTTF.Misc.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.Impl.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.cs" />
+    <Compile Include="NewFontResource\FontBitmap.cs" />
+    <Compile Include="NewFontResource\FontBitmapHelper.cs" />
+    <Compile Include="NewFontResource\FontTexture.cs" />
+    <Compile Include="NewFontResource\FontTextureHelper.cs" />
     <Compile Include="Renderers\IBufferables\BoundingBoxModel.cs" />
     <Compile Include="Renderers\IBufferables\Ground.cs" />
     <Compile Include="Renderers\IBufferables\TeapotModel.Positions.cs" />
@@ -99,6 +103,7 @@
     <None Include="Manipulaters\readme.md" />
     <Compile Include="Renderers\IBufferables\TextModel.SetText.cs" />
     <Compile Include="Manipulaters\ModelManipulaters\ArcBallManipulater.cs" />
+    <None Include="NewFontResource\readme.md" />
     <None Include="Renderers\readme.md" />
     <Compile Include="_Foundations\Maths\bvec2.cs" />
     <Compile Include="_Foundations\Maths\bvec3.cs" />

@@ -20,10 +20,6 @@ namespace CSharpGL.NewFontResource
         /// </summary>
         private Bitmap glyphBitmap;
         /// <summary>
-        /// 
-        /// </summary>
-        private FontBitmapConfiguration config;
-        /// <summary>
         /// glyph information dictionary.
         /// </summary>
         private Dictionary<char, GlyphInfo> glyphInfoDictionary = new Dictionary<char, GlyphInfo>();

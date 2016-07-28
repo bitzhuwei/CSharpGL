@@ -17,9 +17,8 @@ namespace CSharpGL.NewFontResource
         /// <param name="font"></param>
         /// <param name="config"></param>
         /// <returns></returns>
-        public static FontBitmap GetFontBitmap(this Font font, FontBitmapConfiguration config = null)
+        public static FontBitmap GetFontBitmap(this Font font)
         {
-            if (config == null) { config = new FontBitmapConfiguration(); }
             throw new NotImplementedException();
         }
     }
