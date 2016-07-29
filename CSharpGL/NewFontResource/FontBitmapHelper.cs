@@ -26,8 +26,9 @@ namespace CSharpGL.NewFontResource
             // 以下三步，不能调换先后顺序。
             // Don't change the order in which these 3 functions invoked.
             GetGlyphSizes(fontBitmap, charSet);
-            GetGlyphPositions(fontBitmap, charSet);
-            PrintBitmap(fontBitmap, charSet);
+            int width, height;
+            GetGlyphPositions(fontBitmap, charSet, out width, out height);
+            PrintBitmap(fontBitmap, charSet, width, height);
 
             fontBitmap.glyphBitmap.Save("TestFontBitmap.bmp");
             //var fontResource = new FontResource();
@@ -39,35 +40,56 @@ namespace CSharpGL.NewFontResource
             return fontBitmap;
         }
 
-        private static void PrintBitmap(FontBitmap fontBitmap, string charSet)
+        private static void PrintBitmap(FontBitmap fontBitmap, string charSet, int width, int height)
         {
+            var bitmap = new Bitmap(width, height);
+            using (var graphics = Graphics.FromImage(bitmap))
+            {
+                foreach (KeyValuePair<char, GlyphInfo> item in fontBitmap.glyphInfoDictionary)
+                {
+                    graphics.DrawString(item.Key.ToString(), fontBitmap.font, Brushes.White, item.Value.xoffset, item.Value.yoffset);
+                }
+            }
 
-            throw new NotImplementedException();
+            fontBitmap.glyphBitmap = bitmap;
         }
 
-        private static void GetGlyphPositions(FontBitmap fontBitmap, string charSet)
+        private static void GetGlyphPositions(FontBitmap fontBitmap, string charSet, out int width, out int height)
         {
-            float totalWidth = 0.0f;
-            float maxHeight = 0.0f;
-            foreach (GlyphInfo item in fontBitmap.glyphInfoDictionary.Values)
+            int sideLength;
+            float maxGlyphHeight = 0.0f;
             {
-                totalWidth += item.width;
-                if (maxHeight < item.height) { maxHeight = item.height; }
-            }
-            //int maxHeight = (int)Math.Ceiling(maxHeightf);
-            float area = totalWidth * maxHeight;
-            int sideLength = (int)Math.Ceiling(Math.Sqrt(area));
-            float currentX = 0, currentY = 0;
-            foreach (GlyphInfo item in fontBitmap.glyphInfoDictionary.Values)
-            {
-                item.xoffset = currentX;
-                item.yoffset = currentY;
-                currentX += item.width;
-                if (currentX >= sideLength)
+                float totalWidth = 0.0f;
+                foreach (GlyphInfo item in fontBitmap.glyphInfoDictionary.Values)
                 {
-                    currentY += maxHeight;
-                    currentX = 0;
+                    totalWidth += item.width;
+                    if (maxGlyphHeight < item.height) { maxGlyphHeight = item.height; }
                 }
+                //int maxHeight = (int)Math.Ceiling(maxHeightf);
+                float area = totalWidth * maxGlyphHeight;
+                sideLength = (int)Math.Ceiling(Math.Sqrt(area));
+            }
+            {
+                float maxWidth = 0, maxHeight = 0;
+                float currentX = 0, currentY = 0;
+                foreach (GlyphInfo item in fontBitmap.glyphInfoDictionary.Values)
+                {
+                    if (currentX + item.width < sideLength)
+                    {
+                        item.xoffset = currentX;
+                        item.yoffset = currentY;
+                        currentX += item.width;
+                    }
+                    else
+                    {
+                        if (maxWidth < currentX) { maxWidth = currentX; }
+                        currentX = 0;
+                        currentY += maxGlyphHeight;
+                    }
+                }
+                maxHeight = currentY;
+                width = (int)Math.Ceiling(maxWidth);
+                height = (int)Math.Ceiling(maxHeight);
             }
         }
 
