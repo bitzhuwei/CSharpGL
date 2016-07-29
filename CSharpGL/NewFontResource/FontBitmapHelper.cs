@@ -60,6 +60,7 @@ namespace CSharpGL.NewFontResource
                     foreach (char c in charSet)
                     {
                         SizeF size = graphics.MeasureString(c.ToString(), fontBitmap.font);
+                        // glyph's position is not settled yet.
                         var info = new GlyphInfo(0, 0, size.Width, size.Height);
                         fontBitmap.glyphInfoDictionary.Add(c, info);
                     }
