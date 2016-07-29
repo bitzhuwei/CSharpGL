@@ -29,7 +29,7 @@ namespace CSharpGL
         /// <summary>
         /// texture's size.
         /// </summary>
-        public Size TextureSize { get; private set; }
+        public Size TextureSize { get; internal set; }
 
         /// <summary>
         /// glyph information dictionary.
