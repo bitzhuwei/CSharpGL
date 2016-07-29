@@ -18,22 +18,22 @@ namespace CSharpGL
         /// <summary>
         /// 此字符的字形在纹理的横向偏移量（左上角）
         /// </summary>
-        public int xoffset;
+        public float xoffset;
 
         /// <summary>
         /// 此字符的字形在纹理的纵向偏移量（左上角）
         /// </summary>
-        public int yoffset;
+        public float yoffset;
 
         /// <summary>
         /// 此字符的字形宽度
         /// </summary>
-        public int width;
+        public float width;
 
         /// <summary>
         /// 此字符的字形高度
         /// </summary>
-        public int height;
+        public float height;
         /// <summary>
         /// 绘制一个字符所需要的所有信息
         /// </summary>
@@ -41,7 +41,7 @@ namespace CSharpGL
         /// <param name="yoffset">此字符的字形在纹理的纵向偏移量（左上角）</param>
         /// <param name="width">此字符的字形宽度</param>
         /// <param name="height">此字符的字形高度</param>
-        public GlyphInfo(int xoffset, int yoffset, int width, int height)
+        public GlyphInfo(float xoffset, float yoffset, float width, float height)
         {
             this.xoffset = xoffset;
             this.yoffset = yoffset;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing.Imaging;
 
-namespace CSharpGL
+namespace CSharpGL.NewFontResource
 {
     class GLFontTexture : IDisposable
     {

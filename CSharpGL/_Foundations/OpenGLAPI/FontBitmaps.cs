@@ -12,7 +12,7 @@ namespace CSharpGL
     /// This class wraps the functionality of the wglUseFontBitmaps function to
     /// allow straightforward rendering of text.
     /// </summary>
-    public class FontBitmaps
+    class FontBitmaps
     {
         private static FontBitmapEntry CreateFontBitmapEntry(string faceName, int height)
         {

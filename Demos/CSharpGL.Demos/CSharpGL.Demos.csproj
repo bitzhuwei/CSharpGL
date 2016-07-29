@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="11IFontTexture\Form11IFontTexture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="11IFontTexture\Form11IFontTexture.Designer.cs">
+      <DependentUpon>Form11IFontTexture.cs</DependentUpon>
+    </Compile>
     <Compile Include="16ArcBallManipulater\Form16ArcBallManipulater.cs">
       <SubType>Form</SubType>
     </Compile>

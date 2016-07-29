@@ -34,8 +34,8 @@ namespace CSharpGL
             GetGlyphInfo(out finalBitmap, out dict, pixelSize, targets);
 
             var fontResource = new FontResource();
-            fontResource.FontHeight = pixelSize + yInterval;
-            fontResource.CharInfoDict = dict;
+            fontResource.GlyphHeight = pixelSize + yInterval;
+            fontResource.GlyphInfoDictionary = dict;
             fontResource.InitTexture(finalBitmap);
             finalBitmap.Dispose();
             return fontResource;

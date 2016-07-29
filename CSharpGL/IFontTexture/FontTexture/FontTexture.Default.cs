@@ -11,29 +11,27 @@ namespace CSharpGL
     /// <summary>
     /// 字形贴图及其UV。
     /// </summary>
-    public sealed partial class FontResource
+    public partial class FontTexture
     {
         private static readonly object synObj = new object();
-        private static readonly Dictionary<IntPtr, FontResource> dict = new Dictionary<IntPtr, FontResource>();
-
-        private FontResource() { }
+        private static readonly Dictionary<IntPtr, FontTexture> dict = new Dictionary<IntPtr, FontTexture>();
 
         /// <summary>
-        /// Default FontResource instance for this render context.
+        /// Default FontTexture instance for this render context.
         /// </summary>
-        public static FontResource Default
+        public static FontTexture Default
         {
             get
             {
                 IntPtr renderContext = Win32.wglGetCurrentContext();
-                FontResource resource;
+                FontTexture resource;
                 if (!dict.TryGetValue(renderContext, out resource))
                 {
                     lock (synObj)
                     {
                         if (!dict.TryGetValue(renderContext, out resource))
                         {
-                            resource = InitializeDefaultFontResource();
+                            resource = InitializeDefaultFontTexture();
                             dict.Add(renderContext, resource);
                         }
                     }
@@ -43,41 +41,20 @@ namespace CSharpGL
             }
         }
 
-        private static FontResource InitializeDefaultFontResource()
+        private const string defaultCharSet = "\t bcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;'\"(!?)+-*/=_{}[]@~#\\<>|^%$£&";
+
+        private static FontTexture InitializeDefaultFontTexture()
         {
-            Bitmap glyphBitmap;
-            FullDictionary<char, GlyphInfo> glyphDict;
-            const int pixelSize = 64;
-            if (FontResource.defaultGlyphBitmap == null)
-            {
-                var builder = new StringBuilder();
-                for (int i = 32; i < 127; i++)
-                {
-                    builder.Append((char)i);
-                }
-                string targets = builder.ToString();
-                GetGlyphInfo(out glyphBitmap, out glyphDict, pixelSize, targets);
-                FontResource.defaultGlyphBitmap = glyphBitmap;
-                FontResource.defaultGlyphDict = glyphDict;
-            }
-            else
-            {
-                glyphBitmap = FontResource.defaultGlyphBitmap;
-                glyphDict = FontResource.defaultGlyphDict;
-            }
-
-            var fontResource = new FontResource();
-            fontResource.FontHeight = pixelSize + yInterval;
-            fontResource.CharInfoDict = defaultGlyphDict;
-            fontResource.InitTexture(glyphBitmap);
-
-            return fontResource;
+            Font font = SystemFonts.DefaultFont;
+            FontBitmap fontBitmap = font.GetFontBitmap(defaultCharSet);
+            FontTexture fontTexture = fontBitmap.GetFontTexture();
+            return fontTexture;
         }
 
 
-        //public FontResource Load(string filename, string config)
+        //public FontTexture Load(string filename, string config)
         //{
-        //    var result = new FontResource();
+        //    var result = new FontTexture();
 
         //    var bitmap = new Bitmap(filename);
         //    result.InitTexture(bitmap);

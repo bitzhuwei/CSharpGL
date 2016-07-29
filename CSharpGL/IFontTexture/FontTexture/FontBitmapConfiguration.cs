@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-namespace CSharpGL
+namespace CSharpGL.NewFontResource
 {
     /// <summary>
     /// What settings to use when building the font
     /// </summary>
-    public class GLFontBuilderConfiguration
+    public class FontBitmapConfiguration
     {
-        public GLFontKerningConfiguration KerningConfig = new GLFontKerningConfiguration();
+        //public GLFontKerningConfiguration KerningConfig = new GLFontKerningConfiguration();
 
         /// <summary>
         /// Whether to use super sampling when building font texture pages
@@ -44,9 +44,9 @@ namespace CSharpGL
         /// </summary>
         public string CharSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;'\"(!?)+-*/=_{}[]@~#\\<>|^%$£&";
 
-        /// <summary>
-        /// Which render hint to use when rendering the ttf character set to create the GLFont texture
-        /// </summary>
-        public GLFontRenderHint TextGenerationRenderHint = GLFontRenderHint.SizeDependent;
+        ///// <summary>
+        ///// Which render hint to use when rendering the ttf character set to create the GLFont texture
+        ///// </summary>
+        //public GLFontRenderHint TextGenerationRenderHint = GLFontRenderHint.SizeDependent;
     }
 }

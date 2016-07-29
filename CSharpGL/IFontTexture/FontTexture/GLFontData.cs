@@ -5,12 +5,7 @@ using System.Text;
 
 namespace CSharpGL.NewFontResource
 {
-
-    enum GLFontTextNodeType : byte
+    class GLFontData
     {
-        Word,
-        LineBreak,
-        Space,
-        Tab
     }
 }
