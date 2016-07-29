@@ -25,5 +25,6 @@ namespace CSharpGL.NewFontResource
         internal FullDictionary<char, GlyphInfo> glyphInfoDictionary = new FullDictionary<char, GlyphInfo>(GlyphInfo.Default);
 
         internal FontBitmap() { }
+
     }
 }

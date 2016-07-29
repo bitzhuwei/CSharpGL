@@ -16,19 +16,15 @@ namespace CSharpGL.NewFontResource
         /// Gets a <see cref="FontBitmap"/>'s intance.
         /// </summary>
         /// <param name="font"></param>
-        /// <param name="config"></param>
+        /// <param name="charSet"></param>
         /// <returns></returns>
         public static FontBitmap GetFontBitmap(this Font font, string charSet)
         {
             var result = new FontBitmap();
             result.font = font;
-            InitStandardWidths();
-
-            int count = charSet.Length;
-            int maxWidth = GetMaxWidth(font.Size, count);
 
             GetGlyphInfo(result, font.Size, charSet);
-
+            result.glyphBitmap.Save("TestFontBitmap.bmp");
             //var fontResource = new FontResource();
             //fontResource.FontHeight = pixelSize + yInterval;
             //fontResource.CharInfoDict = dict;
