@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
         [STAThread]
         static void Main()
         {
-            var font = new Font("仿宋", 32);
+            var font = new Font("Lucida Console", 32);
             CSharpGL.NewFontResource.FontBitmap fontBitmap = CSharpGL.NewFontResource.FontBitmapHelper
                 .GetFontBitmap(font, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;'\"(!?)+-*/=_{}[]@~#\\<>|^%$£&");
             return;

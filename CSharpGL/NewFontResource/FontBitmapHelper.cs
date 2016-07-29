@@ -112,16 +112,6 @@ namespace CSharpGL.NewFontResource
             }
         }
 
-        private static Bitmap ShortenBitmap(Bitmap bitmap, int width, int height)
-        {
-            var finalBitmap = new Bitmap(width, height);
-            var g = Graphics.FromImage(finalBitmap);
-            g.DrawImage(bitmap, 0, 0);
-            g.Dispose();
-            //finalBitmap.Save("Test.bmp");
-            return finalBitmap;
-        }
-
         const int xInterval = 1;
         const int yInterval = 10;
     }
