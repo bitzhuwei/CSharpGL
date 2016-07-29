@@ -20,6 +20,10 @@ namespace CSharpGL.NewFontResource
         /// </summary>
         internal Bitmap glyphBitmap;
         /// <summary>
+        /// glyph's height.
+        /// </summary>
+        internal int glyphHeight;
+        /// <summary>
         /// glyph information dictionary.
         /// </summary>
         internal FullDictionary<char, GlyphInfo> glyphInfoDictionary = new FullDictionary<char, GlyphInfo>(GlyphInfo.Default);

@@ -68,6 +68,7 @@ namespace CSharpGL.NewFontResource
                 }
                 float area = totalWidth * maxGlyphHeight;
                 sideLength = (int)Math.Ceiling(Math.Sqrt(area));
+                fontBitmap.glyphHeight = (int)Math.Ceiling(maxGlyphHeight);
             }
             {
                 float maxWidth = 0, maxHeight = 0;
@@ -90,7 +91,7 @@ namespace CSharpGL.NewFontResource
                         currentX += item.Value.width;
                     }
                 }
-                maxHeight = currentY + 2 * maxGlyphHeight;
+                maxHeight = currentY + maxGlyphHeight;
                 width = (int)Math.Ceiling(maxWidth);
                 height = (int)Math.Ceiling(maxHeight);
             }

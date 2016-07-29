@@ -20,7 +20,10 @@ namespace CSharpGL.NewFontResource
         {
             if (textureBuilder == null) { textureBuilder = new TextureBuilder(); }
 
-            var result = new FontTexture(fontBitmap.font, fontBitmap.glyphInfoDictionary);
+            var result = new FontTexture();
+            result.GlyphFont = fontBitmap.font;
+            result.GlyphHeight = fontBitmap.glyphHeight;
+            result.glyphInfoDictionary = fontBitmap.glyphInfoDictionary;
             result.Initialize(textureBuilder, fontBitmap.glyphBitmap);
             return result;
         }

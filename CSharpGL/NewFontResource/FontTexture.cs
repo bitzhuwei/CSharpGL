@@ -19,18 +19,19 @@ namespace CSharpGL.NewFontResource
         /// <summary>
         /// font of glyphs.
         /// </summary>
-        internal Font font;
+        public Font GlyphFont { get; internal set; }
+
+        /// <summary>
+        /// glyph's height.
+        /// </summary>
+        public int GlyphHeight { get; internal set; }
 
         /// <summary>
         /// glyph information dictionary.
         /// </summary>
-        internal FullDictionary<char, GlyphInfo> glyphInfoDictionary;
+        public FullDictionary<char, GlyphInfo> glyphInfoDictionary { get; internal set; }
 
-        internal FontTexture(Font font, FullDictionary<char, GlyphInfo> dict)
-        {
-            this.font = font;
-            this.glyphInfoDictionary = dict;
-        }
+        internal FontTexture() { }
 
         /// <summary>
         /// 
