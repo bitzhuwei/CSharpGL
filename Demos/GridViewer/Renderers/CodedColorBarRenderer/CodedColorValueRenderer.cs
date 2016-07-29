@@ -12,7 +12,7 @@ namespace GridViewer
 
         private TextModel textModel;
 
-        public FontResource FontResource { get; set; }
+        public IFontTexture FontResource { get; set; }
 
         private string content = string.Empty;
         public string Text
@@ -36,7 +36,7 @@ namespace GridViewer
             : base(textModel, shaderCodes, propertyNameMap, switches)
         {
             this.textModel = textModel;
-            this.FontResource = FontResource.Default;
+            this.FontResource = FontTexture.Default;// FontResource.Default;
         }
 
         protected override void DoInitialize()

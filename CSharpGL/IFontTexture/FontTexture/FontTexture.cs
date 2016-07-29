@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// font, texture and texture coordiante.
     /// </summary>
-    public partial class FontTexture : IDisposable
+    public partial class FontTexture : IFontTexture, IDisposable
     {
         /// <summary>
         /// Texture's id.
@@ -34,7 +34,7 @@ namespace CSharpGL
         /// <summary>
         /// glyph information dictionary.
         /// </summary>
-        public FullDictionary<char, GlyphInfo> glyphInfoDictionary { get; internal set; }
+        public FullDictionary<char, GlyphInfo> GlyphInfoDictionary { get; internal set; }
 
         internal FontTexture() { }
 

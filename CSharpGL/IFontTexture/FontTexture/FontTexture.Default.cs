@@ -11,7 +11,7 @@ namespace CSharpGL
     /// <summary>
     /// 字形贴图及其UV。
     /// </summary>
-    public sealed partial class FontTexture
+    public partial class FontTexture
     {
         private static readonly object synObj = new object();
         private static readonly Dictionary<IntPtr, FontTexture> dict = new Dictionary<IntPtr, FontTexture>();

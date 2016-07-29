@@ -73,7 +73,7 @@ namespace CSharpGL
             : base(anchor, margin, size, zNear, zFar)
         {
             if (fontTexture == null)
-            { this.fontTexture = FontResource.Default; }
+            { this.fontTexture = FontTexture.Default; }// FontResource.Default; }
             else
             { this.fontTexture = fontTexture; }
 
