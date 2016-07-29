@@ -9,20 +9,32 @@ namespace CSharpGL.NewFontResource
     /// <summary>
     /// font, texture and texture coordiante.
     /// </summary>
-    public class FontTexture : IDisposable
+    public partial class FontTexture : IDisposable
     {
+        /// <summary>
+        /// 含有各个字形的贴图的Id。
+        /// </summary>
+        public uint FontTextureId { get; private set; }
+
         /// <summary>
         /// font of glyphs in <see cref="glyphBitmap"/>.
         /// </summary>
-        private Font font;
-        /// <summary>
-        /// bitmap in which glyphs is printed.
-        /// </summary>
-        private Bitmap glyphBitmap;
+        internal Font font;
+        ///// <summary>
+        ///// bitmap in which glyphs is printed.
+        ///// </summary>
+        //internal Bitmap glyphBitmap;
         /// <summary>
         /// glyph information dictionary.
         /// </summary>
-        private Dictionary<char, GlyphInfo> glyphInfoDictionary = new Dictionary<char, GlyphInfo>();
+        internal FullDictionary<char, GlyphInfo> glyphInfoDictionary;
+
+        internal FontTexture(Font font, FullDictionary<char, GlyphInfo> dict)
+        {
+            this.font = font;
+            this.glyphInfoDictionary = dict;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -34,47 +46,10 @@ namespace CSharpGL.NewFontResource
                 OpenGL.GL_TEXTURE0);
         }
 
-        /// <summary>
-        /// 含有各个字形的贴图的Id。
-        /// </summary>
-        public uint FontTextureId { get; private set; }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Dispose()
+        internal void Initialize(Bitmap bitmap)
         {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        ~FontTexture()
-        {
-            this.Dispose(false);
-        }
-
-        private bool disposedValue = false;
-
-        private void Dispose(bool disposing)
-        {
-            if (this.disposedValue == false)
-            {
-                if (disposing)
-                {
-                    // Dispose managed resources.
-
-                }
-
-                // Dispose unmanaged resources.
-                var ids = new uint[] { FontTextureId, };
-                OpenGL.DeleteTextures(ids.Length, ids);
-            }
-
-            this.disposedValue = true;
+            throw new NotImplementedException();
         }
     }
 }

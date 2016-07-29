@@ -17,7 +17,9 @@ namespace CSharpGL.NewFontResource
         /// <returns></returns>
         public static FontTexture GetFontTexture(this FontBitmap fontBitmap)
         {
-            throw new NotImplementedException();
+            var result = new FontTexture(fontBitmap.font, fontBitmap.glyphInfoDictionary);
+            result.Initialize(fontBitmap.glyphBitmap);
+            return result;
         }
     }
 }
