@@ -116,7 +116,5 @@ namespace CSharpGL.NewFontResource
             }
         }
 
-        const int xInterval = 1;
-        const int yInterval = 10;
     }
 }
