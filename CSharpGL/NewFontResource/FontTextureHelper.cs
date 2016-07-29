@@ -15,10 +15,12 @@ namespace CSharpGL.NewFontResource
         /// </summary>
         /// <param name="fontBitmap"></param>
         /// <returns></returns>
-        public static FontTexture GetFontTexture(this FontBitmap fontBitmap)
+        public static FontTexture GetFontTexture(this FontBitmap fontBitmap, TextureBuilder textureBuilder = null)
         {
+            if (textureBuilder == null) { textureBuilder = new TextureBuilder(); }
+
             var result = new FontTexture(fontBitmap.font, fontBitmap.glyphInfoDictionary);
-            result.Initialize(fontBitmap.glyphBitmap);
+            result.Initialize(textureBuilder, fontBitmap.glyphBitmap);
             return result;
         }
     }

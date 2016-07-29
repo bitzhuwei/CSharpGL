@@ -92,11 +92,13 @@
     <Compile Include="FontResource\FontResource.FromTTF.Misc.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.Impl.cs" />
     <Compile Include="FontResource\FontResource.FromTTF.cs" />
+    <Compile Include="NewFontResource\FontBitmap.IDisposable.cs" />
     <Compile Include="NewFontResource\FontBitmap.cs" />
     <Compile Include="NewFontResource\FontBitmapHelper.cs" />
     <Compile Include="NewFontResource\FontTexture.IDisposable.cs" />
     <Compile Include="NewFontResource\FontTexture.cs" />
     <Compile Include="NewFontResource\FontTextureHelper.cs" />
+    <Compile Include="NewFontResource\TextureBuilder.cs" />
     <Compile Include="Renderers\IBufferables\BoundingBoxModel.cs" />
     <Compile Include="Renderers\IBufferables\Ground.cs" />
     <Compile Include="Renderers\IBufferables\TeapotModel.Positions.cs" />

@@ -47,9 +47,10 @@ namespace CSharpGL.NewFontResource
         }
 
 
-        internal void Initialize(Bitmap bitmap)
+        internal void Initialize(TextureBuilder textureBuilder, Bitmap bitmap)
         {
             throw new NotImplementedException();
         }
+
     }
 }
