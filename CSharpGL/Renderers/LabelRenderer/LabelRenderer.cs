@@ -60,7 +60,7 @@ namespace CSharpGL
             : base(null, null, null, new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One))
         {
             if (fontTexture == null)
-            { this.fontTexture = FontTexture.Default; }// FontResource.Default; }
+            { this.fontTexture = FontResource.Default; }// FontResource.Default; }
             else
             { this.fontTexture = fontTexture; }
 
