@@ -12,10 +12,19 @@ namespace CSharpGL
     /// </summary>
     public class TextureBuilder
     {
+        /// <summary>
+        /// OpenGL.GL_TEXTURE0 etc.
+        /// </summary>
         public uint ActiveTexture { get; set; }
 
+        /// <summary>
+        /// OpenGL.GL_TEXTURE_2D etc.
+        /// </summary>
         public uint Target { get; set; }
 
+        /// <summary>
+        /// build texture.
+        /// </summary>
         public TextureBuilder()
         {
             this.ActiveTexture = OpenGL.GL_TEXTURE0;
