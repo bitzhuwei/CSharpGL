@@ -22,7 +22,7 @@ namespace CSharpGL.NewFontResource
         /// <summary>
         /// glyph's height.
         /// </summary>
-        internal int glyphHeight;
+        internal float glyphHeight;
         /// <summary>
         /// glyph information dictionary.
         /// </summary>

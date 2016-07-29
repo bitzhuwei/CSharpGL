@@ -16,20 +16,20 @@ namespace CSharpGL
         /// </summary>
         uint FontTextureId { get; }
 
-        /// <summary>
-        /// font of glyphs.
-        /// </summary>
-        Font GlyphFont { get; }
+        ///// <summary>
+        ///// font of glyphs.
+        ///// </summary>
+        //Font GlyphFont { get; }
 
         /// <summary>
         /// glyph's height.
         /// </summary>
-        int GlyphHeight { get; }
+        float GlyphHeight { get; }
 
         /// <summary>
         /// glyph information dictionary.
         /// </summary>
-        FullDictionary<char, GlyphInfo> glyphInfoDictionary { get; }
+        FullDictionary<char, GlyphInfo> GlyphInfoDictionary { get; }
 
         /// <summary>
         /// 

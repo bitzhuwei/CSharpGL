@@ -46,7 +46,7 @@ namespace CSharpGL
 
         unsafe private void SetupGlyphTexCoord(string content, FontResource fontResource)
         {
-            FullDictionary<char, GlyphInfo> charInfoDict = fontResource.CharInfoDict;
+            FullDictionary<char, GlyphInfo> charInfoDict = fontResource.GlyphInfoDictionary;
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.uvBufferPtr.BufferId);
             IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.WriteOnly);
             var array = (TextModel.GlyphTexCoord*)pointer.ToPointer();
@@ -64,7 +64,7 @@ namespace CSharpGL
             for (int i = 0; i < content.Length; i++)
             {
                 char ch = content[i];
-                GlyphInfo info = fontResource.CharInfoDict[ch];
+                GlyphInfo info = fontResource.GlyphInfoDictionary[ch];
                 const int shrimp = 0;
                 array[i] = new TextModel.GlyphTexCoord(
                     //new vec2(0, 0),
@@ -83,7 +83,7 @@ namespace CSharpGL
 
         unsafe private void SetupGlyphPositions(string content, FontResource fontResource)
         {
-            FullDictionary<char, GlyphInfo> charInfoDict = fontResource.CharInfoDict;
+            FullDictionary<char, GlyphInfo> charInfoDict = fontResource.GlyphInfoDictionary;
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
             IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
             var array = (TextModel.GlyphPosition*)pointer.ToPointer();
@@ -102,11 +102,11 @@ namespace CSharpGL
                 char ch = content[i];
                 GlyphInfo info = charInfoDict[ch];
                 array[i] = new TextModel.GlyphPosition(
-                    new vec2(currentWidth, currentHeight + fontResource.FontHeight),
+                    new vec2(currentWidth, currentHeight + fontResource.GlyphHeight),
                     new vec2(currentWidth, currentHeight),
                     new vec2(currentWidth + info.width, currentHeight),
-                    new vec2(currentWidth + info.width, currentHeight + fontResource.FontHeight));
-                currentWidth += info.width + fontResource.FontHeight / 10;
+                    new vec2(currentWidth + info.width, currentHeight + fontResource.GlyphHeight));
+                currentWidth += info.width + fontResource.GlyphHeight / 10;
             }
             // move to center
             for (int i = 0; i < content.Length; i++)
@@ -121,19 +121,19 @@ namespace CSharpGL
                 //position.rightUp.x /= currentWidth / factor;
                 position.rightDown.x -= currentWidth / 2.0f;
                 //position.rightDown.x /= currentWidth / factor;
-                position.leftUp.y -= (currentHeight + fontResource.FontHeight) / 2.0f;
-                position.leftDown.y -= (currentHeight + fontResource.FontHeight) / 2.0f;
-                position.rightUp.y -= (currentHeight + fontResource.FontHeight) / 2.0f;
-                position.rightDown.y -= (currentHeight + fontResource.FontHeight) / 2.0f;
+                position.leftUp.y -= (currentHeight + fontResource.GlyphHeight) / 2.0f;
+                position.leftDown.y -= (currentHeight + fontResource.GlyphHeight) / 2.0f;
+                position.rightUp.y -= (currentHeight + fontResource.GlyphHeight) / 2.0f;
+                position.rightDown.y -= (currentHeight + fontResource.GlyphHeight) / 2.0f;
 
-                position.leftUp.x /= (currentHeight + fontResource.FontHeight);
-                position.leftDown.x /= (currentHeight + fontResource.FontHeight);
-                position.rightUp.x /= (currentHeight + fontResource.FontHeight);
-                position.rightDown.x /= (currentHeight + fontResource.FontHeight);
-                position.leftUp.y /= (currentHeight + fontResource.FontHeight);
-                position.leftDown.y /= (currentHeight + fontResource.FontHeight);
-                position.rightUp.y /= (currentHeight + fontResource.FontHeight);
-                position.rightDown.y /= (currentHeight + fontResource.FontHeight);
+                position.leftUp.x /= (currentHeight + fontResource.GlyphHeight);
+                position.leftDown.x /= (currentHeight + fontResource.GlyphHeight);
+                position.rightUp.x /= (currentHeight + fontResource.GlyphHeight);
+                position.rightDown.x /= (currentHeight + fontResource.GlyphHeight);
+                position.leftUp.y /= (currentHeight + fontResource.GlyphHeight);
+                position.leftDown.y /= (currentHeight + fontResource.GlyphHeight);
+                position.rightUp.y /= (currentHeight + fontResource.GlyphHeight);
+                position.rightDown.y /= (currentHeight + fontResource.GlyphHeight);
                 array[i] = position;
             }
             OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);

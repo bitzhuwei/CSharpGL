@@ -24,7 +24,7 @@ namespace CSharpGL.NewFontResource
         /// <summary>
         /// glyph's height.
         /// </summary>
-        public int GlyphHeight { get; internal set; }
+        public float GlyphHeight { get; internal set; }
 
         /// <summary>
         /// glyph information dictionary.

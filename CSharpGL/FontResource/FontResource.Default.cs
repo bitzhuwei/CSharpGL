@@ -67,8 +67,8 @@ namespace CSharpGL
             }
 
             var fontResource = new FontResource();
-            fontResource.FontHeight = pixelSize + yInterval;
-            fontResource.CharInfoDict = defaultGlyphDict;
+            fontResource.GlyphHeight = pixelSize + yInterval;
+            fontResource.GlyphInfoDictionary = defaultGlyphDict;
             fontResource.InitTexture(glyphBitmap);
 
             return fontResource;
