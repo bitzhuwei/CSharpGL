@@ -20,24 +20,41 @@ namespace CSharpGL.NewFontResource
         /// <returns></returns>
         public static FontBitmap GetFontBitmap(this Font font, string charSet)
         {
-            var result = new FontBitmap();
-            result.font = font;
+            InitStandardWidths();
 
-            GetGlyphInfo(result, font.Size, charSet);
-            result.glyphBitmap.Save("TestFontBitmap.bmp");
+            var fontBitmap = new FontBitmap();
+            fontBitmap.font = font;
+
+            // 以下三步，不能调换先后顺序。
+            // Don't change the order in which these 3 functions invoked.
+            GetGlyphSizes(fontBitmap, charSet);
+            GetGlyphPositions(fontBitmap, charSet);
+            GetGlyphBitmap(fontBitmap, charSet);
+
+            fontBitmap.glyphBitmap.Save("TestFontBitmap.bmp");
             //var fontResource = new FontResource();
             //fontResource.FontHeight = pixelSize + yInterval;
             //fontResource.CharInfoDict = dict;
             //fontResource.InitTexture(finalBitmap);
             //finalBitmap.Dispose();
             //return fontResource;
-            return result;
+            return fontBitmap;
         }
 
-        private static void GetGlyphInfo(FontBitmap fontBitmap, float pixelSize, string charSet)
+        private static void GetGlyphBitmap(FontBitmap fontBitmap, string charSet)
         {
-            InitStandardWidths();
-            int maxWidth = GetMaxWidth(pixelSize, charSet.Length);
+            throw new NotImplementedException();
+        }
+
+        private static void GetGlyphPositions(FontBitmap fontBitmap, string charSet)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void GetGlyphSizes(FontBitmap fontBitmap, string charSet)
+        {
+            float fontSize = fontBitmap.font.Size;
+            int maxWidth = GetMaxWidth(fontSize, charSet.Length);
 
             using (var bitmap = new Bitmap(maxWidth, maxWidth, PixelFormat.Format24bppRgb))
             {
@@ -46,11 +63,21 @@ namespace CSharpGL.NewFontResource
                 {
                     foreach (char c in charSet)
                     {
-                        BlitCharacter(pixelSize, maxWidth, fontBitmap.glyphInfoDictionary, ref currentX, ref currentY, graphics, c, fontBitmap.font);
+                        SizeF size = graphics.MeasureString(c.ToString(), fontBitmap.font);
+                        if (currentX + xInterval + size.Width >= maxWidth)
+                        {
+                            currentX = 0;
+                            currentY += yInterval + fontSize;
+                            if (currentY + yInterval + fontSize >= maxWidth)
+                            { throw new Exception("Texture Size not big enough for required characters."); }
+                        }
+                        const int a = 5;
+                        const int b = 8;
+                        var info = new GlyphInfo(currentX, currentY, size.Width + xInterval, yInterval + fontSize - 1);
+                        fontBitmap.glyphInfoDictionary.Add(c, info);
+                        currentX += xInterval + size.Width;
                     }
                 }
-
-                fontBitmap.glyphBitmap = ShortenBitmap(bitmap, maxWidth, (int)Math.Ceiling(currentY + yInterval + pixelSize + (pixelSize / 10 > 1 ? pixelSize / 10 : 1)));
             }
         }
         static int[] standardWidths;
@@ -100,22 +127,6 @@ namespace CSharpGL.NewFontResource
                 }
                 standardWidths = widths.ToArray();
             }
-        }
-        private static void BlitCharacter(float pixelSize, int maxWidth, FullDictionary<char, GlyphInfo> dict, ref float currentX, ref float currentY, Graphics graphics, char c, Font font)
-        {
-            SizeF size = graphics.MeasureString(c.ToString(), font);
-            if (currentX + xInterval + size.Width >= maxWidth)
-            {
-                currentX = 0;
-                currentY += yInterval + pixelSize;
-                if (currentY + yInterval + pixelSize >= maxWidth)
-                { throw new Exception("Texture Size not big enough for required characters."); }
-            }
-            const int a = 5;
-            const int b = 8;
-            var info = new GlyphInfo(currentX, currentY, size.Width + xInterval, yInterval + pixelSize - 1);
-            dict.Add(c, info);
-            currentX += xInterval + size.Width;
         }
 
         const int xInterval = 1;
