@@ -12,7 +12,7 @@ namespace CSharpGL.NewFontResource
     public partial class FontTexture : IDisposable
     {
         /// <summary>
-        /// 含有各个字形的贴图的Id。
+        /// Texture's id.
         /// </summary>
         public uint FontTextureId { get; private set; }
 
@@ -20,10 +20,7 @@ namespace CSharpGL.NewFontResource
         /// font of glyphs.
         /// </summary>
         internal Font font;
-        ///// <summary>
-        ///// bitmap in which glyphs is printed.
-        ///// </summary>
-        //internal Bitmap glyphBitmap;
+
         /// <summary>
         /// glyph information dictionary.
         /// </summary>
@@ -49,7 +46,7 @@ namespace CSharpGL.NewFontResource
 
         internal void Initialize(TextureBuilder textureBuilder, Bitmap bitmap)
         {
-            throw new NotImplementedException();
+            this.FontTextureId = textureBuilder.BuildTexture(bitmap);
         }
 
     }
