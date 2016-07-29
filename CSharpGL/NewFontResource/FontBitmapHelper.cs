@@ -48,6 +48,7 @@ namespace CSharpGL.NewFontResource
                 foreach (KeyValuePair<char, GlyphInfo> item in fontBitmap.glyphInfoDictionary)
                 {
                     graphics.DrawString(item.Key.ToString(), fontBitmap.font, Brushes.White, item.Value.xoffset, item.Value.yoffset);
+                    graphics.DrawRectangle(Pens.Red, item.Value.xoffset, item.Value.yoffset, item.Value.width, item.Value.height);
                 }
             }
 
@@ -72,22 +73,25 @@ namespace CSharpGL.NewFontResource
             {
                 float maxWidth = 0, maxHeight = 0;
                 float currentX = 0, currentY = 0;
-                foreach (GlyphInfo item in fontBitmap.glyphInfoDictionary.Values)
+                foreach (var item in fontBitmap.glyphInfoDictionary)
                 {
-                    if (currentX + item.width < sideLength)
+                    if (currentX + item.Value.width < sideLength)
                     {
-                        item.xoffset = currentX;
-                        item.yoffset = currentY;
-                        currentX += item.width;
+                        item.Value.xoffset = currentX;
+                        item.Value.yoffset = currentY;
+                        currentX += item.Value.width;
                     }
                     else
                     {
                         if (maxWidth < currentX) { maxWidth = currentX; }
                         currentX = 0;
                         currentY += maxGlyphHeight;
+                        item.Value.xoffset = currentX;
+                        item.Value.yoffset = currentY;
+                        currentX += item.Value.width;
                     }
                 }
-                maxHeight = currentY;
+                maxHeight = currentY + 2 * maxGlyphHeight;
                 width = (int)Math.Ceiling(maxWidth);
                 height = (int)Math.Ceiling(maxHeight);
             }

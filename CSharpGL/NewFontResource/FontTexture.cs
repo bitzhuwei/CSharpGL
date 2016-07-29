@@ -9,7 +9,7 @@ namespace CSharpGL.NewFontResource
     /// <summary>
     /// font, texture and texture coordiante.
     /// </summary>
-    public class FontTexture
+    public class FontTexture : IDisposable
     {
         /// <summary>
         /// font of glyphs in <see cref="glyphBitmap"/>.
@@ -39,5 +39,42 @@ namespace CSharpGL.NewFontResource
         /// </summary>
         public uint FontTextureId { get; private set; }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        ~FontTexture()
+        {
+            this.Dispose(false);
+        }
+
+        private bool disposedValue = false;
+
+        private void Dispose(bool disposing)
+        {
+            if (this.disposedValue == false)
+            {
+                if (disposing)
+                {
+                    // Dispose managed resources.
+
+                }
+
+                // Dispose unmanaged resources.
+                var ids = new uint[] { FontTextureId, };
+                OpenGL.DeleteTextures(ids.Length, ids);
+            }
+
+            this.disposedValue = true;
+        }
     }
 }
