@@ -41,12 +41,34 @@ namespace CSharpGL.NewFontResource
 
         private static void PrintBitmap(FontBitmap fontBitmap, string charSet)
         {
+
             throw new NotImplementedException();
         }
 
         private static void GetGlyphPositions(FontBitmap fontBitmap, string charSet)
         {
-            throw new NotImplementedException();
+            float totalWidth = 0.0f;
+            float maxHeight = 0.0f;
+            foreach (GlyphInfo item in fontBitmap.glyphInfoDictionary.Values)
+            {
+                totalWidth += item.width;
+                if (maxHeight < item.height) { maxHeight = item.height; }
+            }
+            //int maxHeight = (int)Math.Ceiling(maxHeightf);
+            float area = totalWidth * maxHeight;
+            int sideLength = (int)Math.Ceiling(Math.Sqrt(area));
+            float currentX = 0, currentY = 0;
+            foreach (GlyphInfo item in fontBitmap.glyphInfoDictionary.Values)
+            {
+                item.xoffset = currentX;
+                item.yoffset = currentY;
+                currentX += item.width;
+                if (currentX >= sideLength)
+                {
+                    currentY += maxHeight;
+                    currentX = 0;
+                }
+            }
         }
 
         private static void GetGlyphSizes(FontBitmap fontBitmap, string charSet)
