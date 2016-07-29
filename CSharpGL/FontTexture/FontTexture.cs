@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.NewFontResource
+namespace CSharpGL
 {
     /// <summary>
     /// font, texture and texture coordiante.

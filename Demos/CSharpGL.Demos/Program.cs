@@ -15,10 +15,6 @@ namespace CSharpGL.Demos
         [STAThread]
         static void Main()
         {
-            var font = new Font("Lucida Console", 32);
-            CSharpGL.NewFontResource.FontBitmap fontBitmap = CSharpGL.NewFontResource.FontBitmapHelper
-                .GetFontBitmap(font, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;'\"(!?)+-*/=_{}[]@~#\\<>|^%$£&");
-            return;
             string filename = string.Format("CSharpGL{0:yyyy-MM-dd_HH-mm-ss.ff}.log", DateTime.Now);
             Debug.Listeners.Add(new TextWriterTraceListener(filename));
             Debug.AutoFlush = true;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.NewFontResource
+namespace CSharpGL
 {
     /// <summary>
     /// helper class.
@@ -21,10 +21,10 @@ namespace CSharpGL.NewFontResource
             if (textureBuilder == null) { textureBuilder = new TextureBuilder(); }
 
             var result = new FontTexture();
-            result.GlyphFont = fontBitmap.font;
-            result.GlyphHeight = fontBitmap.glyphHeight;
-            result.glyphInfoDictionary = fontBitmap.glyphInfoDictionary;
-            result.Initialize(textureBuilder, fontBitmap.glyphBitmap);
+            result.GlyphFont = fontBitmap.GlyphFont;
+            result.GlyphHeight = fontBitmap.GlyphHeight;
+            result.glyphInfoDictionary = fontBitmap.GlyphInfoDictionary;
+            result.Initialize(textureBuilder, fontBitmap.GlyphBitmap);
             return result;
         }
     }

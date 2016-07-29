@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.NewFontResource
+namespace CSharpGL
 {
     /// <summary>
     /// font, bitmap and texture coordiante.
@@ -12,23 +12,23 @@ namespace CSharpGL.NewFontResource
     public partial class FontBitmap : IDisposable
     {
         /// <summary>
-        /// font of glyphs in <see cref="glyphBitmap"/>.
+        /// font of glyphs in <see cref="GlyphBitmap"/>.
         /// </summary>
-        internal Font font;
+        public Font GlyphFont { get; internal set; }
         /// <summary>
         /// bitmap in which glyphs is printed.
         /// </summary>
-        internal Bitmap glyphBitmap;
+        public Bitmap GlyphBitmap { get; internal set; }
         /// <summary>
         /// glyph's height.
         /// </summary>
-        internal float glyphHeight;
+        public float GlyphHeight { get; internal set; }
         /// <summary>
         /// glyph information dictionary.
         /// </summary>
-        internal FullDictionary<char, GlyphInfo> glyphInfoDictionary = new FullDictionary<char, GlyphInfo>(GlyphInfo.Default);
+        public FullDictionary<char, GlyphInfo> GlyphInfoDictionary { get; internal set; }
 
-        internal FontBitmap() { }
+        internal FontBitmap() { this.GlyphInfoDictionary = new FullDictionary<char, GlyphInfo>(GlyphInfo.Default); }
 
     }
 }

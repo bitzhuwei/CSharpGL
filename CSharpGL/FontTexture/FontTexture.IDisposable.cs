@@ -4,13 +4,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.NewFontResource
+namespace CSharpGL
 {
     /// <summary>
-    /// font, bitmap and texture coordiante.
+    /// font, texture and texture coordiante.
     /// </summary>
-    public partial class FontBitmap
+    public partial class FontTexture
     {
+
         /// <summary>
         /// 
         /// </summary>
@@ -23,7 +24,7 @@ namespace CSharpGL.NewFontResource
         /// <summary>
         /// 
         /// </summary>
-        ~FontBitmap()
+        ~FontTexture()
         {
             this.Dispose(false);
         }
@@ -41,27 +42,12 @@ namespace CSharpGL.NewFontResource
                 }
 
                 // Dispose unmanaged resources.
-                Bitmap bmp = this.glyphBitmap;
-                this.glyphBitmap = null;
-                if (bmp != null)
-                {
-                    bmp.Dispose();
-                }
-                FullDictionary<char, GlyphInfo> dict = this.glyphInfoDictionary;
-                this.glyphInfoDictionary = null;
-                if (dict != null)
-                {
-                    dict.Clear();
-                }
-                Font font = this.font;
-                this.font = null;
-                if (font != null)
-                {
-                    font.Dispose();
-                }
+                var ids = new uint[] { FontTextureId, };
+                OpenGL.DeleteTextures(ids.Length, ids);
             }
 
             this.disposedValue = true;
         }
+
     }
 }
