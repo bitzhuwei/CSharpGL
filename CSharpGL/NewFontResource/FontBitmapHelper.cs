@@ -29,7 +29,7 @@ namespace CSharpGL.NewFontResource
             // Don't change the order in which these 3 functions invoked.
             GetGlyphSizes(fontBitmap, charSet);
             GetGlyphPositions(fontBitmap, charSet);
-            GetGlyphBitmap(fontBitmap, charSet);
+            PrintBitmap(fontBitmap, charSet);
 
             fontBitmap.glyphBitmap.Save("TestFontBitmap.bmp");
             //var fontResource = new FontResource();
@@ -41,7 +41,7 @@ namespace CSharpGL.NewFontResource
             return fontBitmap;
         }
 
-        private static void GetGlyphBitmap(FontBitmap fontBitmap, string charSet)
+        private static void PrintBitmap(FontBitmap fontBitmap, string charSet)
         {
             throw new NotImplementedException();
         }
