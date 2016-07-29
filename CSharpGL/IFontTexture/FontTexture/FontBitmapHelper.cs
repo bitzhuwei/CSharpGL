@@ -48,7 +48,8 @@ namespace CSharpGL
                 foreach (KeyValuePair<char, GlyphInfo> item in fontBitmap.GlyphInfoDictionary)
                 {
                     graphics.DrawString(item.Key.ToString(), fontBitmap.GlyphFont, Brushes.White, item.Value.xoffset, item.Value.yoffset);
-                    graphics.DrawRectangle(Pens.Red, item.Value.xoffset, item.Value.yoffset, item.Value.width, item.Value.height);
+                    // draw a tectangle that displays glyph's area.
+                    //graphics.DrawRectangle(Pens.Red, item.Value.xoffset, item.Value.yoffset, item.Value.width, item.Value.height);
                 }
             }
 
