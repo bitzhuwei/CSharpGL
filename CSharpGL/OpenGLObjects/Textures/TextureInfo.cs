@@ -15,6 +15,10 @@ namespace CSharpGL
         /// </summary>
         public uint Id { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("id: {0}", this.Id);
