@@ -23,6 +23,7 @@ namespace CSharpGL
             var result = new FontTexture();
             result.GlyphFont = fontBitmap.GlyphFont;
             result.GlyphHeight = fontBitmap.GlyphHeight;
+            result.TextureSize = fontBitmap.GlyphBitmap.Size;
             result.glyphInfoDictionary = fontBitmap.GlyphInfoDictionary;
             result.Initialize(textureBuilder, fontBitmap.GlyphBitmap);
             return result;

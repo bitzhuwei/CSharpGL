@@ -27,6 +27,11 @@ namespace CSharpGL
         public float GlyphHeight { get; internal set; }
 
         /// <summary>
+        /// texture's size.
+        /// </summary>
+        public Size TextureSize { get; private set; }
+
+        /// <summary>
         /// glyph information dictionary.
         /// </summary>
         public FullDictionary<char, GlyphInfo> glyphInfoDictionary { get; internal set; }
