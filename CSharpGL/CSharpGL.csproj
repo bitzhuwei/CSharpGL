@@ -99,6 +99,7 @@
     <Compile Include="NewFontResource\FontTexture.cs" />
     <Compile Include="NewFontResource\FontTextureHelper.cs" />
     <Compile Include="OpenGLObjects\Textures\TextureBuilder.cs" />
+    <Compile Include="OpenGLObjects\Textures\TextureInfo.cs" />
     <Compile Include="Renderers\IBufferables\BoundingBoxModel.cs" />
     <Compile Include="Renderers\IBufferables\Ground.cs" />
     <Compile Include="Renderers\IBufferables\TeapotModel.Positions.cs" />

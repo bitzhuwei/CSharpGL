@@ -36,7 +36,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bitmap"></param>
         /// <returns></returns>
-        public uint BuildTexture(Bitmap bitmap)
+        public TextureInfo BuildTexture(Bitmap bitmap)
         {
             var ids = new uint[1];
             // generate texture.
@@ -62,7 +62,9 @@ namespace CSharpGL
             bitmap.UnlockBits(bitmapData);
             OpenGL.BindTexture(this.Target, 0);
 
-            return ids[0];
+            var result = new TextureInfo();
+            result.Id = ids[0];
+            return result;
         }
     }
 }

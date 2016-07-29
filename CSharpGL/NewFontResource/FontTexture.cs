@@ -46,7 +46,8 @@ namespace CSharpGL.NewFontResource
 
         internal void Initialize(TextureBuilder textureBuilder, Bitmap bitmap)
         {
-            this.FontTextureId = textureBuilder.BuildTexture(bitmap);
+            TextureInfo textureInfo = textureBuilder.BuildTexture(bitmap);
+            this.FontTextureId = textureInfo.Id;
         }
 
     }
