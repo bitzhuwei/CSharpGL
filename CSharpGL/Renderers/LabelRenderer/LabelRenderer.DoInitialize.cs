@@ -22,7 +22,7 @@ namespace CSharpGL
             //this.SetUniform("textColor", new vec3(1, 0, 0));
             this.SetUniform("fontTexture", new samplerValue(
                 BindTextureTarget.Texture2D,
-                fontResource.FontTextureId,
+                fontTexture.FontTextureId,
                 OpenGL.GL_TEXTURE0));
         }
 

@@ -11,7 +11,7 @@ namespace CSharpGL
     /// </summary>
     public partial class LabelRenderer : Renderer
     {
-        private FontResource fontResource;
+        private IFontTexture fontTexture;
         private TextModel model;
 
         private UpdatingRecord worldPositionRecord = new UpdatingRecord();
@@ -44,7 +44,7 @@ namespace CSharpGL
             get { return content; }
             set
             {
-                if (this.model != null) { this.model.SetText(value, this.fontResource); }
+                if (this.model != null) { this.model.SetText(value, this.fontTexture); }
                 this.content = value;
             }
         }
@@ -55,14 +55,14 @@ namespace CSharpGL
         /// <param name="maxCharCount">Max char count to display for this label.
         /// Careful to set this value because greater <paramref name="maxCharCount"/> means more space ocupied in GPU nemory.</param>
         /// <param name="labelHeight">Label height(in pixels)</param>
-        /// <param name="fontResource">Use which font to render text?</param>
-        public LabelRenderer(int maxCharCount = 64, int labelHeight = 32, FontResource fontResource = null)
+        /// <param name="fontTexture">Use which font to render text?</param>
+        public LabelRenderer(int maxCharCount = 64, int labelHeight = 32, IFontTexture fontTexture = null)
             : base(null, null, null, new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.One))
         {
-            if (fontResource == null)
-            { this.fontResource = FontResource.Default; }
+            if (fontTexture == null)
+            { this.fontTexture = FontResource.Default; }
             else
-            { this.fontResource = fontResource; }
+            { this.fontTexture = fontTexture; }
 
             this.LabelHeight = labelHeight;
 

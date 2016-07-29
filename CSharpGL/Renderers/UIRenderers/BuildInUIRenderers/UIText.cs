@@ -18,7 +18,7 @@ namespace CSharpGL
 
         private TextModel model;
 
-        private FontResource fontResource;
+        private IFontTexture fontTexture;
 
         private string content = string.Empty;
         /// <summary>
@@ -29,7 +29,7 @@ namespace CSharpGL
             get { return content; }
             set
             {
-                if (this.model != null) { this.model.SetText(value, this.fontResource); }
+                if (this.model != null) { this.model.SetText(value, this.fontTexture); }
                 this.content = value;
             }
         }
@@ -65,17 +65,17 @@ namespace CSharpGL
         /// <param name="size"></param>
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
-        /// <param name="fontResource"></param>
+        /// <param name="fontTexture"></param>
         /// <param name="maxCharCount"></param>
         public UIText(
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
-            System.Drawing.Size size, int zNear, int zFar, FontResource fontResource = null, int maxCharCount = 100)
+            System.Drawing.Size size, int zNear, int zFar, IFontTexture fontTexture = null, int maxCharCount = 100)
             : base(anchor, margin, size, zNear, zFar)
         {
-            if (fontResource == null)
-            { this.fontResource = FontResource.Default; }
+            if (fontTexture == null)
+            { this.fontTexture = FontResource.Default; }
             else
-            { this.fontResource = fontResource; }
+            { this.fontTexture = fontTexture; }
 
             this.Name = this.GetType().Name;
             var shaderCodes = new ShaderCode[2];
@@ -101,7 +101,7 @@ namespace CSharpGL
             base.DoInitialize();
 
             Renderer renderer = this.Renderer as Renderer;
-            renderer.SetUniform("fontTexture", this.fontResource.GetSamplerValue());
+            renderer.SetUniform("fontTexture", this.fontTexture.GetSamplerValue());
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace CSharpGL
             //model = mat4.identity();
             var renderer = this.Renderer as Renderer;
             renderer.SetUniform("mvp", projection * view * model);
-            if(this.textColorRecord.IsMarked())
+            if (this.textColorRecord.IsMarked())
             {
                 renderer.SetUniform("textColor", this.textColor);
                 this.textColorRecord.CancelMark();
