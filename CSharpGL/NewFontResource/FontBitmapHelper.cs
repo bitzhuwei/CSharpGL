@@ -66,7 +66,6 @@ namespace CSharpGL.NewFontResource
                     totalWidth += item.width;
                     if (maxGlyphHeight < item.height) { maxGlyphHeight = item.height; }
                 }
-                //int maxHeight = (int)Math.Ceiling(maxHeightf);
                 float area = totalWidth * maxGlyphHeight;
                 sideLength = (int)Math.Ceiling(Math.Sqrt(area));
             }
