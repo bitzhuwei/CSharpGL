@@ -86,8 +86,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.pictureBox1.Location = new System.Drawing.Point(150, 12);
@@ -107,7 +107,7 @@
             // 
             // txtCharSet
             // 
-            this.txtCharSet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtCharSet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtCharSet.Location = new System.Drawing.Point(12, 131);
             this.txtCharSet.Multiline = true;
@@ -115,8 +115,7 @@
             this.txtCharSet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtCharSet.Size = new System.Drawing.Size(132, 451);
             this.txtCharSet.TabIndex = 1;
-            this.txtCharSet.Text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;\'\"(!?)+-*/=_{}[" +
-    "]@~#\\<>|^%$£&";
+            this.txtCharSet.Text = "\t bcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;'\"(!?)+-*/=_{}[]@~#\\<>|^%$£&";
             // 
             // Form11IFontTexture
             // 
