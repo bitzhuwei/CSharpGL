@@ -17,7 +17,7 @@ namespace CSharpGL.NewFontResource
         public uint FontTextureId { get; private set; }
 
         /// <summary>
-        /// font of glyphs in <see cref="glyphBitmap"/>.
+        /// font of glyphs.
         /// </summary>
         internal Font font;
         ///// <summary>

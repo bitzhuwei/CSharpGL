@@ -14,6 +14,7 @@ namespace CSharpGL.NewFontResource
         /// Gets an instance of <see cref="FontTexture"/>.
         /// </summary>
         /// <param name="fontBitmap"></param>
+        /// <param name="textureBuilder"></param>
         /// <returns></returns>
         public static FontTexture GetFontTexture(this FontBitmap fontBitmap, TextureBuilder textureBuilder = null)
         {
