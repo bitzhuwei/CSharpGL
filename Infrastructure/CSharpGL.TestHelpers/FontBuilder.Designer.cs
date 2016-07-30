@@ -44,7 +44,7 @@
             this.txtFontSize.Name = "txtFontSize";
             this.txtFontSize.Size = new System.Drawing.Size(132, 25);
             this.txtFontSize.TabIndex = 4;
-            this.txtFontSize.Text = "14.0";
+            this.txtFontSize.Text = "64.0";
             // 
             // txtFontName
             // 

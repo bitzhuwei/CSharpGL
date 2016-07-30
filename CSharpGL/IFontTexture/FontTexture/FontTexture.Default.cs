@@ -45,7 +45,7 @@ namespace CSharpGL
 
         private static FontTexture InitializeDefaultFontTexture()
         {
-            Font font = SystemFonts.DefaultFont;
+            Font font = new Font("Arial", 64.0f, FontStyle.Regular, GraphicsUnit.Pixel);// SystemFonts.DefaultFont;
             FontBitmap fontBitmap = font.GetFontBitmap(defaultCharSet);
             FontTexture fontTexture = fontBitmap.GetFontTexture();
             return fontTexture;

@@ -12,6 +12,7 @@ namespace CSharpGL
     /// </summary>
     public static class FontBitmapHelper
     {
+        const int glyphInterval = 2;
         /// <summary>
         /// Gets a <see cref="FontBitmap"/>'s intance.
         /// </summary>
@@ -23,8 +24,8 @@ namespace CSharpGL
             var fontBitmap = new FontBitmap();
             fontBitmap.GlyphFont = font;
 
-            // 以下三步，不能调换先后顺序。
-            // Don't change the order in which these 3 functions invoked.
+            // 以下几步，不能调换先后顺序。
+            // Don't change the order in which these functions invoked.
             GetGlyphSizes(fontBitmap, charSet);
             int width, height;
             GetGlyphPositions(fontBitmap, charSet, out width, out height);
@@ -37,16 +38,29 @@ namespace CSharpGL
             //        graphics.DrawRectangle(Pens.Red, item.ToRectangle());
             //    }
             //}
+            //GetGlyphPositions(fontBitmap, charSet, out width, out height);
+            //fontBitmap.GlyphBitmap.Dispose();
+            //fontBitmap.GlyphBitmap = null;
+            //PrintBitmap(fontBitmap, charSet, width, height);
+            using (var graphics = Graphics.FromImage(fontBitmap.GlyphBitmap))
+            {
+                foreach (var item in fontBitmap.GlyphInfoDictionary.Values)
+                {
+                    graphics.DrawRectangle(Pens.Green, item.ToRectangle());
+                }
+                graphics.DrawRectangle(Pens.Red, 0, 0, fontBitmap.GlyphBitmap.Width - 1, fontBitmap.GlyphBitmap.Height - 1);
+            }
             fontBitmap.GlyphBitmap.Save("TestFontBitmap.bmp");
-            //var fontResource = new FontResource();
-            //fontResource.FontHeight = pixelSize + yInterval;
-            //fontResource.CharInfoDict = dict;
-            //fontResource.InitTexture(finalBitmap);
-            //finalBitmap.Dispose();
-            //return fontResource;
             return fontBitmap;
         }
 
+        /// <summary>
+        /// print all glyphs to <paramref name="fontBitmap"/>'s bitmap field.
+        /// </summary>
+        /// <param name="fontBitmap"></param>
+        /// <param name="charSet"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         private static void PrintBitmap(FontBitmap fontBitmap, string charSet, int width, int height)
         {
             var bitmap = new Bitmap(width, height);
@@ -54,7 +68,7 @@ namespace CSharpGL
             {
                 foreach (KeyValuePair<char, GlyphInfo> item in fontBitmap.GlyphInfoDictionary)
                 {
-                    graphics.DrawString(item.Key.ToString(), fontBitmap.GlyphFont, Brushes.White, item.Value.xoffset, item.Value.yoffset);
+                    graphics.DrawString(item.Key.ToString(), fontBitmap.GlyphFont, Brushes.White, item.Value.ToRectangle());// item.Value.xoffset, item.Value.yoffset);
                     // draw a tectangle that displays glyph's area.
                     //graphics.DrawRectangle(Pens.Red, item.Value.xoffset, item.Value.yoffset, item.Value.width, item.Value.height);
                 }
@@ -63,6 +77,10 @@ namespace CSharpGL
             fontBitmap.GlyphBitmap = bitmap;
         }
 
+        /// <summary>
+        /// shrink glyph's width.
+        /// </summary>
+        /// <param name="fontBitmap"></param>
         private static void RetargetGlyphRectangleInwards(FontBitmap fontBitmap)
         {
             var minYOffset = int.MaxValue;
@@ -70,10 +88,12 @@ namespace CSharpGL
             Bitmap initialBmp = fontBitmap.GlyphBitmap;
             BitmapData initialBitmapData = initialBmp.LockBits(new Rectangle(0, 0, initialBmp.Width, initialBmp.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
 
-            foreach (var glyph in fontBitmap.GlyphInfoDictionary.Values)
+            foreach (var glyphInfo in fontBitmap.GlyphInfoDictionary)
             {
-                RetargetGlyphRectangleInwards(initialBitmapData, glyph);
-                minYOffset = Math.Min(minYOffset, glyph.yoffset);
+                if (glyphInfo.Key == ' ' || glyphInfo.Key == '\t' || glyphInfo.Key == '\r' || glyphInfo.Key == '\n') { continue; }
+
+                RetargetGlyphRectangleInwards(initialBitmapData, glyphInfo.Value);
+                minYOffset = Math.Min(minYOffset, glyphInfo.Value.yoffset);
             }
             initialBmp.UnlockBits(initialBitmapData);
 
@@ -131,6 +151,13 @@ namespace CSharpGL
             //glyph.height = endY - startY + 1;
         }
 
+        /// <summary>
+        /// Gets glyph's position(xoffset, yoffset) and bitmap's size(width, size)
+        /// </summary>
+        /// <param name="fontBitmap"></param>
+        /// <param name="charSet"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         private static void GetGlyphPositions(FontBitmap fontBitmap, string charSet, out int width, out int height)
         {
             int sideLength;
@@ -139,7 +166,7 @@ namespace CSharpGL
                 float totalWidth = 0.0f;
                 foreach (GlyphInfo item in fontBitmap.GlyphInfoDictionary.Values)
                 {
-                    totalWidth += item.width;
+                    totalWidth += item.width + glyphInterval;
                     if (maxGlyphHeight < item.height) { maxGlyphHeight = item.height; }
                 }
                 float area = totalWidth * maxGlyphHeight;
@@ -155,7 +182,7 @@ namespace CSharpGL
                     {
                         item.Value.xoffset = currentX;
                         item.Value.yoffset = currentY;
-                        currentX += item.Value.width;
+                        currentX += item.Value.width + glyphInterval;
                     }
                     else
                     {
@@ -164,7 +191,7 @@ namespace CSharpGL
                         currentY += maxGlyphHeight;
                         item.Value.xoffset = currentX;
                         item.Value.yoffset = currentY;
-                        currentX += item.Value.width;
+                        currentX += item.Value.width + glyphInterval;
                     }
                 }
                 maxHeight = currentY + maxGlyphHeight;
@@ -173,6 +200,11 @@ namespace CSharpGL
             }
         }
 
+        /// <summary>
+        /// get glyph's size(width, height) by Graphics.DrawString().
+        /// </summary>
+        /// <param name="fontBitmap"></param>
+        /// <param name="charSet"></param>
         private static void GetGlyphSizes(FontBitmap fontBitmap, string charSet)
         {
             float fontSize = fontBitmap.GlyphFont.Size;
