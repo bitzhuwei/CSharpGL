@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="IFontTexture\readme.md" />
     <Content Include="Renderers\IBufferables\TextModel.jpg" />
     <Content Include="Renderers\UIRenderers\readme.md" />
     <Content Include="Renderers\IBufferables\readme.md" />
