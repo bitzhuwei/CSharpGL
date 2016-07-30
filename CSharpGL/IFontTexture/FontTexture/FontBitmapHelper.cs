@@ -50,7 +50,6 @@ namespace CSharpGL
                     graphics.DrawRectangle(Pens.Red, 0, 0, fontBitmap.GlyphBitmap.Width - 1, fontBitmap.GlyphBitmap.Height - 1);
                 }
             }
-            fontBitmap.GlyphBitmap.Save("TestFontBitmap.bmp");
             return fontBitmap;
         }
 
@@ -141,9 +140,12 @@ namespace CSharpGL
         /// <summary>
         /// Returns try if the given pixel is empty (i.e. black)
         /// </summary>
-        private static unsafe bool EmptyPixel(BitmapData bitmapData, int px, int py)
+        /// <param name="bitmapData"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        private static unsafe bool IsEmptyPixel(BitmapData bitmapData, int x, int y)
         {
-            byte* addr = (byte*)(bitmapData.Scan0) + bitmapData.Stride * py + px * 3;
+            var addr = (byte*)(bitmapData.Scan0) + bitmapData.Stride * y + x * 3;
             return (*addr == 0 && *(addr + 1) == 0 && *(addr + 2) == 0);
         }
 
@@ -156,30 +158,47 @@ namespace CSharpGL
         {
             int startX, endX;
 
-            for (startX = glyph.xoffset; startX < bitmapData.Width; startX++)
             {
-                for (int j = glyph.yoffset; j < glyph.yoffset + glyph.height; j++)
+                bool done = false;
+                for (startX = glyph.xoffset; startX < bitmapData.Width; startX++)
                 {
-                    if (!EmptyPixel(bitmapData, startX, j))
-                        goto Done1;
+                    for (int j = glyph.yoffset; j < glyph.yoffset + glyph.height; j++)
+                    {
+                        if (!IsEmptyPixel(bitmapData, startX, j))
+                        {
+                            done = true;
+                            break;
+                        }
+                    }
+                    if (done) { break; }
                 }
             }
-        Done1:
-            for (endX = glyph.xoffset + glyph.width - 1; endX >= 0; endX--)
             {
-                for (int j = glyph.yoffset; j < glyph.yoffset + glyph.height; j++)
+                bool done = false;
+                for (endX = glyph.xoffset + glyph.width - 1; endX >= 0; endX--)
                 {
-                    if (!EmptyPixel(bitmapData, endX, j))
-                        goto Done2;
+                    for (int j = glyph.yoffset; j < glyph.yoffset + glyph.height; j++)
+                    {
+                        if (!IsEmptyPixel(bitmapData, endX, j))
+                        {
+                            done = true;
+                            break;
+                        }
+                    }
+                    if (done) { break; }
                 }
             }
-        Done2:
 
             if (endX < startX)
-                startX = endX = glyph.xoffset;
-
-            glyph.xoffset = startX;
-            glyph.width = endX - startX + 1;
+            {
+                //startX = endX = glyph.xoffset;
+                glyph.width = 0;
+            }
+            else
+            {
+                glyph.xoffset = startX;
+                glyph.width = endX - startX + 1;
+            }
         }
 
         /// <summary>
