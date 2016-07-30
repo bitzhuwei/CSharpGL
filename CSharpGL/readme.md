@@ -19,6 +19,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 3. DefaultFramebuffer creates framebuffer for canvas.
 4. Fix bug: UIText supports all colors.
 5. Remove namespace System.
+6. Simpler solution(System.Drawing.Font.MeasureString()) for displaying text. (SharpFont not needed, thus much less code.)
 
 ## v1.0.4.12:
 1. Add ArcBallManipulater to rotate model.
