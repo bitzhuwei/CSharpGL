@@ -51,8 +51,6 @@ namespace CSharpGL
             this.height = height;
         }
 
-        //public CharacterInfo() { }
-
         /// <summary>
         /// 
         /// </summary>
