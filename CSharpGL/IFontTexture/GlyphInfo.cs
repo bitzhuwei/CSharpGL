@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// 绘制一个字符所需要的所有信息
     /// </summary>
-    public class GlyphInfo
+    public class GlyphInfo : ICloneable
     {
 
         /// <summary>
@@ -64,6 +64,11 @@ namespace CSharpGL
         public override string ToString()
         {
             return string.Format("offset:{0}, {1}; size:{2}, {3};", xoffset, yoffset, width, height);
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }

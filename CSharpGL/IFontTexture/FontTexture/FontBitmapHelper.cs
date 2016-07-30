@@ -12,7 +12,14 @@ namespace CSharpGL
     /// </summary>
     public static class FontBitmapHelper
     {
-        const int glyphInterval = 2;
+        /// <summary>
+        /// bigger interval means less mix. Maybe 1 is enough for font with size of 64.
+        /// </summary>
+        const int glyphInterval = 1;
+        /// <summary>
+        /// bigger maring means less mix. But 1 is enough.
+        /// </summary>
+        const int leftMargin = 1;
         /// <summary>
         /// Gets a <see cref="FontBitmap"/>'s intance.
         /// </summary>
@@ -31,6 +38,7 @@ namespace CSharpGL
             GetGlyphPositions(fontBitmap, charSet, out width, out height);
             PrintBitmap(fontBitmap, charSet, width, height);
             RetargetGlyphRectangleInwards(fontBitmap);
+            ReprintBitmap(fontBitmap);
             //using (var graphics = Graphics.FromImage(fontBitmap.GlyphBitmap))
             //{
             //    foreach (var item in fontBitmap.GlyphInfoDictionary.Values)
@@ -52,6 +60,46 @@ namespace CSharpGL
             }
             fontBitmap.GlyphBitmap.Save("TestFontBitmap.bmp");
             return fontBitmap;
+        }
+
+        private static void ReprintBitmap(FontBitmap fontBitmap)
+        {
+            int totalWidth = 0;
+            int maxGlyphHeight = 0;
+            var dict = new FullDictionary<char, GlyphInfo>(GlyphInfo.Default);
+            foreach (var item in fontBitmap.GlyphInfoDictionary)
+            {
+                var glyphInfo = item.Value.Clone() as GlyphInfo;
+                dict.Add(item.Key, glyphInfo);
+                totalWidth += glyphInfo.width + glyphInterval;
+                if (maxGlyphHeight < glyphInfo.height) { maxGlyphHeight = glyphInfo.height; }
+            }
+            int area = totalWidth * maxGlyphHeight;
+            int sideLength = (int)Math.Ceiling(Math.Sqrt(area));
+            var bitmap = new Bitmap(sideLength, sideLength + maxGlyphHeight);
+            using (var graphics = Graphics.FromImage(bitmap))
+            {
+                int currentX = leftMargin, currentY = 0;
+                foreach (var item in dict)
+                {
+                    if (currentX + item.Value.width >= bitmap.Width)
+                    {
+                        currentX = leftMargin;
+                        currentY += maxGlyphHeight;
+                    }
+                    GlyphInfo originalGlyphInfo = fontBitmap.GlyphInfoDictionary[item.Key];
+                    graphics.DrawImage(fontBitmap.GlyphBitmap,
+                        new Rectangle(currentX, currentY, item.Value.width, item.Value.height),
+                        originalGlyphInfo.ToRectangle(), GraphicsUnit.Pixel);
+                    item.Value.xoffset = currentX;
+                    item.Value.yoffset = currentY;
+                    currentX += item.Value.width + glyphInterval;
+                }
+            }
+            fontBitmap.GlyphInfoDictionary.Clear();
+            fontBitmap.GlyphBitmap.Dispose();
+            fontBitmap.GlyphInfoDictionary = dict;
+            fontBitmap.GlyphBitmap = bitmap;
         }
 
         /// <summary>
