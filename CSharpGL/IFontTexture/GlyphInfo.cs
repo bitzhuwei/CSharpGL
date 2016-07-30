@@ -53,6 +53,10 @@ namespace CSharpGL
 
         //public CharacterInfo() { }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Rectangle ToRectangle()
         {
             return new Rectangle(this.xoffset, this.yoffset, this.width, this.height);
@@ -66,6 +70,10 @@ namespace CSharpGL
             return string.Format("offset:{0}, {1}; size:{2}, {3};", xoffset, yoffset, width, height);
         }
 
+        /// <summary>
+        /// clone this object.
+        /// </summary>
+        /// <returns></returns>
         public object Clone()
         {
             return this.MemberwiseClone();

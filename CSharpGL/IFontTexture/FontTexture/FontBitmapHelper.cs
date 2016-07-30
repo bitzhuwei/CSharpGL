@@ -25,6 +25,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="font"></param>
         /// <param name="charSet"></param>
+        /// <param name="drawBoundary"></param>
         /// <returns></returns>
         public static FontBitmap GetFontBitmap(this Font font, string charSet, bool drawBoundary = false)
         {
