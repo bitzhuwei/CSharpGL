@@ -26,7 +26,7 @@ namespace CSharpGL
         /// <param name="font"></param>
         /// <param name="charSet"></param>
         /// <returns></returns>
-        public static FontBitmap GetFontBitmap(this Font font, string charSet)
+        public static FontBitmap GetFontBitmap(this Font font, string charSet, bool drawBoundary = false)
         {
             var fontBitmap = new FontBitmap();
             fontBitmap.GlyphFont = font;
@@ -39,24 +39,16 @@ namespace CSharpGL
             PrintBitmap(fontBitmap, charSet, width, height);
             RetargetGlyphRectangleInwards(fontBitmap);
             ReprintBitmap(fontBitmap);
-            //using (var graphics = Graphics.FromImage(fontBitmap.GlyphBitmap))
-            //{
-            //    foreach (var item in fontBitmap.GlyphInfoDictionary.Values)
-            //    {
-            //        graphics.DrawRectangle(Pens.Red, item.ToRectangle());
-            //    }
-            //}
-            //GetGlyphPositions(fontBitmap, charSet, out width, out height);
-            //fontBitmap.GlyphBitmap.Dispose();
-            //fontBitmap.GlyphBitmap = null;
-            //PrintBitmap(fontBitmap, charSet, width, height);
-            using (var graphics = Graphics.FromImage(fontBitmap.GlyphBitmap))
+            if (drawBoundary)
             {
-                foreach (var item in fontBitmap.GlyphInfoDictionary.Values)
+                using (var graphics = Graphics.FromImage(fontBitmap.GlyphBitmap))
                 {
-                    graphics.DrawRectangle(Pens.Green, item.ToRectangle());
+                    foreach (var item in fontBitmap.GlyphInfoDictionary.Values)
+                    {
+                        graphics.DrawRectangle(Pens.Green, item.ToRectangle());
+                    }
+                    graphics.DrawRectangle(Pens.Red, 0, 0, fontBitmap.GlyphBitmap.Width - 1, fontBitmap.GlyphBitmap.Height - 1);
                 }
-                graphics.DrawRectangle(Pens.Red, 0, 0, fontBitmap.GlyphBitmap.Width - 1, fontBitmap.GlyphBitmap.Height - 1);
             }
             fontBitmap.GlyphBitmap.Save("TestFontBitmap.bmp");
             return fontBitmap;
@@ -120,9 +112,7 @@ namespace CSharpGL
             {
                 foreach (KeyValuePair<char, GlyphInfo> item in fontBitmap.GlyphInfoDictionary)
                 {
-                    graphics.DrawString(item.Key.ToString(), fontBitmap.GlyphFont, Brushes.White, item.Value.ToRectangle());// item.Value.xoffset, item.Value.yoffset);
-                    // draw a tectangle that displays glyph's area.
-                    //graphics.DrawRectangle(Pens.Red, item.Value.xoffset, item.Value.yoffset, item.Value.width, item.Value.height);
+                    graphics.DrawString(item.Key.ToString(), fontBitmap.GlyphFont, Brushes.White, item.Value.xoffset, item.Value.yoffset);
                 }
             }
 
@@ -135,24 +125,17 @@ namespace CSharpGL
         /// <param name="fontBitmap"></param>
         private static void RetargetGlyphRectangleInwards(FontBitmap fontBitmap)
         {
-            //var minYOffset = int.MaxValue;
-
-            Bitmap initialBmp = fontBitmap.GlyphBitmap;
-            BitmapData initialBitmapData = initialBmp.LockBits(new Rectangle(0, 0, initialBmp.Width, initialBmp.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
+            Bitmap bitmap = fontBitmap.GlyphBitmap;
+            BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
 
             foreach (var glyphInfo in fontBitmap.GlyphInfoDictionary)
             {
                 if (glyphInfo.Key == ' ' || glyphInfo.Key == '\t' || glyphInfo.Key == '\r' || glyphInfo.Key == '\n') { continue; }
 
-                RetargetGlyphRectangleInwards(initialBitmapData, glyphInfo.Value);
-                //minYOffset = Math.Min(minYOffset, glyphInfo.Value.yoffset);
+                RetargetGlyphRectangleInwards(bitmapData, glyphInfo.Value);
             }
-            initialBmp.UnlockBits(initialBitmapData);
 
-            //minYOffset--; // give one pixel of breathing room?
-
-            //foreach (var glyph in fontBitmap.GlyphInfoDictionary.Values)
-            //    glyph.yoffset -= minYOffset;
+            bitmap.UnlockBits(bitmapData);
         }
 
         /// <summary>
@@ -164,43 +147,39 @@ namespace CSharpGL
             return (*addr == 0 && *(addr + 1) == 0 && *(addr + 2) == 0);
         }
 
+        /// <summary>
+        /// shrink glyph's width to fit in exactly.
+        /// </summary>
+        /// <param name="bitmapData"></param>
+        /// <param name="glyph"></param>
         private static void RetargetGlyphRectangleInwards(BitmapData bitmapData, GlyphInfo glyph)
         {
             int startX, endX;
-            int startY, endY;
 
             for (startX = glyph.xoffset; startX < bitmapData.Width; startX++)
+            {
                 for (int j = glyph.yoffset; j < glyph.yoffset + glyph.height; j++)
+                {
                     if (!EmptyPixel(bitmapData, startX, j))
                         goto Done1;
+                }
+            }
         Done1:
             for (endX = glyph.xoffset + glyph.width - 1; endX >= 0; endX--)
+            {
                 for (int j = glyph.yoffset; j < glyph.yoffset + glyph.height; j++)
+                {
                     if (!EmptyPixel(bitmapData, endX, j))
                         goto Done2;
+                }
+            }
         Done2:
-            for (startY = glyph.yoffset; startY < bitmapData.Height; startY++)
-                for (int i = startX; i < endX; i++)
-                    if (!EmptyPixel(bitmapData, i, startY))
-                        goto Done3;
-
-        Done3:
-            for (endY = glyph.yoffset + glyph.height - 1; endY >= 0; endY--)
-                for (int i = startX; i < endX; i++)
-                    if (!EmptyPixel(bitmapData, i, endY))
-                        goto Done4;
-        Done4: ;
-
-            if (endY < startY)
-                startY = endY = glyph.yoffset;
 
             if (endX < startX)
                 startX = endX = glyph.xoffset;
 
             glyph.xoffset = startX;
-            //glyph.yoffset = startY;
             glyph.width = endX - startX + 1;
-            //glyph.height = endY - startY + 1;
         }
 
         /// <summary>

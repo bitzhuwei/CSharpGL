@@ -34,7 +34,8 @@ namespace CSharpGL.Demos
                     { this.pictureBox1.Image.Dispose(); }
 
                     string charSet = this.txtCharSet.Text;
-                    FontBitmap fontBitmap = font.GetFontBitmap(charSet);
+                    bool drawBoundary = this.chkDrawBoundary.Checked;
+                    FontBitmap fontBitmap = font.GetFontBitmap(charSet, drawBoundary);
                     this.pictureBox1.Image = fontBitmap.GlyphBitmap;
                 }
             }

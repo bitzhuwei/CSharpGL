@@ -33,15 +33,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtCharSet = new System.Windows.Forms.TextBox();
             this.fontBuilder1 = new CSharpGL.TestHelpers.FontBuilder();
+            this.chkDrawBoundary = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(122, 749);
+            this.button1.Location = new System.Drawing.Point(114, 736);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(83, 36);
             this.button1.TabIndex = 2;
             this.button1.Text = "Apply";
             this.button1.UseVisualStyleBackColor = true;
@@ -62,7 +63,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 278);
+            this.label3.Location = new System.Drawing.Point(9, 303);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 15);
             this.label3.TabIndex = 0;
@@ -72,11 +73,11 @@
             // 
             this.txtCharSet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtCharSet.Location = new System.Drawing.Point(12, 296);
+            this.txtCharSet.Location = new System.Drawing.Point(12, 321);
             this.txtCharSet.Multiline = true;
             this.txtCharSet.Name = "txtCharSet";
             this.txtCharSet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtCharSet.Size = new System.Drawing.Size(185, 447);
+            this.txtCharSet.Size = new System.Drawing.Size(185, 409);
             this.txtCharSet.TabIndex = 1;
             this.txtCharSet.Text = "\t abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;\'\"(!?)+-*/=_{" +
     "}[]@~#\\<>|^%$£&";
@@ -88,11 +89,24 @@
             this.fontBuilder1.Size = new System.Drawing.Size(185, 263);
             this.fontBuilder1.TabIndex = 4;
             // 
+            // chkDrawBoundary
+            // 
+            this.chkDrawBoundary.AutoSize = true;
+            this.chkDrawBoundary.Checked = true;
+            this.chkDrawBoundary.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDrawBoundary.Location = new System.Drawing.Point(12, 281);
+            this.chkDrawBoundary.Name = "chkDrawBoundary";
+            this.chkDrawBoundary.Size = new System.Drawing.Size(133, 19);
+            this.chkDrawBoundary.TabIndex = 5;
+            this.chkDrawBoundary.Text = "Draw Boundary";
+            this.chkDrawBoundary.UseVisualStyleBackColor = true;
+            // 
             // Form11IFontTexture
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1022, 784);
+            this.Controls.Add(this.chkDrawBoundary);
             this.Controls.Add(this.fontBuilder1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
@@ -113,6 +127,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCharSet;
         private TestHelpers.FontBuilder fontBuilder1;
+        private System.Windows.Forms.CheckBox chkDrawBoundary;
 
     }
 }
