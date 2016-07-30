@@ -39,7 +39,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(122, 588);
+            this.button1.Location = new System.Drawing.Point(122, 749);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -49,13 +49,13 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.pictureBox1.Location = new System.Drawing.Point(203, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(751, 599);
+            this.pictureBox1.Size = new System.Drawing.Size(807, 760);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
@@ -70,13 +70,13 @@
             // 
             // txtCharSet
             // 
-            this.txtCharSet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtCharSet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtCharSet.Location = new System.Drawing.Point(12, 226);
             this.txtCharSet.Multiline = true;
             this.txtCharSet.Name = "txtCharSet";
             this.txtCharSet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtCharSet.Size = new System.Drawing.Size(185, 356);
+            this.txtCharSet.Size = new System.Drawing.Size(185, 517);
             this.txtCharSet.TabIndex = 1;
             this.txtCharSet.Text = "\t abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;\'\"(!?)+-*/=_{" +
     "}[]@~#\\<>|^%$£&";
@@ -92,7 +92,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(966, 623);
+            this.ClientSize = new System.Drawing.Size(1022, 784);
             this.Controls.Add(this.fontBuilder1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
