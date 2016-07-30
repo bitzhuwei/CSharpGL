@@ -488,7 +488,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Highlight.vert" />
     <EmbeddedResource Include="Resources\Highlight.frag" />
-    <EmbeddedResource Include="Resources\ANTQUAI.TTF" />
     <Content Include="Renderers\LabelRenderer\readme.md" />
     <None Include="Renderers\Renderer\Renderers.cd" />
     <Content Include="OpenGLObjects\UniformVariables\UniformArrayVariables\readme.md" />
