@@ -62,7 +62,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 208);
+            this.label3.Location = new System.Drawing.Point(12, 278);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 15);
             this.label3.TabIndex = 0;
@@ -72,11 +72,11 @@
             // 
             this.txtCharSet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtCharSet.Location = new System.Drawing.Point(12, 226);
+            this.txtCharSet.Location = new System.Drawing.Point(12, 296);
             this.txtCharSet.Multiline = true;
             this.txtCharSet.Name = "txtCharSet";
             this.txtCharSet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtCharSet.Size = new System.Drawing.Size(185, 517);
+            this.txtCharSet.Size = new System.Drawing.Size(185, 447);
             this.txtCharSet.TabIndex = 1;
             this.txtCharSet.Text = "\t abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;\'\"(!?)+-*/=_{" +
     "}[]@~#\\<>|^%$£&";
@@ -85,7 +85,7 @@
             // 
             this.fontBuilder1.Location = new System.Drawing.Point(12, 12);
             this.fontBuilder1.Name = "fontBuilder1";
-            this.fontBuilder1.Size = new System.Drawing.Size(185, 193);
+            this.fontBuilder1.Size = new System.Drawing.Size(185, 263);
             this.fontBuilder1.TabIndex = 4;
             // 
             // Form11IFontTexture

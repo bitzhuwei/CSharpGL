@@ -31,6 +31,16 @@ namespace CSharpGL.TestHelpers
             {
                 string name = this.txtFontName.Text;
                 float size = float.Parse(this.txtFontSize.Text);
+                FontStyle style = FontStyle.Regular;
+                if (chkBold.Checked) { style |= FontStyle.Bold; }
+                if (chkItalic.Checked) { style |= FontStyle.Italic; }
+                if (chkStrikeout.Checked) { style |= FontStyle.Strikeout; }
+                if (chkUnderline.Checked) { style |= FontStyle.Underline; }
+                //FontStyle.Bold
+                //FontStyle.Italic
+                //FontStyle.Regular
+                //FontStyle.Strikeout
+                //FontStyle.Underline
                 //FontStyle style = (FontStyle)Enum.Parse(typeof(FontStyle), this.cmbFontStyle.SelectedItem.ToString());
                 GraphicsUnit unit = (GraphicsUnit)Enum.Parse(typeof(GraphicsUnit), this.cmbGraphicsUnit.SelectedItem.ToString());
                 var font = new Font(name, size, style, unit);
