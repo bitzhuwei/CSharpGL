@@ -12,7 +12,7 @@ namespace GridViewer
 
         private TextModel textModel;
 
-        public IFontTexture FontTexture { get; set; }
+        public IFontTexture FontTextureService { get; set; }
 
         private string content = string.Empty;
         public string Text
@@ -20,7 +20,7 @@ namespace GridViewer
             get { return content; }
             set
             {
-                if (this.textModel != null) { this.textModel.SetText(value, this.FontTexture); }
+                if (this.textModel != null) { this.textModel.SetText(value, this.FontTextureService); }
                 this.content = value;
             }
         }
@@ -36,14 +36,14 @@ namespace GridViewer
             : base(textModel, shaderCodes, propertyNameMap, switches)
         {
             this.textModel = textModel;
-            this.FontTexture = CSharpGL.FontResource.Default;
+            this.FontTextureService = FontTexture.Default;
         }
 
         protected override void DoInitialize()
         {
             base.DoInitialize();
 
-            this.SetUniform("fontTexture", this.FontTexture.GetSamplerValue());
+            this.SetUniform("fontTexture", this.FontTextureService.GetSamplerValue());
         }
         protected override void DoRender(RenderEventArg arg)
         {

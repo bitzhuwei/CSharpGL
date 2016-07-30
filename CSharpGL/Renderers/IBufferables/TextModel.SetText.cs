@@ -21,8 +21,8 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="content"></param>
-        /// <param name="fontTexture"></param>
-        public unsafe void SetText(string content, IFontTexture fontTexture)
+        /// <param name="fontTextureService"></param>
+        public unsafe void SetText(string content, IFontTexture fontTextureService)
         {
             if (string.IsNullOrEmpty(content))
             {
@@ -39,8 +39,8 @@ namespace CSharpGL
             { throw new ArgumentException(); }
             //{ count = this.maxCharCount; }
 
-            SetupGlyphPositions(content, fontTexture);
-            SetupGlyphTexCoord(content, fontTexture);
+            SetupGlyphPositions(content, fontTextureService);
+            SetupGlyphTexCoord(content, fontTextureService);
             this.indexBufferPtr.VertexCount = count * 4;
         }
 

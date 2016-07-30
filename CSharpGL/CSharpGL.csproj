@@ -47,7 +47,6 @@
   <ItemGroup>
     <Content Include="Renderers\IBufferables\TextModel.jpg" />
     <Content Include="Renderers\UIRenderers\readme.md" />
-    <Content Include="IFontTexture\FontResource\readme.md" />
     <Content Include="Renderers\IBufferables\readme.md" />
     <Content Include="Renderers\HighlightRenderer\readme.md" />
     <Content Include="Renderers\PickableRenderer\OneIndexRenderer\LineSearcher\OneIndexLineInPolygonSearcher.jpg" />
@@ -85,14 +84,6 @@
       <DependentUpon>FormIndexBufferPtrBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="4PropertyGrid\UITypeEditors\IndexBufferPtrEditor.cs" />
-    <Compile Include="IFontTexture\FontResource\FontResource.IDisposable.cs" />
-    <Compile Include="IFontTexture\FontResource\FontResource.InitTexture.cs" />
-    <Compile Include="IFontTexture\FontResource\FontResource.GetGlyphInfo.cs" />
-    <Compile Include="IFontTexture\FontResource\FontResource.Default.cs" />
-    <Compile Include="IFontTexture\FontResource\FontResource.FromTTF.Glyph.cs" />
-    <Compile Include="IFontTexture\FontResource\FontResource.FromTTF.Misc.cs" />
-    <Compile Include="IFontTexture\FontResource\FontResource.FromTTF.Impl.cs" />
-    <Compile Include="IFontTexture\FontResource\FontResource.FromTTF.cs" />
     <Compile Include="IFontTexture\FontTexture\FontBitmap.IDisposable.cs" />
     <Compile Include="IFontTexture\FontTexture\FontBitmap.cs" />
     <Compile Include="IFontTexture\FontTexture\FontBitmapHelper.cs" />
@@ -277,7 +268,6 @@
     <Compile Include="WinformControls\RenderContexts\RenderContext.IDisposable.cs" />
     <Compile Include="WinformControls\RenderTriggers.cs" />
     <Compile Include="IFontTexture\GlyphInfo.cs" />
-    <Compile Include="IFontTexture\FontResource\FontResource.cs" />
     <Compile Include="Renderers\HighlightRenderer\HighlightRenderer.cs" />
     <Compile Include="Renderers\HighlightRenderer\HighlightRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\HighlightRenderer\HighlightRenderer.Property.cs" />
@@ -370,19 +360,6 @@
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformVec4.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformVec3.cs" />
     <Compile Include="OpenGLObjects\UniformVariables\UniformSingleVariables\UniformVec2.cs" />
-    <Compile Include="IFontTexture\FontResource\SharpFont\FontFace.cs" />
-    <Compile Include="IFontTexture\FontResource\SharpFont\Internal\BinPacker.cs" />
-    <Compile Include="IFontTexture\FontResource\SharpFont\Internal\CharacterMap.cs" />
-    <Compile Include="IFontTexture\FontResource\SharpFont\Internal\DataReader.cs" />
-    <Compile Include="IFontTexture\FontResource\SharpFont\Internal\Geometry.cs" />
-    <Compile Include="IFontTexture\FontResource\SharpFont\Internal\Interpreter.cs" />
-    <Compile Include="IFontTexture\FontResource\SharpFont\Internal\KerningTable.cs" />
-    <Compile Include="IFontTexture\FontResource\SharpFont\Internal\SharpFontRenderer.cs" />
-    <Compile Include="IFontTexture\FontResource\SharpFont\Internal\SbitTable.cs" />
-    <Compile Include="IFontTexture\FontResource\SharpFont\Internal\SfntTables.cs" />
-    <Compile Include="IFontTexture\FontResource\SharpFont\Metrics.cs" />
-    <Compile Include="IFontTexture\FontResource\SharpFont\System.Numerics\Matrix3x2.cs" />
-    <Compile Include="IFontTexture\FontResource\SharpFont\System.Numerics\Vector2.cs" />
     <Compile Include="4PropertyGrid\UITypeEditors\FormUniformVariableListEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -534,7 +511,6 @@
     <Content Include="_Foundations\Maths\readme.md" />
     <Content Include="OpenGLObjects\readme.md" />
     <Content Include="_Foundations\OpenGLAPI\readme.md" />
-    <Content Include="IFontTexture\FontResource\SharpFont\readme.md" />
     <Content Include="4PropertyGrid\TypeConverters\readme.md" />
     <Content Include="4PropertyGrid\UITypeEditors\readme.md" />
   </ItemGroup>

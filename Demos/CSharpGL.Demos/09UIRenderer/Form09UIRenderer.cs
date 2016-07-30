@@ -97,22 +97,23 @@ namespace CSharpGL.Demos
             }
             else if (e.KeyChar == 'o')
             {
-                if (this.openTextureDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    string ttfFilename = this.openTextureDlg.FileName;
-                    this.glText.Dispose();
-                    FontResource fontResouce = FontResource.Load(ttfFilename, ' ', (char)126);
-                    var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top,
-                        new Padding(3, 3, 3, 3), new Size(850, 50), -100, 100, fontResouce);
-                    glText.Initialize();
-                    glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
-                    glText.Text = "The quick brown fox jumps over the lazy dog!";
-                    this.glText = glText;
+                //TODO: rewreite this with FontTexture.
+                //if (this.openTextureDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                //{
+                //    string ttfFilename = this.openTextureDlg.FileName;
+                //    this.glText.Dispose();
+                //    FontResource fontResouce = FontResource.Load(ttfFilename, ' ', (char)126);
+                //    var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top,
+                //        new Padding(3, 3, 3, 3), new Size(850, 50), -100, 100, fontResouce);
+                //    glText.Initialize();
+                //    glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
+                //    glText.Text = "The quick brown fox jumps over the lazy dog!";
+                //    this.glText = glText;
 
-                    uiRoot.Children.Add(glText);
+                //    uiRoot.Children.Add(glText);
 
-                    this.formPropertyGrid.DisplayObject(glText);
-                }
+                //    this.formPropertyGrid.DisplayObject(glText);
+                //}
             }
         }
 
