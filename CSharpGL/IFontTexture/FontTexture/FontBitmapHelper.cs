@@ -62,6 +62,10 @@ namespace CSharpGL
             return fontBitmap;
         }
 
+        /// <summary>
+        /// reprint(shrink) glyph's bitmap.
+        /// </summary>
+        /// <param name="fontBitmap"></param>
         private static void ReprintBitmap(FontBitmap fontBitmap)
         {
             int totalWidth = 0;
