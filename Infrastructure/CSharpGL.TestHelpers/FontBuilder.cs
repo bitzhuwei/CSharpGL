@@ -16,17 +16,8 @@ namespace CSharpGL.TestHelpers
             InitializeComponent();
         }
 
-        class EnumItem<T> where T : struct
-        {
-
-        }
         private void FontBuilder_Load(object sender, EventArgs e)
         {
-            foreach (var item in Enum.GetValues(typeof(FontStyle)))
-            {
-                this.cmbFontStyle.Items.Add(item);
-            }
-            this.cmbFontStyle.SelectedIndex = 0;
             foreach (var item in Enum.GetValues(typeof(GraphicsUnit)))
             {
                 this.cmbGraphicsUnit.Items.Add(item);
@@ -40,7 +31,7 @@ namespace CSharpGL.TestHelpers
             {
                 string name = this.txtFontName.Text;
                 float size = float.Parse(this.txtFontSize.Text);
-                FontStyle style = (FontStyle)Enum.Parse(typeof(FontStyle), this.cmbFontStyle.SelectedItem.ToString());
+                //FontStyle style = (FontStyle)Enum.Parse(typeof(FontStyle), this.cmbFontStyle.SelectedItem.ToString());
                 GraphicsUnit unit = (GraphicsUnit)Enum.Parse(typeof(GraphicsUnit), this.cmbGraphicsUnit.SelectedItem.ToString());
                 var font = new Font(name, size, style, unit);
                 return font;
