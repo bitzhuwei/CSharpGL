@@ -83,7 +83,7 @@ namespace CSharpGL
         /// <param name="fontBitmap"></param>
         private static void RetargetGlyphRectangleInwards(FontBitmap fontBitmap)
         {
-            var minYOffset = int.MaxValue;
+            //var minYOffset = int.MaxValue;
 
             Bitmap initialBmp = fontBitmap.GlyphBitmap;
             BitmapData initialBitmapData = initialBmp.LockBits(new Rectangle(0, 0, initialBmp.Width, initialBmp.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
@@ -93,11 +93,11 @@ namespace CSharpGL
                 if (glyphInfo.Key == ' ' || glyphInfo.Key == '\t' || glyphInfo.Key == '\r' || glyphInfo.Key == '\n') { continue; }
 
                 RetargetGlyphRectangleInwards(initialBitmapData, glyphInfo.Value);
-                minYOffset = Math.Min(minYOffset, glyphInfo.Value.yoffset);
+                //minYOffset = Math.Min(minYOffset, glyphInfo.Value.yoffset);
             }
             initialBmp.UnlockBits(initialBitmapData);
 
-            minYOffset--; // give one pixel of breathing room?
+            //minYOffset--; // give one pixel of breathing room?
 
             //foreach (var glyph in fontBitmap.GlyphInfoDictionary.Values)
             //    glyph.yoffset -= minYOffset;
