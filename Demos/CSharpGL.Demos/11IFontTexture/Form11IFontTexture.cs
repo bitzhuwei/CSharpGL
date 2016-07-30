@@ -30,6 +30,9 @@ namespace CSharpGL.Demos
                 var font = this.fontBuilder1.GetFont();
                 if (font != null)
                 {
+                    if (this.pictureBox1.Image != null)
+                    { this.pictureBox1.Image.Dispose(); }
+
                     string charSet = this.txtCharSet.Text;
                     FontBitmap fontBitmap = font.GetFontBitmap(charSet);
                     this.pictureBox1.Image = fontBitmap.GlyphBitmap;
