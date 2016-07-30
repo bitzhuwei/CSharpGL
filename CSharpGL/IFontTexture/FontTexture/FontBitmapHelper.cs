@@ -33,6 +33,8 @@ namespace CSharpGL
 
             // 以下几步，不能调换先后顺序。
             // Don't change the order in which these functions invoked.
+            // TODO: 下述方式尚有可优化的余地：应避免创建中间过程产生的大型Bitmap。
+            // TODO: avoid creating big bitmap during the whole process except the last one.
             GetGlyphSizes(fontBitmap, charSet);
             int width, height;
             GetGlyphPositions(fontBitmap, charSet, out width, out height);
