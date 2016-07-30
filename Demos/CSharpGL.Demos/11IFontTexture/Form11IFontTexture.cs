@@ -27,12 +27,13 @@ namespace CSharpGL.Demos
         {
             try
             {
-                string name = this.txtFontName.Text;
-                float size = float.Parse(this.txtFontSize.Text);
-                string charSet = this.txtCharSet.Text;
-                var font = new Font(name, size);
-                FontBitmap fontBitmap = font.GetFontBitmap(charSet);
-                this.pictureBox1.Image = fontBitmap.GlyphBitmap;
+                var font = this.fontBuilder1.GetFont();
+                if (font != null)
+                {
+                    string charSet = this.txtCharSet.Text;
+                    FontBitmap fontBitmap = font.GetFontBitmap(charSet);
+                    this.pictureBox1.Image = fontBitmap.GlyphBitmap;
+                }
             }
             catch (Exception ex)
             {

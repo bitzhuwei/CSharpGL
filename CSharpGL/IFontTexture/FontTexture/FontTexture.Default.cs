@@ -41,7 +41,7 @@ namespace CSharpGL
             }
         }
 
-        private const string defaultCharSet = "\t bcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;'\"(!?)+-*/=_{}[]@~#\\<>|^%$£&";
+        private const string defaultCharSet = "\t abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;'\"(!?)+-*/=_{}[]@~#\\<>|^%$£&";
 
         private static FontTexture InitializeDefaultFontTexture()
         {

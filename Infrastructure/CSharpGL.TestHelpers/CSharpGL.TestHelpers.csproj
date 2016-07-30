@@ -34,6 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -41,6 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultRendererComponent.cs" />
+    <Compile Include="FontBuilder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FontBuilder.Designer.cs">
+      <DependentUpon>FontBuilder.cs</DependentUpon>
+    </Compile>
     <Compile Include="matHelper.cs" />
     <Compile Include="SceneObjectFactory.cs" />
     <Compile Include="vecHelper.cs" />

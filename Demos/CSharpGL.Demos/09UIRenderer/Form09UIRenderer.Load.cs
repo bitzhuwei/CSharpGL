@@ -21,6 +21,7 @@ namespace CSharpGL.Demos
 
         private void Form_Load(object sender, EventArgs e)
         {
+
             {
                 var camera = new Camera(
                     new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0),
@@ -35,8 +36,8 @@ namespace CSharpGL.Demos
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
 
-                var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top| AnchorStyles.Right,
-                    new Padding(10, 10, 10, 10), new Size(550, 50), -100, 100);
+                var glText = new UIText(AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right,
+                    new Padding(10, 10, 10, 10), new Size(550, 50), -100, 100, FontTexture.Default);
                 glText.Initialize();
                 glText.SwitchList.Add(new ClearColorSwitch());// show black back color to indicate glText's area.
                 glText.Text = "The quick brown fox jumps over the lazy dog!";

@@ -22,7 +22,7 @@ namespace CSharpGL
         /// <summary>
         /// glyph's height.
         /// </summary>
-        public float GlyphHeight { get; internal set; }
+        public int GlyphHeight { get; internal set; }
         /// <summary>
         /// glyph information dictionary.
         /// </summary>
