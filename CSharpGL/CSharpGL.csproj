@@ -88,6 +88,7 @@
     <Compile Include="IFontTexture\FontTexture\FontBitmap.IDisposable.cs" />
     <Compile Include="IFontTexture\FontTexture\FontBitmap.cs" />
     <Compile Include="IFontTexture\FontTexture\FontBitmapHelper.cs" />
+    <Compile Include="IFontTexture\FontTexture\FontBitmapHelper.RetargetGlyphRectangleInwards.cs" />
     <Compile Include="IFontTexture\FontTexture\FontTexture.Default.cs" />
     <Compile Include="IFontTexture\IFontTexture.cs" />
     <Compile Include="IFontTexture\FontTexture\FontTexture.IDisposable.cs" />
