@@ -20,10 +20,7 @@ namespace GridViewer
 
         private void mniLoadECLGrid_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
+            if (openFileDialog1.ShowDialog() != DialogResult.OK) { return; }
 
             //ModelContainer modelContainer = this.ModelContainer;
 
