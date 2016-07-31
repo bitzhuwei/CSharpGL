@@ -50,30 +50,5 @@ namespace CSharpGL
             FontTexture fontTexture = fontBitmap.GetFontTexture();
             return fontTexture;
         }
-
-
-        //public FontTexture Load(string filename, string config)
-        //{
-        //    var result = new FontTexture();
-
-        //    var bitmap = new Bitmap(filename);
-        //    result.InitTexture(bitmap);
-        //    bitmap.Dispose();
-
-        //    XElement xElement = XElement.Load(config, LoadOptions.None);
-        //    result.InitConfig(xElement);
-
-        //    return result;
-        //}
-
-        //private void InitConfig(XElement config)
-        //{
-        //    this.FontHeight = int.Parse(config.Attribute(strFontHeight).Value);
-        //    //this.FirstChar = (char)int.Parse(config.Attribute(strFirstChar).Value);
-        //    //this.LastChar = (char)int.Parse(config.Attribute(strLastChar).Value);
-        //    this.CharInfoDict = CharacterInfoDictHelper.Parse(
-        //        config.Element(CharacterInfoDictHelper.strCharacterInfoDict));
-        //}
-
     }
 }
