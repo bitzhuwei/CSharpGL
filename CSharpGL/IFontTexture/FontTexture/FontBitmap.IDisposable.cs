@@ -47,18 +47,18 @@ namespace CSharpGL
                 {
                     bmp.Dispose();
                 }
-                FullDictionary<char, GlyphInfo> dict = this.GlyphInfoDictionary;
-                this.GlyphInfoDictionary = null;
-                if (dict != null)
-                {
-                    dict.Clear();
-                }
-                Font font = this.GlyphFont;
-                this.GlyphFont = null;
-                if (font != null)
-                {
-                    font.Dispose();
-                }
+                //FullDictionary<char, GlyphInfo> dict = this.GlyphInfoDictionary;
+                //this.GlyphInfoDictionary = null;
+                //if (dict != null)
+                //{
+                //    dict.Clear();
+                //}
+                //Font font = this.GlyphFont;
+                //this.GlyphFont = null;
+                //if (font != null)
+                //{
+                //    font.Dispose();
+                //}
             }
 
             this.disposedValue = true;

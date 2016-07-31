@@ -42,6 +42,18 @@ namespace CSharpGL
                 }
 
                 // Dispose unmanaged resources.
+                FullDictionary<char, GlyphInfo> dict = this.GlyphInfoDictionary;
+                this.GlyphInfoDictionary = null;
+                if (dict != null)
+                {
+                    dict.Clear();
+                }
+                Font font = this.GlyphFont;
+                this.GlyphFont = null;
+                if (font != null)
+                {
+                    font.Dispose();
+                }
                 var ids = new uint[] { FontTextureId, };
                 OpenGL.DeleteTextures(ids.Length, ids);
             }
