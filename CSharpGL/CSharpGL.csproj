@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="IFontTexture\FontTexture\FontBitmapHelper.2_PrepareFinalBitmapSize.cs.png" />
+    <Content Include="IFontTexture\FontTexture\FontBitmapHelper.1_PrepareInitialGlyphDictcs.cs.png" />
+    <Content Include="IFontTexture\FontTexture\FontBitmapHelper.3_PrintBitmap.cs.png" />
     <Content Include="IFontTexture\readme.md" />
     <Content Include="Renderers\IBufferables\TextModel.jpg" />
     <Content Include="Renderers\UIRenderers\readme.md" />
@@ -87,8 +90,11 @@
     <Compile Include="4PropertyGrid\UITypeEditors\IndexBufferPtrEditor.cs" />
     <Compile Include="IFontTexture\FontTexture\FontBitmap.IDisposable.cs" />
     <Compile Include="IFontTexture\FontTexture\FontBitmap.cs" />
-    <Compile Include="IFontTexture\FontTexture\FontBitmapHelper.cs" />
-    <Compile Include="IFontTexture\FontTexture\FontBitmapHelper.RetargetGlyphRectangleInwards.cs" />
+    <Compile Include="IFontTexture\FontTexture\FontBitmapHelper.3_PrintBitmap.cs" />
+    <Compile Include="IFontTexture\FontTexture\FontBitmapHelper.2_PrepareFinalBitmapSize.cs" />
+    <Compile Include="IFontTexture\FontTexture\FontBitmapHelper.1_PrepareInitialGlyphDictcs.cs" />
+    <Compile Include="IFontTexture\FontTexture\FontBitmapHelper.0_.cs" />
+    <Compile Include="IFontTexture\FontTexture\FontBitmapHelper.4_RetargetGlyphRectangleInwards.cs" />
     <Compile Include="IFontTexture\FontTexture\FontTexture.Default.cs" />
     <Compile Include="IFontTexture\IFontTexture.cs" />
     <Compile Include="IFontTexture\FontTexture\FontTexture.IDisposable.cs" />

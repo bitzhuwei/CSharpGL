@@ -14,7 +14,7 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// Returns try if the given pixel is empty (i.e. black)
+        /// Returns true if the given pixel is empty (i.e. black)
         /// </summary>
         /// <param name="bitmapData"></param>
         /// <param name="x"></param>
