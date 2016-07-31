@@ -12,6 +12,7 @@ We do this because the Bitmap's size must be settled(in constructor method) when
 ![FontBitmapHelper.2_PrepareFinalBitmapSize.cs.png](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/FontBitmapHelper.2_PrepareFinalBitmapSize.cs.png?raw=true)
 3. Create final bitmap and print all glyphs onto it. We print all glyphs and setup glyph's xoffset/yoffset during the same loop.  
 ![FontBitmapHelper.3_PrintBitmap.cs.png](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/FontBitmapHelper.3_PrintBitmap.cs.png?raw=true)
+
 ## what does it look like?
-Here shows what it looks like.  
+Here shows what it looks like. The image inside of the red rectangle is what we got from FonBitmap.  
 ![FontBitmapHelper.3_PrintBitmap.cs.png](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/FontTexture.jpg?raw=true)
