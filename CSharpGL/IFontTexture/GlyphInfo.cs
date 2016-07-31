@@ -55,9 +55,10 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public Rectangle ToRectangle()
+        public Rectangle ToRectangle(int shrinkX = 0, int shrinkY = 0, int shrinkWidth = 0, int shrinkHeight = 0)
         {
-            return new Rectangle(this.xoffset, this.yoffset, this.width, this.height);
+            return new Rectangle(this.xoffset + shrinkX, this.yoffset + shrinkY,
+                this.width + shrinkWidth, this.height + shrinkHeight);
         }
 
         /// <summary>
