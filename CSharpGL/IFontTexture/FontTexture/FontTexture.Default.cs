@@ -8,9 +8,6 @@ using System.Xml.Linq;
 
 namespace CSharpGL
 {
-    /// <summary>
-    /// 字形贴图及其UV。
-    /// </summary>
     public partial class FontTexture
     {
         private static readonly object synObj = new object();
