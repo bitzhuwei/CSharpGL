@@ -37,7 +37,6 @@ namespace CSharpGL
                             glyphGraphics.Clear(clearColor);
                             glyphGraphics.DrawString(item.Key.ToString(), fontBitmap.GlyphFont,
                                 Brushes.White, 0, 0);
-                            glyphBitmap.Save(string.Format("TestTest{0}.bmp", (int)item.Key));
                             // move to new line if this line is full.
                             if (currentX + item.Value.width > width)
                             {
