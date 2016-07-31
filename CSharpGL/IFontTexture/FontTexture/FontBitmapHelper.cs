@@ -41,11 +41,6 @@ namespace CSharpGL
             int width, height;
             PrepareFinalBitmapSize(fontBitmap, out width, out height);
             PrintBitmap(fontBitmap, singleCharWidth, singleCharHeight, width, height);
-            //GetGlyphSizes(fontBitmap, charSet);
-            //GetGlyphPositions(fontBitmap, charSet, out width, out height);
-            //PrintBitmap(fontBitmap, charSet, width, height);
-            //RetargetGlyphRectangleInwards(fontBitmap);
-            //ReprintBitmap(fontBitmap);
             if (drawBoundary)
             {
                 using (var graphics = Graphics.FromImage(fontBitmap.GlyphBitmap))
@@ -65,7 +60,8 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// rpint the final bitmap that contains all glyphs.
+        /// Print the final bitmap that contains all glyphs.
+        /// And also setup glyph's xoffset, yoffset.
         /// </summary>
         /// <param name="fontBitmap"></param>
         /// <param name="singleCharWidth"></param>
@@ -141,8 +137,6 @@ namespace CSharpGL
                 {
                     if (currentX + item.Value.width < sideLength)
                     {
-                        //item.Value.xoffset = currentX;
-                        //item.Value.yoffset = currentY;
                         currentX += item.Value.width + glyphInterval;
                     }
                     else
@@ -150,17 +144,31 @@ namespace CSharpGL
                         if (maxWidth < currentX) { maxWidth = currentX; }
                         currentX = leftMargin;
                         currentY += maxGlyphHeight;
-                        //item.Value.xoffset = currentX;
-                        //item.Value.yoffset = currentY;
                         currentX += item.Value.width + glyphInterval;
                     }
                 }
-                maxHeight = currentY + maxGlyphHeight;
+                if (currentX > leftMargin)
+                {
+                    maxHeight = currentY + maxGlyphHeight;
+                }
+                else
+                {
+                    maxHeight = currentY;
+                }
                 width = maxWidth;
                 height = maxHeight;
             }
         }
 
+        /// <summary>
+        /// Get glyph's size by graphics.MeasureString().
+        /// Then shrink glyph's size.
+        /// xoffset now means offset in a single glyph's bitmap.
+        /// </summary>
+        /// <param name="fontBitmap"></param>
+        /// <param name="charSet"></param>
+        /// <param name="singleCharWidth"></param>
+        /// <param name="singleCharHeight"></param>
         private static void PrepareInitialGlyphDict(FontBitmap fontBitmap, string charSet, out int singleCharWidth, out int singleCharHeight)
         {
             // Get glyph's size by graphics.MeasureString().
