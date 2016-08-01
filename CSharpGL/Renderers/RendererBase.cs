@@ -49,15 +49,15 @@ namespace CSharpGL
             this.ID = idCounter++;
         }
 
-        private bool initializing = false;
+        //private bool initializing = false;
 
-        /// <summary>
-        /// in initializing process.
-        /// </summary>
-        public bool Initializing
-        {
-            get { return initializing; }
-        }
+        ///// <summary>
+        ///// in initializing process.
+        ///// </summary>
+        //public bool Initializing
+        //{
+        //    get { return initializing; }
+        //}
 
         private bool initialized = false;
         /// <summary>
@@ -75,9 +75,9 @@ namespace CSharpGL
         {
             if (!initialized)
             {
-                initializing = true;
+                //initializing = true;
                 DoInitialize();
-                initializing = false;
+                //initializing = false;
                 initialized = true;
             }
         }

@@ -23,7 +23,7 @@ namespace CSharpGL
         /// <returns></returns>
         public bool GetUniformValue<T>(string varNameInShader, out T value) where T : struct, IEquatable<T>
         {
-            if ((!this.Initialized) && (!this.Initializing)) { this.Initialize(); }
+            //if ((!this.Initialized) && (!this.Initializing)) { this.Initialize(); }
 
             value = default(T);
             bool gotUniform = false;
@@ -45,7 +45,7 @@ namespace CSharpGL
         /// </summary>
         public bool SetUniform<T>(string varNameInShader, T value) where T : struct,IEquatable<T>
         {
-            if ((!this.Initialized) && (!this.Initializing)) { this.Initialize(); }
+            //if ((!this.Initialized) && (!this.Initializing)) { this.Initialize(); }
 
             bool gotUniform = false;
             bool updated = false;
@@ -63,15 +63,15 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                if (ShaderProgram == null)
-                { throw new Exception(string.Format("{0} is not initialized!", this.GetType().Name)); }
+                //if (ShaderProgram == null)
+                //{ throw new Exception(string.Format("{0} is not initialized!", this.GetType().Name)); }
 
-                int location = ShaderProgram.GetUniformLocation(varNameInShader);
-                if (location < 0)
-                {
-                    throw new Exception(string.Format(
-                        "uniform variable [{0}] not exists!", varNameInShader));
-                }
+                //int location = ShaderProgram.GetUniformLocation(varNameInShader);
+                //if (location < 0)
+                //{
+                //    throw new Exception(string.Format(
+                //        "uniform variable [{0}] not exists!", varNameInShader));
+                //}
 
                 var variable = GetVariable(value, varNameInShader) as UniformSingleVariable<T>;
                 variable.Value = value;
