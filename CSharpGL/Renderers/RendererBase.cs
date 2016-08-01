@@ -47,7 +47,7 @@ namespace CSharpGL
         public RendererBase()
         {
             this.ID = idCounter++;
-            this.Name = this.GetType().Name;
+            this.Name = string.Format("{0}: {1}", this.ID, this.GetType().Name);
         }
 
         //private bool initializing = false;

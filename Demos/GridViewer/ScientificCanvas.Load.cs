@@ -43,7 +43,7 @@ namespace GridViewer
                 this.Scene.UIRoot.Children.Add(uiCodedColorBar);
             }
             {
-                var uiColorPalette = new UIColorPaletteRenderer(
+                var uiColorPalette = new UIColorPaletteRenderer(10,
                     AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right,
                     new Padding(120, 10, 60, 10 + 40), new Size(400, 40), -100, 100);
                 uiColorPalette.Initialize();

@@ -17,6 +17,7 @@ namespace GridViewer
         List<UIText> labelList = new List<UIText>();
         const int marginLeft = 50;
         const int marginRight = 50;
+        private int maxMarkerCount;
         /// <summary>
         /// </summary>
         /// <param name="anchor"></param>
@@ -24,12 +25,12 @@ namespace GridViewer
         /// <param name="size"></param>
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
-        public UIColorPaletteRenderer(
+        public UIColorPaletteRenderer(int maxMarkerCount,
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
             : base(anchor, margin, size, zNear, zFar)
         {
-            this.Name = this.GetType().Name;
+            this.maxMarkerCount = maxMarkerCount;
             this.SwitchList.Add(new ClearColorSwitch());
 
             {
