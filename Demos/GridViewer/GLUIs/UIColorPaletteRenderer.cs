@@ -11,6 +11,7 @@ namespace GridViewer
     /// <summary>
     /// color palette.
     /// 在窗口固定位置显示的色标。
+    /// 本类型只圈定了一个矩形范围。
     /// </summary>
     class UIColorPaletteRenderer : UIRenderer
     {
@@ -93,19 +94,5 @@ namespace GridViewer
             label.Margin = padding;
         }
 
-        protected override void DoInitialize()
-        {
-            base.DoInitialize();
-
-            foreach (var item in this.Children)
-            {
-                item.Initialize();
-            }
-        }
-
-        protected override void DoRender(RenderEventArg arg)
-        {
-            base.DoRender(arg);
-        }
     }
 }

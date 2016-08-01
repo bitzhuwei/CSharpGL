@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace GridViewer
 {
+    /// <summary>
+    /// 彩色的色标带。
+    /// </summary>
     class UIColorPaletteBarRenderer : UIRenderer
     {
 

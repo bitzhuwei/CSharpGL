@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace GridViewer
 {
+    /// <summary>
+    /// 若干条向下突出的白色竖线。
+    /// </summary>
     class UIColorPaletteMarkersRenderer : UIRenderer
     {
 
