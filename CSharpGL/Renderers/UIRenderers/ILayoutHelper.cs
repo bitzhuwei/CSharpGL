@@ -31,6 +31,15 @@ namespace CSharpGL
 
         /// <summary>
         /// layout controls in OpenGL canvas.
+        /// <para>This coordinate system is as below.</para>
+        /// <para>   /\ y</para>
+        /// <para>   |</para>
+        /// <para>   |</para>
+        /// <para>   |</para>
+        /// <para>   |</para>
+        /// <para>   |</para>
+        /// <para>   |-----------------&gt;x</para>
+        /// <para>(0, 0)</para>
         /// </summary>
         /// <param name="uiRenderer"></param>
         internal static void Layout(this ILayout uiRenderer)
