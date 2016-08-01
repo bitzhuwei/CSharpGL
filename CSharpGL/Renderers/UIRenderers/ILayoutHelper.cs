@@ -48,6 +48,7 @@ namespace CSharpGL
             if (parent != null)
             {
                 NonRootNodeLayout(uiRenderer, parent);
+                uiRenderer.Self.AfterLayout();
             }
 
             foreach (var item in uiRenderer.Children)
