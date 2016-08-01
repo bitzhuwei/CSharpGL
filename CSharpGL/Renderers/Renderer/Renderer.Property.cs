@@ -65,10 +65,7 @@ namespace CSharpGL
         /// </summary>
         public IndexBufferPtr IndexBufferPtr
         {
-            get
-            {
-                return this.indexBufferPtr;
-            }
+            get { return this.indexBufferPtr; }
         }
 
     }
