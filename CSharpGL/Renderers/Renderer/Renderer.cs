@@ -60,8 +60,6 @@ namespace CSharpGL
         public Renderer(IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
         {
-            this.Name = this.GetType().Name;
-
             this.bufferable = bufferable;
             this.shaderCodes = shaderCodes;
             this.propertyNameMap = propertyNameMap;

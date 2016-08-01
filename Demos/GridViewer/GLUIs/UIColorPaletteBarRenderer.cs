@@ -18,11 +18,14 @@ namespace GridViewer
         /// <param name="size"></param>
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
-        public UIColorPaletteBarRenderer(
+        public UIColorPaletteBarRenderer(int maxMarkerCount,
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
             : base(anchor, margin, size, zNear, zFar)
         {
+            var model = new QuadStripModel(maxMarkerCount - 1);
+            this.Renderer = QuadStripRenderer.Create(model);
+
             this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
         }
 

@@ -93,6 +93,7 @@
     <Compile Include="Geometry\TriangleTexCoord.cs" />
     <Compile Include="Geometry\TrianglularPrismPosition.cs" />
     <Compile Include="Geometry\TriangularPrismTexCoord.cs" />
+    <Compile Include="GLUIs\QuadStripRenderer.cs" />
     <Compile Include="GLUIs\QuadStripModel.cs" />
     <Compile Include="GLUIs\UIColorPaletteMarkersRenderer.cs" />
     <Compile Include="GLUIs\UIColorPaletteBarRenderer.cs" />
@@ -176,6 +177,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="shaders\QuadStrip.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\QuadStrip.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="shaders\ColorCodedBarLine.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -18,7 +18,7 @@ namespace GridViewer
         /// <param name="size"></param>
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
-        public UIColorPaletteMarkersRenderer(
+        public UIColorPaletteMarkersRenderer(int maxMarkerCount,
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
             : base(anchor, margin, size, zNear, zFar)
