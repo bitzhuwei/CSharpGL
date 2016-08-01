@@ -39,14 +39,16 @@ namespace GridViewer
                 new System.Windows.Forms.Padding(marginLeft, 1, marginRight, 0),
                 new System.Drawing.Size(size.Width - 100, size.Height / 3),
                 zNear, zFar);
+                //this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
                 this.Children.Add(bar);
             }
             {
                 var markers = new UIColorPaletteMarkersRenderer(maxMarkerCount,
                 System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right,
-                new System.Windows.Forms.Padding(marginLeft + 10, 10, marginRight + 10, 50),
+                new System.Windows.Forms.Padding(marginLeft, 10, marginRight, 50),
                 new System.Drawing.Size(size.Width - marginLeft - marginRight, size.Height / 3),
                 zNear, zFar);
+                //markers.SwitchList.Add(new ClearColorSwitch(Color.Red));
                 this.Children.Add(markers);
             }
             {

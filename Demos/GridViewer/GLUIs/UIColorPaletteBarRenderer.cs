@@ -25,8 +25,6 @@ namespace GridViewer
         {
             var model = new QuadStripModel(maxMarkerCount - 1);
             this.Renderer = QuadStripRenderer.Create(model);
-
-            this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
         }
 
         protected override void DoRender(RenderEventArg arg)

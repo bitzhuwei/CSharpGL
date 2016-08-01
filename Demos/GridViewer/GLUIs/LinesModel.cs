@@ -84,7 +84,7 @@ namespace GridViewer
             if (indexBufferPtr == null)
             {
                 using (var buffer = new ZeroIndexBuffer(
-                    DrawMode.QuadStrip, 0, this.markerCount * 2))
+                    DrawMode.Lines, 0, this.markerCount * 2))
                 {
                     indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
                 }
