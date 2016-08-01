@@ -102,33 +102,33 @@ namespace CSharpGL
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArg arg)
         {
+            this.viewportSwitch.X = this.Location.X;
+            this.viewportSwitch.Y = this.Location.Y;
+            this.viewportSwitch.Width = this.Size.Width;
+            this.viewportSwitch.Height = this.Size.Height;
+            this.scissorTestSwitch.X = this.Location.X;
+            this.scissorTestSwitch.Y = this.Location.Y;
+            this.scissorTestSwitch.Width = this.Size.Width;
+            this.scissorTestSwitch.Height = this.Size.Height;
+
+            this.viewportSwitch.On();
+            this.scissorTestSwitch.On();
+            int count = this.switchList.Count;
+            for (int i = 0; i < count; i++) { this.switchList[i].On(); }
+
+            // 把所有在此之前渲染的内容都推到最远。
+            // Push all rendered stuff to farest position.
+            OpenGL.Clear(OpenGL.GL_DEPTH_BUFFER_BIT);
+
             RendererBase renderer = this.Renderer;
             if (renderer != null)
             {
-                this.viewportSwitch.X = this.Location.X;
-                this.viewportSwitch.Y = this.Location.Y;
-                this.viewportSwitch.Width = this.Size.Width;
-                this.viewportSwitch.Height = this.Size.Height;
-                this.scissorTestSwitch.X = this.Location.X;
-                this.scissorTestSwitch.Y = this.Location.Y;
-                this.scissorTestSwitch.Width = this.Size.Width;
-                this.scissorTestSwitch.Height = this.Size.Height;
-
-                this.viewportSwitch.On();
-                this.scissorTestSwitch.On();
-                int count = this.switchList.Count;
-                for (int i = 0; i < count; i++) { this.switchList[i].On(); }
-
-                // 把所有在此之前渲染的内容都推到最远。
-                // Push all rendered stuff to farest position.
-                OpenGL.Clear(OpenGL.GL_DEPTH_BUFFER_BIT);
-
                 renderer.Render(arg);
-
-                for (int i = count - 1; i >= 0; i--) { this.switchList[i].Off(); }
-                this.scissorTestSwitch.Off();
-                this.viewportSwitch.Off();
             }
+
+            for (int i = count - 1; i >= 0; i--) { this.switchList[i].Off(); }
+            this.scissorTestSwitch.Off();
+            this.viewportSwitch.Off();
         }
 
         /// <summary>
