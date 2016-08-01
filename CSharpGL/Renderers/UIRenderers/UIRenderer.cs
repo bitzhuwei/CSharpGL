@@ -9,6 +9,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
+    /// Renderer  that supports UI layout.
     /// 支持2D UI布局的渲染器
     /// </summary>
     public class UIRenderer : RendererBase, ILayout
