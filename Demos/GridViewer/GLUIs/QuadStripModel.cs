@@ -67,8 +67,8 @@ namespace GridViewer
                             var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < (this.quadCount + 1); i++)
                             {
-                                array[i * 2 + 0] = new vec3(-0.5f + (float)i / (float)(this.quadCount + 1) * 0.5f, 1, 0);
-                                array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(this.quadCount + 1) * 0.5f, -1, 0);
+                                array[i * 2 + 0] = new vec3(-0.5f + (float)i / (float)(this.quadCount), 0.5f, 0);
+                                array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(this.quadCount), -0.5f, 0);
                             }
                         }
 
@@ -87,11 +87,17 @@ namespace GridViewer
                         buffer.Create((this.quadCount + 1) * 2);
                         unsafe
                         {
+                            Random random = new Random();
                             var array = (vec3*)buffer.Header.ToPointer();
                             for (int i = 0; i < (this.quadCount + 1); i++)
                             {
-                                array[i * 2 + 0] = new vec3(-0.5f + (float)i / (float)(this.quadCount + 1) * 0.5f, 1, 0);
-                                array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(this.quadCount + 1) * 0.5f, 1, 0);
+                                //array[i * 2 + 0] = new vec3((float)i / (float)(this.quadCount + 1), 1, 0);
+                                //array[i * 2 + 1] = new vec3((float)i / (float)(this.quadCount + 1), 1, 0);
+                                array[i * 2 + 0] = new vec3(
+                                    (float)random.NextDouble(),
+                                    (float)random.NextDouble(),
+                                    (float)random.NextDouble());
+                                array[i * 2 + 1] = array[i * 2 + 0];
                             }
                         }
 

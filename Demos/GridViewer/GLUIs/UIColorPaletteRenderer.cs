@@ -64,6 +64,7 @@ namespace GridViewer
                         new System.Drawing.Size(width, size.Height / 2), zNear, zFar,
                         font.GetFontBitmap("0123456789.eE+-").GetFontTexture(), 100);
                     label.Initialize();
+                    //label.SwitchList.Add(new ClearColorSwitch(Color.Green));
                     label.Text = ((float)i).ToShortString();
                     label.beforeLayout += label_beforeLayout;
                     this.Children.Add(label);

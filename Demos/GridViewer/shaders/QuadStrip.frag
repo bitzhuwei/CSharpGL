@@ -10,10 +10,10 @@ void main(void)
 {
     if (renderWireframe)
 	{
-	    out_Color = vec4(passColor, 1.0f);
+	    out_Color = vec4(1, 1, 1, 1.0f);
 	}
 	else
 	{
-	    out_Color = vec4(1, 1, 1, 1.0f);
+	    out_Color = vec4(passColor, 1.0f);
 	}
 }

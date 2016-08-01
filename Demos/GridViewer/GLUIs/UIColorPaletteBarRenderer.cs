@@ -31,6 +31,13 @@ namespace GridViewer
 
         protected override void DoRender(RenderEventArg arg)
         {
+            mat4 projection = this.GetOrthoProjection();
+            mat4 view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
+            float length = this.Size.Height;
+            mat4 model = glm.scale(mat4.identity(), new vec3(this.Size.Width - 1, this.Size.Height - 1, 1));// '-1' to make sure lines shows up.
+            var renderer = this.Renderer as Renderer;
+            renderer.SetUniform("mvp", projection * view * model);
+
             base.DoRender(arg);
         }
     }

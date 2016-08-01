@@ -32,6 +32,7 @@ namespace GridViewer
     {
 
         private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonModes.Lines);
+        private LineWidthSwitch lineWidthSwitch = new LineWidthSwitch(1);
 
         private PolygonOffsetSwitch offsetSwitch = new PolygonOffsetLineSwitch();
 
@@ -57,10 +58,14 @@ namespace GridViewer
             this.SetUniform("renderWireframe", false);
             base.DoRender(arg);
 
-            polygonModeSwitch.On(); offsetSwitch.On();
+            polygonModeSwitch.On();
+            lineWidthSwitch.On();
+            // offsetSwitch.On();
             this.SetUniform("renderWireframe", true);
             base.DoRender(arg);
-            offsetSwitch.Off(); polygonModeSwitch.Off();
+            //offsetSwitch.Off(); 
+            lineWidthSwitch.Off();
+            polygonModeSwitch.Off();
         }
 
     }

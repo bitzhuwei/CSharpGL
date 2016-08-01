@@ -5,13 +5,11 @@ in vec3 in_Color;
 
 out vec3 passColor;
 
-uniform mat4 projectionMatrix;
-uniform mat4 viewMatrix;
-uniform mat4 modelMatrix;
+uniform mat4 mvp;
 
 void main(void) 
 {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0);
+	gl_Position = mvp * vec4(in_Position, 1.0);
 
 	passColor = in_Color;
 }
