@@ -1,6 +1,7 @@
 ﻿using CSharpGL;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,6 @@ namespace GridViewer
     {
 
         /// <summary>
-        /// opengl UI for Axis
         /// </summary>
         /// <param name="anchor"></param>
         /// <param name="margin"></param>
@@ -23,8 +23,12 @@ namespace GridViewer
             System.Drawing.Size size, int zNear, int zFar)
             : base(anchor, margin, size, zNear, zFar)
         {
-            this.SwitchList.Add(new ClearColorSwitch());
+            this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
         }
 
+        protected override void DoRender(RenderEventArg arg)
+        {
+            base.DoRender(arg);
+        }
     }
 }

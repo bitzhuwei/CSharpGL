@@ -11,7 +11,6 @@ namespace GridViewer
     {
 
         /// <summary>
-        /// opengl UI for Axis
         /// </summary>
         /// <param name="anchor"></param>
         /// <param name="margin"></param>
@@ -25,7 +24,28 @@ namespace GridViewer
         {
             this.Name = this.GetType().Name;
             this.SwitchList.Add(new ClearColorSwitch());
+
+            var bar = new UIColorPaletteBarRenderer(
+                System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right,
+                new System.Windows.Forms.Padding(50, 5, 50, 50),
+                new System.Drawing.Size(size.Width - 100, size.Height - 10),
+                zNear, zFar);
+            this.Children.Add(bar);
         }
 
+        protected override void DoInitialize()
+        {
+            base.DoInitialize();
+
+            foreach (var item in this.Children)
+            {
+                item.Initialize();
+            }
+        }
+
+        protected override void DoRender(RenderEventArg arg)
+        {
+            base.DoRender(arg);
+        }
     }
 }
