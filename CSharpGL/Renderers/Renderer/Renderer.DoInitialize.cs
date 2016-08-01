@@ -14,7 +14,7 @@ namespace CSharpGL
         protected override void DoInitialize()
         {
             // init shader program
-            ShaderProgram program = new ShaderProgram();
+            var program = new ShaderProgram();
             var shaders = (from item in shaderCodes select item.CreateShader()).ToArray();
             program.Create(shaders);
             this.Program = program;
@@ -27,7 +27,7 @@ namespace CSharpGL
             {
                 PropertyBufferPtr bufferPtr = this.bufferable.GetProperty(
                     item.nameInIBufferable, item.VarNameInShader);
-                if (bufferPtr == null) { throw new Exception(); }
+                if (bufferPtr == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", this.bufferable)); }
                 propertyBufferPtrs[index++] = bufferPtr;
             }
 
