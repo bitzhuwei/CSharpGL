@@ -39,7 +39,7 @@ namespace GridViewer
             {
                 var markers = new UIColorPaletteMarkersRenderer(
                 System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right,
-                new System.Windows.Forms.Padding(marginLeft + 10, 10, marginRight - 10, 50),
+                new System.Windows.Forms.Padding(marginLeft + 10, 10, marginRight + 10, 50),
                 new System.Drawing.Size(size.Width - marginLeft - marginRight, size.Height / 3),
                 zNear, zFar);
                 this.Children.Add(markers);
@@ -60,14 +60,19 @@ namespace GridViewer
                         font.GetFontBitmap("0123456789.eE+-").GetFontTexture(), 100);
                     label.Initialize();
                     label.Text = ((float)i).ToShortString();
-                    label.afterLayout += label_afterLayout;
+                    label.beforeLayout += label_beforeLayout;
                     this.Children.Add(label);
                     this.labelList.Add(label);
                 }
             }
         }
 
-        void label_afterLayout(object sender, EventArgs e)
+        /// <summary>
+        /// adjust label's margin in order to get perfect position after Layout().
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void label_beforeLayout(object sender, EventArgs e)
         {
             int length = this.labelList.Count - 1;
             var label = sender as UIText;

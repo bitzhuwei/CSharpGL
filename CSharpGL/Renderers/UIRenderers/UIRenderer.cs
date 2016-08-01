@@ -26,9 +26,23 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// triggered before layout in <see cref="ILayout"/>.Layout().
+        /// </summary>
+        public event EventHandler beforeLayout;
+        /// <summary>
         /// triggered after layout in <see cref="ILayout"/>.Layout().
         /// </summary>
         public event EventHandler afterLayout;
+
+        internal void BeforeLayout()
+        {
+            EventHandler beforeLayout = this.beforeLayout;
+            if (beforeLayout != null)
+            {
+                beforeLayout(this, null);
+            }
+        }
+
         internal void AfterLayout()
         {
             EventHandler afterLayout = this.afterLayout;

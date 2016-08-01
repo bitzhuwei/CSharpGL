@@ -47,6 +47,7 @@ namespace CSharpGL
             ILayout parent = uiRenderer.Parent;
             if (parent != null)
             {
+                uiRenderer.Self.BeforeLayout();
                 NonRootNodeLayout(uiRenderer, parent);
                 uiRenderer.Self.AfterLayout();
             }
