@@ -262,11 +262,11 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = Program.GetUniformLocation(varNameInShader);
-                if (location < 0)
+                //int location = Program.GetUniformLocation(varNameInShader);
+                //if (location < 0)
                 {
-                    throw new Exception(string.Format(
-                        "uniform variable [{0}] not exists!", varNameInShader));
+                    //throw new Exception(string.Format(
+                    //"uniform variable [{0}] not exists!", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformBoolArray;
@@ -305,11 +305,11 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = Program.GetUniformLocation(varNameInShader);
-                if (location < 0)
+                //int location = Program.GetUniformLocation(varNameInShader);
+                //if (location < 0)
                 {
-                    throw new Exception(string.Format(
-                        "uniform variable [{0}] not exists!", varNameInShader));
+                    //throw new Exception(string.Format(
+                    //"uniform variable [{0}] not exists!", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformFloatArray;
@@ -347,11 +347,11 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = Program.GetUniformLocation(varNameInShader);
-                if (location < 0)
+                //int location = Program.GetUniformLocation(varNameInShader);
+                //if (location < 0)
                 {
-                    throw new Exception(string.Format(
-                        "uniform variable [{0}] not exists!", varNameInShader));
+                    //throw new Exception(string.Format(
+                    //"uniform variable [{0}] not exists!", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformVec2Array;
@@ -389,11 +389,11 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = Program.GetUniformLocation(varNameInShader);
-                if (location < 0)
+                //int location = Program.GetUniformLocation(varNameInShader);
+                //if (location < 0)
                 {
-                    throw new Exception(string.Format(
-                        "uniform variable [{0}] not exists!", varNameInShader));
+                    //throw new Exception(string.Format(
+                    //"uniform variable [{0}] not exists!", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformVec3Array;
@@ -431,11 +431,11 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = Program.GetUniformLocation(varNameInShader);
-                if (location < 0)
+                //int location = Program.GetUniformLocation(varNameInShader);
+                //if (location < 0)
                 {
-                    throw new Exception(string.Format(
-                        "uniform variable [{0}] not exists!", varNameInShader));
+                    //throw new Exception(string.Format(
+                    //"uniform variable [{0}] not exists!", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformVec4Array;
@@ -473,11 +473,11 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = Program.GetUniformLocation(varNameInShader);
-                if (location < 0)
+                //int location = Program.GetUniformLocation(varNameInShader);
+                //if (location < 0)
                 {
-                    throw new Exception(string.Format(
-                        "uniform variable [{0}] not exists!", varNameInShader));
+                    //throw new Exception(string.Format(
+                    //"uniform variable [{0}] not exists!", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformMat2Array;
@@ -515,11 +515,11 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = Program.GetUniformLocation(varNameInShader);
-                if (location < 0)
+                //int location = Program.GetUniformLocation(varNameInShader);
+                //if (location < 0)
                 {
-                    throw new Exception(string.Format(
-                        "uniform variable [{0}] not exists!", varNameInShader));
+                    //throw new Exception(string.Format(
+                    //"uniform variable [{0}] not exists!", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformMat3Array;
@@ -557,11 +557,11 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = Program.GetUniformLocation(varNameInShader);
-                if (location < 0)
+                //int location = Program.GetUniformLocation(varNameInShader);
+                //if (location < 0)
                 {
-                    throw new Exception(string.Format(
-                        "uniform variable [{0}] not exists!", varNameInShader));
+                    //throw new Exception(string.Format(
+                    //"uniform variable [{0}] not exists!", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformMat4Array;
@@ -599,11 +599,11 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = Program.GetUniformLocation(varNameInShader);
-                if (location < 0)
+                //int location = Program.GetUniformLocation(varNameInShader);
+                //if (location < 0)
                 {
-                    throw new Exception(string.Format(
-                        "uniform variable [{0}] not exists!", varNameInShader));
+                    //throw new Exception(string.Format(
+                    //"uniform variable [{0}] not exists!", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformSamplerArray;
