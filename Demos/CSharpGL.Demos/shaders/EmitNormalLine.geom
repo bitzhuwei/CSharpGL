@@ -17,13 +17,13 @@ uniform float normalLength = 0.5;
 uniform mat4 modelMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 projectionMatrix;
-uniform float showModel = 1;
-uniform float showNormal = 1;
+uniform bool showModel = true;
+uniform bool showNormal = true;
 
 void main(void)
 {
     //int i;
-    if (showModel == 1.0f)
+    if (showModel == true)
     {
         for (int i = 0; i < gl_in.length(); i++)
         {
@@ -34,7 +34,7 @@ void main(void)
         }
         EndPrimitive();
     }
-    if (showNormal == 1.0f)
+    if (showNormal == true)
     {
         for (int i = 0; i < gl_in.length(); i++)
         {
