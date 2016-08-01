@@ -100,15 +100,15 @@ namespace CSharpGL
             }
             else if ((currentNode.Anchor & leftRightAnchor) == AnchorStyles.Left)
             {
-                x = currentNode.Margin.Left;
+                x = parent.Location.X + currentNode.Margin.Left;
             }
             else if ((currentNode.Anchor & leftRightAnchor) == AnchorStyles.Right)
             {
-                x = parent.Size.Width - width - currentNode.Margin.Right;
+                x = parent.Location.X + parent.Size.Width - currentNode.Margin.Right - width;
             }
             else if ((currentNode.Anchor & leftRightAnchor) == leftRightAnchor)
             {
-                x = currentNode.Margin.Left + parent.Location.X;
+                x = parent.Location.X + currentNode.Margin.Left;
             }
             else
             { throw new Exception("uiRenderer should not happen!"); }
@@ -121,15 +121,18 @@ namespace CSharpGL
             }
             else if ((currentNode.Anchor & topBottomAnchor) == AnchorStyles.Bottom)
             {
-                y = currentNode.Margin.Bottom;
+                //y = currentNode.Margin.Bottom;
+                y = parent.Location.Y + currentNode.Margin.Bottom;
             }
             else if ((currentNode.Anchor & topBottomAnchor) == AnchorStyles.Top)
             {
-                y = parent.Size.Height - height - currentNode.Margin.Top;
+                //y = parent.Size.Height - height - currentNode.Margin.Top;
+                y = parent.Location.Y + parent.Size.Height - currentNode.Margin.Top - height;
             }
             else if ((currentNode.Anchor & topBottomAnchor) == topBottomAnchor)
             {
-                y = currentNode.Margin.Top + parent.Location.Y;
+                //y = currentNode.Margin.Top + parent.Location.Y;
+                y = parent.Location.Y + currentNode.Margin.Bottom;
             }
             else
             { throw new Exception("This should not happen!"); }
