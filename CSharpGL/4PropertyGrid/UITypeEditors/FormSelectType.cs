@@ -44,7 +44,7 @@ namespace CSharpGL
 
             if (this.forceReload)
             {
-                typeList = this.baseType.GetAllDerivedTypes();
+                typeList = this.baseType.GetAllDerivedTypes(x => !x.IsAbstract);
                 if (dict.ContainsKey(this.baseType))
                 { dict[this.baseType] = typeList; }
                 else
@@ -56,7 +56,7 @@ namespace CSharpGL
                 { typeList = dict[this.baseType]; }
                 else
                 {
-                    typeList = this.baseType.GetAllDerivedTypes();
+                    typeList = this.baseType.GetAllDerivedTypes(x => !x.IsAbstract);
                     dict.Add(this.baseType, typeList);
                 }
             }
@@ -97,7 +97,7 @@ namespace CSharpGL
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            List<Type> typeList = this.baseType.GetAllDerivedTypes();
+            List<Type> typeList = this.baseType.GetAllDerivedTypes(x => !x.IsAbstract);
             dict[this.baseType] = typeList;
             this.lstType.Items.Clear();
             foreach (var item in typeList)

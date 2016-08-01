@@ -90,7 +90,8 @@ namespace CSharpGL
             if (variableDict == null)
             {
                 variableDict = new Dictionary<Type, Type>();
-                var types = AssemblyHelper.GetAllDerivedTypes(typeof(UniformSingleVariableBase));
+                var types = AssemblyHelper.GetAllDerivedTypes(
+                    typeof(UniformSingleVariableBase), x => !x.IsAbstract);
                 foreach (var item in types)
                 {
                     try

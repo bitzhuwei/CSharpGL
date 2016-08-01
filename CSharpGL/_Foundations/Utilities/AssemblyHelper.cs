@@ -18,15 +18,18 @@ namespace CSharpGL
         /// Get all derived non-abstract types of specified base type from all loaded assemblies.
         /// </summary>
         /// <param name="baseType"></param>
+        /// <param name="addtionalFilter">addtional filter.</param>
         /// <returns></returns>
-        public static List<Type> GetAllDerivedTypes(this Type baseType)
+        public static List<Type> GetAllDerivedTypes(this Type baseType, Func<Type, bool> addtionalFilter = null)
         {
+            //if (addtionalFilter == null) { addtionalFilter = x => !x.IsAbstract; }
             var result = new List<Type>();
             Assembly[] assemblies = AssemblyHelper.GetAssemblies(Application.ExecutablePath);
             foreach (var asm in assemblies)
             {
                 var list = from item in asm.GetTypes()
-                           where baseType.IsAssignableFrom(item) && (!item.IsAbstract)
+                           where baseType.IsAssignableFrom(item)
+                           && (addtionalFilter == null || (addtionalFilter(item)))
                            select item;
                 foreach (var item in list.Distinct())
                 {

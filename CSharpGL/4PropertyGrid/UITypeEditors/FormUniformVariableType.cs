@@ -37,14 +37,14 @@ namespace CSharpGL
 
             if (this.forceReload)
             {
-                typeList = this.baseType.GetAllDerivedTypes();
+                typeList = this.baseType.GetAllDerivedTypes(x => !x.IsAbstract);
                 cachedList = typeList;
             }
             else
             {
                 if (cachedList == null)
                 {
-                    typeList = this.baseType.GetAllDerivedTypes();
+                    typeList = this.baseType.GetAllDerivedTypes(x => !x.IsAbstract);
                     cachedList = typeList;
                 }
                 else
@@ -92,7 +92,7 @@ namespace CSharpGL
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            List<Type> typeList = this.baseType.GetAllDerivedTypes();
+            List<Type> typeList = this.baseType.GetAllDerivedTypes(x => !x.IsAbstract);
             cachedList = typeList;
             this.lstType.Items.Clear();
             foreach (var item in typeList)

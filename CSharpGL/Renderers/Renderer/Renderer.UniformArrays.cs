@@ -628,7 +628,8 @@ namespace CSharpGL
             if (variableArrayDict == null)
             {
                 variableArrayDict = new Dictionary<Type, Type>();
-                var types = AssemblyHelper.GetAllDerivedTypes(typeof(UniformArrayVariableBase));
+                var types = AssemblyHelper.GetAllDerivedTypes(
+                    typeof(UniformArrayVariableBase), x => !x.IsAbstract);
                 foreach (var item in types)
                 {
                     try
