@@ -15,7 +15,6 @@ namespace GridViewer
     ///   ---------------&gt; x
     /// (0, 0)
     /// 0    2    4    6    8    10
-    /// --------------------------
     /// |    |    |    |    |    |
     /// |    |    |    |    |    |
     /// |    |    |    |    |    |
@@ -23,27 +22,21 @@ namespace GridViewer
     /// |    |    |    |    |    |
     /// |    |    |    |    |    |
     /// |    |    |    |    |    |
-    /// --------------------------
     /// 1    3    5    7    9    11
     /// side length is 1.
     /// </summary>
-    class QuadStripModel : IBufferable
+    class LinesModel : IBufferable
     {
 
         /// <summary>
         /// 
         /// </summary>
         public const string position = "position";
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string color = "color";
         private PropertyBufferPtr positionBufferPtr;
-        private PropertyBufferPtr colorBufferPtr;
 
-        public QuadStripModel(int quadCount)
+        public LinesModel(int markerCount)
         {
-            this.quadCount = quadCount;
+            this.markerCount = markerCount;
         }
 
         /// <summary>
@@ -61,14 +54,14 @@ namespace GridViewer
                     using (var buffer = new PropertyBuffer<vec3>(
                         varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
-                        buffer.Create((this.quadCount + 1) * 2);
+                        buffer.Create(this.markerCount * 2);
                         unsafe
                         {
                             var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < (this.quadCount + 1); i++)
+                            for (int i = 0; i < this.markerCount; i++)
                             {
-                                array[i * 2 + 0] = new vec3(-0.5f + (float)i / (float)(this.quadCount), 0.5f, 0);
-                                array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(this.quadCount), -0.5f, 0);
+                                array[i * 2 + 0] = new vec3(-0.5f + (float)i / (float)(this.markerCount - 1), 0.5f, 0);
+                                array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(this.markerCount - 1), -0.5f, 0);
                             }
                         }
 
@@ -76,35 +69,6 @@ namespace GridViewer
                     }
                 }
                 return positionBufferPtr;
-            }
-            else if (bufferName == color)
-            {
-                if (colorBufferPtr == null)
-                {
-                    using (var buffer = new PropertyBuffer<vec3>(
-                        varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
-                    {
-                        buffer.Create((this.quadCount + 1) * 2);
-                        unsafe
-                        {
-                            Random random = new Random();
-                            var array = (vec3*)buffer.Header.ToPointer();
-                            for (int i = 0; i < (this.quadCount + 1); i++)
-                            {
-                                //array[i * 2 + 0] = new vec3((float)i / (float)(this.quadCount + 1), 1, 0);
-                                //array[i * 2 + 1] = new vec3((float)i / (float)(this.quadCount + 1), 1, 0);
-                                array[i * 2 + 0] = new vec3(
-                                    (float)random.NextDouble(),
-                                    (float)random.NextDouble(),
-                                    (float)random.NextDouble());
-                                array[i * 2 + 1] = array[i * 2 + 0];
-                            }
-                        }
-
-                        colorBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
-                    }
-                }
-                return colorBufferPtr;
             }
             else
             {
@@ -120,7 +84,7 @@ namespace GridViewer
             if (indexBufferPtr == null)
             {
                 using (var buffer = new ZeroIndexBuffer(
-                    DrawMode.QuadStrip, 0, (this.quadCount + 1) * 2))
+                    DrawMode.QuadStrip, 0, this.markerCount * 2))
                 {
                     indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
                 }
@@ -130,6 +94,6 @@ namespace GridViewer
         }
 
         private IndexBufferPtr indexBufferPtr = null;
-        private int quadCount;
+        private int markerCount;
     }
 }
