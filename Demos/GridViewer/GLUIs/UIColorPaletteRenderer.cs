@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace GridViewer
 {
+    /// <summary>
+    /// color palette.
+    /// 在窗口固定位置显示的色标。
+    /// </summary>
     class UIColorPaletteRenderer : UIRenderer
     {
         List<UIText> labelList = new List<UIText>();
