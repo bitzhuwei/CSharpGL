@@ -12,12 +12,12 @@ namespace CSharpGL
     public class Camera : ICamera
     {
         ///// <summary>
-        ///// 默认目标为vec3(0, 0, 0)
+        ///// 默认目标为vec3(0, 0, -1)
         ///// </summary>
         //public static readonly vec3 defaultTarget = new vec3(0, 0, -1);
 
         ///// <summary>
-        ///// 默认位置为vec3(0, 0, 1)
+        ///// 默认位置为vec3(0, 0, 0)
         ///// </summary>
         //public static readonly vec3 defaultPosition = new vec3(0, 0, 0);
 
