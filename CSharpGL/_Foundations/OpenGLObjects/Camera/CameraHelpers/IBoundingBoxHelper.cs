@@ -107,7 +107,7 @@ namespace CSharpGL
         {
             if (renderer == null)
             {
-                renderer = BoundingBoxRenderer.GetBoundingBoxRenderer(new vec3(1, 1, 1));
+                renderer = BoundingBoxRenderer.Create(new vec3(1, 1, 1));
                 renderer.Initialize();
             }
             renderer.MaxPosition = boundingBox.MaxPosition;

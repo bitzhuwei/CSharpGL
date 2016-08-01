@@ -32,7 +32,7 @@ namespace GridViewer
             : base(catesianGrid, shaderCodes, propertyNameMap, switches)
         {
             this.Grid = catesianGrid;
-            this.boundingBoxRenderer = BoundingBoxRenderer.GetBoundingBoxRenderer(
+            this.boundingBoxRenderer = BoundingBoxRenderer.Create(
                 catesianGrid.DataSource.SourceActiveBounds.Max
                 - catesianGrid.DataSource.SourceActiveBounds.Min);
             this.codedColorSampler = codedColorSampler;

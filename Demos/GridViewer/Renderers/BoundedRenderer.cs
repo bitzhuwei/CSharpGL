@@ -26,7 +26,7 @@ namespace GridViewer
             if (scientificRenderer == null || codedColorSampler == null)
             { throw new ArgumentNullException(); }
 
-            this.BoxRenderer = BoundingBoxRenderer.GetBoundingBoxRenderer(lengths);
+            this.BoxRenderer = BoundingBoxRenderer.Create(lengths);
             this.ScientificRenderer = scientificRenderer;
             this.codedColorSampler = codedColorSampler;
         }

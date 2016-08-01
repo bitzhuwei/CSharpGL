@@ -18,7 +18,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="lengths">bounding box's length at x, y, z direction.</param>
         /// <returns></returns>
-        public static BoundingBoxRenderer GetBoundingBoxRenderer(vec3 lengths)
+        public static BoundingBoxRenderer Create(vec3 lengths)
         {
             var bufferable = new BoundingBoxModel(lengths);
             var shaderCodes = new ShaderCode[2];
@@ -73,13 +73,6 @@ namespace CSharpGL
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArg arg)
         {
-            //mat4 projection = arg.Camera.GetProjectionMat4();
-            //mat4 view = arg.Camera.GetViewMat4();
-            //this.SetUniform("projectionMatrix", projection);
-            //this.SetUniform("viewMatrix", view);
-            //mat4 model = glm.translate(mat4.identity(), this.GetCenter());
-            //model = glm.scale(model, this.MaxPosition - this.MinPosition);
-            //this.SetUniform("modelMatrix", model);
             if (this.boundingBoxColorRecord.IsMarked())
             {
                 this.SetUniform("boundingBoxColor", this.BoundingBoxColor);
