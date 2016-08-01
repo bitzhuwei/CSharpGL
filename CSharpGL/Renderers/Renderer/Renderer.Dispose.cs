@@ -25,9 +25,9 @@ namespace CSharpGL
             {
                 this.indexBufferPtr.Dispose();
             }
-            if (this.ShaderProgram != null)
+            if (this.Program != null)
             {
-                this.ShaderProgram.Delete();
+                this.Program.Delete();
             }
         }
     }

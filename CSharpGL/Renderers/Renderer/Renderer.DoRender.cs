@@ -18,7 +18,7 @@ namespace CSharpGL
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArg arg)
         {
-            ShaderProgram program = this.ShaderProgram;
+            ShaderProgram program = this.Program;
             if (program == null) { return; }
 
             // 绑定shader

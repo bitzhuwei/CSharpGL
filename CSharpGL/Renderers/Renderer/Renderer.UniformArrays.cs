@@ -262,7 +262,7 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = ShaderProgram.GetUniformLocation(varNameInShader);
+                int location = Program.GetUniformLocation(varNameInShader);
                 if (location < 0)
                 {
                     throw new Exception(string.Format(
@@ -305,7 +305,7 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = ShaderProgram.GetUniformLocation(varNameInShader);
+                int location = Program.GetUniformLocation(varNameInShader);
                 if (location < 0)
                 {
                     throw new Exception(string.Format(
@@ -347,7 +347,7 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = ShaderProgram.GetUniformLocation(varNameInShader);
+                int location = Program.GetUniformLocation(varNameInShader);
                 if (location < 0)
                 {
                     throw new Exception(string.Format(
@@ -389,7 +389,7 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = ShaderProgram.GetUniformLocation(varNameInShader);
+                int location = Program.GetUniformLocation(varNameInShader);
                 if (location < 0)
                 {
                     throw new Exception(string.Format(
@@ -431,7 +431,7 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = ShaderProgram.GetUniformLocation(varNameInShader);
+                int location = Program.GetUniformLocation(varNameInShader);
                 if (location < 0)
                 {
                     throw new Exception(string.Format(
@@ -473,7 +473,7 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = ShaderProgram.GetUniformLocation(varNameInShader);
+                int location = Program.GetUniformLocation(varNameInShader);
                 if (location < 0)
                 {
                     throw new Exception(string.Format(
@@ -515,7 +515,7 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = ShaderProgram.GetUniformLocation(varNameInShader);
+                int location = Program.GetUniformLocation(varNameInShader);
                 if (location < 0)
                 {
                     throw new Exception(string.Format(
@@ -557,7 +557,7 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = ShaderProgram.GetUniformLocation(varNameInShader);
+                int location = Program.GetUniformLocation(varNameInShader);
                 if (location < 0)
                 {
                     throw new Exception(string.Format(
@@ -599,7 +599,7 @@ namespace CSharpGL
 
             if (!gotUniform)
             {
-                int location = ShaderProgram.GetUniformLocation(varNameInShader);
+                int location = Program.GetUniformLocation(varNameInShader);
                 if (location < 0)
                 {
                     throw new Exception(string.Format(

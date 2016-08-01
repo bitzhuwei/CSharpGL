@@ -11,11 +11,11 @@ namespace CSharpGL
     /// </summary>
     public partial class Renderer : RendererBase
     {
-        
+
         /// <summary>
         /// algorithm for rendering.
         /// </summary>
-        public ShaderProgram ShaderProgram { get; protected set; }
+        public ShaderProgram Program { get; protected set; }
 
         // data structure for rendering.
 

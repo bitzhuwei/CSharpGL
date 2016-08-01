@@ -13,7 +13,7 @@ namespace CSharpGL
         protected override void DoInitialize()
         {
             // init shader program
-            this.ShaderProgram = PickingShaderHelper.GetPickingShaderProgram();
+            this.Program = PickingShaderHelper.GetPickingShaderProgram();
 
             // init property buffer objects
             var propertyBufferPtrs = new PropertyBufferPtr[propertyNameMap.Count()];
