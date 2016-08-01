@@ -26,7 +26,6 @@ namespace CSharpGL
             System.Drawing.Size size, int zNear, int zFar)
             : base(anchor, margin, size, zNear, zFar)
         {
-            this.Name = typeof(UIAxis).Name;
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
 @"Resources.UIAxis.vert"), ShaderType.VertexShader);
