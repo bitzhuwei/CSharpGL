@@ -25,12 +25,22 @@ namespace GridViewer
             this.Name = this.GetType().Name;
             this.SwitchList.Add(new ClearColorSwitch());
 
-            var bar = new UIColorPaletteBarRenderer(
+            {
+                var bar = new UIColorPaletteBarRenderer(
                 System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right,
-                new System.Windows.Forms.Padding(50, 5, 50, 50),
-                new System.Drawing.Size(size.Width - 100, size.Height - 10),
+                new System.Windows.Forms.Padding(50, 1, 50, 50),
+                new System.Drawing.Size(size.Width - 100, size.Height / 3),
                 zNear, zFar);
-            this.Children.Add(bar);
+                this.Children.Add(bar);
+            }
+            {
+                var markers = new UIColorPaletteMarkersRenderer(
+                System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right,
+                new System.Windows.Forms.Padding(60, 10, 60, 50),
+                new System.Drawing.Size(size.Width - 100, size.Height / 3),
+                zNear, zFar);
+                this.Children.Add(markers);
+            }
         }
 
         protected override void DoInitialize()

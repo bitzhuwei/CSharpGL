@@ -93,6 +93,7 @@
     <Compile Include="Geometry\TriangleTexCoord.cs" />
     <Compile Include="Geometry\TrianglularPrismPosition.cs" />
     <Compile Include="Geometry\TriangularPrismTexCoord.cs" />
+    <Compile Include="GLUIs\UIColorPaletteMarkersRenderer.cs" />
     <Compile Include="GLUIs\UIColorPaletteBarRenderer.cs" />
     <Compile Include="GLUIs\UIColorPaletteRenderer.cs" />
     <Compile Include="GridSources\CatesianGridderSource.cs" />
