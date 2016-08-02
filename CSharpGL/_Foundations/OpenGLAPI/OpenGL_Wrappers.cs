@@ -1111,6 +1111,8 @@ namespace CSharpGL
 
         /// <summary>
         /// Specify a two-dimensional texture subimage.
+        /// Update texture's content.
+        /// https://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexSubImage2D.xml
         /// </summary>
         /// <param name="target">Specifies the target texture. Must be OpenGL.TEXTURE_2D.</param>
         /// <param name="level">Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
