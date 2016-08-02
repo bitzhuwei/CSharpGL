@@ -37,7 +37,7 @@ namespace GridViewer
         /// <summary>
         /// 
         /// </summary>
-        public const string color = "color";
+        public const string color = "texCoord";
         private PropertyBufferPtr positionBufferPtr;
         private PropertyBufferPtr colorBufferPtr;
 
@@ -81,22 +81,17 @@ namespace GridViewer
             {
                 if (colorBufferPtr == null)
                 {
-                    using (var buffer = new PropertyBuffer<vec3>(
-                        varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    using (var buffer = new PropertyBuffer<float>(
+                        varNameInShader, 1, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
                     {
                         buffer.Create((this.quadCount + 1) * 2);
                         unsafe
                         {
                             Random random = new Random();
-                            var array = (vec3*)buffer.Header.ToPointer();
+                            var array = (float*)buffer.Header.ToPointer();
                             for (int i = 0; i < (this.quadCount + 1); i++)
                             {
-                                //array[i * 2 + 0] = new vec3((float)i / (float)(this.quadCount + 1), 1, 0);
-                                //array[i * 2 + 1] = new vec3((float)i / (float)(this.quadCount + 1), 1, 0);
-                                array[i * 2 + 0] = new vec3(
-                                    (float)random.NextDouble(),
-                                    (float)random.NextDouble(),
-                                    (float)random.NextDouble());
+                                array[i * 2 + 0] = (float)random.NextDouble();
                                 array[i * 2 + 1] = array[i * 2 + 0];
                             }
                         }

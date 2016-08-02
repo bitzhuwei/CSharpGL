@@ -43,7 +43,7 @@ namespace GridViewer
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\QuadStrip.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("in_Position", QuadStripModel.position);
-            map.Add("in_Color", QuadStripModel.color);
+            map.Add("in_TexCoord", QuadStripModel.color);
             var renderer = new QuadStripRenderer(model, shaderCodes, map);
             return renderer;
         }

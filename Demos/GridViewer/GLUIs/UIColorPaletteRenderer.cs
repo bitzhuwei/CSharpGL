@@ -27,6 +27,7 @@ namespace GridViewer
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
         public UIColorPaletteRenderer(int maxMarkerCount,
+            CodedColor[] codedColors,
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
             : base(anchor, margin, size, zNear, zFar)
@@ -35,7 +36,7 @@ namespace GridViewer
             this.SwitchList.Add(new ClearColorSwitch());
 
             {
-                var bar = new UIColorPaletteBarRenderer(maxMarkerCount,
+                var bar = new UIColorPaletteBarRenderer(maxMarkerCount, codedColors,
                 System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right,
                 new System.Windows.Forms.Padding(marginLeft, 1, marginRight, 0),
                 new System.Drawing.Size(size.Width - 100, size.Height / 3),

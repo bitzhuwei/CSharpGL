@@ -44,6 +44,7 @@ namespace GridViewer
             }
             {
                 var uiColorPalette = new UIColorPaletteRenderer(10,
+                    CodedColor.GetDefault(),
                     AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right,
                     new Padding(120, 10, 60, 10 + 40), new Size(400, 40), -100, 100);
                 uiColorPalette.Initialize();

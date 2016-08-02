@@ -1,10 +1,11 @@
 ﻿#version 150 core
 
-in vec3 passColor;
+in float passTexCoord;
 
 out vec4 out_Color;
 
 uniform bool renderWireframe = true;
+uniform sampler1D codedColorSampler;
 
 void main(void) 
 {
@@ -14,6 +15,8 @@ void main(void)
 	}
 	else
 	{
-	    out_Color = vec4(passColor, 1.0f);
+	    //out_Color = vec4(passColor, 1.0f);
+		vec4 color = texture(codedColorSampler, passTexCoord);
+		out_Color = color;
 	}
 }

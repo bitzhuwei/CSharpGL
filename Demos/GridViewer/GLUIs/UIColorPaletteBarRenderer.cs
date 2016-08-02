@@ -14,7 +14,17 @@ namespace GridViewer
     class UIColorPaletteBarRenderer : UIRenderer
     {
 
+        private sampler1D colorPaletteBarSampler;
+
+        public sampler1D ColorPaletteBarSampler
+        {
+            get { return colorPaletteBarSampler; }
+        }
+
+        public CodedColor[] CodedColors { get; private set; }
+
         /// <summary>
+        /// 彩色的色标带。
         /// </summary>
         /// <param name="anchor"></param>
         /// <param name="margin"></param>
@@ -22,12 +32,28 @@ namespace GridViewer
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
         public UIColorPaletteBarRenderer(int maxMarkerCount,
+            CodedColor[] codedColors,
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
             : base(anchor, margin, size, zNear, zFar)
         {
+            this.CodedColors = codedColors;
+
             var model = new QuadStripModel(maxMarkerCount - 1);
             this.Renderer = QuadStripRenderer.Create(model);
+        }
+
+        protected override void DoInitialize()
+        {
+            base.DoInitialize();
+
+            var texture = new sampler1D();
+            Bitmap bitmap = this.CodedColors.GetBitmap(1024);
+            texture.Initialize(bitmap);
+            bitmap.Dispose();
+            var renderer = this.Renderer as Renderer;
+            renderer.SetUniform("codedColorSampler", new samplerValue(BindTextureTarget.Texture1D,
+                texture.Id, OpenGL.GL_TEXTURE0));
         }
 
         protected override void DoRender(RenderEventArg arg)
