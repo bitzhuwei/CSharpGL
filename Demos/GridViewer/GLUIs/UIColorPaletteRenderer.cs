@@ -69,7 +69,7 @@ namespace GridViewer
                     label.Initialize();
                     //label.SwitchList.Add(new ClearColorSwitch(Color.Green));
                     label.Text = ((float)i).ToShortString();
-                    label.beforeLayout += label_beforeLayout;
+                    label.BeforeLayout += label_beforeLayout;
                     this.Children.Add(label);
                     this.labelList.Add(label);
                 }
