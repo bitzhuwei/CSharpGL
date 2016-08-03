@@ -32,15 +32,28 @@ namespace GridViewer
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
         public UIColorPaletteBarRenderer(int maxMarkerCount,
-            CodedColor[] codedColors,
+            CodedColor[] codedColors, GridViewer.QuadStripRenderer.ColorType colorType,
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
             : base(anchor, margin, size, zNear, zFar)
         {
             this.CodedColors = codedColors;
 
-            var model = new QuadStripModel(maxMarkerCount - 1);
-            this.Renderer = QuadStripRenderer.Create(model);
+            if (colorType == QuadStripRenderer.ColorType.Color)
+            {
+                Bitmap bitmap = codedColors.GetBitmap(1024);
+                var model = new QuadStripModel(maxMarkerCount - 1, bitmap);
+                this.Renderer = QuadStripRenderer.Create(model, colorType);
+            }
+            else if (colorType == QuadStripRenderer.ColorType.Texture)
+            {
+                var model = new QuadStripModel(maxMarkerCount - 1);
+                this.Renderer = QuadStripRenderer.Create(model, colorType);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
 
         protected override void DoInitialize()

@@ -1,6 +1,7 @@
 ﻿using CSharpGL;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,35 @@ namespace GridViewer
         const int marginLeft = 50;
         const int marginRight = 50;
         private int maxMarkerCount;
+        /// <summary>
+        /// renders a color palette bar with 1-D texture and its coordiante(float).
+        /// </summary>
         private UIColorPaletteBarRenderer colorPaletteBar;
+        /// <summary>
+        /// renders a color palette bar with direct color(vec3).
+        /// Compare this with colorPaletteBar to check if there's difference.
+        /// </summary>
+        private UIColorPaletteBarRenderer colorPaletteBar2;
+
+        /// <summary>
+        /// Shows color palette bar rendered with direct color(vec3).
+        /// </summary>
+        [Description("Shows color palette bar rendered with direct color(vec3).")]
+        public bool ShowColorBar
+        {
+            get
+            {
+                if (this.colorPaletteBar2 == null) { return false; }
+
+                return this.colorPaletteBar2.Enabled;
+            }
+            set
+            {
+                RendererBase renderer = this.colorPaletteBar2;
+                if (renderer != null) { renderer.Enabled = value; }
+            }
+        }
+
         /// <summary>
         /// </summary>
         /// <param name="anchor"></param>
@@ -37,7 +66,7 @@ namespace GridViewer
             this.SwitchList.Add(new ClearColorSwitch());
 
             {
-                var bar = new UIColorPaletteBarRenderer(maxMarkerCount, codedColors,
+                var bar = new UIColorPaletteBarRenderer(maxMarkerCount, codedColors, QuadStripRenderer.ColorType.Texture,
                 System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right,
                 new System.Windows.Forms.Padding(marginLeft, 1, marginRight, 0),
                 new System.Drawing.Size(size.Width - 100, size.Height / 3),
@@ -45,6 +74,17 @@ namespace GridViewer
                 //this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
                 this.colorPaletteBar = bar;
                 this.Children.Add(bar);
+            }
+            {
+                var bar = new UIColorPaletteBarRenderer(maxMarkerCount, codedColors, QuadStripRenderer.ColorType.Color,
+                System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right,
+                new System.Windows.Forms.Padding(marginLeft, 1 + size.Height / 3 + 1, marginRight, 0),
+                new System.Drawing.Size(size.Width - 100, size.Height / 3),
+                zNear, zFar);
+                //this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
+                this.colorPaletteBar2 = bar;
+                this.Children.Add(bar);
+                bar.Enabled = false;
             }
             {
                 var markers = new UIColorPaletteMarkersRenderer(maxMarkerCount,

@@ -18,6 +18,12 @@ namespace CSharpGL
     {
 
         /// <summary>
+        /// Render this or not.
+        /// </summary>
+        [Description("Render this or not.")]
+        public bool Enabled { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         public string Name { get; set; }
@@ -46,6 +52,7 @@ namespace CSharpGL
         /// </summary>
         public RendererBase()
         {
+            this.Enabled = true;
             this.ID = idCounter++;
             this.Name = string.Format("{0}: {1}", this.ID, this.GetType().Name);
         }
@@ -94,9 +101,12 @@ namespace CSharpGL
         /// <param name="arg"></param>
         public void Render(RenderEventArg arg)
         {
-            if (!initialized) { Initialize(); }
+            if (this.Enabled)
+            {
+                if (!initialized) { Initialize(); }
 
-            DoRender(arg);
+                DoRender(arg);
+            }
         }
 
         /// <summary>

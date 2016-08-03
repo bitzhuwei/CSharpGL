@@ -46,7 +46,7 @@ namespace GridViewer
             if (colorType == ColorType.Texture)
             { map.Add("in_TexCoord", QuadStripModel.texCoord); }
             else if (colorType == ColorType.Color)
-            { map.Add("color", QuadStripModel.color); }
+            { map.Add("in_Color", QuadStripModel.color); }
             else
             { throw new NotImplementedException(); }
 

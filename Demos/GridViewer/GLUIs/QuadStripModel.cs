@@ -124,6 +124,7 @@ namespace GridViewer
                             for (int i = 0; i < (this.quadCount + 1); i++)
                             {
                                 int x = this.bitmap.Width * i / this.quadCount;
+                                if (x == this.bitmap.Width) { x = this.bitmap.Width - 1; }
                                 vec3 value = this.bitmap.GetPixel(x, 0).ToVec3();
                                 array[i * 2 + 0] = value;
                                 array[i * 2 + 1] = value;
