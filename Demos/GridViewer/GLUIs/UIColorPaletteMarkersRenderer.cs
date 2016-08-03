@@ -42,12 +42,7 @@ namespace GridViewer
             base.DoRender(arg);
         }
 
-        internal void SetCount(int count)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void UpdateCodedColors(CodedColor[] codedColors)
+        public void UpdateCodedColors(CodedColor[] codedColors)
         {
             var renderer = this.Renderer as LinesRenderer;
             if (renderer != null)

@@ -94,6 +94,6 @@ namespace GridViewer
         }
 
         private IndexBufferPtr indexBufferPtr = null;
-        private int markerCount;
+        internal int markerCount;
     }
 }

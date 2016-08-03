@@ -36,9 +36,9 @@ namespace GridViewer
 
         private PolygonOffsetSwitch offsetSwitch = new PolygonOffsetLineSwitch();
         private PropertyBufferPtr positionBufferPtr;
-        private int currentQuadCount;
-        private ColorType colorType;
         private PropertyBufferPtr texCoordBufferPtr;
+        private PropertyBufferPtr colorBufferPtr;
+        private ColorType colorType;
 
         public static QuadStripRenderer Create(QuadStripModel model, ColorType colorType = ColorType.Texture)
         {
@@ -55,7 +55,6 @@ namespace GridViewer
             { throw new NotImplementedException(); }
 
             var renderer = new QuadStripRenderer(model, shaderCodes, map, colorType);
-            renderer.currentQuadCount = model.quadCount;
             return renderer;
         }
 
@@ -71,7 +70,16 @@ namespace GridViewer
             base.DoInitialize();
 
             this.positionBufferPtr = this.bufferable.GetProperty(QuadStripModel.position, null);
-            this.texCoordBufferPtr = this.bufferable.GetProperty(QuadStripModel.texCoord, null);
+            if (this.colorType == ColorType.Texture)
+            {
+                this.texCoordBufferPtr = this.bufferable.GetProperty(QuadStripModel.texCoord, null);
+            }
+            else if (this.colorType == ColorType.Color)
+            {
+                this.colorBufferPtr = this.bufferable.GetProperty(QuadStripModel.color, null);
+            }
+            else
+            { throw new NotImplementedException(); }
         }
 
         protected override void DoRender(RenderEventArg arg)
@@ -95,24 +103,24 @@ namespace GridViewer
             Texture,
         }
 
-        public void SetQuadCount(int quadCount)
-        {
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
-            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
-            unsafe
-            {
-                var array = (vec3*)pointer.ToPointer();
-                for (int i = 0; i < (quadCount + 1); i++)
-                {
-                    array[i * 2 + 0] = new vec3(-0.5f + (float)i / (float)(quadCount), 0.5f, 0);
-                    array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(quadCount), -0.5f, 0);
-                }
-            }
-            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+        //public void SetQuadCount(int quadCount)
+        //{
+        //    OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+        //    IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+        //    unsafe
+        //    {
+        //        var array = (vec3*)pointer.ToPointer();
+        //        for (int i = 0; i < (quadCount + 1); i++)
+        //        {
+        //            array[i * 2 + 0] = new vec3(-0.5f + (float)i / (float)(quadCount), 0.5f, 0);
+        //            array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(quadCount), -0.5f, 0);
+        //        }
+        //    }
+        //    OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+        //    OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
-            this.currentQuadCount = quadCount;
-        }
+        //    this.currentQuadCount = quadCount;
+        //}
 
         public void UpdateCodedColor(CodedColor[] codedColors)
         {
@@ -154,7 +162,7 @@ namespace GridViewer
             }
             else if (this.colorType == ColorType.Color)
             {
-                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.texCoordBufferPtr.BufferId);
+                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.colorBufferPtr.BufferId);
                 IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
                 unsafe
                 {
@@ -173,8 +181,6 @@ namespace GridViewer
                 var pointer = this.indexBufferPtr as ZeroIndexBufferPtr;
                 pointer.VertexCount = (quadCount + 1) * 2;
             }
-
-            this.currentQuadCount = quadCount;
         }
     }
 

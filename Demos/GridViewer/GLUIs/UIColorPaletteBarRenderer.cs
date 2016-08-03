@@ -15,6 +15,7 @@ namespace GridViewer
     {
 
         private sampler1D colorPaletteBarSampler;
+        private QuadStripRenderer.ColorType colorType;
 
         public sampler1D ColorPaletteBarSampler
         {
@@ -38,6 +39,7 @@ namespace GridViewer
             : base(anchor, margin, size, zNear, zFar)
         {
             this.CodedColors = codedColors;
+            this.colorType = colorType;
 
             if (colorType == QuadStripRenderer.ColorType.Color)
             {
@@ -60,14 +62,21 @@ namespace GridViewer
         {
             base.DoInitialize();
 
-            var texture = new sampler1D();
-            Bitmap bitmap = this.CodedColors.GetBitmap(1024);
-            texture.Initialize(bitmap);
-            this.colorPaletteBarSampler = texture;
-            bitmap.Dispose();
-            var renderer = this.Renderer as Renderer;
-            renderer.SetUniform("codedColorSampler", new samplerValue(BindTextureTarget.Texture1D,
-                texture.Id, OpenGL.GL_TEXTURE0));
+            if (this.colorType == QuadStripRenderer.ColorType.Texture)
+            {
+                var texture = new sampler1D();
+                Bitmap bitmap = this.CodedColors.GetBitmap(1024);
+                texture.Initialize(bitmap);
+                this.colorPaletteBarSampler = texture;
+                bitmap.Dispose();
+                var renderer = this.Renderer as Renderer;
+                renderer.SetUniform("codedColorSampler", new samplerValue(BindTextureTarget.Texture1D,
+                    texture.Id, OpenGL.GL_TEXTURE0));
+            }
+            else if (this.colorType == QuadStripRenderer.ColorType.Color)
+            { }
+            else
+            { throw new NotImplementedException(); }
         }
 
         protected override void DoRender(RenderEventArg arg)
@@ -84,15 +93,16 @@ namespace GridViewer
 
         public bool UpdateTexture(Bitmap bitmap)
         {
-            var textureUpdater = new TextureUpdater(this.colorPaletteBarSampler.Id);
+            if (this.colorType == QuadStripRenderer.ColorType.Texture)
+            {
+                var textureUpdater = new TextureUpdater(this.colorPaletteBarSampler.Id);
 
-            return textureUpdater.UpdateTexture(bitmap);
-        }
-
-        public void SetQuadCount(int quadCount)
-        {
-            var renderer = this.Renderer as QuadStripRenderer;
-            renderer.SetQuadCount(quadCount);
+                return textureUpdater.UpdateTexture(bitmap);
+            }
+            else if (this.colorType == QuadStripRenderer.ColorType.Color)
+            { return false; }
+            else
+            { throw new NotImplementedException(); }
         }
 
         public void UpdateCodedColor(CodedColor[] codedColors)

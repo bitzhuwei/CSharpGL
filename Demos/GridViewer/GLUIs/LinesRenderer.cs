@@ -29,6 +29,7 @@ namespace GridViewer
     class LinesRenderer : Renderer
     {
         private PropertyBufferPtr positionBufferPtr;
+        private int markerCount;
 
         public static LinesRenderer Create(LinesModel model)
         {
@@ -38,6 +39,8 @@ namespace GridViewer
             var map = new PropertyNameMap();
             map.Add("in_Position", LinesModel.position);
             var renderer = new LinesRenderer(model, shaderCodes, map);
+            renderer.markerCount = model.markerCount;
+
             return renderer;
         }
 
@@ -75,6 +78,11 @@ namespace GridViewer
                         //array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(lineCount - 1), -0.5f, 0);
                         array[i * 2 + 0] = new vec3(-0.5f + codedColors[i].Coord, 0.5f, 0);
                         array[i * 2 + 1] = new vec3(-0.5f + codedColors[i].Coord, -0.5f, 0);
+                    }
+                    for (int i = lineCount; i < this.markerCount; i++)
+                    {
+                        array[i * 2 + 0] = new vec3(0.5f, 0.5f, 0);
+                        array[i * 2 + 1] = new vec3(0.5f, -0.5f, 0);
                     }
                 }
                 OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);

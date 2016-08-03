@@ -126,6 +126,16 @@ namespace GridViewer
             }
         }
 
+        protected override void DoInitialize()
+        {
+            base.DoInitialize();
+
+            foreach (var item in this.Children)
+            {
+                item.Initialize();
+            }
+        }
+
         /// <summary>
         /// adjust label's margin in order to get perfect position after Layout().
         /// </summary>
@@ -153,22 +163,13 @@ namespace GridViewer
             { return false; }
         }
 
-        public void SetMarkerCount(int count)
-        {
-            if (count > this.maxMarkerCount || count < 2) { throw new ArgumentOutOfRangeException(); }
-
-            this.colorPaletteBar.SetQuadCount(count - 1);
-            this.colorPaletteBar2.SetQuadCount(count - 1);
-            this.markers.SetCount(count);
-            this.currentMarkersCount = count;
-        }
-
+        public int Update { get { return 0; } set { this.SetCodedColor(CodedColor.GetDefault()); } }
         public void SetCodedColor(CodedColor[] codedColors)
         {
             {
                 Bitmap bitmap = codedColors.GetBitmap(bitmapWidth);
                 this.colorPaletteBar.UpdateTexture(bitmap);
-                this.colorPaletteBar2.UpdateTexture(bitmap);
+                //this.colorPaletteBar2.UpdateTexture(bitmap);
                 bitmap.Dispose();
             }
             {
@@ -184,6 +185,7 @@ namespace GridViewer
                 {
                     this.labelList[i].Enabled = false;
                 }
+                this.currentMarkersCount = codedColors.Length;
             }
         }
 
