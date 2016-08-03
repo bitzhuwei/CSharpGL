@@ -52,11 +52,14 @@ namespace CSharpGL
             bitmap.UnlockBits(bitmapData);
             OpenGL.BindTexture(this.Target, 0);
 
-            //
+            //// TODO: TexSubImage2D() do not work. why?
+            //BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+            //    ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
             //OpenGL.BindTexture(this.Target, this.Id);
             //OpenGL.TexSubImage2D(this.Target, 0, 0, 0, bitmap.Width, bitmap.Height, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, bitmapData.Scan0);
             //OpenGL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, 0, 0, bitmap.Width, bitmap.Height, TexSubImage2DFormats.RGBA, TexSubImage2DType.UnsignedByte, bitmapData.Scan0);
             //OpenGL.BindTexture(this.Target, 0);
+            //bitmap.UnlockBits(bitmapData);
 
             return true;
         }
