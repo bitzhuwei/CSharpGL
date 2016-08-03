@@ -87,11 +87,12 @@ namespace GridViewer
                         buffer.Create((this.quadCount + 1) * 2);
                         unsafe
                         {
-                            Random random = new Random();
+                            //Random random = new Random();
                             var array = (float*)buffer.Header.ToPointer();
                             for (int i = 0; i < (this.quadCount + 1); i++)
                             {
-                                array[i * 2 + 0] = (float)random.NextDouble();
+                                //array[i * 2 + 0] = (float)random.NextDouble();
+                                array[i * 2 + 0] = (float)i / (float)this.quadCount;
                                 array[i * 2 + 1] = array[i * 2 + 0];
                             }
                         }
