@@ -47,7 +47,7 @@ namespace CSharpGL
                 ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
             //GL.ActiveTexture(GL.GL_TEXTURE0);
             //OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(OpenGL.GL_TEXTURE0);
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, this.Id);
+            OpenGL.BindTexture(this.Target, this.Id);
             /* We require 1 byte alignment when uploading texture data */
             //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
             /* Clamping to edges is important to prevent artifacts when scaling */
@@ -56,12 +56,18 @@ namespace CSharpGL
             ///* Linear filtering usually looks best for text */
             //OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, (int)OpenGL.GL_LINEAR);
             //OpenGL.TexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, (int)OpenGL.GL_LINEAR);
-            OpenGL.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, (int)OpenGL.GL_RGBA,
+            OpenGL.TexImage2D(this.Target, 0, (int)OpenGL.GL_RGBA,
                 bitmap.Width, bitmap.Height, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE,
                 bitmapData.Scan0);
             //  Unlock the image.
             bitmap.UnlockBits(bitmapData);
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
+            OpenGL.BindTexture(this.Target, 0);
+
+            //
+            //OpenGL.BindTexture(this.Target, this.Id);
+            //OpenGL.TexSubImage2D(this.Target, 0, 0, 0, bitmap.Width, bitmap.Height, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, bitmapData.Scan0);
+            //OpenGL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, 0, 0, bitmap.Width, bitmap.Height, TexSubImage2DFormats.RGBA, TexSubImage2DType.UnsignedByte, bitmapData.Scan0);
+            //OpenGL.BindTexture(this.Target, 0);
 
             return true;
         }
