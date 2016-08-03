@@ -37,7 +37,11 @@ namespace GridViewer
         /// <summary>
         /// 
         /// </summary>
-        public const string color = "texCoord";
+        public const string texCoord = "texCoord";
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public const string = "texCoord";
         private PropertyBufferPtr positionBufferPtr;
         private PropertyBufferPtr colorBufferPtr;
 
@@ -77,7 +81,7 @@ namespace GridViewer
                 }
                 return positionBufferPtr;
             }
-            else if (bufferName == color)
+            else if (bufferName == texCoord)
             {
                 if (colorBufferPtr == null)
                 {
