@@ -46,7 +46,7 @@ namespace CSharpGL
                 ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
             OpenGL.BindTexture(this.Target, this.Id);
             OpenGL.TexImage2D(this.Target, 0, (int)OpenGL.GL_RGBA,
-                bitmap.Width, bitmap.Height, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE,
+                bitmapData.Width, bitmapData.Height, 0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE,
                 bitmapData.Scan0);
             //  Unlock the image.
             bitmap.UnlockBits(bitmapData);
