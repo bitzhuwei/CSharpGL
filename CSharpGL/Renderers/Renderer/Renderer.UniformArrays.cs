@@ -266,7 +266,7 @@ namespace CSharpGL
                 //if (location < 0)
                 {
                     //throw new Exception(string.Format(
-                    //"uniform variable [{0}] not exists!", varNameInShader));
+                    //"niform variable [{0}] not exists! Remember to invoke RendererBase.Initialize(); before this method.", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformBoolArray;
@@ -309,7 +309,7 @@ namespace CSharpGL
                 //if (location < 0)
                 {
                     //throw new Exception(string.Format(
-                    //"uniform variable [{0}] not exists!", varNameInShader));
+                    //"niform variable [{0}] not exists! Remember to invoke RendererBase.Initialize(); before this method.", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformFloatArray;
@@ -351,7 +351,7 @@ namespace CSharpGL
                 //if (location < 0)
                 {
                     //throw new Exception(string.Format(
-                    //"uniform variable [{0}] not exists!", varNameInShader));
+                    //"niform variable [{0}] not exists! Remember to invoke RendererBase.Initialize(); before this method.", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformVec2Array;
@@ -393,7 +393,7 @@ namespace CSharpGL
                 //if (location < 0)
                 {
                     //throw new Exception(string.Format(
-                    //"uniform variable [{0}] not exists!", varNameInShader));
+                    //"niform variable [{0}] not exists! Remember to invoke RendererBase.Initialize(); before this method.", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformVec3Array;
@@ -435,7 +435,7 @@ namespace CSharpGL
                 //if (location < 0)
                 {
                     //throw new Exception(string.Format(
-                    //"uniform variable [{0}] not exists!", varNameInShader));
+                    //"niform variable [{0}] not exists! Remember to invoke RendererBase.Initialize(); before this method.", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformVec4Array;
@@ -477,7 +477,7 @@ namespace CSharpGL
                 //if (location < 0)
                 {
                     //throw new Exception(string.Format(
-                    //"uniform variable [{0}] not exists!", varNameInShader));
+                    //"niform variable [{0}] not exists! Remember to invoke RendererBase.Initialize(); before this method.", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformMat2Array;
@@ -519,7 +519,7 @@ namespace CSharpGL
                 //if (location < 0)
                 {
                     //throw new Exception(string.Format(
-                    //"uniform variable [{0}] not exists!", varNameInShader));
+                    //"niform variable [{0}] not exists! Remember to invoke RendererBase.Initialize(); before this method.", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformMat3Array;
@@ -561,7 +561,7 @@ namespace CSharpGL
                 //if (location < 0)
                 {
                     //throw new Exception(string.Format(
-                    //"uniform variable [{0}] not exists!", varNameInShader));
+                    //"niform variable [{0}] not exists! Remember to invoke RendererBase.Initialize(); before this method.", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformMat4Array;
@@ -603,7 +603,7 @@ namespace CSharpGL
                 //if (location < 0)
                 {
                     //throw new Exception(string.Format(
-                    //"uniform variable [{0}] not exists!", varNameInShader));
+                    //"niform variable [{0}] not exists! Remember to invoke RendererBase.Initialize(); before this method.", varNameInShader));
                 }
 
                 var variable = GetVariableArray(value, varNameInShader) as UniformSamplerArray;

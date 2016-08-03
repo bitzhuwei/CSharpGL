@@ -70,7 +70,7 @@ namespace CSharpGL
                 //if (location < 0)
                 //{
                 //    throw new Exception(string.Format(
-                //        "uniform variable [{0}] not exists!", varNameInShader));
+                //        "niform variable [{0}] not exists! Remember to invoke RendererBase.Initialize(); before this method.", varNameInShader));
                 //}
 
                 var variable = GetVariable(value, varNameInShader) as UniformSingleVariable<T>;
