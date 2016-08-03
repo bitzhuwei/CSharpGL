@@ -19,6 +19,7 @@ namespace GridViewer
         const int marginLeft = 50;
         const int marginRight = 50;
         private int maxMarkerCount;
+        private UIColorPaletteBarRenderer colorPaletteBar;
         /// <summary>
         /// </summary>
         /// <param name="anchor"></param>
@@ -42,6 +43,7 @@ namespace GridViewer
                 new System.Drawing.Size(size.Width - 100, size.Height / 3),
                 zNear, zFar);
                 //this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
+                this.colorPaletteBar = bar;
                 this.Children.Add(bar);
             }
             {
@@ -93,6 +95,15 @@ namespace GridViewer
             System.Windows.Forms.Padding padding = label.Margin;
             padding.Left = (int)distance;
             label.Margin = padding;
+        }
+
+        public bool UpdateBar(Bitmap bitmap)
+        {
+            UIColorPaletteBarRenderer bar = this.colorPaletteBar;
+            if (bar != null)
+            { return this.colorPaletteBar.UpdateTexture(bitmap); }
+            else
+            { return false; }
         }
 
     }

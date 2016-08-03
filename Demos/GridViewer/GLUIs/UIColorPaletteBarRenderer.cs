@@ -50,6 +50,7 @@ namespace GridViewer
             var texture = new sampler1D();
             Bitmap bitmap = this.CodedColors.GetBitmap(1024);
             texture.Initialize(bitmap);
+            this.colorPaletteBarSampler = texture;
             bitmap.Dispose();
             var renderer = this.Renderer as Renderer;
             renderer.SetUniform("codedColorSampler", new samplerValue(BindTextureTarget.Texture1D,
