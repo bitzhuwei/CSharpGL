@@ -37,6 +37,8 @@ namespace GridViewer
         private PolygonOffsetSwitch offsetSwitch = new PolygonOffsetLineSwitch();
         private PropertyBufferPtr positionBufferPtr;
         private int currentQuadCount;
+        private ColorType colorType;
+        private PropertyBufferPtr texCoordBufferPtr;
 
         public static QuadStripRenderer Create(QuadStripModel model, ColorType colorType = ColorType.Texture)
         {
@@ -52,24 +54,24 @@ namespace GridViewer
             else
             { throw new NotImplementedException(); }
 
-            var renderer = new QuadStripRenderer(model, shaderCodes, map);
+            var renderer = new QuadStripRenderer(model, shaderCodes, map, colorType);
             renderer.currentQuadCount = model.quadCount;
             return renderer;
         }
 
         private QuadStripRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
-            PropertyNameMap propertyNameMap, params GLSwitch[] switches)
+            PropertyNameMap propertyNameMap, ColorType colorType, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
-        { }
+        {
+            this.colorType = colorType;
+        }
 
         protected override void DoInitialize()
         {
             base.DoInitialize();
 
-            PropertyBufferPtr bufferPtr = this.bufferable.GetProperty(QuadStripModel.position, null);
-
-            this.positionBufferPtr = bufferPtr;
-            this.indexBufferPtr = this.bufferable.GetIndex();
+            this.positionBufferPtr = this.bufferable.GetProperty(QuadStripModel.position, null);
+            this.texCoordBufferPtr = this.bufferable.GetProperty(QuadStripModel.texCoord, null);
         }
 
         protected override void DoRender(RenderEventArg arg)
@@ -108,6 +110,69 @@ namespace GridViewer
             }
             OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+
+            this.currentQuadCount = quadCount;
+        }
+
+        public void UpdateCodedColor(CodedColor[] codedColors)
+        {
+            int quadCount = codedColors.Length - 1;
+
+            {
+                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+                IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+                unsafe
+                {
+                    var array = (vec3*)pointer.ToPointer();
+                    for (int i = 0; i < (quadCount + 1); i++)
+                    {
+                        //array[i * 2 + 0] = new vec3(-0.5f + (float)i / (float)(quadCount), 0.5f, 0);
+                        //array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(quadCount), -0.5f, 0);
+                        array[i * 2 + 0] = new vec3(-0.5f + codedColors[i].Coord, 0.5f, 0);
+                        array[i * 2 + 1] = new vec3(-0.5f + codedColors[i].Coord, -0.5f, 0);
+                    }
+                }
+                OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            }
+
+            if (this.colorType == ColorType.Texture)
+            {
+                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.texCoordBufferPtr.BufferId);
+                IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+                unsafe
+                {
+                    var array = (float*)pointer.ToPointer();
+                    for (int i = 0; i < (quadCount + 1); i++)
+                    {
+                        array[i * 2 + 0] = codedColors[i].Coord;
+                        array[i * 2 + 1] = codedColors[i].Coord;
+                    }
+                }
+                OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            }
+            else if (this.colorType == ColorType.Color)
+            {
+                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.texCoordBufferPtr.BufferId);
+                IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+                unsafe
+                {
+                    var array = (vec3*)pointer.ToPointer();
+                    for (int i = 0; i < (quadCount + 1); i++)
+                    {
+                        array[i * 2 + 0] = codedColors[i].DisplayColor;
+                        array[i * 2 + 1] = codedColors[i].DisplayColor;
+                    }
+                }
+                OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            }
+
+            {
+                var pointer = this.indexBufferPtr as ZeroIndexBufferPtr;
+                pointer.VertexCount = (quadCount + 1) * 2;
+            }
 
             this.currentQuadCount = quadCount;
         }

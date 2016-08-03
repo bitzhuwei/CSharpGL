@@ -46,5 +46,14 @@ namespace GridViewer
         {
             throw new NotImplementedException();
         }
+
+        internal void UpdateCodedColors(CodedColor[] codedColors)
+        {
+            var renderer = this.Renderer as LinesRenderer;
+            if (renderer != null)
+            {
+                renderer.UpdateCodedColors(codedColors);
+            }
+        }
     }
 }

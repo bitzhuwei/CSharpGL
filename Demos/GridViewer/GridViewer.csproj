@@ -128,7 +128,6 @@
     <Compile Include="Renderers\CodedColorBarRenderer\CodedColorBarRect.cs" />
     <Compile Include="Renderers\CodedColorBarRenderer\CodedColorValueRenderer.cs" />
     <Compile Include="Renderers\CodedColorBarRenderer\UICodedColorBar.cs" />
-    <Compile Include="Renderers\ColorPaletteRenderer\ColorPaletteRenderer.cs" />
     <Compile Include="Renderers\GridViewRenderer.cs" />
     <Compile Include="ScientificCanvas.Property.cs">
       <SubType>UserControl</SubType>

@@ -28,6 +28,7 @@ namespace GridViewer
     /// </summary>
     class LinesRenderer : Renderer
     {
+        private PropertyBufferPtr positionBufferPtr;
 
         public static LinesRenderer Create(LinesModel model)
         {
@@ -45,10 +46,40 @@ namespace GridViewer
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         { }
 
+        protected override void DoInitialize()
+        {
+            base.DoInitialize();
+
+            this.positionBufferPtr = this.bufferable.GetProperty(LinesModel.position, null);
+        }
+
         protected override void DoRender(RenderEventArg arg)
         {
             base.DoRender(arg);
         }
 
+
+        public void UpdateCodedColors(CodedColor[] codedColors)
+        {
+            int lineCount = codedColors.Length;
+
+            {
+                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+                IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+                unsafe
+                {
+                    var array = (vec3*)pointer.ToPointer();
+                    for (int i = 0; i < lineCount; i++)
+                    {
+                        //array[i * 2 + 0] = new vec3(-0.5f + (float)i / (float)(lineCount - 1), 0.5f, 0);
+                        //array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(lineCount - 1), -0.5f, 0);
+                        array[i * 2 + 0] = new vec3(-0.5f + codedColors[i].Coord, 0.5f, 0);
+                        array[i * 2 + 1] = new vec3(-0.5f + codedColors[i].Coord, -0.5f, 0);
+                    }
+                }
+                OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            }
+        }
     }
 }

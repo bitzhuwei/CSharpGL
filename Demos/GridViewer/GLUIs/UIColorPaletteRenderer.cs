@@ -162,5 +162,31 @@ namespace GridViewer
             this.markers.SetCount(count);
             this.currentMarkersCount = count;
         }
+
+        public void SetCodedColor(CodedColor[] codedColors)
+        {
+            {
+                Bitmap bitmap = codedColors.GetBitmap(bitmapWidth);
+                this.colorPaletteBar.UpdateTexture(bitmap);
+                this.colorPaletteBar2.UpdateTexture(bitmap);
+                bitmap.Dispose();
+            }
+            {
+                this.colorPaletteBar.UpdateCodedColor(codedColors);
+                this.colorPaletteBar2.UpdateCodedColor(codedColors);
+                this.markers.UpdateCodedColors(codedColors);
+                for (int i = 0; i < codedColors.Length; i++)
+                {
+                    this.labelList[i].Enabled = true;
+                    this.labelList[i].Text = string.Format("{0}", codedColors[i].Value);
+                }
+                for (int i = codedColors.Length; i < this.maxMarkerCount; i++)
+                {
+                    this.labelList[i].Enabled = false;
+                }
+            }
+        }
+
+        public const int bitmapWidth = 1024;
     }
 }

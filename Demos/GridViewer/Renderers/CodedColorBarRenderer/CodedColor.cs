@@ -14,15 +14,15 @@ namespace GridViewer
         {
             var result = new CodedColor[5];
             result[0] = new CodedColor(
-                Color.FromArgb(255, 0, 22, 76).ToVec3(), 0.0f, 0.0f);
+                Color.FromArgb(255, 0, 22, 76).ToVec3(), 0.0f, 100.0f);
             result[1] = new CodedColor(
-                Color.FromArgb(255, 0, 193, 136).ToVec3(), 0.25f, 0.25f);
+                Color.FromArgb(255, 0, 193, 136).ToVec3(), 0.25f, 200.0f);
             result[2] = new CodedColor(
-                Color.FromArgb(255, 166, 255, 27).ToVec3(), 0.5f, 0.5f);
+                Color.FromArgb(255, 166, 255, 27).ToVec3(), 0.5f, 300.0f);
             result[3] = new CodedColor(
-                Color.FromArgb(255, 255, 173, 0).ToVec3(), 0.75f, 0.75f);
+                Color.FromArgb(255, 255, 173, 0).ToVec3(), 0.75f, 400.0f);
             result[4] = new CodedColor(
-                Color.FromArgb(255, 255, 8, 1).ToVec3(), 1.0f, 1.0f);
+                Color.FromArgb(255, 255, 8, 1).ToVec3(), 1.0f, 500.0f);
 
             return result;
         }

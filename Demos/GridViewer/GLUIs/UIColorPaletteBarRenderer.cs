@@ -94,5 +94,14 @@ namespace GridViewer
             var renderer = this.Renderer as QuadStripRenderer;
             renderer.SetQuadCount(quadCount);
         }
+
+        public void UpdateCodedColor(CodedColor[] codedColors)
+        {
+            var renderer = this.Renderer as QuadStripRenderer;
+            if (renderer != null)
+            {
+                renderer.UpdateCodedColor(codedColors);
+            }
+        }
     }
 }
