@@ -36,14 +36,20 @@ namespace GridViewer
 
         private PolygonOffsetSwitch offsetSwitch = new PolygonOffsetLineSwitch();
 
-        public static QuadStripRenderer Create(QuadStripModel model)
+        public static QuadStripRenderer Create(QuadStripModel model, ColorType colorType = ColorType.Texture)
         {
             var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\QuadStrip.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\QuadStrip.frag"), ShaderType.FragmentShader);
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\QuadStrip" + colorType + ".vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\QuadStrip" + colorType + ".frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("in_Position", QuadStripModel.position);
-            map.Add("in_TexCoord", QuadStripModel.texCoord);
+            if (colorType == ColorType.Texture)
+            { map.Add("in_TexCoord", QuadStripModel.texCoord); }
+            else if (colorType == ColorType.Color)
+            { map.Add("color", QuadStripModel.color); }
+            else
+            { throw new NotImplementedException(); }
+
             var renderer = new QuadStripRenderer(model, shaderCodes, map);
             return renderer;
         }
@@ -68,5 +74,11 @@ namespace GridViewer
             polygonModeSwitch.Off();
         }
 
+        public enum ColorType
+        {
+            Color,
+            Texture,
+        }
     }
+
 }

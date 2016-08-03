@@ -4,7 +4,7 @@ in float passTexCoord;
 
 out vec4 out_Color;
 
-uniform bool renderWireframe = true;
+uniform bool renderWireframe = false;
 uniform sampler1D codedColorSampler;
 
 void main(void) 
