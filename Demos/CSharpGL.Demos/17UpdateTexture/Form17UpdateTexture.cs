@@ -87,6 +87,20 @@ namespace CSharpGL.Demos
             this.uiRoot.Size = this.glCanvas1.Size;
         }
 
+        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 'o')
+            {
+                if (openTextureDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    using (var bitmap = new Bitmap(openTextureDlg.FileName))
+                    {
+                        this.renderer.UpdateTextureContent(bitmap);
+                    }
+                }
+            }
+        }
+
     }
 
 }

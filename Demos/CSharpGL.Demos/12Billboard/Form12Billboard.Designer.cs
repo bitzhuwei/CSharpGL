@@ -36,7 +36,7 @@
             // 
             // openTextureDlg
             // 
-            this.openTextureDlg.Filter = "Image File(*.TTF;*.OTF)|*.TTF;*.OTF";
+            this.openTextureDlg.Filter = "True Type Font File(*.TTF;*.OTF)|*.TTF;*.OTF";
             // 
             // glCanvas1
             // 

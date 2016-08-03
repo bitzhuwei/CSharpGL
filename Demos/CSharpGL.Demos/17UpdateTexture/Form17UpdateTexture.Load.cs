@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
     {
         private UIRoot uiRoot;
         private UIAxis glAxis;
-        private Renderer renderer;
+        private UpdatingTextureRenderer renderer;
         private Renderer ground;
         private ArcBallManipulater arcballManipulater;
 
