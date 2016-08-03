@@ -39,5 +39,11 @@ namespace CSharpGL.Demos
             this.SetUniform("tex", new samplerValue(BindTextureTarget.Texture2D,
                 sampler.Id, OpenGL.GL_TEXTURE0));
         }
+
+        public void UpdateTextureContent(Bitmap bitmap)
+        {
+            var textureUpdater = new TexureUpdater(this.texture.Id);
+            textureUpdater.UpdateTexture(bitmap);
+        }
     }
 }
