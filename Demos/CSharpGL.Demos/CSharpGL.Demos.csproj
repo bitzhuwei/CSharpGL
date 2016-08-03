@@ -52,6 +52,15 @@
     <Compile Include="11IFontTexture\Form11IFontTexture.Designer.cs">
       <DependentUpon>Form11IFontTexture.cs</DependentUpon>
     </Compile>
+    <Compile Include="17UpdateTexture\Form17UpdateTexture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="17UpdateTexture\Form17UpdateTexture.Designer.cs">
+      <DependentUpon>Form17UpdateTexture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="17UpdateTexture\Form17UpdateTexture.Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="16ArcBallManipulater\Form16ArcBallManipulater.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +79,7 @@
     <Compile Include="15Scene\Form15Scene.Load.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\TexturedRectangleModel.cs" />
     <Compile Include="Renderers\BillboardRenderer.cs" />
     <Compile Include="Renderers\MovableRenderer.cs" />
     <Compile Include="Renderers\GroundRenderer.cs" />
@@ -88,6 +98,7 @@
     <Compile Include="Renderers\ShaderToyRenderer.DoInitialize.cs" />
     <Compile Include="Renderers\ShaderToyRenderer.DoRender.cs" />
     <Compile Include="Renderers\ShaderToyRenderer.Static.cs" />
+    <Compile Include="Renderers\UpdatingTextureRenderer.cs" />
     <Compile Include="shaders\Simple.cssl.cs" />
     <Compile Include="shaders\Simple.main.cs" />
     <Compile Include="13SimplexNoise\Form13SimplexNoise.cs">
@@ -255,6 +266,12 @@
     <Compile Include="Renderers\OrderIndependentTransparencyRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="shaders\UpdatingTexture.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\UpdatingTexture.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="shaders\Ground.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -338,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="11IFontTexture\Form11IFontTexture.resx">
       <DependentUpon>Form11IFontTexture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="17UpdateTexture\Form17UpdateTexture.resx">
+      <DependentUpon>Form17UpdateTexture.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="16ArcBallManipulater\Form16ArcBallManipulater.resx">
       <DependentUpon>Form16ArcBallManipulater.cs</DependentUpon>
