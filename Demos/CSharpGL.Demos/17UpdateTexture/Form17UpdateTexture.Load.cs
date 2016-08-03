@@ -15,7 +15,7 @@ namespace CSharpGL.Demos
     {
         private UIRoot uiRoot;
         private UIAxis glAxis;
-        private Renderer teapotRenderer;
+        private Renderer renderer;
         private Renderer ground;
         private ArcBallManipulater arcballManipulater;
 
@@ -47,15 +47,9 @@ namespace CSharpGL.Demos
                 this.ground = ground;
             }
             {
-                var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Teapot.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Teapot.frag"), ShaderType.FragmentShader);
-                var map = new PropertyNameMap();
-                map.Add("in_Position", "position");
-                map.Add("in_Color", "color");
-                var teapotRenderer = new Renderer(new Teapot(), shaderCodes, map);
-                teapotRenderer.Initialize();
-                this.teapotRenderer = teapotRenderer;
+                var renderer = UpdatingTextureRenderer.Create(new TexturedRectangleModel());
+                renderer.Initialize();
+                this.renderer = renderer;
             }
             {
                 var UIRoot = new UIRoot();
@@ -70,7 +64,7 @@ namespace CSharpGL.Demos
                 UIRoot.Children.Add(glAxis);
             }
             {
-                var frmPropertyGrid = new FormProperyGrid(this.teapotRenderer);
+                var frmPropertyGrid = new FormProperyGrid(this.renderer);
                 frmPropertyGrid.Show();
             }
             {

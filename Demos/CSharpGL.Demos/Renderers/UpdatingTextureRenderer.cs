@@ -32,6 +32,10 @@ namespace CSharpGL.Demos
             base.DoInitialize();
 
             var bitmap = new Bitmap(64, 64);
+            using (var graphics = Graphics.FromImage(bitmap))
+            {
+                graphics.Clear(Color.Red);
+            }
             var sampler = new sampler2D();
             sampler.Initialize(bitmap);
             bitmap.Dispose();
@@ -44,6 +48,15 @@ namespace CSharpGL.Demos
         {
             var textureUpdater = new TexureUpdater(this.texture.Id);
             textureUpdater.UpdateTexture(bitmap);
+        }
+
+        protected override void DoRender(RenderEventArg arg)
+        {
+            mat4 projection = arg.Camera.GetProjectionMat4();
+            mat4 view = arg.Camera.GetViewMat4();
+            this.SetUniform("mvp", projection * view);
+
+            base.DoRender(arg);
         }
     }
 }
