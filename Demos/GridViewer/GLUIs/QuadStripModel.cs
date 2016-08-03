@@ -1,6 +1,7 @@
 ﻿using CSharpGL;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,16 +39,19 @@ namespace GridViewer
         /// 
         /// </summary>
         public const string texCoord = "texCoord";
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public const string = "texCoord";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string color = "color";
+
         private PropertyBufferPtr positionBufferPtr;
+        private PropertyBufferPtr texCoordBufferPtr;
         private PropertyBufferPtr colorBufferPtr;
 
-        public QuadStripModel(int quadCount)
+        public QuadStripModel(int quadCount, Bitmap bitmap = null)
         {
             this.quadCount = quadCount;
+            this.bitmap = bitmap;
         }
 
         /// <summary>
@@ -83,7 +87,7 @@ namespace GridViewer
             }
             else if (bufferName == texCoord)
             {
-                if (colorBufferPtr == null)
+                if (texCoordBufferPtr == null)
                 {
                     using (var buffer = new PropertyBuffer<float>(
                         varNameInShader, 1, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
@@ -98,6 +102,31 @@ namespace GridViewer
                                 //array[i * 2 + 0] = (float)random.NextDouble();
                                 array[i * 2 + 0] = (float)i / (float)this.quadCount;
                                 array[i * 2 + 1] = array[i * 2 + 0];
+                            }
+                        }
+
+                        texCoordBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+                    }
+                }
+                return texCoordBufferPtr;
+            }
+            else if (bufferName == color)
+            {
+                if (colorBufferPtr == null)
+                {
+                    using (var buffer = new PropertyBuffer<vec3>(
+                        varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+                    {
+                        buffer.Create((this.quadCount + 1) * 2);
+                        unsafe
+                        {
+                            var array = (vec3*)buffer.Header.ToPointer();
+                            for (int i = 0; i < (this.quadCount + 1); i++)
+                            {
+                                int x = this.bitmap.Width * i / this.quadCount;
+                                vec3 value = this.bitmap.GetPixel(x, 0).ToVec3();
+                                array[i * 2 + 0] = value;
+                                array[i * 2 + 1] = value;
                             }
                         }
 
@@ -131,5 +160,6 @@ namespace GridViewer
 
         private IndexBufferPtr indexBufferPtr = null;
         private int quadCount;
+        private Bitmap bitmap;
     }
 }
