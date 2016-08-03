@@ -48,9 +48,9 @@ namespace CSharpGL
             //OpenGL.GetDelegateFor<OpenGL.glActiveTexture>()(this.ActiveTexture);
             OpenGL.BindTexture(this.Target, this.Id);
             OpenGL.TexSubImage2D(this.Target, 0, 0, 0, bitmap.Width, bitmap.Height, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, bitmapData.Scan0);
-            OpenGL.BindTexture(OpenGL.GL_TEXTURE_2D, 0);
-            bitmap.UnlockBits(bitmapData);
+            OpenGL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, 0, 0, bitmap.Width, bitmap.Height, TexSubImage2DFormats.RGBA, TexSubImage2DType.UnsignedByte, bitmapData.Scan0);
             OpenGL.BindTexture(this.Target, 0);
+            bitmap.UnlockBits(bitmapData);
 
             return true;
         }
