@@ -42,26 +42,25 @@
             this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.glCanvas1.Location = new System.Drawing.Point(13, 33);
+            this.glCanvas1.Location = new System.Drawing.Point(13, 13);
             this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(757, 502);
+            this.glCanvas1.Size = new System.Drawing.Size(757, 522);
             this.glCanvas1.TabIndex = 0;
             // 
-            // Form12Billboard
+            // Form16ArcBallManipulater
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 548);
             this.Controls.Add(this.glCanvas1);
-            this.Name = "Form12Billboard";
+            this.Name = "Form16ArcBallManipulater";
             this.Text = "Form12Billboard";
             this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCanvas1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
