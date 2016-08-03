@@ -88,5 +88,11 @@ namespace GridViewer
 
             return textureUpdater.UpdateTexture(bitmap);
         }
+
+        public void SetQuadCount(int quadCount)
+        {
+            var renderer = this.Renderer as QuadStripRenderer;
+            renderer.SetQuadCount(quadCount);
+        }
     }
 }

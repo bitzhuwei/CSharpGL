@@ -41,5 +41,10 @@ namespace GridViewer
 
             base.DoRender(arg);
         }
+
+        internal void SetCount(int count)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

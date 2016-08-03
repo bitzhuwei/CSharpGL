@@ -29,6 +29,11 @@ namespace GridViewer
         /// Compare this with colorPaletteBar to check if there's difference.
         /// </summary>
         private UIColorPaletteBarRenderer colorPaletteBar2;
+        private UIColorPaletteMarkersRenderer markers;
+        /// <summary>
+        /// current marker's count.
+        /// </summary>
+        private int currentMarkersCount;
 
         /// <summary>
         /// Shows color palette bar rendered with direct color(vec3).
@@ -63,6 +68,7 @@ namespace GridViewer
             : base(anchor, margin, size, zNear, zFar)
         {
             this.maxMarkerCount = maxMarkerCount;
+            this.currentMarkersCount = maxMarkerCount;
             this.SwitchList.Add(new ClearColorSwitch());
 
             {
@@ -93,6 +99,7 @@ namespace GridViewer
                 new System.Drawing.Size(size.Width - marginLeft - marginRight, size.Height / 3),
                 zNear, zFar);
                 //markers.SwitchList.Add(new ClearColorSwitch(Color.Red));
+                this.markers = markers;
                 this.Children.Add(markers);
             }
             {
@@ -113,8 +120,8 @@ namespace GridViewer
                     //label.SwitchList.Add(new ClearColorSwitch(Color.Green));
                     label.Text = ((float)i).ToShortString();
                     label.BeforeLayout += label_beforeLayout;
-                    this.Children.Add(label);
                     this.labelList.Add(label);
+                    this.Children.Add(label);
                 }
             }
         }
@@ -126,11 +133,11 @@ namespace GridViewer
         /// <param name="e"></param>
         void label_beforeLayout(object sender, EventArgs e)
         {
-            int length = this.labelList.Count - 1;
+            int count = currentMarkersCount - 1;
             var label = sender as UIText;
             int index = this.labelList.IndexOf(label);
             float distance = marginLeft;
-            distance += (float)index / (float)length * (float)(this.Size.Width - marginLeft - marginRight);
+            distance += (float)index / (float)count * (float)(this.Size.Width - marginLeft - marginRight);
             distance -= label.Size.Width / 2;
             System.Windows.Forms.Padding padding = label.Margin;
             padding.Left = (int)distance;
@@ -146,5 +153,14 @@ namespace GridViewer
             { return false; }
         }
 
+        public void SetMarkerCount(int count)
+        {
+            if (count > this.maxMarkerCount || count < 2) { throw new ArgumentOutOfRangeException(); }
+
+            this.colorPaletteBar.SetQuadCount(count - 1);
+            this.colorPaletteBar2.SetQuadCount(count - 1);
+            this.markers.SetCount(count);
+            this.currentMarkersCount = count;
+        }
     }
 }

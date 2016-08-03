@@ -160,7 +160,7 @@ namespace GridViewer
         }
 
         private IndexBufferPtr indexBufferPtr = null;
-        private int quadCount;
+        internal int quadCount;
         private Bitmap bitmap;
     }
 }

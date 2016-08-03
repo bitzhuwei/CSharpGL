@@ -35,6 +35,8 @@ namespace GridViewer
         private LineWidthSwitch lineWidthSwitch = new LineWidthSwitch(1);
 
         private PolygonOffsetSwitch offsetSwitch = new PolygonOffsetLineSwitch();
+        private PropertyBufferPtr positionBufferPtr;
+        private int currentQuadCount;
 
         public static QuadStripRenderer Create(QuadStripModel model, ColorType colorType = ColorType.Texture)
         {
@@ -51,6 +53,7 @@ namespace GridViewer
             { throw new NotImplementedException(); }
 
             var renderer = new QuadStripRenderer(model, shaderCodes, map);
+            renderer.currentQuadCount = model.quadCount;
             return renderer;
         }
 
@@ -58,6 +61,16 @@ namespace GridViewer
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         { }
+
+        protected override void DoInitialize()
+        {
+            base.DoInitialize();
+
+            PropertyBufferPtr bufferPtr = this.bufferable.GetProperty(QuadStripModel.position, null);
+
+            this.positionBufferPtr = bufferPtr;
+            this.indexBufferPtr = this.bufferable.GetIndex();
+        }
 
         protected override void DoRender(RenderEventArg arg)
         {
@@ -78,6 +91,25 @@ namespace GridViewer
         {
             Color,
             Texture,
+        }
+
+        public void SetQuadCount(int quadCount)
+        {
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+            unsafe
+            {
+                var array = (vec3*)pointer.ToPointer();
+                for (int i = 0; i < (quadCount + 1); i++)
+                {
+                    array[i * 2 + 0] = new vec3(-0.5f + (float)i / (float)(quadCount), 0.5f, 0);
+                    array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(quadCount), -0.5f, 0);
+                }
+            }
+            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+
+            this.currentQuadCount = quadCount;
         }
     }
 
