@@ -67,5 +67,12 @@ namespace GridViewer
 
             base.DoRender(arg);
         }
+
+        public bool UpdateTexture(Bitmap bitmap)
+        {
+            var textureUpdater = new TextureUpdater(this.colorPaletteBarSampler.Id);
+
+            return textureUpdater.UpdateTexture(bitmap);
+        }
     }
 }

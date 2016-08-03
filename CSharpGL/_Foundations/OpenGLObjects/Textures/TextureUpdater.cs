@@ -10,8 +10,11 @@ namespace CSharpGL
     /// <summary>
     /// update texture's content.
     /// </summary>
-    public class TexureUpdater
+    public class TextureUpdater
     {
+        /// <summary>
+        /// texture's id.
+        /// </summary>
         public uint Id { get; private set; }
 
         ///// <summary>
@@ -27,7 +30,7 @@ namespace CSharpGL
         /// <summary>
         /// build texture.
         /// </summary>
-        public TexureUpdater(uint id)
+        public TextureUpdater(uint id)
         {
             this.Id = id;
             //this.ActiveTexture = OpenGL.GL_TEXTURE0;

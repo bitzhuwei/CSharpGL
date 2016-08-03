@@ -147,7 +147,7 @@
     <Compile Include="_Foundations\OpenGLObjects\GLSwitches\EnableSwitches\ScissorTestSwitch.cs" />
     <Content Include="_Foundations\OpenGLObjects\Camera\readme.md" />
     <None Include="_Foundations\OpenGLObjects\UniformVariables\readme.md" />
-    <Compile Include="_Foundations\OpenGLObjects\Textures\TexureUpdater.cs" />
+    <Compile Include="_Foundations\OpenGLObjects\Textures\TextureUpdater.cs" />
     <Compile Include="_Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\UniformArrayVariableBase.cs" />
     <Compile Include="_Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\UniformInt32Array.cs" />
     <Compile Include="_Foundations\OpenGLObjects\UniformVariables\UniformArrayVariables\UniformBVec2Array.cs" />
