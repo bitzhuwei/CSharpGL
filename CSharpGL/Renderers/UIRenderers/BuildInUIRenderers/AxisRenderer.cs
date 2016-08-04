@@ -15,6 +15,7 @@ namespace CSharpGL
         private IndexBufferPtr originalIndexBufferPtr;
         private IndexBufferPtr[] whiteLineIndexBufferPtrs = new IndexBufferPtr[3];
         private LineWidthSwitch lineWidthSwitch;
+        private PolygonOffsetSwitch offsetSwitch;
 
         public LineWidthSwitch LineWidthSwitch
         {
@@ -34,7 +35,7 @@ namespace CSharpGL
             var model = new Axis(partCount);
             var renderer = new AxisRenderer(model, shaderCodes, map, partCount);
             renderer.lineWidthSwitch = new LineWidthSwitch(1);
-
+            renderer.offsetSwitch = new PolygonOffsetLineSwitch();
             return renderer;
         }
 
@@ -69,11 +70,13 @@ namespace CSharpGL
 
             this.SetUniform("renderWireframe", true);
             this.lineWidthSwitch.On();
+            this.offsetSwitch.On();
             for (int i = 0; i < this.whiteLineIndexBufferPtrs.Length; i++)
             {
                 this.indexBufferPtr = this.whiteLineIndexBufferPtrs[i];
                 base.DoRender(arg);
             }
+            this.offsetSwitch.Off();
             this.lineWidthSwitch.Off();
         }
     }
