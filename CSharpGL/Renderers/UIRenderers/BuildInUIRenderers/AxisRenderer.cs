@@ -5,6 +5,9 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// Renders an axis with white circle on arrow.
+    /// </summary>
     class AxisRenderer : Renderer
     {
         private int partCount;
