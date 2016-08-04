@@ -19,8 +19,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="partCount"></param>
         /// <param name="radius"></param>
-        public Axis(uint partCount = 24, float radius = 1.0f)
+        public Axis(int partCount = 24, float radius = 1.0f)
         {
+            if (partCount < 2) { throw new ArgumentException(); }
             this.model = new AxisModel(partCount, radius);
         }
 

@@ -173,11 +173,16 @@ namespace CSharpGL.Demos
                 this.formPropertyGrid = frmPropertyGrid;
             }
             {
+                var frmPropertyGrid = new FormProperyGrid(this.uiAxis);
+                frmPropertyGrid.Show();
+            }
+            {
                 var frmIndexBufferPtrBoard = new FormIndexBufferPtrBoard();
                 frmIndexBufferPtrBoard.SetTarget(this.rendererDict[this.SelectedModel].PickableRenderer.IndexBufferPtr);
                 frmIndexBufferPtrBoard.Show();
                 this.frmIndexBufferPtrBoard = frmIndexBufferPtrBoard;
             }
+
         }
 
     }

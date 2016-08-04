@@ -17,7 +17,7 @@ namespace CSharpGL
 
         internal DrawMode mode = DrawMode.TriangleFan;
 
-        public AxisModel(uint partCount = 12, float radius = 1.0f)
+        public AxisModel(int partCount = 12, float radius = 1.0f)
         {
             this.positions = GeneratePositions(partCount);
             for (int i = 0; i < this.positions.Length; i++)
@@ -28,7 +28,7 @@ namespace CSharpGL
             this.indexes = GenerateIndexes(partCount);
         }
 
-        private uint[] GenerateIndexes(uint partCount)
+        private uint[] GenerateIndexes(int partCount)
         {
             var indexes = new uint[3 * (3 * (1 + (partCount + 1) + 1))];
             int index = 0;
@@ -36,7 +36,7 @@ namespace CSharpGL
             indexes[index++] = 0;
             for (uint i = 0; i < (partCount + 1); i++)
             {
-                indexes[index++] = i % partCount + 1;
+                indexes[index++] = (uint)(i % partCount + 1);
             }
             indexes[index++] = uint.MaxValue;
             indexes[index++] = (uint)(1 + partCount);
@@ -58,7 +58,7 @@ namespace CSharpGL
                 if (value == uint.MaxValue)
                 { indexes[index++] = uint.MaxValue; }
                 else
-                { indexes[index++] = value + 3 + 2 * partCount; }
+                { indexes[index++] = (uint)(value + 3 + 2 * partCount); }
             }
             // z axis
             for (uint i = 0; i < 3 * (1 + (partCount + 1) + 1); i++)
@@ -67,13 +67,13 @@ namespace CSharpGL
                 if (value == uint.MaxValue)
                 { indexes[index++] = uint.MaxValue; }
                 else
-                { indexes[index++] = value + 3 + 2 * partCount + 3 + 2 * partCount; }
+                { indexes[index++] = (uint)(value + 3 + 2 * partCount + 3 + 2 * partCount); }
             }
 
             return indexes;
         }
 
-        private vec3[] GenrateColors(uint partCount)
+        private vec3[] GenrateColors(int partCount)
         {
             Random r = new Random();
             var colors = new vec3[3 * (3 + 2 * partCount)];
@@ -102,7 +102,7 @@ namespace CSharpGL
             return colors;
         }
 
-        private static vec3[] GeneratePositions(uint partCount)
+        private static vec3[] GeneratePositions(int partCount)
         {
             var positions = new vec3[3 * (3 + 2 * partCount)];
             const float stickLength = 0.75f;

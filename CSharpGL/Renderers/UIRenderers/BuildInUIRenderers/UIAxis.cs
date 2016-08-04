@@ -26,16 +26,9 @@ namespace CSharpGL
             System.Drawing.Size size, int zNear, int zFar)
             : base(anchor, margin, size, zNear, zFar)
         {
-            var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"Resources.UIAxis.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(ManifestResourceLoader.LoadTextFile(
-@"Resources.UIAxis.frag"), ShaderType.FragmentShader);
-            var map = new PropertyNameMap();
-            map.Add("in_Position", "position");
-            map.Add("in_Color", "color");
             //PickableRenderer renderer = (new Axis()).GetRenderer(shaderCodes, map, "position");
-            PickableRenderer renderer = new PickableRenderer(new Axis(), shaderCodes, map, "position");
+            //PickableRenderer renderer = new PickableRenderer(new Axis(), shaderCodes, map, "position");
+            AxisRenderer renderer = AxisRenderer.Create(24);
 
             this.Renderer = renderer;
         }
