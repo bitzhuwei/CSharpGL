@@ -473,10 +473,10 @@
     <Compile Include="_Foundations\OpenGLAPI\OpenGL_Extensions.cs" />
     <Compile Include="_Foundations\OpenGLAPI\OpenGL_Functions.cs" />
     <Compile Include="_Foundations\OpenGLAPI\OpenGL_Wrappers.cs" />
-    <Compile Include="WinformControls\Win32API\BitmapInfo.tmp.cs" />
+    <Compile Include="WinformControls\Win32API\BitmapInfo.cs" />
     <Compile Include="WinformControls\Win32API\ClassStyles.cs" />
     <Compile Include="WinformControls\Win32API\WndProc.cs" />
-    <Compile Include="WinformControls\Win32API\PixelFormatDescriptor.tmp.cs" />
+    <Compile Include="WinformControls\Win32API\PixelFormatDescriptor.cs" />
     <Compile Include="WinformControls\Win32API\SetWindowPosFlags.cs" />
     <Compile Include="WinformControls\Win32API\Win32.cs" />
     <Compile Include="WinformControls\Win32API\WindowStyles.cs" />
