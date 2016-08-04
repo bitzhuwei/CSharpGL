@@ -14,7 +14,7 @@ namespace CSharpGL.Demos
     public partial class Form16ArcBallManipulater : Form
     {
         private UIRoot uiRoot;
-        private UIAxis glAxis;
+        private UIAxis uiAxis;
         private Renderer teapotRenderer;
         private Renderer ground;
         private ArcBallManipulater arcballManipulater;
@@ -62,12 +62,12 @@ namespace CSharpGL.Demos
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
 
-                var glAxis = new UIAxis(AnchorStyles.Right | AnchorStyles.Bottom,
-                    new Padding(3, 3, 3, 3), new Size(70, 70), -100, 100);
-                glAxis.Initialize();
-                this.glAxis = glAxis;
+                var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
+                    new Padding(3, 3, 3, 3), new Size(128, 128), -100, 100);
+                uiAxis.Initialize();
+                this.uiAxis = uiAxis;
 
-                UIRoot.Children.Add(glAxis);
+                UIRoot.Children.Add(uiAxis);
             }
             {
                 var frmPropertyGrid = new FormProperyGrid(this.teapotRenderer);

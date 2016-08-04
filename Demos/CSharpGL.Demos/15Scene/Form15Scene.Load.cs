@@ -40,10 +40,10 @@ namespace CSharpGL.Demos
                 this.glText = glText;
                 this.scene.UIRoot.Children.Add(glText);
 
-                var glAxis = new UIAxis(AnchorStyles.Right | AnchorStyles.Bottom,
-                    new Padding(3, 3, 3, 3), new Size(70, 70), -100, 100);
-                glAxis.Initialize();
-                this.scene.UIRoot.Children.Add(glAxis);
+                var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
+                    new Padding(3, 3, 3, 3), new Size(128, 128), -100, 100);
+                uiAxis.Initialize();
+                this.scene.UIRoot.Children.Add(uiAxis);
 
                 this.UpdateLabel();
             }
