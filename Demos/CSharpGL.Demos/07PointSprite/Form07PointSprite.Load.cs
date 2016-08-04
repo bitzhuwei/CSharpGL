@@ -14,6 +14,8 @@ namespace CSharpGL.Demos
     public partial class Form07PointSprite : Form
     {
         private FormProperyGrid formPropertyGrid;
+        private UIRoot uiRoot;
+        private UIAxis glAxis;
 
 
         private void Form_Load(object sender, EventArgs e)
@@ -31,6 +33,18 @@ namespace CSharpGL.Demos
                 var renderer = new PointSpriteRenderer(10000);
                 renderer.Initialize();
                 this.renderer = renderer;
+            }
+            {
+                var UIRoot = new UIRoot();
+                UIRoot.Initialize();
+                this.uiRoot = UIRoot;
+
+                var glAxis = new UIAxis(AnchorStyles.Right | AnchorStyles.Bottom,
+                    new Padding(3, 3, 3, 3), new Size(100, 100), -100, 100);
+                glAxis.Initialize();
+                this.glAxis = glAxis;
+
+                UIRoot.Children.Add(glAxis);
             }
             {
                 var frmPropertyGrid = new FormProperyGrid(this.renderer);

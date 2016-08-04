@@ -40,7 +40,7 @@ namespace CSharpGL.Demos
                 this.uiRoot = UIRoot;
 
                 var glAxis = new UIAxis(AnchorStyles.Right | AnchorStyles.Bottom,
-                    new Padding(3, 3, 3, 3), new Size(70, 70), -100, 100);
+                    new Padding(3, 3, 3, 3), new Size(100, 100), -100, 100);
                 glAxis.Initialize();
                 this.glAxis = glAxis;
 

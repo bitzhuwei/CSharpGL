@@ -48,6 +48,11 @@ namespace CSharpGL.Demos
             {
                 renderer.Render(arg);
             }
+            UIRoot uiRoot = this.uiRoot;
+            if (uiRoot != null)
+            {
+                uiRoot.Render(arg);
+            }
 
             Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
             // Cross cursor shows where the mouse is.
