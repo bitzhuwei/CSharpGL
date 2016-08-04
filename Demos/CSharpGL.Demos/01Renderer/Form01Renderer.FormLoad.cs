@@ -14,7 +14,8 @@ namespace CSharpGL.Demos
     public partial class Form01Renderer : Form
     {
         private FormIndexBufferPtrBoard frmIndexBufferPtrBoard;
-        private UIAxis glAxis;
+        private UIAxis uiAxis;
+        private UIText uiText;
         private UIRoot uiRoot;
 
         private void Form_Load(object sender, EventArgs e)
@@ -142,12 +143,19 @@ namespace CSharpGL.Demos
                 UIRoot.Initialize();
                 this.uiRoot = UIRoot;
 
-                var glAxis = new UIAxis(AnchorStyles.Right | AnchorStyles.Bottom,
+                var uiAxis = new UIAxis(AnchorStyles.Right | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(70, 70), -100, 100);
-                glAxis.Initialize();
-                this.glAxis = glAxis;
+                uiAxis.Initialize();
+                UIRoot.Children.Add(uiAxis);
+                this.uiAxis = uiAxis;
 
-                UIRoot.Children.Add(glAxis);
+                var font = new Font("Courier New", 32);
+                var uiText = new UIText(AnchorStyles.Left | AnchorStyles.Bottom,
+                    new Padding(0, 0, 0, 0), new Size(200, 20), -100, 100,
+                   font.GetFontBitmap("[index: 0123456789]").GetFontTexture());
+                uiText.Text = "";
+                uiRoot.Children.Add(uiText);
+                this.uiText = uiText;
             }
             {
                 var frmPropertyGrid = new FormProperyGrid(this.rendererDict[this.SelectedModel].PickableRenderer);

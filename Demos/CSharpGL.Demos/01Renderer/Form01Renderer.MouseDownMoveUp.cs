@@ -152,9 +152,10 @@ namespace CSharpGL.Demos
             Color c = OpenGL.ReadPixel(x, this.glCanvas1.Height - y - 1);
             c = Color.FromArgb(255, c);
             this.lblColor.BackColor = c;
-            this.lblReadColor.Text = string.Format(
+            string content = string.Format(
                 "{0} @ {1}", c,
                 new Point(x, this.glCanvas1.Height - y - 1));
+            this.lblReadColor.Text = content;
         }
 
         private PickedGeometry RunPicking(RenderEventArg arg, int x, int y)
