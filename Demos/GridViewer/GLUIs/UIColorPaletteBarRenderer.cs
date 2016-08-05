@@ -22,7 +22,7 @@ namespace GridViewer
             get { return colorPaletteBarSampler; }
         }
 
-        public CodedColor[] CodedColors { get; private set; }
+        private CodedColor[] codedColors;
 
         /// <summary>
         /// 彩色的色标带。
@@ -38,7 +38,7 @@ namespace GridViewer
             System.Drawing.Size size, int zNear, int zFar)
             : base(anchor, margin, size, zNear, zFar)
         {
-            this.CodedColors = codedColors;
+            this.codedColors = codedColors;
             this.colorType = colorType;
 
             if (colorType == QuadStripRenderer.ColorType.Color)
@@ -65,7 +65,8 @@ namespace GridViewer
             if (this.colorType == QuadStripRenderer.ColorType.Texture)
             {
                 var texture = new sampler1D();
-                Bitmap bitmap = this.CodedColors.GetBitmap(1024);
+                Bitmap bitmap = this.codedColors.GetBitmap(1024);
+                this.codedColors = null;
                 texture.Initialize(bitmap);
                 this.colorPaletteBarSampler = texture;
                 bitmap.Dispose();

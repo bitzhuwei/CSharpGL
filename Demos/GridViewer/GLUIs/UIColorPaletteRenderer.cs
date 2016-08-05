@@ -14,7 +14,7 @@ namespace GridViewer
     /// 在窗口固定位置显示的色标。
     /// 本类型只圈定了一个矩形范围。
     /// </summary>
-    class UIColorPaletteRenderer : UIRenderer
+    public class UIColorPaletteRenderer : UIRenderer
     {
         List<UIText> labelList = new List<UIText>();
         const int marginLeft = 50;
@@ -176,19 +176,23 @@ namespace GridViewer
                 this.colorPaletteBar.UpdateCodedColor(codedColors);
                 this.colorPaletteBar2.UpdateCodedColor(codedColors);
                 this.markers.UpdateCodedColors(codedColors);
-                for (int i = 0; i < codedColors.Length; i++)
-                {
-                    this.labelList[i].Enabled = true;
-                    this.labelList[i].Text = string.Format("{0}", codedColors[i].Value);
-                }
-                for (int i = codedColors.Length; i < this.maxMarkerCount; i++)
-                {
-                    this.labelList[i].Enabled = false;
-                }
                 this.currentMarkersCount = codedColors.Length;
             }
         }
 
         public const int bitmapWidth = 1024;
+
+        public void SetCodedColor(double axisMin, double axisMax, double step)
+        {
+            for (int i = 0; i < step; i++)
+            {
+                this.labelList[i].Enabled = true;
+                this.labelList[i].Text = string.Format("{0}", axisMin + (axisMax - axisMin) * i / step);
+            }
+            for (int i = (int)step; i < this.maxMarkerCount; i++)
+            {
+                this.labelList[i].Enabled = false;
+            }
+        }
     }
 }

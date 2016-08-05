@@ -16,6 +16,8 @@ namespace GridViewer
 
         public UICodedColorBar uiCodedColorBar { get; private set; }
 
+        public UIColorPaletteRenderer uiColorPalette { get; private set; }
+
         public UIAxis uiAxis { get; private set; }
 
         public sampler1D CodedColorSampler

@@ -13,7 +13,6 @@ namespace GridViewer
 {
     public partial class ScientificCanvas
     {
-        private UIColorPaletteRenderer uiColorPalette;
 
         void ScientificCanvas_Load(object sender, EventArgs e)
         {
@@ -59,6 +58,7 @@ namespace GridViewer
             //this.MouseWheel += ScientificCanvas_MouseWheel;
 
         }
+
 
     }
 }
