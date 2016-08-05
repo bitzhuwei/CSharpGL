@@ -48,6 +48,7 @@ namespace GridViewer
             grid.MaxColorCode = (float)axisMax;
             grid.UpdateColor(property);
             this.scientificCanvas.uiCodedColorBar.UpdateValues(axisMin, axisMax, step);
+            this.scientificCanvas.uiColorPalette.SetCodedColor(axisMin, axisMax, step);
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
