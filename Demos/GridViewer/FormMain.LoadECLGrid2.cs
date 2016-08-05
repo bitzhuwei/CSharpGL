@@ -49,9 +49,11 @@ namespace GridViewer
                 sceneObject.Transform.Position = -grid.DataSource.TranslateMatrix;
                 this.scientificCanvas.Scene.ObjectList.Add(sceneObject);
                 string caseFileName = System.IO.Path.GetFileName(fileName);
-                TreeNode gridderNode = this.objectsTreeView.Nodes.Add(caseFileName);
-                gridderNode.Tag = sceneObject;
+                var gridderNode = new SceneObjectTreeNode(sceneObject);
+                gridderNode.Text = caseFileName;
+                gridderNode.Tag = sceneObject;//TODO: this is not needed any more.
                 gridderNode.ToolTipText = grid.GetType().Name;
+                this.objectsTreeView.Nodes.Add(gridderNode);
                 //if (gridProps.Count <= 0)
                 //{
                 //    GridBlockProperty gbp = this.CreateGridSequenceGridBlockProperty(gridderSource, "INDEX");
@@ -59,8 +61,12 @@ namespace GridViewer
                 //}
                 foreach (GridBlockProperty gbp in gridProperties)
                 {
-                    TreeNode propNode = gridderNode.Nodes.Add(gbp.Name);
+                    var script = new ScientificModelScriptComponent(sceneObject);
+                    sceneObject.ScriptList.Add(script);
+                    var propNode = new PropertyTreeNode(script);
+                    propNode.Text = gbp.Name;
                     propNode.Tag = gbp;
+                    gridderNode.Nodes.Add(propNode);
                 }
 
                 this.objectsTreeView.ExpandAll();

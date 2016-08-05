@@ -153,7 +153,7 @@
     </Compile>
     <Compile Include="Models\CatesianGrid\CatesianGrid.cs" />
     <Compile Include="TreeNodes\ScientificModelScriptComponent.cs" />
-    <Compile Include="TreeNodes\ScientificModelScriptComponentTreeNode.cs" />
+    <Compile Include="TreeNodes\PropertyTreeNode.cs" />
     <Compile Include="SingleFilePropertyLoader.cs" />
     <Compile Include="Utils\ArrayHelper.cs" />
     <Compile Include="Utils\ColorMapAxisAutomation.cs" />

@@ -11,10 +11,10 @@ using CSharpGL;
 
 namespace GridViewer
 {
-    public partial class ScriptComponentTreeNode : TreeNode
+    public partial class PropertyTreeNode : TreeNode
     {
         private ScientificModelScriptComponent scriptComponent;
-        public ScriptComponentTreeNode(ScientificModelScriptComponent scriptComponent)
+        public PropertyTreeNode(ScientificModelScriptComponent scriptComponent)
         {
             this.scriptComponent = scriptComponent;
         }
