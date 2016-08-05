@@ -12,8 +12,6 @@ namespace GridViewer
     public partial class CatesianGridRenderer : GridViewRenderer
     {
         private sampler1D codedColorSampler;
-        //IBoundingBox boundingBox;
-        BoundingBoxRenderer boundingBoxRenderer;
 
         public static CatesianGridRenderer Create(CatesianGrid grid, sampler1D codedColorSampler)
         {
@@ -32,9 +30,6 @@ namespace GridViewer
             : base(catesianGrid, shaderCodes, propertyNameMap, switches)
         {
             this.Grid = catesianGrid;
-            this.boundingBoxRenderer = BoundingBoxRenderer.Create(
-                catesianGrid.DataSource.SourceActiveBounds.Max
-                - catesianGrid.DataSource.SourceActiveBounds.Min);
             this.codedColorSampler = codedColorSampler;
         }
 
@@ -48,12 +43,5 @@ namespace GridViewer
                 BindTextureTarget.Texture1D, this.codedColorSampler.Id, OpenGL.GL_TEXTURE0));
         }
 
-        protected override void DoRender(RenderEventArg arg)
-        {
-            //this.boundingBox.Render(Color.White, arg);
-            this.boundingBoxRenderer.Render(arg);
-
-            base.DoRender(arg);
-        }
     }
 }
