@@ -7,13 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CSharpGL;
 
 namespace GridViewer
 {
     public partial class SceneObjectTreeNode : TreeNode
     {
-        public SceneObjectTreeNode()
+        private SceneObject sceneObject;
+        public SceneObjectTreeNode(SceneObject sceneObject)
         {
+            this.sceneObject = sceneObject;
         }
     }
 }
