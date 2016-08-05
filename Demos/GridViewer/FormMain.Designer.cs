@@ -90,10 +90,11 @@
             this.objectsTreeView = new System.Windows.Forms.TreeView();
             this.treeViewRightMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adjustCameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.scientificCanvas = new GridViewer.ScientificCanvas();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.adjustCameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniLoadECLGrid2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -212,6 +213,7 @@
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mniLoadECLGrid2,
             this.mniLoadECLGrid,
             this.mniLoadSimbaGrid,
             this.mniLoadSimbaPoints,
@@ -597,7 +599,7 @@
             this.deleteToolStripMenuItem,
             this.adjustCameraToolStripMenuItem});
             this.treeViewRightMenu.Name = "treeViewRightMenu";
-            this.treeViewRightMenu.Size = new System.Drawing.Size(191, 84);
+            this.treeViewRightMenu.Size = new System.Drawing.Size(191, 56);
             // 
             // deleteToolStripMenuItem
             // 
@@ -605,6 +607,13 @@
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // adjustCameraToolStripMenuItem
+            // 
+            this.adjustCameraToolStripMenuItem.Name = "adjustCameraToolStripMenuItem";
+            this.adjustCameraToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
+            this.adjustCameraToolStripMenuItem.Text = "Adjust Camera";
+            this.adjustCameraToolStripMenuItem.Click += new System.EventHandler(this.adjustCameraToolStripMenuItem_Click);
             // 
             // propertyGrid1
             // 
@@ -631,12 +640,12 @@
             this.openFileDialog1.FilterIndex = 2;
             this.openFileDialog1.RestoreDirectory = true;
             // 
-            // adjustCameraToolStripMenuItem
+            // mniLoadECLGrid2
             // 
-            this.adjustCameraToolStripMenuItem.Name = "adjustCameraToolStripMenuItem";
-            this.adjustCameraToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
-            this.adjustCameraToolStripMenuItem.Text = "Adjust Camera";
-            this.adjustCameraToolStripMenuItem.Click += new System.EventHandler(this.adjustCameraToolStripMenuItem_Click);
+            this.mniLoadECLGrid2.Name = "mniLoadECLGrid2";
+            this.mniLoadECLGrid2.Size = new System.Drawing.Size(223, 26);
+            this.mniLoadECLGrid2.Text = "Load ECL Grid2";
+            this.mniLoadECLGrid2.Click += new System.EventHandler(this.mniLoadECLGrid2_Click);
             // 
             // FormMain
             // 
@@ -737,6 +746,7 @@
         private System.Windows.Forms.ToolStripMenuItem sceneToolStripMenuItem;
     	private System.Windows.Forms.ToolStripMenuItem scientificCanvasMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adjustCameraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mniLoadECLGrid2;
     }
 }
 

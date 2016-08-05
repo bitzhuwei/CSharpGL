@@ -22,5 +22,13 @@ namespace GridViewer
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Show property's color binded to this script.
+        /// </summary>
+        public void Show()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

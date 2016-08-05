@@ -18,5 +18,10 @@ namespace GridViewer
         {
             this.scriptComponent = scriptComponent;
         }
+
+        public void Select()
+        {
+            this.scriptComponent.Show();
+        }
     }
 }
