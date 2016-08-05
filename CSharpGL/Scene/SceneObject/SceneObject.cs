@@ -106,16 +106,9 @@ namespace CSharpGL
             if (this.Enabled)
             {
                 ScriptComponentList scriptList = this.ScriptList;
-                if (scriptList.Count > 0)
+                foreach (var script in scriptList)
                 {
-                    foreach (var script in scriptList)
-                    {
-                        script.Update(elapsedTime);
-                    }
-                    //foreach (var item in this.Children)
-                    //{
-                    //    item.RefreshRelativeTransform();
-                    //}
+                    script.Update(elapsedTime);
                 }
             }
         }
