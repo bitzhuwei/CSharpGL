@@ -129,6 +129,7 @@
     <Compile Include="Renderers\CodedColorBarRenderer\CodedColorValueRenderer.cs" />
     <Compile Include="Renderers\CodedColorBarRenderer\UICodedColorBar.cs" />
     <Compile Include="Renderers\GridViewRenderer.cs" />
+    <Compile Include="TreeNodes\SceneObjectTreeNode.cs" />
     <Compile Include="ScientificCanvas.Property.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -145,6 +146,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Models\CatesianGrid\CatesianGrid.cs" />
+    <Compile Include="TreeNodes\ScriptComponentTreeNode.cs" />
     <Compile Include="SingleFilePropertyLoader.cs" />
     <Compile Include="Utils\ArrayHelper.cs" />
     <Compile Include="Utils\ColorMapAxisAutomation.cs" />
