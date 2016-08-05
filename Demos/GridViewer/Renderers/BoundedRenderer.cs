@@ -10,7 +10,6 @@ namespace GridViewer
 {
     public partial class BoundedRenderer : RendererBase
     {
-        private sampler1D codedColorSampler;
         /// <summary>
         /// Gets bounding box's renderer.
         /// </summary>
@@ -21,14 +20,13 @@ namespace GridViewer
         /// </summary>
         public Renderer ScientificRenderer { get; private set; }
 
-        public BoundedRenderer(Renderer scientificRenderer, vec3 lengths, sampler1D codedColorSampler)
+        public BoundedRenderer(Renderer scientificRenderer, vec3 lengths)
         {
-            if (scientificRenderer == null || codedColorSampler == null)
+            if (scientificRenderer == null)
             { throw new ArgumentNullException(); }
 
             this.BoxRenderer = BoundingBoxRenderer.Create(lengths);
             this.ScientificRenderer = scientificRenderer;
-            this.codedColorSampler = codedColorSampler;
         }
 
         protected override void DoInitialize()
@@ -37,17 +35,7 @@ namespace GridViewer
             if (boundingBox != null) { boundingBox.Initialize(); }
 
             Renderer scientific = this.ScientificRenderer;
-            if (scientific != null)
-            {
-                scientific.Initialize();
-                //var sampler1D = new sampler1D();
-                //var bitmap = new Bitmap(@"Images\simColorCode.jpg");
-                //sampler1D.Initialize(bitmap);
-                //bitmap.Dispose();
-                scientific.SetUniform("colorCodeSampler", new samplerValue(
-                     BindTextureTarget.Texture1D, this.codedColorSampler.Id, OpenGL.GL_TEXTURE0));
-                //BindTextureTarget.Texture1D, sampler1D.Id, OpenGL.GL_TEXTURE0));
-            }
+            if (scientific != null) { scientific.Initialize(); }
         }
 
         protected override void DoRender(RenderEventArg arg)

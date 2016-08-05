@@ -46,8 +46,7 @@ namespace GridViewer
                 CatesianGridRenderer scientificRenderer = CatesianGridRenderer.Create(grid, this.scientificCanvas.CodedColorSampler);
                 scientificRenderer.Initialize();
                 var boundedRenderer = new BoundedRenderer(scientificRenderer,
-                    grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min,
-                    this.scientificCanvas.CodedColorSampler);
+                    grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min);
                 var sceneObject = new SceneObject();
                 sceneObject.Name = grid.GetType().Name;
                 sceneObject.Renderer = new BoundedRendererComponent(boundedRenderer);
