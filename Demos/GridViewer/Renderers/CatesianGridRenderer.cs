@@ -15,7 +15,7 @@ namespace GridViewer
         //IBoundingBox boundingBox;
         BoundingBoxRenderer boundingBoxRenderer;
 
-        public static CatesianGridRenderer GetRenderer(CatesianGrid grid, sampler1D codedColorSampler)
+        public static CatesianGridRenderer Create(CatesianGrid grid, sampler1D codedColorSampler)
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\HexahedronGrid.vert"), ShaderType.VertexShader);

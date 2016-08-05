@@ -43,7 +43,7 @@ namespace GridViewer
                 double axisMin, axisMax, step;
                 ColorIndicatorAxisAutomator.Automate(firstProperty.MinValue, firstProperty.MaxValue, out axisMin, out axisMax, out step);
                 CatesianGrid grid = inputData.DumpCatesianGrid((float)axisMin, (float)axisMax);
-                CatesianGridRenderer scientificRenderer = CatesianGridRenderer.GetRenderer(grid, this.scientificCanvas.CodedColorSampler);
+                CatesianGridRenderer scientificRenderer = CatesianGridRenderer.Create(grid, this.scientificCanvas.CodedColorSampler);
                 scientificRenderer.Initialize();
                 var boundedRenderer = new BoundedRenderer(scientificRenderer,
                     grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min,
@@ -98,13 +98,5 @@ namespace GridViewer
             }
         }
 
-        private SimulationInputData LoadEclInputData(String fileName)
-        {
-            KeywordSchema schema = KeywordSchemaExtension.RestoreSchemaFromEmbededResource();
-            SimulationInputData inputData = new SimulationInputData(schema);
-            inputData.ThrowError = true;
-            inputData.LoadFromFile(fileName);
-            return inputData;
-        }
     }
 }

@@ -9,7 +9,7 @@ namespace GridViewer
 {
     public class GridViewRenderer : Renderer
     {
-        public GridViewRenderer(CatesianGrid catesianGrid, ShaderCode[] shaderCodes,
+        public GridViewRenderer(IBufferable catesianGrid, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(catesianGrid, shaderCodes, propertyNameMap, switches)
         {
