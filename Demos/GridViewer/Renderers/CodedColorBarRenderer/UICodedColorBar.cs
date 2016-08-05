@@ -64,7 +64,20 @@ namespace GridViewer
             base.DoRender(arg);
         }
 
-        public void UpdateValues(float[] values)
+        //public void UpdateValues(float[] values)
+        //{
+        //    var renderer = this.Renderer as CodedColorBarRenderer;
+        //    for (int i = 0; i < renderer.ValueRenderers.Length; i++)
+        //    {
+        //        CodedColorValueRenderer valueRenderer = renderer.ValueRenderers[i];
+        //        if (valueRenderer != null)
+        //        {
+        //            valueRenderer.Text = string.Format("{0}", values[i]);
+        //        }
+        //    }
+        //}
+
+        public void UpdateValues(double min, double max, double step)
         {
             var renderer = this.Renderer as CodedColorBarRenderer;
             for (int i = 0; i < renderer.ValueRenderers.Length; i++)
@@ -72,7 +85,7 @@ namespace GridViewer
                 CodedColorValueRenderer valueRenderer = renderer.ValueRenderers[i];
                 if (valueRenderer != null)
                 {
-                    valueRenderer.Text = string.Format("{0}", values[i]);
+                    valueRenderer.Text = string.Format("{0}", (max - min) * i / renderer.ValueRenderers.Length);
                 }
             }
         }

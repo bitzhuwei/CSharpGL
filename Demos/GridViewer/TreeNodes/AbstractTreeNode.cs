@@ -10,7 +10,7 @@ namespace GridViewer
     public abstract class AbstractTreeNode : TreeNode
     {
 
-        public abstract void Selected(object sender, EventArgs e);
+        public abstract void Selected(object sender, TreeViewEventArgs e);
 
     }
 }

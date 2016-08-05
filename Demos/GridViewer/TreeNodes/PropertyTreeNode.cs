@@ -19,7 +19,7 @@ namespace GridViewer
             this.scriptComponent = scriptComponent;
         }
 
-        public override void Selected(object sender, EventArgs e)
+        public override void Selected(object sender, TreeViewEventArgs e)
         {
             this.scriptComponent.Show();
         }

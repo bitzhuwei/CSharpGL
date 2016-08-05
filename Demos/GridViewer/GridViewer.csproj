@@ -117,6 +117,7 @@
     <Compile Include="helper\VertexHelper.cs" />
     <Compile Include="Loader\DynamicUnstructureGeometryLoader.cs" />
     <Compile Include="Loader\PointSetLoader.cs" />
+    <Compile Include="Models\IUpdateColorPalette.cs" />
     <Compile Include="Models\WellPipeline.cs" />
     <None Include="Models\readme.md" />
     <Compile Include="Models\CatesianGrid\CatesianGrid.Index.cs" />

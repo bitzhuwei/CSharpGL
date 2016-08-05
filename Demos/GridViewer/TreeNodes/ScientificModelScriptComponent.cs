@@ -1,17 +1,22 @@
 ﻿using CSharpGL;
+using SimLab.helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TracyEnergy.Simba.Data.Keywords.impl;
 
 namespace GridViewer
 {
     public class ScientificModelScriptComponent : ScriptComponent
     {
-        public ScientificModelScriptComponent(SceneObject sceneObject)
+        private GridBlockProperty gridBlockProperty;
+        public ScientificModelScriptComponent(SceneObject sceneObject, GridBlockProperty gbp)
             : base(sceneObject)
-        { }
+        {
+            this.gridBlockProperty = gbp;
+        }
 
         protected override void DoInitialize()
         {
@@ -28,7 +33,28 @@ namespace GridViewer
         /// </summary>
         public void Show()
         {
-            throw new NotImplementedException();
+            //if (e.Node.Tag is GridBlockProperty)
+            //{
+            //    var sceneObject = this.BindingObject;
+            //    BoundedRenderer boundedRenderer = (sceneObject.Renderer as BoundedRendererComponent).Renderer;
+            //    if (boundedRenderer.Renderer is CatesianGridRenderer)
+            //    {
+            //        IUpdateColorPalette grid = (boundedRenderer.Renderer as GridViewRenderer).Grid;
+            //        UpdateCatesianGrid(grid, this.gridBlockProperty);
+            //    }
+            //    //this.scientificCanvas.Invalidate();
+            //}
         }
+
+        private void UpdateCatesianGrid(IUpdateColorPalette grid, GridBlockProperty property)
+        {
+            double axisMin, axisMax, step;
+            ColorIndicatorAxisAutomator.Automate(property.MinValue, property.MaxValue, out axisMin, out axisMax, out step);
+            grid.MinColorCode = (float)axisMin;
+            grid.MaxColorCode = (float)axisMax;
+            grid.UpdateColor(property);
+            //this.scientificCanvas.uiCodedColorBar.UpdateValues(property.Values);
+        }
+
     }
 }

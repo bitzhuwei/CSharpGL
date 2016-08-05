@@ -61,7 +61,7 @@ namespace GridViewer
                 //}
                 foreach (GridBlockProperty gbp in gridProperties)
                 {
-                    var script = new ScientificModelScriptComponent(sceneObject);
+                    var script = new ScientificModelScriptComponent(sceneObject, gbp);
                     sceneObject.ScriptList.Add(script);
                     var propNode = new PropertyTreeNode(script);
                     propNode.Text = gbp.Name;
@@ -70,7 +70,7 @@ namespace GridViewer
                 }
 
                 this.objectsTreeView.ExpandAll();
-                this.scientificCanvas.uiCodedColorBar.UpdateValues(firstProperty.Values);
+                this.scientificCanvas.uiCodedColorBar.UpdateValues(axisMin, axisMax, step);
                 //modelContainer.AddChild(gridder);
                 //modelContainer.BoundingBox.SetBounds(gridderSource.TransformedActiveBounds.Min, gridderSource.TransformedActiveBounds.Max);
                 //this.scene.ViewType = ViewTypes.UserView;

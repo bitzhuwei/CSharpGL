@@ -18,15 +18,15 @@ namespace GridViewer
         /// <summary>
         /// Gets scientific model's renderer.
         /// </summary>
-        public Renderer ScientificRenderer { get; private set; }
+        public GridViewRenderer Renderer { get; private set; }
 
-        public BoundedRenderer(Renderer scientificRenderer, vec3 lengths)
+        public BoundedRenderer(GridViewRenderer renderer, vec3 lengths)
         {
-            if (scientificRenderer == null)
+            if (renderer == null)
             { throw new ArgumentNullException(); }
 
             this.BoxRenderer = BoundingBoxRenderer.Create(lengths);
-            this.ScientificRenderer = scientificRenderer;
+            this.Renderer = renderer;
         }
 
         protected override void DoInitialize()
@@ -34,7 +34,7 @@ namespace GridViewer
             Renderer boundingBox = this.BoxRenderer;
             if (boundingBox != null) { boundingBox.Initialize(); }
 
-            Renderer scientific = this.ScientificRenderer;
+            Renderer scientific = this.Renderer;
             if (scientific != null) { scientific.Initialize(); }
         }
 
@@ -46,7 +46,7 @@ namespace GridViewer
             Renderer boundingBox = this.BoxRenderer;
             if (boundingBox != null) { boundingBox.Render(arg); }
 
-            Renderer renderer = this.ScientificRenderer;
+            Renderer renderer = this.Renderer;
             if (renderer != null) { renderer.Render(arg); }
         }
 
@@ -55,7 +55,7 @@ namespace GridViewer
             BoundingBoxRenderer boundingBox = this.BoxRenderer;
             if (boundingBox != null) { boundingBox.Dispose(); }
 
-            Renderer scientific = this.ScientificRenderer;
+            Renderer scientific = this.Renderer;
             if (scientific != null) { scientific.Dispose(); }
         }
 

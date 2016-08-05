@@ -33,9 +33,9 @@ namespace GridViewer
                     renderer.BoxRenderer.SetUniform(strprojection, projection);
                     renderer.BoxRenderer.SetUniform(strview, view);
                     renderer.BoxRenderer.SetUniform(strmodel, model);
-                    renderer.ScientificRenderer.SetUniform(strprojection, projection);
-                    renderer.ScientificRenderer.SetUniform(strview, view);
-                    renderer.ScientificRenderer.SetUniform(strmodel, model);
+                    renderer.Renderer.SetUniform(strprojection, projection);
+                    renderer.Renderer.SetUniform(strview, view);
+                    renderer.Renderer.SetUniform(strmodel, model);
                 }
 
                 renderer.Render(arg);

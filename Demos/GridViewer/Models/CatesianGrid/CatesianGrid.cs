@@ -9,7 +9,7 @@ using TracyEnergy.Simba.Data.Keywords.impl;
 
 namespace GridViewer
 {
-    public partial class CatesianGrid : IBufferable
+    public partial class CatesianGrid : IBufferable, IUpdateColorPalette
     {
 
         public List<GridBlockProperty> GridBlockProperties { get; private set; }

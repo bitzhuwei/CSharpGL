@@ -19,7 +19,7 @@ namespace GridViewer
             this.sceneObject = sceneObject;
         }
 
-        public override void Selected(object sender, EventArgs e)
+        public override void Selected(object sender, TreeViewEventArgs e)
         {
         }
     }

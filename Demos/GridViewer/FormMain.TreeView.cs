@@ -15,15 +15,17 @@ namespace GridViewer
 
         private void objectsTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            //var node = e.Node as AbstractTreeNode;
+            //node.Selected(sender, e);
             this.propertyGrid1.SelectedObject = e.Node.Tag;
             if (e.Node.Tag is GridBlockProperty)
             {
                 var property = e.Node.Tag as GridBlockProperty;
                 var sceneObject = e.Node.Parent.Tag as SceneObject;
                 BoundedRenderer boundedRenderer = (sceneObject.Renderer as BoundedRendererComponent).Renderer;
-                if (boundedRenderer.ScientificRenderer is CatesianGridRenderer)
+                if (boundedRenderer.Renderer is CatesianGridRenderer)
                 {
-                    CatesianGrid grid = (boundedRenderer.ScientificRenderer as CatesianGridRenderer).Grid;
+                    CatesianGrid grid = (boundedRenderer.Renderer as CatesianGridRenderer).Grid;
                     UpdateCatesianGrid(grid, property);
                 }
                 this.scientificCanvas.Invalidate();
@@ -31,7 +33,7 @@ namespace GridViewer
             else if (e.Node.ToolTipText == typeof(CatesianGrid).Name)
             {
                 var sceneObject = e.Node.Tag as SceneObject;
-                CatesianGrid grid = ((sceneObject.Renderer as BoundedRendererComponent).Renderer.ScientificRenderer as CatesianGridRenderer).Grid;
+                CatesianGrid grid = ((sceneObject.Renderer as BoundedRendererComponent).Renderer.Renderer as CatesianGridRenderer).Grid;
                 GridBlockProperty property = grid.GridBlockProperties[0];
                 UpdateCatesianGrid(grid, property);
                 this.scientificCanvas.Invalidate();
@@ -45,7 +47,7 @@ namespace GridViewer
             grid.MinColorCode = (float)axisMin;
             grid.MaxColorCode = (float)axisMax;
             grid.UpdateColor(property);
-            this.scientificCanvas.uiCodedColorBar.UpdateValues(property.Values);
+            this.scientificCanvas.uiCodedColorBar.UpdateValues(axisMin, axisMax, step);
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -73,6 +75,11 @@ namespace GridViewer
             }
         }
 
+        /// <summary>
+        /// move camera to focus on selected scene object again.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void adjustCameraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TreeNode node = this.objectsTreeView.SelectedNode;

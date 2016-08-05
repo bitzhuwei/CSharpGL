@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GridViewer
 {
-    public class GridViewRenderer : Renderer
+    public class GridViewRenderer : Renderer, IUpdateColorPalette
     {
         public GridViewRenderer(IBufferable catesianGrid, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
@@ -15,5 +15,34 @@ namespace GridViewer
         {
         }
 
+
+        public void UpdateColor(TracyEnergy.Simba.Data.Keywords.impl.GridBlockProperty property)
+        {
+            throw new NotImplementedException();
+        }
+
+        public float MinColorCode
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public float MaxColorCode
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

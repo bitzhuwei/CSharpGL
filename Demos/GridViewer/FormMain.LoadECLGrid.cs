@@ -68,7 +68,7 @@ namespace GridViewer
                 }
 
                 this.objectsTreeView.ExpandAll();
-                this.scientificCanvas.uiCodedColorBar.UpdateValues(firstProperty.Values);
+                this.scientificCanvas.uiCodedColorBar.UpdateValues(axisMin, axisMax, step);
                 //modelContainer.AddChild(gridder);
                 //modelContainer.BoundingBox.SetBounds(gridderSource.TransformedActiveBounds.Min, gridderSource.TransformedActiveBounds.Max);
                 //this.scene.ViewType = ViewTypes.UserView;
