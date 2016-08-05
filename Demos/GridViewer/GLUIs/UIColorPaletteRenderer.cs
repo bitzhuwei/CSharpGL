@@ -73,7 +73,7 @@ namespace GridViewer
 
             {
                 var bar = new UIColorPaletteBarRenderer(
-                    maxMarkerCount, codedColors,
+                    2, codedColors,
                 System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right,
                 new System.Windows.Forms.Padding(marginLeft, 1, marginRight, 0),
                 new System.Drawing.Size(size.Width - 100, size.Height / 3),
@@ -125,6 +125,8 @@ namespace GridViewer
             {
                 item.Initialize();
             }
+
+            this.SetCodedColor(-100, 100, 200);
         }
 
         /// <summary>
@@ -149,7 +151,7 @@ namespace GridViewer
         {
             UIColorPaletteBarRenderer bar = this.colorPaletteBar;
             if (bar != null)
-            { return this.colorPaletteBar.UpdateTexture(bitmap); }
+            { return bar.UpdateTexture(bitmap); }
             else
             { return false; }
         }
