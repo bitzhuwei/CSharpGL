@@ -13,8 +13,8 @@ namespace GridViewer
 {
     public partial class ScriptComponentTreeNode : TreeNode
     {
-        private ScriptComponent scriptComponent;
-        public ScriptComponentTreeNode(ScriptComponent scriptComponent)
+        private ScientificModelScriptComponent scriptComponent;
+        public ScriptComponentTreeNode(ScientificModelScriptComponent scriptComponent)
         {
             this.scriptComponent = scriptComponent;
         }

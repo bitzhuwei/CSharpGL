@@ -146,7 +146,8 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Models\CatesianGrid\CatesianGrid.cs" />
-    <Compile Include="TreeNodes\ScriptComponentTreeNode.cs" />
+    <Compile Include="TreeNodes\ScientificModelScriptComponent.cs" />
+    <Compile Include="TreeNodes\ScientificModelScriptComponentTreeNode.cs" />
     <Compile Include="SingleFilePropertyLoader.cs" />
     <Compile Include="Utils\ArrayHelper.cs" />
     <Compile Include="Utils\ColorMapAxisAutomation.cs" />
