@@ -42,12 +42,12 @@ namespace GridViewer
             base.DoRender(arg);
         }
 
-        public void UpdateCodedColors(CodedColor[] codedColors)
+        public void UpdateCodedColors(double axisMin, double axisMax, double step)
         {
             var renderer = this.Renderer as LinesRenderer;
             if (renderer != null)
             {
-                renderer.UpdateCodedColors(codedColors);
+                renderer.UpdateCodedColors(axisMin, axisMax, step);
             }
         }
     }

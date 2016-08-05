@@ -62,32 +62,66 @@ namespace GridViewer
         }
 
 
-        public void UpdateCodedColors(CodedColor[] codedColors)
+        public void UpdateCodedColors(double axisMin, double axisMax, double step)
         {
-            int lineCount = codedColors.Length;
-
+            int lineCount = (int)((axisMax - axisMin) / step) + 1;
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+            unsafe
             {
-                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
-                IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
-                unsafe
+                var array = (vec3*)pointer.ToPointer();
+                // valid lines.
+                for (int i = 0; i < lineCount - 1; i++)
                 {
-                    var array = (vec3*)pointer.ToPointer();
-                    for (int i = 0; i < lineCount; i++)
-                    {
-                        //array[i * 2 + 0] = new vec3(-0.5f + (float)i / (float)(lineCount - 1), 0.5f, 0);
-                        //array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(lineCount - 1), -0.5f, 0);
-                        array[i * 2 + 0] = new vec3(-0.5f + codedColors[i].Coord, 0.5f, 0);
-                        array[i * 2 + 1] = new vec3(-0.5f + codedColors[i].Coord, -0.5f, 0);
-                    }
-                    for (int i = lineCount; i < this.markerCount; i++)
-                    {
-                        array[i * 2 + 0] = new vec3(0.5f, 0.5f, 0);
-                        array[i * 2 + 1] = new vec3(0.5f, -0.5f, 0);
-                    }
+                    array[i * 2 + 0] = new vec3(-0.5f
+                        + (float)(step * i / (axisMax - axisMin)),
+                        0.5f, 0);
+                    array[i * 2 + 1] = new vec3(-0.5f
+                        + (float)(step * i / (axisMax - axisMin)),
+                        -0.5f, 0);
                 }
-                OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
-                OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+                // last valid line.
+                {
+                    int i = lineCount - 1;
+                    array[i * 2 + 0] = new vec3(0.5f, 0.5f, 0);
+                    array[i * 2 + 1] = new vec3(0.5f, -0.5f, 0);
+                }
+                // invalid lines.
+                for (int i = lineCount; i < this.markerCount; i++)
+                {
+                    array[i * 2 + 0] = new vec3(0.5f, 0.5f, 0);
+                    array[i * 2 + 1] = new vec3(0.5f, -0.5f, 0);
+                }
             }
+            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
         }
+        //public void UpdateCodedColors(CodedColor[] codedColors)
+        //{
+        //    int lineCount = codedColors.Length;
+
+        //    {
+        //        OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.positionBufferPtr.BufferId);
+        //        IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+        //        unsafe
+        //        {
+        //            var array = (vec3*)pointer.ToPointer();
+        //            for (int i = 0; i < lineCount; i++)
+        //            {
+        //                //array[i * 2 + 0] = new vec3(-0.5f + (float)i / (float)(lineCount - 1), 0.5f, 0);
+        //                //array[i * 2 + 1] = new vec3(-0.5f + (float)i / (float)(lineCount - 1), -0.5f, 0);
+        //                array[i * 2 + 0] = new vec3(-0.5f + codedColors[i].Coord, 0.5f, 0);
+        //                array[i * 2 + 1] = new vec3(-0.5f + codedColors[i].Coord, -0.5f, 0);
+        //            }
+        //            for (int i = lineCount; i < this.markerCount; i++)
+        //            {
+        //                array[i * 2 + 0] = new vec3(0.5f, 0.5f, 0);
+        //                array[i * 2 + 1] = new vec3(0.5f, -0.5f, 0);
+        //            }
+        //        }
+        //        OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+        //        OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+        //    }
+        //}
     }
 }

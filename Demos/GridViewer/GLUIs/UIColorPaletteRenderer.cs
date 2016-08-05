@@ -24,35 +24,35 @@ namespace GridViewer
         /// renders a color palette bar with 1-D texture and its coordiante(float).
         /// </summary>
         private UIColorPaletteBarRenderer colorPaletteBar;
-        /// <summary>
-        /// renders a color palette bar with direct color(vec3).
-        /// Compare this with colorPaletteBar to check if there's difference.
-        /// </summary>
-        private UIColorPaletteBarRenderer colorPaletteBar2;
+        ///// <summary>
+        ///// renders a color palette bar with direct color(vec3).
+        ///// Compare this with colorPaletteBar to check if there's difference.
+        ///// </summary>
+        //private UIColorPaletteBarRenderer colorPaletteBar2;
         private UIColorPaletteMarkersRenderer markers;
         /// <summary>
         /// current marker's count.
         /// </summary>
         private int currentMarkersCount;
 
-        /// <summary>
-        /// Shows color palette bar rendered with direct color(vec3).
-        /// </summary>
-        [Description("Shows color palette bar rendered with direct color(vec3).")]
-        public bool ShowColorBar
-        {
-            get
-            {
-                if (this.colorPaletteBar2 == null) { return false; }
+        ///// <summary>
+        ///// Shows color palette bar rendered with direct color(vec3).
+        ///// </summary>
+        //[Description("Shows color palette bar rendered with direct color(vec3).")]
+        //public bool ShowColorBar
+        //{
+        //    get
+        //    {
+        //        if (this.colorPaletteBar2 == null) { return false; }
 
-                return this.colorPaletteBar2.Enabled;
-            }
-            set
-            {
-                RendererBase renderer = this.colorPaletteBar2;
-                if (renderer != null) { renderer.Enabled = value; }
-            }
-        }
+        //        return this.colorPaletteBar2.Enabled;
+        //    }
+        //    set
+        //    {
+        //        RendererBase renderer = this.colorPaletteBar2;
+        //        if (renderer != null) { renderer.Enabled = value; }
+        //    }
+        //}
 
         /// <summary>
         /// </summary>
@@ -72,7 +72,8 @@ namespace GridViewer
             this.SwitchList.Add(new ClearColorSwitch());
 
             {
-                var bar = new UIColorPaletteBarRenderer(maxMarkerCount, codedColors, QuadStripRenderer.ColorType.Texture,
+                var bar = new UIColorPaletteBarRenderer(
+                    maxMarkerCount, codedColors,
                 System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right,
                 new System.Windows.Forms.Padding(marginLeft, 1, marginRight, 0),
                 new System.Drawing.Size(size.Width - 100, size.Height / 3),
@@ -80,17 +81,6 @@ namespace GridViewer
                 //this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
                 this.colorPaletteBar = bar;
                 this.Children.Add(bar);
-            }
-            {
-                var bar = new UIColorPaletteBarRenderer(maxMarkerCount, codedColors, QuadStripRenderer.ColorType.Color,
-                System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right,
-                new System.Windows.Forms.Padding(marginLeft, 1 + size.Height / 3 + 1, marginRight, 0),
-                new System.Drawing.Size(size.Width - 100, size.Height / 3),
-                zNear, zFar);
-                //this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
-                this.colorPaletteBar2 = bar;
-                this.Children.Add(bar);
-                bar.Enabled = false;
             }
             {
                 var markers = new UIColorPaletteMarkersRenderer(maxMarkerCount,
@@ -163,35 +153,52 @@ namespace GridViewer
             { return false; }
         }
 
-        public int Update { get { return 0; } set { this.SetCodedColor(CodedColor.GetDefault()); } }
-        public void SetCodedColor(CodedColor[] codedColors)
-        {
-            {
-                Bitmap bitmap = codedColors.GetBitmap(bitmapWidth);
-                this.colorPaletteBar.UpdateTexture(bitmap);
-                //this.colorPaletteBar2.UpdateTexture(bitmap);
-                bitmap.Dispose();
-            }
-            {
-                this.colorPaletteBar.UpdateCodedColor(codedColors);
-                this.colorPaletteBar2.UpdateCodedColor(codedColors);
-                this.markers.UpdateCodedColors(codedColors);
-                this.currentMarkersCount = codedColors.Length;
-            }
-        }
+        //public int Update { get { return 0; } set { this.SetCodedColor(CodedColor.GetDefault()); } }
+        public int Update { get { return 0; } set { this.SetCodedColor(0, 100, 11); } }
+        //public void SetCodedColor(CodedColor[] codedColors)
+        //{
+        //    {
+        //        Bitmap bitmap = codedColors.GetBitmap(bitmapWidth);
+        //        this.colorPaletteBar.UpdateTexture(bitmap);
+        //        //this.colorPaletteBar2.UpdateTexture(bitmap);
+        //        bitmap.Dispose();
+        //    }
+        //    {
+        //        this.colorPaletteBar.UpdateCodedColor(codedColors);
+        //        this.colorPaletteBar2.UpdateCodedColor(codedColors);
+        //        //this.markers.UpdateCodedColors(codedColors);
+        //    }
+        //}
 
         public const int bitmapWidth = 1024;
 
         public void SetCodedColor(double axisMin, double axisMax, double step)
         {
-            for (int i = 0; i < step; i++)
+            // update markers(white vertical lines).
             {
-                this.labelList[i].Enabled = true;
-                this.labelList[i].Text = string.Format("{0}", axisMin + (axisMax - axisMin) * i / step);
+                this.markers.UpdateCodedColors(axisMin, axisMax, step);
             }
-            for (int i = (int)step; i < this.maxMarkerCount; i++)
+            // update labels.
             {
-                this.labelList[i].Enabled = false;
+                int labelCount = (int)((axisMax - axisMin) / step) + 1;
+                // valid labels.
+                for (int i = 0; i < labelCount - 1; i++)
+                {
+                    this.labelList[i].Enabled = true;
+                    this.labelList[i].Text = string.Format("{0}", axisMin + step * i);
+                }
+                // last valid label.
+                {
+                    int i = labelCount - 1;
+                    this.labelList[i].Enabled = true;
+                    this.labelList[i].Text = string.Format("{0}", axisMax);
+                }
+                // invalid labels.
+                for (int i = labelCount; i < this.maxMarkerCount; i++)
+                {
+                    this.labelList[i].Enabled = false;
+                }
+                this.currentMarkersCount = labelCount;
             }
         }
     }

@@ -14,13 +14,7 @@ namespace GridViewer
     class UIColorPaletteBarRenderer : UIRenderer
     {
 
-        private sampler1D colorPaletteBarSampler;
-        private QuadStripRenderer.ColorType colorType;
-
-        public sampler1D ColorPaletteBarSampler
-        {
-            get { return colorPaletteBarSampler; }
-        }
+        public sampler1D ColorPaletteBarSampler { get; private set; }
 
         private CodedColor[] codedColors;
 
@@ -33,51 +27,30 @@ namespace GridViewer
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
         public UIColorPaletteBarRenderer(int maxMarkerCount,
-            CodedColor[] codedColors, GridViewer.QuadStripRenderer.ColorType colorType,
+            CodedColor[] codedColors,
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
             : base(anchor, margin, size, zNear, zFar)
         {
             this.codedColors = codedColors;
-            this.colorType = colorType;
 
-            if (colorType == QuadStripRenderer.ColorType.Color)
-            {
-                Bitmap bitmap = codedColors.GetBitmap(1024);
-                var model = new QuadStripModel(maxMarkerCount - 1, bitmap);
-                this.Renderer = QuadStripRenderer.Create(model, colorType);
-            }
-            else if (colorType == QuadStripRenderer.ColorType.Texture)
-            {
-                var model = new QuadStripModel(maxMarkerCount - 1);
-                this.Renderer = QuadStripRenderer.Create(model, colorType);
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
+            var model = new QuadStripModel(maxMarkerCount - 1);
+            this.Renderer = QuadStripRenderer.Create(model);
         }
 
         protected override void DoInitialize()
         {
             base.DoInitialize();
 
-            if (this.colorType == QuadStripRenderer.ColorType.Texture)
-            {
-                var texture = new sampler1D();
-                Bitmap bitmap = this.codedColors.GetBitmap(1024);
-                this.codedColors = null;
-                texture.Initialize(bitmap);
-                this.colorPaletteBarSampler = texture;
-                bitmap.Dispose();
-                var renderer = this.Renderer as Renderer;
-                renderer.SetUniform("codedColorSampler", new samplerValue(BindTextureTarget.Texture1D,
-                    texture.Id, OpenGL.GL_TEXTURE0));
-            }
-            else if (this.colorType == QuadStripRenderer.ColorType.Color)
-            { }
-            else
-            { throw new NotImplementedException(); }
+            var texture = new sampler1D();
+            Bitmap bitmap = this.codedColors.GetBitmap(1024);
+            this.codedColors = null;
+            texture.Initialize(bitmap);
+            this.ColorPaletteBarSampler = texture;
+            bitmap.Dispose();
+            var renderer = this.Renderer as Renderer;
+            renderer.SetUniform("codedColorSampler", new samplerValue(BindTextureTarget.Texture1D,
+                texture.Id, OpenGL.GL_TEXTURE0));
         }
 
         protected override void DoRender(RenderEventArg arg)
@@ -94,25 +67,18 @@ namespace GridViewer
 
         public bool UpdateTexture(Bitmap bitmap)
         {
-            if (this.colorType == QuadStripRenderer.ColorType.Texture)
-            {
-                var textureUpdater = new TextureUpdater(this.colorPaletteBarSampler.Id);
+            var textureUpdater = new TextureUpdater(this.ColorPaletteBarSampler.Id);
 
-                return textureUpdater.UpdateTexture(bitmap);
-            }
-            else if (this.colorType == QuadStripRenderer.ColorType.Color)
-            { return false; }
-            else
-            { throw new NotImplementedException(); }
+            return textureUpdater.UpdateTexture(bitmap);
         }
 
-        public void UpdateCodedColor(CodedColor[] codedColors)
-        {
-            var renderer = this.Renderer as QuadStripRenderer;
-            if (renderer != null)
-            {
-                renderer.UpdateCodedColor(codedColors);
-            }
-        }
+        //public void UpdateCodedColor(CodedColor[] codedColors)
+        //{
+        //    var renderer = this.Renderer as QuadStripRenderer;
+        //    if (renderer != null)
+        //    {
+        //        renderer.UpdateCodedColor(codedColors);
+        //    }
+        //}
     }
 }
