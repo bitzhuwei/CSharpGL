@@ -151,7 +151,7 @@ namespace CSharpGL.Demos
 
                 var font = new Font("Courier New", 32);
                 var uiText = new UIText(AnchorStyles.Left | AnchorStyles.Bottom,
-                    new Padding(0, 0, 0, 0), new Size(200, 20), -100, 100,
+                    new Padding(0, 0, 0, 0), new Size(250, 20), -100, 100,
                    font.GetFontBitmap("[index: 0123456789]").GetFontTexture());
                 uiText.Text = "";
                 uiRoot.Children.Add(uiText);
@@ -173,7 +173,7 @@ namespace CSharpGL.Demos
                 this.formPropertyGrid = frmPropertyGrid;
             }
             {
-                var frmPropertyGrid = new FormProperyGrid(this.uiAxis);
+                var frmPropertyGrid = new FormProperyGrid(this.uiText);
                 frmPropertyGrid.Show();
             }
             {

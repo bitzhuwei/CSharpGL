@@ -179,11 +179,12 @@ namespace CSharpGL.Demos
             {
                 string content = string.Format("[index: {0}]",
                     pickedGeometry.Indexes.PrintArray());
-                SizeF size = e.Graphics.MeasureString(content, font);
+                //SizeF size = e.Graphics.MeasureString(content, font);
+                Size size = this.uiText.Size;
                 // make sure the text be displayed.
-                int x = mousePosition.X - (int)(size.Width / 2) + 20;
-                if (x + (int)(size.Width) - 20 >= this.glCanvas1.Width)
-                { x = this.glCanvas1.Width - (int)size.Width + 20; }
+                int x = mousePosition.X - (size.Width / 2);
+                if (x + (size.Width) >= this.glCanvas1.Width)
+                { x = this.glCanvas1.Width - size.Width; }
                 else if (x < 0)
                 { x = 0; }
                 // make sure the text be displayed.
