@@ -113,6 +113,7 @@ namespace GridViewer
                     this.labelList.Add(label);
                     this.Children.Add(label);
                 }
+                this.currentMarkersCount = 2;
             }
         }
 
