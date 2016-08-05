@@ -11,7 +11,7 @@ using CSharpGL;
 
 namespace GridViewer
 {
-    public partial class PropertyTreeNode : TreeNode
+    public partial class PropertyTreeNode : AbstractTreeNode
     {
         private ScientificModelScriptComponent scriptComponent;
         public PropertyTreeNode(ScientificModelScriptComponent scriptComponent)
@@ -19,7 +19,7 @@ namespace GridViewer
             this.scriptComponent = scriptComponent;
         }
 
-        public void Select()
+        public override void Selected(object sender, EventArgs e)
         {
             this.scriptComponent.Show();
         }

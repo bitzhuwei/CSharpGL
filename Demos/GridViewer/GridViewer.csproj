@@ -135,6 +135,7 @@
     <Compile Include="Renderers\CodedColorBarRenderer\CodedColorValueRenderer.cs" />
     <Compile Include="Renderers\CodedColorBarRenderer\UICodedColorBar.cs" />
     <Compile Include="Renderers\GridViewRenderer.cs" />
+    <Compile Include="TreeNodes\AbstractTreeNode.cs" />
     <Compile Include="TreeNodes\SceneObjectTreeNode.cs" />
     <Compile Include="ScientificCanvas.Property.cs">
       <SubType>UserControl</SubType>
