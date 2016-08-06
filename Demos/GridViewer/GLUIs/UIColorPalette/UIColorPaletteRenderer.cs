@@ -73,7 +73,7 @@ namespace GridViewer
 
             {
                 var bar = new UIColorPaletteBarRenderer(
-                    2, codedColors,
+                    codedColors,
                 System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right,
                 new System.Windows.Forms.Padding(marginLeft, 1, marginRight, 0),
                 new System.Drawing.Size(size.Width - marginLeft - marginRight, size.Height / 3),

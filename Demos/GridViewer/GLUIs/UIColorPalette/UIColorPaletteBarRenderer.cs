@@ -26,7 +26,7 @@ namespace GridViewer
         /// <param name="size"></param>
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
-        public UIColorPaletteBarRenderer(int maxMarkerCount,
+        public UIColorPaletteBarRenderer(
             CodedColor[] codedColors,
             System.Windows.Forms.AnchorStyles anchor, System.Windows.Forms.Padding margin,
             System.Drawing.Size size, int zNear, int zFar)
@@ -34,7 +34,7 @@ namespace GridViewer
         {
             this.codedColors = codedColors;
 
-            var model = new QuadStripModel(maxMarkerCount - 1);
+            var model = new QuadStripModel(1);
             this.Renderer = QuadStripRenderer.Create(model);
         }
 
