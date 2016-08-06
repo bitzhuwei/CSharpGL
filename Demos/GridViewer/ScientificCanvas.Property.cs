@@ -14,8 +14,6 @@ namespace GridViewer
     public partial class ScientificCanvas
     {
 
-        public UICodedColorBar uiCodedColorBar { get; private set; }
-
         public UIColorPaletteRenderer uiColorPalette { get; private set; }
 
         public UIAxis uiAxis { get; private set; }
@@ -24,7 +22,7 @@ namespace GridViewer
         {
             get
             {
-                return this.uiCodedColorBar.CodedColorSampler;
+                return this.uiColorPalette.CodedColorSampler;
             }
         }
     }

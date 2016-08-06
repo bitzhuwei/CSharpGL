@@ -47,7 +47,6 @@ namespace GridViewer
             grid.MinColorCode = (float)axisMin;
             grid.MaxColorCode = (float)axisMax;
             grid.UpdateColor(property);
-            this.scientificCanvas.uiCodedColorBar.UpdateValues(axisMin, axisMax, step);
             this.scientificCanvas.uiColorPalette.SetCodedColor(axisMin, axisMax, step);
         }
 

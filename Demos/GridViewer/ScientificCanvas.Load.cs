@@ -32,20 +32,10 @@ namespace GridViewer
                 this.Scene.UIRoot.Children.Add(uiAxis);
             }
             {
-                var uiCodedColorBar = new UICodedColorBar(
+                var uiColorPalette = new UIColorPaletteRenderer(100,
                     CodedColor.GetDefault(),
                     AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right,
                     new Padding(148, 10, 60, 10 + 40), new Size(400, 40), -100, 100);
-                uiCodedColorBar.Initialize();
-                uiCodedColorBar.SwitchList.Add(new ClearColorSwitch());
-                this.uiCodedColorBar = uiCodedColorBar;
-                this.Scene.UIRoot.Children.Add(uiCodedColorBar);
-            }
-            {
-                var uiColorPalette = new UIColorPaletteRenderer(100,
-                    CodedColor.GetDefault(),
-                    AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right,
-                    new Padding(120, 10, 60, 10 + 40), new Size(400, 40), -100, 100);
                 uiColorPalette.Initialize();
                 this.uiColorPalette = uiColorPalette;
                 this.Scene.UIRoot.Children.Add(uiColorPalette);

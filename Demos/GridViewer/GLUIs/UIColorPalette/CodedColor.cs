@@ -7,6 +7,9 @@ using System.Text;
 
 namespace GridViewer
 {
+    /// <summary>
+    /// 用以描述色标的颜色、位置和数值。
+    /// </summary>
     public class CodedColor
     {
 

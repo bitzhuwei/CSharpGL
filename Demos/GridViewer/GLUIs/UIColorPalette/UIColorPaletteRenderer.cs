@@ -204,5 +204,7 @@ namespace GridViewer
                 this.currentMarkersCount = labelCount;
             }
         }
+
+        public sampler1D CodedColorSampler { get { return this.colorPaletteBar.ColorPaletteBarSampler; } }
     }
 }
