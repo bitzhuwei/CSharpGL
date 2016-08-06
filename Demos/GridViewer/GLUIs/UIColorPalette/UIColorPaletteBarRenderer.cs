@@ -68,11 +68,11 @@ namespace GridViewer
             base.DoRender(arg);
         }
 
-        public bool UpdateTexture(Bitmap bitmap)
+        public void UpdateTexture(Bitmap bitmap)
         {
             var textureUpdater = new TextureUpdater(this.Sampler.Id);
 
-            return textureUpdater.UpdateTexture(bitmap);
+            textureUpdater.UpdateTexture(bitmap);
         }
 
         //public void UpdateCodedColor(CodedColor[] codedColors)

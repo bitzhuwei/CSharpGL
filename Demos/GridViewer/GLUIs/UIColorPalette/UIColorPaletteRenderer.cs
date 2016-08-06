@@ -71,6 +71,7 @@ namespace GridViewer
             this.currentMarkersCount = maxMarkerCount;
             this.SwitchList.Add(new ClearColorSwitch());
 
+            // color bar using texture.
             {
                 var bar = new UIColorPaletteBarRenderer(
                     codedColors,
@@ -82,6 +83,8 @@ namespace GridViewer
                 this.Children.Add(bar);
                 this.colorPaletteBar = bar;
             }
+            // color bar using vec3 color(hidden as default state)
+            // just to compare with color bar using texture.
             {
                 var bar = new UIColorPaletteColoredBarRenderer(
                         maxMarkerCount, codedColors,
@@ -94,6 +97,7 @@ namespace GridViewer
                 this.colorPaletteBar2 = bar;
                 bar.Enabled = false;
             }
+            // white vertical lines.
             {
                 var markers = new UIColorPaletteMarkersRenderer(maxMarkerCount,
                 System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right,
@@ -104,6 +108,7 @@ namespace GridViewer
                 this.Children.Add(markers);
                 this.markers = markers;
             }
+            // labels that display values(float values)
             {
                 int length = maxMarkerCount;
                 var font = new Font("Arial", 32);
@@ -159,13 +164,10 @@ namespace GridViewer
             label.Margin = padding;
         }
 
-        public bool UpdateBar(Bitmap bitmap)
+        public void UpdateBar(Bitmap bitmap)
         {
-            UIColorPaletteBarRenderer bar = this.colorPaletteBar;
-            if (bar != null)
-            { return bar.UpdateTexture(bitmap); }
-            else
-            { return false; }
+            this.colorPaletteBar.UpdateTexture(bitmap);
+            this.colorPaletteBar2.UpdateColorBar(bitmap);
         }
 
         //public int Update { get { return 0; } set { this.SetCodedColor(CodedColor.GetDefault()); } }

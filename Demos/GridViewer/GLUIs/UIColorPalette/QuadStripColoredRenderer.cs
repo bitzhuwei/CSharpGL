@@ -36,7 +36,8 @@ namespace GridViewer
 
         private PolygonOffsetSwitch offsetSwitch = new PolygonOffsetLineSwitch();
         private PropertyBufferPtr positionBufferPtr;
-        private PropertyBufferPtr texCoordBufferPtr;
+        private PropertyBufferPtr colorBufferPtr;
+        private int quadCount;
 
         public static QuadStripColoredRenderer Create(QuadStripColoredModel model)
         {
@@ -48,6 +49,7 @@ namespace GridViewer
             map.Add("in_Color", QuadStripColoredModel.color);
 
             var renderer = new QuadStripColoredRenderer(model, shaderCodes, map);
+            renderer.quadCount = model.quadCount;
             return renderer;
         }
 
@@ -62,7 +64,7 @@ namespace GridViewer
             base.DoInitialize();
 
             this.positionBufferPtr = this.bufferable.GetProperty(QuadStripColoredModel.position, null);
-            this.texCoordBufferPtr = this.bufferable.GetProperty(QuadStripColoredModel.color, null);
+            this.colorBufferPtr = this.bufferable.GetProperty(QuadStripColoredModel.color, null);
         }
 
         protected override void DoRender(RenderEventArg arg)
@@ -165,6 +167,25 @@ namespace GridViewer
         //        pointer.VertexCount = (quadCount + 1) * 2;
         //    }
         //}
+
+        public void UpdateColorBar(System.Drawing.Bitmap bitmap)
+        {
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, this.colorBufferPtr.BufferId);
+            IntPtr pointer = OpenGL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadWrite);
+            unsafe
+            {
+                var array = (vec3*)pointer.ToPointer();
+                for (int i = 0; i < (quadCount + 1); i++)
+                {
+                    int x = bitmap.Width * i / quadCount;
+                    if (x >= bitmap.Width) { x = 0; }
+                    array[i * 2 + 0] = bitmap.GetPixel(x, 0).ToVec3();
+                    array[i * 2 + 1] = array[i * 2 + 0];
+                }
+            }
+            OpenGL.UnmapBuffer(BufferTarget.ArrayBuffer);
+            OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+        }
     }
 
 }

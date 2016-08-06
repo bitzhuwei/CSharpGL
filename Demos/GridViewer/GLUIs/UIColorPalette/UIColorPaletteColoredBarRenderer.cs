@@ -57,5 +57,13 @@ namespace GridViewer
         //        renderer.UpdateCodedColor(codedColors);
         //    }
         //}
+        public void UpdateColorBar(Bitmap bitmap)
+        {
+            var renderer = this.Renderer as QuadStripColoredRenderer;
+            if (renderer != null)
+            {
+                renderer.UpdateColorBar(bitmap);
+            }
+        }
     }
 }

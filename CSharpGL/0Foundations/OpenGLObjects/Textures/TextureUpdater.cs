@@ -42,7 +42,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bitmap"></param>
         /// <returns></returns>
-        public bool UpdateTexture(Bitmap bitmap)
+        public void UpdateTexture(Bitmap bitmap)
         {
             //  Lock the image bits (so that we can pass them to OGL).
             BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
@@ -63,8 +63,6 @@ namespace CSharpGL
             //OpenGL.TexSubImage2D(TexSubImage2DTarget.Texture2D, 0, 0, 0, bitmap.Width, bitmap.Height, TexSubImage2DFormats.RGBA, TexSubImage2DType.UnsignedByte, bitmapData.Scan0);
             //OpenGL.BindTexture(this.Target, 0);
             //bitmap.UnlockBits(bitmapData);
-
-            return true;
         }
 
     }
