@@ -61,7 +61,7 @@ namespace GridViewer
                 //}
                 foreach (GridBlockProperty gbp in gridProperties)
                 {
-                    var script = new ScientificModelScriptComponent(sceneObject, gbp);
+                    var script = new ScientificModelScriptComponent(sceneObject, gbp, this.scientificCanvas.uiColorPalette);
                     sceneObject.ScriptList.Add(script);
                     var propNode = new PropertyTreeNode(script);
                     propNode.Text = gbp.Name;

@@ -12,10 +12,12 @@ namespace GridViewer
     public class ScientificModelScriptComponent : ScriptComponent
     {
         private GridBlockProperty gridBlockProperty;
-        public ScientificModelScriptComponent(SceneObject sceneObject, GridBlockProperty gbp)
+        private UIColorPaletteRenderer uiCodedColorBar;
+        public ScientificModelScriptComponent(SceneObject sceneObject, GridBlockProperty property, UIColorPaletteRenderer uiCodedColorBar)
             : base(sceneObject)
         {
-            this.gridBlockProperty = gbp;
+            this.gridBlockProperty = property;
+            this.uiCodedColorBar = uiCodedColorBar;
         }
 
         protected override void DoInitialize()
@@ -33,17 +35,14 @@ namespace GridViewer
         /// </summary>
         public void Show()
         {
-            //if (e.Node.Tag is GridBlockProperty)
-            //{
-            //    var sceneObject = this.BindingObject;
-            //    BoundedRenderer boundedRenderer = (sceneObject.Renderer as BoundedRendererComponent).Renderer;
-            //    if (boundedRenderer.Renderer is CatesianGridRenderer)
-            //    {
-            //        IUpdateColorPalette grid = (boundedRenderer.Renderer as GridViewRenderer).Grid;
-            //        UpdateCatesianGrid(grid, this.gridBlockProperty);
-            //    }
-            //    //this.scientificCanvas.Invalidate();
-            //}
+            var sceneObject = this.BindingObject;
+            BoundedRenderer boundedRenderer = (sceneObject.Renderer as BoundedRendererComponent).Renderer;
+            if (boundedRenderer.Renderer is CatesianGridRenderer)
+            {
+                IUpdateColorPalette grid = (boundedRenderer.Renderer as CatesianGridRenderer).Grid;
+                UpdateCatesianGrid(grid, this.gridBlockProperty);
+            }
+            //this.scientificCanvas.Invalidate();
         }
 
         private void UpdateCatesianGrid(IUpdateColorPalette grid, GridBlockProperty property)
@@ -53,7 +52,7 @@ namespace GridViewer
             grid.MinColorCode = (float)axisMin;
             grid.MaxColorCode = (float)axisMax;
             grid.UpdateColor(property);
-            //this.scientificCanvas.uiCodedColorBar.UpdateValues(property.Values);
+            this.uiCodedColorBar.SetCodedColor(axisMin, axisMax, step);
         }
 
     }

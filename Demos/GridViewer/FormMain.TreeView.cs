@@ -15,29 +15,33 @@ namespace GridViewer
 
         private void objectsTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            //var node = e.Node as AbstractTreeNode;
-            //node.Selected(sender, e);
-            this.propertyGrid1.SelectedObject = e.Node.Tag;
-            if (e.Node.Tag is GridBlockProperty)
+            var node = e.Node as AbstractTreeNode;
+            if (node != null)
             {
-                var property = e.Node.Tag as GridBlockProperty;
-                var sceneObject = e.Node.Parent.Tag as SceneObject;
-                BoundedRenderer boundedRenderer = (sceneObject.Renderer as BoundedRendererComponent).Renderer;
-                if (boundedRenderer.Renderer is CatesianGridRenderer)
-                {
-                    CatesianGrid grid = (boundedRenderer.Renderer as CatesianGridRenderer).Grid;
-                    UpdateCatesianGrid(grid, property);
-                }
+                node.Selected(sender, e);
                 this.scientificCanvas.Invalidate();
             }
-            else if (e.Node.ToolTipText == typeof(CatesianGrid).Name)
-            {
-                var sceneObject = e.Node.Tag as SceneObject;
-                CatesianGrid grid = ((sceneObject.Renderer as BoundedRendererComponent).Renderer.Renderer as CatesianGridRenderer).Grid;
-                GridBlockProperty property = grid.GridBlockProperties[0];
-                UpdateCatesianGrid(grid, property);
-                this.scientificCanvas.Invalidate();
-            }
+            //this.propertyGrid1.SelectedObject = e.Node.Tag;
+            //if (e.Node.Tag is GridBlockProperty)
+            //{
+            //    var property = e.Node.Tag as GridBlockProperty;
+            //    var sceneObject = e.Node.Parent.Tag as SceneObject;
+            //    BoundedRenderer boundedRenderer = (sceneObject.Renderer as BoundedRendererComponent).Renderer;
+            //    if (boundedRenderer.Renderer is CatesianGridRenderer)
+            //    {
+            //        CatesianGrid grid = (boundedRenderer.Renderer as CatesianGridRenderer).Grid;
+            //        UpdateCatesianGrid(grid, property);
+            //    }
+            //    this.scientificCanvas.Invalidate();
+            //}
+            //else if (e.Node.ToolTipText == typeof(CatesianGrid).Name)
+            //{
+            //    var sceneObject = e.Node.Tag as SceneObject;
+            //    CatesianGrid grid = ((sceneObject.Renderer as BoundedRendererComponent).Renderer.Renderer as CatesianGridRenderer).Grid;
+            //    GridBlockProperty property = grid.GridBlockProperties[0];
+            //    UpdateCatesianGrid(grid, property);
+            //    this.scientificCanvas.Invalidate();
+            //}
         }
 
         private void UpdateCatesianGrid(CatesianGrid grid, GridBlockProperty property)
