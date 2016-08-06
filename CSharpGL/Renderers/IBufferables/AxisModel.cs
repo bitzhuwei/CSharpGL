@@ -38,19 +38,19 @@ namespace CSharpGL
             {
                 indexes[index++] = (uint)(i % partCount + 1);
             }
-            indexes[index++] = uint.MaxValue;
+            indexes[index++] = uint.MaxValue;// seprate triangle fans.
             indexes[index++] = (uint)(1 + partCount);
             for (uint i = 0; i < (partCount + 1); i++)
             {
                 indexes[index++] = (uint)(i % partCount + 1 + (1 + partCount));
             }
-            indexes[index++] = uint.MaxValue;
+            indexes[index++] = uint.MaxValue;// seprate triangle fans.
             indexes[index++] = (uint)((3 + 2 * partCount - 1));
             for (uint i = 0; i < (partCount + 1); i++)
             {
                 indexes[index++] = (uint)(i % partCount + 1 + (1 + partCount));
             }
-            indexes[index++] = uint.MaxValue;
+            indexes[index++] = uint.MaxValue;// seprate triangle fans.
             // y axis
             for (uint i = 0; i < 3 * (1 + (partCount + 1) + 1); i++)
             {
@@ -80,23 +80,29 @@ namespace CSharpGL
             int index = 0;
             for (int i = 0; i < 3 + 2 * partCount; i++)
             {
-                if (i % (1 + partCount) == 0)
+                if (partCount < i && i < 2 + 2 * partCount)// white arrow except header.
+                { colors[index++] = new vec3(1, 1, 1); }
+                else if (i % (1 + partCount) == 0)// make sure pure red color exists.
                 { colors[index++] = new vec3(1, 0, 0); }
-                else
+                else// random red color.
                 { colors[index++] = new vec3(0.5f + (float)r.NextDouble() / 2, 0, 0); }
             }
             for (int i = 0; i < 3 + 2 * partCount; i++)
             {
-                if (i % (1 + partCount) == 0)
+                if (partCount < i && i < 2 + 2 * partCount)// white arrow except header.
+                { colors[index++] = new vec3(1, 1, 1); }
+                else if (i % (1 + partCount) == 0)// make sure pure green color exists.
                 { colors[index++] = new vec3(0, 1, 0); }
-                else
+                else// random green color.
                 { colors[index++] = new vec3(0, 0.5f + (float)r.NextDouble() / 2, 0); }
             }
             for (int i = 0; i < 3 + 2 * partCount; i++)
             {
-                if (i % (1 + partCount) == 0)
+                if (partCount < i && i < 2 + 2 * partCount)// white arrow except header.
+                { colors[index++] = new vec3(1, 1, 1); }
+                else if (i % (1 + partCount) == 0)// make sure pure blue color exists.
                 { colors[index++] = new vec3(0, 0, 1); }
-                else
+                else// random blue color.
                 { colors[index++] = new vec3(0, 0, 0.5f + (float)r.NextDouble() / 2); }
             }
             return colors;
