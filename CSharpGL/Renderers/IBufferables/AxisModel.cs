@@ -76,12 +76,13 @@ namespace CSharpGL
         private vec3[] GenrateColors(int partCount)
         {
             Random r = new Random();
+            const float lightColor = 0.75f;
             var colors = new vec3[3 * (3 + 2 * partCount)];
             int index = 0;
             for (int i = 0; i < 3 + 2 * partCount; i++)
             {
-                if (partCount < i && i < 2 + 2 * partCount)// white arrow except header.
-                { colors[index++] = new vec3(1, 1, 1); }
+                if (partCount < i && i < 2 + 2 * partCount)// light red arrow except header.
+                { colors[index++] = new vec3(1, lightColor, lightColor); }
                 else if (i % (1 + partCount) == 0)// make sure pure red color exists.
                 { colors[index++] = new vec3(1, 0, 0); }
                 else// random red color.
@@ -89,8 +90,8 @@ namespace CSharpGL
             }
             for (int i = 0; i < 3 + 2 * partCount; i++)
             {
-                if (partCount < i && i < 2 + 2 * partCount)// white arrow except header.
-                { colors[index++] = new vec3(1, 1, 1); }
+                if (partCount < i && i < 2 + 2 * partCount)// light green arrow except header.
+                { colors[index++] = new vec3(lightColor, 1, lightColor); }
                 else if (i % (1 + partCount) == 0)// make sure pure green color exists.
                 { colors[index++] = new vec3(0, 1, 0); }
                 else// random green color.
@@ -98,8 +99,8 @@ namespace CSharpGL
             }
             for (int i = 0; i < 3 + 2 * partCount; i++)
             {
-                if (partCount < i && i < 2 + 2 * partCount)// white arrow except header.
-                { colors[index++] = new vec3(1, 1, 1); }
+                if (partCount < i && i < 2 + 2 * partCount)// light blue arrow except header.
+                { colors[index++] = new vec3(lightColor, lightColor, 1); }
                 else if (i % (1 + partCount) == 0)// make sure pure blue color exists.
                 { colors[index++] = new vec3(0, 0, 1); }
                 else// random blue color.

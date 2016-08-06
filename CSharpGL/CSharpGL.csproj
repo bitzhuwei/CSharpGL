@@ -49,8 +49,8 @@
     <Content Include="IFontTexture\FontTexture\FontBitmapHelper.1_PrepareInitialGlyphDictcs.cs.png" />
     <Content Include="IFontTexture\FontTexture\FontBitmapHelper.3_PrintBitmap.cs.png" />
     <Content Include="IFontTexture\FontTexture\readme.md" />
+    <Content Include="Renderers\IBufferables\AxisModel2.jpg" />
     <Content Include="Renderers\IBufferables\TextModel.jpg" />
-    <Content Include="Renderers\UIRenderers\BuildInUIRenderers\AxisRenderer.jpg" />
     <Content Include="Renderers\UIRenderers\readme.md" />
     <Content Include="Renderers\IBufferables\readme.md" />
     <Content Include="Renderers\HighlightRenderer\readme.md" />
