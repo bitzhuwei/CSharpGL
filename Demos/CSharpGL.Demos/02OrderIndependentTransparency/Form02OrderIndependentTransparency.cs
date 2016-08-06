@@ -50,9 +50,14 @@ namespace CSharpGL.Demos
             { renderer.Render(arg); }
 
             // Cross cursor shows where the mouse is.
-            OpenGL.DrawText(this.lastMousePosition.X - offset.X,
-                this.glCanvas1.Height - (this.lastMousePosition.Y + offset.Y) - 1,
-                Color.Red, "Courier New", crossCursorSize, "o");
+            //OpenGL.DrawText(this.lastMousePosition.X - offset.X,
+            //    this.glCanvas1.Height - (this.lastMousePosition.Y + offset.Y) - 1,
+            //    Color.Red, "Courier New", crossCursorSize, "o");
+            Padding margin = this.uiCursor.Margin;
+            margin.Left = this.lastMousePosition.X - this.uiCursor.Size.Width / 2;
+            margin.Bottom = this.glCanvas1.Height - this.lastMousePosition.Y - 1 - this.uiCursor.Size.Height / 2;
+            this.uiCursor.Margin = margin;
+            this.uiRoot.Render(arg);
         }
 
 

@@ -43,7 +43,7 @@ namespace CSharpGL
                     {
                         currentX += item.Value.width + glyphInterval;
                     }
-                    else
+                    else// new row will start.
                     {
                         if (maxWidth < currentX) { maxWidth = currentX; }
                         currentX = leftMargin;
@@ -51,6 +51,9 @@ namespace CSharpGL
                         currentX += item.Value.width + glyphInterval;
                     }
                 }
+
+                if (maxWidth < currentX) { maxWidth = currentX; }
+
                 if (currentX > leftMargin)
                 {
                     maxHeight = currentY + maxGlyphHeight;

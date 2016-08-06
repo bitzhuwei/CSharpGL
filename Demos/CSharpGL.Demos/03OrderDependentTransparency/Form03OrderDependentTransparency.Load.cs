@@ -14,6 +14,8 @@ namespace CSharpGL.Demos
     public partial class Form03OrderDependentTransparency : Form
     {
         private FormProperyGrid formPropertyGrid;
+        private UIRoot uiRoot;
+        private UIText uiCursor;
 
 
         private void Form_Load(object sender, EventArgs e)
@@ -44,6 +46,23 @@ namespace CSharpGL.Demos
                     renderer.SwitchList.Add(blendSwitch);
                 }
                 this.renderer = renderer;
+            }
+            {
+                var UIRoot = new UIRoot();
+                UIRoot.Initialize();
+                this.uiRoot = UIRoot;
+
+                var font = new Font("Arial", 32);
+                var uiCursor = new UIText(AnchorStyles.Left | AnchorStyles.Bottom,
+                    new Padding(0, 0, 0, 0), new Size(50, 50), -100, 100,
+                   font.GetFontBitmap("o↖＋〇┼╋╬╳╁╂╫✧☼⊕○").GetFontTexture());
+                uiCursor.Initialize();
+                //uiCursor.SwitchList.Add(new ClearColorSwitch());
+                uiCursor.Text = "〇";
+                uiCursor.TextColor = Color.Red;
+                uiRoot.Children.Add(uiCursor);
+                this.uiCursor = uiCursor;
+                (new FormProperyGrid(this.uiCursor)).Show();
             }
             {
                 var frmPropertyGrid = new FormProperyGrid(this.renderer);
