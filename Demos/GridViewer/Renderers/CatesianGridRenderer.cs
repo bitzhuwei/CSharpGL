@@ -29,11 +29,9 @@ namespace GridViewer
             PropertyNameMap propertyNameMap, sampler1D codedColorSampler, params GLSwitch[] switches)
             : base(catesianGrid, shaderCodes, propertyNameMap, switches)
         {
-            this.Grid = catesianGrid;
             this.codedColorSampler = codedColorSampler;
         }
 
-        public CatesianGrid Grid { get; private set; }
 
         protected override void DoInitialize()
         {

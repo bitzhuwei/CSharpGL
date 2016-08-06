@@ -7,12 +7,21 @@ using System.Threading.Tasks;
 
 namespace GridViewer
 {
+    /// <summary>
+    /// base renderer for gridview.
+    /// </summary>
     public class GridViewRenderer : Renderer
     {
-        public GridViewRenderer(IBufferable catesianGrid, ShaderCode[] shaderCodes,
+        /// <summary>
+        /// gridview's model.
+        /// </summary>
+        public GridViewModel Grid { get; private set; }
+
+        public GridViewRenderer(GridViewModel model, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
-            : base(catesianGrid, shaderCodes, propertyNameMap, switches)
+            : base(model, shaderCodes, propertyNameMap, switches)
         {
+            this.Grid = model;
         }
 
     }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using TracyEnergy.Simba.Data.Keywords.impl;
 
 
 namespace GridViewer
@@ -38,12 +39,7 @@ namespace GridViewer
             return ptr;
         }
 
-        //public void UpdateColor(int propertyIndex)
-        //{
-        //    this.UpdateColor(this.GridBlockProperties[propertyIndex]);
-        //}
-
-        public void UpdateColor(TracyEnergy.Simba.Data.Keywords.impl.GridBlockProperty property)
+        public override void UpdateColor(TracyEnergy.Simba.Data.Keywords.impl.GridBlockProperty property)
         {
             float[] textures = GetTextureCoords(property);
             int gridCellCount = this.DataSource.DimenSize;
@@ -62,7 +58,7 @@ namespace GridViewer
             OpenGL.BindBuffer(BufferTarget.ArrayBuffer, 0);
         }
 
-        private float[] GetTextureCoords(TracyEnergy.Simba.Data.Keywords.impl.GridBlockProperty property)
+        private float[] GetTextureCoords(GridBlockProperty property)
         {
             int[] gridIndexes = property.Positions;
             float[] values = property.Values;

@@ -9,30 +9,15 @@ using TracyEnergy.Simba.Data.Keywords.impl;
 
 namespace GridViewer
 {
-    public partial class CatesianGrid : IBufferable, IUpdateColorPalette
+    public partial class CatesianGrid : GridViewModel
     {
-
-        public List<GridBlockProperty> GridBlockProperties { get; private set; }
-
-        private int defaultBlockPropertyIndex;
-
-        public CatesianGridderSource DataSource { get; private set; }
-
-        public float MinColorCode { get; set; }
-
-        public float MaxColorCode { get; set; }
 
         public CatesianGrid(CatesianGridderSource dataSource, List<GridBlockProperty> gridProps,
             float minColorCode, float maxColorCode, int defaultBlockPropertyIndex = 0)
-        {
-            this.DataSource = dataSource;
-            this.GridBlockProperties = gridProps;
-            this.MinColorCode = minColorCode;
-            this.MaxColorCode = maxColorCode;
-            this.defaultBlockPropertyIndex = defaultBlockPropertyIndex;
-        }
+            : base(dataSource, gridProps, minColorCode, maxColorCode, defaultBlockPropertyIndex)
+        { }
 
-        public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        public override PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
         {
             if (bufferName == strPosition)
             {
@@ -56,7 +41,7 @@ namespace GridViewer
             }
         }
 
-        public IndexBufferPtr GetIndex()
+        public override IndexBufferPtr GetIndex()
         {
             if (this.indexBufferPtr == null)
             {

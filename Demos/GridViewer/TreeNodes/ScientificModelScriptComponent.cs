@@ -37,9 +37,9 @@ namespace GridViewer
         {
             var sceneObject = this.BindingObject;
             BoundedRenderer boundedRenderer = (sceneObject.Renderer as BoundedRendererComponent).Renderer;
-            if (boundedRenderer.Renderer is CatesianGridRenderer)
+            if (boundedRenderer.Renderer is GridViewRenderer)
             {
-                IUpdateColorPalette grid = (boundedRenderer.Renderer as CatesianGridRenderer).Grid;
+                IUpdateColorPalette grid = (boundedRenderer.Renderer as GridViewRenderer).Grid;
                 UpdateCatesianGrid(grid, this.gridBlockProperty);
             }
             //this.scientificCanvas.Invalidate();
