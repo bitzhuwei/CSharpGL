@@ -101,8 +101,11 @@
     <Compile Include="Geometry\TriangularPrismTexCoord.cs" />
     <Compile Include="GLUIs\UIColorPalette\LinesModel.cs" />
     <Compile Include="GLUIs\UIColorPalette\LinesRenderer.cs" />
+    <Compile Include="GLUIs\UIColorPalette\QuadStripColoredModel.cs" />
+    <Compile Include="GLUIs\UIColorPalette\QuadStripColoredRenderer.cs" />
     <Compile Include="GLUIs\UIColorPalette\QuadStripRenderer.cs" />
     <Compile Include="GLUIs\UIColorPalette\QuadStripModel.cs" />
+    <Compile Include="GLUIs\UIColorPalette\UIColorPaletteColoredBarRenderer.cs" />
     <Compile Include="GLUIs\UIColorPalette\UIColorPaletteMarkersRenderer.cs" />
     <Compile Include="GLUIs\UIColorPalette\UIColorPaletteBarRenderer.cs" />
     <Compile Include="GLUIs\UIColorPalette\UIColorPaletteRenderer.cs" />

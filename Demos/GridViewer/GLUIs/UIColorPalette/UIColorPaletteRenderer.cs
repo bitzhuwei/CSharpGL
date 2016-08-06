@@ -24,35 +24,35 @@ namespace GridViewer
         /// renders a color palette bar with 1-D texture and its coordiante(float).
         /// </summary>
         private UIColorPaletteBarRenderer colorPaletteBar;
-        ///// <summary>
-        ///// renders a color palette bar with direct color(vec3).
-        ///// Compare this with colorPaletteBar to check if there's difference.
-        ///// </summary>
-        //private UIColorPaletteBarRenderer colorPaletteBar2;
+        /// <summary>
+        /// renders a color palette bar with direct color(vec3).
+        /// Compare this with colorPaletteBar to check if there's difference.
+        /// </summary>
+        private UIColorPaletteColoredBarRenderer colorPaletteBar2;
         private UIColorPaletteMarkersRenderer markers;
         /// <summary>
         /// current marker's count.
         /// </summary>
         private int currentMarkersCount;
 
-        ///// <summary>
-        ///// Shows color palette bar rendered with direct color(vec3).
-        ///// </summary>
-        //[Description("Shows color palette bar rendered with direct color(vec3).")]
-        //public bool ShowColorBar
-        //{
-        //    get
-        //    {
-        //        if (this.colorPaletteBar2 == null) { return false; }
+        /// <summary>
+        /// Shows color palette bar rendered with direct color(vec3).
+        /// </summary>
+        [Description("Shows color palette bar rendered with direct color(vec3).")]
+        public bool ShowColorBar
+        {
+            get
+            {
+                if (this.colorPaletteBar2 == null) { return false; }
 
-        //        return this.colorPaletteBar2.Enabled;
-        //    }
-        //    set
-        //    {
-        //        RendererBase renderer = this.colorPaletteBar2;
-        //        if (renderer != null) { renderer.Enabled = value; }
-        //    }
-        //}
+                return this.colorPaletteBar2.Enabled;
+            }
+            set
+            {
+                RendererBase renderer = this.colorPaletteBar2;
+                if (renderer != null) { renderer.Enabled = value; }
+            }
+        }
 
         /// <summary>
         /// </summary>
@@ -79,8 +79,19 @@ namespace GridViewer
                 new System.Drawing.Size(size.Width - marginLeft - marginRight, size.Height / 3),
                 zNear, zFar);
                 //this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
-                this.colorPaletteBar = bar;
                 this.Children.Add(bar);
+                this.colorPaletteBar = bar;
+            }
+            {
+                var bar = new UIColorPaletteColoredBarRenderer(
+                        maxMarkerCount, codedColors,
+                    System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right,
+                    new System.Windows.Forms.Padding(marginLeft, 1 + size.Height / 3, marginRight, 0),
+                    new System.Drawing.Size(size.Width - marginLeft - marginRight, size.Height / 3),
+                    zNear, zFar);
+                //this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
+                this.Children.Add(bar);
+                this.colorPaletteBar2 = bar;
             }
             {
                 var markers = new UIColorPaletteMarkersRenderer(maxMarkerCount,
@@ -89,8 +100,8 @@ namespace GridViewer
                 new System.Drawing.Size(size.Width - marginLeft - marginRight, size.Height / 2),
                 zNear, zFar);
                 //markers.SwitchList.Add(new ClearColorSwitch(Color.Red));
-                this.markers = markers;
                 this.Children.Add(markers);
+                this.markers = markers;
             }
             {
                 int length = maxMarkerCount;
@@ -110,8 +121,8 @@ namespace GridViewer
                     //label.SwitchList.Add(new ClearColorSwitch(Color.Green));
                     label.Text = ((float)i).ToShortString();
                     label.BeforeLayout += label_beforeLayout;
-                    this.labelList.Add(label);
                     this.Children.Add(label);
+                    this.labelList.Add(label);
                 }
                 this.currentMarkersCount = 2;
             }
