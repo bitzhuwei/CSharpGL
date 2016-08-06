@@ -2,13 +2,9 @@
 using SimLab.helper;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TracyEnergy.Simba.Data.Keywords;
 using TracyEnergy.Simba.Data.Keywords.impl;
@@ -53,9 +49,11 @@ namespace GridViewer
                 sceneObject.Transform.Position = -grid.DataSource.TranslateMatrix;
                 this.scientificCanvas.Scene.ObjectList.Add(sceneObject);
                 string caseFileName = System.IO.Path.GetFileName(fileName);
-                TreeNode gridderNode = this.objectsTreeView.Nodes.Add(caseFileName);
-                gridderNode.Tag = sceneObject;
+                var gridderNode = new SceneObjectTreeNode(sceneObject);
+                gridderNode.Text = caseFileName;
+                gridderNode.Tag = sceneObject;//TODO: this is not needed any more.
                 gridderNode.ToolTipText = grid.GetType().Name;
+                this.objectsTreeView.Nodes.Add(gridderNode);
                 //if (gridProps.Count <= 0)
                 //{
                 //    GridBlockProperty gbp = this.CreateGridSequenceGridBlockProperty(gridderSource, "INDEX");
@@ -63,12 +61,15 @@ namespace GridViewer
                 //}
                 foreach (GridBlockProperty gbp in gridProperties)
                 {
-                    TreeNode propNode = gridderNode.Nodes.Add(gbp.Name);
+                    var script = new ScientificModelScriptComponent(sceneObject, gbp, this.scientificCanvas.uiColorPalette);
+                    sceneObject.ScriptList.Add(script);
+                    var propNode = new PropertyTreeNode(script);
+                    propNode.Text = gbp.Name;
                     propNode.Tag = gbp;
+                    gridderNode.Nodes.Add(propNode);
                 }
 
                 this.objectsTreeView.ExpandAll();
-                this.scientificCanvas.uiColorPalette.SetCodedColor(axisMin, axisMax, step);
                 //modelContainer.AddChild(gridder);
                 //modelContainer.BoundingBox.SetBounds(gridderSource.TransformedActiveBounds.Min, gridderSource.TransformedActiveBounds.Max);
                 //this.scene.ViewType = ViewTypes.UserView;

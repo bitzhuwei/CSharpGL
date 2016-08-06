@@ -94,7 +94,6 @@
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.scientificCanvas = new GridViewer.ScientificCanvas();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.mniLoadECLGrid2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -213,7 +212,6 @@
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mniLoadECLGrid2,
             this.mniLoadECLGrid,
             this.mniLoadSimbaGrid,
             this.mniLoadSimbaPoints,
@@ -640,13 +638,6 @@
             this.openFileDialog1.FilterIndex = 2;
             this.openFileDialog1.RestoreDirectory = true;
             // 
-            // mniLoadECLGrid2
-            // 
-            this.mniLoadECLGrid2.Name = "mniLoadECLGrid2";
-            this.mniLoadECLGrid2.Size = new System.Drawing.Size(223, 26);
-            this.mniLoadECLGrid2.Text = "Load ECL Grid2";
-            this.mniLoadECLGrid2.Click += new System.EventHandler(this.mniLoadECLGrid2_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -730,7 +721,6 @@
         private System.Windows.Forms.PropertyGrid propertyGrid1;
         private ScientificCanvas scientificCanvas;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mniLoadECLGrid;
         private System.Windows.Forms.ToolStripMenuItem mniLoadSimbaGrid;
         private System.Windows.Forms.ToolStripMenuItem mniLoadSimbaPoints;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
@@ -744,9 +734,9 @@
         private System.Windows.Forms.ContextMenuStrip treeViewRightMenu;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sceneToolStripMenuItem;
-    	private System.Windows.Forms.ToolStripMenuItem scientificCanvasMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scientificCanvasMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adjustCameraToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mniLoadECLGrid2;
+        private System.Windows.Forms.ToolStripMenuItem mniLoadECLGrid;
     }
 }
 

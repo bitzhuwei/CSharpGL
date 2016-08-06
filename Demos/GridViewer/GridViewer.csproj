@@ -62,16 +62,13 @@
     <Compile Include="FormMain.Misc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.LoadECLGrid2.cs">
+    <Compile Include="FormMain.LoadECLGrid.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.ShowPropertyGrid.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.TreeView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormMain.LoadECLGrid.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.cs">
