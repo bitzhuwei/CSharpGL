@@ -92,6 +92,7 @@ namespace GridViewer
                 //this.SwitchList.Add(new ClearColorSwitch(Color.Blue));
                 this.Children.Add(bar);
                 this.colorPaletteBar2 = bar;
+                bar.Enabled = false;
             }
             {
                 var markers = new UIColorPaletteMarkersRenderer(maxMarkerCount,
@@ -216,6 +217,9 @@ namespace GridViewer
             }
         }
 
-        public sampler1D CodedColorSampler { get { return this.colorPaletteBar.ColorPaletteBarSampler; } }
+        /// <summary>
+        /// sampler for color palette.
+        /// </summary>
+        public sampler1D Sampler { get { return this.colorPaletteBar.Sampler; } }
     }
 }

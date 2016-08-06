@@ -14,7 +14,10 @@ namespace GridViewer
     class UIColorPaletteBarRenderer : UIRenderer
     {
 
-        public sampler1D ColorPaletteBarSampler { get; private set; }
+        /// <summary>
+        /// sampler for color palette.
+        /// </summary>
+        public sampler1D Sampler { get; private set; }
 
         private CodedColor[] codedColors;
 
@@ -46,7 +49,7 @@ namespace GridViewer
             Bitmap bitmap = this.codedColors.GetBitmap(1024);
             this.codedColors = null;
             texture.Initialize(bitmap);
-            this.ColorPaletteBarSampler = texture;
+            this.Sampler = texture;
             bitmap.Dispose();
             var renderer = this.Renderer as Renderer;
             renderer.SetUniform("codedColorSampler", new samplerValue(BindTextureTarget.Texture1D,
@@ -67,7 +70,7 @@ namespace GridViewer
 
         public bool UpdateTexture(Bitmap bitmap)
         {
-            var textureUpdater = new TextureUpdater(this.ColorPaletteBarSampler.Id);
+            var textureUpdater = new TextureUpdater(this.Sampler.Id);
 
             return textureUpdater.UpdateTexture(bitmap);
         }

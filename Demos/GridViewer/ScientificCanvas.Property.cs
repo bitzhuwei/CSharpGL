@@ -22,7 +22,7 @@ namespace GridViewer
         {
             get
             {
-                return this.uiColorPalette.CodedColorSampler;
+                return this.uiColorPalette.Sampler;
             }
         }
     }
