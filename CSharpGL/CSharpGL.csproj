@@ -77,12 +77,12 @@
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripAdjacencySearcher.jpg" />
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.jpg" />
     <Content Include="0Foundations\OpenGLObjects\GLSwitches\readme.md" />
-    <EmbeddedResource Include="Resources\cursor.png" />
-    <EmbeddedResource Include="Resources\cursor_3d.png" />
-    <EmbeddedResource Include="Resources\cursor_arrow.png" />
+    <Content Include="Resources\cursor.png" />
+    <Content Include="Resources\cursor_3d.png" />
+    <Content Include="Resources\cursor_arrow.png" />
     <EmbeddedResource Include="Resources\cursor_blue.png" />
-    <EmbeddedResource Include="Resources\cursor_gold.png" />
-    <EmbeddedResource Include="Resources\cursor_green.png" />
+    <Content Include="Resources\cursor_gold.png" />
+    <Content Include="Resources\cursor_green.png" />
     <Content Include="WinformControls\RenderContexts\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\VertexBufferObjects\readme.md" />
