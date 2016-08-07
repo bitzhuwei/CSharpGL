@@ -27,7 +27,7 @@ namespace CSharpGL
             : base(anchor, margin, size, zNear, zFar)
         {
             SquareRenderer renderer = SquareRenderer.Create(cursorBitmap);
-
+            renderer.SwitchList.Add(new BlendSwitch());
             this.Renderer = renderer;
         }
 

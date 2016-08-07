@@ -1,6 +1,6 @@
 #version 150 core
 
-in vec2 in_Position;
+in vec3 in_Position;
 in vec2 in_TexCoord;
 uniform mat4 mvp;
 

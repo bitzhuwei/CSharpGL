@@ -47,14 +47,20 @@ namespace CSharpGL.Demos
                 renderer.Render(arg);
             }
             {
+                Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
+                Padding margin = this.uiCursor.Margin;
+                margin.Left = mousePosition.X - this.uiCursor.Size.Width / 2;
+                margin.Bottom = this.glCanvas1.Height - mousePosition.Y - 1 - this.uiCursor.Size.Height / 2;
+                this.uiCursor.Margin = margin;
+
                 UIRenderersDraw(arg);
             }
 
-            Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
+            //Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
             // Cross cursor shows where the mouse is.
-            OpenGL.DrawText(mousePosition.X - offset.X,
-                this.glCanvas1.Height - (mousePosition.Y + offset.Y) - 1,
-                Color.Red, "Courier New", crossCursorSize, "o");
+            //OpenGL.DrawText(mousePosition.X - offset.X,
+            //    this.glCanvas1.Height - (mousePosition.Y + offset.Y) - 1,
+            //    Color.Red, "Courier New", crossCursorSize, "o");
         }
 
 

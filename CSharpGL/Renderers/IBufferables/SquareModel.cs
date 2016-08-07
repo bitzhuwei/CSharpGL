@@ -23,10 +23,10 @@ namespace CSharpGL
 
         internal vec2[] texCoords = new vec2[4]
         {
-            new vec2(1, 1),
             new vec2(1, 0),
-            new vec2(0, 0),
+            new vec2(1, 1),
             new vec2(0, 1),
+            new vec2(0, 0),
         };
 
         internal DrawMode GetDrawModel()
