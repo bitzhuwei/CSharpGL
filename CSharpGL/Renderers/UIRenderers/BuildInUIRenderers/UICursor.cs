@@ -22,7 +22,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static UICursor CreateDefault()
         {
-            return new UICursor(new PointF(0.065f, 0.065f), new Size(25, 25));
+            return new UICursor(new PointF(0.1f, 0.1f), new Size(25, 25));
         }
 
         /// <summary>
