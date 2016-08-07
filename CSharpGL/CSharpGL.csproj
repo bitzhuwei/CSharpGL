@@ -77,6 +77,12 @@
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripAdjacencySearcher.jpg" />
     <Content Include="Renderers\PickableRenderer\ZeroIndexRenderer\LineSearcher\ZeroIndexLineInTriangleStripSearcher.jpg" />
     <Content Include="0Foundations\OpenGLObjects\GLSwitches\readme.md" />
+    <EmbeddedResource Include="Resources\cursor.png" />
+    <EmbeddedResource Include="Resources\cursor_3d.png" />
+    <EmbeddedResource Include="Resources\cursor_arrow.png" />
+    <EmbeddedResource Include="Resources\cursor_blue.png" />
+    <EmbeddedResource Include="Resources\cursor_gold.png" />
+    <EmbeddedResource Include="Resources\cursor_green.png" />
     <Content Include="WinformControls\RenderContexts\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\VertexBufferObjects\readme.md" />
@@ -101,6 +107,9 @@
     <Compile Include="IFontTexture\FontTexture\FontTexture.IDisposable.cs" />
     <Compile Include="IFontTexture\FontTexture\FontTexture.cs" />
     <Compile Include="IFontTexture\FontTexture\FontTextureHelper.cs" />
+    <Compile Include="Renderers\IBufferables\Square.cs" />
+    <Compile Include="Renderers\IBufferables\SquareModel.cs" />
+    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\SquareRenderer.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\AxisRenderer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\TextureBuilder.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\TextureInfo.cs" />
@@ -134,6 +143,7 @@
     <Compile Include="Manipulaters\IMouseHandler.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\CameraHelpers\BoundingBox.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\CameraHelpers\IBoundingBox2D.cs" />
+    <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\UICursor.cs" />
     <Compile Include="WinformControls\BoundedClockRenderer.cs" />
     <Compile Include="WinformControls\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\BlendSwitch.cs" />
@@ -514,6 +524,8 @@
     <EmbeddedResource Include="Resources\Label.frag" />
     <EmbeddedResource Include="Resources\BoundingBox.frag" />
     <EmbeddedResource Include="Resources\BoundingBox.vert" />
+    <EmbeddedResource Include="Resources\SquareRenderer.frag" />
+    <EmbeddedResource Include="Resources\SquareRenderer.vert" />
     <None Include="Scene\readme.md" />
   </ItemGroup>
   <ItemGroup>
