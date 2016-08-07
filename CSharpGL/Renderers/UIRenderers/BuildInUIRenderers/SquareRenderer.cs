@@ -40,7 +40,7 @@ namespace CSharpGL
 
             Bitmap bitmap;
             if (string.IsNullOrEmpty(this.cursorBitmap))
-            { bitmap = ManifestResourceLoader.LoadBitmap(@"Resources\cursor_blue.png"); }
+            { bitmap = ManifestResourceLoader.LoadBitmap(@"Resources\cursor_gold.png"); }
             else
             { bitmap = new Bitmap(this.cursorBitmap); }
             var sampler = new sampler2D();

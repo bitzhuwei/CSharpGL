@@ -80,8 +80,8 @@
     <Content Include="Resources\cursor.png" />
     <Content Include="Resources\cursor_3d.png" />
     <Content Include="Resources\cursor_arrow.png" />
-    <EmbeddedResource Include="Resources\cursor_blue.png" />
-    <Content Include="Resources\cursor_gold.png" />
+    <Content Include="Resources\cursor_blue.png" />
+    <EmbeddedResource Include="Resources\cursor_gold.png" />
     <Content Include="Resources\cursor_green.png" />
     <Content Include="WinformControls\RenderContexts\readme.md" />
     <Content Include="0Foundations\OpenGLObjects\UniformVariables\UniformSingleVariables\readme.md" />
