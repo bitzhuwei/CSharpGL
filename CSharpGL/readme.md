@@ -13,6 +13,12 @@ It meets common requirements in OpenGL rendering such as:
 For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 
 # release notes:
+## v1.0.5.1:
+1. TextureUpdater allows for updating texture's content.
+2. Better looking for Axis and UIAxis.
+3. Remove useless TTF file in resource.
+4. UICursor renders a cursor with texture.
+
 ## v1.0.5.0:
 1. Better solution of printing FonBitmap.
 2. Fix: no need to check if uniform variable exists in shader when during SetUniform().
