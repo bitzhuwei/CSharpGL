@@ -31,11 +31,6 @@ Rendering 'Control' at fixed position with fixed size. For example, GLAxis rende
 Rendering text using ``glRasterPos()`` and ``CallList()``.
 Rendering text using GLText(a special GLControl).
 ![GLText and GLAxis](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLText-GLAxis.jpg?raw=true)
-
-Load True Type Font File(*.ttf or *.otf) to build a texture filled with glyphs, which then could be used to render text.
-The project CSharpGL.Font2Picture in :open_file_folder:`Infrastructure` is a quick tool converting TTF files to pictures along with a xml config file.
-
-![export-glyph-texture-from-TTF](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/glyph-texture.png?raw=true)
 # :gem:Some Cool Demos
 ## Image Processing Using Compute Shader.
 ![compute-shader-image-processing](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-edge-detection.gif?raw=true)
@@ -46,7 +41,7 @@ The project CSharpGL.Font2Picture in :open_file_folder:`Infrastructure` is a qui
 ## Order-Dependent Transparency VS Order-Independent Transparency.
 ![order-independent-transparency](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/order-independent-transparency.jpg?raw=true)
 ## Point Sprite.
-10000 particles with a sphere insied a cube.
+10000 particles with a sphere inside a cube.
 ![point-sprite](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/point-sprite.jpg?raw=true)
 ## Earth.
 An earth model that singly rotate same as real earth. It's composed of 65341 positions, normals and uvs and 130140 indexes and a 10800x5400 texture.
