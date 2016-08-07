@@ -48,10 +48,7 @@ namespace CSharpGL.Demos
             }
             {
                 Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
-                Padding margin = this.uiCursor.Margin;
-                margin.Left = mousePosition.X - this.uiCursor.Size.Width / 2;
-                margin.Bottom = this.glCanvas1.Height - mousePosition.Y - 1 - this.uiCursor.Size.Height / 2;
-                this.uiCursor.Margin = margin;
+                this.uiCursor.UpdatePosition(mousePosition);
 
                 UIRenderersDraw(arg);
             }

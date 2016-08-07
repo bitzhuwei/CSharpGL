@@ -18,7 +18,6 @@ namespace CSharpGL.Demos
         private UIAxis uiAxis;
         private UICursor uiCursor;
 
-
         private void Form_Load(object sender, EventArgs e)
         {
             {
@@ -36,22 +35,25 @@ namespace CSharpGL.Demos
                 this.renderer = renderer;
             }
             {
-                var UIRoot = new UIRoot();
-                UIRoot.Initialize();
-                this.uiRoot = UIRoot;
-
+                var uiRoot = new UIRoot();
+                uiRoot.Initialize();
+                this.uiRoot = uiRoot;
+            }
+            {
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(128, 128), -100, 100);
                 uiAxis.Initialize();
                 this.uiAxis = uiAxis;
-                UIRoot.Children.Add(uiAxis);
-
-                var uiCursor = new UICursor(AnchorStyles.Left | AnchorStyles.Bottom,
-                    new Padding(0, 0, 0, 0), new Size(50, 50), -100, 100);
+                uiRoot.Children.Add(uiAxis);
+            }
+            {
+                var uiCursor = UICursor.CreateDefault();
                 uiCursor.Initialize();
                 //uiCursor.SwitchList.Add(new ClearColorSwitch());
                 uiRoot.Children.Add(uiCursor);
                 this.uiCursor = uiCursor;
+                var frmPropertyGrid = new FormProperyGrid(uiCursor);
+                frmPropertyGrid.Show();
             }
             {
                 var frmPropertyGrid = new FormProperyGrid(this.renderer);
