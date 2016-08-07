@@ -46,25 +46,11 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected override void DoInitialize()
-        {
-            base.DoInitialize();
-
-            this.Renderer.Initialize();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="arg"></param>
         protected override void DoRender(RenderEventArg arg)
         {
             mat4 projection = this.GetOrthoProjection();
             mat4 view = glm.lookAt(new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0));
-            //mat4 model = glm.translate(mat4.identity(), new vec3(
-            //    (this.FocalPoint.X - 0.5f) * this.Size.Width,
-            //    (this.FocalPoint.Y - 0.5f) * this.Size.Height,
-            //    0));
             mat4 model = glm.scale(mat4.identity(), new vec3(this.Size.Width, this.Size.Height, 1));
             var renderer = this.Renderer as Renderer;
             renderer.SetUniform("mvp", projection * view * model);
