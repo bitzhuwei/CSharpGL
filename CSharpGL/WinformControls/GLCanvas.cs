@@ -53,8 +53,9 @@ namespace CSharpGL
 
             if (!this.designMode)
             {
-                this.mouseEnter = GLCanvas_MouseEnter;
-                this.mouseLeave = GLCanvas_MouseLeave;
+                //this.mouseEnter = GLCanvas_MouseEnter;
+                this.mouseEnter = (x, y) => ShowCursor(0);// hide system's cursor.
+                this.mouseLeave = (x, y) => ShowCursor(1);// show system's cursor.
             }
         }
 
@@ -84,35 +85,6 @@ namespace CSharpGL
                     }
                 }
             }
-        }
-        ///// <summary>
-        ///// show/hide system's cursor.
-        ///// </summary>
-        ///// <param name="value"></param>
-        //public void ShowSystemCursor(bool value)
-        //{
-        //    if (!this.designMode)
-        //    {
-        //        if ((this.showingCursor) && (!value))
-        //        {
-        //            this.MouseEnter += mouseEnter;
-        //            this.MouseLeave += mouseLeave;
-        //        }
-        //        else if ((!this.showingCursor) && (value))
-        //        {
-        //            this.MouseEnter -= mouseEnter;
-        //            this.MouseLeave -= mouseLeave;
-        //        }
-        //    }
-        //}
-        void GLCanvas_MouseLeave(object sender, EventArgs e)
-        {
-            ShowCursor(1);// show system's cursor.
-        }
-
-        void GLCanvas_MouseEnter(object sender, EventArgs e)
-        {
-            ShowCursor(0);// hide system's cursor.
         }
 
         [DllImport("user32.dll", EntryPoint = "ShowCursor", CharSet = CharSet.Auto)]
