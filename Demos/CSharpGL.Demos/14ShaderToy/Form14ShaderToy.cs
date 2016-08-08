@@ -19,10 +19,6 @@ namespace CSharpGL.Demos
             InitializeComponent();
 
             this.glCanvas1.OpenGLDraw += glCanvas1_OpenGLDraw;
-            //this.glCanvas1.MouseDown += glCanvas1_MouseDown;
-            //this.glCanvas1.MouseMove += glCanvas1_MouseMove;
-            //this.glCanvas1.MouseUp += glCanvas1_MouseUp;
-            //this.glCanvas1.MouseWheel += glCanvas1_MouseWheel;
 
             Application.Idle += Application_Idle;
             // 天蓝色背景
