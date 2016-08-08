@@ -20,8 +20,8 @@ namespace CSharpGL.Demos
         {
             this.lastMousePosition = e.Location;
 
-            // operate camera
-            rotator.canvas_MouseDown(sender, e);
+            //// operate camera
+            //rotator.canvas_MouseDown(sender, e);
 
             if (sender == this.glCanvas1)
             {
@@ -33,8 +33,8 @@ namespace CSharpGL.Demos
         {
             if (lastMousePosition == e.Location) { return; }
 
-            // operate camera
-            rotator.canvas_MouseMove(sender, e);
+            //// operate camera
+            //rotator.canvas_MouseMove(sender, e);
 
             this.lastMousePosition = e.Location;
 
@@ -46,8 +46,8 @@ namespace CSharpGL.Demos
 
         internal void glCanvas1_MouseUp(object sender, MouseEventArgs e)
         {
-            // operate camera
-            rotator.canvas_MouseUp(sender, e);
+            //// operate camera
+            //rotator.canvas_MouseUp(sender, e);
 
             this.lastMousePosition = e.Location;
 
