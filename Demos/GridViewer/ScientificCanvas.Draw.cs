@@ -22,13 +22,6 @@ namespace GridViewer
 
             Point mousePosition = this.PointToClient(Control.MousePosition);
             this.Scene.Render(RenderModes.Render, this.ClientRectangle, mousePosition);
-            //var arg = new RenderEventArgs(RenderModes.Render, this.ClientRectangle, this.Scene.Camera);
-            //var list = this.Scene.ObjectList.ToArray();
-            //foreach (var item in list)
-            //{
-            //    item.Render(arg);
-            //}
-            //this.Scene.UIRootObject.Render(arg);
         }
     }
 }
