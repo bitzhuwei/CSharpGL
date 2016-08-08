@@ -37,20 +37,21 @@
             this.glCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.glCanvas1.Location = new System.Drawing.Point(13, 13);
-            this.glCanvas1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.glCanvas1.Location = new System.Drawing.Point(10, 10);
             this.glCanvas1.Name = "glCanvas1";
             this.glCanvas1.OpenGLVersion = CSharpGL.GLVersion.OpenGL2_1;
             this.glCanvas1.RenderTrigger = CSharpGL.RenderTriggers.TimerBased;
-            this.glCanvas1.Size = new System.Drawing.Size(757, 522);
+            this.glCanvas1.ShowSystemCursor = false;
+            this.glCanvas1.Size = new System.Drawing.Size(568, 418);
             this.glCanvas1.TabIndex = 0;
             // 
             // Form03OrderDependentTransparency
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(783, 548);
+            this.ClientSize = new System.Drawing.Size(587, 438);
             this.Controls.Add(this.glCanvas1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form03OrderDependentTransparency";
             this.Text = "Form03OrderDependentTransparency";
             this.Load += new System.EventHandler(this.Form_Load);

@@ -59,26 +59,52 @@ namespace CSharpGL
         }
 
         private bool showingCursor = true;
+        private bool showSystemCursor = true;
         /// <summary>
         /// show/hide system's cursor.
         /// </summary>
-        /// <param name="value"></param>
-        public void ShowSystemCursor(bool value)
+        [Description("show/hide system's cursor.")]
+        public bool ShowSystemCursor
         {
-            if (!this.designMode)
+            get { return (this.showSystemCursor); }
+            set
             {
-                if ((this.showingCursor) && (!value))
+                this.showSystemCursor = value;
+                if (!this.designMode)
                 {
-                    this.MouseEnter += mouseEnter;
-                    this.MouseLeave += mouseLeave;
-                }
-                else if ((!this.showingCursor) && (value))
-                {
-                    this.MouseEnter -= mouseEnter;
-                    this.MouseLeave -= mouseLeave;
+                    if ((this.showingCursor) && (!value))
+                    {
+                        this.MouseEnter += mouseEnter;
+                        this.MouseLeave += mouseLeave;
+                    }
+                    else if ((!this.showingCursor) && (value))
+                    {
+                        this.MouseEnter -= mouseEnter;
+                        this.MouseLeave -= mouseLeave;
+                    }
                 }
             }
         }
+        ///// <summary>
+        ///// show/hide system's cursor.
+        ///// </summary>
+        ///// <param name="value"></param>
+        //public void ShowSystemCursor(bool value)
+        //{
+        //    if (!this.designMode)
+        //    {
+        //        if ((this.showingCursor) && (!value))
+        //        {
+        //            this.MouseEnter += mouseEnter;
+        //            this.MouseLeave += mouseLeave;
+        //        }
+        //        else if ((!this.showingCursor) && (value))
+        //        {
+        //            this.MouseEnter -= mouseEnter;
+        //            this.MouseLeave -= mouseLeave;
+        //        }
+        //    }
+        //}
         void GLCanvas_MouseLeave(object sender, EventArgs e)
         {
             ShowCursor(1);// show system's cursor.
