@@ -14,6 +14,7 @@ namespace CSharpGL.Demos
     public partial class Form10RaycastVolumeRenderer : Form
     {
         private FormProperyGrid formPropertyGrid;
+        private Scene scene;
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -22,16 +23,18 @@ namespace CSharpGL.Demos
                     CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 var rotator = new SatelliteManipulater();
                 rotator.Bind(camera, this.glCanvas1);
-                this.camera = camera;
-                this.rotator = rotator;
+                this.scene = new Scene(camera);
+                this.glCanvas1.Resize += this.scene.Resize;
             }
             {
                 var renderer = new RaycastVolumeRenderer();
                 renderer.Initialize();
-                this.renderer = renderer;
+                var obj = new SceneObject();
+                obj.Renderer = new RendererBaseComponent(renderer);
+                this.scene.ObjectList.Add(obj);
             }
             {
-                var frmPropertyGrid = new FormProperyGrid(this.renderer);
+                var frmPropertyGrid = new FormProperyGrid(this.scene);
                 frmPropertyGrid.Show();
                 this.formPropertyGrid = frmPropertyGrid;
             }

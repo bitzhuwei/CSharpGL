@@ -39,7 +39,11 @@ namespace CSharpGL.Demos
             {
                 Resize(viewport[2], viewport[3]);
             }
-          
+
+            mat4 mvp = arg.Camera.GetProjectionMat4() * arg.Camera.GetViewMat4();
+            this.backfaceRenderer.SetUniform("MVP", mvp);
+            this.raycastRenderer.SetUniform("MVP", mvp);
+
             // render to texture
             OpenGL.GetDelegateFor<OpenGL.glBindFramebufferEXT>()(OpenGL.GL_FRAMEBUFFER, frameBuffer[0]);
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
