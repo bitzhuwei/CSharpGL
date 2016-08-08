@@ -21,10 +21,11 @@ namespace CSharpGL
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\BuildInSceneObject.frag"), ShaderType.FragmentShader);
             IBufferable bufferable = GetModel(buildIn);
             PropertyNameMap map = GetMap(buildIn);
-            var renderer = new Renderer(bufferable, shaderCodes, map);
+            var renderer = new BuildInRenderer(bufferable, shaderCodes, map);
             renderer.Initialize();
 
             var obj = new SceneObject();
+            obj.ScriptList.Add(new TransformScript());
             obj.Renderer = renderer;
             obj.Name = string.Format("{0}", buildIn);
 
