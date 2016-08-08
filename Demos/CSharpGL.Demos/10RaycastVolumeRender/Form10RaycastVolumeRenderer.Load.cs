@@ -13,7 +13,6 @@ namespace CSharpGL.Demos
 {
     public partial class Form10RaycastVolumeRenderer : Form
     {
-        private FormProperyGrid formPropertyGrid;
         private Scene scene;
 
         private void Form_Load(object sender, EventArgs e)
@@ -36,7 +35,6 @@ namespace CSharpGL.Demos
             {
                 var frmPropertyGrid = new FormProperyGrid(this.scene);
                 frmPropertyGrid.Show();
-                this.formPropertyGrid = frmPropertyGrid;
             }
         }
     }
