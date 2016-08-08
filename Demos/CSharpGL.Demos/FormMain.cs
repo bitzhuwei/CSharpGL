@@ -59,7 +59,7 @@ namespace CSharpGL.Demos
 
         private void btn09UIRenderer_Click(object sender, EventArgs e)
         {
-            (new Form09UIRenderer()).Show();
+            //(new Form09UIRenderer()).Show();
         }
 
         private void btn10RaycastVolumeRenderer_Click(object sender, EventArgs e)

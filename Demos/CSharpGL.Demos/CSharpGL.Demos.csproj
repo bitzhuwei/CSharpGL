@@ -210,15 +210,6 @@
     <Compile Include="12Billboard\Form12Billboard.Load.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="09UIRenderer\Form09UIRenderer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="09UIRenderer\Form09UIRenderer.Designer.cs">
-      <DependentUpon>Form09UIRenderer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="09UIRenderer\Form09UIRenderer.Load.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Renderers\RaycastVolumeRenderer.Initialize.cs" />
     <Compile Include="Models\RaycastModel.cs" />
     <Compile Include="Renderers\RaycastVolumeRenderer.cs" />
@@ -398,9 +389,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="12Billboard\Form12Billboard.resx">
       <DependentUpon>Form12Billboard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="09UIRenderer\Form09UIRenderer.resx">
-      <DependentUpon>Form09UIRenderer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="10RaycastVolumeRender\Form10RaycastVolumeRenderer.resx">
       <DependentUpon>Form10RaycastVolumeRenderer.cs</DependentUpon>
