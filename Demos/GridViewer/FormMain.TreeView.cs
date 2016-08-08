@@ -73,8 +73,9 @@ namespace GridViewer
                         node.Parent.Nodes.Remove(node);
                     }
 
-                    obj.RendererComponent.Dispose();
+                    obj.Dispose();
                 }
+
                 this.scientificCanvas.Invalidate();
             }
         }
@@ -92,9 +93,10 @@ namespace GridViewer
                 SceneObject obj = node.Tag as SceneObject;
                 if (obj != null)
                 {
-                    var rendererComponent = obj.RendererComponent as BoundedRendererComponent;
-                    IBoundingBox box = rendererComponent.Renderer.BoxRenderer;
-                    IBoundingBox translatedBox = new BoundingBox(box.MinPosition + obj.Transform.Position, box.MaxPosition + obj.Transform.Position);
+                    var renderer = obj.Renderer as BoundedRenderer;
+                    IBoundingBox box = renderer.BoxRenderer;
+                    TransformScript transform = obj.GetScript<TransformScript>();
+                    IBoundingBox translatedBox = new BoundingBox(box.MinPosition + transform.Position, box.MaxPosition + transform.Position);
                     translatedBox.ZoomCamera(this.scientificCanvas.Scene.Camera);
                 }
                 this.scientificCanvas.Invalidate();

@@ -13,7 +13,8 @@ namespace CSharpGL
         {
             if (this.Enabled)
             {
-                RendererComponent renderer = this.RendererComponent;
+                //RendererComponent renderer = this.RendererComponent;
+                RendererBase renderer = this.Renderer;
                 if (renderer != null)
                 {
                     renderer.Render(arg);

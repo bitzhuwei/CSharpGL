@@ -31,7 +31,7 @@ namespace CSharpGL.Demos
                 var renderer = new ImageProcessingRenderer();
                 renderer.Initialize();
                 var obj = new SceneObject();
-                obj.RendererComponent = new RendererBaseComponent(renderer);
+                obj.Renderer = renderer;
                 obj.ScriptList.Add(new UpdateImageScript(this.glCanvas1));
                 this.scene.ObjectList.Add(obj);
             }

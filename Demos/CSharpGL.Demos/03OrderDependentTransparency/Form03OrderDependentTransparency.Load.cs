@@ -33,7 +33,7 @@ namespace CSharpGL.Demos
                 OrderDependentTransparencyRenderer renderer = OrderDependentTransparencyRenderer.Create(bufferable, "position", "color");
                 renderer.Initialize();
                 var obj = new SceneObject();
-                obj.RendererComponent = new RendererBaseComponent(renderer);
+                obj.Renderer = renderer;
                 this.scene.ObjectList.Add(obj);
             }
         }

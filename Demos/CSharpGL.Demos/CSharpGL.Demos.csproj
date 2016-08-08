@@ -53,6 +53,7 @@
     <Compile Include="11IFontTexture\Form11IFontTexture.Designer.cs">
       <DependentUpon>Form11IFontTexture.cs</DependentUpon>
     </Compile>
+    <Compile Include="16ArcBallManipulater\ModelManipulaterScript.cs" />
     <Compile Include="17UpdateTexture\Form17UpdateTexture.cs">
       <SubType>Form</SubType>
     </Compile>

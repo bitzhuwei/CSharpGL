@@ -8,8 +8,9 @@ namespace CSharpGL.SceneEditor.Scripts
 {
     class Planet : ScriptComponent
     {
+        private TransformScript transform;
 
-        private TransformComponent transform;
+        //private TransformComponent transform;
         private double currentAngle;
 
         /// <summary>
@@ -24,7 +25,14 @@ namespace CSharpGL.SceneEditor.Scripts
 
         protected override void DoInitialize()
         {
-            this.transform = this.BindingObject.Transform;
+            foreach (var item in this.BindingObject.ScriptList)
+            {
+                if (item is TransformScript)
+                {
+                    this.transform = item as TransformScript;
+                    break;
+                }
+            }
         }
 
         protected override void DoUpdate(double elapsedTime)

@@ -9,8 +9,8 @@ namespace CSharpGL.SceneEditor.Scripts
     class Satellite : ScriptComponent
     {
 
-        private TransformComponent transform;
-        private TransformComponent planetTransform;
+        private TransformScript transform;
+        private TransformScript planetTransform;
         private double currentAngle;
 
         /// <summary>
@@ -25,8 +25,8 @@ namespace CSharpGL.SceneEditor.Scripts
 
         protected override void DoInitialize()
         {
-            this.transform = this.BindingObject.Transform;
-            this.planetTransform = this.BindingObject.Parent.Transform;
+            this.transform = this.BindingObject.GetScript<TransformScript>();
+            this.planetTransform = this.BindingObject.Parent.GetScript<TransformScript>(); ;
         }
 
         protected override void DoUpdate(double elapsedTime)

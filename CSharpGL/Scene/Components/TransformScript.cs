@@ -6,7 +6,7 @@ namespace CSharpGL
     /// Transform model's position from model space to world space,
     /// including translation, scale and rotation.
     /// </summary>
-    public partial class TransformComponent : Component
+    public partial class TransformScript : ScriptComponent
     {
         /// <summary>
         /// translate this object.
@@ -26,7 +26,7 @@ namespace CSharpGL
         /// including translation, scale and rotation.
         /// </summary>
         /// <param name="bindingObject"></param>
-        public TransformComponent(SceneObject bindingObject = null)
+        public TransformScript(SceneObject bindingObject = null)
             : base(bindingObject)
         {
             this.Scale = new vec3(1, 1, 1);
@@ -66,6 +66,16 @@ namespace CSharpGL
             }
 
             return this.selfMatrix;
+        }
+
+        protected override void DoInitialize()
+        {
+            //throw new NotImplementedException();
+        }
+
+        protected override void DoUpdate(double elapsedTime)
+        {
+            //throw new NotImplementedException();
         }
     }
 }

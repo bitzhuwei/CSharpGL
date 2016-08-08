@@ -12,7 +12,8 @@ namespace CSharpGL
     public partial class SceneObject :
         IRenderable, // take part in rendering an object.
         ITreeNode<SceneObject>, // contains children objects and is contained by parent.
-        IEnumerable<SceneObject> // enumerates self and all children objects recursively.
+        IEnumerable<SceneObject>, // enumerates self and all children objects recursively.
+        IDisposable
     {
 
         private const string strBasic = "Basic";
@@ -24,35 +25,39 @@ namespace CSharpGL
         [Description("Name.")]
         public string Name { get; set; }
 
-        /// <summary>
-        /// Translate, rotate and scale this object in world space.
-        /// </summary>
+        ///// <summary>
+        ///// Translate, rotate and scale this object in world space.
+        ///// </summary>
+        //[Category(strBasic)]
+        //[Description("Translate, rotate and scale this object in world space.")]
+        //public TransformComponent Transform { get; protected set; }
+
+        //private RendererComponent rendererComponent;
+        ///// <summary>
+        ///// render this object.
+        ///// </summary>
+        //[Category(strBasic)]
+        //[Description("render this object.")]
+        //public RendererComponent RendererComponent
+        //{
+        //    get { return this.rendererComponent; }
+        //    set
+        //    {
+        //        RendererComponent rendererComponent = this.rendererComponent;
+        //        if (rendererComponent != value)
+        //        {
+        //            if (rendererComponent != null) { rendererComponent.BindingObject = null; }
+
+        //            if (value != null) { value.BindingObject = this; }
+
+        //            this.rendererComponent = value;
+        //        }
+        //    }
+        //}
+
         [Category(strBasic)]
-        [Description("Translate, rotate and scale this object in world space.")]
-        public TransformComponent Transform { get; protected set; }
-
-        private RendererComponent rendererComponent;
-        /// <summary>
-        /// render this object.
-        /// </summary>
-        [Category(strBasic)]
-        [Description("render this object.")]
-        public RendererComponent RendererComponent
-        {
-            get { return this.rendererComponent; }
-            set
-            {
-                RendererComponent rendererComponent = this.rendererComponent;
-                if (rendererComponent != value)
-                {
-                    if (rendererComponent != null) { rendererComponent.BindingObject = null; }
-
-                    if (value != null) { value.BindingObject = this; }
-
-                    this.rendererComponent = value;
-                }
-            }
-        }
+        [Description("renders something.")]
+        public RendererBase Renderer { get; set; }
 
         /// <summary>
         /// update state of this object.
@@ -60,6 +65,25 @@ namespace CSharpGL
         [Category(strBasic)]
         [Description("update state of this object.")]
         public ScriptComponentList ScriptList { get; private set; }
+
+        /// <summary>
+        /// Gets first script with specified type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T GetScript<T>() where T : ScriptComponent
+        {
+            foreach (var item in this.ScriptList)
+            {
+                var script = item as T;
+                if (script != null)
+                {
+                    return script;
+                }
+            }
+
+            return null;
+        }
 
         /// <summary>
         /// Enabled or not.
@@ -83,7 +107,7 @@ namespace CSharpGL
         {
             this.Name = this.GetType().Name;
             this.Enabled = true;
-            this.Transform = new TransformComponent(this);
+            //this.Transform = new TransformComponent(this);
             this.ScriptList = new ScriptComponentList(this);
             this.Children = new ChildList<SceneObject>(this);
         }

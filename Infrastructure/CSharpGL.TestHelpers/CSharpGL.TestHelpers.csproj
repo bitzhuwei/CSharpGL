@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultRendererComponent.cs" />
     <Compile Include="FontBuilder.cs">
       <SubType>UserControl</SubType>
     </Compile>

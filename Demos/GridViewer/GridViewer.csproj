@@ -58,7 +58,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoundedRendererComponent.cs" />
     <Compile Include="FormMain.Misc.cs">
       <SubType>Form</SubType>
     </Compile>

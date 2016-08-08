@@ -43,15 +43,16 @@ namespace GridViewer
                 scientificRenderer.Initialize();
                 var boundedRenderer = new BoundedRenderer(scientificRenderer,
                     grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min);
-                var sceneObject = new SceneObject();
-                sceneObject.Name = grid.GetType().Name;
-                sceneObject.RendererComponent = new BoundedRendererComponent(boundedRenderer);
-                sceneObject.Transform.Position = -grid.DataSource.TranslateMatrix;
-                this.scientificCanvas.Scene.ObjectList.Add(sceneObject);
+                var obj = new SceneObject();
+                obj.Renderer = boundedRenderer;
+                var transformScript = new TransformScript();
+                transformScript.Position = -grid.DataSource.TranslateMatrix;
+                obj.ScriptList.Add(transformScript);
+                this.scientificCanvas.Scene.ObjectList.Add(obj);
                 string caseFileName = System.IO.Path.GetFileName(fileName);
-                var gridderNode = new SceneObjectTreeNode(sceneObject);
+                var gridderNode = new SceneObjectTreeNode(obj);
                 gridderNode.Text = caseFileName;
-                gridderNode.Tag = sceneObject;//TODO: this is not needed any more.
+                gridderNode.Tag = obj;//TODO: this is not needed any more.
                 gridderNode.ToolTipText = grid.GetType().Name;
                 this.objectsTreeView.Nodes.Add(gridderNode);
                 //if (gridProps.Count <= 0)
@@ -61,8 +62,8 @@ namespace GridViewer
                 //}
                 foreach (GridBlockProperty gbp in gridProperties)
                 {
-                    var script = new ScientificModelScriptComponent(sceneObject, gbp, this.scientificCanvas.uiColorPalette);
-                    sceneObject.ScriptList.Add(script);
+                    var script = new ScientificModelScriptComponent(obj, gbp, this.scientificCanvas.uiColorPalette);
+                    obj.ScriptList.Add(script);
                     var propNode = new PropertyTreeNode(script);
                     propNode.Text = gbp.Name;
                     propNode.Tag = gbp;

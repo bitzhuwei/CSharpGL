@@ -33,7 +33,7 @@ namespace CSharpGL.Demos
                 renderer.Initialize();
                 this.renderer = renderer;
                 var obj = new SceneObject();
-                obj.RendererComponent = new RendererBaseComponent(renderer);
+                obj.Renderer = renderer;
                 this.scene.ObjectList.Add(obj);
             }
             {

@@ -139,7 +139,10 @@
     <Compile Include="0Foundations\OpenGLObjects\Camera\CameraHelpers\BoundingBox.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\CameraHelpers\IBoundingBox2D.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\UICursor.cs" />
-    <Compile Include="Scene\Components\RendererBaseComponent.cs" />
+    <Compile Include="Scene\Components\TransformScript.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Scene\SceneObject\SceneObject.IDisposable.cs" />
     <Compile Include="WinformControls\BoundedClockRenderer.cs" />
     <Compile Include="WinformControls\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\BlendSwitch.cs" />
@@ -252,9 +255,7 @@
     <Compile Include="Scene\SceneObject\SceneObject.IRenderable.cs" />
     <Compile Include="Scene\SceneObject\SceneObject.ITreeNode.cs" />
     <Compile Include="Scene\Components\ScriptComponentList.cs" />
-    <Compile Include="Scene\Components\RendererComponent.cs" />
     <Compile Include="Scene\Components\ScriptComponent.cs" />
-    <Compile Include="Scene\Components\TransformComponent.cs" />
     <Compile Include="0Foundations\DataStructrues\NoisyArray.cs" />
     <Compile Include="0Foundations\Utilities\TypeHelper.cs" />
     <Compile Include="0Foundations\DataStructrues\ComponentList.cs" />

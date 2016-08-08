@@ -29,9 +29,6 @@ namespace CSharpGL.Demos
                 this.keyPress = this.glCanvas1_KeyPress;
                 this.canvas.KeyPress += this.keyPress;
             }
-            {
-                this.rendererComponent = this.BindingObject.RendererComponent as RendererBaseComponent;
-            }
         }
 
         protected override void DoUpdate(double elapsedTime)
@@ -46,24 +43,24 @@ namespace CSharpGL.Demos
                 if (this.openTextureDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     {
-                        RendererBase renderer = this.rendererComponent.Renderer;
+                        RendererBase renderer = this.BindingObject.Renderer;
                         renderer.Dispose();
                     }
                     {
                         var renderer = new ImageProcessingRenderer(this.openTextureDlg.FileName);
                         renderer.Initialize();
-                        this.rendererComponent.Renderer = renderer;
+                        this.BindingObject.Renderer = renderer;
                     }
                 }
             }
             else if (e.KeyChar == 'c')
             {
-                var renderer = this.rendererComponent.Renderer as ImageProcessingRenderer;
+                var renderer = this.BindingObject.Renderer as ImageProcessingRenderer;
                 renderer.SwitchDisplayImage(true);
             }
             else if (e.KeyChar == 'x')
             {
-                var renderer = this.rendererComponent.Renderer as ImageProcessingRenderer;
+                var renderer = this.BindingObject.Renderer as ImageProcessingRenderer;
                 renderer.SwitchDisplayImage(false);
             }
         }
@@ -91,7 +88,6 @@ namespace CSharpGL.Demos
         /// Backing field to track whether Dispose has been called.
         /// </summary>
         private bool disposedValue = false;
-        private RendererBaseComponent rendererComponent;
 
         /// <summary>
         /// Dispose managed and unmanaged resources of this instance.

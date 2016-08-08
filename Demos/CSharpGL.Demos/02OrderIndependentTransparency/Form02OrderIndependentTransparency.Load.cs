@@ -31,12 +31,12 @@ namespace CSharpGL.Demos
             }
             {
                 IBufferable bufferable = new Teapot();
-                var OITRenderer = new OrderIndependentTransparencyRenderer(
+                var renderer = new OrderIndependentTransparencyRenderer(
                     bufferable, Teapot.strPosition, Teapot.strNormal);
-                OITRenderer.Name = "OIT Renderer";
-                OITRenderer.Initialize();
+                renderer.Name = "OIT Renderer";
+                renderer.Initialize();
                 var obj = new SceneObject();
-                obj.RendererComponent = new RendererBaseComponent(OITRenderer);
+                obj.Renderer = renderer;
                 this.scene.ObjectList.Add(obj);
             }
 
