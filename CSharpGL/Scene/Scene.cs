@@ -70,6 +70,8 @@ namespace CSharpGL
             if (control == null) { throw new ArgumentException(); }
 
             this.Camera.Resize(control.Width, control.Height);
+
+            this.uiRoot.Size = control.Size;
         }
         /// <summary>
         /// 
