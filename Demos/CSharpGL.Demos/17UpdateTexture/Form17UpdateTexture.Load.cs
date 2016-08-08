@@ -34,14 +34,9 @@ namespace CSharpGL.Demos
                 this.arcballManipulater = arcballManipulater;
             }
             {
-                var shaderCodes = new ShaderCode[2];
-                shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Ground.vert"), ShaderType.VertexShader);
-                shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Ground.frag"), ShaderType.FragmentShader);
-                var map = new PropertyNameMap();
-                map.Add("in_Position", GroundModel.strPosition);
                 const int gridsPer2Unit = 20;
                 const int scale = 2;
-                var ground = new GroundRenderer(new GroundModel(gridsPer2Unit * scale), shaderCodes, map);
+                GroundRenderer ground = GroundRenderer.Create(new GroundModel(gridsPer2Unit * scale));
                 ground.Initialize();
                 ground.Scale = scale;
                 this.ground = ground;

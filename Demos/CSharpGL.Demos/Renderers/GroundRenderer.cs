@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -13,11 +14,22 @@ namespace CSharpGL.Demos
     internal class GroundRenderer : Renderer
     {
 
+        public static GroundRenderer Create(GroundModel model)
+        {
+            var shaderCodes = new ShaderCode[2];
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Ground.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Ground.frag"), ShaderType.FragmentShader);
+            var map = new PropertyNameMap();
+            map.Add("in_Position", GroundModel.strPosition);
+            var ground = new GroundRenderer(model, shaderCodes, map);
+            return ground;
+        }
+
         public Color LineColor { get; set; }
 
         public float Scale { get; set; }
 
-        public GroundRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
+        private GroundRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {

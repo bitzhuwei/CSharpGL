@@ -13,7 +13,7 @@ namespace CSharpGL.Demos
     /// </summary>
     internal class MovableRenderer : PickableRenderer
     {
-        public static MovableRenderer GetRenderer(IBufferable model)
+        public static MovableRenderer Create(IBufferable model)
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Teapot.vert"), ShaderType.VertexShader);
