@@ -12,6 +12,7 @@ namespace CSharpGL.SceneEditor.Scripts
         private TransformScript transform;
         private TransformScript planetTransform;
         private double currentAngle;
+        private BuildInRenderer renderer;
 
         /// <summary>
         /// 公转半径
@@ -25,8 +26,13 @@ namespace CSharpGL.SceneEditor.Scripts
 
         protected override void DoInitialize()
         {
-            this.transform = this.BindingObject.GetScript<TransformScript>();
-            this.planetTransform = this.BindingObject.Parent.GetScript<TransformScript>(); ;
+            {
+                this.transform = this.BindingObject.GetScript<TransformScript>();
+                this.planetTransform = this.BindingObject.Parent.GetScript<TransformScript>(); ;
+            }
+            {
+                this.renderer = this.BindingObject.Renderer as BuildInRenderer;
+            }
         }
 
         protected override void DoUpdate(double elapsedTime)
@@ -39,6 +45,8 @@ namespace CSharpGL.SceneEditor.Scripts
                 (float)(this.RevolutionRadius * Math.Sin(newAngle)))
                 + this.planetTransform.Position;
             this.currentAngle = newAngle;
+
+            this.renderer.ModelMatrix = this.transform.GetModelMatrix();
         }
 
     }

@@ -48,6 +48,7 @@ namespace GridViewer
                 var transformScript = new TransformScript();
                 transformScript.Position = -grid.DataSource.TranslateMatrix;
                 obj.ScriptList.Add(transformScript);
+                //obj.ScriptList.Add(new GeneralTransform());
                 this.scientificCanvas.Scene.ObjectList.Add(obj);
                 string caseFileName = System.IO.Path.GetFileName(fileName);
                 var gridderNode = new SceneObjectTreeNode(obj);
