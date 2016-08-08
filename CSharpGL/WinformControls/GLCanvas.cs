@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.ComponentModel.Design;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -48,7 +49,25 @@ namespace CSharpGL
             // check http://stackoverflow.com/questions/34664/designmode-with-controls
             this.designMode = this.DesignMode || System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime;
 
+            if (!this.designMode)
+            {
+                this.MouseEnter += GLCanvas_MouseEnter;
+                this.MouseLeave += GLCanvas_MouseLeave;
+            }
         }
+
+        void GLCanvas_MouseLeave(object sender, EventArgs e)
+        {
+            ShowCursor(1);// show system's cursor.
+        }
+
+        void GLCanvas_MouseEnter(object sender, EventArgs e)
+        {
+            ShowCursor(0);// hide system's cursor.
+        }
+
+        [DllImport("user32.dll", EntryPoint = "ShowCursor", CharSet = CharSet.Auto)]
+        private extern static void ShowCursor(int status);
 
         #region ISupportInitialize 成员
 
