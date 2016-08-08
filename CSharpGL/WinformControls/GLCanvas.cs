@@ -64,6 +64,7 @@ namespace CSharpGL
         /// <summary>
         /// show/hide system's cursor.
         /// </summary>
+        [Category("CSharpGL")]
         [Description("show/hide system's cursor.")]
         public bool ShowSystemCursor
         {
@@ -253,6 +254,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        [Category("CSharpGL")]
         public double FPS { get; private set; }
 
         /// <summary>
@@ -324,8 +326,14 @@ namespace CSharpGL
             get { return this.redrawTimer.Interval; }
             set
             {
-                if (value < 1) { value = 1; }
-                this.redrawTimer.Interval = value;
+                if (value < 1)
+                {
+                    this.redrawTimer.Interval = 1;
+                }
+                else
+                {
+                    this.redrawTimer.Interval = value;
+                }
             }
         }
 
@@ -334,9 +342,11 @@ namespace CSharpGL
         /// </summary>
         private void DoOpenGLDraw(PaintEventArgs e)
         {
-            var handler = OpenGLDraw;
+            EventHandler<PaintEventArgs> handler = this.OpenGLDraw;
             if (handler != null)
+            {
                 handler(this, e);
+            }
         }
 
         /// <summary>
