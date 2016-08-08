@@ -12,6 +12,12 @@ namespace CSharpGL
     {
         private RendererBase renderer;
 
+        public RendererBase Renderer
+        {
+            get { return renderer; }
+            set { renderer = value; }
+        }
+
         /// <summary>
         /// default renderer component that wraps a <see cref="RendererBase"/>.
         /// </summary>
