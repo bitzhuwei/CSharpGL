@@ -11,7 +11,7 @@ namespace CSharpGL.Demos
     /// <summary>
     /// 可设定其在world space的位置。
     /// </summary>
-    internal class MovableRenderer : PickableRenderer
+    internal class MovableRenderer : PickableRenderer, IWorldPosition
     {
         public static MovableRenderer Create(IBufferable model)
         {
