@@ -31,25 +31,25 @@ namespace CSharpGL
         [Description("Translate, rotate and scale this object in world space.")]
         public TransformComponent Transform { get; protected set; }
 
-        private RendererComponent renderer;
+        private RendererComponent rendererComponent;
         /// <summary>
         /// render this object.
         /// </summary>
         [Category(strBasic)]
         [Description("render this object.")]
-        public RendererComponent Renderer
+        public RendererComponent RendererComponent
         {
-            get { return this.renderer; }
+            get { return this.rendererComponent; }
             set
             {
-                RendererComponent renderer = this.renderer;
-                if (renderer != value)
+                RendererComponent rendererComponent = this.rendererComponent;
+                if (rendererComponent != value)
                 {
-                    if (renderer != null) { renderer.BindingObject = null; }
+                    if (rendererComponent != null) { rendererComponent.BindingObject = null; }
 
                     if (value != null) { value.BindingObject = this; }
 
-                    this.renderer = value;
+                    this.rendererComponent = value;
                 }
             }
         }
@@ -110,6 +110,17 @@ namespace CSharpGL
                 {
                     script.Update(elapsedTime);
                 }
+            }
+        }
+
+        /// <summary>
+        /// initialize scripts this object.
+        /// </summary>
+        public void Initialize()
+        {
+            foreach (var item in this.ScriptList)
+            {
+                item.Initialize();
             }
         }
     }

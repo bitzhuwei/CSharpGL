@@ -14,7 +14,6 @@ namespace CSharpGL.Demos
     public partial class Form06ImageProcessing : Form
     {
         private Scene scene;
-        private SceneObject obj;
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -32,9 +31,9 @@ namespace CSharpGL.Demos
                 var renderer = new ImageProcessingRenderer();
                 renderer.Initialize();
                 var obj = new SceneObject();
-                obj.Renderer = new RendererBaseComponent(renderer);
+                obj.RendererComponent = new RendererBaseComponent(renderer);
+                obj.ScriptList.Add(new UpdateImageScript(this.glCanvas1));
                 this.scene.ObjectList.Add(obj);
-                this.obj = obj;
             }
             {
                 var frmPropertyGrid = new FormProperyGrid(this.scene);

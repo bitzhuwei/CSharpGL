@@ -1,0 +1,123 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace CSharpGL.Demos
+{
+    class UpdateImageScript : ScriptComponent, IDisposable
+    {
+        private Control canvas;
+        private OpenFileDialog openTextureDlg;
+        private KeyPressEventHandler keyPress;
+
+        public UpdateImageScript(Control canvas, SceneObject obj = null)
+            : base(obj)
+        {
+            this.canvas = canvas;
+        }
+
+        protected override void DoInitialize()
+        {
+            {
+                var openTextureDlg = new OpenFileDialog();
+                openTextureDlg.Filter = "Image File(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
+                this.openTextureDlg = openTextureDlg;
+            }
+            {
+                this.keyPress = this.glCanvas1_KeyPress;
+                this.canvas.KeyPress += this.keyPress;
+            }
+            {
+                this.rendererComponent = this.BindingObject.RendererComponent as RendererBaseComponent;
+            }
+        }
+
+        protected override void DoUpdate(double elapsedTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 'o')
+            {
+                if (this.openTextureDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    {
+                        RendererBase renderer = this.rendererComponent.Renderer;
+                        renderer.Dispose();
+                    }
+                    {
+                        var renderer = new ImageProcessingRenderer(this.openTextureDlg.FileName);
+                        renderer.Initialize();
+                        this.rendererComponent.Renderer = renderer;
+                    }
+                }
+            }
+            else if (e.KeyChar == 'c')
+            {
+                var renderer = this.rendererComponent.Renderer as ImageProcessingRenderer;
+                renderer.SwitchDisplayImage(true);
+            }
+            else if (e.KeyChar == 'x')
+            {
+                var renderer = this.rendererComponent.Renderer as ImageProcessingRenderer;
+                renderer.SwitchDisplayImage(false);
+            }
+        }
+
+        #region IDisposable Members
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        } // end sub
+
+        /// <summary>
+        /// Destruct instance of the class.
+        /// </summary>
+        ~UpdateImageScript()
+        {
+            this.Dispose(false);
+        }
+
+        /// <summary>
+        /// Backing field to track whether Dispose has been called.
+        /// </summary>
+        private bool disposedValue = false;
+        private RendererBaseComponent rendererComponent;
+
+        /// <summary>
+        /// Dispose managed and unmanaged resources of this instance.
+        /// </summary>
+        /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
+        protected virtual void Dispose(bool disposing)
+        {
+
+            if (this.disposedValue == false)
+            {
+                if (disposing)
+                {
+                    // TODO: Dispose managed resources.
+                    this.canvas.KeyPress -= this.keyPress;
+                    this.canvas = null;
+                    this.openTextureDlg.Dispose();
+                    this.openTextureDlg = null;
+                } // end if
+
+                // TODO: Dispose unmanaged resources.
+
+            } // end if
+
+            this.disposedValue = true;
+        } // end sub
+
+        #endregion
+    }
+}

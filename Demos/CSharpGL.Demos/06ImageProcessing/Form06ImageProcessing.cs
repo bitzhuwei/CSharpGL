@@ -38,34 +38,5 @@ namespace CSharpGL.Demos
             this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle, this.glCanvas1.PointToClient(Control.MousePosition));
         }
 
-        private void glCanvas1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 'o')
-            {
-                if (this.openTextureDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    {
-                        RendererBase renderer = (this.obj.Renderer as RendererBaseComponent).Renderer;
-                        renderer.Dispose();
-                    }
-                    {
-                        var renderer = new ImageProcessingRenderer(this.openTextureDlg.FileName);
-                        renderer.Initialize();
-                        (this.obj.Renderer as RendererBaseComponent).Renderer = renderer;
-                    }
-                }
-            }
-            else if (e.KeyChar == 'c')
-            {
-                var renderer = (this.obj.Renderer as RendererBaseComponent).Renderer as ImageProcessingRenderer;
-                renderer.SwitchDisplayImage(true);
-            }
-            else if (e.KeyChar == 'x')
-            {
-                var renderer = (this.obj.Renderer as RendererBaseComponent).Renderer as ImageProcessingRenderer;
-                renderer.SwitchDisplayImage(false);
-            }
-        }
-
     }
 }

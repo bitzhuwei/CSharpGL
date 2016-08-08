@@ -17,7 +17,7 @@ namespace CSharpGL
         public static SceneObject GetBuildInSceneObject(BuildInSceneObject buildIn)
         {
             var obj = new SceneObject();
-            obj.Renderer = new DefaultRendererComponent(buildIn);
+            obj.RendererComponent = new DefaultRendererComponent(buildIn);
             obj.Name = string.Format("{0}", buildIn);
 
             return obj;

@@ -38,6 +38,7 @@ namespace CSharpGL
         public UIRoot UIRoot { get { return this.uiRoot; } }
 
         private UIRoot cursorRoot = new UIRoot();
+        private bool initialized = false;
         /// <summary>
         /// OpenGL UI for cursor.
         /// </summary>
@@ -81,6 +82,8 @@ namespace CSharpGL
         /// <param name="mousePosition">mouse position in window coordinate system.</param>
         public void Render(RenderModes renderMode, Rectangle clientRectangle, Point mousePosition)
         {
+            if (!this.initialized) { this.Initialize(); }
+
             var arg = new RenderEventArg(renderMode, clientRectangle, this.Camera);
 
             // render objects.
@@ -99,6 +102,22 @@ namespace CSharpGL
             {
                 cursor.UpdatePosition(mousePosition);
                 this.cursorRoot.Render(arg);
+            }
+        }
+
+        /// <summary>
+        /// initialize objects in this scene.
+        /// </summary>
+        public void Initialize()
+        {
+            if (!this.initialized)
+            {
+                foreach (var item in this.objectList)
+                {
+                    item.Initialize();
+                }
+
+                this.initialized = true;
             }
         }
     }

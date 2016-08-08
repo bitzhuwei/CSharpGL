@@ -73,7 +73,7 @@ namespace GridViewer
                         node.Parent.Nodes.Remove(node);
                     }
 
-                    obj.Renderer.Dispose();
+                    obj.RendererComponent.Dispose();
                 }
                 this.scientificCanvas.Invalidate();
             }
@@ -92,7 +92,7 @@ namespace GridViewer
                 SceneObject obj = node.Tag as SceneObject;
                 if (obj != null)
                 {
-                    var rendererComponent = obj.Renderer as BoundedRendererComponent;
+                    var rendererComponent = obj.RendererComponent as BoundedRendererComponent;
                     IBoundingBox box = rendererComponent.Renderer.BoxRenderer;
                     IBoundingBox translatedBox = new BoundingBox(box.MinPosition + obj.Transform.Position, box.MaxPosition + obj.Transform.Position);
                     translatedBox.ZoomCamera(this.scientificCanvas.Scene.Camera);

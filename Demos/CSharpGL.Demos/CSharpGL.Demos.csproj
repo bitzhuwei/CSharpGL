@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="06ImageProcessing\UpdateImageScript.cs" />
     <Compile Include="11IFontTexture\Form11IFontTexture.cs">
       <SubType>Form</SubType>
     </Compile>

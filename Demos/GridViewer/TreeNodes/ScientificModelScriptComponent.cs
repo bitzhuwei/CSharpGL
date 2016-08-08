@@ -36,7 +36,7 @@ namespace GridViewer
         public void Show()
         {
             var sceneObject = this.BindingObject;
-            BoundedRenderer boundedRenderer = (sceneObject.Renderer as BoundedRendererComponent).Renderer;
+            BoundedRenderer boundedRenderer = (sceneObject.RendererComponent as BoundedRendererComponent).Renderer;
             if (boundedRenderer.Renderer is GridViewRenderer)
             {
                 IUpdateColorPalette grid = (boundedRenderer.Renderer as GridViewRenderer).Grid;

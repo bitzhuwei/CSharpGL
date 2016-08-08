@@ -30,7 +30,7 @@ namespace CSharpGL.Demos
                 var renderer = new AnalyzedPointSpriteRenderer(10000);
                 renderer.Initialize();
                 var obj = new SceneObject();
-                obj.Renderer = new RendererBaseComponent(renderer);
+                obj.RendererComponent = new RendererBaseComponent(renderer);
                 this.scene.ObjectList.Add(obj);
             }
             {
