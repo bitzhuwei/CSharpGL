@@ -19,5 +19,12 @@ namespace GridViewer
             this.Load += FormMain_Load;
         }
 
+        private void lblTimerEnabled_Click(object sender, EventArgs e)
+        {
+            this.timer1.Enabled = !this.timer1.Enabled;
+        }
+
+
+
     }
 }

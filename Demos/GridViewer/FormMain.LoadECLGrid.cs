@@ -45,10 +45,10 @@ namespace GridViewer
                     grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min);
                 var obj = new SceneObject();
                 obj.Renderer = boundedRenderer;
-                var transformScript = new TransformScript();
-                transformScript.Position = -grid.DataSource.TranslateMatrix;
-                obj.ScriptList.Add(transformScript);
-                //obj.ScriptList.Add(new GeneralTransform());
+                //var transformScript = new TransformScript();
+                //transformScript.Position = -grid.DataSource.TranslateMatrix;
+                //obj.ScriptList.Add(transformScript);
+                //obj.ScriptList.Add(new BuildInTransformScript());
                 this.scientificCanvas.Scene.ObjectList.Add(obj);
                 string caseFileName = System.IO.Path.GetFileName(fileName);
                 var gridderNode = new SceneObjectTreeNode(obj);
@@ -89,9 +89,10 @@ namespace GridViewer
                 //if (well3dList != null && well3dList.Count > 0)
                 //    this.AddWellNodes(gridderNode, this.scene, well3dList);
                 //}
-                vec3 back = this.scientificCanvas.Scene.Camera.GetBack();
-                this.scientificCanvas.Scene.Camera.Target = -grid.DataSource.TranslateMatrix;
-                this.scientificCanvas.Scene.Camera.Position = this.scientificCanvas.Scene.Camera.Target + back;
+
+                //vec3 back = this.scientificCanvas.Scene.Camera.GetBack();
+                //this.scientificCanvas.Scene.Camera.Target = -grid.DataSource.TranslateMatrix;
+                //this.scientificCanvas.Scene.Camera.Position = this.scientificCanvas.Scene.Camera.Target + back;
                 this.scientificCanvas.Invalidate();
             }
             catch (Exception ex)

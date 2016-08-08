@@ -22,12 +22,12 @@ namespace GridViewer
 
         protected override void DoInitialize()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         protected override void DoUpdate(double elapsedTime)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         /// <summary>

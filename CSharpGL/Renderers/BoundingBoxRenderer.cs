@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using CSharpGL.Renderers;
 
 
 namespace CSharpGL
@@ -11,8 +12,10 @@ namespace CSharpGL
     /// <summary>
     /// Renders a bounding box.
     /// </summary>
-    public class BoundingBoxRenderer : Renderer, IBoundingBox
+    public class BoundingBoxRenderer : Renderer, IBoundingBox, ITransform
     {
+        public mat4 ModelMatrix { get; set; }
+
         /// <summary>
         /// get a bounding box renderer.
         /// </summary>
@@ -47,6 +50,7 @@ namespace CSharpGL
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
             this.BoundingBoxColor = new vec3(1, 1, 1);
+            this.ModelMatrix = mat4.identity();
         }
 
         private UpdatingRecord boundingBoxColorRecord = new UpdatingRecord();
@@ -78,6 +82,10 @@ namespace CSharpGL
                 this.SetUniform("boundingBoxColor", this.BoundingBoxColor);
                 this.boundingBoxColorRecord.CancelMark();
             }
+
+            this.SetUniform("projectionMatrix", arg.Camera.GetProjectionMat4());
+            this.SetUniform("viewMatrix", arg.Camera.GetViewMat4());
+            this.SetUniform("modelMatrix", this.ModelMatrix);
 
             base.DoRender(arg);
         }

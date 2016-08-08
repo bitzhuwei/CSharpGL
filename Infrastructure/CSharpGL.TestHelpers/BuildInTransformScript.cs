@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpGL.TestHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +12,12 @@ namespace CSharpGL
     public class BuildInTransformScript : ScriptComponent
     {
         private TransformScript transform;
-        private BuildInRenderer renderer;
+        private ITransform renderer;
 
         protected override void DoInitialize()
         {
             this.transform = this.BindingObject.GetScript<TransformScript>();
-            this.renderer = this.BindingObject.Renderer as BuildInRenderer;
+            this.renderer = this.BindingObject.Renderer as ITransform;
         }
 
         protected override void DoUpdate(double elapsedTime)

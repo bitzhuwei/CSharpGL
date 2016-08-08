@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CSharpGL.TestHelpers;
 
 namespace CSharpGL
 {
-    public class BuildInRenderer : Renderer
+    public class BuildInRenderer : Renderer, ITransform
     {
         public mat4 ModelMatrix { get; set; }
 

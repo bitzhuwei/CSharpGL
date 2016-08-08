@@ -58,6 +58,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormMain.Timer.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMain.Misc.cs">
       <SubType>Form</SubType>
     </Compile>
