@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CSharpGL.Demos
 {
-    partial class SimplexNoiseRenderer 
+    partial class SimplexNoiseRenderer
     {
         private float timeElapsingSpeed = 1.0f;
         /// <summary>
@@ -55,7 +55,7 @@ namespace CSharpGL.Demos
             mat4 model = mat4.identity();
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);
-            this.SetUniform("modelMatrix", model); 
+            this.SetUniform("modelMatrix", model);
 
             base.DoRender(arg);
         }
