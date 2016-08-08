@@ -13,9 +13,7 @@ namespace CSharpGL.Demos
 {
     public partial class Form14ShaderToy : Form
     {
-        private UIAxis uiAxis;
-        private UIRoot uiRoot;
-        private ShaderToyRenderer simplexNoiseRenderer;
+        private Scene scene;
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -25,29 +23,24 @@ namespace CSharpGL.Demos
                     CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
                 var rotator = new SatelliteManipulater();
                 rotator.Bind(camera, this.glCanvas1);
-                this.camera = camera;
-                this.rotator = rotator;
+                this.scene = new Scene(camera);
+                this.glCanvas1.Resize += this.scene.Resize;
             }
             {
-                var simplexNoiseRenderer = new ShaderToyRenderer();
-                simplexNoiseRenderer.Name = string.Format("ShaderToy: [{0}]", "Sphere");
-                simplexNoiseRenderer.Initialize();
-                this.simplexNoiseRenderer = simplexNoiseRenderer;
+                var renderer = new ShaderToyRenderer();
+                renderer.Initialize();
+                var obj = new SceneObject();
+                obj.RendererComponent = new RendererBaseComponent(renderer);
+                this.scene.ObjectList.Add(obj);
             }
             {
-                var UIRoot = new UIRoot();
-                UIRoot.Initialize();
-                this.uiRoot = UIRoot;
-
                 var uiAxis = new UIAxis(AnchorStyles.Left | AnchorStyles.Bottom,
                     new Padding(3, 3, 3, 3), new Size(128, 128), -100, 100);
                 uiAxis.Initialize();
-                this.uiAxis = uiAxis;
-
-                UIRoot.Children.Add(uiAxis);
+                this.scene.UIRoot.Children.Add(uiAxis);
             }
             {
-                var frmPropertyGrid = new FormProperyGrid(this.simplexNoiseRenderer);
+                var frmPropertyGrid = new FormProperyGrid(this.scene);
                 frmPropertyGrid.Show();
             }
         }

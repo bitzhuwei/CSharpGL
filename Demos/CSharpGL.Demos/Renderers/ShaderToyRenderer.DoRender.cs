@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CSharpGL.Demos
 {
-    partial class ShaderToyRenderer 
+    partial class ShaderToyRenderer
     {
         private float timeElapsingSpeed = 1.0f;
         /// <summary>
@@ -56,7 +56,10 @@ namespace CSharpGL.Demos
             mat4 model = mat4.identity();
             this.SetUniform("projectionMatrix", projection);
             this.SetUniform("viewMatrix", view);
-            this.SetUniform("modelMatrix", model); 
+            this.SetUniform("modelMatrix", model);
+            mat4 projectionMatrix = arg.Camera.GetProjectionMat4();
+            mat4 viewMatrix = arg.Camera.GetViewMat4();
+            mat4 modelMatrix = mat4.identity();
 
             base.DoRender(arg);
         }

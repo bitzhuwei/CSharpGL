@@ -14,15 +14,6 @@ namespace CSharpGL.Demos
     public partial class Form14ShaderToy : Form
     {
 
-        /// <summary>
-        /// 控制Camera的旋转、进退
-        /// </summary>
-        SatelliteManipulater rotator;
-        /// <summary>
-        /// 摄像机
-        /// </summary>
-        Camera camera;
-
         public Form14ShaderToy()
         {
             InitializeComponent();
@@ -48,40 +39,7 @@ namespace CSharpGL.Demos
         {
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
-            var arg = new RenderEventArg(RenderModes.Render, this.glCanvas1.ClientRectangle, this.camera);
-
-            {
-                mat4 projectionMatrix = arg.Camera.GetProjectionMat4();
-                mat4 viewMatrix = arg.Camera.GetViewMat4();
-                mat4 modelMatrix = mat4.identity();
-                this.simplexNoiseRenderer.SetUniform("projectionMatrix", projectionMatrix);
-                this.simplexNoiseRenderer.SetUniform("viewMatrix", viewMatrix);
-                this.simplexNoiseRenderer.SetUniform("modelMatrix", modelMatrix);
-                this.simplexNoiseRenderer.Render(arg);
-            }
-            UIRoot uiRoot = this.uiRoot;
-            if (uiRoot != null)
-            {
-                uiRoot.Render(arg);
-            }
-        }
-
-        //void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
-        //{
-        //    if (camera != null)
-        //    {
-        //        camera.MouseWheel(e.Delta);
-        //    }
-        //}
-
-        private void glCanvas1_Resize(object sender, EventArgs e)
-        {
-            if (camera != null)
-            {
-                camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
-
-                this.uiRoot.Size = this.glCanvas1.Size;
-            }
+            this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle, this.glCanvas1.PointToClient(Control.MousePosition));
         }
 
     }
