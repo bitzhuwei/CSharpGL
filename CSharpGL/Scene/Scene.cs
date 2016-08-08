@@ -24,16 +24,24 @@ namespace CSharpGL
         /// </summary>
         public Camera Camera { get; private set; }
 
+        private ChildList<SceneObject> objectList = new ChildList<SceneObject>();
         /// <summary>
         /// objects to be rendered.
         /// </summary>
         [Editor(typeof(IListEditor<SceneObject>), typeof(UITypeEditor))]
-        public ChildList<SceneObject> ObjectList { get; private set; }
+        public ChildList<SceneObject> ObjectList { get { return this.objectList; } }
 
+        private UIRoot uiRoot = new UIRoot();
         /// <summary>
         /// hosts all UI renderers.
         /// </summary>
-        public UIRoot UIRoot { get; private set; }
+        public UIRoot UIRoot { get { return this.uiRoot; } }
+
+        private UIRoot cursorRoot = new UIRoot();
+        /// <summary>
+        /// OpenGL UI for cursor.
+        /// </summary>
+        public UICursor Cursor { get; set; }
 
         /// <summary>
         /// Manages a scene to be rendered and updated.
@@ -46,10 +54,9 @@ namespace CSharpGL
             { throw new ArgumentNullException(); }
 
             this.Camera = camera;
-            var list = new ChildList<SceneObject>();
-            list.AddRange(objects);
-            this.ObjectList = list;
-            this.UIRoot = new UIRoot();
+            this.ObjectList.AddRange(objects);
+            this.Cursor = UICursor.CreateDefault();
+            this.cursorRoot.Children.Add(this.Cursor);
         }
 
         /// <summary>
@@ -69,15 +76,28 @@ namespace CSharpGL
         /// </summary>
         /// <param name="renderMode"></param>
         /// <param name="clientRectangle"></param>
-        public void Render(RenderModes renderMode, Rectangle clientRectangle)
+        /// <param name="mousePosition">mouse position in window coordinate system.</param>
+        public void Render(RenderModes renderMode, Rectangle clientRectangle, Point mousePosition)
         {
             var arg = new RenderEventArg(renderMode, clientRectangle, this.Camera);
+
+            // render objects.
             var list = this.ObjectList.ToArray();
             foreach (var item in list)
             {
                 item.Render(arg);
             }
+
+            // render regular UI.
             this.UIRoot.Render(arg);
+
+            // render cursor.
+            UICursor cursor = this.Cursor;
+            if (cursor.Enabled)
+            {
+                cursor.UpdatePosition(mousePosition);
+                this.cursorRoot.Render(arg);
+            }
         }
     }
 }

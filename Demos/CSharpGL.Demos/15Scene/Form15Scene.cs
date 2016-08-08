@@ -39,13 +39,14 @@ namespace CSharpGL.Demos
         {
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
-            this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle);
-
-            // Cross cursor shows where the mouse is.
             Point mousePosition = this.glCanvas1.PointToClient(Control.MousePosition);
-            OpenGL.DrawText(mousePosition.X - offset.X,
-                this.glCanvas1.Height - (mousePosition.Y + offset.Y) - 1,
-                Color.Red, "Courier New", crossCursorSize, "o");
+
+            this.scene.Render(RenderModes.Render, this.glCanvas1.ClientRectangle, mousePosition);
+
+            //// Cross cursor shows where the mouse is.
+            //OpenGL.DrawText(mousePosition.X - offset.X,
+            //    this.glCanvas1.Height - (mousePosition.Y + offset.Y) - 1,
+            //    Color.Red, "Courier New", crossCursorSize, "o");
 
         }
 

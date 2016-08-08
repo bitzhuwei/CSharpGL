@@ -20,7 +20,8 @@ namespace GridViewer
             OpenGL.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
 
-            this.Scene.Render(RenderModes.Render, this.ClientRectangle);
+            Point mousePosition = this.PointToClient(Control.MousePosition);
+            this.Scene.Render(RenderModes.Render, this.ClientRectangle, mousePosition);
             //var arg = new RenderEventArgs(RenderModes.Render, this.ClientRectangle, this.Scene.Camera);
             //var list = this.Scene.ObjectList.ToArray();
             //foreach (var item in list)
