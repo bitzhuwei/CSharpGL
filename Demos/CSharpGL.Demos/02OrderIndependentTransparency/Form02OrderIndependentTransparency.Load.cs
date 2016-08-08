@@ -36,7 +36,7 @@ namespace CSharpGL.Demos
                 OITRenderer.Name = "OIT Renderer";
                 OITRenderer.Initialize();
                 var obj = new SceneObject();
-                obj.Renderer = new DefaultRendererComponent(OITRenderer);
+                obj.Renderer = new RendererBaseComponent(OITRenderer);
                 this.scene.ObjectList.Add(obj);
             }
 

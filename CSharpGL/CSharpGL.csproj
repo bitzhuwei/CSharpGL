@@ -139,6 +139,7 @@
     <Compile Include="0Foundations\OpenGLObjects\Camera\CameraHelpers\BoundingBox.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Camera\CameraHelpers\IBoundingBox2D.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\UICursor.cs" />
+    <Compile Include="Scene\Components\RendererBaseComponent.cs" />
     <Compile Include="WinformControls\BoundedClockRenderer.cs" />
     <Compile Include="WinformControls\LegacyBoundingBoxRenderer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\GLSwitches\EnableSwitches\BlendSwitch.cs" />

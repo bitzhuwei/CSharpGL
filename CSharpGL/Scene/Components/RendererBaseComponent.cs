@@ -3,18 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Demos
+namespace CSharpGL
 {
-    class DefaultRendererComponent : RendererComponent
+    /// <summary>
+    /// default renderer component that wraps a <see cref="RendererBase"/>.
+    /// </summary>
+    public class RendererBaseComponent : RendererComponent
     {
         private RendererBase renderer;
 
-        public DefaultRendererComponent(RendererBase renderer, SceneObject obj = null)
+        /// <summary>
+        /// default renderer component that wraps a <see cref="RendererBase"/>.
+        /// </summary>
+        /// <param name="renderer"></param>
+        /// <param name="obj"></param>
+        public RendererBaseComponent(RendererBase renderer, SceneObject obj = null)
             : base(obj)
         {
             this.renderer = renderer;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public override void Render(RenderEventArg arg)
         {
             RendererBase renderer = this.renderer;
@@ -24,6 +36,9 @@ namespace CSharpGL.Demos
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DisposeUnmanagedResource()
         {
             RendererBase renderer = this.renderer;
