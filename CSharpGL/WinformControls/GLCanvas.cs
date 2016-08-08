@@ -33,6 +33,8 @@ namespace CSharpGL
         /// indicates whether the control is in design mode.
         /// </summary>
         protected readonly bool designMode;
+        private EventHandler mouseEnter;
+        private EventHandler mouseLeave;
 
         /// <summary>
         /// Creats render context and supports OpenGL rendering.
@@ -51,11 +53,32 @@ namespace CSharpGL
 
             if (!this.designMode)
             {
-                this.MouseEnter += GLCanvas_MouseEnter;
-                this.MouseLeave += GLCanvas_MouseLeave;
+                this.mouseEnter = GLCanvas_MouseEnter;
+                this.mouseLeave = GLCanvas_MouseLeave;
             }
         }
 
+        private bool showingCursor = true;
+        /// <summary>
+        /// show/hide system's cursor.
+        /// </summary>
+        /// <param name="value"></param>
+        public void ShowSystemCursor(bool value)
+        {
+            if (!this.designMode)
+            {
+                if ((this.showingCursor) && (!value))
+                {
+                    this.MouseEnter += mouseEnter;
+                    this.MouseLeave += mouseLeave;
+                }
+                else if ((!this.showingCursor) && (value))
+                {
+                    this.MouseEnter -= mouseEnter;
+                    this.MouseLeave -= mouseLeave;
+                }
+            }
+        }
         void GLCanvas_MouseLeave(object sender, EventArgs e)
         {
             ShowCursor(1);// show system's cursor.

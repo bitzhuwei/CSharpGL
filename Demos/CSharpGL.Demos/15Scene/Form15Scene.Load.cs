@@ -23,6 +23,9 @@ namespace CSharpGL.Demos
         private void Form_Load(object sender, EventArgs e)
         {
             {
+                this.glCanvas1.ShowSystemCursor(false);
+            }
+            {
                 var camera = new Camera(
                     new vec3(0, 0, 1), new vec3(0, 0, 0), new vec3(0, 1, 0),
                     CameraType.Perspecitive, this.glCanvas1.Width, this.glCanvas1.Height);
