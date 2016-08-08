@@ -78,11 +78,13 @@ namespace CSharpGL
                     {
                         this.MouseEnter += mouseEnter;
                         this.MouseLeave += mouseLeave;
+                        ShowCursor(0);
                     }
                     else if ((!this.showingCursor) && (value))
                     {
                         this.MouseEnter -= mouseEnter;
                         this.MouseLeave -= mouseLeave;
+                        ShowCursor(1);
                     }
                 }
             }
