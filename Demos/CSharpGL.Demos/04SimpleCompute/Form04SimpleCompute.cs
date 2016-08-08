@@ -60,15 +60,6 @@ namespace CSharpGL.Demos
 
         private Point offset = new Point(13, 11);
 
-        //void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
-        //{
-        //    ICamera camera = this.camera;
-        //    if (camera != null)
-        //    {
-        //        camera.MouseWheel(e.Delta);
-        //    }
-        //}
-
         private void glCanvas1_Resize(object sender, EventArgs e)
         {
             camera.Resize(this.glCanvas1.Width, this.glCanvas1.Height);
