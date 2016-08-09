@@ -68,11 +68,18 @@ namespace CSharpGL
             return this.selfMatrix;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DoInitialize()
         {
             //throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="elapsedTime"></param>
         protected override void DoUpdate(double elapsedTime)
         {
             //throw new NotImplementedException();
