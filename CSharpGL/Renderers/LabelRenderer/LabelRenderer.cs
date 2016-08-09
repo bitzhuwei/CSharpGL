@@ -35,17 +35,22 @@ namespace CSharpGL
             set { labelHeightRecord.Set(ref labelHeight, value); }
         }
 
-        private string content = string.Empty;
+        private string text = string.Empty;
+        private UpdatingRecord textRecord = new UpdatingRecord();
         /// <summary>
         /// Displayed text whose maximum length is limited by constructor's maxCharCount parameter.
         /// </summary>
         public string Text
         {
-            get { return content; }
+            get { return text; }
             set
             {
-                if (this.model != null) { this.model.SetText(value, this.fontTexture); }
-                this.content = value;
+                if (value != this.text)
+                {
+                    this.text = value;
+                    this.textRecord.Mark();
+                }
+                //if (this.model != null) { this.model.SetText(value, this.fontTexture); }
             }
         }
 

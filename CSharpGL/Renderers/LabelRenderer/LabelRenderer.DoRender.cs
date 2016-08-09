@@ -27,6 +27,13 @@ namespace CSharpGL
                 this.SetUniform("labelHeight", this.LabelHeight);
                 labelHeightRecord.CancelMark();
             }
+            if (textRecord.IsMarked())
+            {
+                if (this.model != null)
+                {
+                    this.model.SetText(this.text, this.fontTexture);
+                }
+            }
             int[] viewport = OpenGL.GetViewport();
             this.SetUniform("viewportSize", new vec2(viewport[2], viewport[3]));
             mat4 projection = arg.Camera.GetProjectionMat4();

@@ -61,7 +61,6 @@ namespace GridViewer
         {
             if (wellPipelineColorRecord.IsMarked())
             {
-
                 this.SetUniform("wellColor", this.wellColor.ToVec4());
                 wellPipelineColorRecord.CancelMark();
             }
