@@ -55,6 +55,9 @@ namespace CSharpGL
         //    }
         //}
 
+        /// <summary>
+        /// renders something.
+        /// </summary>
         [Category(strBasic)]
         [Description("renders something.")]
         public RendererBase Renderer { get; set; }

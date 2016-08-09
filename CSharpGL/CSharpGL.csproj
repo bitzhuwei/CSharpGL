@@ -104,7 +104,7 @@
     <Compile Include="IFontTexture\FontTexture\FontTextureHelper.cs" />
     <Compile Include="Renderers\IBufferables\Square.cs" />
     <Compile Include="Renderers\IBufferables\SquareModel.cs" />
-    <Compile Include="Renderers\ITransform.cs" />
+    <Compile Include="Renderers\IModelTransform.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\SquareRenderer.cs" />
     <Compile Include="Renderers\UIRenderers\BuildInUIRenderers\AxisRenderer.cs" />
     <Compile Include="0Foundations\OpenGLObjects\Textures\TextureBuilder.cs" />

@@ -12,8 +12,11 @@ namespace CSharpGL
     /// <summary>
     /// Renders a bounding box.
     /// </summary>
-    public class BoundingBoxRenderer : Renderer, IBoundingBox, ITransform
+    public class BoundingBoxRenderer : Renderer, IBoundingBox, IModelTransform
     {
+        /// <summary>
+        /// matrix that transforms a model from model's sapce to world's space.
+        /// </summary>
         public mat4 ModelMatrix { get; set; }
 
         /// <summary>
