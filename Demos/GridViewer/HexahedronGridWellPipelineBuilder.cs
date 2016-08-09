@@ -168,7 +168,6 @@ namespace GridViewer
             Fluid fluid = FluidConverter.Convert(wellspec.Fluid);
             Color pipeColor = MapFluidToColor(fluid);
             Color textColor = Color.White;
-            string wellName = wellspec.WellName;
 
             List<vec3> wellPath = new List<vec3>();
             wellPath.Add(head);
@@ -229,7 +228,7 @@ namespace GridViewer
                 }//end for
 
                 var model = new WellModel(wellPath, wellRadius);
-                NamedWellRenderer renderer = NamedWellRenderer.Create(model, pipeColor, 12);
+                NamedWellRenderer renderer = NamedWellRenderer.Create(model, pipeColor, wellspec.WellName, 12);
                 return renderer;
             }
             #endregion

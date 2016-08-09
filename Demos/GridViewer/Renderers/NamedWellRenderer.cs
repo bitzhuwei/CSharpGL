@@ -37,11 +37,12 @@ namespace GridViewer
             get { return nameRenderer; }
         }
 
-        public static NamedWellRenderer Create(WellModel model, Color wellColor, int maxCharCount = 64, int labelHeight = 32, IFontTexture fontTexture = null)
+        public static NamedWellRenderer Create(WellModel model, Color wellColor, string name = "", int maxCharCount = 64, int labelHeight = 32, IFontTexture fontTexture = null)
         {
             WellRenderer well = WellRenderer.Create(model);
             well.WellColor = wellColor;
             LabelRenderer label = new LabelRenderer(maxCharCount, labelHeight, fontTexture);
+            label.Text = name;
             var renderer = new NamedWellRenderer(well, label);
             return renderer;
         }
