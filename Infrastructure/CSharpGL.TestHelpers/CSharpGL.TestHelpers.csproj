@@ -49,7 +49,6 @@
       <DependentUpon>FontBuilder.cs</DependentUpon>
     </Compile>
     <Compile Include="BuildInTransformScript.cs" />
-    <Compile Include="ITransform.cs" />
     <Compile Include="matHelper.cs" />
     <Compile Include="SceneObjectFactory.cs" />
     <Compile Include="vecHelper.cs" />

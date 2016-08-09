@@ -8,7 +8,7 @@ using System.Text;
 
 namespace GridViewer
 {
-    public partial class BoundedRenderer : RendererBase, ITransform
+    public partial class BoundedRenderer : RendererBase, IModelTransform
     {
         /// <summary>
         /// Gets bounding box's renderer.
@@ -59,7 +59,9 @@ namespace GridViewer
             if (scientific != null) { scientific.Dispose(); }
         }
 
-
+        /// <summary>
+        /// IModelTransform.ModelMatrix
+        /// </summary>
         public mat4 ModelMatrix
         {
             get

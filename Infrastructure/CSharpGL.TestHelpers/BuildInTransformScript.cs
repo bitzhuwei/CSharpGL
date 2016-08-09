@@ -12,12 +12,12 @@ namespace CSharpGL
     public class BuildInTransformScript : ScriptComponent
     {
         private TransformScript transform;
-        private ITransform renderer;
+        private IModelTransform renderer;
 
         protected override void DoInitialize()
         {
             this.transform = this.BindingObject.GetScript<TransformScript>();
-            this.renderer = this.BindingObject.Renderer as ITransform;
+            this.renderer = this.BindingObject.Renderer as IModelTransform;
         }
 
         protected override void DoUpdate(double elapsedTime)

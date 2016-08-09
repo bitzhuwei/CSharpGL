@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.Renderers
+namespace CSharpGL
 {
     /// <summary>
     /// transform a model from model's sapce to world's space.

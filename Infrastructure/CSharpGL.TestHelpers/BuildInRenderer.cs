@@ -6,8 +6,11 @@ using CSharpGL.TestHelpers;
 
 namespace CSharpGL
 {
-    public class BuildInRenderer : Renderer, ITransform
+    public class BuildInRenderer : Renderer, IModelTransform
     {
+        /// <summary>
+        /// IModelTransform.ModelMatrix
+        /// </summary>
         public mat4 ModelMatrix { get; set; }
 
         public BuildInRenderer(IBufferable bufferable, ShaderCode[] shaderCodes,

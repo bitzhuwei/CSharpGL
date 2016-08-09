@@ -12,8 +12,24 @@ namespace GridViewer
     /// <summary>
     /// renders well pipeline.
     /// </summary>
-    public class WellPipilineRenderer : Renderer, ITransform
+    public class WellPipilineRenderer : Renderer, IModelTransform
     {
+        /// <summary>
+        /// IModelTransform.ModelMatrix
+        /// </summary>
+        public mat4 ModelMatrix { get; set; }
+
+        private UpdatingRecord wellPipelineColorRecord = new UpdatingRecord();
+        private Color wellPipelineColor;
+        public Color WellPipelineColor
+        {
+            get { return wellPipelineColor; }
+            set
+            {
+                wellPipelineColor = value;
+                wellPipelineColorRecord.Mark();
+            }
+        }
 
         public static WellPipilineRenderer Create(WellPipelineModel model)
         {
@@ -33,20 +49,6 @@ namespace GridViewer
             this.ModelMatrix = mat4.identity();
         }
 
-
-        public mat4 ModelMatrix { get; set; }
-
-        private UpdatingRecord wellPipelineColorRecord = new UpdatingRecord();
-        private Color wellPipelineColor;
-        public Color WellPipelineColor
-        {
-            get { return wellPipelineColor; }
-            set
-            {
-                wellPipelineColor = value;
-                wellPipelineColorRecord.Mark();
-            }
-        }
 
         protected override void DoRender(RenderEventArg arg)
         {

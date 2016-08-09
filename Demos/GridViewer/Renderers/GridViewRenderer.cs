@@ -10,7 +10,7 @@ namespace GridViewer
     /// <summary>
     /// base renderer for gridview.
     /// </summary>
-    public class GridViewRenderer : Renderer, ITransform
+    public class GridViewRenderer : Renderer, IModelTransform
     {
         /// <summary>
         /// gridview's model.
@@ -25,7 +25,9 @@ namespace GridViewer
             this.ModelMatrix = mat4.identity();
         }
 
-
+        /// <summary>
+        /// IModelTransform.ModelMatrix
+        /// </summary>
         public mat4 ModelMatrix { get; set; }
 
     }
