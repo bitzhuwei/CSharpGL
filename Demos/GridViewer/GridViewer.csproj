@@ -121,7 +121,7 @@
     <Compile Include="Loader\PointSetLoader.cs" />
     <Compile Include="Models\GridViewModel.cs" />
     <Compile Include="Models\IUpdateColorPalette.cs" />
-    <Compile Include="Models\WellPipeline.cs" />
+    <Compile Include="Models\WellPipelineModel.cs" />
     <None Include="Models\readme.md" />
     <Compile Include="Models\CatesianGrid\CatesianGrid.Index.cs" />
     <Compile Include="Models\CatesianGrid\CatesianGrid.Color.cs" />
@@ -133,6 +133,7 @@
     <Compile Include="Renderers\CatesianGridRenderer.cs" />
     <Compile Include="GLUIs\UIColorPalette\CodedColor.cs" />
     <Compile Include="GLUIs\UIColorPalette\CodedColorsHelper.cs" />
+    <Compile Include="Renderers\WellPipilineRenderer.cs" />
     <Compile Include="Renderers\GridViewRenderer.cs" />
     <Compile Include="TreeNodes\AbstractTreeNode.cs" />
     <Compile Include="TreeNodes\SceneObjectTreeNode.cs" />
@@ -187,6 +188,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="shaders\WellPipiline.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="shaders\WellPipiline.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="shaders\Lines.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

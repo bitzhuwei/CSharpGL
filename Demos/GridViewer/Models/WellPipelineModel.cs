@@ -12,16 +12,16 @@ namespace GridViewer
     /// WellPipeline
     /// 蛇形管道（井）
     /// </summary>
-    public partial class WellPipeline : IBufferable
+    public partial class WellPipelineModel : IBufferable
     {
 
         public const string strPosition = "position";
-        public const string strColor = "color";
+        //public const string strColor = "color";
         //public const string strprojectionMatrix = "projectionMatrix";
         //public const string strviewMatrix = "viewMatrix";
         //public const string strmodelMatrix = "modelMatrix";
         private PropertyBufferPtr positionBufferPtr = null;
-        private PropertyBufferPtr colorBufferPtr = null;
+        //private PropertyBufferPtr colorBufferPtr = null;
         private IndexBufferPtr indexBufferPtr = null;
 
         private List<vec3> pipeline;
@@ -37,7 +37,7 @@ namespace GridViewer
         /// <param name="radius"></param>
         /// <param name="color"></param>
         /// <param name="faceCount"></param>
-        public WellPipeline(List<vec3> pipeline, float radius, Color color, int faceCount = 18)
+        public WellPipelineModel(List<vec3> pipeline, float radius, Color color, int faceCount = 18)
         {
             if (pipeline == null || pipeline.Count < 2 || radius <= 0.0f)
             { throw new ArgumentException(); }
@@ -82,26 +82,26 @@ namespace GridViewer
 
                 return positionBufferPtr;
             }
-            else if (bufferName == strColor)
-            {
-                if (colorBufferPtr != null) { return colorBufferPtr; }
+            //else if (bufferName == strColor)
+            //{
+            //    if (colorBufferPtr != null) { return colorBufferPtr; }
 
-                using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
-                {
-                    int vertexCount = (faceCount * 2 + 2) * (this.pipeline.Count - 1);
-                    buffer.Create(vertexCount);
-                    var array = (vec3*)buffer.Header.ToPointer();
-                    vec3 vColor = this.color.ToVec3();
-                    for (int i = 0; i < buffer.Length; i++)
-                    {
-                        array[i] = vColor;
-                    }
+            //    using (var buffer = new PropertyBuffer<vec3>(varNameInShader, 3, OpenGL.GL_FLOAT, BufferUsage.StaticDraw))
+            //    {
+            //        int vertexCount = (faceCount * 2 + 2) * (this.pipeline.Count - 1);
+            //        buffer.Create(vertexCount);
+            //        var array = (vec3*)buffer.Header.ToPointer();
+            //        vec3 vColor = this.color.ToVec3();
+            //        for (int i = 0; i < buffer.Length; i++)
+            //        {
+            //            array[i] = vColor;
+            //        }
 
-                    colorBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
-                }
+            //        colorBufferPtr = buffer.GetBufferPtr() as PropertyBufferPtr;
+            //    }
 
-                return colorBufferPtr;
-            }
+            //    return colorBufferPtr;
+            //}
             else
             {
                 throw new ArgumentException();
