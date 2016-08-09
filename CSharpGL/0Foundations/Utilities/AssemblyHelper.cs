@@ -55,19 +55,26 @@ namespace CSharpGL
             {
                 string path = stack.Pop();
                 Assembly asm = null;
-                // 检查这个路径
-                // 看是一个程序名还是一个路径
-                if ((path.IndexOf(Path.DirectorySeparatorChar, 0, path.Length) != -1) || (path.IndexOf(Path.AltDirectorySeparatorChar, 0, path.Length) != -1))
+                try
                 {
-                    // 从这个路径加载程序集
-                    //asm = Assembly.ReflectionOnlyLoadFrom(path);
-                    asm = Assembly.LoadFrom(path);
+                    // 检查这个路径
+                    // 看是一个程序名还是一个路径
+                    if ((path.IndexOf(Path.DirectorySeparatorChar, 0, path.Length) != -1) || (path.IndexOf(Path.AltDirectorySeparatorChar, 0, path.Length) != -1))
+                    {
+                        // 从这个路径加载程序集
+                        //asm = Assembly.ReflectionOnlyLoadFrom(path);
+                        asm = Assembly.LoadFrom(path);
+                    }
+                    else
+                    {
+                        // 是一个程序集名称
+                        //asm = Assembly.ReflectionOnlyLoad(path);
+                        asm = Assembly.Load(path);
+                    }
                 }
-                else
+                catch (Exception)
                 {
-                    // 是一个程序集名称
-                    //asm = Assembly.ReflectionOnlyLoad(path);
-                    asm = Assembly.Load(path);
+                    //TODO: add log.
                 }
 
                 // 把程序集添加到列表中
