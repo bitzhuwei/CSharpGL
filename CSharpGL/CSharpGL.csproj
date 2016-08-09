@@ -143,6 +143,7 @@
     <Compile Include="Scene\Components\TransformScript.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Scene\Scene.Engine.cs" />
     <Compile Include="Scene\SceneObject\SceneObject.IDisposable.cs" />
     <Compile Include="WinformControls\BoundedClockRenderer.cs" />
     <Compile Include="WinformControls\LegacyBoundingBoxRenderer.cs" />
