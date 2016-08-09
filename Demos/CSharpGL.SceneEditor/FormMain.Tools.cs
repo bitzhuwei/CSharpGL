@@ -47,6 +47,7 @@ namespace CSharpGL.SceneEditor
         private void startStopTimerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.timer1.Enabled = !this.timer1.Enabled;
+            this.scene.Running = this.timer1.Enabled;
         }
 
         private void sceneObjectsMonitorToolStripMenuItem_Click(object sender, EventArgs e)

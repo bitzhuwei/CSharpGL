@@ -95,7 +95,7 @@ namespace GridViewer
                 this.scientificCanvas.Scene.Camera.Position = this.scientificCanvas.Scene.Camera.Target + back;
                 this.scientificCanvas.Invalidate();
 
-                this.timer1_Tick(sender, e);
+                this.RefreshScene(this.scientificCanvas.Scene, 0);
                 this.scientificCanvas.uiColorPalette.SetCodedColor(axisMin, axisMax, step);
             }
             catch (Exception ex)

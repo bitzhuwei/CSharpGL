@@ -21,13 +21,13 @@ namespace CSharpGL.SceneEditor
             { timerEnableSignIndex = 0; }
             this.lblTimerEnabled.Text = timerEnabledSign[timerEnableSignIndex];
 
-            foreach (var sceneObject in this.scene.ObjectList)
-            {
-                foreach (var obj in sceneObject)
-                {
-                    obj.Update(this.timer1.Interval);
-                }
-            }
+            //foreach (var sceneObject in this.scene.ObjectList)
+            //{
+            //    foreach (var obj in sceneObject)
+            //    {
+            //        obj.Update(this.timer1.Interval);
+            //    }
+            //}
         }
 
     }

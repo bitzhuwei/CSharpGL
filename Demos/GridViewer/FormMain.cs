@@ -22,6 +22,7 @@ namespace GridViewer
         private void lblTimerEnabled_Click(object sender, EventArgs e)
         {
             this.timer1.Enabled = !this.timer1.Enabled;
+            this.scientificCanvas.Scene.Running = this.timer1.Enabled;
         }
 
 

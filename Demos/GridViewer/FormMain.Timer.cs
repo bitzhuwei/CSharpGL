@@ -20,14 +20,17 @@ namespace GridViewer
             { timerEnableSignIndex = 0; }
             this.lblTimerEnabled.Text = timerEnabledSign[timerEnableSignIndex];
 
-            foreach (var sceneObject in this.scientificCanvas.Scene.ObjectList)
+        }
+
+        private void RefreshScene(Scene scene, double interval)
+        {
+            foreach (var sceneObject in scene.ObjectList)
             {
                 foreach (var obj in sceneObject)
                 {
-                    obj.Update(this.timer1.Interval);
+                    obj.Update(interval);
                 }
             }
         }
-
     }
 }

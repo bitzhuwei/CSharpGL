@@ -82,7 +82,9 @@ namespace CSharpGL.Demos
                 var frmPropertyGrid = new FormProperyGrid(this.glCanvas1);
                 frmPropertyGrid.Show();
             }
-
+            {
+                this.scene.Start();
+            }
         }
 
         private string[] timerEnabledSign = { "-", "/", "|", "\\", };
@@ -96,13 +98,13 @@ namespace CSharpGL.Demos
             { timerEnableSignIndex = 0; }
             this.lblTimerEnabled.Text = timerEnabledSign[timerEnableSignIndex];
 
-            foreach (var sceneObject in this.scene.ObjectList)
-            {
-                foreach (var obj in sceneObject)
-                {
-                    obj.Update(this.timer1.Interval);
-                }
-            }
+            //foreach (var sceneObject in this.scene.ObjectList)
+            //{
+            //    foreach (var obj in sceneObject)
+            //    {
+            //        obj.Update(this.timer1.Interval);
+            //    }
+            //}
         }
     }
 }

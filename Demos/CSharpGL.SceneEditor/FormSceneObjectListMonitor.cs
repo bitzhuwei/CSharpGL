@@ -20,7 +20,7 @@ namespace CSharpGL.SceneEditor
             InitializeComponent();
 
             this.scene = scene;
-            if(scene!=null)
+            if (scene != null)
             {
                 this.timer1.Enabled = true;
             }

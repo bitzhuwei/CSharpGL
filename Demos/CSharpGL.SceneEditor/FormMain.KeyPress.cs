@@ -18,6 +18,7 @@ namespace CSharpGL.SceneEditor
             if (e.KeyChar == 't' || e.KeyChar == 'T')
             {
                 this.timer1.Enabled = !this.timer1.Enabled;
+                this.scene.Running = this.timer1.Enabled;
             }
         }
 
