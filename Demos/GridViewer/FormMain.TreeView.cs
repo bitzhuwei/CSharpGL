@@ -21,7 +21,9 @@ namespace GridViewer
                 node.Selected(sender, e);
                 this.scientificCanvas.Invalidate();
             }
-            //this.propertyGrid1.SelectedObject = e.Node.Tag;
+
+            this.propertyGrid1.SelectedObject = e.Node.Tag;
+
             //if (e.Node.Tag is GridBlockProperty)
             //{
             //    var property = e.Node.Tag as GridBlockProperty;

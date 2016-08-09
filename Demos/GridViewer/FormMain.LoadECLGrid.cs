@@ -43,19 +43,19 @@ namespace GridViewer
                 scientificRenderer.Initialize();
                 var boundedRenderer = new BoundedRenderer(scientificRenderer,
                     grid.DataSource.SourceActiveBounds.Max - grid.DataSource.SourceActiveBounds.Min);
-                var obj = new SceneObject();
-                obj.Renderer = boundedRenderer;
+                var mainObj = new SceneObject();
+                mainObj.Renderer = boundedRenderer;
                 var transformScript = new TransformScript();
                 transformScript.Position = -grid.DataSource.TranslateMatrix;
-                obj.ScriptList.Add(transformScript);
-                obj.ScriptList.Add(new BuildInTransformScript());
-                this.scientificCanvas.Scene.ObjectList.Add(obj);
+                mainObj.ScriptList.Add(transformScript);
+                mainObj.ScriptList.Add(new BuildInTransformScript());
+                this.scientificCanvas.Scene.ObjectList.Add(mainObj);
                 string caseFileName = System.IO.Path.GetFileName(fileName);
-                var gridderNode = new SceneObjectTreeNode(obj);
-                gridderNode.Text = caseFileName;
-                gridderNode.Tag = obj;//TODO: this is not needed any more.
-                gridderNode.ToolTipText = grid.GetType().Name;
-                this.objectsTreeView.Nodes.Add(gridderNode);
+                var mainNode = new SceneObjectTreeNode(mainObj);
+                mainNode.Text = caseFileName;
+                mainNode.Tag = mainObj;//TODO: this is not needed any more.
+                mainNode.ToolTipText = grid.GetType().Name;
+                this.objectsTreeView.Nodes.Add(mainNode);
                 //if (gridProps.Count <= 0)
                 //{
                 //    GridBlockProperty gbp = this.CreateGridSequenceGridBlockProperty(gridderSource, "INDEX");
@@ -63,12 +63,12 @@ namespace GridViewer
                 //}
                 foreach (GridBlockProperty gbp in gridProperties)
                 {
-                    var script = new ScientificModelScriptComponent(obj, gbp, this.scientificCanvas.uiColorPalette);
-                    obj.ScriptList.Add(script);
+                    var script = new ScientificModelScriptComponent(mainObj, gbp, this.scientificCanvas.uiColorPalette);
+                    mainObj.ScriptList.Add(script);
                     var propNode = new PropertyTreeNode(script);
                     propNode.Text = gbp.Name;
                     propNode.Tag = gbp;
-                    gridderNode.Nodes.Add(propNode);
+                    mainNode.Nodes.Add(propNode);
                 }
 
                 this.objectsTreeView.ExpandAll();
@@ -86,13 +86,23 @@ namespace GridViewer
                     MessageBox.Show(String.Format("Create Well3d,{0}", err.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                //if (well3dList != null && well3dList.Count > 0)
-                //    this.AddWellNodes(gridderNode, this.scene, well3dList);
-                //}
+                if (well3dList != null && well3dList.Count > 0)
+                {
+                    //this.AddWellNodes(gridderNode, this.scene, well3dList);
+                    foreach (var item in well3dList)
+                    {
+                        var obj = new SceneObject();
+                        obj.Renderer = item;
+                        this.scientificCanvas.Scene.ObjectList.Add(obj);
+                        var node = new TreeNode(item.Name);
+                        node.Tag = obj;
+                        mainNode.Nodes.Add(node);
+                    }
+                }
 
                 vec3 back = this.scientificCanvas.Scene.Camera.GetBack();
-                this.scientificCanvas.Scene.Camera.Target = -grid.DataSource.TranslateMatrix;
-                this.scientificCanvas.Scene.Camera.Position = this.scientificCanvas.Scene.Camera.Target + back;
+                //this.scientificCanvas.Scene.Camera.Target = -grid.DataSource.TranslateMatrix;
+                //this.scientificCanvas.Scene.Camera.Position = this.scientificCanvas.Scene.Camera.Target + back;
                 this.scientificCanvas.Invalidate();
 
                 this.RefreshScene(this.scientificCanvas.Scene, 0);
