@@ -25,10 +25,6 @@ namespace CSharpGL.Demos
         }
         private double currentTime;
 
-        //public MovableRenderer TargetRenderer { get; set; }
-
-        public vec3 Offset { get; set; }
-
         public float Width { get; set; }
         public float Height { get; set; }
 
@@ -60,7 +56,6 @@ namespace CSharpGL.Demos
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(bufferable, shaderCodes, propertyNameMap, switches)
         {
-            this.Offset = new vec3(0, 0.4f, 0);
             this.Width = 1.0f; this.Height = 0.125f;
             this.Percentage = new vec2(0.2f, 0.05f);
             this.PixelSize = new ivec2(100, 10);
@@ -87,8 +82,7 @@ namespace CSharpGL.Demos
                 view[0][0], view[1][0], view[2][0]));
             this.SetUniform("CameraUp_worldspace", new vec3(
                 view[0][1], view[1][1], view[2][1]));
-            this.SetUniform("billboardCenter_worldspace",
-                this.Position + this.Offset);
+            this.SetUniform("billboardCenter_worldspace", this.Position);
             //this.TargetRenderer.Position + this.Offset);
             this.SetUniform("BillboardSize", new vec2(this.Width, this.Height));
             if (this.percentageRecord.IsMarked())

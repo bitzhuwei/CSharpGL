@@ -53,8 +53,7 @@ namespace CSharpGL.Demos
                 var obj = new SceneObject();
                 obj.Renderer = billboardRenderer;
                 //obj.ScriptList.Add(new TransformScript());
-                var updatePosition = new UpdateBillboardPosition();
-                updatePosition.TargetRenderer = movableRenderer;
+                var updatePosition = new UpdateBillboardPosition(movableRenderer);
                 obj.ScriptList.Add(updatePosition);
                 this.scene.ObjectList.Add(obj);
             }
@@ -65,8 +64,7 @@ namespace CSharpGL.Demos
                 var obj = new SceneObject();
                 obj.Renderer = labelRenderer;
                 //obj.ScriptList.Add(new TransformScript());
-                var updatePosition = new UpdateLabelPosition();
-                updatePosition.TargetRenderer = movableRenderer;
+                var updatePosition = new UpdateLabelPosition(movableRenderer);
                 obj.ScriptList.Add(updatePosition);
                 this.scene.ObjectList.Add(obj);
             }

@@ -29,7 +29,7 @@ namespace CSharpGL.Demos
         protected override void DoUpdate(double elapsedTime)
         {
             //this.transform.Position = this.TargetTransform.Position + new vec3(0, 1, 0);
-            this.renderer.WorldPosition = this.TargetRenderer.Position + new vec3(0, 0.6f, 0);
+            this.renderer.WorldPosition = this.TargetRenderer.Position + new vec3(0, 0.3f, 0);
         }
 
     }
