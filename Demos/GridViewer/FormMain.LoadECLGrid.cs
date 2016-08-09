@@ -101,8 +101,8 @@ namespace GridViewer
                 }
 
                 vec3 back = this.scientificCanvas.Scene.Camera.GetBack();
-                //this.scientificCanvas.Scene.Camera.Target = -grid.DataSource.TranslateMatrix;
-                //this.scientificCanvas.Scene.Camera.Position = this.scientificCanvas.Scene.Camera.Target + back;
+                this.scientificCanvas.Scene.Camera.Target = -grid.DataSource.TranslateMatrix;
+                this.scientificCanvas.Scene.Camera.Position = this.scientificCanvas.Scene.Camera.Target + back;
                 this.scientificCanvas.Invalidate();
 
                 this.RefreshScene(this.scientificCanvas.Scene, 0);
