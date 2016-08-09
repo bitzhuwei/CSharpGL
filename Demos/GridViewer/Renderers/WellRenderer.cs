@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 namespace GridViewer
 {
     /// <summary>
-    /// renders well pipeline.
+    /// renders well pipeline(several cylinders)
     /// </summary>
-    public class WellPipilineRenderer : Renderer, IModelTransform
+    public class WellRenderer : Renderer, IModelTransform
     {
         /// <summary>
         /// IModelTransform.ModelMatrix
@@ -31,18 +31,25 @@ namespace GridViewer
             }
         }
 
-        public static WellPipilineRenderer Create(WellPipelineModel model)
+        public static WellRenderer Create(WellModel model)
         {
             var shaderCodes = new ShaderCode[2];
             shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\wellPipeline.vert"), ShaderType.VertexShader);
             shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\wellPipeline.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
-            map.Add("in_Position", WellPipelineModel.strPosition);
-            var renderer = new WellPipilineRenderer(model, shaderCodes, map);
+            map.Add("in_Position", WellModel.strPosition);
+            var renderer = new WellRenderer(model, shaderCodes, map);
             return renderer;
         }
 
-        private WellPipilineRenderer(WellPipelineModel model, ShaderCode[] shaderCodes,
+        /// <summary>
+        /// renders well pipeline(several cylinders)
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="shaderCodes"></param>
+        /// <param name="propertyNameMap"></param>
+        /// <param name="switches"></param>
+        private WellRenderer(WellModel model, ShaderCode[] shaderCodes,
             PropertyNameMap propertyNameMap, params GLSwitch[] switches)
             : base(model, shaderCodes, propertyNameMap, switches)
         {
@@ -54,6 +61,7 @@ namespace GridViewer
         {
             if (wellPipelineColorRecord.IsMarked())
             {
+
                 this.SetUniform("wellPipelineColor", this.wellPipelineColor.ToVec4());
                 wellPipelineColorRecord.CancelMark();
             }

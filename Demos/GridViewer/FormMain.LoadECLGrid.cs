@@ -76,16 +76,16 @@ namespace GridViewer
                 //modelContainer.BoundingBox.SetBounds(gridderSource.TransformedActiveBounds.Min, gridderSource.TransformedActiveBounds.Max);
                 //this.scene.ViewType = ViewTypes.UserView;
 
-                //List<Well> well3dList;
-                //try
-                //{
-                //    well3dList = this.CreateWell3D(inputData, this.scene, gridderSource);
-                //}
-                //catch (Exception err)
-                //{
-                //    MessageBox.Show(String.Format("Create Well3d,{0}", err.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    return;
-                //}
+                List<NamedWellRenderer> well3dList;
+                try
+                {
+                    well3dList = this.CreateWellPipelineRenderers(inputData, grid);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(String.Format("Create Well3d,{0}", err.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 //if (well3dList != null && well3dList.Count > 0)
                 //    this.AddWellNodes(gridderNode, this.scene, well3dList);
                 //}
@@ -102,6 +102,19 @@ namespace GridViewer
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private List<NamedWellRenderer> CreateWellPipelineRenderers(SimulationInputData inputData, CatesianGrid grid)
+        {
+            WellSpecsCollection wellSpecsList = inputData.RootDataFile.GetWELSPECS();
+            WellCompatCollection wellCompatList = inputData.RootDataFile.GetCOMPDAT();
+            if (wellSpecsList == null || wellSpecsList.Count <= 0)
+            {
+                throw new ArgumentException("not found WELLSPECS info for the well");
+            }
+            // rename Well3DHelper to WellPipelineBuilder.
+            WellPipelineBuilder well3DHelper = new HexahedronGridWellPipelineBuilder(grid);
+            return well3DHelper.Convert(wellSpecsList, wellCompatList);
         }
 
     }

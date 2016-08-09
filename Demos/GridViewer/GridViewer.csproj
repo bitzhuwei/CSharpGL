@@ -117,11 +117,12 @@
     <Compile Include="GridSources\PointGridderSource.cs" />
     <Compile Include="helper\ColorIndicatorAxisAutomator.cs" />
     <Compile Include="helper\VertexHelper.cs" />
+    <Compile Include="HexahedronGridWellPipelineBuilder.cs" />
     <Compile Include="Loader\DynamicUnstructureGeometryLoader.cs" />
     <Compile Include="Loader\PointSetLoader.cs" />
     <Compile Include="Models\GridViewModel.cs" />
     <Compile Include="Models\IUpdateColorPalette.cs" />
-    <Compile Include="Models\WellPipelineModel.cs" />
+    <Compile Include="Models\WellModel.cs" />
     <None Include="Models\readme.md" />
     <Compile Include="Models\CatesianGrid\CatesianGrid.Index.cs" />
     <Compile Include="Models\CatesianGrid\CatesianGrid.Color.cs" />
@@ -129,11 +130,13 @@
     <Compile Include="Models\SimulationInputDataHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rectangle3D.cs" />
     <Compile Include="Renderers\BoundedRenderer.cs" />
     <Compile Include="Renderers\CatesianGridRenderer.cs" />
     <Compile Include="GLUIs\UIColorPalette\CodedColor.cs" />
     <Compile Include="GLUIs\UIColorPalette\CodedColorsHelper.cs" />
-    <Compile Include="Renderers\WellPipilineRenderer.cs" />
+    <Compile Include="Renderers\NamedWellRenderer.cs" />
+    <Compile Include="Renderers\WellRenderer.cs" />
     <Compile Include="Renderers\GridViewRenderer.cs" />
     <Compile Include="TreeNodes\AbstractTreeNode.cs" />
     <Compile Include="TreeNodes\SceneObjectTreeNode.cs" />
@@ -163,6 +166,7 @@
     <Compile Include="FormMain.Load.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="WellPipelineBuilder.cs" />
     <Compile Include="WindowSizeHelper.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

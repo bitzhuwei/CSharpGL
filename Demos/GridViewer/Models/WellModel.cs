@@ -12,7 +12,7 @@ namespace GridViewer
     /// WellPipeline
     /// 蛇形管道（井）
     /// </summary>
-    public partial class WellPipelineModel : IBufferable
+    public partial class WellModel : IBufferable
     {
 
         public const string strPosition = "position";
@@ -37,7 +37,7 @@ namespace GridViewer
         /// <param name="radius"></param>
         /// <param name="color"></param>
         /// <param name="faceCount"></param>
-        public WellPipelineModel(List<vec3> pipeline, float radius, Color color, int faceCount = 18)
+        public WellModel(List<vec3> pipeline, float radius, Color color, int faceCount = 18)
         {
             if (pipeline == null || pipeline.Count < 2 || radius <= 0.0f)
             { throw new ArgumentException(); }
