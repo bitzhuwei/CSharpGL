@@ -228,8 +228,8 @@ namespace GridViewer
                     }
                 }//end for
 
-                var model = new WellModel(wellPath, wellRadius, pipeColor);
-                NamedWellRenderer renderer = NamedWellRenderer.Create(model, 12);
+                var model = new WellModel(wellPath, wellRadius);
+                NamedWellRenderer renderer = NamedWellRenderer.Create(model, pipeColor, 12);
                 return renderer;
             }
             #endregion

@@ -26,7 +26,6 @@ namespace GridViewer
 
         private List<vec3> pipeline;
         private float radius;
-        private Color color;
         private int faceCount;
 
         /// <summary>
@@ -37,12 +36,12 @@ namespace GridViewer
         /// <param name="radius"></param>
         /// <param name="color"></param>
         /// <param name="faceCount"></param>
-        public WellModel(List<vec3> pipeline, float radius, Color color, int faceCount = 18)
+        public WellModel(List<vec3> pipeline, float radius, int faceCount = 18)
         {
             if (pipeline == null || pipeline.Count < 2 || radius <= 0.0f)
             { throw new ArgumentException(); }
 
-            this.pipeline = pipeline; this.radius = radius; this.color = color;
+            this.pipeline = pipeline; this.radius = radius;
             this.faceCount = faceCount;
         }
 

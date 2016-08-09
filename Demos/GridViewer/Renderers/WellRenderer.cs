@@ -20,13 +20,13 @@ namespace GridViewer
         public mat4 ModelMatrix { get; set; }
 
         private UpdatingRecord wellPipelineColorRecord = new UpdatingRecord();
-        private Color wellPipelineColor;
-        public Color WellPipelineColor
+        private Color wellColor = Color.White;// maps to white color in shader.
+        public Color WellColor
         {
-            get { return wellPipelineColor; }
+            get { return wellColor; }
             set
             {
-                wellPipelineColor = value;
+                wellColor = value;
                 wellPipelineColorRecord.Mark();
             }
         }
@@ -34,8 +34,8 @@ namespace GridViewer
         public static WellRenderer Create(WellModel model)
         {
             var shaderCodes = new ShaderCode[2];
-            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\wellPipeline.vert"), ShaderType.VertexShader);
-            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\wellPipeline.frag"), ShaderType.FragmentShader);
+            shaderCodes[0] = new ShaderCode(File.ReadAllText(@"shaders\Well.vert"), ShaderType.VertexShader);
+            shaderCodes[1] = new ShaderCode(File.ReadAllText(@"shaders\Well.frag"), ShaderType.FragmentShader);
             var map = new PropertyNameMap();
             map.Add("in_Position", WellModel.strPosition);
             var renderer = new WellRenderer(model, shaderCodes, map);
@@ -62,7 +62,7 @@ namespace GridViewer
             if (wellPipelineColorRecord.IsMarked())
             {
 
-                this.SetUniform("wellPipelineColor", this.wellPipelineColor.ToVec4());
+                this.SetUniform("wellColor", this.wellColor.ToVec4());
                 wellPipelineColorRecord.CancelMark();
             }
 
