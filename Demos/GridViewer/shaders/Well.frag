@@ -6,5 +6,5 @@ out vec4 out_Color;
 
 void main(void) 
 {
-    out_Color = lineColor;
+    out_Color = wellColor;
 }
