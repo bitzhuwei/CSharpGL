@@ -18,6 +18,7 @@ For more information please check (http://bitzhuwei.github.io/CSharpGL/)
 2. Hide/Show system's cursor in GLCanvas.
 3. fix: update UIRoot's size when scene is resized.
 4. TransformComponent is no longer a field member in SceneObject.
+5. IModelTransform transform a model from model's sapce to world's space.
 
 ## v1.0.5.1:
 1. TextureUpdater allows for updating texture's content.
