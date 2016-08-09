@@ -31,14 +31,6 @@ Rendering 'Control' at fixed position with fixed size. For example, GLAxis rende
 Rendering text using ``glRasterPos()`` and ``CallList()``.
 Rendering text using GLText(a special GLControl).
 ![GLText and GLAxis](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLText-GLAxis.jpg?raw=true)
-:foggy:
-:rainbow:
-:traffic_light:
-:ok:
-:six_pointed_star:
-:radio_button:
-:ballot_box_with_check:
-:white_square_button:
 
 ![export-glyph-texture-from-TTF](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/glyph-texture.png?raw=true)
 # :gem:Some Cool Demos
