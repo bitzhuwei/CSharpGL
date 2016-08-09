@@ -25,12 +25,20 @@ or
 ## :pushpin:Color-Coded Picking
 PickableRenderer supports picking primitives in multiple vertex buffer objects using Mouse.  
 ![pick and move primitive](http://images2015.cnblogs.com/blog/383191/201605/383191-20160503191610388-117673971.gif)
-## :abcd::curly_loop::ideograph_advantage:GLControl & Text
+## :radio_button::ballot_box_with_check::white_square_button:GLControl & Text
 Rendering 'Control' at fixed position with fixed size. For example, GLAxis renders an axis at left bottom corner.
 'Control' binding to specified border just like winform-control.
 Rendering text using ``glRasterPos()`` and ``CallList()``.
 Rendering text using GLText(a special GLControl).
 ![GLText and GLAxis](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLText-GLAxis.jpg?raw=true)
+:foggy:
+:rainbow:
+:traffic_light:
+:ok:
+:six_pointed_star:
+:radio_button:
+:ballot_box_with_check:
+:white_square_button:
 
 ![export-glyph-texture-from-TTF](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/glyph-texture.png?raw=true)
 # :gem:Some Cool Demos
