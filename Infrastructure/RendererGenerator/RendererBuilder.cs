@@ -66,6 +66,23 @@ namespace RendererGenerator
         private void BuildConstructor(CodeTypeDeclaration rendererType, DataStructure dataStructure)
         {
             //throw new NotImplementedException();
+            var method = new CodeConstructor();
+            method.Attributes = MemberAttributes.Private;
+            method.Name = dataStructure.RendererName;
+            var bufferable = new CodeParameterDeclarationExpression(typeof(IBufferable), "bufferable");
+            method.Parameters.Add(bufferable);
+            var shaderCode = new CodeParameterDeclarationExpression(typeof(ShaderCode[]), shaderCodes);
+            method.Parameters.Add(shaderCode);
+            var map = new CodeParameterDeclarationExpression(typeof(PropertyNameMap), "propertyNameMap");
+            method.Parameters.Add(map);
+            var last = new CodeParameterDeclarationExpression(new CodeTypeReference(string.Format("params {0}[]", typeof(GLSwitch).Name)), "switches");
+            method.Parameters.Add(last);
+            method.BaseConstructorArgs.Add(bufferable);
+            method.BaseConstructorArgs.Add(shaderCode);
+            method.BaseConstructorArgs.Add(map);
+            method.BaseConstructorArgs.Add(last);
+
+            rendererType.Members.Add(method);
         }
 
         private void BuildCreate(CodeTypeDeclaration rendererType, DataStructure dataStructure)
