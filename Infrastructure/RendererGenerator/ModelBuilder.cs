@@ -62,11 +62,11 @@ namespace RendererGenerator
         private void BuildGetIndex(CodeTypeDeclaration modelType, DataStructure dataStructure)
         {
             CodeMemberMethod method = GetIndexDeclaration(dataStructure);
-            GetIndexBody(method);
+            GetIndexBody(method, dataStructure);
             modelType.Members.Add(method);
         }
 
-        private void GetIndexBody(CodeMemberMethod method)
+        private void GetIndexBody(CodeMemberMethod method, DataStructure dataStructure)
         {
             // if (indexBufferPtr == null)
             var ifStatement = new CodeConditionStatement(
@@ -75,21 +75,32 @@ namespace RendererGenerator
                     CodeBinaryOperatorType.IdentityEquality,
                     new CodePrimitiveExpression(null)));
             method.Statements.Add(ifStatement);
-            // using (var buffer = new OneIndexBuffer<uint>(this.model.mode, BufferUsage.StaticDraw))
-            var usingBegin = new CodeSnippetStatement(string.Format("                using (var buffer = new OneIndexBuffer<uint>(this.model.mode,BufferUsage.StaticDraw))"));
-            ifStatement.TrueStatements.Add(usingBegin);
-            ifStatement.TrueStatements.Add(new CodeSnippetStatement("                {// begin of using"));
-            ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    buffer.Create();"));
-            // unsafe {
-            ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    unsafe"));
-            ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    {// begin of unsafe"));
-            // var array = (uint*)buffer.Header.ToPointer();
-            ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                        var array = (uint*)buffer.Header.ToPointer();")));
-            // }
-            ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    }// end of unsafe"));
-            ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;")));
-            ifStatement.TrueStatements.Add(new CodeSnippetStatement("                }// end of using"));
-
+            if (dataStructure.ZeroIndexBuffer)
+            {
+                // using (var buffer = new ZeroIndexBuffer(DrawMode.LineStrip, 0, BigDipperModel.positions.Length))
+                var usingBegin = new CodeSnippetStatement(string.Format("                using (var buffer = new ZeroIndexBuffer({0}.{1}, 0, ))", dataStructure.DrawMode.GetType().Name, dataStructure.DrawMode));
+                ifStatement.TrueStatements.Add(usingBegin);
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement("                {// begin of using"));
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;")));
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement("                }// end of using"));
+            }
+            else
+            {
+                // using (var buffer = new OneIndexBuffer<uint>(this.model.mode, BufferUsage.StaticDraw))
+                var usingBegin = new CodeSnippetStatement(string.Format("                using (var buffer = new OneIndexBuffer<uint>({0}.{1}, BufferUsage.StaticDraw))", dataStructure.DrawMode.GetType().Name, dataStructure.DrawMode));
+                ifStatement.TrueStatements.Add(usingBegin);
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement("                {// begin of using"));
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    buffer.Create();"));
+                // unsafe {
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    unsafe"));
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    {// begin of unsafe"));
+                // var array = (uint*)buffer.Header.ToPointer();
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                        var array = (uint*)buffer.Header.ToPointer();")));
+                // }
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    }// end of unsafe"));
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;")));
+                ifStatement.TrueStatements.Add(new CodeSnippetStatement("                }// end of using"));
+            }
             method.Statements.Add(new CodeMethodReturnStatement(
                 new CodeVariableReferenceExpression(indexBufferPtr)));
         }
