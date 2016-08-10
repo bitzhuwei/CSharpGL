@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rendererGenerator TargetName="Demo" ZeroIndexBuffer="false" DrawMode="Points">
+  <VertexProperty NameInShader="in_Position" NameInModel="position" PropertyType="CSharpGL.vec3" />
+</rendererGenerator>
