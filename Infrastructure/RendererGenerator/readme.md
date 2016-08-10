@@ -1,5 +1,5 @@
 ﻿# Renderer Generator
-RendererGenerator is a simple console that reads an xml config file and dumps a Renderer.cs, a Model.cs, a vertex shader file(.vert) and a fragment shader file(.frag).
+RendererGenerator is a tiny console that reads an xml config file and dumps a Renderer.cs, a Model.cs, a vertex shader file(.vert) and a fragment shader file(.frag).
 A demo is shown as below:
 ```
 <?xml version="1.0" encoding="utf-8"?>
