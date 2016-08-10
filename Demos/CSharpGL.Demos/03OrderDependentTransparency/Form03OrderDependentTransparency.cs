@@ -46,9 +46,16 @@ namespace CSharpGL.Demos
 
         private Form02OrderIndependentTransparency form02;
 
-        void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
+        internal void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
-            this.rotator.canvas_MouseWheel(sender, e);
+            if (sender == this.glCanvas1)
+            {
+                this.form02.glCanvas1_MouseWheel(sender, e);
+            }
+            else
+            {
+                this.rotator.canvas_MouseWheel(sender, e);
+            }
         }
 
         private void glCanvas1_Resize(object sender, EventArgs e)

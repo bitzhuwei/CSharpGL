@@ -48,12 +48,15 @@ namespace CSharpGL.Demos
 
         private Point offset = new Point(13, 11);
 
-        void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
+        internal void glCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
-            ICamera camera = this.scene.Camera;
-            if (camera != null)
+            if (sender == this.glCanvas1)
             {
-                camera.MouseWheel(e.Delta);
+                this.form03.glCanvas1_MouseWheel(sender, e);
+            }
+            else
+            {
+                this.rotator.canvas_MouseWheel(sender, e);
             }
         }
 
