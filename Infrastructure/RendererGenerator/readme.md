@@ -47,5 +47,7 @@ NameInModel is the name in `IBufferable` corresponding to the name in GLSL shade
 For example, `position` maps to `in_position` in vertex shader shown above.
 ### PropertyType
 It's strightforward to understand that PropertyType means variable's type in GLSL shader and `IBufferable`.
-
+# Why bother?
+I forgot to assign result to the `indexBufferPtr` in `IBufferable`'s `GetIndex()` method today, and it took me hours of debugging to find out this annoying mistake.  
+Thus I decided to write this tiny generator to help dump framework for all future renderer types that derives from `CSharpGL.Renderer`.  
 
