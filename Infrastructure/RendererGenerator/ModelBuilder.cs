@@ -32,6 +32,7 @@ namespace RendererGenerator
             modelType.Comments.Add(new CodeCommentStatement("</summary>", true));
             BuildFields(modelType, dataStructure);
             BuildGetProperty(modelType, dataStructure);
+            BuildGetIndex(modelType, dataStructure);
 
             var parserNamespace = new CodeNamespace("CSharpGL");
             parserNamespace.Imports.Add(new CodeNamespaceImport(typeof(System.Object).Namespace));
@@ -51,6 +52,55 @@ namespace RendererGenerator
 
                 codeProvider.GenerateCodeFromNamespace(parserNamespace, stream, opentions);
             }
+        }
+
+        /// <summary>
+        /// public IndexBufferPtr GetIndex()
+        /// </summary>
+        /// <param name="modelType"></param>
+        /// <param name="dataStructure"></param>
+        private void BuildGetIndex(CodeTypeDeclaration modelType, DataStructure dataStructure)
+        {
+            CodeMemberMethod method = GetIndexDeclaration(dataStructure);
+            GetIndexBody(method);
+            modelType.Members.Add(method);
+        }
+
+        private void GetIndexBody(CodeMemberMethod method)
+        {
+            // if (indexBufferPtr == null)
+            var ifStatement = new CodeConditionStatement(
+                new CodeBinaryOperatorExpression(
+                    new CodeVariableReferenceExpression(indexBufferPtr),
+                    CodeBinaryOperatorType.IdentityEquality,
+                    new CodePrimitiveExpression(null)));
+            method.Statements.Add(ifStatement);
+            // using (var buffer = new OneIndexBuffer<uint>(this.model.mode, BufferUsage.StaticDraw))
+            var usingBegin = new CodeSnippetStatement(string.Format("                using (var buffer = new OneIndexBuffer<uint>(this.model.mode,BufferUsage.StaticDraw))"));
+            ifStatement.TrueStatements.Add(usingBegin);
+            ifStatement.TrueStatements.Add(new CodeSnippetStatement("                {// begin of using"));
+            ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    buffer.Create();"));
+            // unsafe {
+            ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    unsafe"));
+            ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    {// begin of unsafe"));
+            // var array = (uint*)buffer.Header.ToPointer();
+            ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                        var array = (uint*)buffer.Header.ToPointer();")));
+            // }
+            ifStatement.TrueStatements.Add(new CodeSnippetStatement("                    }// end of unsafe"));
+            ifStatement.TrueStatements.Add(new CodeSnippetStatement(string.Format("                    indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;")));
+            ifStatement.TrueStatements.Add(new CodeSnippetStatement("                }// end of using"));
+
+            method.Statements.Add(new CodeMethodReturnStatement(
+                new CodeVariableReferenceExpression(indexBufferPtr)));
+        }
+
+        private CodeMemberMethod GetIndexDeclaration(DataStructure dataStructure)
+        {
+            var method = new CodeMemberMethod();
+            method.Attributes = MemberAttributes.Public | MemberAttributes.Final;
+            method.ReturnType = new CodeTypeReference(typeof(IndexBufferPtr));
+            method.Name = "GetIndex";
+            return method;
         }
 
         /// <summary>
@@ -139,7 +189,6 @@ namespace RendererGenerator
             var parameter1 = new CodeParameterDeclarationExpression(typeof(string), varNameInShader);
             method.Parameters.Add(parameter1);
             return method;
-
         }
 
         /// <summary>
