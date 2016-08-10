@@ -31,6 +31,8 @@ namespace RendererGenerator
             modelType.Comments.Add(new CodeCommentStatement(string.Format("Model of {0}", dataStructure.TargetName), true));
             modelType.Comments.Add(new CodeCommentStatement("</summary>", true));
             BuildFields(modelType, dataStructure);
+            BuildGetProperty(modelType, dataStructure);
+
             var parserNamespace = new CodeNamespace("CSharpGL");
             parserNamespace.Imports.Add(new CodeNamespaceImport(typeof(System.Object).Namespace));
             parserNamespace.Imports.Add(new CodeNamespaceImport(typeof(System.Collections.Generic.List<int>).Namespace));
@@ -49,6 +51,25 @@ namespace RendererGenerator
 
                 codeProvider.GenerateCodeFromNamespace(parserNamespace, stream, opentions);
             }
+        }
+
+        /// <summary>
+        /// public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        /// </summary>
+        /// <param name="modelType"></param>
+        /// <param name="dataStructure"></param>
+        private void BuildGetProperty(CodeTypeDeclaration modelType, DataStructure dataStructure)
+        {
+            //public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+            var method = new CodeMemberMethod();
+            method.Attributes = MemberAttributes.Public | MemberAttributes.Final;
+            method.ReturnType = new CodeTypeReference(typeof(PropertyBufferPtr));
+            method.Name = "GetProperty";
+            var parameter0 = new CodeParameterDeclarationExpression(typeof(string), bufferName);
+            method.Parameters.Add(parameter0);
+            var parameter1 = new CodeParameterDeclarationExpression(typeof(string), varNameInShader);
+            method.Parameters.Add(parameter1);
+            modelType.Members.Add(method);
         }
 
         /// <summary>
@@ -81,5 +102,7 @@ namespace RendererGenerator
         }
 
         private const string indexBufferPtr = "indexBufferPtr";
+        private const string bufferName = "bufferName";
+        private const string varNameInShader = "varNameInShader";
     }
 }
