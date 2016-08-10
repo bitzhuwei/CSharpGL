@@ -56,6 +56,21 @@ namespace RendererGenerator
         private void BuildDoRender(CodeTypeDeclaration rendererType, DataStructure dataStructure)
         {
             //throw new NotImplementedException();
+            var method = new CodeMemberMethod();
+            method.Attributes = MemberAttributes.Public | MemberAttributes.Override;
+            method.Name = "DoRender";
+            const string arg = "arg";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(RenderEventArg), arg));
+            method.Statements.Add(new CodeSnippetStatement(string.Format("            //mat4 projection = arg.Camera.GetProjectionMat4();")));
+            method.Statements.Add(new CodeSnippetStatement(string.Format("            //mat4 view = arg.Camera.GetViewMat4();")));
+            method.Statements.Add(new CodeSnippetStatement(string.Format("            //mat4 model = mat4.identity();")));
+            method.Statements.Add(new CodeSnippetStatement(string.Format("            //this.SetUniform(\"projectionMatrix\", projection);")));
+            method.Statements.Add(new CodeSnippetStatement(string.Format("            //this.SetUniform(\"viewMatrix\", view);")));
+            method.Statements.Add(new CodeSnippetStatement(string.Format("            //this.SetUniform(\"modelMatrix\", model);")));
+
+            method.Statements.Add(new CodeSnippetStatement(string.Format("            base.DoRender(arg);")));
+
+            rendererType.Members.Add(method);
         }
 
         private void BuildDoInitialize(CodeTypeDeclaration rendererType, DataStructure dataStructure)
