@@ -109,7 +109,7 @@ namespace GridViewer
 
         public unsafe IndexBufferPtr GetIndex()
         {
-            if (indexBufferPtr != null) { return indexBufferPtr; }
+            if (this.indexBufferPtr != null) { return this.indexBufferPtr; }
 
             int vertexCount = (faceCount * 2 + 2) * (this.pipeline.Count - 1);
             using (var buffer = new OneIndexBuffer<uint>(DrawMode.QuadStrip, BufferUsage.StaticDraw))
@@ -128,9 +128,11 @@ namespace GridViewer
                         array[i] = positionIndex++;
                     }
                 }
+
+                this.indexBufferPtr = buffer.GetBufferPtr() as IndexBufferPtr;
             }
 
-            return indexBufferPtr;
+            return this.indexBufferPtr;
         }
 
     }
