@@ -92,18 +92,21 @@ namespace RendererGenerator
                 // using (var buffer = new PropertyBuffer<vec3>(varNameInShader))
                 var usingBegin = new CodeSnippetStatement(string.Format("                    using(var buffer = new PropertyBuffer<{0}>({1}))", item.PropertyType.Name, varNameInShader));
                 ifStatement2.TrueStatements.Add(usingBegin);
-                ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                    {"));
+                ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                    {// begin of using"));
                 var create = new CodeSnippetStatement("                        buffer.Create();");
                 ifStatement2.TrueStatements.Add(create);
                 // unsafe {
                 ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                        unsafe"));
-                ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                        {"));
+                ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                        {// begin of unsafe"));
                 // var array = (vec3*)buffer.Header.ToPointer();
                 var newArray = new CodeSnippetStatement(string.Format("                            var array = ({0}*)buffer.Header.ToPointer();", item.PropertyType.Name));
                 ifStatement2.TrueStatements.Add(newArray);
                 // }
-                ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                        }"));
-                ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                    }"));
+                ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                        }// end of unsafe"));
+                ifStatement2.TrueStatements.Add(new CodeSnippetStatement(string.Format("                        {0} = buffer.GetBufferPtr() as PropertyBufferPtr;", item.BufferPtrName)));
+                ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                    }// end of using"));
+                ifStatement.TrueStatements.Add(new CodeMethodReturnStatement(
+                    new CodeVariableReferenceExpression(item.BufferPtrName)));
             }
 
             // throw new NotImplementedException();
@@ -114,9 +117,9 @@ namespace RendererGenerator
                     // You must use an object create expression to new an exception here.
                     new CodeObjectCreateExpression(
                     // createType parameter inidicates the type of object to create.
-                    new CodeTypeReference(typeof(System.NotImplementedException)),
+                    new CodeTypeReference(typeof(System.ArgumentException)),
                     // parameters parameter indicates the constructor parameters.
-                    new CodeExpression[] { }));
+                    new CodeExpression[] { new CodePrimitiveExpression(bufferName) }));
                 method.Statements.Add(throwException);
             }
         }
