@@ -5,11 +5,11 @@ using System.Text;
 
 namespace RendererGenerator
 {
-    class VertexProperty
+    public class VertexProperty
     {
-        private string nameInShader;
-        private string nameInModel;
-        private Type type;
+        public string NameInShader { get; set; }
+        public string NameInModel { get; set; }
+        public Type PropertyType { get; set; }
 
         /// <summary>
         /// 
@@ -20,14 +20,14 @@ namespace RendererGenerator
         public VertexProperty(string nameInShader, string nameInModel, Type type)
         {
             // TODO: Complete member initialization
-            this.nameInShader = nameInShader;
-            this.nameInModel = nameInModel;
-            this.type = type;
+            this.NameInShader = nameInShader;
+            this.NameInModel = nameInModel;
+            this.PropertyType = type;
         }
 
         public string ToGLSL()
         {
-            return string.Format("in {0} {1};", this.type.Name, this.nameInShader);
+            return string.Format("in {0} {1};", this.PropertyType.Name, this.NameInShader);
         }
     }
 }

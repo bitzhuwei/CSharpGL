@@ -22,6 +22,7 @@ namespace RendererGenerator
         {
             if (string.IsNullOrEmpty(modelFilename)) { modelFilename = this.GetFilename(dataStructure); }
 
+            // public class DemoModel : IBufferable { }
             var modelType = new CodeTypeDeclaration(dataStructure.ModelName);
             modelType.IsClass = true;
             modelType.IsPartial = true;
@@ -29,7 +30,7 @@ namespace RendererGenerator
             modelType.Comments.Add(new CodeCommentStatement("<summary>", true));
             modelType.Comments.Add(new CodeCommentStatement(string.Format("Model of {0}", dataStructure.TargetName), true));
             modelType.Comments.Add(new CodeCommentStatement("</summary>", true));
-
+            BuildFields(modelType, dataStructure);
             var parserNamespace = new CodeNamespace("CSharpGL");
             parserNamespace.Imports.Add(new CodeNamespaceImport(typeof(System.Object).Namespace));
             parserNamespace.Imports.Add(new CodeNamespaceImport(typeof(System.Collections.Generic.List<int>).Namespace));
@@ -47,6 +48,29 @@ namespace RendererGenerator
                 opentions.VerbatimOrder = true;
 
                 codeProvider.GenerateCodeFromNamespace(parserNamespace, stream, opentions);
+            }
+        }
+
+        /// <summary>
+        /// fields.
+        /// </summary>
+        /// <param name="modelType"></param>
+        /// <param name="dataStructure"></param>
+        private void BuildFields(CodeTypeDeclaration modelType, DataStructure dataStructure)
+        {
+            // public const string strPosition = "position";
+            foreach (var item in dataStructure.PropertyList)
+            {
+                {
+                    var constField = new CodeMemberField(typeof(string), string.Format("{0}", item.NameInModel));
+                    constField.Attributes = MemberAttributes.Public | MemberAttributes.Const;
+                    constField.InitExpression = new CodePrimitiveExpression(item.NameInModel);
+                    modelType.Members.Add(constField);
+                }
+                {
+                    var bufferPtrField = new CodeMemberField(typeof(PropertyBufferPtr), string.Format("{0}BufferPtr", item.NameInModel));
+                    modelType.Members.Add(bufferPtrField);
+                }
             }
         }
     }
