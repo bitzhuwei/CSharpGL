@@ -114,6 +114,7 @@ namespace RendererGenerator
             method.Name = "Create";
             var parameter0 = new CodeParameterDeclarationExpression(dataStructure.ModelName, model);
             method.Parameters.Add(parameter0);
+            method.Comments.Add(new CodeCommentStatement(string.Format("you can replace {0} with {1} in the method's parameter.", dataStructure.ModelName, typeof(IBufferable).Name)));
 
             return method;
         }
