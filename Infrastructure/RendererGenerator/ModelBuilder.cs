@@ -58,20 +58,28 @@ namespace RendererGenerator
         /// <param name="dataStructure"></param>
         private void BuildFields(CodeTypeDeclaration modelType, DataStructure dataStructure)
         {
-            // public const string strPosition = "position";
             foreach (var item in dataStructure.PropertyList)
             {
                 {
+                    // public const string position = "position";
                     var constField = new CodeMemberField(typeof(string), string.Format("{0}", item.NameInModel));
                     constField.Attributes = MemberAttributes.Public | MemberAttributes.Const;
                     constField.InitExpression = new CodePrimitiveExpression(item.NameInModel);
                     modelType.Members.Add(constField);
                 }
                 {
+                    // private PropertyBufferPtr positionBufferPtr;
                     var bufferPtrField = new CodeMemberField(typeof(PropertyBufferPtr), string.Format("{0}BufferPtr", item.NameInModel));
                     modelType.Members.Add(bufferPtrField);
                 }
             }
+            {
+                // private PropertyBufferPtr positionBufferPtr;
+                var bufferPtrField = new CodeMemberField(typeof(IndexBufferPtr), indexBufferPtr);
+                modelType.Members.Add(bufferPtrField);
+            }
         }
+
+        private const string indexBufferPtr = "indexBufferPtr";
     }
 }
