@@ -10,7 +10,7 @@ A demo is shown as below:
 ## TargetName
 any identifier that you like(just make sure it's a valid identifier in C#). This name specifies what you want to render.
 ## ZeroIndexBuffer
-If true, this console will dump a Model.cs which uses ZeroIndexBuffer; otherwise, it well dump a Model.cs which uses OneIndexBuffer<>.
+If true, this console will dump a Model.cs which uses ZeroIndexBuffer; otherwise, it well dump a Model.cs which uses OneIndexBuffer<>.  
 So how to decide? It's easy: set it to `true` if you are using `glDrawArrays()`; set it to `fase` if you are using `glDrawElements()``.
 ## DrawMode
 Options are one of these in DrawMode.
@@ -35,7 +35,7 @@ public enum DrawMode : uint
 }
 ```
 ## VertexProperty
-A VertexProperty is an array that describes model's position, color, normal or any other stuff you need.
+A VertexProperty is an array that describes model's position, color, normal or any other stuff you need.  
 There could be more than 1 VertexProperty element in `rendererGenerator`'s sub-node.
 ### NameInShader
 NameInShader is the variable's name in GLSL vertex shader.
