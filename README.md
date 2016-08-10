@@ -4,7 +4,7 @@
 [CSharpGL](https://github.com/bitzhuwei/CSharpGL) is a pure C# project that allows for modern OpenGL rendering in an Object-Oriented way. It meets common requirements in OpenGL rendering such as:
 ## :rocket:Modern Rendering
 Object-Oriented modern rendering using GLSL shaders and vertex buffer objects.
-![modern-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/modern-rendering.jpg?raw=true)
+![modern-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/modern-rendering.png?raw=true)
 ## :stars:GLCanvas
 A winform control that supports drag-drop and wraps initialization of creating OpenGL context.
 ![raycast-volume-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLCanvas.gif?raw=true)
@@ -30,7 +30,7 @@ Rendering 'Control' at fixed position with fixed size. For example, GLAxis rende
 'Control' binding to specified border just like winform-control.
 Rendering text using ``glRasterPos()`` and ``CallList()``.
 Rendering text using GLText(a special GLControl).
-![GLText and GLAxis](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLText-GLAxis.jpg?raw=true)
+![GLText and GLAxis](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/GLText-GLAxis.png?raw=true)
 
 ![export-glyph-texture-from-TTF](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/glyph-texture.png?raw=true)
 # :gem:Some Cool Demos
@@ -39,12 +39,14 @@ Rendering text using GLText(a special GLControl).
 ## Raycast Volume Rendering.
 ![raycast-volume-rendering](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/raycast-volume-render.gif?raw=true)
 ## Particle Simulator Using Compute Shader.
-![compute-shader-particles](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-particles.gif?raw=true)
+![compute-shader-particles](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-particles.gif?raw=true)  
+![compute-shader-particles](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/compute-shader-particles.jpg?raw=true)
 ## Order-Dependent Transparency VS Order-Independent Transparency.
 ![order-independent-transparency](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/order-independent-transparency.jpg?raw=true)
 ## Point Sprite.
 10000 particles with a sphere inside a cube.
-![point-sprite](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/point-sprite.jpg?raw=true)
+![point-sprite](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/point-sprite.png?raw=true)  
+![point-sprite](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/point-sprite2.png?raw=true)
 ## Earth.
 An earth model that singly rotate same as real earth. It's composed of 65341 positions, normals and uvs and 130140 indexes and a 10800x5400 texture.
 ![earth](https://github.com/bitzhuwei/CSharpGL/blob/gh-pages/images/CSharpGL/earth.gif?raw=true)
