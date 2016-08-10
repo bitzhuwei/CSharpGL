@@ -1,5 +1,5 @@
 ﻿# Renderer Generator
-RendererGenerator is a simple console that reads a xml config file and dump a Renderer.cs, a Model.cs, a vertex shader and a fragment shader file.
+RendererGenerator is a simple console that reads an xml config file and dumps a Renderer.cs, a Model.cs, a vertex shader file(.vert) and a fragment shader file(.frag).
 A demo is shown as below:
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -36,7 +36,7 @@ public enum DrawMode : uint
 ```
 ## VertexProperty
 A VertexProperty is an array that describes model's position, color, normal or any other stuff you need.
-There could be more than 1 VertexProperty in `rendererGenerator`'s sub-node.
+There could be more than 1 VertexProperty element in `rendererGenerator`'s sub-node.
 ### NameInShader
 NameInShader is the variable's name in GLSL vertex shader.
 ```
