@@ -9,7 +9,7 @@ A demo is shown as below:
 </rendererGenerator>
 ```
 ## TargetName
-any identifier that you like(just make sure it's a valid identifier in C#). This name specifies what you want to render.
+Any identifier that you like(just make sure it's a valid identifier in C#). This name specifies what you want to render.
 ## ZeroIndexBuffer
 If true, this console will dump a Model.cs which uses ZeroIndexBuffer; otherwise, it well dump a Model.cs which uses OneIndexBuffer<>.  
 So how to decide? It's easy: set it to `true` if you are using `glDrawArrays()`; set it to `fase` if you are using `glDrawElements()``.
@@ -45,7 +45,7 @@ in vec3 in_Position;
 ```
 ### NameInModel
 NameInModel is the name in `IBufferable` corresponding to the name in GLSL shader.
-For example, `position` maps to `in_position` in vertex shader shown above.
+For example, `position` maps to `in_Position` in vertex shader shown above.
 ### PropertyType
 It's strightforward to understand that PropertyType means variable's type in GLSL shader and `IBufferable`.
 # Why bother?
