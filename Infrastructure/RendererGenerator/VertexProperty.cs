@@ -29,5 +29,7 @@ namespace RendererGenerator
         {
             return string.Format("in {0} {1};", this.PropertyType.Name, this.NameInShader);
         }
+
+        public string BufferPtrName { get { return string.Format("{0}BufferPtr", this.NameInModel); } }
     }
 }

@@ -61,6 +61,72 @@ namespace RendererGenerator
         private void BuildGetProperty(CodeTypeDeclaration modelType, DataStructure dataStructure)
         {
             //public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+            var method = GetPropertyDeclaration();
+            GetPropertyBody(method, dataStructure);
+
+            modelType.Members.Add(method);
+        }
+
+        /// <summary>
+        /// body of public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        /// </summary>
+        /// <param name="method"></param>
+        private void GetPropertyBody(CodeMemberMethod method, DataStructure dataStructure)
+        {
+            foreach (var item in dataStructure.PropertyList)
+            {
+                // if (bufferName == position)
+                var ifStatement = new CodeConditionStatement(
+                    new CodeBinaryOperatorExpression(
+                        new CodeVariableReferenceExpression(bufferName),
+                        CodeBinaryOperatorType.IdentityEquality,
+                        new CodeVariableReferenceExpression(item.NameInModel)));
+                method.Statements.Add(ifStatement);
+                // if (positionBufferPtr != null)
+                var ifStatement2 = new CodeConditionStatement(
+                    new CodeBinaryOperatorExpression(
+                        new CodeVariableReferenceExpression(item.BufferPtrName),
+                        CodeBinaryOperatorType.IdentityEquality,
+                        new CodePrimitiveExpression(null)));
+                ifStatement.TrueStatements.Add(ifStatement2);
+                // using (var buffer = new PropertyBuffer<vec3>(varNameInShader))
+                var usingBegin = new CodeSnippetStatement(string.Format("                    using(var buffer = new PropertyBuffer<{0}>({1}))", item.PropertyType.Name, varNameInShader));
+                ifStatement2.TrueStatements.Add(usingBegin);
+                ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                    {"));
+                var create = new CodeSnippetStatement("                        buffer.Create();");
+                ifStatement2.TrueStatements.Add(create);
+                // unsafe {
+                ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                        unsafe"));
+                ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                        {"));
+                // var array = (vec3*)buffer.Header.ToPointer();
+                var newArray = new CodeSnippetStatement(string.Format("                            var array = ({0}*)buffer.Header.ToPointer();", item.PropertyType.Name));
+                ifStatement2.TrueStatements.Add(newArray);
+                // }
+                ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                        }"));
+                ifStatement2.TrueStatements.Add(new CodeSnippetStatement("                    }"));
+            }
+
+            // throw new NotImplementedException();
+            {
+                // This CodeThrowExceptionStatement throws a new System.Exception.
+                var throwException = new CodeThrowExceptionStatement(
+                    // codeExpression parameter indicates the exception to throw.
+                    // You must use an object create expression to new an exception here.
+                    new CodeObjectCreateExpression(
+                    // createType parameter inidicates the type of object to create.
+                    new CodeTypeReference(typeof(System.NotImplementedException)),
+                    // parameters parameter indicates the constructor parameters.
+                    new CodeExpression[] { }));
+                method.Statements.Add(throwException);
+            }
+        }
+
+        /// <summary>
+        /// public PropertyBufferPtr GetProperty(string bufferName, string varNameInShader)
+        /// </summary>
+        /// <returns></returns>
+        private CodeMemberMethod GetPropertyDeclaration()
+        {
             var method = new CodeMemberMethod();
             method.Attributes = MemberAttributes.Public | MemberAttributes.Final;
             method.ReturnType = new CodeTypeReference(typeof(PropertyBufferPtr));
@@ -69,7 +135,8 @@ namespace RendererGenerator
             method.Parameters.Add(parameter0);
             var parameter1 = new CodeParameterDeclarationExpression(typeof(string), varNameInShader);
             method.Parameters.Add(parameter1);
-            modelType.Members.Add(method);
+            return method;
+
         }
 
         /// <summary>
@@ -90,7 +157,7 @@ namespace RendererGenerator
                 }
                 {
                     // private PropertyBufferPtr positionBufferPtr;
-                    var bufferPtrField = new CodeMemberField(typeof(PropertyBufferPtr), string.Format("{0}BufferPtr", item.NameInModel));
+                    var bufferPtrField = new CodeMemberField(typeof(PropertyBufferPtr), item.BufferPtrName);
                     modelType.Members.Add(bufferPtrField);
                 }
             }
