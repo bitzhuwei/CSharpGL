@@ -24,5 +24,10 @@ namespace RendererGenerator
             this.nameInModel = nameInModel;
             this.type = type;
         }
+
+        public string ToGLSL()
+        {
+            return string.Format("in {0} {1};", this.type.Name, this.nameInShader);
+        }
     }
 }

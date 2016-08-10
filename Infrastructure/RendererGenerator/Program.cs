@@ -51,12 +51,10 @@ namespace RendererGenerator
             }
             // renderer 
             {
-                var modelBuilder = new RendererBuilder();
-                string rendererFilename = modelBuilder.GetFilename(dataStructure);
-                modelBuilder.Build(dataStructure, rendererFilename);
+                var rendererBuilder = new RendererBuilder();
+                string rendererFilename = rendererBuilder.GetFilename(dataStructure);
+                rendererBuilder.Build(dataStructure, rendererFilename);
             }
-
-            throw new NotImplementedException();
         }
     }
 }

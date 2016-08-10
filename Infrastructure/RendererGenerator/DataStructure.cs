@@ -14,6 +14,9 @@ namespace RendererGenerator
 
         public string TargetName { get; set; }
 
+        public string ModelName { get { return string.Format("{0}Model", this.TargetName); } }
+        public string RendererName { get { return string.Format("{0}Renderer", this.TargetName); } }
+
         public DataStructure(string targetName)
         {
             this.TargetName = targetName;
