@@ -43,13 +43,13 @@ namespace RendererGenerator
                 string fragmentShaderCode = fragmentShaderBuilder.Build(dataStructure);
                 File.WriteAllText(fragmentShaderBuilder.GetFilename(dataStructure), fragmentShaderCode);
             }
-            // model
+            // model.
             {
                 var modelBuilder = new ModelBuilder();
                 string modelFilename = modelBuilder.GetFilename(dataStructure);
                 modelBuilder.Build(dataStructure, modelFilename);
             }
-            // renderer 
+            // renderer.
             {
                 var rendererBuilder = new RendererBuilder();
                 string rendererFilename = rendererBuilder.GetFilename(dataStructure);
