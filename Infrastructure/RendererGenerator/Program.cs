@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CSharpGL;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -13,9 +15,48 @@ namespace RendererGenerator
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new FormMain());
+
+            Test();
+        }
+
+        private static void Test()
+        {
+            string targetName = "Demo";
+            var dataStructure = new DataStructure(targetName);
+            string nameInShader = "in_Position";
+            string nameInModel = "position";
+            Type type = typeof(vec3);
+            var property = new VertexProperty(nameInShader, nameInModel, type);
+            dataStructure.PropertyList.Add(property);
+            // vertex shader.
+            {
+                ShaderBuilder vertexShaderBuilder = new VertexShaderBuilder();
+                string vertexShaderCode = vertexShaderBuilder.Build(dataStructure);
+                File.WriteAllText(vertexShaderBuilder.GetFilename(dataStructure), vertexShaderCode);
+            }
+            // fragment shader.
+            {
+                ShaderBuilder fragmentShaderBuilder = new FragmentShaderBuilder();
+                string fragmentShaderCode = fragmentShaderBuilder.Build(dataStructure);
+                File.WriteAllText(fragmentShaderBuilder.GetFilename(dataStructure), fragmentShaderCode);
+            }
+            // model
+            {
+                var modelBuilder = new ModelBuilder();
+                string modelFilename = modelBuilder.GetFilename(dataStructure);
+                modelBuilder.Build(dataStructure, modelFilename);
+            }
+            // renderer 
+            {
+                var modelBuilder = new RendererBuilder();
+                string rendererFilename = modelBuilder.GetFilename(dataStructure);
+                modelBuilder.Build(dataStructure, rendererFilename);
+            }
+
+            throw new NotImplementedException();
         }
     }
 }
