@@ -77,10 +77,10 @@ namespace RendererGenerator
             method.Parameters.Add(map);
             var last = new CodeParameterDeclarationExpression(new CodeTypeReference(string.Format("params {0}[]", typeof(GLSwitch).Name)), "switches");
             method.Parameters.Add(last);
-            method.BaseConstructorArgs.Add(bufferable);
-            method.BaseConstructorArgs.Add(shaderCode);
-            method.BaseConstructorArgs.Add(map);
-            method.BaseConstructorArgs.Add(last);
+            method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression("bufferable"));
+            method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression(shaderCodes));
+            method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression("propertyNameMap"));
+            method.BaseConstructorArgs.Add(new CodeVariableReferenceExpression("switches"));
 
             rendererType.Members.Add(method);
         }
