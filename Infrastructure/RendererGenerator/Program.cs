@@ -1,9 +1,11 @@
 ﻿using CSharpGL;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace RendererGenerator
 {
@@ -23,15 +25,7 @@ namespace RendererGenerator
 
             try
             {
-                //DataStructure dataStructure = DataStructure.Parse(XElement.Load(args[0]));
-                var dataStructure = new DataStructure();
-                dataStructure.TargetName = "Demo";
-                string nameInShader = "in_Position";
-                string nameInModel = "position";
-                Type type = typeof(vec3);
-                var property = new VertexProperty(nameInShader, nameInModel, type);
-                dataStructure.PropertyList.Add(property);
-                dataStructure.ToXElement().Save("Demo.xml");
+                DataStructure dataStructure = DataStructure.Parse(XElement.Load(args[0]));
                 // vertex shader.
                 {
                     ShaderBuilder vertexShaderBuilder = new VertexShaderBuilder();
@@ -56,10 +50,14 @@ namespace RendererGenerator
                     string rendererFilename = rendererBuilder.GetFilename(dataStructure);
                     rendererBuilder.Build(dataStructure, rendererFilename);
                 }
+
+                Process.Start("explorer", "/select," + args[0]);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+                Console.ReadKey();
+                return;
             }
         }
     }

@@ -14,7 +14,7 @@ namespace RendererGenerator
         private const string strNameInModel = "NameInModel";
         public string NameInModel { get; set; }
         private const string strPropertyType = "PropertyType";
-        public Type PropertyType { get; set; }
+        public string PropertyType { get; set; }
         public string BufferPtrName { get { return string.Format("{0}BufferPtr", this.NameInModel); } }
 
         /// <summary>
@@ -22,25 +22,25 @@ namespace RendererGenerator
         /// </summary>
         /// <param name="nameInShader"></param>
         /// <param name="nameInModel"></param>
-        /// <param name="type"></param>
-        public VertexProperty(string nameInShader, string nameInModel, Type type)
+        /// <param name="propertyType"></param>
+        public VertexProperty(string nameInShader, string nameInModel, string propertyType)
         {
             // TODO: Complete member initialization
             this.NameInShader = nameInShader;
             this.NameInModel = nameInModel;
-            this.PropertyType = type;
+            this.PropertyType = propertyType;
         }
 
         public string ToGLSL()
         {
-            return string.Format("in {0} {1};", this.PropertyType.Name, this.NameInShader);
+            return string.Format("in {0} {1};", this.PropertyType, this.NameInShader);
         }
 
         public static VertexProperty Parse(XElement xElement)
         {
             string nameInShader = xElement.Attribute(strNameInShader).Value;
             string nameInModel = xElement.Attribute(strNameInModel).Value;
-            Type propertyType = Type.GetType(xElement.Attribute(strPropertyType).Value);
+            string propertyType = xElement.Attribute(strPropertyType).Value;
             var result = new VertexProperty(nameInShader, nameInModel, propertyType);
             return result;
         }
@@ -50,7 +50,7 @@ namespace RendererGenerator
             return new XElement(strVertexProperty,
                 new XAttribute(strNameInShader, NameInShader),
                 new XAttribute(strNameInModel, NameInModel),
-                new XAttribute(strPropertyType, PropertyType.FullName));
+                new XAttribute(strPropertyType, PropertyType));
         }
 
         public const string strVertexProperty = "VertexProperty";

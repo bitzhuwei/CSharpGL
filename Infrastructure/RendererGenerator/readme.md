@@ -4,7 +4,8 @@ A demo is shown as below:
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <rendererGenerator TargetName="Demo" ZeroIndexBuffer="false" DrawMode="Points">
-  <VertexProperty NameInShader="in_Position" NameInModel="position" PropertyType="CSharpGL.vec3" />
+  <VertexProperty NameInShader="in_Position" NameInModel="position" PropertyType="vec3" />
+  <VertexProperty NameInShader="in_TexCoord" NameInModel="texCoord" PropertyType="vec2" />
 </rendererGenerator>
 ```
 ## TargetName
