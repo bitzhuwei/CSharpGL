@@ -225,7 +225,7 @@ namespace RendererGenerator
                 }
             }
             {
-                // private PropertyBufferPtr positionBufferPtr;
+                // private IndexBufferPtr indexBufferPtr;
                 var bufferPtrField = new CodeMemberField(typeof(IndexBufferPtr), indexBufferPtr);
                 modelType.Members.Add(bufferPtrField);
             }
