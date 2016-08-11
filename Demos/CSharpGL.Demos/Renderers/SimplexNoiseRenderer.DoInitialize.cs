@@ -18,7 +18,7 @@ namespace CSharpGL.Demos
 
             lastTime = DateTime.Now;
 
-            var texture = new sampler1D();
+            var texture = new Texture1D();
             var bitmap = new Bitmap(@"Textures\sunColor.png");
             texture.Initialize(bitmap);
             bitmap.Dispose();

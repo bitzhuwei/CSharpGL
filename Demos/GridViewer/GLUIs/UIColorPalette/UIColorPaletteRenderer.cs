@@ -222,6 +222,6 @@ namespace GridViewer
         /// <summary>
         /// sampler for color palette.
         /// </summary>
-        public sampler1D Sampler { get { return this.colorPaletteBar.Sampler; } }
+        public Texture1D Sampler { get { return this.colorPaletteBar.Sampler; } }
     }
 }

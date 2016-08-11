@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public class sampler3D
+    public class Texture3D
     {
     }
 }

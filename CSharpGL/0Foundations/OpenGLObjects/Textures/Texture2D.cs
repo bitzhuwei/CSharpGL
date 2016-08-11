@@ -11,7 +11,7 @@ namespace CSharpGL
     /// <summary>
     /// 2D纹理
     /// </summary>
-    public class sampler2D : IDisposable
+    public class Texture2D : IDisposable
     {
         private bool initialized;
         private uint[] id = new uint[1];
@@ -75,7 +75,7 @@ namespace CSharpGL
         /// <summary>
         /// Destruct instance of the class.
         /// </summary>
-        ~sampler2D()
+        ~Texture2D()
         {
             this.Dispose(false);
         }

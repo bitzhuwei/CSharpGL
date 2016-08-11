@@ -48,7 +48,7 @@ namespace CSharpGL.Demos
         {
             {
                 // This is the texture that the compute program will write into
-                sampler2D texture = new sampler2D();
+                Texture2D texture = new Texture2D();
                 var bitmap = new System.Drawing.Bitmap(@"Textures\PointSprite.png");
                 texture.Initialize(bitmap);
                 bitmap.Dispose();
@@ -153,7 +153,7 @@ namespace CSharpGL.Demos
         internal void UpdateTexture(string filename)
         {
             // This is the texture that the compute program will write into
-            sampler2D texture = new sampler2D();
+            Texture2D texture = new Texture2D();
             var bitmap = new System.Drawing.Bitmap(filename);
             texture.Initialize(bitmap);
             bitmap.Dispose();

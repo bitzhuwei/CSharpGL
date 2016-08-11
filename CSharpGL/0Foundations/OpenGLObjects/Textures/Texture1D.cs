@@ -11,7 +11,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class sampler1D : IDisposable
+    public class Texture1D : IDisposable
     {
         private bool initialized;
         private uint[] id = new uint[1];
@@ -74,7 +74,7 @@ namespace CSharpGL
         /// <summary>
         /// Destruct instance of the class.
         /// </summary>
-        ~sampler1D()
+        ~Texture1D()
         {
             this.Dispose(false);
         }
