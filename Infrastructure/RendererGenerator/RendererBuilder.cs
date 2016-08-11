@@ -117,7 +117,8 @@ namespace RendererGenerator
             }
             {
                 // var map = new PropertyNameMap();
-                method.Statements.Add(new CodeSnippetStatement("            var map = new PropertyNameMap();"));
+                method.Statements.Add(new CodeVariableDeclarationStatement("var", "map",
+                    new CodeObjectCreateExpression(typeof(PropertyNameMap))));
                 // map.Add("in_Position", GroundModel.strPosition);
                 foreach (var item in dataStructure.PropertyList)
                 {
@@ -128,13 +129,14 @@ namespace RendererGenerator
                             dataStructure.ModelName, item.NameInModel))));
                 }
             }
+            const string renderer = "renderer";
             {
                 // var renderer = new GroundRenderer(model, shaderCodes, map);
-                method.Statements.Add(new CodeSnippetStatement(string.Format("            var renderer = new {0}({1}, {2}, map);", dataStructure.RendererName, model, shaderCodes)));
+                method.Statements.Add(new CodeSnippetStatement(string.Format("            var {0} = new {1}({2}, {3}, map);", renderer, dataStructure.RendererName, model, shaderCodes)));
             }
             {
                 // return renderer;
-                method.Statements.Add(new CodeMethodReturnStatement(new CodeVariableReferenceExpression("renderer")));
+                method.Statements.Add(new CodeMethodReturnStatement(new CodeVariableReferenceExpression(renderer)));
             }
         }
 
