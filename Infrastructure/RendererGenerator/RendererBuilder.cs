@@ -61,12 +61,12 @@ namespace RendererGenerator
             method.Name = "DoRender";
             const string arg = "arg";
             method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(RenderEventArg), arg));
-            method.Statements.Add(new CodeSnippetStatement(string.Format("            //mat4 projection = arg.Camera.GetProjectionMat4();")));
-            method.Statements.Add(new CodeSnippetStatement(string.Format("            //mat4 view = arg.Camera.GetViewMat4();")));
-            method.Statements.Add(new CodeSnippetStatement(string.Format("            //mat4 model = mat4.identity();")));
-            method.Statements.Add(new CodeSnippetStatement(string.Format("            //this.SetUniform(\"projectionMatrix\", projection);")));
-            method.Statements.Add(new CodeSnippetStatement(string.Format("            //this.SetUniform(\"viewMatrix\", view);")));
-            method.Statements.Add(new CodeSnippetStatement(string.Format("            //this.SetUniform(\"modelMatrix\", model);")));
+            method.Statements.Add(new CodeCommentStatement("mat4 projection = arg.Camera.GetProjectionMat4();"));
+            method.Statements.Add(new CodeCommentStatement("mat4 view = arg.Camera.GetViewMat4();"));
+            method.Statements.Add(new CodeCommentStatement("mat4 model = mat4.identity();"));
+            method.Statements.Add(new CodeCommentStatement("this.SetUniform(\"projectionMatrix\", projection);"));
+            method.Statements.Add(new CodeCommentStatement("this.SetUniform(\"viewMatrix\", view);"));
+            method.Statements.Add(new CodeCommentStatement("this.SetUniform(\"modelMatrix\", model);"));
 
             method.Statements.Add(new CodeSnippetStatement(string.Format("            base.DoRender(arg);")));
 
